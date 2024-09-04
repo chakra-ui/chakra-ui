@@ -4,7 +4,6 @@ import {
   FileUpload as ChakraFileUpload,
   Icon,
   IconButton,
-  Square,
   Stack,
   Text,
   VStack,
@@ -70,15 +69,9 @@ const FileUploadItem = (props: FileUploadItemProps) => {
   return (
     <ChakraFileUpload.Item file={file}>
       <ChakraFileUpload.ItemPreview asChild>
-        <Square
-          size="10"
-          bg="bg.muted"
-          rounded="sm"
-          fontSize="lg"
-          color="fg.subtle"
-        >
+        <Icon fontSize="lg" color="fg.subtle">
           <RiFileLine />
-        </Square>
+        </Icon>
       </ChakraFileUpload.ItemPreview>
 
       {showSize ? (
@@ -92,7 +85,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
 
       {showDelete && (
         <ChakraFileUpload.ItemDeleteTrigger asChild>
-          <IconButton variant="ghost" color="fg.muted">
+          <IconButton variant="ghost" color="fg.subtle">
             <RiDeleteBinLine />
           </IconButton>
         </ChakraFileUpload.ItemDeleteTrigger>

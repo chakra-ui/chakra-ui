@@ -1,4 +1,4 @@
-import { progressAnatomy } from "@ark-ui/anatomy"
+import { progressAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const progressCircleSlotRecipe = defineSlotRecipe({
@@ -7,7 +7,6 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
-      colorPalette: "accent",
       textStyle: "sm",
       position: "relative",
     },
@@ -82,6 +81,5 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    colorPalette: "accent",
   },
 })

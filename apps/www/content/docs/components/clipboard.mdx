@@ -11,19 +11,34 @@ links:
 
 <ExampleTabs name="clipboard-basic" />
 
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`clipboard` snippet
+
+```sh
+chakra snippet add clipboard
+```
+
+The snippet includes a closed component composition for the `Clipboard`
+component.
+
 ## Usage
 
 ```jsx
-import { Clipboard } from "@chakra-ui/react"
+import {
+  ClipboardButton,
+  ClipboardIconButton,
+  ClipboardInput,
+} from "@/components/ui/clipboard"
 ```
 
 ```jsx
-<Clipboard.Root>
-  <Clipboard.Control>
-    <Clipboard.Input />
-    <Clipboard.Trigger />
-  </Clipboard.Control>
-</Clipboard.Root>
+<ClipboardRoot value="...">
+  <ClipboardButton />
+  <ClipboardIconButton />
+  <ClipboardInput />
+</ClipboardRoot>
 ```
 
 ## Examples
@@ -46,3 +61,9 @@ Use the `Clipboard.Input` component to create a copy input.
 Use the `timeout` prop to change the duration of the copy message.
 
 <ExampleTabs name="clipboard-with-timeout" />
+
+### Link Appearance
+
+Use the `ClipboardText` component to create a link appearance.
+
+<ExampleTabs name="clipboard-with-link" />

@@ -1,9 +1,9 @@
-import { anatomy } from "@ark-ui/anatomy/menu"
+import { menuAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const menuSlotRecipe = defineSlotRecipe({
   className: "chakra-menu",
-  slots: [...anatomy.keys(), "itemCommand"],
+  slots: menuAnatomy.keys(),
   base: {
     content: {
       outline: 0,
@@ -13,7 +13,6 @@ export const menuSlotRecipe = defineSlotRecipe({
       zIndex: "dropdown",
       borderRadius: "md",
       overflow: "hidden",
-      colorPalette: "accent",
       _open: {
         animationStyle: "slide-fade-in",
         animationDuration: "fast",
@@ -120,6 +119,5 @@ export const menuSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "subtle",
-    colorPalette: "accent",
   },
 })

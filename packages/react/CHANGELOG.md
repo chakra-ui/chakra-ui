@@ -1,5 +1,47 @@
 # @chakra-ui/react
 
+## 3.0.0-next.22
+
+### Minor Changes
+
+- [`55c0839`](https://github.com/chakra-ui/chakra-ui/commit/55c08393b46e07c0f229ccd0e448863e2daf3ccf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Move the `Prose`
+  component to snippets so it can be customized by the user.
+
+### Patch Changes
+
+- [`be98566`](https://github.com/chakra-ui/chakra-ui/commit/be98566181ca98871eb3e94d3fb2a9be29b73388)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix checkbox and
+  toast on mobile
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.22
+  - @chakra-ui/utils@3.0.0-next.22
+
+## 3.0.0-next.21
+
+### Minor Changes
+
+- [`192c6b1`](https://github.com/chakra-ui/chakra-ui/commit/192c6b1c0981b9bbb147fda4ad2dd288c624c78c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new fieldset
+  component
+
+### Patch Changes
+
+- [#8795](https://github.com/chakra-ui/chakra-ui/pull/8795)
+  [`4408573`](https://github.com/chakra-ui/chakra-ui/commit/4408573683c0f78eed28413e749701d2da937b06)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Adds style
+  prop names to `LayerStyleProperty` union type
+
+- [#8792](https://github.com/chakra-ui/chakra-ui/pull/8792)
+  [`4dd77ec`](https://github.com/chakra-ui/chakra-ui/commit/4dd77ecbcb2a993e771fab12a8eb8ca0a6eb69c7)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Updates the
+  exposed list of slot anatomy to ensure all anatomy is included for use in
+  type-checking extend recipe configs.
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.21
+  - @chakra-ui/utils@3.0.0-next.21
+
 ## 3.0.0-next.20
 
 ### Patch Changes

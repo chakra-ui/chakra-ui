@@ -1,5 +1,4 @@
 import { Box, BoxProps } from "@chakra-ui/react"
-import React from "react"
 
 export const H1 = (props: BoxProps) => {
   return (
@@ -7,7 +6,7 @@ export const H1 = (props: BoxProps) => {
       as="h1"
       css={{
         color: "fg",
-        fontSize: "2.15em",
+        fontSize: "2em",
         letterSpacing: "-0.02em",
         marginTop: "0",
         marginBottom: "0.8em",

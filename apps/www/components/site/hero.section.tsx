@@ -76,6 +76,7 @@ const ComponentDemos = () => {
       <DemoFrame id="tabs">
         <DemoFrameContent maxW="80%">
           <Tabs.Root
+            fitted
             defaultValue={tabsData[0].label}
             variant="enclosed"
             colorPalette="teal"

@@ -18,4 +18,4 @@ export { ProgressCircleWithColors as Colors } from "compositions/examples/progre
 export { ProgressCircleWithRoundCap as WithRoundCap } from "compositions/examples/progress-circle-with-round-cap"
 export { ProgressCircleWithSizes as Sizes } from "compositions/examples/progress-circle-with-sizes"
 export { ProgressCircleWithThickness as CustomThickness } from "compositions/examples/progress-circle-with-thickness"
-export { ProgressCircleWithValueText as WithValueText } from "compositions/examples/progress-circle-with-value-text"
+export { ProgressCircleWithValueText as ValueText } from "compositions/examples/progress-circle-with-value-text"

@@ -7,7 +7,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-      colorPalette: "accent",
+
       _horizontal: {
         display: "block",
       },
@@ -272,6 +272,5 @@ export const tabsSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "line",
-    colorPalette: "accent",
   },
 })

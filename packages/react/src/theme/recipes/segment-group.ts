@@ -1,9 +1,9 @@
-import { anatomy } from "@ark-ui/anatomy/segment-group"
+import { segmentGroupAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const segmentGroupSlotRecipe = defineSlotRecipe({
   className: "chakra-segment-group",
-  slots: anatomy.keys(),
+  slots: segmentGroupAnatomy.keys(),
   base: {
     root: {
       display: "inline-flex",

@@ -5,7 +5,7 @@
   "id": "link-button",
   "file": {
     "name": "link-button.tsx",
-    "content": "\"use client\"\n\nimport type { HTMLChakraProps, RecipeProps } from \"@chakra-ui/react\"\nimport { Button, chakra, useRecipe } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface LinkButtonProps\n  extends HTMLChakraProps<\"a\", RecipeProps<\"Button\">> {}\n\n// Replace \"a\" with your framework's link component\nconst StyledLink = chakra(\"a\")\n\nexport const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(\n  function LinkButton(props, ref) {\n    const recipe = useRecipe({ key: \"button\", recipe: props.recipe })\n    const [variantProps, restProps] = recipe.splitVariantProps(props as any)\n    return (\n      <Button asChild {...variantProps}>\n        <StyledLink ref={ref} {...restProps} />\n      </Button>\n    )\n  },\n)\n"
+    "content": "\"use client\"\n\nimport type { HTMLChakraProps, RecipeProps } from \"@chakra-ui/react\"\nimport { chakra, useRecipe } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface LinkButtonProps\n  extends HTMLChakraProps<\"a\", RecipeProps<\"button\">> {}\n\n// Replace \"a\" with your framework's link component\nconst StyledLink = chakra(\"a\")\n\nexport const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(\n  function LinkButton(props, ref) {\n    const recipe = useRecipe({ key: \"button\", recipe: props.recipe })\n    const [variantProps, restProps] = recipe.splitVariantProps(props)\n    const styles = recipe(variantProps)\n    return <StyledLink ref={ref} {...restProps} css={[styles, props.css]} />\n  },\n)\n"
   },
   "component": "LinkButton"
 }

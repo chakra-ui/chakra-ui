@@ -13,7 +13,7 @@ export default {
 } satisfies Meta
 
 export { DrawerBasic as Basic } from "compositions/examples/drawer-basic"
-export { DrawerWithOffset as WithOffset } from "compositions/examples/drawer-with-offset"
+export { DrawerWithOffset as Offset } from "compositions/examples/drawer-with-offset"
 export { DrawerWithSizes as Sizes } from "compositions/examples/drawer-with-sizes"
 export { DrawerWithPlacement as Placement } from "compositions/examples/drawer-with-placement"
-export { DrawerWithInitialFocus as WithInitialFocus } from "compositions/examples/drawer-with-initial-focus"
+export { DrawerWithInitialFocus as InitialFocus } from "compositions/examples/drawer-with-initial-focus"

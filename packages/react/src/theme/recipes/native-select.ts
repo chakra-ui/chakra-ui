@@ -12,7 +12,6 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       display: "flex",
       width: "100%",
       position: "relative",
-      colorPalette: "gray",
     },
     field: {
       width: "100%",

@@ -29,6 +29,17 @@
   },
   {
     "type": "composition",
+    "id": "avatar-overflow-menu",
+    "file": "avatar-overflow-menu.tsx",
+    "component": "AvatarOverflowMenu",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/avatar",
+      "compositions/ui/menu"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "avatar",
     "file": "avatar.tsx",
     "component": "Avatar",
@@ -73,6 +84,16 @@
     "file": "checkbox.tsx",
     "component": "Checkbox",
     "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "clipboard",
+    "file": "clipboard.tsx",
+    "component": "Clipboard",
+    "npmDependencies": [
+      "react-icons"
+    ],
     "fileDependencies": []
   },
   {
@@ -232,7 +253,9 @@
     "npmDependencies": [
       "react-icons"
     ],
-    "fileDependencies": []
+    "fileDependencies": [
+      "./link-button"
+    ]
   },
   {
     "type": "composition",
@@ -240,9 +263,12 @@
     "file": "password-input.tsx",
     "component": "PasswordInput",
     "npmDependencies": [
-      "@chakra-ui/hooks"
+      "@chakra-ui/hooks",
+      "react-icons"
     ],
-    "fileDependencies": []
+    "fileDependencies": [
+      "./input-group"
+    ]
   },
   {
     "type": "composition",
@@ -281,6 +307,14 @@
     "fileDependencies": [
       "compositions/ui/toggle-tip"
     ]
+  },
+  {
+    "type": "composition",
+    "id": "prose",
+    "file": "prose.tsx",
+    "component": "Prose",
+    "npmDependencies": [],
+    "fileDependencies": []
   },
   {
     "type": "composition",

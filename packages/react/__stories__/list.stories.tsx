@@ -15,4 +15,4 @@ export default {
 export { ListBasic as Basic } from "compositions/examples/list-basic"
 export { ListNested as Nested } from "compositions/examples/list-nested"
 export { ListOrdered as Ordered } from "compositions/examples/list-ordered"
-export { ListWithIcon as WithIcon } from "compositions/examples/list-with-icon"
+export { ListWithIcon as Icon } from "compositions/examples/list-with-icon"

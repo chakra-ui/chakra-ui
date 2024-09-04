@@ -6,7 +6,6 @@ export const markRecipe = defineRecipe({
     bg: "transparent",
     color: "inherit",
     whiteSpace: "nowrap",
-    colorPalette: "accent",
   },
 
   variants: {
@@ -24,9 +23,5 @@ export const markRecipe = defineRecipe({
       },
       plain: {},
     },
-  },
-
-  defaultVariants: {
-    colorPalette: "accent",
   },
 })

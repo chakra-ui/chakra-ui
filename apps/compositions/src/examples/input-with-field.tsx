@@ -5,10 +5,10 @@ export const InputWithField = () => {
   return (
     <HStack gap="10" width="full">
       <Field label="Email" asterisk>
-        <Input placeholder="Enter your email" variant="filled" />
+        <Input placeholder="me@example.com" variant="filled" />
       </Field>
       <Field label="Email" asterisk>
-        <Input placeholder="Enter your email" variant="outline" />
+        <Input placeholder="me@example.com" variant="outline" />
       </Field>
     </HStack>
   )

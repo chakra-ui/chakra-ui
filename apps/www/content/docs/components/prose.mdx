@@ -19,7 +19,7 @@ import { Prose } from "@chakra-ui/react"
 
 ```jsx
 <Prose>
-  <div dangerouslySetInnerHTML={{ _html: "..." }} />
+  <div dangerouslySetInnerHTML={{ __html: "..." }} />
 </Prose>
 ```
 
@@ -30,3 +30,30 @@ import { Prose } from "@chakra-ui/react"
 Use the `size` prop to change the size of the `Prose` component
 
 <ExampleTabs name="prose-with-sizes" />
+
+### Blockquote
+
+Blockquote elements are styled to match the design language of the `Blockquote`
+component.
+
+<ExampleTabs name="prose-with-blockquote" />
+
+### List
+
+List elements are styled to match the design language of the `List` component.
+
+<ExampleTabs name="prose-with-list" />
+
+### React Markdown
+
+Here's an example of using the `react-markdown` library to render markdown
+content.
+
+<ExampleTabs name="prose-with-react-markdown" />
+
+### Table
+
+The table elements are styled to match the design language of the `Table`
+component.
+
+<ExampleTabs name="prose-with-table" />

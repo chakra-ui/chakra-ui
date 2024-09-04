@@ -18,13 +18,16 @@
     "@chakra-ui/compositions": "1.0.0"
   },
   "changesets": [
+    "beige-bobcats-brush",
     "blue-masks-tell",
+    "breezy-carpets-roll",
     "chilly-flowers-build",
     "clean-emus-own",
     "clean-monkeys-travel",
     "curly-donkeys-glow",
     "curvy-zebras-fold",
     "dull-weeks-itch",
+    "eighty-vans-fly",
     "fast-eagles-sleep",
     "fast-pets-sip",
     "few-cows-unite",
@@ -44,6 +47,7 @@
     "lazy-cycles-train",
     "lucky-seas-look",
     "many-lamps-provide",
+    "moody-pandas-shake",
     "olive-lobsters-explain",
     "popular-crews-laugh",
     "pretty-cougars-cough",
@@ -65,10 +69,12 @@
     "tasty-falcons-poke",
     "tasty-scissors-watch",
     "tender-bugs-taste",
+    "tough-lions-unite",
     "tricky-camels-smoke",
     "two-hats-provide",
     "unlucky-apples-sing",
     "wet-radios-float",
+    "wild-apes-teach",
     "yellow-kings-exercise"
   ]
 }

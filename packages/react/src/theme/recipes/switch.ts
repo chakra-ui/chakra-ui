@@ -1,8 +1,8 @@
-import { anatomy } from "@ark-ui/anatomy/switch"
+import { switchAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const switchSlotRecipe = defineSlotRecipe({
-  slots: [...anatomy.keys(), "indicator"],
+  slots: switchAnatomy.keys(),
   className: "chakra-switch",
   base: {
     root: {
@@ -16,7 +16,6 @@ export const switchSlotRecipe = defineSlotRecipe({
         base: "var(--switch-diff)",
         _rtl: "calc(var(--switch-diff) * -1)",
       },
-      colorPalette: "accent",
     },
 
     label: {
@@ -164,6 +163,5 @@ export const switchSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "solid",
     size: "md",
-    colorPalette: "accent",
   },
 })

@@ -2,7 +2,7 @@ import { For, Group, Stack } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { Button } from "compositions/ui/button"
 import {
-  StepsCompleteContent,
+  StepsCompletedContent,
   StepsContent,
   StepsItem,
   StepsList,
@@ -31,7 +31,9 @@ export const StepsWithColors = () => {
             <StepsContent index={0}>Step 1</StepsContent>
             <StepsContent index={1}>Step 2</StepsContent>
             <StepsContent index={2}>Step 3</StepsContent>
-            <StepsCompleteContent>All steps are complete!</StepsCompleteContent>
+            <StepsCompletedContent>
+              All steps are complete!
+            </StepsCompletedContent>
 
             <Group>
               <StepsPrevTrigger asChild>

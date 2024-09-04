@@ -12,6 +12,9 @@ export const ButtonWithColors = () => {
           <Button colorPalette={colorPalette} variant="outline">
             Button
           </Button>
+          <Button colorPalette={colorPalette} variant="surface">
+            Button
+          </Button>
           <Button colorPalette={colorPalette} variant="subtle">
             Button
           </Button>

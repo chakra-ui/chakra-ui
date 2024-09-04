@@ -12,5 +12,3 @@ export type { StrongProps } from "./strong"
 
 export { Mark } from "./mark"
 export type { MarkProps } from "./mark"
-
-export { Prose } from "./prose"

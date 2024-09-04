@@ -1,13 +1,12 @@
-import { anatomy } from "@ark-ui/anatomy/accordion"
+import { accordionAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const accordionSlotRecipe = defineSlotRecipe({
   className: "chakra-accordion",
-  slots: [...anatomy.keys(), "itemBody"],
+  slots: accordionAnatomy.keys(),
   base: {
     root: {
-      width: "100%",
-      colorPalette: "accent",
+      width: "full",
     },
     item: {
       overflowAnchor: "none",
@@ -148,6 +147,5 @@ export const accordionSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

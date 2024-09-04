@@ -107,6 +107,9 @@ type LayerStyleProperty =
   | "width"
   | "minHeight"
   | "minWidth"
+  | "maxHeight"
+  | "maxWidth"
+  | `margin${Placement}`
   | `inset${LogicalPlacement}`
   | Lowercase<PhysicalPlacement>
   | "outline"

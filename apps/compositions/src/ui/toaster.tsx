@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Toaster as ChakraToaster,
   Portal,
@@ -25,13 +27,17 @@ const defaultMeta: ToastMeta = {
 export const Toaster = () => {
   return (
     <Portal>
-      <ChakraToaster toaster={toaster} width="full" maxWidth="400px">
+      <ChakraToaster
+        toaster={toaster}
+        insetInline={{ mdDown: "1rem" }}
+        width={{ md: "356px" }}
+      >
         {(toast) => {
           const meta = Object.assign(defaultMeta, toast.meta ?? {})
           return (
             <Toast.Root>
               {toast.type === "loading" ? (
-                <Spinner size="sm" color="blue.600" />
+                <Spinner size="sm" color="blue.solid" />
               ) : (
                 <Toast.Indicator />
               )}

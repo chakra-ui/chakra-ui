@@ -1,5 +1,5 @@
-import { anatomy } from "@ark-ui/anatomy/number-input"
 import { mapEntries } from "@chakra-ui/utils"
+import { numberInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 import { inputRecipe } from "./input"
 
@@ -25,12 +25,11 @@ const triggerStyle = defineStyle({
 
 export const numberInputSlotRecipe = defineSlotRecipe({
   className: "chakra-number-input",
-  slots: anatomy.keys(),
+  slots: numberInputAnatomy.keys(),
   base: {
     root: {
       position: "relative",
       zIndex: 0,
-      colorPalette: "gray",
       isolation: "isolate",
     },
     input: {

@@ -11,7 +11,6 @@ export const tableSlotRecipe = defineSlotRecipe({
       width: "full",
       textAlign: "start",
       verticalAlign: "top",
-      colorPalette: "accent",
     },
     row: {
       _selected: {
@@ -169,6 +168,5 @@ export const tableSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "line",
     size: "md",
-    colorPalette: "accent",
   },
 })

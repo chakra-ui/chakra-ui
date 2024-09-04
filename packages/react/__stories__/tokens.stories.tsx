@@ -46,7 +46,7 @@ export const StatusTokens = () => {
       <For each={["bg.error", "bg.warning", "bg.success", "bg.info"]}>
         {(color) => (
           <Center bg={color} height="40px">
-            <Text>{color}</Text>
+            <Text color={color.replace("bg.", "fg.")}>{color}</Text>
           </Center>
         )}
       </For>

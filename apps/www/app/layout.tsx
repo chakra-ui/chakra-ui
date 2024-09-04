@@ -5,7 +5,10 @@ import { Provider } from "./provider"
 import "./scrollbar.css"
 import "./shiki.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -21,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={inter.variable}>
+      <body>
         <Provider>{children}</Provider>
       </body>
     </html>

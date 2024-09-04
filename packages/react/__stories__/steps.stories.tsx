@@ -16,8 +16,8 @@ export { StepsBasic as Basic } from "compositions/examples/steps-basic"
 export { StepsSizeTable as Sizes } from "compositions/examples/steps-size-table"
 export { StepsVariantTable as Variants } from "compositions/examples/steps-variant-table"
 export { StepsVertical as Vertical } from "compositions/examples/steps-vertical"
-export { StepsWithDescription as WithDescription } from "compositions/examples/steps-with-description"
-export { StepsWithIcon as WithIcon } from "compositions/examples/steps-with-icon"
+export { StepsWithDescription as Description } from "compositions/examples/steps-with-description"
+export { StepsWithIcon as Icon } from "compositions/examples/steps-with-icon"
 
 const steps = [
   { value: "first", title: "First", description: "Contact Info" },

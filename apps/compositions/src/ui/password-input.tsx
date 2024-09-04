@@ -46,6 +46,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
 
     return (
       <InputGroup
+        width="full"
         endElement={
           <VisibilityTrigger
             disabled={rest.disabled}

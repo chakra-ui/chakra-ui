@@ -96,6 +96,7 @@ export const FieldRequiredIndicator = forwardRef<
 
   const field = useFieldContext()
   const classNames = useClassNames()
+  const styles = useFieldStyles()
 
   if (!field?.required) {
     return fallback
@@ -107,6 +108,7 @@ export const FieldRequiredIndicator = forwardRef<
       aria-hidden="true"
       {...restProps}
       className={cx(classNames.requiredIndicator, props.className)}
+      css={[styles.requiredIndicator, props.css]}
     >
       {children}
     </chakra.span>

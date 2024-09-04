@@ -10,7 +10,6 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       userSelect: "none",
-      colorPalette: "accent",
       position: "relative",
       focusRing: "outside",
       _disabled: {
@@ -37,12 +36,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       _disabled: {
-        color: "fg.subtle!",
+        opacity: 0.5,
       },
     },
     addon: {
       _disabled: {
-        color: "fg.subtle",
+        opacity: 0.5,
       },
     },
     indicator: checkmarkRecipe.base,
@@ -149,6 +148,5 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

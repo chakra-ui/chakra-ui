@@ -1,6 +1,7 @@
 import { defineTextStyles } from "../styled-system"
 
 export const textStyles = defineTextStyles({
+  "2xs": { value: { fontSize: "2xs", lineHeight: "moderate" } },
   xs: { value: { fontSize: "xs", lineHeight: "moderate" } },
   sm: { value: { fontSize: "sm", lineHeight: "moderate" } },
   md: { value: { fontSize: "md", lineHeight: "moderate" } },

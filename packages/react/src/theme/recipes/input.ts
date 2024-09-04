@@ -16,6 +16,7 @@ export const inputRecipe = defineRecipe({
     "--focus-color": "colors.focusRing",
     "--error-color": "colors.border.error",
   },
+
   variants: {
     size: {
       lg: {
@@ -51,6 +52,7 @@ export const inputRecipe = defineRecipe({
         scrollPaddingBottom: "2",
       },
     },
+
     variant: {
       outline: {
         borderWidth: "1px",
@@ -58,6 +60,7 @@ export const inputRecipe = defineRecipe({
         bg: "bg",
         focusVisibleRing: "inside",
         _invalid: {
+          focusRingColor: "var(--error-color)",
           borderColor: "var(--error-color)",
         },
       },
@@ -65,13 +68,13 @@ export const inputRecipe = defineRecipe({
         borderWidth: "1px",
         borderColor: "transparent",
         bg: "bg.subtle",
-        _invalid: {
-          borderColor: "var(--error-color)",
-        },
+        focusVisibleRing: "inside",
         _focusVisible: {
           bg: "bg",
-          outline: "1px solid var(--focus-color)",
-          borderColor: "var(--focus-color)",
+        },
+        _invalid: {
+          focusRingColor: "var(--error-color)",
+          borderColor: "var(--error-color)",
         },
       },
       flushed: {
@@ -80,16 +83,18 @@ export const inputRecipe = defineRecipe({
         borderRadius: "0",
         px: "0",
         bg: "bg",
-        _invalid: {
-          borderColor: "var(--error-color)",
-        },
         _focusVisible: {
           borderColor: "var(--focus-color)",
           boxShadow: "0px 1px 0px 0px var(--focus-color)",
         },
+        _invalid: {
+          focusRingColor: "var(--error-color)",
+          borderColor: "var(--error-color)",
+        },
       },
     },
   },
+
   defaultVariants: {
     size: "md",
     variant: "outline",

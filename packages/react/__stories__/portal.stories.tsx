@@ -13,5 +13,5 @@ export default {
 } satisfies Meta
 
 export { PortalBasic as Basic } from "compositions/examples/portal-basic"
-export { PortalWithIframe as WithIframe } from "compositions/examples/portal-with-iframe"
-export { PortalWithContainer as WithContainer } from "compositions/examples/portal-with-container"
+export { PortalWithIframe as Iframe } from "compositions/examples/portal-with-iframe"
+export { PortalWithContainer as Container } from "compositions/examples/portal-with-container"

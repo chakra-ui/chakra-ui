@@ -586,6 +586,20 @@ export type FieldVariantMap = {
   [K in keyof FieldVariant]: Array<FieldVariant[K]>
 }
 
+// Fieldset
+
+export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "control"
+
+export interface FieldsetVariant {}
+
+export type FieldsetVariantProps = {
+  [K in keyof FieldsetVariant]?: ConditionalValue<FieldsetVariant[K]> | undefined
+}
+
+export type FieldsetVariantMap = {
+  [K in keyof FieldsetVariant]: Array<FieldsetVariant[K]>
+}
+
 // FileUpload
 
 export type FileUploadSlot =
@@ -1147,6 +1161,7 @@ export interface ConfigSlotRecipes {
   editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps, EditableVariantMap>
   emptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps, EmptyStateVariantMap>
   field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps, FieldVariantMap>
+  fieldset: SystemSlotRecipeFn<FieldsetSlot, FieldsetVariantProps, FieldsetVariantMap>
   fileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps, FileUploadVariantMap>
   hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps, HoverCardVariantMap>
   list: SystemSlotRecipeFn<ListSlot, ListVariantProps, ListVariantMap>
@@ -1192,6 +1207,7 @@ export interface ConfigRecipeSlots {
   editable: EditableSlot
   emptyState: EmptyStateSlot
   field: FieldSlot
+  fieldset: FieldsetSlot
   fileUpload: FileUploadSlot
   hoverCard: HoverCardSlot
   list: ListSlot

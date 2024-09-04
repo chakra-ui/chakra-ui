@@ -1,14 +1,11 @@
-import { anatomy } from "@ark-ui/anatomy/radio-group"
+import { radioGroupAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { radiomarkRecipe } from "./radiomark"
 
 export const radioCardSlotRecipe = defineSlotRecipe({
   className: "chakra-radio-card",
-  slots: [...anatomy.keys(), "itemAddon", "itemIndicator"],
+  slots: radioGroupAnatomy.keys(),
   base: {
-    root: {
-      colorPalette: "accent",
-    },
     item: {
       display: "flex",
       flexDirection: "column",
@@ -140,6 +137,5 @@ export const radioCardSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

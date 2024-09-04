@@ -1,8 +1,8 @@
-import { anatomy } from "@ark-ui/anatomy/avatar"
+import { avatarAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
-  slots: anatomy.keys(),
+  slots: avatarAnatomy.keys(),
   className: "chakra-avatar",
   base: {
     root: {
@@ -19,7 +19,6 @@ export const avatarSlotRecipe = defineSlotRecipe({
       "--avatar-font-size": "calc(var(--avatar-size) / 2.5)",
       fontSize: "var(--avatar-font-size)",
       borderRadius: "var(--avatar-radius)",
-      colorPalette: "accent",
       "&[data-group-item]": {
         borderWidth: "2px",
         borderColor: "bg",
@@ -127,6 +126,5 @@ export const avatarSlotRecipe = defineSlotRecipe({
     size: "md",
     shape: "full",
     variant: "subtle",
-    colorPalette: "gray",
   },
 })

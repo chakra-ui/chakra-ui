@@ -1,4 +1,4 @@
-import { Prose } from "@chakra-ui/react"
+import { Prose } from "compositions/ui/prose"
 
 // Used for syntax highlighting
 const html = String.raw

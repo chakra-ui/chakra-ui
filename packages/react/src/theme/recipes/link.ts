@@ -3,7 +3,6 @@ import { defineRecipe } from "../../styled-system"
 export const linkRecipe = defineRecipe({
   className: "chakra-link",
   base: {
-    colorPalette: "accent",
     display: "inline-flex",
     alignItems: "center",
     outline: "none",
@@ -34,6 +33,5 @@ export const linkRecipe = defineRecipe({
 
   defaultVariants: {
     variant: "plain",
-    colorPalette: "accent",
   },
 })

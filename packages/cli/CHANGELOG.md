@@ -1,5 +1,15 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.22
+
+## 3.0.0-next.21
+
+### Minor Changes
+
+- [`14b6a45`](https://github.com/chakra-ui/chakra-ui/commit/14b6a45f5df2405e7e40494d4691efceed87f962)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Show the number of
+  skipped snippets that already exists in outdir
+
 ## 3.0.0-next.20
 
 ### Patch Changes

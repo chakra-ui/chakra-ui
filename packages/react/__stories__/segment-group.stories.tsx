@@ -1,6 +1,5 @@
 import type { Meta } from "@storybook/react"
-import { Box, For, SegmentGroup, useSlotRecipe } from "../src"
-import { PlaygroundTable } from "./shared/playground-table"
+import { Box } from "../src"
 
 export default {
   title: "Components / Segment Group",
@@ -13,66 +12,10 @@ export default {
   ],
 } satisfies Meta
 
-export const Basic = () => {
-  return (
-    <SegmentGroup.Root defaultValue="react">
-      <SegmentGroup.Indicator />
-      <SegmentGroup.Item value="react">
-        <SegmentGroup.ItemText>React</SegmentGroup.ItemText>
-        <SegmentGroup.ItemHiddenInput />
-      </SegmentGroup.Item>
-
-      <SegmentGroup.Item value="solid">
-        <SegmentGroup.ItemText>Solid.js</SegmentGroup.ItemText>
-        <SegmentGroup.ItemHiddenInput />
-      </SegmentGroup.Item>
-
-      <SegmentGroup.Item value="vue">
-        <SegmentGroup.ItemText>Vue</SegmentGroup.ItemText>
-        <SegmentGroup.ItemHiddenInput />
-      </SegmentGroup.Item>
-    </SegmentGroup.Root>
-  )
-}
-
-export const Sizes = () => {
-  const recipe = useSlotRecipe({ key: "segmentGroup" })
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>
-            {(v) => (
-              <td key={v}>
-                <SegmentGroup.Root defaultValue="react" size={v}>
-                  <SegmentGroup.Indicator />
-                  <SegmentGroup.Item value="react">
-                    <SegmentGroup.ItemText>React</SegmentGroup.ItemText>
-                    <SegmentGroup.ItemHiddenInput />
-                  </SegmentGroup.Item>
-
-                  <SegmentGroup.Item value="solid">
-                    <SegmentGroup.ItemText>Solid.js</SegmentGroup.ItemText>
-                    <SegmentGroup.ItemHiddenInput />
-                  </SegmentGroup.Item>
-
-                  <SegmentGroup.Item value="vue">
-                    <SegmentGroup.ItemText>Vue</SegmentGroup.ItemText>
-                    <SegmentGroup.ItemHiddenInput />
-                  </SegmentGroup.Item>
-                </SegmentGroup.Root>
-              </td>
-            )}
-          </For>
-        </tr>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
+export { SegmentedControlBasic as Basic } from "compositions/examples/segmented-control-basic"
+export { SegmentedControlControlled as Controlled } from "compositions/examples/segmented-control-controlled"
+export { SegmentedControlWithDisabled as Disabled } from "compositions/examples/segmented-control-with-disabled"
+export { SegmentedControlWithDisabledItem as DisabledItem } from "compositions/examples/segmented-control-with-disabled-item"
+export { SegmentedControlWithHookForm as HookForm } from "compositions/examples/segmented-control-with-hook-form"
+export { SegmentedControlWithIcon as Icon } from "compositions/examples/segmented-control-with-icon"
+export { SegmentedControlWithSizes as Sizes } from "compositions/examples/segmented-control-with-sizes"

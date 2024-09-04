@@ -1,14 +1,12 @@
-import { anatomy } from "@ark-ui/anatomy/dialog"
+import { dialogAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
-
-const dialogAnatomy = anatomy.extendWith("header", "body", "footer", "backdrop")
 
 export const dialogSlotRecipe = defineSlotRecipe({
   slots: dialogAnatomy.keys(),
   className: "chakra-dialog",
   base: {
     backdrop: {
-      bg: "blackAlpha.500",
+      bg: "blackAlpha.700",
       pos: "fixed",
       left: 0,
       top: 0,

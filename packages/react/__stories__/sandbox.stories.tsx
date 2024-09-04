@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react"
 import { useState } from "react"
-import { Box, Button, Stack, Text } from "../src"
+import { Badge, Box, Button, For, Link, Stack, Text } from "../src"
 
 export default {
   title: "Foundations / Sandbox",
@@ -40,6 +40,27 @@ export const ReRenders = () => {
       <Box>
         <Button onClick={() => setIsRed(!isRed)}>Re-Render</Button>
       </Box>
+    </Stack>
+  )
+}
+
+export const ColorPalette = () => {
+  return (
+    <Stack>
+      <For each={["blue", "green", "red"]}>
+        {(color) => (
+          <Box colorPalette={color}>
+            <Box bg="colorPalette.subtle" color="colorPalette.fg" p="4">
+              Welcome to the{" "}
+              <Link variant="underline" href="https://www.google.com">
+                jungle <Badge variant="solid"> New</Badge>
+              </Link>
+              <br />
+              <Button>Click me</Button>
+            </Box>
+          </Box>
+        )}
+      </For>
     </Stack>
   )
 }

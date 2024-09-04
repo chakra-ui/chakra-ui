@@ -1,4 +1,4 @@
-import { progressAnatomy } from "@ark-ui/anatomy"
+import { progressAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
@@ -6,7 +6,6 @@ export const progressSlotRecipe = defineSlotRecipe({
   className: "chakra-progress",
   base: {
     root: {
-      colorPalette: "accent",
       textStyle: "sm",
       position: "relative",
     },
@@ -121,6 +120,5 @@ export const progressSlotRecipe = defineSlotRecipe({
     variant: "outline",
     size: "md",
     shape: "rounded",
-    colorPalette: "accent",
   },
 })

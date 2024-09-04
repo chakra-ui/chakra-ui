@@ -14,4 +14,4 @@ export default {
 
 export { BleedBasic as Basic } from "compositions/examples/bleed-basic"
 export { BleedVertical as Vertical } from "compositions/examples/bleed-vertical"
-export { BleedWithDirection as WithDirection } from "compositions/examples/bleed-with-direction"
+export { BleedWithDirection as Direction } from "compositions/examples/bleed-with-direction"
