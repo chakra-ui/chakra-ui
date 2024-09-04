@@ -59,11 +59,11 @@ export function ThemePanel(props: ThemePanelProps) {
           },
         }}
       />
-      <Box pos="fixed" top="10" left="10" zIndex="overlay">
+      <Box pos="fixed" top="24" left="10" zIndex="overlay">
         <Card.Root width="320px" variant="elevated" bg="bg.panel">
           <Card.Header>
             <HStack justify="space-between">
-              <Text fontWeight="medium">Theme Panel</Text>
+              <Text fontWeight="semibold">Theme Panel</Text>
               <ColorModeButton colorPalette="accent" />
             </HStack>
           </Card.Header>
@@ -100,6 +100,7 @@ export function ThemePanel(props: ThemePanelProps) {
               <SimpleGrid gap="2" columns={4}>
                 {fontFamilies.map((item) => (
                   <Square
+                    cursor="default"
                     rounded="md"
                     borderColor={
                       item.value === fontFamily ? "accent.solid" : undefined

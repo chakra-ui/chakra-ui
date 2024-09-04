@@ -40,7 +40,7 @@ export default async function Page() {
   const fontFamily = cookies().get("chakra-font")
 
   return (
-    <Container py="20" fontSize="sm" maxW="4xl">
+    <Container py="10" fontSize="sm" maxW="4xl">
       <ThemePanel
         accentColor={accentColor?.value}
         fontFamily={fontFamily?.value}
