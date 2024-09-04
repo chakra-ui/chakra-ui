@@ -88,6 +88,16 @@
   },
   {
     "type": "composition",
+    "id": "clipboard",
+    "file": "clipboard.tsx",
+    "component": "Clipboard",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "close-button",
     "file": "close-button.tsx",
     "component": "CloseButton",
@@ -297,6 +307,14 @@
     "fileDependencies": [
       "compositions/ui/toggle-tip"
     ]
+  },
+  {
+    "type": "composition",
+    "id": "prose",
+    "file": "prose.tsx",
+    "component": "Prose",
+    "npmDependencies": [],
+    "fileDependencies": []
   },
   {
     "type": "composition",

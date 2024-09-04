@@ -1,22 +1,18 @@
-import { Clipboard, Input } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import { LuCopy } from "react-icons/lu"
-
-const value = "npm i @chakra-ui/react"
+import {
+  ClipboardIconButton,
+  ClipboardInput,
+  ClipboardLabel,
+  ClipboardRoot,
+} from "compositions/ui/clipboard"
+import { InputGroup } from "compositions/ui/input-group"
 
 export const ClipboardWithInput = () => {
   return (
-    <Clipboard.Root value={value} maxW="400px">
-      <Clipboard.Control display="flex" gap="2">
-        <Clipboard.Input asChild>
-          <Input size="sm" />
-        </Clipboard.Input>
-        <Clipboard.Trigger asChild>
-          <Button size="sm">
-            <LuCopy /> Copy
-          </Button>
-        </Clipboard.Trigger>
-      </Clipboard.Control>
-    </Clipboard.Root>
+    <ClipboardRoot maxW="300px" value="https://sharechakra-ui.com/dfr3def">
+      <ClipboardLabel>Document Link</ClipboardLabel>
+      <InputGroup width="full" endElement={<ClipboardIconButton me="-2" />}>
+        <ClipboardInput />
+      </InputGroup>
+    </ClipboardRoot>
   )
 }

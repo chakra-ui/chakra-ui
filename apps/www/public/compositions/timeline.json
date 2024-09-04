@@ -5,7 +5,7 @@
   "id": "timeline",
   "file": {
     "name": "timeline.tsx",
-    "content": "import { Timeline as ChakraTimeline } from \"@chakra-ui/react\"\n\nexport const TimelineRoot = ChakraTimeline.Root\nexport const TimelineContent = ChakraTimeline.Content\nexport const TimelineItem = ChakraTimeline.Item\n\nexport const TimelineConnector = (props: ChakraTimeline.IndicatorProps) => {\n  return (\n    <ChakraTimeline.Connector>\n      <ChakraTimeline.Separator />\n      <ChakraTimeline.Indicator {...props} />\n    </ChakraTimeline.Connector>\n  )\n}\n"
+    "content": "import { Timeline as ChakraTimeline } from \"@chakra-ui/react\"\n\nexport const TimelineRoot = ChakraTimeline.Root\nexport const TimelineContent = ChakraTimeline.Content\nexport const TimelineItem = ChakraTimeline.Item\nexport const TimelineIndicator = ChakraTimeline.Indicator\n\nexport const TimelineConnector = (props: ChakraTimeline.IndicatorProps) => {\n  return (\n    <ChakraTimeline.Connector>\n      <ChakraTimeline.Separator />\n      <ChakraTimeline.Indicator {...props} />\n    </ChakraTimeline.Connector>\n  )\n}\n"
   },
   "component": "Timeline"
 }

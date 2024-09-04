@@ -123,7 +123,9 @@ export const buttonRecipe = defineRecipe({
         },
       },
 
-      plain: {},
+      plain: {
+        color: "colorPalette.fg",
+      },
     },
   },
 
