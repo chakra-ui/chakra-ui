@@ -18,6 +18,7 @@
     "@chakra-ui/compositions": "1.0.0"
   },
   "changesets": [
+    "beige-bobcats-brush",
     "blue-masks-tell",
     "breezy-carpets-roll",
     "chilly-flowers-build",
@@ -46,6 +47,7 @@
     "lazy-cycles-train",
     "lucky-seas-look",
     "many-lamps-provide",
+    "moody-pandas-shake",
     "olive-lobsters-explain",
     "popular-crews-laugh",
     "pretty-cougars-cough",

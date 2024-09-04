@@ -1,5 +1,23 @@
 # @chakra-ui/react
 
+## 3.0.0-next.22
+
+### Minor Changes
+
+- [`55c0839`](https://github.com/chakra-ui/chakra-ui/commit/55c08393b46e07c0f229ccd0e448863e2daf3ccf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Move the `Prose`
+  component to snippets so it can be customized by the user.
+
+### Patch Changes
+
+- [`be98566`](https://github.com/chakra-ui/chakra-ui/commit/be98566181ca98871eb3e94d3fb2a9be29b73388)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix checkbox and
+  toast on mobile
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.22
+  - @chakra-ui/utils@3.0.0-next.22
+
 ## 3.0.0-next.21
 
 ### Minor Changes
