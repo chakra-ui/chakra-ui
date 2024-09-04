@@ -3,6 +3,7 @@ import { Timeline as ChakraTimeline } from "@chakra-ui/react"
 export const TimelineRoot = ChakraTimeline.Root
 export const TimelineContent = ChakraTimeline.Content
 export const TimelineItem = ChakraTimeline.Item
+export const TimelineIndicator = ChakraTimeline.Indicator
 
 export const TimelineConnector = (props: ChakraTimeline.IndicatorProps) => {
   return (

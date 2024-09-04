@@ -19,7 +19,7 @@ export default function BlogPage() {
           </Stack>
         </Stack>
 
-        <SimpleGrid columns={{ base: 2, md: 4 }} gap="6">
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} gap="6">
           {blogs.map((blog, index) => (
             <BlogCard key={index} data={blog} />
           ))}
