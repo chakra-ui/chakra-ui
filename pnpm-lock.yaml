@@ -272,6 +272,9 @@ importers:
       react-lorem-ipsum:
         specifier: 1.4.10
         version: 1.4.10
+      react-markdown:
+        specifier: 9.0.1
+        version: 9.0.1(@types/react@18.3.3)(react@18.2.0)
       react-textarea-autosize:
         specifier: 8.5.3
         version: 8.5.3(@types/react@18.3.3)(react@18.2.0)
@@ -521,9 +524,6 @@ importers:
       '@emotion/react':
         specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
-      '@tanstack/react-table':
-        specifier: 8.19.3
-        version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -533,21 +533,6 @@ importers:
       react-frame-component:
         specifier: 5.2.7
         version: 5.2.7(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-hook-form:
-        specifier: 7.52.2
-        version: 7.52.2(react@18.2.0)
-      react-icons:
-        specifier: 5.2.1
-        version: 5.2.1(react@18.2.0)
-      react-lorem-ipsum:
-        specifier: 1.4.10
-        version: 1.4.10
-      react-markdown:
-        specifier: ^9.0.1
-        version: 9.0.1(@types/react@18.3.3)(react@18.2.0)
-      react-spinners:
-        specifier: 0.14.1
-        version: 0.14.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   packages/utils: {}
 
@@ -9474,12 +9459,6 @@ packages:
       prop-types: ^15.5.9
       react: 18.2.0
       react-dom: 18.2.0
-
-  react-hook-form@7.52.2:
-    resolution: {integrity: sha512-pqfPEbERnxxiNMPd0bzmt1tuaPcVccywFDpyk2uV5xCIBphHV5T8SVnX9/o3kplPE1zzKt77+YIoq+EMwJp56A==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      react: 18.2.0
 
   react-hook-form@7.53.0:
     resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
@@ -22873,10 +22852,6 @@ snapshots:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  react-hook-form@7.52.2(react@18.2.0):
-    dependencies:
-      react: 18.2.0
 
   react-hook-form@7.53.0(react@18.2.0):
     dependencies:

@@ -1,6 +1,6 @@
 "use client"
 
-import { chakra } from "../../styled-system"
+import { chakra } from "@chakra-ui/react"
 
 export const Prose = chakra("div", {
   base: {
