@@ -23,10 +23,8 @@ export const TimelineWithVariants = () => {
                 />
               </TimelineConnector>
               <TimelineContent>
-                <HStack>
-                  <Text textStyle="sm" fontWeight="medium">
-                    sage
-                  </Text>
+                <HStack textStyle="sm">
+                  <Text fontWeight="medium">sage</Text>
                   created a new project
                 </HStack>
               </TimelineContent>
@@ -37,7 +35,7 @@ export const TimelineWithVariants = () => {
                 <LuCheck />
               </TimelineConnector>
               <TimelineContent>
-                <HStack>
+                <HStack textStyle="sm">
                   <Text fontWeight="medium">sage</Text>
                   changed status from <Badge>In progress</Badge> to{" "}
                   <Badge colorPalette="teal">Completed</Badge>

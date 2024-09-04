@@ -15,11 +15,11 @@ export const TimelineBasic = () => {
           <LuShip />
         </TimelineConnector>
         <TimelineContent>
-          <Text>Product Shipped</Text>
-          <Text fontSize="xs" color="fg.subtlee">
+          <Text textStyle="sm">Product Shipped</Text>
+          <Text fontSize="xs" color="fg.subtle">
             13th May 2021
           </Text>
-          <Text mt="5">
+          <Text mt="5" textStyle="sm">
             We shipped your product via <strong>FedEx</strong> and it should
             arrive within 3-5 business days.
           </Text>
@@ -31,7 +31,7 @@ export const TimelineBasic = () => {
           <LuCheck />
         </TimelineConnector>
         <TimelineContent>
-          <Text>Order Confirmed</Text>
+          <Text textStyle="sm">Order Confirmed</Text>
           <Text fontSize="xs" color="fg.subtle">
             18th May 2021
           </Text>
@@ -43,7 +43,7 @@ export const TimelineBasic = () => {
           <LuPackage />
         </TimelineConnector>
         <TimelineContent>
-          <Text>Order Delivered</Text>
+          <Text textStyle="sm">Order Delivered</Text>
           <Text fontSize="xs" color="fg.subtle">
             20th May 2021, 10:30am
           </Text>
