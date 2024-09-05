@@ -1,7 +1,17 @@
 import { HighlightHeading, Subheading } from "@/components/site/typography"
 import { Box, Card, Container, Flex, Span, Stack } from "@chakra-ui/react"
+import { Metadata } from "next"
 import { LuArrowRightLeft, LuAtom, LuCode, LuLightbulb } from "react-icons/lu"
 import { EnterpriseForm } from "./enterprise-form"
+
+export const metadata: Metadata = {
+  title: "Enterprise Services",
+  description:
+    "Get professional support by the Chakra UI creators to optimize your ship your site faster and improve performance.",
+  openGraph: {
+    images: `/og?title=Enterprise Services`,
+  },
+}
 
 const items = [
   {

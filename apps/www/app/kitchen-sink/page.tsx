@@ -127,7 +127,15 @@ import { TextareaWithHelperText } from "compositions/examples/textarea-with-help
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
+import { Metadata } from "next"
 import { LuMinimize2 } from "react-icons/lu"
+
+export const metadata: Metadata = {
+  title: "Kitchen sink",
+  openGraph: {
+    images: `/og?title=Kitchen sink`,
+  },
+}
 
 export default function Page() {
   return (

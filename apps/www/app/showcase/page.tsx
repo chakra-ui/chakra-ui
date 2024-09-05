@@ -9,8 +9,17 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { Metadata } from "next"
 import Link from "next/link"
 import { showcases } from ".velite"
+
+export const metadata: Metadata = {
+  title: "Showcase",
+  description: "A collection of beautiful websites that are built in Chakra UI",
+  openGraph: {
+    images: `/og?title=Showcase`,
+  },
+}
 
 export default function Page() {
   return (

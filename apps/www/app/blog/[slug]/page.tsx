@@ -12,13 +12,30 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
+
+interface Props {
+  params: { slug: string[] }
+}
 
 export const generateStaticParams = async () => {
   return blogs.map((blog) => ({ slug: blog.slug.replace("blog/", "") }))
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export const generateMetadata = ({ params }: Props): Metadata => {
+  const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
+
+  return {
+    title: blog?.title,
+    description: blog?.description,
+    openGraph: {
+      images: `/og?title=${blog?.title}&category=${blog?.type}`,
+    },
+  }
+}
+
+export default function BlogPostPage({ params }: Props) {
   const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
   if (!blog) return notFound()
 

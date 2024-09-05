@@ -22,9 +22,17 @@ import {
 import { Rating } from "compositions/ui/rating"
 import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
+import { Metadata } from "next"
 import { cookies } from "next/headers"
 import { LuArrowRight } from "react-icons/lu"
 import { ThemePanel } from "./theme-panel"
+
+export const metadata: Metadata = {
+  title: "Playground",
+  openGraph: {
+    images: `/og?title=Playground`,
+  },
+}
 
 const buttonVariants = [
   "solid",

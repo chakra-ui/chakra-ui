@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     default: docsConfig.title,
   },
   description: docsConfig.description,
+  openGraph: {
+    images: "/og-image.png",
+  },
 }
 
 export default function RootLayout({
