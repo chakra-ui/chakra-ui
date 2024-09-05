@@ -10,15 +10,112 @@ find any point we missed, feel free to open a PR to update this guide.
 
 :::
 
+## Steps
+
+> The minimum node version required is Node.20.x
+
+:::steps
+
+### Update Packages
+
+Remove the unused packages: `@emotion/styled` and `framer-motion`. Next, install
+the CLI snippets.
+
+```bash
+npx @chakra-ui/cli@next snippet add
+```
+
+Also upgrade `@chakra-ui/react` and `@emotion/react` to the latest version:
+
+```bash
+npm i @chakra-ui/react @emotion/react
+```
+
+### Move Custom Theme to Separate File (if you have one)
+
+If your custom theme isn’t in a separate file, move it to a dedicated `theme.js`
+or `theme.ts` file.
+
+Next, usse `createSystem` and `defaultConfig` to configure your theme.
+
+**Before**
+
+```ts
+import { extendTheme } from "@chakra-ui/react"
+
+export const theme = extendTheme({
+  fonts: {
+    heading: `'Figtree', sans-serif`,
+    body: `'Figtree', sans-serif`,
+  },
+})
+```
+
+**After**
+
+```ts {3}
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: `'Figtree', sans-serif` },
+        body: { value: `'Figtree', sans-serif` },
+      },
+    },
+  },
+})
+```
+
+> All token values need to be wrapped in an object with a **value** key. Learn
+> more about tokens [here](/docs/theming/tokens).
+
+### Update ChakraProvider
+
+In version 3, the `ChakraProvider` has been renamed to `Provider`. You'll need
+to update your imports and component usage in your `app.js`, `app.tsx`, or
+equivalent file.
+
+Update the wrapping component to `Provider` and pass the `system` you created
+earlier.
+
+Also rename the `theme` prop to `value` to match the new system-based theming
+approach.
+
+**Before**
+
+```ts
+import { ChakraProvider } from "@chakra-ui/react"
+
+<ChakraProvider theme={theme}>
+  <Component />
+</ChakraProvider>
+```
+
+**After**
+
+```ts {1,3}
+import { Provider } from "@/components/ui/provider"
+
+<Provider value={system}>
+  <Component />
+</Provider>
+```
+
+> Note that `Provider` is imported from chakra snippets.
+
+:::
+
 ## Improvements
 
-- **Less Dependencies.** Removed dependency on `@emotion/styled` and
+- **Less Dependencies:** Removed dependency on `@emotion/styled` and
   `framer-motion`
 
-- **Performance.** Improved reconciliation performance by `4x` and re-render
+- **Performance:** Improved reconciliation performance by `4x` and re-render
   performance by `1.6x`
 
-- **Namespaced imports.** Import components using the dot notation for more
+- **Namespaced imports:** Import components using the dot notation for more
   concise imports
 
   ```tsx
@@ -36,20 +133,24 @@ find any point we missed, feel free to open a PR to update this guide.
   }
   ```
 
-- **TypeScript.** Improved IntelliSense and type inference for style props and
+- **Snippets:** Introduced snippets that provide pre-built components for faster
+  UI development. Use the `@chakra-ui/cli` to
+  [add snippets](/docs/get-started/cli#chakra-snippet) to your project.
+
+- **TypeScript:** Improved IntelliSense and type inference for style props and
   tokens.
 
-- **Polymorphism.** Loosened the `as` prop typigns in favor of using the
+- **Polymorphism:** Loosened the `as` prop typigns in favor of using the
   `asChild` prop. This pattern was inspired by Radix Primitives and Ark UI.
 
 ## Removed Features
 
 ### Color Mode
 
-- We've removed the `ColorModeProvider` and `useColorMode` in favor of using
+- `ColorModeProvider` and `useColorMode` have been removed in favor of
   `next-themes`
-- Removed `LightMode`, `DarkMode` and `ColorModeScript` components
-- Removed `useColorModeValue` in favor of using `useTheme` from `next-themes`
+- `LightMode`, `DarkMode` and `ColorModeScript` components have been removed
+- `useColorModeValue` has been removed in favor of `useTheme` from `next-themes`
 
 :::note
 
@@ -73,8 +174,8 @@ and slot recipes. This pattern was inspired by Panda CSS.
 We've removed the `@chakra-ui/next-js` package in favor of using the `asChild`
 prop for better flexibility.
 
-To style the Next.js image component, you can use the `asChild` prop on the
-`Box` component.
+To style the Next.js image component, use the `asChild` prop on the `Box`
+component.
 
 ```jsx
 <Box asChild>
@@ -82,7 +183,7 @@ To style the Next.js image component, you can use the `asChild` prop on the
 </Box>
 ```
 
-To style the Next.js link component, you can use the `asChild` prop on the
+To style the Next.js link component, use the `asChild` prop on the
 
 ```jsx
 <Link isExternal asChild>
@@ -96,7 +197,7 @@ We've removed this package in favor using CSS color mix.
 
 **Before**
 
-We use JS to resolve the colors and then apply the transparency
+We used JS to resolve the colors and then apply the transparency
 
 ```jsx
 defineStyle({
@@ -107,7 +208,7 @@ defineStyle({
 
 **After**
 
-We use CSS color-mix
+We now use CSS color-mix
 
 ```jsx
 defineStyle({
@@ -160,7 +261,7 @@ export default preview
 
 - **Wrap**: Replace with `HStack` and add `wrap=wrap` to it.
 - **WrapItem**: Replace with `Flex` and add `align=flex-start` to it.
-- **StackItem**: You probaby don't need this. Use `Box` instead.
+- **StackItem**: You don't need this anymore. Use `Box` instead.
 
 ## Prop Changes
 
@@ -466,4 +567,12 @@ After:
 <Link target="_blank" rel="noopener noreferrer">
   Click me
 </Link>
+```
+
+```
+
+```
+
+```
+
 ```
