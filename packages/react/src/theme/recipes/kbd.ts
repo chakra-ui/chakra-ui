@@ -35,10 +35,10 @@ export const kbdRecipe = defineRecipe({
 
     size: {
       sm: {
-        "--kbd-border": "1.5px",
+        "--kbd-border": "2px",
         fontSize: "0.725em",
-        px: "0.25em",
-        borderRadius: "xs",
+        px: "0.3em",
+        borderRadius: "sm",
       },
       md: {
         "--kbd-border": "2px",

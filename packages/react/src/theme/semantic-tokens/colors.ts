@@ -18,7 +18,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.black}", _dark: "{colors.white}" },
     },
     panel: {
-      value: { base: "{colors.white}", _dark: "{colors.gray.900}" },
+      value: { base: "{colors.white}", _dark: "{colors.gray.950}" },
     },
     error: {
       value: { base: "{colors.red.50}", _dark: "{colors.red.950}" },

@@ -5,7 +5,7 @@ import { HiUpload } from "react-icons/hi"
 export const FileUploadAcceptedFiles = () => {
   return (
     <FileUploadRoot accept={["image/png"]}>
-      <FileUploadTrigger>
+      <FileUploadTrigger asChild>
         <Button variant="outline" size="sm">
           <HiUpload /> Upload file
         </Button>

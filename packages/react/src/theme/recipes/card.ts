@@ -14,7 +14,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       bg: "var(--card-bg)",
       boxShadow: "var(--card-shadow)",
       borderRadius: "var(--card-radius)",
-      color: "text",
+      color: "fg",
       borderWidth: "var(--card-border-width, 0)",
       borderColor: "var(--card-border)",
     },

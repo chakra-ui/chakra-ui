@@ -1,6 +1,6 @@
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
 import { Provider } from "./provider"
 import "./scrollbar.css"
 import "./shiki.css"
@@ -8,6 +8,22 @@ import "./shiki.css"
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+})
+
+const figTree = Figtree({
+  subsets: ["latin"],
+  variable: "--font-figtree",
+})
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: ["100", "300", "400", "500", "700", "900"],
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
 })
 
 export const metadata: Metadata = {
@@ -24,7 +40,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${figTree.variable} ${roboto.variable} ${outfit.variable}`}
+    >
       <body>
         <Provider>{children}</Provider>
       </body>
