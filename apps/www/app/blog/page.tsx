@@ -2,6 +2,16 @@ import { blogs } from "@/.velite"
 import { BlogCard } from "@/components/blog-card"
 import { HighlightHeading, Subheading } from "@/components/site/typography"
 import { Box, Container, SimpleGrid, Stack } from "@chakra-ui/react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Catch up on the latest Chakra news, covering releases, framework developments, and other essential information.",
+  openGraph: {
+    images: `/og?title=blog`,
+  },
+}
 
 export default function BlogPage() {
   return (

@@ -63,9 +63,21 @@ export default function Page(props: Props) {
 
 export const generateMetadata = (props: Props): Metadata => {
   const page = getPageBySlug(props.params.slug)
+
+  const category = page?.slug
+    .replace("docs/", "")
+    .split("/")
+    .slice(0, -1)
+    .join(" > ")
+    ?.replace("-", " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase())
+
   return {
     title: page?.title,
     description: page?.description,
+    openGraph: {
+      images: `/og?title=${page?.title}&category=${category}`,
+    },
   }
 }
 

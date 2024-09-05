@@ -257,7 +257,6 @@ export const docsConfig: DocsConfig = {
     "Simple, Modular & Accessible UI Components for your React Applications",
   url: "https://chakra-ui.com",
   xHandle: "@chakra-ui",
-  ogImage: "https://chakra-ui.com/og-image.png",
   repoUrl: "https://github.com/chakra-ui/chakra-ui",
   editUrl: "https://github.com/chakra-ui/chakra-ui/tree/main/apps/www/content",
   donationUrl: "https://opencollective.com/chakra-ui",
@@ -277,7 +276,6 @@ interface DocsConfig {
   url: string
   repoUrl: string
   editUrl: string
-  ogImage: string
   xHandle: string
   donationUrl: string
   navigation: NavItem[]
