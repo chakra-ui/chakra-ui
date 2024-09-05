@@ -18,25 +18,25 @@ find any point we missed, feel free to open a PR to update this guide.
 
 ### Update Packages
 
-Remove the unused packages: `@emotion/styled` and `framer-motion`. Next, install
-the CLI snippets.
+Remove the unused packages: `@emotion/styled` and `framer-motion`. These
+packages are no longer required in Chakra UI.
+
+```bash
+npm uninstall @emotion/styled framer-motion
+```
+
+Next, install component snippets using the CLI snippets. Snippets that provide
+pre-built compositions of Chakra components to save you time and put you in
+charge.
 
 ```bash
 npx @chakra-ui/cli@next snippet add
 ```
 
-Also upgrade `@chakra-ui/react` and `@emotion/react` to the latest version:
+### Refactor Custom Theme
 
-```bash
-npm i @chakra-ui/react @emotion/react
-```
-
-### Move Custom Theme to Separate File (if you have one)
-
-If your custom theme isn’t in a separate file, move it to a dedicated `theme.js`
-or `theme.ts` file.
-
-Next, usse `createSystem` and `defaultConfig` to configure your theme.
+Move your custom theme to a dedicated `theme.js` or `theme.ts` file. Use
+`createSystem` and `defaultConfig` to configure your theme.
 
 **Before**
 
@@ -73,44 +73,43 @@ export const system = createSystem(defaultConfig, {
 
 ### Update ChakraProvider
 
-In version 3, the `ChakraProvider` has been renamed to `Provider`. You'll need
-to update your imports and component usage in your `app.js`, `app.tsx`, or
-equivalent file.
-
-Update the wrapping component to `Provider` and pass the `system` you created
-earlier.
-
-Also rename the `theme` prop to `value` to match the new system-based theming
-approach.
+Update the ChakraProvider import from `@chakra-ui/react` to the one from the
+snippets. Next, rename the `theme` prop to `value` to match the new system-based
+theming approach.
 
 **Before**
 
-```ts
+```tsx
 import { ChakraProvider } from "@chakra-ui/react"
 
-<ChakraProvider theme={theme}>
-  <Component />
-</ChakraProvider>
+export const App = ({ Component }) => (
+  <ChakraProvider theme={theme}>
+    <Component />
+  </ChakraProvider>
+)
 ```
 
 **After**
 
-```ts {1,3}
+```tsx {1,3}
 import { Provider } from "@/components/ui/provider"
+import { defaultSystem } from "@chakra-ui/react"
 
-<Provider value={system}>
-  <Component />
-</Provider>
+export const App = ({ Component }) => (
+  <Provider value={defaultSystem}>
+    <Component />
+  </Provider>
+)
 ```
 
-> Note that `Provider` is imported from chakra snippets.
+> If you have a custom theme, replace `defaultSystem` with the custom `system`
+
+The Provider component compose the `ChakraProvider` from Chakra and
+`ThemeProvider` from `next-themes`
 
 :::
 
 ## Improvements
-
-- **Less Dependencies:** Removed dependency on `@emotion/styled` and
-  `framer-motion`
 
 - **Performance:** Improved reconciliation performance by `4x` and re-render
   performance by `1.6x`
@@ -132,10 +131,6 @@ import { Provider } from "@/components/ui/provider"
     )
   }
   ```
-
-- **Snippets:** Introduced snippets that provide pre-built components for faster
-  UI development. Use the `@chakra-ui/cli` to
-  [add snippets](/docs/get-started/cli#chakra-snippet) to your project.
 
 - **TypeScript:** Improved IntelliSense and type inference for style props and
   tokens.
@@ -567,12 +562,4 @@ After:
 <Link target="_blank" rel="noopener noreferrer">
   Click me
 </Link>
-```
-
-```
-
-```
-
-```
-
 ```
