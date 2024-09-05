@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Catch up on the latest Chakra news, covering releases, framework developments, and other essential information.",
   openGraph: {
-    images: `/og?title=blog`,
+    images: `/og?title=Blog`,
   },
 }
 
