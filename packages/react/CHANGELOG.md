@@ -1,5 +1,19 @@
 # @chakra-ui/react
 
+## 3.0.0-next.23
+
+### Minor Changes
+
+- [`edec8f7`](https://github.com/chakra-ui/chakra-ui/commit/edec8f79a7e444987a0de0fb43171636d14a6b35)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add clipboard
+  composition
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.23
+  - @chakra-ui/utils@3.0.0-next.23
+
 ## 3.0.0-next.22
 
 ### Minor Changes
