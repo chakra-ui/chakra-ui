@@ -8,11 +8,7 @@ import componentsSidebar from 'configs/components.sidebar.json'
 import figmaSidebar from 'configs/figma.sidebar.json'
 import gettingStartedSidebar from 'configs/getting-started.sidebar.json'
 import hooksSidebar from 'configs/hooks.sidebar.json'
-import styledSystemSidebar from 'configs/styled-system.sidebar.json'
-import tutorialSidebar from 'configs/tutorial.sidebar.json'
-import { allChangelogs } from 'contentlayer/generated'
-import { ReactNode } from 'react'
-import semverRSort from 'semver/functions/rsort'
+
 import { Frontmatter } from 'src/types/frontmatter'
 import { RouteItem } from 'utils/get-route-context'
 
