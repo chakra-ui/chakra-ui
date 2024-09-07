@@ -26,7 +26,6 @@
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",
     "utils": "pnpm --filter=@chakra-ui/utils",
-    "hooks": "pnpm --filter=@chakra-ui/hooks",
     "website": "pnpm --filter=./website",
     "www": "pnpm --filter=./apps/www",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",

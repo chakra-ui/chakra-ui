@@ -22,7 +22,6 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@chakra-ui/react": ["../../packages/react/src"],
-      "@chakra-ui/hooks": ["../../packages/hooks/src"],
       "@chakra-ui/utils": ["../../packages/utils/src"]
     }
   },

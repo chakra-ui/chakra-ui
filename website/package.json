@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@chakra-ui/cli": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/props-docs": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/utils": "workspace:*",

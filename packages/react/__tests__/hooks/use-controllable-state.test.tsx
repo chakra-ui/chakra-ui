@@ -1,7 +1,7 @@
 import { act, render, renderHook, screen } from "@testing-library/react"
 import { userEvent } from "@testing-library/user-event"
 import { useState } from "react"
-import { useControllableState } from "../src"
+import { useControllableState } from "../../src"
 
 describe("Controllable State", () => {
   test("should be uncontrolled when defaultValue is passed", () => {
