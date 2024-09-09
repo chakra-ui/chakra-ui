@@ -27,7 +27,7 @@
     "@chakra-ui/utils": "workspace:*",
     "@codesandbox/sandpack-react": "2.18.1",
     "@codesandbox/sandpack-themes": "2.0.21",
-    "@docsearch/react": "3.6.0",
+    "@docsearch/react": "3.6.1",
     "@docusaurus/utils": "3.4.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
