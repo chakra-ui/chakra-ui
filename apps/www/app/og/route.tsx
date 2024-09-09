@@ -18,7 +18,7 @@ export async function GET(request: Request, context: { params: Params }) {
   ).then((res) => res.arrayBuffer())
 
   const backgroundArrayBuffer = await fetch(
-    new URL("../../public/static/open-graph-bg.png", import.meta.url),
+    new URL("../../public/open-graph-bg.png", import.meta.url),
   ).then((res) => res.arrayBuffer())
 
   const { category, title } = context.params
