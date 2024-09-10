@@ -6,9 +6,7 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
@@ -62,6 +60,8 @@
     "react-frame-component": "5.2.7"
   },
   "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",

@@ -37,6 +37,8 @@
     "chakra": "bin/index.js"
   },
   "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
     "clean": "rimraf dist .turbo",
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts",
