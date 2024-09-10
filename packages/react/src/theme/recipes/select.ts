@@ -84,6 +84,7 @@ export const selectSlotRecipe = defineSlotRecipe({
     label: {
       fontWeight: "medium",
       userSelect: "none",
+      textStyle: "sm",
     },
     valueText: {
       lineClamp: "1",
