@@ -25,6 +25,8 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
     "build:fast": "tsx ../../scripts/build/main.ts",
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
