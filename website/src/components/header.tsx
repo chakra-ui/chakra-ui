@@ -1,4 +1,3 @@
-import { useDisclosure, useUpdateEffect } from '@chakra-ui/hooks'
 import {
   Box,
   ClientOnly,
@@ -10,6 +9,7 @@ import {
   Link,
   Square,
   chakra,
+  useDisclosure,
 } from '@chakra-ui/react'
 import siteConfig from 'configs/site-config.json'
 import { useScroll } from 'framer-motion'
@@ -28,6 +28,7 @@ import { MobileNavButton, MobileNavContent } from './mobile-nav'
 import Search from './omni-search'
 import SponsorButton from './sponsor-button'
 import VersionSwitcher from './version-switcher'
+import { useUpdateEffect } from 'hooks/use-update-effect'
 
 function ColorModeIcon() {
   const { theme } = useTheme()

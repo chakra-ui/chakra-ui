@@ -22,7 +22,7 @@ import { RemoveScroll } from 'react-remove-scroll'
 import Logo from './logo'
 import { SidebarContent, mainNavLinks } from './sidebar/sidebar'
 import SponsorButton from './sponsor-button'
-import { useUpdateEffect } from '@chakra-ui/hooks'
+import { useUpdateEffect } from 'hooks/use-update-effect'
 
 type NavLinkProps = {
   href: string
