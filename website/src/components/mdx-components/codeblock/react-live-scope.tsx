@@ -79,7 +79,6 @@ const ReactLiveScope = {
   ...ReactTable,
   ...Loaders,
   ...reactIcons,
-  ...ChakraHooks,
   ...Chakra,
   StarIcon,
   FocusLock,

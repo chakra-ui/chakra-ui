@@ -18,6 +18,7 @@ import MultiRef from 'react-multi-ref'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { SearchButton } from './algolia-search'
 import { useUpdateEffect } from 'hooks/use-update-effect'
+import { useEventListener } from 'hooks/use-event-listener'
 
 const SearchIcon = chakra(FaSearch)
 
