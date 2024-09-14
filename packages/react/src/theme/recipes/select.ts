@@ -47,11 +47,11 @@ export const selectSlotRecipe = defineSlotRecipe({
       boxShadow: "md",
       _open: {
         animationStyle: "slide-fade-in",
-        animationDuration: "faster",
+        animationDuration: "fast",
       },
       _closed: {
-        animationName: "fade-out",
-        animationDuration: "0.01s",
+        animationStyle: "slide-fade-out",
+        animationDuration: "faster",
       },
     },
     item: {
