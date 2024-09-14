@@ -1,10 +1,3 @@
-import {
-  isEmpty,
-  isEmptyObject,
-  mapEntries,
-  mergeWith,
-  uniq,
-} from "@chakra-ui/utils"
 import consola from "consola"
 import { ensureDirSync } from "fs-extra"
 import { unlink, writeFile } from "node:fs/promises"
@@ -17,7 +10,13 @@ import {
   getComponentList,
   staticComponentList,
 } from "../get-component-list"
-import { filterEmpty, stringify } from "../shared"
+import {
+  filterEmpty,
+  isEmptyObject,
+  mapEntries,
+  stringify,
+  uniq,
+} from "../shared"
 
 export const main = async () => {
   const componentDir = getComponentDir()
@@ -36,7 +35,7 @@ export const main = async () => {
     const outPath = `public/types/component/${kebabCase(dir)}.json`
 
     const props = await extractTypes(inPath)
-    if (isEmpty(filterEmpty(props))) {
+    if (isEmptyObject(filterEmpty(props))) {
       consola.warn("Skipping", dir)
       try {
         await unlink(outPath)
