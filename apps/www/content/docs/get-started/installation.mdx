@@ -79,7 +79,10 @@ tsconfig file to include the following options:
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }
 ```
