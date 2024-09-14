@@ -1,7 +1,6 @@
 "use client"
 
 import { Field as ArkField } from "@ark-ui/react/field"
-import { cx, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../../create-context"
 import {
@@ -11,6 +10,8 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { dataAttr } from "../../utils"
+import { cx } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
 export const [NativeSelectDisabledProvider, useNativeSelectDisabledContext] =

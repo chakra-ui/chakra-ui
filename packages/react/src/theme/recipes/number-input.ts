@@ -1,6 +1,6 @@
-import { mapEntries } from "@chakra-ui/utils"
 import { numberInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
+import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 
 const triggerStyle = defineStyle({

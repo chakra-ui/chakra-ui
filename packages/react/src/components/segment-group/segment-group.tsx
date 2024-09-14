@@ -1,13 +1,13 @@
 "use client"
 
 import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/react/segment-group"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

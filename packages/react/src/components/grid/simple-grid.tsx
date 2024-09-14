@@ -1,12 +1,12 @@
 "use client"
 
-import { mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type ConditionalValue,
   type SystemContext,
   useChakraContext,
 } from "../../styled-system"
+import { mapResponsive } from "../../utils"
 import { Grid, type GridProps } from "./grid"
 
 interface SimpleGridOptions {

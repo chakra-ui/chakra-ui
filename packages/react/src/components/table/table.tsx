@@ -1,6 +1,5 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +9,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { cx } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

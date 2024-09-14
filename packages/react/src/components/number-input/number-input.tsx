@@ -1,13 +1,13 @@
 "use client"
 
 import { NumberInput as ArkNumberInput } from "@ark-ui/react/number-input"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { ChevronDownIcon, ChevronUpIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

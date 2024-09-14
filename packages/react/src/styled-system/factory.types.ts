@@ -1,16 +1,16 @@
 import type {
-  Assign,
-  Dict,
-  DistributiveOmit,
-  DistributiveUnion,
-  Pretty,
-} from "@chakra-ui/utils"
-import type {
   ComponentProps,
   ComponentPropsWithoutRef,
   ElementType,
   FunctionComponent,
 } from "react"
+import type {
+  Assign,
+  Dict,
+  DistributiveOmit,
+  DistributiveUnion,
+  Pretty,
+} from "../utils"
 import type { MinimalNested, SystemStyleObject } from "./css.types"
 import type { SystemProperties } from "./generated/system.gen"
 import type {

@@ -1,7 +1,6 @@
 "use client"
 
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +9,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

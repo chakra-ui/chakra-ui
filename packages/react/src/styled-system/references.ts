@@ -1,4 +1,4 @@
-import { isString } from "@chakra-ui/utils"
+import { isString } from "../utils"
 import type { Token } from "./types"
 
 const REFERENCE_REGEX = /({([^}]*)})/g

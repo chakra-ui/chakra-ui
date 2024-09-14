@@ -1,5 +1,5 @@
-import type { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import type { PropertiesFallback } from "csstype"
+import type { Dict, DistributiveOmit } from "../utils"
 import type {
   ConditionalValue,
   CssKeyframes,

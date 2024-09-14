@@ -1,4 +1,5 @@
-type Dict = Record<string, any>
+import type { Dict } from "./types"
+
 type PredicateFn<T> = (key: T) => boolean
 
 export interface SplitPropsFn {

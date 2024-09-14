@@ -1,12 +1,12 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { cx } from "../../utils"
 
 interface ImageOptions {
   /**

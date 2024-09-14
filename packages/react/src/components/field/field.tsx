@@ -1,7 +1,6 @@
 "use client"
 
 import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
-import { type Assign, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +9,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { type Assign, cx } from "../../utils"
 import { createIcon } from "../icon"
 
 ////////////////////////////////////////////////////////////////////////////////////

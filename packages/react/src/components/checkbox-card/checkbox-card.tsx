@@ -4,7 +4,6 @@ import {
   Checkbox as ArkCheckbox,
   useCheckboxContext,
 } from "@ark-ui/react/checkbox"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -12,6 +11,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { Checkmark } from "../checkmark"
 
 ////////////////////////////////////////////////////////////////////////////////////

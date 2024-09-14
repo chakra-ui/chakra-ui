@@ -21,8 +21,7 @@
     "customConditions": ["source"],
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@chakra-ui/react": ["../../packages/react/src"],
-      "@chakra-ui/utils": ["../../packages/utils/src"]
+      "@chakra-ui/react": ["../../packages/react/src"]
     }
   },
   "exclude": ["node_modules"],

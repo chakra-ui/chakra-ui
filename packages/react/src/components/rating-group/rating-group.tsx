@@ -4,7 +4,6 @@ import {
   RatingGroup as ArkRatingGroup,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"
-import type { Assign } from "@chakra-ui/utils"
 import { cloneElement, forwardRef, isValidElement } from "react"
 import {
   type HTMLChakraProps,
@@ -13,6 +12,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { StarIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

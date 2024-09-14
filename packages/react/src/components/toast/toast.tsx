@@ -8,7 +8,6 @@ import {
   createToaster,
   useToastContext,
 } from "@ark-ui/react/toast"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -17,6 +16,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons"
 
 export { createToaster, type CreateToasterProps }

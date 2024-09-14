@@ -1,6 +1,5 @@
 "use client"
 
-import { compact, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -9,6 +8,7 @@ import {
   chakra,
   useRecipe,
 } from "../../styled-system"
+import { compact, cx } from "../../utils"
 
 interface TextOptions {
   /**

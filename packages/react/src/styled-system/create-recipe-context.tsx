@@ -1,9 +1,9 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
+import { cx } from "../utils"
 import { EMPTY_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"

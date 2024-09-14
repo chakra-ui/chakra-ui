@@ -1,12 +1,12 @@
 "use client"
 
-import { compact, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type ConditionalValue,
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { compact, mapResponsive } from "../../utils"
 import type { BoxProps } from "../box/box"
 
 export interface GridItemProps extends BoxProps {

@@ -6,7 +6,7 @@ import {
   memo,
   mergeWith,
   walkObject,
-} from "@chakra-ui/utils"
+} from "../utils"
 import type { SystemStyleObject } from "./css.types"
 import type { SystemContext } from "./types"
 

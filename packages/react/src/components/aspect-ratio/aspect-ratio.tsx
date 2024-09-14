@@ -1,12 +1,12 @@
 "use client"
 
-import { cx, mapResponsive } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
 import {
   type ConditionalValue,
   type HTMLChakraProps,
   chakra,
 } from "../../styled-system"
+import { cx, mapResponsive } from "../../utils"
 
 export interface AspectRatioProps
   extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {

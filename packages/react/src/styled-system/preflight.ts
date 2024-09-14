@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils"
+import { isObject } from "../utils"
 import type { CssProperties } from "./css.types"
 import type { PreflightConfig } from "./types"
 

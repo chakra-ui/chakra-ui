@@ -1,6 +1,5 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import {
   Children,
   Fragment,
@@ -14,6 +13,7 @@ import {
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { cx } from "../../utils"
 import type { StackDirection } from "./get-separator-style"
 import { getSeparatorStyles } from "./get-separator-style"
 

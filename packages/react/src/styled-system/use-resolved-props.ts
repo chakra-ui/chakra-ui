@@ -1,5 +1,5 @@
-import { splitProps } from "@chakra-ui/utils"
 import { useMemo } from "react"
+import { splitProps } from "../utils"
 import { useChakraContext } from "./provider"
 
 export function useResolvedProps(

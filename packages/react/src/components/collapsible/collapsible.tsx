@@ -1,13 +1,13 @@
 "use client"
 
 import { Collapsible as ArkCollapsible } from "@ark-ui/react/collapsible"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,13 +1,13 @@
 "use client"
 
 import { Clipboard as ArkClipboard } from "@ark-ui/react/clipboard"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

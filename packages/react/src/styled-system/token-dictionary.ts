@@ -9,7 +9,7 @@ import {
   mapObject,
   memo,
   walkObject,
-} from "@chakra-ui/utils"
+} from "../utils"
 import { cssVar } from "./css-var"
 import { expandTokenReferences as _expandReferences } from "./expand-reference"
 import { mapToJson } from "./map-to-json"

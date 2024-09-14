@@ -1,7 +1,6 @@
 "use client"
 
 import { Steps as ArkSteps } from "@ark-ui/react/steps"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +9,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { CheckIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,5 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -8,6 +7,7 @@ import {
   chakra,
   useRecipe,
 } from "../../styled-system"
+import { cx } from "../../utils"
 
 export interface IconProps
   extends HTMLChakraProps<"svg">,

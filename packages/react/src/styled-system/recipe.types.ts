@@ -1,4 +1,4 @@
-import type { DistributiveOmit, Pretty } from "@chakra-ui/utils"
+import type { DistributiveOmit, Pretty } from "../utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
 import type { ColorPalette } from "./generated/token.gen"
 

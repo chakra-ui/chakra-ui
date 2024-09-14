@@ -1,4 +1,4 @@
-import { esc } from "@chakra-ui/utils"
+import { esc } from "../utils"
 
 /**
  * Recursively parse a string to extract Panda token references (curly or with the `token` function syntax)

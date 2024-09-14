@@ -5,19 +5,8 @@ import {
   isHiddenElement,
 } from "./is-element"
 
-export const hasDisplayNone = (element: HTMLElement) =>
-  window.getComputedStyle(element).display === "none"
-
 export const hasTabIndex = (element: HTMLElement) =>
   element.hasAttribute("tabindex")
-
-export const hasNegativeTabIndex = (element: HTMLElement) =>
-  hasTabIndex(element) && element.tabIndex === -1
-
-export function hasFocusWithin(element: HTMLElement) {
-  if (!document.activeElement) return false
-  return element.contains(document.activeElement)
-}
 
 export function isFocusable(element: HTMLElement) {
   if (
@@ -45,13 +34,4 @@ export function isFocusable(element: HTMLElement) {
   if (isContentEditableElement(element)) return true
 
   return hasTabIndex(element)
-}
-
-export function isTabbable(element?: HTMLElement | null) {
-  if (!element) return false
-  return (
-    isHTMLElement(element) &&
-    isFocusable(element) &&
-    !hasNegativeTabIndex(element)
-  )
 }

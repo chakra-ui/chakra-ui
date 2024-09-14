@@ -1,7 +1,6 @@
 "use client"
 
 import { RadioGroup as ArkRadioGroup } from "@ark-ui/react/radio-group"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -9,6 +8,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { Radiomark } from "../radiomark"
 
 ////////////////////////////////////////////////////////////////////////////////////

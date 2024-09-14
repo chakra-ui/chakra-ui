@@ -4,13 +4,13 @@ import {
   Select as ArkSelect,
   type SelectCollectionItem,
 } from "@ark-ui/react/select"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { Assign } from "../../utils"
 import { CheckIcon, ChevronDownIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

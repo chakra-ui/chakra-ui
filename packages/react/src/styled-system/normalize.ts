@@ -1,4 +1,4 @@
-import { type Dict, isArray, walkObject } from "@chakra-ui/utils"
+import { type Dict, isArray, walkObject } from "../utils"
 import { type SystemContext } from "./types"
 
 function toResponsiveObject(values: any[], breakpoints: string[]) {

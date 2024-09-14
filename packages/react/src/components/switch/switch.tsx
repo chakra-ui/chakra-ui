@@ -1,7 +1,6 @@
 "use client"
 
 import { Switch as ArkSwitch, useSwitchContext } from "@ark-ui/react/switch"
-import { type Assign, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +9,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { type Assign, dataAttr } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

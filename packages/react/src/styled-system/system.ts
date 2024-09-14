@@ -1,3 +1,4 @@
+import { isCssProperty } from "@pandacss/is-valid-prop"
 import {
   type Dict,
   compact,
@@ -6,8 +7,7 @@ import {
   memo,
   mergeWith,
   splitProps,
-} from "@chakra-ui/utils"
-import { isCssProperty } from "@pandacss/is-valid-prop"
+} from "../utils"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { mergeConfigs } from "./config"
