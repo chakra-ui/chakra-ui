@@ -1,9 +1,5 @@
 import type { Meta } from "@storybook/react"
-import { useEffect, useState } from "react"
-import { Box, Circle, For, HStack, Span, Stack, useRecipe } from "../src"
-import { Skeleton } from "../src/components/skeleton"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { Box } from "../src"
 
 export default {
   title: "Components / Skeleton",
@@ -16,61 +12,9 @@ export default {
   ],
 } satisfies Meta
 
-export const Variants = () => {
-  const recipe = useRecipe({ key: "skeleton" })
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>
-            {(v) => <td key={v}>{v}</td>}
-          </For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr key={c}>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td key={v}>
-                    <HStack gap="4" minW="320px">
-                      <Skeleton variant={v} borderRadius="full">
-                        <Circle size="20" />
-                      </Skeleton>
-                      <Stack gap="3.5" width="full">
-                        <Skeleton variant={v} h="4" />
-                        <Skeleton variant={v} h="4" width="80%" />
-                        <Skeleton variant={v} h="4" width="60%" />
-                      </Stack>
-                    </HStack>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const WithFade = () => {
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 1000)
-  }, [])
-
-  return (
-    <Skeleton loading={loading} width="fit-content">
-      <span>Chakra ui is cool</span>
-    </Skeleton>
-  )
-}
+export { SkeletonBasic as Basic } from "compositions/examples/skeleton-basic"
+export { SkeletonForFeed as Feed } from "compositions/examples/skeleton-for-feed"
+export { SkeletonForText as Text } from "compositions/examples/skeleton-for-text"
+export { SkeletonWithChildren as WithChildren } from "compositions/examples/skeleton-with-children"
+export { SkeletonWithLoaded as WithLoaded } from "compositions/examples/skeleton-with-loaded"
+export { SkeletonWithVariants as Variants } from "compositions/examples/skeleton-with-variants"
