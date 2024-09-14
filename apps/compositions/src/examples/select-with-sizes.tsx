@@ -14,7 +14,7 @@ export const SelectWithSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <SelectRoot key={size} size={size} items={frameworks}>
-            <SelectLabel>Select framework - {size}</SelectLabel>
+            <SelectLabel>size = {size}</SelectLabel>
             <SelectTrigger>
               <SelectValueText placeholder="Select movie" />
             </SelectTrigger>

@@ -54,7 +54,7 @@ export const AvatarWithPopover = () => {
           </MenuTrigger>
           <MenuContent>
             {overflow.map((item) => (
-              <MenuItem value={item}>
+              <MenuItem value={item} key={item}>
                 <Avatar
                   size="sm"
                   name={item}
