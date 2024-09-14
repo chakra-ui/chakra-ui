@@ -3,6 +3,7 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "jsx": "react-jsx",
+    "strict": true,
     "customConditions": ["source"],
     "paths": {
       "compositions/*": ["./src/*"]

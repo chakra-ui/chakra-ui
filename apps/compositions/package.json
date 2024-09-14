@@ -4,7 +4,7 @@
   "private": "true",
   "description": "Registry for component compositions",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "chakra",
