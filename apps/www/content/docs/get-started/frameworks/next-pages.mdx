@@ -33,7 +33,7 @@ configured correctly to use Chakra UI.
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react
+npm i @chakra-ui/react@next @emotion/react
 ```
 
 ### Add snippets
@@ -83,6 +83,24 @@ export default function Document() {
       </body>
     </Html>
   )
+}
+```
+
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
 }
 ```
 
