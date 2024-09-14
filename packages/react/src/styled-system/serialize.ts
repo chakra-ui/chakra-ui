@@ -1,4 +1,4 @@
-import { type Dict, isObject, walkObject } from "@chakra-ui/utils"
+import { type Dict, isObject, walkObject } from "../utils"
 import type { SystemContext } from "./types"
 
 export function createSerializeFn(

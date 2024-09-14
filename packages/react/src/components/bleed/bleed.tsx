@@ -1,12 +1,12 @@
 "use client"
 
-import { isCssUnit, isCssVar, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { isCssUnit, isCssVar, mapResponsive } from "../../utils"
 
 export interface BleedProps extends HTMLChakraProps<"div"> {
   /**

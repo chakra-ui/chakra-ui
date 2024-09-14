@@ -1,6 +1,5 @@
 "use client"
 
-import { mapResponsive } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {
   type ConditionalValue,
@@ -8,6 +7,7 @@ import {
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { mapResponsive } from "../../utils"
 
 type Dict = Record<string, any>
 

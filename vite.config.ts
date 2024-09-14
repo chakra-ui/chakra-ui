@@ -5,7 +5,6 @@ import { defineConfig } from "vite"
 export default defineConfig({
   resolve: {
     alias: {
-      "@chakra-ui/utils": resolve("packages/utils/src"),
       "@chakra-ui/react": resolve("packages/react/src"),
       compositions: resolve("apps/compositions/src"),
     },

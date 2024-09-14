@@ -1,4 +1,4 @@
-import { type Dict, isFunction, isString, memo } from "@chakra-ui/utils"
+import { type Dict, isFunction, isString, memo } from "../utils"
 import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
 import type {

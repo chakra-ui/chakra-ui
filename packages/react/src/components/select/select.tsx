@@ -1,10 +1,10 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Select as ArkSelect,
   type SelectCollectionItem,
 } from "@ark-ui/react/select"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,

@@ -1,10 +1,10 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   RatingGroup as ArkRatingGroup,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"
-import type { Assign } from "@chakra-ui/utils"
 import { cloneElement, forwardRef, isValidElement } from "react"
 import {
   type HTMLChakraProps,

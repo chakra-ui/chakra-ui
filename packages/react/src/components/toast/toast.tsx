@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Toast as ArkToast,
   Toaster as ArkToaster,
@@ -8,7 +9,6 @@ import {
   createToaster,
   useToastContext,
 } from "@ark-ui/react/toast"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,

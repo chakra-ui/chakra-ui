@@ -1,4 +1,4 @@
-import { mergeWith } from "@chakra-ui/utils"
+import { mergeWith } from "../utils"
 import type { CompositionStyles } from "./composition"
 import type {
   GlobalStyleIdentityFn,

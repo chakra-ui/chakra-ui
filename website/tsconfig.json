@@ -19,7 +19,6 @@
     "baseUrl": ".",
     "paths": {
       "@chakra-ui/react": ["../packages/react/src"],
-      "@chakra-ui/utils": ["../packages/utils/src"],
       "contentlayer/generated": ["./.contentlayer/generated"],
       "components/*": ["src/components/*"],
       "hooks/*": ["src/hooks/*"],

@@ -1,4 +1,4 @@
-import { isString } from "@chakra-ui/utils"
+import { isString } from "../utils"
 import { calc } from "./calc"
 import type { Token, TokenMiddleware } from "./types"
 import { toPx } from "./unit-conversion"

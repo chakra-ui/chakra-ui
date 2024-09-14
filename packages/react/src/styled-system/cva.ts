@@ -2,12 +2,11 @@ import {
   type Dict,
   compact,
   cx,
-  mergeWith as mergeProps,
   mergeWith,
   omit,
   splitProps,
   uniq,
-} from "@chakra-ui/utils"
+} from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
 import type { Condition, CssFn } from "./types"
@@ -135,7 +134,7 @@ function mergeCva(opts: Options) {
       ]),
     )
 
-    const defaultVariants = mergeProps(
+    const defaultVariants = mergeWith(
       cvaA.config.defaultVariants,
       override.defaultVariants,
     )

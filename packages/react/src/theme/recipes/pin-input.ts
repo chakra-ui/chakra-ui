@@ -1,6 +1,6 @@
-import { mapEntries } from "@chakra-ui/utils"
 import { pinInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
+import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 
 export const pinInputSlotRecipe = defineSlotRecipe({

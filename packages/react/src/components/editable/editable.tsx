@@ -1,11 +1,11 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Editable as ArkEditable,
   useEditableContext,
 } from "@ark-ui/react/editable"
 import { ark } from "@ark-ui/react/factory"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { mergeProps } from "../../merge-props"
 import {

@@ -1,6 +1,5 @@
 "use client"
 
-import { dataAttr } from "@chakra-ui/utils"
 import {
   Children,
   cloneElement,
@@ -15,6 +14,7 @@ import {
   type JsxStyleProps,
   chakra,
 } from "../../styled-system"
+import { dataAttr } from "../../utils"
 
 const StyledGroup = chakra("div", {
   base: {

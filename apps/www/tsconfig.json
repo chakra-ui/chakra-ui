@@ -23,7 +23,6 @@
     "paths": {
       "@/*": ["./*"],
       "@chakra-ui/react": ["../../packages/react/src"],
-      "@chakra-ui/utils": ["../../packages/utils/src"],
       "compositions/*": ["../compositions/src/*"]
     }
   },

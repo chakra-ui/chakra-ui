@@ -1,10 +1,10 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Checkbox as ArkCheckbox,
   useCheckboxContext,
 } from "@ark-ui/react/checkbox"
-import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,

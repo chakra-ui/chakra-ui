@@ -1,4 +1,4 @@
-import type { Dict } from "@chakra-ui/utils"
+import type { Dict } from "../../utils"
 
 export interface ForProps<T> {
   /**

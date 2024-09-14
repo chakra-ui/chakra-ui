@@ -1,4 +1,4 @@
-import { type Dict, omit, splitProps } from "@chakra-ui/utils"
+import { type Dict, omit, splitProps } from "../utils"
 import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {

@@ -1,4 +1,4 @@
-import { createProps, createSplitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "../../utils"
 import type { FocusLockProps } from "./focus-lock"
 
 const focusLockProps = createProps<FocusLockProps>()([

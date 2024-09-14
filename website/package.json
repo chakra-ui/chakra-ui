@@ -23,7 +23,7 @@
     "@chakra-ui/cli": "workspace:*",
     "@chakra-ui/props-docs": "workspace:*",
     "@chakra-ui/react": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/utils": "2.0.15",
     "@codesandbox/sandpack-react": "2.18.1",
     "@codesandbox/sandpack-themes": "2.0.21",
     "@docsearch/react": "3.6.0",

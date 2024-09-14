@@ -1,6 +1,5 @@
 "use client"
 
-import { dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
@@ -10,6 +9,7 @@ import {
   chakra,
   useRecipe,
 } from "../../styled-system"
+import { dataAttr } from "../../utils"
 
 export interface RadiomarkProps
   extends HTMLChakraProps<"span", RecipeProps<"radiomark">>,
