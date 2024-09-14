@@ -6,7 +6,6 @@
     "chakra-next-pages": "2.0.14",
     "vite-ts": "1.0.2",
     "@chakra-ui/cli": "2.4.1",
-    "@chakra-ui/hooks": "2.2.1",
     "@chakra-ui/props-docs": "2.2.1",
     "@chakra-ui/react": "2.8.2",
     "@chakra-ui/utils": "2.0.15",
