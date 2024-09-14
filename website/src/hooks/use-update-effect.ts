@@ -1,6 +1,4 @@
-"use client"
-
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from 'react'
 
 /**
  * React effect hook that invokes only on update.

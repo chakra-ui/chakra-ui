@@ -1,6 +1,4 @@
-"use client"
-
-import { useMemo, useState } from "react"
+import { useMemo, useState } from 'react'
 
 type InitialState = boolean | (() => boolean)
 

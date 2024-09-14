@@ -9,7 +9,6 @@ export default defineConfig({
     alias: {
       "@chakra-ui/utils": resolve("..", "..", "packages/utils/src"),
       "@chakra-ui/react": resolve("..", "..", "packages/react/src"),
-      "@chakra-ui/hooks": resolve("..", "..", "packages/hooks/src"),
     },
   },
 })

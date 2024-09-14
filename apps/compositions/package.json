@@ -16,7 +16,6 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@hookform/resolvers": "3.9.0",
     "@tanstack/react-table": "8.19.3",

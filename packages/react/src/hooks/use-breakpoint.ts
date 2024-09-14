@@ -1,8 +1,8 @@
 "use client"
 
-import { useMediaQuery } from "@chakra-ui/hooks"
 import { type Dict, arrayToObjectNotation, isArray } from "@chakra-ui/utils"
 import { useChakraContext } from "../styled-system"
+import { useMediaQuery } from "./use-media-query"
 
 /* -----------------------------------------------------------------------------
  * useBreakpoint

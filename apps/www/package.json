@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@ark-ui/react": "3.10.0",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "11.11.4",
     "@shikijs/rehype": "1.13.0",

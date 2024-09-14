@@ -1,7 +1,5 @@
-"use client"
-
-import { useEffect } from "react"
-import { useCallbackRef } from "./use-callback-ref"
+import { useEffect } from 'react'
+import { useCallbackRef } from '@chakra-ui/react'
 
 type Target = EventTarget | null | (() => EventTarget | null)
 type Options = boolean | AddEventListenerOptions
@@ -33,7 +31,7 @@ export function useEventListener(
   const listener = useCallbackRef(handler)
 
   useEffect(() => {
-    const node = typeof target === "function" ? target() : (target ?? document)
+    const node = typeof target === 'function' ? target() : (target ?? document)
 
     if (!handler || !node) return
 
@@ -44,7 +42,7 @@ export function useEventListener(
   }, [event, target, options, listener, handler])
 
   return () => {
-    const node = typeof target === "function" ? target() : (target ?? document)
+    const node = typeof target === 'function' ? target() : (target ?? document)
     node?.removeEventListener(event, listener, options)
   }
 }

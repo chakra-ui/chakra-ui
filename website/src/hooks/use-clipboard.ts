@@ -1,7 +1,5 @@
-"use client"
-
-import copy from "copy-to-clipboard"
-import { useCallback, useEffect, useState } from "react"
+import copy from 'copy-to-clipboard'
+import { useCallback, useEffect, useState } from 'react'
 
 export interface UseClipboardOptions {
   /**
@@ -35,7 +33,7 @@ export function useClipboard(
   useEffect(() => setValueState(value), [value])
 
   const { timeout = 1500, ...copyOptions } =
-    typeof optionsOrTimeout === "number"
+    typeof optionsOrTimeout === 'number'
       ? { timeout: optionsOrTimeout }
       : optionsOrTimeout
 

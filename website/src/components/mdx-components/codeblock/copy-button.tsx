@@ -1,4 +1,4 @@
-import { useClipboard } from '@chakra-ui/hooks'
+import { useClipboard } from 'hooks/use-clipboard'
 import { Button, ButtonProps } from '@chakra-ui/react'
 
 interface CopyButtonProps extends ButtonProps {

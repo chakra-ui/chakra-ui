@@ -1,4 +1,4 @@
-import { useSize } from '@chakra-ui/hooks'
+import { useSize } from 'hooks/use-size'
 import { Code, HTMLChakraProps } from '@chakra-ui/react'
 import { useRef } from 'react'
 

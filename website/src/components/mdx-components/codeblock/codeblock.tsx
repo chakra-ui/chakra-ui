@@ -1,4 +1,4 @@
-import { useBoolean } from '@chakra-ui/hooks'
+import { useBoolean } from 'hooks/use-boolean'
 import { Box } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { themes } from 'prism-react-renderer'

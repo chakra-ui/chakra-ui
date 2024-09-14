@@ -1,8 +1,7 @@
-"use client"
+import { type ElementSize, trackElementSize } from '@zag-js/element-size'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
-import { type ElementSize, trackElementSize } from "@zag-js/element-size"
-import { useEffect, useLayoutEffect, useState } from "react"
-
+// eslint-disable-next-line no-extra-boolean-cast
 const useSafeLayoutEffect = Boolean(globalThis?.document)
   ? useLayoutEffect
   : useEffect
@@ -64,7 +63,7 @@ export function useSizes<T extends HTMLElement | null>({
 }
 
 function isRef(ref: any): ref is React.RefObject<any> {
-  return typeof ref === "object" && ref !== null && "current" in ref
+  return typeof ref === 'object' && ref !== null && 'current' in ref
 }
 
 export function useSize<T extends HTMLElement | null>(

@@ -3,10 +3,6 @@ import { buildProject } from "./build.js"
 
 const aliases = [
   {
-    find: new RegExp(`^@chakra-ui/hooks`),
-    replacement: resolve("../hooks", "src"),
-  },
-  {
     find: new RegExp(`^@chakra-ui/utils`),
     replacement: resolve("../utils", "src"),
   },

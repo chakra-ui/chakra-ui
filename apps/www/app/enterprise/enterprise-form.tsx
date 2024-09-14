@@ -1,6 +1,5 @@
 "use client"
 
-import { useUpdateEffect } from "@chakra-ui/hooks"
 import { Button, Card, Input, Textarea } from "@chakra-ui/react"
 import { Field } from "compositions/ui/field"
 import {
@@ -8,9 +7,31 @@ import {
   NativeSelectRoot,
 } from "compositions/ui/native-select"
 import { toaster } from "compositions/ui/toaster"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useFormState } from "react-dom"
 import { submitEnterpriseForm } from "../actions"
+
+export const useUpdateEffect: typeof useEffect = (effect, deps) => {
+  const renderCycleRef = useRef(false)
+  const effectCycleRef = useRef(false)
+
+  useEffect(() => {
+    const isMounted = renderCycleRef.current
+    const shouldRun = isMounted && effectCycleRef.current
+    if (shouldRun) {
+      return effect()
+    }
+    effectCycleRef.current = true
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
+
+  useEffect(() => {
+    renderCycleRef.current = true
+    return () => {
+      renderCycleRef.current = false
+    }
+  }, [])
+}
 
 export const EnterpriseForm = () => {
   const [state, formAction] = useFormState(submitEnterpriseForm, {
