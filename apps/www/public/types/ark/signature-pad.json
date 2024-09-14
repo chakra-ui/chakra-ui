@@ -1,0 +1,144 @@
+{
+  "ClearTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Guide": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the signature pad is disabled."
+      },
+      "drawing": {
+        "type": "DrawingOptions",
+        "isRequired": false,
+        "defaultValue": "'{ size: 2, simulatePressure: true }'",
+        "description": "The drawing options."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  control: string\n  hiddenInput: string\n  label: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the signature pad elements. Useful for composition."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the signature pad. Useful for form submission."
+      },
+      "onDraw": {
+        "type": "(details: DrawDetails) => void",
+        "isRequired": false,
+        "description": "Callback when the signature pad is drawing."
+      },
+      "onDrawEnd": {
+        "type": "(details: DrawEndDetails) => void",
+        "isRequired": false,
+        "description": "Callback when the signature pad is done drawing."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the signature pad is read-only."
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the signature pad is required."
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The translations of the signature pad. Useful for internationalization."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseSignaturePadReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Segment": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "SVGSVGElement",
+    "tag": "svg"
+  }
+}

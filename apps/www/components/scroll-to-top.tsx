@@ -29,7 +29,7 @@ export const ScrollToTop = () => {
     >
       <button onClick={scrollToTop}>
         <LuArrowUpCircle />
-        <Span fontSize="sm">Scroll to top</Span>
+        <Span fontSize="0.8rem">Scroll to top</Span>
       </button>
     </HStack>
   )

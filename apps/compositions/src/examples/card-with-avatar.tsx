@@ -22,7 +22,7 @@ export const CardWithAvatar = () => {
             </Text>
           </Stack>
         </HStack>
-        <Text color="fg.subtle">
+        <Text>
           <Strong>Nate Foss </Strong>
           has requested to join your team. You can approve or decline their
           request.

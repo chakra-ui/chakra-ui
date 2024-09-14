@@ -1,0 +1,44 @@
+{
+  "Root": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "interactive": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The interactive of the component"
+      },
+      "stickyHeader": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The stickyHeader of the component"
+      },
+      "striped": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The striped of the component"
+      },
+      "showColumnBorder": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The showColumnBorder of the component"
+      },
+      "variant": {
+        "type": "\"line\" | \"outline\"",
+        "defaultValue": "line",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "size": {
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    }
+  }
+}

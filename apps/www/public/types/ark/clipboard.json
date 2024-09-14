@@ -1,0 +1,108 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Indicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "copied": {
+        "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; input: string; label: string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the clipboard. Useful for composition."
+      },
+      "onStatusChange": {
+        "type": "(details: CopyStatusDetails) => void",
+        "isRequired": false,
+        "description": "The function to be called when the value is copied to the clipboard"
+      },
+      "timeout": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "3000",
+        "description": "The timeout for the copy operation"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value to be copied to the clipboard"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseClipboardReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

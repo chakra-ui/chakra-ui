@@ -1,0 +1,26 @@
+{
+  "Text": {
+    "props": {
+      "align": {
+        "type": "SystemStyleObject[\"textAlign\"]",
+        "isRequired": false,
+        "description": "The CSS `text-align` property"
+      },
+      "decoration": {
+        "type": "SystemStyleObject[\"textDecoration\"]",
+        "isRequired": false,
+        "description": "The CSS `text-decoration` property"
+      },
+      "casing": {
+        "type": "SystemStyleObject[\"textTransform\"]",
+        "isRequired": false,
+        "description": "The CSS `text-transform` property"
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"textWrap\"]",
+        "isRequired": false,
+        "description": "The CSS `text-wrap` property"
+      }
+    }
+  }
+}

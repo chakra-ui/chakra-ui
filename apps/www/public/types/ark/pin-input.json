@@ -1,0 +1,188 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Input": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to auto-focus the first input."
+      },
+      "blurOnComplete": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to blur the input when the value is complete"
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the pin input when it is first rendered.\nUse when you do not need to control the state of the pin input"
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the inputs are disabled"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input element."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  hiddenInput: string\n  label: string\n  control: string\n  input(id: string): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the pin input. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the pin input is in the invalid state"
+      },
+      "mask": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the input's value will be masked just like `type=password`"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input element. Useful for form submission."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called on input change"
+      },
+      "onValueComplete": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when all inputs have valid values"
+      },
+      "onValueInvalid": {
+        "type": "(details: ValueInvalidDetails) => void",
+        "isRequired": false,
+        "description": "Function called when an invalid value is entered"
+      },
+      "otp": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the pin input component signals to its fields that they should\nuse `autocomplete=\"one-time-code\"`."
+      },
+      "pattern": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The regular expression that the user-entered input value is checked against."
+      },
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"○\"",
+        "description": "The placeholder text for the input"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the pin input is in the valid state"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the pin input is required"
+      },
+      "selectOnFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to select input value when input is focused"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "type": {
+        "type": "'numeric' | 'alphabetic' | 'alphanumeric'",
+        "isRequired": false,
+        "defaultValue": "\"numeric\"",
+        "description": "The type of value the pin-input should allow"
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The value of the the pin input."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UsePinInputReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

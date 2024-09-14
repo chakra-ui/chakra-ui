@@ -1,10 +1,30 @@
-import { Badge, Box, Code, HStack } from "@chakra-ui/react"
-import { readFile } from "fs/promises"
-import { kebabCase } from "scule"
+import {
+  Box,
+  Code,
+  Icon,
+  Link,
+  Span,
+  Stack,
+  Table,
+  Text,
+} from "@chakra-ui/react"
+import { mergeWith } from "@chakra-ui/utils"
+import NextLink from "next/link"
+import { existsSync, readFileSync } from "node:fs"
+import { join } from "node:path"
+import { LuMinus } from "react-icons/lu"
+import { camelCase, kebabCase, titleCase, trainCase } from "scule"
 
-interface Props {
+interface PropTableProps {
   component: string
   part?: string
+}
+
+interface Properties {
+  type: string
+  isRequired: boolean
+  defaultValue?: string | undefined
+  description?: string | undefined
 }
 
 const stringify = (value: any) => {
@@ -13,7 +33,7 @@ const stringify = (value: any) => {
   return JSON.stringify(value)
 }
 
-const sortEntries = (props: Record<string, any>) => {
+const sortEntries = (props: Record<string, any>): [string, Properties][] => {
   return Object.entries(props).sort(([, a], [, b]) => {
     if (a.isRequired && !b.isRequired) return -1
     if (!a.isRequired && b.isRequired) return 1
@@ -23,51 +43,113 @@ const sortEntries = (props: Record<string, any>) => {
   })
 }
 
-export const PropTable = async (props: Props) => {
+function getType(baseDir: string, componentName?: string): Record<string, any> {
+  const path = join(
+    process.cwd(),
+    "public",
+    "types",
+    baseDir,
+    `${componentName}.json`,
+  )
+  if (!existsSync(path)) return {}
+  return JSON.parse(readFileSync(path, "utf-8"))
+}
+
+async function getComponentTypes(component: string) {
+  const componentName = kebabCase(component)
+  const arkTypes = getType("ark", componentName)
+  const recipeTypes = getType("recipe", componentName)
+  const componentTypes = getType("component", componentName)
+  const staticTypes = getType("static", componentName)
+  return mergeWith({}, arkTypes, recipeTypes, componentTypes, staticTypes)
+}
+
+export const PropTable = async (props: PropTableProps) => {
   const { component, part } = props
 
-  const fileContent = await readFile(
-    `public/types/${kebabCase(component)}.json`,
-    "utf-8",
-  )
+  const componentTypes = await getComponentTypes(component)
+  const componentType = part ? componentTypes[part] : componentTypes
 
-  const json = JSON.parse(fileContent)
+  if (!componentType?.props) return null
 
-  const propTypes = part ? json[part] : json
-
-  if (!propTypes) {
-    return null
-  }
+  const properties = sortEntries(componentType.props)
 
   return (
-    <Box divideY="1px">
-      {sortEntries(propTypes.props).map(([key, value]) => (
-        <Box py="4" key={key}>
-          <HStack width="full">
-            <Box fontWeight="medium">{key}</Box>
-            {value.isRequired && <Badge colorPalette="red">required</Badge>}
-            {value.defaultValue && (
-              <Code whiteSpace="nowrap" colorPalette="teal" variant="surface">
-                default: {stringify(value.defaultValue)}
-              </Code>
-            )}
-          </HStack>
-          <Box mt="2">
-            <Code
-              px="0"
-              colorPalette="teal"
-              display="inline-flex"
-              variant="plain"
-              lineClamp="1"
-            >
-              {value.type}
-            </Code>
-          </Box>
-          <Box color="fg.subtle" mt="2" textStyle="sm">
-            {value.description}
-          </Box>
-        </Box>
-      ))}
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      overflowX="auto"
+      className="not-prose"
+      my="8"
+    >
+      <Table.Root variant="outline" size="sm" border={0}>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader px="4" bg="gray.2" h="10">
+              Prop
+            </Table.ColumnHeader>
+            <Table.ColumnHeader px="4" bg="gray.2" h="10">
+              Default
+            </Table.ColumnHeader>
+            <Table.ColumnHeader px="4" bg="gray.2" h="10">
+              Type
+            </Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {properties.length === 0 && (
+            <Table.Row>
+              <Table.Cell colSpan={3}>
+                <Text>No props to display</Text>
+              </Table.Cell>
+            </Table.Row>
+          )}
+          {properties.map(([name, property]) => (
+            <Table.Row key={name}>
+              <Table.Cell width="36" px="4" py="2" verticalAlign="top">
+                <Code size="sm" variant="surface" color="teal.solid">
+                  {name}{" "}
+                </Code>
+                {property.isRequired && (
+                  <Span color="fg.error" ms="1">
+                    *
+                  </Span>
+                )}
+              </Table.Cell>
+              <Table.Cell width="28" px="4" py="2" verticalAlign="top">
+                {property.defaultValue ? (
+                  <Code size="sm" color="accent.fg" variant="surface">
+                    {String(property.defaultValue).replaceAll('"', "'")}
+                  </Code>
+                ) : (
+                  <Icon fontSize="xs" color="fg.muted">
+                    <LuMinus />
+                  </Icon>
+                )}
+              </Table.Cell>
+              <Table.Cell px="4" py="2" verticalAlign="top">
+                <Stack gap="2" align="start">
+                  <Code size="sm" variant="surface" color="accent.fg">
+                    {property.type.replaceAll('"', "'")}
+                  </Code>
+                  <Text fontSize="sm">{property.description}</Text>
+                  {name === "asChild" && (
+                    <Text as="span">
+                      For more details, read our{" "}
+                      <Link asChild>
+                        <NextLink href={`/docs/guides/composition`}>
+                          Composition
+                        </NextLink>
+                      </Link>{" "}
+                      guide.
+                    </Text>
+                  )}
+                </Stack>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
     </Box>
   )
 }

@@ -1,0 +1,26 @@
+{
+  "Highlight": {
+    "props": {
+      "query": {
+        "type": "string | string[]",
+        "isRequired": true,
+        "description": "The query to highlight in the text"
+      },
+      "text": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The text to highlight"
+      },
+      "ignoreCase": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to ignore case while matching"
+      },
+      "matchAll": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to match multiple instances of the query"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "AbsoluteCenter": {
+    "props": {
+      "axis": {
+        "type": "\"horizontal\" | \"vertical\" | \"both\"",
+        "isRequired": false
+      }
+    }
+  }
+}

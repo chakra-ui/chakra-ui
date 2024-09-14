@@ -1,0 +1,30 @@
+{
+  "Byte": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The byte size to format"
+      },
+      "unit": {
+        "type": "'bit' | 'byte'",
+        "isRequired": false,
+        "description": "The unit granularity to display"
+      },
+      "unitDisplay": {
+        "type": "'long' | 'short' | 'narrow'",
+        "isRequired": false,
+        "description": "The unit display"
+      }
+    }
+  },
+  "Number": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The number to format"
+      }
+    }
+  }
+}

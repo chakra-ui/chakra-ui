@@ -1,0 +1,12 @@
+{
+  "LocaleProvider": {
+    "props": {
+      "locale": {
+        "type": "string",
+        "isRequired": true,
+        "defaultValue": "'en-US'",
+        "description": "The locale to use for the application."
+      }
+    }
+  }
+}

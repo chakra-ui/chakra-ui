@@ -1,0 +1,254 @@
+{
+  "Dropzone": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "ItemDeleteTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "ItemGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLUListElement",
+    "tag": "ul"
+  },
+  "ItemName": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemPreviewImage": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLImageElement",
+    "tag": "img"
+  },
+  "ItemPreview": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "type": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "'.*'",
+        "description": "The file type to match against. Matches all file types by default."
+      }
+    },
+    "element": "HTMLImageElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "file": {
+        "type": "File",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLIElement",
+    "tag": "li"
+  },
+  "ItemSizeText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "accept": {
+        "type": "Record<string, string[]> | FileMimeType | FileMimeType[]",
+        "isRequired": false,
+        "description": "The accept file types"
+      },
+      "allowDrop": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to allow drag and drop in the dropzone element"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "capture": {
+        "type": "'user' | 'environment'",
+        "isRequired": false,
+        "description": "The default camera to use when capturing media"
+      },
+      "directory": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to accept directories, only works in webkit browsers"
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the file input is disabled"
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  dropzone: string\n  hiddenInput: string\n  trigger: string\n  label: string\n  item(id: string): string\n  itemName(id: string): string\n  itemSizeText(id: string): string\n  itemPreview(id: string): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the file input is invalid"
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"en-US\"",
+        "description": "The current locale. Based on the BCP 47 definition."
+      },
+      "maxFiles": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The maximum number of files"
+      },
+      "maxFileSize": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "Infinity",
+        "description": "The maximum file size in bytes"
+      },
+      "minFileSize": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The minimum file size in bytes"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the underlying file input"
+      },
+      "onFileAccept": {
+        "type": "(details: FileAcceptDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the file is accepted"
+      },
+      "onFileChange": {
+        "type": "(details: FileChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the value changes, whether accepted or rejected"
+      },
+      "onFileReject": {
+        "type": "(details: FileRejectDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the file is rejected"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the file input is required"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The localized messages to use."
+      },
+      "validate": {
+        "type": "(file: File) => FileError[] | null",
+        "isRequired": false,
+        "description": "Function to validate a file"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseFileUploadReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

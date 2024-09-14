@@ -1,0 +1,26 @@
+{
+  "Root": {
+    "props": {
+      "native": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the table will style its descendants with nested selectors"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      }
+    }
+  }
+}

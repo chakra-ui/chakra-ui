@@ -1,0 +1,14 @@
+{
+  "Button": {
+    "props": {
+      "loading": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "loadingText": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  }
+}

@@ -177,8 +177,8 @@ export const defaultConditions = defineConditions({
   landscape: "@media (orientation: landscape)",
   portrait: "@media (orientation: portrait)",
 
-  dark: "&.dark, .dark &",
-  light: "&.light, .light &",
+  dark: ".dark &",
+  light: ".light &",
   osDark: "@media (prefers-color-scheme: dark)",
   osLight: "@media (prefers-color-scheme: light)",
 

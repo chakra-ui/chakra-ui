@@ -1,0 +1,165 @@
+{
+  "Arrow": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ArrowTip": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Content": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Positioner": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Root": {
+    "props": {
+      "closeDelay": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "300",
+        "description": "The duration from when the mouse leaves the trigger or content until the hover card closes."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial open state of the hover card when it is first rendered.\nUse when you do not need to control its open state."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  trigger: string\n  content: string\n  positioner: string\n  arrow: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the popover. Useful for composition."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the hover card opens or closes."
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the hover card is open"
+      },
+      "openDelay": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "700",
+        "description": "The duration from when the mouse enters the trigger until the hover card opens."
+      },
+      "positioning": {
+        "type": "PositioningOptions",
+        "isRequired": false,
+        "description": "The user provided options used to position the popover content"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseHoverCardReturn",
+        "isRequired": true
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

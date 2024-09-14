@@ -1,0 +1,22 @@
+{
+  "Highlight": {
+    "props": {
+      "query": {
+        "type": "string | string[]",
+        "isRequired": true
+      },
+      "styles": {
+        "type": "SystemStyleObject",
+        "isRequired": false
+      },
+      "ignoreCase": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "matchAll": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    }
+  }
+}

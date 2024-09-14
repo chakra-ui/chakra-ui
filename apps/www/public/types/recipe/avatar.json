@@ -1,0 +1,35 @@
+{
+  "Root": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"solid\" | \"subtle\" | \"outline\"",
+        "defaultValue": "subtle",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "shape": {
+        "type": "\"square\" | \"rounded\" | \"full\"",
+        "defaultValue": "full",
+        "isRequired": false,
+        "description": "The shape of the component"
+      },
+      "borderless": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The borderless of the component"
+      }
+    }
+  }
+}

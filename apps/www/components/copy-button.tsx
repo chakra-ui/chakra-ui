@@ -11,7 +11,7 @@ export const CopyButton = (props: Props) => {
   return (
     <Clipboard.Root className="dark" value={value}>
       <Clipboard.Trigger asChild>
-        <IconButton variant="ghost" size="sm">
+        <IconButton colorPalette="gray" variant="ghost" size="sm">
           <Clipboard.Indicator copied={<LuCheck />}>
             <LuClipboard />
           </Clipboard.Indicator>

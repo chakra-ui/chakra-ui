@@ -263,7 +263,6 @@
     "file": "password-input.tsx",
     "component": "PasswordInput",
     "npmDependencies": [
-      "@chakra-ui/hooks",
       "react-icons"
     ],
     "fileDependencies": [

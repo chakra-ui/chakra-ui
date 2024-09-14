@@ -1,0 +1,66 @@
+{
+  "ErrorText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "HelperText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Legend": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLegendElement",
+    "tag": "legend"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the fieldset is invalid."
+      }
+    },
+    "element": "HTMLFieldSetElement",
+    "tag": "fieldset"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseFieldsetReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLFieldSetElement",
+    "tag": "fieldset"
+  }
+}

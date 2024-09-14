@@ -1,0 +1,432 @@
+{
+  "Arrow": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ArrowTip": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "CheckboxItem": {
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "isRequired": true,
+        "description": "Whether the option is checked"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The value of the option"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu should be closed when the option is selected."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu item is disabled"
+      },
+      "onCheckedChange": {
+        "type": "(checked: boolean) => void",
+        "isRequired": false,
+        "description": "Function called when the option state is changed"
+      },
+      "valueText": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Content": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ContextTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Indicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemGroupLabel": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemIndicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The unique value of the menu item option."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu should be closed when the option is selected."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu item is disabled"
+      },
+      "valueText": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Positioner": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RadioItemGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "onValueChange": {
+        "type": "(e: ValueChangeDetails) => void",
+        "isRequired": false
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RadioItem": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The value of the option"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu should be closed when the option is selected."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu item is disabled"
+      },
+      "valueText": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Root": {
+    "props": {
+      "anchorPoint": {
+        "type": "Point",
+        "isRequired": false,
+        "description": "The positioning point for the menu. Can be set by the context menu trigger or the button trigger."
+      },
+      "aria-label": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The accessibility label for the menu"
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to close the menu when an option is selected"
+      },
+      "composite": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the menu is a composed with other composite widgets like a combobox or tabs"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial open state of the menu when it is first rendered.\nUse when you do not need to control its open state."
+      },
+      "highlightedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value of the highlighted menu item."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  trigger: string\n  contextTrigger: string\n  content: string\n  groupLabel(id: string): string\n  group(id: string): string\n  positioner: string\n  arrow: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the menu. Useful for composition."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "loopFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to loop the keyboard navigation."
+      },
+      "onEscapeKeyDown": {
+        "type": "(event: KeyboardEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the escape key is pressed"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "onFocusOutside": {
+        "type": "(event: FocusOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the focus is moved outside the component"
+      },
+      "onHighlightChange": {
+        "type": "(details: HighlightChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the highlighted menu item changes."
+      },
+      "onInteractOutside": {
+        "type": "(event: InteractOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when an interaction happens outside the component"
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the menu opens or closes"
+      },
+      "onPointerDownOutside": {
+        "type": "(event: PointerDownOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onSelect": {
+        "type": "(details: SelectionDetails) => void",
+        "isRequired": false,
+        "description": "Function called when a menu item is selected."
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the menu is open"
+      },
+      "positioning": {
+        "type": "PositioningOptions",
+        "isRequired": false,
+        "description": "The options used to dynamically position the menu"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "typeahead": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the pressing printable characters should trigger typeahead navigation"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseMenuReturn",
+        "isRequired": true
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "Separator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLHRElement",
+    "tag": "hr"
+  },
+  "TriggerItem": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "DecrementTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "IncrementTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "allowMouseWheel": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to allow mouse wheel to change the value"
+      },
+      "allowOverflow": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to allow the value overflow the min/max range"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "clampValueOnBlur": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to clamp the value when the input loses focus (blur)"
+      },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the number input when it is first rendered.\nUse when you do not need to control the state of the number input."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the number input is disabled."
+      },
+      "focusInputOnChange": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to focus input when the value changes"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the input element."
+      },
+      "formatOptions": {
+        "type": "NumberFormatOptions",
+        "isRequired": false,
+        "description": "The options to pass to the `Intl.NumberFormat` constructor"
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  label: string\n  input: string\n  incrementTrigger: string\n  decrementTrigger: string\n  scrubber: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the number input. Useful for composition."
+      },
+      "inputMode": {
+        "type": "InputMode",
+        "isRequired": false,
+        "defaultValue": "\"decimal\"",
+        "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the number input value is invalid."
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"en-US\"",
+        "description": "The current locale. Based on the BCP 47 definition."
+      },
+      "max": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "Number.MAX_SAFE_INTEGER",
+        "description": "The maximum value of the number input"
+      },
+      "min": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "Number.MIN_SAFE_INTEGER",
+        "description": "The minimum value of the number input"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name attribute of the number input. Useful for form submission."
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the number input is focused"
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the value changes"
+      },
+      "onValueInvalid": {
+        "type": "(details: ValueInvalidDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the value overflows or underflows the min/max range"
+      },
+      "pattern": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"[0-9]*(.[0-9]+)?\"",
+        "description": "The pattern used to check the <input> element's value against"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the number input is readonly"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the number input is required"
+      },
+      "spinOnPress": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to spin the value when the increment/decrement button is pressed"
+      },
+      "step": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The amount to increment or decrement the value by"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value of the input"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseNumberInputReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Scrubber": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ValueText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  }
+}

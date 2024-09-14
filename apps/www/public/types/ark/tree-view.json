@@ -1,0 +1,232 @@
+{
+  "BranchContent": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLUListElement",
+    "tag": "ul"
+  },
+  "BranchControl": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "BranchIndicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Branch": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The id of the item or branch"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the item or branch is disabled"
+      }
+    },
+    "element": "HTMLLIElement",
+    "tag": "li"
+  },
+  "BranchText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "BranchTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemIndicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The id of the item or branch"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the item or branch is disabled"
+      }
+    },
+    "element": "HTMLLIElement",
+    "tag": "li"
+  },
+  "ItemText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultExpandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial expanded items of the tree view.\nUse this when you do not need to control the state of the tree view."
+      },
+      "defaultSelectedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial selected items of the tree view.\nUse this when you do not need to control the state of the tree view."
+      },
+      "expandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The id of the expanded nodes"
+      },
+      "expandOnClick": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether clicking on a branch should open it or not"
+      },
+      "focusedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The id of the focused node"
+      },
+      "ids": {
+        "type": "Partial<{ root: string; tree: string; label: string }>",
+        "isRequired": false,
+        "description": "The ids of the tree elements. Useful for composition."
+      },
+      "onExpandedChange": {
+        "type": "(details: ExpandedChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the tree is opened or closed"
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the focused node changes"
+      },
+      "onSelectionChange": {
+        "type": "(details: SelectionChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the selection changes"
+      },
+      "selectedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The id of the selected nodes"
+      },
+      "selectionMode": {
+        "type": "'multiple' | 'single'",
+        "isRequired": false,
+        "defaultValue": "\"single\"",
+        "description": "Whether the tree supports multiple selection\n- \"single\": only one node can be selected\n- \"multiple\": multiple nodes can be selected"
+      },
+      "typeahead": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the tree supports typeahead search"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseTreeViewReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Tree": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLUListElement",
+    "tag": "ul"
+  }
+}

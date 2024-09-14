@@ -1,0 +1,100 @@
+{
+  "Panel": {
+    "props": {
+      "id": {
+        "type": "PanelId",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "snapSize": {
+        "type": "number",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ResizeTrigger": {
+    "props": {
+      "id": {
+        "type": "type ONLY_FOR_FORMAT =\n  | `${string}:${string}`\n  | `${string}:${number}`\n  | `${number}:${string}`\n  | `${number}:${number}`",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "step": {
+        "type": "number",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultSize": {
+        "type": "PanelSizeData[]",
+        "isRequired": false,
+        "description": "The initial size of the panels when it is first rendered.\nUse this when you do not need to control the state of the carousel."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  resizeTrigger(id: string): string\n  label(id: string): string\n  panel(id: string | number): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the splitter. Useful for composition."
+      },
+      "onSizeChange": {
+        "type": "(details: SizeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the splitter is resized."
+      },
+      "onSizeChangeEnd": {
+        "type": "(details: SizeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the splitter resize ends."
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "description": "The orientation of the splitter. Can be `horizontal` or `vertical`"
+      },
+      "size": {
+        "type": "PanelSizeData[]",
+        "isRequired": false,
+        "description": "The size data of the panels"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseSplitterReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

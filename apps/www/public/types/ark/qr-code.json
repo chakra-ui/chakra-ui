@@ -1,0 +1,76 @@
+{
+  "Frame": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "SVGSVGElement",
+    "tag": "svg"
+  },
+  "Overlay": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Pattern": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "SVGPathElement",
+    "tag": "path"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "encoding": {
+        "type": "QrCodeGenerateOptions",
+        "isRequired": false,
+        "description": "The qr code encoding options."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; frame: string }>",
+        "isRequired": false,
+        "description": "The element ids."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value to encode."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseQrCodeReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

@@ -1,0 +1,517 @@
+{
+  "ClearTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Content": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "MonthSelect": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSelectElement",
+    "tag": "select"
+  },
+  "NextTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Positioner": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "PresetTrigger": {
+    "props": {
+      "value": {
+        "type": "PresetTriggerValue",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "PrevTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "RangeText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial open state of the date picker when it is first rendered.\nUse when you do not need to control its open state."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the date picker when it is first rendered.\nUse when you do not need to control the state of the date picker."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the calendar is disabled."
+      },
+      "fixedWeeks": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the calendar should have a fixed number of weeks.\nThis renders the calendar with 6 weeks instead of 5 or 6."
+      },
+      "focusedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The focused date."
+      },
+      "format": {
+        "type": "(date: DateValue) => string",
+        "isRequired": false,
+        "description": "The format of the date to display in the input."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; label(index: number): string; table(id: string): string; tableHeader(id: string): string; tableBody(id: string): string; tableRow(id: string): string; content: string; ... 10 more ...; positioner: string; }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the date picker. Useful for composition."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "isDateUnavailable": {
+        "type": "(date: DateValue, locale: string) => boolean",
+        "isRequired": false,
+        "description": "Returns whether a date of the calendar is available."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"en-US\"",
+        "description": "The locale (BCP 47 language tag) to use when formatting the date."
+      },
+      "max": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The maximum date for the date picker in the format yyyy-mm-dd"
+      },
+      "min": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The minimum date for the date picker in the format yyyy-mm-dd"
+      },
+      "modal": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the calendar should be modal. This means that the calendar will\nblock interaction with the rest of the page, and trap focus within it."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The `name` attribute of the input element."
+      },
+      "numOfMonths": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The number of months to display."
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the focused date changes."
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the calendar opens or closes."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the value changes."
+      },
+      "onViewChange": {
+        "type": "(details: ViewChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the view changes."
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the datepicker is open"
+      },
+      "positioning": {
+        "type": "PositioningOptions",
+        "isRequired": false,
+        "description": "The user provided options used to position the date picker content"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the calendar is read-only."
+      },
+      "selectionMode": {
+        "type": "SelectionMode",
+        "isRequired": false,
+        "defaultValue": "\"single\"",
+        "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected"
+      },
+      "startOfWeek": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The first day of the week.\n `0` - Sunday\n `1` - Monday\n `2` - Tuesday\n `3` - Wednesday\n `4` - Thursday\n `5` - Friday\n `6` - Saturday"
+      },
+      "timeZone": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"UTC\"",
+        "description": "The time zone to use"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The localized messages to use."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The value of the date picker"
+      },
+      "view": {
+        "type": "DateView",
+        "isRequired": false,
+        "defaultValue": "\"day\"",
+        "description": "The view of the calendar"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseDatePickerReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "TableBody": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLTableSectionElement",
+    "tag": "tbody"
+  },
+  "TableCell": {
+    "props": {
+      "value": {
+        "type": "number | DateValue",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "columns": {
+        "type": "number",
+        "isRequired": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "visibleRange": {
+        "type": "VisibleRange",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLTableCellElement",
+    "tag": "td"
+  },
+  "TableCellTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "TableHead": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLTableSectionElement",
+    "tag": "thead"
+  },
+  "TableHeader": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLTableCellElement",
+    "tag": "th"
+  },
+  "Table": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "columns": {
+        "type": "number",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLTableElement",
+    "tag": "table"
+  },
+  "TableRow": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLTableRowElement",
+    "tag": "tr"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "ViewControl": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "View": {
+    "props": {
+      "view": {
+        "type": "DateView",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ViewTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "YearSelect": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSelectElement",
+    "tag": "select"
+  }
+}

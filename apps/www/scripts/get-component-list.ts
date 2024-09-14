@@ -1,21 +1,8 @@
 import { findUpSync } from "find-up"
 import { readdir } from "fs/promises"
-import fetch from "node-fetch"
 import { dirname, extname, resolve } from "path/posix"
 
 const isFileType = (file: string) => extname(file).startsWith(".ts")
-
-export const getArkComponentList = async () => {
-  const prom = await fetch("http://ark-ui.com/api/types/react")
-  const res = await prom.json()
-  return res as string[]
-}
-
-export const getArkComponent = async (component: string) => {
-  const prom = await fetch(`http://ark-ui.com/api/types/react/${component}`)
-  const res = await prom.json()
-  return res as Record<string, any>
-}
 
 export const getComponentDir = () => {
   const rootPath = findUpSync("pnpm-workspace.yaml")
@@ -29,7 +16,7 @@ export const getComponentList = async () => {
   return dirs.filter((v) => !isFileType(v))
 }
 
-const staticComponents = [
+export const staticComponentList = [
   "aspect-ratio",
   "bleed",
   "box",
@@ -41,14 +28,9 @@ const staticComponents = [
   "group",
   "highlight",
   "portal",
-  "wrap",
   "for",
   "client-only",
   "show",
   "checkmark",
   "radiomark",
 ]
-
-export const getStaticComponentList = () => {
-  return staticComponents.slice()
-}

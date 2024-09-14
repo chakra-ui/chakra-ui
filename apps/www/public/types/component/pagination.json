@@ -1,0 +1,60 @@
+{
+  "PaginationRoot": {
+    "props": {
+      "size": {
+        "type": "ButtonProps[\"size\"]",
+        "isRequired": false
+      },
+      "variant": {
+        "type": "PaginationVariant",
+        "isRequired": false
+      },
+      "getHref": {
+        "type": "(page",
+        "isRequired": false
+      }
+    }
+  },
+  "PaginationItem": {
+    "props": {
+      "startIcon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "endIcon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "href": {
+        "type": "LinkProps[\"href\"]",
+        "isRequired": true
+      },
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"]",
+        "isRequired": false,
+        "description": "Shorthand for `alignItems` style prop"
+      },
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"]",
+        "isRequired": false,
+        "description": "Shorthand for `justifyContent` style prop"
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"flexWrap\"]",
+        "isRequired": false,
+        "description": "Shorthand for `flexWrap` style prop"
+      },
+      "direction": {
+        "type": "StackDirection",
+        "defaultValue": "column",
+        "isRequired": false,
+        "description": "The direction to stack the items."
+      },
+      "separator": {
+        "type": "React.ReactElement",
+        "isRequired": false,
+        "description": "If `true`, each stack item will show a separator"
+      }
+    }
+  }
+}

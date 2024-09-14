@@ -1,0 +1,261 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "MarkerGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Marker": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Range": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Root": {
+    "props": {
+      "aria-label": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The aria-label of each slider thumb. Useful for providing an accessible name to the slider"
+      },
+      "aria-labelledby": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The `id` of the elements that labels each slider thumb. Useful for providing an accessible name to the slider"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultValue": {
+        "type": "number[]",
+        "isRequired": false,
+        "description": "The initial value of the slider when it is first rendered.\nUse when you do not need to control the state of the slider picker."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is disabled"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input element."
+      },
+      "getAriaValueText": {
+        "type": "(details: ValueTextDetails) => string",
+        "isRequired": false,
+        "description": "Function that returns a human readable value for the slider thumb"
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  thumb(index: number): string\n  hiddenInput(index: number): string\n  control: string\n  track: string\n  range: string\n  label: string\n  valueText: string\n  marker(index: number): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the range slider. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is invalid"
+      },
+      "max": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "100",
+        "description": "The maximum value of the slider"
+      },
+      "min": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The minimum value of the slider"
+      },
+      "minStepsBetweenThumbs": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The minimum permitted steps between multiple thumbs."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name associated with each slider thumb (when used in a form)"
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the slider's focused index changes"
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the value of the slider changes"
+      },
+      "onValueChangeEnd": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the slider value change is done"
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "defaultValue": "\"horizontal\"",
+        "description": "The orientation of the slider"
+      },
+      "origin": {
+        "type": "'center' | 'start'",
+        "isRequired": false,
+        "defaultValue": "\"start\"",
+        "description": "The origin of the slider range\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is read-only"
+      },
+      "step": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The step value of the slider"
+      },
+      "thumbAlignment": {
+        "type": "'center' | 'contain'",
+        "isRequired": false,
+        "defaultValue": "\"contain\"",
+        "description": "The alignment of the slider thumb relative to the track\n- `center`: the thumb will extend beyond the bounds of the slider track.\n- `contain`: the thumb will be contained within the bounds of the track."
+      },
+      "thumbSize": {
+        "type": "{ width: number; height: number }",
+        "isRequired": false,
+        "description": "The slider thumbs dimensions"
+      },
+      "value": {
+        "type": "number[]",
+        "isRequired": false,
+        "description": "The value of the range slider"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseSliderReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Thumb": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Track": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ValueText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "span"
+  }
+}

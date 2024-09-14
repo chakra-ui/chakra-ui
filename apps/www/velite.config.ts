@@ -12,6 +12,7 @@ import rehypeSlug from "rehype-slug"
 import remarkDirective from "remark-directive"
 import remarkGfm from "remark-gfm"
 import { defineCollection, defineConfig, s } from "velite"
+import { docsConfig } from "./docs.config"
 import { remarkCallout } from "./lib/remark-callout"
 import { remarkCard } from "./lib/remark-card"
 import { remarkCodeTitle } from "./lib/remark-code-title"
@@ -45,9 +46,25 @@ const docs = defineCollection({
         .optional(),
     })
     .transform((data, { meta }) => {
+      const slug = slugify(meta.path)
+      const componentName = slug.split("/").pop()
       return {
         ...data,
-        slug: slugify(meta.path),
+        slug,
+        links: (data.links || []).concat(
+          {
+            title: "Source",
+            url: `${docsConfig.repoUrl}/tree/main/packages/react/src/components/${componentName}`,
+          },
+          {
+            title: "Storybook",
+            url: `${docsConfig.storybookUrl}/?path=/story/components-${componentName}-basic`,
+          },
+          {
+            title: "Recipe",
+            url: `${docsConfig.repoUrl}/tree/main/packages/react/src/theme/recipes/${componentName}`,
+          },
+        ),
         category: meta.path
           .replace(/.*\/content\//, "")
           .replace(/\/[^/]*$/, "")

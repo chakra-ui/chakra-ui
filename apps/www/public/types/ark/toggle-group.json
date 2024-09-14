@@ -1,0 +1,100 @@
+{
+  "Item": {
+    "props": {
+      "value": {
+        "type": "string",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the toggle group when it is first rendered.\nUse when you do not need to control the state of the toggle group."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the toggle is disabled."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; item(value: string): string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the toggle. Useful for composition."
+      },
+      "loopFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to loop focus inside the toggle group."
+      },
+      "multiple": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to allow multiple toggles to be selected."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function to call when the toggle is clicked."
+      },
+      "orientation": {
+        "type": "Orientation",
+        "isRequired": false,
+        "defaultValue": "\"horizontal\"",
+        "description": "The orientation of the toggle group."
+      },
+      "rovingFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to use roving tab index to manage focus."
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The values of the toggles in the group."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseToggleGroupReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

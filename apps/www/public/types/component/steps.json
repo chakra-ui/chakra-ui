@@ -1,0 +1,69 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      }
+    }
+  },
+  "Item": {
+    "props": {
+      "completedIcon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "icon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "title": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "description": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  },
+  "Indicator": {
+    "props": {
+      "completedIcon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "icon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  },
+  "Status": {
+    "props": {
+      "complete": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "incomplete": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "current": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  }
+}

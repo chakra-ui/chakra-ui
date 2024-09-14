@@ -1,0 +1,179 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "IndicatorGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Indicator": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "ItemGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The index of the item."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "NextTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "PrevTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Root": {
+    "props": {
+      "align": {
+        "type": "'center' | 'end' | 'start'",
+        "isRequired": false,
+        "defaultValue": "\"start\"",
+        "description": "The alignment of the slides in the carousel."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultIndex": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The initial index of the carousel when it is first rendered.\nUse this when you do not need to control the state of the carousel."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  viewport: string\n  item(index: number): string\n  itemGroup: string\n  nextTrigger: string\n  prevTrigger: string\n  indicatorGroup: string\n  indicator(index: number): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the carousel. Useful for composition."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The current slide index."
+      },
+      "loop": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether the carousel should loop around."
+      },
+      "onIndexChange": {
+        "type": "(details: SlideChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the slide changes."
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "defaultValue": "\"horizontal\"",
+        "description": "The orientation of the carousel."
+      },
+      "slidesPerView": {
+        "type": "number | 'auto'",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The number of slides to show at a time."
+      },
+      "spacing": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"0px\"",
+        "description": "The amount of space between slides."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseCarouselReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Viewport": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "checked": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the switch is checked."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the switch is disabled."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  hiddenInput: string\n  control: string\n  label: string\n  thumb: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the switch. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the switch is marked as invalid."
+      },
+      "label": {
+        "type": "string",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input field in a switch\n(Useful for form submission)."
+      },
+      "onCheckedChange": {
+        "type": "(details: CheckedChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function to call when the switch is clicked."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the switch is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the switch input is marked as required,"
+      },
+      "value": {
+        "type": "string | number",
+        "isRequired": false,
+        "defaultValue": "\"on\"",
+        "description": "The value of switch input. Useful for form submission."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseSwitchReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Thumb": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  }
+}

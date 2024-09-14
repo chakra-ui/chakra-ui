@@ -1,0 +1,34 @@
+{
+  "Root": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "fitted": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The fitted of the component"
+      },
+      "justify": {
+        "type": "\"start\" | \"center\" | \"end\"",
+        "isRequired": false,
+        "description": "The justify of the component"
+      },
+      "size": {
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"line\" | \"subtle\" | \"enclosed\" | \"outline\" | \"plain\"",
+        "defaultValue": "line",
+        "isRequired": false,
+        "description": "The variant of the component"
+      }
+    }
+  }
+}

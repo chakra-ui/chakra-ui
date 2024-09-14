@@ -1,0 +1,41 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      }
+    }
+  },
+  "ValueText": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": false
+      },
+      "formatOptions": {
+        "type": "Intl.NumberFormatOptions",
+        "isRequired": false
+      }
+    }
+  },
+  "Label": {
+    "props": {
+      "info": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  }
+}

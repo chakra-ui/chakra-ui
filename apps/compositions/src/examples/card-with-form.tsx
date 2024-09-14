@@ -10,7 +10,7 @@ export const CardWithForm = () => (
       </Card.Description>
     </Card.Header>
     <Card.Body>
-      <Stack maxW="sm" gap="4">
+      <Stack gap="4" w="full">
         <Field label="First Name">
           <Input />
         </Field>

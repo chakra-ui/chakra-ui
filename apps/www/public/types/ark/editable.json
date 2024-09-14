@@ -1,0 +1,254 @@
+{
+  "Area": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "CancelTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "EditTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Preview": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Root": {
+    "props": {
+      "activationMode": {
+        "type": "ActivationMode",
+        "isRequired": false,
+        "defaultValue": "\"focus\"",
+        "description": "The activation mode for the preview element.\n\n- \"focus\" - Enter edit mode when the preview is focused\n- \"dblclick\" - Enter edit mode when the preview is double-clicked\n- \"click\" - Enter edit mode when the preview is clicked"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "autoResize": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the editable should auto-resize to fit the content."
+      },
+      "defaultEdit": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial edit state of the editable when it is first rendered.\nUse when you do not need to control its edit state."
+      },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the editable when it is first rendered.\nUse when you do not need to control the state of the editable."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the editable is disabled"
+      },
+      "edit": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the editable is in edit mode."
+      },
+      "finalFocusEl": {
+        "type": "() => HTMLElement | null",
+        "isRequired": false,
+        "description": "The element that should receive focus when the editable is closed.\nBy default, it will focus on the trigger element."
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  area: string\n  label: string\n  preview: string\n  input: string\n  control: string\n  submitTrigger: string\n  cancelTrigger: string\n  editTrigger: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the editable. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the input's value is invalid."
+      },
+      "maxLength": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The maximum number of characters allowed in the editable"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name attribute of the editable component. Used for form submission."
+      },
+      "onEditChange": {
+        "type": "(details: EditChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback that is called when the edit mode is changed"
+      },
+      "onFocusOutside": {
+        "type": "(event: FocusOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the focus is moved outside the component"
+      },
+      "onInteractOutside": {
+        "type": "(event: InteractOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when an interaction happens outside the component"
+      },
+      "onPointerDownOutside": {
+        "type": "(event: PointerDownOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback that is called when the editable's value is changed"
+      },
+      "onValueCommit": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback that is called when the editable's value is submitted."
+      },
+      "onValueRevert": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback that is called when the esc key is pressed or the cancel button is clicked"
+      },
+      "placeholder": {
+        "type": "string | { edit: string; preview: string }",
+        "isRequired": false,
+        "description": "The placeholder value to show when the `value` is empty"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the editable is readonly"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the editable is required"
+      },
+      "selectOnFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to select the text in the input when it is focused."
+      },
+      "submitMode": {
+        "type": "SubmitMode",
+        "isRequired": false,
+        "defaultValue": "\"both\"",
+        "description": "The action that triggers submit in the edit mode:\n\n- \"enter\" - Trigger submit when the enter key is pressed\n- \"blur\" - Trigger submit when the editable is blurred\n- \"none\" - No action will trigger submit. You need to use the submit button\n- \"both\" - Pressing `Enter` and blurring the input will trigger submit"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value of the editable in both edit and preview mode"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseEditableReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "SubmitTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

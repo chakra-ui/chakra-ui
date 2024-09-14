@@ -1,0 +1,24 @@
+{
+  "Badge": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "variant": {
+        "type": "\"solid\" | \"subtle\" | \"outline\" | \"surface\" | \"plain\"",
+        "defaultValue": "subtle",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "sm",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    }
+  }
+}

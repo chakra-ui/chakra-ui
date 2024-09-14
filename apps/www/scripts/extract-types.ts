@@ -70,8 +70,6 @@ async function extractPropertiesOfTypeName(
       const typeName = typeChecker.typeToString(nonNullableType)
       const required = nonNullableType === type && typeName !== "any"
 
-      // const prettyType = await tryPrettier(typeName)
-
       properties[propertyName] = {
         type: typeString,
         defaultValue: formatValue(defaultValue),
@@ -89,8 +87,6 @@ async function extractPropertiesOfTypeName(
     if (/Props$/.test(typeName)) {
       typeName = typeName.replace(/Props$/, "")
       results[typeName] = properties
-    } else {
-      log("Omitting type", `\`${typeName}\``)
     }
   }
 
@@ -160,14 +156,12 @@ function extractTypeExports(code: string) {
 
   const exportedTypes = Object.keys(exported).filter(Boolean)
 
-  log({ exportedTypes })
-
   return exportedTypes
 }
 
 function shouldIgnoreProperty(property: ts.Symbol) {
   const sourceFileName = getSourceFileName(property)
-  const isExternal = /(node_modules|styled-system|@types\/react)/.test(
+  const isExternal = /(node_modules|styled-system|@types\/react|apps\/)/.test(
     sourceFileName ?? "",
   )
   const isExcludedByName = ["children"].includes(property.getName())
@@ -185,8 +179,4 @@ export async function extractTypes(file: string) {
   return promises
     .filter((value) => Object.keys(value).length !== 0)
     .reduce((acc, value) => ({ ...acc, ...value }), {})
-}
-
-function log(...args: any[]) {
-  // console.log("[props-docs]: ", ...args)
 }

@@ -5,7 +5,7 @@ import { Rating } from "compositions/ui/rating"
 export const RatingInTestimonial = () => {
   return (
     <Stack maxW="320px" gap="4">
-      <Rating readOnly size="xs" defaultValue={5} />
+      <Rating colorPalette="orange" readOnly size="xs" defaultValue={5} />
 
       <Text>
         Sage is a great software engineer. He is very professional and
@@ -17,13 +17,9 @@ export const RatingInTestimonial = () => {
           name="Matthew Jones"
           src="https://randomuser.me/api/portraits/men/70.jpg"
         />
-        <Stack>
-          <Text fontWeight="medium" lineHeight="1">
-            Matthew Jones
-          </Text>
-          <Text color="fg.subtle" lineHeight="1">
-            CTO, Company
-          </Text>
+        <Stack textStyle="sm" gap="0">
+          <Text fontWeight="medium">Matthew Jones</Text>
+          <Text color="fg.subtle">CTO, Company</Text>
         </Stack>
       </HStack>
     </Stack>

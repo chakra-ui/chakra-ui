@@ -1,0 +1,36 @@
+{
+  "Root": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "centered": {
+        "type": "\"true\" | \"false\"",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "The centered of the component"
+      },
+      "scrollBehavior": {
+        "type": "\"inside\" | \"outside\"",
+        "defaultValue": "outside",
+        "isRequired": false,
+        "description": "The scrollBehavior of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "motionPreset": {
+        "type": "\"scale\" | \"slide-in-bottom\" | \"slide-in-top\" | \"slide-in-left\" | \"slide-in-right\" | \"none\"",
+        "defaultValue": "scale",
+        "isRequired": false,
+        "description": "The motionPreset of the component"
+      }
+    }
+  }
+}

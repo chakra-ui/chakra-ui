@@ -250,6 +250,7 @@ const docsLinks: NavItem = {
 }
 
 export const docsConfig: DocsConfig = {
+  storybookUrl: "https://storybook.chakra-ui.com",
   copyright: "Copyright © {{date}} Segun Adebayo. All Rights Reserved.",
   title: "Chakra UI",
   titleTemplate: "%s | Chakra UI",
@@ -272,6 +273,7 @@ interface DocsConfig {
   title: string
   titleTemplate: string
   description: string
+  storybookUrl: string
   copyright: string
   url: string
   repoUrl: string

@@ -1,0 +1,152 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Item": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "Root": {
+    "props": {
+      "allowHalf": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to allow half stars."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to autofocus the rating."
+      },
+      "count": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "5",
+        "description": "The total number of ratings."
+      },
+      "defaultValue": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The initial value of the rating group when it is first rendered.\nUse when you do not need to control the state of the rating group."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the rating is disabled."
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input element."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  label: string\n  hiddenInput: string\n  control: string\n  item(id: string): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the rating. Useful for composition."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name attribute of the rating element (used in forms)."
+      },
+      "onHoverChange": {
+        "type": "(details: HoverChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function to be called when the rating value is hovered."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function to be called when the rating value changes."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the rating is readonly."
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the rating is required."
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "value": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The current rating value."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseRatingGroupReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  }
+}

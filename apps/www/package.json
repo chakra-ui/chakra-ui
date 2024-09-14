@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "types:ark": "pnpm tsx scripts/types/ark.ts",
+    "types:recipe": "pnpm tsx scripts/types/recipe.ts",
+    "types:component": "pnpm tsx scripts/types/component.ts",
     "generate:composition": "pnpm tsx scripts/composition.ts",
-    "generate:types": "pnpm tsx scripts/generate-types.ts",
+    "generate:types": "pnpm types:ark && pnpm types:recipe && pnpm types:component",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "prebuild": "pnpm generate:composition"
   },

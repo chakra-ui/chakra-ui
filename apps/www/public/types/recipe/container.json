@@ -1,0 +1,22 @@
+{
+  "Container": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "centerContent": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The centerContent of the component"
+      },
+      "fluid": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The fluid of the component"
+      }
+    }
+  }
+}

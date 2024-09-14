@@ -13,7 +13,9 @@ export const CodeWithColors = () => {
           px="4"
           width="full"
         >
-          <Text minW="8ch">{colorPalette}</Text>
+          <Text minW="8ch" textStyle="sm">
+            {colorPalette}
+          </Text>
           <Code colorPalette={colorPalette} variant="solid">
             {`console.log()`}
           </Code>

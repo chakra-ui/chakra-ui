@@ -18,7 +18,18 @@ interface PropDoc {
 
 type PropDocRecord = Record<string, PropDoc>
 
-const ignoreList = ["transparent", "current", "border", "bg", "fg"]
+const ignoreList = [
+  "transparent",
+  "current",
+  "border",
+  "bg",
+  "fg",
+  "focusRing",
+  "black",
+  "white",
+  "whiteAlpha",
+  "blackAlpha",
+]
 
 function getColorPaletteType(system: SystemContext) {
   const palettes = system.tokens.colorPaletteMap
@@ -46,10 +57,11 @@ export function getRecipeTypes(system: SystemContext, key: string) {
   }
 
   Object.keys(recipe.variantMap).forEach((variant) => {
-    const values = recipe.variantMap[variant] as string[]
+    const values = new Set(recipe.variantMap[variant])
+    if (values.has("true") && !values.has("false")) values.add("false")
     result[variant] = {
-      type: toLiteralStringType(values),
-      defaultValue: config.defaultVariants[variant],
+      type: toLiteralStringType(Array.from(values)),
+      defaultValue: config.defaultVariants?.[variant],
       isRequired: false,
       description: `The ${variant} of the component`,
     }

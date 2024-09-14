@@ -1,0 +1,183 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Group": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of `value` when uncontrolled"
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the checkbox group is disabled"
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the checkbox group is invalid"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input fields in the checkbox group\n(Useful for form submission)."
+      },
+      "onValueChange": {
+        "type": "(value: string[]) => void",
+        "isRequired": false,
+        "description": "The callback to call when the value changes"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the checkbox group is read-only"
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled value of the checkbox group"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "Indicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "checked": {
+        "type": "CheckedState",
+        "isRequired": false,
+        "description": "The checked state of the checkbox"
+      },
+      "defaultChecked": {
+        "type": "CheckedState",
+        "isRequired": false,
+        "description": "The checked state of the checkbox when it is first rendered.\nUse this when you do not need to control the state of the checkbox."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is disabled"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The id of the form that the checkbox belongs to."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  hiddenInput: string\n  control: string\n  label: string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the checkbox. Useful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is invalid"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input field in a checkbox.\nUseful for form submission."
+      },
+      "onCheckedChange": {
+        "type": "(details: CheckedChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback invoked when the checked state changes."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is required"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"on\"",
+        "description": "The value of checkbox input. Useful for form submission."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseCheckboxReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  }
+}

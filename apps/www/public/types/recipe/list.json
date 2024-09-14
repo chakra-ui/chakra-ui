@@ -1,0 +1,23 @@
+{
+  "Root": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "variant": {
+        "type": "\"marker\" | \"plain\"",
+        "defaultValue": "marker",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "align": {
+        "type": "\"center\" | \"start\" | \"end\"",
+        "isRequired": false,
+        "description": "The align of the component"
+      }
+    }
+  }
+}

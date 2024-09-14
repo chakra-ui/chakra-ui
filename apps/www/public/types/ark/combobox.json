@@ -1,0 +1,455 @@
+{
+  "ClearTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Content": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
+  },
+  "ItemGroupLabel": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemIndicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "item": {
+        "type": "any",
+        "isRequired": false,
+        "description": "The item to render"
+      },
+      "persistFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether hovering outside should clear the highlighted state"
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "ItemText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "span"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement",
+    "tag": "label"
+  },
+  "List": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Positioner": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Root": {
+    "props": {
+      "items": {
+        "type": "T[] | readonly T[]",
+        "isRequired": true,
+        "description": "The options of the select"
+      },
+      "allowCustomValue": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to allow typing custom values in the input"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to autofocus the input on mount"
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to close the combobox when an item is selected."
+      },
+      "composite": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the combobox is a composed with other composite widgets like tabs"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial open state of the combobox when it is first rendered.\nUse when you do not need to control its open state."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the combobox when it is first rendered.\nUse when you do not need to control the state of the combobox."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the combobox is disabled"
+      },
+      "disableLayer": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to disable registering this a dismissable layer"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the combobox."
+      },
+      "getSelectionValue": {
+        "type": "(details: SelectionValueDetails<T>) => string",
+        "isRequired": false,
+        "description": "Function to get the display value of the selected item"
+      },
+      "highlightedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The active item's id. Used to set the `aria-activedescendant` attribute"
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  label: string\n  control: string\n  input: string\n  content: string\n  trigger: string\n  clearTrigger: string\n  item(id: string, index?: number | undefined): string\n  positioner: string\n  itemGroup(id: string | number): string\n  itemGroupLabel(id: string | number): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the combobox. Useful for composition."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "inputBehavior": {
+        "type": "'none' | 'autohighlight' | 'autocomplete'",
+        "isRequired": false,
+        "defaultValue": "\"none\"",
+        "description": "Defines the auto-completion behavior of the combobox.\n\n- `autohighlight`: The first focused item is highlighted as the user types\n- `autocomplete`: Navigating the listbox with the arrow keys selects the item and the input is updated"
+      },
+      "inputValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The current value of the combobox's input"
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the combobox is invalid"
+      },
+      "isItemDisabled": {
+        "type": "(item: T) => boolean",
+        "isRequired": false,
+        "description": "Whether the item is disabled"
+      },
+      "itemToString": {
+        "type": "(item: T) => string",
+        "isRequired": false,
+        "description": "The label of the item"
+      },
+      "itemToValue": {
+        "type": "(item: T) => string",
+        "isRequired": false,
+        "description": "The value of the item"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "loopFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to loop the keyboard navigation through the items"
+      },
+      "multiple": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to allow multiple selection.\n\n**Good to know:** When `multiple` is `true`, the `selectionBehavior` is automatically set to `clear`.\nIt is recommended to render the selected items in a separate container."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The `name` attribute of the combobox's input. Useful for form submission"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "onFocusOutside": {
+        "type": "(event: FocusOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the focus is moved outside the component"
+      },
+      "onHighlightChange": {
+        "type": "(details: HighlightChangeDetails<T>) => void",
+        "isRequired": false,
+        "description": "Function called when an item is highlighted using the pointer\nor keyboard navigation."
+      },
+      "onInputValueChange": {
+        "type": "(details: InputValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the input's value changes"
+      },
+      "onInteractOutside": {
+        "type": "(event: InteractOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when an interaction happens outside the component"
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the popup is opened"
+      },
+      "onPointerDownOutside": {
+        "type": "(event: PointerDownOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails<T>) => void",
+        "isRequired": false,
+        "description": "Function called when a new item is selected"
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the combobox is open"
+      },
+      "openOnChange": {
+        "type": "boolean | ((details: InputValueChangeDetails) => boolean)",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to show the combobox when the input value changes"
+      },
+      "openOnClick": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to open the combobox popup on initial click on the input"
+      },
+      "openOnKeyPress": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to open the combobox on arrow key press"
+      },
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The placeholder text of the combobox's input"
+      },
+      "positioning": {
+        "type": "PositioningOptions",
+        "isRequired": false,
+        "description": "The positioning options to dynamically position the menu"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the combobox is readonly. This puts the combobox in a \"non-editable\" mode\nbut the user can still interact with it"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the combobox is required"
+      },
+      "scrollToIndexFn": {
+        "type": "(details: ScrollToIndexDetails) => void",
+        "isRequired": false,
+        "description": "Function to scroll to a specific index"
+      },
+      "selectionBehavior": {
+        "type": "'replace' | 'clear' | 'preserve'",
+        "isRequired": false,
+        "defaultValue": "\"replace\"",
+        "description": "The behavior of the combobox input when an item is selected\n\n- `replace`: The selected item string is set as the input value\n- `clear`: The input value is cleared\n- `preserve`: The input value is preserved"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The keys of the selected items"
+      }
+    },
+    "tag": "div"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseComboboxReturn<T>",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    },
+    "tag": "div"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "focusable": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the trigger is focusable"
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  }
+}

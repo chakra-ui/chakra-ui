@@ -156,6 +156,7 @@ export const ExampleTabs = (props: Props) => {
       variant="subtle"
       defaultValue={"preview"}
       mb="4em"
+      unmountOnExit
     >
       <Tabs.List mb="4">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
