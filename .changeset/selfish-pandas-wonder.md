@@ -1,6 +1,5 @@
 ---
 "@chakra-ui/props-docs": patch
-"@chakra-ui/hooks": patch
 "@chakra-ui/react": patch
 "@chakra-ui/utils": patch
 "@chakra-ui/cli": patch
