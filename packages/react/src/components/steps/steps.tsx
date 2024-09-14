@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Steps as ArkSteps } from "@ark-ui/react/steps"
 import { forwardRef } from "react"
 import {
@@ -9,7 +10,6 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { CheckIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

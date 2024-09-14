@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Editable as ArkEditable,
   useEditableContext,
@@ -13,7 +14,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

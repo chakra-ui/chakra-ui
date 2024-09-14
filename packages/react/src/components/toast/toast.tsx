@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Toast as ArkToast,
   Toaster as ArkToaster,
@@ -16,7 +17,6 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons"
 
 export { createToaster, type CreateToasterProps }

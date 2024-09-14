@@ -1,3 +1,4 @@
+import type { Assign } from "@ark-ui/react"
 import type {
   ComponentProps,
   ComponentPropsWithoutRef,
@@ -5,7 +6,6 @@ import type {
   FunctionComponent,
 } from "react"
 import type {
-  Assign,
   Dict,
   DistributiveOmit,
   DistributiveUnion,

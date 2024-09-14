@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
 import { forwardRef } from "react"
 import {
@@ -9,7 +10,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { type Assign, cx } from "../../utils"
+import { cx } from "../../utils"
 import { createIcon } from "../icon"
 
 ////////////////////////////////////////////////////////////////////////////////////

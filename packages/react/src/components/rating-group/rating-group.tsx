@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   RatingGroup as ArkRatingGroup,
   useRatingGroupItemContext,
@@ -12,7 +13,6 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { StarIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

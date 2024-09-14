@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Popover as ArkPopover } from "@ark-ui/react/popover"
 import {
   type HTMLChakraProps,
@@ -7,7 +8,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

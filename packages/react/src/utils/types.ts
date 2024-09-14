@@ -11,5 +11,3 @@ export type DistributiveUnion<T, U> = {
 } & DistributiveOmit<U, keyof T>
 
 export type Pretty<T> = { [K in keyof T]: T[K] } & {}
-
-export type Assign<T, U> = DistributiveOmit<T, keyof U> & U

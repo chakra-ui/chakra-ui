@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { RadioGroup as ArkRadioGroup } from "@ark-ui/react/radio-group"
 import { forwardRef } from "react"
 import {
@@ -8,7 +9,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { Radiomark } from "../radiomark"
 
 ////////////////////////////////////////////////////////////////////////////////////

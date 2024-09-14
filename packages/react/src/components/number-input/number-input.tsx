@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { NumberInput as ArkNumberInput } from "@ark-ui/react/number-input"
 import {
   type HTMLChakraProps,
@@ -7,7 +8,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { ChevronDownIcon, ChevronUpIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////

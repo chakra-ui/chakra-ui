@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Checkbox as ArkCheckbox,
   useCheckboxContext,
@@ -11,7 +12,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { Checkmark } from "../checkmark"
 
 ////////////////////////////////////////////////////////////////////////////////////

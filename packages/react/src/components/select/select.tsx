@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   Select as ArkSelect,
   type SelectCollectionItem,
@@ -10,7 +11,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { Assign } from "../../utils"
 import { CheckIcon, ChevronDownIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
