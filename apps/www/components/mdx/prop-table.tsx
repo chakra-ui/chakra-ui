@@ -1,3 +1,4 @@
+import { deepMerge } from "@/lib/deep-merge"
 import {
   Box,
   Code,
@@ -8,12 +9,11 @@ import {
   Table,
   Text,
 } from "@chakra-ui/react"
-import { mergeWith } from "@chakra-ui/utils"
 import NextLink from "next/link"
 import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { LuMinus } from "react-icons/lu"
-import { camelCase, kebabCase, titleCase, trainCase } from "scule"
+import { kebabCase } from "scule"
 
 interface PropTableProps {
   component: string
@@ -61,7 +61,7 @@ async function getComponentTypes(component: string) {
   const recipeTypes = getType("recipe", componentName)
   const componentTypes = getType("component", componentName)
   const staticTypes = getType("static", componentName)
-  return mergeWith({}, arkTypes, recipeTypes, componentTypes, staticTypes)
+  return deepMerge({}, arkTypes, recipeTypes, componentTypes, staticTypes)
 }
 
 export const PropTable = async (props: PropTableProps) => {
@@ -119,7 +119,7 @@ export const PropTable = async (props: PropTableProps) => {
               <Table.Cell width="28" px="4" py="2" verticalAlign="top">
                 {property.defaultValue ? (
                   <Code size="sm" color="accent.fg" variant="surface">
-                    {String(property.defaultValue).replaceAll('"', "'")}
+                    {stringify(property.defaultValue).replaceAll('"', "'")}
                   </Code>
                 ) : (
                   <Icon fontSize="xs" color="fg.muted">
