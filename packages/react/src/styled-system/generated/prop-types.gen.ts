@@ -226,7 +226,7 @@ export interface UtilityValues {
   debug: boolean
   caretColor: Tokens["colors"]
   divideStyle: CssProperties["borderStyle"]
-  textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
+  textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
   layerStyle:
     | "fill.subtle"
     | "fill.surface"
