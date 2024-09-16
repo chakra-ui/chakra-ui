@@ -289,8 +289,8 @@ importers:
   apps/www:
     dependencies:
       '@ark-ui/react':
-        specifier: https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821
-        version: https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 4.0.0-0
+        version: 4.0.0-0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -466,8 +466,8 @@ importers:
         specifier: 3.5.0
         version: 3.5.0(@internationalized/date@3.5.5)
       '@ark-ui/react':
-        specifier: https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821
-        version: https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 4.0.0-0
+        version: 4.0.0-0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@emotion/is-prop-valid':
         specifier: 1.2.2
         version: 1.2.2
@@ -1003,9 +1003,8 @@ packages:
   '@ark-ui/anatomy@3.5.0':
     resolution: {integrity: sha512-KoROLVVT23BvFHcye/GYhG8NJ2CH0C+CaoJhXrkEjvk8pbEx80Xk5NIUy5gL7xmX+LDD7kY5t3NotBqCu+2L2w==}
 
-  '@ark-ui/react@https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821':
-    resolution: {tarball: https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821}
-    version: 3.12.0
+  '@ark-ui/react@4.0.0-0':
+    resolution: {integrity: sha512-ohtZHIhf4eHvwqOpEyN2tZvRtURIhag/WIc8CmqVXqy1zUs7f+4uLF+6SmiDGor7KBnb42wTLBA26DZ4WF2vHw==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
@@ -11410,7 +11409,7 @@ snapshots:
     transitivePeerDependencies:
       - '@internationalized/date'
 
-  '@ark-ui/react@https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@ark-ui/react@4.0.0-0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.5.5
       '@zag-js/accordion': 0.68.0

@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@ark-ui/anatomy": "3.5.0",
-    "@ark-ui/react": "https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821",
+    "@ark-ui/react": "4.0.0-0",
     "@emotion/is-prop-valid": "1.2.2",
     "@emotion/serialize": "1.1.4",
     "@emotion/use-insertion-effect-with-fallbacks": "1.0.1",
