@@ -6,11 +6,13 @@ export {
   DrawerHeader,
   DrawerPositioner,
   DrawerRoot,
+  DrawerRootProvider,
   DrawerRootPropsProvider,
   DrawerTrigger,
   DrawerContent,
   DrawerTitle,
   DrawerDescription,
+  DrawerContext,
   useDrawerStyles,
 } from "./drawer"
 
@@ -24,14 +26,15 @@ export type {
   DrawerHeaderProps,
   DrawerPositionerProps,
   DrawerRootProps,
+  DrawerRootProviderProps,
   DrawerTriggerProps,
   DrawerTitleProps,
+  DrawerOpenChangeDetails,
 } from "./drawer"
 
 export {
   useDialogContext as useDrawerContext,
-  DialogContext as DrawerContext,
-  useDialog,
+  useDialog as useDrawer,
 } from "@ark-ui/react/dialog"
 
 export * as Drawer from "./namespace"

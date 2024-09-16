@@ -1,6 +1,7 @@
-export {
-  FormatNumber,
-  FormatByte,
-  type FormatNumberProps,
-  type FormatByteProps,
-} from "@ark-ui/react/format"
+import { Format } from "@ark-ui/react/format"
+
+export const FormatNumber = Format.Number
+export const FormatByte = Format.Byte
+
+export type FormatNumberProps = Format.NumberProps
+export type FormatByteProps = Format.ByteProps

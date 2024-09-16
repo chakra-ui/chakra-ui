@@ -22,6 +22,23 @@ export { useDrawerStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface DrawerRootProviderBaseProps
+  extends Assign<ArkDialog.RootProviderBaseProps, SlotRecipeProps<"drawer">>,
+    UnstyledProp {}
+
+export interface DrawerRootProviderProps extends DrawerRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const DrawerRootProvider = withRootProvider<DrawerRootProviderProps>(
+  ArkDialog.RootProvider,
+  {
+    defaultProps: { unmountOnExit: true, lazyMount: true },
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface DrawerRootBaseProps
   extends Assign<ArkDialog.RootBaseProps, SlotRecipeProps<"drawer">>,
     UnstyledProp {}
@@ -33,6 +50,8 @@ export interface DrawerRootProps extends DrawerRootBaseProps {
 export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export const DrawerRootPropsProvider =
   PropsProvider as React.Provider<DrawerRootBaseProps>
@@ -137,3 +156,9 @@ export const DrawerHeader = withContext<HTMLDivElement, DrawerHeaderProps>(
   "div",
   "header",
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const DrawerContext = ArkDialog.Context
+
+export type DrawerOpenChangeDetails = ArkDialog.OpenChangeDetails

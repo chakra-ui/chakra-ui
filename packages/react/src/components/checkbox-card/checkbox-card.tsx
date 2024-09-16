@@ -27,6 +27,23 @@ export { useCheckboxCardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CheckboxCardRootProviderBaseProps
+  extends Assign<
+      ArkCheckbox.RootProviderBaseProps,
+      SlotRecipeProps<"checkboxCard">
+    >,
+    UnstyledProp {}
+
+export interface CheckboxCardRootProviderProps
+  extends HTMLChakraProps<"label", CheckboxCardRootProviderBaseProps> {}
+
+export const CheckboxCardRootProvider = withProvider<
+  HTMLLabelElement,
+  CheckboxCardRootProviderProps
+>(ArkCheckbox.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CheckboxCardRootBaseProps
   extends Assign<ArkCheckbox.RootBaseProps, SlotRecipeProps<"checkboxCard">>,
     UnstyledProp {}
@@ -38,6 +55,8 @@ export const CheckboxCardRoot = withProvider<
   HTMLLabelElement,
   CheckboxCardRootProps
 >(ArkCheckbox.Root, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export const CheckboxCardRootPropsProvider =
   PropsProvider as React.Provider<CheckboxCardRootBaseProps>
@@ -93,3 +112,10 @@ export const CheckboxCardAddon = withContext<
   HTMLElement,
   CheckboxCardAddonProps
 >("div", "addon")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const CheckboxCardContext = ArkCheckbox.Context
+export const CheckboxCardHiddenInput = ArkCheckbox.HiddenInput
+
+export type CheckboxCardCheckedChangeDetails = ArkCheckbox.CheckedChangeDetails

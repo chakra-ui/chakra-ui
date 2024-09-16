@@ -10,8 +10,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
-import { cx } from "../../utils"
+import { cx, dataAttr } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
 export const [NativeSelectDisabledProvider, useNativeSelectDisabledContext] =
@@ -57,7 +56,9 @@ export const NativeSelectRoot = withProvider<
   },
 })
 
-export const NativeSelectRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const NativeSelectPropsProvider =
   PropsProvider as React.Provider<NativeSelectRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

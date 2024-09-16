@@ -22,6 +22,20 @@ export { useMenuStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface MenuRootProviderBaseProps
+  extends Assign<ArkMenu.RootProviderBaseProps, SlotRecipeProps<"menu">>,
+    UnstyledProp {}
+
+export interface MenuRootProviderProps extends MenuRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const MenuRootProvider = withRootProvider<MenuRootProviderProps>(
+  ArkMenu.RootProvider,
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface MenuRootBaseProps
   extends Assign<ArkMenu.RootBaseProps, SlotRecipeProps<"menu">>,
     UnstyledProp {}
@@ -32,7 +46,9 @@ export interface MenuRootProps extends MenuRootBaseProps {
 
 export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root)
 
-export const MenuRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const MenuPropsProvider =
   PropsProvider as React.Provider<MenuRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -224,3 +240,10 @@ export const MenuRadioItem = withContext<HTMLDivElement, MenuRadioItemProps>(
   "item",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const MenuContext = ArkMenu.Context
+export const MenuItemContext = ArkMenu.ItemContext
+
+export type MenuOpenChangeDetails = ArkMenu.OpenChangeDetails

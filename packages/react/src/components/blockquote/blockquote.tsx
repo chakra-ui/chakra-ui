@@ -33,7 +33,9 @@ export const BlockquoteRoot = withProvider<HTMLElement, BlockquoteRootProps>(
   "root",
 )
 
-export const BlockquoteRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const BlockquotePropsProvider =
   PropsProvider as React.Provider<BlockquoteRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

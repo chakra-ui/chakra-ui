@@ -24,6 +24,23 @@ export { useRadioGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface RadioGroupRootProviderBaseProps
+  extends Assign<
+      ArkRadioGroup.RootProviderBaseProps,
+      SlotRecipeProps<"radioGroup">
+    >,
+    UnstyledProp {}
+
+export interface RadioGroupRootProviderProps
+  extends HTMLChakraProps<"div", RadioGroupRootProviderBaseProps> {}
+
+export const RadioGroupRootProvider = withProvider<
+  HTMLDivElement,
+  RadioGroupRootProviderProps
+>(ArkRadioGroup.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface RadioGroupRootBaseProps
   extends Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioGroup">>,
     UnstyledProp {}
@@ -37,7 +54,9 @@ export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(
   { forwardAsChild: true },
 )
 
-export const RadioGroupRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioGroupPropsProvider =
   PropsProvider as React.Provider<RadioGroupRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -107,3 +126,11 @@ export const RadioGroupItemIndicator = forwardRef<
     </ArkRadioGroup.ItemContext>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioGroupContext = ArkRadioGroup.Context
+export const RadioGroupItemContext = ArkRadioGroup.ItemContext
+export const RadioGroupItemHiddenInput = ArkRadioGroup.ItemHiddenInput
+
+export type RadioGroupValueChangeDetails = ArkRadioGroup.ValueChangeDetails

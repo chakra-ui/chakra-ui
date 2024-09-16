@@ -22,6 +22,20 @@ export { useSliderStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SliderRootProviderBaseProps
+  extends Assign<ArkSlider.RootProviderBaseProps, SlotRecipeProps<"slider">>,
+    UnstyledProp {}
+
+export interface SliderRootProviderProps
+  extends HTMLChakraProps<"div", SliderRootProviderBaseProps> {}
+
+export const SliderRootProvider = withProvider<
+  HTMLDivElement,
+  SliderRootProviderProps
+>(ArkSlider.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SliderRootBaseProps
   extends Assign<ArkSlider.RootBaseProps, SlotRecipeProps<"slider">>,
     UnstyledProp {}
@@ -35,7 +49,9 @@ export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
   { forwardAsChild: true },
 )
 
-export const SliderRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SliderPropsProvider =
   PropsProvider as React.Provider<SliderRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -132,3 +148,11 @@ export const SliderMarkerIndicator = withContext<
   HTMLDivElement,
   SliderMarkerIndicatorProps
 >("div", "markerIndicator")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SliderValueChangeDetails
+  extends ArkSlider.ValueChangeDetails {}
+
+export const SliderContext = ArkSlider.Context
+export const SliderHiddenInput = ArkSlider.HiddenInput

@@ -1,26 +1,29 @@
 export {
   SegmentGroupRoot,
-  SegmentGroupRootPropsProvider,
+  SegmentGroupRootProvider,
+  SegmentGroupPropsProvider,
   SegmentGroupItem,
   SegmentGroupItemText,
   SegmentGroupIndicator,
+  SegmentGroupItemHiddenInput,
+  SegmentGroupItemContext,
+  SegmentGroupContext,
+  useSegmentGroupStyles,
 } from "./segment-group"
 
 export type {
   SegmentGroupRootProps,
+  SegmentGroupRootProviderProps,
   SegmentGroupItemProps,
   SegmentGroupItemTextProps,
   SegmentGroupIndicatorProps,
+  SegmentGroupValueChangeDetails,
 } from "./segment-group"
 
 export {
-  SegmentGroupItemHiddenInput,
-  SegmentGroupItemContext,
+  useSegmentGroup,
   useSegmentGroupContext,
-} from "@ark-ui/react/segment-group"
-export type {
-  SegmentGroupItemHiddenInputProps,
-  SegmentGroupValueChangeDetails,
+  useSegmentGroupItemContext,
 } from "@ark-ui/react/segment-group"
 
 export * as SegmentGroup from "./namespace"

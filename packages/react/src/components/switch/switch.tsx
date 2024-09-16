@@ -25,6 +25,20 @@ export { useSwitchStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SwitchRootProviderBaseProps
+  extends Assign<ArkSwitch.RootProviderBaseProps, SlotRecipeProps<"switch">>,
+    UnstyledProp {}
+
+export interface SwitchRootProviderProps
+  extends HTMLChakraProps<"label", SwitchRootProviderBaseProps> {}
+
+export const SwitchRootProvider = withProvider<
+  HTMLLabelElement,
+  SwitchRootProviderProps
+>(ArkSwitch.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SwitchRootBaseProps
   extends Assign<ArkSwitch.RootBaseProps, SlotRecipeProps<"switch">>,
     UnstyledProp {}
@@ -38,7 +52,9 @@ export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   { forwardAsChild: true },
 )
 
-export const SwitchRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SwitchPropsProvider =
   PropsProvider as React.Provider<SwitchRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -117,3 +133,11 @@ export const SwitchThumbIndicator = forwardRef<
     </chakra.span>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SwitchCheckedChangeDetails
+  extends ArkSwitch.CheckedChangeDetails {}
+
+export const SwitchContext = ArkSwitch.Context
+export const SwitchHiddenInput = ArkSwitch.HiddenInput

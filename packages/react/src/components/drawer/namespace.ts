@@ -6,11 +6,13 @@ export {
   DrawerHeader as Header,
   DrawerPositioner as Positioner,
   DrawerRoot as Root,
+  DrawerRootProvider as RootProvider,
   DrawerRootPropsProvider as RootPropsProvider,
   DrawerTrigger as Trigger,
   DrawerContent as Content,
   DrawerTitle as Title,
   DrawerDescription as Description,
+  DrawerContext as Context,
 } from "./drawer"
 
 export type {
@@ -23,8 +25,8 @@ export type {
   DrawerHeaderProps as HeaderProps,
   DrawerPositionerProps as PositionerProps,
   DrawerRootProps as RootProps,
+  DrawerRootProviderProps as RootProviderProps,
   DrawerTriggerProps as TriggerProps,
   DrawerTitleProps as TitleProps,
+  DrawerOpenChangeDetails as OpenChangeDetails,
 } from "./drawer"
-
-export { DialogContext as Context } from "@ark-ui/react/dialog"

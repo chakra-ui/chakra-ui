@@ -1,6 +1,7 @@
 export {
   PopoverRoot as Root,
-  PopoverRootPropsProvider as RootPropsProvider,
+  PopoverRootProvider as RootProvider,
+  PopoverPropsProvider as PropsProvider,
   PopoverAnchor as Anchor,
   PopoverTrigger as Trigger,
   PopoverArrowTip as ArrowTip,
@@ -13,10 +14,13 @@ export {
   PopoverFooter as Footer,
   PopoverPositioner as Positioner,
   PopoverCloseTrigger as CloseTrigger,
+  PopoverContext as Context,
+  usePopoverStyles,
 } from "./popover"
 
 export type {
   PopoverRootProps as RootProps,
+  PopoverRootProviderProps as RootProviderProps,
   PopoverAnchorProps as AnchorProps,
   PopoverTriggerProps as TriggerProps,
   PopoverArrowTipProps as ArrowTipProps,
@@ -29,8 +33,5 @@ export type {
   PopoverDescriptionProps as DescriptionProps,
   PopoverFooterProps as FooterProps,
   PopoverCloseTriggerProps as CloseTriggerProps,
+  PopoverOpenChangeDetails as OpenChangeDetails,
 } from "./popover"
-
-export { PopoverContext as Context } from "@ark-ui/react/popover"
-
-export type { PopoverOpenChangeDetails as OpenChangeDetails } from "@ark-ui/react/popover"

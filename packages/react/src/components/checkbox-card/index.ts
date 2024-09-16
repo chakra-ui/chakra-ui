@@ -4,6 +4,9 @@ export {
   CheckboxCardIndicator,
   CheckboxCardLabel,
   CheckboxCardRoot,
+  CheckboxCardRootProvider,
+  CheckboxCardContext,
+  CheckboxCardHiddenInput,
   CheckboxCardRootPropsProvider,
   useCheckboxCardStyles,
 } from "./checkbox-card"
@@ -14,18 +17,13 @@ export type {
   CheckboxCardIndicatorProps,
   CheckboxCardLabelProps,
   CheckboxCardRootProps,
+  CheckboxCardRootProviderProps,
+  CheckboxCardCheckedChangeDetails,
 } from "./checkbox-card"
 
 export {
-  CheckboxContext as CheckboxCardContext,
-  CheckboxHiddenInput as CheckboxCardHiddenInput,
   useCheckbox as useCheckboxCard,
   useCheckboxContext as useCheckboxCardContext,
-} from "@ark-ui/react/checkbox"
-
-export type {
-  CheckboxCheckedChangeDetails as CheckboxCardCheckedChangeDetails,
-  CheckboxHiddenInputProps as CheckboxCardHiddenInputProps,
 } from "@ark-ui/react/checkbox"
 
 export * as CheckboxCard from "./namespace"

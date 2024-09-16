@@ -1,26 +1,30 @@
 export {
+  RatingGroupContext,
   RatingGroupControl,
+  RatingGroupHiddenInput,
   RatingGroupItem,
+  RatingGroupItemContext,
   RatingGroupItemIndicator,
   RatingGroupLabel,
+  RatingGroupPropsProvider,
   RatingGroupRoot,
-  RatingGroupRootPropsProvider,
+  RatingGroupRootProvider,
   useRatingGroupStyles,
 } from "./rating-group"
 
 export type {
   RatingGroupControlProps,
-  RatingGroupItemProps,
   RatingGroupItemIndicatorProps,
+  RatingGroupItemProps,
   RatingGroupLabelProps,
   RatingGroupRootProps,
+  RatingGroupRootProviderProps,
+  RatingGroupValueChangeDetails,
 } from "./rating-group"
 
 export {
-  RatingGroupHiddenInput,
   useRatingGroupContext,
   useRatingGroupItemContext,
-  RatingGroupContext,
 } from "@ark-ui/react/rating-group"
 
 export * as RatingGroup from "./namespace"

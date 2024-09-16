@@ -4,8 +4,10 @@ export {
   TooltipContent as Content,
   TooltipPositioner as Positioner,
   TooltipRoot as Root,
-  TooltipRootPropsProvider as RootPropsProvider,
+  TooltipRootProvider as RootProvider,
+  TooltipPropsProvider as PropsProvider,
   TooltipTrigger as Trigger,
+  TooltipContext as Context,
 } from "./tooltip"
 
 export type {
@@ -14,7 +16,7 @@ export type {
   TooltipContentProps as ContentProps,
   TooltipPositionerProps as PositionerProps,
   TooltipRootProps as RootProps,
+  TooltipRootProviderProps as RootProviderProps,
   TooltipTriggerProps as TriggerProps,
+  TooltipOpenChangeDetails as OpenChangeDetails,
 } from "./tooltip"
-
-export type { TooltipOpenChangeDetails as OpenChangeDetails } from "@ark-ui/react/tooltip"

@@ -4,6 +4,7 @@ export {
   FieldsetHelperText,
   FieldsetLegend,
   FieldsetControl,
+  FieldsetContext,
 } from "./fieldset"
 
 export type {
@@ -14,6 +15,6 @@ export type {
   FieldsetControlProps,
 } from "./fieldset"
 
-export { FieldsetContext, useFieldsetContext } from "@ark-ui/react/fieldset"
+export { useFieldsetContext } from "@ark-ui/react/fieldset"
 
 export * as Fieldset from "./namespace"

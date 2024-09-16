@@ -22,6 +22,23 @@ export { useSegmentGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SegmentGroupRootProviderBaseProps
+  extends Assign<
+      ArkSegmentGroup.RootProviderBaseProps,
+      SlotRecipeProps<"segmentGroup">
+    >,
+    UnstyledProp {}
+
+export interface SegmentGroupRootProviderProps
+  extends HTMLChakraProps<"div", SegmentGroupRootProviderBaseProps> {}
+
+export const SegmentGroupRootProvider = withProvider<
+  HTMLDivElement,
+  SegmentGroupRootProviderProps
+>(ArkSegmentGroup.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SegmentGroupRootBaseProps
   extends Assign<
       ArkSegmentGroup.RootBaseProps,
@@ -37,7 +54,9 @@ export const SegmentGroupRoot = withProvider<
   SegmentGroupRootProps
 >(ArkSegmentGroup.Root, "root", { forwardAsChild: true })
 
-export const SegmentGroupRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SegmentGroupPropsProvider =
   PropsProvider as React.Provider<SegmentGroupRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -69,3 +88,12 @@ export const SegmentGroupIndicator = withContext<
   HTMLSpanElement,
   SegmentGroupIndicatorProps
 >(ArkSegmentGroup.Indicator, "indicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SegmentGroupItemHiddenInput = ArkSegmentGroup.ItemHiddenInput
+
+export const SegmentGroupContext = ArkSegmentGroup.Context
+export const SegmentGroupItemContext = ArkSegmentGroup.ItemContext
+
+export type SegmentGroupValueChangeDetails = ArkSegmentGroup.ValueChangeDetails

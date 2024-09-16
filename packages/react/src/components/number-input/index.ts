@@ -5,8 +5,11 @@ export {
   NumberInputInput,
   NumberInputLabel,
   NumberInputRoot,
-  NumberInputRootPropsProvider,
+  NumberInputRootProvider,
+  NumberInputPropsProvider,
   NumberInputScrubber,
+  NumberInputContext,
+  useNumberInputStyles,
 } from "./number-input"
 
 export type {
@@ -16,13 +19,11 @@ export type {
   NumberInputInputProps,
   NumberInputLabelProps,
   NumberInputRootProps,
+  NumberInputRootProviderProps,
   NumberInputScrubberProps,
 } from "./number-input"
 
-export { useNumberInputStyles } from "./number-input"
-
 export {
-  NumberInputContext,
   useNumberInput,
   useNumberInputContext,
 } from "@ark-ui/react/number-input"

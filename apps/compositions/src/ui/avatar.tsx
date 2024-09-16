@@ -1,11 +1,7 @@
 "use client"
 
 import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react"
-import {
-  AvatarRootPropsProvider,
-  Avatar as ChakraAvatar,
-  Group,
-} from "@chakra-ui/react"
+import { Avatar as ChakraAvatar, Group } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>
@@ -70,9 +66,9 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
     const { size, variant, borderless, ...rest } = props
     return (
-      <AvatarRootPropsProvider value={{ size, variant, borderless }}>
+      <ChakraAvatar.PropsProvider value={{ size, variant, borderless }}>
         <Group gap="0" spaceX="-3" ref={ref} {...rest} />
-      </AvatarRootPropsProvider>
+      </ChakraAvatar.PropsProvider>
     )
   },
 )

@@ -22,6 +22,23 @@ export { useAccordionStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface AccordionRootProviderBaseProps
+  extends Assign<
+      ArkAccordion.RootProviderBaseProps,
+      SlotRecipeProps<"accordion">
+    >,
+    UnstyledProp {}
+
+export interface AccordionRootProviderProps
+  extends HTMLChakraProps<"div", AccordionRootProviderBaseProps> {}
+
+export const AccordionRootProvider = withProvider<
+  HTMLDivElement,
+  AccordionRootProviderProps
+>(ArkAccordion.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface AccordionRootBaseProps
   extends Assign<ArkAccordion.RootBaseProps, SlotRecipeProps<"accordion">>,
     UnstyledProp {}
@@ -35,7 +52,9 @@ export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
   { forwardAsChild: true },
 )
 
-export const AccordionRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const AccordionPropsProvider =
   PropsProvider as React.Provider<ArkAccordion.RootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +106,11 @@ export const AccordionItemIndicator = withContext<
   HTMLDivElement,
   AccordionItemIndicatorProps
 >(ArkAccordion.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const AccordionContext = ArkAccordion.Context
+export const AccordionItemContext = ArkAccordion.ItemContext
+
+export type AccordionFocusChangeDetails = ArkAccordion.FocusChangeDetails
+export type AccordionValueChangeDetails = ArkAccordion.ValueChangeDetails

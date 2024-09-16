@@ -1,6 +1,7 @@
 export {
   ProgressCircleRoot as Root,
-  ProgressCircleRootPropsProvider as RootPropsProvider,
+  ProgressCircleRootProvider as RootProvider,
+  ProgressCirclePropsProvider as PropsProvider,
   ProgressCircleLabel as Label,
   ProgressCircleCircle as Circle,
   ProgressCircleTrack as Track,
@@ -10,6 +11,7 @@ export {
 
 export type {
   ProgressCircleRootProps as RootProps,
+  ProgressCircleRootProviderProps as RootProviderProps,
   ProgressCircleLabelProps as LabelProps,
   ProgressCircleCircleProps as CircleProps,
   ProgressCircleTrackProps as TrackProps,

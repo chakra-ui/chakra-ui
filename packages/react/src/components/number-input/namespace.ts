@@ -5,8 +5,10 @@ export {
   NumberInputInput as Input,
   NumberInputLabel as Label,
   NumberInputRoot as Root,
-  NumberInputRootPropsProvider as RootPropsProvider,
+  NumberInputRootProvider as RootProvider,
+  NumberInputPropsProvider as PropsProvider,
   NumberInputScrubber as Scrubber,
+  NumberInputContext as Context,
 } from "./number-input"
 
 export type {
@@ -16,7 +18,6 @@ export type {
   NumberInputInputProps as InputProps,
   NumberInputLabelProps as LabelProps,
   NumberInputRootProps as RootProps,
+  NumberInputRootProviderProps as RootProviderProps,
   NumberInputScrubberProps as ScrubberProps,
 } from "./number-input"
-
-export { NumberInputContext as Context } from "@ark-ui/react/number-input"

@@ -2,23 +2,26 @@ export {
   HoverCardArrow,
   HoverCardArrowTip,
   HoverCardContent,
+  HoverCardContext,
   HoverCardPositioner,
+  HoverCardPropsProvider,
   HoverCardRoot,
-  HoverCardRootPropsProvider,
+  HoverCardRootProvider,
   HoverCardTrigger,
+  useHoverCardStyles,
 } from "./hover-card"
 
 export type {
   HoverCardArrowProps,
   HoverCardArrowTipProps,
   HoverCardContentProps,
+  HoverCardOpenChangeDetails,
   HoverCardPositionerProps,
   HoverCardRootProps,
+  HoverCardRootProviderProps,
   HoverCardTriggerProps,
 } from "./hover-card"
 
 export * as HoverCard from "./namespace"
 
-export { useHoverCardStyles } from "./hover-card"
-
-export type { HoverCardOpenChangeDetails } from "@ark-ui/react/hover-card"
+export { useHoverCard, useHoverCardContext } from "@ark-ui/react/hover-card"

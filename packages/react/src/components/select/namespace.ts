@@ -9,11 +9,13 @@ export {
   SelectLabel as Label,
   SelectPositioner as Positioner,
   SelectRoot as Root,
-  SelectRootPropsProvider as RootPropsProvider,
+  SelectPropsProvider as PropsProvider,
   SelectTrigger as Trigger,
   SelectValueText as ValueText,
+  SelectItemContext as ItemContext,
   SelectIndicator as Indicator,
   SelectItemIndicator as ItemIndicator,
+  SelectContext as Context,
 } from "./select"
 
 export type {
@@ -30,14 +32,9 @@ export type {
   SelectLabelProps as LabelProps,
   SelectPositionerProps as PositionerProps,
   SelectRootProps as RootProps,
+  SelectRootProviderProps as RootProviderProps,
   SelectTriggerProps as TriggerProps,
-} from "./select"
-
-export { SelectContext as Context } from "@ark-ui/react/select"
-
-export type {
   SelectHighlightChangeDetails as HighlightChangeDetails,
   SelectOpenChangeDetails as OpenChangeDetails,
   SelectValueChangeDetails as ValueChangeDetails,
-  SelectCollectionItem as CollectionItem,
-} from "@ark-ui/react/select"
+} from "./select"

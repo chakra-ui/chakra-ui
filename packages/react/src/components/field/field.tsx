@@ -40,7 +40,9 @@ export const FieldRoot = withProvider<HTMLDivElement, FieldRootProps>(
   { forwardAsChild: true },
 )
 
-export const FieldRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const FieldPropsProvider =
   PropsProvider as React.Provider<FieldRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

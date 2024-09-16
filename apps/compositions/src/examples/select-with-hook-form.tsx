@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Stack, createListCollection } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Field } from "compositions/ui/field"
 import {
@@ -48,13 +48,13 @@ export const SelectWithHookForm = () => {
                 value={field.value}
                 onValueChange={({ value }) => field.onChange(value)}
                 onInteractOutside={() => field.onBlur()}
-                items={frameworks}
+                collection={frameworks}
               >
                 <SelectTrigger>
                   <SelectValueText placeholder="Select movie" />
                 </SelectTrigger>
                 <SelectContent>
-                  {frameworks.map((movie) => (
+                  {frameworks.items.map((movie) => (
                     <SelectItem item={movie} key={movie.value}>
                       {movie.label}
                     </SelectItem>
@@ -73,9 +73,11 @@ export const SelectWithHookForm = () => {
   )
 }
 
-const frameworks = [
-  { label: "React.js", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "React.js", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+  ],
+})

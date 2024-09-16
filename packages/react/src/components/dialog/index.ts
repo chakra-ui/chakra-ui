@@ -5,11 +5,12 @@ export {
   DialogContent,
   DialogFooter,
   DialogRoot,
-  DialogRootPropsProvider,
+  DialogPropsProvider,
   DialogTitle,
   DialogTrigger,
   DialogHeader,
   DialogPositioner,
+  DialogContext,
   DialogDescription,
   useDialogStyles,
 } from "./dialog"
@@ -26,12 +27,9 @@ export type {
   DialogHeaderProps,
   DialogPositionerProps,
   DialogDescriptionProps,
+  DialogOpenChangeDetails,
 } from "./dialog"
 
-export {
-  useDialog,
-  useDialogContext,
-  DialogContext,
-} from "@ark-ui/react/dialog"
+export { useDialog, useDialogContext } from "@ark-ui/react/dialog"
 
 export * as Dialog from "./namespace"

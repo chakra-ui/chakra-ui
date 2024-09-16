@@ -5,12 +5,14 @@ export {
   DialogContent as Content,
   DialogFooter as Footer,
   DialogRoot as Root,
-  DialogRootPropsProvider as RootPropsProvider,
+  DialogRootProvider as RootProvider,
+  DialogPropsProvider as PropsProvider,
   DialogTitle as Title,
   DialogTrigger as Trigger,
   DialogHeader as Header,
   DialogPositioner as Positioner,
   DialogDescription as Description,
+  DialogContext as Context,
 } from "./dialog"
 
 export type {
@@ -20,11 +22,11 @@ export type {
   DialogContentProps as ContentProps,
   DialogFooterProps as FooterProps,
   DialogRootProps as RootProps,
+  DialogRootProviderProps as RootProviderProps,
   DialogTitleProps as TitleProps,
   DialogTriggerProps as TriggerProps,
   DialogHeaderProps as HeaderProps,
   DialogPositionerProps as PositionerProps,
   DialogDescriptionProps as DescriptionProps,
+  DialogOpenChangeDetails as OpenChangeDetails,
 } from "./dialog"
-
-export { DialogContext as Context } from "@ark-ui/react/dialog"

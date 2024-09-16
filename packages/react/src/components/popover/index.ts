@@ -5,12 +5,14 @@ export {
   PopoverBody,
   PopoverCloseTrigger,
   PopoverContent,
+  PopoverContext,
   PopoverDescription,
   PopoverFooter,
   PopoverHeader,
   PopoverPositioner,
+  PopoverPropsProvider,
   PopoverRoot,
-  PopoverRootPropsProvider,
+  PopoverRootProvider,
   PopoverTitle,
   PopoverTrigger,
   usePopoverStyles,
@@ -26,18 +28,14 @@ export type {
   PopoverDescriptionProps,
   PopoverFooterProps,
   PopoverHeaderProps,
+  PopoverOpenChangeDetails,
   PopoverPositionerProps,
   PopoverRootProps,
+  PopoverRootProviderProps,
   PopoverTitleProps,
   PopoverTriggerProps,
 } from "./popover"
 
-export {
-  PopoverContext,
-  usePopover,
-  usePopoverContext,
-} from "@ark-ui/react/popover"
-
-export type { PopoverOpenChangeDetails } from "@ark-ui/react/popover"
+export { usePopover, usePopoverContext } from "@ark-ui/react/popover"
 
 export * as Popover from "./namespace"

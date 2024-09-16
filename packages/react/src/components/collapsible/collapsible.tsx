@@ -22,6 +22,23 @@ export { useCollapsibleStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CollapsibleRootProviderBaseProps
+  extends Assign<
+      ArkCollapsible.RootProviderBaseProps,
+      SlotRecipeProps<"collapsible">
+    >,
+    UnstyledProp {}
+
+export interface CollapsibleRootProviderProps
+  extends HTMLChakraProps<"div", CollapsibleRootProviderBaseProps> {}
+
+export const CollapsibleRootProvider = withProvider<
+  HTMLDivElement,
+  CollapsibleRootProviderProps
+>(ArkCollapsible.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CollapsibleRootBaseProps
   extends Assign<ArkCollapsible.RootBaseProps, SlotRecipeProps<"collapsible">>,
     UnstyledProp {}
@@ -34,7 +51,9 @@ export const CollapsibleRoot = withProvider<
   CollapsibleRootProps
 >(ArkCollapsible.Root, "root", { forwardAsChild: true })
 
-export const CollapsibleRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const CollapsiblePropsProvider =
   PropsProvider as React.Provider<CollapsibleRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -56,3 +75,9 @@ export const CollapsibleContent = withContext<
   HTMLDivElement,
   CollapsibleContentProps
 >(ArkCollapsible.Content, "content", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const CollapsibleContext = ArkCollapsible.Context
+
+export type CollapsibleOpenChangeDetails = ArkCollapsible.OpenChangeDetails

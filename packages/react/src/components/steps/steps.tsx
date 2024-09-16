@@ -25,6 +25,20 @@ export { useStepsStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface StepsRootProviderBaseProps
+  extends Assign<ArkSteps.RootProviderBaseProps, SlotRecipeProps<"steps">>,
+    UnstyledProp {}
+
+export interface StepsRootProviderProps
+  extends HTMLChakraProps<"div", StepsRootProviderBaseProps> {}
+
+export const StepsRootProvider = withProvider<
+  HTMLDivElement,
+  StepsRootProviderProps
+>(ArkSteps.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface StepsRootBaseProps
   extends Assign<ArkSteps.RootBaseProps, SlotRecipeProps<"steps">>,
     UnstyledProp {}
@@ -38,7 +52,9 @@ export const StepsRoot = withProvider<HTMLDivElement, StepsRootProps>(
   { forwardAsChild: true },
 )
 
-export const StepsRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const StepsPropsProvider =
   PropsProvider as React.Provider<StepsRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -196,3 +212,10 @@ export const StepsPrevTrigger = withContext<
   HTMLButtonElement,
   StepsPrevTriggerProps
 >(ArkSteps.PrevTrigger, "prevTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const StepsContext = ArkSteps.Context
+export const StepsItemContext = ArkSteps.ItemContext
+
+export interface StepsChangeDetails extends ArkSteps.ChangeDetails {}

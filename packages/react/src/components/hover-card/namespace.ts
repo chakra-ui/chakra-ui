@@ -4,8 +4,10 @@ export {
   HoverCardContent as Content,
   HoverCardPositioner as Positioner,
   HoverCardRoot as Root,
-  HoverCardRootPropsProvider as RootPropsProvider,
+  HoverCardRootProvider as RootProvider,
+  HoverCardPropsProvider as PropsProvider,
   HoverCardTrigger as Trigger,
+  HoverCardContext as Context,
 } from "./hover-card"
 
 export type {
@@ -14,7 +16,7 @@ export type {
   HoverCardContentProps as ContentProps,
   HoverCardPositionerProps as PositionerProps,
   HoverCardRootProps as RootProps,
+  HoverCardRootProviderProps as RootProviderProps,
   HoverCardTriggerProps as TriggerProps,
+  HoverCardOpenChangeDetails as OpenChangeDetails,
 } from "./hover-card"
-
-export type { HoverCardOpenChangeDetails as OpenChangeDetails } from "@ark-ui/react/hover-card"

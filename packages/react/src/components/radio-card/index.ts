@@ -4,9 +4,13 @@ export {
   RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
-  RadioCardRootPropsProvider,
+  RadioCardRootProvider,
+  RadioCardPropsProvider,
   RadioCardItemAddon,
   RadioCardItemIndicator,
+  RadioCardItemHiddenInput,
+  RadioCardContext,
+  useRadioCardStyles,
 } from "./radio-card"
 
 export type {
@@ -15,16 +19,15 @@ export type {
   RadioCardItemTextProps,
   RadioCardLabelProps,
   RadioCardRootProps,
+  RadioCardRootProviderProps,
   RadioCardItemAddonProps,
   RadioCardItemIndicatorProps,
+  RadioCardValueChangeDetails,
 } from "./radio-card"
 
 export {
-  RadioGroupItemHiddenInput as RadioCardItemHiddenInput,
-  RadioGroupContext as RadioCardContext,
   useRadioGroupContext as useRadioCardContext,
+  useRadioGroupItemContext as useRadioCardItemContext,
 } from "@ark-ui/react/radio-group"
-
-export type { RadioGroupValueChangeDetails as RadioCardValueChangeDetails } from "@ark-ui/react/radio-group"
 
 export * as RadioCard from "./namespace"

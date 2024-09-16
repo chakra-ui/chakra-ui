@@ -22,6 +22,23 @@ export { useHoverCardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface HoverCardRootProviderBaseProps
+  extends Assign<
+      ArkHoverCard.RootProviderBaseProps,
+      SlotRecipeProps<"hoverCard">
+    >,
+    UnstyledProp {}
+
+export interface HoverCardRootProviderProps
+  extends HoverCardRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const HoverCardRootProvider =
+  withRootProvider<HoverCardRootProviderProps>(ArkHoverCard.Root)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface HoverCardRootBaseProps
   extends Assign<ArkHoverCard.RootBaseProps, SlotRecipeProps<"hoverCard">>,
     UnstyledProp {}
@@ -34,7 +51,9 @@ export const HoverCardRoot = withRootProvider<HoverCardRootProps>(
   ArkHoverCard.Root,
 )
 
-export const HoverCardRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const HoverCardPropsProvider =
   PropsProvider as React.Provider<HoverCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +106,9 @@ export const HoverCardArrowTip = withContext<
   HTMLDivElement,
   HoverCardArrowTipProps
 >(ArkHoverCard.ArrowTip, "arrowTip", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const HoverCardContext = ArkHoverCard.Context
+
+export type HoverCardOpenChangeDetails = ArkHoverCard.OpenChangeDetails

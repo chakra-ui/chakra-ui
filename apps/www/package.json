@@ -16,7 +16,7 @@
     "prebuild": "pnpm generate:composition"
   },
   "dependencies": {
-    "@ark-ui/react": "3.10.0",
+    "@ark-ui/react": "https://pkg.pr.new/chakra-ui/ark/@ark-ui/react@2821",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "11.11.4",
     "@shikijs/rehype": "1.13.0",
@@ -41,12 +41,12 @@
     "velite": "0.1.1"
   },
   "devDependencies": {
+    "@svgr/core": "8.1.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "color2k": "2.0.3",
-    "@svgr/core": "8.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "typescript": "^5"

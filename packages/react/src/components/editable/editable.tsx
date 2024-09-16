@@ -28,6 +28,23 @@ export { useEditableStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface EditableRootProviderBaseProps
+  extends Assign<
+      ArkEditable.RootProviderBaseProps,
+      SlotRecipeProps<"editable">
+    >,
+    UnstyledProp {}
+
+export interface EditableRootProviderProps
+  extends HTMLChakraProps<"div", EditableRootProviderBaseProps> {}
+
+export const EditableRootProvider = withProvider<
+  HTMLDivElement,
+  EditableRootProviderProps
+>(ArkEditable.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface EditableRootBaseProps
   extends Assign<ArkEditable.RootBaseProps, SlotRecipeProps<"editable">>,
     UnstyledProp {}
@@ -41,7 +58,9 @@ export const EditableRoot = withProvider<HTMLDivElement, EditableRootProps>(
   { forwardAsChild: true },
 )
 
-export const EditableRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const EditablePropsProvider =
   PropsProvider as React.Provider<EditableRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -134,3 +153,9 @@ export const EditableCancelTrigger = withContext<
   HTMLButtonElement,
   EditableCancelTriggerProps
 >(ArkEditable.CancelTrigger, "cancelTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const EditableContext = ArkEditable.Context
+
+export type EditableValueChangeDetails = ArkEditable.ValueChangeDetails

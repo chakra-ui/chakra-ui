@@ -2,7 +2,9 @@ export {
   EditableInput,
   EditablePreview,
   EditableRoot,
-  EditableRootPropsProvider,
+  EditableRootProvider,
+  EditablePropsProvider,
+  EditableContext,
   EditableTextarea,
   EditableControl,
   EditableArea,
@@ -16,18 +18,16 @@ export type {
   EditableInputProps,
   EditablePreviewProps,
   EditableRootProps,
+  EditableRootProviderProps,
   EditableTextareaProps,
   EditableControlProps,
   EditableAreaProps,
   EditableEditTriggerProps,
   EditableCancelTriggerProps,
   EditableSubmitTriggerProps,
+  EditableValueChangeDetails,
 } from "./editable"
 
-export {
-  useEditable,
-  useEditableContext,
-  EditableContext,
-} from "@ark-ui/react/editable"
+export { useEditable, useEditableContext } from "@ark-ui/react/editable"
 
 export * as Editable from "./namespace"

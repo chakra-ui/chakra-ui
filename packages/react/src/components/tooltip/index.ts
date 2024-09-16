@@ -4,8 +4,10 @@ export {
   TooltipContent,
   TooltipPositioner,
   TooltipRoot,
-  TooltipRootPropsProvider,
+  TooltipRootProvider,
+  TooltipPropsProvider,
   TooltipTrigger,
+  TooltipContext,
   useTooltipStyles,
 } from "./tooltip"
 
@@ -15,12 +17,11 @@ export type {
   TooltipContentProps,
   TooltipPositionerProps,
   TooltipRootProps,
+  TooltipRootProviderProps,
   TooltipTriggerProps,
+  TooltipOpenChangeDetails,
 } from "./tooltip"
 
 export * as Tooltip from "./namespace"
 
-export type {
-  TooltipOpenChangeDetails,
-  TooltipContext,
-} from "@ark-ui/react/tooltip"
+export { useTooltip, useTooltipContext } from "@ark-ui/react/tooltip"

@@ -22,6 +22,26 @@ export { usePaginationStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface PaginationRootProviderBaseProps
+  extends Assign<
+      ArkPagination.RootProviderBaseProps,
+      SlotRecipeProps<"pagination">
+    >,
+    UnstyledProp {}
+
+export interface PaginationRootProviderProps
+  extends HTMLChakraProps<"div", PaginationRootProviderBaseProps> {}
+
+export const PaginationRootProvider = withProvider<
+  HTMLDivElement,
+  PaginationRootProviderProps
+>(ArkPagination.RootProvider, "root", {
+  forwardAsChild: true,
+  forwardProps: ["page"],
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface PaginationRootBaseProps
   extends Assign<ArkPagination.RootBaseProps, SlotRecipeProps<"pagination">>,
     UnstyledProp {}
@@ -35,7 +55,9 @@ export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   { forwardAsChild: true, forwardProps: ["page"] },
 )
 
-export const PaginationRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const PaginationPropsProvider =
   PropsProvider as React.Provider<PaginationRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -77,3 +99,11 @@ export const PaginationPrevTrigger = withContext<
   HTMLButtonElement,
   PaginationPrevTriggerProps
 >(ArkPagination.PrevTrigger, "prevTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const PaginationContext = ArkPagination.Context
+
+export type PaginationPageChangeDetails = ArkPagination.PageChangeDetails
+export type PaginationPageSizeChangeDetails =
+  ArkPagination.PageSizeChangeDetails

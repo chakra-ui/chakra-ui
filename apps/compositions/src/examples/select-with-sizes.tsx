@@ -1,4 +1,4 @@
-import { For, Stack } from "@chakra-ui/react"
+import { For, Stack, createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -13,13 +13,13 @@ export const SelectWithSizes = () => {
     <Stack gap="5" width="320px">
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
-          <SelectRoot key={size} size={size} items={frameworks}>
+          <SelectRoot key={size} size={size} collection={frameworks}>
             <SelectLabel>size = {size}</SelectLabel>
             <SelectTrigger>
               <SelectValueText placeholder="Select movie" />
             </SelectTrigger>
             <SelectContent>
-              {frameworks.map((movie) => (
+              {frameworks.items.map((movie) => (
                 <SelectItem item={movie} key={movie.value}>
                   {movie.label}
                 </SelectItem>
@@ -32,9 +32,11 @@ export const SelectWithSizes = () => {
   )
 }
 
-const frameworks = [
-  { label: "React.js", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "React.js", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+  ],
+})

@@ -23,6 +23,23 @@ export { useNumberInputStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface NumberInputRootProviderBaseProps
+  extends Assign<
+      ArkNumberInput.RootProviderBaseProps,
+      SlotRecipeProps<"numberInput">
+    >,
+    UnstyledProp {}
+
+export interface NumberInputRootProviderProps
+  extends HTMLChakraProps<"div", NumberInputRootProviderBaseProps> {}
+
+export const NumberInputRootProvider = withProvider<
+  HTMLDivElement,
+  NumberInputRootProviderProps
+>(ArkNumberInput.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface NumberInputRootBaseProps
   extends Assign<ArkNumberInput.RootBaseProps, SlotRecipeProps<"numberInput">>,
     UnstyledProp {}
@@ -35,7 +52,9 @@ export const NumberInputRoot = withProvider<
   NumberInputRootProps
 >(ArkNumberInput.Root, "root", { forwardAsChild: true })
 
-export const NumberInputRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const NumberInputPropsProvider =
   PropsProvider as React.Provider<NumberInputRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -103,3 +122,9 @@ export const NumberInputScrubber = withContext<
   HTMLDivElement,
   NumberInputScrubberProps
 >(ArkNumberInput.Scrubber, "scrubber", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const NumberInputContext = ArkNumberInput.Context
+
+export type NumberInputValueChangeDetails = ArkNumberInput.ValueChangeDetails

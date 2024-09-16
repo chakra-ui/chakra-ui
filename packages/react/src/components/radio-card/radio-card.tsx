@@ -16,11 +16,28 @@ import { Radiomark } from "../radiomark"
 const {
   withProvider,
   withContext,
-  useStyles: useRadioGroupStyles,
+  useStyles: useRadioCardStyles,
   PropsProvider,
 } = createSlotRecipeContext({ key: "radioCard" })
 
-export { useRadioGroupStyles }
+export { useRadioCardStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioCardRootProviderBaseProps
+  extends Assign<
+      ArkRadioGroup.RootProviderBaseProps,
+      SlotRecipeProps<"radioCard">
+    >,
+    UnstyledProp {}
+
+export interface RadioCardRootProviderProps
+  extends HTMLChakraProps<"div", RadioCardRootProviderBaseProps> {}
+
+export const RadioCardRootProvider = withProvider<
+  HTMLDivElement,
+  RadioCardRootProviderProps
+>(ArkRadioGroup.RootProvider, "root", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -37,7 +54,9 @@ export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   { forwardAsChild: true },
 )
 
-export const RadioCardRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioCardPropsProvider =
   PropsProvider as React.Provider<RadioCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +118,7 @@ export const RadioCardItemIndicator = forwardRef<
   HTMLSpanElement,
   RadioCardItemIndicatorProps
 >(function RadioGroupItemIndicator(props, ref) {
-  const styles = useRadioGroupStyles()
+  const styles = useRadioCardStyles()
   return (
     <ArkRadioGroup.ItemContext>
       {(itemState) => (
@@ -115,3 +134,11 @@ export const RadioCardItemIndicator = forwardRef<
     </ArkRadioGroup.ItemContext>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioCardContext = ArkRadioGroup.Context
+export const RadioCardItemContext = ArkRadioGroup.ItemContext
+export const RadioCardItemHiddenInput = ArkRadioGroup.ItemHiddenInput
+
+export type RadioCardValueChangeDetails = ArkRadioGroup.ValueChangeDetails
