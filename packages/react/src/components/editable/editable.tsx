@@ -158,4 +158,5 @@ export const EditableCancelTrigger = withContext<
 
 export const EditableContext = ArkEditable.Context
 
-export type EditableValueChangeDetails = ArkEditable.ValueChangeDetails
+export interface EditableValueChangeDetails
+  extends ArkEditable.ValueChangeDetails {}

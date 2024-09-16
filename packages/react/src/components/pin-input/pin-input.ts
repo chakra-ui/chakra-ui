@@ -93,4 +93,5 @@ export const PinInputLabel = withContext<HTMLLabelElement, PinInputLabelProps>(
 export const PinInputContext = ArkPinInput.Context
 export const PinInputHiddenInput = ArkPinInput.HiddenInput
 
-export type PinInputValueChangeDetails = ArkPinInput.ValueChangeDetails
+export interface PinInputValueChangeDetails
+  extends ArkPinInput.ValueChangeDetails {}

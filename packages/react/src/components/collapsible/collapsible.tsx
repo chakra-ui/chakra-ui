@@ -80,4 +80,5 @@ export const CollapsibleContent = withContext<
 
 export const CollapsibleContext = ArkCollapsible.Context
 
-export type CollapsibleOpenChangeDetails = ArkCollapsible.OpenChangeDetails
+export interface CollapsibleOpenChangeDetails
+  extends ArkCollapsible.OpenChangeDetails {}

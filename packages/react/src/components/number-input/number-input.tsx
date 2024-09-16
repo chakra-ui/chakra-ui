@@ -127,4 +127,5 @@ export const NumberInputScrubber = withContext<
 
 export const NumberInputContext = ArkNumberInput.Context
 
-export type NumberInputValueChangeDetails = ArkNumberInput.ValueChangeDetails
+export interface NumberInputValueChangeDetails
+  extends ArkNumberInput.ValueChangeDetails {}

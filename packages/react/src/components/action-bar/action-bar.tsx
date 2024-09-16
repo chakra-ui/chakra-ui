@@ -119,4 +119,5 @@ export const ActionBarCloseTrigger = withContext<
 
 export const ActionBarContext = ArkPopover.Context
 
-export type ActionBarOpenChangeDetails = ArkPopover.OpenChangeDetails
+export interface ActionBarOpenChangeDetails
+  extends ArkPopover.OpenChangeDetails {}

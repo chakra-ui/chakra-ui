@@ -136,8 +136,8 @@ export const SwitchThumbIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SwitchCheckedChangeDetails
-  extends ArkSwitch.CheckedChangeDetails {}
-
 export const SwitchContext = ArkSwitch.Context
 export const SwitchHiddenInput = ArkSwitch.HiddenInput
+
+export interface SwitchCheckedChangeDetails
+  extends ArkSwitch.CheckedChangeDetails {}

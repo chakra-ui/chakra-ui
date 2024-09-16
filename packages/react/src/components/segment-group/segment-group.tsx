@@ -96,4 +96,5 @@ export const SegmentGroupItemHiddenInput = ArkSegmentGroup.ItemHiddenInput
 export const SegmentGroupContext = ArkSegmentGroup.Context
 export const SegmentGroupItemContext = ArkSegmentGroup.ItemContext
 
-export type SegmentGroupValueChangeDetails = ArkSegmentGroup.ValueChangeDetails
+export interface SegmentGroupValueChangeDetails
+  extends ArkSegmentGroup.ValueChangeDetails {}

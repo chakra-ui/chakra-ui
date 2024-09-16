@@ -111,4 +111,4 @@ export const TabsIndicator = withContext<HTMLDivElement, TabsIndicatorProps>(
 
 export const TabsContext = ArkTabs.Context
 
-export type TabsValueChangeDetails = ArkTabs.ValueChangeDetails
+export interface TabsValueChangeDetails extends ArkTabs.ValueChangeDetails {}

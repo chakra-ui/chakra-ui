@@ -133,4 +133,5 @@ export const RatingGroupContext = ArkRatingGroup.Context
 export const RatingGroupItemContext = ArkRatingGroup.ItemContext
 export const RatingGroupHiddenInput = ArkRatingGroup.HiddenInput
 
-export type RatingGroupValueChangeDetails = ArkRatingGroup.ValueChangeDetails
+export interface RatingGroupValueChangeDetails
+  extends ArkRatingGroup.ValueChangeDetails {}

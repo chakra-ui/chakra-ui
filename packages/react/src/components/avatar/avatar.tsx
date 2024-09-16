@@ -105,4 +105,5 @@ export const AvatarIcon = forwardRef<SVGElement, AvatarIconProps>(
 
 export const AvatarContext = ArkAvatar.Context
 
-export type AvatarStatusChangeDetails = ArkAvatar.StatusChangeDetails
+export interface AvatarStatusChangeDetails
+  extends ArkAvatar.StatusChangeDetails {}

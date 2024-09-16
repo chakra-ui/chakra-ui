@@ -118,4 +118,5 @@ export const CheckboxCardAddon = withContext<
 export const CheckboxCardContext = ArkCheckbox.Context
 export const CheckboxCardHiddenInput = ArkCheckbox.HiddenInput
 
-export type CheckboxCardCheckedChangeDetails = ArkCheckbox.CheckedChangeDetails
+export interface CheckboxCardCheckedChangeDetails
+  extends ArkCheckbox.CheckedChangeDetails {}

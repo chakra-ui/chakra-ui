@@ -137,4 +137,5 @@ export const CheckboxGroup = chakra(
 export const CheckboxContext = ArkCheckbox.Context
 export const CheckboxHiddenInput = ArkCheckbox.HiddenInput
 
-export type CheckboxCheckedChangeDetails = ArkCheckbox.CheckedChangeDetails
+export interface CheckboxCheckedChangeDetails
+  extends ArkCheckbox.CheckedChangeDetails {}

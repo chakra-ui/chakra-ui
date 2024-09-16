@@ -217,10 +217,10 @@ export const SelectContext = ArkSelect.Context
 export const SelectHiddenSelect = ArkSelect.HiddenSelect
 export const SelectItemContext = ArkSelect.ItemContext
 
-export type SelectHighlightChangeDetails<T extends CollectionItem = any> =
-  ArkSelect.HighlightChangeDetails<T>
+export interface SelectHighlightChangeDetails<T extends CollectionItem = any>
+  extends ArkSelect.HighlightChangeDetails<T> {}
 
-export type SelectValueChangeDetails<T extends CollectionItem = any> =
-  ArkSelect.ValueChangeDetails<T>
+export interface SelectValueChangeDetails<T extends CollectionItem = any>
+  extends ArkSelect.ValueChangeDetails<T> {}
 
-export type SelectOpenChangeDetails = ArkSelect.OpenChangeDetails
+export interface SelectOpenChangeDetails extends ArkSelect.OpenChangeDetails {}

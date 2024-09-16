@@ -161,4 +161,4 @@ export const DrawerHeader = withContext<HTMLDivElement, DrawerHeaderProps>(
 
 export const DrawerContext = ArkDialog.Context
 
-export type DrawerOpenChangeDetails = ArkDialog.OpenChangeDetails
+export interface DrawerOpenChangeDetails extends ArkDialog.OpenChangeDetails {}

@@ -112,5 +112,8 @@ export const AccordionItemIndicator = withContext<
 export const AccordionContext = ArkAccordion.Context
 export const AccordionItemContext = ArkAccordion.ItemContext
 
-export type AccordionFocusChangeDetails = ArkAccordion.FocusChangeDetails
-export type AccordionValueChangeDetails = ArkAccordion.ValueChangeDetails
+export interface AccordionFocusChangeDetails
+  extends ArkAccordion.FocusChangeDetails {}
+
+export interface AccordionValueChangeDetails
+  extends ArkAccordion.ValueChangeDetails {}

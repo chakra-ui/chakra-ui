@@ -111,4 +111,5 @@ export const HoverCardArrowTip = withContext<
 
 export const HoverCardContext = ArkHoverCard.Context
 
-export type HoverCardOpenChangeDetails = ArkHoverCard.OpenChangeDetails
+export interface HoverCardOpenChangeDetails
+  extends ArkHoverCard.OpenChangeDetails {}

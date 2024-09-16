@@ -107,4 +107,5 @@ export const TooltipArrowTip = withContext<
 
 export const TooltipContext = ArkTooltip.Context
 
-export type TooltipOpenChangeDetails = ArkTooltip.OpenChangeDetails
+export interface TooltipOpenChangeDetails
+  extends ArkTooltip.OpenChangeDetails {}

@@ -161,4 +161,4 @@ export const DialogHeader = withContext<HTMLDivElement, DialogHeaderProps>(
 
 export const DialogContext = ArkDialog.Context
 
-export type DialogOpenChangeDetails = ArkDialog.OpenChangeDetails
+export interface DialogOpenChangeDetails extends ArkDialog.OpenChangeDetails {}

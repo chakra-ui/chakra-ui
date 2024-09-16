@@ -104,6 +104,8 @@ export const PaginationPrevTrigger = withContext<
 
 export const PaginationContext = ArkPagination.Context
 
-export type PaginationPageChangeDetails = ArkPagination.PageChangeDetails
-export type PaginationPageSizeChangeDetails =
-  ArkPagination.PageSizeChangeDetails
+export interface PaginationPageChangeDetails
+  extends ArkPagination.PageChangeDetails {}
+
+export interface PaginationPageSizeChangeDetails
+  extends ArkPagination.PageSizeChangeDetails {}

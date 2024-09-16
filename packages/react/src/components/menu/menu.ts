@@ -246,4 +246,4 @@ export const MenuRadioItem = withContext<HTMLDivElement, MenuRadioItemProps>(
 export const MenuContext = ArkMenu.Context
 export const MenuItemContext = ArkMenu.ItemContext
 
-export type MenuOpenChangeDetails = ArkMenu.OpenChangeDetails
+export interface MenuOpenChangeDetails extends ArkMenu.OpenChangeDetails {}

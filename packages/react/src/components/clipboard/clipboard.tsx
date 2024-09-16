@@ -111,4 +111,5 @@ export const ClipboardLabel = withContext<
 
 export const ClipboardContext = ArkClipboard.Context
 
-export type ClipboardCopyStatusDetails = ArkClipboard.CopyStatusDetails
+export interface ClipboardCopyStatusDetails
+  extends ArkClipboard.CopyStatusDetails {}

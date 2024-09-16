@@ -1,7 +1,11 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { RadioGroup as ArkRadioGroup } from "@ark-ui/react/radio-group"
+import {
+  RadioGroup as ArkRadioGroup,
+  type UseRadioGroupContext,
+  type UseRadioGroupItemContext,
+} from "@ark-ui/react/radio-group"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -129,8 +133,25 @@ export const RadioGroupItemIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const RadioGroupContext = ArkRadioGroup.Context
-export const RadioGroupItemContext = ArkRadioGroup.ItemContext
+export interface RadioGroupContextProps {
+  children: (context: UseRadioGroupContext) => JSX.Element
+}
+
+export const RadioGroupContext: React.FC<RadioGroupContextProps> =
+  ArkRadioGroup.Context
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioGroupItemContextProps {
+  children: (context: UseRadioGroupItemContext) => JSX.Element
+}
+
+export const RadioGroupItemContext: React.FC<RadioGroupItemContextProps> =
+  ArkRadioGroup.ItemContext
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const RadioGroupItemHiddenInput = ArkRadioGroup.ItemHiddenInput
 
-export type RadioGroupValueChangeDetails = ArkRadioGroup.ValueChangeDetails
+export interface RadioGroupValueChangeDetails
+  extends ArkRadioGroup.ValueChangeDetails {}

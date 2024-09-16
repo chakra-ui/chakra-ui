@@ -151,8 +151,8 @@ export const SliderMarkerIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SliderValueChangeDetails
-  extends ArkSlider.ValueChangeDetails {}
-
 export const SliderContext = ArkSlider.Context
 export const SliderHiddenInput = ArkSlider.HiddenInput
+
+export interface SliderValueChangeDetails
+  extends ArkSlider.ValueChangeDetails {}

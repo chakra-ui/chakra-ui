@@ -187,4 +187,5 @@ export const PopoverAnchor = withContext<HTMLDivElement, PopoverAnchorProps>(
 
 export const PopoverContext = ArkPopover.Context
 
-export type PopoverOpenChangeDetails = ArkPopover.OpenChangeDetails
+export interface PopoverOpenChangeDetails
+  extends ArkPopover.OpenChangeDetails {}

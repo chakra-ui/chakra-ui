@@ -165,6 +165,11 @@ export const FileUploadTrigger = withContext<
 export const FileUploadContext = ArkFileUpload.Context
 export const FileUploadHiddenInput = ArkFileUpload.HiddenInput
 
-export type FileUploadFileAcceptDetails = ArkFileUpload.FileAcceptDetails
-export type FileUploadFileRejectDetails = ArkFileUpload.FileRejectDetails
-export type FileUploadFileChangeDetails = ArkFileUpload.FileChangeDetails
+export interface FileUploadFileAcceptDetails
+  extends ArkFileUpload.FileAcceptDetails {}
+
+export interface FileUploadFileRejectDetails
+  extends ArkFileUpload.FileRejectDetails {}
+
+export interface FileUploadFileChangeDetails
+  extends ArkFileUpload.FileChangeDetails {}
