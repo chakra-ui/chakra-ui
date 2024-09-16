@@ -4,7 +4,6 @@ import {
   SelectContent,
   SelectItem,
   SelectItemGroup,
-  SelectItemGroupLabel,
   SelectLabel,
   SelectRoot,
   SelectTrigger,
@@ -20,8 +19,7 @@ export const SelectWithOptionGroup = () => {
       </SelectTrigger>
       <SelectContent>
         {categories.map((category) => (
-          <SelectItemGroup key={category.group}>
-            <SelectItemGroupLabel>{category.group}</SelectItemGroupLabel>
+          <SelectItemGroup key={category.group} label={category.group}>
             {category.items.map((item) => (
               <SelectItem item={item} key={item.value}>
                 {item.label}

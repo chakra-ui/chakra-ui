@@ -9,9 +9,14 @@ import {
 
 export const SelectWithClear = () => {
   return (
-    <SelectRoot items={animeMovies} size="sm" width="240px">
+    <SelectRoot
+      items={animeMovies}
+      defaultValue={["spirited_away"]}
+      size="sm"
+      width="320px"
+    >
       <SelectLabel>Select fav. anime</SelectLabel>
-      <SelectTrigger>
+      <SelectTrigger clearable>
         <SelectValueText placeholder="Select movie" />
       </SelectTrigger>
       <SelectContent>

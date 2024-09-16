@@ -911,6 +911,7 @@ export type SelectSlot =
   | "root"
   | "control"
   | "valueText"
+  | "indicatorGroup"
 
 export interface SelectVariant {
   /** @default "outline" */
