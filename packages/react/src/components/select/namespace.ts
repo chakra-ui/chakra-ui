@@ -36,4 +36,5 @@ export type {
   SelectHighlightChangeDetails as HighlightChangeDetails,
   SelectOpenChangeDetails as OpenChangeDetails,
   SelectValueChangeDetails as ValueChangeDetails,
+  SelectValueTextProps as ValueTextProps,
 } from "./select"
