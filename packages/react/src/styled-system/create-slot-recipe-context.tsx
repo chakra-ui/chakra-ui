@@ -116,7 +116,7 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     const SuperComponent = chakra(Component, {}, restOptions as any)
 
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
-      const props = mergeProps(defaultProps, usePropsContext(), inProps)
+      const props = mergeProps(defaultProps ?? {}, usePropsContext(), inProps)
       const { styles, props: rootProps, classNames } = useRecipeResult(props)
       const className = classNames[slot as keyof typeof classNames]
 

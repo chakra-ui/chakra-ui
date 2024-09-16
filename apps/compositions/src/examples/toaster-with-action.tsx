@@ -12,10 +12,9 @@ export const ToasterWithAction = () => {
         toaster.success({
           title: "Update successful",
           description: "File saved successfully to the server",
-          meta: {
-            closable: false,
-            actionLabel: "Undo",
-            action: () => console.log("Undo"),
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
           },
         })
       }

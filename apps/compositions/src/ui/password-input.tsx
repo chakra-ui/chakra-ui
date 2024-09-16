@@ -122,7 +122,7 @@ export const PasswordStrengthMeter = forwardRef<
             flex="1"
             rounded="sm"
             data-selected={index < value ? "" : undefined}
-            layerStyle="fill.muted"
+            layerStyle="fill.subtle"
             colorPalette="gray"
             _selected={{
               colorPalette,

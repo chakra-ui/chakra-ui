@@ -2,7 +2,7 @@
 
 import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react"
 import {
-  AvatarRootPropsProvider,
+  AvatarPropsProvider,
   Avatar as ChakraAvatar,
   Group,
 } from "@chakra-ui/react"
@@ -70,9 +70,9 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
     const { size, variant, borderless, ...rest } = props
     return (
-      <AvatarRootPropsProvider value={{ size, variant, borderless }}>
+      <AvatarPropsProvider value={{ size, variant, borderless }}>
         <Group gap="0" spaceX="-3" ref={ref} {...rest} />
-      </AvatarRootPropsProvider>
+      </AvatarPropsProvider>
     )
   },
 )

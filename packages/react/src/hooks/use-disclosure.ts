@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useId, useState } from "react"
+import { useCallback, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseDisclosureProps {
@@ -11,8 +11,6 @@ export interface UseDisclosureProps {
   id?: string
 }
 
-type HTMLProps = React.HTMLAttributes<HTMLElement>
-
 /**
  * `useDisclosure` is a custom hook used to help handle common open, close, or toggle scenarios.
  * It can be used to control feedback component such as `Modal`, `AlertDialog`, `Drawer`, etc.
@@ -20,12 +18,7 @@ type HTMLProps = React.HTMLAttributes<HTMLElement>
  * @see Docs https://chakra-ui.com/docs/hooks/use-disclosure
  */
 export function useDisclosure(props: UseDisclosureProps = {}) {
-  const {
-    onClose: onCloseProp,
-    onOpen: onOpenProp,
-    open: openProp,
-    id: idProp,
-  } = props
+  const { onClose: onCloseProp, onOpen: onOpenProp, open: openProp } = props
 
   const handleOpen = useCallbackRef(onOpenProp)
   const handleClose = useCallbackRef(onCloseProp)
@@ -35,9 +28,6 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
   const open = openProp !== undefined ? openProp : openState
 
   const isControlled = openProp !== undefined
-
-  const uid = useId()
-  const id = idProp ?? `disclosure-${uid}`
 
   const onClose = useCallback(() => {
     if (!isControlled) {
@@ -61,34 +51,11 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
     }
   }, [open, onOpen, onClose])
 
-  function getButtonProps(props: HTMLProps = {}): HTMLProps {
-    return {
-      ...props,
-      "aria-expanded": open,
-      "aria-controls": id,
-      onClick(event) {
-        props.onClick?.(event)
-        onToggle()
-      },
-    }
-  }
-
-  function getDisclosureProps(props: HTMLProps = {}): HTMLProps {
-    return {
-      ...props,
-      hidden: !open,
-      id,
-    }
-  }
-
   return {
     open,
     onOpen,
     onClose,
     onToggle,
-    isControlled,
-    getButtonProps,
-    getDisclosureProps,
   }
 }
 
