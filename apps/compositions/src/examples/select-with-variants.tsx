@@ -1,3 +1,5 @@
+"use client"
+
 import { For, Stack, createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
