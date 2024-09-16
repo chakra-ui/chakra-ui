@@ -29,17 +29,6 @@
   },
   {
     "type": "composition",
-    "id": "avatar-overflow-menu",
-    "file": "avatar-overflow-menu.tsx",
-    "component": "AvatarOverflowMenu",
-    "npmDependencies": [],
-    "fileDependencies": [
-      "compositions/ui/avatar",
-      "compositions/ui/menu"
-    ]
-  },
-  {
-    "type": "composition",
     "id": "avatar",
     "file": "avatar.tsx",
     "component": "Avatar",

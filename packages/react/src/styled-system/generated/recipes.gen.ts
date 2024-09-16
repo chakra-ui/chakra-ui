@@ -497,7 +497,7 @@ export interface DialogVariant {
   /** @default "outside" */
   scrollBehavior?: "inside" | "outside"
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "cover" | "full"
   /** @default "scale" */
   motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none"
 }
@@ -842,7 +842,7 @@ export type RadioCardVariantMap = {
 
 // RadioGroup
 
-export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
+export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
 
 export interface RadioGroupVariant {
   /** @default "outline" */
