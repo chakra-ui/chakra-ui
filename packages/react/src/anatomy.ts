@@ -154,7 +154,7 @@ export const ratingGroupAnatomy =
 
 export const segmentGroupAnatomy = arkSegmentGroupAnatomy
 
-export const selectAnatomy = arkSelectAnatomy
+export const selectAnatomy = arkSelectAnatomy.extendWith("indicatorGroup")
 
 export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
 

@@ -176,6 +176,15 @@ export const SelectItemIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SelectIndicatorGroupProps extends HTMLChakraProps<"div"> {}
+
+export const SelectIndicatorGroup = withContext<
+  HTMLDivElement,
+  SelectIndicatorGroupProps
+>("div", "indicatorGroup")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SelectIndicatorProps
   extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 

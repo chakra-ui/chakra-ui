@@ -4,23 +4,33 @@ import type { CollectionItem } from "@chakra-ui/react"
 import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 
-interface SelectTriggerProps extends ChakraSelect.ControlProps {}
+interface SelectTriggerProps extends ChakraSelect.ControlProps {
+  clearable?: boolean
+}
 
 export const SelectTrigger = (props: SelectTriggerProps) => {
-  const { children, ...rest } = props
+  const { children, clearable, ...rest } = props
   return (
     <ChakraSelect.Control {...rest}>
-      <ChakraSelect.Trigger>
-        {children}
+      <ChakraSelect.Trigger>{children}</ChakraSelect.Trigger>
+      <ChakraSelect.IndicatorGroup>
+        {clearable && <SelectClearTrigger />}
         <ChakraSelect.Indicator />
-      </ChakraSelect.Trigger>
+      </ChakraSelect.IndicatorGroup>
     </ChakraSelect.Control>
   )
 }
 
-export const SelectClearTrigger = () => (
-  <ChakraSelect.ClearTrigger asChild>
-    <CloseButton size="sm" variant="ghost" />
+const SelectClearTrigger = (props: ChakraSelect.ClearTriggerProps) => (
+  <ChakraSelect.ClearTrigger asChild {...props}>
+    <CloseButton
+      size="xs"
+      variant="plain"
+      focusVisibleRing="inside"
+      focusRingWidth="2px"
+      pointerEvents="auto"
+      color="fg.muted"
+    />
   </ChakraSelect.ClearTrigger>
 )
 
@@ -83,6 +93,18 @@ export const SelectRoot = (props: ChakraSelect.RootProps) => {
 }
 
 export const SelectLabel = ChakraSelect.Label
-export const SelectItemGroup = ChakraSelect.ItemGroup
 export const SelectItemText = ChakraSelect.ItemText
-export const SelectItemGroupLabel = ChakraSelect.ItemGroupLabel
+
+interface SelectItemGroupProps extends ChakraSelect.ItemGroupProps {
+  label: React.ReactNode
+}
+
+export const SelectItemGroup = (props: SelectItemGroupProps) => {
+  const { children, label, ...rest } = props
+  return (
+    <ChakraSelect.ItemGroup {...rest}>
+      <ChakraSelect.ItemGroupLabel>{label}</ChakraSelect.ItemGroupLabel>
+      {children}
+    </ChakraSelect.ItemGroup>
+  )
+}
