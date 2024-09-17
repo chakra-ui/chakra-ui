@@ -103,3 +103,13 @@ export const NumberInputScrubber = withContext<
   HTMLDivElement,
   NumberInputScrubberProps
 >(ArkNumberInput.Scrubber, "scrubber", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface NumberInputValueTextProps
+  extends HTMLChakraProps<"span", ArkNumberInput.ValueTextBaseProps> {}
+
+export const NumberInputValueText = withContext<
+  HTMLSpanElement,
+  NumberInputValueTextProps
+>(ArkNumberInput.ValueText, "valueText", { forwardAsChild: true })

@@ -58,6 +58,11 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       ...triggerStyle,
       borderBottomEndRadius: "var(--stepper-radius)",
     },
+    valueText: {
+      fontWeight: "medium",
+      fontFeatureSettings: "pnum",
+      fontVariantNumeric: "proportional-nums",
+    },
   },
   variants: {
     size: {

@@ -7,6 +7,7 @@ export {
   NumberInputRoot,
   NumberInputRootPropsProvider,
   NumberInputScrubber,
+  NumberInputValueText,
 } from "./number-input"
 
 export type {
@@ -17,6 +18,7 @@ export type {
   NumberInputLabelProps,
   NumberInputRootProps,
   NumberInputScrubberProps,
+  NumberInputValueTextProps,
 } from "./number-input"
 
 export { useNumberInputStyles } from "./number-input"

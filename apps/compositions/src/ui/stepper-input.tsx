@@ -1,7 +1,4 @@
-"use client"
-
-import type { TextProps } from "@chakra-ui/react"
-import { HStack, IconButton, NumberInput, Text } from "@chakra-ui/react"
+import { HStack, IconButton, NumberInput } from "@chakra-ui/react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 
 export interface StepperInputProps extends NumberInput.RootProps {
@@ -15,26 +12,10 @@ export const StepperInput = (props: StepperInputProps) => {
       {label && <NumberInput.Label>{label}</NumberInput.Label>}
       <HStack gap="2">
         <DecrementTrigger />
-        <ValueText />
+        <NumberInput.ValueText textAlign="center" fontSize="lg" minW="3ch" />
         <IncrementTrigger />
       </HStack>
     </NumberInput.Root>
-  )
-}
-
-const ValueText = (props: TextProps) => {
-  return (
-    <Text
-      align="center"
-      fontSize="lg"
-      minW="3ch"
-      fontWeight="medium"
-      fontFeatureSettings="pnum"
-      fontVariantNumeric="proportional-nums"
-      {...props}
-    >
-      <NumberInput.Context>{(api) => api.value}</NumberInput.Context>
-    </Text>
   )
 }
 

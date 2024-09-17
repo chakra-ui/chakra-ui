@@ -7,6 +7,7 @@ export {
   NumberInputRoot as Root,
   NumberInputRootPropsProvider as RootPropsProvider,
   NumberInputScrubber as Scrubber,
+  NumberInputValueText as ValueText,
 } from "./number-input"
 
 export type {
@@ -17,6 +18,7 @@ export type {
   NumberInputLabelProps as LabelProps,
   NumberInputRootProps as RootProps,
   NumberInputScrubberProps as ScrubberProps,
+  NumberInputValueTextProps as ValueTextProps,
 } from "./number-input"
 
 export { NumberInputContext as Context } from "@ark-ui/react/number-input"
