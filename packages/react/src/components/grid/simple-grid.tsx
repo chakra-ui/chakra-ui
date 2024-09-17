@@ -6,7 +6,7 @@ import {
   type SystemContext,
   useChakraContext,
 } from "../../styled-system"
-import { mapResponsive } from "../../utils"
+import { mapObject } from "../../utils"
 import { Grid, type GridProps } from "./grid"
 
 interface SimpleGridOptions {
@@ -52,14 +52,14 @@ function toPx(n: string | number) {
 }
 
 function widthToColumns(width: any, sys: SystemContext) {
-  return mapResponsive(width, (value) => {
+  return mapObject(width, (value) => {
     const _value = sys.tokens.getVar(`sizes.${value}`, toPx(value))
     return value === null ? null : `repeat(auto-fit, minmax(${_value}, 1fr))`
   })
 }
 
 function countToColumns(count: any) {
-  return mapResponsive(count, (value) =>
+  return mapObject(count, (value) =>
     value === null ? null : `repeat(${value}, minmax(0, 1fr))`,
   )
 }

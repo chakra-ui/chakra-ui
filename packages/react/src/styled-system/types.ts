@@ -278,6 +278,7 @@ export interface SystemContext {
   breakpoints: Breakpoint
   properties: Set<string>
   isValidProperty(prop: string): boolean
+  normalizeValue(value: any): any
   splitCssProps<T extends SystemStyleObject>(
     props: T,
   ): [SystemStyleObject, DistributiveOmit<T, keyof SystemStyleObject>]

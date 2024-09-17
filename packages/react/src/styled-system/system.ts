@@ -89,8 +89,26 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     (prop: string) => properties.has(prop) || isCssProperty(prop),
   )
 
-  const normalizeFn = createNormalizeFn({ utility, conditions })
-  const serialize = createSerializeFn({ conditions, isValidProperty })
+  const normalizeValue = (value: any): any => {
+    if (Array.isArray(value)) {
+      return value.reduce((acc, current, index) => {
+        const key = conditions.breakpoints[index]
+        if (current != null) acc[key] = current
+        return acc
+      }, {})
+    }
+    return value
+  }
+
+  const normalizeFn = createNormalizeFn({
+    utility,
+    normalize: normalizeValue,
+  })
+
+  const serialize = createSerializeFn({
+    conditions,
+    isValidProperty,
+  })
 
   const css = createCssFn({
     transform: utility.transform,
@@ -184,6 +202,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     properties,
     isValidProperty,
     splitCssProps: splitCssProps as any,
+    normalizeValue,
     getTokenCss,
     getGlobalCss,
     getPreflightCss,

@@ -6,7 +6,7 @@ import {
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
-import { isCssUnit, isCssVar, mapResponsive } from "../../utils"
+import { isCssUnit, isCssVar, mapObject } from "../../utils"
 
 export interface BleedProps extends HTMLChakraProps<"div"> {
   /**
@@ -55,10 +55,10 @@ export const Bleed = forwardRef<HTMLDivElement, BleedProps>(
         ref={ref}
         {...rest}
         css={{
-          "--bleed-inline-start": mapResponsive(inline ?? inlineStart, valueFn),
-          "--bleed-inline-end": mapResponsive(inline ?? inlineEnd, valueFn),
-          "--bleed-block-start": mapResponsive(block ?? blockStart, valueFn),
-          "--bleed-block-end": mapResponsive(block ?? blockEnd, valueFn),
+          "--bleed-inline-start": mapObject(inline ?? inlineStart, valueFn),
+          "--bleed-inline-end": mapObject(inline ?? inlineEnd, valueFn),
+          "--bleed-block-start": mapObject(block ?? blockStart, valueFn),
+          "--bleed-block-end": mapObject(block ?? blockEnd, valueFn),
           marginInlineStart: "calc(var(--bleed-inline-start, 0) * -1)",
           marginInlineEnd: "calc(var(--bleed-inline-end, 0) * -1)",
           marginBlockStart: "calc(var(--bleed-block-start, 0) * -1)",

@@ -7,7 +7,7 @@ import {
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
-import { mapResponsive } from "../../utils"
+import { mapObject } from "../../utils"
 
 type Dict = Record<string, any>
 
@@ -61,7 +61,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
         justifyContent: "center",
         alignItems: "center",
         position: "absolute",
-        insetBlockStart: mapResponsive(placement, (v) => {
+        insetBlockStart: mapObject(placement, (v) => {
           const [side] = v.split("-")
           const map: Dict = {
             top: offsetY ?? offset,
@@ -70,7 +70,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
           }
           return map[side]
         }),
-        insetBlockEnd: mapResponsive(placement, (v) => {
+        insetBlockEnd: mapObject(placement, (v) => {
           const [side] = v.split("-")
           const map: Dict = {
             top: "auto",
@@ -79,7 +79,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
           }
           return map[side]
         }),
-        insetStart: mapResponsive(placement, (v) => {
+        insetStart: mapObject(placement, (v) => {
           const [, align] = v.split("-")
           const map: Dict = {
             start: offsetX ?? offset,
@@ -88,7 +88,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
           }
           return map[align]
         }),
-        insetEnd: mapResponsive(placement, (v) => {
+        insetEnd: mapObject(placement, (v) => {
           const [, align] = v.split("-")
           const map: Dict = {
             start: "auto",
@@ -97,7 +97,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
           }
           return map[align]
         }),
-        translate: mapResponsive(placement, (v) => {
+        translate: mapObject(placement, (v) => {
           const [side, align] = v.split("-")
           const mapX: Dict = { start: "-50%", center: "-50%", end: "50%" }
           const mapY: Dict = { top: "-50%", middle: "-50%", bottom: "50%" }

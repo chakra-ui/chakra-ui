@@ -1,5 +1,3 @@
-import { type MaybeRenderProp, runIfFn } from "../../utils"
-
 export interface ShowProps<T> {
   /**
    * If `true`, it'll render the `children` prop
@@ -12,7 +10,7 @@ export interface ShowProps<T> {
   /**
    * The children to render if `when` is `true`
    */
-  children: MaybeRenderProp<T>
+  children: React.ReactNode | ((props: T) => React.ReactNode)
 }
 
 export function Show<T>(props: ShowProps<T>) {
@@ -22,5 +20,5 @@ export function Show<T>(props: ShowProps<T>) {
     return fallback || null
   }
 
-  return runIfFn(children, when as T)
+  return typeof children === "function" ? children(when as T) : children
 }
