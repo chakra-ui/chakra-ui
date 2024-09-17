@@ -16,10 +16,10 @@ const triggerStyle = defineStyle({
     opacity: "0.5",
   },
   _hover: {
-    bg: { base: "gray.50", _dark: "gray.400/10" },
+    bg: { _light: "gray.50", _dark: "gray.400/10" },
   },
   _active: {
-    bg: { base: "gray.100", _dark: "gray.400/20" },
+    bg: { _light: "gray.100", _dark: "gray.400/20" },
   },
 })
 

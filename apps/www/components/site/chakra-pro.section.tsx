@@ -38,7 +38,7 @@ export const ChakraProSection = () => {
         gap="16"
         pt={{ base: "16", md: "32" }}
         borderTopWidth="1px"
-        borderColor={{ base: "inherit", _dark: "#001B18" }}
+        borderColor={{ _light: "inherit", _dark: "#001B18" }}
         pos="relative"
         bgGradient="to-b"
         gradientFrom="transparent"

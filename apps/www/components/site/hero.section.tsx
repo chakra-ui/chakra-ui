@@ -179,7 +179,7 @@ export const HeroSection = () => (
             minH="12"
             shadow="inset"
             bg="bg.muted/50"
-            color={{ base: "teal.600", _dark: "teal.400" }}
+            color={{ _light: "teal.600", _dark: "teal.400" }}
             textStyle="sm"
             fontWeight="semibold"
             ps="4"

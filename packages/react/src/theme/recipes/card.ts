@@ -71,7 +71,7 @@ export const cardSlotRecipe = defineSlotRecipe({
     variant: {
       elevated: {
         root: {
-          "--card-bg": { base: "white", _dark: "colors.gray.800" },
+          "--card-bg": { _light: "white", _dark: "colors.gray.800" },
           "--card-shadow": "shadows.xs",
         },
       },

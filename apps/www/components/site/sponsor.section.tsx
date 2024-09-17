@@ -67,7 +67,7 @@ const SponsorGroup = (props: {
         "& > *": {
           "--border-width": "1px",
           borderWidth: "1px",
-          borderColor: { base: "inherit", _dark: "#001B18" },
+          borderColor: { _light: "border", _dark: "#001B18" },
           mr: "calc(var(--border-width) * -1)",
           mb: "calc(var(--border-width) * -1)",
           py: "4",
@@ -124,7 +124,7 @@ const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
     <Flex
       gap="4"
       align="center"
-      color={{ base: "teal.600", _dark: "teal.500" }}
+      color={{ _light: "teal.600", _dark: "teal.500" }}
     >
       <Icon />
       <Text fontWeight="medium">{tier}</Text>

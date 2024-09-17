@@ -7,7 +7,7 @@ export const DemoFrame = chakra(
   {
     base: {
       borderWidth: "0.5px",
-      borderColor: { base: "inherit", _dark: "#001B18" },
+      borderColor: { _light: "border", _dark: "#001B18" },
       width: "400px",
       flexShrink: "0",
       height: "100%",

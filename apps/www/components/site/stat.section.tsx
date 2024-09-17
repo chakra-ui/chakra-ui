@@ -48,7 +48,7 @@ const StatsBox = (props: StatBoxProps) => {
       flex="1"
       ms="-1px"
       borderWidth="1px"
-      borderColor={{ base: "inherit", _dark: "#001B18" }}
+      borderColor={{ _light: "border", _dark: "#001B18" }}
       align="center"
       gap={{ base: "3", md: "6" }}
       pt={{ base: "5", md: "10" }}
@@ -56,13 +56,13 @@ const StatsBox = (props: StatBoxProps) => {
     >
       <Text
         fontWeight="medium"
-        color={{ base: "teal.600", _dark: "teal.500" }}
+        color={{ _light: "teal.600", _dark: "teal.500" }}
         textStyle={{ base: "4xl", md: "7xl" }}
       >
         {description}
       </Text>
       <Flex align="center" gap="3">
-        <Icon asChild color={{ base: "teal.600", _dark: "teal.500" }}>
+        <Icon asChild color={{ _light: "teal.600", _dark: "teal.500" }}>
           <StatIcon />
         </Icon>
         <Text color="fg.subtle" fontWeight="medium">
