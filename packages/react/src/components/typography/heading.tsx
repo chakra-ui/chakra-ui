@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import {
   type HTMLChakraProps,
   type RecipeProps,
@@ -11,8 +12,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface HeadingProps
-  extends HTMLChakraProps<"h2">,
-    RecipeProps<"heading"> {}
+  extends Assign<HTMLChakraProps<"h2">, RecipeProps<"heading">> {}
 
 export const Heading = withContext<HTMLHeadingElement, HeadingProps>("h2")
 
