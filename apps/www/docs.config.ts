@@ -166,6 +166,7 @@ const docsLinks: NavItem = {
             { title: "Highlight", url: "highlight" },
             { title: "Kbd", url: "kbd" },
             { title: "Link", url: "link" },
+            { title: "Link Overlay", url: "link-overlay" },
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },

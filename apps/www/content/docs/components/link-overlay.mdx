@@ -1,0 +1,59 @@
+---
+title: Link Overlay
+description: Used to stretch a link over a container.
+---
+
+<ExampleTabs name="link-overlay-basic" />
+
+## Usage
+
+The `LinkOverlay` component provides a semantic way to link an entire component
+or card.
+
+```jsx
+import { LinkBox, LinkOverlay } from "@chakra-ui/react"
+```
+
+```jsx
+<LinkBox>
+  <LinkOverlay />
+</LinkBox>
+```
+
+## Examples
+
+### Article
+
+Here's an example of using `LinkOverlay` to link an entire article.
+
+<ExampleTabs name="link-overlay-article" />
+
+### Custom Link
+
+Use the `asChild` prop to add support for custom Link component like `next/link`
+or react router's `Link`
+
+```jsx
+import { LinkBox, LinkOverlay } from "@chakra-ui/react"
+import NextLink from "next/link"
+
+function Example() {
+  return (
+    <LinkBox as="article">
+      <h2>
+        <LinkOverlay asChild>
+          <NextLink href="#">Blog Post Title</NextLink>
+        </LinkOverlay>
+      </h2>
+      <p>Some blog post content</p>
+      <NextLink href="#inner-link">Some inner link</NextLink>
+    </LinkBox>
+  )
+}
+```
+
+## Caveat
+
+One of the side-effects of this technique is that the content can't be
+"selectable" (i.e. with a pointing device), however, this seems to be pretty
+uncommon in web design.
