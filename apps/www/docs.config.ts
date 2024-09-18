@@ -260,7 +260,10 @@ export const docsConfig: DocsConfig = {
   url: "https://chakra-ui.com",
   xHandle: "@chakra-ui",
   repoUrl: "https://github.com/chakra-ui/chakra-ui",
-  editUrl: "https://github.com/chakra-ui/chakra-ui/tree/main/apps/www/content",
+  repoBranch: "main",
+  get editUrl() {
+    return `${this.repoUrl}/tree/${this.repoBranch}/apps/www/content`
+  },
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
@@ -282,6 +285,7 @@ interface DocsConfig {
   xHandle: string
   donationUrl: string
   navigation: NavItem[]
+  repoBranch: string
 }
 
 export interface NavItem {

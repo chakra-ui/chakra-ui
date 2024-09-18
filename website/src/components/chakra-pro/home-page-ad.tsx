@@ -8,7 +8,7 @@ export const ChakraProAd = () => (
   <Box as='section' bg='gray.900' color='white' overflow='hidden'>
     <Container pt='24' pb='0'>
       <Flex align='center' direction='column' textAlign='center' mb='10'>
-        <Text casing='uppercase' letterSpacing='wide' fontWeight='bold'>
+        <Text textTransform='uppercase' letterSpacing='wide' fontWeight='bold'>
           Premium components{' '}
           <Badge
             colorPalette='yellow'
