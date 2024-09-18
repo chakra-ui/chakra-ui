@@ -37,7 +37,6 @@ export default function Page(props: Props) {
         overflow="auto"
         minHeight="var(--content-height)"
       >
-        <span id="scroll-to-top" />
         <PageHeader
           title={page.title}
           description={page.description}

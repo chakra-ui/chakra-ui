@@ -16,7 +16,6 @@ import { Global } from "@emotion/react"
 import { ColorModeButton } from "compositions/ui/color-mode"
 import { RadioCardItem, RadioCardRoot } from "compositions/ui/radio-card"
 import { useState } from "react"
-import { LuCheck } from "react-icons/lu"
 
 const accentColors = [
   "red",
@@ -59,81 +58,80 @@ export function ThemePanel(props: ThemePanelProps) {
           },
         }}
       />
-      <Box pos="fixed" top="24" left="10" zIndex="overlay">
-        <Card.Root width="320px" variant="elevated" bg="bg.panel">
-          <Card.Header>
-            <HStack justify="space-between">
-              <Text fontWeight="semibold">Theme Panel</Text>
-              <ColorModeButton colorPalette="accent" />
-            </HStack>
-          </Card.Header>
-          <Card.Body gap="8">
-            <Stack gap="3">
-              <Text fontWeight="medium">Palette</Text>
-              <RadioCardRoot
-                size="sm"
-                defaultValue={accentColor}
-                onValueChange={(details) => {
-                  document.cookie = `chakra-accent-color=${details.value}`
-                  setAccentColor(details.value)
-                }}
-              >
-                <SimpleGrid columns={3} gap="2">
-                  {accentColors.map((color) => (
-                    <RadioCardItem
-                      key={color}
-                      value={color}
-                      showIndicator={false}
-                    >
-                      <Circle size="4" bg={`${color}.solid`} />
-                      <Text textStyle="xs" fontWeight="medium" ms="-1">
-                        {color}
-                      </Text>
-                    </RadioCardItem>
-                  ))}
-                </SimpleGrid>
-              </RadioCardRoot>
-            </Stack>
 
-            <Stack gap="3">
-              <Text fontWeight="medium">Font Family</Text>
-              <SimpleGrid gap="2" columns={4}>
-                {fontFamilies.map((item) => (
-                  <Square
-                    cursor="default"
-                    rounded="md"
-                    borderColor={
-                      item.value === fontFamily ? "accent.solid" : undefined
-                    }
-                    outlineWidth="1px"
-                    outlineColor={
-                      item.value === fontFamily ? "accent.solid" : "transparent"
-                    }
-                    outlineStyle="solid"
-                    onClick={() => {
-                      document.cookie = `chakra-font=${item.value}`
-                      setFontFamily(item.value)
-                    }}
-                    px="4"
-                    py="2"
-                    borderWidth="1px"
-                    key={item.value}
-                    fontSize="xl"
-                    fontFamily={`var(${item.value})`}
+      <Card.Root width="320px" variant="elevated" bg="bg.panel">
+        <Card.Header>
+          <HStack justify="space-between">
+            <Text fontWeight="semibold">Theme Panel</Text>
+            <ColorModeButton colorPalette="accent" />
+          </HStack>
+        </Card.Header>
+        <Card.Body gap="8">
+          <Stack gap="3">
+            <Text fontWeight="medium">Palette</Text>
+            <RadioCardRoot
+              size="sm"
+              defaultValue={accentColor}
+              onValueChange={(details) => {
+                document.cookie = `chakra-accent-color=${details.value}`
+                setAccentColor(details.value)
+              }}
+            >
+              <SimpleGrid columns={3} gap="2">
+                {accentColors.map((color) => (
+                  <RadioCardItem
+                    key={color}
+                    value={color}
+                    showIndicator={false}
                   >
-                    <VStack gap="1">
-                      <Text fontSize="xl">Ag</Text>
-                      <Text textStyle="xs" fontFamily="body">
-                        {item.label}
-                      </Text>
-                    </VStack>
-                  </Square>
+                    <Circle size="4" bg={`${color}.solid`} />
+                    <Text textStyle="xs" fontWeight="medium" ms="-1">
+                      {color}
+                    </Text>
+                  </RadioCardItem>
                 ))}
               </SimpleGrid>
-            </Stack>
-          </Card.Body>
-        </Card.Root>
-      </Box>
+            </RadioCardRoot>
+          </Stack>
+
+          <Stack gap="3">
+            <Text fontWeight="medium">Font Family</Text>
+            <SimpleGrid gap="2" columns={4}>
+              {fontFamilies.map((item) => (
+                <Square
+                  cursor="default"
+                  rounded="md"
+                  borderColor={
+                    item.value === fontFamily ? "accent.solid" : undefined
+                  }
+                  outlineWidth="1px"
+                  outlineColor={
+                    item.value === fontFamily ? "accent.solid" : "transparent"
+                  }
+                  outlineStyle="solid"
+                  onClick={() => {
+                    document.cookie = `chakra-font=${item.value}`
+                    setFontFamily(item.value)
+                  }}
+                  px="4"
+                  py="2"
+                  borderWidth="1px"
+                  key={item.value}
+                  fontSize="xl"
+                  fontFamily={`var(${item.value})`}
+                >
+                  <VStack gap="1">
+                    <Text fontSize="xl">Ag</Text>
+                    <Text textStyle="xs" fontFamily="body">
+                      {item.label}
+                    </Text>
+                  </VStack>
+                </Square>
+              ))}
+            </SimpleGrid>
+          </Stack>
+        </Card.Body>
+      </Card.Root>
     </>
   )
 }
