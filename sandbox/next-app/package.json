@@ -14,7 +14,7 @@
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "next": "^14.2.4",
+    "next": "^14.2.12",
     "next-themes": "^0.3.0",
     "lucide-react": "^0.399.0",
     "react": "^18.3.1",
