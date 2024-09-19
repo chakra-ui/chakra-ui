@@ -5,7 +5,7 @@ import {
   RadioCardRoot,
 } from "compositions/ui/radio-card"
 
-export const RadioCardBasic = () => {
+export const RadioCardWithAddon = () => {
   return (
     <RadioCardRoot width="full" defaultValue="next">
       <RadioCardLabel>Select framework</RadioCardLabel>
@@ -16,6 +16,7 @@ export const RadioCardBasic = () => {
             description={item.description}
             key={item.value}
             value={item.value}
+            addon="Some addon text"
           />
         ))}
       </HStack>

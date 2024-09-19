@@ -1,40 +1,45 @@
-import {
-  Accordion as ChakraAccordion,
-  HStack,
-  Icon,
-  type IconProps,
-} from "@chakra-ui/react"
+import type { IconProps } from "@chakra-ui/react"
+import { Accordion, HStack, Icon } from "@chakra-ui/react"
+import { forwardRef } from "react"
 import { LuChevronDown } from "react-icons/lu"
 
-interface AccordionItemTriggerProps extends ChakraAccordion.ItemTriggerProps {}
+interface AccordionItemTriggerProps extends Accordion.ItemTriggerProps {}
 
-export const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {
+export const AccordionItemTrigger = forwardRef<
+  HTMLButtonElement,
+  AccordionItemTriggerProps
+>(function AccordionItemTrigger(props, ref) {
   const { children, ...rest } = props
   return (
-    <ChakraAccordion.ItemTrigger {...rest}>
+    <Accordion.ItemTrigger {...rest} ref={ref}>
       <HStack gap="4" flex="1" textAlign="start" width="full">
         {children}
       </HStack>
-      <ChakraAccordion.ItemIndicator>
+      <Accordion.ItemIndicator>
         <LuChevronDown />
-      </ChakraAccordion.ItemIndicator>
-    </ChakraAccordion.ItemTrigger>
+      </Accordion.ItemIndicator>
+    </Accordion.ItemTrigger>
   )
-}
+})
 
-interface AccordionItemContentProps extends ChakraAccordion.ItemContentProps {}
+interface AccordionItemContentProps extends Accordion.ItemContentProps {}
 
-export const AccordionItemContent = (props: AccordionItemContentProps) => {
+export const AccordionItemContent = forwardRef<
+  HTMLDivElement,
+  AccordionItemContentProps
+>((props, ref) => {
   return (
-    <ChakraAccordion.ItemContent>
-      <ChakraAccordion.ItemBody {...props} />
-    </ChakraAccordion.ItemContent>
+    <Accordion.ItemContent>
+      <Accordion.ItemBody {...props} ref={ref} />
+    </Accordion.ItemContent>
   )
-}
+})
+
+AccordionItemContent.displayName = "AccordionItemContent"
 
 export const AccordionItemIcon = (props: IconProps) => {
   return <Icon color="fg.muted" fontSize="lg" {...props} asChild />
 }
 
-export const AccordionRoot = ChakraAccordion.Root
-export const AccordionItem = ChakraAccordion.Item
+export const AccordionRoot = Accordion.Root
+export const AccordionItem = Accordion.Item

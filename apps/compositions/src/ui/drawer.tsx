@@ -23,27 +23,36 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   },
 )
 
-export const DrawerCloseTrigger = (props: ChakraDrawer.CloseTriggerProps) => {
+export const DrawerCloseTrigger = forwardRef<
+  HTMLButtonElement,
+  ChakraDrawer.CloseTriggerProps
+>(function DrawerCloseTrigger(props, ref) {
   return (
     <ChakraDrawer.CloseTrigger {...props} asChild>
-      <CloseButton size="sm" />
+      <CloseButton size="sm" ref={ref} />
     </ChakraDrawer.CloseTrigger>
   )
-}
+})
 
-export const DrawerTitle = (props: ChakraDrawer.TitleProps) => {
+export const DrawerTitle = forwardRef<
+  HTMLHeadingElement,
+  ChakraDrawer.TitleProps
+>(function DrawerTitle(props, ref) {
   return (
     <ChakraDrawer.Title {...props} asChild>
-      <Heading as="h2" size="lg" lineHeight="1.2">
+      <Heading as="h2" size="lg" lineHeight="1.2" ref={ref}>
         {props.children}
       </Heading>
     </ChakraDrawer.Title>
   )
-}
+})
 
-export const DrawerDescription = (props: ChakraDrawer.DescriptionProps) => {
-  return <ChakraDrawer.Description color="fg.muted" {...props} />
-}
+export const DrawerDescription = forwardRef<
+  HTMLParagraphElement,
+  ChakraDrawer.DescriptionProps
+>(function DrawerDescription(props, ref) {
+  return <ChakraDrawer.Description color="fg.muted" ref={ref} {...props} />
+})
 
 export const DrawerTrigger = ChakraDrawer.Trigger
 export const DrawerRoot = ChakraDrawer.Root

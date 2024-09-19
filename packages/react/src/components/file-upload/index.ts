@@ -11,6 +11,7 @@ export {
   FileUploadItemName,
   FileUploadItemGroup,
   FileUploadItemDeleteTrigger,
+  FileUploadClearTrigger,
   useFileUploadStyles,
 } from "./file-upload"
 
@@ -26,6 +27,7 @@ export type {
   FileUploadItemNameProps,
   FileUploadItemGroupProps,
   FileUploadItemDeleteTriggerProps,
+  FileUploadClearTriggerProps,
 } from "./file-upload"
 
 export {

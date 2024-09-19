@@ -74,7 +74,7 @@ export interface AccordionItemTriggerProps
   extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps> {}
 
 export const AccordionItemTrigger = withContext<
-  HTMLDivElement,
+  HTMLButtonElement,
   AccordionItemTriggerProps
 >(ArkAccordion.ItemTrigger, "itemTrigger", { forwardAsChild: true })
 

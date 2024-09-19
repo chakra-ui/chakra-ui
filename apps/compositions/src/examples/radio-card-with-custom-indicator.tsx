@@ -1,11 +1,13 @@
 import { HStack } from "@chakra-ui/react"
 import {
   RadioCardItem,
+  RadioCardItemIndicator,
   RadioCardLabel,
   RadioCardRoot,
 } from "compositions/ui/radio-card"
+import { LuCheck } from "react-icons/lu"
 
-export const RadioCardBasic = () => {
+export const RadioCardWithCustomIndicator = () => {
   return (
     <RadioCardRoot width="full" defaultValue="next">
       <RadioCardLabel>Select framework</RadioCardLabel>
@@ -13,7 +15,13 @@ export const RadioCardBasic = () => {
         {items.map((item) => (
           <RadioCardItem
             label={item.title}
-            description={item.description}
+            indicator={
+              <RadioCardItemIndicator
+                color="fg"
+                borderWidth="0"
+                checked={<LuCheck />}
+              />
+            }
             key={item.value}
             value={item.value}
           />

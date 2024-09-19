@@ -11,6 +11,7 @@ export {
   FileUploadItemName as ItemName,
   FileUploadItemGroup as ItemGroup,
   FileUploadItemDeleteTrigger as ItemDeleteTrigger,
+  FileUploadClearTrigger as ClearTrigger,
 } from "./file-upload"
 
 export type {
@@ -25,6 +26,7 @@ export type {
   FileUploadItemNameProps as ItemNameProps,
   FileUploadItemGroupProps as ItemGroupProps,
   FileUploadItemDeleteTriggerProps as ItemDeleteTriggerProps,
+  FileUploadClearTriggerProps as ClearTriggerProps,
 } from "./file-upload"
 
 export {

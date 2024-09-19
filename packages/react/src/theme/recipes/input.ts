@@ -9,6 +9,7 @@ export const inputRecipe = defineRecipe({
     position: "relative",
     appearance: "none",
     colorPalette: "gray",
+    textAlign: "start",
     _disabled: {
       layerStyle: "disabled",
     },

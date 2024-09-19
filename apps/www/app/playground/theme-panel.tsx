@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  Box,
   Card,
   Circle,
   HStack,
@@ -59,17 +58,20 @@ export function ThemePanel(props: ThemePanelProps) {
         }}
       />
 
-      <Card.Root width="320px" variant="elevated" bg="bg.panel">
+      <Card.Root variant="elevated" bg="bg.panel">
         <Card.Header>
           <HStack justify="space-between">
             <Text fontWeight="semibold">Theme Panel</Text>
             <ColorModeButton colorPalette="accent" />
           </HStack>
         </Card.Header>
-        <Card.Body gap="8">
+        <Card.Body gap="8" alignItems="stretch">
           <Stack gap="3">
-            <Text fontWeight="medium">Palette</Text>
+            <Text fontWeight="medium" textStyle="sm">
+              Palette
+            </Text>
             <RadioCardRoot
+              flex="1"
               size="sm"
               defaultValue={accentColor}
               onValueChange={(details) => {
@@ -77,25 +79,23 @@ export function ThemePanel(props: ThemePanelProps) {
                 setAccentColor(details.value)
               }}
             >
-              <SimpleGrid columns={3} gap="2">
+              <HStack wrap="wrap" maxW="342px" gap="2">
                 {accentColors.map((color) => (
                   <RadioCardItem
+                    flex="0"
+                    indicator={<Circle size="4" bg={`${color}.solid`} />}
                     key={color}
                     value={color}
-                    showIndicator={false}
-                  >
-                    <Circle size="4" bg={`${color}.solid`} />
-                    <Text textStyle="xs" fontWeight="medium" ms="-1">
-                      {color}
-                    </Text>
-                  </RadioCardItem>
+                  />
                 ))}
-              </SimpleGrid>
+              </HStack>
             </RadioCardRoot>
           </Stack>
 
           <Stack gap="3">
-            <Text fontWeight="medium">Font Family</Text>
+            <Text fontWeight="medium" textStyle="sm">
+              Font Family
+            </Text>
             <SimpleGrid gap="2" columns={4}>
               {fontFamilies.map((item) => (
                 <Square

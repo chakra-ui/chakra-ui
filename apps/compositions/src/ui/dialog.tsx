@@ -35,27 +35,38 @@ export const DialogTrigger = (props: ChakraDialog.TriggerProps) => {
   return <ChakraDialog.Trigger {...props} />
 }
 
-export const DialogCloseTrigger = (props: ChakraDialog.CloseTriggerProps) => {
+export const DialogCloseTrigger = forwardRef<
+  HTMLButtonElement,
+  ChakraDialog.CloseTriggerProps
+>(function DialogCloseTrigger(props, ref) {
   return (
     <ChakraDialog.CloseTrigger {...props} asChild>
-      <CloseButton size="sm">{props.children}</CloseButton>
+      <CloseButton size="sm" ref={ref}>
+        {props.children}
+      </CloseButton>
     </ChakraDialog.CloseTrigger>
   )
-}
+})
 
-export const DialogTitle = (props: ChakraDialog.TitleProps) => {
+export const DialogTitle = forwardRef<
+  HTMLHeadingElement,
+  ChakraDialog.TitleProps
+>(function DialogTitle(props, ref) {
   return (
     <ChakraDialog.Title {...props} asChild>
-      <Heading as="h2" size="lg" lineHeight="1.2">
+      <Heading as="h2" size="lg" lineHeight="1.2" ref={ref}>
         {props.children}
       </Heading>
     </ChakraDialog.Title>
   )
-}
+})
 
-export const DialogDescription = (props: ChakraDialog.DescriptionProps) => {
-  return <ChakraDialog.Description color="fg.subtle" {...props} />
-}
+export const DialogDescription = forwardRef<
+  HTMLParagraphElement,
+  ChakraDialog.DescriptionProps
+>(function DialogDescription(props, ref) {
+  return <ChakraDialog.Description color="fg.subtle" {...props} ref={ref} />
+})
 
 export const DialogRoot = ChakraDialog.Root
 export const DialogFooter = ChakraDialog.Footer

@@ -91,9 +91,6 @@ export const SelectRoot = (props: ChakraSelect.RootProps) => {
   )
 }
 
-export const SelectLabel = ChakraSelect.Label
-export const SelectItemText = ChakraSelect.ItemText
-
 interface SelectItemGroupProps extends ChakraSelect.ItemGroupProps {
   label: React.ReactNode
 }
@@ -107,3 +104,6 @@ export const SelectItemGroup = (props: SelectItemGroupProps) => {
     </ChakraSelect.ItemGroup>
   )
 }
+
+export const SelectLabel = ChakraSelect.Label
+export const SelectItemText = ChakraSelect.ItemText

@@ -27,7 +27,7 @@ export const FileUploadInDialog = () => {
         </DialogHeader>
         <DialogBody pb="6">
           <FileUploadRoot>
-            <FileUploadDropzone width="full" />
+            <FileUploadDropzone width="full" label="Drag and drop files here" />
             <FileUploadList />
           </FileUploadRoot>
         </DialogBody>
