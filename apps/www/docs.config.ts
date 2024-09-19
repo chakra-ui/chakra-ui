@@ -43,8 +43,8 @@ const docsLinks: NavItem = {
             { title: "Dark Mode", url: "dark-mode" },
             { title: "Color Opacity Modifier", url: "color-opacity-modifier" },
             { title: "Conditional Styles", url: "conditional-styles" },
-            { title: "Focus Ring", url: "focus-ring" },
             { title: "Virtual Color", url: "virtual-color" },
+            { title: "Cascade Layers", url: "cascade-layers" },
           ],
         },
         {
@@ -53,6 +53,7 @@ const docsLinks: NavItem = {
             { title: "Text Styles", url: "text-styles" },
             { title: "Layer Styles", url: "layer-styles" },
             { title: "Animation Styles", url: "animation-styles" },
+            { title: "Focus Ring", url: "focus-ring" },
           ],
         },
         {

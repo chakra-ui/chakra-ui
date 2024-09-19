@@ -13,6 +13,7 @@ import { createConditions } from "./conditions"
 import { mergeConfigs } from "./config"
 import { createCssFn } from "./css"
 import { createRecipeFn } from "./cva"
+import { createLayers } from "./layers"
 import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
@@ -36,6 +37,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     cssVarsPrefix = "chakra",
     preflight,
   } = config
+
+  const layers = createLayers(config)
 
   const tokens = createTokenDictionary({
     breakpoints: theme.breakpoints,
@@ -120,6 +123,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     css: css as any,
     conditions,
     normalize: normalizeFn,
+    layers,
   })
 
   const sva = createSlotRecipeFn({ cva })
@@ -140,7 +144,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
       }
     }
 
-    return result
+    return layers.wrap("tokens", result)
   }
 
   function getGlobalCss() {
@@ -150,7 +154,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
         value,
       ]),
     )
-    return Object.assign({}, keyframes, css(serialize(globalCss)))
+    const result = Object.assign({}, keyframes, css(serialize(globalCss)))
+    return layers.wrap("base", result)
   }
 
   function splitCssProps(props: any) {
@@ -158,7 +163,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   function getPreflightCss() {
-    return createPreflight({ preflight })
+    const result = createPreflight({ preflight })
+    return layers.wrap("reset", result)
   }
 
   const tokenMap = getTokenMap(tokens)
@@ -200,6 +206,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     utility,
     token: tokenFn,
     properties,
+    layers,
     isValidProperty,
     splitCssProps: splitCssProps as any,
     normalizeValue,

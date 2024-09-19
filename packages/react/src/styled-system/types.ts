@@ -269,6 +269,12 @@ export type CssFn = (
   ...styles: (SystemStyleObject | undefined)[]
 ) => SystemStyleObject
 
+export interface Layers {
+  wrap(layer: CascadeLayer, styles: Dict): Dict
+  names: string[]
+  atRule: string
+}
+
 export interface SystemContext {
   $$chakra: true
   _config: SystemConfig
@@ -294,6 +300,7 @@ export interface SystemContext {
   isSlotRecipe(key: string): boolean
   hasRecipe(key: string): boolean
   token: TokenFn
+  layers: Layers
 }
 
 export interface ThemingConfig {
@@ -312,10 +319,14 @@ export interface PreflightConfig {
   preflight?: boolean | { scope?: string; level?: "parent" | "element" }
 }
 
+export type CascadeLayer = "reset" | "base" | "tokens" | "recipes"
+
 export interface SystemConfig extends PreflightConfig {
   cssVarsRoot?: string
   cssVarsPrefix?: string
   globalCss?: Record<string, SystemStyleObject>
+  disableLayers?: boolean
+  layers?: Record<CascadeLayer, string>
   theme?: ThemingConfig
   utilities?: UtilityConfig
   conditions?: Dict
