@@ -60,8 +60,10 @@ describe("cva", () => {
 
     expect(result({ size: "sm" })).toMatchInlineSnapshot(`
       {
-        "color": "var(--chakra-colors-pink-400)",
-        "marginTop": "md",
+        "@layer recipes": {
+          "color": "var(--chakra-colors-pink-400)",
+          "marginTop": "md",
+        },
       }
     `)
   })
@@ -91,12 +93,14 @@ describe("cva", () => {
 
     expect(result({ size: ["sm", "md"], caps: true })).toMatchInlineSnapshot(`
       {
-        "@media screen and (min-width: 30rem)": {
-          "marginTop": "30px",
+        "@layer recipes": {
+          "@media screen and (min-width: 30rem)": {
+            "marginTop": "30px",
+          },
+          "color": "var(--chakra-colors-pink-400)",
+          "marginTop": "20px",
+          "textTransform": "uppercase",
         },
-        "color": "var(--chakra-colors-pink-400)",
-        "marginTop": "20px",
-        "textTransform": "uppercase",
       }
     `)
   })
@@ -126,14 +130,16 @@ describe("cva", () => {
 
     expect(result({ size: { base: "sm", sm: "md" }, caps: true }))
       .toMatchInlineSnapshot(`
-      {
-        "@media screen and (min-width: 30rem)": {
-          "marginTop": "30px",
-        },
-        "color": "var(--chakra-colors-pink-400)",
-        "marginTop": "20px",
-        "textTransform": "uppercase",
-      }
-    `)
+        {
+          "@layer recipes": {
+            "@media screen and (min-width: 30rem)": {
+              "marginTop": "30px",
+            },
+            "color": "var(--chakra-colors-pink-400)",
+            "marginTop": "20px",
+            "textTransform": "uppercase",
+          },
+        }
+      `)
   })
 })

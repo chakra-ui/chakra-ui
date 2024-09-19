@@ -23,12 +23,14 @@ describe("system", () => {
 
     expect(sys.getTokenCss()).toMatchInlineSnapshot(`
       {
-        "&:where(html)": {
-          "--chakra-colors-primary": "#000",
-          "--chakra-colors-test": "",
-        },
-        ".dark &": {
-          "--chakra-colors-test": "pink",
+        "@layer tokens": {
+          "&:where(html)": {
+            "--chakra-colors-primary": "#000",
+            "--chakra-colors-test": "",
+          },
+          ".dark &": {
+            "--chakra-colors-test": "pink",
+          },
         },
       }
     `)
@@ -70,23 +72,25 @@ describe("system", () => {
 
     expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
       {
-        "&body": {
-          "background": "var(--chakra-colors-primary)",
-        },
-        "@keyframes pulse": {
-          "from": {
-            "opacity": 1,
+        "@layer base": {
+          "&body": {
+            "background": "var(--chakra-colors-primary)",
           },
-          "to": {
-            "opacity": 0,
+          "@keyframes pulse": {
+            "from": {
+              "opacity": 1,
+            },
+            "to": {
+              "opacity": 0,
+            },
           },
-        },
-        "@keyframes spin": {
-          "from": {
-            "transform": "rotate(0deg)",
-          },
-          "to": {
-            "transform": "rotate(360deg)",
+          "@keyframes spin": {
+            "from": {
+              "transform": "rotate(0deg)",
+            },
+            "to": {
+              "transform": "rotate(360deg)",
+            },
           },
         },
       }
@@ -145,9 +149,11 @@ describe("system", () => {
 
     expect(sys.getTokenCss()).toMatchInlineSnapshot(`
       {
-        "&:where(:root, :host)": {
-          "--chakra-borders-initial": "1px solid var(--chakra-colors-primary)",
-          "--chakra-colors-primary": "tomato",
+        "@layer tokens": {
+          "&:where(:root, :host)": {
+            "--chakra-borders-initial": "1px solid var(--chakra-colors-primary)",
+            "--chakra-colors-primary": "tomato",
+          },
         },
       }
     `)
