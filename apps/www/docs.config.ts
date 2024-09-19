@@ -111,6 +111,13 @@ const docsLinks: NavItem = {
           ],
         },
         {
+          title: "Compositions",
+          items: [
+            { title: "Text Styles", url: "text-styles" },
+            { title: "Layer Styles", url: "layer-styles" },
+          ],
+        },
+        {
           title: "Customization",
           url: "customization",
           items: [
