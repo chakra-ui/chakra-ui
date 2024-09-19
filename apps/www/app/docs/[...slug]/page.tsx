@@ -1,5 +1,6 @@
 import { EditPageButton } from "@/components/edit-page-button"
 import { MDXContent } from "@/components/mdx-content"
+import { MDXPagination } from "@/components/mdx-pagination"
 import { PageHeader } from "@/components/page-header"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
@@ -44,6 +45,7 @@ export default function Page(props: Props) {
         />
         <Box>
           <MDXContent code={page.code} />
+          <MDXPagination />
         </Box>
       </Stack>
 

@@ -1,37 +1,33 @@
-import { Box, HStack, Span, StackProps } from "@chakra-ui/react"
+import { Box, HStack, Stack, StackProps, Text } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 interface PaginationItemProps extends StackProps {
-  startIcon?: React.ReactNode
-  endIcon?: React.ReactNode
   href: LinkProps["href"]
 }
 
 const PaginationItem = (props: PaginationItemProps) => {
-  const { startIcon, endIcon, children, href, ...rest } = props
+  const { children, href, ...rest } = props
   return (
-    <HStack
+    <Box
       flex="1"
-      fontWeight="medium"
+      borderWidth="1px"
       focusRing="contain"
       focusRingWidth="2px"
       rounded="md"
+      px="3"
+      py="2"
       {...rest}
       asChild
     >
-      <Link href={href}>
-        {startIcon}
-        <Span>{children}</Span>
-        {endIcon}
-      </Link>
-    </HStack>
+      <Link href={href}>{children}</Link>
+    </Box>
   )
 }
 
 interface PaginationProps extends StackProps {
-  previous?: { label: string; href: LinkProps["href"] }
-  next?: { label: string; href: LinkProps["href"] }
+  previous?: { title: string; url?: LinkProps["href"] } | null
+  next?: { title: string; url?: LinkProps["href"] } | null
 }
 
 export const Pagination = (props: PaginationProps) => {
@@ -39,23 +35,35 @@ export const Pagination = (props: PaginationProps) => {
   return (
     <HStack {...rest}>
       {previous ? (
-        <PaginationItem
-          startIcon={<LuChevronLeft />}
-          href={previous.href}
-          justify="flex-start"
-        >
-          {previous.label}
+        <PaginationItem href={previous.url || "#"}>
+          <Stack gap="1" textAlign="start" textStyle="sm">
+            <Text color="fg.subtle">Previous</Text>
+            <HStack
+              display="inline-flex"
+              justify="flex-start"
+              fontWeight="medium"
+            >
+              <LuChevronLeft />
+              {previous.title}
+            </HStack>
+          </Stack>
         </PaginationItem>
       ) : (
         <Box flex="1" />
       )}
       {next ? (
-        <PaginationItem
-          endIcon={<LuChevronRight />}
-          href={next.href}
-          justify="flex-end"
-        >
-          {next.label}
+        <PaginationItem href={next.url || "#"}>
+          <Stack gap="1" textAlign="end" textStyle="sm">
+            <Text color="fg.subtle">Next</Text>
+            <HStack
+              display="inline-flex"
+              justify="flex-end"
+              fontWeight="medium"
+            >
+              {next.title}
+              <LuChevronRight />
+            </HStack>
+          </Stack>
         </PaginationItem>
       ) : (
         <Box flex="1" />
