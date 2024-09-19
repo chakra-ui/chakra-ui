@@ -1,5 +1,15 @@
 # @chakra-ui/react
 
+## 3.0.0-next.24
+
+### Major Changes
+
+- [#8815](https://github.com/chakra-ui/chakra-ui/pull/8815)
+  [`806be96`](https://github.com/chakra-ui/chakra-ui/commit/806be96aa3be56399af7fb697bbbb92b2533fffd)
+  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@chakra-ui/hooks`
+  package in favour of using dedicated, robust libraries like `react-use` and
+  `usehooks-ts`
+
 ## 3.0.0-next.23
 
 ### Minor Changes
