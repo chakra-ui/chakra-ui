@@ -1,8 +1,7 @@
-import { type CheckboxCardRootProps, Stack, Text } from "@chakra-ui/react"
+import { Stack } from "@chakra-ui/react"
 import {
-  CheckboxCardControl,
-  CheckboxCardLabel,
-  CheckboxCardRoot,
+  CheckboxCard,
+  type CheckboxCardProps,
 } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardWithStates = () => {
@@ -17,15 +16,13 @@ export const CheckboxCardWithStates = () => {
   )
 }
 
-const DemoCheckboxCard = (props: CheckboxCardRootProps) => {
+const DemoCheckboxCard = (props: CheckboxCardProps) => {
   return (
-    <CheckboxCardRoot maxW="240px" {...props}>
-      <CheckboxCardControl>
-        <Stack gap="0" flex="1">
-          <CheckboxCardLabel>Next.js</CheckboxCardLabel>
-          <Text color="fg.subtle">Best for apps</Text>
-        </Stack>
-      </CheckboxCardControl>
-    </CheckboxCardRoot>
+    <CheckboxCard
+      label="Next.js"
+      description="Best for apps"
+      maxW="240px"
+      {...props}
+    />
   )
 }

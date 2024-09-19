@@ -59,6 +59,15 @@ export const checkmarkRecipe = defineRecipe({
           color: "colorPalette.fg",
         },
       },
+      inverted: {
+        bg: "bg",
+        borderWidth: "1px",
+        borderColor: "border",
+        color: "colorPalette.fg",
+        "&:is([data-checked], [data-indeterminate])": {
+          borderColor: "colorPalette.solid",
+        },
+      },
     },
   },
 

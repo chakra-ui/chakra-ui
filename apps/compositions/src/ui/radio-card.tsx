@@ -3,6 +3,7 @@ import { forwardRef } from "react"
 
 interface RadioCardItemProps extends RadioCard.ItemProps {
   icon?: React.ReactElement
+  iconColor?: RadioCard.ItemProps["color"]
   label?: React.ReactNode
   description?: React.ReactNode
   children?: React.ReactNode
@@ -22,6 +23,7 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
       label,
       description,
       icon,
+      iconColor = "fg.subtle",
       addon,
       indicator = <RadioCard.ItemIndicator />,
       indicatorPlacement = "end",
@@ -50,13 +52,13 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
             justifyContent={justify}
           >
             {icon && (
-              <Icon asChild fontSize="2xl" color="fg.subtle" mb="2">
+              <Icon asChild fontSize="2xl" color={iconColor} mb="2">
                 {icon}
               </Icon>
             )}
             {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}
             {description && (
-              <Text color="fg.subtle" textStyle="sm">
+              <Text opacity="0.64" textStyle="sm">
                 {description}
               </Text>
             )}

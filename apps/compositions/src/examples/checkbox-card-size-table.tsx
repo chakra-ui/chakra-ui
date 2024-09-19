@@ -1,17 +1,10 @@
 "use client"
 
-import {
-  type CheckboxCardRootProps,
-  For,
-  Stack,
-  Text,
-  useSlotRecipe,
-} from "@chakra-ui/react"
+import { For, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 import {
-  CheckboxCardControl,
-  CheckboxCardLabel,
-  CheckboxCardRoot,
+  CheckboxCard,
+  type CheckboxCardProps,
 } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardSizeTable = () => {
@@ -31,7 +24,7 @@ export const CheckboxCardSizeTable = () => {
             {(v) => (
               <td key={v}>
                 <Stack gap="4">
-                  <DemoCheckboxCard size={v} variant="plain" defaultChecked />
+                  <DemoCheckboxCard size={v} variant="outline" defaultChecked />
                   <DemoCheckboxCard size={v} variant="subtle" defaultChecked />
                 </Stack>
               </td>
@@ -43,15 +36,13 @@ export const CheckboxCardSizeTable = () => {
   )
 }
 
-const DemoCheckboxCard = (props: CheckboxCardRootProps) => {
+const DemoCheckboxCard = (props: CheckboxCardProps) => {
   return (
-    <CheckboxCardRoot maxW="240px" {...props}>
-      <CheckboxCardControl>
-        <Stack gap="0" flex="1">
-          <CheckboxCardLabel>Next.js</CheckboxCardLabel>
-          <Text color="fg.subtle">Best for apps</Text>
-        </Stack>
-      </CheckboxCardControl>
-    </CheckboxCardRoot>
+    <CheckboxCard
+      label="Next.js"
+      description="Best for apps"
+      maxW="240px"
+      {...props}
+    />
   )
 }

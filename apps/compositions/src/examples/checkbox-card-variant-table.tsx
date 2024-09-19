@@ -5,16 +5,11 @@ import {
   For,
   Span,
   Stack,
-  Text,
   useSlotRecipe,
 } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import {
-  CheckboxCardControl,
-  CheckboxCardLabel,
-  CheckboxCardRoot,
-} from "compositions/ui/checkbox-card"
+import { CheckboxCard } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardVariantTable = () => {
   const recipe = useSlotRecipe({ key: "checkboxCard" })
@@ -67,13 +62,11 @@ export const CheckboxCardVariantTable = () => {
 
 const DemoCheckboxCard = (props: CheckboxCardRootProps) => {
   return (
-    <CheckboxCardRoot maxW="240px" {...props}>
-      <CheckboxCardControl>
-        <Stack gap="0" flex="1">
-          <CheckboxCardLabel>Next.js</CheckboxCardLabel>
-          <Text color="fg.subtle">Best for apps</Text>
-        </Stack>
-      </CheckboxCardControl>
-    </CheckboxCardRoot>
+    <CheckboxCard
+      label="Next.js"
+      description="Best for apps"
+      maxW="240px"
+      {...props}
+    />
   )
 }

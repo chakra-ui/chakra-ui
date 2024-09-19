@@ -17,8 +17,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         opacity: 0.8,
-        color: "fg.subtle",
-        cursor: "not-allowed",
         borderColor: "border.disabled",
       },
     },

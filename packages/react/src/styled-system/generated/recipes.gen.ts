@@ -226,7 +226,7 @@ export interface CheckmarkVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain"
+  variant?: "outline" | "subtle" | "plain" | "inverted"
 }
 
 export type CheckmarkVariantProps = {
@@ -433,7 +433,7 @@ export interface CheckboxCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "plain" | "subtle" | "outline"
+  variant?: "surface" | "subtle" | "outline" | "solid"
 }
 
 export type CheckboxCardVariantProps = {

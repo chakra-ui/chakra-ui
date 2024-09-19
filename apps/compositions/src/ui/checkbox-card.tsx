@@ -1,26 +1,82 @@
 import {
   CheckboxCard as ChakraCheckboxCard,
-  CheckboxGroup,
+  Icon,
+  Stack,
+  Text,
 } from "@chakra-ui/react"
+import { forwardRef } from "react"
 
-export interface CheckboxCardControlProps
-  extends ChakraCheckboxCard.ControlProps {
-  showIndicator?: boolean
+export interface CheckboxCardProps extends ChakraCheckboxCard.RootProps {
+  icon?: React.ReactElement
+  iconColor?: ChakraCheckboxCard.RootProps["color"]
+  label?: React.ReactNode
+  description?: React.ReactNode
+  children?: React.ReactNode
+  addon?: React.ReactNode
+  indicator?: React.ReactNode | null
+  indicatorPlacement?: "start" | "end" | "inside"
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  align?: ChakraCheckboxCard.ControlProps["alignItems"]
+  justify?: ChakraCheckboxCard.ControlProps["justifyContent"]
+  vertical?: boolean
 }
 
-export const CheckboxCardControl = (props: CheckboxCardControlProps) => {
-  const { children, showIndicator = true, ...rest } = props
-  return (
-    <ChakraCheckboxCard.Control {...rest}>
-      {children}
-      <ChakraCheckboxCard.HiddenInput />
-      {showIndicator && <ChakraCheckboxCard.Indicator />}
-    </ChakraCheckboxCard.Control>
-  )
-}
+export const CheckboxCard = forwardRef<HTMLInputElement, CheckboxCardProps>(
+  function CheckboxCard(props, ref) {
+    const {
+      inputProps,
+      label,
+      description,
+      icon,
+      iconColor = "fg.subtle",
+      addon,
+      indicator = <ChakraCheckboxCard.Indicator />,
+      indicatorPlacement = "end",
+      align = "start",
+      justify,
+      vertical,
+      ...rest
+    } = props
 
-export const CheckboxCardAddon = ChakraCheckboxCard.Addon
-export const CheckboxCardRoot = ChakraCheckboxCard.Root
+    const hasContent = label || description || icon
+
+    return (
+      <ChakraCheckboxCard.Root {...rest}>
+        <ChakraCheckboxCard.HiddenInput ref={ref} {...inputProps} />
+        <ChakraCheckboxCard.Control
+          alignItems={align}
+          justifyContent={justify}
+          flexDirection={vertical ? "column" : "row"}
+        >
+          {indicatorPlacement === "start" && indicator}
+          <Stack
+            hidden={!hasContent}
+            gap="1"
+            flex="1"
+            alignItems={align}
+            justifyContent={justify}
+          >
+            {icon && (
+              <Icon asChild fontSize="2xl" color={iconColor} mb="2">
+                {icon}
+              </Icon>
+            )}
+            {label && (
+              <ChakraCheckboxCard.Label>{label}</ChakraCheckboxCard.Label>
+            )}
+            {description && (
+              <Text opacity="0.72" textStyle="sm">
+                {description}
+              </Text>
+            )}
+            {indicatorPlacement === "inside" && indicator}
+          </Stack>
+          {indicatorPlacement === "end" && indicator}
+        </ChakraCheckboxCard.Control>
+        {addon && <ChakraCheckboxCard.Addon>{addon}</ChakraCheckboxCard.Addon>}
+      </ChakraCheckboxCard.Root>
+    )
+  },
+)
+
 export const CheckboxCardIndicator = ChakraCheckboxCard.Indicator
-export const CheckboxCardGroup = CheckboxGroup
-export const CheckboxCardLabel = ChakraCheckboxCard.Label
