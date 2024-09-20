@@ -18,7 +18,7 @@
   "dependencies": {
     "@ark-ui/react": "3.12.1",
     "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "11.11.4",
+    "@emotion/react": "11.13.3",
     "@shikijs/rehype": "1.13.0",
     "@shikijs/transformers": "1.13.0",
     "compositions": "../compositions/src",

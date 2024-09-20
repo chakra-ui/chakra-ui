@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.13.3",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
