@@ -1,5 +1,7 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.25
+
 ## 3.0.0-next.24
 
 ## 3.0.0-next.23
