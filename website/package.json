@@ -30,7 +30,7 @@
     "@docusaurus/utils": "3.4.0",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
-    "@octokit/rest": "21.0.0",
+    "@octokit/rest": "21.0.2",
     "@zag-js/element-size": "^0.68.0",
     "contentlayer": "0.3.4",
     "copy-to-clipboard": "^3.3.3",
