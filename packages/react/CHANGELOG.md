@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.0.0-next.25
+
+### Patch Changes
+
+- [`788f493`](https://github.com/chakra-ui/chakra-ui/commit/788f4937e4e3d3774d260030705859eeb56242c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  media query css order is inconsistent with v2
+
 ## 3.0.0-next.24
 
 ### Major Changes
