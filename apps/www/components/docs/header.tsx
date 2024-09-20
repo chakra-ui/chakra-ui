@@ -30,6 +30,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { SponsorButton } from "../sponsor-button"
 import { CommandMenu } from "./command-menu"
 
 const HeaderRoot = chakra("header", {
@@ -238,6 +239,7 @@ const HeaderMobileMenuDropdown = () => {
 const HeaderDesktopActions = () => {
   return (
     <HStack gap="2" minH="48px" flexShrink="1" minW="0">
+      <SponsorButton hideBelow="lg" />
       <HeaderVersionMenu />
       <CommandMenu
         trigger={<SearchButton width="256px" size="sm" flexShrink="1" />}
