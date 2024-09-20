@@ -6,7 +6,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
   className: "chakra-dialog",
   base: {
     backdrop: {
-      bg: "blackAlpha.700",
+      bg: "blackAlpha.500",
       pos: "fixed",
       left: 0,
       top: 0,
@@ -15,7 +15,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       zIndex: "modal",
       _open: {
         animationName: "fade-in",
-        animationDuration: "moderate",
+        animationDuration: "slow",
       },
       _closed: {
         animationName: "fade-out",
@@ -53,24 +53,24 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     header: {
       flex: 0,
-      padding: "6",
-    },
-    closeTrigger: {
-      position: "absolute!",
-      top: "2",
-      insetEnd: "2",
+      paddingX: "6",
+      paddingTop: "6",
+      paddingBottom: "4",
     },
     body: {
       flex: "1",
-      color: "fg.subtle",
       paddingX: "6",
+      paddingTop: "2",
+      paddingBottom: "6",
     },
     footer: {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
       gap: "3",
-      padding: "6",
+      paddingX: "6",
+      paddingTop: "2",
+      paddingBottom: "4",
     },
   },
 
