@@ -4,17 +4,17 @@ import { forwardRef } from "react"
 
 interface ActionBarContentProps extends ActionBar.ContentProps {
   portalled?: boolean
-  containerRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement>
 }
 
 export const ActionBarContent = forwardRef<
   HTMLDivElement,
   ActionBarContentProps
 >(function ActionBarContent(props, ref) {
-  const { children, portalled = true, containerRef, ...rest } = props
+  const { children, portalled = true, portalRef, ...rest } = props
 
   return (
-    <Portal disabled={!portalled} container={containerRef}>
+    <Portal disabled={!portalled} container={portalRef}>
       <ActionBar.Positioner>
         <ActionBar.Content ref={ref} {...rest} asChild={false}>
           {children}

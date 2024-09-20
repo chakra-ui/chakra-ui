@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
+import { Container, HStack, SimpleGrid } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
 import { AlertWithSpinner } from "compositions/examples/alert-with-spinner"
@@ -125,10 +125,8 @@ import { TextareaWithErrorText } from "compositions/examples/textarea-with-error
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
 import { TextareaWithHelperText } from "compositions/examples/textarea-with-helper-text"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
-import { Metadata } from "next"
-import { LuMinimize2 } from "react-icons/lu"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Kitchen sink",
@@ -242,27 +240,6 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <StepperInput defaultValue="12" min={0} />
-        </Playground.SectionContent>
-      </Playground.Section>
-
-      <Playground.Section>
-        <Playground.SectionTitle id="ScrubberInput">
-          ScrubberInput
-        </Playground.SectionTitle>
-        <Playground.SectionContent>
-          <Text>Just like Figma, interact to scrub value</Text>
-          <HStack>
-            <ScrubberInput
-              label="Angle"
-              icon={<LuMinimize2 />}
-              defaultValue="0"
-            />
-            <ScrubberInput
-              label="Height (px)"
-              defaultValue="12"
-              icon={<Text fontSize="sm">H</Text>}
-            />
-          </HStack>
         </Playground.SectionContent>
       </Playground.Section>
 

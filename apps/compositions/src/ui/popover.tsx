@@ -4,14 +4,14 @@ import { forwardRef } from "react"
 
 interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean
-  containerRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement>
 }
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
-    const { portalled = true, containerRef, ...rest } = props
+    const { portalled = true, portalRef, ...rest } = props
     return (
-      <Portal disabled={!portalled} container={containerRef}>
+      <Portal disabled={!portalled} container={portalRef}>
         <ChakraPopover.Positioner>
           <ChakraPopover.Content ref={ref} {...rest} />
         </ChakraPopover.Positioner>

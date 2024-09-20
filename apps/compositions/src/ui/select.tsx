@@ -35,13 +35,13 @@ const SelectClearTrigger = (props: ChakraSelect.ClearTriggerProps) => (
 
 interface SelectContentProps extends ChakraSelect.ContentProps {
   portalled?: boolean
-  containerRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement>
 }
 
 export const SelectContent = (props: SelectContentProps) => {
-  const { portalled = true, containerRef, ...rest } = props
+  const { portalled = true, portalRef, ...rest } = props
   return (
-    <Portal disabled={!portalled} container={containerRef}>
+    <Portal disabled={!portalled} container={portalRef}>
       <ChakraSelect.Positioner>
         <ChakraSelect.Content {...rest} />
       </ChakraSelect.Positioner>

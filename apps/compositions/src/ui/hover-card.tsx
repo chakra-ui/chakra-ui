@@ -3,17 +3,17 @@ import { forwardRef } from "react"
 
 interface HoverCardContentProps extends HoverCard.ContentProps {
   portalled?: boolean
-  containerRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement>
 }
 
 export const HoverCardContent = forwardRef<
   HTMLDivElement,
   HoverCardContentProps
 >(function HoverCardContent(props, ref) {
-  const { portalled = true, containerRef, ...rest } = props
+  const { portalled = true, portalRef, ...rest } = props
 
   return (
-    <Portal disabled={!portalled} container={containerRef}>
+    <Portal disabled={!portalled} container={portalRef}>
       <HoverCard.Positioner>
         <HoverCard.Content ref={ref} {...rest} />
       </HoverCard.Positioner>

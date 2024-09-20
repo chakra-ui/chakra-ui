@@ -6,14 +6,14 @@ import { LuCheck, LuChevronRight } from "react-icons/lu"
 
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean
-  containerRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement>
 }
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
-    const { portalled = true, containerRef, ...rest } = props
+    const { portalled = true, portalRef, ...rest } = props
     return (
-      <Portal disabled={!portalled} container={containerRef}>
+      <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
           <ChakraMenu.Content ref={ref} {...rest} />
         </ChakraMenu.Positioner>
