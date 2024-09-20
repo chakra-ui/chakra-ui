@@ -25,6 +25,9 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       paddingY: "2",
       paddingX: "2",
       pointerEvents: "auto",
+      // Stabilize the position of the action bar when the scrollbar is hidden
+      // by using the scrollbar width to offset the position.
+      translate: "calc(-1 * var(--scrollbar-width) / 2) 0px",
 
       _open: {
         animationName: "slide-from-bottom, fade-in",
