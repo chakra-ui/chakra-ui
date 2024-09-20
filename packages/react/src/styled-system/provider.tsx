@@ -20,7 +20,7 @@ function ChakraProvider(props: ChakraProviderProps) {
 
   return (
     <ChakraContextProvider value={sys}>
-      <Global styles={sys.layers.atRule} />
+      {!sys._config.disableLayers && <Global styles={sys.layers.atRule} />}
       <Global
         styles={[sys.getPreflightCss(), sys.getGlobalCss(), sys.getTokenCss()]}
       />
