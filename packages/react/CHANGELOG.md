@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.0.0-next.26
+
+### Patch Changes
+
+- [`6d4cbbe`](https://github.com/chakra-ui/chakra-ui/commit/6d4cbbef2a48cc6a62c9e5ce548fc54426b2ed62)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix ES module
+  interop for @emotion/is-prop-value that makes Jest throw error.
+
 ## 3.0.0-next.25
 
 ### Patch Changes
