@@ -190,14 +190,6 @@
   },
   {
     "type": "composition",
-    "id": "loading-overlay",
-    "file": "loading-overlay.tsx",
-    "component": "LoadingOverlay",
-    "npmDependencies": [],
-    "fileDependencies": []
-  },
-  {
-    "type": "composition",
     "id": "menu",
     "file": "menu.tsx",
     "component": "Menu",
@@ -221,18 +213,6 @@
     "component": "NumberInput",
     "npmDependencies": [],
     "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "overflow-menu",
-    "file": "overflow-menu.tsx",
-    "component": "OverflowMenu",
-    "npmDependencies": [
-      "react-icons"
-    ],
-    "fileDependencies": [
-      "compositions/ui/menu"
-    ]
   },
   {
     "type": "composition",
@@ -337,16 +317,6 @@
     "component": "Rating",
     "npmDependencies": [],
     "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "scrubber-input",
-    "file": "scrubber-input.tsx",
-    "component": "ScrubberInput",
-    "npmDependencies": [],
-    "fileDependencies": [
-      "compositions/ui/tooltip"
-    ]
   },
   {
     "type": "composition",
@@ -459,7 +429,9 @@
     "id": "toggle-tip",
     "file": "toggle-tip.tsx",
     "component": "ToggleTip",
-    "npmDependencies": [],
+    "npmDependencies": [
+      "react-icons"
+    ],
     "fileDependencies": []
   },
   {
