@@ -53,6 +53,9 @@ export function walkObject<T, K>(
 
 export function mapObject(obj: any, fn: (value: any) => any) {
   if (Array.isArray(obj)) return obj.map((value) => fn(value))
-  if (!isObject(obj)) return fn(obj)
+  if (!isObject(obj)) {
+    if (obj !== null && obj !== undefined) return fn(obj)
+    else return obj
+  }
   return walkObject(obj, (value) => fn(value))
 }
