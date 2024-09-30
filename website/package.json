@@ -36,7 +36,7 @@
     "copy-to-clipboard": "^3.3.3",
     "date-fns": "3.6.0",
     "docsearch.js": "2.6.3",
-    "focus-visible": "5.2.0",
+    "focus-visible": "5.2.1",
     "formik": "2.4.6",
     "framer-motion": "11.2.12",
     "github-slugger": "2.0.0",
