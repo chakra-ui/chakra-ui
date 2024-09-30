@@ -1,4 +1,5 @@
 import { isBrowser } from "@chakra-ui/utils/is-element"
+import { EmotionCache, withEmotionCache } from "@emotion/react"
 import {
   useCallback,
   useEffect,
@@ -14,7 +15,6 @@ import {
 } from "./color-mode-types"
 import { getColorModeUtils } from "./color-mode.utils"
 import { StorageManager, localStorageManager } from "./storage-manager"
-import { EmotionCache, withEmotionCache } from "@emotion/react"
 
 const noop = () => {}
 
