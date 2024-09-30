@@ -11709,6 +11709,26 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@babel/core@7.25.2':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@babel/code-frame': 7.24.7
+      '@babel/generator': 7.25.6
+      '@babel/helper-compilation-targets': 7.25.2
+      '@babel/helper-module-transforms': 7.25.2(@babel/core@7.25.2)
+      '@babel/helpers': 7.25.6
+      '@babel/parser': 7.25.6
+      '@babel/template': 7.25.0
+      '@babel/traverse': 7.25.6
+      '@babel/types': 7.25.6
+      convert-source-map: 2.0.0
+      debug: 4.3.7
+      gensync: 1.0.0-beta.2
+      json5: 2.2.3
+      semver: 6.3.1
+    transitivePeerDependencies:
+      - supports-color
+
   '@babel/eslint-parser@7.24.7(@babel/core@7.24.7)(eslint@8.57.0)':
     dependencies:
       '@babel/core': 7.24.7
@@ -12651,6 +12671,18 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/parser': 7.24.7
       '@babel/types': 7.24.7
+      debug: 4.3.7
+      globals: 11.12.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@babel/traverse@7.25.6':
+    dependencies:
+      '@babel/code-frame': 7.24.7
+      '@babel/generator': 7.25.6
+      '@babel/parser': 7.25.6
+      '@babel/template': 7.25.0
+      '@babel/types': 7.25.6
       debug: 4.3.7
       globals: 11.12.0
     transitivePeerDependencies:
