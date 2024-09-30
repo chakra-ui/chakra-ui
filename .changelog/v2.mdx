@@ -5,6 +5,83 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [2.9.0](./#2.9.0) - 2024-09-30
+
+### Fixed
+
+- **Menu:** Fix hard-coded z-index for Menu in favor of one defined from the
+  theme
+
+- **Storybook:** Fix issue in storybook addon where theme could be undefined.
+
+- **Avatar**: Fix problem with leading and trailing spaces when getting
+  initials.
+
+- **ColorMode**: Include "nonce" from "EmotionCache" inside style tag to resolve
+  Content Security Policy error
+
+- **Hooks**: Fix issue where `useOutsideClick` doesn't work in shadow DOM
+  environments
+
+### Added
+
+- **Styled System**:
+
+  - Add CSS `accentColor` property to styled-system
+  - Add support for custom theme conditions or pseudo props via
+    `theme.conditions`
+
+    ```ts
+    // theme.ts
+
+    const theme = extendTheme({
+      conditions: {
+        _closed: "[data-state='closed']", // pseudo prop
+      },
+    })
+    ```
+
+    This allows you to use the pseudo prop in your components
+
+    ```jsx
+    <Box data-state="closed" _closed={{ bg: "red.200" }}>
+      This box is closed
+    </Box>
+    ```
+
+    **For TypeScript users**, you need to use the Chakra CLI to generate the
+    types for your custom conditions.
+
+    ```sh
+    pnpm chakra-cli tokens src/theme/index.ts
+    ```
+
+  - Add support for `_open` and `_closed` pseudo props for styling their
+    respective selectors.
+
+    - `_open`: `&[data-state=open], &[open]`
+    - `_closed`: `&[data-state=closed]`
+    - `_groupOpen`: `[data-group][data-state=open] &`
+    - `_groupClosed`: `[data-group][data-state=closed] &`
+
+    Extend the existing pseudo props to support new selectors
+
+    - `_placeholder` now supports `&[data-placeholder]`
+    - `_placeholderShow` now supports `&[data-placeholder-shown]`
+    - `_fullscreen` now supports `&[data-fullscreen]`
+    - `_empty` now supports `&[data-empty]`
+    - `_expanded` now supports `&[data-state=expanded]`
+    - `_checked` now supports `&[data-state-checked]`
+
+- **Toast**: Export `toastStore` from `toast` component
+
+- **Checkbox**: Add for attribute to Radio and Checkbox label if id is available
+  for the input
+
+### Changed
+
+- **Button**: Revert breaking change by re-allowing disabled prop on button
+
 ## [2.8.2](./#2.8.2) - 2023-11-09
 
 ### Fixed
