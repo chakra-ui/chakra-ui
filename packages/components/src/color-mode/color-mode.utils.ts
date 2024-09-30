@@ -7,10 +7,11 @@ const classNames = {
 
 type UtilOptions = {
   preventTransition?: boolean
+  nonce?: string
 }
 
 export function getColorModeUtils(options: UtilOptions = {}) {
-  const { preventTransition = true } = options
+  const { preventTransition = true, nonce } = options
 
   const utils = {
     setDataset: (value: ColorMode) => {
@@ -52,6 +53,11 @@ export function getColorModeUtils(options: UtilOptions = {}) {
           `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
         ),
       )
+
+      if (nonce !== undefined) {
+        css.nonce = nonce
+      }
+
       document.head.appendChild(css)
 
       return () => {
