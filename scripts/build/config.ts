@@ -8,10 +8,16 @@ import { Plugin, RollupOptions } from "rollup"
 import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
 
-const useClientFileExclude = ["index"].reduce<string[]>((acc, name) => {
-  acc.push(`${name}.js`, `${name}.mjs`, `${name}.cjs`)
-  return acc
-}, [])
+const useClientFileExclude = ["index"]
+  .reduce<string[]>((acc, name) => {
+    acc.push(`${name}.js`, `${name}.mjs`, `${name}.cjs`)
+    return acc
+  }, [])
+  .flat()
+
+const useClientFileExcludeRegex = new RegExp(
+  `(${useClientFileExclude.join("|")})`,
+)
 
 const useClientDirInclude = [
   "packages/hooks",
@@ -37,7 +43,7 @@ export async function getConfig(
     replace({ preventAssignment: true }),
     banner((chunk) => {
       const skip =
-        useClientFileExclude.includes(chunk.fileName) ||
+        useClientFileExcludeRegex.test(chunk.fileName) ||
         !useClientDirInclude.includes(dir)
 
       if (skip) return
