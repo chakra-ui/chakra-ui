@@ -252,6 +252,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         if (!node) return
         setRootIsLabelElement(node.tagName === "LABEL")
       }),
+      htmlFor:
+        props.htmlFor !== undefined
+          ? props.htmlFor
+          : rootIsLabelElement
+          ? id
+          : undefined,
       onClick: callAllHandlers(props.onClick, () => {
         /**
          * Accessibility:
@@ -274,7 +280,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement, id],
   )
 
   const getInputProps: PropGetter = useCallback(

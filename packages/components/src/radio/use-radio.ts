@@ -280,6 +280,7 @@ export function useRadio(props: UseRadioProps = {}) {
   })
 
   const getRootProps: PropGetter = (props, ref = null) => ({
+    htmlFor: id,
     ...props,
     ref,
     "data-disabled": dataAttr(isDisabled),
