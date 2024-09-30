@@ -1,4 +1,3 @@
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import {
   css,
   isStylePropFn,
@@ -12,24 +11,10 @@ import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { splitProps } from "@chakra-ui/utils/split-props"
 import { Dict } from "@chakra-ui/utils/types"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
-import {
-  Children,
-  createElement,
-  ElementType,
-  forwardRef,
-  isValidElement,
-  useMemo,
-} from "react"
+import { createElement, ElementType, forwardRef } from "react"
 import { useColorMode } from "../color-mode"
-import { mergeProps } from "./merge-props"
 import { shouldForwardProp } from "./should-forward-prop"
-import {
-  AsChildProps,
-  AsProps,
-  ChakraComponent,
-  ChakraProps,
-  PropsOf,
-} from "./system.types"
+import { AsProps, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
 
 const emotion_styled = interopDefault(createStyled)
@@ -108,48 +93,17 @@ export function styled<T extends ElementType, P extends object = {}>(
 
   const chakraComponent = forwardRef<any, any>(
     function ChakraComponent(props, ref) {
-      const { asChild, children, ...restProps } = props
+      const { children, ...restProps } = props
 
       const { colorMode, forced } = useColorMode()
 
       const dataTheme = forced ? colorMode : undefined
 
-      if (!asChild) {
-        return createElement(
-          Component,
-          {
-            ref,
-            "data-theme": dataTheme,
-            ...restProps,
-          },
-          children,
-        )
-      }
-
-      const onlyChild = Children.only(props.children)
-
-      if (isValidElement(onlyChild)) {
-        const composedProps = mergeProps(restProps, onlyChild.props ?? {})
-
-        const composedRef = ref
-          ? mergeRefs(ref, (onlyChild as any).ref)
-          : (onlyChild as any).ref
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const styledElement = useMemo(
-          () =>
-            emotion_styled(onlyChild.type as any, styledOptions)(styleObject),
-          [onlyChild.type],
-        )
-
-        return createElement(styledElement, {
-          ref: composedRef,
-          "data-theme": dataTheme,
-          ...composedProps,
-        })
-      }
-
-      return onlyChild
+      return createElement(
+        Component,
+        { ref, "data-theme": dataTheme, ...restProps },
+        children,
+      )
     },
   )
 
@@ -165,5 +119,4 @@ export type HTMLChakraProps<T extends ElementType> = Omit<
   "ref" | keyof StyleProps
 > &
   ChakraProps &
-  AsChildProps &
   AsProps

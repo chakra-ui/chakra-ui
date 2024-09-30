@@ -8,14 +8,6 @@ export default {
 
 const MotionBox = motion(chakra.div)
 
-export const WithAsChild = () => {
-  return (
-    <chakra.button bg="red.200" asChild>
-      <a href="dfd">sdfsd</a>
-    </chakra.button>
-  )
-}
-
 export const WithFramerMotion = () => (
   <MotionBox
     mt="40px"

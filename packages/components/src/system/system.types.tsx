@@ -27,15 +27,7 @@ export interface ChakraProps extends SystemProps {
   css?: Interpolation<{}>
 }
 
-export interface AsChildProps {
-  asChild?: boolean
-}
-
 export interface AsProps<T extends ElementType = ElementType> {
-  /**
-   * @deprecated - This prop is deprecated and will be removed in a future release
-   * Switch to the `asChild` prop instead
-   */
   as?: T
 }
 
@@ -80,7 +72,7 @@ export type ComponentWithAs<
 > = {
   <AsComponent extends ElementType = Component>(
     props: MergeWithAs<
-      React.ComponentProps<Component> & AsChildProps,
+      React.ComponentProps<Component>,
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent

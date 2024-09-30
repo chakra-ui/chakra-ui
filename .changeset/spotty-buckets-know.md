@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/react": major
+"@chakra-ui/react": minor
 ---
 
-Add default preserveScrollBarGap
+Add default `preserveScrollBarGap`
