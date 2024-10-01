@@ -18,4 +18,8 @@ export type {
 export * as Toast from "./namespace"
 
 export { Toaster, createToaster, useToastStyles } from "./toast"
-export type { CreateToasterProps, ToasterProps } from "./toast"
+export type {
+  CreateToasterProps,
+  ToasterProps,
+  CreateToasterReturn,
+} from "./toast"

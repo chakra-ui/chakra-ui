@@ -5,6 +5,7 @@ import {
   Toast as ArkToast,
   Toaster as ArkToaster,
   type CreateToasterProps,
+  type CreateToasterReturn,
   type ToasterBaseProps,
   createToaster,
   useToastContext,
@@ -19,7 +20,7 @@ import {
 } from "../../styled-system"
 import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons"
 
-export { createToaster, type CreateToasterProps }
+export { createToaster, type CreateToasterProps, type CreateToasterReturn }
 
 const {
   withProvider,
