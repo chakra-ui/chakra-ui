@@ -8,7 +8,6 @@
     "@chakra-ui/cli": "2.4.1",
     "@chakra-ui/props-docs": "2.2.1",
     "@chakra-ui/react": "2.8.2",
-    "@chakra-ui/docs": "2.1.6",
     "@chakra-ui/www": "0.1.0",
     "next-app": "2.0.14",
     "next-pages": "2.0.14",
