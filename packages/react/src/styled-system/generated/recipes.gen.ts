@@ -226,7 +226,7 @@ export interface CheckmarkVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain"
+  variant?: "outline" | "subtle" | "plain" | "inverted"
 }
 
 export type CheckmarkVariantProps = {
@@ -239,7 +239,7 @@ export type CheckmarkVariantMap = {
 
 export interface RadiomarkVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "classic"
+  variant?: "outline" | "subtle" | "classic" | "inverted"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
 }
@@ -433,7 +433,7 @@ export interface CheckboxCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "plain" | "subtle" | "outline"
+  variant?: "surface" | "subtle" | "outline" | "solid"
 }
 
 export type CheckboxCardVariantProps = {
@@ -829,7 +829,7 @@ export interface RadioCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "plain" | "subtle" | "outline"
+  variant?: "surface" | "subtle" | "outline" | "solid"
 }
 
 export type RadioCardVariantProps = {

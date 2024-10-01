@@ -9,7 +9,7 @@ import {
 } from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
-import type { Condition, CssFn } from "./types"
+import type { Condition, CssFn, Layers } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
   base: {},
@@ -23,10 +23,11 @@ interface Options {
   normalize: (styles: Dict) => Dict
   css: CssFn
   conditions: Condition
+  layers: Layers
 }
 
 export function createRecipeFn(options: Options): RecipeCreatorFn {
-  const { css, conditions, normalize } = options
+  const { css, conditions, normalize, layers } = options
 
   function cva(config: Dict = {}) {
     const { base, variants, defaultVariants, compoundVariants } =
@@ -55,7 +56,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
         variantSelections,
       )
 
-      return css(variantCss, compoundVariantCss)
+      return layers.wrap("recipes", css(variantCss, compoundVariantCss))
     }
 
     const variantKeys = Object.keys(variants)

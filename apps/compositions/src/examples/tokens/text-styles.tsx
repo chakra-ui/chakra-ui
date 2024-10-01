@@ -2,7 +2,7 @@ import { For, Stack, Text } from "@chakra-ui/react"
 
 export const TokensTextStyles = () => {
   return (
-    <Stack gap="4">
+    <Stack gap="8">
       <For
         each={[
           "xs",

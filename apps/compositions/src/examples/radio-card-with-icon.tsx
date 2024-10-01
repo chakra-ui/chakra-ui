@@ -1,7 +1,6 @@
-import { HStack, Icon, Stack, Text } from "@chakra-ui/react"
+import { HStack } from "@chakra-ui/react"
 import {
   RadioCardItem,
-  RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
 } from "compositions/ui/radio-card"
@@ -13,19 +12,13 @@ export const RadioCardWithIcon = () => {
       <RadioCardLabel>Select permission</RadioCardLabel>
       <HStack mt="2" align="stretch" width="full">
         {items.map((item) => (
-          <RadioCardItem key={item.value} value={item.value} flex="1">
-            <Stack flex="1">
-              <Icon asChild color="fg.subtle" fontSize="xl">
-                {item.icon}
-              </Icon>
-              <RadioCardItemText fontWeight="medium" mt="2">
-                {item.title}
-              </RadioCardItemText>
-              <Text color="fg.subtle" textStyle="sm">
-                {item.description}
-              </Text>
-            </Stack>
-          </RadioCardItem>
+          <RadioCardItem
+            icon={item.icon}
+            label={item.title}
+            description={item.description}
+            key={item.value}
+            value={item.value}
+          />
         ))}
       </HStack>
     </RadioCardRoot>

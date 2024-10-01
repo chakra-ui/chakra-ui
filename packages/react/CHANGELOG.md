@@ -1,5 +1,31 @@
 # @chakra-ui/react
 
+## 3.0.0-next.26
+
+### Patch Changes
+
+- [`6d4cbbe`](https://github.com/chakra-ui/chakra-ui/commit/6d4cbbef2a48cc6a62c9e5ce548fc54426b2ed62)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix ES module
+  interop for @emotion/is-prop-value that makes Jest throw error.
+
+## 3.0.0-next.25
+
+### Patch Changes
+
+- [`788f493`](https://github.com/chakra-ui/chakra-ui/commit/788f4937e4e3d3774d260030705859eeb56242c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  media query css order is inconsistent with v2
+
+## 3.0.0-next.24
+
+### Major Changes
+
+- [#8815](https://github.com/chakra-ui/chakra-ui/pull/8815)
+  [`806be96`](https://github.com/chakra-ui/chakra-ui/commit/806be96aa3be56399af7fb697bbbb92b2533fffd)
+  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@chakra-ui/hooks`
+  package in favour of using dedicated, robust libraries like `react-use` and
+  `usehooks-ts`
+
 ## 3.0.0-next.23
 
 ### Minor Changes

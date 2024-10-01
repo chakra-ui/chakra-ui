@@ -43,8 +43,8 @@ const docsLinks: NavItem = {
             { title: "Dark Mode", url: "dark-mode" },
             { title: "Color Opacity Modifier", url: "color-opacity-modifier" },
             { title: "Conditional Styles", url: "conditional-styles" },
-            { title: "Focus Ring", url: "focus-ring" },
             { title: "Virtual Color", url: "virtual-color" },
+            { title: "Cascade Layers", url: "cascade-layers" },
           ],
         },
         {
@@ -53,6 +53,7 @@ const docsLinks: NavItem = {
             { title: "Text Styles", url: "text-styles" },
             { title: "Layer Styles", url: "layer-styles" },
             { title: "Animation Styles", url: "animation-styles" },
+            { title: "Focus Ring", url: "focus-ring" },
           ],
         },
         {
@@ -107,6 +108,13 @@ const docsLinks: NavItem = {
             { title: "Spacing", url: "spacing" },
             { title: "Typography", url: "typography" },
             { title: "Z-Index", url: "z-index" },
+          ],
+        },
+        {
+          title: "Compositions",
+          items: [
+            { title: "Text Styles", url: "text-styles" },
+            { title: "Layer Styles", url: "layer-styles" },
           ],
         },
         {
@@ -166,6 +174,7 @@ const docsLinks: NavItem = {
             { title: "Highlight", url: "highlight" },
             { title: "Kbd", url: "kbd" },
             { title: "Link", url: "link" },
+            { title: "Link Overlay", url: "link-overlay" },
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
@@ -185,14 +194,14 @@ const docsLinks: NavItem = {
             { title: "Card", url: "card" },
             { title: "Checkbox Card", url: "checkbox-card" },
             { title: "Checkbox", url: "checkbox" },
-            { title: "Clipboard", url: "clipboard", status: "new" },
+            { title: "Clipboard", url: "clipboard" },
             { title: "Close Button", url: "close-button" },
             { title: "Collapsible", url: "collapsible" },
-            { title: "Data List", url: "data-list", status: "new" },
+            { title: "Data List", url: "data-list" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
             { title: "Editable", url: "editable" },
-            { title: "Empty State", url: "empty-state", status: "new" },
+            { title: "Empty State", url: "empty-state" },
             { title: "Field", url: "field" },
             { title: "File Upload", url: "file-upload" },
             { title: "Hover Card", url: "hover-card" },
@@ -202,7 +211,7 @@ const docsLinks: NavItem = {
             { title: "Menu", url: "menu" },
             { title: "Number Input", url: "number-input" },
             { title: "Pagination", url: "pagination" },
-            { title: "Password Input", url: "password-input", status: "new" },
+            { title: "Password Input", url: "password-input" },
             { title: "Pin Input", url: "pin-input" },
             { title: "Popover", url: "popover" },
             { title: "Progress Circle", url: "progress-circle" },
@@ -225,15 +234,16 @@ const docsLinks: NavItem = {
             { title: "Table", url: "table" },
             { title: "Tag", url: "tag" },
             { title: "Textarea", url: "textarea" },
-            { title: "Timeline", url: "timeline", status: "new" },
+            { title: "Timeline", url: "timeline" },
             { title: "Toast", url: "toast" },
+            { title: "Toggle Tip", url: "toggle-tip" },
             { title: "Tooltip", url: "tooltip" },
           ],
         },
         {
           title: "Utilities",
           items: [
-            { title: "ClientOnly", url: "client-only", status: "new" },
+            { title: "ClientOnly", url: "client-only" },
             { title: "EnvironmentProvider", url: "environment-provider" },
             { title: "For", url: "for" },
             { title: "FormatNumber", url: "format-number" },
@@ -259,7 +269,10 @@ export const docsConfig: DocsConfig = {
   url: "https://chakra-ui.com",
   xHandle: "@chakra-ui",
   repoUrl: "https://github.com/chakra-ui/chakra-ui",
-  editUrl: "https://github.com/chakra-ui/chakra-ui/tree/main/apps/www/content",
+  repoBranch: "main",
+  get editUrl() {
+    return `${this.repoUrl}/tree/${this.repoBranch}/apps/www/content`
+  },
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
@@ -281,6 +294,7 @@ interface DocsConfig {
   xHandle: string
   donationUrl: string
   navigation: NavItem[]
+  repoBranch: string
 }
 
 export interface NavItem {

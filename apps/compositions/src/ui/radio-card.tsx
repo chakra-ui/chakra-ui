@@ -1,26 +1,77 @@
-import { RadioCard as ChakraRadioCard } from "@chakra-ui/react"
+import { Icon, RadioCard, Stack, Text } from "@chakra-ui/react"
+import { forwardRef } from "react"
 
-interface RadioCardItemProps extends ChakraRadioCard.ItemProps {
+interface RadioCardItemProps extends RadioCard.ItemProps {
+  icon?: React.ReactElement
+  iconColor?: RadioCard.ItemProps["color"]
+  label?: React.ReactNode
+  description?: React.ReactNode
+  children?: React.ReactNode
   addon?: React.ReactNode
-  showIndicator?: boolean
+  indicator?: React.ReactNode | null
+  indicatorPlacement?: "start" | "end" | "inside"
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  align?: RadioCard.ItemControlProps["alignItems"]
+  justify?: RadioCard.ItemControlProps["justifyContent"]
+  vertical?: boolean
 }
 
-export const RadioCardItem = (props: RadioCardItemProps) => {
-  const { children, addon, showIndicator = true, ...rest } = props
-  return (
-    <ChakraRadioCard.Item {...rest}>
-      <ChakraRadioCard.ItemHiddenInput />
-      <ChakraRadioCard.ItemControl>
-        {children}
-        {showIndicator && <ChakraRadioCard.ItemIndicator />}
-      </ChakraRadioCard.ItemControl>
-      {addon}
-    </ChakraRadioCard.Item>
-  )
-}
+export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
+  function RadioCardItem(props, ref) {
+    const {
+      inputProps,
+      label,
+      description,
+      icon,
+      iconColor = "fg.subtle",
+      addon,
+      indicator = <RadioCard.ItemIndicator />,
+      indicatorPlacement = "end",
+      align = "start",
+      justify,
+      vertical,
+      ...rest
+    } = props
 
-export const RadioCardRoot = ChakraRadioCard.Root
-export const RadioCardLabel = ChakraRadioCard.Label
-export const RadioCardItemText = ChakraRadioCard.ItemText
-export const RadioCardItemAddon = ChakraRadioCard.ItemAddon
-export const RadioCardItemIndicator = ChakraRadioCard.ItemIndicator
+    const hasContent = label || description || icon
+
+    return (
+      <RadioCard.Item {...rest}>
+        <RadioCard.ItemHiddenInput ref={ref} {...inputProps} />
+        <RadioCard.ItemControl
+          alignItems={align}
+          justifyContent={justify}
+          flexDirection={vertical ? "column" : "row"}
+        >
+          {indicatorPlacement === "start" && indicator}
+          <Stack
+            hidden={!hasContent}
+            gap="1"
+            flex="1"
+            alignItems={align}
+            justifyContent={justify}
+          >
+            {icon && (
+              <Icon asChild fontSize="2xl" color={iconColor} mb="2">
+                {icon}
+              </Icon>
+            )}
+            {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}
+            {description && (
+              <Text opacity="0.64" textStyle="sm">
+                {description}
+              </Text>
+            )}
+            {indicatorPlacement === "inside" && indicator}
+          </Stack>
+          {indicatorPlacement === "end" && indicator}
+        </RadioCard.ItemControl>
+        {addon && <RadioCard.ItemAddon>{addon}</RadioCard.ItemAddon>}
+      </RadioCard.Item>
+    )
+  },
+)
+
+export const RadioCardRoot = RadioCard.Root
+export const RadioCardLabel = RadioCard.Label
+export const RadioCardItemIndicator = RadioCard.ItemIndicator

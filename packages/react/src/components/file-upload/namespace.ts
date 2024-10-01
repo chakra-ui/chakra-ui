@@ -14,6 +14,7 @@ export {
   FileUploadItemDeleteTrigger as ItemDeleteTrigger,
   FileUploadContext as Context,
   FileUploadHiddenInput as HiddenInput,
+  FileUploadClearTrigger as ClearTrigger,
 } from "./file-upload"
 
 export type {

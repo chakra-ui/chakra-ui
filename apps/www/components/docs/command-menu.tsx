@@ -72,7 +72,11 @@ export const CommandMenu = (props: Props) => {
   useHotkey(setOpen, { disable: props.disableHotkey })
 
   return (
-    <DialogRoot open={open} onOpenChange={(event) => setOpen(event.open)}>
+    <DialogRoot
+      motionPreset="slide-in-bottom"
+      open={open}
+      onOpenChange={(event) => setOpen(event.open)}
+    >
       <DialogTrigger asChild>{props.trigger}</DialogTrigger>
       <DialogContent p="2" width={{ base: "100%", sm: "md" }}>
         <ComboboxRoot

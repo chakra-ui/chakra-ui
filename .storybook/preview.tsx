@@ -31,7 +31,7 @@ const preview: Preview = {
     withThemeByClassName<ReactRenderer>({
       defaultTheme: "light",
       themes: {
-        light: "",
+        light: "light",
         dark: "dark",
       },
     }),

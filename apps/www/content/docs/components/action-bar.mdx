@@ -1,7 +1,10 @@
 ---
 title: Action Bar
 description: Used to display a bottom action bar with a set of actions
-links: []
+links:
+  source: components/action-bar
+  storybook: components-action-bar--basic
+  recipe: action-bar
 ---
 
 <ExampleTabs name="action-bar-basic" />
@@ -49,12 +52,20 @@ import {
 ### Close Trigger
 
 Render the `ActionBarCloseTrigger` to close the action bar, and pass the
-`onOpenChange` handler to control the visibility of the action bar when the
-close trigger is clicked.
+`onOpenChange` handler to control the visibility of the action bar.
 
-The `open` and `onOpenChange` props control the visibility of the action bar.
+> The `open` and `onOpenChange` props control the visibility of the action bar.
 
 <ExampleTabs name="action-bar-with-close-trigger" />
+
+### Within Dialog
+
+Here's an example of composing the `ActionBar` and the `Dialog` to perform a
+delete action on a set of selected items.
+
+> Press the `Delete projects` button to open the dialog.
+
+<ExampleTabs name="action-bar-with-dialog" />
 
 ## Props
 

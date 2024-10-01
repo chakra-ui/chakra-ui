@@ -9,7 +9,13 @@ import {
 } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { LuChevronRight, LuInfo, LuTerminal } from "react-icons/lu"
-import { GatsbyIcon, NextJsIcon, RemixIcon, ViteIcon } from "../framework-icon"
+import {
+  GatsbyIcon,
+  NextJsIcon,
+  RemixIcon,
+  StackblitzIcon,
+  ViteIcon,
+} from "../framework-icon"
 
 export const CardGroup = (props: SimpleGridProps) => {
   return <SimpleGrid gap="6" mt="6" mb="10" minChildWidth="240px" {...props} />
@@ -36,6 +42,7 @@ const iconMap = {
   remix: <RemixIcon />,
   vite: <ViteIcon />,
   gatsby: <GatsbyIcon />,
+  stackblitz: <StackblitzIcon />,
 }
 
 interface CardProps {

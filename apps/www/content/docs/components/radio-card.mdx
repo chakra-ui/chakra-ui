@@ -2,7 +2,10 @@
 title: Radio Card
 description: Used to select an option from list
 links:
-  [{ title: "Ark UI", url: "https://ark-ui.com/react/docs/components/radio" }]
+  source: components/radio-card
+  storybook: components-radio-card--basic
+  recipe: radio-card
+  ark: https://ark-ui.com/react/docs/components/radio-group
 ---
 
 <ExampleTabs name="radio-card-basic" />
@@ -27,7 +30,6 @@ card.
 ```jsx
 import {
   RadioCardItem,
-  RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
 } from "@/components/ui/radio-card"
@@ -36,9 +38,7 @@ import {
 ```jsx
 <RadioCardRoot>
   <RadioCardLabel />
-  <RadioCardItem>
-    <RadioCardItemText />
-  </RadioCardItem>
+  <RadioCardItem />
 </RadioCardRoot>
 ```
 
@@ -67,6 +67,13 @@ Here's an example of a RadioCard with an icon.
 Here's an example of a RadioCard with centered text.
 
 <ExampleTabs name="radio-card-centered" />
+
+### Addon
+
+Use the `RadioCardItemAddon` component to add an addon below the radio card
+content.
+
+<ExampleTabs name="radio-card-with-addon" />
 
 ## Props
 

@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react"
 import { useState } from "react"
-import { Badge, Box, Button, For, Link, Stack, Text } from "../src"
+import { Badge, Box, Button, Center, For, Link, Stack, Text } from "../src"
 
 export default {
   title: "Foundations / Sandbox",
@@ -70,5 +70,26 @@ export const SelfClosing = () => {
     <Box rounded="full" overflow="hidden" asChild>
       <img src="https://via.placeholder.com/150" alt="placeholder" />
     </Box>
+  )
+}
+
+export const Layers = () => {
+  return <Button bg="red">Click me</Button>
+}
+
+export const SortOrder = () => {
+  return (
+    <Center
+      flex={[undefined, undefined, 1, 5]}
+      display={["none", "none", "flex"]}
+      layerStyle="fill.subtle"
+      h="90vh"
+      minH="200px"
+      position="sticky"
+      top="0"
+      borderLeft={[undefined, "5px solid red"]}
+    >
+      <Text>Hello</Text>
+    </Center>
   )
 }

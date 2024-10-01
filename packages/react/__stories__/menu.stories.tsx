@@ -25,3 +25,4 @@ export { MenuWithPlacement as Placement } from "compositions/examples/menu-with-
 export { MenuWithRadioItems as RadioItems } from "compositions/examples/menu-with-radio-items"
 export { MenuWithSubmenu as Submenu } from "compositions/examples/menu-with-submenu"
 export { MenuWithSubmenuDynamic as SubmenuDynamic } from "compositions/examples/menu-with-submenu-dynamic"
+export { MenuWithinDialog as WithDialog } from "compositions/examples/menu-within-dialog"

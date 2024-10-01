@@ -17,9 +17,14 @@ export const Callout: React.FC<CalloutProps> = (props) => {
         top="8px"
         maxHeight="calc(100% - 16px)"
         insetStart="2"
-        bg={{ base: "gray.500", _dark: "gray.600" }}
+        bg={{ _light: "gray.500", _dark: "gray.600" }}
       />
-      <Alert.Description color="fg" pt="0.5" lineHeight="tall">
+      <Alert.Description
+        color="fg"
+        pt="0.5"
+        lineHeight="tall"
+        css={{ "& code": { fontSize: "0.9em" } }}
+      >
         <Box pos="absolute" top="-2" insetStart="2">
           <Badge variant="solid" rounded="0">
             <Alert.Indicator fontSize="xs" color="inherit" />

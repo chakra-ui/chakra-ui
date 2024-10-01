@@ -20,3 +20,5 @@ export { FileUploadMediaCapture as MediaCapture } from "compositions/examples/fi
 export { FileUploadMultiple as Multiple } from "compositions/examples/file-upload-multiple"
 export { FileUploadWithDropzone as Dropzone } from "compositions/examples/file-upload-with-dropzone"
 export { FileUploadWithHookForm as HookForm } from "compositions/examples/file-upload-with-hook-form"
+export { FileUploadWithInput as Input } from "compositions/examples/file-upload-with-input"
+export { FileUploadWithInputClear as InputClear } from "compositions/examples/file-upload-with-input-clear"

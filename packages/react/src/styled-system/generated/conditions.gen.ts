@@ -171,7 +171,7 @@ export interface Conditions {
   _portrait: string
   /** `.dark &` */
   _dark: string
-  /** `.light &` */
+  /** `:root &, .light &` */
   _light: string
   /** `@media (prefers-color-scheme: dark)` */
   _osDark: string

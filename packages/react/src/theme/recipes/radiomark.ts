@@ -39,6 +39,7 @@ export const radiomarkRecipe = defineRecipe({
       outline: {
         borderWidth: "1px",
         borderColor: "border",
+        bg: "bg",
         _checked: {
           bg: "colorPalette.solid",
           color: "colorPalette.contrast",
@@ -65,6 +66,16 @@ export const radiomarkRecipe = defineRecipe({
         },
         "& .dot": {
           scale: "0.6",
+        },
+      },
+
+      inverted: {
+        bg: "bg",
+        borderWidth: "1px",
+        borderColor: "inherit",
+        _checked: {
+          color: "colorPalette.solid",
+          borderColor: "currentcolor",
         },
       },
     },

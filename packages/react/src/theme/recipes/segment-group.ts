@@ -22,8 +22,12 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       fontSize: "sm",
       position: "relative",
       color: "fg",
+      borderRadius: "var(--segment-radius)",
       _disabled: {
         opacity: "0.5",
+      },
+      "&:has(input:focus-visible)": {
+        focusRing: "outside",
       },
       _before: {
         content: '""',
@@ -50,7 +54,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
     indicator: {
       shadow: "sm",
       pos: "absolute",
-      bg: { base: "bg", _dark: "bg.emphasized" },
+      bg: { _light: "bg", _dark: "border.emphasized" },
       width: "var(--width)",
       height: "var(--height)",
       top: "var(--top)",

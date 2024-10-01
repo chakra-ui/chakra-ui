@@ -72,7 +72,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       subtle: {
         item: {
           _highlighted: {
-            bg: { base: "bg.subtle", _dark: "bg.emphasized" },
+            bg: { _light: "bg.subtle", _dark: "bg.emphasized" },
           },
         },
       },

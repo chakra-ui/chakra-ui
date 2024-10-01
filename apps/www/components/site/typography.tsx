@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react"
 
 const styles = defineStyle({
-  color: { base: "teal.600", _dark: "teal.500" },
+  color: { _light: "teal.600", _dark: "teal.500" },
   position: "relative",
   px: "2",
   display: "inline-block",
@@ -55,7 +55,7 @@ interface BlitzHeadingProps extends StackProps {}
 export const BlitzHeading = (props: BlitzHeadingProps) => {
   const { children, ...rest } = props
   return (
-    <HStack gap="4" color={{ base: "teal.600", _dark: "teal.500" }} {...rest}>
+    <HStack gap="4" color={{ _light: "teal.600", _dark: "teal.500" }} {...rest}>
       <BlitzFillIcon />
       <Text fontWeight="semibold">{children}</Text>
     </HStack>

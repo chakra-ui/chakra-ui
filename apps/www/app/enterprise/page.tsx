@@ -7,7 +7,7 @@ import { EnterpriseForm } from "./enterprise-form"
 export const metadata: Metadata = {
   title: "Enterprise Services",
   description:
-    "Get professional support by the Chakra UI creators to optimize your ship your site faster and improve performance.",
+    "Get professional support by the Chakra UI creators to optimize and ship your site faster and improve performance.",
   openGraph: {
     images: `/og?title=Enterprise Services`,
   },
@@ -53,7 +53,7 @@ export default function EnterprisePage() {
                 </HighlightHeading>
                 <Subheading>
                   Get professional support by the Chakra UI creators to optimize
-                  your ship your site faster and improve performance.
+                  and ship your site faster and improve performance.
                 </Subheading>
               </Stack>
             </Stack>

@@ -28,6 +28,7 @@ const SectionTitle = ({ children, id }: SectionTitleProps) => {
       py="3"
       rounded="md"
       colorPalette="accent"
+      textStyle="sm"
     >
       <Text fontWeight="medium" id={id}>
         <Link href={`#${id}`}>{children}</Link>
@@ -76,7 +77,7 @@ const DemoList = (props: DemoListProps) => {
     <>
       {items.map(({ label, component, align }) => (
         <Stack key={label} align={align || "flex-start"} gap="5">
-          <Text color="fg.subtle" fontWeight="medium">
+          <Text color="fg.subtle" textStyle="sm" fontWeight="medium">
             {label}
           </Text>
           {component}

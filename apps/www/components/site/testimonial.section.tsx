@@ -53,7 +53,7 @@ const Testimonial = chakra("a", {
     gap: { base: "4", md: "10" },
     padding: "12",
     borderWidth: "1px",
-    borderColor: { base: "inherit", _dark: "#001B18" },
+    borderColor: { _light: "border", _dark: "#001B18" },
     pos: "relative",
     focusRing: "inside",
   },

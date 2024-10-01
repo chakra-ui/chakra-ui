@@ -1,0 +1,46 @@
+---
+title: Toggle Tip
+description: Looks like a tooltip, but works like a popover.
+---
+
+<ExampleTabs name="toggle-tip-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`toggle-tip` snippet
+
+```sh
+chakra snippet add toggle-tip
+```
+
+The snippet includes a closed component composition for the `Popover` component.
+
+## Usage
+
+```jsx
+import { InfoTip, ToggleTip } from "@/components/ui/toggle-tip"
+```
+
+```jsx
+<ToggleTip content="...">
+  <button />
+</ToggleTip>
+```
+
+## Examples
+
+### Info Tip
+
+Use the `InfoTip` component to display an info tip. This component renders an
+icon button with an info icon by default.
+
+> Useful for landing pages to display additional information about a feature.
+
+<ExampleTabs name="toggle-tip-info-tip" />
+
+## Props
+
+### Root
+
+<PropTable component="Popover" part="Root" />

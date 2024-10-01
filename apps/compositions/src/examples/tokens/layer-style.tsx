@@ -11,11 +11,13 @@ const items = [
 
 export const TokensLayerStyle = () => {
   return (
-    <Stack gap="10" mt="10" mb="20">
+    <Stack gap="20" mt="10" mb="20">
       <For each={items}>
         {([title, styles]) => (
           <Stack gap="4">
-            <Text fontWeight="medium">Layer Style: {title}</Text>
+            <Text fontWeight="medium" color="fg.subtle">
+              layerStyle: {title.toLowerCase()}.*
+            </Text>
             <HStack wrap="wrap" gap="10">
               <For each={styles}>
                 {(layerStyle) => (

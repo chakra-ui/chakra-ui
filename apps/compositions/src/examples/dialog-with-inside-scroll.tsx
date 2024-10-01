@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogRoot,
+  DialogTitle,
   DialogTrigger,
 } from "compositions/ui/dialog"
 import Lorem from "react-lorem-ipsum"
@@ -16,7 +17,9 @@ export const DialogWithInsideScroll = () => {
         <Button variant="outline">Inside Scroll</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>With Inside Scroll</DialogHeader>
+        <DialogHeader>
+          <DialogTitle>With Inside Scroll</DialogTitle>
+        </DialogHeader>
         <DialogCloseTrigger />
         <DialogBody>
           <Lorem p={8} />

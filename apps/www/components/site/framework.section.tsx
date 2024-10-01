@@ -34,7 +34,7 @@ const FrameworksList = () => (
       "& > *": {
         "--border-width": "0.5px",
         border: "solid var(--border-width)",
-        borderColor: { base: "inherit", _dark: "#001B18" },
+        borderColor: { _light: "inherit", _dark: "#001B18" },
         mr: "calc(var(--border-width) * -1)",
         mb: "calc(var(--border-width) * -1)",
       },

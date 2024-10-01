@@ -7,6 +7,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
   slots: radioGroupAnatomy.keys(),
   base: {
     item: {
+      flex: "1",
       display: "flex",
       flexDirection: "column",
       userSelect: "none",
@@ -16,17 +17,20 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         opacity: 0.8,
-        color: "fg.subtle",
-        cursor: "not-allowed",
         borderColor: "border.disabled",
       },
     },
     label: {
       display: "inline-flex",
       fontWeight: "medium",
+      textStyle: "sm",
       _disabled: {
         color: "fg.subtle",
       },
+    },
+    itemText: {
+      lineHeight: "1.2",
+      fontWeight: "medium",
     },
     itemControl: {
       display: "inline-flex",
@@ -39,6 +43,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
     },
     itemIndicator: radiomarkRecipe.base,
     itemAddon: {
+      roundedBottom: "inherit",
       _disabled: {
         color: "fg.subtle",
       },
@@ -98,10 +103,15 @@ export const radioCardSlotRecipe = defineSlotRecipe({
     },
 
     variant: {
-      plain: {
+      surface: {
         item: {
           borderWidth: "1px",
           bg: "bg",
+          _checked: {
+            bg: "colorPalette.muted",
+            color: "colorPalette.fg",
+            borderColor: "colorPalette.emphasized",
+          },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.outline,
       },
@@ -129,7 +139,20 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             borderColor: "colorPalette.solid",
           },
         },
-        itemIndicator: radiomarkRecipe.variants?.variant.classic,
+        itemIndicator: radiomarkRecipe.variants?.variant.outline,
+      },
+
+      solid: {
+        item: {
+          borderWidth: "1px",
+          bg: "bg",
+          _checked: {
+            bg: "colorPalette.solid",
+            color: "colorPalette.contrast",
+            borderColor: "colorPalette.solid",
+          },
+        },
+        itemIndicator: radiomarkRecipe.variants?.variant.inverted,
       },
     },
   },

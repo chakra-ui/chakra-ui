@@ -8,6 +8,7 @@ import {
   walkObject,
 } from "../utils"
 import type { SystemStyleObject } from "./css.types"
+import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
@@ -56,7 +57,7 @@ export function createCssFn(context: CssFnOptions) {
       mergeByPath(result, selectors, transformed)
     })
 
-    return result
+    return sortAtRules(result)
   })
 }
 

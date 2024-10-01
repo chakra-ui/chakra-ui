@@ -41,30 +41,33 @@ const docs = defineCollection({
       toc: s.toc(),
       code: s.mdx(),
       hideToc: s.boolean().optional(),
+      composition: s.boolean().optional(),
       links: s
-        .array(s.object({ title: s.string(), url: s.string() }))
+        .object({
+          source: s.string().optional(),
+          storybook: s.string().optional(),
+          recipe: s.string().optional(),
+          ark: s.string().optional(),
+        })
         .optional(),
     })
     .transform((data, { meta }) => {
-      const slug = slugify(meta.path)
-      const componentName = slug.split("/").pop()
+      const links = data.links || {}
       return {
         ...data,
-        slug,
-        links: (data.links || []).concat(
-          {
-            title: "Source",
-            url: `${docsConfig.repoUrl}/tree/main/packages/react/src/components/${componentName}`,
-          },
-          {
-            title: "Storybook",
-            url: `${docsConfig.storybookUrl}/?path=/story/components-${componentName}-basic`,
-          },
-          {
-            title: "Recipe",
-            url: `${docsConfig.repoUrl}/tree/main/packages/react/src/theme/recipes/${componentName}`,
-          },
-        ),
+        slug: slugify(meta.path),
+        links: {
+          ...links,
+          source: links.source
+            ? `${docsConfig.repoUrl}/tree/${docsConfig.repoBranch}/packages/react/src/${links.source}`
+            : undefined,
+          storybook: links.storybook
+            ? `${docsConfig.storybookUrl}/?path=/story/${links.storybook}`
+            : undefined,
+          recipe: links.recipe
+            ? `${docsConfig.repoUrl}/tree/${docsConfig.repoBranch}/packages/react/src/theme/recipes/${links.recipe}.ts`
+            : undefined,
+        },
         category: meta.path
           .replace(/.*\/content\//, "")
           .replace(/\/[^/]*$/, "")

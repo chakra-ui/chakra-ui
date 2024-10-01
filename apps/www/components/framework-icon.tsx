@@ -72,3 +72,9 @@ export const ViteIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 )
+
+export const StackblitzIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg fill="#1389FD" viewBox="0 0 32 32" width="1em" height="1em" {...props}>
+    <path d="M5.853 18.647h8.735L9.45 31l16.697-17.647h-8.735L22.55 1z" />
+  </svg>
+)

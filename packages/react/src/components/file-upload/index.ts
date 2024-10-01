@@ -12,6 +12,7 @@ export {
   FileUploadItemName,
   FileUploadItemGroup,
   FileUploadItemDeleteTrigger,
+  FileUploadClearTrigger,
   useFileUploadStyles,
   FileUploadContext,
 } from "./file-upload"
@@ -32,6 +33,7 @@ export type {
   FileUploadFileAcceptDetails,
   FileUploadFileRejectDetails,
   FileUploadFileChangeDetails,
+  FileUploadClearTriggerProps,
 } from "./file-upload"
 
 export { useFileUpload, useFileUploadContext } from "@ark-ui/react/file-upload"

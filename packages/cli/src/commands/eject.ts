@@ -187,9 +187,7 @@ const themeConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultBaseConfig, themeConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultBaseConfig, themeConfig)
       `,
     })
 

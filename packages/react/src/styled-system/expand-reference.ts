@@ -1,4 +1,4 @@
-import { esc } from "../utils"
+import { esc } from "./esc"
 
 /**
  * Recursively parse a string to extract Panda token references (curly or with the `token` function syntax)

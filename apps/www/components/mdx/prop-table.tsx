@@ -107,7 +107,7 @@ export const PropTable = async (props: PropTableProps) => {
           {properties.map(([name, property]) => (
             <Table.Row key={name}>
               <Table.Cell width="36" px="4" py="2" verticalAlign="top">
-                <Code size="sm" variant="surface" color="teal.solid">
+                <Code size="sm" variant="surface" fontWeight="bold">
                   {name}{" "}
                 </Code>
                 {property.isRequired && (

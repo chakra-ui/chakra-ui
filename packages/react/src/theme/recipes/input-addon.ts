@@ -15,13 +15,13 @@ export const inputAddonRecipe = defineRecipe({
     variant: {
       outline: {
         border: "1px solid",
-        borderColor: { base: "inherit", _dark: "whiteAlpha.50" },
+        borderColor: { _light: "border", _dark: "whiteAlpha.50" },
         bg: "bg.subtle",
       },
       filled: {
         border: "2px solid",
         borderColor: "transparent",
-        bg: { base: "gray.100", _dark: "whiteAlpha.50" },
+        bg: { _light: "gray.100", _dark: "whiteAlpha.50" },
       },
       flushed: {
         borderBottom: "1px solid",

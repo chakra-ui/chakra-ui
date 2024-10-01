@@ -6,7 +6,7 @@ import {
   type HTMLChakraProps,
   chakra,
 } from "../../styled-system"
-import { cx, mapResponsive } from "../../utils"
+import { cx, mapObject } from "../../utils"
 
 export interface AspectRatioProps
   extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {
@@ -27,8 +27,6 @@ export interface AspectRatioProps
 export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
   function AspectRatio(props, ref) {
     const { ratio = 4 / 3, children, className, ...rest } = props
-
-    // enforce single child
     const child = Children.only(children)
 
     return (
@@ -40,7 +38,7 @@ export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
           height: 0,
           content: `""`,
           display: "block",
-          paddingBottom: mapResponsive(ratio, (r) => `${(1 / r) * 100}%`),
+          paddingBottom: mapObject(ratio, (r) => `${(1 / r) * 100}%`),
         }}
         css={{
           "& > *:not(style)": {

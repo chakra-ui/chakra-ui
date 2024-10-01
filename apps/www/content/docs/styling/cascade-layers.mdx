@@ -1,0 +1,67 @@
+---
+title: Cascade Layers
+description:
+  CSS cascade layers refer to the order in which CSS rules are applied to an
+  HTML element.
+---
+
+Chakra UI relies on CSS cascade layers to provide a predictable, performant way
+to override components. The layers are defined to match that of
+[Panda CSS](https://panda-css.com).
+
+> **Good to know**: This plays a major role in the faster reconciliation times
+> in v3.x
+
+## Layer Types
+
+Chakra supports these cascade layer types:
+
+- `@layer reset`: Where the preflight or css resets styles are defined.
+
+- `@layer base`: Where global styles are placed when defined in `globalCss`
+  config property.
+
+- `@layer recipes`: Where styles for recipes are placed when defined in
+  `theme.recipes` or `theme.slotRecipes`
+
+- `@layer tokens`: Where styles for design tokens are placed when defined in
+  `theme.tokens` or `theme.semanticTokens`
+
+## Layer Order
+
+Chakra appends the following layers to the top of the generated emotion
+stylesheet:
+
+```css
+@layer reset, base, tokens, recipes;
+```
+
+This structure allows for smoother experience when combining Chakra and Panda
+CSS in the same project.
+
+## Disabling Layers
+
+Cascade layers are enabled by default. If you want to disable them, you can do
+so by setting the `disableLayers` option to `true`
+
+```js title="theme.ts"
+export const system = createSystem(defaultConfig, {
+  disableLayers: true,
+})
+```
+
+Next, edit the `components/ui/provider` file to use the new system
+
+```tsx title="provider.tsx" {3} /value={system}/
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { ChakraProvider } from "@chakra-ui/react"
+import { system } from "./theme"
+
+export function Provider(props: React.PropsWithChildren) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider>{props.children}</ColorModeProvider>
+    </ChakraProvider>
+  )
+}
+```

@@ -38,7 +38,7 @@ const PartnerGridRow = () => (
         key={index}
         height="88px"
         borderWidth="0.5px"
-        borderColor={{ base: "inherit", _dark: "#001B18" }}
+        borderColor={{ _light: "border", _dark: "#001B18" }}
         _icon={{
           scale: "0.8",
         }}

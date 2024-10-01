@@ -1,7 +1,7 @@
 "use client"
 
 import { useChakraContext } from "../styled-system"
-import { type Dict, arrayToObjectNotation, isArray } from "../utils"
+import { type Dict } from "../utils"
 import { useMediaQuery } from "./use-media-query"
 
 /* -----------------------------------------------------------------------------
@@ -67,12 +67,7 @@ export function useBreakpointValue<T = any>(
   opts?: UseBreakpointValueOptions,
 ): T | undefined {
   const sys = useChakraContext()
-  const breakpointKeys = sys.breakpoints.keys()
-
-  const normalized = isArray(value)
-    ? arrayToObjectNotation(value, breakpointKeys)
-    : value
-
+  const normalized = sys.normalizeValue(value)
   const breakpoint = useBreakpoint({
     breakpoints: Object.keys(normalized),
     ...opts,
