@@ -33,8 +33,8 @@
     "slack": "tsx scripts/slack.ts",
     "version": "changeset version",
     "release": "changeset publish",
-    "version:dev": "changeset version --snapshot dev",
-    "release:dev": "changeset publish --tag dev",
+    "version:v2": "changeset version --snapshot v2-latest",
+    "release:v2": "changeset publish --tag v2-latest",
     "sandbox": "tsx scripts/sandbox.ts"
   },
   "version": "2.0.0",

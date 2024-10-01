@@ -79,7 +79,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -90,7 +89,6 @@
       }
     },
     "./accordion": {
-      "source": "./src/accordion/index.ts",
       "import": {
         "types": "./dist/types/accordion/index.d.mts",
         "default": "./dist/esm/accordion/index.mjs"
@@ -101,7 +99,6 @@
       }
     },
     "./alert": {
-      "source": "./src/alert/index.ts",
       "import": {
         "types": "./dist/types/alert/index.d.mts",
         "default": "./dist/esm/alert/index.mjs"
@@ -112,7 +109,6 @@
       }
     },
     "./aspect-ratio": {
-      "source": "./src/aspect-ratio/index.ts",
       "import": {
         "types": "./dist/types/aspect-ratio/index.d.mts",
         "default": "./dist/esm/aspect-ratio/index.mjs"
@@ -123,7 +119,6 @@
       }
     },
     "./avatar": {
-      "source": "./src/avatar/index.ts",
       "import": {
         "types": "./dist/types/avatar/index.d.mts",
         "default": "./dist/esm/avatar/index.mjs"
@@ -134,7 +129,6 @@
       }
     },
     "./badge": {
-      "source": "./src/badge/index.ts",
       "import": {
         "types": "./dist/types/badge/index.d.mts",
         "default": "./dist/esm/badge/index.mjs"
@@ -145,7 +139,6 @@
       }
     },
     "./box": {
-      "source": "./src/box/index.ts",
       "import": {
         "types": "./dist/types/box/index.d.mts",
         "default": "./dist/esm/box/index.mjs"
@@ -156,7 +149,6 @@
       }
     },
     "./breadcrumb": {
-      "source": "./src/breadcrumb/index.ts",
       "import": {
         "types": "./dist/types/breadcrumb/index.d.mts",
         "default": "./dist/esm/breadcrumb/index.mjs"
@@ -167,7 +159,6 @@
       }
     },
     "./button": {
-      "source": "./src/button/index.ts",
       "import": {
         "types": "./dist/types/button/index.d.mts",
         "default": "./dist/esm/button/index.mjs"
@@ -178,7 +169,6 @@
       }
     },
     "./card": {
-      "source": "./src/card/index.ts",
       "import": {
         "types": "./dist/types/card/index.d.mts",
         "default": "./dist/esm/card/index.mjs"
@@ -189,7 +179,6 @@
       }
     },
     "./center": {
-      "source": "./src/center/index.ts",
       "import": {
         "types": "./dist/types/center/index.d.mts",
         "default": "./dist/esm/center/index.mjs"
@@ -200,7 +189,6 @@
       }
     },
     "./chakra-base-provider": {
-      "source": "./src/chakra-base-provider.tsx",
       "import": {
         "types": "./dist/types/chakra-base-provider.d.mts",
         "default": "./dist/esm/chakra-base-provider.mjs"
@@ -211,7 +199,6 @@
       }
     },
     "./chakra-provider": {
-      "source": "./src/chakra-provider.tsx",
       "import": {
         "types": "./dist/types/chakra-provider.d.mts",
         "default": "./dist/esm/chakra-provider.mjs"
@@ -222,7 +209,6 @@
       }
     },
     "./checkbox": {
-      "source": "./src/checkbox/index.ts",
       "import": {
         "types": "./dist/types/checkbox/index.d.mts",
         "default": "./dist/esm/checkbox/index.mjs"
@@ -233,7 +219,6 @@
       }
     },
     "./clickable": {
-      "source": "./src/clickable/index.ts",
       "import": {
         "types": "./dist/types/clickable/index.d.mts",
         "default": "./dist/esm/clickable/index.mjs"
@@ -244,7 +229,6 @@
       }
     },
     "./close-button": {
-      "source": "./src/close-button/index.ts",
       "import": {
         "types": "./dist/types/close-button/index.d.mts",
         "default": "./dist/esm/close-button/index.mjs"
@@ -255,7 +239,6 @@
       }
     },
     "./code": {
-      "source": "./src/code/index.ts",
       "import": {
         "types": "./dist/types/code/index.d.mts",
         "default": "./dist/esm/code/index.mjs"
@@ -266,7 +249,6 @@
       }
     },
     "./color-mode": {
-      "source": "./src/color-mode/index.ts",
       "import": {
         "types": "./dist/types/color-mode/index.d.mts",
         "default": "./dist/esm/color-mode/index.mjs"
@@ -277,7 +259,6 @@
       }
     },
     "./container": {
-      "source": "./src/container/index.ts",
       "import": {
         "types": "./dist/types/container/index.d.mts",
         "default": "./dist/esm/container/index.mjs"
@@ -288,7 +269,6 @@
       }
     },
     "./control-box": {
-      "source": "./src/control-box/index.ts",
       "import": {
         "types": "./dist/types/control-box/index.d.mts",
         "default": "./dist/esm/control-box/index.mjs"
@@ -299,7 +279,6 @@
       }
     },
     "./css-reset": {
-      "source": "./src/css-reset/index.ts",
       "import": {
         "types": "./dist/types/css-reset/index.d.mts",
         "default": "./dist/esm/css-reset/index.mjs"
@@ -310,7 +289,6 @@
       }
     },
     "./descendant": {
-      "source": "./src/descendant/index.ts",
       "import": {
         "types": "./dist/types/descendant/index.d.mts",
         "default": "./dist/esm/descendant/index.mjs"
@@ -321,7 +299,6 @@
       }
     },
     "./divider": {
-      "source": "./src/divider/index.ts",
       "import": {
         "types": "./dist/types/divider/index.d.mts",
         "default": "./dist/esm/divider/index.mjs"
@@ -332,7 +309,6 @@
       }
     },
     "./editable": {
-      "source": "./src/editable/index.ts",
       "import": {
         "types": "./dist/types/editable/index.d.mts",
         "default": "./dist/esm/editable/index.mjs"
@@ -343,7 +319,6 @@
       }
     },
     "./env": {
-      "source": "./src/env/index.ts",
       "import": {
         "types": "./dist/types/env/index.d.mts",
         "default": "./dist/esm/env/index.mjs"
@@ -354,7 +329,6 @@
       }
     },
     "./extend-theme": {
-      "source": "./src/extend-theme/index.ts",
       "import": {
         "types": "./dist/types/extend-theme/index.d.mts",
         "default": "./dist/esm/extend-theme/index.mjs"
@@ -365,7 +339,6 @@
       }
     },
     "./flex": {
-      "source": "./src/flex/index.ts",
       "import": {
         "types": "./dist/types/flex/index.d.mts",
         "default": "./dist/esm/flex/index.mjs"
@@ -376,7 +349,6 @@
       }
     },
     "./focus-lock": {
-      "source": "./src/focus-lock/index.ts",
       "import": {
         "types": "./dist/types/focus-lock/index.d.mts",
         "default": "./dist/esm/focus-lock/index.mjs"
@@ -387,7 +359,6 @@
       }
     },
     "./form-control": {
-      "source": "./src/form-control/index.ts",
       "import": {
         "types": "./dist/types/form-control/index.d.mts",
         "default": "./dist/esm/form-control/index.mjs"
@@ -398,7 +369,6 @@
       }
     },
     "./grid": {
-      "source": "./src/grid/index.ts",
       "import": {
         "types": "./dist/types/grid/index.d.mts",
         "default": "./dist/esm/grid/index.mjs"
@@ -409,7 +379,6 @@
       }
     },
     "./highlight": {
-      "source": "./src/highlight/index.ts",
       "import": {
         "types": "./dist/types/highlight/index.d.mts",
         "default": "./dist/esm/highlight/index.mjs"
@@ -420,7 +389,6 @@
       }
     },
     "./icon": {
-      "source": "./src/icon/index.ts",
       "import": {
         "types": "./dist/types/icon/index.d.mts",
         "default": "./dist/esm/icon/index.mjs"
@@ -431,7 +399,6 @@
       }
     },
     "./image": {
-      "source": "./src/image/index.ts",
       "import": {
         "types": "./dist/types/image/index.d.mts",
         "default": "./dist/esm/image/index.mjs"
@@ -442,7 +409,6 @@
       }
     },
     "./indicator": {
-      "source": "./src/indicator/index.ts",
       "import": {
         "types": "./dist/types/indicator/index.d.mts",
         "default": "./dist/esm/indicator/index.mjs"
@@ -453,7 +419,6 @@
       }
     },
     "./input": {
-      "source": "./src/input/index.ts",
       "import": {
         "types": "./dist/types/input/index.d.mts",
         "default": "./dist/esm/input/index.mjs"
@@ -464,7 +429,6 @@
       }
     },
     "./kbd": {
-      "source": "./src/kbd/index.ts",
       "import": {
         "types": "./dist/types/kbd/index.d.mts",
         "default": "./dist/esm/kbd/index.mjs"
@@ -475,7 +439,6 @@
       }
     },
     "./link": {
-      "source": "./src/link/index.ts",
       "import": {
         "types": "./dist/types/link/index.d.mts",
         "default": "./dist/esm/link/index.mjs"
@@ -486,7 +449,6 @@
       }
     },
     "./list": {
-      "source": "./src/list/index.ts",
       "import": {
         "types": "./dist/types/list/index.d.mts",
         "default": "./dist/esm/list/index.mjs"
@@ -497,7 +459,6 @@
       }
     },
     "./live-region": {
-      "source": "./src/live-region/index.ts",
       "import": {
         "types": "./dist/types/live-region/index.d.mts",
         "default": "./dist/esm/live-region/index.mjs"
@@ -508,7 +469,6 @@
       }
     },
     "./media-query": {
-      "source": "./src/media-query/index.ts",
       "import": {
         "types": "./dist/types/media-query/index.d.mts",
         "default": "./dist/esm/media-query/index.mjs"
@@ -519,7 +479,6 @@
       }
     },
     "./menu": {
-      "source": "./src/menu/index.ts",
       "import": {
         "types": "./dist/types/menu/index.d.mts",
         "default": "./dist/esm/menu/index.mjs"
@@ -530,7 +489,6 @@
       }
     },
     "./modal": {
-      "source": "./src/modal/index.ts",
       "import": {
         "types": "./dist/types/modal/index.d.mts",
         "default": "./dist/esm/modal/index.mjs"
@@ -541,7 +499,6 @@
       }
     },
     "./number-input": {
-      "source": "./src/number-input/index.ts",
       "import": {
         "types": "./dist/types/number-input/index.d.mts",
         "default": "./dist/esm/number-input/index.mjs"
@@ -552,7 +509,6 @@
       }
     },
     "./pin-input": {
-      "source": "./src/pin-input/index.ts",
       "import": {
         "types": "./dist/types/pin-input/index.d.mts",
         "default": "./dist/esm/pin-input/index.mjs"
@@ -563,7 +519,6 @@
       }
     },
     "./popover": {
-      "source": "./src/popover/index.ts",
       "import": {
         "types": "./dist/types/popover/index.d.mts",
         "default": "./dist/esm/popover/index.mjs"
@@ -574,7 +529,6 @@
       }
     },
     "./popper": {
-      "source": "./src/popper/index.ts",
       "import": {
         "types": "./dist/types/popper/index.d.mts",
         "default": "./dist/esm/popper/index.mjs"
@@ -585,7 +539,6 @@
       }
     },
     "./portal": {
-      "source": "./src/portal/index.ts",
       "import": {
         "types": "./dist/types/portal/index.d.mts",
         "default": "./dist/esm/portal/index.mjs"
@@ -596,7 +549,6 @@
       }
     },
     "./progress": {
-      "source": "./src/progress/index.ts",
       "import": {
         "types": "./dist/types/progress/index.d.mts",
         "default": "./dist/esm/progress/index.mjs"
@@ -607,7 +559,6 @@
       }
     },
     "./provider": {
-      "source": "./src/provider/index.ts",
       "import": {
         "types": "./dist/types/provider/index.d.mts",
         "default": "./dist/esm/provider/index.mjs"
@@ -618,7 +569,6 @@
       }
     },
     "./radio": {
-      "source": "./src/radio/index.ts",
       "import": {
         "types": "./dist/types/radio/index.d.mts",
         "default": "./dist/esm/radio/index.mjs"
@@ -629,7 +579,6 @@
       }
     },
     "./select": {
-      "source": "./src/select/index.ts",
       "import": {
         "types": "./dist/types/select/index.d.mts",
         "default": "./dist/esm/select/index.mjs"
@@ -640,7 +589,6 @@
       }
     },
     "./skeleton": {
-      "source": "./src/skeleton/index.ts",
       "import": {
         "types": "./dist/types/skeleton/index.d.mts",
         "default": "./dist/esm/skeleton/index.mjs"
@@ -651,7 +599,6 @@
       }
     },
     "./skip-nav": {
-      "source": "./src/skip-nav/index.ts",
       "import": {
         "types": "./dist/types/skip-nav/index.d.mts",
         "default": "./dist/esm/skip-nav/index.mjs"
@@ -662,7 +609,6 @@
       }
     },
     "./slider": {
-      "source": "./src/slider/index.ts",
       "import": {
         "types": "./dist/types/slider/index.d.mts",
         "default": "./dist/esm/slider/index.mjs"
@@ -673,7 +619,6 @@
       }
     },
     "./spacer": {
-      "source": "./src/spacer/index.ts",
       "import": {
         "types": "./dist/types/spacer/index.d.mts",
         "default": "./dist/esm/spacer/index.mjs"
@@ -684,7 +629,6 @@
       }
     },
     "./spinner": {
-      "source": "./src/spinner/index.ts",
       "import": {
         "types": "./dist/types/spinner/index.d.mts",
         "default": "./dist/esm/spinner/index.mjs"
@@ -695,7 +639,6 @@
       }
     },
     "./stack": {
-      "source": "./src/stack/index.ts",
       "import": {
         "types": "./dist/types/stack/index.d.mts",
         "default": "./dist/esm/stack/index.mjs"
@@ -706,7 +649,6 @@
       }
     },
     "./stat": {
-      "source": "./src/stat/index.ts",
       "import": {
         "types": "./dist/types/stat/index.d.mts",
         "default": "./dist/esm/stat/index.mjs"
@@ -717,7 +659,6 @@
       }
     },
     "./stepper": {
-      "source": "./src/stepper/index.ts",
       "import": {
         "types": "./dist/types/stepper/index.d.mts",
         "default": "./dist/esm/stepper/index.mjs"
@@ -728,7 +669,6 @@
       }
     },
     "./switch": {
-      "source": "./src/switch/index.ts",
       "import": {
         "types": "./dist/types/switch/index.d.mts",
         "default": "./dist/esm/switch/index.mjs"
@@ -739,7 +679,6 @@
       }
     },
     "./system": {
-      "source": "./src/system/index.ts",
       "import": {
         "types": "./dist/types/system/index.d.mts",
         "default": "./dist/esm/system/index.mjs"
@@ -750,7 +689,6 @@
       }
     },
     "./table": {
-      "source": "./src/table/index.ts",
       "import": {
         "types": "./dist/types/table/index.d.mts",
         "default": "./dist/esm/table/index.mjs"
@@ -761,7 +699,6 @@
       }
     },
     "./tabs": {
-      "source": "./src/tabs/index.ts",
       "import": {
         "types": "./dist/types/tabs/index.d.mts",
         "default": "./dist/esm/tabs/index.mjs"
@@ -772,7 +709,6 @@
       }
     },
     "./tag": {
-      "source": "./src/tag/index.ts",
       "import": {
         "types": "./dist/types/tag/index.d.mts",
         "default": "./dist/esm/tag/index.mjs"
@@ -783,7 +719,6 @@
       }
     },
     "./textarea": {
-      "source": "./src/textarea/index.ts",
       "import": {
         "types": "./dist/types/textarea/index.d.mts",
         "default": "./dist/esm/textarea/index.mjs"
@@ -794,7 +729,6 @@
       }
     },
     "./toast": {
-      "source": "./src/toast/index.ts",
       "import": {
         "types": "./dist/types/toast/index.d.mts",
         "default": "./dist/esm/toast/index.mjs"
@@ -805,7 +739,6 @@
       }
     },
     "./tooltip": {
-      "source": "./src/tooltip/index.ts",
       "import": {
         "types": "./dist/types/tooltip/index.d.mts",
         "default": "./dist/esm/tooltip/index.mjs"
@@ -816,7 +749,6 @@
       }
     },
     "./transition": {
-      "source": "./src/transition/index.ts",
       "import": {
         "types": "./dist/types/transition/index.d.mts",
         "default": "./dist/esm/transition/index.mjs"
@@ -827,7 +759,6 @@
       }
     },
     "./typography": {
-      "source": "./src/typography/index.ts",
       "import": {
         "types": "./dist/types/typography/index.d.mts",
         "default": "./dist/esm/typography/index.mjs"
@@ -838,7 +769,6 @@
       }
     },
     "./visually-hidden": {
-      "source": "./src/visually-hidden/index.ts",
       "import": {
         "types": "./dist/types/visually-hidden/index.d.mts",
         "default": "./dist/esm/visually-hidden/index.mjs"
@@ -849,7 +779,6 @@
       }
     },
     "./wrap": {
-      "source": "./src/wrap/index.ts",
       "import": {
         "types": "./dist/types/wrap/index.d.mts",
         "default": "./dist/esm/wrap/index.mjs"

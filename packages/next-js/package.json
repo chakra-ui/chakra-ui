@@ -52,7 +52,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -63,7 +62,6 @@
       }
     },
     "./emotion-cache-provider": {
-      "source": "./src/emotion-cache-provider.tsx",
       "import": {
         "types": "./dist/types/emotion-cache-provider.d.mts",
         "default": "./dist/esm/emotion-cache-provider.mjs"
@@ -74,7 +72,6 @@
       }
     },
     "./image": {
-      "source": "./src/image.tsx",
       "import": {
         "types": "./dist/types/image.d.mts",
         "default": "./dist/esm/image.mjs"
@@ -85,7 +82,6 @@
       }
     },
     "./interop": {
-      "source": "./src/interop.ts",
       "import": {
         "types": "./dist/types/interop.d.mts",
         "default": "./dist/esm/interop.mjs"
@@ -96,7 +92,6 @@
       }
     },
     "./link": {
-      "source": "./src/link.tsx",
       "import": {
         "types": "./dist/types/link.d.mts",
         "default": "./dist/esm/link.mjs"
@@ -107,7 +102,6 @@
       }
     },
     "./use-emotion-cache": {
-      "source": "./src/use-emotion-cache.ts",
       "import": {
         "types": "./dist/types/use-emotion-cache.d.mts",
         "default": "./dist/esm/use-emotion-cache.mjs"

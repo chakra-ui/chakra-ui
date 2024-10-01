@@ -42,7 +42,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -53,7 +52,6 @@
       }
     },
     "./add-dom-event": {
-      "source": "./src/add-dom-event.ts",
       "import": {
         "types": "./dist/types/add-dom-event.d.mts",
         "default": "./dist/esm/add-dom-event.mjs"
@@ -64,7 +62,6 @@
       }
     },
     "./add-pointer-event": {
-      "source": "./src/add-pointer-event.ts",
       "import": {
         "types": "./dist/types/add-pointer-event.d.mts",
         "default": "./dist/esm/add-pointer-event.mjs"
@@ -75,7 +72,6 @@
       }
     },
     "./assign-after": {
-      "source": "./src/assign-after.ts",
       "import": {
         "types": "./dist/types/assign-after.d.mts",
         "default": "./dist/esm/assign-after.mjs"
@@ -86,7 +82,6 @@
       }
     },
     "./attr": {
-      "source": "./src/attr.ts",
       "import": {
         "types": "./dist/types/attr.d.mts",
         "default": "./dist/esm/attr.mjs"
@@ -97,7 +92,6 @@
       }
     },
     "./breakpoint": {
-      "source": "./src/breakpoint.ts",
       "import": {
         "types": "./dist/types/breakpoint.d.mts",
         "default": "./dist/esm/breakpoint.mjs"
@@ -108,7 +102,6 @@
       }
     },
     "./call-all": {
-      "source": "./src/call-all.ts",
       "import": {
         "types": "./dist/types/call-all.d.mts",
         "default": "./dist/esm/call-all.mjs"
@@ -119,7 +112,6 @@
       }
     },
     "./children": {
-      "source": "./src/children.ts",
       "import": {
         "types": "./dist/types/children.d.mts",
         "default": "./dist/esm/children.mjs"
@@ -130,7 +122,6 @@
       }
     },
     "./compact": {
-      "source": "./src/compact.ts",
       "import": {
         "types": "./dist/types/compact.d.mts",
         "default": "./dist/esm/compact.mjs"
@@ -141,7 +132,6 @@
       }
     },
     "./contains": {
-      "source": "./src/contains.ts",
       "import": {
         "types": "./dist/types/contains.d.mts",
         "default": "./dist/esm/contains.mjs"
@@ -152,7 +142,6 @@
       }
     },
     "./context": {
-      "source": "./src/context.ts",
       "import": {
         "types": "./dist/types/context.d.mts",
         "default": "./dist/esm/context.mjs"
@@ -163,7 +152,6 @@
       }
     },
     "./cx": {
-      "source": "./src/cx.ts",
       "import": {
         "types": "./dist/types/cx.d.mts",
         "default": "./dist/esm/cx.mjs"
@@ -174,7 +162,6 @@
       }
     },
     "./event-point": {
-      "source": "./src/event-point.ts",
       "import": {
         "types": "./dist/types/event-point.d.mts",
         "default": "./dist/esm/event-point.mjs"
@@ -185,7 +172,6 @@
       }
     },
     "./event-types": {
-      "source": "./src/event-types.ts",
       "import": {
         "types": "./dist/types/event-types.d.mts",
         "default": "./dist/esm/event-types.mjs"
@@ -196,7 +182,6 @@
       }
     },
     "./focusable": {
-      "source": "./src/focusable.ts",
       "import": {
         "types": "./dist/types/focusable.d.mts",
         "default": "./dist/esm/focusable.mjs"
@@ -207,7 +192,6 @@
       }
     },
     "./get": {
-      "source": "./src/get.ts",
       "import": {
         "types": "./dist/types/get.d.mts",
         "default": "./dist/esm/get.mjs"
@@ -218,7 +202,6 @@
       }
     },
     "./interop-default": {
-      "source": "./src/interop-default.ts",
       "import": {
         "types": "./dist/types/interop-default.d.mts",
         "default": "./dist/esm/interop-default.mjs"
@@ -229,7 +212,6 @@
       }
     },
     "./is": {
-      "source": "./src/is.ts",
       "import": {
         "types": "./dist/types/is.d.mts",
         "default": "./dist/esm/is.mjs"
@@ -240,7 +222,6 @@
       }
     },
     "./is-element": {
-      "source": "./src/is-element.ts",
       "import": {
         "types": "./dist/types/is-element.d.mts",
         "default": "./dist/esm/is-element.mjs"
@@ -251,7 +232,6 @@
       }
     },
     "./is-event": {
-      "source": "./src/is-event.ts",
       "import": {
         "types": "./dist/types/is-event.d.mts",
         "default": "./dist/esm/is-event.mjs"
@@ -262,7 +242,6 @@
       }
     },
     "./lazy": {
-      "source": "./src/lazy.ts",
       "import": {
         "types": "./dist/types/lazy.d.mts",
         "default": "./dist/esm/lazy.mjs"
@@ -273,7 +252,6 @@
       }
     },
     "./map-object": {
-      "source": "./src/map-object.ts",
       "import": {
         "types": "./dist/types/map-object.d.mts",
         "default": "./dist/esm/map-object.mjs"
@@ -284,7 +262,6 @@
       }
     },
     "./merge": {
-      "source": "./src/merge.ts",
       "import": {
         "types": "./dist/types/merge.d.mts",
         "default": "./dist/esm/merge.mjs"
@@ -295,7 +272,6 @@
       }
     },
     "./number": {
-      "source": "./src/number.ts",
       "import": {
         "types": "./dist/types/number.d.mts",
         "default": "./dist/esm/number.mjs"
@@ -306,7 +282,6 @@
       }
     },
     "./omit": {
-      "source": "./src/omit.ts",
       "import": {
         "types": "./dist/types/omit.d.mts",
         "default": "./dist/esm/omit.mjs"
@@ -317,7 +292,6 @@
       }
     },
     "./owner": {
-      "source": "./src/owner.ts",
       "import": {
         "types": "./dist/types/owner.d.mts",
         "default": "./dist/esm/owner.mjs"
@@ -328,7 +302,6 @@
       }
     },
     "./pick": {
-      "source": "./src/pick.ts",
       "import": {
         "types": "./dist/types/pick.d.mts",
         "default": "./dist/esm/pick.mjs"
@@ -339,7 +312,6 @@
       }
     },
     "./prop-types": {
-      "source": "./src/prop-types.ts",
       "import": {
         "types": "./dist/types/prop-types.d.mts",
         "default": "./dist/esm/prop-types.mjs"
@@ -350,7 +322,6 @@
       }
     },
     "./responsive": {
-      "source": "./src/responsive.ts",
       "import": {
         "types": "./dist/types/responsive.d.mts",
         "default": "./dist/esm/responsive.mjs"
@@ -361,7 +332,6 @@
       }
     },
     "./run-if-fn": {
-      "source": "./src/run-if-fn.ts",
       "import": {
         "types": "./dist/types/run-if-fn.d.mts",
         "default": "./dist/esm/run-if-fn.mjs"
@@ -372,7 +342,6 @@
       }
     },
     "./scroll-parent": {
-      "source": "./src/scroll-parent.ts",
       "import": {
         "types": "./dist/types/scroll-parent.d.mts",
         "default": "./dist/esm/scroll-parent.mjs"
@@ -383,7 +352,6 @@
       }
     },
     "./split": {
-      "source": "./src/split.ts",
       "import": {
         "types": "./dist/types/split.d.mts",
         "default": "./dist/esm/split.mjs"
@@ -394,7 +362,6 @@
       }
     },
     "./split-props": {
-      "source": "./src/split-props.ts",
       "import": {
         "types": "./dist/types/split-props.d.mts",
         "default": "./dist/esm/split-props.mjs"
@@ -405,7 +372,6 @@
       }
     },
     "./tabbable": {
-      "source": "./src/tabbable.ts",
       "import": {
         "types": "./dist/types/tabbable.d.mts",
         "default": "./dist/esm/tabbable.mjs"
@@ -416,7 +382,6 @@
       }
     },
     "./types": {
-      "source": "./src/types.ts",
       "import": {
         "types": "./dist/types/types.d.mts",
         "default": "./dist/esm/types.mjs"
@@ -427,7 +392,6 @@
       }
     },
     "./walk-object": {
-      "source": "./src/walk-object.ts",
       "import": {
         "types": "./dist/types/walk-object.d.mts",
         "default": "./dist/esm/walk-object.mjs"
@@ -438,7 +402,6 @@
       }
     },
     "./warn": {
-      "source": "./src/warn.ts",
       "import": {
         "types": "./dist/types/warn.d.mts",
         "default": "./dist/esm/warn.mjs"

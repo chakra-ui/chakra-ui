@@ -50,7 +50,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -61,7 +60,6 @@
       }
     },
     "./components": {
-      "source": "./src/components/index.ts",
       "import": {
         "types": "./dist/types/components/index.d.mts",
         "default": "./dist/esm/components/index.mjs"
@@ -72,7 +70,6 @@
       }
     },
     "./foundations": {
-      "source": "./src/foundations/index.ts",
       "import": {
         "types": "./dist/types/foundations/index.d.mts",
         "default": "./dist/esm/foundations/index.mjs"
@@ -83,7 +80,6 @@
       }
     },
     "./semantic-tokens": {
-      "source": "./src/semantic-tokens.ts",
       "import": {
         "types": "./dist/types/semantic-tokens.d.mts",
         "default": "./dist/esm/semantic-tokens.mjs"
@@ -94,7 +90,6 @@
       }
     },
     "./styles": {
-      "source": "./src/styles.ts",
       "import": {
         "types": "./dist/types/styles.d.mts",
         "default": "./dist/esm/styles.mjs"

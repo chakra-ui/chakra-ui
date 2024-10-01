@@ -16,7 +16,6 @@
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -27,7 +26,6 @@
       }
     },
     "./components": {
-      "source": "./src/components.ts",
       "import": {
         "types": "./dist/types/components.d.mts",
         "default": "./dist/esm/components.mjs"
@@ -38,7 +36,6 @@
       }
     },
     "./create-anatomy": {
-      "source": "./src/create-anatomy.ts",
       "import": {
         "types": "./dist/types/create-anatomy.d.mts",
         "default": "./dist/esm/create-anatomy.mjs"

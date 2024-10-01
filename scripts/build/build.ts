@@ -4,7 +4,7 @@ import { rmSync } from "fs"
 import { join } from "path/posix"
 import * as rollup from "rollup"
 import { getConfig } from "./config.js"
-import { prepareProject } from "./prepare.js"
+// import { prepareProject } from "./prepare.js"
 import { generateTypes } from "./tsc.js"
 
 interface BuildOptions {
@@ -35,9 +35,9 @@ export async function buildProject(
 
   const config = await getConfig(project, aliases)
 
-  if (!project.manifest.bin) {
-    await prepareProject(project, !prod && ignoreDirs.test(project.dir))
-  }
+  // if (!project.manifest.bin) {
+  //   await prepareProject(project, !prod && ignoreDirs.test(project.dir))
+  // }
 
   if (watch) {
     //
@@ -50,7 +50,7 @@ export async function buildProject(
     console.log(`[${name}][JS] Watching source files...`)
 
     watcher.on("change", async () => {
-      await prepareProject(project, !prod)
+      // await prepareProject(project, !prod)
       console.log(`[${name}][JS] Source files changed, rebuilding...`)
     })
 

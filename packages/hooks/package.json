@@ -50,7 +50,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -61,7 +60,6 @@
       }
     },
     "./use-animation-state": {
-      "source": "./src/use-animation-state.ts",
       "import": {
         "types": "./dist/types/use-animation-state.d.mts",
         "default": "./dist/esm/use-animation-state.mjs"
@@ -72,7 +70,6 @@
       }
     },
     "./use-boolean": {
-      "source": "./src/use-boolean.ts",
       "import": {
         "types": "./dist/types/use-boolean.d.mts",
         "default": "./dist/esm/use-boolean.mjs"
@@ -83,7 +80,6 @@
       }
     },
     "./use-callback-ref": {
-      "source": "./src/use-callback-ref.ts",
       "import": {
         "types": "./dist/types/use-callback-ref.d.mts",
         "default": "./dist/esm/use-callback-ref.mjs"
@@ -94,7 +90,6 @@
       }
     },
     "./use-clipboard": {
-      "source": "./src/use-clipboard.ts",
       "import": {
         "types": "./dist/types/use-clipboard.d.mts",
         "default": "./dist/esm/use-clipboard.mjs"
@@ -105,7 +100,6 @@
       }
     },
     "./use-controllable-state": {
-      "source": "./src/use-controllable-state.ts",
       "import": {
         "types": "./dist/types/use-controllable-state.d.mts",
         "default": "./dist/esm/use-controllable-state.mjs"
@@ -116,7 +110,6 @@
       }
     },
     "./use-counter": {
-      "source": "./src/use-counter.ts",
       "import": {
         "types": "./dist/types/use-counter.d.mts",
         "default": "./dist/esm/use-counter.mjs"
@@ -127,7 +120,6 @@
       }
     },
     "./use-disclosure": {
-      "source": "./src/use-disclosure.ts",
       "import": {
         "types": "./dist/types/use-disclosure.d.mts",
         "default": "./dist/esm/use-disclosure.mjs"
@@ -138,7 +130,6 @@
       }
     },
     "./use-event-listener": {
-      "source": "./src/use-event-listener.ts",
       "import": {
         "types": "./dist/types/use-event-listener.d.mts",
         "default": "./dist/esm/use-event-listener.mjs"
@@ -149,7 +140,6 @@
       }
     },
     "./use-focus-effect": {
-      "source": "./src/use-focus-effect.ts",
       "import": {
         "types": "./dist/types/use-focus-effect.d.mts",
         "default": "./dist/esm/use-focus-effect.mjs"
@@ -160,7 +150,6 @@
       }
     },
     "./use-focus-on-pointer-down": {
-      "source": "./src/use-focus-on-pointer-down.ts",
       "import": {
         "types": "./dist/types/use-focus-on-pointer-down.d.mts",
         "default": "./dist/esm/use-focus-on-pointer-down.mjs"
@@ -171,7 +160,6 @@
       }
     },
     "./use-interval": {
-      "source": "./src/use-interval.ts",
       "import": {
         "types": "./dist/types/use-interval.d.mts",
         "default": "./dist/esm/use-interval.mjs"
@@ -182,7 +170,6 @@
       }
     },
     "./use-latest-ref": {
-      "source": "./src/use-latest-ref.ts",
       "import": {
         "types": "./dist/types/use-latest-ref.d.mts",
         "default": "./dist/esm/use-latest-ref.mjs"
@@ -193,7 +180,6 @@
       }
     },
     "./use-merge-refs": {
-      "source": "./src/use-merge-refs.ts",
       "import": {
         "types": "./dist/types/use-merge-refs.d.mts",
         "default": "./dist/esm/use-merge-refs.mjs"
@@ -204,7 +190,6 @@
       }
     },
     "./use-outside-click": {
-      "source": "./src/use-outside-click.ts",
       "import": {
         "types": "./dist/types/use-outside-click.d.mts",
         "default": "./dist/esm/use-outside-click.mjs"
@@ -215,7 +200,6 @@
       }
     },
     "./use-pan-event": {
-      "source": "./src/use-pan-event/index.ts",
       "import": {
         "types": "./dist/types/use-pan-event/index.d.mts",
         "default": "./dist/esm/use-pan-event/index.mjs"
@@ -226,7 +210,6 @@
       }
     },
     "./use-previous": {
-      "source": "./src/use-previous.ts",
       "import": {
         "types": "./dist/types/use-previous.d.mts",
         "default": "./dist/esm/use-previous.mjs"
@@ -237,7 +220,6 @@
       }
     },
     "./use-safe-layout-effect": {
-      "source": "./src/use-safe-layout-effect.ts",
       "import": {
         "types": "./dist/types/use-safe-layout-effect.d.mts",
         "default": "./dist/esm/use-safe-layout-effect.mjs"
@@ -248,7 +230,6 @@
       }
     },
     "./use-size": {
-      "source": "./src/use-size.ts",
       "import": {
         "types": "./dist/types/use-size.d.mts",
         "default": "./dist/esm/use-size.mjs"
@@ -259,7 +240,6 @@
       }
     },
     "./use-timeout": {
-      "source": "./src/use-timeout.ts",
       "import": {
         "types": "./dist/types/use-timeout.d.mts",
         "default": "./dist/esm/use-timeout.mjs"
@@ -270,7 +250,6 @@
       }
     },
     "./use-update-effect": {
-      "source": "./src/use-update-effect.ts",
       "import": {
         "types": "./dist/types/use-update-effect.d.mts",
         "default": "./dist/esm/use-update-effect.mjs"

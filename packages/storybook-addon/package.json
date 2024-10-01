@@ -75,7 +75,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -86,7 +85,6 @@
       }
     },
     "./arg-types": {
-      "source": "./src/arg-types.ts",
       "import": {
         "types": "./dist/types/arg-types.d.mts",
         "default": "./dist/esm/arg-types.mjs"
@@ -97,7 +95,6 @@
       }
     },
     "./manager": {
-      "source": "./src/manager.ts",
       "import": {
         "types": "./dist/types/manager.d.mts",
         "default": "./dist/esm/manager.mjs"
@@ -108,7 +105,6 @@
       }
     },
     "./preview": {
-      "source": "./src/preview.ts",
       "import": {
         "types": "./dist/types/preview.d.mts",
         "default": "./dist/esm/preview.mjs"

@@ -51,7 +51,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -62,7 +61,6 @@
       }
     },
     "./color": {
-      "source": "./src/color.ts",
       "import": {
         "types": "./dist/types/color.d.mts",
         "default": "./dist/esm/color.mjs"
@@ -73,7 +71,6 @@
       }
     },
     "./component": {
-      "source": "./src/component.ts",
       "import": {
         "types": "./dist/types/component.d.mts",
         "default": "./dist/esm/component.mjs"
@@ -84,7 +81,6 @@
       }
     },
     "./create-breakpoints": {
-      "source": "./src/create-breakpoints.ts",
       "import": {
         "types": "./dist/types/create-breakpoints.d.mts",
         "default": "./dist/esm/create-breakpoints.mjs"
@@ -95,7 +91,6 @@
       }
     },
     "./css-calc": {
-      "source": "./src/css-calc.ts",
       "import": {
         "types": "./dist/types/css-calc.d.mts",
         "default": "./dist/esm/css-calc.mjs"
@@ -106,7 +101,6 @@
       }
     },
     "./css-var": {
-      "source": "./src/css-var.ts",
       "import": {
         "types": "./dist/types/css-var.d.mts",
         "default": "./dist/esm/css-var.mjs"

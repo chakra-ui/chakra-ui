@@ -42,7 +42,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -53,7 +52,6 @@
       }
     },
     "./Add": {
-      "source": "./src/Add.tsx",
       "import": {
         "types": "./dist/types/Add.d.mts",
         "default": "./dist/esm/Add.mjs"
@@ -64,7 +62,6 @@
       }
     },
     "./ArrowBack": {
-      "source": "./src/ArrowBack.tsx",
       "import": {
         "types": "./dist/types/ArrowBack.d.mts",
         "default": "./dist/esm/ArrowBack.mjs"
@@ -75,7 +72,6 @@
       }
     },
     "./ArrowDown": {
-      "source": "./src/ArrowDown.tsx",
       "import": {
         "types": "./dist/types/ArrowDown.d.mts",
         "default": "./dist/esm/ArrowDown.mjs"
@@ -86,7 +82,6 @@
       }
     },
     "./ArrowForward": {
-      "source": "./src/ArrowForward.tsx",
       "import": {
         "types": "./dist/types/ArrowForward.d.mts",
         "default": "./dist/esm/ArrowForward.mjs"
@@ -97,7 +92,6 @@
       }
     },
     "./ArrowLeft": {
-      "source": "./src/ArrowLeft.tsx",
       "import": {
         "types": "./dist/types/ArrowLeft.d.mts",
         "default": "./dist/esm/ArrowLeft.mjs"
@@ -108,7 +102,6 @@
       }
     },
     "./ArrowRight": {
-      "source": "./src/ArrowRight.tsx",
       "import": {
         "types": "./dist/types/ArrowRight.d.mts",
         "default": "./dist/esm/ArrowRight.mjs"
@@ -119,7 +112,6 @@
       }
     },
     "./ArrowUp": {
-      "source": "./src/ArrowUp.tsx",
       "import": {
         "types": "./dist/types/ArrowUp.d.mts",
         "default": "./dist/esm/ArrowUp.mjs"
@@ -130,7 +122,6 @@
       }
     },
     "./ArrowUpDown": {
-      "source": "./src/ArrowUpDown.tsx",
       "import": {
         "types": "./dist/types/ArrowUpDown.d.mts",
         "default": "./dist/esm/ArrowUpDown.mjs"
@@ -141,7 +132,6 @@
       }
     },
     "./AtSign": {
-      "source": "./src/AtSign.tsx",
       "import": {
         "types": "./dist/types/AtSign.d.mts",
         "default": "./dist/esm/AtSign.mjs"
@@ -152,7 +142,6 @@
       }
     },
     "./Attachment": {
-      "source": "./src/Attachment.tsx",
       "import": {
         "types": "./dist/types/Attachment.d.mts",
         "default": "./dist/esm/Attachment.mjs"
@@ -163,7 +152,6 @@
       }
     },
     "./Bell": {
-      "source": "./src/Bell.tsx",
       "import": {
         "types": "./dist/types/Bell.d.mts",
         "default": "./dist/esm/Bell.mjs"
@@ -174,7 +162,6 @@
       }
     },
     "./Calendar": {
-      "source": "./src/Calendar.tsx",
       "import": {
         "types": "./dist/types/Calendar.d.mts",
         "default": "./dist/esm/Calendar.mjs"
@@ -185,7 +172,6 @@
       }
     },
     "./Chat": {
-      "source": "./src/Chat.tsx",
       "import": {
         "types": "./dist/types/Chat.d.mts",
         "default": "./dist/esm/Chat.mjs"
@@ -196,7 +182,6 @@
       }
     },
     "./Check": {
-      "source": "./src/Check.tsx",
       "import": {
         "types": "./dist/types/Check.d.mts",
         "default": "./dist/esm/Check.mjs"
@@ -207,7 +192,6 @@
       }
     },
     "./CheckCircle": {
-      "source": "./src/CheckCircle.tsx",
       "import": {
         "types": "./dist/types/CheckCircle.d.mts",
         "default": "./dist/esm/CheckCircle.mjs"
@@ -218,7 +202,6 @@
       }
     },
     "./ChevronDown": {
-      "source": "./src/ChevronDown.tsx",
       "import": {
         "types": "./dist/types/ChevronDown.d.mts",
         "default": "./dist/esm/ChevronDown.mjs"
@@ -229,7 +212,6 @@
       }
     },
     "./ChevronLeft": {
-      "source": "./src/ChevronLeft.tsx",
       "import": {
         "types": "./dist/types/ChevronLeft.d.mts",
         "default": "./dist/esm/ChevronLeft.mjs"
@@ -240,7 +222,6 @@
       }
     },
     "./ChevronRight": {
-      "source": "./src/ChevronRight.tsx",
       "import": {
         "types": "./dist/types/ChevronRight.d.mts",
         "default": "./dist/esm/ChevronRight.mjs"
@@ -251,7 +232,6 @@
       }
     },
     "./ChevronUp": {
-      "source": "./src/ChevronUp.tsx",
       "import": {
         "types": "./dist/types/ChevronUp.d.mts",
         "default": "./dist/esm/ChevronUp.mjs"
@@ -262,7 +242,6 @@
       }
     },
     "./Close": {
-      "source": "./src/Close.tsx",
       "import": {
         "types": "./dist/types/Close.d.mts",
         "default": "./dist/esm/Close.mjs"
@@ -273,7 +252,6 @@
       }
     },
     "./Copy": {
-      "source": "./src/Copy.tsx",
       "import": {
         "types": "./dist/types/Copy.d.mts",
         "default": "./dist/esm/Copy.mjs"
@@ -284,7 +262,6 @@
       }
     },
     "./Delete": {
-      "source": "./src/Delete.tsx",
       "import": {
         "types": "./dist/types/Delete.d.mts",
         "default": "./dist/esm/Delete.mjs"
@@ -295,7 +272,6 @@
       }
     },
     "./Download": {
-      "source": "./src/Download.tsx",
       "import": {
         "types": "./dist/types/Download.d.mts",
         "default": "./dist/esm/Download.mjs"
@@ -306,7 +282,6 @@
       }
     },
     "./DragHandle": {
-      "source": "./src/DragHandle.tsx",
       "import": {
         "types": "./dist/types/DragHandle.d.mts",
         "default": "./dist/esm/DragHandle.mjs"
@@ -317,7 +292,6 @@
       }
     },
     "./Edit": {
-      "source": "./src/Edit.tsx",
       "import": {
         "types": "./dist/types/Edit.d.mts",
         "default": "./dist/esm/Edit.mjs"
@@ -328,7 +302,6 @@
       }
     },
     "./Email": {
-      "source": "./src/Email.tsx",
       "import": {
         "types": "./dist/types/Email.d.mts",
         "default": "./dist/esm/Email.mjs"
@@ -339,7 +312,6 @@
       }
     },
     "./ExternalLink": {
-      "source": "./src/ExternalLink.tsx",
       "import": {
         "types": "./dist/types/ExternalLink.d.mts",
         "default": "./dist/esm/ExternalLink.mjs"
@@ -350,7 +322,6 @@
       }
     },
     "./Hamburger": {
-      "source": "./src/Hamburger.tsx",
       "import": {
         "types": "./dist/types/Hamburger.d.mts",
         "default": "./dist/esm/Hamburger.mjs"
@@ -361,7 +332,6 @@
       }
     },
     "./Info": {
-      "source": "./src/Info.tsx",
       "import": {
         "types": "./dist/types/Info.d.mts",
         "default": "./dist/esm/Info.mjs"
@@ -372,7 +342,6 @@
       }
     },
     "./InfoOutline": {
-      "source": "./src/InfoOutline.tsx",
       "import": {
         "types": "./dist/types/InfoOutline.d.mts",
         "default": "./dist/esm/InfoOutline.mjs"
@@ -383,7 +352,6 @@
       }
     },
     "./Link": {
-      "source": "./src/Link.tsx",
       "import": {
         "types": "./dist/types/Link.d.mts",
         "default": "./dist/esm/Link.mjs"
@@ -394,7 +362,6 @@
       }
     },
     "./Lock": {
-      "source": "./src/Lock.tsx",
       "import": {
         "types": "./dist/types/Lock.d.mts",
         "default": "./dist/esm/Lock.mjs"
@@ -405,7 +372,6 @@
       }
     },
     "./Minus": {
-      "source": "./src/Minus.tsx",
       "import": {
         "types": "./dist/types/Minus.d.mts",
         "default": "./dist/esm/Minus.mjs"
@@ -416,7 +382,6 @@
       }
     },
     "./Moon": {
-      "source": "./src/Moon.tsx",
       "import": {
         "types": "./dist/types/Moon.d.mts",
         "default": "./dist/esm/Moon.mjs"
@@ -427,7 +392,6 @@
       }
     },
     "./NotAllowed": {
-      "source": "./src/NotAllowed.tsx",
       "import": {
         "types": "./dist/types/NotAllowed.d.mts",
         "default": "./dist/esm/NotAllowed.mjs"
@@ -438,7 +402,6 @@
       }
     },
     "./Phone": {
-      "source": "./src/Phone.tsx",
       "import": {
         "types": "./dist/types/Phone.d.mts",
         "default": "./dist/esm/Phone.mjs"
@@ -449,7 +412,6 @@
       }
     },
     "./PlusSquare": {
-      "source": "./src/PlusSquare.tsx",
       "import": {
         "types": "./dist/types/PlusSquare.d.mts",
         "default": "./dist/esm/PlusSquare.mjs"
@@ -460,7 +422,6 @@
       }
     },
     "./Question": {
-      "source": "./src/Question.tsx",
       "import": {
         "types": "./dist/types/Question.d.mts",
         "default": "./dist/esm/Question.mjs"
@@ -471,7 +432,6 @@
       }
     },
     "./QuestionOutline": {
-      "source": "./src/QuestionOutline.tsx",
       "import": {
         "types": "./dist/types/QuestionOutline.d.mts",
         "default": "./dist/esm/QuestionOutline.mjs"
@@ -482,7 +442,6 @@
       }
     },
     "./React": {
-      "source": "./src/React.tsx",
       "import": {
         "types": "./dist/types/React.d.mts",
         "default": "./dist/esm/React.mjs"
@@ -493,7 +452,6 @@
       }
     },
     "./Repeat": {
-      "source": "./src/Repeat.tsx",
       "import": {
         "types": "./dist/types/Repeat.d.mts",
         "default": "./dist/esm/Repeat.mjs"
@@ -504,7 +462,6 @@
       }
     },
     "./RepeatClock": {
-      "source": "./src/RepeatClock.tsx",
       "import": {
         "types": "./dist/types/RepeatClock.d.mts",
         "default": "./dist/esm/RepeatClock.mjs"
@@ -515,7 +472,6 @@
       }
     },
     "./Search": {
-      "source": "./src/Search.tsx",
       "import": {
         "types": "./dist/types/Search.d.mts",
         "default": "./dist/esm/Search.mjs"
@@ -526,7 +482,6 @@
       }
     },
     "./Search2": {
-      "source": "./src/Search2.tsx",
       "import": {
         "types": "./dist/types/Search2.d.mts",
         "default": "./dist/esm/Search2.mjs"
@@ -537,7 +492,6 @@
       }
     },
     "./Settings": {
-      "source": "./src/Settings.tsx",
       "import": {
         "types": "./dist/types/Settings.d.mts",
         "default": "./dist/esm/Settings.mjs"
@@ -548,7 +502,6 @@
       }
     },
     "./SmallAdd": {
-      "source": "./src/SmallAdd.tsx",
       "import": {
         "types": "./dist/types/SmallAdd.d.mts",
         "default": "./dist/esm/SmallAdd.mjs"
@@ -559,7 +512,6 @@
       }
     },
     "./SmallClose": {
-      "source": "./src/SmallClose.tsx",
       "import": {
         "types": "./dist/types/SmallClose.d.mts",
         "default": "./dist/esm/SmallClose.mjs"
@@ -570,7 +522,6 @@
       }
     },
     "./Spinner": {
-      "source": "./src/Spinner.tsx",
       "import": {
         "types": "./dist/types/Spinner.d.mts",
         "default": "./dist/esm/Spinner.mjs"
@@ -581,7 +532,6 @@
       }
     },
     "./Star": {
-      "source": "./src/Star.tsx",
       "import": {
         "types": "./dist/types/Star.d.mts",
         "default": "./dist/esm/Star.mjs"
@@ -592,7 +542,6 @@
       }
     },
     "./Sun": {
-      "source": "./src/Sun.tsx",
       "import": {
         "types": "./dist/types/Sun.d.mts",
         "default": "./dist/esm/Sun.mjs"
@@ -603,7 +552,6 @@
       }
     },
     "./Time": {
-      "source": "./src/Time.tsx",
       "import": {
         "types": "./dist/types/Time.d.mts",
         "default": "./dist/esm/Time.mjs"
@@ -614,7 +562,6 @@
       }
     },
     "./TriangleDown": {
-      "source": "./src/TriangleDown.tsx",
       "import": {
         "types": "./dist/types/TriangleDown.d.mts",
         "default": "./dist/esm/TriangleDown.mjs"
@@ -625,7 +572,6 @@
       }
     },
     "./TriangleUp": {
-      "source": "./src/TriangleUp.tsx",
       "import": {
         "types": "./dist/types/TriangleUp.d.mts",
         "default": "./dist/esm/TriangleUp.mjs"
@@ -636,7 +582,6 @@
       }
     },
     "./Unlock": {
-      "source": "./src/Unlock.tsx",
       "import": {
         "types": "./dist/types/Unlock.d.mts",
         "default": "./dist/esm/Unlock.mjs"
@@ -647,7 +592,6 @@
       }
     },
     "./UpDown": {
-      "source": "./src/UpDown.tsx",
       "import": {
         "types": "./dist/types/UpDown.d.mts",
         "default": "./dist/esm/UpDown.mjs"
@@ -658,7 +602,6 @@
       }
     },
     "./View": {
-      "source": "./src/View.tsx",
       "import": {
         "types": "./dist/types/View.d.mts",
         "default": "./dist/esm/View.mjs"
@@ -669,7 +612,6 @@
       }
     },
     "./ViewOff": {
-      "source": "./src/ViewOff.tsx",
       "import": {
         "types": "./dist/types/ViewOff.d.mts",
         "default": "./dist/esm/ViewOff.mjs"
@@ -680,7 +622,6 @@
       }
     },
     "./Warning": {
-      "source": "./src/Warning.tsx",
       "import": {
         "types": "./dist/types/Warning.d.mts",
         "default": "./dist/esm/Warning.mjs"
@@ -691,7 +632,6 @@
       }
     },
     "./WarningTwo": {
-      "source": "./src/WarningTwo.tsx",
       "import": {
         "types": "./dist/types/WarningTwo.d.mts",
         "default": "./dist/esm/WarningTwo.mjs"

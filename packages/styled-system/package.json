@@ -53,7 +53,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -64,7 +63,6 @@
       }
     },
     "./config": {
-      "source": "./src/config/index.ts",
       "import": {
         "types": "./dist/types/config/index.d.mts",
         "default": "./dist/esm/config/index.mjs"
@@ -75,7 +73,6 @@
       }
     },
     "./create-theme-vars": {
-      "source": "./src/create-theme-vars/index.ts",
       "import": {
         "types": "./dist/types/create-theme-vars/index.d.mts",
         "default": "./dist/esm/create-theme-vars/index.mjs"
@@ -86,7 +83,6 @@
       }
     },
     "./css": {
-      "source": "./src/css.ts",
       "import": {
         "types": "./dist/types/css.d.mts",
         "default": "./dist/esm/css.mjs"
@@ -97,7 +93,6 @@
       }
     },
     "./define-styles": {
-      "source": "./src/define-styles.ts",
       "import": {
         "types": "./dist/types/define-styles.d.mts",
         "default": "./dist/esm/define-styles.mjs"
@@ -108,7 +103,6 @@
       }
     },
     "./get": {
-      "source": "./src/get.ts",
       "import": {
         "types": "./dist/types/get.d.mts",
         "default": "./dist/esm/get.mjs"
@@ -119,7 +113,6 @@
       }
     },
     "./get-css-var": {
-      "source": "./src/get-css-var.ts",
       "import": {
         "types": "./dist/types/get-css-var.d.mts",
         "default": "./dist/esm/get-css-var.mjs"
@@ -130,7 +123,6 @@
       }
     },
     "./pseudos": {
-      "source": "./src/pseudos.ts",
       "import": {
         "types": "./dist/types/pseudos.d.mts",
         "default": "./dist/esm/pseudos.mjs"
@@ -141,7 +133,6 @@
       }
     },
     "./style-config": {
-      "source": "./src/style-config.ts",
       "import": {
         "types": "./dist/types/style-config.d.mts",
         "default": "./dist/esm/style-config.mjs"
@@ -152,7 +143,6 @@
       }
     },
     "./system": {
-      "source": "./src/system.ts",
       "import": {
         "types": "./dist/types/system.d.mts",
         "default": "./dist/esm/system.mjs"
@@ -163,7 +153,6 @@
       }
     },
     "./theming-props": {
-      "source": "./src/theming-props.ts",
       "import": {
         "types": "./dist/types/theming-props.d.mts",
         "default": "./dist/esm/theming-props.mjs"
