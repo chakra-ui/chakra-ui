@@ -22,6 +22,7 @@
     "next-themes": "0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-use": "17.5.1",
     "react-frame-component": "5.2.7",
     "react-hook-form": "7.53.0",
     "react-markdown": "9.0.1",

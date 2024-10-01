@@ -12,6 +12,7 @@ export default {
   ],
 } satisfies Meta
 
+export { SelectAsyncLoading as AsyncLoading } from "compositions/examples/select-async-loading"
 export { SelectBasic as Basic } from "compositions/examples/select-basic"
 export { SelectControlled as Controlled } from "compositions/examples/select-controlled"
 export { SelectInPopover as InPopover } from "compositions/examples/select-in-popover"
