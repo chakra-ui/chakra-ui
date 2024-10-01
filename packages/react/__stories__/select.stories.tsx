@@ -22,6 +22,7 @@ export { SelectWithDisabled as Disabled } from "compositions/examples/select-wit
 export { SelectWithDisabledOption as DisabledOption } from "compositions/examples/select-with-disabled-option"
 export { SelectWithHookForm as HookForm } from "compositions/examples/select-with-hook-form"
 export { SelectWithInvalid as Invalid } from "compositions/examples/select-with-invalid"
+export { SelectWithMultiple as Multiple } from "compositions/examples/select-with-multiple"
 export { SelectWithOptionGroup as OptionGroup } from "compositions/examples/select-with-option-group"
 export { SelectWithOverflow as Overflow } from "compositions/examples/select-with-overflow"
 export { SelectWithPositioning as Positioning } from "compositions/examples/select-with-positioning"
