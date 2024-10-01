@@ -25,12 +25,7 @@ These are the key functions needed to customize the Chakra UI theme.
 - `createSystem`: used to create a styling engine from the config
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultBaseConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultBaseConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   theme: {
@@ -42,9 +37,7 @@ const customConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultBaseConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultBaseConfig, customConfig)
 ```
 
 Next, update the `ChakraProvider` to use the custom system.
