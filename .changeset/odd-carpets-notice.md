@@ -12,7 +12,6 @@
 "@chakra-ui/theme": minor
 "@chakra-ui/utils": minor
 "@chakra-ui/cli": minor
-"@chakra-ui/docs": minor
 ---
 
 Force release
