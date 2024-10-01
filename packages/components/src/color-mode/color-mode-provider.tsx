@@ -37,106 +37,109 @@ function getTheme(manager: StorageManager, fallback?: ColorMode) {
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
  */
-export const ColorModeProvider = withEmotionCache(function ColorModeProvider(
-  props: ColorModeProviderProps,
-  cache: EmotionCache,
-) {
-  const {
-    value,
-    children,
-    options: {
-      useSystemColorMode,
-      initialColorMode,
-      disableTransitionOnChange,
-    } = {},
-    colorModeManager = localStorageManager,
-  } = props
+export const ColorModeProvider: React.FC<ColorModeProviderProps> =
+  withEmotionCache(function ColorModeProvider(
+    props: ColorModeProviderProps,
+    cache: EmotionCache,
+  ) {
+    const {
+      value,
+      children,
+      options: {
+        useSystemColorMode,
+        initialColorMode,
+        disableTransitionOnChange,
+      } = {},
+      colorModeManager = localStorageManager,
+    } = props
 
-  const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
+    const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
-  const [colorMode, rawSetColorMode] = useState(() =>
-    getTheme(colorModeManager, defaultColorMode),
-  )
+    const [colorMode, rawSetColorMode] = useState(() =>
+      getTheme(colorModeManager, defaultColorMode),
+    )
 
-  const [resolvedColorMode, setResolvedColorMode] = useState(() =>
-    getTheme(colorModeManager),
-  )
+    const [resolvedColorMode, setResolvedColorMode] = useState(() =>
+      getTheme(colorModeManager),
+    )
 
-  const { getSystemTheme, setClassName, setDataset, addListener } = useMemo(
-    () =>
-      getColorModeUtils({
-        preventTransition: disableTransitionOnChange,
-        nonce: cache?.nonce,
+    const { getSystemTheme, setClassName, setDataset, addListener } = useMemo(
+      () =>
+        getColorModeUtils({
+          preventTransition: disableTransitionOnChange,
+          nonce: cache?.nonce,
+        }),
+      [disableTransitionOnChange, cache?.nonce],
+    )
+
+    const resolvedValue =
+      initialColorMode === "system" && !colorMode
+        ? resolvedColorMode
+        : colorMode
+
+    const setColorMode = useCallback(
+      (value: ColorMode | "system") => {
+        //
+        const resolved = value === "system" ? getSystemTheme() : value
+        rawSetColorMode(resolved)
+
+        setClassName(resolved === "dark")
+        setDataset(resolved)
+
+        colorModeManager.set(resolved)
+      },
+      [colorModeManager, getSystemTheme, setClassName, setDataset],
+    )
+
+    useSafeLayoutEffect(() => {
+      if (initialColorMode === "system") {
+        setResolvedColorMode(getSystemTheme())
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
+      const managerValue = colorModeManager.get()
+
+      if (managerValue) {
+        setColorMode(managerValue)
+        return
+      }
+
+      if (initialColorMode === "system") {
+        setColorMode("system")
+        return
+      }
+
+      setColorMode(defaultColorMode)
+    }, [colorModeManager, defaultColorMode, initialColorMode, setColorMode])
+
+    const toggleColorMode = useCallback(() => {
+      setColorMode(resolvedValue === "dark" ? "light" : "dark")
+    }, [resolvedValue, setColorMode])
+
+    useEffect(() => {
+      if (!useSystemColorMode) return
+      return addListener(setColorMode)
+    }, [useSystemColorMode, addListener, setColorMode])
+
+    // presence of `value` indicates a controlled context
+    const context = useMemo(
+      () => ({
+        colorMode: value ?? (resolvedValue as ColorMode),
+        toggleColorMode: value ? noop : toggleColorMode,
+        setColorMode: value ? noop : setColorMode,
+        forced: value !== undefined,
       }),
-    [disableTransitionOnChange, cache?.nonce],
-  )
+      [resolvedValue, toggleColorMode, setColorMode, value],
+    )
 
-  const resolvedValue =
-    initialColorMode === "system" && !colorMode ? resolvedColorMode : colorMode
-
-  const setColorMode = useCallback(
-    (value: ColorMode | "system") => {
-      //
-      const resolved = value === "system" ? getSystemTheme() : value
-      rawSetColorMode(resolved)
-
-      setClassName(resolved === "dark")
-      setDataset(resolved)
-
-      colorModeManager.set(resolved)
-    },
-    [colorModeManager, getSystemTheme, setClassName, setDataset],
-  )
-
-  useSafeLayoutEffect(() => {
-    if (initialColorMode === "system") {
-      setResolvedColorMode(getSystemTheme())
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    const managerValue = colorModeManager.get()
-
-    if (managerValue) {
-      setColorMode(managerValue)
-      return
-    }
-
-    if (initialColorMode === "system") {
-      setColorMode("system")
-      return
-    }
-
-    setColorMode(defaultColorMode)
-  }, [colorModeManager, defaultColorMode, initialColorMode, setColorMode])
-
-  const toggleColorMode = useCallback(() => {
-    setColorMode(resolvedValue === "dark" ? "light" : "dark")
-  }, [resolvedValue, setColorMode])
-
-  useEffect(() => {
-    if (!useSystemColorMode) return
-    return addListener(setColorMode)
-  }, [useSystemColorMode, addListener, setColorMode])
-
-  // presence of `value` indicates a controlled context
-  const context = useMemo(
-    () => ({
-      colorMode: value ?? (resolvedValue as ColorMode),
-      toggleColorMode: value ? noop : toggleColorMode,
-      setColorMode: value ? noop : setColorMode,
-      forced: value !== undefined,
-    }),
-    [resolvedValue, toggleColorMode, setColorMode, value],
-  )
-
-  return (
-    <ColorModeContext.Provider value={context}>
-      {children}
-    </ColorModeContext.Provider>
-  )
-})
+    return (
+      <ColorModeContext.Provider value={context}>
+        {children}
+      </ColorModeContext.Provider>
+    )
+  })
 
 ColorModeProvider.displayName = "ColorModeProvider"
 

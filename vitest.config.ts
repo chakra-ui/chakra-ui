@@ -11,7 +11,4 @@ export default defineConfig({
       include: ["packages"],
     },
   },
-  resolve: {
-    conditions: ["source"],
-  },
 })

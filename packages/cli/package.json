@@ -58,7 +58,6 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.mts",
         "default": "./dist/esm/index.mjs"
@@ -69,7 +68,6 @@
       }
     },
     "./config": {
-      "source": "./src/config.ts",
       "import": {
         "types": "./dist/types/config.d.mts",
         "default": "./dist/esm/config.mjs"
@@ -80,7 +78,6 @@
       }
     },
     "./create-theme-typings-interface": {
-      "source": "./src/create-theme-typings-interface.ts",
       "import": {
         "types": "./dist/types/create-theme-typings-interface.d.mts",
         "default": "./dist/esm/create-theme-typings-interface.mjs"
@@ -91,7 +88,6 @@
       }
     },
     "./extract-color-schemes": {
-      "source": "./src/extract-color-schemes.ts",
       "import": {
         "types": "./dist/types/extract-color-schemes.d.mts",
         "default": "./dist/esm/extract-color-schemes.mjs"
@@ -102,7 +98,6 @@
       }
     },
     "./extract-component-types": {
-      "source": "./src/extract-component-types.ts",
       "import": {
         "types": "./dist/types/extract-component-types.d.mts",
         "default": "./dist/esm/extract-component-types.mjs"
@@ -113,7 +108,6 @@
       }
     },
     "./extract-property-keys": {
-      "source": "./src/extract-property-keys.ts",
       "import": {
         "types": "./dist/types/extract-property-keys.d.mts",
         "default": "./dist/esm/extract-property-keys.mjs"
@@ -124,7 +118,6 @@
       }
     },
     "./extract-property-paths": {
-      "source": "./src/extract-property-paths.ts",
       "import": {
         "types": "./dist/types/extract-property-paths.d.mts",
         "default": "./dist/esm/extract-property-paths.mjs"
@@ -135,7 +128,6 @@
       }
     },
     "./extract-semantic-token-keys": {
-      "source": "./src/extract-semantic-token-keys.ts",
       "import": {
         "types": "./dist/types/extract-semantic-token-keys.d.mts",
         "default": "./dist/esm/extract-semantic-token-keys.mjs"
@@ -146,7 +138,6 @@
       }
     },
     "./generate-theme-typings": {
-      "source": "./src/generate-theme-typings.ts",
       "import": {
         "types": "./dist/types/generate-theme-typings.d.mts",
         "default": "./dist/esm/generate-theme-typings.mjs"
@@ -157,7 +148,6 @@
       }
     },
     "./resolve-output-path": {
-      "source": "./src/resolve-output-path.ts",
       "import": {
         "types": "./dist/types/resolve-output-path.d.mts",
         "default": "./dist/esm/resolve-output-path.mjs"

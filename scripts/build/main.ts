@@ -22,7 +22,7 @@ async function main() {
   })
 
   const { graph } = createPkgGraph(packages, {
-    ignoreDevDeps: true,
+    ignoreDevDeps: false,
     linkWorkspacePackages: true,
   })
   const sortedDirs = sortPackages(graph)

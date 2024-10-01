@@ -14,8 +14,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noFallthroughCasesInSwitch": true,
-    "customConditions": ["source"]
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }

@@ -18,7 +18,6 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "incremental": true,
-    "customConditions": ["source"],
     "plugins": [
       {
         "name": "next"

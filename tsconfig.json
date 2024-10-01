@@ -16,8 +16,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "customConditions": ["source"]
+    "downlevelIteration": true
   },
   "include": ["vitest.setup.ts", "packages"],
   "exclude": ["node_modules"]

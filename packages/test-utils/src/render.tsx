@@ -1,3 +1,4 @@
+// @ts-ignore - This file is not meant to be executed
 import { Provider as ChakraProvider } from "@chakra-ui/react/provider"
 import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom/vitest"

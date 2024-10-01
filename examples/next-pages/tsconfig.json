@@ -17,8 +17,7 @@
     "strict": true,
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
-    "incremental": true,
-    "customConditions": ["source"]
+    "incremental": true
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]

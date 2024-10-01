@@ -39,9 +39,9 @@
     "csstype": "^3.1.2"
   },
   "devDependencies": {
+    "@chakra-ui/theme": "workspace:*",
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@chakra-ui/theme": "workspace:*"
+    "@emotion/styled": "^11.11.0"
   },
   "sideEffects": false,
   "scripts": {
