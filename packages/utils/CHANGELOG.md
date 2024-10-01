@@ -1,5 +1,11 @@
 # @chakra-ui/utils
 
+## 2.1.1
+
+### Patch Changes
+
+- Force release
+
 ## 2.1.0
 
 ### Minor Changes

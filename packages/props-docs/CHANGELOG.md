@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- Force release
+
 ## 2.3.0
 
 ### Minor Changes

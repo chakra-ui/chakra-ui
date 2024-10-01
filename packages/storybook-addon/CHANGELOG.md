@@ -1,5 +1,11 @@
 # @chakra-ui/storybook-addon
 
+## 5.2.1
+
+### Patch Changes
+
+- Force release
+
 ## 5.2.0
 
 ### Minor Changes

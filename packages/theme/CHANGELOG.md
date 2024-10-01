@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.4.1
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.2.1
+  - @chakra-ui/anatomy@2.3.1
+  - @chakra-ui/utils@2.1.1
+
 ## 3.4.0
 
 ### Minor Changes

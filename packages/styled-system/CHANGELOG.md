@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.10.1
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.1.1
+
 ## 2.10.0
 
 ### Minor Changes
