@@ -50788,24 +50788,13 @@
     }
   },
   {
-    "content": "Social Buttons",
-    "id": "//docs/components/button/usage",
-    "type": "lvl3",
-    "url": "/docs/components/button/usage#social-buttons",
-    "hierarchy": {
-      "lvl1": "Button",
-      "lvl2": "Button loading state",
-      "lvl3": "Social Buttons"
-    }
-  },
-  {
     "content": "Grouping Buttons",
     "id": "//docs/components/button/usage",
     "type": "lvl3",
     "url": "/docs/components/button/usage#grouping-buttons",
     "hierarchy": {
       "lvl1": "Button",
-      "lvl2": "Social Buttons",
+      "lvl2": "Button loading state",
       "lvl3": "Grouping Buttons"
     }
   },
@@ -53545,6 +53534,13 @@
       "lvl2": "Unstyled List with icon",
       "lvl3": null
     }
+  },
+  {
+    "content": "Custom style type",
+    "id": "//docs/components/list/usage",
+    "type": "lvl2",
+    "url": "/docs/components/list/usage#custom-style-type",
+    "hierarchy": { "lvl1": "List", "lvl2": "Custom style type", "lvl3": null }
   },
   {
     "id": "//docs/components/menu/props",
@@ -56340,6 +56336,17 @@
     }
   },
   {
+    "content": "Customizing the indicator",
+    "id": "//docs/components/stepper/usage",
+    "type": "lvl3",
+    "url": "/docs/components/stepper/usage#customizing-the-indicator",
+    "hierarchy": {
+      "lvl1": "Stepper",
+      "lvl2": "Adding a progress bar",
+      "lvl3": "Customizing the indicator"
+    }
+  },
+  {
     "content": "Showing step summary",
     "id": "//docs/components/stepper/usage",
     "type": "lvl2",
@@ -58021,17 +58028,6 @@
     "type": "lvl2",
     "url": "/docs/hooks/use-clipboard#usage",
     "hierarchy": { "lvl1": "useClipboard", "lvl2": "Usage", "lvl3": null }
-  },
-  {
-    "content": "Imperative",
-    "id": "//docs/hooks/use-clipboard",
-    "type": "lvl3",
-    "url": "/docs/hooks/use-clipboard#imperative",
-    "hierarchy": {
-      "lvl1": "useClipboard",
-      "lvl2": "Usage",
-      "lvl3": "Imperative"
-    }
   },
   {
     "content": "useConst",
@@ -60556,13 +60552,24 @@
     "hierarchy": { "lvl1": "Gatsby", "lvl2": "Installation", "lvl3": null }
   },
   {
+    "content": "Setting up Chakra locally",
+    "id": "//getting-started/gatsby-guide",
+    "type": "lvl3",
+    "url": "/getting-started/gatsby-guide#setting-up-chakra-locally",
+    "hierarchy": {
+      "lvl1": "Gatsby",
+      "lvl2": "Installation",
+      "lvl3": "Setting up Chakra locally"
+    }
+  },
+  {
     "content": "Gatsby Starter",
     "id": "//getting-started/gatsby-guide",
     "type": "lvl3",
     "url": "/getting-started/gatsby-guide#gatsby-starter",
     "hierarchy": {
       "lvl1": "Gatsby",
-      "lvl2": "Installation",
+      "lvl2": "Setting up Chakra locally",
       "lvl3": "Gatsby Starter"
     }
   },

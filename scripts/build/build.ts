@@ -15,8 +15,6 @@ interface BuildOptions {
   aliases?: Alias[]
 }
 
-const ignoreDirs = /utilities|hooks|components/
-
 export async function buildProject(
   project: Project,
   options: BuildOptions = {},

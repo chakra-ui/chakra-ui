@@ -1,5 +1,3 @@
-import { sortPackages } from "@pnpm/sort-packages"
-import { createPkgGraph } from "@pnpm/workspace.pkgs-graph"
 import { findPackages } from "find-packages"
 import { resolve } from "path/posix"
 import { buildProject } from "./build.js"
@@ -21,13 +19,19 @@ async function main() {
     ],
   })
 
-  const { graph } = createPkgGraph(packages, {
-    ignoreDevDeps: false,
-    linkWorkspacePackages: true,
-  })
-  const sortedDirs = sortPackages(graph)
-    .flat()
-    .filter((t) => !t.includes("node_modules"))
+  const sortedDirs = [
+    "packages/anatomy",
+    "packages/cli",
+    "packages/utils",
+    "packages/hooks",
+    "packages/styled-system",
+    "packages/theme-tools",
+    "packages/theme",
+    "packages/components",
+    "packages/icons",
+    "packages/next-js",
+    "packages/storybook-addon",
+  ]
 
   packages.sort((a, b) => {
     const aIndex = sortedDirs.indexOf(a.dir)
