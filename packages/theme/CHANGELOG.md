@@ -1,5 +1,55 @@
 # Change Log
 
+## 3.4.0
+
+### Minor Changes
+
+- [`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+
+- [#8310](https://github.com/chakra-ui/chakra-ui/pull/8310)
+  [`c6dc139`](https://github.com/chakra-ui/chakra-ui/commit/c6dc139ee0835adb962910807e25c60c78696aa7)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add support
+  for custom theme conditions or pseudo props via `theme.conditions`
+
+  ```ts
+  // theme.ts
+
+  const theme = extendTheme({
+    conditions: {
+      _closed: "[data-state='closed']", // pseudo prop
+    },
+  })
+  ```
+
+  This allows you to use the pseudo prop in your components
+
+  ```jsx
+  <Box data-state="closed" _closed={{ bg: "red.200" }}>
+    This box is closed
+  </Box>
+  ```
+
+  **For TypeScript users**, you need to use the Chakra CLI to generate the types
+  for your custom conditions.
+
+  ```sh
+  pnpm chakra-cli tokens src/theme/index.ts
+  ```
+
+### Patch Changes
+
+- [#8121](https://github.com/chakra-ui/chakra-ui/pull/8121)
+  [`170198f`](https://github.com/chakra-ui/chakra-ui/commit/170198fc3936ad34f8136a2da173c12d9dc3dc36)
+  Thanks [@kkieninger](https://github.com/kkieninger)! - Fix hard-coded z-index
+  for Menu in favor of one defined from the theme
+
+- Updated dependencies
+  [[`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)]:
+  - @chakra-ui/theme-tools@2.2.0
+  - @chakra-ui/anatomy@2.3.0
+  - @chakra-ui/utils@2.1.0
+
 ## 3.3.1
 
 ### Patch Changes

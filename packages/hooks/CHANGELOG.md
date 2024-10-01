@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+
+### Patch Changes
+
+- [`85a81c8`](https://github.com/chakra-ui/chakra-ui/commit/85a81c892bda2b6c49517129201690858d1289e0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `useOutsideClick` doesn't work in shadow DOM environments
+
+- Updated dependencies
+  [[`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)]:
+  - @chakra-ui/utils@2.1.0
+
 ## 2.2.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cli",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
     "theme",

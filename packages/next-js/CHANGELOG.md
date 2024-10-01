@@ -1,5 +1,23 @@
 # @chakra-ui/next-js
 
+## 2.3.0
+
+### Minor Changes
+
+- [`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+
+### Patch Changes
+
+- [#8132](https://github.com/chakra-ui/chakra-ui/pull/8132)
+  [`96fac31`](https://github.com/chakra-ui/chakra-ui/commit/96fac317bbd4df316e96527ef8a0fef3c4550a71)
+  Thanks [@ernieMrtnz](https://github.com/ernieMrtnz)! - adds nonce to added
+  style from emotion cache
+
+- [`6e2b976`](https://github.com/chakra-ui/chakra-ui/commit/6e2b976d5bb932bfd9399eacd2819c0bb9d56445)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  image component does not work due to interop issue with `next/image`
+
 ## 2.2.0
 
 ### Minor Changes

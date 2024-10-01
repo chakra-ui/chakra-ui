@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+
+### Patch Changes
+
+- Updated dependencies
+  [[`170198f`](https://github.com/chakra-ui/chakra-ui/commit/170198fc3936ad34f8136a2da173c12d9dc3dc36),
+  [`c04ca6a`](https://github.com/chakra-ui/chakra-ui/commit/c04ca6a155797a74e5fffc0d52d2f701d0459463),
+  [`fd5fab4`](https://github.com/chakra-ui/chakra-ui/commit/fd5fab415b8abe3d56aa5fac7304f6beeb0351ca),
+  [`8135ded`](https://github.com/chakra-ui/chakra-ui/commit/8135ded09b523681f33e818017a841b64a05e9c1),
+  [`44d1469`](https://github.com/chakra-ui/chakra-ui/commit/44d1469a82e7c0e9607a4bc6db6d05ad16e7dc2a),
+  [`938916a`](https://github.com/chakra-ui/chakra-ui/commit/938916a0c3512fb459aa80a635ffd41239bd63ea),
+  [`75d0293`](https://github.com/chakra-ui/chakra-ui/commit/75d0293c2efb40705817ac6b91434e4004faa68a),
+  [`006d9e0`](https://github.com/chakra-ui/chakra-ui/commit/006d9e0b5e58aaa8f5ac635ea1238be6ed7e73d6),
+  [`c6dc139`](https://github.com/chakra-ui/chakra-ui/commit/c6dc139ee0835adb962910807e25c60c78696aa7),
+  [`c583d8a`](https://github.com/chakra-ui/chakra-ui/commit/c583d8a03d813d26d14d340984e91385b6b403a2),
+  [`b26adab`](https://github.com/chakra-ui/chakra-ui/commit/b26adab9db1b582dc9fdf5547685787eec156dd3)]:
+  - @chakra-ui/theme@3.4.0
+  - @chakra-ui/react@2.9.0
+  - @chakra-ui/utils@2.1.0
+
 ## 2.0.45
 
 ### Patch Changes
