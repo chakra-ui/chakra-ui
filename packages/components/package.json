@@ -78,10 +78,9 @@
     "build:fast": "tsup"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -89,9 +88,10 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
+    "./package.json": "./package.json",
     "./*": {
       "import": {
-        "types": "./dist/types/*/index.d.mts",
+        "types": "./dist/types/*/index.d.ts",
         "default": "./dist/esm/*/index.mjs"
       },
       "require": {

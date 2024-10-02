@@ -59,7 +59,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -69,7 +69,7 @@
     },
     "./config": {
       "import": {
-        "types": "./dist/types/config.d.mts",
+        "types": "./dist/types/config.d.ts",
         "default": "./dist/esm/config.mjs"
       },
       "require": {
@@ -79,7 +79,7 @@
     },
     "./create-theme-typings-interface": {
       "import": {
-        "types": "./dist/types/create-theme-typings-interface.d.mts",
+        "types": "./dist/types/create-theme-typings-interface.d.ts",
         "default": "./dist/esm/create-theme-typings-interface.mjs"
       },
       "require": {
@@ -89,7 +89,7 @@
     },
     "./extract-color-schemes": {
       "import": {
-        "types": "./dist/types/extract-color-schemes.d.mts",
+        "types": "./dist/types/extract-color-schemes.d.ts",
         "default": "./dist/esm/extract-color-schemes.mjs"
       },
       "require": {
@@ -99,7 +99,7 @@
     },
     "./extract-component-types": {
       "import": {
-        "types": "./dist/types/extract-component-types.d.mts",
+        "types": "./dist/types/extract-component-types.d.ts",
         "default": "./dist/esm/extract-component-types.mjs"
       },
       "require": {
@@ -109,7 +109,7 @@
     },
     "./extract-property-keys": {
       "import": {
-        "types": "./dist/types/extract-property-keys.d.mts",
+        "types": "./dist/types/extract-property-keys.d.ts",
         "default": "./dist/esm/extract-property-keys.mjs"
       },
       "require": {
@@ -119,7 +119,7 @@
     },
     "./extract-property-paths": {
       "import": {
-        "types": "./dist/types/extract-property-paths.d.mts",
+        "types": "./dist/types/extract-property-paths.d.ts",
         "default": "./dist/esm/extract-property-paths.mjs"
       },
       "require": {
@@ -129,7 +129,7 @@
     },
     "./extract-semantic-token-keys": {
       "import": {
-        "types": "./dist/types/extract-semantic-token-keys.d.mts",
+        "types": "./dist/types/extract-semantic-token-keys.d.ts",
         "default": "./dist/esm/extract-semantic-token-keys.mjs"
       },
       "require": {
@@ -139,7 +139,7 @@
     },
     "./generate-theme-typings": {
       "import": {
-        "types": "./dist/types/generate-theme-typings.d.mts",
+        "types": "./dist/types/generate-theme-typings.d.ts",
         "default": "./dist/esm/generate-theme-typings.mjs"
       },
       "require": {
@@ -149,7 +149,7 @@
     },
     "./resolve-output-path": {
       "import": {
-        "types": "./dist/types/resolve-output-path.d.mts",
+        "types": "./dist/types/resolve-output-path.d.ts",
         "default": "./dist/esm/resolve-output-path.mjs"
       },
       "require": {

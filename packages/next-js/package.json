@@ -53,7 +53,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -63,7 +63,7 @@
     },
     "./emotion-cache-provider": {
       "import": {
-        "types": "./dist/types/emotion-cache-provider.d.mts",
+        "types": "./dist/types/emotion-cache-provider.d.ts",
         "default": "./dist/esm/emotion-cache-provider.mjs"
       },
       "require": {
@@ -73,7 +73,7 @@
     },
     "./image": {
       "import": {
-        "types": "./dist/types/image.d.mts",
+        "types": "./dist/types/image.d.ts",
         "default": "./dist/esm/image.mjs"
       },
       "require": {
@@ -83,7 +83,7 @@
     },
     "./interop": {
       "import": {
-        "types": "./dist/types/interop.d.mts",
+        "types": "./dist/types/interop.d.ts",
         "default": "./dist/esm/interop.mjs"
       },
       "require": {
@@ -93,7 +93,7 @@
     },
     "./link": {
       "import": {
-        "types": "./dist/types/link.d.mts",
+        "types": "./dist/types/link.d.ts",
         "default": "./dist/esm/link.mjs"
       },
       "require": {
@@ -103,7 +103,7 @@
     },
     "./use-emotion-cache": {
       "import": {
-        "types": "./dist/types/use-emotion-cache.d.mts",
+        "types": "./dist/types/use-emotion-cache.d.ts",
         "default": "./dist/esm/use-emotion-cache.mjs"
       },
       "require": {

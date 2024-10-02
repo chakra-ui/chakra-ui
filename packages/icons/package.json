@@ -43,7 +43,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -53,7 +53,7 @@
     },
     "./Add": {
       "import": {
-        "types": "./dist/types/Add.d.mts",
+        "types": "./dist/types/Add.d.ts",
         "default": "./dist/esm/Add.mjs"
       },
       "require": {
@@ -63,7 +63,7 @@
     },
     "./ArrowBack": {
       "import": {
-        "types": "./dist/types/ArrowBack.d.mts",
+        "types": "./dist/types/ArrowBack.d.ts",
         "default": "./dist/esm/ArrowBack.mjs"
       },
       "require": {
@@ -73,7 +73,7 @@
     },
     "./ArrowDown": {
       "import": {
-        "types": "./dist/types/ArrowDown.d.mts",
+        "types": "./dist/types/ArrowDown.d.ts",
         "default": "./dist/esm/ArrowDown.mjs"
       },
       "require": {
@@ -83,7 +83,7 @@
     },
     "./ArrowForward": {
       "import": {
-        "types": "./dist/types/ArrowForward.d.mts",
+        "types": "./dist/types/ArrowForward.d.ts",
         "default": "./dist/esm/ArrowForward.mjs"
       },
       "require": {
@@ -93,7 +93,7 @@
     },
     "./ArrowLeft": {
       "import": {
-        "types": "./dist/types/ArrowLeft.d.mts",
+        "types": "./dist/types/ArrowLeft.d.ts",
         "default": "./dist/esm/ArrowLeft.mjs"
       },
       "require": {
@@ -103,7 +103,7 @@
     },
     "./ArrowRight": {
       "import": {
-        "types": "./dist/types/ArrowRight.d.mts",
+        "types": "./dist/types/ArrowRight.d.ts",
         "default": "./dist/esm/ArrowRight.mjs"
       },
       "require": {
@@ -113,7 +113,7 @@
     },
     "./ArrowUp": {
       "import": {
-        "types": "./dist/types/ArrowUp.d.mts",
+        "types": "./dist/types/ArrowUp.d.ts",
         "default": "./dist/esm/ArrowUp.mjs"
       },
       "require": {
@@ -123,7 +123,7 @@
     },
     "./ArrowUpDown": {
       "import": {
-        "types": "./dist/types/ArrowUpDown.d.mts",
+        "types": "./dist/types/ArrowUpDown.d.ts",
         "default": "./dist/esm/ArrowUpDown.mjs"
       },
       "require": {
@@ -133,7 +133,7 @@
     },
     "./AtSign": {
       "import": {
-        "types": "./dist/types/AtSign.d.mts",
+        "types": "./dist/types/AtSign.d.ts",
         "default": "./dist/esm/AtSign.mjs"
       },
       "require": {
@@ -143,7 +143,7 @@
     },
     "./Attachment": {
       "import": {
-        "types": "./dist/types/Attachment.d.mts",
+        "types": "./dist/types/Attachment.d.ts",
         "default": "./dist/esm/Attachment.mjs"
       },
       "require": {
@@ -153,7 +153,7 @@
     },
     "./Bell": {
       "import": {
-        "types": "./dist/types/Bell.d.mts",
+        "types": "./dist/types/Bell.d.ts",
         "default": "./dist/esm/Bell.mjs"
       },
       "require": {
@@ -163,7 +163,7 @@
     },
     "./Calendar": {
       "import": {
-        "types": "./dist/types/Calendar.d.mts",
+        "types": "./dist/types/Calendar.d.ts",
         "default": "./dist/esm/Calendar.mjs"
       },
       "require": {
@@ -173,7 +173,7 @@
     },
     "./Chat": {
       "import": {
-        "types": "./dist/types/Chat.d.mts",
+        "types": "./dist/types/Chat.d.ts",
         "default": "./dist/esm/Chat.mjs"
       },
       "require": {
@@ -183,7 +183,7 @@
     },
     "./Check": {
       "import": {
-        "types": "./dist/types/Check.d.mts",
+        "types": "./dist/types/Check.d.ts",
         "default": "./dist/esm/Check.mjs"
       },
       "require": {
@@ -193,7 +193,7 @@
     },
     "./CheckCircle": {
       "import": {
-        "types": "./dist/types/CheckCircle.d.mts",
+        "types": "./dist/types/CheckCircle.d.ts",
         "default": "./dist/esm/CheckCircle.mjs"
       },
       "require": {
@@ -203,7 +203,7 @@
     },
     "./ChevronDown": {
       "import": {
-        "types": "./dist/types/ChevronDown.d.mts",
+        "types": "./dist/types/ChevronDown.d.ts",
         "default": "./dist/esm/ChevronDown.mjs"
       },
       "require": {
@@ -213,7 +213,7 @@
     },
     "./ChevronLeft": {
       "import": {
-        "types": "./dist/types/ChevronLeft.d.mts",
+        "types": "./dist/types/ChevronLeft.d.ts",
         "default": "./dist/esm/ChevronLeft.mjs"
       },
       "require": {
@@ -223,7 +223,7 @@
     },
     "./ChevronRight": {
       "import": {
-        "types": "./dist/types/ChevronRight.d.mts",
+        "types": "./dist/types/ChevronRight.d.ts",
         "default": "./dist/esm/ChevronRight.mjs"
       },
       "require": {
@@ -233,7 +233,7 @@
     },
     "./ChevronUp": {
       "import": {
-        "types": "./dist/types/ChevronUp.d.mts",
+        "types": "./dist/types/ChevronUp.d.ts",
         "default": "./dist/esm/ChevronUp.mjs"
       },
       "require": {
@@ -243,7 +243,7 @@
     },
     "./Close": {
       "import": {
-        "types": "./dist/types/Close.d.mts",
+        "types": "./dist/types/Close.d.ts",
         "default": "./dist/esm/Close.mjs"
       },
       "require": {
@@ -253,7 +253,7 @@
     },
     "./Copy": {
       "import": {
-        "types": "./dist/types/Copy.d.mts",
+        "types": "./dist/types/Copy.d.ts",
         "default": "./dist/esm/Copy.mjs"
       },
       "require": {
@@ -263,7 +263,7 @@
     },
     "./Delete": {
       "import": {
-        "types": "./dist/types/Delete.d.mts",
+        "types": "./dist/types/Delete.d.ts",
         "default": "./dist/esm/Delete.mjs"
       },
       "require": {
@@ -273,7 +273,7 @@
     },
     "./Download": {
       "import": {
-        "types": "./dist/types/Download.d.mts",
+        "types": "./dist/types/Download.d.ts",
         "default": "./dist/esm/Download.mjs"
       },
       "require": {
@@ -283,7 +283,7 @@
     },
     "./DragHandle": {
       "import": {
-        "types": "./dist/types/DragHandle.d.mts",
+        "types": "./dist/types/DragHandle.d.ts",
         "default": "./dist/esm/DragHandle.mjs"
       },
       "require": {
@@ -293,7 +293,7 @@
     },
     "./Edit": {
       "import": {
-        "types": "./dist/types/Edit.d.mts",
+        "types": "./dist/types/Edit.d.ts",
         "default": "./dist/esm/Edit.mjs"
       },
       "require": {
@@ -303,7 +303,7 @@
     },
     "./Email": {
       "import": {
-        "types": "./dist/types/Email.d.mts",
+        "types": "./dist/types/Email.d.ts",
         "default": "./dist/esm/Email.mjs"
       },
       "require": {
@@ -313,7 +313,7 @@
     },
     "./ExternalLink": {
       "import": {
-        "types": "./dist/types/ExternalLink.d.mts",
+        "types": "./dist/types/ExternalLink.d.ts",
         "default": "./dist/esm/ExternalLink.mjs"
       },
       "require": {
@@ -323,7 +323,7 @@
     },
     "./Hamburger": {
       "import": {
-        "types": "./dist/types/Hamburger.d.mts",
+        "types": "./dist/types/Hamburger.d.ts",
         "default": "./dist/esm/Hamburger.mjs"
       },
       "require": {
@@ -333,7 +333,7 @@
     },
     "./Info": {
       "import": {
-        "types": "./dist/types/Info.d.mts",
+        "types": "./dist/types/Info.d.ts",
         "default": "./dist/esm/Info.mjs"
       },
       "require": {
@@ -343,7 +343,7 @@
     },
     "./InfoOutline": {
       "import": {
-        "types": "./dist/types/InfoOutline.d.mts",
+        "types": "./dist/types/InfoOutline.d.ts",
         "default": "./dist/esm/InfoOutline.mjs"
       },
       "require": {
@@ -353,7 +353,7 @@
     },
     "./Link": {
       "import": {
-        "types": "./dist/types/Link.d.mts",
+        "types": "./dist/types/Link.d.ts",
         "default": "./dist/esm/Link.mjs"
       },
       "require": {
@@ -363,7 +363,7 @@
     },
     "./Lock": {
       "import": {
-        "types": "./dist/types/Lock.d.mts",
+        "types": "./dist/types/Lock.d.ts",
         "default": "./dist/esm/Lock.mjs"
       },
       "require": {
@@ -373,7 +373,7 @@
     },
     "./Minus": {
       "import": {
-        "types": "./dist/types/Minus.d.mts",
+        "types": "./dist/types/Minus.d.ts",
         "default": "./dist/esm/Minus.mjs"
       },
       "require": {
@@ -383,7 +383,7 @@
     },
     "./Moon": {
       "import": {
-        "types": "./dist/types/Moon.d.mts",
+        "types": "./dist/types/Moon.d.ts",
         "default": "./dist/esm/Moon.mjs"
       },
       "require": {
@@ -393,7 +393,7 @@
     },
     "./NotAllowed": {
       "import": {
-        "types": "./dist/types/NotAllowed.d.mts",
+        "types": "./dist/types/NotAllowed.d.ts",
         "default": "./dist/esm/NotAllowed.mjs"
       },
       "require": {
@@ -403,7 +403,7 @@
     },
     "./Phone": {
       "import": {
-        "types": "./dist/types/Phone.d.mts",
+        "types": "./dist/types/Phone.d.ts",
         "default": "./dist/esm/Phone.mjs"
       },
       "require": {
@@ -413,7 +413,7 @@
     },
     "./PlusSquare": {
       "import": {
-        "types": "./dist/types/PlusSquare.d.mts",
+        "types": "./dist/types/PlusSquare.d.ts",
         "default": "./dist/esm/PlusSquare.mjs"
       },
       "require": {
@@ -423,7 +423,7 @@
     },
     "./Question": {
       "import": {
-        "types": "./dist/types/Question.d.mts",
+        "types": "./dist/types/Question.d.ts",
         "default": "./dist/esm/Question.mjs"
       },
       "require": {
@@ -433,7 +433,7 @@
     },
     "./QuestionOutline": {
       "import": {
-        "types": "./dist/types/QuestionOutline.d.mts",
+        "types": "./dist/types/QuestionOutline.d.ts",
         "default": "./dist/esm/QuestionOutline.mjs"
       },
       "require": {
@@ -443,7 +443,7 @@
     },
     "./React": {
       "import": {
-        "types": "./dist/types/React.d.mts",
+        "types": "./dist/types/React.d.ts",
         "default": "./dist/esm/React.mjs"
       },
       "require": {
@@ -453,7 +453,7 @@
     },
     "./Repeat": {
       "import": {
-        "types": "./dist/types/Repeat.d.mts",
+        "types": "./dist/types/Repeat.d.ts",
         "default": "./dist/esm/Repeat.mjs"
       },
       "require": {
@@ -463,7 +463,7 @@
     },
     "./RepeatClock": {
       "import": {
-        "types": "./dist/types/RepeatClock.d.mts",
+        "types": "./dist/types/RepeatClock.d.ts",
         "default": "./dist/esm/RepeatClock.mjs"
       },
       "require": {
@@ -473,7 +473,7 @@
     },
     "./Search": {
       "import": {
-        "types": "./dist/types/Search.d.mts",
+        "types": "./dist/types/Search.d.ts",
         "default": "./dist/esm/Search.mjs"
       },
       "require": {
@@ -483,7 +483,7 @@
     },
     "./Search2": {
       "import": {
-        "types": "./dist/types/Search2.d.mts",
+        "types": "./dist/types/Search2.d.ts",
         "default": "./dist/esm/Search2.mjs"
       },
       "require": {
@@ -493,7 +493,7 @@
     },
     "./Settings": {
       "import": {
-        "types": "./dist/types/Settings.d.mts",
+        "types": "./dist/types/Settings.d.ts",
         "default": "./dist/esm/Settings.mjs"
       },
       "require": {
@@ -503,7 +503,7 @@
     },
     "./SmallAdd": {
       "import": {
-        "types": "./dist/types/SmallAdd.d.mts",
+        "types": "./dist/types/SmallAdd.d.ts",
         "default": "./dist/esm/SmallAdd.mjs"
       },
       "require": {
@@ -513,7 +513,7 @@
     },
     "./SmallClose": {
       "import": {
-        "types": "./dist/types/SmallClose.d.mts",
+        "types": "./dist/types/SmallClose.d.ts",
         "default": "./dist/esm/SmallClose.mjs"
       },
       "require": {
@@ -523,7 +523,7 @@
     },
     "./Spinner": {
       "import": {
-        "types": "./dist/types/Spinner.d.mts",
+        "types": "./dist/types/Spinner.d.ts",
         "default": "./dist/esm/Spinner.mjs"
       },
       "require": {
@@ -533,7 +533,7 @@
     },
     "./Star": {
       "import": {
-        "types": "./dist/types/Star.d.mts",
+        "types": "./dist/types/Star.d.ts",
         "default": "./dist/esm/Star.mjs"
       },
       "require": {
@@ -543,7 +543,7 @@
     },
     "./Sun": {
       "import": {
-        "types": "./dist/types/Sun.d.mts",
+        "types": "./dist/types/Sun.d.ts",
         "default": "./dist/esm/Sun.mjs"
       },
       "require": {
@@ -553,7 +553,7 @@
     },
     "./Time": {
       "import": {
-        "types": "./dist/types/Time.d.mts",
+        "types": "./dist/types/Time.d.ts",
         "default": "./dist/esm/Time.mjs"
       },
       "require": {
@@ -563,7 +563,7 @@
     },
     "./TriangleDown": {
       "import": {
-        "types": "./dist/types/TriangleDown.d.mts",
+        "types": "./dist/types/TriangleDown.d.ts",
         "default": "./dist/esm/TriangleDown.mjs"
       },
       "require": {
@@ -573,7 +573,7 @@
     },
     "./TriangleUp": {
       "import": {
-        "types": "./dist/types/TriangleUp.d.mts",
+        "types": "./dist/types/TriangleUp.d.ts",
         "default": "./dist/esm/TriangleUp.mjs"
       },
       "require": {
@@ -583,7 +583,7 @@
     },
     "./Unlock": {
       "import": {
-        "types": "./dist/types/Unlock.d.mts",
+        "types": "./dist/types/Unlock.d.ts",
         "default": "./dist/esm/Unlock.mjs"
       },
       "require": {
@@ -593,7 +593,7 @@
     },
     "./UpDown": {
       "import": {
-        "types": "./dist/types/UpDown.d.mts",
+        "types": "./dist/types/UpDown.d.ts",
         "default": "./dist/esm/UpDown.mjs"
       },
       "require": {
@@ -603,7 +603,7 @@
     },
     "./View": {
       "import": {
-        "types": "./dist/types/View.d.mts",
+        "types": "./dist/types/View.d.ts",
         "default": "./dist/esm/View.mjs"
       },
       "require": {
@@ -613,7 +613,7 @@
     },
     "./ViewOff": {
       "import": {
-        "types": "./dist/types/ViewOff.d.mts",
+        "types": "./dist/types/ViewOff.d.ts",
         "default": "./dist/esm/ViewOff.mjs"
       },
       "require": {
@@ -623,7 +623,7 @@
     },
     "./Warning": {
       "import": {
-        "types": "./dist/types/Warning.d.mts",
+        "types": "./dist/types/Warning.d.ts",
         "default": "./dist/esm/Warning.mjs"
       },
       "require": {
@@ -633,7 +633,7 @@
     },
     "./WarningTwo": {
       "import": {
-        "types": "./dist/types/WarningTwo.d.mts",
+        "types": "./dist/types/WarningTwo.d.ts",
         "default": "./dist/esm/WarningTwo.mjs"
       },
       "require": {

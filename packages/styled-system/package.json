@@ -54,7 +54,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -64,7 +64,7 @@
     },
     "./config": {
       "import": {
-        "types": "./dist/types/config/index.d.mts",
+        "types": "./dist/types/config/index.d.ts",
         "default": "./dist/esm/config/index.mjs"
       },
       "require": {
@@ -74,7 +74,7 @@
     },
     "./create-theme-vars": {
       "import": {
-        "types": "./dist/types/create-theme-vars/index.d.mts",
+        "types": "./dist/types/create-theme-vars/index.d.ts",
         "default": "./dist/esm/create-theme-vars/index.mjs"
       },
       "require": {
@@ -84,7 +84,7 @@
     },
     "./css": {
       "import": {
-        "types": "./dist/types/css.d.mts",
+        "types": "./dist/types/css.d.ts",
         "default": "./dist/esm/css.mjs"
       },
       "require": {
@@ -94,7 +94,7 @@
     },
     "./define-styles": {
       "import": {
-        "types": "./dist/types/define-styles.d.mts",
+        "types": "./dist/types/define-styles.d.ts",
         "default": "./dist/esm/define-styles.mjs"
       },
       "require": {
@@ -104,7 +104,7 @@
     },
     "./get": {
       "import": {
-        "types": "./dist/types/get.d.mts",
+        "types": "./dist/types/get.d.ts",
         "default": "./dist/esm/get.mjs"
       },
       "require": {
@@ -114,7 +114,7 @@
     },
     "./get-css-var": {
       "import": {
-        "types": "./dist/types/get-css-var.d.mts",
+        "types": "./dist/types/get-css-var.d.ts",
         "default": "./dist/esm/get-css-var.mjs"
       },
       "require": {
@@ -124,7 +124,7 @@
     },
     "./pseudos": {
       "import": {
-        "types": "./dist/types/pseudos.d.mts",
+        "types": "./dist/types/pseudos.d.ts",
         "default": "./dist/esm/pseudos.mjs"
       },
       "require": {
@@ -134,7 +134,7 @@
     },
     "./style-config": {
       "import": {
-        "types": "./dist/types/style-config.d.mts",
+        "types": "./dist/types/style-config.d.ts",
         "default": "./dist/esm/style-config.mjs"
       },
       "require": {
@@ -144,7 +144,7 @@
     },
     "./system": {
       "import": {
-        "types": "./dist/types/system.d.mts",
+        "types": "./dist/types/system.d.ts",
         "default": "./dist/esm/system.mjs"
       },
       "require": {
@@ -154,7 +154,7 @@
     },
     "./theming-props": {
       "import": {
-        "types": "./dist/types/theming-props.d.mts",
+        "types": "./dist/types/theming-props.d.ts",
         "default": "./dist/esm/theming-props.mjs"
       },
       "require": {

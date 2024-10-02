@@ -51,7 +51,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -61,7 +61,7 @@
     },
     "./components": {
       "import": {
-        "types": "./dist/types/components/index.d.mts",
+        "types": "./dist/types/components/index.d.ts",
         "default": "./dist/esm/components/index.mjs"
       },
       "require": {
@@ -71,7 +71,7 @@
     },
     "./foundations": {
       "import": {
-        "types": "./dist/types/foundations/index.d.mts",
+        "types": "./dist/types/foundations/index.d.ts",
         "default": "./dist/esm/foundations/index.mjs"
       },
       "require": {
@@ -81,7 +81,7 @@
     },
     "./semantic-tokens": {
       "import": {
-        "types": "./dist/types/semantic-tokens.d.mts",
+        "types": "./dist/types/semantic-tokens.d.ts",
         "default": "./dist/esm/semantic-tokens.mjs"
       },
       "require": {
@@ -91,7 +91,7 @@
     },
     "./styles": {
       "import": {
-        "types": "./dist/types/styles.d.mts",
+        "types": "./dist/types/styles.d.ts",
         "default": "./dist/esm/styles.mjs"
       },
       "require": {

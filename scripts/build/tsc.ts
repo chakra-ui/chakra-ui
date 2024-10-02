@@ -1,6 +1,4 @@
 import { Project } from "find-packages"
-import { cpSync, statSync } from "node:fs"
-import { join } from "node:path/posix"
 
 export async function generateTypes(project: Project) {
   const { dir } = project
@@ -11,13 +9,4 @@ export async function generateTypes(project: Project) {
     cwd: dir,
     stdio: "inherit",
   })
-
-  try {
-    cpSync(
-      join(dir, "dist", "types", "index.d.ts"),
-      join(dir, "dist", "types", "index.d.mts"),
-    )
-  } catch {
-    console.log("No .dts file found")
-  }
 }

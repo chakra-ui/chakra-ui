@@ -51,7 +51,7 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types/index.d.mts",
+        "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.mjs"
       },
       "require": {
@@ -62,7 +62,7 @@
     "./package.json": "./package.json",
     "./*": {
       "import": {
-        "types": "./dist/types/*.d.mts",
+        "types": "./dist/types/*.d.ts",
         "default": "./dist/esm/*.mjs"
       },
       "require": {
