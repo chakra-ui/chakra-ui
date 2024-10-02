@@ -14,7 +14,7 @@
     "postinstall": "pnpm clean:emotion-types",
     "build:tokens": "chakra-cli tokens packages/theme/src/index.ts --out packages/styled-system/dist/types/theming.types.d.ts",
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
-    "build": "pnpm tsx scripts/build/main.ts --prod --dts",
+    "build": "pnpm tsx scripts/build/main.ts --prod --dts --clean",
     "build:fast": "pnpm tsx scripts/build/main.ts --prod",
     "dev": "tsx scripts/build/main.ts --watch --prod",
     "postbuild": "pnpm build:tokens",
