@@ -54,7 +54,7 @@ export interface InputDOMProps extends IdProps, InputDOMEvents {
     | "search"
 }
 
-interface DOMElement extends Element, HTMLOrSVGElement {}
+export interface DOMElement extends Element, HTMLOrSVGElement {}
 
 interface DataAttributes {
   [dataAttr: string]: any
