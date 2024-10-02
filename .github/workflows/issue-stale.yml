@@ -1,0 +1,35 @@
+name: Issue Stale
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+
+permissions:
+  issues: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  issues:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'chakra-ui'
+    steps:
+      - uses: actions/stale@v4
+        name: "Close stale issues"
+        with:
+          repo-token: ${{ secrets.SAGE_PAT }}
+          close-issue-message:
+            "This issue has been automatically closed due to inactivity. If you
+            believe this closure was in error, please reopen the issue or add a
+            comment. Thanks for your understanding.\n\nNote: This is an
+            automated message."
+          days-before-issue-close: 7
+          days-before-issue-stale: 30
+          stale-pr-label: "stale"
+          stale-issue-label: "stale"
+          days-before-pr-close: 7
+          days-before-pr-stale: 15
+          only-pr-labels:
+            "postpone: more info or changes requested, please add a reproduction"
+          exempt-issue-labels: "roadmap,feature,bug"
+          operations-per-run: 200
