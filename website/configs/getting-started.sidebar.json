@@ -25,7 +25,8 @@
         },
         {
           "title": "Changelog",
-          "path": "/changelog"
+          "path": "https://github.com/chakra-ui/chakra-ui/blob/v2/.changelog/v2.mdx",
+          "external": true
         },
         {
           "title": "Contributing",
