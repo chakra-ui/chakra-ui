@@ -1,1 +1,5 @@
 export * from "./extend-theme"
+export * from "./with-default-color-scheme"
+export * from "./with-default-props"
+export * from "./with-default-size"
+export * from "./with-default-variant"
