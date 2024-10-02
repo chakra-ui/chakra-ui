@@ -4,6 +4,7 @@ import { Box, BoxProps, HStack, Stack, Tabs, Text } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { CopyButton } from "./copy-button"
+import { ErrorBoundary } from "./error-boundary"
 
 interface Props {
   name: string
@@ -164,7 +165,9 @@ export const ExampleTabs = (props: Props) => {
       </Tabs.List>
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
         <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>
-          <ExamplePreview name={name} />
+          <ErrorBoundary>
+            <ExamplePreview name={name} />
+          </ErrorBoundary>
         </Tabs.Content>
         <Tabs.Content value="code" mt="0!">
           <ExampleCodeWrapper maxHeight="480px">
