@@ -1,5 +1,34 @@
 # @chakra-ui/react
 
+## 3.0.0-next.27
+
+### Minor Changes
+
+- [`5093e18`](https://github.com/chakra-ui/chakra-ui/commit/5093e186a94f9c73452dd346fcf8becb57c21140)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add cursor pointer
+  to button
+
+- [`945a777`](https://github.com/chakra-ui/chakra-ui/commit/945a7774ad138a9b77a36ef46fdbb501addfe1db)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - BREAKING: Integrate
+  Ark v4. This mostly affects the custom select component that requires the use
+  of `createListCollection` now.
+
+- [`c26acf0`](https://github.com/chakra-ui/chakra-ui/commit/c26acf01608ad8ef1b4bb7547c97fa111026ecf7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  cursor token type
+
+### Patch Changes
+
+- [#8857](https://github.com/chakra-ui/chakra-ui/pull/8857)
+  [`fdc2b9b`](https://github.com/chakra-ui/chakra-ui/commit/fdc2b9b0903dd75f0ddfe6bdf1e5a626d436f84c)
+  Thanks [@stevensecreti](https://github.com/stevensecreti)! - update mapObject
+  util to not call fn provided on nullish values
+
+- [#8854](https://github.com/chakra-ui/chakra-ui/pull/8854)
+  [`388716d`](https://github.com/chakra-ui/chakra-ui/commit/388716daa185a7c93d5fa5375712aa1e9b788a8d)
+  Thanks [@codebutler](https://github.com/codebutler)! - Fix issue where target
+  was not passed to link overlay
+
 ## 3.0.0-next.26
 
 ### Patch Changes
