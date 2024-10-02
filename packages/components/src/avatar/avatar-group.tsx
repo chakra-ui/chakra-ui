@@ -4,16 +4,14 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { compact, cx, getValidChildren } from "@chakra-ui/utils"
+import { cloneElement } from "react"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
-import { cloneElement } from "react"
 import { baseStyle } from "./avatar"
 
 interface AvatarGroupOptions {

@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {
   AccordionDescendantsProvider,

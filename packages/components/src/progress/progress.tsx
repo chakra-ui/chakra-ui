@@ -3,14 +3,14 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext } from "@chakra-ui/utils"
+import { Interpolation } from "@emotion/react"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { Interpolation } from "@emotion/react"
 import {
   GetProgressPropsOptions,
   getProgressProps,

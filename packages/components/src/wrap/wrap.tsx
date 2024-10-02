@@ -1,5 +1,5 @@
 import { SystemProps } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { Children, useMemo } from "react"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 

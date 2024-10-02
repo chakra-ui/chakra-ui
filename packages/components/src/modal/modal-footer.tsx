@@ -1,6 +1,6 @@
 import { defineStyle } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useModalStyles } from "./modal"
 
 export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}

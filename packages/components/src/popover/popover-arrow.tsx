@@ -1,6 +1,6 @@
 import { SystemProps } from "@chakra-ui/styled-system"
 import { chakra, HTMLChakraProps } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverArrowProps extends HTMLChakraProps<"div"> {

@@ -1,7 +1,10 @@
 import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
-import { createContext, CreateContextReturn } from "@chakra-ui/utils/context"
-import { memoizedGet as get } from "@chakra-ui/utils/get"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import {
+  createContext,
+  CreateContextReturn,
+  memoizedGet as get,
+  runIfFn,
+} from "@chakra-ui/utils"
 import {
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps,

@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -9,6 +9,10 @@ export interface SelectFieldProps
    * @default false
    */
   isDisabled?: boolean
+  /**
+   * The placeholder text for the select field
+   */
+  placeholder?: string
 }
 
 export const SelectField = forwardRef<SelectFieldProps, "select">(

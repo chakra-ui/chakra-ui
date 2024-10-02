@@ -1,20 +1,17 @@
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { mergeRefs } from "@chakra-ui/hooks"
 import {
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext, cx, dataAttr, PropGetter } from "@chakra-ui/utils"
+import { useCallback, useId, useState } from "react"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import { PropGetter } from "@chakra-ui/utils/prop-types"
-import { useCallback, useId, useState } from "react"
 
 const [FormControlStylesProvider, useFormControlStyles] = createContext<
   Record<string, SystemStyleObject>

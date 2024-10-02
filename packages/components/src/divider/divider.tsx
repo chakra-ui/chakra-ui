@@ -1,6 +1,6 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 
 /**
  * Layout component used to visually separate content in a list or group.

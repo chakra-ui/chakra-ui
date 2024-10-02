@@ -3,6 +3,7 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext, cx } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
@@ -10,8 +11,6 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 interface SliderContext

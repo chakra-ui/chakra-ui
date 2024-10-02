@@ -1,11 +1,11 @@
-import { useCallbackRef } from "@chakra-ui/hooks/use-callback-ref"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
-import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { omit } from "@chakra-ui/utils/omit"
-import type { PropGetter } from "@chakra-ui/utils/prop-types"
+import {
+  mergeRefs,
+  useCallbackRef,
+  useSafeLayoutEffect,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import type { PropGetter } from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, omit } from "@chakra-ui/utils"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useFormControlProps } from "../form-control"

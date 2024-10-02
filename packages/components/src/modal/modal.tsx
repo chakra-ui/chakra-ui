@@ -1,9 +1,9 @@
 import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
-import { useMultiStyleConfig } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { AnimatePresence } from "framer-motion"
 import { FocusLockProps } from "../focus-lock"
 import { Portal, PortalProps } from "../portal"
+import { useMultiStyleConfig } from "../system"
 import { UseModalProps, UseModalReturn, useModal } from "./use-modal"
 
 interface FocusableElement {

@@ -3,6 +3,9 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { callAll, cx } from "@chakra-ui/utils"
+import { keyframes } from "@emotion/react"
+import { cloneElement, useMemo } from "react"
 import {
   HTMLChakraProps,
   PropsOf,
@@ -10,10 +13,6 @@ import {
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { callAll } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
-import { keyframes } from "@emotion/react"
-import { cloneElement, useMemo } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"

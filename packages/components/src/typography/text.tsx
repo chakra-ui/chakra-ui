@@ -3,8 +3,7 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
+import { compact, cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {

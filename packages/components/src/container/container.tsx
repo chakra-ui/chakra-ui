@@ -1,6 +1,6 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,

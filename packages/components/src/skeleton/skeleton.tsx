@@ -1,9 +1,11 @@
-import { usePrevious } from "@chakra-ui/hooks/use-previous"
+import { usePrevious } from "@chakra-ui/hooks"
 import {
   cssVar,
   omitThemingProps,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils"
+import { keyframes } from "@emotion/react"
 import {
   chakra,
   forwardRef,
@@ -11,8 +13,6 @@ import {
   useStyleConfig,
   useToken,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { keyframes } from "@emotion/react"
 import { useIsFirstRender } from "./use-is-first-render"
 
 export interface SkeletonOptions {

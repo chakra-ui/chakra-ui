@@ -3,6 +3,11 @@ import {
   getCSSVar,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { omit, pick } from "@chakra-ui/utils"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { Children, cloneElement } from "react"
+import { popperCSSVars } from "../popper"
+import { Portal, PortalProps } from "../portal"
 import {
   HTMLChakraProps,
   chakra,
@@ -10,12 +15,6 @@ import {
   useStyleConfig,
   useTheme,
 } from "../system"
-import { omit } from "@chakra-ui/utils/omit"
-import { pick } from "@chakra-ui/utils/pick"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
-import { Children, cloneElement } from "react"
-import { popperCSSVars } from "../popper"
-import { Portal, PortalProps } from "../portal"
 import { scale } from "./tooltip.transition"
 import { UseTooltipProps, useTooltip } from "./use-tooltip"
 

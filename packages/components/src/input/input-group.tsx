@@ -3,17 +3,14 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { compact, createContext, cx, getValidChildren } from "@chakra-ui/utils"
+import { cloneElement } from "react"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import { cloneElement } from "react"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
   Record<string, SystemStyleObject>

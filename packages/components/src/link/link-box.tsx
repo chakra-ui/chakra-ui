@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
   /**

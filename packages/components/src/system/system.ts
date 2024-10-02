@@ -4,12 +4,14 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { assignAfter } from "@chakra-ui/utils/assign-after"
-import { compact } from "@chakra-ui/utils/compact"
-import { interopDefault } from "@chakra-ui/utils/interop-default"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { splitProps } from "@chakra-ui/utils/split-props"
-import { Dict } from "@chakra-ui/utils/types"
+import {
+  assignAfter,
+  compact,
+  Dict,
+  interopDefault,
+  runIfFn,
+  splitProps,
+} from "@chakra-ui/utils"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { createElement, ElementType, forwardRef } from "react"
 import { useColorMode } from "../color-mode"

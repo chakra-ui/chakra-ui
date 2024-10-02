@@ -1,6 +1,6 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { ChakraProps, chakra, forwardRef } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { fadeConfig } from "../transition"
 import { useModalContext, useModalStyles } from "./modal"

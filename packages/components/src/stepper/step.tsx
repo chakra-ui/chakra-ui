@@ -1,5 +1,4 @@
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
 

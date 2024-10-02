@@ -1,7 +1,9 @@
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { isObject } from "@chakra-ui/utils/is"
-import { mergeWith } from "@chakra-ui/utils/merge"
-import { toMediaQueryString } from "@chakra-ui/utils/breakpoint"
+import {
+  isObject,
+  mergeWith,
+  runIfFn,
+  toMediaQueryString,
+} from "@chakra-ui/utils"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
 type Theme = WithCSSVar<Record<string, any>>

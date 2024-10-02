@@ -1,4 +1,4 @@
-import { isString } from "@chakra-ui/utils/is"
+import { isString } from "@chakra-ui/utils"
 
 /**
  * All html and svg elements for chakra components.

@@ -1,4 +1,4 @@
-import { pick } from "@chakra-ui/utils/pick"
+import { pick } from "@chakra-ui/utils"
 
 const tokens = [
   "colors",

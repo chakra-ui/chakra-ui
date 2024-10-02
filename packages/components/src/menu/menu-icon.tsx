@@ -1,5 +1,5 @@
 import { HTMLChakraProps, chakra } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 
 import { Children, cloneElement, isValidElement } from "react"
 import { useMenuStyles } from "./menu"

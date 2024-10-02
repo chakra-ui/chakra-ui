@@ -1,4 +1,4 @@
-import { walkObject } from "@chakra-ui/utils/walk-object"
+import { walkObject } from "@chakra-ui/utils"
 import { getPseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 import { extractSemanticTokens, extractTokens } from "./theme-tokens"

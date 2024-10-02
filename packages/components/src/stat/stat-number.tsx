@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useStatStyles } from "./stat"
 

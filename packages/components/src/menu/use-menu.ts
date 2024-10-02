@@ -1,21 +1,21 @@
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import {
+  mergeRefs,
+  useAnimationState,
+  useControllableState,
   useDisclosure,
   UseDisclosureProps,
-} from "@chakra-ui/hooks/use-disclosure"
-import { useFocusOnHide } from "@chakra-ui/hooks/use-focus-effect"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useOutsideClick } from "@chakra-ui/hooks/use-outside-click"
-import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { createContext } from "@chakra-ui/utils/context"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
-import { useClickable } from "../clickable"
-import { createDescendantContext } from "../descendant"
-import { usePopper, UsePopperProps } from "../popper"
+  useFocusOnHide,
+  useOutsideClick,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import {
+  callAllHandlers,
+  createContext,
+  dataAttr,
+  getValidChildren,
+  lazyDisclosure,
+  LazyMode,
+} from "@chakra-ui/utils"
 import {
   cloneElement,
   useCallback,
@@ -25,6 +25,9 @@ import {
   useRef,
   useState,
 } from "react"
+import { useClickable } from "../clickable"
+import { createDescendantContext } from "../descendant"
+import { usePopper, UsePopperProps } from "../popper"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
 import { useShortcut } from "./use-shortcut"
 

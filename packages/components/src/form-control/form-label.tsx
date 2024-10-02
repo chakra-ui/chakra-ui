@@ -1,6 +1,6 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useFormControlContext, useFormControlStyles } from "./form-control"
 
 export interface FormLabelProps

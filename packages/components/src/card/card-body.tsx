@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { forwardRef, HTMLChakraProps, chakra } from "../system"
 import { useCardStyles } from "./card-context"
 

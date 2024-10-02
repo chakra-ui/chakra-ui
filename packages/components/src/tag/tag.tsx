@@ -3,14 +3,14 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext } from "@chakra-ui/utils"
+import { Icon, IconProps } from "../icon"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { Icon, IconProps } from "../icon"
 const [TagStylesProvider, useTagStyles] = createContext<
   Record<string, SystemStyleObject>
 >({

@@ -5,14 +5,13 @@ import {
   layoutPropNames,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { callAll, split } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { callAll } from "@chakra-ui/utils/call-all"
-import { split } from "@chakra-ui/utils/split"
 import { useRadioGroupContext } from "./radio-group"
 import { UseRadioProps, useRadio } from "./use-radio"
 

@@ -1,8 +1,7 @@
 import { ThemingProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
+import { createContext, cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import {
   useRadioGroup,
   UseRadioGroupProps,

@@ -1,4 +1,4 @@
-import { omit } from "@chakra-ui/utils/omit"
+import { omit } from "@chakra-ui/utils"
 import { ThemeTypings } from "./theme.types"
 import { ResponsiveValue } from "./utils"
 

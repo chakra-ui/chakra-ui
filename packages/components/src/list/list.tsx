@@ -4,11 +4,10 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext, getValidChildren } from "@chakra-ui/utils"
+import { Icon, IconProps } from "../icon"
 import type { HTMLChakraProps } from "../system"
 import { chakra, forwardRef, useMultiStyleConfig } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { createContext } from "@chakra-ui/utils/context"
-import { Icon, IconProps } from "../icon"
 
 const [ListStylesProvider, useListStyles] = createContext<
   Record<string, SystemStyleObject>

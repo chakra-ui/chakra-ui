@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useAlertContext, useAlertStyles } from "./alert-context"
 

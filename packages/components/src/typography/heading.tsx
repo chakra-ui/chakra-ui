@@ -1,5 +1,5 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 export interface HeadingProps

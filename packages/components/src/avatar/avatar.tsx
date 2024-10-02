@@ -4,16 +4,14 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { callAllHandlers, cx, dataAttr } from "@chakra-ui/utils"
+import { useState } from "react"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
-import { useState } from "react"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
 import { initials } from "./avatar-name"

@@ -1,10 +1,15 @@
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { createContext } from "@chakra-ui/utils/context"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
+import {
+  mergeRefs,
+  useControllableState,
+  useSafeLayoutEffect,
+} from "@chakra-ui/hooks"
+import {
+  callAllHandlers,
+  createContext,
+  getValidChildren,
+  lazyDisclosure,
+  LazyMode,
+} from "@chakra-ui/utils"
 import {
   createElement,
   useCallback,

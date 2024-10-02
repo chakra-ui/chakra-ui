@@ -1,4 +1,4 @@
-import { mergeWith } from "@chakra-ui/utils/merge"
+import { mergeWith } from "@chakra-ui/utils"
 import {
   background,
   border,

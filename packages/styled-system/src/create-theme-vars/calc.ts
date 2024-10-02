@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils/is"
+import { isObject } from "@chakra-ui/utils"
 
 export type Operand = string | number | { reference: string }
 type Operator = "+" | "-" | "*" | "/"

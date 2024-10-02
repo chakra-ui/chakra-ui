@@ -1,14 +1,18 @@
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
-import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import {
+  mergeRefs,
+  useAnimationState,
+  useDisclosure,
   useFocusOnHide,
+  useFocusOnPointerDown,
   useFocusOnShow,
-} from "@chakra-ui/hooks/use-focus-effect"
-import { useFocusOnPointerDown } from "@chakra-ui/hooks/use-focus-on-pointer-down"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { LazyMode, lazyDisclosure } from "@chakra-ui/utils/lazy"
-import { DOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
+} from "@chakra-ui/hooks"
+import {
+  DOMAttributes,
+  LazyMode,
+  PropGetter,
+  callAllHandlers,
+  lazyDisclosure,
+} from "@chakra-ui/utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
 

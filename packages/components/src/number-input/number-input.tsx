@@ -3,16 +3,15 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext, cx } from "@chakra-ui/utils"
+import { useMemo } from "react"
+import { useFormControlProps } from "../form-control"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
-import { useFormControlProps } from "../form-control"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
   useNumberInput,

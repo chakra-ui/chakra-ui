@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { chakra } from "../system"
 import { useBreakpointValue } from "../media-query"
 import { Skeleton, SkeletonProps } from "./skeleton"

@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils/is"
+import { isObject } from "@chakra-ui/utils"
 import { CSSVar } from "./css-var"
 
 export type Operand = string | number | CSSVar

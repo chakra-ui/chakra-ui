@@ -48,6 +48,7 @@ export const ColorModeTool = () => {
   }
 
   return (
+    // @ts-ignore
     <IconButton
       title={`Set color mode to ${darkMode ? "light" : "dark"}`}
       active={darkMode}

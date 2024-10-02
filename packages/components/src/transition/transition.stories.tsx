@@ -1,5 +1,4 @@
 import { useBoolean } from "@chakra-ui/hooks"
-import * as React from "react"
 import { SlideFade, ScaleFade } from "."
 
 export default {

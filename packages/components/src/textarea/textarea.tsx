@@ -1,8 +1,7 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { omit } from "@chakra-ui/utils/omit"
+import { cx, omit } from "@chakra-ui/utils"
 import { FormControlOptions, useFormControl } from "../form-control"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 interface TextareaOptions {
   /**

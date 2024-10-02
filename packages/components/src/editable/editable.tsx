@@ -1,12 +1,11 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
+import { cx, runIfFn } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import {
   useEditable,

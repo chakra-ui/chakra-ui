@@ -13,6 +13,7 @@ export function forwardRef<Props extends object, Component extends ElementType>(
     }
   >,
 ) {
+  // @ts-ignore
   return forwardReactRef(component) as unknown as ComponentWithAs<
     Component,
     Props

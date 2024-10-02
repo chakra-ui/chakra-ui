@@ -1,12 +1,18 @@
-import { useCallbackRef } from "@chakra-ui/hooks/use-callback-ref"
-import { UseCounterProps, useCounter } from "@chakra-ui/hooks/use-counter"
-import { useEventListener } from "@chakra-ui/hooks/use-event-listener"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
-import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { ariaAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
+import {
+  UseCounterProps,
+  mergeRefs,
+  useCallbackRef,
+  useCounter,
+  useEventListener,
+  useSafeLayoutEffect,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import {
+  InputDOMAttributes,
+  PropGetter,
+  ariaAttr,
+  callAllHandlers,
+} from "@chakra-ui/utils"
 import { useCallback, useMemo, useRef, useState } from "react"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"

@@ -1,6 +1,6 @@
 import type { SystemStyleObject } from "@chakra-ui/styled-system"
 import type { PropsOf } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { Icon } from "../icon"
 import {
   useAccordionItemContext,

@@ -3,6 +3,8 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext, cx } from "@chakra-ui/utils"
+import { useMemo } from "react"
 import {
   chakra,
   forwardRef,
@@ -10,9 +12,6 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "../system"
-import { cx } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/utils/context"
-import { useMemo } from "react"
 import {
   useRangeSlider,
   UseRangeSliderProps,

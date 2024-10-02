@@ -1,5 +1,4 @@
-import { isObject } from "@chakra-ui/utils/is"
-import { mergeWith } from "@chakra-ui/utils/merge"
+import { isObject, mergeWith } from "@chakra-ui/utils"
 import { getPseudoSelectors } from "../pseudos"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"

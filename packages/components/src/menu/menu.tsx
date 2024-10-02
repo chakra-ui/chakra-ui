@@ -3,10 +3,9 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
-import { useMultiStyleConfig, useTheme } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import { createContext, runIfFn } from "@chakra-ui/utils"
 import { useMemo } from "react"
+import { useMultiStyleConfig, useTheme } from "../system"
 import {
   MenuDescendantsProvider,
   MenuProvider,

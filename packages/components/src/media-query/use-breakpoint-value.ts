@@ -1,6 +1,5 @@
+import { arrayToObjectNotation, isObject } from "@chakra-ui/utils"
 import { useTheme } from "../system"
-import { isObject } from "@chakra-ui/utils/is"
-import { arrayToObjectNotation } from "@chakra-ui/utils/responsive"
 import { getClosestValue } from "./media-query.utils"
 import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
 

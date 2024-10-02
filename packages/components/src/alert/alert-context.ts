@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { Spinner } from "../spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"
 
