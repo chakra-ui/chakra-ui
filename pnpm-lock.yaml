@@ -787,16 +787,10 @@ importers:
       color2k:
         specifier: ^2.0.2
         version: 2.0.2
-      dlv:
-        specifier: ^1.1.3
-        version: 1.1.3
     devDependencies:
       '@chakra-ui/styled-system':
         specifier: workspace:*
         version: link:../styled-system
-      '@types/dlv':
-        specifier: ^1.1.2
-        version: 1.1.2
 
   packages/utils:
     dependencies:
@@ -5628,9 +5622,6 @@ packages:
 
   '@types/detect-port@1.3.3':
     resolution: {integrity: sha512-bV/jQlAJ/nPY3XqSatkGpu+nGzou+uSwrH1cROhn+jBFg47yaNH+blW4C7p9KhopC7QxCv/6M86s37k8dMk0Yg==}
-
-  '@types/dlv@1.1.2':
-    resolution: {integrity: sha512-OyiZ3jEKu7RtGO1yp9oOdK0cTwZ/10oE9PDJ6fyN3r9T5wkyOcvr6awdugjYdqF6KVO5eUvt7jx7rk2Eylufow==}
 
   '@types/doctrine@0.0.3':
     resolution: {integrity: sha512-w5jZ0ee+HaPOaX25X2/2oGR/7rgAQSYII7X7pp0m9KgBfMP7uKfMfTvcpl5Dj+eDBbpxKGiqE+flqDr6XTd2RA==}
@@ -21729,8 +21720,6 @@ snapshots:
       '@types/ms': 0.7.34
 
   '@types/detect-port@1.3.3': {}
-
-  '@types/dlv@1.1.2': {}
 
   '@types/doctrine@0.0.3': {}
 

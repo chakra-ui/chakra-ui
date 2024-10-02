@@ -11,10 +11,18 @@ import {
   hsla,
   getLuminance,
 } from "color2k"
-import get from "dlv"
 
 type Dict = { [key: string]: any }
+
 const isEmptyObject = (obj: any) => Object.keys(obj).length === 0
+
+function get(obj: any, key: any, def?: any, p?: any, undef?: any) {
+  key = key.split ? key.split(".") : key
+  for (p = 0; p < key.length; p++) {
+    obj = obj ? obj[key[p]] : undef
+  }
+  return obj === undef ? def : obj
+}
 
 /**
  * Get the color raw value from theme
