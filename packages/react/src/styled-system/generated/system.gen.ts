@@ -186,7 +186,7 @@ export interface SystemProperties {
   counterIncrement?: ConditionalValue<CssProperties["counterIncrement"] | AnyString>
   counterReset?: ConditionalValue<CssProperties["counterReset"] | AnyString>
   counterSet?: ConditionalValue<CssProperties["counterSet"] | AnyString>
-  cursor?: ConditionalValue<CssProperties["cursor"] | AnyString>
+  cursor?: ConditionalValue<UtilityValues["cursor"] | CssVars | CssProperties["cursor"] | AnyString>
   direction?: ConditionalValue<CssProperties["direction"] | AnyString>
   display?: ConditionalValue<CssProperties["display"] | AnyString>
   emptyCells?: ConditionalValue<CssProperties["emptyCells"] | AnyString>

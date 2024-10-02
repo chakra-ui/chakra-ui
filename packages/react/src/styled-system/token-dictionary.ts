@@ -537,6 +537,7 @@ export const tokenCategories = createProps<Record<TokenCategory, any>>()([
   "shadows",
   "spacing",
   "radii",
+  "cursor",
   "borders",
   "borderWidths",
   "borderStyles",

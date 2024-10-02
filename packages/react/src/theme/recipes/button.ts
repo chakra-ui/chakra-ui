@@ -11,7 +11,7 @@ export const buttonRecipe = defineRecipe({
     position: "relative",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
-    cursor: "pointer",
+    cursor: "button",
     flexShrink: "0",
     outline: "0",
     lineHeight: "1.2",

@@ -349,6 +349,14 @@ export type Token =
   | "zIndex.toast"
   | "zIndex.tooltip"
   | "zIndex.max"
+  | "cursor.button"
+  | "cursor.checkbox"
+  | "cursor.disabled"
+  | "cursor.menuitem"
+  | "cursor.option"
+  | "cursor.radio"
+  | "cursor.slider"
+  | "cursor.switch"
   | "breakpoints.sm"
   | "breakpoints.md"
   | "breakpoints.lg"
@@ -987,6 +995,8 @@ export type ZIndexToken =
   | "tooltip"
   | "max"
 
+export type CursorToken = "button" | "checkbox" | "disabled" | "menuitem" | "option" | "radio" | "slider" | "switch"
+
 export type BreakpointsToken = "sm" | "md" | "lg" | "xl" | "2xl"
 
 export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
@@ -1008,6 +1018,7 @@ export type Tokens = {
   spacing: SpacingToken
   sizes: SizesToken
   zIndex: ZIndexToken
+  cursor: CursorToken
   breakpoints: BreakpointsToken
   shadows: ShadowsToken
 } & { [token: string]: never }

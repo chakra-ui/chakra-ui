@@ -12,7 +12,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       verticalAlign: "top",
       position: "relative",
       _disabled: {
-        cursor: "not-allowed",
+        cursor: "disabled",
       },
     },
 

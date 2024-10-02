@@ -12,6 +12,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       fontSize: "sm",
       position: "relative",
       isolation: "isolate",
+      touchAction: "none",
     },
     control: {
       display: "inline-flex",

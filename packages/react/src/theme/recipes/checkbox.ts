@@ -24,9 +24,10 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       flexShrink: 0,
       verticalAlign: "top",
       color: "white",
+      cursor: "checkbox",
       borderWidth: "1px",
       borderColor: "transparent",
-      focusRing: "outside",
+      focusVisibleRing: "outside",
       _invalid: {
         colorPalette: "red",
         borderColor: "border.error",

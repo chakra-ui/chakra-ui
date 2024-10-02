@@ -10,6 +10,7 @@ const triggerStyle = defineStyle({
   alignItems: "center",
   flex: 1,
   userSelect: "none",
+  cursor: "button",
   lineHeight: "1",
   color: "fg.subtle",
   _disabled: {

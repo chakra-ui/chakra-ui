@@ -28,6 +28,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       userSelect: "none",
       width: "100%",
       display: "flex",
+      cursor: "menuitem",
       alignItems: "center",
       textAlign: "start",
       position: "relative",

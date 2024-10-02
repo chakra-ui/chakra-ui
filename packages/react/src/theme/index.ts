@@ -13,6 +13,7 @@ import { aspectRatios } from "./tokens/aspect-ratios"
 import { blurs } from "./tokens/blurs"
 import { borders } from "./tokens/borders"
 import { colors } from "./tokens/colors"
+import { cursor } from "./tokens/cursor"
 import { durations } from "./tokens/durations"
 import { easings } from "./tokens/easings"
 import { fontSizes } from "./tokens/font-sizes"
@@ -51,6 +52,7 @@ export const defaultThemeConfig = defineConfig({
       spacing,
       sizes,
       zIndex: zIndices,
+      cursor,
     },
     semanticTokens: {
       colors: semanticColors,

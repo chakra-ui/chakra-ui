@@ -11,7 +11,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       userSelect: "none",
       position: "relative",
-      focusRing: "outside",
+      focusVisibleRing: "outside",
       _disabled: {
         opacity: 0.8,
         borderColor: "border.subtle",

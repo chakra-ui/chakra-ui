@@ -74,6 +74,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       gap: "2",
+      cursor: "option",
       justifyContent: "space-between",
       flex: "1",
       textAlign: "start",

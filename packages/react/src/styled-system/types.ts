@@ -51,6 +51,7 @@ export type TokenCategory =
   | "blurs"
   | "gradients"
   | "assets"
+  | "cursor"
   | "borderWidths"
   | "breakpoints"
   | "borderStyles"

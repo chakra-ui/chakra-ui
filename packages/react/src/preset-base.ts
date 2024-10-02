@@ -1049,6 +1049,7 @@ export const defaultBaseConfig = defineConfig({
       values: "colors",
       transform: createColorMixTransform("caretColor"),
     },
+    cursor: { values: "cursor" },
   },
 })
 
