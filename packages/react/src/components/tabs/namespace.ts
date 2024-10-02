@@ -4,8 +4,10 @@ export {
   TabsIndicator as Indicator,
   TabsList as List,
   TabsRoot as Root,
-  TabsRootPropsProvider as RootPropsProvider,
+  TabsRootProvider as RootProvider,
+  TabsPropsProvider as PropsProvider,
   TabsTrigger as Trigger,
+  TabsContext as Context,
 } from "./tabs"
 
 export type {
@@ -14,7 +16,7 @@ export type {
   TabsIndicatorProps as IndicatorProps,
   TabsListProps as ListProps,
   TabsRootProps as RootProps,
+  TabsRootProviderProps as RootProviderProps,
   TabsTriggerProps as TriggerProps,
+  TabsValueChangeDetails as ValueChangeDetails,
 } from "./tabs"
-
-export { TabsContext as Context } from "@ark-ui/react/tabs"

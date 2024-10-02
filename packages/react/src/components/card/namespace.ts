@@ -1,7 +1,7 @@
 export {
   CardBody as Body,
   CardRoot as Root,
-  CardRootPropsProvider as RootPropsProvider,
+  CardPropsProvider as PropsProvider,
   CardFooter as Footer,
   CardHeader as Header,
   CardTitle as Title,

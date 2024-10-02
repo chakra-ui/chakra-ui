@@ -27,6 +27,23 @@ export { useFileUploadStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface FileUploadRootProviderBaseProps
+  extends Assign<
+      ArkFileUpload.RootProviderBaseProps,
+      SlotRecipeProps<"fileUpload">
+    >,
+    UnstyledProp {}
+
+export interface FileUploadRootProviderProps
+  extends HTMLChakraProps<"div", FileUploadRootProviderBaseProps> {}
+
+export const FileUploadRootProvider = withProvider<
+  HTMLDivElement,
+  FileUploadRootProviderProps
+>(ArkFileUpload.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface FileUploadRootBaseProps
   extends Assign<ArkFileUpload.RootBaseProps, SlotRecipeProps<"fileUpload">>,
     UnstyledProp {}
@@ -42,7 +59,7 @@ export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const FileUploadRootPropsProvider =
+export const FileUploadPropsProvider =
   PropsProvider as React.Provider<FileUploadRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -175,3 +192,17 @@ export const FileUploadTrigger = withContext<
   HTMLButtonElement,
   FileUploadTriggerProps
 >(ArkFileUpload.Trigger, "trigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const FileUploadContext = ArkFileUpload.Context
+export const FileUploadHiddenInput = ArkFileUpload.HiddenInput
+
+export interface FileUploadFileAcceptDetails
+  extends ArkFileUpload.FileAcceptDetails {}
+
+export interface FileUploadFileRejectDetails
+  extends ArkFileUpload.FileRejectDetails {}
+
+export interface FileUploadFileChangeDetails
+  extends ArkFileUpload.FileChangeDetails {}

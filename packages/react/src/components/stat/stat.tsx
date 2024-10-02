@@ -33,7 +33,7 @@ export const StatRoot = withProvider<HTMLDListElement, StatRootProps>(
   "root",
 )
 
-export const StatRootPropsProvider =
+export const StatPropsProvider =
   PropsProvider as React.Provider<StatRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

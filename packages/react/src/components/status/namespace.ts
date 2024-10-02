@@ -1,7 +1,7 @@
 export {
   StatusRoot as Root,
   StatusIndicator as Indicator,
-  StatusRootPropsProvider as RootPropsProvider,
+  StatusPropsProvider as PropsProvider,
 } from "./status"
 export type {
   StatusRootProps as RootProps,

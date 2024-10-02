@@ -6,10 +6,13 @@ export {
   SliderMarkerIndicator,
   SliderRange,
   SliderRoot,
-  SliderRootPropsProvider,
+  SliderRootProvider,
+  SliderPropsProvider,
   SliderThumb,
   SliderTrack,
   SliderValueText,
+  SliderContext,
+  SliderHiddenInput,
   useSliderStyles,
 } from "./slider"
 
@@ -20,17 +23,14 @@ export type {
   SliderMarkerIndicatorProps,
   SliderRangeProps,
   SliderRootProps,
+  SliderRootProviderProps,
   SliderThumbProps,
   SliderTrackProps,
   SliderValueTextProps,
   SliderMarkerGroupProps,
+  SliderValueChangeDetails,
 } from "./slider"
 
-export {
-  SliderContext,
-  SliderHiddenInput,
-  useSlider,
-  useSliderContext,
-} from "@ark-ui/react/slider"
+export { useSlider, useSliderContext } from "@ark-ui/react/slider"
 
 export * as Slider from "./namespace"

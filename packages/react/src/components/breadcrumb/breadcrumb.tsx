@@ -36,7 +36,7 @@ export const BreadcrumbRoot = withProvider<HTMLElement, BreadcrumbRootProps>(
   },
 )
 
-export const BreadcrumbRootPropsProvider =
+export const BreadcrumbPropsProvider =
   PropsProvider as React.Provider<BreadcrumbRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

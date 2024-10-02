@@ -22,6 +22,23 @@ export { useProgressStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ProgressRootProviderBaseProps
+  extends Assign<
+      ArkProgress.RootProviderBaseProps,
+      SlotRecipeProps<"progress">
+    >,
+    UnstyledProp {}
+
+export interface ProgressRootProviderProps
+  extends HTMLChakraProps<"div", ProgressRootProviderBaseProps> {}
+
+export const ProgressRootProvider = withProvider<
+  HTMLDivElement,
+  ProgressRootProviderProps
+>(ArkProgress.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface ProgressRootBaseProps
   extends Assign<ArkProgress.RootBaseProps, SlotRecipeProps<"progress">>,
     UnstyledProp {}
@@ -34,7 +51,9 @@ export const ProgressRoot = withProvider<HTMLDivElement, ProgressRootProps>(
   "root",
 )
 
-export const ProgressRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ProgressPropsProvider =
   PropsProvider as React.Provider<ProgressRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -79,3 +98,7 @@ export const ProgressValueText = withContext<
   HTMLDivElement,
   ProgressValueTextProps
 >(ArkProgress.ValueText, "valueText", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ProgressContext = ArkProgress.Context

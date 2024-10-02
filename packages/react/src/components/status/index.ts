@@ -2,7 +2,7 @@ export * as Status from "./namespace"
 export {
   StatusIndicator,
   StatusRoot,
-  StatusRootPropsProvider,
+  StatusPropsProvider,
   useStatusStyles,
 } from "./status"
 

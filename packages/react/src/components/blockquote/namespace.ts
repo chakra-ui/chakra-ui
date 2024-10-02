@@ -1,6 +1,6 @@
 export {
   BlockquoteRoot as Root,
-  BlockquoteRootPropsProvider as RootPropsProvider,
+  BlockquotePropsProvider as PropsProvider,
   BlockquoteContent as Content,
   BlockquoteCaption as Caption,
   BlockquoteIcon as Icon,

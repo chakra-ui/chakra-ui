@@ -1,7 +1,7 @@
 export {
   CardBody,
   CardRoot,
-  CardRootPropsProvider,
+  CardPropsProvider,
   CardFooter,
   CardHeader,
   CardTitle,

@@ -39,11 +39,11 @@
   },
   "dependencies": {
     "@ark-ui/anatomy": "3.5.0",
-    "@ark-ui/react": "3.12.1",
-    "@emotion/is-prop-valid": "1.3.0",
-    "@emotion/serialize": "1.3.1",
+    "@ark-ui/react": "4.1.0",
+    "@emotion/is-prop-valid": "1.3.1",
+    "@emotion/serialize": "1.3.2",
     "@emotion/use-insertion-effect-with-fallbacks": "1.1.0",
-    "@emotion/utils": "1.4.0",
+    "@emotion/utils": "1.4.1",
     "@pandacss/is-valid-prop": "0.41.0",
     "csstype": "3.1.3"
   },
@@ -122,6 +122,17 @@
       "require": {
         "types": "./dist/types/styled-system/index.d.ts",
         "default": "./dist/cjs/styled-system/index.cjs"
+      }
+    },
+    "./collection": {
+      "source": "./src/collection/index.ts",
+      "import": {
+        "types": "./dist/types/collection/index.d.ts",
+        "default": "./dist/esm/collection/index.js"
+      },
+      "require": {
+        "types": "./dist/types/collection/index.d.ts",
+        "default": "./dist/cjs/collection/index.cjs"
       }
     },
     "./*": {

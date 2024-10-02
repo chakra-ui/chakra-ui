@@ -32,7 +32,7 @@ export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(
   "root",
 )
 
-export const DataListRootPropsProvider =
+export const DataListPropsProvider =
   PropsProvider as React.Provider<DataListRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -24,6 +24,20 @@ export { useAvatarStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface AvatarRootProviderBaseProps
+  extends Assign<ArkAvatar.RootProviderBaseProps, SlotRecipeProps<"avatar">>,
+    UnstyledProp {}
+
+export interface AvatarRootProviderProps
+  extends HTMLChakraProps<"div", AvatarRootProviderBaseProps> {}
+
+export const AvatarRootProvider = withProvider<
+  HTMLDivElement,
+  AvatarRootProviderProps
+>(ArkAvatar.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface AvatarRootBaseProps
   extends Assign<ArkAvatar.RootBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
@@ -37,7 +51,9 @@ export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   { forwardAsChild: true },
 )
 
-export const AvatarRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const AvatarPropsProvider =
   PropsProvider as React.Provider<AvatarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -84,3 +100,10 @@ export const AvatarIcon = forwardRef<SVGElement, AvatarIconProps>(
     )
   },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const AvatarContext = ArkAvatar.Context
+
+export interface AvatarStatusChangeDetails
+  extends ArkAvatar.StatusChangeDetails {}

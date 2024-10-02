@@ -22,6 +22,20 @@ export { useTabsStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface TabsRootProviderBaseProps
+  extends Assign<ArkTabs.RootProviderBaseProps, SlotRecipeProps<"tabs">>,
+    UnstyledProp {}
+
+export interface TabsRootProviderProps
+  extends HTMLChakraProps<"div", TabsRootProviderBaseProps> {}
+
+export const TabsRootProvider = withProvider<
+  HTMLDivElement,
+  TabsRootProviderProps
+>(ArkTabs.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface TabsRootBaseProps
   extends Assign<ArkTabs.RootBaseProps, SlotRecipeProps<"tabs">>,
     UnstyledProp {}
@@ -35,7 +49,9 @@ export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(
   { forwardAsChild: true },
 )
 
-export const TabsRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const TabsPropsProvider =
   PropsProvider as React.Provider<TabsRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -90,3 +106,9 @@ export const TabsIndicator = withContext<HTMLDivElement, TabsIndicatorProps>(
   "indicator",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const TabsContext = ArkTabs.Context
+
+export interface TabsValueChangeDetails extends ArkTabs.ValueChangeDetails {}

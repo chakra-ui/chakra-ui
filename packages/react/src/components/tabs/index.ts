@@ -4,8 +4,10 @@ export {
   TabsIndicator,
   TabsList,
   TabsRoot,
-  TabsRootPropsProvider,
+  TabsRootProvider,
+  TabsPropsProvider,
   TabsTrigger,
+  TabsContext,
   useTabsStyles,
 } from "./tabs"
 
@@ -15,9 +17,8 @@ export type {
   TabsIndicatorProps,
   TabsListProps,
   TabsRootProps,
+  TabsRootProviderProps,
   TabsTriggerProps,
 } from "./tabs"
 
 export * as Tabs from "./namespace"
-
-export { TabsContext } from "@ark-ui/react/tabs"

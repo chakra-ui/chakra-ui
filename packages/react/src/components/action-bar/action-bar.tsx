@@ -22,6 +22,26 @@ export { useActionBarStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ActionBarRootProviderBaseProps
+  extends Assign<
+      ArkPopover.RootProviderBaseProps,
+      SlotRecipeProps<"actionBar">
+    >,
+    UnstyledProp {}
+
+export interface ActionBarRootProviderProps
+  extends ActionBarRootProviderBaseProps {}
+
+export const ActionBarRootProvider =
+  withRootProvider<ActionBarRootProviderBaseProps>(ArkPopover.Root, {
+    defaultProps: {
+      lazyMount: true,
+      unmountOnExit: true,
+    },
+  })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface ActionBarRootBaseProps
   extends Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"actionBar">>,
     UnstyledProp {}
@@ -42,7 +62,9 @@ export const ActionBarRoot = withRootProvider<ActionBarRootProps>(
   },
 )
 
-export const ActionBarRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ActionBarPropsProvider =
   PropsProvider as React.Provider<ActionBarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -92,3 +114,10 @@ export const ActionBarCloseTrigger = withContext<
   HTMLButtonElement,
   ActionBarCloseTriggerProps
 >(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ActionBarContext = ArkPopover.Context
+
+export interface ActionBarOpenChangeDetails
+  extends ArkPopover.OpenChangeDetails {}

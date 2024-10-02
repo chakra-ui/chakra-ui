@@ -1,6 +1,7 @@
 export {
   StepsRoot,
-  StepsRootPropsProvider,
+  StepsRootProvider,
+  StepsPropsProvider,
   StepsSeparator,
   StepsTrigger,
   StepsTitle,
@@ -15,10 +16,13 @@ export {
   StepsItem,
   StepsIndicator,
   StepsDescription,
+  StepsContext,
+  StepsItemContext,
 } from "./steps"
 
 export type {
   StepsRootProps,
+  StepsRootProviderProps,
   StepsListProps,
   StepsItemProps,
   StepsTriggerProps,
@@ -32,12 +36,9 @@ export type {
   StepsPrevTriggerProps,
   StepsNextTriggerProps,
   StepsDescriptionProps,
+  StepsChangeDetails,
 } from "./steps"
 
-export {
-  useStepsContext,
-  // StepsContext,
-  StepsItemContext,
-} from "@ark-ui/react/steps"
+export { useStepsContext } from "@ark-ui/react/steps"
 
 export * as Steps from "./namespace"

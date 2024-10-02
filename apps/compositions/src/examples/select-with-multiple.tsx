@@ -10,12 +10,12 @@ import {
   SelectValueText,
 } from "compositions/ui/select"
 
-export const SelectBasic = () => {
+export const SelectWithMultiple = () => {
   return (
-    <SelectRoot collection={frameworks} size="sm" width="320px">
+    <SelectRoot multiple collection={frameworks} size="sm" width="320px">
       <SelectLabel>Select framework</SelectLabel>
       <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
+        <SelectValueText placeholder="Movie" />
       </SelectTrigger>
       <SelectContent>
         {frameworks.items.map((movie) => (

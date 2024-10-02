@@ -1,3 +1,6 @@
+"use client"
+
+import { createListCollection } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
   PopoverBody,
@@ -25,7 +28,7 @@ export const SelectInPopover = () => {
       <PopoverContent>
         <PopoverBody>
           <SelectRoot
-            items={frameworks}
+            collection={frameworks}
             size="sm"
             positioning={{ sameWidth: true, placement: "bottom" }}
           >
@@ -33,7 +36,7 @@ export const SelectInPopover = () => {
               <SelectValueText placeholder="Select" />
             </SelectTrigger>
             <SelectContent portalled={false} width="full">
-              {frameworks.map((movie) => (
+              {frameworks.items.map((movie) => (
                 <SelectItem item={movie} key={movie.value}>
                   {movie.label}
                 </SelectItem>
@@ -46,9 +49,11 @@ export const SelectInPopover = () => {
   )
 }
 
-const frameworks = [
-  { label: "React.js", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "React.js", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+  ],
+})

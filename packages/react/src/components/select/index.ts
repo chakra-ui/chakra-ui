@@ -1,18 +1,21 @@
 export {
   SelectClearTrigger,
   SelectContent,
+  SelectContext,
   SelectControl,
   SelectIndicator,
   SelectIndicatorGroup,
   SelectItem,
+  SelectItemContext,
   SelectItemGroup,
   SelectItemGroupLabel,
   SelectItemIndicator,
   SelectItemText,
   SelectLabel,
   SelectPositioner,
+  SelectPropsProvider,
   SelectRoot,
-  SelectRootPropsProvider,
+  SelectRootProvider,
   SelectTrigger,
   SelectValueText,
   useSelectStyles,
@@ -22,6 +25,7 @@ export type {
   SelectClearTriggerProps,
   SelectContentProps,
   SelectControlProps,
+  SelectHighlightChangeDetails,
   SelectIndicatorGroupProps,
   SelectIndicatorProps,
   SelectItemGroupLabelProps,
@@ -30,23 +34,15 @@ export type {
   SelectItemProps,
   SelectItemTextProps,
   SelectLabelProps,
+  SelectOpenChangeDetails,
   SelectPositionerProps,
   SelectRootProps,
+  SelectRootProviderProps,
   SelectTriggerProps,
+  SelectValueChangeDetails,
   SelectValueTextProps,
 } from "./select"
 
-export {
-  SelectContext,
-  useSelect,
-  useSelectContext,
-} from "@ark-ui/react/select"
-
-export type {
-  SelectCollectionItem,
-  SelectHighlightChangeDetails,
-  SelectOpenChangeDetails,
-  SelectValueChangeDetails,
-} from "@ark-ui/react/select"
+export { useSelect, useSelectContext } from "@ark-ui/react/select"
 
 export * as Select from "./namespace"

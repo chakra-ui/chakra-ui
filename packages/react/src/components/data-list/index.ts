@@ -3,7 +3,7 @@ export {
   DataListItemLabel,
   DataListItemValue,
   DataListRoot,
-  DataListRootPropsProvider,
+  DataListPropsProvider,
   useDataListStyles,
 } from "./data-list"
 

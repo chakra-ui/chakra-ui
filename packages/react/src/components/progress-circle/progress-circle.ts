@@ -22,6 +22,23 @@ export { useProgressCircleStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ProgressCircleRootProviderBaseProps
+  extends Assign<
+      ArkProgress.RootProviderBaseProps,
+      SlotRecipeProps<"progressCircle">
+    >,
+    UnstyledProp {}
+
+export interface ProgressCircleRootProviderProps
+  extends HTMLChakraProps<"div", ProgressCircleRootProviderBaseProps> {}
+
+export const ProgressCircleRootProvider = withProvider<
+  HTMLDivElement,
+  ProgressCircleRootProviderProps
+>(ArkProgress.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface ProgressCircleRootBaseProps
   extends Assign<ArkProgress.RootBaseProps, SlotRecipeProps<"progressCircle">>,
     UnstyledProp {}
@@ -32,9 +49,11 @@ export interface ProgressCircleRootProps
 export const ProgressCircleRoot = withProvider<
   HTMLDivElement,
   ProgressCircleRootProps
->(ArkProgress.Root, "root")
+>(ArkProgress.Root, "root", { forwardAsChild: true })
 
-export const ProgressCircleRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ProgressCirclePropsProvider =
   PropsProvider as React.Provider<ProgressCircleRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -86,3 +105,7 @@ export const ProgressCircleValueText = withContext<
   HTMLDivElement,
   ProgressCircleValueTextProps
 >(ArkProgress.ValueText, "valueText", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ProgressCircleContext = ArkProgress.Context

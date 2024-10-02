@@ -4,6 +4,7 @@ export {
   FieldsetHelperText as HelperText,
   FieldsetLegend as Legend,
   FieldsetControl as Control,
+  FieldsetContext as Context,
 } from "./fieldset"
 
 export type {
@@ -13,5 +14,3 @@ export type {
   FieldsetLegendProps as LegendProps,
   FieldsetControlProps as ControlProps,
 } from "./fieldset"
-
-export { FieldsetContext as Context } from "@ark-ui/react/fieldset"

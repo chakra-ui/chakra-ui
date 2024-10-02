@@ -41,7 +41,7 @@ export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
   { forwardAsChild: true },
 )
 
-export const CheckboxRootPropsProvider =
+export const CheckboxPropsProvider =
   PropsProvider as React.Provider<CheckboxRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -131,3 +131,11 @@ export const CheckboxGroup = chakra(
   {},
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const CheckboxContext = ArkCheckbox.Context
+export const CheckboxHiddenInput = ArkCheckbox.HiddenInput
+
+export interface CheckboxCheckedChangeDetails
+  extends ArkCheckbox.CheckedChangeDetails {}

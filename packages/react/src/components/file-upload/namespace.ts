@@ -3,7 +3,8 @@ export {
   FileUploadItem as Item,
   FileUploadTrigger as Trigger,
   FileUploadRoot as Root,
-  FileUploadRootPropsProvider as RootPropsProvider,
+  FileUploadRootProvider as RootProvider,
+  FileUploadPropsProvider as PropsProvider,
   FileUploadLabel as Label,
   FileUploadItemPreview as ItemPreview,
   FileUploadItemPreviewImage as ItemPreviewImage,
@@ -11,6 +12,8 @@ export {
   FileUploadItemName as ItemName,
   FileUploadItemGroup as ItemGroup,
   FileUploadItemDeleteTrigger as ItemDeleteTrigger,
+  FileUploadContext as Context,
+  FileUploadHiddenInput as HiddenInput,
   FileUploadClearTrigger as ClearTrigger,
 } from "./file-upload"
 
@@ -19,6 +22,7 @@ export type {
   FileUploadItemProps as ItemProps,
   FileUploadTriggerProps as TriggerProps,
   FileUploadRootProps as RootProps,
+  FileUploadRootProviderProps as RootProviderProps,
   FileUploadLabelProps as LabelProps,
   FileUploadItemPreviewProps as ItemPreviewProps,
   FileUploadItemPreviewImageProps as ItemPreviewImageProps,
@@ -26,16 +30,7 @@ export type {
   FileUploadItemNameProps as ItemNameProps,
   FileUploadItemGroupProps as ItemGroupProps,
   FileUploadItemDeleteTriggerProps as ItemDeleteTriggerProps,
-  FileUploadClearTriggerProps as ClearTriggerProps,
-} from "./file-upload"
-
-export {
-  FileUploadContext as Context,
-  FileUploadHiddenInput as HiddenInput,
-} from "@ark-ui/react/file-upload"
-
-export type {
   FileUploadFileAcceptDetails as FileAcceptDetails,
   FileUploadFileChangeDetails as FileChangeDetails,
   FileUploadFileRejectDetails as FileRejectDetails,
-} from "@ark-ui/react/file-upload"
+} from "./file-upload"

@@ -22,6 +22,23 @@ export { useClipboardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ClipboardRootProviderBaseProps
+  extends Assign<
+      ArkClipboard.RootProviderBaseProps,
+      SlotRecipeProps<"clipboard">
+    >,
+    UnstyledProp {}
+
+export interface ClipboardRootProviderProps
+  extends HTMLChakraProps<"div", ClipboardRootProviderBaseProps> {}
+
+export const ClipboardRootProvider = withProvider<
+  HTMLDivElement,
+  ClipboardRootProviderProps
+>(ArkClipboard.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface ClipboardRootBaseProps
   extends Assign<ArkClipboard.RootBaseProps, SlotRecipeProps<"clipboard">>,
     UnstyledProp {}
@@ -35,7 +52,9 @@ export const ClipboardRoot = withProvider<HTMLDivElement, ClipboardRootProps>(
   { forwardAsChild: true },
 )
 
-export const ClipboardRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ClipboardPropsProvider =
   PropsProvider as React.Provider<ClipboardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +106,10 @@ export const ClipboardLabel = withContext<
   HTMLLabelElement,
   ClipboardLabelProps
 >(ArkClipboard.Label, "label", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ClipboardContext = ArkClipboard.Context
+
+export interface ClipboardCopyStatusDetails
+  extends ArkClipboard.CopyStatusDetails {}

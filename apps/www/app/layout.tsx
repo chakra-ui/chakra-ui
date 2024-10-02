@@ -27,6 +27,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://next.chakra-ui.com"),
   title: {
     template: docsConfig.titleTemplate,
     default: docsConfig.title,

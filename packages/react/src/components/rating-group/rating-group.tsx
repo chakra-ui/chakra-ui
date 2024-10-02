@@ -28,6 +28,23 @@ export { useRatingGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface RatingGroupRootProviderBaseProps
+  extends Assign<
+      ArkRatingGroup.RootProviderBaseProps,
+      SlotRecipeProps<"ratingGroup">
+    >,
+    UnstyledProp {}
+
+export interface RatingGroupRootProviderProps
+  extends HTMLChakraProps<"div", RatingGroupRootProviderBaseProps> {}
+
+export const RatingGroupRootProvider = withProvider<
+  HTMLDivElement,
+  RatingGroupRootProviderProps
+>(ArkRatingGroup.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface RatingGroupRootBaseProps
   extends Assign<ArkRatingGroup.RootBaseProps, SlotRecipeProps<"ratingGroup">>,
     UnstyledProp {}
@@ -40,7 +57,9 @@ export const RatingGroupRoot = withProvider<
   RatingGroupRootProps
 >(ArkRatingGroup.Root, "root", { forwardAsChild: true })
 
-export const RatingGroupRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RatingGroupPropsProvider =
   PropsProvider as React.Provider<RatingGroupRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -107,3 +126,12 @@ export const RatingGroupItemIndicator = forwardRef<
     </chakra.span>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RatingGroupContext = ArkRatingGroup.Context
+export const RatingGroupItemContext = ArkRatingGroup.ItemContext
+export const RatingGroupHiddenInput = ArkRatingGroup.HiddenInput
+
+export interface RatingGroupValueChangeDetails
+  extends ArkRatingGroup.ValueChangeDetails {}

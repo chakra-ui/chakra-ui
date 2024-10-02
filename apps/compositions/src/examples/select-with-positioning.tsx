@@ -1,5 +1,6 @@
 "use client"
 
+import { createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -12,7 +13,7 @@ import {
 export const SelectWithPositioning = () => {
   return (
     <SelectRoot
-      items={frameworks}
+      collection={frameworks}
       size="sm"
       width="320px"
       positioning={{ placement: "top", flip: false }}
@@ -22,7 +23,7 @@ export const SelectWithPositioning = () => {
         <SelectValueText placeholder="Select movie" />
       </SelectTrigger>
       <SelectContent>
-        {frameworks.map((movie) => (
+        {frameworks.items.map((movie) => (
           <SelectItem item={movie} key={movie.value}>
             {movie.label}
           </SelectItem>
@@ -32,9 +33,11 @@ export const SelectWithPositioning = () => {
   )
 }
 
-const frameworks = [
-  { label: "React.js", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "React.js", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+  ],
+})

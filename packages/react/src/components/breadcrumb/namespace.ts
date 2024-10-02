@@ -5,7 +5,7 @@ export {
   BreadcrumbLink as Link,
   BreadcrumbList as List,
   BreadcrumbRoot as Root,
-  BreadcrumbRootPropsProvider as RootPropsProvider,
+  BreadcrumbPropsProvider as PropsProvider,
   BreadcrumbSeparator as Separator,
 } from "./breadcrumb"
 

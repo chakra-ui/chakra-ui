@@ -1,6 +1,6 @@
 export {
   FieldRoot as Root,
-  FieldRootPropsProvider as RootPropsProvider,
+  FieldPropsProvider as PropsProvider,
   FieldLabel as Label,
   FieldHelperText as HelperText,
   FieldErrorText as ErrorText,

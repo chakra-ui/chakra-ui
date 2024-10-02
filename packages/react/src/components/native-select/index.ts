@@ -2,7 +2,7 @@ export {
   NativeSelectRoot,
   NativeSelectField,
   NativeSelectIndicator,
-  NativeSelectRootPropsProvider,
+  NativeSelectPropsProvider,
   useNativeSelectStyles,
 } from "./native-select"
 

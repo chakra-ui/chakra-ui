@@ -54,3 +54,5 @@ export const FieldsetControl = withContext<
   HTMLDivElement,
   FieldsetControlProps
 >(ark.div, "control")
+
+export const FieldsetContext = Fieldset.Context

@@ -4,8 +4,12 @@ export {
   RadioGroupItemText,
   RadioGroupLabel,
   RadioGroupRoot,
-  RadioGroupRootPropsProvider,
+  RadioGroupRootProvider,
+  RadioGroupPropsProvider,
   RadioGroupItemIndicator,
+  RadioGroupItemHiddenInput,
+  RadioGroupContext,
+  useRadioGroupStyles,
 } from "./radio-group"
 
 export type {
@@ -14,14 +18,10 @@ export type {
   RadioGroupItemTextProps,
   RadioGroupLabelProps,
   RadioGroupRootProps,
+  RadioGroupRootProviderProps,
+  RadioGroupValueChangeDetails,
 } from "./radio-group"
 
-export {
-  RadioGroupItemHiddenInput,
-  RadioGroupContext,
-  useRadioGroupContext,
-} from "@ark-ui/react/radio-group"
-
-export type { RadioGroupValueChangeDetails } from "@ark-ui/react/radio-group"
+export { useRadioGroupContext } from "@ark-ui/react/radio-group"
 
 export * as RadioGroup from "./namespace"

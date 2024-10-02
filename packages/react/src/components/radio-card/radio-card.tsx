@@ -3,6 +3,8 @@
 import type { Assign } from "@ark-ui/react"
 import {
   RadioGroup as ArkRadioGroup,
+  type UseRadioGroupContext,
+  type UseRadioGroupItemContext,
   useRadioGroupItemContext,
 } from "@ark-ui/react/radio-group"
 import { forwardRef } from "react"
@@ -20,11 +22,28 @@ import { Radiomark } from "../radiomark"
 const {
   withProvider,
   withContext,
-  useStyles: useRadioGroupStyles,
+  useStyles: useRadioCardStyles,
   PropsProvider,
 } = createSlotRecipeContext({ key: "radioCard" })
 
-export { useRadioGroupStyles }
+export { useRadioCardStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioCardRootProviderBaseProps
+  extends Assign<
+      ArkRadioGroup.RootProviderBaseProps,
+      SlotRecipeProps<"radioCard">
+    >,
+    UnstyledProp {}
+
+export interface RadioCardRootProviderProps
+  extends HTMLChakraProps<"div", RadioCardRootProviderBaseProps> {}
+
+export const RadioCardRootProvider = withProvider<
+  HTMLDivElement,
+  RadioCardRootProviderProps
+>(ArkRadioGroup.RootProvider, "root", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +60,9 @@ export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   { forwardAsChild: true },
 )
 
-export const RadioCardRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioCardPropsProvider =
   PropsProvider as React.Provider<RadioCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -106,7 +127,7 @@ export const RadioCardItemIndicator = forwardRef<
   RadioCardItemIndicatorProps
 >(function RadioGroupItemIndicator(props, ref) {
   const { checked, ...rest } = props
-  const styles = useRadioGroupStyles()
+  const styles = useRadioCardStyles()
   const itemContext = useRadioGroupItemContext()
 
   if (checked && itemContext.checked) {
@@ -133,3 +154,28 @@ export const RadioCardItemIndicator = forwardRef<
     />
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioCardContextProps {
+  children: (context: UseRadioGroupContext) => JSX.Element
+}
+
+export const RadioCardContext: React.FC<RadioCardContextProps> =
+  ArkRadioGroup.Context
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioCardItemContextProps {
+  children: (context: UseRadioGroupItemContext) => JSX.Element
+}
+
+export const RadioCardItemContext: React.FC<RadioCardItemContextProps> =
+  ArkRadioGroup.ItemContext
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const RadioCardItemHiddenInput = ArkRadioGroup.ItemHiddenInput
+
+export interface RadioCardValueChangeDetails
+  extends ArkRadioGroup.ValueChangeDetails {}

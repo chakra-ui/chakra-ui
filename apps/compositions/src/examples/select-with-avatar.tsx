@@ -1,6 +1,6 @@
 "use client"
 
-import { HStack } from "@chakra-ui/react"
+import { HStack, createListCollection } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
 import {
   SelectContent,
@@ -28,9 +28,7 @@ const SelectValueItem = () => (
 export const SelectWithAvatar = () => {
   return (
     <SelectRoot
-      items={members}
-      itemToString={(item) => item.name}
-      itemToValue={(item) => item.id}
+      collection={members}
       size="sm"
       width="240px"
       defaultValue={["jessica_jones"]}
@@ -41,7 +39,7 @@ export const SelectWithAvatar = () => {
         <SelectValueItem />
       </SelectTrigger>
       <SelectContent portalled={false}>
-        {members.map((item) => (
+        {members.items.map((item) => (
           <SelectItem item={item} key={item.id} justifyContent="flex-start">
             <Avatar name={item.name} src={item.avatar} size="xs" />
             {item.name}
@@ -52,23 +50,27 @@ export const SelectWithAvatar = () => {
   )
 }
 
-const members = [
-  {
-    name: "Jessica Jones",
-    id: "jessica_jones",
-    avatar:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100",
-  },
-  {
-    name: "Kenneth Johnson",
-    id: "kenneth_johnson",
-    avatar:
-      "https://images.unsplash.com/photo-1523477800337-966dbabe060b?w=100",
-  },
-  {
-    name: "Kate Wilson",
-    id: "kate_wilson",
-    avatar:
-      "https://images.unsplash.com/photo-1609712409631-dbbb050746d1?w=100",
-  },
-]
+const members = createListCollection({
+  items: [
+    {
+      name: "Jessica Jones",
+      id: "jessica_jones",
+      avatar:
+        "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100",
+    },
+    {
+      name: "Kenneth Johnson",
+      id: "kenneth_johnson",
+      avatar:
+        "https://images.unsplash.com/photo-1523477800337-966dbabe060b?w=100",
+    },
+    {
+      name: "Kate Wilson",
+      id: "kate_wilson",
+      avatar:
+        "https://images.unsplash.com/photo-1609712409631-dbbb050746d1?w=100",
+    },
+  ],
+  itemToString: (item) => item.name,
+  itemToValue: (item) => item.id,
+})

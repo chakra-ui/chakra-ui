@@ -32,7 +32,9 @@ export const EmptyStateRoot = withProvider<HTMLDivElement, EmptyStateRootProps>(
   "root",
 )
 
-export const EmptyStateRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const EmptyStatePropsProvider =
   PropsProvider as React.Provider<EmptyStateRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////

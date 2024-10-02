@@ -1,5 +1,6 @@
 "use client"
 
+import { createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -11,13 +12,13 @@ import {
 
 export const SelectWithInvalid = () => {
   return (
-    <SelectRoot invalid items={frameworks} size="sm" width="320px">
+    <SelectRoot invalid collection={frameworks} size="sm" width="320px">
       <SelectLabel>Select framework</SelectLabel>
       <SelectTrigger>
         <SelectValueText placeholder="Select movie" />
       </SelectTrigger>
       <SelectContent>
-        {frameworks.map((movie) => (
+        {frameworks.items.map((movie) => (
           <SelectItem item={movie} key={movie.value}>
             {movie.label}
           </SelectItem>
@@ -27,9 +28,11 @@ export const SelectWithInvalid = () => {
   )
 }
 
-const frameworks = [
-  { label: "React.js", value: "react" },
-  { label: "Vue.js", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "React.js", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+  ],
+})

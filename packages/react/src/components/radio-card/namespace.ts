@@ -4,9 +4,13 @@ export {
   RadioCardItemText as ItemText,
   RadioCardLabel as Label,
   RadioCardRoot as Root,
-  RadioCardRootPropsProvider as RootPropsProvider,
+  RadioCardRootProvider as RootProvider,
+  RadioCardPropsProvider as PropsProvider,
   RadioCardItemAddon as ItemAddon,
   RadioCardItemIndicator as ItemIndicator,
+  RadioCardContext as Context,
+  RadioCardItemContext as ItemContext,
+  RadioCardItemHiddenInput as ItemHiddenInput,
 } from "./radio-card"
 
 export type {
@@ -15,13 +19,8 @@ export type {
   RadioCardItemTextProps as ItemTextProps,
   RadioCardLabelProps as LabelProps,
   RadioCardRootProps as RootProps,
+  RadioCardRootProviderProps as RootProviderProps,
   RadioCardItemAddonProps as ItemAddonProps,
   RadioCardItemIndicatorProps as ItemIndicatorProps,
+  RadioCardValueChangeDetails as ValueChangeDetails,
 } from "./radio-card"
-
-export {
-  RadioGroupContext as Context,
-  RadioGroupItemHiddenInput as ItemHiddenInput,
-} from "@ark-ui/react/radio-group"
-
-export type { RadioGroupValueChangeDetails as ValueChangeDetails } from "@ark-ui/react/radio-group"
