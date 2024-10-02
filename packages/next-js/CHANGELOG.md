@@ -1,5 +1,11 @@
 # @chakra-ui/next-js
 
+## 2.3.2
+
+### Patch Changes
+
+- Force release
+
 ## 2.3.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.9.2
+  - @chakra-ui/theme@3.4.2
+  - @chakra-ui/utils@2.1.2
+
 ## 2.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @chakra-ui/cli
 
+## 2.5.2
+
+### Patch Changes
+
+- Force release
+
 ## 2.5.1
 
 ### Patch Changes

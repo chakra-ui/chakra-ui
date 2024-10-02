@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 2.9.2
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/styled-system@2.10.2
+  - @chakra-ui/hooks@2.3.2
+  - @chakra-ui/theme@3.4.2
+  - @chakra-ui/utils@2.1.2
+
 ## 2.9.1
 
 ### Patch Changes
