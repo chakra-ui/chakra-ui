@@ -70,7 +70,10 @@ const createTransition = (value: string) => {
 }
 
 export const defaultConditions = defineConditions({
-  hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+  hover: [
+    "@media (hover: hover)",
+    "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+  ],
   active:
     "&:is(:active, [data-active]):not(:disabled, [data-disabled], [data-state=open])",
   focus: "&:is(:focus, [data-focus])",

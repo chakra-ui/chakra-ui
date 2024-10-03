@@ -54,7 +54,7 @@ export function createCssFn(context: CssFnOptions) {
         { getKey: (prop) => conditions.expandAtRule(prop) },
       )
 
-      mergeByPath(result, selectors, transformed)
+      mergeByPath(result, selectors.flat(), transformed)
     })
 
     return sortAtRules(result)

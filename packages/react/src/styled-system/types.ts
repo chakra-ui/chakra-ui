@@ -252,9 +252,13 @@ export interface Condition {
   expandAtRule(key: string): string
 }
 
+export interface ConditionRecord {
+  [key: string]: string | string[]
+}
+
 export interface ConditionConfig {
   breakpoints: Breakpoint
-  conditions: Dict
+  conditions: ConditionRecord
 }
 
 /* -----------------------------------------------------------------------------

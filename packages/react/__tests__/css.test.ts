@@ -14,10 +14,12 @@ describe("css", () => {
       }),
     ).toMatchInlineSnapshot(`
       {
-        "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": {
-          "color": "pink !important",
-        },
         "--bg": "var(--chakra-colors-pink-400)",
+        "@media (hover: hover)": {
+          "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": {
+            "color": "pink !important",
+          },
+        },
         "@media screen and (min-width: 30rem)": {
           "padding": "20px",
         },
