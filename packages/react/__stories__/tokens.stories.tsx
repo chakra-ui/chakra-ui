@@ -17,9 +17,10 @@ export { TokensFocusRing as FocusRing } from "compositions/examples/tokens/focus
 export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/layer-style"
 export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
 
-export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-toc"
+export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-doc"
 export { BorderRadiusTokenDoc as Radius } from "compositions/lib/border-radius-token-doc"
 export { BreakpointDoc as Breakpoints } from "compositions/lib/breakpoint-doc"
+export { EasingTokenDoc as Easings } from "compositions/lib/easing-token-doc"
 export {
   ColorTokenDoc as Colors,
   ColorSemanticTokenDoc as SemanticColors,

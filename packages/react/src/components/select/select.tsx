@@ -51,7 +51,9 @@ export interface SelectRootProps<T extends CollectionItem = any>
   extends HTMLChakraProps<"div", SelectRootBaseProps<T>> {}
 
 interface SelectRootComponent {
-  <T extends CollectionItem>(props: SelectRootProps<T>): JSX.Element
+  <T extends CollectionItem>(
+    props: SelectRootProps<T> & React.RefAttributes<HTMLDivElement>,
+  ): JSX.Element
 }
 
 export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
@@ -110,10 +112,10 @@ export const SelectValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectClearTriggerProps
-  extends HTMLChakraProps<"div", ArkSelect.IndicatorBaseProps> {}
+  extends HTMLChakraProps<"button", ArkSelect.ClearTriggerBaseProps> {}
 
 export const SelectClearTrigger = withContext<
-  HTMLDivElement,
+  HTMLButtonElement,
   SelectClearTriggerProps
 >(ArkSelect.ClearTrigger, "clearTrigger", { forwardAsChild: true })
 

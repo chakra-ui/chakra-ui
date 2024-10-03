@@ -1,8 +1,7 @@
-import { Heading, Stack } from "@chakra-ui/react"
+import { Heading, Icon, Stack } from "@chakra-ui/react"
 import {
   AccordionItem,
   AccordionItemContent,
-  AccordionItemIcon,
   AccordionItemTrigger,
   AccordionRoot,
 } from "compositions/ui/accordion"
@@ -16,7 +15,7 @@ export const AccordionWithIcon = () => {
         {items.map((item) => (
           <AccordionItem key={item.value} value={item.value}>
             <AccordionItemTrigger>
-              <AccordionItemIcon>{item.icon}</AccordionItemIcon>
+              <Icon fontSize="lg" color="fg.muted" {...item.icon} />
               {item.title}
             </AccordionItemTrigger>
             <AccordionItemContent>{item.content}</AccordionItemContent>
