@@ -2,6 +2,12 @@ import { defineLayerStyles } from "../styled-system"
 
 export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination
+  "fill.muted": {
+    value: {
+      background: "colorPalette.muted",
+      color: "colorPalette.fg",
+    },
+  },
   "fill.subtle": {
     value: {
       background: "colorPalette.subtle",

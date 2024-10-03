@@ -1,5 +1,5 @@
 export interface Conditions {
-  /** `&:is(:hover, [data-hover]):not(:disabled, [data-disabled])` */
+  /** `@media (hover: hover),&:is(:hover, [data-hover]):not(:disabled, [data-disabled])` */
   _hover: string
   /** `&:is(:active, [data-active]):not(:disabled, [data-disabled], [data-state=open])` */
   _active: string
@@ -169,7 +169,7 @@ export interface Conditions {
   _landscape: string
   /** `@media (orientation: portrait)` */
   _portrait: string
-  /** `.dark &` */
+  /** `.dark &, .dark .chakra-theme:not(.light) &` */
   _dark: string
   /** `:root &, .light &` */
   _light: string

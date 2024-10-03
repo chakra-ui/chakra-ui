@@ -40,7 +40,7 @@ export const globalCss = defineGlobalStyles({
     "--global-font-body": "fonts.body",
     "--global-color-border": "colors.border",
   },
-  body: {
+  html: {
     color: "fg",
     bg: "bg",
     lineHeight: "1.5",

@@ -30,7 +30,7 @@ import { zIndices } from "./tokens/z-indices"
 export const defaultThemeConfig = defineConfig({
   preflight: true,
   cssVarsPrefix: "chakra",
-  cssVarsRoot: ":where(:root, :host)",
+  cssVarsRoot: ":where(html, .chakra-theme)",
   globalCss: globalCss,
   theme: {
     breakpoints: breakpoints,

@@ -318,7 +318,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        ".dark &": {
+        ".dark &, .dark .chakra-theme:not(.light) &": {
           "border": "2px solid var(--chakra-colors-green-300)",
         },
         "border": "1px solid var(--chakra-colors-white)",

@@ -180,7 +180,7 @@ export const defaultConditions = defineConditions({
   landscape: "@media (orientation: landscape)",
   portrait: "@media (orientation: portrait)",
 
-  dark: ".dark &",
+  dark: ".dark &, .dark .chakra-theme:not(.light) &",
   light: ":root &, .light &",
   osDark: "@media (prefers-color-scheme: dark)",
   osLight: "@media (prefers-color-scheme: light)",
