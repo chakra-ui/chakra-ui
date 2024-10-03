@@ -1,7 +1,7 @@
 "use client"
 
 import { data } from "@/lib/search"
-import { Combobox } from "@ark-ui/react"
+import { Combobox, createListCollection } from "@ark-ui/react"
 import { useEnvironmentContext } from "@ark-ui/react/environment"
 import {
   Center,
@@ -69,16 +69,21 @@ export const CommandMenu = (props: Props) => {
   const { matchEntries, filteredItems } = useFilteredItems(data, inputValue)
   const router = useRouter()
 
+  const collection = useMemo(() => {
+    return createListCollection({ items: filteredItems })
+  }, [filteredItems])
+
   useHotkey(setOpen, { disable: props.disableHotkey })
 
   return (
     <DialogRoot
+      centered
       motionPreset="slide-in-bottom"
       open={open}
       onOpenChange={(event) => setOpen(event.open)}
     >
       <DialogTrigger asChild>{props.trigger}</DialogTrigger>
-      <DialogContent p="2" width={{ base: "100%", sm: "md" }}>
+      <DialogContent p="2" width={{ base: "100%", sm: "lg" }}>
         <ComboboxRoot
           open
           disableLayer
@@ -86,7 +91,7 @@ export const CommandMenu = (props: Props) => {
           placeholder="Search the docs"
           selectionBehavior="clear"
           loopFocus={false}
-          items={filteredItems}
+          collection={collection}
           onValueChange={(e) => {
             setOpen(false)
             router.push(`/${e.value}`)
@@ -103,7 +108,7 @@ export const CommandMenu = (props: Props) => {
             px="0"
             py="0"
             overflow="auto"
-            maxH="68vh"
+            maxH="50vh"
             overscrollBehavior="contain"
           >
             <ComboboxList>
@@ -116,13 +121,6 @@ export const CommandMenu = (props: Props) => {
               )}
               {matchEntries.map(([key, items]) => (
                 <ComboboxItemGroup key={key}>
-                  <ComboboxItemGroupLabel
-                    textTransform="capitalize"
-                    color="fg.subtle"
-                    fontWeight="medium"
-                  >
-                    {key}
-                  </ComboboxItemGroupLabel>
                   {items.map((item) => (
                     <ComboboxItem
                       key={item.value}
@@ -133,22 +131,8 @@ export const CommandMenu = (props: Props) => {
                       py="3"
                     >
                       <Stack gap="0">
+                        <Text color="teal.fg">{item.category}</Text>
                         <Text fontWeight="medium">{item.label}</Text>
-                        <Text
-                          textStyle="sm"
-                          fontWeight="medium"
-                          color="teal.600"
-                        >
-                          {item.category}
-                        </Text>
-                        <Text
-                          textStyle="sm"
-                          color="fg.subtle"
-                          mt="0.5"
-                          lineClamp={2}
-                        >
-                          {item.description}
-                        </Text>
                       </Stack>
                     </ComboboxItem>
                   ))}
