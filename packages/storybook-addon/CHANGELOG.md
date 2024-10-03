@@ -1,5 +1,11 @@
 # @chakra-ui/storybook-addon
 
+## 5.2.3
+
+### Patch Changes
+
+- Fix issue where extend theme utilities are not exported
+
 ## 5.2.2
 
 ### Patch Changes

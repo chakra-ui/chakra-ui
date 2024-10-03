@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- Fix issue where extend theme utilities are not exported
+
 ## 2.2.2
 
 ### Patch Changes

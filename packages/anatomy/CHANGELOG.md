@@ -1,5 +1,11 @@
 # @chakra-ui/anatomy
 
+## 2.3.3
+
+### Patch Changes
+
+- Fix issue where extend theme utilities are not exported
+
 ## 2.3.2
 
 ### Patch Changes

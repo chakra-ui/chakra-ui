@@ -1,5 +1,11 @@
 # @chakra-ui/utils
 
+## 2.1.3
+
+### Patch Changes
+
+- Fix issue where extend theme utilities are not exported
+
 ## 2.1.2
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- Fix issue where extend theme utilities are not exported
+
+- Updated dependencies []:
+  - @chakra-ui/react@2.9.4
+  - @chakra-ui/theme@3.4.3
+  - @chakra-ui/utils@2.1.3
+
 ## 2.1.3
 
 ### Patch Changes
