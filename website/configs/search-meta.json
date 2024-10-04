@@ -11398,14 +11398,14 @@
     "hierarchy": { "lvl1": "Installation" }
   },
   {
-    "content": "ChakraBaseProvider",
+    "content": "Bundle Size Optimization",
     "id": "/getting-started/",
     "type": "lvl3",
-    "url": "/getting-started/#chakrabaseprovider",
+    "url": "/getting-started/#bundle-size-optimization",
     "hierarchy": {
       "lvl1": "Installation",
-      "lvl2": null,
-      "lvl3": "ChakraBaseProvider"
+      "lvl2": "Bundle Size Optimization",
+      "lvl3": null
     }
   },
   {

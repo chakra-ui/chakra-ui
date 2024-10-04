@@ -106,7 +106,12 @@ export const WithIcon = () => (
 
 export const WithReactIcons = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
+    <Button
+      shouldWrapChildren
+      leftIcon={<MdBuild />}
+      colorScheme="pink"
+      variant="solid"
+    >
       Settings
     </Button>
     <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">

@@ -83,7 +83,7 @@ function pipe<R>(...fns: Array<(a: R) => R>) {
   return (v: R) => fns.reduce((a, b) => b(a), v)
 }
 
-const createExtendTheme = (theme: Record<string, any>) => {
+export const createExtendTheme = (theme: Record<string, any>) => {
   return function extendTheme(
     ...extensions: Array<
       | Record<string, any>

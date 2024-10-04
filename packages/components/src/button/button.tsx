@@ -42,6 +42,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     spinnerPlacement = "start",
     className,
     as,
+    shouldWrapChildren,
     ...rest
   } = omitThemingProps(props)
 
@@ -71,7 +72,13 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
   const { ref: _ref, type: defaultType } = useButtonType(as)
 
-  const contentProps = { rightIcon, leftIcon, iconSpacing, children }
+  const contentProps = {
+    rightIcon,
+    leftIcon,
+    iconSpacing,
+    children,
+    shouldWrapChildren,
+  }
 
   return (
     <chakra.button
@@ -124,18 +131,34 @@ Button.displayName = "Button"
 
 type ButtonContentProps = Pick<
   ButtonProps,
-  "leftIcon" | "rightIcon" | "children" | "iconSpacing"
+  "leftIcon" | "rightIcon" | "children" | "iconSpacing" | "shouldWrapChildren"
 >
 
 function ButtonContent(props: ButtonContentProps) {
-  const { leftIcon, rightIcon, children, iconSpacing } = props
+  const { leftIcon, rightIcon, children, iconSpacing, shouldWrapChildren } =
+    props
+
+  if (!shouldWrapChildren) {
+    return (
+      <>
+        {leftIcon && (
+          <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>
+        )}
+        {children}
+        {rightIcon && (
+          <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
+        )}
+      </>
+    )
+  }
+
   return (
-    <>
+    <span style={{ display: "contents" }}>
       {leftIcon && <ButtonIcon marginEnd={iconSpacing}>{leftIcon}</ButtonIcon>}
       {children}
       {rightIcon && (
         <ButtonIcon marginStart={iconSpacing}>{rightIcon}</ButtonIcon>
       )}
-    </>
+    </span>
   )
 }

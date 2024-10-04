@@ -72,6 +72,11 @@ export interface ButtonOptions {
    * @default "start"
    */
   spinnerPlacement?: "start" | "end"
+  /**
+   * If `true`, the button content will be wrapped within a `<span/>`.
+   * This is useful to fix issues with translation extensions.
+   */
+  shouldWrapChildren?: boolean
 }
 
 export interface ButtonSpinnerOptions {
