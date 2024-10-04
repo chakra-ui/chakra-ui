@@ -11,9 +11,6 @@ export interface BaseBreakpointConfig {
 
 export type Breakpoints<T> = T & { base: "0em" }
 
-/**
- * @deprecated will be deprecated pretty soon, simply pass the breakpoints as an object
- */
 export const createBreakpoints = <T extends BaseBreakpointConfig>(
   config: T,
 ): Breakpoints<T> => {
