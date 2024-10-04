@@ -342,3 +342,17 @@ export const WithFormControl = () => {
     </>
   )
 }
+
+export const WithIconSize = () => {
+  return (
+    <Stack>
+      <Checkbox defaultChecked>Option</Checkbox>
+      <Checkbox defaultChecked iconSize="2rem">
+        Option
+      </Checkbox>
+      <Checkbox defaultChecked iconColor="blue.400" iconSize="1rem">
+        Option
+      </Checkbox>
+    </Stack>
+  )
+}

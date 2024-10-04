@@ -3,7 +3,7 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
-import { callAll, cx } from "@chakra-ui/utils"
+import { callAll, compact, cx } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import { cloneElement, useMemo } from "react"
 import {
@@ -144,9 +144,11 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(
           : state.isIndeterminate
           ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
           : `${checkAnim} 200ms linear`,
-        fontSize: iconSize,
-        color: iconColor,
         ...styles.icon,
+        ...compact({
+          fontSize: iconSize,
+          color: iconColor,
+        }),
       }),
       [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
     )
