@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 3.0.0-next.28
+
+### Minor Changes
+
+- [`47b3b5a`](https://github.com/chakra-ui/chakra-ui/commit/47b3b5af95e711f78a5e8452cf4a8debe8e76975)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Support array in
+  conditions object. This matches the API in Panda CSS and allow users to define
+  complex selectors like media hover queries.
+
 ## 3.0.0-next.27
 
 ### Minor Changes
