@@ -18,7 +18,7 @@ export function useSteps(props: UseStepsProps = {}) {
   return {
     activeStep,
     setActiveStep,
-    activeStepPercent,
+    activeStepPercent: Number.isNaN(activeStepPercent) ? 0 : activeStepPercent,
     isActiveStep(step: number) {
       return step === activeStep
     },
