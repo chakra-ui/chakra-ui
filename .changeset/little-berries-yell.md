@@ -41,3 +41,6 @@ export const extendTheme = createExtendTheme(baseTheme)
 
 - **Checkbox**: Fix issue where iconSize and iconColor doesn't take effect until
   a custom size is used.
+
+- **Steps**: Fix issue where some style components show a TS Error when passing
+  the `sx` prop.
