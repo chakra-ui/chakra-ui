@@ -224,7 +224,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
        * Improved from: https://github.com/uber/baseweb/blob/master/src/pin-code/pin-code.js
        */
       const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const eventValue = event.target.value
+        const eventValue = event.currentTarget.value
         const currentValue = values[index]
         const nextValue = getNextValue(currentValue, eventValue)
 
@@ -262,7 +262,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
       const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && manageFocus) {
-          if ((event.target as HTMLInputElement).value === "") {
+          if ((event.currentTarget as HTMLInputElement).value === "") {
             const prevInput = descendants.prev(index, false)
             if (prevInput) {
               setValue("", index - 1, false)

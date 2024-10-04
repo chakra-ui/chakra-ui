@@ -88,9 +88,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
       if (!isControlled) {
         if (isChecked) {
-          setCheckedState(event.target.checked)
+          setCheckedState(event.currentTarget.checked)
         } else {
-          setCheckedState(isIndeterminate ? true : event.target.checked)
+          setCheckedState(isIndeterminate ? true : event.currentTarget.checked)
         }
       }
 

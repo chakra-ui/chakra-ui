@@ -36,7 +36,7 @@ export function useFocusOnPointerDown(props: UseFocusOnMouseDownProps) {
 
   useEventListener(doc, "pointerdown", (event) => {
     if (!isSafari() || !enabled) return
-    const target = event.target as HTMLElement
+    const target = (event.composedPath?.()?.[0] ?? event.target) as HTMLElement
 
     const els = elements ?? [ref]
     const isValidTarget = els.some((elementOrRef) => {

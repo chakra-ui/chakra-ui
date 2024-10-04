@@ -308,7 +308,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       /**
        * restore selection if custom format string replacement moved it to the end
        */
-      event.target.selectionStart =
+      event.currentTarget.selectionStart =
         inputSelectionRef.current.start ?? event.currentTarget.value?.length
       event.currentTarget.selectionEnd =
         inputSelectionRef.current.end ?? event.currentTarget.selectionStart

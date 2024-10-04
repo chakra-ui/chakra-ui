@@ -47,3 +47,6 @@ export const extendTheme = createExtendTheme(baseTheme)
 
 - **Avatar**: Fix avatar image fallback alt when no name is supplied. You can
   now use the `iconLabel` prop to set a custom alt text.
+
+- **Shadow DOM**: Improve outside click detection when Menu and Popover is
+  rendered in shadow DOM.

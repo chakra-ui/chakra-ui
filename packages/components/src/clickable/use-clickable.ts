@@ -37,8 +37,8 @@ export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function isValidElement(event: KeyboardEvent): boolean {
-  const element = event.target as HTMLElement
-  const { tagName, isContentEditable } = element
+  const target = event.composedPath?.()?.[0] ?? event.target
+  const { tagName, isContentEditable } = target as HTMLElement
   return (
     tagName !== "INPUT" && tagName !== "TEXTAREA" && isContentEditable !== true
   )

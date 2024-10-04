@@ -160,7 +160,7 @@ export function useRadio(props: UseRadioProps = {}) {
       }
 
       if (!isControlled) {
-        setChecked(event.target.checked)
+        setChecked(event.currentTarget.checked)
       }
 
       onChange?.(event)
