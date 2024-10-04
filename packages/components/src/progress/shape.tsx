@@ -1,9 +1,10 @@
+import { ResponsiveValue } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra } from "../system"
 
 import { rotate } from "./progress.utils"
 
 interface ShapeProps extends HTMLChakraProps<"svg"> {
-  size?: string | number
+  size?: ResponsiveValue<string | number>
   /**
    * @default false
    */

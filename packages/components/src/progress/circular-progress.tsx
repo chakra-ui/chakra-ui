@@ -1,4 +1,4 @@
-import { defineStyle } from "@chakra-ui/styled-system"
+import { defineStyle, ResponsiveValue } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { Circle } from "./circle"
 import { getProgressProps, spin } from "./progress.utils"
@@ -8,7 +8,7 @@ interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: string | number
+  size?: ResponsiveValue<string | number>
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    * @default 100
