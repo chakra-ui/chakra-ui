@@ -19,16 +19,21 @@ export const ChakraProvider = ({ children }) => {
 }
 ```
 
-- **Extend Theme**: Expose `createExtendTheme` factory to allow for creating
-  extend theme functions for minimal provider.
+- **Extend Theme**:
 
-```tsx
-// extend-theme.ts
-import { baseTheme } from "@chakra-ui/theme"
-import { createExtendTheme } from "@chakra-ui/react/extend-theme"
+  - Expose `createExtendTheme` factory to allow for creating extend theme
+    functions for minimal provider.
 
-export const extendTheme = createExtendTheme(baseTheme)
-```
+    ```tsx
+    // extend-theme.ts
+    import { baseTheme } from "@chakra-ui/theme"
+    import { createExtendTheme } from "@chakra-ui/react/extend-theme"
+
+    export const extendTheme = createExtendTheme(baseTheme)
+    ```
+
+  - Fix issue where overrding the heading theme with an object syntax led to
+    incorrect theme result.
 
 - **Styling**
 
@@ -54,3 +59,6 @@ export const extendTheme = createExtendTheme(baseTheme)
 
 - **Menu**: Add support for `iconPlacement` in `MenuItemOption` component to
   allow for customizing the placement of the check icon.
+
+- **Popover**: Fix issue where passing `shadowColor` to `PopoverArrow` shows a
+  React warning.

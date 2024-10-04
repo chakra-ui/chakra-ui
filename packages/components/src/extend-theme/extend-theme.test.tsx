@@ -289,4 +289,30 @@ describe("extendTheme", () => {
     expect(customTheme.breakpoints).toHaveProperty("xl")
     expect(customTheme.breakpoints).toHaveProperty("phone")
   })
+
+  it("should merge array + object correctly", () => {
+    const theme = extendTheme({
+      components: {
+        Heading: {
+          sizes: {
+            "4xl": {
+              fontSize: { base: "30px", md: "40px", lg: "72px", xl: "90px" },
+            },
+          },
+        },
+      },
+    })
+
+    expect(theme.components.Heading.sizes["4xl"]).toMatchInlineSnapshot(`
+      {
+        "fontSize": {
+          "base": "30px",
+          "lg": "72px",
+          "md": "40px",
+          "xl": "90px",
+        },
+        "lineHeight": 1,
+      }
+    `)
+  })
 })
