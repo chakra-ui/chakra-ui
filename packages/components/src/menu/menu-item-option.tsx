@@ -27,12 +27,22 @@ export interface MenuItemOptionProps
    * @type SystemProps["mr"]
    */
   iconSpacing?: SystemProps["mr"]
+  /**
+   * The placement of the icon in the option
+   * @default start
+   */
+  iconPlacement?: "start" | "end"
 }
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
     // menu option item should always be `type=button`, so we omit `type`
-    const { icon, iconSpacing = "0.75rem", ...rest } = props
+    const {
+      icon,
+      iconSpacing = "0.75rem",
+      iconPlacement = "start",
+      ...rest
+    } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes<HTMLElement>
 
@@ -41,7 +51,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
         {...optionProps}
         className={cx("chakra-menu__menuitem-option", rest.className)}
       >
-        {icon !== null && (
+        {icon !== null && iconPlacement === "start" && (
           <MenuIcon
             fontSize="0.8em"
             marginEnd={iconSpacing}
@@ -51,6 +61,15 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
           </MenuIcon>
         )}
         <span style={{ flex: 1 }}>{optionProps.children}</span>
+        {icon !== null && iconPlacement === "end" && (
+          <MenuIcon
+            fontSize="0.8em"
+            marginStart={iconSpacing}
+            opacity={props.isChecked ? 1 : 0}
+          >
+            {icon || <CheckIcon />}
+          </MenuIcon>
+        )}
       </StyledMenuItem>
     )
   },

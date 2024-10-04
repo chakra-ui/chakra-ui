@@ -50,3 +50,6 @@ export const extendTheme = createExtendTheme(baseTheme)
 
 - **Shadow DOM**: Improve outside click detection when Menu and Popover is
   rendered in shadow DOM.
+
+- **Menu**: Add support for `iconPlacement` in `MenuItemOption` component to
+  allow for customizing the placement of the check icon.
