@@ -2,4 +2,5 @@
 "@chakra-ui/next-js": patch
 ---
 
-Add tsconfig.json to next-js package
+Fix issue where emitted ESM doesn't resolve correctly due to missing
+tsconfig.json

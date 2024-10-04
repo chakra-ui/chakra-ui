@@ -14,8 +14,8 @@
   },
   "repo": {
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "editUrl": "https://github.com/chakra-ui/chakra-ui/tree/main/website/content",
-    "blobUrl": "https://github.com/chakra-ui/chakra-ui/blob/main"
+    "editUrl": "https://github.com/chakra-ui/chakra-ui/tree/v2/website/content",
+    "blobUrl": "https://github.com/chakra-ui/chakra-ui/blob/v2"
   },
   "openCollective": {
     "url": "https://opencollective.com/chakra-ui"
