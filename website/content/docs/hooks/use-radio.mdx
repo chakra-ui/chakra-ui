@@ -37,7 +37,7 @@ function Example() {
 
     return (
       <chakra.label {...htmlProps} cursor='pointer'>
-        <input {...getInputProps({})} hidden />
+        <input {...getInputProps({})} />
         <Box
           {...getRadioProps()}
           bg={state.isChecked ? 'green.200' : 'transparent'}
