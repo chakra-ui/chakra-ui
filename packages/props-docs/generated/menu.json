@@ -172,6 +172,12 @@
       "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false
     },
+    "iconPlacement": {
+      "type": "\"start\" | \"end\"",
+      "required": false,
+      "description": "The placement of the check icon.",
+      "defaultValue": "start"
+    },
     "iconSpacing": {
       "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,

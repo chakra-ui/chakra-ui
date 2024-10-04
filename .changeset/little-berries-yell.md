@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/react": minor
+"@chakra-ui/props-docs": minor
 ---
 
 - **Button**: Add `shouldWrapChildren` prop to button component to prevent
