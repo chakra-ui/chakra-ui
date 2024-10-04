@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.4.5
+
+### Patch Changes
+
+- [`2b33382`](https://github.com/chakra-ui/chakra-ui/commit/2b33382c7d6126a6631488053dbdf3a3c786dbfb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Popover,
+  Menu**: Fix issue where closing with the escape key could cause the page to
+  scroll to top
+- Updated dependencies
+  [[`2b33382`](https://github.com/chakra-ui/chakra-ui/commit/2b33382c7d6126a6631488053dbdf3a3c786dbfb)]:
+  - @chakra-ui/theme-tools@2.2.5
+  - @chakra-ui/anatomy@2.3.4
+  - @chakra-ui/utils@2.2.1
+
 ## 3.4.4
 
 ### Patch Changes
