@@ -1,9 +1,0 @@
-{
-  "RatingGroupControl": {},
-  "RatingGroupItem": {},
-  "RatingGroupItemIndicator": {
-    "icon": { "type": "React.ReactElement", "required": false }
-  },
-  "RatingGroupLabel": {},
-  "RatingGroupRoot": {}
-}

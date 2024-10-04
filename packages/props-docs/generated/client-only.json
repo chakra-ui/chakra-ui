@@ -1,3 +1,0 @@
-{
-  "ClientOnly": { "fallback": { "type": "React.ReactNode", "required": false } }
-}

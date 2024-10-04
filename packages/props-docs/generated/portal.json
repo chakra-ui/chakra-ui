@@ -1,9 +1,0 @@
-{
-  "Portal": {
-    "containerRef": {
-      "type": "React.RefObject<HTMLElement | null>",
-      "required": false,
-      "description": "The `ref` to the component where the portal will be attached to."
-    }
-  }
-}
