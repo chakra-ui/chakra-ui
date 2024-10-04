@@ -29,12 +29,15 @@ import { createExtendTheme } from "@chakra-ui/react/extend-theme"
 export const extendTheme = createExtendTheme(baseTheme)
 ```
 
-- **Styling**: Add support for `_complete`, `_incomplete` and `_current` pseudo
-  selectors.
+- **Styling**
 
-  - `_complete` maps to `&[data-complete]`
-  - `_incomplete` maps to `&[data-incomplete]`
-  - `_current` maps to `&[data-current]`
+  - Add support for `_complete`, `_incomplete` and `_current` pseudo selectors.
+
+    - `_complete` maps to `&[data-complete]`
+    - `_incomplete` maps to `&[data-incomplete]`
+    - `_current` maps to `&[data-current]`
+
+  - Add support for color tokens in `textFillColor` property.
 
 - **Checkbox**: Fix issue where iconSize and iconColor doesn't take effect until
   a custom size is used.

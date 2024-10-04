@@ -8,6 +8,7 @@ export const color: Config = {
   fill: t.colors("fill"),
   stroke: t.colors("stroke"),
   accentColor: t.colors("accentColor"),
+  textFillColor: t.colors("textFillColor"),
 }
 
 export interface ColorProps {
@@ -31,4 +32,8 @@ export interface ColorProps {
    * The CSS `stroke` property for icon svgs and paths
    */
   stroke?: Token<CSS.Property.Color, "colors">
+  /**
+   * The CSS `text-fill-color` property
+   */
+  textFillColor?: Token<CSS.Property.Color, "colors">
 }
