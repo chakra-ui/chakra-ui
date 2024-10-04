@@ -351,6 +351,18 @@ const pseudoSelectors = {
    * Styles for the CSS Selector `&[data-closed], &[data-state=closed]`
    */
   _closed: "&[data-closed], &[data-state=closed]",
+  /**
+   * Styles for the CSS Selector `&[data-complete]`
+   */
+  _complete: "&[data-complete]",
+  /**
+   * Styles for the CSS Selector `&[data-incomplete]`
+   */
+  _incomplete: "&[data-incomplete]",
+  /**
+   * Styles for the CSS Selector `&[data-current]`
+   */
+  _current: "&[data-current]",
 }
 
 export type Pseudos = typeof pseudoSelectors &
