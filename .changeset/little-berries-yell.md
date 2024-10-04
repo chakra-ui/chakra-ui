@@ -66,3 +66,5 @@ export const ChakraProvider = ({ children }) => {
 
 - **Popover**: Fix issue where passing `shadowColor` to `PopoverArrow` shows a
   React warning.
+
+- **Modal, Drawer**: Fix issue where closeOnOverlayClick doesn't work in Preact.

@@ -5,13 +5,13 @@ import { RefObject, useEffect, useState } from "react"
  * Simplified, but inspired by material-ui's ModalManager class.
  */
 class ModalManager {
-  modals: Map<HTMLElement, number>
+  modals: Set<HTMLElement>
   constructor() {
-    this.modals = new Map()
+    this.modals = new Set()
   }
 
   add(modal: HTMLElement) {
-    this.modals.set(modal, this.modals.size + 1)
+    this.modals.add(modal)
     return this.modals.size
   }
 
@@ -21,7 +21,8 @@ class ModalManager {
 
   isTopModal(modal: HTMLElement | null) {
     if (!modal) return false
-    return this.modals.get(modal) === this.modals.size
+    const topModal = Array.from(this.modals)[this.modals.size - 1]
+    return modal === topModal
   }
 }
 
