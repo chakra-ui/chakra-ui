@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ac31c4b`](https://github.com/chakra-ui/chakra-ui/commit/ac31c4bbaa737cc1f947e5c2c6c2f2f228ad500b)]:
+  - @chakra-ui/react@2.10.0
+  - @chakra-ui/utils@2.2.0
+  - @chakra-ui/theme@3.4.4
+
 ## 2.1.5
 
 ### Patch Changes
