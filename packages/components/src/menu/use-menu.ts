@@ -458,7 +458,10 @@ export function useMenuList(
 
       const keyMap: Record<string, React.KeyboardEventHandler> = {
         Tab: (event) => event.preventDefault(),
-        Escape: onClose,
+        Escape: (event) => {
+          event.stopPropagation()
+          onClose()
+        },
         ArrowDown: () => {
           const next = descendants.nextEnabled(focusedIndex)
           if (next) setFocusedIndex(next.index)

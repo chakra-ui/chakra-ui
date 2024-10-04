@@ -238,6 +238,8 @@ export function usePopover(props: UsePopoverProps = {}) {
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
           if (closeOnEsc && event.key === "Escape") {
+            event.preventDefault()
+            event.stopPropagation()
             onClose()
           }
         }),
