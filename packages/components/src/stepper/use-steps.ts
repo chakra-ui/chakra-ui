@@ -7,7 +7,19 @@ export type UseStepsProps = {
 
 export type StepStatus = "complete" | "active" | "incomplete"
 
-export function useSteps(props: UseStepsProps = {}) {
+export interface UseStepsReturn {
+  activeStep: number
+  setActiveStep: (step: number) => void
+  activeStepPercent: number
+  isActiveStep: (step: number) => boolean
+  isCompleteStep: (step: number) => boolean
+  isIncompleteStep: (step: number) => boolean
+  getStatus: (step: number) => StepStatus
+  goToNext: VoidFunction
+  goToPrevious: VoidFunction
+}
+
+export function useSteps(props: UseStepsProps = {}): UseStepsReturn {
   const { index = 0, count } = props
 
   const [activeStep, setActiveStep] = useState(index)
@@ -19,16 +31,16 @@ export function useSteps(props: UseStepsProps = {}) {
     activeStep,
     setActiveStep,
     activeStepPercent: Number.isNaN(activeStepPercent) ? 0 : activeStepPercent,
-    isActiveStep(step: number) {
+    isActiveStep(step) {
       return step === activeStep
     },
-    isCompleteStep(step: number) {
+    isCompleteStep(step) {
       return step < activeStep
     },
-    isIncompleteStep(step: number) {
+    isIncompleteStep(step) {
       return step > activeStep
     },
-    getStatus(step: number): StepStatus {
+    getStatus(step) {
       if (step < activeStep) return "complete"
       if (step > activeStep) return "incomplete"
       return "active"
@@ -43,5 +55,3 @@ export function useSteps(props: UseStepsProps = {}) {
     },
   }
 }
-
-export type UseStepsReturn = ReturnType<typeof useSteps>

@@ -48,8 +48,12 @@ export const ChakraProvider = ({ children }) => {
 - **Checkbox**: Fix issue where iconSize and iconColor doesn't take effect until
   a custom size is used.
 
-- **Steps**: Fix issue where some style components show a TS Error when passing
-  the `sx` prop.
+- **Steps**:
+
+  - Fix issue where some style components show a TS Error when passing the `sx`
+    prop.
+  - Fix issue where accessing the useSteps methods gives an unbound-method TS
+    error.
 
 - **Avatar**: Fix avatar image fallback alt when no name is supplied. You can
   now use the `iconLabel` prop to set a custom alt text.
