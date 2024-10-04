@@ -1,11 +1,13 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": [],
+  "fileDependencies": [
+    "compositions/ui/close-button"
+  ],
   "id": "alert",
   "file": {
     "name": "alert.tsx",
-    "content": "import { Alert as ChakraAlert, Stack } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  title?: React.ReactNode\n  icon?: React.ReactElement\n}\n\nexport const Alert = forwardRef<HTMLDivElement, AlertProps>(\n  function Alert(props, ref) {\n    const { title, children, icon, ...rest } = props\n    return (\n      <ChakraAlert.Root ref={ref} {...rest}>\n        <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>\n        {children ? (\n          <Stack gap=\"1\">\n            <ChakraAlert.Title>{title}</ChakraAlert.Title>\n            <ChakraAlert.Description>{children}</ChakraAlert.Description>\n          </Stack>\n        ) : (\n          <ChakraAlert.Title>{title}</ChakraAlert.Title>\n        )}\n      </ChakraAlert.Root>\n    )\n  },\n)\n"
+    "content": "import { Alert as ChakraAlert, Stack } from \"@chakra-ui/react\"\nimport { CloseButton } from \"./close-button\"\nimport { forwardRef } from \"react\"\n\nexport interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  title?: React.ReactNode\n  icon?: React.ReactElement\n  closable?: boolean\n  onClose?: () => void\n}\n\nexport const Alert = forwardRef<HTMLDivElement, AlertProps>(\n  function Alert(props, ref) {\n    const { title, children, icon, closable, onClose, ...rest } = props\n    return (\n      <ChakraAlert.Root ref={ref} {...rest}>\n        <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>\n        {children ? (\n          <Stack gap=\"1\" flex=\"1\">\n            <ChakraAlert.Title>{title}</ChakraAlert.Title>\n            <ChakraAlert.Description>{children}</ChakraAlert.Description>\n          </Stack>\n        ) : (\n          <ChakraAlert.Title flex=\"1\">{title}</ChakraAlert.Title>\n        )}\n        {closable && (\n          <CloseButton\n            size=\"sm\"\n            pos=\"relative\"\n            top=\"-2\"\n            insetEnd=\"-2\"\n            alignSelf=\"flex-start\"\n            onClick={onClose}\n          />\n        )}\n      </ChakraAlert.Root>\n    )\n  },\n)\n"
   },
   "component": "Alert"
 }

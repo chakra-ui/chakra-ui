@@ -25,7 +25,9 @@
     "file": "alert.tsx",
     "component": "Alert",
     "npmDependencies": [],
-    "fileDependencies": []
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
   },
   {
     "type": "composition",
