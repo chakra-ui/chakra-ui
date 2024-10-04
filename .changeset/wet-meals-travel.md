@@ -7,3 +7,6 @@
 
 - **CircularProgress**: Fix issue where `size` prop doesn't allow responsive
   value.
+
+- **Transition Components**: Support `animatePresenceProps` to allow customizing
+  the framer motion `AnimatePresence` component.

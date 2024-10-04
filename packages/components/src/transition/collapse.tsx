@@ -92,6 +92,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       className,
       transition,
       transitionEnd,
+      animatePresenceProps,
       ...rest
     } = props
 
@@ -136,7 +137,11 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
     const animate = isOpen || unmountOnExit ? "enter" : "exit"
 
     return (
-      <AnimatePresence initial={false} custom={custom}>
+      <AnimatePresence
+        {...animatePresenceProps}
+        initial={false}
+        custom={custom}
+      >
         {show && (
           <motion.div
             ref={ref}

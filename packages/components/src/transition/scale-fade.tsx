@@ -66,6 +66,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
       transition,
       transitionEnd,
       delay,
+      animatePresenceProps,
       ...rest
     } = props
 
@@ -75,7 +76,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
     const custom = { initialScale, reverse, transition, transitionEnd, delay }
 
     return (
-      <AnimatePresence custom={custom}>
+      <AnimatePresence {...animatePresenceProps} custom={custom}>
         {show && (
           <motion.div
             ref={ref}

@@ -47,6 +47,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(
       transition,
       transitionEnd,
       delay,
+      animatePresenceProps,
       ...rest
     } = props
 
@@ -56,7 +57,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(
     const custom = { transition, transitionEnd, delay }
 
     return (
-      <AnimatePresence custom={custom}>
+      <AnimatePresence {...animatePresenceProps} custom={custom}>
         {show && (
           <motion.div
             ref={ref}

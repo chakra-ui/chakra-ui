@@ -1,6 +1,6 @@
 import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, AnimatePresenceProps } from "framer-motion"
 import { FocusLockProps } from "../focus-lock"
 import { Portal, PortalProps } from "../portal"
 import { useMultiStyleConfig } from "../system"
@@ -115,6 +115,10 @@ export interface ModalProps
    * Fires when all exiting nodes have completed animating out
    */
   onCloseComplete?: () => void
+  /**
+   * Props to be forwarded to the `AnimatePresence` component
+   */
+  animatePresenceProps?: AnimatePresenceProps
 }
 
 interface ModalContext extends ModalOptions, UseModalReturn {
@@ -167,6 +171,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    animatePresenceProps,
     onCloseComplete,
   } = modalProps
 
@@ -190,7 +195,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
   return (
     <ModalContextProvider value={context}>
       <ModalStylesProvider value={styles}>
-        <AnimatePresence onExitComplete={onCloseComplete}>
+        <AnimatePresence
+          {...animatePresenceProps}
+          onExitComplete={onCloseComplete}
+        >
           {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
       </ModalStylesProvider>

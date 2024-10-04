@@ -1,4 +1,9 @@
-import type { Target, TargetAndTransition, Transition } from "framer-motion"
+import type {
+  AnimatePresenceProps,
+  Target,
+  TargetAndTransition,
+  Transition,
+} from "framer-motion"
 
 export type TransitionProperties = {
   /**
@@ -128,6 +133,10 @@ export type WithTransitionConfig<P extends object> = Omit<P, "transition"> &
      * Show the component; triggers when enter or exit states
      */
     in?: boolean
+    /**
+     * Additional props to pass to `AnimatePresence`
+     */
+    animatePresenceProps?: AnimatePresenceProps
   }
 
 export const withDelay = {

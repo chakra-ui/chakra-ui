@@ -4,7 +4,12 @@ import {
   omitThemingProps,
 } from "@chakra-ui/styled-system"
 import { omit, pick } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import {
+  AnimatePresence,
+  AnimatePresenceProps,
+  HTMLMotionProps,
+  motion,
+} from "framer-motion"
 import { Children, cloneElement } from "react"
 import { popperCSSVars } from "../popper"
 import { Portal, PortalProps } from "../portal"
@@ -55,6 +60,7 @@ export interface TooltipProps
    */
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
   motionProps?: HTMLMotionProps<"div">
+  animatePresenceProps?: AnimatePresenceProps
 }
 
 const MotionDiv = chakra(motion.div)
@@ -82,6 +88,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     backgroundColor,
     bgColor,
     motionProps,
+    animatePresenceProps,
     ...rest
   } = ownProps
 
@@ -142,7 +149,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   return (
     <>
       {trigger}
-      <AnimatePresence>
+      <AnimatePresence {...animatePresenceProps}>
         {tooltip.isOpen && (
           <Portal {...portalProps}>
             <chakra.div

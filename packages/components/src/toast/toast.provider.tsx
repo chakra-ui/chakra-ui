@@ -1,5 +1,5 @@
 import { createContext } from "@chakra-ui/utils"
-import { AnimatePresence, Variants } from "framer-motion"
+import { AnimatePresence, AnimatePresenceProps, Variants } from "framer-motion"
 import { useSyncExternalStore } from "react"
 import { Portal, PortalProps } from "../portal"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
@@ -88,6 +88,10 @@ export type ToastProviderProps = React.PropsWithChildren<{
    * Props to be forwarded to the portal component
    */
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  /**
+   * Props to be forwarded to the `AnimatePresence` component
+   */
+  animatePresenceProps?: AnimatePresenceProps
 }>
 
 /**
@@ -115,6 +119,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
     motionVariants,
     component: Component = ToastComponent,
     portalProps,
+    animatePresenceProps,
   } = props
 
   const stateKeys = Object.keys(state) as Array<keyof typeof state>
@@ -130,7 +135,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
         id={`chakra-toast-manager-${position}`}
         style={getToastListStyle(position)}
       >
-        <AnimatePresence initial={false}>
+        <AnimatePresence {...animatePresenceProps} initial={false}>
           {toasts.map((toast) => (
             <Component
               key={toast.id}

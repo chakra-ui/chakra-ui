@@ -77,6 +77,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(
       transitionEnd,
       delay,
       motionProps,
+      animatePresenceProps,
       ...rest
     } = props
 
@@ -93,7 +94,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(
     const custom = { transitionEnd, transition, direction, delay }
 
     return (
-      <AnimatePresence custom={custom}>
+      <AnimatePresence {...animatePresenceProps} custom={custom}>
         {show && (
           <motion.div
             {...rest}
