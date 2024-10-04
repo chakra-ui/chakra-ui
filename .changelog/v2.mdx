@@ -27,8 +27,6 @@ description:
 
 - **Modal, Drawer**: Fix issue where closeOnOverlayClick doesn't work in Preact.
 
-- Fix regression where `keyframes` was not exported from `@chakra-ui/react`.
-
 - **Checkbox**: Fix issue where iconSize and iconColor doesn't take effect until
   a custom size is used.
 
@@ -78,6 +76,13 @@ export const ChakraProvider = ({ children }) => {
 
 - **Menu**: Add support for `iconPlacement` in `MenuItemOption` component to
   allow for customizing the placement of the check icon.
+
+### Changed
+
+- Removed export of `keyframes` was not exported from `@chakra-ui/react`. Please
+  import it from `@emotion/react` instead.
+
+- Removed export of `useId`. Please import it from `react` instead.
 
 ## [2.9.5](./#2.9.5) - 2024-10-04
 

@@ -1,4 +1,3 @@
-export { keyframes } from "@emotion/react"
 export * from "./config"
 export * from "./create-theme-vars"
 export * from "./css"
