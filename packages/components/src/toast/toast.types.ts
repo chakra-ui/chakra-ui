@@ -6,7 +6,7 @@ export interface RenderProps extends UseToastOptions {
   /**
    * Function to close the toast
    */
-  onClose(): void
+  onClose: () => void
 }
 
 export type ToastMessage = (props: RenderProps) => React.ReactNode
@@ -35,7 +35,7 @@ export interface ToastOptions {
   /**
    * Function that removes the toast from manager's state.
    */
-  onRequestRemove(): void
+  onRequestRemove: () => void
 
   /**
    * The position of the toast
@@ -45,7 +45,7 @@ export interface ToastOptions {
   /**
    * Callback function to run side effects after the toast has closed.
    */
-  onCloseComplete?(): void
+  onCloseComplete?: () => void
 
   /**
    * Internally used to queue closing a toast. Should probably not be used by

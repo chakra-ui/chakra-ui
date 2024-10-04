@@ -25,7 +25,7 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
    * Render a component toast component.
    * Any component passed will receive 2 props: `id` and `onClose`.
    */
-  render?(props: RenderProps): React.ReactNode
+  render?: (props: RenderProps) => React.ReactNode
   /**
    * The title of the toast
    */
