@@ -68,3 +68,5 @@ export const ChakraProvider = ({ children }) => {
   React warning.
 
 - **Modal, Drawer**: Fix issue where closeOnOverlayClick doesn't work in Preact.
+
+- Fix regression where `keyframes` was not exported from `@chakra-ui/react`.
