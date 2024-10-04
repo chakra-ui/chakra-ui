@@ -68,7 +68,7 @@ export function AvatarImage(props: AvatarImageProps) {
     <chakra.img
       src={src}
       srcSet={srcSet}
-      alt={name}
+      alt={name ?? iconLabel}
       onLoad={onLoad}
       referrerPolicy={referrerPolicy}
       crossOrigin={crossOrigin ?? undefined}

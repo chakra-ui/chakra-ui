@@ -44,3 +44,6 @@ export const extendTheme = createExtendTheme(baseTheme)
 
 - **Steps**: Fix issue where some style components show a TS Error when passing
   the `sx` prop.
+
+- **Avatar**: Fix avatar image fallback alt when no name is supplied. You can
+  now use the `iconLabel` prop to set a custom alt text.
