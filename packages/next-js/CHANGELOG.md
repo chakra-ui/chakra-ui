@@ -1,5 +1,14 @@
 # @chakra-ui/next-js
 
+## 2.3.4
+
+### Patch Changes
+
+- [#8879](https://github.com/chakra-ui/chakra-ui/pull/8879)
+  [`9d5ae00`](https://github.com/chakra-ui/chakra-ui/commit/9d5ae007466655205376c8dca5d39c48722d24a1)
+  Thanks [@nzws](https://github.com/nzws)! - Fix issue where emitted ESM doesn't
+  resolve correctly due to missing tsconfig.json
+
 ## 2.3.3
 
 ### Patch Changes

@@ -5,6 +5,31 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [2.9.5](./#2.9.5) - 2024-10-04
+
+### Fixed
+
+- **Next.js:** Fix issue where emitted ESM doesn't resolve correctly due to
+  missing tsconfig.json
+
+- **Steps**: Fix issue where activeStepPercent returns NaN when the number of
+  steps is one.
+
+- **CircularProgress**: Fix issue where `size` prop doesn't allow responsive
+  value.
+
+### Added
+
+- **Transition Components**: Support `animatePresenceProps` to allow customizing
+  the framer motion `AnimatePresence` component.
+
+## [2.9.4](./#2.9.4) - 2024-10-03
+
+### Fixed
+
+- **Extend Theme:** Fix issue where extend theme utilities like
+  `withDefaultColorScheme` were not exported correctly.
+
 ## [2.9.3](./#2.9.3) - 2024-10-02
 
 ### Fixed

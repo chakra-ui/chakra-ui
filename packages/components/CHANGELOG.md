@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 2.9.5
+
+### Patch Changes
+
+- [`7033c39`](https://github.com/chakra-ui/chakra-ui/commit/7033c39d60b7b9589a4889016134d1111d87c416)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Steps**: Fix
+  issue where activeStepPercent returns NaN when the number of steps is one.
+
+  - **CircularProgress**: Fix issue where `size` prop doesn't allow responsive
+    value.
+  - **Transition Components**: Support `animatePresenceProps` to allow
+    customizing the framer motion `AnimatePresence` component.
+
 ## 2.9.4
 
 ### Patch Changes
