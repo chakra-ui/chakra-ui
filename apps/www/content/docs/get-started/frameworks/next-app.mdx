@@ -91,6 +91,26 @@ tsconfig file to include the following options:
 }
 ```
 
+### Optimize Bundle
+
+We recommend using the `experimental.optimizePackageImports` feature in Next.js
+to optimize your bundle size by loading only the modules that you are actually
+using.
+
+```tsx title="next.config.mjs" {3}
+export default {
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
+  },
+}
+```
+
+This also helps to resolve warnings like:
+
+```sh
+[webpack.cache.PackFileCacheStrategy] Serializing big strings (xxxkiB)
+```
+
 ### Enjoy!
 
 With the power of the snippets and the primitive components from Chakra UI, you
