@@ -12,7 +12,9 @@ const $popperBg = cssVar("popper-bg")
 const $arrowBg = cssVar("popper-arrow-bg")
 const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 
-const baseStylePopper = defineStyle({ zIndex: 10 })
+const baseStylePopper = defineStyle({
+  zIndex: "popover",
+})
 
 const baseStyleContent = defineStyle({
   [$popperBg.variable]: `colors.white`,
