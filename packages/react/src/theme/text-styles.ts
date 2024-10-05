@@ -21,4 +21,7 @@ export const textStyles = defineTextStyles({
   "7xl": {
     value: { fontSize: "7xl", lineHeight: "shorter", letterSpacing: "tight" },
   },
+  none: {
+    value: {},
+  },
 })

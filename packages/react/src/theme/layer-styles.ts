@@ -109,4 +109,8 @@ export const layerStyles = defineLayerStyles({
       cursor: "not-allowed",
     },
   },
+
+  none: {
+    value: {},
+  },
 })
