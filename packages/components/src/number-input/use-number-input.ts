@@ -317,11 +317,15 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const onKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      if (event.nativeEvent.isComposing) return
+    (e: React.KeyboardEvent) => {
+      if (e.nativeEvent.isComposing) return
 
-      if (!isValidNumericKeyboardEvent(event, isValidCharacter)) {
-        event.preventDefault()
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || isReadOnly) {
+        return
+      }
+
+      if (!isValidNumericKeyboardEvent(e, isValidCharacter)) {
+        e.preventDefault()
       }
 
       /**
@@ -332,9 +336,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
        *
        * @see https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-17
        */
-      const stepFactor = getStepFactor(event) * stepProp
+      const stepFactor = getStepFactor(e) * stepProp
 
-      const eventKey = event.key
+      const eventKey = e.key
 
       const keyMap: Record<string, React.KeyboardEventHandler> = {
         ArrowUp: () => increment(stepFactor),
@@ -346,11 +350,20 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       const action = keyMap[eventKey]
 
       if (action) {
-        event.preventDefault()
-        action(event)
+        e.preventDefault()
+        action(e)
       }
     },
-    [isValidCharacter, stepProp, increment, decrement, updateFn, min, max],
+    [
+      isValidCharacter,
+      stepProp,
+      increment,
+      decrement,
+      updateFn,
+      min,
+      max,
+      isReadOnly,
+    ],
   )
 
   const getStepFactor = <
