@@ -18,13 +18,12 @@ export interface ThemeProps extends HTMLChakraProps<"div"> {
 export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
   function Theme(props, ref) {
     const { appearance, hasBackground = true, ...rest } = props
-    const className = cx("chakra-theme", appearance, rest.className)
     return (
       <chakra.div
-        className={className}
+        className={cx("chakra-theme", appearance, rest.className)}
         data-has-background={hasBackground ? "" : undefined}
         colorScheme={appearance}
-        color={hasBackground ? "fg" : undefined}
+        color="fg"
         bg={hasBackground ? "bg" : undefined}
         {...rest}
         ref={ref}
