@@ -4,8 +4,7 @@ import { EjectCommand } from "./commands/eject.js"
 import { SnippetCommand } from "./commands/snippet.js"
 import { TypegenCommand } from "./commands/typegen.js"
 
-process.on("SIGINT", () => process.exit(0))
-process.on("SIGTERM", () => process.exit(0))
+process.setMaxListeners(Infinity)
 
 export async function run() {
   p.intro("Chakra CLI ⚡️")

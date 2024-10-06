@@ -70,10 +70,14 @@ export const write = async (file: string, content: Promise<string>) => {
 
 export function watch(paths: string[], cb: () => Promise<void>) {
   const watcher = chokidar.watch(paths, { ignoreInitial: true })
+
   watcher.on("ready", cb).on("change", async (filePath) => {
     log.info(`📦 File changed: ${filePath}`)
     return cb()
   })
+
+  process.once("SIGINT", () => watcher.close())
+  process.once("SIGTERM", () => watcher.close())
 }
 
 export async function clean() {
