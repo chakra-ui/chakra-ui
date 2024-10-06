@@ -3,7 +3,7 @@ export {
   FieldsetErrorText as ErrorText,
   FieldsetHelperText as HelperText,
   FieldsetLegend as Legend,
-  FieldsetControl as Control,
+  FieldsetContent as Content,
   FieldsetContext as Context,
 } from "./fieldset"
 
@@ -12,5 +12,5 @@ export type {
   FieldsetErrorTextProps as ErrorTextProps,
   FieldsetHelperTextProps as HelperTextProps,
   FieldsetLegendProps as LegendProps,
-  FieldsetControlProps as ControlProps,
+  FieldsetContentProps as ContentProps,
 } from "./fieldset"

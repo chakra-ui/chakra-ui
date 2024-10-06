@@ -9,7 +9,7 @@ export const FieldsetWithInvalid = () => {
   return (
     <Fieldset.Root invalid>
       <Fieldset.Legend>Shipping details</Fieldset.Legend>
-      <Fieldset.Control>
+      <Fieldset.Content>
         <Field label="Street address">
           <Input name="address" />
         </Field>
@@ -28,7 +28,7 @@ export const FieldsetWithInvalid = () => {
         <Field label="Notes" invalid>
           <Textarea name="notes" />
         </Field>
-      </Fieldset.Control>
+      </Fieldset.Content>
       <Fieldset.ErrorText>
         Some fields are invalid. Please check them.
       </Fieldset.ErrorText>

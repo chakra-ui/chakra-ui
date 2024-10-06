@@ -48,11 +48,11 @@ export const FieldsetLegend = withContext<
   FieldsetLegendProps
 >(Fieldset.Legend, "legend")
 
-export interface FieldsetControlProps extends HTMLChakraProps<"div"> {}
+export interface FieldsetContentProps extends HTMLChakraProps<"div"> {}
 
-export const FieldsetControl = withContext<
+export const FieldsetContent = withContext<
   HTMLDivElement,
-  FieldsetControlProps
->(ark.div, "control")
+  FieldsetContentProps
+>(ark.div, "content")
 
 export const FieldsetContext = Fieldset.Context

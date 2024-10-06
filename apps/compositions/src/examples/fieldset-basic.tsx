@@ -10,7 +10,7 @@ export const FieldsetBasic = () => {
     <Fieldset.Root>
       <Fieldset.Legend>Contact details</Fieldset.Legend>
 
-      <Fieldset.Control>
+      <Fieldset.Content>
         <Field label="Name">
           <Input name="name" />
         </Field>
@@ -31,7 +31,7 @@ export const FieldsetBasic = () => {
             />
           </NativeSelectRoot>
         </Field>
-      </Fieldset.Control>
+      </Fieldset.Content>
 
       <Button type="submit">Submit</Button>
     </Fieldset.Root>

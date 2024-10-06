@@ -1,0 +1,47 @@
+---
+title: Fieldset
+description: A set of form controls optionally grouped under a common name.
+links:
+  source: components/fieldset
+  storybook: components-fieldset--basic
+  recipe: fieldset
+  ark: https://ark-ui.com/react/docs/components/fieldset
+---
+
+<ExampleTabs name="fieldset-basic" />
+
+## Usage
+
+```jsx
+import { Fieldset } from "@chakra-ui/react"
+```
+
+```jsx
+<Fieldset.Root>
+  <Fieldset.Legend />
+  <Fieldset.Content />
+</Fieldset.Root>
+```
+
+## Examples
+
+### Disabled
+
+Use the `disabled` prop to disable the fieldset to disable all input elements
+within the fieldset.
+
+<ExampleTabs name="fieldset-with-disabled" />
+
+### Invalid
+
+Use the `invalid` prop to mark the fieldset as invalid. This will show the error
+text.
+
+> Note: You need to pass the `invalid` prop to the `Field` component within the
+> fieldset to make each input element invalid.
+
+<ExampleTabs name="fieldset-with-invalid" />
+
+## Props
+
+<PropTable component="Fieldset" part="Root" />

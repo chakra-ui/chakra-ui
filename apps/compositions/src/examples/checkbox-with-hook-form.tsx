@@ -48,13 +48,13 @@ export const CheckboxWithHookForm = () => {
           onValueChange={framework.field.onChange}
           name={framework.field.name}
         >
-          <Fieldset.Control>
+          <Fieldset.Content>
             {items.map((item) => (
               <Checkbox key={item.value} value={item.value}>
                 {item.label}
               </Checkbox>
             ))}
-          </Fieldset.Control>
+          </Fieldset.Content>
         </CheckboxGroup>
 
         {errors.framework && (

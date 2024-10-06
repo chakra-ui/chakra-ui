@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldsetSlotRecipe = defineSlotRecipe({
   className: "fieldset",
-  slots: [...fieldsetAnatomy.keys(), "control"],
+  slots: [...fieldsetAnatomy.keys(), "content"],
   base: {
     root: {
       display: "flex",
@@ -11,7 +11,7 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
       alignItems: "flex-start",
       width: "full",
     },
-    control: {
+    content: {
       display: "flex",
       flexDirection: "column",
       width: "full",
@@ -41,12 +41,12 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: { spaceY: "4" },
-        control: { gap: "4" },
+        content: { gap: "4" },
         legend: { textStyle: "sm" },
       },
       md: {
         root: { spaceY: "4" },
-        control: { gap: "6" },
+        content: { gap: "6" },
         legend: { textStyle: "md" },
       },
     },

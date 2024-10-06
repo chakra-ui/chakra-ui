@@ -588,7 +588,7 @@ export type FieldVariantMap = {
 
 // Fieldset
 
-export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "control"
+export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "content"
 
 export interface FieldsetVariant {
   /** @default "sm" */

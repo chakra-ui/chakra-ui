@@ -97,6 +97,7 @@ const docsLinks: NavItem = {
             { title: "Editable", url: "editable" },
             { title: "Empty State", url: "empty-state" },
             { title: "Field", url: "field" },
+            { title: "Fieldset", url: "fieldset" },
             { title: "File Upload", url: "file-upload" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Icon", url: "icon" },
