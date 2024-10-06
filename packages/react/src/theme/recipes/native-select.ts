@@ -43,6 +43,9 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.5",
       },
+      _invalid: {
+        color: "fg.error",
+      },
       _icon: {
         width: "1em",
         height: "1em",

@@ -1,6 +1,6 @@
 "use client"
 
-import { Field as ArkField } from "@ark-ui/react/field"
+import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
 import { forwardRef } from "react"
 import { createContext } from "../../create-context"
 import {
@@ -13,13 +13,17 @@ import {
 import { cx, dataAttr } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
-export const [NativeSelectDisabledProvider, useNativeSelectDisabledContext] =
-  createContext<boolean>({
-    name: "NativeSelectDisabledContext",
-    hookName: "useNativeSelectDisabledContext",
-    providerName: "<NativeSelect />",
-    strict: false,
-  })
+interface BaseProps {
+  disabled?: boolean
+  invalid?: boolean
+}
+
+const [BasePropsProvider, useBasePropsContext] = createContext<BaseProps>({
+  name: "BasePropsContext",
+  hookName: "useBasePropsContext",
+  providerName: "<NativeSelect />",
+  strict: false,
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,9 +40,8 @@ export { useNativeSelectStyles }
 
 export interface NativeSelectRootBaseProps
   extends SlotRecipeProps<"nativeSelect">,
-    UnstyledProp {
-  disabled?: boolean
-}
+    UnstyledProp,
+    BaseProps {}
 
 export interface NativeSelectRootProps
   extends HTMLChakraProps<"div", NativeSelectRootBaseProps> {}
@@ -48,10 +51,16 @@ export const NativeSelectRoot = withProvider<
   NativeSelectRootProps
 >("div", "root", {
   wrapElement(element, props) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const field = useFieldContext()
+
+    const disabled = Boolean(field?.disabled ?? props.disabled)
+    const invalid = Boolean(field?.invalid ?? props.invalid)
+
     return (
-      <NativeSelectDisabledProvider value={!!props.disabled}>
+      <BasePropsProvider value={{ disabled, invalid }}>
         {element}
-      </NativeSelectDisabledProvider>
+      </BasePropsProvider>
     )
   },
 })
@@ -100,13 +109,13 @@ export interface NativeSelectIndicatorProps extends HTMLChakraProps<"div"> {}
 
 export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
   const styles = useNativeSelectStyles()
-  const disabled = useNativeSelectDisabledContext()
+  const { disabled, invalid } = useBasePropsContext()
   const classNames = useClassNames()
-
   return (
     <chakra.div
       {...props}
       data-disabled={dataAttr(disabled)}
+      data-invalid={dataAttr(invalid)}
       className={cx(classNames.indicator, props.className)}
       css={[styles.indicator, props.css]}
     >

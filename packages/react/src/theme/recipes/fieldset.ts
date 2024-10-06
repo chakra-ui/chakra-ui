@@ -9,19 +9,16 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      spaceY: "2",
       width: "full",
     },
     control: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "flex-start",
-      gap: "2",
+      width: "full",
     },
     legend: {
       color: "fg",
       fontWeight: "medium",
-      textStyle: "sm",
       _disabled: {
         opacity: "0.5",
       },
@@ -31,13 +28,31 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
       textStyle: "sm",
     },
     errorText: {
+      display: "inline-flex",
       alignItems: "center",
       color: "fg.error",
-      display: "inline-flex",
-      fontWeight: "medium",
       gap: "2",
-      mt: "4",
+      fontWeight: "medium",
       textStyle: "sm",
     },
+  },
+
+  variants: {
+    size: {
+      sm: {
+        root: { spaceY: "4" },
+        control: { gap: "4" },
+        legend: { textStyle: "sm" },
+      },
+      md: {
+        root: { spaceY: "4" },
+        control: { gap: "6" },
+        legend: { textStyle: "md" },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "sm",
   },
 })

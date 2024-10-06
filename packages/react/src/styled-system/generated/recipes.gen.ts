@@ -590,7 +590,10 @@ export type FieldVariantMap = {
 
 export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "control"
 
-export interface FieldsetVariant {}
+export interface FieldsetVariant {
+  /** @default "sm" */
+  size?: "sm" | "md"
+}
 
 export type FieldsetVariantProps = {
   [K in keyof FieldsetVariant]?: ConditionalValue<FieldsetVariant[K]> | undefined
