@@ -86,7 +86,7 @@ export const switchSlotRecipe = defineSlotRecipe({
         control: {
           borderRadius: "full",
           bg: "bg.emphasized",
-          focusRing: "outside",
+          focusVisibleRing: "outside",
           _checked: {
             bg: "colorPalette.solid",
           },
@@ -120,7 +120,7 @@ export const switchSlotRecipe = defineSlotRecipe({
           top: "calc(var(--switch-height) * -0.25)",
           bg: "white",
           boxShadow: "xs",
-          focusRing: "outside",
+          focusVisibleRing: "outside",
           _checked: {
             bg: "colorPalette.solid",
           },

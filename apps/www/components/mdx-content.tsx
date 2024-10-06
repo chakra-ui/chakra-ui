@@ -6,6 +6,7 @@ import {
   ColorSemanticTokenDoc,
   ColorTokenDoc,
 } from "compositions/lib/color-token-doc"
+import { CursorTokenDoc } from "compositions/lib/cursor-token-doc"
 import { DurationTokenDoc, KeyframeDoc } from "compositions/lib/keyframe-doc"
 import { ShadowTokenDoc } from "compositions/lib/shadow-token-doc"
 import { SizesTokenDoc } from "compositions/lib/sizes-token-doc"
@@ -73,6 +74,7 @@ const sharedComponents = {
   AspectRatioTokenDoc,
   SizesTokenDoc,
   ZIndexTokenDoc,
+  CursorTokenDoc,
 }
 
 const useMDXComponent = (code: string) => {

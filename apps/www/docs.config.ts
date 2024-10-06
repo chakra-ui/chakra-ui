@@ -226,6 +226,7 @@ const docsLinks: NavItem = {
             { title: "Aspect Ratios", url: "aspect-ratios" },
             { title: "Breakpoints", url: "breakpoints" },
             { title: "Colors", url: "colors" },
+            { title: "Cursors", url: "cursors" },
             { title: "Radii", url: "radii" },
             { title: "Shadows", url: "shadows" },
             { title: "Sizes", url: "sizes" },

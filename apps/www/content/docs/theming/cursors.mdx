@@ -1,0 +1,43 @@
+---
+title: Cursors
+description: The cursor tokens used for interactive elements.
+---
+
+## Overview
+
+Chakra UI uses the `cursor` token to define the cursor for interactive elements.
+
+<CursorTokenDoc />
+
+## Cursor Tokens
+
+To customize the cursor for interactive elements in Chakra, set the desired
+`cursor` token values.
+
+Here's a list of the available cursor tokens:
+
+- **button**: Cursors for buttons
+- **checkbox**: Cursors for checkbox and checkbox card
+- **disabled**: Cursors for disabled elements
+- **menuitem**: Cursors for menu item and menu option items.
+- **option**: Cursors for select, combobox and listbox options
+- **radio**: Cursors for radio and radio cards
+- **slider**: Cursors for slider track and thumb interaction
+- **switch**: Cursors for switch
+
+## Customizing Cursors
+
+Here's an example of how to change the cursor for a button, you can set the
+`button` token to `default`.
+
+```tsx
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    cursor: {
+      button: { value: "pointer" },
+    },
+  },
+})
+```
