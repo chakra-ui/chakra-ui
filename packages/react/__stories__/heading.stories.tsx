@@ -18,3 +18,4 @@ export { HeadingWithAsProp as AsProps } from "compositions/examples/heading-with
 export { HeadingWithWeights as Weights } from "compositions/examples/heading-with-weights"
 export { HeadingWithHighlight as Highlight } from "compositions/examples/heading-with-highlight"
 export { HeadingWithComposition as Composition } from "compositions/examples/heading-with-composition"
+export { HeadingWithGradient as Gradient } from "compositions/examples/heading-with-gradient"

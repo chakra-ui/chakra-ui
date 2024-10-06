@@ -221,7 +221,14 @@ export const defaultBaseConfig = defineConfig({
     backgroundPosition: { shorthand: ["bgPos"] },
     backgroundRepeat: { shorthand: ["bgRepeat"] },
     backgroundAttachment: { shorthand: ["bgAttachment"] },
-    backgroundClip: { shorthand: ["bgClip"] },
+    backgroundClip: {
+      shorthand: ["bgClip"],
+      transform(value) {
+        return value === "text"
+          ? { color: "transparent", backgroundClip: "text" }
+          : { backgroundClip: value }
+      },
+    },
     backgroundGradient: {
       shorthand: ["bgGradient"],
       values(theme) {
