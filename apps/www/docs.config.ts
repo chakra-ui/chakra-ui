@@ -101,6 +101,7 @@ const docsLinks: NavItem = {
             { title: "File Upload", url: "file-upload" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Icon", url: "icon" },
+            { title: "Icon Button", url: "icon-button" },
             { title: "Image", url: "image" },
             { title: "Input", url: "input" },
             { title: "Menu", url: "menu" },

@@ -4,9 +4,9 @@ import { LuVoicemail } from "react-icons/lu"
 export const IconButtonWithVariants = () => {
   return (
     <HStack wrap="wrap">
-      <For each={["xs", "sm", "md", "lg"]}>
-        {(size) => (
-          <IconButton aria-label="Call support" key={size} size={size}>
+      <For each={["solid", "subtle", "surface", "outline", "ghost"]}>
+        {(variant) => (
+          <IconButton aria-label="Call support" key={variant} variant={variant}>
             <LuVoicemail />
           </IconButton>
         )}
