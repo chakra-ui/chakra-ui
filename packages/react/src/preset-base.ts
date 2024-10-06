@@ -223,6 +223,7 @@ export const defaultBaseConfig = defineConfig({
     backgroundAttachment: { shorthand: ["bgAttachment"] },
     backgroundClip: {
       shorthand: ["bgClip"],
+      values: ["text"],
       transform(value) {
         return value === "text"
           ? { color: "transparent", backgroundClip: "text" }

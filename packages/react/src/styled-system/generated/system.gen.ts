@@ -67,7 +67,7 @@ export interface SystemProperties {
   background?: ConditionalValue<UtilityValues["background"] | CssVars | CssProperties["background"] | AnyString>
   backgroundAttachment?: ConditionalValue<CssProperties["backgroundAttachment"] | AnyString>
   backgroundBlendMode?: ConditionalValue<CssProperties["backgroundBlendMode"] | AnyString>
-  backgroundClip?: ConditionalValue<CssProperties["backgroundClip"] | AnyString>
+  backgroundClip?: ConditionalValue<UtilityValues["backgroundClip"] | CssVars | CssProperties["backgroundClip"] | AnyString>
   backgroundColor?: ConditionalValue<UtilityValues["backgroundColor"] | CssVars | CssProperties["backgroundColor"] | AnyString>
   backgroundImage?: ConditionalValue<UtilityValues["backgroundImage"] | CssVars | CssProperties["backgroundImage"] | AnyString>
   backgroundOrigin?: ConditionalValue<CssProperties["backgroundOrigin"] | AnyString>
@@ -526,7 +526,7 @@ export interface SystemProperties {
   bgPos?: ConditionalValue<CssProperties["backgroundPosition"] | AnyString>
   bgRepeat?: ConditionalValue<CssProperties["backgroundRepeat"] | AnyString>
   bgAttachment?: ConditionalValue<CssProperties["backgroundAttachment"] | AnyString>
-  bgClip?: ConditionalValue<CssProperties["backgroundClip"] | AnyString>
+  bgClip?: ConditionalValue<UtilityValues["backgroundClip"] | CssVars | CssProperties["backgroundClip"] | AnyString>
   bgGradient?: ConditionalValue<UtilityValues["backgroundGradient"] | CssVars | AnyString>
   bgImg?: ConditionalValue<UtilityValues["backgroundImage"] | CssVars | CssProperties["backgroundImage"] | AnyString>
   bgImage?: ConditionalValue<UtilityValues["backgroundImage"] | CssVars | CssProperties["backgroundImage"] | AnyString>

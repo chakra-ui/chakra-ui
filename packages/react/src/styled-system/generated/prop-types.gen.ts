@@ -37,6 +37,7 @@ export interface UtilityValues {
     | "accent"
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
+  backgroundClip: "text"
   backgroundGradient: Tokens["gradients"] | "to-t" | "to-tr" | "to-r" | "to-br" | "to-b" | "to-bl" | "to-l" | "to-tl"
   gradientFrom: Tokens["colors"]
   gradientTo: Tokens["colors"]
