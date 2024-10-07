@@ -124,7 +124,7 @@ const MobileNav = () => {
 
 export const HeaderSection = () => {
   return (
-    <Container mt="4">
+    <Container mt="2">
       <HStack>
         <LogoLink />
         <Spacer />
