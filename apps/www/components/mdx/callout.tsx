@@ -26,7 +26,7 @@ export const Callout: React.FC<CalloutProps> = (props) => {
         css={{ "& code": { fontSize: "0.9em" } }}
       >
         <Box pos="absolute" top="-2" insetStart="2">
-          <Badge variant="solid" rounded="0">
+          <Badge variant="solid" rounded="0" color="fg.inverted">
             <Alert.Indicator fontSize="xs" color="inherit" />
             {status}
           </Badge>
