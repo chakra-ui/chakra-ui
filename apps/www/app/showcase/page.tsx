@@ -1,13 +1,12 @@
+import { Subheading } from "@/components/site/typography"
 import {
-  CardBody,
-  CardDescription,
-  CardRoot,
-  CardTitle,
+  Box,
+  Card,
+  Container,
   Heading,
   Image,
   SimpleGrid,
-  Text,
-  VStack,
+  Stack,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
 import Link from "next/link"
@@ -21,42 +20,48 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Page() {
+export default function ShowcasePage() {
   return (
-    <VStack pt="10" pb="16" gap="10">
-      <VStack>
-        <Heading as="h1" textStyle={{ base: "4xl", md: "5xl" }}>
-          Showcase
-        </Heading>
-        <Text
-          textWrap="balance"
-          maxWidth="2xl"
-          textAlign="center"
-          color="fg.subtle"
-        >
-          A collection of beautiful websites that are built in Chakra UI
-        </Text>
-      </VStack>
+    <Box py="20">
+      <Container>
+        <Stack gap={{ base: "5", md: "10" }} mb="20">
+          <Stack gap="5" pr="4" maxW="3xl" px="1.5">
+            <Heading as="h1" textStyle={{ base: "4xl", md: "5xl" }}>
+              Showcase
+            </Heading>
+            <Subheading>Beautiful websites built with Chakra UI</Subheading>
+          </Stack>
+        </Stack>
 
-      <SimpleGrid minChildWidth="240px" gap="6">
-        {showcases.map(({ title, description, url, image }) => (
-          <CardRoot size="sm" key={url} asChild overflow="hidden">
-            <Link href={url}>
-              <Image
-                src={image}
-                alt={title}
-                aspectRatio="16/9"
-                objectFit="cover"
-              />
+        <SimpleGrid minChildWidth="420px" gap="6">
+          {showcases.map(({ title, description, url, image }) => (
+            <Card.Root
+              size="sm"
+              key={url}
+              asChild
+              cursor="pointer"
+              overflow="hidden"
+              focusVisibleRing="inside"
+            >
+              <Link href={url}>
+                <Image
+                  src={image}
+                  alt={title}
+                  aspectRatio="16/9"
+                  objectFit="cover"
+                />
 
-              <CardBody>
-                <CardTitle textStyle="sm">{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
-              </CardBody>
-            </Link>
-          </CardRoot>
-        ))}
-      </SimpleGrid>
-    </VStack>
+                <Card.Body gap="1">
+                  <Card.Title textStyle="sm">{title}</Card.Title>
+                  <Card.Description textStyle="xs">
+                    {description}
+                  </Card.Description>
+                </Card.Body>
+              </Link>
+            </Card.Root>
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Box>
   )
 }

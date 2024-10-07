@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <Stack pos="relative" gap="8" overflow="hidden">
+    <Stack pos="relative" gap="8" overflow="hidden" minH="dvh">
       <BlitzIconSection />
       <Blob height="1200px" width="1200px" left="30%" top="-20%" />
       <HeaderSection />

@@ -1,8 +1,19 @@
 import { Blog } from "@/.velite"
 import { formatBlogDate, getBlogAuthor } from "@/lib/blog"
-import { Box, Button, Card, Flex, Stack, Text } from "@chakra-ui/react"
+import {
+  Badge,
+  Box,
+  Button,
+  Card,
+  Center,
+  Flex,
+  LinkOverlay,
+  Stack,
+  Text,
+} from "@chakra-ui/react"
 import { Avatar, AvatarGroup } from "compositions/ui/avatar"
 import Link from "next/link"
+import { Logo, LogoIcon } from "./logo"
 
 interface Props {
   data: Blog
@@ -13,22 +24,37 @@ export const BlogCard = (props: Props) => {
   const { title, description, authors, publishedAt } = data
   return (
     <Card.Root size="sm">
-      <Box h="40" bg="bg.subtle" rounded="md" />
+      <Box h="40" bg="teal.muted" roundedTop="md">
+        {data.version ? (
+          <Center h="full" gap="2">
+            <Logo />{" "}
+            <Badge size="lg" variant="solid" colorPalette="teal">
+              v{data.version}
+            </Badge>
+          </Center>
+        ) : (
+          <Center h="full">
+            <LogoIcon />
+          </Center>
+        )}
+      </Box>
       <Card.Body>
         <Stack gap="1" fontSize="sm">
           <Flex gap="2" justify="space-between">
             <Text fontSize="sm" color="fg.subtle">
               {formatBlogDate(publishedAt)}
             </Text>
-            <AvatarGroup size="sm">
+            <AvatarGroup size="md">
               {authors.map((author) => {
                 const { name, image } = getBlogAuthor(author)
                 return <Avatar key={author} src={image} name={name} />
               })}
             </AvatarGroup>
           </Flex>
-          <Card.Title mt="1">
-            <Link href={`/${data.slug}`}>{title}</Link>
+          <Card.Title mt="-1">
+            <LinkOverlay asChild>
+              <Link href={`/${data.slug}`}>{title}</Link>
+            </LinkOverlay>
           </Card.Title>
           <Card.Description>{description}</Card.Description>
           <Button asChild variant="subtle" mt="4" size="sm">

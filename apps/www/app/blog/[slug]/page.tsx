@@ -6,7 +6,6 @@ import {
   Container,
   HStack,
   Heading,
-  Separator,
   Span,
   Stack,
   Text,
@@ -40,8 +39,8 @@ export default function BlogPostPage({ params }: Props) {
   if (!blog) return notFound()
 
   return (
-    <Container pb="20" maxW="5xl">
-      <Stack py="8" gap="6">
+    <Container flex="1" pb="20" maxW="5xl">
+      <Stack py="8" gap="6" mb="6">
         <HStack>
           <Badge
             variant="subtle"
@@ -52,14 +51,12 @@ export default function BlogPostPage({ params }: Props) {
             {blog.type}
           </Badge>
           <Span color="fg.subtle">·</Span>
-          {formatBlogDate(blog.publishedAt)}
+          <Text fontSize="sm" color="fg.subtle">
+            {formatBlogDate(blog.publishedAt)}
+          </Text>
         </HStack>
         <Heading size="4xl">{blog.title}</Heading>
-        <Text color="fg.subtle">{blog.description}</Text>
         <Stack mt="4" gap="3">
-          <Text color="fg.subtle" fontSize="sm">
-            Posted by
-          </Text>
           <HStack>
             {blog.authors.map((authorId) => {
               const author = getBlogAuthor(authorId)
@@ -67,7 +64,7 @@ export default function BlogPostPage({ params }: Props) {
                 <HStack key={author.name} gap="4">
                   <Avatar src={author.image} name={author.name} />
                   <Stack gap="0" fontSize="sm">
-                    <Text>{author.name}</Text>
+                    <Text fontWeight="medium">{author.name}</Text>
                     <Text color="fg.subtle">{author.x.username}</Text>
                   </Stack>
                 </HStack>
@@ -76,7 +73,6 @@ export default function BlogPostPage({ params }: Props) {
           </HStack>
         </Stack>
       </Stack>
-      <Separator my="10" />
       <MDXContent code={blog.content} />
     </Container>
   )

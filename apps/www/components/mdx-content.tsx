@@ -24,6 +24,7 @@ import { CodeBlock } from "./mdx/code-block"
 import { CodeGroup } from "./mdx/code-group"
 import { ComponentGrid } from "./mdx/component-grid"
 import { H1, H2, H3, H4 } from "./mdx/heading"
+import { Hr } from "./mdx/hr"
 import { Img } from "./mdx/image"
 import { Li, Ol, Ul } from "./mdx/list"
 import { PropTable } from "./mdx/prop-table"
@@ -58,6 +59,7 @@ const sharedComponents = {
   card: Card,
   "card-group": CardGroup,
   Card,
+  hr: Hr,
   PropTable,
   ComponentGrid,
   ResourceCard: ResourceCard,

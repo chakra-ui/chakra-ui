@@ -106,6 +106,7 @@ const blogs = defineCollection({
     .object({
       title: s.string(),
       type: s.enum(["release", "announcement", "article"]),
+      version: s.string().optional(),
       description: s.string(),
       metadata: s.metadata(),
       content: s.mdx(),

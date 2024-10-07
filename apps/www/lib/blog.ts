@@ -19,6 +19,11 @@ const authorMap: Record<string, Author> = {
     image: "https://bit.ly/sage-adebayo",
     x: { url: "https://x.com/sage_adebayo", username: "@thesegunadebayo" },
   },
+  esther: {
+    name: "Esther Adebayo",
+    image: "/authors/esther-headshot.jpg",
+    x: { url: "https://x.com/_estheradebayo", username: "@_estheradebayo" },
+  },
 }
 
 export const getBlogAuthor = (author: string): Author => {

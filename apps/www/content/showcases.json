@@ -1,116 +1,133 @@
 [
   {
     "title": "Chakra UI Pro",
+    "description": "Featured",
     "url": "https://pro.chakra-ui.com",
     "image": "showcases/Chakra-UI-Pro.jpg"
   },
   {
     "title": "Udacity",
+    "description": "EdTech platform",
     "url": "https://www.udacity.com/",
     "image": "showcases/udacity.jpg"
   },
   {
     "title": "Ethereum",
+    "description": "Blockchain community",
     "url": "https://ethereum.org/",
     "image": "showcases/ethereum.jpg"
   },
   {
     "title": "Figma Conf '23",
+    "description": "Design conference",
     "url": "https://config.figma.com/",
     "image": "showcases/figma-schema-23.png"
   },
   {
     "title": "Planet.com",
+    "description": "Travel platform",
     "url": "https://planet.com/",
     "image": "showcases/planet.jpg"
   },
   {
     "title": "Solidity",
+    "description": "Blockchain language",
     "url": "https://soliditylang.org/",
     "image": "showcases/solidity.png"
   },
   {
     "title": "yubo",
+    "description": "Social media platform",
     "url": "https://yubo.live/",
     "image": "showcases/yubo.jpg"
   },
   {
     "title": "Typebot",
+    "description": "AI chatbot builder",
     "url": "https://typebot.io",
     "image": "showcases/Typebot.jpg"
   },
   {
     "title": "snappify",
+    "description": "Code snippet SaaS",
     "url": "https://snappify.com/",
     "image": "showcases/Snappify.jpg"
   },
   {
     "title": "thirdweb",
+    "description": "Web3 development platform",
     "url": "https://thirdweb.com/",
     "image": "showcases/thirdweb.jpg"
   },
   {
     "title": "Supa Palette",
+    "description": "Color palette SaaS",
     "url": "https://supa-palette.com",
     "image": "showcases/Supa-Palette-Website.jpg"
   },
   {
     "title": "Codiga",
+    "description": "AI-powered coding assistant",
     "url": "https://codiga.io",
     "image": "showcases/Codiga.jpg"
   },
   {
     "title": "World Economic Forum",
+    "description": "Global policy platform",
     "url": "https://weforum.org/",
     "image": "showcases/weforum.jpg"
   },
   {
     "title": "iFixit",
+    "description": "Repair guide platform",
     "url": "https://ifixit.com/",
     "image": "showcases/ifixit.jpg"
   },
   {
     "title": "BrandBird",
+    "description": "Image editor SaaS",
     "url": "https://brandbird.app",
     "image": "showcases/BrandBird.jpg"
   },
   {
     "title": "StockX",
+    "description": "eCommerce for sneakers",
     "url": "https://stockx.com",
     "image": "showcases/StockX.jpg"
   },
   {
     "title": "MockRocket",
+    "description": "3d mock builder",
     "url": "https://mockrocket.io/",
     "image": "showcases/MockRocket.jpg"
   },
   {
     "title": "Apollo Odyssey",
+    "description": "Docs website",
     "url": "https://www.apollographql.com/tutorials/",
     "image": "showcases/Apollo-Odyssey.jpg"
   },
   {
     "title": "Stately.ai",
+    "description": "Statechart builder SaaS",
     "url": "https://stately.ai/registry/new",
     "image": "showcases/Stately.jpg"
   },
   {
-    "title": "Horizon UI",
-    "url": "https://horizon-ui.com/horizon-ui-chakra/",
-    "image": "showcases/Horizon-UI.jpg"
-  },
-  {
     "title": "UI Foundations",
+    "description": "Education website",
     "url": "https://www.uifoundations.com/",
     "image": "showcases/UI-Foundations.jpg"
   },
   {
     "title": "Tweetpik",
+    "description": "Screenshot SaaS",
     "url": "https://tweetpik.com",
     "image": "showcases/Tweetpik.jpg"
   },
   {
     "title": "Bitwarden",
+    "description": "Password manager",
     "url": "https://bitwarden.com",
     "image": "showcases/Bitwarden.jpg"
   }
