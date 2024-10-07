@@ -43,7 +43,7 @@
   "devDependencies": {
     "@svgr/core": "8.1.0",
     "@types/mdast": "^4.0.4",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "color2k": "2.0.3",
