@@ -1,5 +1,20 @@
 # @chakra-ui/react
 
+## 3.0.0-next.29
+
+### Minor Changes
+
+- [`c2f45ca`](https://github.com/chakra-ui/chakra-ui/commit/c2f45cac80ab9431dd416fe4405bd9252f401b9f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Rename
+  `Fieldset.Control` to `Fieldset.Content`
+
+### Patch Changes
+
+- [#8905](https://github.com/chakra-ui/chakra-ui/pull/8905)
+  [`807a581`](https://github.com/chakra-ui/chakra-ui/commit/807a581715ed44a279edb042a396fb9c971d6955)
+  Thanks [@stevensecreti](https://github.com/stevensecreti)! - Added transform
+  function to backgroundClip to appropriately handle 'text' value
+
 ## 3.0.0-next.28
 
 ### Minor Changes
