@@ -55,16 +55,22 @@ npx @chakra-ui/cli@next snippet add
 
 ### Setup provider
 
-Wrap your application with the `ChakraProvider` at the root of your application.
+Wrap your application with the `Provider` component generated in the
+`components/ui/provider` component at the root of your application.
+
+This provider composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ThemeProvider` from `next-themes` for color mode
 
 ```jsx
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { Provider } from "@/components/ui/provider"
 
 function App({ Component, pageProps }) {
   return (
-    <ChakraProvider system={defaultSystem}>
+    <Provider>
       <Component {...pageProps} />
-    </ChakraProvider>
+    </Provider>
   )
 }
 ```
