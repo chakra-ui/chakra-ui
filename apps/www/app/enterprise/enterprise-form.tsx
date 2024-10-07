@@ -59,10 +59,10 @@ export const EnterpriseForm = () => {
               placeholder="Select your budget"
               name="budget"
               items={[
-                "$30,000 and under",
+                "$10,000 and under",
+                "$10,000 - $30,000",
                 "$30,000 - $50,000",
-                "$50,000 - $100,000",
-                "$100,000 and above",
+                "$50,000 and above",
               ]}
             />
           </NativeSelectRoot>
