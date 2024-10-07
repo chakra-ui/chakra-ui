@@ -5,8 +5,9 @@ import fetch from "node-fetch"
 config()
 
 async function getLatestVersion() {
-  let [content] = JSON.parse(await readFile(".changelog/manifest.json", "utf8"))
-  return content.version
+  const packageJson = await readFile("packages/react/package.json", "utf-8")
+  const { version } = JSON.parse(packageJson)
+  return version
 }
 
 export async function main() {
