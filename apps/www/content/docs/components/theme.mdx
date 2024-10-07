@@ -35,3 +35,24 @@ Use the `asChild` prop to force the appearance of portalled elements like the
 popover and modal content.
 
 <ExampleTabs name="theme-with-portalled" />
+
+### Page Specific Color Mode
+
+To lock a page to a specific color mode (light or dark), wrap the entire page
+with the `Theme` component.
+
+You can also combine it with the `ColorModeProvider` if you use the
+`useColorMode` hook.
+
+```tsx
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { Theme } from "@chakra-ui/react"
+
+export const ForcedColorMode = ({ children }) => {
+  return (
+    <ColorModeProvider forcedTheme="dark">
+      <Theme appearance="dark">{/* Rest of the page */}</Theme>
+    </ColorModeProvider>
+  )
+}
+```

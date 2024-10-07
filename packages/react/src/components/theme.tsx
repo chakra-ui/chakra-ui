@@ -28,6 +28,7 @@ export const Theme = forwardRef<HTMLDivElement, ThemeProps>(
       <chakra.div
         color="fg"
         bg={hasBackground ? "bg" : undefined}
+        colorPalette="accent"
         {...rest}
         className={cx("chakra-theme", appearance, className)}
         style={{ ...style, colorScheme: appearance }}
