@@ -1,0 +1,37 @@
+---
+title: Theme
+description: Used to force a part of the tree to light or dark mode.
+---
+
+<ExampleTabs name="theme-basic" />
+
+## Usage
+
+```jsx
+import { Theme } from "@chakra-ui/react"
+```
+
+```jsx
+<Theme appearance="dark">
+  <div />
+</Theme>
+```
+
+## Examples
+
+### Nested
+
+The theme can be nested to apply different appearances to different parts of the
+tree. This is useful for applying a global appearance and then overriding some
+parts of it.
+
+> Good to know: We use native CSS selectors to achieve this.
+
+<ExampleTabs name="theme-nested" />
+
+### Portalled
+
+Use the `asChild` prop to force the appearance of portalled elements like the
+popover and modal content.
+
+<ExampleTabs name="theme-with-portalled" />

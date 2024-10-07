@@ -16,20 +16,20 @@ export const ThemeWithPortalled = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <Theme asChild appearance="dark" colorPalette="teal">
-        <PopoverContent>
+      <PopoverContent asChild>
+        <Theme hasBackground={false} appearance="dark" colorPalette="teal">
           <PopoverArrow />
-          <PopoverBody>
+          <PopoverBody spaceY="4">
             <PopoverTitle fontWeight="medium">Naruto Form</PopoverTitle>
-            <Text my="4">
+            <Text>
               Naruto is a Japanese manga series written and illustrated by
               Masashi Kishimoto.
             </Text>
             <Input placeholder="Search" />
             <Button>Click me</Button>
           </PopoverBody>
-        </PopoverContent>
-      </Theme>
+        </Theme>
+      </PopoverContent>
     </PopoverRoot>
   )
 }
