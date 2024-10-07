@@ -50,12 +50,7 @@
     "image": "showcases/thirdweb.jpg"
   },
   {
-    "title": "Razorpay",
-    "url": "https://razorpay.com",
-    "image": "showcases/Razorpay.jpg"
-  },
-  {
-    "title": "Supa Palette Website",
+    "title": "Supa Palette",
     "url": "https://supa-palette.com",
     "image": "showcases/Supa-Palette-Website.jpg"
   },
@@ -78,16 +73,6 @@
     "title": "BrandBird",
     "url": "https://brandbird.app",
     "image": "showcases/BrandBird.jpg"
-  },
-  {
-    "title": "June",
-    "url": "https://june.so",
-    "image": "showcases/June.jpg"
-  },
-  {
-    "title": "Clerk",
-    "url": "https://clerk.dev",
-    "image": "showcases/Clerk.jpg"
   },
   {
     "title": "StockX",
@@ -113,11 +98,6 @@
     "title": "Horizon UI",
     "url": "https://horizon-ui.com/horizon-ui-chakra/",
     "image": "showcases/Horizon-UI.jpg"
-  },
-  {
-    "title": "Life Pro Tips",
-    "url": "https://lifeprotips.com/",
-    "image": "showcases/Life-Pro-Tips.jpg"
   },
   {
     "title": "UI Foundations",
