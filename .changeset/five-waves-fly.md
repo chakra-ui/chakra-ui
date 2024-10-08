@@ -10,3 +10,6 @@
 
 - **PinInput**: Allow passing `index` to `PinInputField` to set current `id` in
   SSR.
+
+- **Popover**: Fix issue where popover not closing on outside click when it's
+  not focused

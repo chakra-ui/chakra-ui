@@ -5,12 +5,14 @@ import {
   useFocusOnHide,
   useFocusOnPointerDown,
   useFocusOnShow,
+  useOutsideClick,
 } from "@chakra-ui/hooks"
 import {
   DOMAttributes,
   LazyMode,
   PropGetter,
   callAllHandlers,
+  isFocusable,
   lazyDisclosure,
 } from "@chakra-ui/utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
@@ -159,6 +161,9 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
 
+  const [restoreFocus, setRestoreFocus] = useState(returnFocusOnClose)
+  useEffect(() => setRestoreFocus(returnFocusOnClose), [returnFocusOnClose])
+
   const anchorRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLElement>(null)
   const popoverRef = useRef<HTMLElement>(null)
@@ -203,13 +208,28 @@ export function usePopover(props: UsePopoverProps = {}) {
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
     visible: isOpen,
-    shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
+    shouldFocus: restoreFocus && trigger === TRIGGER.click,
   })
 
   useFocusOnShow(popoverRef, {
     focusRef: initialFocusRef,
     visible: isOpen,
     shouldFocus: autoFocus && trigger === TRIGGER.click,
+  })
+
+  useOutsideClick({
+    enabled: isOpen && closeOnBlur,
+    ref: popoverRef,
+    handler(event) {
+      const relatedTarget = (event.composedPath?.()[0] ?? [
+        event.target,
+      ]) as HTMLElement | null
+      if (contains(triggerRef.current, relatedTarget)) return
+      if (relatedTarget) {
+        setRestoreFocus(!isFocusable(relatedTarget))
+      }
+      onClose()
+    },
   })
 
   const shouldRenderChildren = lazyDisclosure({
@@ -237,6 +257,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         tabIndex: -1,
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
+          if (event.nativeEvent.isComposing) return
           if (closeOnEsc && event.key === "Escape") {
             event.preventDefault()
             event.stopPropagation()
@@ -247,9 +268,10 @@ export function usePopover(props: UsePopoverProps = {}) {
           const relatedTarget = getRelatedTarget(event)
           const targetIsPopover = contains(popoverRef.current, relatedTarget)
           const targetIsTrigger = contains(triggerRef.current, relatedTarget)
-
           const isValidBlur = !targetIsPopover && !targetIsTrigger
-
+          if (relatedTarget) {
+            setRestoreFocus(!isFocusable(relatedTarget))
+          }
           if (isOpen && closeOnBlur && isValidBlur) {
             onClose()
           }
