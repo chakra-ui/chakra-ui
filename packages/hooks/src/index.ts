@@ -4,6 +4,7 @@ export { useBoolean } from "./use-boolean"
 export { useCallbackRef } from "./use-callback-ref"
 export { useClipboard } from "./use-clipboard"
 export type { UseClipboardOptions } from "./use-clipboard"
+export { useConst } from "./use-const"
 export {
   useControllableProp,
   useControllableState,
@@ -16,6 +17,7 @@ export type { UseDisclosureProps, UseDisclosureReturn } from "./use-disclosure"
 export { useEventListener } from "./use-event-listener"
 export * from "./use-focus-effect"
 export * from "./use-focus-on-pointer-down"
+export * from "./use-id"
 export { useInterval } from "./use-interval"
 export { useLatestRef } from "./use-latest-ref"
 export { mergeRefs, useMergeRefs } from "./use-merge-refs"
