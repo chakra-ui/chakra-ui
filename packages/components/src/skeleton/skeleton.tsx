@@ -112,6 +112,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     speed,
     className,
     fitContent,
+    animation: animationProp,
     ...rest
   } = omitThemingProps(skeletonProps)
 
@@ -153,7 +154,8 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
         ...styles,
         ...cssVarStyles,
         _dark: { ...(styles as any)["_dark"], ...cssVarStyles },
-        animation: `${speed}s linear infinite alternate ${bgFade}`,
+        animation:
+          animationProp || `${speed}s linear infinite alternate ${bgFade}`,
       }}
     />
   )
