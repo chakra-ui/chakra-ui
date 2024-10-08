@@ -14,5 +14,12 @@
 - **Popover**: Fix issue where popover not closing on outside click when it's
   not focused
 
-- **Menu**: Fix issue where popover doesn't focus the first item consistently
-  when `isLazy` is `true`
+- **Menu**
+
+  - Fix issue where menu doesn't focus the first item consistently when `isLazy`
+    is `true`
+  - Fix issue where menu doesn't scroll the focused item into view when using
+    the keyboard.
+
+- **Descendants**: Fix issue were `createDescendantContext` does not create a
+  fresh new context on each render.

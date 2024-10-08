@@ -4,109 +4,94 @@ import { useRef, useState } from "react"
 import { DescendantOptions, DescendantsManager } from "./descendant"
 import { cast, useSafeLayoutEffect } from "./utils"
 
-/**
- * @internal
- * React hook that initializes the DescendantsManager
- */
-function useDescendants<
-  T extends HTMLElement = HTMLElement,
+export interface UseDescendantsReturn
+  extends DescendantsManager<HTMLElement, Record<string, any>> {}
+
+export interface UseDescendantReturn<
+  T extends HTMLElement,
   K extends Record<string, any> = {},
->() {
-  const descendants = useRef(new DescendantsManager<T, K>())
-  useSafeLayoutEffect(() => {
-    return () => descendants.current.destroy()
-  })
-  return descendants.current
+> {
+  descendants: DescendantsManager<T, K>
+  index: number
+  enabledIndex: number
+  register: React.RefCallback<T>
 }
 
-export interface UseDescendantsReturn
-  extends ReturnType<typeof useDescendants> {}
+export type DescendantContextReturn<
+  T extends HTMLElement,
+  K extends Record<string, any> = {},
+> = [
+  React.Provider<DescendantsManager<T, K>>,
+  () => DescendantsManager<T, K>,
+  () => DescendantsManager<T, K>,
+  (options?: DescendantOptions<K>) => UseDescendantReturn<T, K>,
+]
 
 /* -------------------------------------------------------------------------------------------------
  * Descendants context to be used in component-land.
   - Mount the `DescendantsContextProvider` at the root of the component
   - Call `useDescendantsContext` anywhere you need access to the descendants information
-
-  NB:  I recommend using `createDescendantContext` below
- * -----------------------------------------------------------------------------------------------*/
-
-const [DescendantsContextProvider, useDescendantsContext] =
-  createContext<UseDescendantsReturn>({
-    name: "DescendantsProvider",
-    errorMessage:
-      "useDescendantsContext must be used within DescendantsProvider",
-  })
-
-/**
- * @internal
- * This hook provides information a descendant such as:
- * - Its index compared to other descendants
- * - ref callback to register the descendant
- * - Its enabled index compared to other enabled descendants
- */
-function useDescendant<
-  T extends HTMLElement = HTMLElement,
-  K extends Record<string, any> = {},
->(options?: DescendantOptions<K>) {
-  const descendants = useDescendantsContext()
-  const [index, setIndex] = useState(-1)
-  const ref = useRef<T>(null)
-
-  useSafeLayoutEffect(() => {
-    return () => {
-      if (!ref.current) return
-      descendants.unregister(ref.current)
-    }
-  }, [])
-
-  useSafeLayoutEffect(() => {
-    if (!ref.current) return
-    const dataIndex = Number(ref.current.dataset["index"])
-    if (index != dataIndex && !Number.isNaN(dataIndex)) {
-      setIndex(dataIndex)
-    }
-  })
-
-  const refCallback = options
-    ? cast<React.RefCallback<T>>(descendants.register(options))
-    : cast<React.RefCallback<T>>(descendants.register)
-
-  return {
-    descendants,
-    index,
-    enabledIndex: descendants.enabledIndexOf(ref.current),
-    register: mergeRefs(refCallback, ref),
-  }
-}
-
-/* -------------------------------------------------------------------------------------------------
- * Function that provides strongly typed versions of the context provider and hooks above.
-   To be used in component-land
  * -----------------------------------------------------------------------------------------------*/
 
 export function createDescendantContext<
   T extends HTMLElement = HTMLElement,
   K extends Record<string, any> = {},
->() {
-  type ContextProviderType = React.Provider<DescendantsManager<T, K>>
-  const ContextProvider = cast<ContextProviderType>(DescendantsContextProvider)
+>(): DescendantContextReturn<T, K> {
+  const [DescendantsContextProvider, useDescendantsContext] =
+    createContext<UseDescendantsReturn>({
+      name: "DescendantsProvider",
+      errorMessage:
+        "useDescendantsContext must be used within DescendantsProvider",
+    })
 
-  const _useDescendantsContext = () =>
-    cast<DescendantsManager<T, K>>(useDescendantsContext())
+  const useDescendant = (options?: DescendantOptions<K>) => {
+    const descendants = useDescendantsContext()
+    const [index, setIndex] = useState(-1)
+    const ref = useRef<T>(null)
 
-  const _useDescendant = (options?: DescendantOptions<K>) =>
-    useDescendant<T, K>(options)
+    useSafeLayoutEffect(() => {
+      return () => {
+        if (!ref.current) return
+        descendants.unregister(ref.current)
+      }
+    }, [])
 
-  const _useDescendants = () => useDescendants<T, K>()
+    useSafeLayoutEffect(() => {
+      if (!ref.current) return
+      const dataIndex = Number(ref.current.dataset["index"])
+      if (index != dataIndex && !Number.isNaN(dataIndex)) {
+        setIndex(dataIndex)
+      }
+    })
+
+    const refCallback = options
+      ? cast<React.RefCallback<T>>(descendants.register(options))
+      : cast<React.RefCallback<T>>(descendants.register)
+
+    return {
+      descendants,
+      index,
+      enabledIndex: descendants.enabledIndexOf(ref.current),
+      register: mergeRefs(refCallback, ref),
+    }
+  }
+
+  const useDescendants = () => {
+    const descendants = useRef(new DescendantsManager<T, K>())
+    useSafeLayoutEffect(() => {
+      return () => descendants.current.destroy()
+    })
+    return descendants.current
+  }
 
   return [
     // context provider
-    ContextProvider,
+    DescendantsContextProvider,
     // call this when you need to read from context
-    _useDescendantsContext,
+    useDescendantsContext,
     // descendants state information, to be called and passed to `ContextProvider`
-    _useDescendants,
+    useDescendants,
     // descendant index information
-    _useDescendant,
-  ] as const
+    useDescendant,
+  ] as any
 }
