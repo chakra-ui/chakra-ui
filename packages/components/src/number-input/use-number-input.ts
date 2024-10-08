@@ -320,10 +320,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     (e: React.KeyboardEvent) => {
       if (e.nativeEvent.isComposing) return
 
-      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || isReadOnly) {
-        return
-      }
-
       if (!isValidNumericKeyboardEvent(e, isValidCharacter)) {
         e.preventDefault()
       }
@@ -354,16 +350,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         action(e)
       }
     },
-    [
-      isValidCharacter,
-      stepProp,
-      increment,
-      decrement,
-      updateFn,
-      min,
-      max,
-      isReadOnly,
-    ],
+    [isValidCharacter, stepProp, increment, decrement, updateFn, min, max],
   )
 
   const getStepFactor = <
