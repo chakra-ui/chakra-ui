@@ -13,3 +13,6 @@
 
 - **Popover**: Fix issue where popover not closing on outside click when it's
   not focused
+
+- **Menu**: Fix issue where popover doesn't focus the first item consistently
+  when `isLazy` is `true`

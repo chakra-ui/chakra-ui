@@ -5,6 +5,7 @@ import {
   useDisclosure,
   UseDisclosureProps,
   useFocusOnHide,
+  useIds,
   useOutsideClick,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
@@ -21,7 +22,6 @@ import {
   useCallback,
   useEffect,
   useId,
-  useMemo,
   useRef,
   useState,
 } from "react"
@@ -122,14 +122,6 @@ export interface UseMenuProps
   computePositionOnMount?: boolean
 }
 
-function useIds(idProp?: string, ...prefixes: string[]) {
-  const reactId = useId()
-  const id = idProp || reactId
-  return useMemo(() => {
-    return prefixes.map((prefix) => `${prefix}-${id}`)
-  }, [id, prefixes])
-}
-
 function getOwnerDocument(node?: Element | null): Document {
   return node?.ownerDocument ?? document
 }
@@ -184,6 +176,8 @@ export function useMenu(props: UseMenuProps = {}) {
     const id = setTimeout(() => {
       if (initialFocusRef) {
         initialFocusRef.current?.focus()
+      } else if (!descendants.count()) {
+        menuRef.current?.focus({ preventScroll: false })
       } else {
         const first = descendants.firstEnabled()
         if (first) setFocusedIndex(first.index)
@@ -194,8 +188,12 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
-      const last = descendants.lastEnabled()
-      if (last) setFocusedIndex(last.index)
+      if (!descendants.count()) {
+        menuRef.current?.focus({ preventScroll: false })
+      } else {
+        const last = descendants.lastEnabled()
+        if (last) setFocusedIndex(last.index)
+      }
     })
     timeoutIds.current.add(id)
   }, [descendants])
@@ -603,7 +601,6 @@ export function useMenuItem(
     focusedIndex,
     closeOnSelect: menuCloseOnSelect,
     onClose,
-    menuRef,
     isOpen,
     menuId,
     rafId,
@@ -675,26 +672,23 @@ export function useMenuItem(
   const trulyDisabled = isDisabled && !isFocusable
 
   useUpdateEffect(() => {
-    if (!isOpen) return
-    if (isFocused && !trulyDisabled && ref.current) {
-      // Cancel any pending animations
-      if (rafId.current) {
-        cancelAnimationFrame(rafId.current)
-      }
-      rafId.current = requestAnimationFrame(() => {
-        ref.current?.focus({ preventScroll: true })
-        rafId.current = null
-      })
-    } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      menuRef.current.focus({ preventScroll: true })
-    }
+    if (!isOpen || !isFocused) return
+    if (!ref.current) return
+    if (trulyDisabled) return
+
+    if (rafId.current) cancelAnimationFrame(rafId.current)
+
+    rafId.current = requestAnimationFrame(() => {
+      ref.current?.focus({ preventScroll: true })
+      rafId.current = null
+    })
 
     return () => {
       if (rafId.current) {
         cancelAnimationFrame(rafId.current)
       }
     }
-  }, [isFocused, trulyDisabled, menuRef, isOpen])
+  }, [isFocused, trulyDisabled, isOpen])
 
   const clickableProps = useClickable({
     onClick,
