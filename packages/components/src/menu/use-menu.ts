@@ -161,6 +161,8 @@ export function useMenu(props: UseMenuProps = {}) {
   const menuRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
+  const scrollIntoViewRef = useRef(true)
+
   /**
    * Context to register all menu item nodes
    */
@@ -237,15 +239,6 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const [focusedIndex, setFocusedIndex] = useState(-1)
 
-  /**
-   * Focus the button when we close the menu
-   */
-  useUpdateEffect(() => {
-    if (!isOpen) {
-      setFocusedIndex(-1)
-    }
-  }, [isOpen])
-
   useFocusOnHide(menuRef, {
     focusRef: buttonRef,
     visible: isOpen,
@@ -275,12 +268,32 @@ export function useMenu(props: UseMenuProps = {}) {
     }
   }, [])
 
+  useUpdateEffect(() => {
+    if (isOpen) return
+    setFocusedIndex(-1)
+    menuRef.current?.scrollTo(0, 0)
+  }, [isOpen])
+
+  useUpdateEffect(() => {
+    if (!isOpen) return
+    if (focusedIndex === -1) {
+      focusMenu()
+    }
+  }, [focusedIndex, isOpen])
+
+  useEffect(() => {
+    if (!isOpen) return
+    const item = descendants.item(focusedIndex)
+    item?.node?.focus({ preventScroll: !scrollIntoViewRef.current })
+  }, [descendants, focusedIndex, isOpen])
+
   const openAndFocusFirstItem = useCallback(() => {
     onOpen()
     focusFirstItem()
   }, [focusFirstItem, onOpen])
 
   const openAndFocusLastItem = useCallback(() => {
+    scrollIntoViewRef.current = true
     onOpen()
     focusLastItem()
   }, [onOpen, focusLastItem])
@@ -293,16 +306,8 @@ export function useMenu(props: UseMenuProps = {}) {
     if (!shouldRefocus) return
 
     const node = descendants.item(focusedIndex)?.node
-    node?.focus({ preventScroll: true })
+    node?.focus({ preventScroll: !scrollIntoViewRef.current })
   }, [isOpen, focusedIndex, descendants])
-
-  /**
-   * Track the animation frame which is scheduled to focus
-   * a menu item, so it can be cancelled if another item
-   * is focused before the animation executes. This prevents
-   * infinite rerenders.
-   */
-  const rafId = useRef<number | null>(null)
 
   return {
     openAndFocusMenu,
@@ -330,7 +335,7 @@ export function useMenu(props: UseMenuProps = {}) {
     isLazy,
     lazyBehavior,
     initialFocusRef,
-    rafId,
+    scrollIntoViewRef,
   }
 }
 
@@ -355,7 +360,13 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
+  const {
+    onToggle,
+    popper,
+    openAndFocusFirstItem,
+    openAndFocusLastItem,
+    scrollIntoViewRef,
+  } = menu
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -369,12 +380,13 @@ export function useMenuButton(
       const action = keyMap[eventKey]
 
       if (action) {
+        scrollIntoViewRef.current = true
         event.preventDefault()
         event.stopPropagation()
         action(event)
       }
     },
-    [openAndFocusFirstItem, openAndFocusLastItem],
+    [openAndFocusFirstItem, openAndFocusLastItem, scrollIntoViewRef],
   )
 
   return {
@@ -433,6 +445,7 @@ export function useMenuList(
     menuId,
     isLazy,
     lazyBehavior,
+    scrollIntoViewRef,
     unstable__animationState: animated,
   } = menu
 
@@ -461,11 +474,15 @@ export function useMenuList(
           onClose()
         },
         ArrowDown: () => {
-          const next = descendants.nextEnabled(focusedIndex)
+          scrollIntoViewRef.current = true
+          const next =
+            descendants.nextEnabled(focusedIndex) ?? descendants.firstEnabled()
           if (next) setFocusedIndex(next.index)
         },
         ArrowUp: () => {
-          const prev = descendants.prevEnabled(focusedIndex)
+          scrollIntoViewRef.current = true
+          const prev =
+            descendants.prevEnabled(focusedIndex) ?? descendants.firstEnabled()
           if (prev) setFocusedIndex(prev.index)
         },
       }
@@ -505,6 +522,7 @@ export function useMenuList(
       createTypeaheadHandler,
       onClose,
       setFocusedIndex,
+      scrollIntoViewRef,
     ],
   )
 
@@ -601,9 +619,8 @@ export function useMenuItem(
     focusedIndex,
     closeOnSelect: menuCloseOnSelect,
     onClose,
-    isOpen,
     menuId,
-    rafId,
+    scrollIntoViewRef,
   } = menu
 
   const ref = useRef<HTMLDivElement>(null)
@@ -620,9 +637,10 @@ export function useMenuItem(
     (event: any) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
+      scrollIntoViewRef.current = false
       setFocusedIndex(index)
     },
-    [setFocusedIndex, index, isDisabled, onMouseEnterProp],
+    [setFocusedIndex, index, isDisabled, onMouseEnterProp, scrollIntoViewRef],
   )
 
   const onMouseMove = useCallback(
@@ -668,27 +686,6 @@ export function useMenuItem(
   )
 
   const isFocused = index === focusedIndex
-
-  const trulyDisabled = isDisabled && !isFocusable
-
-  useUpdateEffect(() => {
-    if (!isOpen || !isFocused) return
-    if (!ref.current) return
-    if (trulyDisabled) return
-
-    if (rafId.current) cancelAnimationFrame(rafId.current)
-
-    rafId.current = requestAnimationFrame(() => {
-      ref.current?.focus({ preventScroll: true })
-      rafId.current = null
-    })
-
-    return () => {
-      if (rafId.current) {
-        cancelAnimationFrame(rafId.current)
-      }
-    }
-  }, [isFocused, trulyDisabled, isOpen])
 
   const clickableProps = useClickable({
     onClick,

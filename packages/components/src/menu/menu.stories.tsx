@@ -338,7 +338,7 @@ export const WithLetterNavigation = () => (
 
 export const WithScrolling = () => {
   const items = React.useMemo(
-    () => Array.from({ length: 30 }).map((_, i) => `Option ${i}`),
+    () => Array.from({ length: 12 }).map((_, i) => `Option ${i}`),
     [],
   )
   return (
