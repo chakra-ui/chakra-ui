@@ -84,7 +84,7 @@ export interface ComponentSingleStyleConfig {
 }
 
 export interface ComponentMultiStyleConfig {
-  parts: string[]
+  parts: string[] | readonly string[]
   baseStyle?: PartsStyleInterpolation
   sizes?: Record<string, PartsStyleInterpolation>
   variants?: Record<string, PartsStyleInterpolation>
