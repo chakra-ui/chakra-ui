@@ -340,6 +340,7 @@ export type UsePinInputReturn = ReturnType<typeof usePinInput>
 
 export interface UsePinInputFieldProps extends InputProps {
   ref?: React.Ref<HTMLInputElement>
+  index?: number
 }
 
 /**
@@ -355,7 +356,7 @@ export function usePinInputField(
   return getInputProps({
     ...props,
     ref: mergeRefs(register, ref),
-    index,
+    index: props.index ?? index,
   })
 }
 

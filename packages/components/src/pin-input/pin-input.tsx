@@ -59,7 +59,9 @@ export function PinInput(props: PinInputProps) {
 
 PinInput.displayName = "PinInput"
 
-export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
+export interface PinInputFieldProps extends HTMLChakraProps<"input"> {
+  index?: number
+}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   function PinInputField(props, ref) {

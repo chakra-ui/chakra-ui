@@ -6,7 +6,7 @@
 
 - **Popover**: Fix issue where popover doesn't use the correct zIndex token.
 
-- **NumberInput**: Fix issue where using modifier keys + arrow keys updates
-  input value instead allowing editing functionality.
-
 - **Skeleton**: Add support for overriding animation via the `animation` prop.
+
+- **PinInput**: Allow passing `index` to `PinInputField` to set current `id` in
+  SSR.
