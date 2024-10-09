@@ -2,7 +2,8 @@
 "@chakra-ui/react": patch
 ---
 
-- Remove unused dependency from package.json
+- Remove unused `react-lorem-component` dependency which was causing a warning
+  during install.
 
 - **Popover**: Fix issue where popover doesn't use the correct zIndex token.
 
@@ -27,3 +28,6 @@
 - **Slider**: Fix issue where slider thumb flickers when used within tabs.
 
 - **useSize**: Add support for `enabled` and `fallback` options.
+
+- **Next.js**: Fix issue where importing components in the Next.js app dir would
+  throw an RSC error.

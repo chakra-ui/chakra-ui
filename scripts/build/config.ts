@@ -24,6 +24,7 @@ const useClientDirInclude = [
   "packages/components",
   "packages/system",
   "packages/color-mode",
+  "packages/next-js",
 ]
 
 export async function getConfig(
