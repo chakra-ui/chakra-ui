@@ -3,7 +3,6 @@ import {
   useCallbackRef,
   useControllableState,
   usePanEvent,
-  useSizes,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
@@ -236,15 +235,6 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const trackRef = useRef<HTMLElement>(null)
   const rootRef = useRef<HTMLElement>(null)
 
-  const thumbRects = useSizes({
-    getNodes() {
-      const rootNode = rootRef.current
-      const thumbNodes =
-        rootNode?.querySelectorAll<HTMLElement>("[role=slider]")
-      return thumbNodes ? Array.from(thumbNodes) : []
-    },
-  })
-
   const reactId = useId()
   const uuid = idProp ?? reactId
   const ids = getIds(uuid)
@@ -343,10 +333,9 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       getStyles({
         isReversed,
         orientation,
-        thumbRects,
         thumbPercents,
       }),
-    [isReversed, orientation, thumbPercents, thumbRects],
+    [isReversed, orientation, thumbPercents],
   )
 
   const focusThumb = useCallback(
