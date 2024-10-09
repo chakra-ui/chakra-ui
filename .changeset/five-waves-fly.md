@@ -31,3 +31,9 @@
 
 - **Next.js**: Fix issue where importing components in the Next.js app dir would
   throw an RSC error.
+
+- **useClipboard**
+
+  - Use `navigator.clipboard.writeText` when supported instead of
+    `document.execCommand` for better browser compatibility.
+  - Add support passing valueToCopy in the `onCopy` function.

@@ -37,10 +37,20 @@ export function useClipboard(
       ? { timeout: optionsOrTimeout }
       : optionsOrTimeout
 
-  const onCopy = useCallback(() => {
-    const didCopy = copy(valueState, copyOptions)
-    setHasCopied(didCopy)
-  }, [valueState, copyOptions])
+  const onCopy = useCallback(
+    (valueToCopy: any) => {
+      const value = typeof valueToCopy === "string" ? valueToCopy : valueState
+      if ("clipboard" in navigator) {
+        navigator.clipboard
+          .writeText(value)
+          .then(() => setHasCopied(true))
+          .catch(() => setHasCopied(copy(value, copyOptions)))
+      } else {
+        setHasCopied(copy(value, copyOptions))
+      }
+    },
+    [valueState, copyOptions],
+  )
 
   useEffect(() => {
     let timeoutId: number | null = null
