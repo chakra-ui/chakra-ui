@@ -205,6 +205,7 @@ export type Token =
   | "lineHeights.moderate"
   | "lineHeights.tall"
   | "lineHeights.taller"
+  | "radii.none"
   | "radii.2xs"
   | "radii.xs"
   | "radii.sm"
@@ -821,7 +822,7 @@ export type LetterSpacingsToken = "tighter" | "tight" | "wide" | "wider" | "wide
 
 export type LineHeightsToken = "shorter" | "short" | "moderate" | "tall" | "taller"
 
-export type RadiiToken = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "full"
+export type RadiiToken = "none" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "full"
 
 export type SpacingToken =
   | "1"
