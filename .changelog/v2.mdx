@@ -5,6 +5,56 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [2.10.2](./#2.10.2) - 2024-10-09
+
+### Fixed
+
+- Remove unused `react-lorem-component` dependency which was causing a warning
+  during install.
+
+- Fix issue where `useId` and `useConst` was not exported from the hooks
+  package.
+
+- **Popover**:
+
+  - Fix issue where popover doesn't use the correct zIndex token.
+  - Fix issue where popover not closing on outside click when it's not focused
+
+- **Menu**
+
+  - Fix issue where menu doesn't focus the first item consistently when `isLazy`
+    is `true`
+  - Fix issue where menu doesn't scroll the focused item into view when using
+    the keyboard.
+
+- **Descendants**: Fix issue were `createDescendantContext` does not create a
+  fresh new context on each render.
+
+- **Slider**: Fix issue where slider thumb flickers when used within tabs.
+
+- **Next.js**: Fix issue where importing components in the Next.js app dir would
+  throw an RSC error.
+
+- **Tabs**: Fix issue where `TabPanel` doesn't respect custom child key.
+
+- **Theme**: Fix issue where multi style config did not allow readonly strings
+  for parts.
+
+### Changed
+
+- **Skeleton**: Add support for overriding animation via the `animation` prop.
+
+- **PinInput**: Allow passing `index` to `PinInputField` to set current `id` in
+  SSR.
+
+- **useSize**: Add support for `enabled` and `fallback` options.
+
+- **useClipboard**
+
+  - Use `navigator.clipboard.writeText` when supported instead of
+    `document.execCommand` for better browser compatibility.
+  - Add support passing valueToCopy in the `onCopy` function.
+
 ## [2.10.1](./#2.10.1) - 2024-10-04
 
 ### Fixed
