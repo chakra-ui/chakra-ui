@@ -1,9 +1,14 @@
 ---
 "@chakra-ui/react": patch
+"@chakra-ui/hooks": patch
+"@chakra-ui/theme": patch
 ---
 
 - Remove unused `react-lorem-component` dependency which was causing a warning
   during install.
+
+- Fix issue where `useId` and `useConst` was not exported from the hooks
+  package.
 
 - **Popover**: Fix issue where popover doesn't use the correct zIndex token.
 
@@ -39,3 +44,6 @@
   - Add support passing valueToCopy in the `onCopy` function.
 
 - **Tabs**: Fix issue where `TabPanel` doesn't respect custom child key.
+
+- **Theme**: Fix issue where multi style config did not allow readonly strings
+  for parts.

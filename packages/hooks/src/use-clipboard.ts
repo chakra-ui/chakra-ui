@@ -38,7 +38,7 @@ export function useClipboard(
       : optionsOrTimeout
 
   const onCopy = useCallback(
-    (valueToCopy: any) => {
+    (valueToCopy?: any) => {
       const value = typeof valueToCopy === "string" ? valueToCopy : valueState
       if ("clipboard" in navigator) {
         navigator.clipboard
