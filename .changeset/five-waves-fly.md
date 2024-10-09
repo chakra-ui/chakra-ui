@@ -1,7 +1,14 @@
 ---
+"@chakra-ui/storybook-addon": patch
+"@chakra-ui/styled-system": patch
+"@chakra-ui/theme-tools": patch
 "@chakra-ui/react": patch
+"@chakra-ui/props-docs": patch
+"@chakra-ui/next-js": patch
 "@chakra-ui/hooks": patch
 "@chakra-ui/theme": patch
+"@chakra-ui/utils": patch
+"@chakra-ui/cli": patch
 ---
 
 - Remove unused `react-lorem-component` dependency which was causing a warning
