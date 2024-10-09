@@ -4,7 +4,6 @@ import {
   useControllableState,
   useLatestRef,
   usePanEvent,
-  useSize,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
@@ -340,26 +339,18 @@ export function useSlider(props: UseSliderProps) {
   const valueText = getAriaValueText?.(value) ?? ariaValueText
 
   /**
-   * Measure the dimensions of the thumb, so
-   * we can center it within the track properly
-   */
-  const thumbSize = useSize(thumbRef)
-
-  /**
    * Compute styles for all component parts.
    */
   const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
     useMemo(() => {
       const state = stateRef.current
 
-      const thumbRect = thumbSize ?? { width: 0, height: 0 }
       return getStyles({
         isReversed,
         orientation: state.orientation,
-        thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, thumbSize, thumbPercent, stateRef])
+    }, [isReversed, thumbPercent, stateRef])
 
   const focusThumb = useCallback(() => {
     const state = stateRef.current

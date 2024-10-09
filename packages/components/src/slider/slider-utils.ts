@@ -21,22 +21,14 @@ export function orient(options: {
   return orientation === "vertical" ? vertical : horizontal
 }
 
-type Size = { height: number; width: number }
-
-const zeroSize: Size = { width: 0, height: 0 }
-
-const normalize = (a: Size | undefined) => a || zeroSize
-
 export function getStyles(options: {
   orientation: Orientation
   thumbPercents: number[]
-  thumbRects: Array<Size | undefined>
   isReversed?: boolean
 }) {
-  const { orientation, thumbPercents, thumbRects, isReversed } = options
+  const { orientation, thumbPercents, isReversed } = options
 
   const getThumbStyle = (i: number): React.CSSProperties => {
-    const rect = thumbRects[i] ?? zeroSize
     return {
       position: "absolute",
       userSelect: "none",
@@ -47,25 +39,14 @@ export function getStyles(options: {
       ...orient({
         orientation,
         vertical: {
-          bottom: `calc(${thumbPercents[i]}% - ${rect.height / 2}px)`,
+          bottom: `${thumbPercents[i]}%`,
         },
         horizontal: {
-          left: `calc(${thumbPercents[i]}% - ${rect.width / 2}px)`,
+          left: `${thumbPercents[i]}%`,
         },
       }),
     }
   }
-
-  const size =
-    orientation === "vertical"
-      ? thumbRects.reduce(
-          (a, b) => (normalize(a).height > normalize(b).height ? a : b),
-          zeroSize,
-        )
-      : thumbRects.reduce(
-          (a, b) => (normalize(a).width > normalize(b).width ? a : b),
-          zeroSize,
-        )
 
   const rootStyle: React.CSSProperties = {
     position: "relative",
@@ -73,21 +54,6 @@ export function getStyles(options: {
     WebkitTapHighlightColor: "rgba(0,0,0,0)",
     userSelect: "none",
     outline: 0,
-    ...orient({
-      orientation,
-      vertical: size
-        ? {
-            paddingLeft: size.width / 2,
-            paddingRight: size.width / 2,
-          }
-        : {},
-      horizontal: size
-        ? {
-            paddingTop: size.height / 2,
-            paddingBottom: size.height / 2,
-          }
-        : {},
-    }),
   }
 
   const trackStyle: React.CSSProperties = {

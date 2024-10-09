@@ -1,12 +1,17 @@
-import { chakra } from "../system"
 import * as React from "react"
 import {
   Slider,
+  SliderFilledTrack,
   SliderMark,
   SliderThumb,
   SliderTrack,
-  SliderFilledTrack,
-} from "."
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from ".."
+import { chakra } from "../system"
 
 export default {
   title: "Components / Forms / Slider",
@@ -111,5 +116,35 @@ export function SteppedHorizontalSlider() {
       </SliderTrack>
       <SliderThumb children={value} boxSize="30px" color="black" />
     </Slider>
+  )
+}
+
+function CustomSlider() {
+  return (
+    <Slider>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
+    </Slider>
+  )
+}
+
+export const WithinTabs = () => {
+  return (
+    <Tabs isFitted>
+      <TabList>
+        <Tab>Left</Tab>
+        <Tab>Right</Tab>
+      </TabList>
+      <TabPanels pt="20px">
+        <TabPanel p="0px">
+          <CustomSlider />
+        </TabPanel>
+        <TabPanel p="0px">
+          <CustomSlider />
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   )
 }

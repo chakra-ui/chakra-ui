@@ -23,3 +23,7 @@
 
 - **Descendants**: Fix issue were `createDescendantContext` does not create a
   fresh new context on each render.
+
+- **Slider**: Fix issue where slider thumb flickers when used within tabs.
+
+- **useSize**: Add support for `enabled` and `fallback` options.

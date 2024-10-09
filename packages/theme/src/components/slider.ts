@@ -1,5 +1,6 @@
 import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
 import {
+  calc,
   createMultiStyleConfigHelpers,
   cssVar,
   defineStyle,
@@ -27,8 +28,14 @@ const baseStyleContainer = defineStyle((props) => {
     },
     ...orient({
       orientation,
-      vertical: { h: "100%" },
-      horizontal: { w: "100%" },
+      vertical: {
+        h: "100%",
+        px: calc($thumbSize.reference).divide(2).toString(),
+      },
+      horizontal: {
+        w: "100%",
+        py: calc($thumbSize.reference).divide(2).toString(),
+      },
     }),
   }
 })
