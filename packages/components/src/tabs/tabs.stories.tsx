@@ -3,6 +3,7 @@ import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../modal"
 import { chakra } from "../system"
 import * as React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "."
+import { CloseButton } from "../close-button"
 
 export default {
   title: "Components / Disclosure / Tabs",
@@ -340,3 +341,50 @@ export const WithTabPanelWrapper = () => (
     </TabPanels>
   </Tabs>
 )
+
+interface TabItem {
+  name: string
+}
+
+function Content({ name }: { name: string }) {
+  React.useEffect(() => {
+    return () => {
+      console.log(`Unmounting ${name}`)
+    }
+  }, [name])
+
+  return <div>{name}</div>
+}
+
+export const WithKey = () => {
+  const [tabs, setTabs] = React.useState<TabItem[]>([
+    { name: "Tab 1" },
+    { name: "Tab 2" },
+    { name: "Tab 3" },
+  ])
+
+  return (
+    <Tabs>
+      <TabList>
+        {tabs.map((tab) => (
+          <Tab key={tab.name}>
+            {tab.name}
+            <CloseButton
+              as="div"
+              onClick={() =>
+                setTabs((arr) => arr.filter((t) => t.name !== tab.name))
+              }
+            />
+          </Tab>
+        ))}
+      </TabList>
+      <TabPanels>
+        {tabs.map((tab) => (
+          <TabPanel key={tab.name}>
+            <Content name={tab.name} />
+          </TabPanel>
+        ))}
+      </TabPanels>
+    </Tabs>
+  )
+}

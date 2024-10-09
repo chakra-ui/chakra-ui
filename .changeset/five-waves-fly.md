@@ -37,3 +37,5 @@
   - Use `navigator.clipboard.writeText` when supported instead of
     `document.execCommand` for better browser compatibility.
   - Add support passing valueToCopy in the `onCopy` function.
+
+- **Tabs**: Fix issue where `TabPanel` doesn't respect custom child key.
