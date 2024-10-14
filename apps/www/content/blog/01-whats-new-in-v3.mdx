@@ -6,4 +6,299 @@ authors: ["esther"]
 publishedAt: "2024-10-19"
 ---
 
-TODO: Write content
+We recently launched Chakra UI **version 3**. If you've been working with
+version 2, you're probably wondering, "What’s in v3, and how is it different
+from v2?"
+
+In this blog post, I’ll give you a clear rundown of the major changes and
+updates that make up **Chakra UI v3**.
+
+## Simplified Installation
+
+The installation process is one of the first noticeable differences. Previously,
+you had to install multiple packages to get everything running:
+
+- `@chakra-ui/react`
+- `@emotion/react`
+- `@emotion/styled`
+- `framer-motion`
+
+But with **v3**, things are much simpler. You only need:
+
+- `@chakra-ui/react`
+- `@emotion/react`
+
+This reduces the number of dependencies and results in a quicker setup.
+
+**version 2:**
+
+```bash
+npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+**version 3:**
+
+```bash
+npm install @chakra-ui/react @emotion/react
+
+```
+
+## New Provider Setup
+
+In previous versions, you had to wrap your application with `ChakraProvider` to
+access Chakra’s default theme. However, we've now replaced `ChakraProvider` with
+the `Provider` component.
+
+`Provider` composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ThemeProvider` from `next-themes` for color mode
+
+**version 2:**
+
+```jsx
+import { ChakraProvider } from "@chakra-ui/react"
+
+function App() {
+  return <ChakraProvider>{/* the rest of your app */}</ChakraProvider>
+}
+```
+
+**version 3:**
+
+```jsx
+import { Provider } from "@/components/ui/provider"
+
+function App() {
+  return <Provider>{/* the rest of your app */}</Provider>
+}
+```
+
+## Component Snippets
+
+A common pain point for developers is the repetitive task of building common UI
+components. To solve this, we’ve introduced Component Snippets.
+
+These snippets are pre-built components designed to accelerate your development
+process.
+
+With the new **Chakra CLI**, you can instantly add ready-made components to your
+project with a single command.
+
+```bash
+# Add all snippets
+chakra snippet add
+
+# Add a specific snippet
+chakra snippet add button
+
+```
+
+Once you run the command, you'll find the components neatly organized in a
+`/components/ui` folder inside the **src** directory.
+
+You can then import your desired component from the components folder
+
+```bash
+import { Button } from "@/components/ui/button"
+```
+
+## New Components
+
+We listened to you, our community, and we're excited to announce that **Chakra
+UI v3** comes with 20+ new components to enhance your development workflow.
+
+Some of the new components added include:
+
+- File Upload
+- Clipboard
+- Timeline
+- Password Input
+- Segmented Control
+- Toggle Tip
+- Custom Select
+- And a lot more
+
+Check out all [components here](/docs/components/concepts/overview). Each new
+component is built with the same focus on accessibility and design consistency
+that Chakra UI is known for.
+
+## Introduction of State Machines
+
+One of the biggest updates in this version is the use of state machines for
+logic-based components. Chakra UI v3 now uses Ark UI as the foundation for these
+components.
+
+State machines bring a new level of stability to Chakra UI components,
+especially for applications that require complex and interactive user
+interfaces.
+
+While this isn’t something you’ll interact with directly as a user, it’s
+important to know that using state machines under the hood significantly
+improves the performance of components like modals, menus, popovers, and other
+complex UI elements.
+
+Now, you can expect more consistent behaviour across Chakra UI components.
+
+## Streamlined Component Imports
+
+We introduce a more organized approach to component imports, reducing the need
+for multiple imports and making your codebase easier to maintain.
+
+For example, in previous versions, you had to manually import both `List` and
+`ListItem` separately
+
+**version 2:**
+
+```jsx
+import { List, ListItem } from "@chakra-ui/react"
+
+function App() {
+  return (
+    <List>
+      <ListItem>Item 1</ListItem>
+    </List>
+  )
+}
+```
+
+With **v3**, this process is simplified by using the dot notation structure.
+Now, you only need to import `List` and use the object notation to compose the
+other components. This keeps your imports minimal and code cleaner:
+
+**version 3:**
+
+```jsx
+import { List } from "@chakra-ui/react"
+
+function App() {
+  return (
+    <List.Root>
+      <List.Item>Item 1</List.Item>
+    </List.Root>
+  )
+}
+```
+
+## Enhanced Theme Setup
+
+We’ve reimagined the theme setup for better modularity. In previous versions,
+themes were typically extended using the `extendTheme` function:
+
+**version 2:**
+
+```jsx
+const theme = extendTheme({
+  colors: {
+    brand: {
+      100: "#f7fafc",
+      900: "#1a202c",
+    },
+  },
+})
+```
+
+In **v3**, the new approach leverages the `createSystem` function, where tokens
+are defined under the `theme` key in your system config:
+
+**version 3:**
+
+```jsx
+import { createSystem } from "@chakra-ui/react"
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: `'Figtree', sans-serif` },
+        body: { value: `'Figtree', sans-serif` },
+      },
+    },
+  },
+})
+```
+
+This new setup makes it easier to customize and scale your design system.
+
+## Enhanced Design Tokens
+
+In this new version, we’ve also updated our design tokens. You’ll notice changes
+in:
+
+- **Colors**: The [color palette](/docs/theming/colors) has been expanded and
+  fine-tuned for vibrancy and versatility. This ensures that your designs are
+  more visually appealing and accessible.
+- **Animations:** We’ve added more support for
+  [animations](/docs/theming/animations) using vanilla css, making your app more
+  perfomant.
+- **Design Tokens**: Improved and more robust [tokens](/docs/theming/tokens) for
+  better design consistency.
+- **Introduction of Semantic Tokens:** We added built-in
+  [semantic tokens](/docs/theming/semantic-tokens) to make it easier to map your
+  design system to both light and dark color modes.
+
+## Updated Props
+
+Props have also received a
+[major update](/docs/get-started/migration#prop-changes) in this version. A
+great example is the `gap` prop, which now replaces the `spacing` prop for
+`Stack` and similar components.
+
+**version 2:**
+
+```jsx
+<Stack spacing={4}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Stack>
+```
+
+**version 3:**
+
+```jsx
+<Stack gap={4}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Stack>
+```
+
+This change is more in line with modern CSS practices and helps developers
+manage spacing more efficiently, especially in flex and grid layouts.
+
+Not only that, in v2, **boolean props** were typically prefixed with `is`, such
+as `isDisabled`. In v3, this has been simplified by removing the `is` prefix.
+
+**version 2:**
+
+```jsx
+<Button isDisabled>Click Me</Button>
+```
+
+**version 3:**
+
+```jsx
+<Button disabled>Click Me</Button>
+```
+
+This change makes prop names more intuitive and easier to read, aligning with
+standard HTML practices.
+
+## We Said Goodbye to `chakra-icons`
+
+In a move towards simplicity, v3 has removed the `chakra-icons` package.
+Instead, we encourage developers to use libraries like `lucide-react` or
+`react-icons` for their icon needs.
+
+This shift reduces dependency bloat and allows you to tap into a broader range
+of icon options available in the React ecosystem.
+
+## Go Faster With Chakra v3
+
+If you’re currently using Chakra UI v2, now is a great time to consider
+upgrading to version 3.
+
+The new features, such as **component snippets**, **enhanced design tokens**,
+and **state machine-powered components**, are designed to streamline your
+development process and improve your overall developer experience.
+
+Try out Chakra v3 and let us know what you think.
