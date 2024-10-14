@@ -18,7 +18,7 @@ export type BadgeVariantMap = {
 
 export interface ButtonVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "solid" */
   variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain"
 }
@@ -74,7 +74,7 @@ export type HeadingVariantMap = {
 
 export interface InputVariant {
   /** @default "md" */
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "filled" | "flushed"
 }
@@ -89,7 +89,7 @@ export type InputVariantMap = {
 
 export interface InputAddonVariant {
   /** @default "md" */
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "filled" | "flushed"
 }
@@ -199,7 +199,7 @@ export type SpinnerVariantMap = {
 
 export interface TextareaVariant {
   /** @default "md" */
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "filled" | "flushed"
 }
@@ -212,7 +212,10 @@ export type TextareaVariantMap = {
   [K in keyof TextareaVariant]: Array<TextareaVariant[K]>
 }
 
-export interface IconVariant {}
+export interface IconVariant {
+  /** @default "md" */
+  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+}
 
 export type IconVariantProps = {
   [K in keyof IconVariant]?: ConditionalValue<IconVariant[K]> | undefined
@@ -224,7 +227,7 @@ export type IconVariantMap = {
 
 export interface CheckmarkVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
   /** @default "outline" */
   variant?: "outline" | "subtle" | "plain" | "inverted"
 }
@@ -241,7 +244,7 @@ export interface RadiomarkVariant {
   /** @default "outline" */
   variant?: "outline" | "subtle" | "classic" | "inverted"
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export type RadiomarkVariantProps = {
@@ -308,11 +311,12 @@ export type ActionBarVariantMap = {
 
 // Alert
 
-export type AlertSlot = "title" | "description" | "root" | "indicator" | "spinner"
+export type AlertSlot = "title" | "description" | "root" | "indicator" | "content"
 
 export interface AlertVariant {
   /** @default "info" */
   status?: "info" | "warning" | "success" | "error" | "neutral"
+  inline?: boolean
   /** @default "subtle" */
   variant?: "subtle" | "surface" | "outline" | "solid"
   /** @default "md" */
@@ -333,7 +337,7 @@ export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "subtle" */
   variant?: "solid" | "subtle" | "outline"
   /** @default "full" */
@@ -412,7 +416,7 @@ export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
 
 export interface CheckboxVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
   /** @default "outline" */
   variant?: "outline" | "subtle"
 }
@@ -545,7 +549,10 @@ export type DrawerVariantMap = {
 
 export type EditableSlot = "root" | "area" | "label" | "preview" | "input" | "editTrigger" | "submitTrigger" | "cancelTrigger" | "control" | "textarea"
 
-export interface EditableVariant {}
+export interface EditableVariant {
+  /** @default "md" */
+  size?: "sm" | "md" | "lg"
+}
 
 export type EditableVariantProps = {
   [K in keyof EditableVariant]?: ConditionalValue<EditableVariant[K]> | undefined
@@ -561,7 +568,7 @@ export type EmptyStateSlot = "root" | "content" | "indicator" | "title" | "descr
 
 export interface EmptyStateVariant {
   /** @default "md" */
-  size?: "md" | "lg"
+  size?: "sm" | "md" | "lg"
 }
 
 export type EmptyStateVariantProps = {
@@ -796,7 +803,7 @@ export interface ProgressVariant {
   striped?: boolean
   animated?: boolean
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
 export type ProgressVariantProps = {
@@ -813,7 +820,7 @@ export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueTe
 
 export interface ProgressCircleVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
 export type ProgressCircleVariantProps = {
@@ -851,7 +858,7 @@ export interface RadioGroupVariant {
   /** @default "outline" */
   variant?: "outline" | "subtle" | "classic"
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export type RadioGroupVariantProps = {
@@ -885,7 +892,7 @@ export type SegmentGroupSlot = "root" | "label" | "item" | "itemText" | "itemCon
 
 export interface SegmentGroupVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export type SegmentGroupVariantProps = {
@@ -937,9 +944,9 @@ export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "r
 
 export interface SliderVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "solid"
   /** @default "horizontal" */
   orientation?: "vertical" | "horizontal"
 }

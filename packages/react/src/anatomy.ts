@@ -38,7 +38,7 @@ export const alertAnatomy = createAnatomy("alert").parts(
   "description",
   "root",
   "indicator",
-  "spinner",
+  "content",
 )
 
 export const avatarAnatomy = arkAvatarAnatomy

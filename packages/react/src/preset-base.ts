@@ -155,6 +155,9 @@ export const defaultConditions = defineConditions({
   pressed: "&:is([aria-pressed=true], [data-pressed])",
   selected: "&:is([aria-selected=true], [data-selected])",
   grabbed: "&:is([aria-grabbed=true], [data-grabbed])",
+  underValue: "&[data-state=under-value]",
+  overValue: "&[data-state=over-value]",
+  atValue: "&[data-state=at-value]",
 
   default: "&:default",
   optional: "&:optional",
@@ -1034,6 +1037,7 @@ export const defaultBaseConfig = defineConfig({
           display: "-webkit-box",
           WebkitLineClamp: value,
           WebkitBoxOrient: "vertical",
+          textWrap: "wrap",
         }
       },
     },

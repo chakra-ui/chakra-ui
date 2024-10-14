@@ -127,6 +127,12 @@ export interface Conditions {
   _selected: string
   /** `&:is([aria-grabbed=true], [data-grabbed])` */
   _grabbed: string
+  /** `&[data-state=under-value]` */
+  _underValue: string
+  /** `&[data-state=over-value]` */
+  _overValue: string
+  /** `&[data-state=at-value]` */
+  _atValue: string
   /** `&:default` */
   _default: string
   /** `&:optional` */
