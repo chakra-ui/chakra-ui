@@ -84,6 +84,15 @@ export const AlertDescription = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface AlertContentProps extends HTMLChakraProps<"div"> {}
+
+export const AlertContent = withContext<HTMLDivElement, AlertContentProps>(
+  "div",
+  "content",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 const iconMap = {
   info: InfoIcon,
   warning: WarningIcon,

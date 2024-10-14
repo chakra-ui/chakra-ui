@@ -1,6 +1,7 @@
 export {
   AlertTitle,
   AlertDescription,
+  AlertContent,
   AlertIndicator,
   AlertRoot,
   AlertPropsProvider,
@@ -11,6 +12,7 @@ export type {
   AlertRootProps,
   AlertTitleProps,
   AlertDescriptionProps,
+  AlertContentProps,
   AlertIndicatorProps,
 } from "./alert"
 
