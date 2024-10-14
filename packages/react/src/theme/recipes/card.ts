@@ -9,29 +9,18 @@ export const cardSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       flexDirection: "column",
       position: "relative",
-      minWidth: 0,
+      minWidth: "0",
       wordWrap: "break-word",
-      bg: "var(--card-bg)",
-      boxShadow: "var(--card-shadow)",
       borderRadius: "var(--card-radius)",
       color: "fg",
-      borderWidth: "var(--card-border-width, 0)",
-      borderColor: "var(--card-border)",
+      textAlign: "start",
     },
     title: {
       fontWeight: "semibold",
-      textStyle: "lg",
-      letterSpacing: "tight",
     },
     description: {
       color: "fg.subtle",
-    },
-    body: {
-      padding: "var(--card-padding)",
-      flex: "1 1 0%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
+      textStyle: "sm",
     },
     header: {
       paddingInline: "var(--card-padding)",
@@ -40,9 +29,17 @@ export const cardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "1.5",
     },
+    body: {
+      padding: "var(--card-padding)",
+      flex: "1",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+    },
     footer: {
       display: "flex",
       alignItems: "center",
+      gap: "2",
       paddingInline: "var(--card-padding)",
       paddingBottom: "var(--card-padding)",
     },
@@ -51,40 +48,50 @@ export const cardSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          "--card-radius": "radii.lg",
+          "--card-radius": "radii.md",
           "--card-padding": "spacing.4",
+        },
+        title: {
+          textStyle: "md",
         },
       },
       md: {
         root: {
-          "--card-radius": "radii.xl",
+          "--card-radius": "radii.lg",
           "--card-padding": "spacing.6",
+        },
+        title: {
+          textStyle: "lg",
         },
       },
       lg: {
         root: {
-          "--card-radius": "radii.2xl",
+          "--card-radius": "radii.lg",
           "--card-padding": "spacing.7",
+        },
+        title: {
+          textStyle: "xl",
         },
       },
     },
+
     variant: {
       elevated: {
         root: {
-          "--card-bg": { _light: "white", _dark: "colors.gray.800" },
-          "--card-shadow": "shadows.xs",
+          bg: "bg.panel",
+          boxShadow: "sm",
         },
       },
       outline: {
         root: {
-          "--card-bg": "colors.bg",
-          "--card-border-width": "1px",
-          "--card-border": "colors.border",
+          bg: "bg.panel",
+          borderWidth: "1px",
+          borderColor: "border",
         },
       },
       subtle: {
         root: {
-          "--card-bg": "colors.bg.subtle",
+          bg: "bg.subtle",
         },
       },
     },

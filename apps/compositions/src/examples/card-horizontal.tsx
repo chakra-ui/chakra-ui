@@ -11,7 +11,7 @@ export const CardHorizontal = () => (
     />
     <Box>
       <Card.Body>
-        <Card.Title>The perfect latte</Card.Title>
+        <Card.Title mb="2">The perfect latte</Card.Title>
         <Card.Description>
           Caffè latte is a coffee beverage of Italian origin made with espresso
           and steamed milk.

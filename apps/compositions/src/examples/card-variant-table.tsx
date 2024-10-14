@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, For, Heading, Text, useSlotRecipe } from "@chakra-ui/react"
+import { Card, For, useSlotRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Button } from "compositions/ui/button"
 
@@ -20,13 +20,11 @@ export const CardVariantTable = () => {
           {(v) => (
             <td key={v}>
               <Card.Root variant={v}>
-                <Card.Header>
-                  <Heading size="md"> Card Title</Heading>
-                </Card.Header>
-                <Card.Body>
-                  <Text>
+                <Card.Body gap="2">
+                  <Card.Title>Card Title</Card.Title>
+                  <Card.Description>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Text>
+                  </Card.Description>
                 </Card.Body>
                 <Card.Footer>
                   <Button variant="solid" colorPalette="blue">

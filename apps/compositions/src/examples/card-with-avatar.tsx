@@ -11,24 +11,23 @@ export const CardWithAvatar = () => {
           <Avatar
             src="https://images.unsplash.com/photo-1511806754518-53bada35f930"
             name="Nate Foss"
-            shape="rounded"
           />
-          <Stack gap="1">
-            <Text fontWeight="medium" lineHeight="1">
+          <Stack gap="0">
+            <Text fontWeight="semibold" textStyle="sm">
               Nate Foss
             </Text>
-            <Text color="fg.subtle" lineHeight="1">
+            <Text color="fg.subtle" textStyle="sm">
               @natefoss
             </Text>
           </Stack>
         </HStack>
-        <Text>
-          <Strong>Nate Foss </Strong>
+        <Card.Description>
+          <Strong color="fg">Nate Foss </Strong>
           has requested to join your team. You can approve or decline their
           request.
-        </Text>
+        </Card.Description>
       </Card.Body>
-      <Card.Footer gap="2">
+      <Card.Footer>
         <Button variant="subtle" colorPalette="red" flex="1">
           <LuX />
           Decline
