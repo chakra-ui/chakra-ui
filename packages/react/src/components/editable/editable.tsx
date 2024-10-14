@@ -101,7 +101,7 @@ const ArkEditableTextarea = forwardRef<
 export const EditableTextarea = withContext<
   HTMLInputElement,
   EditableTextareaProps
->(ArkEditableTextarea, "textarea", { forwardAsChild: true })
+>(ArkEditableTextarea, "input", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 

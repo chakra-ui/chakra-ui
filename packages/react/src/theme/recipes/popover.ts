@@ -40,11 +40,6 @@ export const popoverSlotRecipe = defineSlotRecipe({
       paddingInline: "var(--popover-padding)",
       paddingBottom: "var(--popover-padding)",
     },
-    closeTrigger: {
-      position: "absolute!",
-      top: "1",
-      insetEnd: "1",
-    },
     arrow: {
       "--arrow-size": "sizes.3",
       "--arrow-background": "var(--popover-bg)",

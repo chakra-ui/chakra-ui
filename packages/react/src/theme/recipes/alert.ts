@@ -14,16 +14,22 @@ export const alertSlotRecipe = defineSlotRecipe({
     },
     title: {
       fontWeight: "medium",
-      lineHeight: "1.3",
-      marginEnd: "2",
     },
     description: {
       display: "inline",
-      lineHeight: "1.5",
     },
     indicator: {
-      display: "inherit",
-      flexShrink: 0,
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: "0",
+      width: "1em",
+      height: "1em",
+    },
+    content: {
+      display: "flex",
+      flex: "1",
+      gap: "1",
     },
   },
 
@@ -46,10 +52,26 @@ export const alertSlotRecipe = defineSlotRecipe({
       },
     },
 
+    inline: {
+      true: {
+        content: {
+          display: "inline-flex",
+          flexDirection: "row",
+          alignItems: "center",
+        },
+      },
+      false: {
+        content: {
+          display: "flex",
+          flexDirection: "column",
+        },
+      },
+    },
+
     variant: {
       subtle: {
         root: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.subtle/64",
           color: "colorPalette.fg",
         },
       },
@@ -95,10 +117,10 @@ export const alertSlotRecipe = defineSlotRecipe({
           px: "3",
           py: "3",
           rounded: "md",
-          fontSize: "xs",
+          textStyle: "xs",
         },
         indicator: {
-          fontSize: "md",
+          textStyle: "lg",
         },
       },
       md: {
@@ -107,10 +129,10 @@ export const alertSlotRecipe = defineSlotRecipe({
           px: "4",
           py: "4",
           rounded: "md",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         indicator: {
-          fontSize: "lg",
+          textStyle: "xl",
         },
       },
       lg: {
@@ -119,10 +141,10 @@ export const alertSlotRecipe = defineSlotRecipe({
           px: "4",
           py: "4",
           rounded: "lg",
-          fontSize: "md",
+          textStyle: "md",
         },
         indicator: {
-          fontSize: "lg",
+          textStyle: "2xl",
         },
       },
     },
@@ -132,5 +154,6 @@ export const alertSlotRecipe = defineSlotRecipe({
     status: "info",
     variant: "subtle",
     size: "md",
+    inline: false,
   },
 })

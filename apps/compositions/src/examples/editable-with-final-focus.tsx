@@ -12,7 +12,6 @@ export const EditableWithFinalFocus = () => {
       <Editable.Root
         finalFocusEl={() => ref.current}
         defaultValue="Final fantasy"
-        fontSize="xl"
       >
         <Editable.Preview />
         <Editable.Input />

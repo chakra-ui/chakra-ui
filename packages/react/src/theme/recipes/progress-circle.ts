@@ -60,7 +60,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
       },
       md: {
         circle: {
-          "--size": "48px",
+          "--size": "40px",
           "--thickness": "6px",
         },
         valueText: {
@@ -68,6 +68,15 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
         },
       },
       lg: {
+        circle: {
+          "--size": "48px",
+          "--thickness": "7px",
+        },
+        valueText: {
+          textStyle: "sm",
+        },
+      },
+      xl: {
         circle: {
           "--size": "64px",
           "--thickness": "8px",

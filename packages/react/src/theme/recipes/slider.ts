@@ -21,7 +21,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
     },
     track: {
       overflow: "hidden",
-      borderRadius: "sm",
+      borderRadius: "full",
       flex: "1",
     },
     range: {
@@ -36,6 +36,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       zIndex: "1",
     },
     marker: {
+      "--marker-bg": { base: "white", _underValue: "colors.bg" },
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -47,7 +48,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       width: "var(--slider-marker-size)",
       height: "var(--slider-marker-size)",
       borderRadius: "full",
-      bg: "var(--slider-marker-bg, white)",
+      bg: "var(--marker-bg)",
     },
     thumb: {
       width: "var(--slider-thumb-size)",
@@ -69,40 +70,31 @@ export const sliderSlotRecipe = defineSlotRecipe({
   },
   variants: {
     size: {
-      xs: {
-        root: {
-          "--slider-thumb-size": "sizes.2.5",
-          "--slider-track-size": "sizes.0.5",
-          "--slider-marker-top": "2px",
-          "--slider-marker-size": "2px",
-          "--slider-marker-inset": "1px",
-        },
-      },
       sm: {
-        root: {
-          "--slider-thumb-size": "sizes.3",
-          "--slider-track-size": "sizes.1",
-          "--slider-marker-top": "5px",
-          "--slider-marker-size": "2px",
-          "--slider-marker-inset": "2px",
-        },
-      },
-      md: {
         root: {
           "--slider-thumb-size": "sizes.4",
           "--slider-track-size": "sizes.1.5",
           "--slider-marker-top": "6px",
-          "--slider-marker-size": "4px",
+          "--slider-marker-size": "sizes.1",
           "--slider-marker-inset": "3px",
         },
       },
-      lg: {
+      md: {
         root: {
           "--slider-thumb-size": "sizes.5",
           "--slider-track-size": "sizes.2",
           "--slider-marker-top": "8px",
-          "--slider-marker-size": "4px",
+          "--slider-marker-size": "sizes.1",
           "--slider-marker-inset": "4px",
+        },
+      },
+      lg: {
+        root: {
+          "--slider-thumb-size": "sizes.6",
+          "--slider-track-size": "sizes.2.5",
+          "--slider-marker-top": "9px",
+          "--slider-marker-size": "sizes.1.5",
+          "--slider-marker-inset": "5px",
         },
       },
     },
@@ -110,21 +102,22 @@ export const sliderSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
-          bg: "bg.subtle",
+          bg: "bg.emphasized/72",
         },
         range: {
           bg: "colorPalette.solid",
         },
         thumb: {
-          borderWidth: "1px",
-          borderColor: "border.emphasized",
-          bg: "white",
+          borderWidth: "2px",
+          borderColor: "colorPalette.solid",
+          bg: "bg",
           _disabled: {
             bg: "border.emphasized",
+            borderColor: "border.emphasized",
           },
         },
       },
-      subtle: {
+      solid: {
         track: {
           bg: "colorPalette.subtle",
           _disabled: {

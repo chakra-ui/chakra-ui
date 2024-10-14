@@ -12,34 +12,12 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       verticalAlign: "top",
       position: "relative",
-      _disabled: {
-        cursor: "not-allowed",
-      },
     },
 
-    control: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-      verticalAlign: "top",
-      color: "white",
-      cursor: "checkbox",
-      borderWidth: "1px",
-      borderColor: "transparent",
-      focusVisibleRing: "outside",
-      _invalid: {
-        colorPalette: "red",
-        borderColor: "border.error",
-      },
-      _disabled: {
-        opacity: "0.5",
-      },
-    },
-
-    indicator: checkmarkRecipe.base,
+    control: checkmarkRecipe.base,
 
     label: {
+      fontWeight: "medium",
       userSelect: "none",
       _disabled: {
         opacity: "0.5",
@@ -49,62 +27,34 @@ export const checkboxSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
-      sm: {
-        control: {
-          boxSize: "3",
-          borderRadius: "xs",
-        },
+      xs: {
+        root: { gap: "1.5" },
         label: { textStyle: "xs" },
-        indicator: checkmarkRecipe.variants?.size?.sm,
+        control: checkmarkRecipe.variants?.size?.xs,
+      },
+      sm: {
+        root: { gap: "2" },
+        label: { textStyle: "sm" },
+        control: checkmarkRecipe.variants?.size?.sm,
       },
       md: {
-        control: {
-          boxSize: "4",
-          borderRadius: "xs",
-        },
+        root: { gap: "2.5" },
         label: { textStyle: "sm" },
-        indicator: checkmarkRecipe.variants?.size?.md,
+        control: checkmarkRecipe.variants?.size?.md,
       },
       lg: {
-        control: {
-          boxSize: "5",
-          borderRadius: "sm",
-        },
+        root: { gap: "3" },
         label: { textStyle: "md" },
-        indicator: checkmarkRecipe.variants?.size?.lg,
+        control: checkmarkRecipe.variants?.size?.lg,
       },
     },
 
     variant: {
       outline: {
-        control: {
-          borderWidth: "1px",
-          borderColor: "border",
-          _checked: {
-            bg: "colorPalette.solid",
-            borderColor: "colorPalette.solid",
-            color: "colorPalette.contrast",
-          },
-          _indeterminate: {
-            bg: "colorPalette.solid",
-            borderColor: "colorPalette.solid",
-          },
-        },
-        indicator: checkmarkRecipe.variants?.variant?.outline,
+        control: checkmarkRecipe.variants?.variant?.outline,
       },
       subtle: {
-        control: {
-          borderWidth: "1px",
-          bg: "colorPalette.subtle",
-          borderColor: "colorPalette.subtle",
-          _checked: {
-            color: "colorPalette.fg",
-          },
-          _indeterminate: {
-            color: "colorPalette.fg",
-          },
-        },
-        indicator: checkmarkRecipe.variants?.variant?.subtle,
+        control: checkmarkRecipe.variants?.variant?.subtle,
       },
     },
   },

@@ -17,14 +17,14 @@ export const fieldSlotRecipe = defineSlotRecipe({
       alignItems: "flex-start",
       width: "100%",
       position: "relative",
-      gap: "2",
+      gap: "1.5",
     },
     label: {
       display: "block",
       textAlign: "start",
       textStyle: "sm",
       fontWeight: "medium",
-      marginEnd: "3",
+      marginEnd: "2",
       userSelect: "none",
       _disabled: {
         opacity: "0.5",

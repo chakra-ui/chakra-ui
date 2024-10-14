@@ -22,8 +22,8 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "3",
       borderRadius: "lg",
-      paddingY: "2",
-      paddingX: "2",
+      py: "2.5",
+      px: "3",
       pointerEvents: "auto",
       // Stabilize the position of the action bar when the scrollbar is hidden
       // by using the scrollbar width to offset the position.
@@ -50,9 +50,10 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       gap: "2",
+      alignSelf: "stretch",
       textStyle: "sm",
-      paddingX: "4",
-      paddingY: "1",
+      px: "4",
+      py: "1",
       borderRadius: "md",
       borderWidth: "1px",
       borderStyle: "dashed",

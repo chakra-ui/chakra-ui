@@ -5,7 +5,7 @@ export const SliderWithVariants = () => {
   return (
     <Stack width="200px" gap="4">
       <Slider defaultValue={[40]} variant="outline" label="slider - outline" />
-      <Slider defaultValue={[40]} variant="subtle" label="slider - subtle" />
+      <Slider defaultValue={[40]} variant="solid" label="slider - solid" />
     </Stack>
   )
 }

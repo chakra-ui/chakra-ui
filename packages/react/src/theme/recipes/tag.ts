@@ -10,10 +10,12 @@ export const tagSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
-      verticalAlign: "top",
+      gap: "1",
       alignItems: "center",
+      verticalAlign: "top",
       maxWidth: "100%",
       userSelect: "none",
+      borderRadius: "sm",
       _icon: {
         fontSize: "md",
       },
@@ -21,7 +23,6 @@ export const tagSlotRecipe = defineSlotRecipe({
     },
     label: {
       lineClamp: "1",
-      lineHeight: "1.2",
       px: "0.2em",
     },
     closeTrigger: {
@@ -39,26 +40,29 @@ export const tagSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          fontSize: "xs",
           padding: "0.5",
-          gap: "1",
-          borderRadius: "sm",
+          minH: "5",
+        },
+        label: {
+          textStyle: "xs",
         },
       },
       md: {
         root: {
-          fontSize: "sm",
-          padding: "1",
-          gap: "1",
-          borderRadius: "md",
+          padding: "0.5",
+          minH: "6",
+        },
+        label: {
+          textStyle: "sm",
         },
       },
       lg: {
         root: {
-          fontSize: "sm",
           padding: "1.5",
-          gap: "1",
-          borderRadius: "md",
+          minH: "7",
+        },
+        label: {
+          textStyle: "sm",
         },
       },
     },

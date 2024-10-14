@@ -40,13 +40,13 @@ export const TabsVariantTable = () => {
                         <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
                       </Tabs.List>
                       <Tabs.ContentGroup>
-                        <Tabs.Content value="settings" padding="2">
+                        <Tabs.Content value="settings">
                           <Text fontSize="sm">
                             Settings - Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit.
                           </Text>
                         </Tabs.Content>
-                        <Tabs.Content value="billing" padding="2">
+                        <Tabs.Content value="billing">
                           <Text fontSize="sm">
                             Billing - Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit.

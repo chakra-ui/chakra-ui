@@ -9,9 +9,9 @@ export const TabsNested = () => {
         <Tabs.Trigger value="two">Tab 2</Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value="one">
-        <Heading mb="6" mt="4">
+        <Text textStyle="md" mb="6" mt="4">
           This is a nested tab
-        </Heading>
+        </Text>
         <Tabs.Root variant="subtle" defaultValue="one">
           <Tabs.List>
             <Tabs.Trigger value="one">Tab 1.1</Tabs.Trigger>

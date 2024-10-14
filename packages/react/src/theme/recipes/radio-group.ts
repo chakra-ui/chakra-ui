@@ -11,6 +11,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       verticalAlign: "top",
       position: "relative",
+      fontWeight: "medium",
       _disabled: {
         cursor: "disabled",
       },
@@ -20,6 +21,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
 
     label: {
       userSelect: "none",
+      textStyle: "sm",
       _disabled: {
         opacity: "0.5",
       },
@@ -41,43 +43,24 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
     },
 
     size: {
+      xs: {
+        item: { textStyle: "xs", gap: "1.5" },
+        itemControl: radiomarkRecipe.variants?.size?.xs,
+      },
+
       sm: {
-        item: {
-          textStyle: "xs",
-          gap: "0.35rem",
-        },
-        itemControl: {
-          boxSize: "3",
-        },
-        label: {
-          textStyle: "xs",
-        },
+        item: { textStyle: "sm", gap: "2" },
+        itemControl: radiomarkRecipe.variants?.size?.sm,
       },
 
       md: {
-        item: {
-          textStyle: "sm",
-          gap: "0.5rem",
-        },
-        itemControl: {
-          boxSize: "4",
-        },
-        label: {
-          textStyle: "sm",
-        },
+        item: { textStyle: "sm", gap: "2.5" },
+        itemControl: radiomarkRecipe.variants?.size?.md,
       },
 
       lg: {
-        item: {
-          textStyle: "md",
-          gap: "0.5rem",
-        },
-        itemControl: {
-          boxSize: "5",
-        },
-        label: {
-          textStyle: "md",
-        },
+        item: { textStyle: "md", gap: "3" },
+        itemControl: radiomarkRecipe.variants?.size?.lg,
       },
     },
   },

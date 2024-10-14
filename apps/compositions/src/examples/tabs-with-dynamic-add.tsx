@@ -62,7 +62,8 @@ export const TabsWithDynamicAdd = () => {
             <CloseButton
               as="span"
               role="button"
-              size="xs"
+              size="2xs"
+              me="-2"
               onClick={(e) => {
                 e.stopPropagation()
                 removeTab(item.id)
@@ -73,7 +74,7 @@ export const TabsWithDynamicAdd = () => {
         <Button
           alignSelf="center"
           ms="2"
-          size="xs"
+          size="2xs"
           variant="ghost"
           onClick={addTab}
         >

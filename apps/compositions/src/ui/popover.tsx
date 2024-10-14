@@ -36,7 +36,14 @@ export const PopoverCloseTrigger = forwardRef<
   ChakraPopover.CloseTriggerProps
 >(function PopoverCloseTrigger(props, ref) {
   return (
-    <ChakraPopover.CloseTrigger {...props} asChild ref={ref}>
+    <ChakraPopover.CloseTrigger
+      position="absolute"
+      top="1"
+      insetEnd="1"
+      {...props}
+      asChild
+      ref={ref}
+    >
       <CloseButton size="sm" />
     </ChakraPopover.CloseTrigger>
   )

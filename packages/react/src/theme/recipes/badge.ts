@@ -5,11 +5,12 @@ export const badgeRecipe = defineRecipe({
   base: {
     display: "inline-flex",
     alignItems: "center",
+    borderRadius: "sm",
     gap: "1",
     fontWeight: "medium",
     fontVariantNumeric: "tabular-nums",
     whiteSpace: "nowrap",
-    verticalAlign: "middle",
+    userSelect: "none",
   },
   variants: {
     variant: {
@@ -39,27 +40,23 @@ export const badgeRecipe = defineRecipe({
     size: {
       xs: {
         textStyle: "2xs",
-        borderRadius: "xs",
         px: "1",
-        py: "1px",
+        minH: "4",
       },
       sm: {
         textStyle: "xs",
-        borderRadius: "sm",
         px: "1.5",
-        py: "1px",
+        minH: "5",
       },
       md: {
         textStyle: "sm",
-        borderRadius: "sm",
         px: "2",
-        py: "1px",
+        minH: "6",
       },
       lg: {
         textStyle: "sm",
-        borderRadius: "sm",
         px: "2.5",
-        py: "1",
+        minH: "7",
       },
     },
   },

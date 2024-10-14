@@ -9,8 +9,9 @@ export const TagWithAvatar = () => {
         <Tag
           key={item.name}
           rounded="full"
-          startElement={<Avatar size="sm" src={item.src} name={item.name} />}
-          pe="2"
+          size="lg"
+          startElement={<Avatar size="xs" src={item.src} name={item.name} />}
+          // p="1"
         >
           {item.name}
         </Tag>

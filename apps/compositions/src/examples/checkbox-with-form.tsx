@@ -13,7 +13,7 @@ export const CheckboxWithForm = () => {
         console.log(e.currentTarget.elements)
       }}
     >
-      <Stack maxW="sm" gap="4">
+      <Stack maxW="sm" gap="4" align="flex-start">
         <Field label="User name">
           <Input name="username" />
         </Field>
@@ -21,11 +21,11 @@ export const CheckboxWithForm = () => {
           <Input name="password" />
         </Field>
 
-        <Checkbox name="remember" value="one" alignSelf="flex-start">
+        <Checkbox mt="2" name="remember" value="one">
           Remember me
         </Checkbox>
 
-        <Button alignSelf="flex-start" variant="solid" mt="3">
+        <Button variant="solid" mt="3">
           Submit
         </Button>
       </Stack>

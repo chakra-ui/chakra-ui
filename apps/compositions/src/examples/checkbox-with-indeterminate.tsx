@@ -5,10 +5,10 @@ export const CheckboxWithIndeterminate = () => {
   return (
     <Stack>
       <Checkbox defaultChecked="indeterminate" variant="subtle">
-        Indeterminate
+        Subtle
       </Checkbox>
       <Checkbox defaultChecked="indeterminate" variant="outline">
-        Checked
+        Outline
       </Checkbox>
     </Stack>
   )

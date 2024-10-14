@@ -50,7 +50,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       sm: {
         root: {
           rounded: "md",
-          textStyle: "xs",
+          textStyle: "sm",
         },
         control: {
           padding: "3",

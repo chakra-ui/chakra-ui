@@ -213,7 +213,7 @@ export type TextareaVariantMap = {
 }
 
 export interface IconVariant {
-  /** @default "md" */
+  /** @default "inherit" */
   size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 }
 

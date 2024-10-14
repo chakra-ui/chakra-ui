@@ -67,22 +67,22 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         item: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
       sm: {
         item: {
-          fontSize: "lg",
+          textStyle: "md",
         },
       },
       md: {
         item: {
-          fontSize: "2xl",
+          textStyle: "xl",
         },
       },
       lg: {
         item: {
-          fontSize: "3xl",
+          textStyle: "2xl",
         },
       },
     },

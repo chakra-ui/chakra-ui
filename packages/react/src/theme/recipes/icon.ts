@@ -44,6 +44,6 @@ export const iconRecipe = defineRecipe({
   },
 
   defaultVariants: {
-    size: "md",
+    size: "inherit",
   },
 })

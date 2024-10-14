@@ -6,42 +6,85 @@ const sharedStyles = defineStyle({
   fontWeight: "inherit",
   textAlign: "inherit",
   bg: "transparent",
+  borderRadius: "var(--editable-radius)",
 })
 
 export const editableSlotRecipe = defineSlotRecipe({
   slots: editableAnatomy.keys(),
   className: "chakra-editable",
   base: {
+    root: {
+      "--editable-radius": "radii.sm",
+      display: "inline-flex",
+      alignItems: "center",
+      position: "relative",
+      gap: "1.5",
+      width: "full",
+    },
     preview: {
       ...sharedStyles,
-      borderRadius: "md",
       py: "1",
+      px: "1",
+      display: "inline-flex",
+      alignItems: "center",
       transitionProperty: "common",
       transitionDuration: "normal",
       cursor: "text",
-      display: "inline-block",
+      _hover: {
+        bg: "bg.subtle",
+      },
+      _disabled: {
+        userSelect: "none",
+      },
     },
     input: {
       ...sharedStyles,
-      borderRadius: "md",
       outline: 0,
       py: "1",
+      px: "1",
       transitionProperty: "common",
       transitionDuration: "normal",
       width: "full",
       focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      bg: "bg",
       _placeholder: { opacity: 0.6 },
     },
-    textarea: {
-      ...sharedStyles,
-      outline: 0,
-      borderRadius: "md",
-      py: "1",
-      transitionProperty: "common",
-      transitionDuration: "normal",
-      width: "full",
-      focusVisibleRing: "inside",
-      _placeholder: { opacity: 0.6 },
+
+    control: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "1.5",
     },
+  },
+
+  variants: {
+    size: {
+      sm: {
+        root: {
+          textStyle: "sm",
+        },
+        preview: { minH: "8" },
+        input: { minH: "8" },
+      },
+      md: {
+        root: {
+          textStyle: "sm",
+        },
+        preview: { minH: "9" },
+        input: { minH: "9" },
+      },
+      lg: {
+        root: {
+          textStyle: "md",
+        },
+        preview: { minH: "10" },
+        input: { minH: "10" },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "md",
   },
 })

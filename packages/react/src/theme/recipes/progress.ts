@@ -113,6 +113,9 @@ export const progressSlotRecipe = defineSlotRecipe({
       lg: {
         track: { h: "2.5" },
       },
+      xl: {
+        track: { h: "3.5" },
+      },
     },
   },
 

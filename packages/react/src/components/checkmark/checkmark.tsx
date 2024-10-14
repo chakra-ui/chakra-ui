@@ -38,42 +38,27 @@ export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
 
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
-    const sharedProps = {
-      ref,
-      "data-checked": dataAttr(checked),
-      "data-disabled": dataAttr(disabled),
-      "data-indeterminate": dataAttr(indeterminate),
-      ...rest,
-      css: [styles, props.css],
-    }
-
-    if (indeterminate) {
-      return (
-        <chakra.svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3px"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          {...sharedProps}
-        >
-          <path d="M5 12h14" />
-        </chakra.svg>
-      )
-    }
-
     return (
       <chakra.svg
+        ref={ref}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="3px"
         strokeLinecap="round"
         strokeLinejoin="round"
-        {...sharedProps}
+        data-state={
+          indeterminate ? "indeterminate" : checked ? "checked" : "unchecked"
+        }
+        data-disabled={dataAttr(disabled)}
+        css={[styles, props.css]}
+        {...rest}
       >
-        {checked && <polyline points="20 6 9 17 4 12" />}
+        {indeterminate ? (
+          <path d="M5 12h14" />
+        ) : checked ? (
+          <polyline points="20 6 9 17 4 12" />
+        ) : null}
       </chakra.svg>
     )
   },

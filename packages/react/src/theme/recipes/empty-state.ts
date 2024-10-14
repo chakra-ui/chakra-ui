@@ -26,7 +26,6 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
       },
     },
     title: {
-      textStyle: "lg",
       fontWeight: "semibold",
     },
     description: {
@@ -37,10 +36,28 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
+      sm: {
+        root: {
+          px: "4",
+          py: "6",
+        },
+        title: {
+          textStyle: "md",
+        },
+        content: {
+          gap: "4",
+        },
+        indicator: {
+          textStyle: "2xl",
+        },
+      },
       md: {
         root: {
           px: "8",
           py: "12",
+        },
+        title: {
+          textStyle: "lg",
         },
         content: {
           gap: "6",
@@ -53,6 +70,9 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
         root: {
           px: "12",
           py: "16",
+        },
+        title: {
+          textStyle: "xl",
         },
         content: {
           gap: "8",

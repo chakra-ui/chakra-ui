@@ -12,11 +12,10 @@ export const avatarSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
       position: "relative",
       verticalAlign: "top",
-      flexShrink: 0,
+      flexShrink: "0",
       userSelect: "none",
       width: "var(--avatar-size)",
       height: "var(--avatar-size)",
-      "--avatar-font-size": "calc(var(--avatar-size) / 2.5)",
       fontSize: "var(--avatar-font-size)",
       borderRadius: "var(--avatar-radius)",
       "&[data-group-item]": {
@@ -41,40 +40,46 @@ export const avatarSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
+      "2xs": {
+        root: {
+          "--avatar-font-size": "fontSizes.2xs",
+          "--avatar-size": "sizes.4",
+        },
+      },
       xs: {
         root: {
-          "--avatar-size": "sizes.4",
-          "--avatar-margin": "-0.45rem",
+          "--avatar-font-size": "fontSizes.xs",
+          "--avatar-size": "sizes.6",
         },
       },
       sm: {
         root: {
-          "--avatar-size": "sizes.6",
-          "--avatar-margin": "-0.5rem",
+          "--avatar-font-size": "fontSizes.sm",
+          "--avatar-size": "sizes.8",
         },
       },
       md: {
         root: {
-          "--avatar-size": "sizes.8",
-          "--avatar-margin": "-0.65rem",
+          "--avatar-font-size": "fontSizes.md",
+          "--avatar-size": "sizes.10",
         },
       },
       lg: {
         root: {
-          "--avatar-size": "sizes.10",
-          "--avatar-margin": "-0.8rem",
+          "--avatar-font-size": "fontSizes.md",
+          "--avatar-size": "sizes.11",
         },
       },
       xl: {
         root: {
-          "--avatar-size": "sizes.14",
-          "--avatar-margin": "-0.85rem",
+          "--avatar-font-size": "fontSizes.lg",
+          "--avatar-size": "sizes.12",
         },
       },
       "2xl": {
         root: {
-          "--avatar-size": "sizes.20",
-          "--avatar-margin": "-1rem",
+          "--avatar-font-size": "fontSizes.xl",
+          "--avatar-size": "sizes.16",
         },
       },
     },

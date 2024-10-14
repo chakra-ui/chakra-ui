@@ -7,7 +7,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-
       _horizontal: {
         display: "block",
       },
@@ -15,8 +14,23 @@ export const tabsSlotRecipe = defineSlotRecipe({
         display: "flex",
       },
     },
+    list: {
+      display: "inline-flex",
+      position: "relative",
+      isolation: "isolate",
+      "--tabs-indicator-shadow": "shadows.xs",
+      "--tabs-indicator-bg": "colors.bg",
+      minH: "var(--tabs-height)",
+      _horizontal: {
+        flexDirection: "row",
+      },
+      _vertical: {
+        flexDirection: "column",
+      },
+    },
     trigger: {
-      outline: 0,
+      outline: "0",
+      minW: "var(--tabs-height)",
       display: "flex",
       alignItems: "center",
       fontWeight: "medium",
@@ -32,22 +46,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         opacity: 0.5,
       },
     },
-    list: {
-      display: "inline-flex",
-      position: "relative",
-      isolation: "isolate",
-      "--tabs-indicator-shadow": "shadows.xs",
-      "--tabs-indicator-bg": "colors.bg",
-      _horizontal: {
-        flexDirection: "row",
-      },
-      _vertical: {
-        flexDirection: "column",
-      },
-    },
     content: {
-      mt: "var(--tabs-gap-y)",
-      ms: "var(--tabs-gap-x)",
       width: "var(--tabs-width)",
       height: "var(--tabs-height)",
       _focusVisible: {
@@ -55,12 +54,12 @@ export const tabsSlotRecipe = defineSlotRecipe({
         outlineColor: "focusRing",
       },
       _horizontal: {
-        "--tabs-width": "100%",
-        "--tabs-gap-y": "spacing.2",
+        width: "100%",
+        pt: "var(--tabs-content-padding)",
       },
       _vertical: {
-        "--tabs-height": "100%",
-        "--tabs-gap-x": "spacing.2",
+        height: "100%",
+        ps: "var(--tabs-content-padding)",
       },
     },
     indicator: {
@@ -110,6 +109,8 @@ export const tabsSlotRecipe = defineSlotRecipe({
         root: {
           "--tabs-trigger-radius": "radii.sm",
           "--tabs-indicator-radius": "radii.sm",
+          "--tabs-height": "sizes.9",
+          "--tabs-content-padding": "spacing.3",
         },
         trigger: {
           py: "1",
@@ -121,9 +122,11 @@ export const tabsSlotRecipe = defineSlotRecipe({
         root: {
           "--tabs-trigger-radius": "radii.sm",
           "--tabs-indicator-radius": "radii.sm",
+          "--tabs-height": "sizes.10",
+          "--tabs-content-padding": "spacing.4",
         },
         trigger: {
-          py: "1.5",
+          py: "2",
           px: "4",
           textStyle: "sm",
         },
@@ -132,10 +135,12 @@ export const tabsSlotRecipe = defineSlotRecipe({
         root: {
           "--tabs-trigger-radius": "radii.sm",
           "--tabs-indicator-radius": "radii.sm",
+          "--tabs-height": "sizes.11",
+          "--tabs-content-padding": "spacing.4.5",
         },
         trigger: {
           py: "2",
-          px: "5",
+          px: "4.5",
           textStyle: "md",
         },
       },
@@ -144,6 +149,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
     variant: {
       line: {
         list: {
+          display: "flex",
           borderColor: "border",
           _horizontal: {
             borderBottomWidth: "1px",
@@ -188,6 +194,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           bg: "bg.subtle",
           padding: "1",
           borderRadius: "md",
+          minH: "calc(var(--tabs-height) - 4px)",
         },
         trigger: {
           justifyContent: "center",
@@ -206,6 +213,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           "--line-thickness": "1px",
           "--line-offset": "calc(var(--line-thickness) * -1)",
           borderColor: "border",
+          display: "flex",
           _horizontal: {
             _before: {
               content: '""',

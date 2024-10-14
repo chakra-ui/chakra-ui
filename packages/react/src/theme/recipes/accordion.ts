@@ -16,6 +16,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       width: "100%",
       outline: "0",
+      gap: "3",
       fontWeight: "medium",
       borderRadius: "var(--accordion-radius)",
       _focusVisible: {
@@ -44,13 +45,13 @@ export const accordionSlotRecipe = defineSlotRecipe({
     itemIndicator: {
       transition: "transform 0.2s",
       transformOrigin: "center",
+      color: "fg.muted",
       _open: {
         transform: "rotate(180deg)",
       },
       _icon: {
-        boxSize: "1em",
-        fontSize: "lg",
-        color: "fg.muted",
+        width: "1.2em",
+        height: "1.2em",
       },
     },
   },
@@ -105,13 +106,14 @@ export const accordionSlotRecipe = defineSlotRecipe({
       sm: {
         root: {
           "--accordion-padding-x": "spacing.3",
-          "--accordion-padding-y": "spacing.1.5",
+          "--accordion-padding-y": "spacing.2",
           "--accordion-radius": "radii.sm",
         },
-        item: {
-          textStyle: "sm",
+        itemContent: {
+          textStyle: "xs",
         },
         itemTrigger: {
+          textStyle: "sm",
           paddingY: "var(--accordion-padding-y)",
         },
       },
@@ -121,23 +123,25 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-padding-y": "spacing.2",
           "--accordion-radius": "radii.md",
         },
-        item: {
+        itemContent: {
           textStyle: "sm",
         },
         itemTrigger: {
+          textStyle: "md",
           paddingY: "var(--accordion-padding-y)",
         },
       },
       lg: {
         root: {
-          "--accordion-padding-x": "spacing.6",
-          "--accordion-padding-y": "spacing.3",
+          "--accordion-padding-x": "spacing.4.5",
+          "--accordion-padding-y": "spacing.2.5",
           "--accordion-radius": "radii.md",
         },
-        item: {
+        itemContent: {
           textStyle: "md",
         },
         itemTrigger: {
+          textStyle: "lg",
           paddingY: "var(--accordion-padding-y)",
         },
       },

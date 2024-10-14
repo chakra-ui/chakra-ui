@@ -9,12 +9,12 @@ export const SwitchWithTrackLabel = () => {
       size="lg"
       trackLabel={{
         on: (
-          <Icon color="yellow.400">
+          <Icon asChild color="yellow.400">
             <FaSun />
           </Icon>
         ),
         off: (
-          <Icon color="gray.400">
+          <Icon asChild color="gray.400">
             <FaMoon />
           </Icon>
         ),

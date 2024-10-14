@@ -11,6 +11,7 @@ export const checkmarkRecipe = defineRecipe({
     color: "white",
     borderWidth: "1px",
     borderColor: "transparent",
+    borderRadius: "sm",
     focusVisibleRing: "outside",
     _invalid: {
       colorPalette: "red",
@@ -22,17 +23,30 @@ export const checkmarkRecipe = defineRecipe({
   },
   variants: {
     size: {
-      sm: {
-        boxSize: "3.5",
+      xs: {
+        boxSize: "3",
         borderRadius: "xs",
+        _icon: {
+          boxSize: "2.5",
+        },
+      },
+      sm: {
+        boxSize: "4",
+        _icon: {
+          boxSize: "3",
+        },
       },
       md: {
-        boxSize: "4",
-        borderRadius: "xs",
+        boxSize: "5",
+        _icon: {
+          boxSize: "3.5",
+        },
       },
       lg: {
-        boxSize: "5",
-        borderRadius: "sm",
+        boxSize: "6",
+        _icon: {
+          boxSize: "4",
+        },
       },
     },
 
@@ -40,7 +54,7 @@ export const checkmarkRecipe = defineRecipe({
       outline: {
         borderWidth: "1px",
         borderColor: "border",
-        "&:is([data-checked], [data-indeterminate])": {
+        "&:is([data-state=checked], [data-state=indeterminate])": {
           bg: "colorPalette.solid",
           color: "colorPalette.contrast",
           borderColor: "colorPalette.solid",
@@ -50,12 +64,12 @@ export const checkmarkRecipe = defineRecipe({
         borderWidth: "1px",
         bg: "colorPalette.subtle",
         borderColor: "colorPalette.subtle",
-        "&:is([data-checked], [data-indeterminate])": {
+        "&:is([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
         },
       },
       plain: {
-        "&:is([data-checked], [data-indeterminate])": {
+        "&:is([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
         },
       },
@@ -64,7 +78,7 @@ export const checkmarkRecipe = defineRecipe({
         borderWidth: "1px",
         borderColor: "border",
         color: "colorPalette.fg",
-        "&:is([data-checked], [data-indeterminate])": {
+        "&:is([data-state=checked], [data-state=indeterminate])": {
           borderColor: "colorPalette.solid",
         },
       },
