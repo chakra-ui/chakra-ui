@@ -15,3 +15,4 @@ export default {
 export { EmptyStateBasic as Basic } from "compositions/examples/empty-state-basic"
 export { EmptyStateWithAction as Action } from "compositions/examples/empty-state-with-action"
 export { EmptyStateWithList as List } from "compositions/examples/empty-state-with-list"
+export { EmptyStateSizes as Sizes } from "compositions/examples/empty-state-sizes"
