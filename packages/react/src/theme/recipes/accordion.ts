@@ -45,11 +45,11 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
     },
     itemIndicator: {
-      transition: "transform 0.2s",
+      transition: "rotate 0.2s",
       transformOrigin: "center",
       color: "fg.muted",
       _open: {
-        transform: "rotate(180deg)",
+        rotate: "180deg",
       },
       _icon: {
         width: "1.2em",
