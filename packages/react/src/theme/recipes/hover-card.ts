@@ -17,18 +17,16 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       shadow: "md",
       width: "xs",
       borderRadius: "var(--hovercard-radius)",
-      zIndex: "inherit",
+      zIndex: "popover",
       transformOrigin: "var(--transform-origin)",
-      outline: 0,
+      outline: "0",
       _open: {
         animationStyle: "scale-fade-in",
-        animationDuration: "moderate",
-        animationTimingFunction: "ease-out",
+        animationDuration: "fast",
       },
       _closed: {
         animationStyle: "scale-fade-out",
         animationDuration: "faster",
-        animationTimingFunction: "ease-in",
       },
     },
     arrow: {

@@ -13,10 +13,16 @@ export const popoverSlotRecipe = defineSlotRecipe({
       "--popover-bg": "colors.bg.panel",
       bg: "var(--popover-bg)",
       shadow: "md",
-      width: "xs",
+      "--popover-size": "sizes.xs",
+      "--popover-mobile-size": "calc(100dvw - 1rem)",
+      width: {
+        base: "min(var(--popover-mobile-size), var(--popover-size))",
+        sm: "var(--popover-size)",
+      },
       borderRadius: "var(--popover-radius)",
       zIndex: "popover",
-      outline: 0,
+      outline: "0",
+      transformOrigin: "var(--transform-origin)",
       _open: {
         animationStyle: "scale-fade-in",
         animationDuration: "fast",
@@ -32,7 +38,7 @@ export const popoverSlotRecipe = defineSlotRecipe({
     },
     body: {
       padding: "var(--popover-padding)",
-      flex: "1 1 0%",
+      flex: "1",
     },
     footer: {
       display: "flex",

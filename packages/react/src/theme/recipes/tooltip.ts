@@ -17,6 +17,7 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       boxShadow: "md",
       maxW: "xs",
       zIndex: "tooltip",
+      transformOrigin: "var(--transform-origin)",
       _open: {
         animationStyle: "scale-fade-in",
         animationDuration: "fast",
