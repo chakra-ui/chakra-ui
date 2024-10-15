@@ -1,11 +1,5 @@
 import { Accordion } from "@chakra-ui/react"
 
-const items = [
-  { value: "a", title: "First Item", text: "Some value 1..." },
-  { value: "b", title: "Second Item", text: "Some value 2..." },
-  { value: "c", title: "Third Item", text: "Some value 3..." },
-]
-
 export const AccordionManual = () => {
   return (
     <Accordion.Root collapsible defaultValue={["b"]}>
@@ -23,3 +17,9 @@ export const AccordionManual = () => {
     </Accordion.Root>
   )
 }
+
+const items = [
+  { value: "a", title: "First Item", text: "Some value 1..." },
+  { value: "b", title: "Second Item", text: "Some value 2..." },
+  { value: "c", title: "Third Item", text: "Some value 3..." },
+]

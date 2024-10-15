@@ -45,12 +45,6 @@ export const AccordionSizeTable = () => {
   )
 }
 
-const items = [
-  { value: "a", title: "First Item", text: "Some value 1..." },
-  { value: "b", title: "Second Item", text: "Some value 2..." },
-  { value: "c", title: "Third Item", text: "Some value 3..." },
-]
-
 const AccordionDemo = (props: AccordionRootProps) => {
   return (
     <AccordionRoot collapsible defaultValue={["b"]} {...props}>
@@ -63,3 +57,9 @@ const AccordionDemo = (props: AccordionRootProps) => {
     </AccordionRoot>
   )
 }
+
+const items = [
+  { value: "a", title: "First Item", text: "Some value 1..." },
+  { value: "b", title: "Second Item", text: "Some value 2..." },
+  { value: "c", title: "Third Item", text: "Some value 3..." },
+]

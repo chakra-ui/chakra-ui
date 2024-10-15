@@ -5,12 +5,6 @@ import {
   AccordionRoot,
 } from "compositions/ui/accordion"
 
-const items = [
-  { value: "a", title: "First Item", text: "Some value 1..." },
-  { value: "b", title: "Second Item", text: "Some value 2..." },
-  { value: "c", title: "Third Item", text: "Some value 3..." },
-]
-
 export const AccordionWithMultiple = () => {
   return (
     <AccordionRoot multiple defaultValue={["b"]}>
@@ -23,3 +17,9 @@ export const AccordionWithMultiple = () => {
     </AccordionRoot>
   )
 }
+
+const items = [
+  { value: "a", title: "First Item", text: "Some value 1..." },
+  { value: "b", title: "Second Item", text: "Some value 2..." },
+  { value: "c", title: "Third Item", text: "Some value 3..." },
+]

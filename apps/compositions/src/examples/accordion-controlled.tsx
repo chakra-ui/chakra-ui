@@ -8,12 +8,6 @@ import {
 } from "compositions/ui/accordion"
 import { useState } from "react"
 
-const items = [
-  { value: "a", title: "First Item", text: "Some value 1..." },
-  { value: "b", title: "Second Item", text: "Some value 2..." },
-  { value: "c", title: "Third Item", text: "Some value 3..." },
-]
-
 export const AccordionControlled = () => {
   const [value, setValue] = useState(["b"])
   return (
@@ -27,3 +21,9 @@ export const AccordionControlled = () => {
     </AccordionRoot>
   )
 }
+
+const items = [
+  { value: "a", title: "First Item", text: "Some value 1..." },
+  { value: "b", title: "Second Item", text: "Some value 2..." },
+  { value: "c", title: "Third Item", text: "Some value 3..." },
+]
