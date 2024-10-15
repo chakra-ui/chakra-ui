@@ -14,7 +14,7 @@ export const ToasterWithStatus = () => {
             key={type}
             onClick={() =>
               toaster.create({
-                title: `${type} toast`,
+                title: `Toast status is ${type}`,
                 type: type,
               })
             }

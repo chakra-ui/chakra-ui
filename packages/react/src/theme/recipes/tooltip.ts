@@ -11,7 +11,7 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       color: "fg.inverted",
       px: "2.5",
       py: "1",
-      borderRadius: "md",
+      borderRadius: "sm",
       fontWeight: "medium",
       textStyle: "xs",
       boxShadow: "md",
