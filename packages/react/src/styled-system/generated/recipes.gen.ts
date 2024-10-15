@@ -998,7 +998,7 @@ export interface StepsVariant {
   /** @default "solid" */
   variant?: "solid" | "subtle"
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export type StepsVariantProps = {

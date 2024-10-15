@@ -7,7 +7,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "flex",
-      gap: "4",
+      width: "full",
     },
     list: {
       display: "flex",
@@ -30,13 +30,13 @@ export const stepsSlotRecipe = defineSlotRecipe({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      flexShrink: 0,
+      flexShrink: "0",
       borderRadius: "full",
       fontWeight: "medium",
       width: "var(--steps-size)",
       height: "var(--steps-size)",
       _icon: {
-        flexShrink: 0,
+        flexShrink: "0",
         width: "var(--steps-icon-size)",
         height: "var(--steps-icon-size)",
       },
@@ -155,34 +155,56 @@ export const stepsSlotRecipe = defineSlotRecipe({
     },
 
     size: {
-      sm: {
+      xs: {
+        root: {
+          gap: "2.5",
+        },
         list: {
           "--steps-size": "sizes.6",
-          "--steps-icon-size": "sizes.4",
-          fontSize: "xs",
+          "--steps-icon-size": "sizes.3.5",
+          textStyle: "xs",
         },
         title: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
-      md: {
+      sm: {
+        root: {
+          gap: "3",
+        },
         list: {
           "--steps-size": "sizes.8",
           "--steps-icon-size": "sizes.4",
-          fontSize: "xs",
+          textStyle: "xs",
         },
         title: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
-      lg: {
+      md: {
+        root: {
+          gap: "4",
+        },
         list: {
           "--steps-size": "sizes.10",
           "--steps-icon-size": "sizes.4",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         title: {
-          fontSize: "md",
+          textStyle: "sm",
+        },
+      },
+      lg: {
+        root: {
+          gap: "6",
+        },
+        list: {
+          "--steps-size": "sizes.11",
+          "--steps-icon-size": "sizes.5",
+          textStyle: "md",
+        },
+        title: {
+          textStyle: "md",
         },
       },
     },

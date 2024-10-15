@@ -8,19 +8,24 @@ const triggerStyle = defineStyle({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  flex: 1,
+  flex: "1",
   userSelect: "none",
   cursor: "button",
   lineHeight: "1",
   color: "fg.subtle",
+  "--stepper-base-radius": "radii.xs",
+  "--stepper-radius": "calc(var(--stepper-base-radius) + 1px)",
+  _icon: {
+    boxSize: "1em",
+  },
   _disabled: {
     opacity: "0.5",
   },
   _hover: {
-    bg: { _light: "gray.50", _dark: "gray.400/10" },
+    bg: "bg.subtle",
   },
   _active: {
-    bg: { _light: "gray.100", _dark: "gray.400/20" },
+    bg: "bg.emphasized",
   },
 })
 
@@ -30,13 +35,13 @@ export const numberInputSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-      zIndex: 0,
+      zIndex: "0",
       isolation: "isolate",
     },
     input: {
       ...inputRecipe.base,
       verticalAlign: "top",
-      paddingEnd: "calc(var(--stepper-width) + 0.5rem)",
+      pe: "calc(var(--stepper-width) + 0.5rem)",
     },
     control: {
       display: "flex",
@@ -71,7 +76,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         input: inputRecipe.variants!.size.xs,
         control: {
           fontSize: "2xs",
-          "--stepper-radius": "radii.sm",
           "--stepper-width": "sizes.4",
         },
       },
@@ -79,7 +83,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         input: inputRecipe.variants!.size.sm,
         control: {
           fontSize: "xs",
-          "--stepper-radius": "radii.sm",
           "--stepper-width": "sizes.5",
         },
       },
@@ -87,7 +90,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         input: inputRecipe.variants!.size.md,
         control: {
           fontSize: "sm",
-          "--stepper-radius": "radii.md",
           "--stepper-width": "sizes.6",
         },
       },
@@ -95,7 +97,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         input: inputRecipe.variants!.size.lg,
         control: {
           fontSize: "sm",
-          "--stepper-radius": "radii.md",
           "--stepper-width": "sizes.6",
         },
       },
@@ -107,5 +108,8 @@ export const numberInputSlotRecipe = defineSlotRecipe({
     ]),
   },
 
-  defaultVariants: inputRecipe.defaultVariants,
+  defaultVariants: {
+    size: "md",
+    variant: "outline",
+  },
 })

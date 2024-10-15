@@ -17,7 +17,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       userSelect: "none",
       borderRadius: "sm",
       _icon: {
-        fontSize: "md",
+        boxSize: "1em",
       },
       focusVisibleRing: "outside",
     },
