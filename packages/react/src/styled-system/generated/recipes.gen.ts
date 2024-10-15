@@ -337,7 +337,7 @@ export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "full" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "subtle" */
   variant?: "solid" | "subtle" | "outline"
   /** @default "full" */
@@ -361,7 +361,7 @@ export interface BlockquoteVariant {
   /** @default "start" */
   justify?: "start" | "center" | "end"
   /** @default "subtle" */
-  variant?: "subtle" | "solid"
+  variant?: "subtle" | "solid" | "plain"
 }
 
 export type BlockquoteVariantProps = {
@@ -1138,13 +1138,13 @@ export type StatusVariantMap = {
 
 // Timeline
 
-export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator" | "connector"
+export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator" | "connector" | "title" | "description"
 
 export interface TimelineVariant {
   /** @default "solid" */
   variant?: "subtle" | "solid" | "outline" | "plain"
   /** @default "md" */
-  size?: "sm" | "md"
+  size?: "sm" | "md" | "lg" | "xl"
 }
 
 export type TimelineVariantProps = {

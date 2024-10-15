@@ -83,13 +83,17 @@ Render the `BreadcrumbEllipsis` component to show an ellipsis
 Use the `asChild` prop to change the underlying breadcrumb link
 
 ```jsx
-// import { Link } from "next/link"
+import { Link } from "next/link"
 
-<BreadcrumbRoot>
-  <BreadcrumbLink asChild>
-    <Link href="/docs">Docs</Link>
-  </BreadcrumbLink>
-</BreadcrumbRoot>
+export const Example = () => {
+  return (
+    <BreadcrumbRoot>
+      <BreadcrumbLink asChild>
+        <Link href="/docs">Docs</Link>
+      </BreadcrumbLink>
+    </BreadcrumbRoot>
+  )
+}
 ```
 
 ## Props

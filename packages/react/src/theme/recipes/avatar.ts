@@ -40,10 +40,16 @@ export const avatarSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
+      full: {
+        root: {
+          "--avatar-size": "100%",
+          "--avatar-font-size": "100%",
+        },
+      },
       "2xs": {
         root: {
           "--avatar-font-size": "fontSizes.2xs",
-          "--avatar-size": "sizes.4",
+          "--avatar-size": "sizes.5",
         },
       },
       xs: {

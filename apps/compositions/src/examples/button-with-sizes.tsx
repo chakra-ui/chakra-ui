@@ -8,6 +8,7 @@ export const ButtonWithSizes = () => {
       <Button size="sm">Button (sm)</Button>
       <Button size="md">Button (md)</Button>
       <Button size="lg">Button (lg)</Button>
+      <Button size="xl">Button (xl)</Button>
     </HStack>
   )
 }

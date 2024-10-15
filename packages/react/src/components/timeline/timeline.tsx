@@ -75,6 +75,24 @@ export const TimelineContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface TimelineTitleProps extends HTMLChakraProps<"div"> {}
+
+export const TimelineTitle = withContext<HTMLDivElement, TimelineTitleProps>(
+  "div",
+  "title",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TimelineDescriptionProps extends HTMLChakraProps<"div"> {}
+
+export const TimelineDescription = withContext<
+  HTMLDivElement,
+  TimelineDescriptionProps
+>("div", "description")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface TimelineConnectorProps extends HTMLChakraProps<"div"> {}
 
 export const TimelineConnector = withContext<

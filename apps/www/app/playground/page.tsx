@@ -217,7 +217,7 @@ export default async function Page() {
                 {(variant) => (
                   <Blockquote
                     key={variant}
-                    dash
+                    showDash
                     cite="Uzumaki Naruto"
                     variant={variant}
                   >

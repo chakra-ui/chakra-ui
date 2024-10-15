@@ -228,6 +228,8 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "separator",
   "indicator",
   "connector",
+  "title",
+  "description",
 )
 
 export const tooltipAnatomy = arkTooltipAnatomy

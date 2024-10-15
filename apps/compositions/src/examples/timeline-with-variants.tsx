@@ -1,10 +1,11 @@
-import { Badge, For, HStack, Stack, Text } from "@chakra-ui/react"
+import { Badge, For, Span, Stack } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
 import {
   TimelineConnector,
   TimelineContent,
   TimelineItem,
   TimelineRoot,
+  TimelineTitle,
 } from "compositions/ui/timeline"
 import { LuCheck } from "react-icons/lu"
 
@@ -17,16 +18,16 @@ export const TimelineWithVariants = () => {
             <TimelineItem>
               <TimelineConnector>
                 <Avatar
-                  size="sm"
+                  size="full"
                   name="Sage"
                   src="https://bit.ly/sage-adebayo"
                 />
               </TimelineConnector>
               <TimelineContent>
-                <HStack textStyle="sm">
-                  <Text fontWeight="medium">sage</Text>
+                <TimelineTitle>
+                  <Span fontWeight="medium">sage</Span>
                   created a new project
-                </HStack>
+                </TimelineTitle>
               </TimelineContent>
             </TimelineItem>
 
@@ -35,11 +36,11 @@ export const TimelineWithVariants = () => {
                 <LuCheck />
               </TimelineConnector>
               <TimelineContent>
-                <HStack textStyle="sm">
-                  <Text fontWeight="medium">sage</Text>
+                <TimelineTitle>
+                  <Span fontWeight="medium">sage</Span>
                   changed status from <Badge>In progress</Badge> to{" "}
                   <Badge colorPalette="teal">Completed</Badge>
-                </HStack>
+                </TimelineTitle>
               </TimelineContent>
             </TimelineItem>
           </TimelineRoot>

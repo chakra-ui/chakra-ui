@@ -3,6 +3,7 @@ import {
   TimelineContent,
   TimelineItem,
   TimelineRoot,
+  TimelineTitle,
 } from "compositions/ui/timeline"
 
 export const TimelineAlternating = () => {
@@ -11,12 +12,14 @@ export const TimelineAlternating = () => {
       <TimelineItem>
         <TimelineContent flex="1" />
         <TimelineConnector />
-        <TimelineContent flex="1">Placed Order</TimelineContent>
+        <TimelineContent flex="1">
+          <TimelineTitle>Placed Order</TimelineTitle>
+        </TimelineContent>
       </TimelineItem>
 
       <TimelineItem>
-        <TimelineContent flex="1" textAlign="right">
-          Prepared Order
+        <TimelineContent flex="1" alignItems="flex-end">
+          <TimelineTitle>Prepared Order</TimelineTitle>
         </TimelineContent>
         <TimelineConnector />
         <TimelineContent flex="1" />
@@ -25,7 +28,9 @@ export const TimelineAlternating = () => {
       <TimelineItem>
         <TimelineContent flex="1" />
         <TimelineConnector />
-        <TimelineContent flex="1">Order Delivered</TimelineContent>
+        <TimelineContent flex="1">
+          <TimelineTitle>Order Delivered</TimelineTitle>
+        </TimelineContent>
       </TimelineItem>
     </TimelineRoot>
   )

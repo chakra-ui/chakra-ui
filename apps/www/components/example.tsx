@@ -1,8 +1,7 @@
 import { readExampleFile } from "@/lib/composition"
 import { highlightCode } from "@/lib/highlight-code"
-import { Box, BoxProps, HStack, Stack, Tabs, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Tabs } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 import { CopyButton } from "./copy-button"
 import { ErrorBoundary } from "./error-boundary"
 
@@ -83,50 +82,6 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
   )
 }
 
-interface ExampleItem {
-  name: string
-  items: { name: string; path: string }[]
-}
-
-interface LinkTreeProps {
-  path: string
-  tree: ExampleItem[]
-}
-
-export const ExampleLinkTree = (props: LinkTreeProps) => {
-  const { path, tree } = props
-  return (
-    <Stack gap="4" fontSize="xs">
-      {tree.map((category) => (
-        <Stack key={category.name} gap="2">
-          <Text fontWeight="medium">{category.name}</Text>
-          <Stack gap="1">
-            {category.items.map((item) => (
-              <HStack
-                key={item.path}
-                asChild
-                py="0.5"
-                px="2"
-                _currentPage={{
-                  layerStyle: "fill.subtle",
-                  colorPalette: "gray",
-                }}
-              >
-                <Link
-                  href={`?name=${item.path}`}
-                  aria-current={item.path === path ? "page" : undefined}
-                >
-                  <Text>{item.name}</Text>
-                </Link>
-              </HStack>
-            ))}
-          </Stack>
-        </Stack>
-      ))}
-    </Stack>
-  )
-}
-
 export const Example = (props: Props) => {
   const { name } = props
   if (!name) return null
@@ -157,6 +112,7 @@ export const ExampleTabs = (props: Props) => {
       variant="subtle"
       defaultValue={"preview"}
       mb="4em"
+      size="sm"
       unmountOnExit
     >
       <Tabs.List mb="4">
@@ -169,7 +125,7 @@ export const ExampleTabs = (props: Props) => {
             <ExamplePreview name={name} />
           </ErrorBoundary>
         </Tabs.Content>
-        <Tabs.Content value="code" mt="0!">
+        <Tabs.Content value="code" pt="0!">
           <ExampleCodeWrapper maxHeight="480px">
             <ExampleCode name={name} />
           </ExampleCodeWrapper>

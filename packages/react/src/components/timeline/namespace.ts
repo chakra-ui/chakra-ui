@@ -6,6 +6,8 @@ export {
   TimelineConnector as Connector,
   TimelineIndicator as Indicator,
   TimelineContent as Content,
+  TimelineTitle as Title,
+  TimelineDescription as Description,
 } from "./timeline"
 
 export type {
@@ -15,4 +17,6 @@ export type {
   TimelineSeparatorProps as SeparatorProps,
   TimelineIndicatorProps as IndicatorProps,
   TimelineContentProps as ContentProps,
+  TimelineTitleProps as TitleProps,
+  TimelineDescriptionProps as DescriptionProps,
 } from "./timeline"

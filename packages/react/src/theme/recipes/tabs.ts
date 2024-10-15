@@ -31,6 +31,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
     trigger: {
       outline: "0",
       minW: "var(--tabs-height)",
+      height: "var(--tabs-height)",
       display: "flex",
       alignItems: "center",
       fontWeight: "medium",
@@ -47,12 +48,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
       },
     },
     content: {
-      width: "var(--tabs-width)",
-      height: "var(--tabs-height)",
-      _focusVisible: {
-        outline: "2px solid",
-        outlineColor: "focusRing",
-      },
+      focusVisibleRing: "inside",
       _horizontal: {
         width: "100%",
         pt: "var(--tabs-content-padding)",
