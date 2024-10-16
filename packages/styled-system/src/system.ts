@@ -57,8 +57,8 @@ export const getPropNames = (theme: any) => [
 
 export const isStylePropFn = (theme: any) => {
   const pseudoSelectors = getPseudoSelectors(theme)
+  const styleProps = { ...systemProps, ...pseudoSelectors }
   return (prop: string) => {
-    const styleProps = { ...systemProps, ...pseudoSelectors }
     return Object.hasOwnProperty.call(styleProps, prop)
   }
 }

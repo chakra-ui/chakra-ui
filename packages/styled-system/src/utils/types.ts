@@ -35,6 +35,7 @@ export type WithCSSVar<T> = T & {
   __cssVars: Record<string, any>
   __cssMap: CSSMap
   __breakpoints: AnalyzeBreakpointsReturn
+  __isStyleProp: (prop: string) => boolean
 }
 
 export type CssTheme = WithCSSVar<{

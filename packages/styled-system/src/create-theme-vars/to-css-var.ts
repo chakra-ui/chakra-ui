@@ -2,6 +2,7 @@ import { analyzeBreakpoints } from "@chakra-ui/utils"
 import type { WithCSSVar } from "../utils"
 import { createThemeVars } from "./create-theme-vars"
 import { omitVars } from "./theme-tokens"
+import { isStylePropFn } from "../system"
 
 export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
   /**
@@ -34,10 +35,13 @@ export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
     "--chakra-space-y-reverse": "0",
   }
 
+  const isStyleProp = isStylePropFn(theme)
+
   Object.assign(theme, {
     __cssVars: { ...defaultCssVars, ...cssVars },
     __cssMap: cssMap,
     __breakpoints: analyzeBreakpoints(theme.breakpoints),
+    __isStyleProp: isStyleProp,
   })
 
   return theme as WithCSSVar<T>
