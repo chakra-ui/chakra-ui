@@ -1,5 +1,6 @@
 module.exports = {
-  App: `import { Box, Container, keyframes } from '@chakra-ui/react';
+  App: `import { Box, Container } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 const animationKeyframes = keyframes\`
