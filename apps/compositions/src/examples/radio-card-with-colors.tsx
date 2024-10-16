@@ -17,7 +17,7 @@ export const RadioCardWithColors = () => {
             defaultValue="next"
           >
             <RadioCardLabel>Select Framework</RadioCardLabel>
-            <HStack mt="2" align="stretch" width="full">
+            <HStack align="stretch">
               {items.map((item) => (
                 <RadioCardItem
                   label={item.title}

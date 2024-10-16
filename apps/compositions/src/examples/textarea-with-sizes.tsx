@@ -7,6 +7,7 @@ export const TextareaWithSizes = () => {
       <Textarea size="sm" placeholder="Small size" />
       <Textarea size="md" placeholder="Medium size" />
       <Textarea size="lg" placeholder="Large size" />
+      <Textarea size="xl" placeholder="XLarge size" />
     </Stack>
   )
 }

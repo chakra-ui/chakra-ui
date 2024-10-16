@@ -1,10 +1,10 @@
-import { radioGroupAnatomy } from "../../anatomy"
+import { radioCardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { radiomarkRecipe } from "./radiomark"
 
 export const radioCardSlotRecipe = defineSlotRecipe({
   className: "chakra-radio-card",
-  slots: radioGroupAnatomy.keys(),
+  slots: radioCardAnatomy.keys(),
   base: {
     root: {
       display: "flex",
@@ -17,11 +17,12 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       userSelect: "none",
       position: "relative",
+      borderRadius: "sm",
       _focus: {
         bg: "colorPalette.subtle/20",
       },
       _disabled: {
-        opacity: 0.8,
+        opacity: "0.8",
         borderColor: "border.disabled",
       },
     },
@@ -34,7 +35,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       },
     },
     itemText: {
-      lineHeight: "1.2",
       fontWeight: "medium",
     },
     itemControl: {
@@ -42,6 +42,8 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       flex: "1",
       pos: "relative",
       rounded: "inherit",
+      justifyContent: "var(--radio-card-justify)",
+      alignItems: "var(--radio-card-align)",
       _disabled: {
         bg: "bg.subtle",
       },
@@ -53,54 +55,59 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         color: "fg.subtle",
       },
     },
+    itemContent: {
+      display: "flex",
+      flexDirection: "column",
+      flex: "1",
+      gap: "1",
+      justifyContent: "var(--radio-card-justify)",
+      alignItems: "var(--radio-card-align)",
+    },
   },
 
   variants: {
     size: {
       sm: {
         item: {
-          rounded: "md",
-          textStyle: "xs",
+          textStyle: "sm",
         },
         itemControl: {
           padding: "3",
-          gap: "3",
+          gap: "1.5",
         },
         itemAddon: {
-          paddingInline: "3",
-          paddingBlock: "1.5",
+          px: "3",
+          py: "1.5",
           borderTopWidth: "1px",
         },
         itemIndicator: radiomarkRecipe.variants?.size.sm,
       },
       md: {
         item: {
-          rounded: "md",
           textStyle: "sm",
         },
         itemControl: {
           padding: "4",
-          gap: "4",
+          gap: "2.5",
         },
         itemAddon: {
-          paddingInline: "4",
-          paddingBlock: "2",
+          px: "4",
+          py: "2",
           borderTopWidth: "1px",
         },
         itemIndicator: radiomarkRecipe.variants?.size.md,
       },
       lg: {
         item: {
-          rounded: "lg",
           textStyle: "md",
         },
         itemControl: {
           padding: "4",
-          gap: "4",
+          gap: "3.5",
         },
         itemAddon: {
-          paddingInline: "4",
-          paddingBlock: "2",
+          px: "4",
+          py: "2",
           borderTopWidth: "1px",
         },
         itemIndicator: radiomarkRecipe.variants?.size.lg,
@@ -160,10 +167,48 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         itemIndicator: radiomarkRecipe.variants?.variant.inverted,
       },
     },
+
+    justify: {
+      start: {
+        item: { "--radio-card-justify": "flex-start" },
+      },
+      end: {
+        item: { "--radio-card-justify": "flex-end" },
+      },
+      center: {
+        item: { "--radio-card-justify": "center" },
+      },
+    },
+
+    align: {
+      start: {
+        item: { "--radio-card-align": "flex-start" },
+        itemControl: { textAlign: "start" },
+      },
+      end: {
+        item: { "--radio-card-align": "flex-end" },
+        itemControl: { textAlign: "end" },
+      },
+      center: {
+        item: { "--radio-card-align": "center" },
+        itemControl: { textAlign: "center" },
+      },
+    },
+
+    orientation: {
+      vertical: {
+        itemControl: { flexDirection: "column" },
+      },
+      horizontal: {
+        itemControl: { flexDirection: "row" },
+      },
+    },
   },
 
   defaultVariants: {
     size: "md",
     variant: "outline",
+    align: "start",
+    orientation: "horizontal",
   },
 })

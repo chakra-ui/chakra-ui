@@ -77,6 +77,7 @@ export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "label",
   "addon",
   "indicator",
+  "content",
 ])
 
 export const collapsibleAnataomy = arkCollapsibleAnatomy
@@ -148,6 +149,8 @@ export const radioGroupAnatomy = arkRadioGroupAnatomy.extendWith(
   "itemAddon",
   "itemIndicator",
 )
+
+export const radioCardAnatomy = radioGroupAnatomy.extendWith("itemContent")
 
 export const ratingGroupAnatomy =
   arkRatingGroupAnatomy.extendWith("itemIndicator")

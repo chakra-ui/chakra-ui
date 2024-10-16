@@ -91,7 +91,7 @@ export interface InputAddonVariant {
   /** @default "md" */
   size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "subtle" | "flushed"
 }
 
 export type InputAddonVariantProps = {
@@ -431,13 +431,18 @@ export type CheckboxVariantMap = {
 
 // CheckboxCard
 
-export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicator"
+export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicator" | "content"
 
 export interface CheckboxCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
   variant?: "surface" | "subtle" | "outline" | "solid"
+  justify?: "start" | "end" | "center"
+  /** @default "start" */
+  align?: "start" | "end" | "center"
+  /** @default "horizontal" */
+  orientation?: "vertical" | "horizontal"
 }
 
 export type CheckboxCardVariantProps = {
@@ -748,7 +753,7 @@ export type PinInputSlot = "root" | "label" | "input" | "control"
 
 export interface PinInputVariant {
   /** @default "md" */
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "subtle" | "flushed"
 }
@@ -833,13 +838,18 @@ export type ProgressCircleVariantMap = {
 
 // RadioCard
 
-export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
+export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator" | "itemContent"
 
 export interface RadioCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
   variant?: "surface" | "subtle" | "outline" | "solid"
+  justify?: "start" | "end" | "center"
+  /** @default "start" */
+  align?: "start" | "end" | "center"
+  /** @default "horizontal" */
+  orientation?: "vertical" | "horizontal"
 }
 
 export type RadioCardVariantProps = {

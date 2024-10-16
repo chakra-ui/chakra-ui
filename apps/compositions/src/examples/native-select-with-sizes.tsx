@@ -7,7 +7,7 @@ import {
 export const NativeSelectWithSizes = () => {
   return (
     <Stack gap="4" width="240px">
-      <For each={["xs", "sm", "md", "lg"]}>
+      <For each={["xs", "sm", "md", "lg", "xl"]}>
         {(size) => (
           <NativeSelectRoot size={size} key={size}>
             <NativeSelectField placeholder={`size (${size})`}>

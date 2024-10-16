@@ -83,6 +83,15 @@ export const CheckboxCardControl = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CheckboxCardContentProps extends HTMLChakraProps<"div"> {}
+
+export const CheckboxCardContent = withContext<
+  HTMLDivElement,
+  CheckboxCardContentProps
+>("div", "content")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CheckboxCardIndicatorProps extends HTMLChakraProps<"svg"> {}
 
 export const CheckboxCardIndicator = forwardRef<

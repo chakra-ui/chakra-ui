@@ -18,7 +18,7 @@ export const inputAddonRecipe = defineRecipe({
         borderColor: { _light: "border", _dark: "whiteAlpha.50" },
         bg: "bg.subtle",
       },
-      filled: {
+      subtle: {
         border: "2px solid",
         borderColor: "transparent",
         bg: { _light: "gray.100", _dark: "whiteAlpha.50" },

@@ -20,3 +20,5 @@ export { RadioCardWithCustomIndicator as CustomIndicator } from "compositions/ex
 export { RadioCardWithIcon as Icon } from "compositions/examples/radio-card-with-icon"
 export { RadioCardWithSizes as Sizes } from "compositions/examples/radio-card-with-sizes"
 export { RadioCardWithVariants as Variants } from "compositions/examples/radio-card-with-variants"
+export { RadioCardWithoutIndicator as WithoutIndicator } from "compositions/examples/radio-card-without-indicator"
+export { RadioCardWithoutIndicatorVertical as WithoutIndicatorVertical } from "compositions/examples/radio-card-without-indicator-vertical"

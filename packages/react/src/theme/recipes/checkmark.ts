@@ -6,12 +6,12 @@ export const checkmarkRecipe = defineRecipe({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    flexShrink: 0,
+    flexShrink: "0",
     verticalAlign: "top",
     color: "white",
     borderWidth: "1px",
     borderColor: "transparent",
-    borderRadius: "sm",
+    borderRadius: "xs",
     focusVisibleRing: "outside",
     _invalid: {
       colorPalette: "red",
@@ -25,33 +25,23 @@ export const checkmarkRecipe = defineRecipe({
     size: {
       xs: {
         boxSize: "3",
-        borderRadius: "xs",
-        _icon: {
-          boxSize: "2.5",
-        },
       },
       sm: {
         boxSize: "4",
-        _icon: {
-          boxSize: "3",
-        },
       },
       md: {
         boxSize: "5",
-        _icon: {
-          boxSize: "3.5",
-        },
+        p: "0.5",
       },
       lg: {
         boxSize: "6",
-        _icon: {
-          boxSize: "4",
-        },
+        p: "0.5",
       },
     },
 
     variant: {
       outline: {
+        bg: "bg",
         borderWidth: "1px",
         borderColor: "border",
         "&:is([data-state=checked], [data-state=indeterminate])": {

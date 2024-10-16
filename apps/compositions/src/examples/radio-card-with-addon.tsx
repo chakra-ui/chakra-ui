@@ -7,7 +7,7 @@ import {
 
 export const RadioCardWithAddon = () => {
   return (
-    <RadioCardRoot width="full" defaultValue="next">
+    <RadioCardRoot defaultValue="next">
       <RadioCardLabel>Select framework</RadioCardLabel>
       <HStack mt="2" align="stretch" width="full">
         {items.map((item) => (

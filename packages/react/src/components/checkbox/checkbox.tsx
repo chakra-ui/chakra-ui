@@ -128,7 +128,13 @@ export interface CheckboxGroupProps
 
 export const CheckboxGroup = chakra(
   ArkCheckbox.Group,
-  {},
+  {
+    base: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "1.5",
+    },
+  },
   { forwardAsChild: true },
 )
 

@@ -1,13 +1,13 @@
-import { CheckboxGroup, HStack, Text } from "@chakra-ui/react"
+import { CheckboxGroup, Flex, Text } from "@chakra-ui/react"
 import { CheckboxCard } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardWithGroup = () => {
   return (
-    <CheckboxGroup width="full" defaultValue={["next"]}>
-      <Text fontWeight="medium" mb="2">
+    <CheckboxGroup defaultValue={["next"]}>
+      <Text textStyle="sm" fontWeight="medium">
         Select framework(s)
       </Text>
-      <HStack mt="2" align="stretch" width="full">
+      <Flex gap="2">
         {items.map((item) => (
           <CheckboxCard
             label={item.title}
@@ -16,7 +16,7 @@ export const CheckboxCardWithGroup = () => {
             value={item.value}
           />
         ))}
-      </HStack>
+      </Flex>
     </CheckboxGroup>
   )
 }

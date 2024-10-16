@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react"
+import { HStack, Icon } from "@chakra-ui/react"
 import {
   RadioCardItem,
   RadioCardLabel,
@@ -8,14 +8,16 @@ import { LuClock, LuDollarSign, LuTrendingUp } from "react-icons/lu"
 
 export const RadioCardCentered = () => {
   return (
-    <RadioCardRoot width="full" defaultValue="next">
+    <RadioCardRoot orientation="vertical" align="center" defaultValue="next">
       <RadioCardLabel>Select contract type</RadioCardLabel>
-      <HStack mt="2" align="stretch" width="full">
+      <HStack align="stretch">
         {items.map((item) => (
           <RadioCardItem
-            vertical
-            align="center"
-            icon={item.icon}
+            icon={
+              <Icon fontSize="2xl" color="fg.subtle" mb="2">
+                {item.icon}
+              </Icon>
+            }
             label={item.title}
             key={item.value}
             value={item.value}

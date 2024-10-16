@@ -17,7 +17,7 @@ export const RadioCardWithVariants = () => {
             defaultValue="next"
           >
             <RadioCardLabel>variant = ({variant})</RadioCardLabel>
-            <HStack mt="2" align="stretch" width="full">
+            <HStack align="stretch">
               {items.map((item) => (
                 <RadioCardItem
                   key={item.value}

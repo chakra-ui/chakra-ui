@@ -10,6 +10,7 @@ export {
   RadioCardItemIndicator,
   RadioCardItemHiddenInput,
   RadioCardContext,
+  RadioCardItemContent,
   useRadioCardStyles,
 } from "./radio-card"
 
@@ -23,6 +24,7 @@ export type {
   RadioCardItemAddonProps,
   RadioCardItemIndicatorProps,
   RadioCardValueChangeDetails,
+  RadioCardItemContentProps,
 } from "./radio-card"
 
 export {

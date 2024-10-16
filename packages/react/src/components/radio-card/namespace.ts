@@ -9,6 +9,7 @@ export {
   RadioCardItemAddon as ItemAddon,
   RadioCardItemIndicator as ItemIndicator,
   RadioCardContext as Context,
+  RadioCardItemContent as ItemContent,
   RadioCardItemContext as ItemContext,
   RadioCardItemHiddenInput as ItemHiddenInput,
 } from "./radio-card"
@@ -23,4 +24,5 @@ export type {
   RadioCardItemAddonProps as ItemAddonProps,
   RadioCardItemIndicatorProps as ItemIndicatorProps,
   RadioCardValueChangeDetails as ValueChangeDetails,
+  RadioCardItemContentProps as ItemContentProps,
 } from "./radio-card"

@@ -109,6 +109,15 @@ export const RadioCardItemControl = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface RadioCardItemContentProps extends HTMLChakraProps<"div"> {}
+
+export const RadioCardItemContent = withContext<
+  HTMLDivElement,
+  RadioCardItemContentProps
+>("div", "itemContent")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface RadioCardItemAddonProps extends HTMLChakraProps<"div"> {}
 
 export const RadioCardItemAddon = withContext<

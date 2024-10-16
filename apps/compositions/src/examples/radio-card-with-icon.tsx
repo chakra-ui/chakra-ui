@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react"
+import { HStack, Icon } from "@chakra-ui/react"
 import {
   RadioCardItem,
   RadioCardLabel,
@@ -8,12 +8,16 @@ import { LuArrowRight, LuCircleOff, LuLock } from "react-icons/lu"
 
 export const RadioCardWithIcon = () => {
   return (
-    <RadioCardRoot width="full" defaultValue="next">
+    <RadioCardRoot defaultValue="next">
       <RadioCardLabel>Select permission</RadioCardLabel>
-      <HStack mt="2" align="stretch" width="full">
+      <HStack align="stretch">
         {items.map((item) => (
           <RadioCardItem
-            icon={item.icon}
+            icon={
+              <Icon fontSize="2xl" color="fg.subtle" mb="2">
+                {item.icon}
+              </Icon>
+            }
             label={item.title}
             description={item.description}
             key={item.value}

@@ -236,7 +236,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       lg: {
         root: {
           "--select-trigger-height": "sizes.12",
-          "--select-trigger-padding-x": "spacing.3.5",
+          "--select-trigger-padding-x": "spacing.4",
         },
         content: {
           p: "1.5",

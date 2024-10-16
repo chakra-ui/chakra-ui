@@ -12,7 +12,7 @@ export const RadioCardWithSizes = () => {
         {(size) => (
           <RadioCardRoot key={size} size={size} defaultValue="next">
             <RadioCardLabel>size = ({size})</RadioCardLabel>
-            <HStack mt="2" align="stretch" width="full">
+            <HStack align="stretch">
               {items.map((item) => (
                 <RadioCardItem
                   label={item.title}
