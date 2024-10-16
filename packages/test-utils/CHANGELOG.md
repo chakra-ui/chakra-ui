@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`171b124`](https://github.com/chakra-ui/chakra-ui/commit/171b124c68c7562bbd7fb7ff427951c4322fe500)]:
+  - @chakra-ui/react@2.10.3
+  - @chakra-ui/theme@3.4.6
+
 ## 2.1.8
 
 ### Patch Changes

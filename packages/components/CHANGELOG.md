@@ -1,5 +1,24 @@
 # @chakra-ui/react
 
+## 2.10.3
+
+### Patch Changes
+
+- [#8941](https://github.com/chakra-ui/chakra-ui/pull/8941)
+  [`171b124`](https://github.com/chakra-ui/chakra-ui/commit/171b124c68c7562bbd7fb7ff427951c4322fe500)
+  Thanks [@n1xx1](https://github.com/n1xx1)! - - Fix issue where Next.js dev
+  server enters infinite loop when passing a react element to a styled component
+
+  - Fix regression where wrapping `CheckboxGroup` with `FormControl` no longer
+    works.
+  - Fix runtime performance degradation by pre-computing the `isStyleProp`
+    function
+
+- Updated dependencies
+  [[`171b124`](https://github.com/chakra-ui/chakra-ui/commit/171b124c68c7562bbd7fb7ff427951c4322fe500)]:
+  - @chakra-ui/styled-system@2.12.0
+  - @chakra-ui/theme@3.4.6
+
 ## 2.10.2
 
 ### Patch Changes
