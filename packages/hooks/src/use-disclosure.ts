@@ -59,7 +59,7 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
     }
   }, [isOpen, onOpen, onClose])
 
-  function getButtonProps(props: HTMLProps = {}): HTMLProps {
+  const getButtonProps = useCallback((props: HTMLProps = {}): HTMLProps => {
     return {
       ...props,
       "aria-expanded": isOpen,
@@ -69,25 +69,36 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
         onToggle()
       },
     }
-  }
+  }, [isOpen, id, onToggle])
 
-  function getDisclosureProps(props: HTMLProps = {}): HTMLProps {
+  const getDisclosureProps = useCallback((props: HTMLProps = {}): HTMLProps => {
     return {
       ...props,
       hidden: !isOpen,
       id,
     }
-  }
+  }, [id, isOpen])
 
-  return {
-    isOpen,
-    onOpen,
-    onClose,
-    onToggle,
-    isControlled,
-    getButtonProps,
-    getDisclosureProps,
-  }
+  return useMemo(
+    () => ({
+      isOpen,
+      onOpen,
+      onClose,
+      onToggle,
+      isControlled,
+      getButtonProps,
+      getDisclosureProps,
+    }),
+    [
+      isOpen,
+      onOpen,
+      onClose,
+      onToggle,
+      isControlled,
+      getButtonProps,
+      getDisclosureProps,
+    ]
+  )
 }
 
 export type UseDisclosureReturn = ReturnType<typeof useDisclosure>
