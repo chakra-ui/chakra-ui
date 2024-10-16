@@ -34,6 +34,7 @@ function useStyleConfigImpl(
     { theme, colorMode },
     styleConfig?.defaultProps ?? {},
     compact(omit(rest, ["children"])),
+    (obj, src) => (!obj ? src : undefined),
   )
 
   /**
