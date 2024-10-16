@@ -70,7 +70,7 @@ export function useRoute() {
   }
 
   function getCurrentIndex(items: FlattenNavItem[]): number {
-    return items.findIndex((item) => currentUrl.startsWith(item.url!))
+    return items.findIndex((item) => currentUrl === item.url!)
   }
 
   function getNextItem(): NavItem | null {
