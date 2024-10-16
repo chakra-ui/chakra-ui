@@ -48,6 +48,7 @@ const buttonVariants = [
 export default async function Page() {
   const accentColor = cookies().get("chakra-accent-color")
   const fontFamily = cookies().get("chakra-font")
+  const radius = cookies().get("chakra-radius")
 
   return (
     <Container display="flex" gap="10" maxW="8xl" py="4">
@@ -236,7 +237,7 @@ export default async function Page() {
           <Playground.SectionTitle id="slider">Slider</Playground.SectionTitle>
           <Playground.SectionContent>
             <HStack gap="8" maxW="400px" w="full">
-              <For each={["outline", "subtle"]}>
+              <For each={["outline", "solid"]}>
                 {(variant) => (
                   <Slider
                     key={variant}
@@ -282,6 +283,7 @@ export default async function Page() {
         <ThemePanel
           accentColor={accentColor?.value}
           fontFamily={fontFamily?.value}
+          radius={radius?.value}
         />
       </Box>
     </Container>

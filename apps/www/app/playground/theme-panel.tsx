@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Box,
   Card,
   Circle,
   HStack,
@@ -35,9 +36,48 @@ const fontFamilies = [
   { label: "Figtree", value: "--font-figtree" },
 ]
 
+const radiiMap: Record<string, Record<string, string>> = {
+  none: {
+    l1: "none",
+    l2: "none",
+    l3: "none",
+  },
+  xs: {
+    l1: "radii.2xs",
+    l2: "radii.xs",
+    l3: "radii.sm",
+  },
+  sm: {
+    l1: "radii.xs",
+    l2: "radii.sm",
+    l3: "radii.md",
+  },
+  md: {
+    l1: "radii.sm",
+    l2: "radii.md",
+    l3: "radii.lg",
+  },
+  lg: {
+    l1: "radii.md",
+    l2: "radii.lg",
+    l3: "radii.xl",
+  },
+  xl: {
+    l1: "radii.lg",
+    l2: "radii.xl",
+    l3: "radii.2xl",
+  },
+  "2xl": {
+    l1: "radii.xl",
+    l2: "radii.2xl",
+    l3: "radii.3xl",
+  },
+}
+
 interface ThemePanelProps {
   accentColor?: string
   fontFamily?: string
+  radius?: string
 }
 
 export function ThemePanel(props: ThemePanelProps) {
@@ -46,6 +86,15 @@ export function ThemePanel(props: ThemePanelProps) {
   const [fontFamily, setFontFamily] = useState(
     props.fontFamily ?? "--font-inter",
   )
+  const [radius, setRadius] = useState(props.radius ?? "sm")
+
+  const radii = Object.fromEntries(
+    Object.entries(radiiMap[radius]).map(([key, value]) => [
+      key,
+      system.token(value),
+    ]),
+  )
+
   return (
     <>
       <Global
@@ -54,11 +103,14 @@ export function ThemePanel(props: ThemePanelProps) {
           html: {
             "--chakra-fonts-heading": `var(${fontFamily})`,
             "--chakra-fonts-body": `var(${fontFamily})`,
+            "--chakra-radii-l1": radii.l1,
+            "--chakra-radii-l2": radii.l2,
+            "--chakra-radii-l3": radii.l3,
           },
         }}
       />
 
-      <Card.Root variant="elevated" bg="bg.panel">
+      <Card.Root variant="elevated" bg="bg.panel" maxW="sm">
         <Card.Header>
           <HStack justify="space-between">
             <Text fontWeight="semibold">Theme Panel</Text>
@@ -129,6 +181,45 @@ export function ThemePanel(props: ThemePanelProps) {
                 </Square>
               ))}
             </SimpleGrid>
+          </Stack>
+
+          <Stack gap="3">
+            <Text fontWeight="medium" textStyle="sm">
+              Radius
+            </Text>
+            <RadioCardRoot
+              size="sm"
+              orientation="vertical"
+              align="center"
+              defaultValue={radius}
+              onValueChange={(details) => {
+                document.cookie = `chakra-radius=${details.value}`
+                setRadius(details.value)
+              }}
+            >
+              <HStack wrap="wrap" gap="2">
+                {Object.keys(radiiMap).map((radii) => (
+                  <RadioCardItem
+                    flex="0"
+                    minW="60px"
+                    indicator={null}
+                    label={radii}
+                    icon={
+                      <Box
+                        boxSize="6"
+                        bg="red/10"
+                        roundedTopLeft={radii}
+                        borderTopWidth="2px"
+                        borderStartWidth="2px"
+                        borderColor="red"
+                      />
+                    }
+                    key={radii}
+                    value={radii}
+                  />
+                ))}
+              </HStack>
+            </RadioCardRoot>
           </Stack>
         </Card.Body>
       </Card.Root>
