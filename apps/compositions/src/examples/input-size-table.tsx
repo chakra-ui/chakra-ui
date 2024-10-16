@@ -19,7 +19,7 @@ export const InputSizeTable = () => {
               <td>
                 <Stack>
                   <Input size={v} placeholder="Placeholder" />
-                  <Input variant="filled" size={v} placeholder="Placeholder" />
+                  <Input variant="subtle" size={v} placeholder="Placeholder" />
                 </Stack>
               </td>
             </tr>

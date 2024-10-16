@@ -142,6 +142,7 @@ export const FileInput = forwardRef<HTMLButtonElement, FileInputProps>(
       <ChakraFileUpload.Trigger asChild>
         <Button
           unstyled
+          py="0"
           ref={ref}
           {...rest}
           css={[inputRecipe(recipeProps), props.css]}

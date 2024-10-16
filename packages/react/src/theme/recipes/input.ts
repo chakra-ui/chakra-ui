@@ -84,7 +84,7 @@ export const inputRecipe = defineRecipe({
         bg: "bg",
         focusVisibleRing: "inside",
       },
-      filled: {
+      subtle: {
         borderWidth: "1px",
         borderColor: "transparent",
         bg: "bg.subtle",

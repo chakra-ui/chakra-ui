@@ -29,7 +29,7 @@ export const ProgressLabel = forwardRef<HTMLDivElement, ProgressLabelProps>(
         {children}
         {info && (
           <ToggleTip content={info}>
-            <IconButton variant="ghost" aria-label="info" size="xs" ms="1">
+            <IconButton variant="ghost" aria-label="info" size="2xs" ms="1">
               <HiOutlineInformationCircle />
             </IconButton>
           </ToggleTip>

@@ -29,7 +29,7 @@ export const TextareaVariantTable = () => {
             </Span>
           </td>
           <td>
-            <Textarea minW="320px" placeholder="Placeholder" />
+            <Textarea unstyled minW="320px" placeholder="Placeholder" />
           </td>
         </tr>
       </tbody>

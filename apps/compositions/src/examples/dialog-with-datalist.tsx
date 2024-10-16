@@ -34,6 +34,7 @@ export const DialogWithDatalist = () => {
                 value={
                   <HStack>
                     <Avatar
+                      size="xs"
                       name="Segun Adebayo"
                       src="https://bit.ly/sage-adebayo"
                     />

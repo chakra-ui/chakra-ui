@@ -85,7 +85,7 @@ export const ClipboardIconButton = forwardRef<HTMLButtonElement, ButtonProps>(
   function ClipboardIconButton(props, ref) {
     return (
       <ChakraClipboard.Trigger asChild>
-        <IconButton ref={ref} size="sm" variant="subtle" {...props}>
+        <IconButton ref={ref} size="xs" variant="subtle" {...props}>
           <ClipboardIcon />
           <ClipboardCopyText srOnly />
         </IconButton>

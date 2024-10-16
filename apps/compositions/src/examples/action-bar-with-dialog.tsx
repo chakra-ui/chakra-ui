@@ -58,9 +58,7 @@ export const ActionBarWithDialog = () => {
               </DialogBody>
               <DialogFooter>
                 <Button variant="outline">Cancel</Button>
-                <Button variant="outline" colorPalette="red">
-                  Delete
-                </Button>
+                <Button colorPalette="red">Delete</Button>
               </DialogFooter>
             </DialogContent>
           </DialogRoot>

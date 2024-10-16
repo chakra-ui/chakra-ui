@@ -58,8 +58,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       outline: {
         field: selectSlotRecipe.variants?.variant.outline.trigger,
       },
-      filled: {
-        field: selectSlotRecipe.variants?.variant.filled.trigger,
+      subtle: {
+        field: selectSlotRecipe.variants?.variant.subtle.trigger,
       },
       plain: {},
     },

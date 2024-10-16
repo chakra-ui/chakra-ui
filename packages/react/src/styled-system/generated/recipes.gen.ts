@@ -76,7 +76,7 @@ export interface InputVariant {
   /** @default "md" */
   size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "subtle" | "flushed"
 }
 
 export type InputVariantProps = {
@@ -201,7 +201,7 @@ export interface TextareaVariant {
   /** @default "md" */
   size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "subtle" | "flushed"
 }
 
 export type TextareaVariantProps = {
@@ -710,7 +710,7 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "filled" | "plain"
+  variant?: "outline" | "subtle" | "plain"
   /** @default "md" */
   size?: "lg" | "md" | "sm" | "xs"
 }
@@ -731,7 +731,7 @@ export interface NumberInputVariant {
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "subtle" | "flushed"
 }
 
 export type NumberInputVariantProps = {
@@ -750,7 +750,7 @@ export interface PinInputVariant {
   /** @default "md" */
   size?: "lg" | "md" | "sm" | "xs"
   /** @default "outline" */
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "subtle" | "flushed"
 }
 
 export type PinInputVariantProps = {
@@ -799,7 +799,7 @@ export interface ProgressVariant {
   /** @default "outline" */
   variant?: "outline" | "subtle"
   /** @default "rounded" */
-  shape?: "square" | "rounded" | "pill"
+  shape?: "square" | "rounded" | "full"
   striped?: boolean
   animated?: boolean
   /** @default "md" */
@@ -925,7 +925,7 @@ export type SelectSlot =
 
 export interface SelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "filled"
+  variant?: "outline" | "subtle"
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
 }

@@ -20,7 +20,7 @@ export const TextareaSizeTable = () => {
                 <Stack minW="320px">
                   <Textarea size={v} placeholder="Placeholder" />
                   <Textarea
-                    variant="filled"
+                    variant="subtle"
                     size={v}
                     placeholder="Placeholder"
                   />

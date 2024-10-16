@@ -13,34 +13,11 @@ const names = [
   "Kakashi Hatake",
   "Hinata Hyuga",
   "Shikamaru Nara",
-  "Ino Yamanaka",
-  "Rock Lee",
-  "Neji Hyuga",
-  "Gaara",
-  "Temari",
-  "Kankuro",
 ]
 
-const maxAvatars = 5
+const maxAvatars = 3
 
-const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
-
-const pickPalette = (name: string) => {
-  const index = name.charCodeAt(0) % colorPalette.length
-  return colorPalette[index]
-}
-
-const partition = (arr: string[], max: number) => {
-  const items = []
-  const overflow = []
-  for (const item of arr) {
-    if (items.length < max) items.push(item)
-    else overflow.push(item)
-  }
-  return { items, overflow }
-}
-
-export const AvatarWithPopover = () => {
+export const AvatarWithOverflow = () => {
   const { items, overflow } = partition(names, maxAvatars)
   return (
     <Group gap="0" spaceX="2">
@@ -50,7 +27,7 @@ export const AvatarWithPopover = () => {
       {overflow.length > 0 && (
         <MenuRoot positioning={{ placement: "bottom" }}>
           <MenuTrigger rounded="full" focusRing="outside">
-            <Avatar variant="outline" fallback="+3" />
+            <Avatar variant="outline" fallback={`+${overflow.length}`} />
           </MenuTrigger>
           <MenuContent>
             {overflow.map((item) => (
@@ -68,4 +45,21 @@ export const AvatarWithPopover = () => {
       )}
     </Group>
   )
+}
+
+const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
+
+const pickPalette = (name: string) => {
+  const index = name.charCodeAt(0) % colorPalette.length
+  return colorPalette[index]
+}
+
+const partition = (arr: string[], max: number) => {
+  const items = []
+  const overflow = []
+  for (const item of arr) {
+    if (items.length < max) items.push(item)
+    else overflow.push(item)
+  }
+  return { items, overflow }
 }

@@ -5,7 +5,7 @@ export const TextareaWithErrorText = () => {
   return (
     <HStack gap="10" width="full">
       <Field invalid label="Comment" asterisk errorText="Field is required">
-        <Textarea placeholder="Start typing..." variant="filled" />
+        <Textarea placeholder="Start typing..." variant="subtle" />
       </Field>
       <Field invalid label="Comment" asterisk errorText="Field is required">
         <Textarea placeholder="Start typing..." variant="outline" />

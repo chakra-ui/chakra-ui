@@ -106,8 +106,9 @@ export const avatarSlotRecipe = defineSlotRecipe({
       outline: {
         root: {
           bg: "bg",
-          color: "fg",
+          color: "colorPalette.fg",
           borderWidth: "1px",
+          borderColor: "colorPalette.emphasized",
         },
       },
     },

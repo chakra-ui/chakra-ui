@@ -5,7 +5,7 @@ import { LuInfo } from "react-icons/lu"
 export const ToggleTipBasic = () => {
   return (
     <ToggleTip content="This is some additional information.">
-      <Button size="sm" variant="ghost" fontSize="lg">
+      <Button size="xs" variant="ghost">
         <LuInfo />
       </Button>
     </ToggleTip>

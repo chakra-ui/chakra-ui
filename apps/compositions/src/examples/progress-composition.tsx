@@ -46,7 +46,13 @@ const FeatureUsage = (props: FeatureUsageProps) => {
       <Square borderRadius="sm" bg="bg.muted" size="10">
         {icon}
       </Square>
-      <ProgressRoot min={data.min} max={data.max} value={data.value} flex="1">
+      <ProgressRoot
+        size="sm"
+        min={data.min}
+        max={data.max}
+        value={data.value}
+        flex="1"
+      >
         <HStack justify="space-between">
           <ProgressLabel>{data.label}</ProgressLabel>
           <ProgressValueText color="inherit">

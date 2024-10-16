@@ -5,14 +5,22 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Avatar } from "compositions/ui/avatar"
 
+function omit<T extends string | undefined>(
+  arr: T[] | undefined,
+  omit: T[],
+): T[] {
+  return arr?.filter((v) => !omit?.includes(v)) ?? []
+}
+
 export const AvatarSizeTable = () => {
   const recipe = useSlotRecipe({ key: "avatar" })
+  const sizeMap = omit(recipe.variantMap.size, ["full"])
   return (
     <PlaygroundTable>
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
+          <For each={sizeMap}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +32,7 @@ export const AvatarSizeTable = () => {
                   {c}
                 </Span>
               </td>
-              <For each={recipe.variantMap.size}>
+              <For each={sizeMap}>
                 {(v) => (
                   <td key={v}>
                     <HStack>

@@ -21,7 +21,7 @@ export const StatLabel = forwardRef<HTMLDivElement, StatLabelProps>(
         {children}
         {info && (
           <ToggleTip content={info}>
-            <IconButton variant="ghost" aria-label="info" size="xs">
+            <IconButton variant="ghost" aria-label="info" size="2xs">
               <HiOutlineInformationCircle />
             </IconButton>
           </ToggleTip>

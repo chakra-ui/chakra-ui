@@ -5,7 +5,7 @@ export const InputWithField = () => {
   return (
     <HStack gap="10" width="full">
       <Field label="Email" asterisk>
-        <Input placeholder="me@example.com" variant="filled" />
+        <Input placeholder="me@example.com" variant="subtle" />
       </Field>
       <Field label="Email" asterisk>
         <Input placeholder="me@example.com" variant="outline" />

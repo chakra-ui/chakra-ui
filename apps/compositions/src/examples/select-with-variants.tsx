@@ -13,7 +13,7 @@ import {
 export const SelectWithVariants = () => {
   return (
     <Stack gap="5" width="320px">
-      <For each={["outline", "filled"]}>
+      <For each={["outline", "subtle"]}>
         {(variant) => (
           <SelectRoot key={variant} variant={variant} collection={frameworks}>
             <SelectLabel>Select framework - {variant}</SelectLabel>

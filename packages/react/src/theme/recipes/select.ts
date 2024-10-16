@@ -122,16 +122,13 @@ export const selectSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           bg: "bg",
-          _hover: {
-            borderColor: "border.emphasized",
-          },
           _expanded: {
             bg: "colorPalette.muted",
           },
         },
       },
 
-      filled: {
+      subtle: {
         trigger: {
           borderWidth: "1px",
           borderColor: "transparent",
