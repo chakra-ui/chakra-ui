@@ -228,8 +228,8 @@ export type IconVariantMap = {
 export interface CheckmarkVariant {
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
-  /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain" | "inverted"
+  /** @default "solid" */
+  variant?: "solid" | "outline" | "subtle" | "plain" | "inverted"
 }
 
 export type CheckmarkVariantProps = {
@@ -417,8 +417,8 @@ export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
 export interface CheckboxVariant {
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
-  /** @default "outline" */
-  variant?: "outline" | "subtle"
+  /** @default "solid" */
+  variant?: "outline" | "solid" | "subtle"
 }
 
 export type CheckboxVariantProps = {

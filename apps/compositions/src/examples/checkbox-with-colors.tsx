@@ -1,4 +1,4 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { For, Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { Checkbox } from "compositions/ui/checkbox"
 
@@ -14,31 +14,22 @@ export const CheckboxWithColors = () => {
           width="full"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <Stack>
-            <Checkbox variant="outline" colorPalette={colorPalette}>
-              Checkbox
-            </Checkbox>
-            <Checkbox
-              defaultChecked
-              variant="outline"
-              colorPalette={colorPalette}
-            >
-              Checkbox
-            </Checkbox>
-          </Stack>
-
-          <Stack>
-            <Checkbox variant="subtle" colorPalette={colorPalette}>
-              Checkbox
-            </Checkbox>
-            <Checkbox
-              defaultChecked
-              variant="subtle"
-              colorPalette={colorPalette}
-            >
-              Checkbox
-            </Checkbox>
-          </Stack>
+          <For each={["outline", "subtle", "solid"]}>
+            {(variant) => (
+              <Stack key={variant} mb="4">
+                <Checkbox variant={variant} colorPalette={colorPalette}>
+                  Checkbox
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  variant={variant}
+                  colorPalette={colorPalette}
+                >
+                  Checkbox
+                </Checkbox>
+              </Stack>
+            )}
+          </For>
         </Stack>
       ))}
     </Stack>

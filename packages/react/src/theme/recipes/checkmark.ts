@@ -7,7 +7,6 @@ export const checkmarkRecipe = defineRecipe({
     alignItems: "center",
     justifyContent: "center",
     flexShrink: "0",
-    verticalAlign: "top",
     color: "white",
     borderWidth: "1px",
     borderColor: "transparent",
@@ -40,9 +39,8 @@ export const checkmarkRecipe = defineRecipe({
     },
 
     variant: {
-      outline: {
+      solid: {
         bg: "bg",
-        borderWidth: "1px",
         borderColor: "border",
         "&:is([data-state=checked], [data-state=indeterminate])": {
           bg: "colorPalette.solid",
@@ -50,8 +48,14 @@ export const checkmarkRecipe = defineRecipe({
           borderColor: "colorPalette.solid",
         },
       },
+      outline: {
+        borderColor: "border",
+        "&:is([data-state=checked], [data-state=indeterminate])": {
+          color: "colorPalette.fg",
+          borderColor: "colorPalette.solid",
+        },
+      },
       subtle: {
-        borderWidth: "1px",
         bg: "colorPalette.subtle",
         borderColor: "colorPalette.subtle",
         "&:is([data-state=checked], [data-state=indeterminate])": {
@@ -65,7 +69,6 @@ export const checkmarkRecipe = defineRecipe({
       },
       inverted: {
         bg: "bg",
-        borderWidth: "1px",
         borderColor: "border",
         color: "colorPalette.fg",
         "&:is([data-state=checked], [data-state=indeterminate])": {
@@ -76,7 +79,7 @@ export const checkmarkRecipe = defineRecipe({
   },
 
   defaultVariants: {
-    variant: "outline",
+    variant: "solid",
     size: "md",
   },
 })

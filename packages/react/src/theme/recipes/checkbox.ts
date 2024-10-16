@@ -53,6 +53,9 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       outline: {
         control: checkmarkRecipe.variants?.variant?.outline,
       },
+      solid: {
+        control: checkmarkRecipe.variants?.variant?.solid,
+      },
       subtle: {
         control: checkmarkRecipe.variants?.variant?.subtle,
       },
@@ -60,7 +63,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
   },
 
   defaultVariants: {
-    variant: "outline",
+    variant: "solid",
     size: "md",
   },
 })
