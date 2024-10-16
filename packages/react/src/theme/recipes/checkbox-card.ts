@@ -121,7 +121,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
             bg: "bg.subtle",
           },
         },
-        indicator: checkmarkRecipe.variants?.variant.outline,
+        indicator: checkmarkRecipe.variants?.variant.solid,
       },
 
       subtle: {
@@ -148,7 +148,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
             borderColor: "colorPalette.solid",
           },
         },
-        indicator: checkmarkRecipe.variants?.variant.outline,
+        indicator: checkmarkRecipe.variants?.variant.solid,
       },
 
       solid: {

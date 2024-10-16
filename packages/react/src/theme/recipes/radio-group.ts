@@ -9,7 +9,6 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
     item: {
       display: "inline-flex",
       alignItems: "center",
-      verticalAlign: "top",
       position: "relative",
       fontWeight: "medium",
       _disabled: {
@@ -37,8 +36,8 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
         itemControl: radiomarkRecipe.variants?.variant?.subtle,
       },
 
-      classic: {
-        itemControl: radiomarkRecipe.variants?.variant?.classic,
+      solid: {
+        itemControl: radiomarkRecipe.variants?.variant?.solid,
       },
     },
 
@@ -67,6 +66,6 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    variant: "outline",
+    variant: "solid",
   },
 })

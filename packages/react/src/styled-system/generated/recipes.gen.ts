@@ -241,8 +241,8 @@ export type CheckmarkVariantMap = {
 }
 
 export interface RadiomarkVariant {
-  /** @default "outline" */
-  variant?: "outline" | "subtle" | "classic" | "inverted"
+  /** @default "solid" */
+  variant?: "solid" | "subtle" | "outline" | "inverted"
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
 }
@@ -865,8 +865,8 @@ export type RadioCardVariantMap = {
 export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
 
 export interface RadioGroupVariant {
-  /** @default "outline" */
-  variant?: "outline" | "subtle" | "classic"
+  /** @default "solid" */
+  variant?: "outline" | "subtle" | "solid"
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
 }

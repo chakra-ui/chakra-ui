@@ -125,7 +125,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             borderColor: "colorPalette.emphasized",
           },
         },
-        itemIndicator: radiomarkRecipe.variants?.variant.outline,
+        itemIndicator: radiomarkRecipe.variants?.variant.solid,
       },
 
       subtle: {
@@ -138,7 +138,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             color: "colorPalette.fg",
           },
         },
-        itemIndicator: radiomarkRecipe.variants?.variant.classic,
+        itemIndicator: radiomarkRecipe.variants?.variant.outline,
       },
 
       outline: {
@@ -151,7 +151,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             borderColor: "colorPalette.solid",
           },
         },
-        itemIndicator: radiomarkRecipe.variants?.variant.outline,
+        itemIndicator: radiomarkRecipe.variants?.variant.solid,
       },
 
       solid: {
