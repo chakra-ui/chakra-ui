@@ -94,10 +94,6 @@ When using render props, use the `use client` directive
 import { ProgressContext } from "@chakra-ui/react"
 
 export function MyComponent() {
-  return (
-    <ProgressContext.Consumer>
-      {({ value }) => <div>{value}</div>}
-    </ProgressContext.Consumer>
-  )
+  return <ProgressContext>{({ value }) => <div>{value}</div>}</ProgressContext>
 }
 ```
