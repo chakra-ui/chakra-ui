@@ -116,7 +116,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
     shape: {
       square: {},
       rounded: {
-        root: { "--avatar-radius": "radii.md" },
+        root: { "--avatar-radius": "radii.l3" },
       },
       full: {
         root: { "--avatar-radius": "radii.full" },

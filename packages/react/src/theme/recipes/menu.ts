@@ -11,7 +11,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       boxShadow: "sm",
       color: "inherit",
       zIndex: "dropdown",
-      borderRadius: "md",
+      borderRadius: "l2",
       overflow: "hidden",
       _open: {
         animationStyle: "slide-fade-in",
@@ -26,6 +26,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       textDecoration: "none",
       color: "inherit",
       userSelect: "none",
+      borderRadius: "l1",
       width: "100%",
       display: "flex",
       cursor: "menuitem",
@@ -96,7 +97,6 @@ export const menuSlotRecipe = defineSlotRecipe({
         item: {
           gap: "1",
           textStyle: "xs",
-          borderRadius: "sm",
           py: "1",
           px: "1.5",
         },
@@ -109,7 +109,6 @@ export const menuSlotRecipe = defineSlotRecipe({
         item: {
           gap: "2",
           textStyle: "sm",
-          borderRadius: "sm",
           py: "1.5",
           px: "2",
         },

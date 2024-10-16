@@ -12,7 +12,7 @@ export const kbdRecipe = defineRecipe({
     wordSpacing: "-0.5em",
     userSelect: "none",
     px: "1",
-    borderRadius: "sm",
+    borderRadius: "l2",
   },
 
   variants: {

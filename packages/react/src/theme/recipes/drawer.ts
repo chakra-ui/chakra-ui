@@ -6,7 +6,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
   className: "chakra-drawer",
   base: {
     backdrop: {
-      bg: "blackAlpha.700",
+      bg: "blackAlpha.500",
       pos: "fixed",
       insetInlineStart: 0,
       top: 0,
@@ -55,9 +55,9 @@ export const drawerSlotRecipe = defineSlotRecipe({
     },
     header: {
       flex: 0,
-      paddingX: "6",
-      paddingTop: "6",
-      paddingBottom: "4",
+      px: "6",
+      pt: "6",
+      pb: "4",
     },
     body: {
       px: "6",
@@ -70,9 +70,9 @@ export const drawerSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "flex-end",
       gap: "3",
-      paddingX: "6",
-      paddingTop: "2",
-      paddingBottom: "4",
+      px: "6",
+      pt: "2",
+      pb: "4",
     },
   },
 
@@ -181,7 +181,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
           padding: "4",
         },
         content: {
-          borderRadius: "lg",
+          borderRadius: "l3",
         },
       },
     },

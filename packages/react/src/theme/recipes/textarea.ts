@@ -9,7 +9,7 @@ export const textareaRecipe = defineRecipe({
     position: "relative",
     appearance: "none",
     textAlign: "start",
-    borderRadius: "sm",
+    borderRadius: "l2",
     _disabled: {
       layerStyle: "disabled",
     },

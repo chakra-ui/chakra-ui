@@ -6,7 +6,7 @@ export const fieldSlotRecipe = defineSlotRecipe({
   slots: fieldAnatomy.keys(),
   base: {
     requiredIndicator: {
-      marginStart: "0.5",
+      ms: "0.5",
       color: "fg.error",
       verticalAlign: "middle",
       lineHeight: "normal",
@@ -24,7 +24,7 @@ export const fieldSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       textStyle: "sm",
       fontWeight: "medium",
-      marginEnd: "2",
+      me: "2",
       userSelect: "none",
       _disabled: {
         opacity: "0.5",
@@ -40,7 +40,6 @@ export const fieldSlotRecipe = defineSlotRecipe({
     },
     helperText: {
       color: "fg.subtle",
-      lineHeight: "normal",
       textStyle: "xs",
     },
   },

@@ -6,7 +6,7 @@ const sharedStyles = defineStyle({
   fontWeight: "inherit",
   textAlign: "inherit",
   bg: "transparent",
-  borderRadius: "var(--editable-radius)",
+  borderRadius: "l2",
 })
 
 export const editableSlotRecipe = defineSlotRecipe({
@@ -14,7 +14,6 @@ export const editableSlotRecipe = defineSlotRecipe({
   className: "chakra-editable",
   base: {
     root: {
-      "--editable-radius": "radii.sm",
       display: "inline-flex",
       alignItems: "center",
       position: "relative",
@@ -39,7 +38,7 @@ export const editableSlotRecipe = defineSlotRecipe({
     },
     input: {
       ...sharedStyles,
-      outline: 0,
+      outline: "0",
       py: "1",
       px: "1",
       transitionProperty: "common",

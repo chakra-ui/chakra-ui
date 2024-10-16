@@ -6,7 +6,6 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
   className: "chakra-empty-state",
   base: {
     root: {
-      rounded: "md",
       width: "full",
       bg: "bg",
     },

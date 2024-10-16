@@ -25,8 +25,8 @@ export const DrawerWithPlacement = () => {
               </Button>
             </DrawerTrigger>
             <DrawerContent
-              roundedTop={placement === "bottom" ? "2xl" : undefined}
-              roundedBottom={placement === "top" ? "2xl" : undefined}
+              roundedTop={placement === "bottom" ? "l3" : undefined}
+              roundedBottom={placement === "top" ? "l3" : undefined}
             >
               <DrawerHeader>
                 <DrawerTitle>Drawer Title</DrawerTitle>

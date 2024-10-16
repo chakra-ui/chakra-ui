@@ -7,7 +7,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: "full",
-      "--accordion-radius": "radii.sm",
+      "--accordion-radius": "radii.l2",
     },
     item: {
       overflowAnchor: "none",

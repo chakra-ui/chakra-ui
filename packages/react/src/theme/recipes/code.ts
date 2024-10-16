@@ -9,7 +9,7 @@ export const codeRecipe = defineRecipe({
     fontFamily: "mono",
     alignItems: "center",
     display: "inline-flex",
-    borderRadius: "sm",
+    borderRadius: "l2",
   },
   variants,
   defaultVariants,

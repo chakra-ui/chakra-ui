@@ -20,3 +20,4 @@ export { AvatarWithBadge as Badge } from "compositions/examples/avatar-with-badg
 export { AvatarWithFallback as Fallback } from "compositions/examples/avatar-with-fallback"
 export { AvatarWithGroup as Group } from "compositions/examples/avatar-with-group"
 export { AvatarWithOverflow as Overflow } from "compositions/examples/avatar-with-overflow"
+export { AvatarWithShape as Shape } from "compositions/examples/avatar-with-shape"

@@ -33,13 +33,13 @@ export const timelineSlotRecipe = defineSlotRecipe({
     indicator: {
       outline: "2px solid {colors.bg}",
       position: "relative",
-      flexShrink: 0,
+      flexShrink: "0",
       boxSize: "var(--timeline-indicator-size)",
       fontSize: "var(--timeline-font-size)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      rounded: "full",
+      borderRadius: "full",
       fontWeight: "medium",
     },
     connector: {

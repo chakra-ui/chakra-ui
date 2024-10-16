@@ -19,7 +19,7 @@ export const popoverSlotRecipe = defineSlotRecipe({
         base: "min(var(--popover-mobile-size), var(--popover-size))",
         sm: "var(--popover-size)",
       },
-      borderRadius: "var(--popover-radius)",
+      borderRadius: "l3",
       zIndex: "popover",
       outline: "0",
       transformOrigin: "var(--transform-origin)",
@@ -60,25 +60,21 @@ export const popoverSlotRecipe = defineSlotRecipe({
       xs: {
         content: {
           "--popover-padding": "spacing.3",
-          "--popover-radius": "radii.sm",
         },
       },
       sm: {
         content: {
           "--popover-padding": "spacing.4",
-          "--popover-radius": "radii.sm",
         },
       },
       md: {
         content: {
           "--popover-padding": "spacing.5",
-          "--popover-radius": "radii.md",
         },
       },
       lg: {
         content: {
           "--popover-padding": "spacing.6",
-          "--popover-radius": "radii.lg",
         },
       },
     },

@@ -5,6 +5,7 @@ import { layerStyles } from "./layer-styles"
 import { animationStyles } from "./motion-styles"
 import { recipes } from "./recipes"
 import { semanticColors } from "./semantic-tokens/colors"
+import { semanticRadii } from "./semantic-tokens/radii"
 import { semanticShadows } from "./semantic-tokens/shadows"
 import { slotRecipes } from "./slot-recipes"
 import { textStyles } from "./text-styles"
@@ -57,6 +58,7 @@ export const defaultThemeConfig = defineConfig({
     semanticTokens: {
       colors: semanticColors,
       shadows: semanticShadows,
+      radii: semanticRadii,
     },
     recipes: recipes,
     slotRecipes: slotRecipes,

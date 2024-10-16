@@ -17,7 +17,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       userSelect: "none",
       position: "relative",
-      borderRadius: "sm",
+      borderRadius: "l2",
       _focus: {
         bg: "colorPalette.subtle/20",
       },

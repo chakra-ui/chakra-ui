@@ -11,6 +11,7 @@ export const alertSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "flex-start",
       position: "relative",
+      borderRadius: "l3",
     },
     title: {
       fontWeight: "medium",
@@ -116,7 +117,6 @@ export const alertSlotRecipe = defineSlotRecipe({
           gap: "2",
           px: "3",
           py: "3",
-          rounded: "md",
           textStyle: "xs",
         },
         indicator: {
@@ -128,7 +128,6 @@ export const alertSlotRecipe = defineSlotRecipe({
           gap: "3",
           px: "4",
           py: "4",
-          rounded: "md",
           textStyle: "sm",
         },
         indicator: {
@@ -140,7 +139,6 @@ export const alertSlotRecipe = defineSlotRecipe({
           gap: "3",
           px: "4",
           py: "4",
-          rounded: "lg",
           textStyle: "md",
         },
         indicator: {

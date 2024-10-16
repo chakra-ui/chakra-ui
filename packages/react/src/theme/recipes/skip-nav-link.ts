@@ -3,7 +3,7 @@ import { defineRecipe } from "../../styled-system"
 export const skipNavLinkRecipe = defineRecipe({
   className: "chakra-skip-nav",
   base: {
-    borderRadius: "md",
+    borderRadius: "l2",
     fontWeight: "semibold",
     focusVisibleRing: "outside",
     _focusVisible: {

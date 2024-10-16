@@ -58,7 +58,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       gap: "3",
       textAlign: "start",
       focusVisibleRing: "outside",
-      borderRadius: "md",
+      borderRadius: "l2",
     },
     content: {
       focusVisibleRing: "outside",

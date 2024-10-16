@@ -16,7 +16,7 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       bg: "var(--hovercard-bg)",
       shadow: "md",
       width: "xs",
-      borderRadius: "var(--hovercard-radius)",
+      borderRadius: "l3",
       zIndex: "popover",
       transformOrigin: "var(--transform-origin)",
       outline: "0",
@@ -44,25 +44,21 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       xs: {
         content: {
           "--hovercard-padding": "spacing.3",
-          "--hovercard-radius": "radii.sm",
         },
       },
       sm: {
         content: {
           "--hovercard-padding": "spacing.4",
-          "--hovercard-radius": "radii.sm",
         },
       },
       md: {
         content: {
           "--hovercard-padding": "spacing.5",
-          "--hovercard-radius": "radii.md",
         },
       },
       lg: {
         content: {
           "--hovercard-padding": "spacing.6",
-          "--hovercard-radius": "radii.lg",
         },
       },
     },

@@ -18,7 +18,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       minWidth: "0",
       outline: "0",
       appearance: "none",
-      borderRadius: "sm",
+      borderRadius: "l2",
       _disabled: {
         layerStyle: "disabled",
       },

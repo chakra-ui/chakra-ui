@@ -6,6 +6,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
   className: "chakra-tabs",
   base: {
     root: {
+      "--tabs-trigger-radius": "radii.l2",
       position: "relative",
       _horizontal: {
         display: "block",
@@ -103,8 +104,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          "--tabs-trigger-radius": "radii.sm",
-          "--tabs-indicator-radius": "radii.sm",
           "--tabs-height": "sizes.9",
           "--tabs-content-padding": "spacing.3",
         },
@@ -116,8 +115,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
       },
       md: {
         root: {
-          "--tabs-trigger-radius": "radii.sm",
-          "--tabs-indicator-radius": "radii.sm",
           "--tabs-height": "sizes.10",
           "--tabs-content-padding": "spacing.4",
         },
@@ -129,8 +126,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
       },
       lg: {
         root: {
-          "--tabs-trigger-radius": "radii.sm",
-          "--tabs-indicator-radius": "radii.sm",
           "--tabs-height": "sizes.11",
           "--tabs-content-padding": "spacing.4.5",
         },
@@ -189,7 +184,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         list: {
           bg: "bg.subtle",
           padding: "1",
-          borderRadius: "md",
+          borderRadius: "l3",
           minH: "calc(var(--tabs-height) - 4px)",
         },
         trigger: {

@@ -11,7 +11,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       position: "relative",
       minWidth: "0",
       wordWrap: "break-word",
-      borderRadius: "var(--card-radius)",
+      borderRadius: "l3",
       color: "fg",
       textAlign: "start",
     },
@@ -47,7 +47,6 @@ export const cardSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          "--card-radius": "radii.md",
           "--card-padding": "spacing.4",
         },
         title: {
@@ -56,7 +55,6 @@ export const cardSlotRecipe = defineSlotRecipe({
       },
       md: {
         root: {
-          "--card-radius": "radii.lg",
           "--card-padding": "spacing.6",
         },
         title: {
@@ -65,7 +63,6 @@ export const cardSlotRecipe = defineSlotRecipe({
       },
       lg: {
         root: {
-          "--card-radius": "radii.lg",
           "--card-padding": "spacing.7",
         },
         title: {

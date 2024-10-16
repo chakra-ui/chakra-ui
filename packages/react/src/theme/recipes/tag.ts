@@ -14,7 +14,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       verticalAlign: "top",
       maxWidth: "100%",
       userSelect: "none",
-      borderRadius: "sm",
+      borderRadius: "l2",
       focusVisibleRing: "outside",
     },
     label: {
@@ -25,7 +25,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       outline: "0",
-      borderRadius: "xs",
+      borderRadius: "l1",
       color: "currentColor",
       focusVisibleRing: "inside",
       focusRingWidth: "2px",

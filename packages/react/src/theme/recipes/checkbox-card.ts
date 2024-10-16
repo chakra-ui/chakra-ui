@@ -11,7 +11,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       userSelect: "none",
       position: "relative",
-      borderRadius: "sm",
+      borderRadius: "l2",
       flex: "1",
       focusVisibleRing: "outside",
       _disabled: {
@@ -27,7 +27,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       flex: "1",
       position: "relative",
-      rounded: "inherit",
+      borderRadius: "inherit",
       justifyContent: "var(--checkbox-card-justify)",
       alignItems: "var(--checkbox-card-align)",
     },
@@ -80,7 +80,6 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         control: {
           padding: "4",
           gap: "2.5",
-          rounded: "md",
         },
         addon: {
           px: "4",
