@@ -53,3 +53,21 @@ export const TagCloseTrigger = withContext<
   HTMLButtonElement,
   TagCloseTriggerProps
 >("button", "closeTrigger", { defaultProps: { children: <CloseIcon /> } })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TagStartElementProps extends HTMLChakraProps<"span"> {}
+
+export const TagStartElement = withContext<
+  HTMLSpanElement,
+  TagStartElementProps
+>("span", "startElement")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TagEndElementProps extends HTMLChakraProps<"span"> {}
+
+export const TagEndElement = withContext<HTMLSpanElement, TagEndElementProps>(
+  "span",
+  "endElement",
+)

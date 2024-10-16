@@ -22,7 +22,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       borderRadius: "var(--accordion-radius)",
       _focusVisible: {
         outline: "2px solid",
-        outlineColor: "focusRing",
+        outlineColor: "colorPalette.focusRing",
       },
       _disabled: {
         layerStyle: "disabled",

@@ -12,7 +12,7 @@ export const BoxPropertyCard = () => {
             Superhost
           </Badge>
           <HStack gap="1" fontWeight="medium">
-            <Icon asChild color="orange.400">
+            <Icon color="orange.400">
               <HiStar />
             </Icon>
             <Text>

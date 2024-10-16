@@ -62,7 +62,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
 
       _focusVisible: {
         ring: "2px",
-        ringColor: "focusRing",
+        ringColor: "colorPalette.focusRing",
         ringOffset: "2px",
         ringOffsetColor: "bg",
       },

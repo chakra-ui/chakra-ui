@@ -146,7 +146,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         content: {
           p: "1",
           gap: "1",
-          minW: "8rem",
           textStyle: "xs",
         },
         trigger: {
@@ -177,7 +176,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         content: {
           p: "1",
           gap: "0.5",
-          minW: "12rem",
           textStyle: "sm",
         },
         trigger: {
@@ -208,7 +206,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         content: {
           p: "1",
           gap: "1",
-          minW: "12rem",
           textStyle: "sm",
         },
         item: {
@@ -244,7 +241,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         content: {
           p: "1.5",
           gap: "1.5",
-          minW: "12rem",
           textStyle: "md",
         },
         item: {

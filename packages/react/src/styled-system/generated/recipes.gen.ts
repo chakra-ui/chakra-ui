@@ -199,7 +199,7 @@ export type SpinnerVariantMap = {
 
 export interface TextareaVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
   /** @default "outline" */
   variant?: "outline" | "subtle" | "flushed"
 }
@@ -712,7 +712,7 @@ export interface NativeSelectVariant {
   /** @default "outline" */
   variant?: "outline" | "subtle" | "plain"
   /** @default "md" */
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
 export type NativeSelectVariantProps = {
@@ -1074,11 +1074,11 @@ export type TabsVariantMap = {
 
 // Tag
 
-export type TagSlot = "root" | "label" | "closeTrigger"
+export type TagSlot = "root" | "label" | "closeTrigger" | "startElement" | "endElement"
 
 export interface TagVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | "xl"
   /** @default "surface" */
   variant?: "subtle" | "solid" | "outline" | "surface"
 }

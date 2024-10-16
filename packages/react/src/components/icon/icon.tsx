@@ -1,13 +1,12 @@
 "use client"
 
-import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type RecipeProps,
-  chakra,
-  useRecipe,
+  createRecipeContext,
 } from "../../styled-system"
-import { cx } from "../../utils"
+
+const { withContext } = createRecipeContext({ key: "icon" })
 
 export interface IconProps
   extends HTMLChakraProps<"svg">,
@@ -18,21 +17,10 @@ export interface IconProps
  *
  * @see Docs https://chakra-ui.com/docs/components/icon#using-the-icon-component
  */
-export const Icon = forwardRef<SVGElement, IconProps>(
-  function Icon(props, ref) {
-    const recipe = useRecipe({ key: "icon", recipe: props.recipe })
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
-
-    return (
-      <chakra.svg
-        verticalAlign="middle"
-        focusable="false"
-        ref={ref}
-        {...localProps}
-        css={[styles, props.css]}
-        className={cx("chakra-icon", props.className)}
-      />
-    )
+export const Icon = withContext<SVGSVGElement, IconProps>("svg", {
+  defaultProps: {
+    focusable: false,
+    asChild: true,
+    "aria-hidden": true,
   },
-)
+})

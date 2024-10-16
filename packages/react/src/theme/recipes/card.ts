@@ -34,7 +34,6 @@ export const cardSlotRecipe = defineSlotRecipe({
       flex: "1",
       display: "flex",
       flexDirection: "column",
-      alignItems: "flex-start",
     },
     footer: {
       display: "flex",

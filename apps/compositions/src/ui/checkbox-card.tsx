@@ -57,7 +57,7 @@ export const CheckboxCard = forwardRef<HTMLInputElement, CheckboxCardProps>(
             justifyContent={justify}
           >
             {icon && (
-              <Icon asChild fontSize="2xl" color={iconColor} mb="2">
+              <Icon fontSize="2xl" color={iconColor} mb="2">
                 {icon}
               </Icon>
             )}

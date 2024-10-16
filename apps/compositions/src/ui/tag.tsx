@@ -21,10 +21,18 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(
 
     return (
       <ChakraTag.Root ref={ref} {...rest}>
-        {startElement}
+        {startElement && (
+          <ChakraTag.StartElement>{startElement}</ChakraTag.StartElement>
+        )}
         <ChakraTag.Label>{children}</ChakraTag.Label>
-        {endElement}
-        {closable && <ChakraTag.CloseTrigger onClick={onClose} />}
+        {endElement && (
+          <ChakraTag.EndElement>{endElement}</ChakraTag.EndElement>
+        )}
+        {closable && (
+          <ChakraTag.EndElement>
+            <ChakraTag.CloseTrigger onClick={onClose} />
+          </ChakraTag.EndElement>
+        )}
       </ChakraTag.Root>
     )
   },

@@ -28,7 +28,7 @@ export const ResourceCard = (props: ResourceCardProps) => {
           </Text>
           {description && <Text color="fg.muted/80">{description}</Text>}
         </Stack>
-        <Icon asChild flexShrink="0">
+        <Icon>
           <LuArrowUpRight />
         </Icon>
       </a>

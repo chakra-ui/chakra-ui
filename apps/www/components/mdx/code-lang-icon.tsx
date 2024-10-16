@@ -8,7 +8,7 @@ interface CodeLangIconProps {
 
 export const CodeLangIcon = (props: CodeLangIconProps) => {
   return (
-    <Icon asChild fontSize="md" color="white/80">
+    <Icon fontSize="md" color="white/80">
       {(() => {
         switch (props.type) {
           case "tsx":

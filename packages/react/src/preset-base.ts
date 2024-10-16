@@ -15,7 +15,7 @@ const createFocusRing = (selector: string) => {
   return {
     values: ["outside", "inside", "mixed", "none"],
     transform(value: any, { token }: any) {
-      const focusRingColor = token("colors.focusRing")
+      const focusRingColor = token("colors.colorPalette.focusRing")
       const styles: Record<string, any> = {
         inside: {
           "--focus-ring-color": focusRingColor,

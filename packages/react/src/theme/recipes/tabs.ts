@@ -40,7 +40,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
       _focusVisible: {
         zIndex: 1,
         outline: "2px solid",
-        outlineColor: "focusRing",
+        outlineColor: "colorPalette.focusRing",
       },
       _disabled: {
         cursor: "not-allowed",
@@ -214,7 +214,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
             _before: {
               content: '""',
               position: "absolute",
-              bottom: "var(--line-offset)",
+              bottom: "0px",
               width: "100%",
               borderBottomWidth: "var(--line-thickness)",
               borderBottomColor: "border",
@@ -225,7 +225,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
               content: '""',
               position: "absolute",
               insetInline: "var(--line-offset)",
-              height: "100%",
+              height: "calc(100% - calc(var(--line-thickness) * 2))",
               borderEndWidth: "var(--line-thickness)",
               borderEndColor: "border",
             },

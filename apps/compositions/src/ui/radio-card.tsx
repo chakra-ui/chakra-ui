@@ -52,7 +52,7 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
             justifyContent={justify}
           >
             {icon && (
-              <Icon asChild fontSize="2xl" color={iconColor} mb="2">
+              <Icon fontSize="2xl" color={iconColor} mb="2">
                 {icon}
               </Icon>
             )}

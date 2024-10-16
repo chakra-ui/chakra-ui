@@ -87,9 +87,9 @@ export const semanticColors = defineSemanticTokens.colors({
     info: {
       value: { _light: "{colors.blue.500}", _dark: "{colors.blue.400}" },
     },
-  },
-  focusRing: {
-    value: { _light: "{colors.blue.600/50}", _dark: "{colors.blue.500/50}" },
+    focusRing: {
+      value: { _light: "{colors.blue.600/50}", _dark: "{colors.blue.500/50}" },
+    },
   },
 
   accent: {
@@ -110,6 +110,9 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.gray.900}", _dark: "{colors.white}" },
+    },
+    focusRing: {
+      value: { _light: "{colors.gray.600/50}", _dark: "{colors.gray.500/50}" },
     },
   },
 
@@ -132,6 +135,9 @@ export const semanticColors = defineSemanticTokens.colors({
     solid: {
       value: { _light: "{colors.gray.900}", _dark: "{colors.gray.200}" },
     },
+    focusRing: {
+      value: { _light: "{colors.gray.600/50}", _dark: "{colors.gray.500/50}" },
+    },
   },
 
   red: {
@@ -152,6 +158,9 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.red.600}", _dark: "{colors.red.600}" },
+    },
+    focusRing: {
+      value: { _light: "{colors.red.600/50}", _dark: "{colors.red.500/50}" },
     },
   },
 
@@ -174,6 +183,12 @@ export const semanticColors = defineSemanticTokens.colors({
     solid: {
       value: { _light: "{colors.orange.600}", _dark: "{colors.orange.500}" },
     },
+    focusRing: {
+      value: {
+        _light: "{colors.orange.600/50}",
+        _dark: "{colors.orange.500/50}",
+      },
+    },
   },
 
   green: {
@@ -194,6 +209,12 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.green.600}", _dark: "{colors.green.600}" },
+    },
+    focusRing: {
+      value: {
+        _light: "{colors.green.600/50}",
+        _dark: "{colors.green.500/50}",
+      },
     },
   },
 
@@ -216,6 +237,9 @@ export const semanticColors = defineSemanticTokens.colors({
     solid: {
       value: { _light: "{colors.blue.600}", _dark: "{colors.blue.600}" },
     },
+    focusRing: {
+      value: { _light: "{colors.blue.600/50}", _dark: "{colors.blue.500/50}" },
+    },
   },
 
   yellow: {
@@ -223,7 +247,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { _light: "black", _dark: "black" },
     },
     fg: {
-      value: { _light: "{colors.yellow.700}", _dark: "{colors.yellow.300}" },
+      value: { _light: "{colors.yellow.800}", _dark: "{colors.yellow.300}" },
     },
     muted: {
       value: { _light: "{colors.yellow.50}", _dark: "{colors.yellow.950}" },
@@ -236,6 +260,12 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.yellow.300}", _dark: "{colors.yellow.300}" },
+    },
+    focusRing: {
+      value: {
+        _light: "{colors.yellow.600/50}",
+        _dark: "{colors.yellow.500/50}",
+      },
     },
   },
 
@@ -258,6 +288,9 @@ export const semanticColors = defineSemanticTokens.colors({
     solid: {
       value: { _light: "{colors.teal.600}", _dark: "{colors.teal.600}" },
     },
+    focusRing: {
+      value: { _light: "{colors.teal.600/50}", _dark: "{colors.teal.500/50}" },
+    },
   },
 
   purple: {
@@ -278,6 +311,12 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.purple.600}", _dark: "{colors.purple.600}" },
+    },
+    focusRing: {
+      value: {
+        _light: "{colors.purple.600/50}",
+        _dark: "{colors.purple.500/50}",
+      },
     },
   },
 
@@ -300,6 +339,9 @@ export const semanticColors = defineSemanticTokens.colors({
     solid: {
       value: { _light: "{colors.pink.600}", _dark: "{colors.pink.600}" },
     },
+    focusRing: {
+      value: { _light: "{colors.pink.600/50}", _dark: "{colors.pink.500/50}" },
+    },
   },
 
   cyan: {
@@ -320,6 +362,9 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     solid: {
       value: { _light: "{colors.cyan.600}", _dark: "{colors.cyan.600}" },
+    },
+    focusRing: {
+      value: { _light: "{colors.cyan.600/50}", _dark: "{colors.cyan.500/50}" },
     },
   },
 })

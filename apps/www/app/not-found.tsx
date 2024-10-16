@@ -13,7 +13,7 @@ export default function NotFound() {
       <Header />
       <Center minH="90dvh">
         <VStack gap="4">
-          <Icon asChild fontSize="8xl" color="teal.500">
+          <Icon fontSize="8xl" color="teal.500">
             <TbProgressBolt />
           </Icon>
           <Heading size="2xl">404. Page not found</Heading>

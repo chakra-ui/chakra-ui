@@ -15,7 +15,7 @@ export const radiomarkRecipe = defineRecipe({
     cursor: "radio",
     _focusVisible: {
       outline: "2px solid",
-      outlineColor: "focusRing",
+      outlineColor: "colorPalette.focusRing",
       outlineOffset: "2px",
     },
     _invalid: {

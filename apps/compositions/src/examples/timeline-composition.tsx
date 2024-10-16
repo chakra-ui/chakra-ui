@@ -15,7 +15,7 @@ export const TimelineComposition = () => {
     <TimelineRoot size="lg" variant="subtle" maxW="md">
       <TimelineItem>
         <TimelineConnector>
-          <Icon asChild fontSize="xs">
+          <Icon fontSize="xs">
             <LuPen />
           </Icon>
         </TimelineConnector>
@@ -31,7 +31,7 @@ export const TimelineComposition = () => {
 
       <TimelineItem>
         <TimelineConnector>
-          <Icon asChild fontSize="xs">
+          <Icon fontSize="xs">
             <LuX />
           </Icon>
         </TimelineConnector>
@@ -47,7 +47,7 @@ export const TimelineComposition = () => {
 
       <TimelineItem>
         <TimelineConnector bg="teal.solid" color="teal.contrast">
-          <Icon asChild fontSize="xs">
+          <Icon fontSize="xs">
             <LuX />
           </Icon>
         </TimelineConnector>

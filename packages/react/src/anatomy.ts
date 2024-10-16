@@ -219,6 +219,8 @@ export const tagAnatomy = createAnatomy("tag").parts(
   "root",
   "label",
   "closeTrigger",
+  "startElement",
+  "endElement",
 )
 
 export const timelineAnatomy = createAnatomy("timeline").parts(

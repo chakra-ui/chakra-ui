@@ -35,10 +35,17 @@ export function createIcon(options: CreateIconOptions) {
     displayName,
     defaultProps = {},
   } = options
+
   const path = Children.toArray(options.path)
 
-  const Comp = forwardRef<SVGElement, IconProps>((props, ref) => (
-    <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
+  const Comp = forwardRef<SVGSVGElement, IconProps>((props, ref) => (
+    <Icon
+      ref={ref}
+      asChild={false}
+      viewBox={viewBox}
+      {...defaultProps}
+      {...props}
+    >
       {path.length ? path : <path fill="currentColor" d={pathDefinition} />}
     </Icon>
   ))

@@ -62,7 +62,7 @@ export const TagVariantTable = () => {
                         borderRadius="full"
                         startElement={
                           <Avatar
-                            size="xs"
+                            size="full"
                             src="https://bit.ly/dan-abramov"
                             name="Dan Abramov"
                           />
