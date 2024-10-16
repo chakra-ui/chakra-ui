@@ -53,8 +53,7 @@ export const toCSSObject: GetStyleObject =
   ({ baseStyle }) =>
   (props) => {
     const { theme, css: cssProp, __css, sx, ...restProps } = props
-    const isStyleProp = isStylePropFn(theme)
-    const [styleProps] = splitProps(restProps, isStyleProp)
+    const [styleProps] = splitProps(restProps, theme.__isStyleProp)
 
     const finalBaseStyle = runIfFn(baseStyle, props)
     const finalStyles = assignAfter(
