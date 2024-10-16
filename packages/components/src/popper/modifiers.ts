@@ -1,5 +1,5 @@
 import { Placement, Modifier, State } from "@popperjs/core"
-import { getBoxShadow, toTransformOrigin, cssVars } from "./utils"
+import { getBorder, toTransformOrigin, cssVars } from "./utils"
 
 /* -------------------------------------------------------------------------------------------------
  The match width modifier sets the popper width to match the reference.
@@ -77,8 +77,7 @@ const setArrowStyles = (state: Partial<State>) => {
     })
 
     const vars = {
-      [cssVars.arrowSizeHalf
-        .var]: `calc(${cssVars.arrowSize.varRef} / 2 - 1px)`,
+      [cssVars.arrowSizeHalf.var]: `calc(${cssVars.arrowSize.varRef} / 2)`,
       [cssVars.arrowOffset.var]: `calc(${cssVars.arrowSizeHalf.varRef} * -1)`,
     }
 
@@ -131,10 +130,8 @@ const setInnerArrowStyles = (state: State) => {
   ) as HTMLElement | null
 
   if (!inner) return
-  const boxShadow = getBoxShadow(state.placement)
-  if (boxShadow) {
-    inner.style.setProperty("--popper-arrow-default-shadow", boxShadow)
-  }
+
+  const border = getBorder(state.placement)
 
   Object.assign(inner.style, {
     transform: "rotate(45deg)",
@@ -145,6 +142,6 @@ const setInnerArrowStyles = (state: State) => {
     height: "100%",
     position: "absolute",
     zIndex: "inherit",
-    boxShadow: `var(--popper-arrow-shadow, var(--popper-arrow-default-shadow))`,
+    ...border,
   })
 }

@@ -14,15 +14,39 @@ export const cssVars = {
   arrowOffset: toVar("--popper-arrow-offset"),
 } as const
 
-export function getBoxShadow(placement: Placement) {
-  if (placement.includes("top"))
-    return `1px 1px 0px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("bottom"))
-    return `-1px -1px 0px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("right"))
-    return `-1px 1px 0px 0 var(--popper-arrow-shadow-color)`
-  if (placement.includes("left"))
-    return `1px -1px 0px 0 var(--popper-arrow-shadow-color)`
+export function getBorder(placement: Placement) {
+  const borderDefinition = `1px solid ${cssVars.arrowShadowColor.varRef}`
+  const transparentBorderDefinition = `1px solid transparent`
+
+  if (placement.includes("top")) {
+    return {
+      borderBottom: borderDefinition,
+      borderRight: borderDefinition,
+      borderLeft: transparentBorderDefinition,
+      borderTop: transparentBorderDefinition,
+    }
+  } else if (placement.includes("bottom")) {
+    return {
+      borderTop: borderDefinition,
+      borderLeft: borderDefinition,
+      borderRight: transparentBorderDefinition,
+      borderBottom: transparentBorderDefinition,
+    }
+  } else if (placement.includes("right")) {
+    return {
+      borderBottom: borderDefinition,
+      borderLeft: borderDefinition,
+      borderTop: transparentBorderDefinition,
+      borderRight: transparentBorderDefinition,
+    }
+  } else if (placement.includes("left")) {
+    return {
+      borderTop: borderDefinition,
+      borderRight: borderDefinition,
+      borderBottom: transparentBorderDefinition,
+      borderLeft: transparentBorderDefinition,
+    }
+  }
 }
 
 const transforms: Record<string, string> = {
