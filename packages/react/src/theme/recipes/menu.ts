@@ -8,9 +8,10 @@ export const menuSlotRecipe = defineSlotRecipe({
     content: {
       outline: 0,
       bg: "bg.panel",
-      boxShadow: "sm",
-      color: "inherit",
-      zIndex: "dropdown",
+      boxShadow: "md",
+      color: "fg",
+      "--menu-z-index": "zIndex.dropdown",
+      zIndex: "calc(var(--menu-z-index) + var(--layer-index, 0))",
       borderRadius: "l2",
       overflow: "hidden",
       _open: {
@@ -24,7 +25,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     },
     item: {
       textDecoration: "none",
-      color: "inherit",
+      color: "fg",
       userSelect: "none",
       borderRadius: "l1",
       width: "100%",

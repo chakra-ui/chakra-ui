@@ -4,7 +4,7 @@ import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
 export const TabsWithIndicator = () => {
   return (
     <Tabs.Root defaultValue="members" variant="plain">
-      <Tabs.List>
+      <Tabs.List bg="bg.subtle" rounded="l3" p="1">
         <Tabs.Trigger value="members">
           <LuUser />
           Members
@@ -17,7 +17,7 @@ export const TabsWithIndicator = () => {
           <LuCheckSquare />
           Settings
         </Tabs.Trigger>
-        <Tabs.Indicator />
+        <Tabs.Indicator rounded="l2" />
       </Tabs.List>
       <Tabs.Content value="members">Manage your team members</Tabs.Content>
       <Tabs.Content value="projects">Manage your projects</Tabs.Content>

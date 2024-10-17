@@ -12,7 +12,7 @@ export const popoverSlotRecipe = defineSlotRecipe({
       textStyle: "sm",
       "--popover-bg": "colors.bg.panel",
       bg: "var(--popover-bg)",
-      shadow: "md",
+      boxShadow: "lg",
       "--popover-size": "sizes.xs",
       "--popover-mobile-size": "calc(100dvw - 1rem)",
       width: {
@@ -20,7 +20,8 @@ export const popoverSlotRecipe = defineSlotRecipe({
         sm: "var(--popover-size)",
       },
       borderRadius: "l3",
-      zIndex: "popover",
+      "--popover-z-index": "zIndex.popover",
+      zIndex: "calc(var(--popover-z-index) + var(--layer-index, 0))",
       outline: "0",
       transformOrigin: "var(--transform-origin)",
       _open: {

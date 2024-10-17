@@ -30,7 +30,7 @@ export const BorderRadiusTokenDoc = () => {
                   borderWidth="1px"
                 />
                 <Box lineHeight="1">{radius}</Box>
-                <Box as="pre" color="fg.subtleeee" fontSize="xs">
+                <Box as="pre" color="fg.subtle" fontSize="xs">
                   {token?.originalValue}
                 </Box>
               </Stack>

@@ -137,7 +137,7 @@ export function createPreflight(options: PreflightConfig) {
     ":-moz-focusring": {
       outline: "auto",
     },
-    "[hidden]": {
+    "[hidden]:where(:not([hidden='until-found']))": {
       display: "none !important",
     },
   }

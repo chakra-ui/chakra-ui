@@ -4,55 +4,55 @@ export const semanticShadows = defineSemanticTokens.shadows({
   xs: {
     value: {
       _light:
-        "0px 1px 2px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 1px 1px {colors.blackAlpha.800}, 0px 0px 1px inset {colors.whiteAlpha.300}",
+        "0px 1px 2px {colors.gray.900/10}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 1px 2px #000, 0px 0px 1px inset {colors.gray.300/30}",
     },
   },
   sm: {
     value: {
       _light:
-        "0px 2px 4px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 2px 4px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
+        "0px 2px 4px {colors.gray.900/10}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 2px 4px #000, 0px 0px 1px inset {colors.gray.300/30}",
     },
   },
   md: {
     value: {
       _light:
-        "0px 4px 8px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 4px 8px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
+        "0px 4px 8px {colors.gray.900/10}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 4px 8px #000, 0px 0px 1px inset {colors.gray.300/30}",
     },
   },
   lg: {
     value: {
       _light:
-        "0px 8px 16px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 8px 16px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
+        "0px 8px 16px {colors.gray.900/10}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 8px 16px #000, 0px 0px 1px inset {colors.gray.300/30}",
     },
   },
   xl: {
     value: {
       _light:
-        "0px 16px 24px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 16px 24px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
+        "0px 16px 24px {colors.gray.900/10}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 16px 24px #000, 0px 0px 1px inset {colors.gray.300/30}",
     },
   },
   "2xl": {
     value: {
       _light:
-        "0px 24px 40px {colors.blackAlpha.300}, 0px 0px 1px {colors.blackAlpha.400}",
-      _dark:
-        "0px 24px 40px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
+        "0px 24px 40px {colors.gray.900/16}, 0px 0px 1px {colors.gray.900/30}",
+      _dark: "0px 24px 40px #000, 0px 0px 1px inset {colors.gray.300/30}",
+    },
+  },
+  inner: {
+    value: {
+      _light: "inset 0 2px 4px 0 {black/5}",
+      _dark: "inset 0 2px 4px 0 black",
     },
   },
   inset: {
     value: {
-      _light: "inset 0 0 0 1px {colors.blackAlpha.100}",
-      _dark: "inset 0 0 0 1px {colors.whiteAlpha.100}",
+      _light: "inset 0 0 0 1px {black/5}",
+      _dark: "inset 0 0 0 1px {colors.gray.300/5}",
     },
   },
 })

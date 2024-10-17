@@ -6,7 +6,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
   className: "chakra-dialog",
   base: {
     backdrop: {
-      bg: "blackAlpha.500",
+      bg: "blackAlpha.400",
       pos: "fixed",
       left: 0,
       top: 0,
@@ -29,7 +29,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
       position: "fixed",
       left: 0,
       top: 0,
-      zIndex: "modal",
+      "--dialog-z-index": "zIndex.modal",
+      zIndex: "calc(var(--dialog-z-index) + var(--layer-index, 0))",
       justifyContent: "center",
       overscrollBehaviorY: "none",
     },
@@ -41,9 +42,10 @@ export const dialogSlotRecipe = defineSlotRecipe({
       outline: 0,
       borderRadius: "l3",
       textStyle: "sm",
-      zIndex: "modal",
+      "--dialog-z-index": "zIndex.modal",
+      zIndex: "calc(var(--dialog-z-index) + var(--layer-index, 0))",
       bg: "bg.panel",
-      shadow: "lg",
+      boxShadow: "lg",
       _open: {
         animationDuration: "moderate",
       },

@@ -1,6 +1,6 @@
 "use client"
 
-import { Link, Strong, Text } from "@chakra-ui/react"
+import { Box, Link, Strong } from "@chakra-ui/react"
 import {
   HoverCardArrow,
   HoverCardContent,
@@ -18,10 +18,10 @@ export const HoverCardControlled = () => {
       </HoverCardTrigger>
       <HoverCardContent maxWidth="240px">
         <HoverCardArrow />
-        <Text as="div" marginTrim="in-flow">
+        <Box>
           <Strong>Chakra</Strong> is a Sanskrit word that means disk or wheel,
           referring to energy centers in the body
-        </Text>
+        </Box>
       </HoverCardContent>
     </HoverCardRoot>
   )

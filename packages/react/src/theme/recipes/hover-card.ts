@@ -10,22 +10,20 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       textStyle: "sm",
-      paddingInline: "var(--hovercard-padding)",
-      paddingBlock: "var(--hovercard-padding)",
       "--hovercard-bg": "colors.bg.panel",
       bg: "var(--hovercard-bg)",
-      shadow: "md",
-      width: "xs",
+      boxShadow: "lg",
+      maxWidth: "80",
       borderRadius: "l3",
       zIndex: "popover",
       transformOrigin: "var(--transform-origin)",
       outline: "0",
       _open: {
-        animationStyle: "scale-fade-in",
+        animationStyle: "slide-fade-in",
         animationDuration: "fast",
       },
       _closed: {
-        animationStyle: "scale-fade-out",
+        animationStyle: "slide-fade-out",
         animationDuration: "faster",
       },
     },
@@ -34,8 +32,8 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       "--arrow-background": "var(--hovercard-bg)",
     },
     arrowTip: {
-      borderTopWidth: "1px",
-      borderInlineStartWidth: "1px",
+      borderTopWidth: "0.5px",
+      borderInlineStartWidth: "0.5px",
     },
   },
 
@@ -43,22 +41,22 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         content: {
-          "--hovercard-padding": "spacing.3",
+          padding: "3",
         },
       },
       sm: {
         content: {
-          "--hovercard-padding": "spacing.4",
+          padding: "4",
         },
       },
       md: {
         content: {
-          "--hovercard-padding": "spacing.5",
+          padding: "5",
         },
       },
       lg: {
         content: {
-          "--hovercard-padding": "spacing.6",
+          padding: "6",
         },
       },
     },

@@ -478,6 +478,7 @@ export type Token =
   | "shadows.lg"
   | "shadows.xl"
   | "shadows.2xl"
+  | "shadows.inner"
   | "shadows.inset"
   | "radii.l1"
   | "radii.l2"
@@ -1038,7 +1039,7 @@ export type CursorToken = "button" | "checkbox" | "disabled" | "menuitem" | "opt
 
 export type BreakpointsToken = "sm" | "md" | "lg" | "xl" | "2xl"
 
-export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
+export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inner" | "inset"
 
 export type Tokens = {
   aspectRatios: AspectRatiosToken

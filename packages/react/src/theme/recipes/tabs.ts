@@ -257,6 +257,10 @@ export const tabsSlotRecipe = defineSlotRecipe({
 
       plain: {
         trigger: {
+          color: "fg.subtle",
+          _selected: {
+            color: "colorPalette.fg",
+          },
           borderRadius: "var(--tabs-trigger-radius)",
           "&[data-selected][data-ssr]": {
             bg: "var(--tabs-indicator-bg)",
