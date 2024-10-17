@@ -1,13 +1,12 @@
-import { HStack } from "@chakra-ui/react"
+import { For, HStack } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 
 export const CloseButtonWithSizes = () => {
   return (
-    <HStack>
-      <CloseButton variant="outline" size="xs" />
-      <CloseButton variant="outline" size="sm" />
-      <CloseButton variant="outline" size="md" />
-      <CloseButton variant="outline" size="lg" />
+    <HStack gap="4" wrap="wrap">
+      <For each={["2xs", "xs", "sm", "md", "lg", "xl"]}>
+        {(size) => <CloseButton variant="outline" size={size} />}
+      </For>
     </HStack>
   )
 }
