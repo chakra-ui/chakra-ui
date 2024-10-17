@@ -136,7 +136,7 @@ size.
 ```tsx title="theme.ts"
 import { alertAnatomy } from "@chakra-ui/react/anatomy"
 
-const alertSlotRecipe = defineRecipe({
+const alertSlotRecipe = defineSlotRecipe({
   slots: alertAnatomy.keys(),
   variants: {
     size: {
@@ -176,7 +176,7 @@ called `shape`.
 ```tsx title="theme.ts"
 import { alertAnatomy } from "@chakra-ui/react/anatomy"
 
-const alertSlotRecipe = defineRecipe({
+const alertSlotRecipe = defineSlotRecipe({
   slots: alertAnatomy.keys(),
   variants: {
     shape: {
@@ -209,7 +209,7 @@ Then you can use the new variant in your components.
 Here's an example of how to define a custom slot recipe called `Navbar`.
 
 ```tsx title="theme.ts"
-const navbarSlotRecipe = defineRecipe({
+const navbarSlotRecipe = defineSlotRecipe({
   slots: ["root", "badge", "icon"],
   base: {
     root: {
