@@ -14,7 +14,7 @@ export const Annoucement = chakra("div", {
     layerStyle: "fill.subtle",
     colorPalette: "teal",
     bg: "teal.500/10",
-    rounded: "md",
+    borderRadius: "l2",
     focusRing: "outside",
   },
 })
