@@ -1,7 +1,13 @@
-export function unionType(values: Iterable<any>) {
-  return Array.from(values)
+export function unionType(values: Iterable<any>, loosen = false) {
+  const baseType = Array.from(values)
     .map((value) => JSON.stringify(value))
     .join(" | ")
+
+  if (loosen) {
+    return `${baseType} | (string & {})`
+  }
+
+  return baseType
 }
 
 export function capitalize(value: string) {

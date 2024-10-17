@@ -2,7 +2,7 @@ import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 import { capitalize, isBooleanValue, unionType } from "./shared.js"
 
-export async function generateRecipe(sys: SystemContext) {
+export async function generateRecipe(sys: SystemContext, strict = true) {
   const theme = sys._config.theme ?? {}
 
   const sysRecipes = theme.recipes ?? {}
@@ -87,7 +87,7 @@ export async function generateRecipe(sys: SystemContext) {
                 return `${jsDoc}${key}?: boolean`
               }
 
-              return `${jsDoc}${key}?: ${unionType(values)}`
+              return `${jsDoc}${key}?: ${unionType(values, !strict)}`
             })
             .join("\n")}
         }

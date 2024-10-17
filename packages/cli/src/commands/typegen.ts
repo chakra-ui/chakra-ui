@@ -46,7 +46,7 @@ export const TypegenCommand = new Command("typegen")
     }
 
     const build = async () => {
-      await codegen(result.mod)
+      await codegen(result.mod, flags)
 
       if (flags.watch) {
         p.log.info("\n⌛️ Watching for changes...")
@@ -66,7 +66,7 @@ export const TypegenCommand = new Command("typegen")
     p.outro("🎉 Done!")
   })
 
-function codegen(sys: SystemContext) {
+function codegen(sys: SystemContext, flags: CodegenFlags) {
   io.ensureDir(io.basePath)
   debug("writing codegen to", io.basePath)
 
@@ -81,7 +81,7 @@ function codegen(sys: SystemContext) {
     {
       title: "Generating recipe types...",
       task: async () => {
-        await io.write("recipes.gen", generateRecipe(sys))
+        await io.write("recipes.gen", generateRecipe(sys, flags.strict))
         return "✅ Generated recipe typings"
       },
     },
