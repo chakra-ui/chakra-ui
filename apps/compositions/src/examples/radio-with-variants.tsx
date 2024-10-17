@@ -4,7 +4,7 @@ import { Radio, RadioGroup } from "compositions/ui/radio"
 export const RadioWithVariants = () => {
   return (
     <Stack gap="4">
-      <For each={["classic", "outline", "subtle"]}>
+      <For each={["solid", "outline", "subtle"]}>
         {(variant) => (
           <RadioGroup
             key={variant}

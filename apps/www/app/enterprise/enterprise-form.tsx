@@ -32,11 +32,11 @@ export const EnterpriseForm = () => {
   return (
     <form ref={formRef} action={formAction}>
       <Card.Body gap="4" alignItems="flex-start">
-        <Field required label="What's your name?" asterisk>
+        <Field required label="What's your name?">
           <Input placeholder="John Doe" name="name" required />
         </Field>
 
-        <Field required label="What's your email?" asterisk>
+        <Field required label="What's your email?">
           <Input
             placeholder="me@example.com"
             name="email"
@@ -45,7 +45,7 @@ export const EnterpriseForm = () => {
           />
         </Field>
 
-        <Field required label="How can we help?" asterisk>
+        <Field required label="How can we help?">
           <Textarea
             placeholder="Your company, your project, your needs..."
             name="message"
@@ -53,7 +53,7 @@ export const EnterpriseForm = () => {
           />
         </Field>
 
-        <Field required label="Budget" asterisk>
+        <Field required label="Budget">
           <NativeSelectRoot>
             <NativeSelectField
               placeholder="Select your budget"

@@ -3,7 +3,7 @@ import { Field } from "compositions/ui/field"
 
 export const InputWithHelperText = () => {
   return (
-    <Field label="Email" asterisk helperText="We'll never share your email.">
+    <Field label="Email" required helperText="We'll never share your email.">
       <Input placeholder="Enter your email" />
     </Field>
   )
