@@ -6,10 +6,8 @@ export const fieldSlotRecipe = defineSlotRecipe({
   slots: fieldAnatomy.keys(),
   base: {
     requiredIndicator: {
-      ms: "0.5",
       color: "fg.error",
-      verticalAlign: "middle",
-      lineHeight: "normal",
+      lineHeight: "1",
     },
     root: {
       display: "flex",
@@ -20,11 +18,12 @@ export const fieldSlotRecipe = defineSlotRecipe({
       gap: "1.5",
     },
     label: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
       textAlign: "start",
       textStyle: "sm",
       fontWeight: "medium",
-      me: "2",
+      gap: "1",
       userSelect: "none",
       _disabled: {
         opacity: "0.5",
