@@ -2,7 +2,7 @@ import { Badge, Box, Card, HStack, Image } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 
 export const CardHorizontal = () => (
-  <Card.Root flexDirection="row" overflow="hidden">
+  <Card.Root flexDirection="row" overflow="hidden" maxW="xl">
     <Image
       objectFit="cover"
       maxW="200px"

@@ -6,7 +6,7 @@ export const cardSlotRecipe = defineSlotRecipe({
   slots: cardAnatomy.keys(),
   base: {
     root: {
-      display: "inline-flex",
+      display: "flex",
       flexDirection: "column",
       position: "relative",
       minWidth: "0",

@@ -170,7 +170,6 @@ export const HeroSection = () => (
             asChild
             colorPalette="teal"
             variant="solid"
-            fontWeight="semibold"
           >
             <Link href="/docs/get-started/installation">Start Building</Link>
           </Button>
@@ -181,10 +180,9 @@ export const HeroSection = () => (
             bg="bg.muted/50"
             color={{ _light: "teal.600", _dark: "teal.400" }}
             textStyle="sm"
-            fontWeight="semibold"
             ps="4"
             pe="6"
-            rounded="lg"
+            rounded="l2"
             gap="2.5"
           >
             <LuTerminal />

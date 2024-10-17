@@ -91,7 +91,7 @@ export function ThemePanel(props: ThemePanelProps) {
   const radii = Object.fromEntries(
     Object.entries(radiiMap[radius]).map(([key, value]) => [
       key,
-      system.token(value),
+      system.token(value, value),
     ]),
   )
 
@@ -134,6 +134,7 @@ export function ThemePanel(props: ThemePanelProps) {
               <HStack wrap="wrap" maxW="342px" gap="2">
                 {accentColors.map((color) => (
                   <RadioCardItem
+                    rounded="md"
                     flex="0"
                     indicator={<Circle size="4" bg={`${color}.solid`} />}
                     key={color}
@@ -202,6 +203,7 @@ export function ThemePanel(props: ThemePanelProps) {
                   <RadioCardItem
                     flex="0"
                     minW="60px"
+                    rounded="md"
                     indicator={null}
                     label={radii}
                     icon={
