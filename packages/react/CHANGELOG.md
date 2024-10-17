@@ -1,5 +1,23 @@
 # @chakra-ui/react
 
+## 3.0.0-next.30
+
+### Minor Changes
+
+- [`1738b90`](https://github.com/chakra-ui/chakra-ui/commit/1738b901122932b664f6a4c06701cfab4c00afd2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Icon: Set
+  `asChild` to `true` by default to reduce repetition
+
+  - All components
+
+    - Ensure consistent sizing convention (units of 4px). Smaller elements start
+      at 20px, larger elements start at 40px
+    - Ensure focus ring matches the colorPalette
+
+  - Input, Textarea: Rename `filled` variant to `subtle`
+  - Tags: Add new `Tag.StartElement` and `Tag.EndElement` components to allow
+    for easier styling of the start and end elements
+
 ## 3.0.0-next.29
 
 ### Minor Changes
