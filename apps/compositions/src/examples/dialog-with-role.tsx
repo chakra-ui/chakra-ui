@@ -20,17 +20,17 @@ export const DialogWithRole = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Dialog Title</DialogTitle>
+          <DialogTitle>Are you sure?</DialogTitle>
         </DialogHeader>
         <DialogBody>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our systems.
           </p>
         </DialogBody>
         <DialogFooter>
           <Button variant="outline">Cancel</Button>
-          <Button>Save</Button>
+          <Button colorPalette="red">Delete</Button>
         </DialogFooter>
         <DialogCloseTrigger />
       </DialogContent>
