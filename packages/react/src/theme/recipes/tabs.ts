@@ -37,6 +37,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       fontWeight: "medium",
       position: "relative",
+      cursor: "button",
       gap: "2",
       _focusVisible: {
         zIndex: 1,
