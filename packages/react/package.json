@@ -125,14 +125,14 @@
       }
     },
     "./collection": {
-      "source": "./src/collection/index.ts",
+      "source": "./src/collection.ts",
       "import": {
-        "types": "./dist/types/collection/index.d.ts",
-        "default": "./dist/esm/collection/index.js"
+        "types": "./dist/types/collection.d.ts",
+        "default": "./dist/esm/collection.js"
       },
       "require": {
-        "types": "./dist/types/collection/index.d.ts",
-        "default": "./dist/cjs/collection/index.cjs"
+        "types": "./dist/types/collection.d.ts",
+        "default": "./dist/cjs/collection.cjs"
       }
     },
     "./*": {
