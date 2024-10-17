@@ -122,9 +122,28 @@ const blogs = defineCollection({
     }),
 })
 
+const guides = defineCollection({
+  name: "Guides",
+  pattern: "content/guides/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string(),
+      description: s.string(),
+      metadata: s.metadata(),
+      content: s.mdx(),
+      publishedAt: s.string(),
+    })
+    .transform((data, { meta }) => {
+      return {
+        ...data,
+        slug: slugify(meta.path),
+      }
+    }),
+})
+
 export default defineConfig({
   root: cwd,
-  collections: { docs, showcases, notes, blogs },
+  collections: { docs, showcases, notes, blogs, guides },
   mdx: {
     remarkPlugins: [
       remarkDirective,
