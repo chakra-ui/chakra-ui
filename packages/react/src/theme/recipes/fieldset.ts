@@ -8,7 +8,6 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
     root: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "flex-start",
       width: "full",
     },
     content: {
@@ -45,14 +44,14 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
         legend: { textStyle: "sm" },
       },
       md: {
-        root: { spaceY: "4" },
-        content: { gap: "6" },
+        root: { spaceY: "6" },
+        content: { gap: "4" },
         legend: { textStyle: "md" },
       },
     },
   },
 
   defaultVariants: {
-    size: "sm",
+    size: "md",
   },
 })

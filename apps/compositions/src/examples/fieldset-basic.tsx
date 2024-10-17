@@ -1,4 +1,4 @@
-import { Button, Fieldset, Input } from "@chakra-ui/react"
+import { Button, Fieldset, Input, Stack } from "@chakra-ui/react"
 import { Field } from "compositions/ui/field"
 import {
   NativeSelectField,
@@ -7,8 +7,13 @@ import {
 
 export const FieldsetBasic = () => {
   return (
-    <Fieldset.Root>
-      <Fieldset.Legend>Contact details</Fieldset.Legend>
+    <Fieldset.Root gap="4" maxW="md">
+      <Stack>
+        <Fieldset.Legend>Contact details</Fieldset.Legend>
+        <Fieldset.HelperText>
+          Please provide your contact details below.
+        </Fieldset.HelperText>
+      </Stack>
 
       <Fieldset.Content>
         <Field label="Name">
@@ -33,7 +38,9 @@ export const FieldsetBasic = () => {
         </Field>
       </Fieldset.Content>
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit" alignSelf="flex-start">
+        Submit
+      </Button>
     </Fieldset.Root>
   )
 }

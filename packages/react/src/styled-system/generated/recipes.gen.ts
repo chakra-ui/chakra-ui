@@ -603,7 +603,7 @@ export type FieldVariantMap = {
 export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "content"
 
 export interface FieldsetVariant {
-  /** @default "sm" */
+  /** @default "md" */
   size?: "sm" | "md"
 }
 

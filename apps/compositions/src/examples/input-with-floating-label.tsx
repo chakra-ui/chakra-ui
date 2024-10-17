@@ -7,7 +7,6 @@ export const InputWithFloatingLabel = () => {
         <Input className="peer" placeholder="" />
         <Field.Label css={floatingStyles}>Email</Field.Label>
       </Box>
-      <Field.HelperText>We will never share your email.</Field.HelperText>
     </Field.Root>
   )
 }
