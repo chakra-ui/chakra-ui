@@ -157,10 +157,10 @@ describe("css", () => {
       {
         "@media screen and (min-width: 30rem)": {
           "fontSize": "var(--chakra-font-sizes-lg)",
-          "lineHeight": "var(--chakra-line-heights-moderate)",
+          "lineHeight": "1.75rem",
         },
         "fontSize": "var(--chakra-font-sizes-sm)",
-        "lineHeight": "var(--chakra-line-heights-moderate)",
+        "lineHeight": "1.25rem",
       }
     `)
   })
@@ -300,6 +300,7 @@ describe("css", () => {
         "--chakra-colors-color-palette-contrast": "var(--chakra-colors-red-contrast)",
         "--chakra-colors-color-palette-emphasized": "var(--chakra-colors-red-emphasized)",
         "--chakra-colors-color-palette-fg": "var(--chakra-colors-red-fg)",
+        "--chakra-colors-color-palette-focus-ring": "var(--chakra-colors-red-focus-ring)",
         "--chakra-colors-color-palette-muted": "var(--chakra-colors-red-muted)",
         "--chakra-colors-color-palette-solid": "var(--chakra-colors-red-solid)",
         "--chakra-colors-color-palette-subtle": "var(--chakra-colors-red-subtle)",
