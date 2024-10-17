@@ -6,7 +6,7 @@ export const Ol = (props: BoxProps) => {
       as="ol"
       css={{
         marginTop: "1em",
-        marginBottom: "2em",
+        marginBottom: "1em",
         paddingInlineStart: "1.5em",
         "& > li": {
           paddingInlineStart: "0.4em",
@@ -31,7 +31,7 @@ export const Ul = (props: BoxProps) => {
       as="ul"
       css={{
         marginTop: "1em",
-        marginBottom: "2em",
+        marginBottom: "1em",
         paddingInlineStart: "1.5em",
         "& > li": {
           paddingInlineStart: "0.4em",

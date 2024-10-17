@@ -22,11 +22,15 @@ export const ResourceCard = (props: ResourceCardProps) => {
     >
       <a href={url} target="_blank" rel="noopener noreferrer">
         <ResourceIcon type={type} />
-        <Stack gap="1">
+        <Stack gap="1" flex="1">
           <Text fontWeight="medium" flex="1" color="fg" textStyle="sm">
             {title}
           </Text>
-          {description && <Text color="fg.muted/80">{description}</Text>}
+          {description && (
+            <Text textStyle="sm" color="fg.subtle/80">
+              {description}
+            </Text>
+          )}
         </Stack>
         <Icon>
           <LuArrowUpRight />

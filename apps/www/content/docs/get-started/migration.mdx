@@ -457,7 +457,7 @@ understand.
 - `animateOpacity` has been removed, use keyframes animations `expand-height`
   and `collapse-height` instead
 
-Before:
+Before
 
 ```tsx
 <Collapse in={isOpen} animateOpacity>
@@ -465,7 +465,7 @@ Before:
 </Collapse>
 ```
 
-After:
+After
 
 ```tsx
 <Collapsible.Root open={isOpen}>
@@ -496,7 +496,7 @@ After:
 - Remove `focusBorderColor` and `errorBorderColor`, consider setting the
   `--focus-color` and `--error-color` css variables instead
 
-Before:
+Before
 
 ```tsx
 <NumberInput>
@@ -508,7 +508,7 @@ Before:
 </NumberInput>
 ```
 
-After:
+After
 
 ```tsx
 <NumberInput.Root>
@@ -533,13 +533,13 @@ After:
 - Removed `invalid` prop in favor of wrapping the component in a `Field`
   component. This allows for adding a label, error text and asterisk easily.
 
-Before:
+Before
 
 ```tsx
 <Input invalid />
 ```
 
-After:
+After
 
 ```tsx
 <Field invalid label="Email" errorText="This field is required">
@@ -549,16 +549,16 @@ After:
 
 ### Link
 
-- Removed `external` prop in favor of explicitly setting the `target` and `rel`
-  props
+- Removed `isExternal` prop in favor of explicitly setting the `target` and
+  `rel` props
 
-Before:
+Before
 
 ```tsx
-<Link external>Click me</Link>
+<Link isExternal>Click me</Link>
 ```
 
-After:
+After
 
 ```tsx
 <Link target="_blank" rel="noopener noreferrer">

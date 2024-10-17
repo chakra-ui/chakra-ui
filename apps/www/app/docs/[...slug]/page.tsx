@@ -50,7 +50,10 @@ export default function Page(props: Props) {
       </Stack>
 
       <Show when={!page.hideToc}>
-        <SidebarEnd visibility={page.toc.length === 0 ? "hidden" : undefined}>
+        <SidebarEnd
+          id="toc"
+          visibility={page.toc.length === 0 ? "hidden" : undefined}
+        >
           <Toc items={flattenToc(page.toc)} />
           <Stack borderTopWidth="1px" pt="4" align="start">
             <EditPageButton href={`${docsConfig.editUrl}/${page.slug}.mdx`} />

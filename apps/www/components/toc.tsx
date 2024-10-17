@@ -1,7 +1,9 @@
 "use client"
 
+import { scrollIntoView } from "@/app/docs/scroll-into-view"
 import { Box, Stack, Text, chakra } from "@chakra-ui/react"
 import Link from "next/link"
+import { useEffect } from "react"
 import { useScrollSpy } from "../lib/use-scroll-spy"
 
 interface TocItem {
@@ -27,6 +29,14 @@ const TocLink = chakra(Link, {
 export const Toc = (props: Props) => {
   const { items } = props
   const activeItem = useScrollSpy(items.map((entry) => entry.url))
+
+  useEffect(() => {
+    const activeLink = document.querySelector("[data-toc][aria-current='page']")
+    const toc = document.getElementById("toc")
+    if (toc && activeLink) {
+      scrollIntoView(toc, activeLink as HTMLElement, 120)
+    }
+  }, [activeItem])
 
   if (!items.length) {
     return <div />

@@ -41,17 +41,17 @@ export const BlogCard = (props: Props) => {
       <Card.Body>
         <Stack gap="1" fontSize="sm">
           <Flex gap="2" justify="space-between">
-            <Text fontSize="sm" color="fg.subtle">
+            <Text textStyle="sm" color="fg.subtle">
               {formatBlogDate(publishedAt)}
             </Text>
-            <AvatarGroup size="md">
+            <AvatarGroup size="sm">
               {authors.map((author) => {
                 const { name, image } = getBlogAuthor(author)
                 return <Avatar key={author} src={image} name={name} />
               })}
             </AvatarGroup>
           </Flex>
-          <Card.Title mt="-1">
+          <Card.Title mt="-1" textStyle="lg">
             <LinkOverlay asChild>
               <Link href={`/${data.slug}`}>{title}</Link>
             </LinkOverlay>

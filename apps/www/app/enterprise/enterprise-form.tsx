@@ -31,7 +31,7 @@ export const EnterpriseForm = () => {
 
   return (
     <form ref={formRef} action={formAction}>
-      <Card.Body gap="4">
+      <Card.Body gap="4" alignItems="flex-start">
         <Field required label="What's your name?" asterisk>
           <Input placeholder="John Doe" name="name" required />
         </Field>
