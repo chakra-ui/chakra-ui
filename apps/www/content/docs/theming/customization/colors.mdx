@@ -12,9 +12,8 @@ how to properly customize the styling engine, and get type safety.
 
 ## Tokens
 
-### Example
-
-Here's an example of how to customize colors in Chakra UI.
+To create new colors, we recommend providing `50` - `950` color values. Here's
+an example of how to customize colors in Chakra UI.
 
 ```tsx title="theme.ts"
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
@@ -24,9 +23,12 @@ const customConfig = defineConfig({
     tokens: {
       colors: {
         brand: {
+          50: { value: "#e6f2ff" },
           100: { value: "#e6f2ff" },
           200: { value: "#bfdeff" },
           300: { value: "#99caff" },
+          // ...
+          950: { value: "#001a33" },
         },
       },
     },
@@ -36,10 +38,8 @@ const customConfig = defineConfig({
 export const system = createSystem(defaultConfig, customConfig)
 ```
 
-### Usage
-
-Set the value of any color related properties, like `bg`, `borderColor`,
-`color`, etc. to the `brand` token.
+To use the `brand` color, you can set the value of any color related properties,
+like `bg`, `borderColor`, `color`, etc. to the `brand` token.
 
 ```tsx
 <Box bg="brand.100" />
@@ -47,9 +47,69 @@ Set the value of any color related properties, like `bg`, `borderColor`,
 
 ## Semantic Tokens
 
-### Example
+### Color Palette
 
-Here's an example of how to customize semantic tokens in Chakra UI.
+For new colors defined in the theme, we recommend creating these matching
+semantic tokens to ensure consistency.
+
+- `solid`: The bold fill color of the color.
+- `contrast`: The text color that goes on solid color.
+- `fg`: The foreground color used for text, icons, etc.
+- `muted`: The muted color of the color.
+- `subtle`: The subtle color of the color.
+- `emphasized`: The emphasized version of the subtle color.
+- `focusRing`: The focus ring color when interactive element is focused.
+
+:::note
+
+This is required if you intend to use the color in `colorPalette` property.
+
+:::
+
+```tsx title="theme.ts"
+const customConfig = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          // ...
+        },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        brand: {
+          solid: { value: "{colors.brand.500}" },
+          contrast: { value: "{colors.brand.100}" },
+          fg: { value: "{colors.brand.700}" },
+          muted: { value: "{colors.brand.100}" },
+          subtle: { value: "{colors.brand.200}" },
+          emphasized: { value: "{colors.brand.300}" },
+          focusRing: { value: "{colors.brand.500}" },
+        },
+      },
+    },
+  },
+})
+```
+
+To use the color palette in components, you can use the `colorPalette` property.
+
+```tsx
+<Button colorPalette="brand">Click me</Button>
+```
+
+Alternative, you can also use the semantic token directly.
+
+```tsx
+<Box color="brand.contrast" bg="brand.solid">
+  Hello world
+</Box>
+```
+
+### Custom Tokens
+
+Here's an example of how to create custom semantic tokens.
 
 ```tsx title="theme.ts"
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
@@ -58,8 +118,8 @@ const customConfig = defineConfig({
   theme: {
     semanticTokens: {
       colors: {
-        "checkbox-control": {
-          value: { _light: "brand.100", _dark: "brand.200" },
+        "checkbox-border": {
+          value: { _light: "gray.200", _dark: "gray.800" },
         },
       },
     },
@@ -69,12 +129,10 @@ const customConfig = defineConfig({
 export const system = createSystem(defaultConfig, customConfig)
 ```
 
-### Usage
-
-Use the `checkbox-control` token to apply the checkbox control color.
+Then, you can apply the `checkbox-border` token to any component.
 
 ```tsx
-<Square size="4" borderColor="checkbox-control">
+<Square size="4" borderColor="checkbox-border">
   <LuCheck />
 </Square>
 ```
