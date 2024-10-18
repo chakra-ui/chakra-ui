@@ -18,6 +18,7 @@ export const spinnerRecipe = defineRecipe({
   },
   variants: {
     size: {
+      inherit: { "--spinner-size": "1em" },
       xs: { "--spinner-size": "sizes.3" },
       sm: { "--spinner-size": "sizes.4" },
       md: { "--spinner-size": "sizes.5" },

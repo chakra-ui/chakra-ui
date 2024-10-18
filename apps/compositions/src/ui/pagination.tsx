@@ -187,27 +187,21 @@ interface PageTextProps extends TextProps {
   format?: "short" | "compact" | "long"
 }
 
-export const PaginationPageText = (props: PageTextProps) => {
+export const PaginationPageText = forwardRef<
+  HTMLParagraphElement,
+  PageTextProps
+>(function PaginationPageText(props, ref) {
   const { format = "compact", ...rest } = props
-
-  const { page, pages, pageRange, pageSize, totalPages } =
-    usePaginationContext()
-
-  const count = totalPages * pageSize
-
+  const { page, pages, pageRange, count } = usePaginationContext()
   const content = useMemo(() => {
-    if (format === "short") {
-      return `${page} / ${pages.length}`
-    }
-    if (format === "compact") {
-      return `${page} of ${pages.length}`
-    }
+    if (format === "short") return `${page} / ${pages.length}`
+    if (format === "compact") return `${page} of ${pages.length}`
     return `${pageRange.start + 1} - ${pageRange.end} of ${count}`
   }, [format, page, pages.length, pageRange, count])
 
   return (
-    <Text fontWeight="medium" {...rest}>
+    <Text fontWeight="medium" ref={ref} {...rest}>
       {content}
     </Text>
   )
-}
+})

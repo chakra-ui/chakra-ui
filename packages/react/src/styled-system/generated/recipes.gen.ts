@@ -186,7 +186,7 @@ export type SkipNavLinkVariantMap = {
 
 export interface SpinnerVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl"
 }
 
 export type SpinnerVariantProps = {
