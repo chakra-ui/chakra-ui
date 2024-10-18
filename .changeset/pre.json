@@ -12,6 +12,7 @@
     "next-app": "2.0.14",
     "next-pages": "2.0.14",
     "remix-ts": "1.0.0",
+    "storybook-ts": "1.0.0",
     "@chakra-ui/compositions": "1.0.0"
   },
   "changesets": [

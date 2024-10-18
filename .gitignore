@@ -104,3 +104,5 @@ report.*
 
 .velite
 .vercel
+
+*storybook.log

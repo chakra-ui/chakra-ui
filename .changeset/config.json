@@ -17,6 +17,7 @@
     "next-pages",
     "vite-ts",
     "remix-ts",
+    "storybook-ts",
     "@chakra-ui/www",
     "@chakra-ui/compositions"
   ]
