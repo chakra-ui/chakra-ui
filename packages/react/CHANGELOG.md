@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 3.0.0-next.31
+
+### Minor Changes
+
+- [`47a8a9e`](https://github.com/chakra-ui/chakra-ui/commit/47a8a9ebb3fe89d168850b501414da5e8648f5c2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `inherit` to
+  Spinner recipe size
+  - Refactor button and link button snippets
+
 ## 3.0.0-next.30
 
 ### Minor Changes
