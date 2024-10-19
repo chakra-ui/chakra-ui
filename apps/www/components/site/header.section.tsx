@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react"
 import Link from "next/link"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { docsConfig } from "@/docs.config"
 
 const HeaderRoot = chakra(Container, {
   base: {
@@ -58,7 +59,7 @@ const DesktopNav = () => (
           <Link href={item.url}>{item.title}</Link>
         </HStack>
       ))}
-      <SocialLinks items={[{ type: "github", href: "#" }]} />
+      <SocialLinks items={[{ type: "github", href: docsConfig.repoUrl }]} />
     </HStack>
     <ColorModeButton />
   </HStack>
