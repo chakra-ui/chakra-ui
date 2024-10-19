@@ -58,7 +58,6 @@ export const textareaRecipe = defineRecipe({
       outline: {
         borderWidth: "1px",
         borderColor: "border",
-        bg: "bg",
         focusVisibleRing: "inside",
       },
       subtle: {

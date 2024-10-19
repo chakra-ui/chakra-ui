@@ -394,7 +394,6 @@ export type Token =
   | "colors.border.warning"
   | "colors.border.success"
   | "colors.border.info"
-  | "colors.border.focusRing"
   | "colors.accent.contrast"
   | "colors.accent.fg"
   | "colors.accent.muted"
@@ -538,10 +537,10 @@ export type Token =
   | "colors.colorPalette.warning"
   | "colors.colorPalette.success"
   | "colors.colorPalette.info"
-  | "colors.colorPalette.focusRing"
   | "colors.colorPalette.contrast"
   | "colors.colorPalette.fg"
   | "colors.colorPalette.solid"
+  | "colors.colorPalette.focusRing"
 
 export type ColorPalette =
   | "transparent"
@@ -737,7 +736,6 @@ export type ColorsToken =
   | "border.warning"
   | "border.success"
   | "border.info"
-  | "border.focusRing"
   | "accent.contrast"
   | "accent.fg"
   | "accent.muted"
@@ -836,10 +834,10 @@ export type ColorsToken =
   | "colorPalette.warning"
   | "colorPalette.success"
   | "colorPalette.info"
-  | "colorPalette.focusRing"
   | "colorPalette.contrast"
   | "colorPalette.fg"
   | "colorPalette.solid"
+  | "colorPalette.focusRing"
 
 export type DurationsToken = "fastest" | "faster" | "fast" | "moderate" | "slow" | "slower" | "slowest"
 

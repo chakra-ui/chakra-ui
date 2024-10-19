@@ -121,7 +121,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         trigger: {
           borderWidth: "1px",
           borderColor: "border",
-          bg: "bg",
           _expanded: {
             bg: "colorPalette.muted",
           },
