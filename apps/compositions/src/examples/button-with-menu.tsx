@@ -6,11 +6,11 @@ export const ButtonWithMenu = () => {
   return (
     <MenuRoot positioning={{ placement: "bottom-end" }}>
       <Group attached>
-        <Button size="sm" variant="outline" roundedEnd="0px">
+        <Button size="sm" variant="outline">
           Accept
         </Button>
         <MenuTrigger asChild>
-          <IconButton size="sm" variant="outline" ms="-1px" roundedStart="0px">
+          <IconButton size="sm" variant="outline">
             <LuChevronDown />
           </IconButton>
         </MenuTrigger>
