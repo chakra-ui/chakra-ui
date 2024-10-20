@@ -113,7 +113,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           _checked: {
             bg: "colorPalette.muted",
             color: "colorPalette.fg",
-            borderColor: "colorPalette.emphasized",
+            borderColor: "colorPalette.subtle",
           },
           _disabled: {
             bg: "bg.subtle",

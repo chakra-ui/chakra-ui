@@ -107,7 +107,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
         root: {
           color: "colorPalette.fg",
           borderWidth: "1px",
-          borderColor: "colorPalette.emphasized",
+          borderColor: "colorPalette.subtle",
         },
       },
     },

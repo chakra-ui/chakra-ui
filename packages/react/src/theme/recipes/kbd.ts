@@ -22,7 +22,7 @@ export const kbdRecipe = defineRecipe({
         color: "colorPalette.fg",
         borderWidth: "1px",
         borderBottomWidth: "2px",
-        borderColor: "colorPalette.emphasized",
+        borderColor: "colorPalette.subtle",
       },
       outline: {
         borderWidth: "1px",

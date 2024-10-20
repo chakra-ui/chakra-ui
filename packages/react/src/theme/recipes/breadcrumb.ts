@@ -48,7 +48,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
           color: "colorPalette.fg",
           textDecoration: "underline",
           textUnderlineOffset: "0.2em",
-          textDecorationColor: "colorPalette.emphasized",
+          textDecorationColor: "colorPalette.subtle",
         },
         currentLink: {
           color: "colorPalette.fg",

@@ -121,7 +121,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
           _checked: {
             bg: "colorPalette.muted",
             color: "colorPalette.fg",
-            borderColor: "colorPalette.emphasized",
+            borderColor: "colorPalette.subtle",
           },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.solid,

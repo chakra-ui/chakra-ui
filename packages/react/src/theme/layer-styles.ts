@@ -19,7 +19,7 @@ export const layerStyles = defineLayerStyles({
       background: "colorPalette.muted",
       color: "colorPalette.fg",
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
-      boxShadowColor: "colorPalette.emphasized",
+      boxShadowColor: "colorPalette.subtle",
     },
   },
   "fill.solid": {
@@ -34,7 +34,7 @@ export const layerStyles = defineLayerStyles({
     value: {
       color: "colorPalette.fg",
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
-      boxShadowColor: "colorPalette.emphasized",
+      boxShadowColor: "colorPalette.subtle",
     },
   },
   "outline.solid": {
