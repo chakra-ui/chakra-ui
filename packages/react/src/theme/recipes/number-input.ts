@@ -4,7 +4,6 @@ import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 
 const triggerStyle = defineStyle({
-  bg: "bg",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

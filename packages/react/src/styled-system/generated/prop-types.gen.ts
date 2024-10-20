@@ -33,7 +33,6 @@ export interface UtilityValues {
     | "bg"
     | "fg"
     | "border"
-    | "accent"
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
   backgroundClip: "text"

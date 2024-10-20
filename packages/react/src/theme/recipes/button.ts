@@ -147,7 +147,6 @@ export const buttonRecipe = defineRecipe({
       },
 
       outline: {
-        bg: "bg",
         borderWidth: "1px",
         borderColor: "colorPalette.emphasized",
         color: "colorPalette.fg",

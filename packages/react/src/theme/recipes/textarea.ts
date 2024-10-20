@@ -71,7 +71,6 @@ export const textareaRecipe = defineRecipe({
         borderBottomColor: "border",
         borderRadius: "0",
         px: "0",
-        bg: "bg",
         _focusVisible: {
           borderColor: "var(--focus-color)",
           boxShadow: "0px 1px 0px 0px var(--focus-color)",

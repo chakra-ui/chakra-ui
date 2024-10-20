@@ -232,7 +232,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "transparent",
           _selected: {
-            bg: "bg",
             color: "colorPalette.fg",
           },
           _horizontal: {

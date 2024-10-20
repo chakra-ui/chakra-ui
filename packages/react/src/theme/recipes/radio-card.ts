@@ -118,7 +118,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       surface: {
         item: {
           borderWidth: "1px",
-          bg: "bg",
           _checked: {
             bg: "colorPalette.muted",
             color: "colorPalette.fg",
@@ -144,7 +143,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       outline: {
         item: {
           borderWidth: "1px",
-          bg: "bg",
           _checked: {
             boxShadow: "0 0 0 1px var(--shadow-color)",
             boxShadowColor: "colorPalette.solid",
@@ -157,7 +155,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       solid: {
         item: {
           borderWidth: "1px",
-          bg: "bg",
           _checked: {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",

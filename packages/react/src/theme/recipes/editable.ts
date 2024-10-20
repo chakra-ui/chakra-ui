@@ -46,7 +46,6 @@ export const editableSlotRecipe = defineSlotRecipe({
       width: "full",
       focusVisibleRing: "inside",
       focusRingWidth: "2px",
-      bg: "bg",
       _placeholder: { opacity: 0.6 },
     },
 

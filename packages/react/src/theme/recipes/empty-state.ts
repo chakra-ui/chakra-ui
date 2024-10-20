@@ -7,7 +7,6 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: "full",
-      bg: "bg",
     },
     content: {
       display: "flex",

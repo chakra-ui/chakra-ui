@@ -44,7 +44,7 @@ export const globalCss = defineGlobalStyles({
     color: "fg",
     bg: "bg",
     lineHeight: "1.5",
-    colorPalette: "accent",
+    colorPalette: "gray",
   },
   "*::placeholder": {
     color: "fg.subtle",
