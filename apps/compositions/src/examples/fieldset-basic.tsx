@@ -7,7 +7,7 @@ import {
 
 export const FieldsetBasic = () => {
   return (
-    <Fieldset.Root gap="4" maxW="md">
+    <Fieldset.Root size="lg" maxW="md">
       <Stack>
         <Fieldset.Legend>Contact details</Fieldset.Legend>
         <Fieldset.HelperText>

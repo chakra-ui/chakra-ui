@@ -604,7 +604,7 @@ export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "con
 
 export interface FieldsetVariant {
   /** @default "md" */
-  size?: "sm" | "md"
+  size?: "sm" | "md" | "lg"
 }
 
 export type FieldsetVariantProps = {

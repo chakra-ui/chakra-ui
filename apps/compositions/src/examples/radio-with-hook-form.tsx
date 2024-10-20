@@ -31,12 +31,12 @@ export const RadioWithHookForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Controller
-        name="value"
-        control={control}
-        render={({ field }) => (
-          <Fieldset.Root invalid={!!errors.value}>
-            <Fieldset.Legend>Select value</Fieldset.Legend>
+      <Fieldset.Root invalid={!!errors.value}>
+        <Fieldset.Legend>Select value</Fieldset.Legend>
+        <Controller
+          name="value"
+          control={control}
+          render={({ field }) => (
             <RadioGroup
               name={field.name}
               value={field.value}
@@ -56,17 +56,17 @@ export const RadioWithHookForm = () => {
                 ))}
               </HStack>
             </RadioGroup>
+          )}
+        />
 
-            {errors.value && (
-              <Fieldset.ErrorText>{errors.value?.message}</Fieldset.ErrorText>
-            )}
-          </Fieldset.Root>
+        {errors.value && (
+          <Fieldset.ErrorText>{errors.value?.message}</Fieldset.ErrorText>
         )}
-      />
 
-      <Button size="sm" mt="4" type="submit">
-        Submit
-      </Button>
+        <Button size="sm" type="submit" alignSelf="flex-start">
+          Submit
+        </Button>
+      </Fieldset.Root>
     </form>
   )
 }

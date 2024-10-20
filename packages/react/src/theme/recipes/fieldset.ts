@@ -39,11 +39,16 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       sm: {
+        root: { spaceY: "2" },
+        content: { gap: "1.5" },
+        legend: { textStyle: "sm" },
+      },
+      md: {
         root: { spaceY: "4" },
         content: { gap: "4" },
         legend: { textStyle: "sm" },
       },
-      md: {
+      lg: {
         root: { spaceY: "6" },
         content: { gap: "4" },
         legend: { textStyle: "md" },

@@ -7,7 +7,7 @@ import {
 
 export const FieldsetWithInvalid = () => {
   return (
-    <Fieldset.Root invalid>
+    <Fieldset.Root size="lg" invalid>
       <Fieldset.Legend>Shipping details</Fieldset.Legend>
       <Fieldset.Content>
         <Field label="Street address">

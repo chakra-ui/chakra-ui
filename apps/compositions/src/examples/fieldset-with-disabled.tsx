@@ -7,7 +7,7 @@ import {
 
 export const FieldsetWithDisabled = () => {
   return (
-    <Fieldset.Root disabled>
+    <Fieldset.Root size="lg" disabled>
       <Fieldset.Legend>Shipping details</Fieldset.Legend>
       <Field label="Street address">
         <Input name="address" />
