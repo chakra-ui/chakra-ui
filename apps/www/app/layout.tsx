@@ -1,6 +1,7 @@
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
 import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
+import Script from "next/script"
 import { Provider } from "./provider"
 import "./scrollbar.css"
 import "./shiki.css"
@@ -48,6 +49,12 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${figTree.variable} ${roboto.variable} ${outfit.variable}`}
     >
+      <head>
+        <Script
+          src="https://plausible.io/js/plausible.js"
+          data-domain="chakra-ui.com"
+        />
+      </head>
       <body>
         <Provider>{children}</Provider>
       </body>
