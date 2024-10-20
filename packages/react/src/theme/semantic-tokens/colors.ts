@@ -18,7 +18,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { _light: "{colors.black}", _dark: "{colors.white}" },
     },
     panel: {
-      value: { _light: "{colors.white}", _dark: "{colors.gray.950}" },
+      value: { _light: "{colors.white}", _dark: "{colors.gray.900}" },
     },
     error: {
       value: { _light: "{colors.red.50}", _dark: "{colors.red.950}" },
@@ -94,22 +94,22 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { _light: "{colors.white}", _dark: "{colors.black}" },
     },
     fg: {
-      value: { _light: "{colors.gray.900}", _dark: "{colors.gray.200}" },
+      value: { _light: "{colors.gray.800}", _dark: "{colors.gray.200}" },
     },
     muted: {
-      value: { _light: "{colors.gray.50}", _dark: "{colors.gray.950}" },
-    },
-    subtle: {
       value: { _light: "{colors.gray.100}", _dark: "{colors.gray.900}" },
     },
-    emphasized: {
+    subtle: {
       value: { _light: "{colors.gray.200}", _dark: "{colors.gray.800}" },
+    },
+    emphasized: {
+      value: { _light: "{colors.gray.300}", _dark: "{colors.gray.700}" },
     },
     solid: {
       value: { _light: "{colors.gray.900}", _dark: "{colors.white}" },
     },
     focusRing: {
-      value: { _light: "{colors.gray.900}", _dark: "{colors.gray.200}" },
+      value: { _light: "{colors.gray.800}", _dark: "{colors.gray.200}" },
     },
   },
 

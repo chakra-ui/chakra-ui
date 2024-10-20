@@ -131,8 +131,8 @@ export const CommandMenu = (props: Props) => {
                       py="3"
                     >
                       <Stack gap="0">
-                        <Text color="teal.fg">{item.category}</Text>
                         <Text fontWeight="medium">{item.label}</Text>
+                        <Text color="fg.subtle">{item.category}</Text>
                       </Stack>
                     </ComboboxItem>
                   ))}

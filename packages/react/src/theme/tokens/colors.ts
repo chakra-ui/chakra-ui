@@ -3,7 +3,7 @@ import { defineTokens } from "../../styled-system"
 export const colors = defineTokens.colors({
   transparent: { value: "transparent" },
   current: { value: "currentColor" },
-  black: { value: "#09090B" },
+  black: { value: "#111111" },
   white: { value: "#FFFFFF" },
   whiteAlpha: {
     50: { value: "rgba(255, 255, 255, 0.04)" },
@@ -42,7 +42,7 @@ export const colors = defineTokens.colors({
     700: { value: "#3f3f46" },
     800: { value: "#27272a" },
     900: { value: "#18181b" },
-    950: { value: "#0f0f12" },
+    950: { value: "#0e0e0e" },
   },
   red: {
     50: { value: "#fef2f2" },

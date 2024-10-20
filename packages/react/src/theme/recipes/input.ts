@@ -64,6 +64,7 @@ export const inputRecipe = defineRecipe({
 
     variant: {
       outline: {
+        bg: "transparent",
         borderWidth: "1px",
         borderColor: "border",
         focusVisibleRing: "inside",

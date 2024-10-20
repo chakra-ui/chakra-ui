@@ -6,7 +6,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
   className: "chakra-drawer",
   base: {
     backdrop: {
-      bg: "blackAlpha.400",
+      bg: "blackAlpha.500",
       pos: "fixed",
       insetInlineStart: 0,
       top: 0,

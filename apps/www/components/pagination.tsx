@@ -15,8 +15,7 @@ const PaginationItem = (props: PaginationItemProps) => {
       focusRing="contain"
       focusRingWidth="2px"
       rounded="md"
-      px="3"
-      py="2"
+      p="4"
       {...rest}
       asChild
     >
