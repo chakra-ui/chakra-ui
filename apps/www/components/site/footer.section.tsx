@@ -55,7 +55,10 @@ export const FooterSection = () => {
               Project by Chakra Systems &copy; {new Date().getFullYear()}
             </Text>
             <VercelCredit />
-            <Text color="fg.muted" css={{ "& a": { color: "fg" } }}>
+            <Text
+              color="fg.muted"
+              css={{ "& a": { color: "fg", textDecoration: "underline" } }}
+            >
               Maintained by{" "}
               <Link href="https://x.com/thesegunadebayo">Sage</Link> and
               contributors
@@ -86,16 +89,7 @@ export const FooterSection = () => {
 }
 
 const VercelCredit = () => (
-  <HStack
-    my="6"
-    color="fg.subtle"
-    fontSize="sm"
-    px="3"
-    py="2"
-    borderWidth="1px"
-    rounded="sm"
-    fontWeight="medium"
-  >
+  <HStack my="6" color="fg.muted" fontSize="sm" fontWeight="medium">
     Deployed on
     <VercelLogo />
   </HStack>

@@ -24,7 +24,7 @@ export const BlogCard = (props: Props) => {
   const { title, description, authors, publishedAt } = data
   return (
     <Card.Root size="sm">
-      <Box h="40" bg="teal.muted" roundedTop="md">
+      <Box h="40" bg="teal.subtle/50" roundedTop="md">
         {data.version ? (
           <Center h="full" gap="2">
             <Logo />{" "}
