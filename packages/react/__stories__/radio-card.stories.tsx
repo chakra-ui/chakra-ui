@@ -14,6 +14,7 @@ export default {
 
 export { RadioCardBasic as Basic } from "compositions/examples/radio-card-basic"
 export { RadioCardCentered as Centered } from "compositions/examples/radio-card-centered"
+export { RadioCardComposition as Composition } from "compositions/examples/radio-card-composition"
 export { RadioCardWithAddon as Addon } from "compositions/examples/radio-card-with-addon"
 export { RadioCardWithColors as Colors } from "compositions/examples/radio-card-with-colors"
 export { RadioCardWithCustomIndicator as CustomIndicator } from "compositions/examples/radio-card-with-custom-indicator"

@@ -10,6 +10,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1.5",
+      isolation: "isolate",
     },
     item: {
       flex: "1",
@@ -24,6 +25,9 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.8",
         borderColor: "border.disabled",
+      },
+      _checked: {
+        zIndex: "1",
       },
     },
     label: {
