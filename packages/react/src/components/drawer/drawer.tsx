@@ -123,20 +123,17 @@ export const DrawerCloseTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DrawerActionProps extends HTMLChakraProps<"button"> {}
+export interface DrawerActionTriggerProps extends HTMLChakraProps<"button"> {}
 
-export const DrawerAction = forwardRef<HTMLButtonElement, DrawerActionProps>(
-  function DrawerAction(props, ref) {
-    const drawer = useDialogContext()
-    return (
-      <chakra.button
-        {...props}
-        ref={ref}
-        onClick={() => drawer.setOpen(false)}
-      />
-    )
-  },
-)
+export const DrawerActionTrigger = forwardRef<
+  HTMLButtonElement,
+  DrawerActionTriggerProps
+>(function DrawerActionTrigger(props, ref) {
+  const drawer = useDialogContext()
+  return (
+    <chakra.button {...props} ref={ref} onClick={() => drawer.setOpen(false)} />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

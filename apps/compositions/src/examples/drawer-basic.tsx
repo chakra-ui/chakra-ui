@@ -1,6 +1,6 @@
 import { Button } from "compositions/ui/button"
 import {
-  DrawerAction,
+  DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -32,9 +32,9 @@ export const DrawerBasic = () => {
           </p>
         </DrawerBody>
         <DrawerFooter>
-          <DrawerAction asChild>
+          <DrawerActionTrigger asChild>
             <Button variant="outline">Cancel</Button>
-          </DrawerAction>
+          </DrawerActionTrigger>
           <Button>Save</Button>
         </DrawerFooter>
         <DrawerCloseTrigger />

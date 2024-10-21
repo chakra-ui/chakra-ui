@@ -13,7 +13,7 @@ export {
   DialogPositioner as Positioner,
   DialogDescription as Description,
   DialogContext as Context,
-  DialogAction as Action,
+  DialogActionTrigger as ActionTrigger,
 } from "./dialog"
 
 export type {
@@ -30,5 +30,5 @@ export type {
   DialogPositionerProps as PositionerProps,
   DialogDescriptionProps as DescriptionProps,
   DialogOpenChangeDetails as OpenChangeDetails,
-  DialogActionProps as ActionProps,
+  DialogActionTriggerProps as ActionTriggerProps,
 } from "./dialog"

@@ -1,7 +1,7 @@
 import { For, HStack, Kbd } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
-  DrawerAction,
+  DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -33,9 +33,9 @@ export const DrawerWithSizes = () => {
                 Press the <Kbd>esc</Kbd> key to close the drawer.
               </DrawerBody>
               <DrawerFooter>
-                <DrawerAction asChild>
+                <DrawerActionTrigger asChild>
                   <Button variant="outline">Cancel</Button>
-                </DrawerAction>
+                </DrawerActionTrigger>
                 <Button>Save</Button>
               </DrawerFooter>
               <DrawerCloseTrigger />

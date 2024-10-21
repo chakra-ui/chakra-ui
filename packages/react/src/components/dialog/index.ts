@@ -12,7 +12,7 @@ export {
   DialogPositioner,
   DialogContext,
   DialogDescription,
-  DialogAction,
+  DialogActionTrigger,
   useDialogStyles,
 } from "./dialog"
 
@@ -29,7 +29,7 @@ export type {
   DialogPositionerProps,
   DialogDescriptionProps,
   DialogOpenChangeDetails,
-  DialogActionProps,
+  DialogActionTriggerProps,
 } from "./dialog"
 
 export { useDialog, useDialogContext } from "@ark-ui/react/dialog"

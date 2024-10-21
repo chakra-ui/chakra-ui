@@ -13,7 +13,7 @@ export {
   DrawerTitle,
   DrawerDescription,
   DrawerContext,
-  DrawerAction,
+  DrawerActionTrigger,
   useDrawerStyles,
 } from "./drawer"
 
@@ -31,7 +31,7 @@ export type {
   DrawerTriggerProps,
   DrawerTitleProps,
   DrawerOpenChangeDetails,
-  DrawerActionProps,
+  DrawerActionTriggerProps,
 } from "./drawer"
 
 export {

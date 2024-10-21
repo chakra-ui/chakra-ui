@@ -13,7 +13,7 @@ export {
   DrawerTitle as Title,
   DrawerDescription as Description,
   DrawerContext as Context,
-  DrawerAction as Action,
+  DrawerActionTrigger as ActionTrigger,
 } from "./drawer"
 
 export type {
@@ -30,5 +30,5 @@ export type {
   DrawerTriggerProps as TriggerProps,
   DrawerTitleProps as TitleProps,
   DrawerOpenChangeDetails as OpenChangeDetails,
-  DrawerActionProps as ActionProps,
+  DrawerActionTriggerProps as ActionTriggerProps,
 } from "./drawer"

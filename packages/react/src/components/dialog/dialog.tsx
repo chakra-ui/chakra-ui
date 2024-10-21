@@ -123,20 +123,17 @@ export const DialogCloseTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogActionProps extends HTMLChakraProps<"button"> {}
+export interface DialogActionTriggerProps extends HTMLChakraProps<"button"> {}
 
-export const DialogAction = forwardRef<HTMLButtonElement, DialogActionProps>(
-  function DialogAction(props, ref) {
-    const dialog = useDialogContext()
-    return (
-      <chakra.button
-        {...props}
-        ref={ref}
-        onClick={() => dialog.setOpen(false)}
-      />
-    )
-  },
-)
+export const DialogActionTrigger = forwardRef<
+  HTMLButtonElement,
+  DialogActionTriggerProps
+>(function DialogActionTrigger(props, ref) {
+  const dialog = useDialogContext()
+  return (
+    <chakra.button {...props} ref={ref} onClick={() => dialog.setOpen(false)} />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
