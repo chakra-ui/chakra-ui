@@ -2,6 +2,7 @@
 
 import { Button } from "compositions/ui/button"
 import {
+  DialogAction,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -30,7 +31,9 @@ export const DialogControlled = () => {
           <Lorem p={2} />
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogAction asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogAction>
           <Button>Save</Button>
         </DialogFooter>
         <DialogCloseTrigger />

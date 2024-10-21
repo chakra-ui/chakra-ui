@@ -1,4 +1,4 @@
-import { Drawer as ChakraDrawer, Heading, Portal } from "@chakra-ui/react"
+import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 import { forwardRef } from "react"
 
@@ -40,29 +40,12 @@ export const DrawerCloseTrigger = forwardRef<
   )
 })
 
-export const DrawerTitle = forwardRef<
-  HTMLHeadingElement,
-  ChakraDrawer.TitleProps
->(function DrawerTitle(props, ref) {
-  return (
-    <ChakraDrawer.Title {...props} asChild>
-      <Heading as="h2" size="lg" lineHeight="1.2" ref={ref}>
-        {props.children}
-      </Heading>
-    </ChakraDrawer.Title>
-  )
-})
-
-export const DrawerDescription = forwardRef<
-  HTMLParagraphElement,
-  ChakraDrawer.DescriptionProps
->(function DrawerDescription(props, ref) {
-  return <ChakraDrawer.Description color="fg.muted" ref={ref} {...props} />
-})
-
 export const DrawerTrigger = ChakraDrawer.Trigger
 export const DrawerRoot = ChakraDrawer.Root
 export const DrawerFooter = ChakraDrawer.Footer
 export const DrawerHeader = ChakraDrawer.Header
 export const DrawerBody = ChakraDrawer.Body
 export const DrawerBackdrop = ChakraDrawer.Backdrop
+export const DrawerDescription = ChakraDrawer.Description
+export const DrawerTitle = ChakraDrawer.Title
+export const DrawerAction = ChakraDrawer.CloseTrigger

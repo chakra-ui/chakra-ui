@@ -1,6 +1,7 @@
 import { For, HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  DialogAction,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -33,7 +34,9 @@ export const DialogWithSizes = () => {
                 </p>
               </DialogBody>
               <DialogFooter>
-                <Button variant="outline">Cancel</Button>
+                <DialogAction asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogAction>
                 <Button>Save</Button>
               </DialogFooter>
               <DialogCloseTrigger />

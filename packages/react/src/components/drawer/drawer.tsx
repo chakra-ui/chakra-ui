@@ -1,11 +1,13 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
+import { Dialog as ArkDialog, useDialogContext } from "@ark-ui/react/dialog"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
 
@@ -14,23 +16,23 @@ import {
 const {
   withRootProvider,
   withContext,
-  useStyles: useDialogStyles,
+  useStyles: useDrawerStyles,
   PropsProvider,
-} = createSlotRecipeContext({ key: "dialog" })
+} = createSlotRecipeContext({ key: "drawer" })
 
-export { useDialogStyles }
+export { useDrawerStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogRootProviderBaseProps
-  extends Assign<ArkDialog.RootProviderProps, SlotRecipeProps<"dialog">>,
+export interface DrawerRootProviderBaseProps
+  extends Assign<ArkDialog.RootProviderBaseProps, SlotRecipeProps<"drawer">>,
     UnstyledProp {}
 
-export interface DialogRootProviderProps extends DialogRootProviderBaseProps {
+export interface DrawerRootProviderProps extends DrawerRootProviderBaseProps {
   children: React.ReactNode
 }
 
-export const DialogRootProvider = withRootProvider<DialogRootProviderProps>(
+export const DrawerRootProvider = withRootProvider<DrawerRootProviderProps>(
   ArkDialog.RootProvider,
   {
     defaultProps: { unmountOnExit: true, lazyMount: true },
@@ -39,29 +41,29 @@ export const DialogRootProvider = withRootProvider<DialogRootProviderProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogRootBaseProps
-  extends Assign<ArkDialog.RootProps, SlotRecipeProps<"dialog">>,
+export interface DrawerRootBaseProps
+  extends Assign<ArkDialog.RootBaseProps, SlotRecipeProps<"drawer">>,
     UnstyledProp {}
 
-export interface DialogRootProps extends DialogRootBaseProps {
+export interface DrawerRootProps extends DrawerRootBaseProps {
   children: React.ReactNode
 }
 
-export const DialogRoot = withRootProvider<DialogRootProps>(ArkDialog.Root, {
+export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const DialogPropsProvider =
-  PropsProvider as React.Provider<DialogRootBaseProps>
+export const DrawerRootPropsProvider =
+  PropsProvider as React.Provider<DrawerRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogTriggerProps
+export interface DrawerTriggerProps
   extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps> {}
 
-export const DialogTrigger = withContext<HTMLButtonElement, DialogTriggerProps>(
+export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
   ArkDialog.Trigger,
   "trigger",
   { forwardAsChild: true },
@@ -69,20 +71,20 @@ export const DialogTrigger = withContext<HTMLButtonElement, DialogTriggerProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogPositionerProps
+export interface DrawerPositionerProps
   extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps> {}
 
-export const DialogPositioner = withContext<
+export const DrawerPositioner = withContext<
   HTMLDivElement,
-  DialogPositionerProps
+  DrawerPositionerProps
 >(ArkDialog.Positioner, "positioner", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogContentProps
+export interface DrawerContentProps
   extends HTMLChakraProps<"section", ArkDialog.ContentBaseProps> {}
 
-export const DialogContent = withContext<HTMLDivElement, DialogContentProps>(
+export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
   ArkDialog.Content,
   "content",
   { forwardAsChild: true },
@@ -90,20 +92,20 @@ export const DialogContent = withContext<HTMLDivElement, DialogContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogDescriptionProps
+export interface DrawerDescriptionProps
   extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps> {}
 
-export const DialogDescription = withContext<
+export const DrawerDescription = withContext<
   HTMLDivElement,
-  DialogDescriptionProps
+  DrawerDescriptionProps
 >(ArkDialog.Description, "description", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogTitleProps
+export interface DrawerTitleProps
   extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps> {}
 
-export const DialogTitle = withContext<HTMLDivElement, DialogTitleProps>(
+export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
   ArkDialog.Title,
   "title",
   { forwardAsChild: true },
@@ -111,20 +113,37 @@ export const DialogTitle = withContext<HTMLDivElement, DialogTitleProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogCloseTriggerProps
+export interface DrawerCloseTriggerProps
   extends HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps> {}
 
-export const DialogCloseTrigger = withContext<
+export const DrawerCloseTrigger = withContext<
   HTMLButtonElement,
-  DialogCloseTriggerProps
+  DrawerCloseTriggerProps
 >(ArkDialog.CloseTrigger, "closeTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogBackdropProps
+export interface DrawerActionProps extends HTMLChakraProps<"button"> {}
+
+export const DrawerAction = forwardRef<HTMLButtonElement, DrawerActionProps>(
+  function DrawerAction(props, ref) {
+    const drawer = useDialogContext()
+    return (
+      <chakra.button
+        {...props}
+        ref={ref}
+        onClick={() => drawer.setOpen(false)}
+      />
+    )
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface DrawerBackdropProps
   extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps> {}
 
-export const DialogBackdrop = withContext<HTMLDivElement, DialogBackdropProps>(
+export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
   ArkDialog.Backdrop,
   "backdrop",
   { forwardAsChild: true },
@@ -132,33 +151,33 @@ export const DialogBackdrop = withContext<HTMLDivElement, DialogBackdropProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogBodyProps extends HTMLChakraProps<"div"> {}
+export interface DrawerBodyProps extends HTMLChakraProps<"div"> {}
 
-export const DialogBody = withContext<HTMLDivElement, DialogBodyProps>(
+export const DrawerBody = withContext<HTMLDivElement, DrawerBodyProps>(
   "div",
   "body",
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogFooterProps extends HTMLChakraProps<"footer"> {}
+export interface DrawerFooterProps extends HTMLChakraProps<"footer"> {}
 
-export const DialogFooter = withContext<HTMLDivElement, DialogFooterProps>(
+export const DrawerFooter = withContext<HTMLDivElement, DrawerFooterProps>(
   "div",
   "footer",
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DialogHeaderProps extends HTMLChakraProps<"div"> {}
+export interface DrawerHeaderProps extends HTMLChakraProps<"div"> {}
 
-export const DialogHeader = withContext<HTMLDivElement, DialogHeaderProps>(
+export const DrawerHeader = withContext<HTMLDivElement, DrawerHeaderProps>(
   "div",
   "header",
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const DialogContext = ArkDialog.Context
+export const DrawerContext = ArkDialog.Context
 
-export interface DialogOpenChangeDetails extends ArkDialog.OpenChangeDetails {}
+export interface DrawerOpenChangeDetails extends ArkDialog.OpenChangeDetails {}

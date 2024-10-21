@@ -1,6 +1,7 @@
 import { For, HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  DrawerAction,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -36,7 +37,9 @@ export const DrawerWithPlacement = () => {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </DrawerBody>
               <DrawerFooter>
-                <Button variant="outline">Cancel</Button>
+                <DrawerAction asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DrawerAction>
                 <Button>Save</Button>
               </DrawerFooter>
               <DrawerCloseTrigger />

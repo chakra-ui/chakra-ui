@@ -3,6 +3,7 @@
 import { Input, Stack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  DialogAction,
   DialogBody,
   DialogContent,
   DialogFooter,
@@ -36,7 +37,9 @@ export const DialogWithInitialFocus = () => {
           </Stack>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogAction asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogAction>
           <Button>Save</Button>
         </DialogFooter>
       </DialogContent>

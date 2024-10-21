@@ -58,3 +58,4 @@ export const DialogBackdrop = ChakraDialog.Backdrop
 export const DialogTitle = ChakraDialog.Title
 export const DialogDescription = ChakraDialog.Description
 export const DialogTrigger = ChakraDialog.Trigger
+export const DialogAction = ChakraDialog.Action

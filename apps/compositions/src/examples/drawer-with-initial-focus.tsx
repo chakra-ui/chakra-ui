@@ -3,6 +3,7 @@
 import { Input, Stack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  DrawerAction,
   DrawerBackdrop,
   DrawerBody,
   DrawerCloseTrigger,
@@ -40,7 +41,9 @@ export const DrawerWithInitialFocus = () => {
           </Stack>
         </DrawerBody>
         <DrawerFooter>
-          <Button variant="outline">Cancel</Button>
+          <DrawerAction asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerAction>
           <Button>Save</Button>
         </DrawerFooter>
         <DrawerCloseTrigger />

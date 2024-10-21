@@ -161,11 +161,11 @@ export const keyframes = defineKeyframes({
 
   // scale
   "scale-in": {
-    from: { scale: "0.9" },
+    from: { scale: "0.95" },
     to: { scale: "1" },
   },
   "scale-out": {
     from: { scale: "1" },
-    to: { scale: "0.9" },
+    to: { scale: "0.95" },
   },
 })

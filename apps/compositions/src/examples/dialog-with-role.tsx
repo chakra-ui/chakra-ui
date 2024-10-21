@@ -1,5 +1,6 @@
 import { Button } from "compositions/ui/button"
 import {
+  DialogAction,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -29,7 +30,9 @@ export const DialogWithRole = () => {
           </p>
         </DialogBody>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
+          <DialogAction asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogAction>
           <Button colorPalette="red">Delete</Button>
         </DialogFooter>
         <DialogCloseTrigger />
