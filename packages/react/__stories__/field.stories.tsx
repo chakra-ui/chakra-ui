@@ -13,6 +13,7 @@ export default {
 } satisfies Meta
 
 export { FieldBasic as Basic } from "compositions/examples/field-basic"
+export { FieldHorizontal as Horizontal } from "compositions/examples/field-horizontal"
 export { FieldWithDisabled as Disabled } from "compositions/examples/field-with-disabled"
 export { FieldWithErrorText as ErrorText } from "compositions/examples/field-with-error-text"
 export { FieldWithHelperText as HelperText } from "compositions/examples/field-with-helper-text"

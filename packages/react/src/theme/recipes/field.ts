@@ -11,8 +11,6 @@ export const fieldSlotRecipe = defineSlotRecipe({
     },
     root: {
       display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
       width: "100%",
       position: "relative",
       gap: "1.5",
@@ -41,5 +39,30 @@ export const fieldSlotRecipe = defineSlotRecipe({
       color: "fg.muted",
       textStyle: "xs",
     },
+  },
+
+  variants: {
+    orientation: {
+      vertical: {
+        root: {
+          flexDirection: "column",
+          alignItems: "flex-start",
+        },
+      },
+      horizontal: {
+        root: {
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        },
+        label: {
+          flex: "0 0 var(--field-label-width, 80px)",
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    orientation: "vertical",
   },
 })

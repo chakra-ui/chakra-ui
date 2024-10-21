@@ -588,7 +588,10 @@ export type EmptyStateVariantMap = {
 
 export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator"
 
-export interface FieldVariant {}
+export interface FieldVariant {
+  /** @default "vertical" */
+  orientation?: "vertical" | "horizontal"
+}
 
 export type FieldVariantProps = {
   [K in keyof FieldVariant]?: ConditionalValue<FieldVariant[K]> | undefined
