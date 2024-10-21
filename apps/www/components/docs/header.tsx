@@ -43,7 +43,7 @@ const HeaderRoot = chakra("header", {
     width: "100%",
     minHeight: "64px",
     borderBottom: "1px solid",
-    borderColor: "border.subtle",
+    borderColor: "border.muted",
     zIndex: "10",
   },
 })

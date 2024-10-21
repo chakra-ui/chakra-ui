@@ -37,6 +37,7 @@ const sharedComponents = {
   a: Anchor,
   blockquote: Blockquote,
   img: Img,
+  Image: Img,
   p: P,
   strong: Strong,
   h1: H1,

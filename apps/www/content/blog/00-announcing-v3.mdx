@@ -1,54 +1,324 @@
 ---
-title: Announcing v3.0
+title: Announcing v3
 description: Today, we're excited to announce the release of Chakra UI v3.0
 type: release
 version: "3.0"
 authors: ["sage"]
-publishedAt: "2024-10-19"
+publishedAt: "2024-10-22"
 ---
 
-Today, we're excited to announce the long-awaited release of Chakra UI v3.0.
+Today, we're excited to announce the long-awaited release of Chakra UI v3. The
+feedback for Chakra v3 has been incredible and we appreciate those who took the
+time to test and catch bugs.
 
-This release is made possible by the hard work of the Chakra UI team and the
-community feedback from the preview releases.
+Chakra v3 is a complete rewrite of Chakra to enhance it's performance, speed and
+consistency across components. We've also added over 20 new components, and
+that's just the beginning.
 
-Chakra v3 is built on top of Ark UI, our headless component library. It also
-adapts the new theming API from Panda CSS, making our overall ecosystem more
-coherent and easier to use.
+## Credits
 
-TODO: Image of Ark + Panda + Park UI = Chakra
+Before giving you a quick overview, I'd like to start by acknowledging those
+whose ideas and efforts contributed to the redesign of Chakra v3.
 
----
+- **[Park UI](https://park-ui.com/)**: The groundwork by Christian and Phil laid
+  the foundation of the design philiosophy in Chakra v3. Consistent sizing,
+  colors, shadows, and naming convention is the heart and soul of a design
+  system.
 
-## Key features
+- **[Panda](https://panda-css.com/)**: The theming and styling APIs in Panda CSS
+  created paved the way for Chakra v3's styling engine. The end goal was to make
+  it almost effortless to switch between Park UI and Chakra UI.
 
-- Next.js RSC
-- Supercharged components from Ark UI
-- New theming API
-- New composable components
-- New layout components
-- New hooks
-- New utilities
+- **[Radix Themes](https://www.radix-ui.com/themes)**: For inspiring the
+  playground, composable animations and accent color system.
 
-## Try it out
+- **[Shadcn](https://ui.shadcn.com/)**: For inspiring the CLI and driving the
+  idea of copy-pastable snippets which Chakra now embraces. Drawing the line
+  between where the library code stops and where userland snippets starts is
+  crucial for the DX of component libraries.
 
-Try it out and give us your feedback.
+We also want to appreciate these individuals have contributed consistently and
+helped to shape v3.
 
-```bash
-npm install @chakra-ui/react@next
+[Christian Schröter](https://x.com/grizzly_codes),
+[Esther Adebayo](https://x.com/_estheradebayo),
+[Eelco](https://x.com/pagebakers), [Alex Stahmer](https://x.com/astahmer_dev),
+[Tolulope Oyewumi](https://x.com/Delighteebrands),
+[Abraham Anuoluwapo](https://x.com/anubra266),
+[Ivica Batinić](https://x.com/_isBatak)
+
+## Design Architecture
+
+In Chakra v3, we're unifying our ecosystem of tools by combining the headless
+library, Ark UI with the styling APIs in Panda CSS, then using Park UI as the
+design system.
+
+<Image
+  src="/images/annoucement-image-frameworks.png"
+  alt="Chakra v3 ecosystem"
+  objectFit="contain"
+  fill
+  height="400px"
+/>
+
+We've redesigned most of the components from ground-up to ensure they are all
+consistent and use design tokens in most cases.
+
+## Semantic Tokens
+
+Semantic tokens make it easy to personalize your token without having to restyle
+every component by hand. Chakra v3 provides 6 semantic tokens for each color
+palette, giving you ultimate flexibility without having to think about dark
+mode.
+
+- **solid:** The solid color of the palette
+
+- **subtle:** A muted version of the palette
+
+- **emphasized:** A more pronounced version of the palette
+
+- **contrast:** A color that goes on the solid background (also called
+  "on-solid")
+
+- **fg:** The foreground color of the palette
+
+- **focusRing:** The focus ring color of the palette
+
+<br />
+Here's an example of using the red color in a semantic way that automatically
+adapts to dark mode.
+
+```tsx /red.subtle/ /red.fg/ /red.solid/ /red.contrast/
+// A subtle version of red
+<Box bg="red.subtle" color="red.fg">
+  Welcome
+</Box>
+
+// A solid version of red
+<Box bg="red.solid" color="red.contrast">
+  Welcome
+</Box>
 ```
 
----
+To take this to the next level, you can leverage the new `colorPalette` feature.
+It allows you create a color placeholder that be swapped to any color at any
+depth on the DOM tree using CSS variables.
 
-The launch of Chakra 3.0 would not have been possible without the hard work of
-our contributors. In particular, we'd like to thank the following people for
-their work on Chakra 3.0:
+```tsx /colorPalette="red"/
+<Box colorPalette="red">
+  <Box bg="colorPalette.subtle" color="colorPalette.fg">
+    Welcome
+  </Box>
+  <Box bg="colorPalette.solid" color="colorPalette.contrast">
+    Welcome
+  </Box>
+</Box>
+```
 
-- Segun Adebayo, for his tireless work on leading the projects
-- Christian Schroter, for creating Park UI and maintaining Ark UI
-- Esther Agbaje, for creating the tutorial series and advocating for Chakra UI
-- Alex Stahmer, for helping with performance testing
-- Tolulope Oyewumi, for collaborating on the design of the new website
-- Abraham Anuoluwapo, for developing aspects of the new website
-- Ivica Batinić, for contributing to the documentation website and providing
-  feedback
+## Open by default
+
+We moved away from closed components to open, compound components by default.
+This makes it easier for you compose your own components and reduce the
+maintenance on our end.
+
+To illustrate the difference, here's how you'd create a checkbox in v2.
+
+```tsx
+<Checkbox>Click me</Checkbox>
+```
+
+Here's a contrived example of the checkbox component is created within Chakra.
+
+```tsx
+export const Checkbox = forwardRef(function Checkbox(props, ref) {
+  const { children, iconColor, iconSize, icon, inputProps, ...checkboxProps } =
+    props
+
+  const checkbox = useCheckbox(checkboxProps)
+
+  return (
+    <chakra.label {...checkbox.getRootProps()}>
+      <input {...checkbox.getInputProps(inputProps, ref)} />
+      <chakra.span {...getCheckboxProps()}>
+        <CheckIcon as={icon} color={iconColor} size={iconSize} />
+      </chakra.span>
+      {children && (
+        <chakra.span {...checkbox.getLabelProps()}>{children}</chakra.span>
+      )}
+    </chakra.label>
+  )
+})
+```
+
+While the snippet above looks easy to use, you get to the point where
+customization becomes a challenge. Questions like these often arise:
+
+- how to pass props to the underlying icon?
+- how to pass props to the label that renders the children?
+- how to change the underlying animation of the checkbox?
+
+This often leads to a component with many props that can be confusing to learn.
+
+We've now made Chakra UI composable by default, this means you no longer get
+closed components by default.
+
+Here's how you'd create a checkbox with the new approach.
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+  <Checkbox.Label>Click me</Checkbox.Label>
+</Checkbox.Root>
+```
+
+It's a lot more code and can be overwhelming to write. To account for this
+slight tweak in DX, we've created the concept of "snippets" which can help you
+wrap the composable checkbox and get you back to the initial v2 style.
+
+Let me explain how it works:
+
+## Snippets
+
+By running the snippets CLI command, Chakra composes the components in Chakra
+and puts it in your project. Giving you maximum control of every aspect.
+
+```sh
+npx @chakra-ui/cli@init snippets add
+```
+
+After running this you should see primitive components add to the
+`components/ui/*` directory in your project.
+
+```tsx
+// components/ui/checkbox.tsx
+export const Checkbox = forwardRef(function Checkbox(props, ref) {
+  const { children, icon, inputProps, ...restProps } = props
+  return (
+    <Checkbox.Root {...restProps}>
+      <Checkbox.HiddenInput {...inputProps} ref={ref} />
+      <Checkbox.Control>
+        <Checkbox.Indicator>{icon}</Checkbox.Indicator>
+      </Checkbox.Control>
+      {children && <Checkbox.Label>{children}</Checkbox.Label>}
+    </Checkbox.Root>
+  )
+})
+```
+
+This makes it easy to achieve the same DX as v2 in v3.
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+
+const Demo = () => <Checkbox>Click me</Checkbox>
+```
+
+## Improve runtime performance
+
+- **Remove runtime functions in theme:** Previously we allowed the use of
+  functions in the theming system which could negatively impact runtime
+  performance. We've now switched to a variant-based system called "recipes",
+  largely inspired by Panda CSS.
+
+- **Externalize styling engine:** The styling engine is initialized outside of
+  the React tree and consumed by the components, providing a faster style
+  resolution and rendering times in every component.
+
+- **Migration to CSS animations:** We removed the `framer-motion` dependency in
+  favor of using the platform's animation features. This gives us a performance
+  boost and reduces the bundle size of your application.
+
+## New components
+
+We've added new from Ark UI. These headless components are powered by
+statecharts and work consistently across major frameworks. We truly believe the
+future of UI libraries is framework-agnostic.
+
+<Image
+  src="/images/annoucement-new-components.png"
+  alt="Chakra v3 ecosystem"
+  objectFit="contain"
+  fill
+  height="400px"
+/>
+
+We also added new presentational components to save you time when building UIs.
+
+## Embracing the ecosystem
+
+We don't want to re-invent the wheel for common needs. In the spirit of this, we
+removed a good number of modules from Chakra to keep us focused on delivering
+best-in-class components.
+
+- removed our icons in favor of a more robust icon library like `lucide-react`
+  or `react-icons`
+- removed our internal color mode management in favor of `next-themes` or
+  `remix-themes`
+- removed most hooks in favor of robust hook libraries like `react-use` or
+  `use-hooks-ts`
+
+## What's next
+
+- Picker components from Ark: ColorPicker, DatePicker
+- Redesigned Chakra UI Pro
+- Redesigned Figma UI Kit
+- Redesigned FigPilot: Our code generation tool for Figma that converts any
+  design to Chakra compatible code.
+- Explore the
+  [React 19 style tag](https://react.dev/reference/react-dom/components/style)
+
+## FAQs
+
+### Does Chakra v3 use Panda internally?
+
+No. To reduce the breaking change surface, we've decided to keep emotion (and
+runtime css-in-js) to preserve the dynamic styling benefits. There's already a
+lot of changes in v3, so we'll handle this progressively.
+
+We might not even have to use Panda at all. The progress of the
+[style tag](https://react.dev/reference/react-dom/components/style) in React 19
+is very promising and we give Chakra even more performance boost without any
+migration cost.
+
+### Are we going to have all components from Ark UI?
+
+Yes, Ark UI features a lot of useful components. We've included some of them
+already in Chakra, but we'll bring in more interesting components like
+`ColorPicker`, `DatePicker` over time.
+
+### Do we really need to use the snippets?
+
+No, you don't have to use the snippets if you're not a fan. We recommend doing
+this though, it helps simplify your development experience since you'll anyway
+have to do the same work on your end.
+
+If you find the number of snippets overwhelming, remove the snippets you don't
+need.
+
+### Why the new logo?
+
+The launch of v3 marks a new era for Chakra UI. The new era synchronizes Zag.js,
+Ark UI and Panda CSS in a very unique way. This alone warrants a new story and
+new brand.
+
+### Why did it take so long to launch v3?
+
+I ask myself the same question as well. It's an heculian task to design the
+foundations of Chakra UI in a way that is framework agnostic and entirely built
+on statecharts. This hadn't been done before and took a lot of time to get that
+stable. In the end, it was worth the effort and we appreciate your patience.
+
+## Get started
+
+We invite you to try Chakra v3 today and experience the delight of building user
+interface with speed. **Get started with Chakra UI v3 now**
+
+```sh
+npm i @chakra-ui/react @emotion/react
+```
+
+Explore the [migration guide](/docs/get-started/migration) to upgrade your
+project to Chakra UI v3.
