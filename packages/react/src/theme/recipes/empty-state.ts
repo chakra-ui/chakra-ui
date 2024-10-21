@@ -18,7 +18,7 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "fg.muted",
+      color: "fg.subtle",
       _icon: {
         boxSize: "1em",
       },
@@ -28,7 +28,7 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
     },
     description: {
       textStyle: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
   },
 

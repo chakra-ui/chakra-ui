@@ -12,7 +12,7 @@ export const InputSizeTable = () => {
           {(v) => (
             <tr>
               <td>
-                <Span fontSize="sm" color="fg.subtle" minW="8ch">
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {v}
                 </Span>
               </td>

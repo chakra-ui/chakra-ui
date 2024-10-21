@@ -55,8 +55,8 @@ export const checkmarkRecipe = defineRecipe({
         },
       },
       subtle: {
-        bg: "colorPalette.subtle",
-        borderColor: "colorPalette.subtle",
+        bg: "colorPalette.muted",
+        borderColor: "colorPalette.muted",
         "&:is([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
         },

@@ -114,7 +114,7 @@ export const CommandMenu = (props: Props) => {
             <ComboboxList>
               {matchEntries.length === 0 && (
                 <Center p="3" minH="40">
-                  <Text color="fg.subtle" textStyle="sm">
+                  <Text color="fg.muted" textStyle="sm">
                     No results found for <Text as="strong">{inputValue}</Text>
                   </Text>
                 </Center>
@@ -132,7 +132,7 @@ export const CommandMenu = (props: Props) => {
                     >
                       <Stack gap="0">
                         <Text fontWeight="medium">{item.label}</Text>
-                        <Text color="fg.subtle">{item.category}</Text>
+                        <Text color="fg.muted">{item.category}</Text>
                       </Stack>
                     </ComboboxItem>
                   ))}

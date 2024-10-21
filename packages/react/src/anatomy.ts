@@ -75,6 +75,7 @@ export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "root",
   "control",
   "label",
+  "description",
   "addon",
   "indicator",
   "content",
@@ -150,7 +151,10 @@ export const radioGroupAnatomy = arkRadioGroupAnatomy.extendWith(
   "itemIndicator",
 )
 
-export const radioCardAnatomy = radioGroupAnatomy.extendWith("itemContent")
+export const radioCardAnatomy = radioGroupAnatomy.extendWith(
+  "itemContent",
+  "itemDescription",
+)
 
 export const ratingGroupAnatomy =
   arkRatingGroupAnatomy.extendWith("itemIndicator")

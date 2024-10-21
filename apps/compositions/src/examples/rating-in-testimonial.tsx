@@ -19,7 +19,7 @@ export const RatingInTestimonial = () => {
         />
         <Stack textStyle="sm" gap="0">
           <Text fontWeight="medium">Matthew Jones</Text>
-          <Text color="fg.subtle">CTO, Company</Text>
+          <Text color="fg.muted">CTO, Company</Text>
         </Stack>
       </HStack>
     </Stack>

@@ -7,7 +7,7 @@ export const IconWithSizes = () => {
       <For each={["inherit", "xs", "sm", "md", "lg", "xl", "2xl"]}>
         {(size) => (
           <VStack key={size}>
-            <Icon size={size} color="fg.subtle">
+            <Icon size={size} color="fg.muted">
               <LuPackage />
             </Icon>
             <Text textStyle="sm">{size}</Text>

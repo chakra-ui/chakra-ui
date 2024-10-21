@@ -122,7 +122,7 @@ export const PropTable = async (props: PropTableProps) => {
                     {stringify(property.defaultValue).replaceAll('"', "'")}
                   </Code>
                 ) : (
-                  <Icon fontSize="xs" color="fg.muted">
+                  <Icon fontSize="xs" color="fg.subtle">
                     <LuMinus />
                   </Icon>
                 )}

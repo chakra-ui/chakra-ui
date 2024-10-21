@@ -49,7 +49,7 @@ const IoLogoArk = (props: React.SVGProps<SVGSVGElement>) => {
 
 export const ResourceIcon = (props: ResourceIconProps) => {
   return (
-    <Icon fontSize="lg" color="fg.subtle">
+    <Icon fontSize="lg" color="fg.muted">
       {(() => {
         switch (props.type) {
           case "github":

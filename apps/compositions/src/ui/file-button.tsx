@@ -6,6 +6,7 @@ import {
   FileUpload as ChakraFileUpload,
   Icon,
   IconButton,
+  Span,
   Stack,
   Text,
   VStack,
@@ -46,12 +47,12 @@ export const FileUploadDropzone = forwardRef<
   const { children, label, description, ...rest } = props
   return (
     <ChakraFileUpload.Dropzone ref={ref} {...rest}>
-      <Icon fontSize="xl" color="fg.subtle">
+      <Icon fontSize="xl" color="fg.muted">
         <RiUploadLine />
       </Icon>
       <VStack gap="1" mt="1" textAlign="center" textStyle="sm">
         <div>{label}</div>
-        {description && <Text color="fg.subtle">{description}</Text>}
+        {description && <Text color="fg.muted">{description}</Text>}
       </VStack>
       {children}
     </ChakraFileUpload.Dropzone>
@@ -72,7 +73,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
   return (
     <ChakraFileUpload.Item file={file}>
       <ChakraFileUpload.ItemPreview asChild>
-        <Icon fontSize="lg" color="fg.subtle">
+        <Icon fontSize="lg" color="fg.muted">
           <RiFileLine />
         </Icon>
       </ChakraFileUpload.ItemPreview>
@@ -88,7 +89,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
 
       {showDelete && (
         <ChakraFileUpload.ItemDeleteTrigger asChild>
-          <IconButton variant="ghost" color="fg.subtle">
+          <IconButton variant="ghost" color="fg.muted">
             <RiDeleteBinLine />
           </IconButton>
         </ChakraFileUpload.ItemDeleteTrigger>
@@ -155,7 +156,7 @@ export const FileInput = forwardRef<HTMLButtonElement, FileInputProps>(
               if (acceptedFiles.length > 1) {
                 return <span>{acceptedFiles.length} files</span>
               }
-              return <span color="fg.muted">{placeholder}</span>
+              return <Span color="fg.subtle">{placeholder}</Span>
             }}
           </ChakraFileUpload.Context>
         </Button>

@@ -5,7 +5,7 @@ export const TableWithStickyHeader = () => {
     <Table.ScrollArea borderWidth="1px" rounded="md" height="160px">
       <Table.Root size="sm" stickyHeader>
         <Table.Header>
-          <Table.Row bg="bg.muted">
+          <Table.Row bg="bg.subtle">
             <Table.ColumnHeader>Product</Table.ColumnHeader>
             <Table.ColumnHeader>Category</Table.ColumnHeader>
             <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>

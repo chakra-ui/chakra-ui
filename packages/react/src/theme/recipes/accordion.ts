@@ -47,7 +47,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
     itemIndicator: {
       transition: "rotate 0.2s",
       transformOrigin: "center",
-      color: "fg.muted",
+      color: "fg.subtle",
       _open: {
         rotate: "180deg",
       },
@@ -76,7 +76,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         item: {
           borderRadius: "var(--accordion-radius)",
           _open: {
-            bg: "colorPalette.muted",
+            bg: "colorPalette.subtle",
           },
         },
       },
@@ -96,7 +96,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         },
         item: {
           _open: {
-            bg: "bg.muted",
+            bg: "bg.subtle",
           },
         },
       },

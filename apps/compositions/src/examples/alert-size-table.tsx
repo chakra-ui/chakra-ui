@@ -21,7 +21,7 @@ export const AlertSizeTable = () => {
           {(c) => (
             <tr key={c}>
               <td>
-                <Span fontSize="sm" color="fg.subtle" minW="8ch">
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
                 </Span>
               </td>

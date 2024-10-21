@@ -8,7 +8,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     content: {
       outline: 0,
       bg: "bg.panel",
-      boxShadow: "md",
+      boxShadow: "lg",
       color: "fg",
       "--menu-z-index": "zIndex.dropdown",
       zIndex: "calc(var(--menu-z-index) + var(--layer-index, 0))",
@@ -64,7 +64,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     },
     separator: {
       height: "1px",
-      bg: "bg.subtle",
+      bg: "bg.muted",
       my: "1",
       mx: "-1",
     },
@@ -75,7 +75,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       subtle: {
         item: {
           _highlighted: {
-            bg: { _light: "bg.subtle", _dark: "bg.emphasized" },
+            bg: { _light: "bg.muted", _dark: "bg.emphasized" },
           },
         },
       },

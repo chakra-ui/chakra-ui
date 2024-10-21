@@ -7,7 +7,7 @@ export const CardWithSizes = () => {
         <Card.Header>
           <Heading size="md"> Card - sm</Heading>
         </Card.Header>
-        <Card.Body color="fg.subtle">
+        <Card.Body color="fg.muted">
           This is the card body. Lorem ipsum dolor sit amet, consectetur
           adipiscing elit.
         </Card.Body>
@@ -17,7 +17,7 @@ export const CardWithSizes = () => {
         <Card.Header>
           <Heading size="md"> Card - md</Heading>
         </Card.Header>
-        <Card.Body color="fg.subtle">
+        <Card.Body color="fg.muted">
           This is the card body. Lorem ipsum dolor sit amet, consectetur
           adipiscing elit.
         </Card.Body>
@@ -27,7 +27,7 @@ export const CardWithSizes = () => {
         <Card.Header>
           <Heading size="md"> Card - lg</Heading>
         </Card.Header>
-        <Card.Body color="fg.subtle">
+        <Card.Body color="fg.muted">
           This is the card body. Lorem ipsum dolor sit amet, consectetur
           adipiscing elit.
         </Card.Body>

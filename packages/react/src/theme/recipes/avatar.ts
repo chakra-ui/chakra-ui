@@ -99,7 +99,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
       },
       subtle: {
         root: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.muted",
           color: "colorPalette.fg",
         },
       },
@@ -107,7 +107,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
         root: {
           color: "colorPalette.fg",
           borderWidth: "1px",
-          borderColor: "colorPalette.subtle",
+          borderColor: "colorPalette.muted",
         },
       },
     },

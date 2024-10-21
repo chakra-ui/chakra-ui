@@ -88,7 +88,6 @@ const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
         me="-2"
         aspectRatio="square"
         size="sm"
-        color="fg.muted"
         variant="ghost"
         height="calc(100% - {spacing.2})"
         aria-label="Toggle password visibility"

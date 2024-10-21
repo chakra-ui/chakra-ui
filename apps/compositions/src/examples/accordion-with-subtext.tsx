@@ -21,7 +21,7 @@ export const AccordionWithSubtext = () => {
           <AccordionItemTrigger>
             <Stack gap="1">
               <Text>{item.title}</Text>
-              <Text fontSize="sm" color="fg.subtle">
+              <Text fontSize="sm" color="fg.muted">
                 Click to expand
               </Text>
             </Stack>

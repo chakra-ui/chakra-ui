@@ -151,7 +151,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           },
         },
         trigger: {
-          color: "fg.subtle",
+          color: "fg.muted",
           _disabled: {
             _active: { bg: "initial" },
           },
@@ -173,9 +173,9 @@ export const tabsSlotRecipe = defineSlotRecipe({
       subtle: {
         trigger: {
           borderRadius: "var(--tabs-trigger-radius)",
-          color: "fg.subtle",
+          color: "fg.muted",
           _selected: {
-            bg: "colorPalette.muted",
+            bg: "colorPalette.subtle",
             color: "colorPalette.fg",
           },
         },
@@ -183,14 +183,14 @@ export const tabsSlotRecipe = defineSlotRecipe({
 
       enclosed: {
         list: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
           padding: "1",
           borderRadius: "l3",
           minH: "calc(var(--tabs-height) - 4px)",
         },
         trigger: {
           justifyContent: "center",
-          color: "fg.subtle",
+          color: "fg.muted",
           borderRadius: "var(--tabs-trigger-radius)",
           _selected: {
             bg: "bg",
@@ -228,7 +228,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           },
         },
         trigger: {
-          color: "fg.subtle",
+          color: "fg.muted",
           borderWidth: "1px",
           borderColor: "transparent",
           _selected: {
@@ -257,7 +257,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
 
       plain: {
         trigger: {
-          color: "fg.subtle",
+          color: "fg.muted",
           _selected: {
             color: "colorPalette.fg",
           },

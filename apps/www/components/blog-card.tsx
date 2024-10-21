@@ -41,7 +41,7 @@ export const BlogCard = (props: Props) => {
       <Card.Body>
         <Stack gap="1" fontSize="sm">
           <Flex gap="2" justify="space-between">
-            <Text textStyle="sm" color="fg.subtle">
+            <Text textStyle="sm" color="fg.muted">
               {formatBlogDate(publishedAt)}
             </Text>
             <AvatarGroup size="sm">

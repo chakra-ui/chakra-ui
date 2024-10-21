@@ -20,7 +20,7 @@ export const TokensTextStyles = () => {
       >
         {(textStyle) => (
           <Stack>
-            <Text textStyle="sm" fontWeight="medium" color="fg.subtle">
+            <Text textStyle="sm" fontWeight="medium" color="fg.muted">
               textStyle: {textStyle}
             </Text>
             <Text textStyle={textStyle}>Chakra UI</Text>

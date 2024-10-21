@@ -99,6 +99,15 @@ export const RadioCardItemText = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface RadioCardItemDescriptionProps extends HTMLChakraProps<"div"> {}
+
+export const RadioCardItemDescription = withContext<
+  HTMLSpanElement,
+  RadioCardItemDescriptionProps
+>("div", "itemDescription", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface RadioCardItemControlProps
   extends HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps> {}
 

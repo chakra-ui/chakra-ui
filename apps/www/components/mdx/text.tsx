@@ -6,7 +6,7 @@ export const P = (props: BoxProps) => {
       as="p"
       {...props}
       css={{
-        color: "fg.subtle",
+        color: "fg.muted",
         lineHeight: "1.75",
         marginTop: "1em",
         marginBottom: "1em",

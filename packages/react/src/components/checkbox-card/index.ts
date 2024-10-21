@@ -9,6 +9,7 @@ export {
   CheckboxCardContent,
   CheckboxCardHiddenInput,
   CheckboxCardRootPropsProvider,
+  CheckboxCardDescription,
   useCheckboxCardStyles,
 } from "./checkbox-card"
 
@@ -21,6 +22,7 @@ export type {
   CheckboxCardRootProviderProps,
   CheckboxCardCheckedChangeDetails,
   CheckboxCardContentProps,
+  CheckboxCardDescriptionProps,
 } from "./checkbox-card"
 
 export {

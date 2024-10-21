@@ -50,8 +50,8 @@ export default function BlogPostPage({ params }: Props) {
           >
             {blog.type}
           </Badge>
-          <Span color="fg.subtle">·</Span>
-          <Text fontSize="sm" color="fg.subtle">
+          <Span color="fg.muted">·</Span>
+          <Text fontSize="sm" color="fg.muted">
             {formatBlogDate(blog.publishedAt)}
           </Text>
         </HStack>
@@ -65,7 +65,7 @@ export default function BlogPostPage({ params }: Props) {
                   <Avatar src={author.image} name={author.name} />
                   <Stack gap="0" fontSize="sm">
                     <Text fontWeight="medium">{author.name}</Text>
-                    <Text color="fg.subtle">{author.x.username}</Text>
+                    <Text color="fg.muted">{author.x.username}</Text>
                   </Stack>
                 </HStack>
               )

@@ -14,7 +14,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       textAlign: "center",
       position: "relative",
       isolation: "isolate",
-      bg: "bg.subtle",
+      bg: "bg.muted",
     },
 
     item: {

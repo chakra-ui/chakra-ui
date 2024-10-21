@@ -11,7 +11,7 @@ export const markRecipe = defineRecipe({
   variants: {
     variant: {
       subtle: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "inherit",
       },
       solid: {

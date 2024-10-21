@@ -196,7 +196,7 @@ export const SponsorSection = () => {
               <Text textStyle="xl" maxW={{ lg: "lg" }}>
                 Our maintainers devote their time, effort, and heart to ensure
                 Chakra UI keeps getting better.{" "}
-                <Span color="fg.subtle">
+                <Span color="fg.muted">
                   Support us by donating to our collective 🙏
                 </Span>
               </Text>

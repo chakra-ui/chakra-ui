@@ -23,7 +23,7 @@ const SectionTitle = ({ children, id }: SectionTitleProps) => {
       justify="space-between"
       gap="4"
       mt="2"
-      bg="bg.subtle"
+      bg="bg.muted"
       px="4"
       py="3"
       rounded="md"
@@ -50,11 +50,11 @@ const Table = chakra("table", {
     },
     "& th:not(.chakra-table__column-header)": {
       fontSize: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     "& thead td:not(.chakra-table__cell)": {
       fontSize: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
   },
 })
@@ -77,7 +77,7 @@ const DemoList = (props: DemoListProps) => {
     <>
       {items.map(({ label, component, align }) => (
         <Stack key={label} align={align || "flex-start"} gap="5">
-          <Text color="fg.subtle" textStyle="sm" fontWeight="medium">
+          <Text color="fg.muted" textStyle="sm" fontWeight="medium">
             {label}
           </Text>
           {component}

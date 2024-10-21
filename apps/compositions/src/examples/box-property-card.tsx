@@ -23,7 +23,7 @@ export const BoxPropertyCard = () => {
         <Text fontWeight="medium" color="fg">
           {data.title}
         </Text>
-        <HStack color="fg.subtle">
+        <HStack color="fg.muted">
           {data.formattedPrice} • {data.beds} beds
         </HStack>
       </Box>

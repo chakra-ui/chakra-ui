@@ -40,6 +40,10 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         opacity: "0.5",
       },
     },
+    description: {
+      opacity: "0.64",
+      textStyle: "sm",
+    },
     addon: {
       _disabled: {
         opacity: "0.5",
@@ -111,12 +115,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           _checked: {
-            bg: "colorPalette.muted",
+            bg: "colorPalette.subtle",
             color: "colorPalette.fg",
-            borderColor: "colorPalette.subtle",
+            borderColor: "colorPalette.muted",
           },
           _disabled: {
-            bg: "bg.subtle",
+            bg: "bg.muted",
           },
         },
         indicator: checkmarkRecipe.variants?.variant.solid,
@@ -124,11 +128,11 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
 
       subtle: {
         root: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
         control: {
           _checked: {
-            bg: "colorPalette.subtle",
+            bg: "colorPalette.muted",
             color: "colorPalette.fg",
           },
         },

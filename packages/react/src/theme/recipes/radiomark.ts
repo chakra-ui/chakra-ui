@@ -50,8 +50,8 @@ export const radiomarkRecipe = defineRecipe({
 
       subtle: {
         borderWidth: "1px",
-        bg: "colorPalette.subtle",
-        borderColor: "colorPalette.subtle",
+        bg: "colorPalette.muted",
+        borderColor: "colorPalette.muted",
         color: "transparent",
         _checked: {
           color: "colorPalette.fg",

@@ -21,9 +21,9 @@ export const selectSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       userSelect: "none",
       textAlign: "start",
-      focusVisibleRing: "outside",
+      focusVisibleRing: "inside",
       _placeholderShown: {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
       _disabled: {
         layerStyle: "disabled",
@@ -47,7 +47,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: { base: "fg.subtle", _disabled: "fg.muted", _invalid: "fg.error" },
+      color: { base: "fg.muted", _disabled: "fg.subtle", _invalid: "fg.error" },
     },
     content: {
       background: "bg.panel",
@@ -80,7 +80,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       borderRadius: "l1",
       _highlighted: {
-        bg: { _light: "bg.subtle", _dark: "bg.emphasized" },
+        bg: { _light: "bg.muted", _dark: "bg.emphasized" },
       },
       _disabled: {
         pointerEvents: "none",
@@ -123,7 +123,7 @@ export const selectSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           _expanded: {
-            bg: "colorPalette.muted",
+            borderColor: "border.emphasized",
           },
         },
       },
@@ -132,7 +132,7 @@ export const selectSlotRecipe = defineSlotRecipe({
         trigger: {
           borderWidth: "1px",
           borderColor: "transparent",
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
       },
     },

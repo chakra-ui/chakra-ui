@@ -25,8 +25,8 @@ export const BorderRadiusTokenDoc = () => {
                 <Square
                   borderRadius={radius}
                   size="20"
-                  bg="bg.muted"
-                  color="fg.subtle"
+                  bg="bg.subtle"
+                  color="fg.muted"
                   borderWidth="1px"
                 />
                 <Box lineHeight="1">{radius}</Box>

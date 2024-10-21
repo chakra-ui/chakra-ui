@@ -65,7 +65,7 @@ const StatsBox = (props: StatBoxProps) => {
         <Icon color={{ _light: "teal.600", _dark: "teal.500" }}>
           <StatIcon />
         </Icon>
-        <Text color="fg.subtle" fontWeight="medium">
+        <Text color="fg.muted" fontWeight="medium">
           {title}
         </Text>
       </Flex>
@@ -133,7 +133,7 @@ export const StatSection = async () => {
             <Heading textAlign="center" fontWeight="medium">
               Built for modern product teams.
               <br />
-              <Span color="fg.subtle">
+              <Span color="fg.muted">
                 From next-gen startups to established enterprises.
               </Span>
             </Heading>

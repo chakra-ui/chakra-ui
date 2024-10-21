@@ -36,7 +36,7 @@ export const Pagination = (props: PaginationProps) => {
       {previous ? (
         <PaginationItem href={previous.url || "#"}>
           <Stack gap="1" textAlign="start" textStyle="sm">
-            <Text color="fg.subtle">Previous</Text>
+            <Text color="fg.muted">Previous</Text>
             <HStack
               display="inline-flex"
               justify="flex-start"
@@ -53,7 +53,7 @@ export const Pagination = (props: PaginationProps) => {
       {next ? (
         <PaginationItem href={next.url || "#"}>
           <Stack gap="1" textAlign="end" textStyle="sm">
-            <Text color="fg.subtle">Next</Text>
+            <Text color="fg.muted">Next</Text>
             <HStack
               display="inline-flex"
               justify="flex-end"

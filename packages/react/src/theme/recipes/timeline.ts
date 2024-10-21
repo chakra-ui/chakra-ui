@@ -62,7 +62,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       mt: "var(--timeline-margin)",
     },
     description: {
-      color: "fg.subtle",
+      color: "fg.muted",
       textStyle: "xs",
     },
   },
@@ -71,7 +71,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         indicator: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
       },
       solid: {

@@ -35,7 +35,7 @@ export const listSlotRecipe = defineSlotRecipe({
         },
         item: {
           _marker: {
-            color: "fg.muted",
+            color: "fg.subtle",
           },
         },
       },

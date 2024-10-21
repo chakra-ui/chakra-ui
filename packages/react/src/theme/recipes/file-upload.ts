@@ -31,10 +31,10 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       transition: "backgrounds",
       focusVisibleRing: "outside",
       _hover: {
-        bg: "bg.muted",
+        bg: "bg.subtle",
       },
       _dragging: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         borderStyle: "solid",
         borderColor: "colorPalette.solid",
       },
@@ -61,7 +61,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
     },
     itemSizeText: {
-      color: "fg.subtle",
+      color: "fg.muted",
       textStyle: "xs",
     },
     itemDeleteTrigger: {

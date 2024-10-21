@@ -107,7 +107,7 @@ export const switchSlotRecipe = defineSlotRecipe({
         control: {
           borderRadius: "full",
           height: "calc(var(--switch-height) / 2)",
-          bg: "bg.subtle",
+          bg: "bg.muted",
           boxShadow: "inset",
           _checked: {
             bg: "colorPalette.solid/60",

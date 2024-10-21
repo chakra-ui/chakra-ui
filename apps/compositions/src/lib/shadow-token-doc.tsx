@@ -14,7 +14,7 @@ export const ShadowTokenDoc = () => {
                 shadow={shadow}
                 width="full"
                 height="20"
-                color="fg.subtle"
+                color="fg.muted"
                 borderRadius="md"
               />
               <Box>{shadow}</Box>

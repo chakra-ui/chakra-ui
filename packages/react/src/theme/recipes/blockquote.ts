@@ -13,7 +13,7 @@ export const blockquoteSlotRecipe = defineSlotRecipe({
     },
     caption: {
       textStyle: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     icon: {
       boxSize: "5",
@@ -47,7 +47,7 @@ export const blockquoteSlotRecipe = defineSlotRecipe({
         root: {
           paddingX: "5",
           borderStartWidth: "4px",
-          borderStartColor: "colorPalette.subtle",
+          borderStartColor: "colorPalette.muted",
         },
         icon: {
           color: "colorPalette.fg",

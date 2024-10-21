@@ -9,6 +9,7 @@ export {
   CheckboxCardRoot as Root,
   CheckboxCardRootPropsProvider as RootPropsProvider,
   CheckboxCardRootProvider as RootProvider,
+  CheckboxCardDescription as Description,
 } from "./checkbox-card"
 
 export type {
@@ -20,4 +21,5 @@ export type {
   CheckboxCardLabelProps as LabelProps,
   CheckboxCardRootProps as RootProps,
   CheckboxCardRootProviderProps as RootProviderProps,
+  CheckboxCardDescriptionProps as DescriptionProps,
 } from "./checkbox-card"

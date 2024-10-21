@@ -14,7 +14,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     },
     row: {
       _selected: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
       },
     },
     cell: {
@@ -41,7 +41,7 @@ export const tableSlotRecipe = defineSlotRecipe({
         body: {
           "& tr": {
             _hover: {
-              bg: "colorPalette.muted",
+              bg: "colorPalette.subtle",
             },
           },
         },
@@ -64,7 +64,7 @@ export const tableSlotRecipe = defineSlotRecipe({
       true: {
         row: {
           "&:nth-of-type(odd) td": {
-            bg: "bg.subtle",
+            bg: "bg.muted",
           },
         },
       },
@@ -107,7 +107,7 @@ export const tableSlotRecipe = defineSlotRecipe({
           borderBottomWidth: "1px",
         },
         header: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
         row: {
           "&:not(:last-of-type)": {

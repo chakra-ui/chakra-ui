@@ -70,7 +70,7 @@ export default function EnterprisePage() {
                     {item.icon}
                   </Span>
                   {item.title}.
-                  <Span color="fg.subtle" fontWeight="normal">
+                  <Span color="fg.muted" fontWeight="normal">
                     {item.description}
                   </Span>
                 </Box>

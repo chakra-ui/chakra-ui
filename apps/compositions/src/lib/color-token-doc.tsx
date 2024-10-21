@@ -125,14 +125,14 @@ const ColorGridItem = (props: ColorGridItemProps) => {
       {conditions && (
         <Stack mt="1">
           {Object.entries(conditions).map(([key, value]) => (
-            <Text key={key} fontSize="xs" mt="-1" color="fg.subtle">
+            <Text key={key} fontSize="xs" mt="-1" color="fg.muted">
               {key.replace("_", "")}: {value.replace("colors.", "")}
             </Text>
           ))}
         </Stack>
       )}
       {!conditions && (
-        <Text fontSize="xs" mt="-1" color="fg.subtle">
+        <Text fontSize="xs" mt="-1" color="fg.muted">
           {token.originalValue}
         </Text>
       )}

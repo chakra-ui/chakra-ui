@@ -50,7 +50,7 @@ export const ColorPalette = () => {
       <For each={["blue", "green", "red"]}>
         {(color) => (
           <Box colorPalette={color}>
-            <Box bg="colorPalette.subtle" color="colorPalette.fg" p="4">
+            <Box bg="colorPalette.muted" color="colorPalette.fg" p="4">
               Welcome to the{" "}
               <Link variant="underline" href="https://www.google.com">
                 jungle <Badge variant="solid"> New</Badge>

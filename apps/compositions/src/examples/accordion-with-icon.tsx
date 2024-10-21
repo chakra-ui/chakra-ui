@@ -15,7 +15,7 @@ export const AccordionWithIcon = () => {
         {items.map((item) => (
           <AccordionItem key={item.value} value={item.value}>
             <AccordionItemTrigger>
-              <Icon fontSize="lg" color="fg.muted">
+              <Icon fontSize="lg" color="fg.subtle">
                 {item.icon}
               </Icon>
               {item.title}

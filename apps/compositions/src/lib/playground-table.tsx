@@ -13,11 +13,11 @@ export const PlaygroundTable = chakra("table", {
     },
     "& th:not(.chakra-table__column-header)": {
       fontSize: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     "& thead td:not(.chakra-table__cell)": {
       fontSize: "sm",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
   },
 })

@@ -27,7 +27,7 @@ export const FontTokenDoc = () => {
                 <Box
                   as="pre"
                   whiteSpace="balance"
-                  color="fg.subtle"
+                  color="fg.muted"
                   fontSize="xs"
                 >
                   {token?.originalValue}
@@ -50,7 +50,7 @@ export const FontSizeTokenDoc = () => {
           return (
             <Stack key={fontSize} direction="row" align="center">
               <Text width="4rem">{token.extensions.prop}</Text>
-              <Text width="6rem" color="fg.subtle">
+              <Text width="6rem" color="fg.muted">
                 {token.value}
               </Text>
               <Text fontSize={token.value}>Ag</Text>
@@ -71,7 +71,7 @@ export const FontWeightTokenDoc = () => {
           return (
             <Stack key={fontWeight} direction="row" align="center">
               <Text width="6rem">{token.extensions.prop}</Text>
-              <Text width="6rem" color="fg.subtlee">
+              <Text width="6rem" color="fg.muted">
                 {token.value}
               </Text>
               <Text fontWeight={token.value} fontSize="2xl">
@@ -93,7 +93,7 @@ export const LineHeightTokenDoc = () => {
           const token = tokens.getByName(`lineHeights.${lineHeight}`)!
           return (
             <Stack key={lineHeight}>
-              <HStack color="fg.subtle">
+              <HStack color="fg.muted">
                 <Text>
                   {token.extensions.prop} / {token.value}
                 </Text>
@@ -120,7 +120,7 @@ export const LetterSpacingTokenDoc = () => {
           const token = tokens.getByName(`letterSpacings.${letterSpacing}`)!
           return (
             <Stack key={letterSpacing}>
-              <Text color="fg.subtle">
+              <Text color="fg.muted">
                 {token.extensions.prop} / {token.value}
               </Text>
               <Text fontSize="2xl" letterSpacing={token.value}>

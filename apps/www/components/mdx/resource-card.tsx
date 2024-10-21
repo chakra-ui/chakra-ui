@@ -27,7 +27,7 @@ export const ResourceCard = (props: ResourceCardProps) => {
             {title}
           </Text>
           {description && (
-            <Text textStyle="sm" color="fg.subtle/80">
+            <Text textStyle="sm" color="fg.muted/80">
               {description}
             </Text>
           )}

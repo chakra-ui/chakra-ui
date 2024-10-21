@@ -20,7 +20,7 @@ export const DemoFrame = chakra(
   {
     defaultProps: {
       tabIndex: 0,
-      onFocusCapture(e) {
+      onFocusCapture(e: React.FocusEvent<HTMLDivElement>) {
         const activeEl = document.activeElement
         if (activeEl === e.currentTarget) {
           e.currentTarget?.scrollIntoView({
@@ -36,7 +36,7 @@ export const DemoFrame = chakra(
 export const DemoFrameText = chakra("div", {
   base: {
     textStyle: "sm",
-    color: "fg.subtle",
+    color: "fg.muted",
     fontFamily: "mono",
     textAlign: "center",
   },

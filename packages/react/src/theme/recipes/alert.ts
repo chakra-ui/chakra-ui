@@ -72,17 +72,17 @@ export const alertSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         root: {
-          bg: "colorPalette.subtle/64",
+          bg: "colorPalette.muted/64",
           color: "colorPalette.fg",
         },
       },
 
       surface: {
         root: {
-          bg: "colorPalette.muted",
+          bg: "colorPalette.subtle",
           color: "colorPalette.fg",
           shadow: "inset 0 0 0px 1px var(--shadow-color)",
-          shadowColor: "colorPalette.subtle",
+          shadowColor: "colorPalette.muted",
         },
         indicator: {
           color: "colorPalette.fg",
@@ -93,7 +93,7 @@ export const alertSlotRecipe = defineSlotRecipe({
         root: {
           color: "colorPalette.fg",
           shadow: "inset 0 0 0px 1px var(--shadow-color)",
-          shadowColor: "colorPalette.subtle",
+          shadowColor: "colorPalette.muted",
         },
         indicator: {
           color: "colorPalette.fg",

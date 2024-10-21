@@ -30,7 +30,7 @@ export const ZIndexTokenDoc = () => {
             <Text width="100px" fontWeight="medium">
               {token.extensions.prop}
             </Text>
-            <Text width="100px" color="fg.subtle">
+            <Text width="100px" color="fg.muted">
               {token.originalValue}
             </Text>
           </Flex>

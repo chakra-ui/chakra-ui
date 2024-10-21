@@ -24,7 +24,7 @@ export const FileUploadWithInputClear = () => {
               focusVisibleRing="inside"
               focusRingWidth="2px"
               pointerEvents="auto"
-              color="fg.muted"
+              color="fg.subtle"
             />
           </FileUploadClearTrigger>
         }

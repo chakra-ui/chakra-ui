@@ -4,7 +4,7 @@ export const LinkOverlayBasic = () => {
   return (
     <Stack position="relative">
       <Heading as="h4">Wanna try it out?</Heading>
-      <Text color="fg.subtle">
+      <Text color="fg.muted">
         This entire area is a link. Click it to see the effect.
       </Text>
       <LinkOverlay asChild href="#">

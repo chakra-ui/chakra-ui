@@ -22,9 +22,9 @@ export const TimelineComposition = () => {
         <TimelineContent>
           <TimelineTitle>
             <Avatar size="2xs" src="https://i.pravatar.cc/150?u=a" />
-            Lucas Moras <Span color="fg.subtle">has changed</Span>
+            Lucas Moras <Span color="fg.muted">has changed</Span>
             <Span fontWeight="medium">3 labels</Span> on
-            <Span color="fg.subtle">Jan 1, 2024</Span>
+            <Span color="fg.muted">Jan 1, 2024</Span>
           </TimelineTitle>
         </TimelineContent>
       </TimelineItem>
@@ -38,9 +38,9 @@ export const TimelineComposition = () => {
         <TimelineContent>
           <TimelineTitle>
             <Avatar size="2xs" src="https://i.pravatar.cc/150?u=x" />
-            Jenna Smith <Span color="fg.subtle">removed</Span>
+            Jenna Smith <Span color="fg.muted">removed</Span>
             <Span fontWeight="medium">Enas</Span>
-            <Span color="fg.subtle">on Jan 12, 2024</Span>
+            <Span color="fg.muted">on Jan 12, 2024</Span>
           </TimelineTitle>
         </TimelineContent>
       </TimelineItem>
@@ -54,8 +54,8 @@ export const TimelineComposition = () => {
         <TimelineContent gap="4">
           <TimelineTitle>
             <Avatar size="2xs" src="https://i.pravatar.cc/150?u=y" />
-            Erica <Span color="fg.subtle">commented</Span>
-            <Span color="fg.subtle">on Jan 12, 2024</Span>
+            Erica <Span color="fg.muted">commented</Span>
+            <Span color="fg.muted">on Jan 12, 2024</Span>
           </TimelineTitle>
           <Card.Root size="sm">
             <Card.Body textStyle="sm" lineHeight="tall">

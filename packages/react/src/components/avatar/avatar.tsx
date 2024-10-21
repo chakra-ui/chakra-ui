@@ -75,7 +75,13 @@ export interface AvatarImageProps
 export const AvatarImage = withContext<HTMLImageElement, AvatarImageProps>(
   ArkAvatar.Image,
   "image",
-  { forwardAsChild: true, defaultProps: { draggable: "false" } },
+  {
+    forwardAsChild: true,
+    defaultProps: {
+      draggable: "false",
+      referrerPolicy: "no-referrer",
+    },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

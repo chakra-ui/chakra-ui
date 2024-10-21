@@ -13,7 +13,7 @@ export const ForWithObject = () => {
         {(item, index) => (
           <Box borderWidth="1px" key={index} p="4">
             <Text fontWeight="bold">{item.name}</Text>
-            <Text color="fg.subtle">Powers: {item.powers.join(", ")}</Text>
+            <Text color="fg.muted">Powers: {item.powers.join(", ")}</Text>
           </Box>
         )}
       </For>

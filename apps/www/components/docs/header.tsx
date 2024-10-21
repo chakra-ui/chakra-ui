@@ -51,7 +51,7 @@ const HeaderRoot = chakra("header", {
 const TopNavLink = chakra(Link, {
   base: {
     fontSize: "sm",
-    color: "fg.subtle",
+    color: "fg.muted",
     _currentPage: {
       color: "fg",
       fontWeight: "medium",
@@ -79,7 +79,7 @@ const TopNavMobileLink = chakra(Link, {
     display: "block",
     py: "2",
     px: "4",
-    color: "fg.subtle",
+    color: "fg.muted",
     w: "full",
     _currentPage: {
       color: "fg",

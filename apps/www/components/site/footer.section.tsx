@@ -51,11 +51,11 @@ export const FooterSection = () => {
         >
           <Stack align="flex-start">
             <Logo />
-            <Text color="fg.subtle">
+            <Text color="fg.muted">
               Project by Chakra Systems &copy; {new Date().getFullYear()}
             </Text>
             <VercelCredit />
-            <Text color="fg.subtle" css={{ "& a": { color: "fg" } }}>
+            <Text color="fg.muted" css={{ "& a": { color: "fg" } }}>
               Maintained by{" "}
               <Link href="https://x.com/thesegunadebayo">Sage</Link> and
               contributors
@@ -72,7 +72,7 @@ export const FooterSection = () => {
               <Stack key={column.title} direction="column" gap="4">
                 <Text>{column.title}</Text>
                 {column.items.map((item) => (
-                  <Box key={item.label} asChild color="fg.subtle">
+                  <Box key={item.label} asChild color="fg.muted">
                     <Link href={item.href}>{item.label}</Link>
                   </Box>
                 ))}

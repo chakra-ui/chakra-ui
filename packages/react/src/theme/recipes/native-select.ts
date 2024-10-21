@@ -25,7 +25,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       _invalid: {
         borderColor: "border.error",
       },
-      focusVisibleRing: "outside",
+      focusVisibleRing: "inside",
       lineHeight: "normal",
       "& > option, & > optgroup": {
         bg: "inherit",
@@ -40,7 +40,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       top: "50%",
       transform: "translateY(-50%)",
       height: "100%",
-      color: "fg.subtle",
+      color: "fg.muted",
       _disabled: {
         opacity: "0.5",
       },

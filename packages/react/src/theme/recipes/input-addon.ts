@@ -16,7 +16,7 @@ export const inputAddonRecipe = defineRecipe({
       outline: {
         border: "1px solid",
         borderColor: { _light: "border", _dark: "whiteAlpha.50" },
-        bg: "bg.subtle",
+        bg: "bg.muted",
       },
       subtle: {
         border: "2px solid",

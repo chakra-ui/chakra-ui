@@ -123,48 +123,48 @@ export const buttonRecipe = defineRecipe({
       },
 
       subtle: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         _hover: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.muted",
         },
         _expanded: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.muted",
         },
       },
 
       surface: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.subtle",
+        shadowColor: "colorPalette.muted",
         _hover: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.muted",
         },
         _expanded: {
-          bg: "colorPalette.subtle",
+          bg: "colorPalette.muted",
         },
       },
 
       outline: {
         borderWidth: "1px",
-        borderColor: "colorPalette.subtle",
+        borderColor: "colorPalette.muted",
         color: "colorPalette.fg",
         _hover: {
-          bg: "colorPalette.muted",
+          bg: "colorPalette.subtle",
         },
         _expanded: {
-          bg: "colorPalette.muted",
+          bg: "colorPalette.subtle",
         },
       },
 
       ghost: {
         color: "colorPalette.fg",
         _hover: {
-          bg: "colorPalette.muted",
+          bg: "colorPalette.subtle",
         },
         _expanded: {
-          bg: "colorPalette.muted",
+          bg: "colorPalette.subtle",
         },
       },
 

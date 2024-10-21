@@ -9,7 +9,7 @@ export const AvatarPersona = () => {
           <Avatar name={user.name} size="lg" src={user.avatar} />
           <Stack gap="0">
             <Text fontWeight="medium">{user.name}</Text>
-            <Text color="fg.subtle" textStyle="sm">
+            <Text color="fg.muted" textStyle="sm">
               {user.email}
             </Text>
           </Stack>

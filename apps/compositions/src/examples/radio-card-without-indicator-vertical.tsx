@@ -20,7 +20,7 @@ export const RadioCardWithoutIndicatorVertical = () => {
           <RadioCardItem
             label={item.title}
             icon={
-              <Icon fontSize="2xl" color="fg.subtle">
+              <Icon fontSize="2xl" color="fg.muted">
                 {item.icon}
               </Icon>
             }

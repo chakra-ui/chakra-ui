@@ -68,13 +68,13 @@ const TestimonialsList = () => (
         target="_blank"
         rel="noopener"
       >
-        <Text color="fg.subtle" whiteSpace="pre-wrap">
+        <Text color="fg.muted" whiteSpace="pre-wrap">
           {testimonial.content}
         </Text>
         <HStack justify="space-between" w="full">
           <Stack fontSize="sm" gap="1">
             <Text>{testimonial.name}</Text>
-            <Text color="fg.subtle">{testimonial.role}</Text>
+            <Text color="fg.muted">{testimonial.role}</Text>
           </Stack>
 
           <Image

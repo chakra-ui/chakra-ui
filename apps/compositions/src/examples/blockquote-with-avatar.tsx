@@ -5,7 +5,7 @@ import { Blockquote, BlockquoteIcon } from "compositions/ui/blockquote"
 export const BlockquoteWithAvatar = () => {
   return (
     <Blockquote
-      bg="bg.muted"
+      bg="bg.subtle"
       padding="8"
       icon={
         <Float placement="bottom-end" offset="10">

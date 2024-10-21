@@ -4,7 +4,7 @@ import { chakra } from "@chakra-ui/react"
 
 export const Prose = chakra("div", {
   base: {
-    color: "fg.subtle",
+    color: "fg.muted",
     maxWidth: "65ch",
     fontSize: "sm",
     lineHeight: "1.7em",
@@ -85,7 +85,7 @@ export const Prose = chakra("div", {
       paddingInlineEnd: "0.35em",
       paddingInlineStart: "0.35em",
       fontFamily: "inherit",
-      color: "fg.subtle",
+      color: "fg.muted",
       "--shadow": "colors.border",
       boxShadow: "0 0 0 1px var(--shadow),0 1px 0 1px var(--shadow)",
     },
@@ -109,7 +109,7 @@ export const Prose = chakra("div", {
       fontSize: "0.8em",
     },
     "& pre": {
-      backgroundColor: "bg.muted",
+      backgroundColor: "bg.subtle",
       marginTop: "1.6em",
       marginBottom: "1.6em",
       borderRadius: "md",
@@ -139,14 +139,14 @@ export const Prose = chakra("div", {
       paddingInlineStart: "0.4em",
       listStyleType: "decimal",
       "&::marker": {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     "& ul > li": {
       paddingInlineStart: "0.4em",
       listStyleType: "disc",
       "&::marker": {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     "& > ul > li p": {
@@ -241,7 +241,7 @@ export const Prose = chakra("div", {
       fontSize: "0.85em",
       lineHeight: "1.25em",
       marginTop: "0.85em",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     "& h1, h2, h3, h4": {
       color: "fg",

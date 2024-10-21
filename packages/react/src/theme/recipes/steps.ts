@@ -20,7 +20,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       color: "fg",
     },
     description: {
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     separator: {
       bg: "border",
@@ -115,7 +115,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
             borderWidth: "var(--steps-thickness)",
           },
           _current: {
-            bg: "colorPalette.subtle",
+            bg: "colorPalette.muted",
             borderWidth: "var(--steps-thickness)",
             borderColor: "colorPalette.solid",
             color: "colorPalette.fg",
@@ -135,10 +135,10 @@ export const stepsSlotRecipe = defineSlotRecipe({
       subtle: {
         indicator: {
           _incomplete: {
-            bg: "bg.subtle",
+            bg: "bg.muted",
           },
           _current: {
-            bg: "colorPalette.subtle",
+            bg: "colorPalette.muted",
             color: "colorPalette.fg",
           },
           _complete: {

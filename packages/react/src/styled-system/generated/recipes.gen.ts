@@ -431,7 +431,7 @@ export type CheckboxVariantMap = {
 
 // CheckboxCard
 
-export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicator" | "content"
+export type CheckboxCardSlot = "root" | "control" | "label" | "description" | "addon" | "indicator" | "content"
 
 export interface CheckboxCardVariant {
   /** @default "md" */
@@ -838,7 +838,17 @@ export type ProgressCircleVariantMap = {
 
 // RadioCard
 
-export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator" | "itemContent"
+export type RadioCardSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "itemText"
+  | "itemControl"
+  | "indicator"
+  | "itemAddon"
+  | "itemIndicator"
+  | "itemContent"
+  | "itemDescription"
 
 export interface RadioCardVariant {
   /** @default "md" */

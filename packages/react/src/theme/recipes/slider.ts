@@ -41,7 +41,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       alignItems: "center",
       gap: "1.5",
-      color: "fg.subtle",
+      color: "fg.muted",
       fontSize: "xs",
     },
     markerIndicator: {
@@ -121,7 +121,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         track: {
           bg: "colorPalette.subtle",
           _disabled: {
-            bg: "bg.subtle",
+            bg: "bg.muted",
           },
         },
         range: {

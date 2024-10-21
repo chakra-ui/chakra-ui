@@ -7,7 +7,7 @@ export const StatWithIcon = () => {
     <StatRoot maxW="240px" borderWidth="1px" p="4" rounded="md">
       <HStack justify="space-between">
         <StatLabel>Sales</StatLabel>
-        <Icon color="fg.subtle">
+        <Icon color="fg.muted">
           <LuDollarSign />
         </Icon>
       </HStack>

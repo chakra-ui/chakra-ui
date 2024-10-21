@@ -21,7 +21,7 @@ const floatingStyles = defineStyle({
   pointerEvents: "none",
   transition: "position",
   _peerPlaceholderShown: {
-    color: "fg.subtle",
+    color: "fg.muted",
     top: "2.5",
     insetStart: "3",
   },

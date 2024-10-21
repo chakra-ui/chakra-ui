@@ -47,7 +47,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
-          bgColor: "bg.subtle",
+          bgColor: "bg.muted",
         },
         range: {
           bgColor: "colorPalette.solid",
@@ -55,7 +55,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       },
       subtle: {
         track: {
-          bgColor: "colorPalette.subtle",
+          bgColor: "colorPalette.muted",
         },
         range: {
           bgColor: "colorPalette.solid/72",

@@ -47,6 +47,6 @@ export const globalCss = defineGlobalStyles({
     colorPalette: "gray",
   },
   "*::placeholder": {
-    color: "fg.subtle",
+    color: "fg.muted",
   },
 })

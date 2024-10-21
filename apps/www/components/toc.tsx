@@ -19,7 +19,7 @@ interface Props {
 const TocLink = chakra(Link, {
   base: {
     fontSize: "sm",
-    color: "fg.subtle",
+    color: "fg.muted",
     _currentPage: { color: "fg", fontWeight: "medium" },
     _hover: { color: "fg" },
     ms: "calc(1rem * var(--toc-depth))",

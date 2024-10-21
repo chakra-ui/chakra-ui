@@ -19,8 +19,8 @@ export const cardSlotRecipe = defineSlotRecipe({
       fontWeight: "semibold",
     },
     description: {
-      color: "fg.subtle",
-      textStyle: "sm",
+      color: "fg.muted",
+      fontSize: "sm",
     },
     header: {
       paddingInline: "var(--card-padding)",
@@ -75,7 +75,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       elevated: {
         root: {
           bg: "bg.panel",
-          boxShadow: "sm",
+          boxShadow: "md",
         },
       },
       outline: {
@@ -87,7 +87,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       },
       subtle: {
         root: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
       },
     },

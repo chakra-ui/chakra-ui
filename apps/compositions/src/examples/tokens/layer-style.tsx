@@ -15,7 +15,7 @@ export const TokensLayerStyle = () => {
       <For each={items}>
         {([title, styles]) => (
           <Stack gap="4">
-            <Text fontWeight="medium" color="fg.subtle">
+            <Text fontWeight="medium" color="fg.muted">
               layerStyle: {title.toLowerCase()}.*
             </Text>
             <HStack wrap="wrap" gap="10">

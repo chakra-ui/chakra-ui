@@ -29,14 +29,14 @@ export const ComponentGrid = () => {
             <Link href={`/${item.slug}`}>
               <Center
                 height="120px"
-                bg="bg.subtle"
-                _icon={{ color: "fg.subtle" }}
+                bg="bg.muted"
+                _icon={{ color: "fg.muted" }}
               >
                 <Illustration width="100%" height="100%" />
               </Center>
               <Stack gap="1" padding="4" flex="1" textStyle="sm">
                 <Box fontWeight="medium">{item.title}</Box>
-                <Box color="fg.subtle" lineClamp="2" lineHeight="short">
+                <Box color="fg.muted" lineClamp="2" lineHeight="short">
                   {item.description}
                 </Box>
               </Stack>

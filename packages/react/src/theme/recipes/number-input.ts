@@ -11,7 +11,7 @@ const triggerStyle = defineStyle({
   userSelect: "none",
   cursor: "button",
   lineHeight: "1",
-  color: "fg.subtle",
+  color: "fg.muted",
   "--stepper-base-radius": "radii.xs",
   "--stepper-radius": "calc(var(--stepper-base-radius) + 1px)",
   _icon: {
@@ -21,7 +21,7 @@ const triggerStyle = defineStyle({
     opacity: "0.5",
   },
   _hover: {
-    bg: "bg.subtle",
+    bg: "bg.muted",
   },
   _active: {
     bg: "bg.emphasized",

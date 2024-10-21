@@ -12,7 +12,7 @@ export const InputVariantTable = () => {
           {(v) => (
             <tr>
               <td>
-                <Span fontSize="sm" color="fg.subtle" minW="8ch">
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {v}
                 </Span>
               </td>
@@ -24,7 +24,7 @@ export const InputVariantTable = () => {
         </For>
         <tr>
           <td>
-            <Span fontSize="sm" color="fg.subtle" minW="8ch">
+            <Span fontSize="sm" color="fg.muted" minW="8ch">
               unstyled
             </Span>
           </td>

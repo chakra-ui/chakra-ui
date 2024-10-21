@@ -7,7 +7,7 @@ export const BlockquoteWithJustify = () => {
       <For each={["start", "center", "end"]}>
         {(justify) => (
           <HStack key={justify} maxW="xl">
-            <Text color="fg.subtle" minW="6rem">
+            <Text color="fg.muted" minW="6rem">
               {justify}
             </Text>
             <Blockquote

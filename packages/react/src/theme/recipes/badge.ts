@@ -19,19 +19,19 @@ export const badgeRecipe = defineRecipe({
         color: "colorPalette.contrast",
       },
       subtle: {
-        bg: "colorPalette.subtle",
+        bg: "colorPalette.muted",
         color: "colorPalette.fg",
       },
       outline: {
         color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.subtle",
+        shadowColor: "colorPalette.muted",
       },
       surface: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.subtle",
+        shadowColor: "colorPalette.muted",
       },
       plain: {
         color: "colorPalette.fg",

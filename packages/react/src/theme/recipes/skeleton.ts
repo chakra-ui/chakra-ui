@@ -33,7 +33,7 @@ export const skeletonRecipe = defineRecipe({
       shine: {
         "--animate-from": "200%",
         "--animate-to": "-200%",
-        "--start-color": "colors.bg.subtle",
+        "--start-color": "colors.bg.muted",
         "--end-color": "colors.bg.emphasized",
         backgroundImage:
           "linear-gradient(270deg,var(--start-color),var(--end-color),var(--end-color),var(--start-color))",

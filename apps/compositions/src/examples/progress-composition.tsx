@@ -43,7 +43,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
   const { data, icon } = props
   return (
     <HStack gap="4">
-      <Square borderRadius="sm" bg="bg.muted" size="10">
+      <Square borderRadius="sm" bg="bg.subtle" size="10">
         {icon}
       </Square>
       <ProgressRoot
@@ -56,7 +56,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
         <HStack justify="space-between">
           <ProgressLabel>{data.label}</ProgressLabel>
           <ProgressValueText color="inherit">
-            {data.value} <Span color="fg.subtle">/ {data.max}</Span>
+            {data.value} <Span color="fg.muted">/ {data.max}</Span>
           </ProgressValueText>
         </HStack>
         <ProgressBar mt="2" />

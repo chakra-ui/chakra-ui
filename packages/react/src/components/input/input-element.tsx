@@ -11,7 +11,7 @@ export const InputElement = chakra("div", {
     justifyContent: "center",
     position: "absolute",
     zIndex: 2,
-    color: "fg.muted",
+    color: "fg.subtle",
     height: "full",
     fontSize: "sm",
     px: "3",

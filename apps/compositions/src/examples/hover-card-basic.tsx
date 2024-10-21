@@ -26,7 +26,7 @@ export const HoverCardBasic = () => {
               <Text textStyle="sm" fontWeight="semibold">
                 Chakra UI
               </Text>
-              <Text textStyle="sm" color="fg.subtle">
+              <Text textStyle="sm" color="fg.muted">
                 The most powerful toolkit for building modern web applications.
               </Text>
             </Stack>

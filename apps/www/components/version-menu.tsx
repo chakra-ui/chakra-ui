@@ -37,7 +37,7 @@ export const VersionMenu = (props: Props) => {
               <Span fontWeight="medium" flex="1">
                 {item.title}
               </Span>
-              <Span color="fg.subtle">{item.value}</Span>
+              <Span color="fg.muted">{item.value}</Span>
             </Link>
           </MenuItem>
         ))}

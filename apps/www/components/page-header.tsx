@@ -21,7 +21,7 @@ export const PageHeader = (props: PageHeaderProps) => {
       <Heading as="h1" size="3xl" letterSpacing="tight">
         {title}
       </Heading>
-      <Text color="fg.subtle">{description}</Text>
+      <Text color="fg.muted">{description}</Text>
       {links && (
         <HStack gap="6" mb="4" wrap="wrap">
           {Object.entries(links).map(([title, url]) => (
@@ -30,14 +30,14 @@ export const PageHeader = (props: PageHeaderProps) => {
               variant="underline"
               fontSize="sm"
               target="_blank"
-              color="fg.subtle"
+              color="fg.muted"
               key={title + url}
               href={url}
               _icon={{ fontSize: "1em" }}
             >
               <ResourceIcon type={title} />
               {titleCase(title)}
-              <Span color="fg.muted">
+              <Span color="fg.subtle">
                 <LuArrowUpRight />
               </Span>
             </Link>

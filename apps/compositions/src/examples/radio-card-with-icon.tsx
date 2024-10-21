@@ -14,7 +14,7 @@ export const RadioCardWithIcon = () => {
         {items.map((item) => (
           <RadioCardItem
             icon={
-              <Icon fontSize="2xl" color="fg.subtle" mb="2">
+              <Icon fontSize="2xl" color="fg.muted" mb="2">
                 {item.icon}
               </Icon>
             }

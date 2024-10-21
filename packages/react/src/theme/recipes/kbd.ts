@@ -18,18 +18,18 @@ export const kbdRecipe = defineRecipe({
   variants: {
     variant: {
       raised: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         borderWidth: "1px",
         borderBottomWidth: "2px",
-        borderColor: "colorPalette.subtle",
+        borderColor: "colorPalette.muted",
       },
       outline: {
         borderWidth: "1px",
         color: "colorPalette.fg",
       },
       subtle: {
-        bg: "colorPalette.subtle",
+        bg: "colorPalette.muted",
         color: "colorPalette.fg",
       },
       plain: {

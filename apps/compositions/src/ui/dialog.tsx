@@ -71,7 +71,7 @@ export const DialogDescription = forwardRef<
   HTMLParagraphElement,
   ChakraDialog.DescriptionProps
 >(function DialogDescription(props, ref) {
-  return <ChakraDialog.Description color="fg.subtle" {...props} ref={ref} />
+  return <ChakraDialog.Description color="fg.muted" {...props} ref={ref} />
 })
 
 export const DialogRoot = ChakraDialog.Root

@@ -65,11 +65,11 @@ export const SizesTokenDoc = () => {
                   <Text width="160px" fontWeight="medium">
                     {token.extensions.prop}
                   </Text>
-                  <Text width="100px" color="fg.subtle">
+                  <Text width="100px" color="fg.muted">
                     {token.value}
                   </Text>
                   {item.name === "tokenSizes" && (
-                    <Text width="100px" color="fg.subtle">
+                    <Text width="100px" color="fg.muted">
                       {token.extensions.pixelValue}
                     </Text>
                   )}

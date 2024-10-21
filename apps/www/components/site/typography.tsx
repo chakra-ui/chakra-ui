@@ -47,7 +47,7 @@ export const HighlightHeading = (props: HighlightHeadingProps) => {
 }
 
 export const Subheading = (props: TextProps) => (
-  <Text textStyle="xl" color="fg.subtle" maxW="2xl" {...props} />
+  <Text textStyle="xl" color="fg.muted" maxW="2xl" {...props} />
 )
 
 interface BlitzHeadingProps extends StackProps {}

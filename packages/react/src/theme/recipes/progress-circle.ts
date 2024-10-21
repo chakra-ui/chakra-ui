@@ -16,7 +16,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
       },
     },
     circleTrack: {
-      "--track-color": "colors.colorPalette.subtle",
+      "--track-color": "colors.colorPalette.muted",
       stroke: "var(--track-color)",
     },
     circleRange: {

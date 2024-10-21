@@ -31,7 +31,7 @@ export const SideNav = (props: SideNavProps) => {
             ps="4"
             pe="3"
             rounded="sm"
-            color="fg.subtle"
+            color="fg.muted"
             colorPalette="gray"
             _hover={{
               layerStyle: "fill.muted",

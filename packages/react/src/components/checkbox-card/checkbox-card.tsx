@@ -73,6 +73,15 @@ export const CheckboxCardLabel = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CheckboxCardDescriptionProps extends HTMLChakraProps<"div"> {}
+
+export const CheckboxCardDescription = withContext<
+  HTMLDivElement,
+  CheckboxCardDescriptionProps
+>("div", "description")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CheckboxCardControlProps
   extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps> {}
 

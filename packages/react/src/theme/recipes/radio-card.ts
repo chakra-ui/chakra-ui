@@ -19,7 +19,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       position: "relative",
       borderRadius: "l2",
       _focus: {
-        bg: "colorPalette.subtle/20",
+        bg: "colorPalette.muted/20",
       },
       _disabled: {
         opacity: "0.8",
@@ -37,6 +37,10 @@ export const radioCardSlotRecipe = defineSlotRecipe({
     itemText: {
       fontWeight: "medium",
     },
+    itemDescription: {
+      opacity: "0.64",
+      textStyle: "sm",
+    },
     itemControl: {
       display: "inline-flex",
       flex: "1",
@@ -45,14 +49,14 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       justifyContent: "var(--radio-card-justify)",
       alignItems: "var(--radio-card-align)",
       _disabled: {
-        bg: "bg.subtle",
+        bg: "bg.muted",
       },
     },
     itemIndicator: radiomarkRecipe.base,
     itemAddon: {
       roundedBottom: "inherit",
       _disabled: {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     itemContent: {
@@ -119,9 +123,9 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         item: {
           borderWidth: "1px",
           _checked: {
-            bg: "colorPalette.muted",
+            bg: "colorPalette.subtle",
             color: "colorPalette.fg",
-            borderColor: "colorPalette.subtle",
+            borderColor: "colorPalette.muted",
           },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.solid,
@@ -129,11 +133,11 @@ export const radioCardSlotRecipe = defineSlotRecipe({
 
       subtle: {
         item: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
         itemControl: {
           _checked: {
-            bg: "colorPalette.subtle",
+            bg: "colorPalette.muted",
             color: "colorPalette.fg",
           },
         },

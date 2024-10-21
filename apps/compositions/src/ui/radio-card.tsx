@@ -1,4 +1,4 @@
-import { RadioCard, Text } from "@chakra-ui/react"
+import { RadioCard } from "@chakra-ui/react"
 import { Fragment, forwardRef } from "react"
 
 interface RadioCardItemProps extends RadioCard.ItemProps {
@@ -37,9 +37,9 @@ export const RadioCardItem = forwardRef<HTMLInputElement, RadioCardItemProps>(
               {icon}
               {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}
               {description && (
-                <Text opacity="0.64" textStyle="sm">
+                <RadioCard.ItemDescription>
                   {description}
-                </Text>
+                </RadioCard.ItemDescription>
               )}
               {indicatorPlacement === "inside" && indicator}
             </ContentWrapper>

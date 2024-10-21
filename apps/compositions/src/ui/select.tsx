@@ -36,7 +36,6 @@ const SelectClearTrigger = forwardRef<
         focusVisibleRing="inside"
         focusRingWidth="2px"
         pointerEvents="auto"
-        color="fg.muted"
       />
     </ChakraSelect.ClearTrigger>
   )
