@@ -74,6 +74,13 @@ export const dialogSlotRecipe = defineSlotRecipe({
       pt: "2",
       pb: "4",
     },
+    title: {
+      textStyle: "lg",
+      fontWeight: "semibold",
+    },
+    description: {
+      color: "fg.muted",
+    },
   },
 
   variants: {

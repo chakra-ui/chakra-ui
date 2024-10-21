@@ -1,4 +1,4 @@
-import { Dialog as ChakraDialog, Heading, Portal } from "@chakra-ui/react"
+import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 import { forwardRef } from "react"
 
@@ -31,10 +31,6 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   },
 )
 
-export const DialogTrigger = (props: ChakraDialog.TriggerProps) => {
-  return <ChakraDialog.Trigger {...props} />
-}
-
 export const DialogCloseTrigger = forwardRef<
   HTMLButtonElement,
   ChakraDialog.CloseTriggerProps
@@ -54,28 +50,11 @@ export const DialogCloseTrigger = forwardRef<
   )
 })
 
-export const DialogTitle = forwardRef<
-  HTMLHeadingElement,
-  ChakraDialog.TitleProps
->(function DialogTitle(props, ref) {
-  return (
-    <ChakraDialog.Title {...props} asChild>
-      <Heading as="h2" size="lg" lineHeight="1.2" ref={ref}>
-        {props.children}
-      </Heading>
-    </ChakraDialog.Title>
-  )
-})
-
-export const DialogDescription = forwardRef<
-  HTMLParagraphElement,
-  ChakraDialog.DescriptionProps
->(function DialogDescription(props, ref) {
-  return <ChakraDialog.Description color="fg.muted" {...props} ref={ref} />
-})
-
 export const DialogRoot = ChakraDialog.Root
 export const DialogFooter = ChakraDialog.Footer
 export const DialogHeader = ChakraDialog.Header
 export const DialogBody = ChakraDialog.Body
 export const DialogBackdrop = ChakraDialog.Backdrop
+export const DialogTitle = ChakraDialog.Title
+export const DialogDescription = ChakraDialog.Description
+export const DialogTrigger = ChakraDialog.Trigger

@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogRoot,
+  DialogTitle,
   DialogTrigger,
 } from "compositions/ui/dialog"
 import { useRef } from "react"
@@ -22,7 +23,9 @@ export const DialogWithFinalFocus = () => {
           <Button variant="outline">Open</Button>
         </DialogTrigger>
         <DialogContent>
-          <DialogHeader>Dialog Header</DialogHeader>
+          <DialogHeader>
+            <DialogTitle>Dialog Title</DialogTitle>
+          </DialogHeader>
           <DialogCloseTrigger />
           <DialogBody>
             <Lorem p={1} />
@@ -38,7 +41,7 @@ export const DialogWithFinalFocus = () => {
         aria-label="Focus moved to this box"
         _focus={{ outline: "2px solid red" }}
       >
-        Some other content that'll receive focus on close.
+        Some other content that will receive focus on close.
       </Box>
     </Stack>
   )

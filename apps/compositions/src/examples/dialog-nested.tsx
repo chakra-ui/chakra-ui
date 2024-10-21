@@ -32,7 +32,7 @@ export const DialogNested = () => {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Dialog. 2 Title</DialogTitle>
+                <DialogTitle>Dialog Title</DialogTitle>
               </DialogHeader>
               <DialogBody>
                 <Lorem p={1} />
