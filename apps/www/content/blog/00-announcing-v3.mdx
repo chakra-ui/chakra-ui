@@ -33,9 +33,7 @@ whose ideas and efforts contributed to the redesign of Chakra v3.
   playground, composable animations and accent color system.
 
 - **[Shadcn](https://ui.shadcn.com/)**: For inspiring the CLI and driving the
-  idea of copy-pastable snippets which Chakra now embraces. Drawing the line
-  between where the library code stops and where userland snippets starts is
-  crucial for the DX of component libraries.
+  idea of copy-paste snippets which Chakra now embraces.
 
 We also want to appreciate these individuals have contributed consistently and
 helped to shape v3.
@@ -67,13 +65,15 @@ consistent and use design tokens in most cases.
 ## Semantic Tokens
 
 Semantic tokens make it easy to personalize your token without having to restyle
-every component by hand. Chakra v3 provides 6 semantic tokens for each color
+every component by hand. Chakra v3 provides 7 semantic tokens for each color
 palette, giving you ultimate flexibility without having to think about dark
 mode.
 
 - **solid:** The solid color of the palette
 
-- **subtle:** A muted version of the palette
+- **muted:** A muted version of the palette
+
+- **subtle:** A subtle version of the palette, lower then the muted one.
 
 - **emphasized:** A more pronounced version of the palette
 
@@ -127,7 +127,7 @@ To illustrate the difference, here's how you'd create a checkbox in v2.
 <Checkbox>Click me</Checkbox>
 ```
 
-Here's a contrived example of the checkbox component is created within Chakra.
+Here's a contrived example of the checkbox component in Chakra v2.
 
 ```tsx
 export const Checkbox = forwardRef(function Checkbox(props, ref) {
@@ -233,7 +233,7 @@ const Demo = () => <Checkbox>Click me</Checkbox>
 
 ## New components
 
-We've added new from Ark UI. These headless components are powered by
+We've added new components from Ark UI. These headless components are powered by
 statecharts and work consistently across major frameworks. We truly believe the
 future of UI libraries is framework-agnostic.
 
