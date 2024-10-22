@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.0.0-next.32
+
+### Minor Changes
+
+- [`05793a2`](https://github.com/chakra-ui/chakra-ui/commit/05793a2d15f22b7caa3fb19f93c2a6e1482e5bd0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Make `gray` the
+  default color palette.
+
+  - Change avatar sm size to `36px` for consistency.
+  - Move `bg` for outline component variants.
+
+- [`c243698`](https://github.com/chakra-ui/chakra-ui/commit/c243698a30a47c189b7d1c9903feb888055bdff5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add
+  referrerPolicy to Avatar component.
+  - Add CheckboxDescription, CheckboxCardDescription and RadioCardDescription
+  - Swap `muted` and `subtle` color tokens
+
 ## 3.0.0-next.31
 
 ### Minor Changes
