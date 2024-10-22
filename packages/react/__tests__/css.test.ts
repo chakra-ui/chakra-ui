@@ -187,6 +187,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "#fff !important",
         "background": "#fff !important",
         "color": "#fff !important",
       }
@@ -244,7 +245,9 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "var(--chakra-colors-red-300)",
         ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) ~ &": {
+          "--bg-currentcolor": "var(--chakra-colors-transparent)",
           "background": "var(--chakra-colors-transparent)",
         },
         "background": "var(--chakra-colors-red-300)",
@@ -259,6 +262,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "var(--mix-background, var(--chakra-colors-red-300))",
         "--mix-background": "color-mix(in srgb, var(--chakra-colors-red-300) 30%, transparent)",
         "background": "var(--mix-background, var(--chakra-colors-red-300))",
       }
@@ -272,6 +276,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "var(--mix-background, var(--chakra-colors-red-300))",
         "--mix-background": "color-mix(in srgb, var(--chakra-colors-red-300) 30%, transparent)",
         "background": "var(--mix-background, var(--chakra-colors-red-300))",
       }
@@ -286,6 +291,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "var(--chakra-colors-color-palette-300)",
         "--chakra-colors-color-palette-100": "var(--chakra-colors-red-100)",
         "--chakra-colors-color-palette-200": "var(--chakra-colors-red-200)",
         "--chakra-colors-color-palette-300": "var(--chakra-colors-red-300)",
@@ -410,6 +416,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--bg-currentcolor": "var(--chakra-colors-color-palette-subtle)",
         "background": "var(--chakra-colors-color-palette-subtle)",
         "color": "inherit",
       }
