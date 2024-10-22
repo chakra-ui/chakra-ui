@@ -16,7 +16,7 @@ import {
 
 export const FileUploadInDialog = () => {
   return (
-    <DialogRoot size="sm" centered>
+    <DialogRoot size="sm" placement="center">
       <DialogTrigger asChild>
         <Button variant="outline">Open Dialog</Button>
       </DialogTrigger>

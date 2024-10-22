@@ -11,7 +11,7 @@ import {
 
 export const DialogWithCover = () => {
   return (
-    <DialogRoot size="cover" centered motionPreset="slide-in-bottom">
+    <DialogRoot size="cover" placement="center" motionPreset="slide-in-bottom">
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           Open Dialog

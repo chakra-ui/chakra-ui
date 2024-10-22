@@ -39,7 +39,7 @@ export const ActionBarWithDialog = () => {
             Add to collection
           </Button>
 
-          <DialogRoot centered>
+          <DialogRoot placement="center">
             <DialogTrigger asChild>
               <Button variant="surface" colorPalette="red" size="sm">
                 <LuTrash2 />
