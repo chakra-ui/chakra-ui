@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogFullscreen = () => {
+export const DialogWithFullscreen = () => {
   return (
     <DialogRoot size="full" motionPreset="slide-in-bottom">
       <DialogTrigger asChild>
