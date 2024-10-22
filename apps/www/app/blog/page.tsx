@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
+  const activeBlogs = blogs.filter((blog) => !blog.draft)
   return (
     <Box py="20" flex="1">
       <Container>
@@ -26,7 +27,7 @@ export default function BlogPage() {
         </Stack>
 
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap="6">
-          {blogs.map((blog, index) => (
+          {activeBlogs.map((blog, index) => (
             <BlogCard key={index} data={blog} />
           ))}
         </SimpleGrid>

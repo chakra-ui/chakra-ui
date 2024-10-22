@@ -113,6 +113,7 @@ const blogs = defineCollection({
       authors: s.array(s.string()),
       publishedAt: s.string(),
       toc: s.toc(),
+      draft: s.boolean().optional(),
     })
     .transform((data, { meta }) => {
       return {
