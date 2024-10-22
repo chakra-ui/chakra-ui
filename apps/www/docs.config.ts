@@ -284,6 +284,7 @@ export const docsConfig: DocsConfig = {
     { title: "Blog", url: "blog" },
     { title: "Showcase", url: "showcase" },
   ],
+  proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
 }
 
 interface DocsConfig {
@@ -299,6 +300,7 @@ interface DocsConfig {
   donationUrl: string
   navigation: NavItem[]
   repoBranch: string
+  proUrl: string
 }
 
 export interface NavItem {

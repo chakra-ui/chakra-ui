@@ -44,14 +44,14 @@ export const BlogCard = (props: Props) => {
             <Text textStyle="sm" color="fg.muted">
               {formatBlogDate(publishedAt)}
             </Text>
-            <AvatarGroup size="sm">
+            <AvatarGroup size="xs">
               {authors.map((author) => {
                 const { name, image } = getBlogAuthor(author)
                 return <Avatar key={author} src={image} name={name} />
               })}
             </AvatarGroup>
           </Flex>
-          <Card.Title mt="-1" textStyle="lg">
+          <Card.Title mt="-2" textStyle="lg">
             <LinkOverlay asChild>
               <Link href={`/${data.slug}`}>{title}</Link>
             </LinkOverlay>

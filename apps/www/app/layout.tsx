@@ -1,3 +1,4 @@
+import { ProAdBanner } from "@/components/pro-banner"
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
 import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
@@ -56,7 +57,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <ProAdBanner />
+          {children}
+        </Provider>
       </body>
     </html>
   )

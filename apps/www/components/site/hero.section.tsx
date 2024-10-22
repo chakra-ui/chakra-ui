@@ -165,7 +165,7 @@ export const HeroSection = () => (
 
         <Stack direction={{ base: "column", sm: "row" }} gap="3">
           <Button
-            size="lg"
+            size="xl"
             minW="180px"
             asChild
             colorPalette="teal"
@@ -180,6 +180,7 @@ export const HeroSection = () => (
             bg="bg.subtle/50"
             color={{ _light: "teal.600", _dark: "teal.400" }}
             textStyle="sm"
+            fontWeight="semibold"
             ps="4"
             pe="6"
             rounded="l2"
