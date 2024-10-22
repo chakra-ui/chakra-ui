@@ -35,27 +35,31 @@ export function ColorModeIcon() {
   return colorMode === "light" ? <LuSun /> : <LuMoon />
 }
 
-export const ColorModeButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function ColorModeButton(props, ref) {
-    const { toggleColorMode } = useColorMode()
-    return (
-      <ClientOnly fallback={<Skeleton boxSize="8" />}>
-        <IconButton
-          onClick={toggleColorMode}
-          variant="ghost"
-          size="sm"
-          ref={ref}
-          {...props}
-          css={{
-            _icon: {
-              width: "5",
-              height: "5",
-            },
-          }}
-        >
-          <ColorModeIcon />
-        </IconButton>
-      </ClientOnly>
-    )
-  },
-)
+interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
+
+export const ColorModeButton = forwardRef<
+  HTMLButtonElement,
+  ColorModeButtonProps
+>(function ColorModeButton(props, ref) {
+  const { toggleColorMode } = useColorMode()
+  return (
+    <ClientOnly fallback={<Skeleton boxSize="8" />}>
+      <IconButton
+        onClick={toggleColorMode}
+        variant="ghost"
+        aria-label="Toggle color mode"
+        size="sm"
+        ref={ref}
+        {...props}
+        css={{
+          _icon: {
+            width: "5",
+            height: "5",
+          },
+        }}
+      >
+        <ColorModeIcon />
+      </IconButton>
+    </ClientOnly>
+  )
+})
