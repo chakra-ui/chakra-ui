@@ -1,5 +1,5 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "next",
   "initialVersions": {
     "chakra-next-app": "2.0.14",
