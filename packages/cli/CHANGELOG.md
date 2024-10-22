@@ -1,5 +1,89 @@
 # @chakra-ui/cli
 
+## 3.0.0
+
+### Minor Changes
+
+- [`758f226`](https://github.com/chakra-ui/chakra-ui/commit/758f226e941e4ac9b644a5ab5a4900c2db728c28)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `composition` command in CLI to import ready-made compositions for faster
+  development experience.
+
+  ```sh
+  Usage: chakra-ui composition [options] [command]
+
+  Add compositions to your project for better DX
+
+  Options:
+    -h, --help                     display help for command
+
+  Commands:
+    add [options] [components...]  Add a new composition for better DX
+    list                           List all compositions
+    help [command]                 display help for command
+  ```
+
+- [`bfb68dc`](https://github.com/chakra-ui/chakra-ui/commit/bfb68dc319786ee7495a78527408e8d193c53e06)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `eject` command
+  to import default theme into project
+
+- [`085cacd`](https://github.com/chakra-ui/chakra-ui/commit/085cacdef4dbc853609d2930ca01382599df705c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  installing required NPM dependencies for compositions
+
+- [`77fe01d`](https://github.com/chakra-ui/chakra-ui/commit/77fe01d3de6e07936998acce37d6f2e7d34c25ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Change CLI name and
+  command structure.
+
+  - Change the CLI name from `chakra-cli` to `chakra`.
+  - Change `tokens` command to `typegen` to better reflect its purpose since its
+    generates types for more than just the tokens.
+  - Scaffold new `composition` command to help users scaffold new compositions
+    easily. Compositions are snippets of Chakra UI component composition them
+    easier to reuse across projects.
+
+- [`8fc7b49`](https://github.com/chakra-ui/chakra-ui/commit/8fc7b4979739acb347ca9c662d8d242833438b51)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add support for
+  conditional value in variant props.
+
+  - Add `@default` JSDoc comment for `defaultVariants` in generated types.
+
+- [`4ff153f`](https://github.com/chakra-ui/chakra-ui/commit/4ff153fd9b449d3e43561b7daceaadfe3c925b08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Speed up
+  intellisence for style props, and add support for `strictTokens` in the CLI.
+
+- [`d50d72c`](https://github.com/chakra-ui/chakra-ui/commit/d50d72c2bcdf147caa273f3a1aa1e0cd67da38d3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Rename
+  `compositions` command to `snippet` for better intuitiveness
+
+- [#8569](https://github.com/chakra-ui/chakra-ui/pull/8569)
+  [`eb26857`](https://github.com/chakra-ui/chakra-ui/commit/eb2685735e25d6790d14d28653c792b9572c080e)
+  Thanks [@isBatak](https://github.com/isBatak)! - Fix the `boxSize` type to
+  allow number values.
+
+- [`14b6a45`](https://github.com/chakra-ui/chakra-ui/commit/14b6a45f5df2405e7e40494d4691efceed87f962)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Show the number of
+  skipped snippets that already exists in outdir
+
+### Patch Changes
+
+- [`0eda15c`](https://github.com/chakra-ui/chakra-ui/commit/0eda15c6dc09fc777a0091be15416063dc4ad862)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Set process
+  setMaxListeners to improve watch mode
+
+- [`c074b58`](https://github.com/chakra-ui/chakra-ui/commit/c074b58770908d9ab27367578020134975ea5378)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  vite project throws due to config search
+
+- [`0f0ed76`](https://github.com/chakra-ui/chakra-ui/commit/0f0ed76e3f06b9f3efeb7421d2283aee8aead9f7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression
+  where files were always converted to `.jsx`
+
+- [#8740](https://github.com/chakra-ui/chakra-ui/pull/8740)
+  [`d5a225f`](https://github.com/chakra-ui/chakra-ui/commit/d5a225f1bc3eca8be67a69b78429481cf802372b)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - Use correct extension
+  for ESM exports
+
 ## 3.0.0-next.32
 
 ## 3.0.0-next.31
