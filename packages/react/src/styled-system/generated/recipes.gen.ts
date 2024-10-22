@@ -502,7 +502,8 @@ export type DialogSlot =
   | "backdrop"
 
 export interface DialogVariant {
-  centered?: boolean
+  /** @default "top" */
+  placement?: "center" | "top" | "bottom"
   /** @default "outside" */
   scrollBehavior?: "inside" | "outside"
   /** @default "md" */
@@ -632,6 +633,8 @@ export type FileUploadSlot =
   | "itemSizeText"
   | "label"
   | "trigger"
+  | "itemContent"
+  | "dropzoneContent"
 
 export interface FileUploadVariant {}
 

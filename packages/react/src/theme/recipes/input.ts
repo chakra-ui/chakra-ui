@@ -76,6 +76,7 @@ export const inputRecipe = defineRecipe({
         focusVisibleRing: "inside",
       },
       flushed: {
+        bg: "transparent",
         borderBottomWidth: "1px",
         borderBottomColor: "border",
         borderRadius: "0",

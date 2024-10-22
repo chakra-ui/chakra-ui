@@ -33,13 +33,13 @@ export interface UtilityValues {
     | "bg"
     | "fg"
     | "border"
-  background: Tokens["colors"]
-  backgroundColor: Tokens["colors"]
+  background: Tokens["colors"] | "currentBg"
+  backgroundColor: Tokens["colors"] | "currentBg"
   backgroundClip: "text"
   backgroundGradient: Tokens["gradients"] | "to-t" | "to-tr" | "to-r" | "to-br" | "to-b" | "to-bl" | "to-l" | "to-tl"
-  gradientFrom: Tokens["colors"]
-  gradientTo: Tokens["colors"]
-  gradientVia: Tokens["colors"]
+  gradientFrom: Tokens["colors"] | "currentBg"
+  gradientTo: Tokens["colors"] | "currentBg"
+  gradientVia: Tokens["colors"] | "currentBg"
   backgroundImage: Tokens["gradients"]
   border: Tokens["borders"]
   borderTop: Tokens["borders"]
@@ -52,15 +52,15 @@ export interface UtilityValues {
   borderInlineStart: Tokens["borders"]
   borderInline: Tokens["borders"]
   borderBlock: Tokens["borders"]
-  borderColor: Tokens["colors"]
-  borderTopColor: Tokens["colors"]
-  borderBlockStartColor: Tokens["colors"]
-  borderBottomColor: Tokens["colors"]
-  borderBlockEndColor: Tokens["colors"]
-  borderLeftColor: Tokens["colors"]
-  borderInlineStartColor: Tokens["colors"]
-  borderRightColor: Tokens["colors"]
-  borderInlineEndColor: Tokens["colors"]
+  borderColor: Tokens["colors"] | "currentBg"
+  borderTopColor: Tokens["colors"] | "currentBg"
+  borderBlockStartColor: Tokens["colors"] | "currentBg"
+  borderBottomColor: Tokens["colors"] | "currentBg"
+  borderBlockEndColor: Tokens["colors"] | "currentBg"
+  borderLeftColor: Tokens["colors"] | "currentBg"
+  borderInlineStartColor: Tokens["colors"] | "currentBg"
+  borderRightColor: Tokens["colors"] | "currentBg"
+  borderInlineEndColor: Tokens["colors"] | "currentBg"
   borderStyle: Tokens["borderStyles"]
   borderTopStyle: Tokens["borderStyles"]
   borderBlockStartStyle: Tokens["borderStyles"]
@@ -96,15 +96,15 @@ export interface UtilityValues {
   borderInlineEndWidth: Tokens["borderWidths"]
   borderLeftWidth: Tokens["borderWidths"]
   borderBlockWidth: Tokens["borderWidths"]
-  color: Tokens["colors"]
-  fill: Tokens["colors"]
-  stroke: Tokens["colors"]
-  accentColor: Tokens["colors"]
+  color: Tokens["colors"] | "currentBg"
+  fill: Tokens["colors"] | "currentBg"
+  stroke: Tokens["colors"] | "currentBg"
+  accentColor: Tokens["colors"] | "currentBg"
   divideX: string
   divideY: string
-  divideColor: Tokens["colors"]
+  divideColor: Tokens["colors"] | "currentBg"
   boxShadow: Tokens["shadows"]
-  boxShadowColor: Tokens["colors"]
+  boxShadowColor: Tokens["colors"] | "currentBg"
   opacity: Tokens["opacity"]
   blur: Tokens["blurs"]
   backdropBlur: Tokens["blurs"]
@@ -115,10 +115,10 @@ export interface UtilityValues {
   gridGap: Tokens["spacing"]
   gridColumnGap: Tokens["spacing"]
   gridRowGap: Tokens["spacing"]
-  outlineColor: Tokens["colors"]
+  outlineColor: Tokens["colors"] | "currentBg"
   focusRing: "outside" | "inside" | "mixed" | "none"
   focusVisibleRing: "outside" | "inside" | "mixed" | "none"
-  focusRingColor: Tokens["colors"]
+  focusRingColor: Tokens["colors"] | "currentBg"
   focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
   focusRingStyle: Tokens["borderStyles"] | CssProperties["outlineStyle"]
   aspectRatio: Tokens["aspectRatios"]
@@ -138,7 +138,7 @@ export interface UtilityValues {
   hideFrom: Tokens["breakpoints"]
   hideBelow: Tokens["breakpoints"]
   scrollbar: "visible" | "hidden"
-  scrollbarColor: Tokens["colors"]
+  scrollbarColor: Tokens["colors"] | "currentBg"
   scrollbarGutter: Tokens["spacing"]
   scrollbarWidth: Tokens["sizes"]
   scrollMargin: Tokens["spacing"]
@@ -174,8 +174,8 @@ export interface UtilityValues {
   right: Tokens["spacing"]
   insetInlineStart: Tokens["spacing"]
   insetInlineEnd: Tokens["spacing"]
-  ringColor: Tokens["colors"]
-  ringOffsetColor: Tokens["colors"]
+  ringColor: Tokens["colors"] | "currentBg"
+  ringOffsetColor: Tokens["colors"] | "currentBg"
   margin: Tokens["spacing"]
   marginTop: Tokens["spacing"]
   marginBlockStart: Tokens["spacing"]
@@ -198,7 +198,7 @@ export interface UtilityValues {
   paddingInlineEnd: Tokens["spacing"]
   paddingInline: Tokens["spacing"]
   paddingBlock: Tokens["spacing"]
-  textDecorationColor: Tokens["colors"]
+  textDecorationColor: Tokens["colors"] | "currentBg"
   textShadow: Tokens["shadows"]
   spaceXReverse: boolean
   spaceX: Tokens["spacing"] | CssProperties["marginInlineStart"]
@@ -223,7 +223,7 @@ export interface UtilityValues {
   truncate: boolean
   srOnly: boolean
   debug: boolean
-  caretColor: Tokens["colors"]
+  caretColor: Tokens["colors"] | "currentBg"
   cursor: Tokens["cursor"]
   divideStyle: CssProperties["borderStyle"]
   textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "none"

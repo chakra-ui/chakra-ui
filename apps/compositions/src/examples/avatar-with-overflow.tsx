@@ -33,7 +33,7 @@ export const AvatarWithOverflow = () => {
             {overflow.map((item) => (
               <MenuItem value={item} key={item}>
                 <Avatar
-                  size="sm"
+                  size="xs"
                   name={item}
                   colorPalette={pickPalette(item)}
                 />

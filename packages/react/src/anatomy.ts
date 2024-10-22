@@ -116,7 +116,10 @@ export const emptyStateAnatomy = createAnatomy("empty-state", [
 
 export const fieldAnatomy = arkFieldAnatomy.extendWith("requiredIndicator")
 
-export const fileUploadAnatomy = arkFileUploadAnatomy
+export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
+  "itemContent",
+  "dropzoneContent",
+)
 
 export const hoverCardAnatomy = arkHoverCardAnatomy
 

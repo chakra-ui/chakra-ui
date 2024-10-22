@@ -7,7 +7,7 @@ import {
 export const NativeSelectWithVariants = () => {
   return (
     <Stack gap="4" width="240px">
-      <For each={["outline", "subtle"]}>
+      <For each={["outline", "subtle", "plain"]}>
         {(variant) => (
           <NativeSelectRoot variant={variant} key={variant}>
             <NativeSelectField placeholder={`variant (${variant})`}>

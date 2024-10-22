@@ -5,7 +5,7 @@ export const HighlightMultiple = () => {
     <Heading lineHeight="tall">
       <Highlight
         query={["spotlight", "emphasize", "Accentuate"]}
-        styles={{ px: "0.5", bg: "teal.100" }}
+        styles={{ px: "0.5", bg: "teal.muted" }}
       >
         With the Highlight component, you can spotlight, emphasize and
         accentuate words.

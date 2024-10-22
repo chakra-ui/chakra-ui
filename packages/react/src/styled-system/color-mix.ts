@@ -7,7 +7,7 @@ export const colorMix = (value: string, token: TransformArgs["token"]) => {
 
   const [rawColor, rawOpacity] = value.split("/")
 
-  if (!rawColor || !rawOpacity) {
+  if (!rawColor || !rawOpacity || rawColor === "currentBg") {
     return { invalid: true, value: rawColor }
   }
 

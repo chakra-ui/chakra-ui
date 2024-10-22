@@ -102,6 +102,16 @@ export const FileUploadDropzone = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface FileUploadDropzoneContentProps
+  extends HTMLChakraProps<"div"> {}
+
+export const FileUploadDropzoneContent = withContext<
+  HTMLDivElement,
+  FileUploadDropzoneContentProps
+>("div", "dropzoneContent")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface FileUploadItemProps
   extends HTMLChakraProps<"li", ArkFileUpload.ItemBaseProps> {}
 
@@ -110,6 +120,15 @@ export const FileUploadItem = withContext<HTMLLIElement, FileUploadItemProps>(
   "item",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface FileUploadItemContentProps extends HTMLChakraProps<"div"> {}
+
+export const FileUploadItemContent = withContext<
+  HTMLDivElement,
+  FileUploadItemContentProps
+>("div", "itemContent")
 
 ////////////////////////////////////////////////////////////////////////////////////
 

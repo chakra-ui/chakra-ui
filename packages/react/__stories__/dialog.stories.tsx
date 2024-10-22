@@ -13,7 +13,7 @@ export default {
 } satisfies Meta
 
 export { DialogBasic as Basic } from "compositions/examples/dialog-basic"
-export { DialogCentered as Centered } from "compositions/examples/dialog-centered"
+export { DialogWithPlacement as Placement } from "compositions/examples/dialog-with-placement"
 export { DialogControlled as Controlled } from "compositions/examples/dialog-controlled"
 export { DialogNested as Nested } from "compositions/examples/dialog-nested"
 export { DialogWithCover as Cover } from "compositions/examples/dialog-with-cover"
@@ -24,3 +24,4 @@ export { DialogWithInsideScroll as InsideScroll } from "compositions/examples/di
 export { DialogWithOutsideScroll as OutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 export { DialogWithRole as Role } from "compositions/examples/dialog-with-role"
 export { DialogWithSizes as Sizes } from "compositions/examples/dialog-with-sizes"
+export { DialogFullscreen as Fullscreen } from "compositions/examples/dialog-with-fullscreen"

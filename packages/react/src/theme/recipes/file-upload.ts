@@ -10,6 +10,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "4",
       width: "100%",
+      alignItems: "flex-start",
     },
     label: {
       fontWeight: "medium",
@@ -23,7 +24,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
-      gap: "3",
+      gap: "4",
       justifyContent: "center",
       minHeight: "2xs",
       px: "3",
@@ -39,6 +40,14 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
         borderColor: "colorPalette.solid",
       },
     },
+    dropzoneContent: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
+      gap: "1",
+      textStyle: "sm",
+    },
     item: {
       textStyle: "sm",
       animationName: "fade-in",
@@ -46,12 +55,14 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       background: "bg",
       borderRadius: "l2",
       borderWidth: "1px",
+      width: "100%",
       display: "flex",
       alignItems: "center",
       gap: "3",
       p: "4",
     },
     itemGroup: {
+      width: "100%",
       display: "flex",
       flexDirection: "column",
       gap: "3",
@@ -59,6 +70,13 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     itemName: {
       color: "fg",
       fontWeight: "medium",
+      lineClamp: "1",
+    },
+    itemContent: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "0.5",
+      flex: "1",
     },
     itemSizeText: {
       color: "fg.muted",

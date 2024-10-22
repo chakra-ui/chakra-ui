@@ -7,14 +7,12 @@ import {
   Icon,
   IconButton,
   Span,
-  Stack,
   Text,
-  VStack,
   useFileUploadContext,
   useRecipe,
 } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { RiDeleteBinLine, RiFileLine, RiUploadLine } from "react-icons/ri"
+import { LuFile, LuUpload, LuX } from "react-icons/lu"
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
@@ -24,15 +22,13 @@ export const FileUploadRoot = forwardRef<HTMLInputElement, FileUploadRootProps>(
   function FileUploadRoot(props, ref) {
     const { children, inputProps, ...rest } = props
     return (
-      <ChakraFileUpload.Root alignItems="flex-start" {...rest}>
+      <ChakraFileUpload.Root {...rest}>
         <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
         {children}
       </ChakraFileUpload.Root>
     )
   },
 )
-
-export const FileUploadTrigger = ChakraFileUpload.Trigger
 
 export interface FileUploadDropzoneProps
   extends ChakraFileUpload.DropzoneProps {
@@ -48,12 +44,12 @@ export const FileUploadDropzone = forwardRef<
   return (
     <ChakraFileUpload.Dropzone ref={ref} {...rest}>
       <Icon fontSize="xl" color="fg.muted">
-        <RiUploadLine />
+        <LuUpload />
       </Icon>
-      <VStack gap="1" mt="1" textAlign="center" textStyle="sm">
+      <ChakraFileUpload.DropzoneContent>
         <div>{label}</div>
         {description && <Text color="fg.muted">{description}</Text>}
-      </VStack>
+      </ChakraFileUpload.DropzoneContent>
       {children}
     </ChakraFileUpload.Dropzone>
   )
@@ -61,7 +57,7 @@ export const FileUploadDropzone = forwardRef<
 
 interface VisibilityProps {
   showSize?: boolean
-  showDelete?: boolean
+  clearable?: boolean
 }
 
 interface FileUploadItemProps extends VisibilityProps {
@@ -69,28 +65,28 @@ interface FileUploadItemProps extends VisibilityProps {
 }
 
 const FileUploadItem = (props: FileUploadItemProps) => {
-  const { file, showSize, showDelete } = props
+  const { file, showSize, clearable } = props
   return (
     <ChakraFileUpload.Item file={file}>
       <ChakraFileUpload.ItemPreview asChild>
         <Icon fontSize="lg" color="fg.muted">
-          <RiFileLine />
+          <LuFile />
         </Icon>
       </ChakraFileUpload.ItemPreview>
 
       {showSize ? (
-        <Stack gap="0.5" flex="1" pe="4">
-          <ChakraFileUpload.ItemName lineClamp="1" />
+        <ChakraFileUpload.ItemContent>
+          <ChakraFileUpload.ItemName />
           <ChakraFileUpload.ItemSizeText />
-        </Stack>
+        </ChakraFileUpload.ItemContent>
       ) : (
-        <ChakraFileUpload.ItemName lineClamp="1" flex="1" pe="4" />
+        <ChakraFileUpload.ItemName flex="1" />
       )}
 
-      {showDelete && (
+      {clearable && (
         <ChakraFileUpload.ItemDeleteTrigger asChild>
-          <IconButton variant="ghost" color="fg.muted">
-            <RiDeleteBinLine />
+          <IconButton variant="ghost" color="fg.muted" size="xs">
+            <LuX />
           </IconButton>
         </ChakraFileUpload.ItemDeleteTrigger>
       )}
@@ -106,7 +102,7 @@ interface FileUploadListProps
 
 export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
   function FileUploadList(props, ref) {
-    const { showSize, showDelete, files, ...rest } = props
+    const { showSize, clearable, files, ...rest } = props
 
     const fileUpload = useFileUploadContext()
     const acceptedFiles = files ?? fileUpload.acceptedFiles
@@ -120,7 +116,7 @@ export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
             key={file.name}
             file={file}
             showSize={showSize}
-            showDelete={showDelete}
+            clearable={clearable}
           />
         ))}
       </ChakraFileUpload.ItemGroup>
@@ -167,3 +163,4 @@ export const FileInput = forwardRef<HTMLButtonElement, FileInputProps>(
 
 export const FileUploadLabel = ChakraFileUpload.Label
 export const FileUploadClearTrigger = ChakraFileUpload.ClearTrigger
+export const FileUploadTrigger = ChakraFileUpload.Trigger

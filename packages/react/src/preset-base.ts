@@ -1,5 +1,6 @@
 import { createColorMixTransform } from "./styled-system/color-mix"
 import { defineConditions, defineConfig } from "./styled-system/config"
+import { cssVar } from "./styled-system/css-var"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
 
@@ -206,19 +207,41 @@ export const defaultConditions = defineConditions({
   starting: "@starting-style",
 })
 
+const currentBgVar = cssVar("bg-currentcolor")
+
+const isCurrentBgVar = (value: string) =>
+  value === currentBgVar.ref || value === "currentBg"
+
+const colorValues = (theme: any) => ({
+  ...theme("colors"),
+  currentBg: currentBgVar,
+})
+
 export const defaultBaseConfig = defineConfig({
   conditions: defaultConditions,
   utilities: {
     // background
     background: {
-      values: "colors",
+      values: colorValues,
       shorthand: ["bg"],
-      transform: createColorMixTransform("background"),
+      transform(value, args) {
+        if (isCurrentBgVar(args.raw)) return { background: currentBgVar.ref }
+        const styleObj = createColorMixTransform("background")(value, args)
+        return { ...styleObj, [currentBgVar.var]: styleObj?.background }
+      },
     },
     backgroundColor: {
-      values: "colors",
+      values: colorValues,
       shorthand: ["bgColor"],
-      transform: createColorMixTransform("backgroundColor"),
+      transform(value, args) {
+        if (isCurrentBgVar(args.raw))
+          return { backgroundColor: currentBgVar.ref }
+        const styleObj = createColorMixTransform("backgroundColor")(value, args)
+        return {
+          ...styleObj,
+          [currentBgVar.var]: styleObj?.backgroundColor,
+        }
+      },
     },
     backgroundSize: { shorthand: ["bgSize"] },
     backgroundPosition: { shorthand: ["bgPos"] },
@@ -257,19 +280,19 @@ export const defaultBaseConfig = defineConfig({
       },
     },
     gradientFrom: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--gradient-from"),
     },
     gradientTo: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--gradient-to"),
     },
     gradientVia: {
-      values: "colors",
+      values: colorValues,
       transform(value, args) {
-        const color = createColorMixTransform("--gradient-via")(value, args)
+        const styles = createColorMixTransform("--gradient-via")(value, args)
         return {
-          "--gradient-via": color,
+          ...styles,
           "--gradient-via-stops":
             "var(--gradient-from), var(--gradient-via), var(--gradient-to)",
         }
@@ -290,40 +313,40 @@ export const defaultBaseConfig = defineConfig({
     borderBlock: { values: "borders", shorthand: ["borderY"] },
     // border colors
     borderColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderColor"),
     },
     borderTopColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderTopColor"),
     },
     borderBlockStartColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderBlockStartColor"),
     },
     borderBottomColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderBottomColor"),
     },
     borderBlockEndColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderBlockEndColor"),
     },
     borderLeftColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderLeftColor"),
     },
     borderInlineStartColor: {
-      values: "colors",
+      values: colorValues,
       shorthand: ["borderStartColor"],
       transform: createColorMixTransform("borderInlineStartColor"),
     },
     borderRightColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("borderRightColor"),
     },
     borderInlineEndColor: {
-      values: "colors",
+      values: colorValues,
       shorthand: ["borderEndColor"],
       transform: createColorMixTransform("borderInlineEndColor"),
     },
@@ -456,19 +479,19 @@ export const defaultBaseConfig = defineConfig({
     },
     // colors
     color: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("color"),
     },
     fill: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("fill"),
     },
     stroke: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("stroke"),
     },
     accentColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("accentColor"),
     },
     // divide
@@ -495,7 +518,7 @@ export const defaultBaseConfig = defineConfig({
       },
     },
     divideColor: {
-      values: "colors",
+      values: colorValues,
       transform(value, args) {
         return {
           "& > :not(style, [hidden]) ~ :not(style, [hidden])": divideColor(
@@ -518,7 +541,7 @@ export const defaultBaseConfig = defineConfig({
     // effects
     boxShadow: { values: "shadows", shorthand: ["shadow"] },
     boxShadowColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--shadow-color"),
       shorthand: ["shadowColor"],
     },
@@ -617,7 +640,7 @@ export const defaultBaseConfig = defineConfig({
     gridRowGap: { values: "spacing" },
     // interactivity
     outlineColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("outlineColor"),
     },
     focusRing: createFocusRing("&:is(:focus, [data-focus])"),
@@ -625,7 +648,7 @@ export const defaultBaseConfig = defineConfig({
       "&:is(:focus-visible, [data-focus-visible])",
     ),
     focusRingColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--focus-ring-color"),
     },
     focusRingWidth: {
@@ -711,7 +734,7 @@ export const defaultBaseConfig = defineConfig({
       },
     },
     scrollbarColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("scrollbarColor"),
     },
     scrollbarGutter: { values: "spacing" },
@@ -792,14 +815,14 @@ export const defaultBaseConfig = defineConfig({
       },
     },
     ringColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--ring-color"),
     },
     ringOffset: {
       transform: (value) => ({ "--ring-offset-width": value }),
     },
     ringOffsetColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("--ring-offset-color"),
     },
     ringInset: {
@@ -835,7 +858,7 @@ export const defaultBaseConfig = defineConfig({
     // text decoration
     textDecoration: { shorthand: ["textDecor"] },
     textDecorationColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("textDecorationColor"),
     },
     textShadow: { values: "shadows" },
@@ -1061,7 +1084,7 @@ export const defaultBaseConfig = defineConfig({
       },
     },
     caretColor: {
-      values: "colors",
+      values: colorValues,
       transform: createColorMixTransform("caretColor"),
     },
     cursor: { values: "cursor" },

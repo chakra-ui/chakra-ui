@@ -14,7 +14,7 @@ export const FileUploadMultiple = () => {
           <HiUpload /> Upload file
         </Button>
       </FileUploadTrigger>
-      <FileUploadList />
+      <FileUploadList showSize clearable />
     </FileUploadRoot>
   )
 }

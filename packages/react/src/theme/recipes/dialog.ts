@@ -42,6 +42,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       outline: 0,
       borderRadius: "l3",
       textStyle: "sm",
+      my: "var(--dialog-margin, var(--dialog-base-margin))",
       "--dialog-z-index": "zIndex.modal",
       zIndex: "calc(var(--dialog-z-index) + var(--layer-index, 0))",
       bg: "bg.panel",
@@ -84,22 +85,31 @@ export const dialogSlotRecipe = defineSlotRecipe({
   },
 
   variants: {
-    centered: {
-      true: {
+    placement: {
+      center: {
         positioner: {
           alignItems: "center",
         },
         content: {
-          my: "auto",
+          "--dialog-base-margin": "auto",
           mx: "auto",
         },
       },
-      false: {
+      top: {
         positioner: {
           alignItems: "flex-start",
         },
         content: {
-          my: "16",
+          "--dialog-base-margin": "spacing.16",
+          mx: "auto",
+        },
+      },
+      bottom: {
+        positioner: {
+          alignItems: "flex-end",
+        },
+        content: {
+          "--dialog-base-margin": "spacing.16",
           mx: "auto",
         },
       },
@@ -157,14 +167,14 @@ export const dialogSlotRecipe = defineSlotRecipe({
         content: {
           width: "100%",
           height: "100%",
-          my: "0",
+          "--dialog-margin": "0",
         },
       },
       full: {
         content: {
           maxW: "100vw",
           minH: "100vh",
-          my: "0",
+          "--dialog-margin": "0",
           borderRadius: "0",
         },
       },
@@ -208,7 +218,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     scrollBehavior: "outside",
-    centered: false,
+    placement: "top",
     motionPreset: "scale",
   },
 })

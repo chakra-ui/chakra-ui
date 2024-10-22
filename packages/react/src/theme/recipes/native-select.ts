@@ -62,7 +62,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       subtle: {
         field: selectSlotRecipe.variants?.variant.subtle.trigger,
       },
-      plain: {},
+      plain: {
+        field: {
+          bg: "transparent",
+          color: "fg",
+          focusRingWidth: "2px",
+        },
+      },
     },
 
     size: {

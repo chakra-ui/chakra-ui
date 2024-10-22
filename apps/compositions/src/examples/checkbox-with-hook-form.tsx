@@ -61,7 +61,7 @@ export const CheckboxWithHookForm = () => {
           <Fieldset.ErrorText>{errors.framework.message}</Fieldset.ErrorText>
         )}
 
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" alignSelf="flex-start">
           Submit
         </Button>
 

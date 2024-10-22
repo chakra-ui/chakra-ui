@@ -48,7 +48,7 @@ export const dataListSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          gap: "2",
+          gap: "3",
         },
         item: {
           textStyle: "xs",

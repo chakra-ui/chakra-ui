@@ -5,7 +5,6 @@ import {
   type HTMLChakraProps,
   type RecipeProps,
   chakra,
-  defineStyle,
   useRecipe,
 } from "../../styled-system"
 
@@ -14,24 +13,6 @@ export interface SkipNavLinkProps
     RecipeProps<"skipNavLink"> {}
 
 export const fallbackId = "chakra-skip-nav"
-
-const baseStyle = defineStyle({
-  userSelect: "none",
-  border: "0",
-  height: "1px",
-  width: "1px",
-  margin: "-1px",
-  padding: "0",
-  outline: "0",
-  overflow: "hidden",
-  position: "absolute",
-  clip: "rect(0 0 0 0)",
-  _focus: {
-    clip: "auto",
-    width: "auto",
-    height: "auto",
-  },
-})
 
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
@@ -51,7 +32,7 @@ export const SkipNavLink = forwardRef<HTMLAnchorElement, SkipNavLinkProps>(
         {...localProps}
         ref={ref}
         href={`#${localProps.id}`}
-        css={[baseStyle, styles]}
+        css={[styles, props.css]}
       />
     )
   },

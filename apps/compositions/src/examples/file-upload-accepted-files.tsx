@@ -1,5 +1,9 @@
 import { Button } from "compositions/ui/button"
-import { FileUploadRoot, FileUploadTrigger } from "compositions/ui/file-button"
+import {
+  FileUploadList,
+  FileUploadRoot,
+  FileUploadTrigger,
+} from "compositions/ui/file-button"
 import { HiUpload } from "react-icons/hi"
 
 export const FileUploadAcceptedFiles = () => {
@@ -10,6 +14,7 @@ export const FileUploadAcceptedFiles = () => {
           <HiUpload /> Upload file
         </Button>
       </FileUploadTrigger>
+      <FileUploadList />
     </FileUploadRoot>
   )
 }

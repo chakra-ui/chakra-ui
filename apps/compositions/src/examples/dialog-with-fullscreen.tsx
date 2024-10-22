@@ -11,11 +11,13 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogCentered = () => {
+export const DialogFullscreen = () => {
   return (
-    <DialogRoot centered>
+    <DialogRoot size="full" motionPreset="slide-in-bottom">
       <DialogTrigger asChild>
-        <Button variant="outline">Open Dialog</Button>
+        <Button variant="outline" size="sm">
+          Open Dialog
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

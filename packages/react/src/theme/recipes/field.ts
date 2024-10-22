@@ -31,7 +31,7 @@ export const fieldSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       fontWeight: "medium",
-      gap: "2",
+      gap: "1",
       color: "fg.error",
       textStyle: "xs",
     },
