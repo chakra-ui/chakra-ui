@@ -19,7 +19,7 @@ export const badgeRecipe = defineRecipe({
         color: "colorPalette.contrast",
       },
       subtle: {
-        bg: "colorPalette.muted",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
       },
       outline: {

@@ -72,7 +72,7 @@ export const alertSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         root: {
-          bg: "colorPalette.muted/64",
+          bg: "colorPalette.subtle",
           color: "colorPalette.fg",
         },
       },
