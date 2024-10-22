@@ -97,6 +97,9 @@ export const selectSlotRecipe = defineSlotRecipe({
     itemText: {
       flex: "1",
     },
+    itemGroup: {
+      _first: { mt: "0" },
+    },
     itemGroupLabel: {
       py: "1",
       fontWeight: "medium",
@@ -175,7 +178,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         },
         content: {
           p: "1",
-          gap: "0.5",
           textStyle: "sm",
         },
         trigger: {
@@ -192,6 +194,9 @@ export const selectSlotRecipe = defineSlotRecipe({
           py: "1",
           px: "1.5",
         },
+        itemGroup: {
+          mt: "1",
+        },
         itemGroupLabel: {
           py: "1",
           px: "1.5",
@@ -205,8 +210,10 @@ export const selectSlotRecipe = defineSlotRecipe({
         },
         content: {
           p: "1",
-          gap: "1",
           textStyle: "sm",
+        },
+        itemGroup: {
+          mt: "1.5",
         },
         item: {
           py: "1.5",
@@ -240,8 +247,10 @@ export const selectSlotRecipe = defineSlotRecipe({
         },
         content: {
           p: "1.5",
-          gap: "1.5",
           textStyle: "md",
+        },
+        itemGroup: {
+          mt: "2",
         },
         item: {
           py: "2",
