@@ -6,7 +6,7 @@ import { TokenDoc } from "./token-doc"
 
 export const CursorTokenDoc = () => {
   return (
-    <TokenDoc title="theme.cursor" mt="8">
+    <TokenDoc title="theme.tokens.cursor" mt="8">
       <HStack wrap="wrap" gap="4">
         <Button size="sm">Button</Button>
         <Button size="sm" disabled>
