@@ -13,10 +13,10 @@ const linkTree = [
   {
     title: "Documentation",
     items: [
-      { label: "Components", href: "/docs/components/accordion" },
+      { label: "Components", href: "/docs/components/concepts/overview" },
       { label: "Theming", href: "/docs/theming/overview" },
       { label: "Styling", href: "/docs/styling/overview" },
-      { label: "Get Started", href: "/docs/get-started/overview/installation" },
+      { label: "Get Started", href: "/docs/get-started/installation" },
     ],
   },
   {
