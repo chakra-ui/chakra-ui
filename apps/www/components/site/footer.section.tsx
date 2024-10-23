@@ -15,7 +15,7 @@ const linkTree = [
     items: [
       { label: "Components", href: "/docs/components/accordion" },
       { label: "Theming", href: "/docs/theming/overview" },
-      { label: "Styling", href: "/docs/theming/styling" },
+      { label: "Styling", href: "/docs/styling/overview" },
       { label: "Get Started", href: "/docs/get-started/overview/installation" },
     ],
   },
