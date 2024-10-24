@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 4.0.0
+
+### Major Changes
+
+- [#8974](https://github.com/chakra-ui/chakra-ui/pull/8974)
+  [`bbf04b9`](https://github.com/chakra-ui/chakra-ui/commit/bbf04b9bb86bc381449893baf2834517e0ccba57)
+  Thanks [@leiluspocus](https://github.com/leiluspocus)! - Fix a typography
+  mistake in documentation (page Box)
+
 ## 3.0.0
 
 ### Major Changes
