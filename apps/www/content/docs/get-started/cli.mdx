@@ -89,3 +89,13 @@ can have full control over them.
 # Copy the tokens and recipes to your project
 chakra eject --outdir src/theme
 ```
+
+## FAQ
+
+### Autocomplete for custom tokens not working?
+
+After generating the typings, you need to "Restart TS Server" for the
+autocomplete to show up.
+
+Alternatively, you can install the `@chakra-ui/cli` package locally as a dev
+dependency and run the `chakra typegen` command to generate the typings.
