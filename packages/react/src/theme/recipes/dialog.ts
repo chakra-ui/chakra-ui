@@ -130,6 +130,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       outside: {
         positioner: {
           overflow: "auto",
+          pointerEvents: "auto",
         },
       },
     },
