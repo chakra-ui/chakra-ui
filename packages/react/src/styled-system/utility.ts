@@ -172,7 +172,8 @@ export function createUtility(options: Options) {
   const transform = memo((prop: string, raw: any) => {
     const key = resolveShorthand(prop)
 
-    if (isString(raw)) {
+    // skip emotion generated keyframes
+    if (isString(raw) && !raw.includes("_EMO_")) {
       raw = tokens.expandReferenceInValue(raw)
     }
 
