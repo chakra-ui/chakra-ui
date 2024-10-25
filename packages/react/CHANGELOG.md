@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.0.1
+
+### Patch Changes
+
+- [`c0020c9`](https://github.com/chakra-ui/chakra-ui/commit/c0020c984cba3b583875b7c1a34e8c7fb1a0d86a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  using `keyframe` interpolation in `animation` prop doesn't work
+
+- [`7d4f898`](https://github.com/chakra-ui/chakra-ui/commit/7d4f8987e6b7d49440ecc9c1bd292c065d212267)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `scrollBehavior=outside` doesn't allow scrolling outside the dialog content
+
 ## 3.0.0
 
 ### Major Changes
