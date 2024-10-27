@@ -124,6 +124,17 @@
         "default": "./dist/cjs/styled-system/index.cjs"
       }
     },
+    "./utils": {
+      "source": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/esm/utils/index.js"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
     "./collection": {
       "source": "./src/collection.ts",
       "import": {
