@@ -21,13 +21,27 @@ import {
   DrawerTrigger,
 } from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu, AiOutlineRight } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const route = useRoute()
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      containerRef.current
+        ?.querySelector('[aria-current="page"]')
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })
+    }, 2000)
+  }, [])
+
   return (
     <Box
+      ref={containerRef}
       className="no-bg-scrollbar"
       as="aside"
       position="sticky"
@@ -126,6 +140,7 @@ export const MobileMenuBreadcrumbs = () => {
 }
 
 export const MobileSidebarNav = () => {
+  const drawerBodyRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const route = useRoute()
   const pathname = usePathname()
@@ -163,7 +178,19 @@ export const MobileSidebarNav = () => {
               <AiOutlineClose />
             </IconButton>
           </DrawerCloseTrigger>
-          <DrawerBody display="flex" flexDir="column" gap="6" py="5" flex="1">
+          <DrawerBody
+            ref={(node) => {
+              node?.querySelector('[aria-current="page"]')?.scrollIntoView({
+                behavior: "instant",
+                block: "center",
+              })
+            }}
+            display="flex"
+            flexDir="column"
+            gap="6"
+            py="5"
+            flex="1"
+          >
             {route
               .getSidebarNavItems()
               ?.map((group) => (
