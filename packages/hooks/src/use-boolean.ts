@@ -7,7 +7,7 @@ type InitialState = boolean | (() => boolean)
  *
  * @param initialState the initial boolean state value
  *
- * @see Docs https://chakra-ui.com/docs/hooks/use-boolean
+ * @see Docs https://v2.chakra-ui.com/docs/hooks/use-boolean
  */
 export function useBoolean(initialState: InitialState = false) {
   const [value, setValue] = useState(initialState)

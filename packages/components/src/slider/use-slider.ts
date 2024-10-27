@@ -134,7 +134,7 @@ export interface SliderActions {
  * It is an alternative to `<input type="range" />`, and returns
  * prop getters for the component parts
  *
- * @see Docs     https://chakra-ui.com/docs/form/slider
+ * @see Docs     https://v2.chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export function useSlider(props: UseSliderProps) {

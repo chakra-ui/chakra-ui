@@ -38,6 +38,6 @@ function factory() {
  * The Chakra factory serves as an object of chakra enabled JSX elements,
  * and also a function that can be used to enable custom component receive chakra's style props.
  *
- * @see Docs https://chakra-ui.com/docs/styled-system/chakra-factory
+ * @see Docs https://v2.chakra-ui.com/docs/styled-system/chakra-factory
  */
 export const chakra = factory()

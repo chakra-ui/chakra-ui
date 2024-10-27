@@ -13,7 +13,7 @@ import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
  * @example
  * const width = useBreakpointValue({ base: '150px', md: '250px' })
  *
- * @see Docs https://chakra-ui.com/docs/hooks/use-breakpoint-value
+ * @see Docs https://v2.chakra-ui.com/docs/hooks/use-breakpoint-value
  */
 export function useBreakpointValue<T = any>(
   values: Partial<Record<string, T>> | Array<T | null>,

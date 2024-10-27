@@ -430,8 +430,8 @@
 * [#5527](https://github.com/chakra-ui/chakra-ui/pull/5527)
   [`b6ccf0dd2`](https://github.com/chakra-ui/chakra-ui/commit/b6ccf0dd2e3b72a5b50c9e1c00f1e6e3f3b68690)
   Thanks [@with-heart](https://github.com/with-heart)! - When the
-  [Chakra CLI](https://chakra-ui.com/docs/theming/advanced#theme-typings) fails
-  to generate theme typings, it now exits with a status code of `1`. This
+  [Chakra CLI](https://v2.chakra-ui.com/docs/theming/advanced#theme-typings)
+  fails to generate theme typings, it now exits with a status code of `1`. This
   resolves an issue where failures exited with a success status code.
 * Updated dependencies
   [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
@@ -703,4 +703,4 @@
 
   - Add minor bump for adding subcommand `tokens` to generate Theme Typings
 
-    See https://chakra-ui.com/docs/theming/advanced for more info
+    See https://v2.chakra-ui.com/docs/theming/advanced for more info

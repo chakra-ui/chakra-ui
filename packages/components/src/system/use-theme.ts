@@ -6,7 +6,7 @@ import { useContext } from "react"
 /**
  * `useTheme` is a custom hook used to get the theme object from context.
  *
- * @see Docs https://chakra-ui.com/docs/hooks/use-theme
+ * @see Docs https://v2.chakra-ui.com/docs/hooks/use-theme
  */
 export function useTheme<T extends object = Dict>() {
   const theme = useContext(
