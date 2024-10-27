@@ -11,7 +11,7 @@ export interface HeadingProps
  *
  * By default, renders as `h2` with themantic size `xl`
  *
- * @see Docs https://chakra-ui.com/docs/components/heading
+ * @see Docs https://v2.chakra-ui.com/docs/components/heading
  */
 export const Heading = forwardRef<HeadingProps, "h2">(
   function Heading(props, ref) {

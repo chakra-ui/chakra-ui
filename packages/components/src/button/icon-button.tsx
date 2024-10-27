@@ -32,7 +32,7 @@ export interface IconButtonProps extends BaseButtonProps {
 /**
  * Icon button renders an icon within a button.
  *
- * @see Docs https://chakra-ui.com/docs/components/icon-button
+ * @see Docs https://v2.chakra-ui.com/docs/components/icon-button
  */
 export const IconButton = forwardRef<IconButtonProps, "button">(
   (props, ref) => {

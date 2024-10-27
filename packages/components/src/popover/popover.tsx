@@ -20,7 +20,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
  * Popover is used to bring attention to specific user interface elements,
  * typically to suggest an action or to guide users through a new experience.
  *
- * @see Docs https://chakra-ui.com/docs/components/popover
+ * @see Docs https://v2.chakra-ui.com/docs/components/popover
  */
 export function Popover(props: PopoverProps) {
   const styles = useMultiStyleConfig("Popover", props)

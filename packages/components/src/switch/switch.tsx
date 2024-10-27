@@ -29,7 +29,7 @@ export interface SwitchProps
 /**
  * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
  *
- * @see Docs https://chakra-ui.com/docs/components/switch
+ * @see Docs https://v2.chakra-ui.com/docs/components/switch
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/switch/
  */
 export const Switch = forwardRef<SwitchProps, "input">(

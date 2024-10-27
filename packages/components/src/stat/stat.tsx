@@ -27,7 +27,7 @@ export interface StatProps
 /**
  * The `Stat` component is used to display some statistics.
  *
- * @see Docs https://chakra-ui.com/docs/components/stat
+ * @see Docs https://v2.chakra-ui.com/docs/components/stat
  */
 export const Stat = forwardRef<StatProps, "div">(function Stat(props, ref) {
   const styles = useMultiStyleConfig("Stat", props)

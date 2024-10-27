@@ -20,7 +20,7 @@ const defaultNoOfLines = 3
 /**
  * `SkeletonText` is used to display the loading state in the form of text.
  *
- * @see Docs https://chakra-ui.com/docs/components/skeleton
+ * @see Docs https://v2.chakra-ui.com/docs/components/skeleton
  */
 
 export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {

@@ -13,7 +13,7 @@ export interface HighlightProps {
 /**
  * `Highlight` allows you to highlight substrings of a text.
  *
- * @see Docs https://chakra-ui.com/docs/components/highlight
+ * @see Docs https://v2.chakra-ui.com/docs/components/highlight
  */
 export function Highlight(props: HighlightProps): JSX.Element {
   const { children, query, styles } = props

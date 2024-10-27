@@ -33,7 +33,7 @@ export interface CloseButtonProps
  * It is used to handle the close functionality in feedback and overlay components
  * like Alerts, Toasts, Drawers and Modals.
  *
- * @see Docs https://chakra-ui.com/docs/components/close-button
+ * @see Docs https://v2.chakra-ui.com/docs/components/close-button
  */
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
   function CloseButton(props, ref) {

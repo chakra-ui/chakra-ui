@@ -24,7 +24,7 @@ export interface ShowProps {
 /**
  * `Show` wraps a component to render if the provided media query matches.
  *
- * @see Docs https://chakra-ui.com/docs/components/show-hide
+ * @see Docs https://v2.chakra-ui.com/docs/components/show-hide
  */
 export function Show(props: ShowProps) {
   const { children, ssr } = props
