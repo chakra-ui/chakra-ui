@@ -29,14 +29,12 @@ export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
 
   useLayoutEffect(() => {
-    setTimeout(() => {
-      containerRef.current
-        ?.querySelector('[aria-current="page"]')
-        ?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        })
-    }, 2000)
+    containerRef.current
+      ?.querySelector('[aria-current="page"]')
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      })
   }, [])
 
   return (
