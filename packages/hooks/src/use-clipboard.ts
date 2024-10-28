@@ -21,7 +21,7 @@ export interface UseClipboardOptions {
  * @param {string} optionsOrTimeout.format - set the desired MIME type
  * @param {number} optionsOrTimeout.timeout - delay (in ms) to switch back to initial state once copied.
  *
- * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
+ * @see Docs https://v2.chakra-ui.com/docs/hooks/use-clipboard
  */
 export function useClipboard(
   value: string,

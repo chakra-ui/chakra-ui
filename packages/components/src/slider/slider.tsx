@@ -41,7 +41,7 @@ export interface SliderProps
  * The Slider is used to allow users to make selections from a range of values.
  * It provides context and functionality for all slider components
  *
- * @see Docs     https://chakra-ui.com/docs/form/slider
+ * @see Docs     https://v2.chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {

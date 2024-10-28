@@ -369,7 +369,7 @@
   ```
 
   🚨 NOTE: The
-  [Background Gradient API](https://chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
+  [Background Gradient API](https://v2.chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
   can not be used in a token as the conversion is done when the api is used
   directly on a prop and not when compiling the theme config
 

@@ -95,4 +95,4 @@ This will render input fields to choose the theming prop values:
 ![Storybook screenshot with controls tab](theming-arg-types.png)
 
 [chakraprovider]:
-  https://chakra-ui.com/docs/getting-started#chakraprovider-props
+  https://v2.chakra-ui.com/docs/getting-started#chakraprovider-props

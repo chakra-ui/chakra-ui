@@ -19,7 +19,7 @@ export interface ToastProps
 /**
  * The `Toast` component is used to give feedback to users after an action has taken place.
  *
- * @see Docs https://chakra-ui.com/docs/components/toast
+ * @see Docs https://v2.chakra-ui.com/docs/components/toast
  */
 export const Toast: React.FC<ToastProps> = (props) => {
   const {

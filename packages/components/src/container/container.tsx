@@ -22,7 +22,7 @@ export interface ContainerProps
  *
  * It also sets a default max-width of `60ch` (60 characters).
  *
- * @see Docs https://chakra-ui.com/docs/components/container
+ * @see Docs https://v2.chakra-ui.com/docs/components/container
  */
 export const Container = forwardRef<ContainerProps, "div">(
   function Container(props, ref) {

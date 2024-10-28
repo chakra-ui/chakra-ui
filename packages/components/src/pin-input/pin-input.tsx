@@ -38,7 +38,7 @@ export interface PinInputProps
 /**
  * The `PinInput` component is similar to the Input component, but is optimized for entering sequences of digits quickly.
  *
- * @see Docs https://chakra-ui.com/docs/components/pin-input
+ * @see Docs https://v2.chakra-ui.com/docs/components/pin-input
  */
 export function PinInput(props: PinInputProps) {
   const styles = useStyleConfig("PinInput", props)

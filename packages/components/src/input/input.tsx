@@ -40,7 +40,7 @@ export interface InputProps
  *
  * Element that allows users enter single valued data.
  *
- * @see Docs https://chakra-ui.com/docs/components/input
+ * @see Docs https://v2.chakra-ui.com/docs/components/input
  */
 export const Input = forwardRef<InputProps, "input">(
   function Input(props, ref) {

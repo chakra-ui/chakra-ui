@@ -9,7 +9,7 @@ export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
 /**
  * `AlertDialog` component is used interrupt the user with a mandatory confirmation or action.
  *
- * @see Docs https://chakra-ui.com/docs/components/alert-dialog
+ * @see Docs https://v2.chakra-ui.com/docs/components/alert-dialog
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/
  */
 export function AlertDialog(props: AlertDialogProps) {

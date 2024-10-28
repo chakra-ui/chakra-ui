@@ -1936,7 +1936,7 @@
   component theme via the `closeButton` key.
 
   See
-  https://chakra-ui.com/docs/theming/component-style#styling-multipart-components
+  https://v2.chakra-ui.com/docs/theming/component-style#styling-multipart-components
   for more information.
 
 * [`2192be3d`](https://github.com/chakra-ui/chakra-ui/commit/2192be3db77504addffc89cbfef62fb9e884fa5d)

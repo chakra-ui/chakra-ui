@@ -36,7 +36,7 @@ function getStyles(styles: any): SystemStyleObject {
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
  *
- * @see Docs https://chakra-ui.com/docs/components/skip-nav
+ * @see Docs https://v2.chakra-ui.com/docs/components/skip-nav
  */
 export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
   function SkipNavLink(props, ref) {
@@ -55,7 +55,7 @@ export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
 /**
  * Renders a div as the target for the `SkipNavLink`.
  *
- * @see Docs https://chakra-ui.com/docs/components/skip-nav
+ * @see Docs https://v2.chakra-ui.com/docs/components/skip-nav
  */
 export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
   function SkipNavContent(props, ref) {

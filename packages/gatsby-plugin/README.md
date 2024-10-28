@@ -50,7 +50,7 @@ By default, this plugin adds the main context provider to make all components
 work correctly.
 
 - **ChakraProvider:** Your custom theme and all
-  [ChakraProvider Props](https://chakra-ui.com/docs/getting-started#chakraprovider-props)
+  [ChakraProvider Props](https://v2.chakra-ui.com/docs/getting-started#chakraprovider-props)
   are passed to this instance
 
 ```jsx
