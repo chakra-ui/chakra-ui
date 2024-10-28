@@ -9,19 +9,21 @@ export const inputAddonRecipe = defineRecipe({
     display: "flex",
     alignItems: "center",
     whiteSpace: "nowrap",
+    alignSelf: "stretch",
+    borderRadius: "l2",
   },
   variants: {
     size: inputRecipe.variants!.size,
     variant: {
       outline: {
-        border: "1px solid",
-        borderColor: { _light: "border", _dark: "whiteAlpha.50" },
+        borderWidth: "1px",
+        borderColor: "border",
         bg: "bg.muted",
       },
       subtle: {
-        border: "2px solid",
+        borderWidth: "1px",
         borderColor: "transparent",
-        bg: { _light: "gray.100", _dark: "whiteAlpha.50" },
+        bg: "bg.emphasized",
       },
       flushed: {
         borderBottom: "1px solid",

@@ -15,6 +15,7 @@ export default {
 export { InputBasic as Basic } from "compositions/examples/input-basic"
 export { InputSizeTable as Sizes } from "compositions/examples/input-size-table"
 export { InputVariantTable as Variants } from "compositions/examples/input-variant-table"
+export { InputWithAddon as Addon } from "compositions/examples/input-with-addon"
 export { InputWithErrorText as ErrorText } from "compositions/examples/input-with-error-text"
 export { InputWithField as Field } from "compositions/examples/input-with-field"
 export { InputWithFloatingLabel as FloatingLabel } from "compositions/examples/input-with-floating-label"
