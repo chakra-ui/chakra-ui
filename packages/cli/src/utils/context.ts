@@ -23,9 +23,17 @@ function getFramework(files: string[], cwd: string) {
   }
 
   if (files.find((file) => file.startsWith("vite.config"))) {
-    const [viteConfigPath] = globbySync(["vite.config.ts", "vite.config.js"], {
-      cwd,
-    })
+    const [viteConfigPath] = globbySync(
+      [
+        "vite.config.ts",
+        "vite.config.js",
+        "vite.config.mjs",
+        "vite.config.mts",
+      ],
+      {
+        cwd,
+      },
+    )
     const viteConfig = readFileSync(viteConfigPath, "utf-8")
     const isRemix = !!viteConfig?.includes("@remix-run/dev")
     return isRemix ? "remix" : "vite"
