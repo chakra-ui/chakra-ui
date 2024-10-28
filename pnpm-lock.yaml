@@ -244,7 +244,7 @@ importers:
         version: link:../../packages/react
       '@hookform/resolvers':
         specifier: 3.9.0
-        version: 3.9.0(react-hook-form@7.53.0(react@18.2.0))
+        version: 3.9.0(react-hook-form@7.53.1(react@18.2.0))
       '@tanstack/react-table':
         specifier: 8.19.3
         version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -261,8 +261,8 @@ importers:
         specifier: 5.2.7
         version: 5.2.7(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-hook-form:
-        specifier: 7.53.0
-        version: 7.53.0(react@18.2.0)
+        specifier: 7.53.1
+        version: 7.53.1(react@18.2.0)
       react-icons:
         specifier: 5.3.0
         version: 5.3.0(react@18.2.0)
@@ -7968,8 +7968,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0
 
-  react-hook-form@7.53.0:
-    resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
+  react-hook-form@7.53.1:
+    resolution: {integrity: sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: 18.2.0
@@ -11333,9 +11333,9 @@ snapshots:
 
   '@gwhitney/detect-indent@7.0.1': {}
 
-  '@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@18.2.0))':
+  '@hookform/resolvers@3.9.0(react-hook-form@7.53.1(react@18.2.0))':
     dependencies:
-      react-hook-form: 7.53.0(react@18.2.0)
+      react-hook-form: 7.53.1(react@18.2.0)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -19242,7 +19242,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  react-hook-form@7.53.0(react@18.2.0):
+  react-hook-form@7.53.1(react@18.2.0):
     dependencies:
       react: 18.2.0
 
