@@ -8,9 +8,15 @@ export async function generateSystemTypes(sys: SystemContext) {
   )
   const propTypes = sys.utility.getTypes()
 
+  const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
+
   const result = `
   import type { ConditionalValue, CssProperties } from "../css.types"
-  import type { UtilityValues } from "./prop-types.gen"
+  ${
+    shouldImportTypeWithEscapeHatch
+      ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
+      : `import type { UtilityValues } from "./prop-types.gen"`
+  }
   import type { Token } from "./token.gen"
   type AnyString = (string & {})
   type AnyNumber = (number & {})
