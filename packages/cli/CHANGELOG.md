@@ -1,5 +1,18 @@
 # @chakra-ui/cli
 
+## 3.0.2
+
+### Patch Changes
+
+- [`bfd9cac`](https://github.com/chakra-ui/chakra-ui/commit/bfd9cac4756e599724f087842f70e6551198e956)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue with vite
+  setup where `.mjs` and `mts` files were not considered.
+
+- [#9022](https://github.com/chakra-ui/chakra-ui/pull/9022)
+  [`b40eb6b`](https://github.com/chakra-ui/chakra-ui/commit/b40eb6b0b8184b7a38428d5d6a0bd7d9932e393a)
+  Thanks [@Newbie012](https://github.com/Newbie012)! - Fix issue where style
+  props types show as `any` when using `strictTokens`
+
 ## 3.0.1
 
 ## 3.0.0

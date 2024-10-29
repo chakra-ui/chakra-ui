@@ -1,5 +1,15 @@
 # @chakra-ui/react
 
+## 3.0.2
+
+### Patch Changes
+
+- [`20b91bd`](https://github.com/chakra-ui/chakra-ui/commit/20b91bdc6134e83897fab058b0ff30fd23e61c5d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **InputAddon**:
+  Fix issue with input addon not stretched correctly.
+  - **Snippets / Toaster**: Improve toaster styling by adding
+    `width={{ md: "sm" }}` to the toast root.
+
 ## 3.0.1
 
 ### Patch Changes
