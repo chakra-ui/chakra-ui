@@ -1,6 +1,6 @@
 "use client"
 
-import type { CollectionItem } from "@chakra-ui/react"
+import type { CollectionItem, ListCollection } from "@chakra-ui/react"
 import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 import { forwardRef } from "react"
@@ -97,17 +97,17 @@ export const SelectValueText = forwardRef<
   )
 })
 
-export const SelectRoot = forwardRef<HTMLDivElement, ChakraSelect.RootProps>(
-  function SelectRoot(props, ref) {
-    return (
-      <ChakraSelect.Root
-        {...props}
-        ref={ref}
-        positioning={{ sameWidth: true, ...props.positioning }}
-      />
-    )
-  },
-)
+export const SelectRoot = forwardRef(function SelectRoot<
+  T extends ListCollection,
+>(props: ChakraSelect.RootProps<T>, ref: React.ForwardedRef<HTMLDivElement>) {
+  return (
+    <ChakraSelect.Root
+      {...props}
+      ref={ref}
+      positioning={{ sameWidth: true, ...props.positioning }}
+    />
+  )
+})
 
 interface SelectItemGroupProps extends ChakraSelect.ItemGroupProps {
   label: React.ReactNode
