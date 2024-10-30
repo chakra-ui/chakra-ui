@@ -104,7 +104,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const shouldWrap =
     typeof children === 'string' ||
     shouldWrapChildren ||
-    (children as any)?.type?.$$typeof === Symbol.for('react.lazy')
+    (children as any)?.$$typeof === Symbol.for('react.lazy')
 
   let trigger: React.ReactElement
 
