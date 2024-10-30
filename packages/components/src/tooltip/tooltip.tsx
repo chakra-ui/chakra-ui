@@ -101,7 +101,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   }
   const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
-  const shouldWrap = typeof children === "string" || shouldWrapChildren
+  const shouldWrap =
+    typeof children === 'string' ||
+    shouldWrapChildren ||
+    (children as any)?.type?.$$typeof === Symbol.for('react.lazy')
 
   let trigger: React.ReactElement
 
