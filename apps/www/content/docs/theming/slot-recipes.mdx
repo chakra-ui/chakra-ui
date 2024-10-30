@@ -156,7 +156,7 @@ const { withProvider, withContext } = createSlotRecipeContext({
 
 interface CheckboxRootProps
   extends HTMLChakraProps<
-    "div",
+    "label",
     RecipeVariantProps<typeof checkboxSlotRecipe>
   > {}
 export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
