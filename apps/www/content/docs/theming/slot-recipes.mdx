@@ -135,6 +135,15 @@ recipe context.
 Then, use the `withProvider` and `withContext` functions to create the compound
 components that share the same context.
 
+:::info
+
+You will need to manually type the generics for `withProvider` and
+`withContext`. This approach is designed to optimize TypeScript performance.
+Auto-inference, while convenient, would slow down TypeScript compilation due to
+the complexity of the types involved.
+
+:::
+
 ```tsx title="checkbox.tsx"
 "use client"
 
@@ -145,9 +154,27 @@ const { withProvider, withContext } = createSlotRecipeContext({
   recipe: checkboxSlotRecipe,
 })
 
-export const CheckboxRoot = withProvider("label", "root")
-export const CheckboxControl = withContext("input", "control")
-export const CheckboxLabel = withContext("span", "label")
+interface CheckboxRootProps
+  extends HTMLChakraProps<
+    "label",
+    RecipeVariantProps<typeof checkboxSlotRecipe>
+  > {}
+export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
+  "label",
+  "root",
+)
+
+interface CheckboxControlProps extends HTMLChakraProps<"input"> {}
+export const CheckboxControl = withContext<
+  HTMLInputElement,
+  CheckboxControlProps
+>("input", "control")
+
+interface CheckboxLabelProps extends HTMLChakraProps<"span"> {}
+export const CheckboxLabel = withContext<HTMLSpanElement, CheckboxLabelProps>(
+  "span",
+  "label",
+)
 ```
 
 Pass the variant props to the "root" component that to apply the styles.
