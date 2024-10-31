@@ -56,7 +56,7 @@ older versions head over here
 
 - Ease of Styling: Chakra UI contains a set of layout components like `Box` and
   `Stack` that make it easy to style your components by passing props.
-  [Learn more](https://chakra-ui.com/style-props)
+  [Learn more](https://www.chakra-ui.com/docs/styling/style-props/background)
 - Flexible & composable: Chakra UI components are built on top of a React UI
   Primitive for endless composability.
 - Accessible. Chakra UI components follow the WAI-ARIA guidelines specifications
