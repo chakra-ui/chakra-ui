@@ -7,6 +7,7 @@ import { forwardRef } from "react"
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>
 
 export interface AvatarProps extends ChakraAvatar.RootProps {
+  as?: React.ElementType // Add `as` prop type here
   name?: string
   src?: string
   srcSet?: string
@@ -17,10 +18,19 @@ export interface AvatarProps extends ChakraAvatar.RootProps {
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   function Avatar(props, ref) {
-    const { name, src, srcSet, loading, icon, fallback, children, ...rest } =
-      props
+    const {
+      as = "div",
+      name,
+      src,
+      srcSet,
+      loading,
+      icon,
+      fallback,
+      children,
+      ...rest
+    } = props
     return (
-      <ChakraAvatar.Root ref={ref} {...rest}>
+      <ChakraAvatar.Root as={as} ref={ref} {...rest}>
         <AvatarFallback name={name} icon={icon}>
           {fallback}
         </AvatarFallback>
@@ -32,15 +42,16 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
 )
 
 interface AvatarFallbackProps extends ChakraAvatar.FallbackProps {
+  as?: React.ElementType // Add `as` prop type here
   name?: string
   icon?: React.ReactElement
 }
 
 const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
   function AvatarFallback(props, ref) {
-    const { name, icon, children, ...rest } = props
+    const { as = "div", name, icon, children, ...rest } = props
     return (
-      <ChakraAvatar.Fallback ref={ref} {...rest}>
+      <ChakraAvatar.Fallback as={as} ref={ref} {...rest}>
         {children}
         {name != null && children == null && <>{getInitials(name)}</>}
         {name == null && children == null && (
