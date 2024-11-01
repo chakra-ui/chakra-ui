@@ -145,7 +145,7 @@ const HeaderVersionMenu = ({ containerRef }: HeaderVersionMenuProps) => (
   <VersionMenu
     items={[
       { title: "v3", value: "3.0.0", url: "#" },
-      { title: "v2", value: "2.8.x", url: "https://v2.chakra-ui.com" },
+      { title: "v2", value: "2.10.x", url: "https://v2.chakra-ui.com" },
       { title: "v1", value: "1.5.x", url: "https://v1.chakra-ui.com" },
     ]}
     portalRef={containerRef}
