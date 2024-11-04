@@ -1,5 +1,32 @@
 # @chakra-ui/react
 
+## 3.1.0
+
+### Minor Changes
+
+- [`9a27c2c`](https://github.com/chakra-ui/chakra-ui/commit/9a27c2c6fd6289cf31a9ad9cd3ba51f3091a6363)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System:** Fix
+  issue where using `as` prop with logic based components doesn't work as
+  expected.
+
+  - **DataList:** Add support for `bold` variant.
+  - **Button:** Tweak the horizontal padding when size is `sm`.
+  - **Snippets**
+
+    - Slider: Add `showValue` prop to render the text value of the slider.
+    - Select
+      - Add `HiddenSelect` to ensure it works in form submissions.
+      - Fix type inference is lost when using `SelectRoot` component from
+        snippet
+      - Fix issue where form data is not populated when using native form
+        element
+    - ColorMode: Fix type error when using the latest `next-themes`.
+    - Provider: Forward props to `ColorModeProvider` powered by `next-themes`
+      for better customization.
+
+  - **Toggle:** Add `Toggle` component for toggling between two states. It
+    composes the `Button` component.
+
 ## 3.0.2
 
 ### Patch Changes
