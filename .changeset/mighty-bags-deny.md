@@ -8,3 +8,5 @@
 - **Button:** Tweak the horizontal padding when size is `sm`.
 - **Snippets / Slider:** Add `showValue` prop to render the text value of the
   slider.
+- **Toggle:** Add `Toggle` component for toggling between two states. It
+  composes the `Button` component.

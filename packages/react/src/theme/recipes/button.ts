@@ -12,6 +12,8 @@ export const buttonRecipe = defineRecipe({
     borderRadius: "l2",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    borderWidth: "1px",
+    borderColor: "transparent",
     cursor: "button",
     flexShrink: "0",
     outline: "0",
