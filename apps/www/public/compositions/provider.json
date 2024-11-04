@@ -7,7 +7,7 @@
   "id": "provider",
   "file": {
     "name": "provider.tsx",
-    "content": "\"use client\"\n\nimport { ChakraProvider, defaultSystem } from \"@chakra-ui/react\"\nimport { ColorModeProvider } from \"./color-mode\"\n\nexport function Provider(props: React.PropsWithChildren) {\n  return (\n    <ChakraProvider value={defaultSystem}>\n      <ColorModeProvider>{props.children}</ColorModeProvider>\n    </ChakraProvider>\n  )\n}\n"
+    "content": "\"use client\"\n\nimport { ChakraProvider, defaultSystem } from \"@chakra-ui/react\"\nimport {\n  ColorModeProvider,\n  type ColorModeProviderProps,\n} from \"./color-mode\"\n\nexport function Provider(props: ColorModeProviderProps) {\n  return (\n    <ChakraProvider value={defaultSystem}>\n      <ColorModeProvider {...props} />\n    </ChakraProvider>\n  )\n}\n"
   },
   "component": "Provider"
 }

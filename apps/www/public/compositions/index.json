@@ -438,6 +438,14 @@
   },
   {
     "type": "composition",
+    "id": "toggle",
+    "file": "toggle.tsx",
+    "component": "Toggle",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "tooltip",
     "file": "tooltip.tsx",
     "component": "Tooltip",

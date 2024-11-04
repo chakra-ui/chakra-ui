@@ -12,14 +12,13 @@
 - **Snippets**
 
   - Slider: Add `showValue` prop to render the text value of the slider.
-  - Select: Add `HiddenSelect` to ensure it works in form submissions.
+  - Select
+    - Add `HiddenSelect` to ensure it works in form submissions.
+    - Fix type inference is lost when using `SelectRoot` component from snippet
+    - Fix issue where form data is not populated when using native form element
   - ColorMode: Fix type error when using the latest `next-themes`.
   - Provider: Forward props to `ColorModeProvider` powered by `next-themes` for
     better customization.
 
 - **Toggle:** Add `Toggle` component for toggling between two states. It
   composes the `Button` component.
-
-- **Select**
-  - Fix type inference is lost when using `SelectRoot` component from snippet
-  - Fix issue where form data is not populated when using native form element
