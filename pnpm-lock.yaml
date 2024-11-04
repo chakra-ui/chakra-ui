@@ -243,8 +243,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@hookform/resolvers':
-        specifier: 3.9.0
-        version: 3.9.0(react-hook-form@7.53.1(react@18.2.0))
+        specifier: 3.9.1
+        version: 3.9.1(react-hook-form@7.53.1(react@18.2.0))
       '@tanstack/react-table':
         specifier: 8.19.3
         version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -2316,8 +2316,8 @@ packages:
     resolution: {integrity: sha512-7bQW+gkKa2kKZPeJf6+c6gFK9ARxQfn+FKy9ScTBppyKRWH2KzsmweXUoklqeEiHiNVWaeP5csIdsNq6w7QhzA==}
     engines: {node: '>=12.20'}
 
-  '@hookform/resolvers@3.9.0':
-    resolution: {integrity: sha512-bU0Gr4EepJ/EQsH/IwEzYLsT/PEj5C0ynLQ4m+GSHS+xKH4TfSelhluTgOaoc4kA5s7eCsQbM4wvZLzELmWzUg==}
+  '@hookform/resolvers@3.9.1':
+    resolution: {integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==}
     peerDependencies:
       react-hook-form: ^7.0.0
 
@@ -11399,7 +11399,7 @@ snapshots:
 
   '@gwhitney/detect-indent@7.0.1': {}
 
-  '@hookform/resolvers@3.9.0(react-hook-form@7.53.1(react@18.2.0))':
+  '@hookform/resolvers@3.9.1(react-hook-form@7.53.1(react@18.2.0))':
     dependencies:
       react-hook-form: 7.53.1(react@18.2.0)
 
@@ -16068,7 +16068,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 8.57.0
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
@@ -16085,7 +16085,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 8.57.0
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
@@ -16097,7 +16097,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -16118,7 +16118,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -16128,7 +16128,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -16149,7 +16149,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
