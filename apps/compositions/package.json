@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@hookform/resolvers": "3.9.0",
+    "@hookform/resolvers": "3.9.1",
     "@tanstack/react-table": "8.19.3",
     "next-themes": "0.3.0",
     "react": "^18",
