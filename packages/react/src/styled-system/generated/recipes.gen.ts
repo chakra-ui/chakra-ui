@@ -476,6 +476,8 @@ export interface DataListVariant {
   orientation?: "horizontal" | "vertical"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
+  /** @default "subtle" */
+  variant?: "subtle" | "bold"
 }
 
 export type DataListVariantProps = {

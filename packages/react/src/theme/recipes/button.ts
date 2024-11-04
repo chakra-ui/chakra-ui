@@ -46,7 +46,7 @@ export const buttonRecipe = defineRecipe({
         h: "8",
         minW: "8",
         textStyle: "xs",
-        px: "2",
+        px: "2.5",
         gap: "1",
         _icon: {
           width: "4",

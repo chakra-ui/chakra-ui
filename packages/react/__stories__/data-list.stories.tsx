@@ -17,3 +17,4 @@ export { DataListSizeTable as Sizes } from "compositions/examples/data-list-size
 export { DataListVertical as Vertical } from "compositions/examples/data-list-vertical"
 export { DataListWithInfo as Info } from "compositions/examples/data-list-with-info"
 export { DataListWithSeparator as Separator } from "compositions/examples/data-list-with-separator"
+export { DataListWithVariants as Variants } from "compositions/examples/data-list-with-variants"

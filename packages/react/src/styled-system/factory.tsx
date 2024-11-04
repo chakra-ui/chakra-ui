@@ -116,9 +116,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       options.shouldForwardProp = createShouldForwardProps(options.forwardProps)
     }
 
-    const shouldForwardProp = composeShouldForwardProps(tag, options, isReal)
-
-    const initShouldForwardProp = (prop: string, variantKeys: string[]) => {
+    const fallbackShouldForwardProp = (prop: string, variantKeys: string[]) => {
       const emotionSfp =
         typeof tag === "string" && tag.charCodeAt(0) > 96
           ? testOmitPropsOnStringTag
@@ -127,7 +125,9 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       return emotionSfp(prop) && chakraSfp
     }
 
-    const defaultShouldForwardProp = shouldForwardProp || initShouldForwardProp
+    const shouldForwardProp =
+      composeShouldForwardProps(tag, options, isReal) ||
+      fallbackShouldForwardProp
 
     const propsWithDefault = React.useMemo(
       () => Object.assign({}, options.defaultProps, compact(inProps)),
@@ -137,13 +137,8 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     const { props, styles: styleProps } = useResolvedProps(
       propsWithDefault,
       cvaRecipe,
-      defaultShouldForwardProp,
+      shouldForwardProp,
     )
-
-    const shouldUseAs = !defaultShouldForwardProp("as")
-
-    let FinalTag = (shouldUseAs && props.as) || baseTag
-
     let className = ""
     let classInterpolations: any[] = [styleProps]
     let mergedProps: any = props
@@ -176,30 +171,47 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       className = cx(className, targetClassName)
     }
 
-    const finalShouldForwardProp =
-      shouldUseAs && shouldForwardProp === undefined
-        ? initShouldForwardProp
-        : defaultShouldForwardProp
+    const shouldUseAs = !shouldForwardProp("as")
 
+    let FinalTag = (shouldUseAs && props.as) || baseTag
     let newProps: any = {}
 
-    for (let key in props) {
-      if (shouldUseAs && key === "as") continue
+    for (let prop in props) {
+      if (shouldUseAs && prop === "as") continue
 
-      if (finalShouldForwardProp(key)) {
-        newProps[key] = props[key]
+      if (shouldForwardProp(prop)) {
+        newProps[prop] = props[prop]
       }
     }
 
     newProps.className = className.trim()
     newProps.ref = ref
 
-    if (props.asChild && !options.forwardAsChild) {
+    const forwardAsChild =
+      options.forwardAsChild || options.forwardProps?.includes("asChild")
+
+    if (props.asChild && !forwardAsChild) {
       const child = React.Children.only(props.children)
       FinalTag = child.type
       newProps.children = null
       newProps = mergeProps(newProps, child.props)
       newProps.ref = mergeRefs(ref, child.ref)
+    }
+
+    if (newProps.as && forwardAsChild) {
+      newProps.as = undefined
+      return (
+        <>
+          <Insertion
+            cache={cache}
+            serialized={serialized}
+            isStringTag={typeof FinalTag === "string"}
+          />
+          <FinalTag asChild {...newProps}>
+            <props.as>{newProps.children}</props.as>
+          </FinalTag>
+        </>
+      )
     }
 
     return (
