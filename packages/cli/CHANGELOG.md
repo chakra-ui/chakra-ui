@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.1.0
+
+### Patch Changes
+
+- [`baa3cb1`](https://github.com/chakra-ui/chakra-ui/commit/baa3cb1f7f90adb94e29875f799edbd6ccc80685)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  adding a snippet with `--outdir` still creates snippets a `src/components/ui`
+  directory.
+
 ## 3.0.2
 
 ### Patch Changes
