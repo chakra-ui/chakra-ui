@@ -118,7 +118,7 @@
     "vite": "5.3.6",
     "vitest": "1.6.0",
     "vitest-axe": "0.1.0",
-    "vitest-matchmedia-mock": "1.0.5"
+    "vitest-matchmedia-mock": "1.0.6"
   },
   "pnpm": {
     "overrides": {
