@@ -25,10 +25,10 @@ body:
     attributes:
       label: "Link to Reproduction"
       description: |
-        A link to a CodeSandbox reproduction which demonstrates the bug (see
-        https://github.com/chakra-ui/chakra-ui#codesandbox-templates for
+        A link to a Stackblitz reproduction which demonstrates the bug (see
+        https://stackblitz.com/edit/chakra-ui-v3?file=src%2FApp.tsx for
         templates)
-      placeholder: "https://codesandbox.io/"
+      placeholder: "https://stackblitz.com/edit/chakra-ui-v3?file=src%2FApp.tsx"
     validations:
       required: true
   - type: "textarea"
@@ -47,7 +47,7 @@ body:
     attributes:
       label: "Chakra UI Version"
       description: "The version of Chakra UI you use."
-      placeholder: "1.6.4"
+      placeholder: "3.x.x"
     validations:
       required: true
   - type: "input"
