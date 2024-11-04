@@ -13,6 +13,9 @@
 
   - Slider: Add `showValue` prop to render the text value of the slider.
   - Select: Add `HiddenSelect` to ensure it works in form submissions.
+  - ColorMode: Fix type error when using the latest `next-themes`.
+  - Provider: Forward props to `ColorModeProvider` powered by `next-themes` for
+    better customization.
 
 - **Toggle:** Add `Toggle` component for toggling between two states. It
   composes the `Button` component.
