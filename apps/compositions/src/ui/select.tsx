@@ -104,7 +104,16 @@ export const SelectRoot = forwardRef<HTMLDivElement, ChakraSelect.RootProps>(
         {...props}
         ref={ref}
         positioning={{ sameWidth: true, ...props.positioning }}
-      />
+      >
+        {props.asChild ? (
+          props.children
+        ) : (
+          <>
+            <ChakraSelect.HiddenSelect />
+            {props.children}
+          </>
+        )}
+      </ChakraSelect.Root>
     )
   },
 ) as ChakraSelect.RootComponent

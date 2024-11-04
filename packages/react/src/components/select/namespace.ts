@@ -9,6 +9,7 @@ export {
   SelectItemGroupLabel as ItemGroupLabel,
   SelectItemIndicator as ItemIndicator,
   SelectItemText as ItemText,
+  SelectItemContext as ItemContext,
   SelectLabel as Label,
   SelectPositioner as Positioner,
   SelectRoot as Root,
@@ -16,6 +17,7 @@ export {
   SelectPropsProvider as PropsProvider,
   SelectTrigger as Trigger,
   SelectValueText as ValueText,
+  SelectHiddenSelect as HiddenSelect,
 } from "./select"
 
 export type {

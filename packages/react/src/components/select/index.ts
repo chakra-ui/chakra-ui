@@ -3,6 +3,7 @@ export {
   SelectContent,
   SelectContext,
   SelectControl,
+  SelectHiddenSelect,
   SelectIndicator,
   SelectIndicatorGroup,
   SelectItem,
@@ -43,6 +44,10 @@ export type {
   SelectValueTextProps,
 } from "./select"
 
-export { useSelect, useSelectContext } from "@ark-ui/react/select"
+export {
+  useSelect,
+  useSelectContext,
+  useSelectItemContext,
+} from "@ark-ui/react/select"
 
 export * as Select from "./namespace"
