@@ -49,8 +49,8 @@ export const SnippetCommand = new Command("snippet")
 
         const jsx = !ctx.isTypeScript
 
-        ensureDir(ctx.scope.componentsDir)
         const outdir = parsedFlags.outdir || ctx.scope.componentsDir
+        ensureDir(outdir)
 
         const items = await fetchCompositions()
 
