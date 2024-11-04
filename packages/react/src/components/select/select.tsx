@@ -50,7 +50,7 @@ export interface SelectRootBaseProps<T extends CollectionItem = any>
 export interface SelectRootProps<T extends CollectionItem = any>
   extends HTMLChakraProps<"div", SelectRootBaseProps<T>> {}
 
-interface SelectRootComponent {
+export interface SelectRootComponent {
   <T extends CollectionItem>(
     props: SelectRootProps<T> & React.RefAttributes<HTMLDivElement>,
   ): JSX.Element

@@ -10,3 +10,5 @@
   slider.
 - **Toggle:** Add `Toggle` component for toggling between two states. It
   composes the `Button` component.
+- **Select:** Fix type inference is lost when using `SelectRoot` component from
+  snippet.

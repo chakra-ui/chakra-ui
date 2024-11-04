@@ -95,7 +95,7 @@ export type DataAttr = Record<
 
 export interface JsxFactoryOptions<TProps> {
   forwardProps?: string[]
-  defaultProps?: TProps & DataAttr
+  defaultProps?: Partial<TProps> & DataAttr
   forwardAsChild?: boolean
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }

@@ -38,4 +38,5 @@ export type {
   SelectOpenChangeDetails as OpenChangeDetails,
   SelectValueChangeDetails as ValueChangeDetails,
   SelectValueTextProps as ValueTextProps,
+  SelectRootComponent as RootComponent,
 } from "./select"

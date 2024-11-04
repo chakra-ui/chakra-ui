@@ -107,7 +107,7 @@ export const SelectRoot = forwardRef<HTMLDivElement, ChakraSelect.RootProps>(
       />
     )
   },
-)
+) as ChakraSelect.RootComponent
 
 interface SelectItemGroupProps extends ChakraSelect.ItemGroupProps {
   label: React.ReactNode
