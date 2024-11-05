@@ -12,6 +12,9 @@ export const checkmarkRecipe = defineRecipe({
     borderColor: "transparent",
     borderRadius: "l1",
     focusVisibleRing: "outside",
+    "& > svg": {
+      width: "fit-content",
+    },
     _invalid: {
       colorPalette: "red",
       borderColor: "border.error",
