@@ -29,8 +29,8 @@ export const compositionIndexSchema = z.array(
 export interface Compositions extends z.infer<typeof compositionIndexSchema> {}
 
 export const processEnvSchema = z.object({
-  // REGISTRY_URL: z.string().default("http://localhost:3000"),
-  REGISTRY_URL: z.string().default("https://chakra-v3-docs.vercel.app"),
+  REGISTRY_URL: z.string().default("http://localhost:3000"),
+  // REGISTRY_URL: z.string().default("https://chakra-v3-docs.vercel.app"),
   HTTPS_PROXY: z.string().optional(),
 })
 
