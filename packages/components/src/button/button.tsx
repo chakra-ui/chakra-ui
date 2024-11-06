@@ -4,8 +4,8 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
-import { cx, dataAttr } from "@chakra-ui/utils"
-import { useMemo } from "react"
+import { cx, dataAttr, objectFilter } from "@chakra-ui/utils"
+import { isValidElement, useMemo } from "react"
 import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
@@ -13,10 +13,18 @@ import { ButtonSpinner } from "./button-spinner"
 import { ButtonOptions } from "./button-types"
 import { useButtonType } from "./use-button-type"
 
+
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
     ThemingProps<"Button"> {}
+
+/**
+ * This function will filter out all props that are valid React elements, e.g., `leftIcon`, `rightIcon`, `children`, ...
+ */
+const function omitValidElementProps(props: ButtonProps) {
+  return objectFilter(props, (value) => !isValidElement(value))
+}
 
 /**
  * Button component is used to trigger an action or event, such as submitting a form, opening a Dialog, canceling an action, or performing a delete operation.
@@ -26,7 +34,8 @@ export interface ButtonProps
  */
 export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const group = useButtonGroup()
-  const styles = useStyleConfig("Button", { ...group, ...props })
+  const styleProps = omitValidElementProps(props)
+  const styles = useStyleConfig("Button", { ...group, ...styleProps })
 
   const {
     isDisabled = group?.isDisabled,
