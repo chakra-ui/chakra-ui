@@ -3,7 +3,7 @@ import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SimpleGridWithRowAndColGap = () => {
   return (
-    <SimpleGrid columns={2} columnGap="6" rowGap="8" gap="40px">
+    <SimpleGrid columns={2} columnGap="2" rowGap="4">
       <DecorativeBox height="20" />
       <DecorativeBox height="20" />
       <DecorativeBox height="20" />
