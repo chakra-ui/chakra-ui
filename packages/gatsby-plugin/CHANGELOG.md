@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- [`3696f20`](https://github.com/chakra-ui/chakra-ui/commit/3696f2078c05e70eac8e8330323750e7d65fc01b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System**: Revert support for custom conditions. It introduce performance
+  regressions during style computation
+
+  - **Slider**: Fix regression is slider thumb position
+  - **Tooltip**: Fix issue wher tooltip doesn't work when react.lazy is given as
+    a child
+
 ## 3.1.3
 
 ### Patch Changes
