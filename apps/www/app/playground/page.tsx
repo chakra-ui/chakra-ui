@@ -81,7 +81,7 @@ export default async function Page() {
                 {
                   label: "Gray",
                   component: (
-                    <HStack colorPalette="accent">
+                    <HStack colorPalette="gray">
                       <For each={buttonVariants}>
                         {(variant) => (
                           <Button key={variant} variant={variant}>
@@ -167,7 +167,7 @@ export default async function Page() {
           </Playground.SectionTitle>
           <Playground.SectionContent>
             <HStack wrap="wrap" gap="8">
-              <For each={["outline", "subtle"]}>
+              <For each={["solid", "outline", "subtle"]}>
                 {(variant) => (
                   <Stack key={variant} gap="5">
                     <Checkbox variant={variant}>Accept terms</Checkbox>
@@ -192,7 +192,7 @@ export default async function Page() {
           <Playground.SectionContent>
             <HStack wrap="wrap" gap="8">
               <Rating defaultValue={3} size="sm" />
-              <Rating defaultValue={3} size="sm" colorPalette="accent" />
+              <Rating defaultValue={3} size="sm" colorPalette="gray" />
             </HStack>
           </Playground.SectionContent>
         </Playground.Section>
@@ -203,7 +203,7 @@ export default async function Page() {
             <HStack wrap="wrap" gap="8">
               <Switch />
               <Switch defaultChecked />
-              <Switch defaultChecked colorPalette="accent" />
+              <Switch defaultChecked colorPalette="gray" />
             </HStack>
           </Playground.SectionContent>
         </Playground.Section>
@@ -260,7 +260,7 @@ export default async function Page() {
               <ProgressCircleRoot size="md" value={30}>
                 <ProgressCircleRing cap="round" />
               </ProgressCircleRoot>
-              <ProgressCircleRoot size="md" value={30} colorPalette="accent">
+              <ProgressCircleRoot size="md" value={30} colorPalette="gray">
                 <ProgressCircleRing cap="round" />
               </ProgressCircleRoot>
             </HStack>

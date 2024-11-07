@@ -27,7 +27,7 @@ const SectionTitle = ({ children, id }: SectionTitleProps) => {
       px="4"
       py="3"
       rounded="md"
-      colorPalette="accent"
+      colorPalette="gray"
       textStyle="sm"
     >
       <Text fontWeight="medium" id={id}>
