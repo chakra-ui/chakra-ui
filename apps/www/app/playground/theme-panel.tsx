@@ -18,6 +18,7 @@ import { RadioCardItem, RadioCardRoot } from "compositions/ui/radio-card"
 import { useState } from "react"
 
 const accentColors = [
+  "gray",
   "red",
   "orange",
   "yellow",
@@ -120,7 +121,7 @@ export function ThemePanel(props: ThemePanelProps) {
         <Card.Body gap="8" alignItems="stretch">
           <Stack gap="3">
             <Text fontWeight="medium" textStyle="sm">
-              Palette
+              Color Palette
             </Text>
             <RadioCardRoot
               flex="1"
