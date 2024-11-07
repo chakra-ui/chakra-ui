@@ -55,6 +55,7 @@ const docsLinks: NavItem = {
             { title: "Float", url: "float" },
             { title: "Grid", url: "grid" },
             { title: "Group", url: "group" },
+            { title: "SimpleGrid", url: "simple-grid" },
             { title: "Stack", url: "stack" },
             { title: "Theme", url: "theme" },
           ],
