@@ -32,10 +32,9 @@
     "serve:storybook": "pnpx serve storybook-static",
     "clean": "pnpm -r --parallel exec rimraf dist *.log",
     "slack": "tsx scripts/slack.ts",
-    "version": "changeset version",
-    "release": "changeset publish",
-    "version:v2": "changeset version --snapshot v2-latest",
-    "release:v2": "changeset publish --tag v2-latest",
+    "version": "changeset version --tag v2-latest",
+    "release": "changeset publish --tag v2-latest",
+    "version:snapshot": "changeset version --snapshot v2-latest",
     "sandbox": "tsx scripts/sandbox.ts"
   },
   "version": "2.0.0",
