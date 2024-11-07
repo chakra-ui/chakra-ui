@@ -15,5 +15,7 @@
 "@chakra-ui/cli": patch
 ---
 
-Revert support for custom conditions. It introduce performance regressions
-during style computation
+- **Styled System**: Revert support for custom conditions. It introduce
+  performance regressions during style computation
+
+- **Slider**: Fix regression is slider thumb position
