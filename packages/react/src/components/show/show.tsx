@@ -1,3 +1,5 @@
+import { type JSX, isValidElement } from "react"
+
 export interface ShowProps<T> {
   /**
    * If `true`, it'll render the `children` prop
@@ -13,12 +15,15 @@ export interface ShowProps<T> {
   children: React.ReactNode | ((props: T) => React.ReactNode)
 }
 
-export function Show<T>(props: ShowProps<T>) {
+export function Show<T>(props: ShowProps<T>): JSX.Element {
   const { when, fallback, children } = props
+  let result: React.ReactNode
 
   if (!when) {
-    return fallback || null
+    result = fallback
+  } else {
+    result = typeof children === "function" ? children(when) : children
   }
 
-  return typeof children === "function" ? children(when as T) : children
+  return isValidElement(result) ? result : <>{result}</>
 }
