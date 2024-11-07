@@ -8,3 +8,5 @@
 
 - **ClientOnly**: Fix issue where returned the incorrect type leading to TS
   error like `ClientOnly cannot be used as a JSX component.`
+
+- **Fieldset**: Fix issue where anatomy is not exported
