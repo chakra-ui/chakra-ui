@@ -1,25 +1,16 @@
 import {
   accordionAnatomy as arkAccordionAnatomy,
-  avatarAnatomy as arkAvatarAnatomy,
-  checkboxAnatomy as arkCheckboxAnatomy,
-  collapsibleAnatomy as arkCollapsibleAnatomy,
   dialogAnatomy as arkDialogAnatomy,
   editableAnatomy as arkEditableAnatomy,
   fieldAnatomy as arkFieldAnatomy,
   fileUploadAnatomy as arkFileUploadAnatomy,
-  hoverCardAnatomy as arkHoverCardAnatomy,
   menuAnatomy as arkMenuAnatomy,
-  numberInputAnatomy as arkNumberInputAnatomy,
-  pinInputAnatomy as arkPinInputAnatomy,
   popoverAnatomy as arkPopoverAnatomy,
-  progressAnatomy as arkProgressAnatomy,
   radioGroupAnatomy as arkRadioGroupAnatomy,
   ratingGroupAnatomy as arkRatingGroupAnatomy,
-  segmentGroupAnatomy as arkSegmentGroupAnatomy,
   selectAnatomy as arkSelectAnatomy,
   sliderAnatomy as arkSliderAnatomy,
   switchAnatomy as arkSwitchAnatomy,
-  tooltipAnatomy as arkTooltipAnatomy,
   createAnatomy,
 } from "@ark-ui/anatomy"
 
@@ -40,8 +31,6 @@ export const alertAnatomy = createAnatomy("alert").parts(
   "indicator",
   "content",
 )
-
-export const avatarAnatomy = arkAvatarAnatomy
 
 export const breadcrumbAnatomy = createAnatomy("breadcrumb").parts(
   "link",
@@ -69,8 +58,6 @@ export const cardAnatomy = createAnatomy("card").parts(
   "description",
 )
 
-export const checkboxAnatomy = arkCheckboxAnatomy
-
 export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "root",
   "control",
@@ -80,8 +67,6 @@ export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "indicator",
   "content",
 ])
-
-export const collapsibleAnataomy = arkCollapsibleAnatomy
 
 export const dataListAnatomy = createAnatomy("data-list").parts(
   "root",
@@ -121,8 +106,6 @@ export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
   "dropzoneContent",
 )
 
-export const hoverCardAnatomy = arkHoverCardAnatomy
-
 export const listAnatomy = createAnatomy("list").parts(
   "root",
   "item",
@@ -137,17 +120,11 @@ export const nativeSelectAnatomy = createAnatomy("select").parts(
   "indicator",
 )
 
-export const numberInputAnatomy = arkNumberInputAnatomy
-
-export const pinInputAnatomy = arkPinInputAnatomy
-
 export const popoverAnatomy = arkPopoverAnatomy.extendWith(
   "header",
   "body",
   "footer",
 )
-
-export const progressAnatomy = arkProgressAnatomy
 
 export const radioGroupAnatomy = arkRadioGroupAnatomy.extendWith(
   "itemAddon",
@@ -161,8 +138,6 @@ export const radioCardAnatomy = radioGroupAnatomy.extendWith(
 
 export const ratingGroupAnatomy =
   arkRatingGroupAnatomy.extendWith("itemIndicator")
-
-export const segmentGroupAnatomy = arkSegmentGroupAnatomy
 
 export const selectAnatomy = arkSelectAnatomy.extendWith("indicatorGroup")
 
@@ -244,4 +219,15 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "description",
 )
 
-export const tooltipAnatomy = arkTooltipAnatomy
+export {
+  avatarAnatomy,
+  checkboxAnatomy,
+  collapsibleAnatomy,
+  fieldsetAnatomy,
+  hoverCardAnatomy,
+  numberInputAnatomy,
+  pinInputAnatomy,
+  progressAnatomy,
+  segmentGroupAnatomy,
+  tooltipAnatomy,
+} from "@ark-ui/anatomy"
