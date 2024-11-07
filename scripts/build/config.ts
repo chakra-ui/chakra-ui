@@ -27,6 +27,8 @@ const useClientDirInclude = [
   "packages/next-js",
 ]
 
+const USE_CLIENT = "'use client';\n"
+
 export async function getConfig(
   project: Project,
   aliases: Alias[],
@@ -43,13 +45,15 @@ export async function getConfig(
     }),
     replace({ preventAssignment: true }),
     banner((chunk) => {
+      if (chunk.fileName.includes("context")) return USE_CLIENT
+
       const skip =
         useClientFileExcludeRegex.test(chunk.fileName) ||
         !useClientDirInclude.includes(dir)
 
       if (skip) return
 
-      return "'use client';\n"
+      return USE_CLIENT
     }),
     {
       name: "@rollup-plugin/remove-empty-chunks",
