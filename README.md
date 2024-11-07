@@ -18,6 +18,9 @@
   <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
+  <a href="https://gurubase.io/g/chakra-ui">
+    <img alt="Chakra UI Guru on Gurubase.io" src="https://img.shields.io/badge/Gurubase-Ask%20Chakra%20UI%20Guru-006BFF" />
+  </a>
 </p>
 
 <br />
