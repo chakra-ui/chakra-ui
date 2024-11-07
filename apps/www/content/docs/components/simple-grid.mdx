@@ -1,0 +1,53 @@
+---
+title: SimpleGrid
+description:
+  SimpleGrid provides a friendly interface to create responsive grid layouts
+  with ease.
+---
+
+<ExampleTabs name="simple-grid-basic" />
+
+## Usage
+
+The `SimpleGrid` component allows you to create responsive grid layouts with
+ease.
+
+```jsx
+import { SimpleGrid } from "@chakra-ui/react"
+```
+
+```jsx
+<SimpleGrid>
+  <Box />
+  <Box />
+</SimpleGrid>
+```
+
+## Examples
+
+### Columns
+
+Specify the number of columns for the grid layout using the `columns` prop.
+
+<ExampleTabs name="simple-grid-with-columns" />
+
+### Auto-responsive
+
+Make the grid responsive and adjust automatically without passing columns, by
+using the `minChildWidth` prop. This uses css grid auto-fit and minmax()
+internally.
+
+<ExampleTabs name="simple-grid-with-autofit" />
+
+### Column Span
+
+Specify the size of the column by using the `colSpan` prop.
+
+<ExampleTabs name="simple-grid-with-col-span" />
+
+### Row and Column Gap
+
+Pass the `rowGap` and `columnGap` props to change the row and column spacing
+between the grid items.
+
+<ExampleTabs name="simple-grid-with-row-and-col-gap" />
