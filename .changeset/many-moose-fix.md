@@ -2,4 +2,5 @@
 "@chakra-ui/react": patch
 ---
 
-fix: checkmark indicator svg is not visible on safari
+- **Checkbox**: Fix issue where checkmark doesn't show on Safari
+- **Alert**: Fix issue where indicator icon is not visible on Safari
