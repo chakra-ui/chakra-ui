@@ -2,7 +2,7 @@ import { Radiomark, Stack } from "@chakra-ui/react"
 
 export const RadiomarkBasic = () => {
   return (
-    <Stack colorPalette="accent">
+    <Stack>
       <Radiomark />
       <Radiomark checked />
       <Radiomark disabled />

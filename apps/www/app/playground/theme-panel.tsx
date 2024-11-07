@@ -32,7 +32,7 @@ const accentColors = [
 const fontFamilies = [
   { label: "Inter", value: "--font-inter" },
   { label: "Outfit", value: "--font-outfit" },
-  { label: "Roboto", value: "--font-roboto" },
+  { label: "Geist", value: "--font-geist-sans" },
   { label: "Figtree", value: "--font-figtree" },
 ]
 
@@ -114,7 +114,7 @@ export function ThemePanel(props: ThemePanelProps) {
         <Card.Header>
           <HStack justify="space-between">
             <Text fontWeight="semibold">Theme Panel</Text>
-            <ColorModeButton colorPalette="accent" />
+            <ColorModeButton colorPalette="gray" />
           </HStack>
         </Card.Header>
         <Card.Body gap="8" alignItems="stretch">
@@ -155,11 +155,13 @@ export function ThemePanel(props: ThemePanelProps) {
                   cursor="default"
                   rounded="md"
                   borderColor={
-                    item.value === fontFamily ? "accent.solid" : undefined
+                    item.value === fontFamily ? "colorPalette.solid" : undefined
                   }
                   outlineWidth="1px"
                   outlineColor={
-                    item.value === fontFamily ? "accent.solid" : "transparent"
+                    item.value === fontFamily
+                      ? "colorPalette.solid"
+                      : "transparent"
                   }
                   outlineStyle="solid"
                   onClick={() => {
@@ -175,9 +177,7 @@ export function ThemePanel(props: ThemePanelProps) {
                 >
                   <VStack gap="1">
                     <Text fontSize="xl">Ag</Text>
-                    <Text textStyle="xs" fontFamily="body">
-                      {item.label}
-                    </Text>
+                    <Text textStyle="xs">{item.label}</Text>
                   </VStack>
                 </Square>
               ))}
