@@ -10,3 +10,5 @@
   error like `ClientOnly cannot be used as a JSX component.`
 
 - **Fieldset**: Fix issue where anatomy is not exported
+
+- **Timeline**: Refactor variants such that it responds to `colorPalette`
