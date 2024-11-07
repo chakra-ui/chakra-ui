@@ -39,10 +39,10 @@ export function getStyles(options: {
       ...orient({
         orientation,
         vertical: {
-          bottom: `${thumbPercents[i]}%`,
+          bottom: `calc(${thumbPercents[i]}% - var(--slider-thumb-size) / 2)`,
         },
         horizontal: {
-          left: `${thumbPercents[i]}%`,
+          left: `calc(${thumbPercents[i]}% - var(--slider-thumb-size) / 2)`,
         },
       }),
     }
