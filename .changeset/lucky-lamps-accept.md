@@ -19,3 +19,6 @@
   performance regressions during style computation
 
 - **Slider**: Fix regression is slider thumb position
+
+- **Tooltip**: Fix issue wher tooltip doesn't work when react.lazy is given as a
+  child

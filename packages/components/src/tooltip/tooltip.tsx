@@ -10,7 +10,7 @@ import {
   HTMLMotionProps,
   motion,
 } from "framer-motion"
-import { Children, cloneElement } from "react"
+import { Children, cloneElement, isValidElement } from "react"
 import { popperCSSVars } from "../popper"
 import { Portal, PortalProps } from "../portal"
 import {
@@ -101,7 +101,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   }
   const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
-  const shouldWrap = typeof children === "string" || shouldWrapChildren
+  const shouldWrap = !isValidElement(children) || shouldWrapChildren
 
   let trigger: React.ReactElement
 
