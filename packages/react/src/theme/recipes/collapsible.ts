@@ -1,8 +1,8 @@
-import { collapsibleAnataomy } from "../../anatomy"
+import { collapsibleAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
-  slots: collapsibleAnataomy.keys(),
+  slots: collapsibleAnatomy.keys(),
   className: "chakra-collapsible",
   base: {
     content: {
