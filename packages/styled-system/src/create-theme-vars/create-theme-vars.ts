@@ -1,8 +1,8 @@
 import { isObject, mergeWith } from "@chakra-ui/utils"
-import { getPseudoSelectors } from "../pseudos"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
 import { flattenTokens, FlatToken } from "./flatten-tokens"
+import { pseudoSelectors } from "../pseudos"
 
 export interface ThemeVars {
   cssVars: Record<string, any>
@@ -27,7 +27,6 @@ export function createThemeVars(theme: Record<string, any>) {
   const flatTokens = flattenTokens(theme)
 
   const cssVarPrefix = theme.config?.cssVarPrefix
-  const pseudoSelectors = getPseudoSelectors(theme)
 
   let cssVars: Record<string, any> = {}
   const cssMap: Record<string, any> = {}

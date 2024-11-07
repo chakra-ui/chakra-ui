@@ -1,7 +1,5 @@
-import { getPropNames } from "@chakra-ui/styled-system"
+import { propNames } from "@chakra-ui/styled-system"
 import { shouldForwardProp } from "./should-forward-prop"
-
-const propNames = getPropNames({})
 
 describe("does not forward styled-system props", () => {
   test.each(propNames)("%s", (propName) => {

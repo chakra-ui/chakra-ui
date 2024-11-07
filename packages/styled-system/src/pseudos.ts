@@ -1,5 +1,3 @@
-import { ThemeTypings } from "./theming.types"
-
 type AnyFunction<T = any> = (...args: T[]) => any
 
 const state = {
@@ -40,7 +38,7 @@ const toPeer = (fn: AnyFunction) =>
 const merge = (fn: AnyFunction, ...selectors: string[]) =>
   selectors.map(fn).join(", ")
 
-const pseudoSelectors = {
+export const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:hover`
    */
@@ -365,19 +363,10 @@ const pseudoSelectors = {
   _current: "&[data-current]",
 }
 
-export type Pseudos = typeof pseudoSelectors &
-  Record<ThemeTypings["conditions"], string>
+export type Pseudos = typeof pseudoSelectors
 
 export type PseudoKey = keyof Pseudos
 
-export function getPseudoSelectors(theme: any) {
-  const __conds = theme.conditions ?? {}
-  const conditions = Object.fromEntries(
-    Object.entries(__conds).map(([key, value]) => [`_${key}`, value]),
-  )
-  return { ...pseudoSelectors, ...conditions }
-}
-
-export function getPseudoPropNames(theme: any) {
-  return Object.keys(getPseudoSelectors(theme))
-}
+export const pseudoPropNames = Object.keys(
+  pseudoSelectors,
+) as (keyof typeof pseudoSelectors)[]

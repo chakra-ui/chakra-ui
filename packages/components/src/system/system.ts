@@ -1,6 +1,6 @@
 import {
   css,
-  isStylePropFn,
+  isStyleProp,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
@@ -53,7 +53,7 @@ export const toCSSObject: GetStyleObject =
   ({ baseStyle }) =>
   (props) => {
     const { theme, css: cssProp, __css, sx, ...restProps } = props
-    const [styleProps] = splitProps(restProps, theme.__isStyleProp)
+    const [styleProps] = splitProps(restProps, isStyleProp)
 
     const finalBaseStyle = runIfFn(baseStyle, props)
     const finalStyles = assignAfter(

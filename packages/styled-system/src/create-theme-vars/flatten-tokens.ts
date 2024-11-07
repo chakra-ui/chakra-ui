@@ -1,5 +1,5 @@
 import { walkObject } from "@chakra-ui/utils"
-import { getPseudoPropNames } from "../pseudos"
+import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 import { extractSemanticTokens, extractTokens } from "./theme-tokens"
 
@@ -31,8 +31,8 @@ export function flattenTokens(theme: Record<string, any>) {
   const tokens = extractTokens(theme)
   const semanticTokens = extractSemanticTokens(theme)
 
-  const pseudoPropNames = getPseudoPropNames(theme)
   const isSemanticCondition = (key: string) =>
+    // @ts-ignore
     pseudoPropNames.includes(key) || "default" === key
 
   const result: FlatTokens = {}

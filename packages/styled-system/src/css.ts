@@ -1,6 +1,6 @@
 import { isObject, mergeWith, runIfFn } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { getPseudoSelectors } from "./pseudos"
+import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { StyleObjectOrFn } from "./system.types"
 import { expandResponsive } from "./utils/expand-responsive"
@@ -143,7 +143,7 @@ export function getCss(options: GetCSSOptions) {
 export const css = (styles: StyleObjectOrFn) => (theme: any) => {
   const cssFn = getCss({
     theme,
-    pseudos: getPseudoSelectors(theme),
+    pseudos: pseudoSelectors,
     configs: systemPropConfigs,
   })
   return cssFn(styles)

@@ -1,11 +1,11 @@
-import { getPropNames } from "@chakra-ui/styled-system"
+import { propNames } from "@chakra-ui/styled-system"
 
 /**
  * List of props for emotion to omit from DOM.
  * It mostly consists of Chakra props
  */
 const allPropNames = new Set([
-  ...getPropNames({}),
+  ...propNames,
   "textStyle",
   "layerStyle",
   "apply",
