@@ -21,22 +21,21 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       gap: "2",
     },
     content: {
-      background: "bg",
-      borderRadius: "l3",
-      boxShadow: "lg",
       display: "flex",
       flexDirection: "column",
+      bg: "bg",
+      borderRadius: "l3",
+      boxShadow: "lg",
       maxWidth: "sm",
       p: "4",
       zIndex: "dropdown",
       _open: {
-        animation: "fadeIn 0.25s ease-out",
+        animationStyle: "slide-fade-in",
+        animationDuration: "fast",
       },
       _closed: {
-        animation: "fadeOut 0.2s ease-out",
-      },
-      _hidden: {
-        display: "none",
+        animationStyle: "slide-fade-out",
+        animationDuration: "faster",
       },
     },
     area: {
@@ -65,14 +64,14 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       display: "grid",
       gridTemplateColumns: "repeat(7, 1fr)",
       gap: "2",
-      background: "bg",
+      bg: "bg",
     },
     swatch: {
       height: "6",
       width: "6",
       borderRadius: "l2",
       boxShadow:
-        "0 0 0 1px var(--colors-border-emphasized), 0 0 0 2px var(--colors-bg-default) inset",
+        "0 0 0 1px {colors.border.emphasized}, 0 0 0 2px {colors.bg} inset",
     },
     channelSliderThumb: {
       borderRadius: "full",
