@@ -62,16 +62,14 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
     },
     swatchGroup: {
       display: "grid",
-      gridTemplateColumns: "repeat(7, 1fr)",
+      gridTemplateColumns: "repeat(var(--swatch-group-columns, 7), 1fr)",
       gap: "2",
-      bg: "bg",
     },
     swatch: {
       height: "6",
       width: "6",
       borderRadius: "l2",
-      boxShadow:
-        "0 0 0 1px {colors.border.emphasized}, 0 0 0 2px {colors.bg} inset",
+      boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
     },
     channelSliderThumb: {
       borderRadius: "full",
@@ -85,4 +83,8 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
     },
   },
+  variants: {
+    size: {},
+  },
+  defaultVariants: {},
 })

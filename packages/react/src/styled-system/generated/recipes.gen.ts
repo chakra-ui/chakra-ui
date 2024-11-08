@@ -255,6 +255,21 @@ export type RadiomarkVariantMap = {
   [K in keyof RadiomarkVariant]: Array<RadiomarkVariant[K]>
 }
 
+export interface ColorSwatchVariant {
+  /** @default "md" */
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inherit" | "full"
+  /** @default "rounded" */
+  shape?: "square" | "circle" | "rounded"
+}
+
+export type ColorSwatchVariantProps = {
+  [K in keyof ColorSwatchVariant]?: ConditionalValue<ColorSwatchVariant[K]> | undefined
+}
+
+export type ColorSwatchVariantMap = {
+  [K in keyof ColorSwatchVariant]: Array<ColorSwatchVariant[K]>
+}
+
 export interface ConfigRecipes {
   badge: SystemRecipeFn<BadgeVariantProps, BadgeVariantMap>
   button: SystemRecipeFn<ButtonVariantProps, ButtonVariantMap>
@@ -274,6 +289,7 @@ export interface ConfigRecipes {
   icon: SystemRecipeFn<IconVariantProps, IconVariantMap>
   checkmark: SystemRecipeFn<CheckmarkVariantProps, CheckmarkVariantMap>
   radiomark: SystemRecipeFn<RadiomarkVariantProps, RadiomarkVariantMap>
+  colorSwatch: SystemRecipeFn<ColorSwatchVariantProps, ColorSwatchVariantMap>
 }
 
 // Accordion
@@ -1213,7 +1229,9 @@ export type ColorPickerSlot =
   | "formatSelect"
   | "view"
 
-export interface ColorPickerVariant {}
+export interface ColorPickerVariant {
+  size?: boolean
+}
 
 export type ColorPickerVariantProps = {
   [K in keyof ColorPickerVariant]?: ConditionalValue<ColorPickerVariant[K]> | undefined
