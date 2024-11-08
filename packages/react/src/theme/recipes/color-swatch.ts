@@ -4,10 +4,11 @@ export const colorSwatchRecipe = defineRecipe({
   className: "color-swatch",
   base: {
     boxSize: "var(--swatch-size)",
-    shadow: "inset 0 0 0 1px rgba(0, 0, 0, 0.05)",
+    shadowColor: "rgba(0, 0, 0, 0.05)",
+    shadow: "inset 0 0 0 1px var(--shadow-color)",
     "--checker-size": "8px",
     "--checker-bg": "colors.bg",
-    "--checker-fg": "rgb(230, 230, 230)",
+    "--checker-fg": "colors.bg.emphasized",
     background:
       "linear-gradient(var(--color), var(--color)), repeating-conic-gradient(var(--checker-fg) 0%, var(--checker-fg) 25%, var(--checker-bg) 0%, var(--checker-bg) 50%) 0% 50% / var(--checker-size) var(--checker-size)",
     focusRing: "outside",
