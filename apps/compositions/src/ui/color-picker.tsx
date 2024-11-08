@@ -8,7 +8,7 @@ import {
   type StackProps,
 } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { LuPipette } from "react-icons/lu"
+import { LuCheck, LuPipette } from "react-icons/lu"
 
 export const ColorPickerTrigger = forwardRef<
   HTMLButtonElement,
@@ -108,13 +108,14 @@ export const ColorPickerSwatchGroup = forwardRef<
   HTMLDivElement,
   ChakraColorPicker.SwatchGroupProps & { items: string[] }
 >(function ColorPickerSwatchGroup(props, ref) {
+  const { items, ...rest } = props
   return (
-    <ChakraColorPicker.SwatchGroup ref={ref} {...props}>
-      {props.items.map((item) => (
+    <ChakraColorPicker.SwatchGroup ref={ref} {...rest}>
+      {items.map((item) => (
         <ChakraColorPicker.SwatchTrigger key={item} value={item}>
           <ChakraColorPicker.Swatch value={item}>
             <ChakraColorPicker.SwatchIndicator>
-              ✓
+              <LuCheck />
             </ChakraColorPicker.SwatchIndicator>
           </ChakraColorPicker.Swatch>
         </ChakraColorPicker.SwatchTrigger>
