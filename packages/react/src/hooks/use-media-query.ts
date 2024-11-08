@@ -36,7 +36,7 @@ export function useMediaQuery(
     return queries.map((query, index) => ({
       media: query,
       matches: !ssr
-        ? (getWin() ?? window).matchMedia?.(query)?.matches
+        ? (getWindow?.() ?? window).matchMedia?.(query)?.matches
         : !!fallback[index],
     }))
   })
