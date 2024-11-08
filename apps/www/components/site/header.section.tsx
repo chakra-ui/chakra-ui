@@ -3,6 +3,7 @@
 import { ColorModeButton } from "@/components/docs/color-mode-button"
 import { Logo } from "@/components/logo"
 import { SocialLinks } from "@/components/social-links"
+import { docsConfig } from "@/docs.config"
 import {
   Button,
   Container,
@@ -15,7 +16,6 @@ import {
 } from "@chakra-ui/react"
 import Link from "next/link"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
-import { docsConfig } from "@/docs.config"
 
 const HeaderRoot = chakra(Container, {
   base: {
@@ -37,9 +37,9 @@ const LogoLink = () => (
 
 const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
-  { title: "Enterprise", url: "/enterprise" },
+  { title: "Playground", url: "/playground" },
   { title: "Blog", url: "/blog" },
-  { title: "Showcase", url: "/showcase" },
+  { title: "Enterprise", url: "/enterprise" },
 ]
 
 const DesktopNav = () => (
