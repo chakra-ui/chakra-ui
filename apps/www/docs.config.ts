@@ -13,6 +13,7 @@ const docsLinks: NavItem = {
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
+            { title: "Showcase", url: "showcase" },
           ],
         },
         {
@@ -281,9 +282,9 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
+    { title: "Playground", url: "playground" },
     { title: "Enterprise", url: "enterprise" },
     { title: "Blog", url: "blog" },
-    { title: "Showcase", url: "showcase" },
   ],
   proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
 }
