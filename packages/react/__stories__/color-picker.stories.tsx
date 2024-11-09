@@ -13,3 +13,4 @@ export default {
 } satisfies Meta
 
 export { ColorPickerBasic as Basic } from "compositions/examples/color-picker-basic"
+export { ColorPickerSwatchOnly as SwatchOnly } from "compositions/examples/color-picker-swatch-only"

@@ -13,9 +13,9 @@ import {
 
 export const ColorPickerBasic = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")}>
+    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl alignItems="center" maxW="200px">
+      <ColorPickerControl alignItems="center">
         <ColorPickerHexInput />
         <ColorPickerTrigger />
       </ColorPickerControl>

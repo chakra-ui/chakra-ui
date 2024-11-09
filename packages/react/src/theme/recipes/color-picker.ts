@@ -9,6 +9,8 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1.5",
+      "--thumb-size": "sizes.4",
+      "--swatch-size": "sizes.6",
     },
     label: {
       color: "fg",
@@ -21,9 +23,12 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       gap: "2",
     },
     content: {
+      "--thumb-size": "sizes.4.5",
+      "--swatch-size": "sizes.6",
+      "--slider-height": "sizes.5",
       display: "flex",
       flexDirection: "column",
-      bg: "bg",
+      bg: "bg.panel",
       borderRadius: "l3",
       boxShadow: "lg",
       maxWidth: "sm",
@@ -45,9 +50,11 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
     },
     areaThumb: {
       borderRadius: "full",
-      height: "2.5",
-      width: "2.5",
-      boxShadow: "white 0px 0px 0px 2px, black 0px 0px 2px 1px",
+      height: "var(--thumb-size)",
+      width: "var(--thumb-size)",
+      borderWidth: "0.25rem",
+      borderColor: "white",
+      shadow: "sm",
       outline: "none",
     },
     areaBackground: {
@@ -57,25 +64,34 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
     },
     channelSliderTrack: {
-      height: "3",
-      borderRadius: "l2",
+      height: "var(--slider-height)",
+      borderRadius: "inherit",
+      boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
     },
     swatchGroup: {
       display: "grid",
-      gridTemplateColumns: "repeat(var(--swatch-group-columns, 7), 1fr)",
+      gridTemplateColumns: "repeat(var(--swatch-per-row, 7), 1fr)",
       gap: "2",
     },
     swatch: {
-      height: "6",
-      width: "6",
+      height: "var(--swatch-size)",
+      width: "var(--swatch-size)",
       borderRadius: "l2",
       boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    swatchIndicator: {
+      color: "white",
     },
     channelSliderThumb: {
       borderRadius: "full",
-      height: "2.5",
-      width: "2.5",
-      boxShadow: "white 0px 0px 0px 2px, black 0px 0px 2px 1px",
+      height: "var(--thumb-size)",
+      width: "var(--thumb-size)",
+      borderWidth: "0.25rem",
+      borderColor: "white",
+      shadow: "sm",
       transform: "translate(-50%, -50%)",
       outline: "none",
     },
@@ -83,8 +99,18 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
     },
   },
+
   variants: {
-    size: {},
+    size: {
+      xs: {},
+      sm: {},
+      md: {},
+      lg: {},
+      xl: {},
+    },
   },
-  defaultVariants: {},
+
+  defaultVariants: {
+    size: "md",
+  },
 })

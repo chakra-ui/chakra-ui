@@ -57,7 +57,7 @@ export const ColorPickerSliderControl = forwardRef<HTMLDivElement, StackProps>(
     return (
       <HStack ref={ref} {...props}>
         <ColorPickerEyeDropper />
-        <Stack flex="1">
+        <Stack flex="1" px="calc(var(--thumb-size) / 2)">
           <ColorPickerSlider channel="hue" />
           <ColorPickerSlider channel="alpha" />
         </Stack>
@@ -84,7 +84,7 @@ export const ColorPickerEyeDropper = forwardRef<
 >(function ColorPickerEyeDropper(props, ref) {
   return (
     <ChakraColorPicker.EyeDropperTrigger asChild {...props}>
-      <IconButton size="sm" variant="outline" ref={ref}>
+      <IconButton size="sm" variant="ghost" ref={ref}>
         <LuPipette />
       </IconButton>
     </ChakraColorPicker.EyeDropperTrigger>
@@ -112,7 +112,11 @@ export const ColorPickerSwatchGroup = forwardRef<
   return (
     <ChakraColorPicker.SwatchGroup ref={ref} {...rest}>
       {items.map((item) => (
-        <ChakraColorPicker.SwatchTrigger key={item} value={item}>
+        <ChakraColorPicker.SwatchTrigger
+          key={item}
+          value={item}
+          css={{ "--color": item }}
+        >
           <ChakraColorPicker.Swatch value={item}>
             <ChakraColorPicker.SwatchIndicator>
               <LuCheck />
@@ -138,3 +142,4 @@ export const ColorPickerRoot = forwardRef<
 
 export const ColorPickerLabel = ChakraColorPicker.Label
 export const ColorPickerControl = ChakraColorPicker.Control
+export const ColorPickerValueText = ChakraColorPicker.ValueText
