@@ -36,6 +36,9 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       minH: "8",
       px: "1",
       rounded: "l2",
+      _disabled: {
+        opacity: "0.5",
+      },
     },
     content: {
       "--thumb-size": "sizes.4.5",
