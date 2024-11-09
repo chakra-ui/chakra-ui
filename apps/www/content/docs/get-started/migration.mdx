@@ -25,7 +25,8 @@ packages are no longer required in Chakra UI.
 npm uninstall @emotion/styled framer-motion
 ```
 
-Install updated versions of the packages: `@chakra-ui/react` and `@emotion/react`.
+Install updated versions of the packages: `@chakra-ui/react` and
+`@emotion/react`.
 
 ```bash
 npm install @chakra-ui/react@latest @emotion/react@latest
@@ -427,6 +428,35 @@ This was done for two reasons:
   strongly typed
 
 ## Component Changes
+
+### ChakraProvider
+
+- Removed `theme` prop in favor of passing the `system` prop instead. Import the
+  `defaultSystem` module instead of `theme`
+
+- Removed `resetCss` prop in favor of passing `preflight: false` to the
+  `createSystem` function
+
+Before
+
+```tsx
+<ChakraProvider resetCss={false}>
+  <Component />
+</ChakraProvider>
+```
+
+After
+
+```tsx
+const system = createSystem(defaultConfig, { preflight: false })
+
+<Provider value={system}>
+  <Component />
+</Provider>
+```
+
+- Removed support for configuring toast options. Pass it to the `createToaster`
+  function in `components/ui/toaster.tsx` file instead.
 
 ### Modal
 
