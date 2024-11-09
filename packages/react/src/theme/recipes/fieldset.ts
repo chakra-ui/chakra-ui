@@ -1,4 +1,4 @@
-import { fieldsetAnatomy } from "@ark-ui/anatomy"
+import { fieldsetAnatomy } from "@ark-ui/react/fieldset"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldsetSlotRecipe = defineSlotRecipe({
