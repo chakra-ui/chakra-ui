@@ -1,6 +1,7 @@
 export * from "./attr"
 export * from "./call-all"
 export * from "./compact"
+export * from "./create-anatomy"
 export * from "./create-props"
 export * from "./cx"
 export * from "./entries"
