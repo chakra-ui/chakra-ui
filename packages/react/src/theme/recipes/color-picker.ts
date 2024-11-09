@@ -17,10 +17,25 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
       textStyle: "sm",
     },
+    valueText: {
+      textAlign: "start",
+    },
     control: {
       display: "flex",
       flexDirection: "row",
       gap: "2",
+    },
+    trigger: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: "2",
+      textStyle: "sm",
+      focusRing: "outside",
+      borderWidth: "1px",
+      minH: "8",
+      px: "1",
+      rounded: "l2",
     },
     content: {
       "--thumb-size": "sizes.4.5",
@@ -31,7 +46,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       bg: "bg.panel",
       borderRadius: "l3",
       boxShadow: "lg",
-      maxWidth: "sm",
+      width: "240px",
       p: "4",
       zIndex: "dropdown",
       _open: {
@@ -44,7 +59,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       },
     },
     area: {
-      height: "36",
+      height: "180px",
       borderRadius: "l2",
       overflow: "hidden",
     },
@@ -76,7 +91,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
     swatch: {
       height: "var(--swatch-size)",
       width: "var(--swatch-size)",
-      borderRadius: "l2",
+      borderRadius: "l1",
       boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
       display: "flex",
       alignItems: "center",

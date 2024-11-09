@@ -1,4 +1,5 @@
 import {
+  Box,
   ColorPicker as ChakraColorPicker,
   HStack,
   IconButton,
@@ -16,8 +17,11 @@ export const ColorPickerTrigger = forwardRef<
 >(function ColorPickerTrigger(props, ref) {
   return (
     <ChakraColorPicker.Trigger ref={ref} {...props}>
-      <ChakraColorPicker.TransparencyGrid />
-      <ChakraColorPicker.ValueSwatch />
+      <Box pos="relative">
+        <ChakraColorPicker.TransparencyGrid />
+        <ChakraColorPicker.ValueSwatch />
+      </Box>
+      {props.children}
     </ChakraColorPicker.Trigger>
   )
 })
@@ -28,7 +32,7 @@ export const ColorPickerHexInput = forwardRef<
 >(function ColorHexInput(props, ref) {
   return (
     <ChakraColorPicker.ChannelInput channel="hex" asChild {...props}>
-      <Input size="2xs" ref={ref} />
+      <Input size="xs" ref={ref} />
     </ChakraColorPicker.ChannelInput>
   )
 })
