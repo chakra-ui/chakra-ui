@@ -1,5 +1,25 @@
 # @chakra-ui/react
 
+## 3.1.1
+
+### Patch Changes
+
+- [#9128](https://github.com/chakra-ui/chakra-ui/pull/9128)
+  [`0715e2c`](https://github.com/chakra-ui/chakra-ui/commit/0715e2cd51a20db4d66f1e5290a8c1d74cb59858)
+  Thanks [@coverlv](https://github.com/coverlv)! - Fix issue where
+  `useBreakpointValue` throws error if `ssr` is false
+
+- [#9103](https://github.com/chakra-ui/chakra-ui/pull/9103)
+  [`1254769`](https://github.com/chakra-ui/chakra-ui/commit/12547692bdfe2ebe7be9c16ea381a5c42f553e1c)
+  Thanks [@Newbie012](https://github.com/Newbie012)! - - **Checkbox**: Fix issue
+  where checkmark doesn't show on Safari
+
+  - **Alert**: Fix issue where indicator icon is not visible on Safari
+  - **ClientOnly**: Fix issue where returned the incorrect type leading to TS
+    error like `ClientOnly cannot be used as a JSX component.`
+  - **Fieldset**: Fix issue where anatomy is not exported
+  - **Timeline**: Refactor variants such that it responds to `colorPalette`
+
 ## 3.1.0
 
 ### Minor Changes
