@@ -1,71 +1,79 @@
 ---
-title: Chakra v2 vs v3 - A Detailed Comparison
-description: Discover new features in Chakra UI v3.
+title: Building Consistent UIs with Design Tokens
+description: Design tokens allow developers to create maintanable UIs.
 type: article
 authors: ["esther"]
-draft: true
-publishedAt: "2024-11-13"
+publishedAt: "2024-11-12"
 ---
 
-Building Consistent UIs with Design Tokens in Chakra UI Design tokens play a key
-role in creating scalable, cohesive, and consistent user interfaces. With Chakra
-UI, these tokens are not only integrated but also optimized to streamline UI
-development.
+Design tokens allow developers to create user interfaces that are cohesive,
+scalable, and easy to manage.
 
-This article will explore how you can leverage Chakra UI’s built-in design
-tokens to enhance productivity, maintain consistency across applications, and
-create visually pleasing designs with minimal effort.
+They create a shared language between designers and developers, allowing them to
+reference standardized values instead of hard-coding specific styles. This way,
+rather than updating styles individually across components, developers can
+adjust token values, which are then applied globally.
 
-## What Are Design Tokens and Why Do They Matter?
+In this article, I'll cover how you can leverage Chakra UI’s built-in design
+tokens to maintain consistency across all your applications.
 
-Design tokens are named variables used to store visual design attributes, such
-as colors, font sizes, border radius, and spacing. They serve as the foundation
-of a design system, allowing developers and designers to implement consistent
-styles across components and projects efficiently. By abstracting visual
-properties into tokens, design tokens create a shared language between design
-and development teams, ensuring cohesive designs.
+## What Are Design Tokens?
+
+Design tokens are key-value pairs that represent the visual properties and UI
+elements of a design system, such as colors, typography, spacing and more. They
+play a key role in allowing you create scalable, cohesive, and consistent user
+interfaces.
+
+They serve as the foundation of a design system, allowing developers and
+designers to implement consistent styles across components and projects
+efficiently. By abstracting visual properties into tokens, design tokens create
+a shared language between design and development teams, ensuring cohesive
+designs.
 
 In Chakra UI, these tokens fall into two main categories:
 
 - Core Tokens: Fundamental properties such as colors, font sizes, spacing, and
   borders.
 - Semantic Tokens: Higher-level tokens tied to themes that enable easy style
-  updates across dark and light modes or other design contexts. This approach in
-  Chakra UI simplifies the design process by offering a consistent style
-  language, making it easier to adapt components to different themes without
-  manual overrides.
+  updates across dark and light modes or other design contexts.
 
-## Using Core Design Tokens to Streamline UI Development
+## Utilize Core Design Tokens for Scalability
 
-Chakra UI’s core design tokens include foundational properties like colors,
-spacing, and font sizes, which help you quickly set up your application’s look
-and feel. Here’s how to use some of these tokens to streamline development:
+Chakra UI’s [core design tokens](/docs/theming/tokens) include foundational
+properties like **colors**, **spacing**, **typography**, **radii**, **borders**
+and more, which help you quickly set up your application’s look and feel.
 
-- Colors: Chakra UI provides a wide palette of color tokens, including gray.500,
-  blue.300, and more. These colors ensure accessibility and maintain visual
-  consistency across components.
+Here’s how to use some of these tokens to streamline development:
+
+- Colors: Chakra UI provides a wide palette of color tokens, ranging from `.50`
+  to `.950` such as `gray.50`, `gray.300`, etc.
 
 ```jsx
-<Box bg="blue.500" color="white" p={4}>
+<Box bg="gray.300" p={4}>
   Chakra Box with Core Color Token
 </Box>
 ```
 
-- Spacing and Sizing: Tokens like px, py, margin, and padding allow for
-  consistent layout spacing and dimensions. Using tokens like 4, 8, 12, etc.,
-  aligns your app’s spacing, enhancing readability and ensuring predictable
-  layout behavior.
+- Spacing and Sizing: Tokens for margin, padding and other sizing properties
+  allow for consistent layout dimensions.
+
+  By default, Chakra includes a comprehensive numeric spacing scale where the
+  values are proportional. So, 1 spacing unit is equal to `0.25rem`, which
+  translates to `4px` by default in common browsers.
+
+  Using tokens like 4, 8, 12, etc., ensures a predictable layout behavior.
 
 ```jsx
-<Box p={4} m={2}>
+<Box padding={4} margin={2}>
   Consistent Padding and Margin
 </Box>
 ```
 
-- Font and Typography: Chakra provides font size and weight tokens, so your
-  app’s text elements maintain a uniform appearance. By specifying tokens like
-  lg, md, or xl for font sizes, you reduce the likelihood of inconsistent text
-  styling.
+> This translates to a padding of `16px` and a margin of `8px`.
+
+- Typography: Chakra provides font size and weight tokens, so your app’s text
+  elements maintain a uniform appearance. By specifying tokens like lg, md, or
+  xl for font sizes, you reduce the likelihood of inconsistent text styling.
 
 ```jsx
 <Text fontSize="lg" fontWeight="bold">
@@ -73,51 +81,108 @@ and feel. Here’s how to use some of these tokens to streamline development:
 </Text>
 ```
 
-By using these core tokens, you create a predictable design structure that’s
-easy to maintain and update.
+#### Customizing Core Design Tokens
 
-### Implementing Theming with Semantic Tokens for Adaptive Designs
+To start [customizing tokens](/docs/theming/customization/colors#tokens), you
+need to extend the Chakra theme by using Chakra’s `defineConfig` function. This
+function allows you to override Chakra’s default tokens with your own values.
 
-Chakra UI’s semantic tokens allow for context-based styling, enabling dynamic
-appearance changes based on theme or mode (e.g., light or dark themes). Semantic
-tokens offer a higher-level abstraction than core tokens and are perfect for
-adaptive designs.
+Let’s look at how you can start by creating a custom `theme.ts` file. A design
+token in Chakra UI consists of the following properties:
 
-- Light and Dark Mode: Semantic tokens let you switch styles when users toggle
-  themes. For example, colorScheme tokens like primary, secondary, and accent
-  adapt to both light and dark modes, maintaining an accessible contrast in
-  either setting.
+- value: The value of the token. This can be any valid CSS value.
+- description: An optional description of what the token can be used for.
 
-```jsx
-<Button colorScheme="primary">Semantic Button</Button>
-```
+```ts
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
-- Customizing with Theme Extensions: You can create your own semantic tokens by
-  extending Chakra’s theme. This flexibility enables you to customize tokens
-  based on your brand’s unique color scheme.
-
-```jsx
-const theme = extendTheme({
-  semanticTokens: {
-    colors: {
-      text: {
-        default: "gray.800",
-        _dark: "whiteAlpha.900",
-      },
-      background: {
-        default: "white",
-        _dark: "gray.800",
+const customConfig = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          50: { value: "#e6f2ff" },
+          100: { value: "#e6f2ff" },
+          200: { value: "#bfdeff" },
+          300: { value: "#99caff" },
+          // ...
+          950: { value: "#001a33" },
+        },
       },
     },
   },
 })
+
+export const system = createSystem(defaultConfig, customConfig)
 ```
 
-By implementing semantic tokens, you can easily switch your application’s style
-without refactoring individual components, making it especially useful for
-responsive, accessible, and scalable designs.
+Now, you can utilize your custom token where needed, such as:
 
-### Boosting Collaboration and Efficiency with Design Tokens
+```jsx
+<Box bg="brand.100">This Box uses a custom token</Box>
+```
+
+### Use Semantic Tokens for Contextual Designs
+
+[Semantic tokens](/docs/theming/semantic-tokens) allow for context-based styling
+and enables you to change the appearance of your app based on the theme or mode
+(e.g., light or dark mode).
+
+```jsx
+<Button color="danger">Click me</Button>
+```
+
+In most cases, the value of a semantic token references to an existing token.
+
+To reference a value in a semantic token, use the token reference `{}` syntax.
+
+```ts
+import { createSystem, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        red: { value: "#EE0F0F" },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        danger: { value: "{colors.red}" },
+      },
+    },
+  },
+})
+
+export default createSystem(config)
+```
+
+#### Customizing with Theme Extensions
+
+You can
+[create your own semantic tokens](/docs/theming/customization/colors#custom-tokens)
+by extending Chakra’s theme. This flexibility enables you to customize semantic
+tokens based on your brand’s unique color scheme.
+
+```jsx
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        "checkbox-border": {
+          value: { _light: "gray.200", _dark: "gray.800" },
+        },
+      },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, customConfig)
+```
+
+### Boost Collaboration with Design Tokens
 
 Design tokens promote a unified approach to styling, which can drastically
 improve collaboration between developers and designers. Here’s how design tokens
@@ -125,29 +190,25 @@ in Chakra UI help:
 
 - Creating a Shared Visual Language: Design tokens provide a standard set of
   values for developers and designers, ensuring everyone uses the same color
-  palette, spacing, and typography values. This shared language reduces
-  miscommunications and fosters consistency.
+  palette, spacing, and typography values.
 
 - Efficiently Managing Global Design Changes: Because design tokens are
   centrally managed, changing a token value updates all components using that
-  token. For example, if you adjust primary.500 to a new shade, every component
-  using this token instantly reflects the change.
+  token. For example, if you adjust a `primary.500` token to a new shade, every
+  component using this token instantly reflects the change.
 
 - Enhanced Reusability and Maintainability: With Chakra’s tokens, components are
   designed to be reusable, enhancing your code’s scalability. When you need to
   adjust a style across multiple components, you simply update the token rather
   than modifying each component individually.
 
-## Be More Productive with Design Tokens
+## Build Scalable Applications with Design Tokens
 
-Ready to build a UI that’s consistent, scalable, and adaptive? Start by
-integrating design tokens into your Chakra UI projects. Whether you’re
-implementing core tokens for standard styles or using semantic tokens to adapt
-to theme changes, Chakra UI’s design tokens make your interface clean,
-efficient, and easier to maintain.
+Whether you’re implementing core tokens for standard styles or using semantic
+tokens to adapt to theme changes, Chakra UI’s design tokens make your interface
+clean, efficient, and easier to maintain.
 
-Explore how core tokens streamline your design process, then experiment with
-semantic tokens for dynamic styling. By using a shared set of values, you’re not
-only speeding up your development workflow but also ensuring your designs stay
-cohesive. Try it out in your next project, and experience firsthand how design
-tokens can simplify your work and improve collaboration across your team.
+By using a shared set of values, you’re not only speeding up your development
+workflow but also ensuring your designs stay cohesive. Try it out in your next
+project, and experience firsthand how design tokens can simplify your work and
+improve collaboration across your team.
