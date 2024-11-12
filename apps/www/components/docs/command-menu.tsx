@@ -77,7 +77,7 @@ export const CommandMenu = (props: Props) => {
 
   return (
     <DialogRoot
-      centered
+      placement="center"
       motionPreset="slide-in-bottom"
       open={open}
       onOpenChange={(event) => setOpen(event.open)}
