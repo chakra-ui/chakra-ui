@@ -1,4 +1,3 @@
-import React from "react"
 import Combobox from "../src/components/combobox/combobox"
 
 export default {

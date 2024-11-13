@@ -4,8 +4,6 @@ import { Box, IconButton, Input, Text } from "@chakra-ui/react"
 import React, { useState } from "react"
 import { ChevronDownIcon } from "../icons"
 
-// Upewnij się, że ścieżka jest poprawna
-
 type ComboboxProps = {
   options: string[]
 }
@@ -31,16 +29,19 @@ const Combobox: React.FC<ComboboxProps> = ({ options }) => {
   return (
     <Box position="relative" width="200px">
       <Input
-        placeholder="Wpisz coś..."
+        placeholder="Write something..."
         value={query}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
       />
       <IconButton
+        width="40px"
+        height="40px"
         aria-label="Expand"
         position="absolute"
-        right="2"
-        top="2"
+        right="-30px"
+        top="50%"
+        transform="translate(50%,-50%)"
         size="sm"
         onClick={() => setIsOpen((prev) => !prev)}
       >
