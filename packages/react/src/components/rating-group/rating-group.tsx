@@ -135,3 +135,6 @@ export const RatingGroupHiddenInput = ArkRatingGroup.HiddenInput
 
 export interface RatingGroupValueChangeDetails
   extends ArkRatingGroup.ValueChangeDetails {}
+
+export interface RatingGroupHoverChangeDetails
+  extends ArkRatingGroup.HoverChangeDetails {}

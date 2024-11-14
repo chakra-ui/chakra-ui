@@ -20,6 +20,7 @@ export type {
   RatingGroupRootProps,
   RatingGroupRootProviderProps,
   RatingGroupValueChangeDetails,
+  RatingGroupHoverChangeDetails,
 } from "./rating-group"
 
 export {

@@ -49,6 +49,8 @@ export type {
   MenuTriggerItemProps,
   MenuTriggerProps,
   MenuOpenChangeDetails,
+  MenuSelectionDetails,
+  MenuHighlightChangeDetails,
 } from "./menu"
 
 export * as Menu from "./namespace"

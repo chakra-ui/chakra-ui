@@ -22,4 +22,7 @@ export type {
   NumberInputRootProviderProps as RootProviderProps,
   NumberInputScrubberProps as ScrubberProps,
   NumberInputValueTextProps as ValueTextProps,
+  NumberInputFocusChangeDetails as FocusChangeDetails,
+  NumberInputValueChangeDetails as ValueChangeDetails,
+  NumberInputValueInvalidDetails as ValueInvalidDetails,
 } from "./number-input"
