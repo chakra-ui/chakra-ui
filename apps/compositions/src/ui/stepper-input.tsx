@@ -1,12 +1,12 @@
 import { HStack, IconButton, NumberInput } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import * as React from "react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 
 export interface StepperInputProps extends NumberInput.RootProps {
   label?: React.ReactNode
 }
 
-export const StepperInput = forwardRef<HTMLDivElement, StepperInputProps>(
+export const StepperInput = React.forwardRef<HTMLDivElement, StepperInputProps>(
   function StepperInput(props, ref) {
     const { label, ...rest } = props
     return (
@@ -22,7 +22,7 @@ export const StepperInput = forwardRef<HTMLDivElement, StepperInputProps>(
   },
 )
 
-const DecrementTrigger = forwardRef<
+const DecrementTrigger = React.forwardRef<
   HTMLButtonElement,
   NumberInput.DecrementTriggerProps
 >(function DecrementTrigger(props, ref) {
@@ -35,7 +35,7 @@ const DecrementTrigger = forwardRef<
   )
 })
 
-const IncrementTrigger = forwardRef<
+const IncrementTrigger = React.forwardRef<
   HTMLButtonElement,
   NumberInput.IncrementTriggerProps
 >(function IncrementTrigger(props, ref) {

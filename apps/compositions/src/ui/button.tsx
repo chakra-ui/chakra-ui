@@ -5,7 +5,7 @@ import {
   Span,
   Spinner,
 } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import * as React from "react"
 
 interface ButtonLoadingProps {
   loading?: boolean
@@ -14,7 +14,7 @@ interface ButtonLoadingProps {
 
 export interface ButtonProps extends ChakraButtonProps, ButtonLoadingProps {}
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
     const { loading, disabled, loadingText, children, ...rest } = props
     return (

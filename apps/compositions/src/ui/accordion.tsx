@@ -1,12 +1,12 @@
 import { Accordion, HStack } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import * as React from "react"
 import { LuChevronDown } from "react-icons/lu"
 
 interface AccordionItemTriggerProps extends Accordion.ItemTriggerProps {
   indicatorPlacement?: "start" | "end"
 }
 
-export const AccordionItemTrigger = forwardRef<
+export const AccordionItemTrigger = React.forwardRef<
   HTMLButtonElement,
   AccordionItemTriggerProps
 >(function AccordionItemTrigger(props, ref) {
@@ -32,7 +32,7 @@ export const AccordionItemTrigger = forwardRef<
 
 interface AccordionItemContentProps extends Accordion.ItemContentProps {}
 
-export const AccordionItemContent = forwardRef<
+export const AccordionItemContent = React.forwardRef<
   HTMLDivElement,
   AccordionItemContentProps
 >(function AccordionItemContent(props, ref) {

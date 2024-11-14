@@ -3,26 +3,29 @@ import type {
   CircleProps,
 } from "@chakra-ui/react"
 import { Skeleton as ChakraSkeleton, Circle, Stack } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import * as React from "react"
 
 export interface SkeletonCircleProps extends ChakraSkeletonProps {
   size?: CircleProps["size"]
 }
 
-export const SkeletonCircle = (props: SkeletonCircleProps) => {
+export const SkeletonCircle = React.forwardRef<
+  HTMLDivElement,
+  SkeletonCircleProps
+>(function SkeletonCircle(props, ref) {
   const { size, ...rest } = props
   return (
-    <Circle size={size} asChild>
+    <Circle size={size} asChild ref={ref}>
       <ChakraSkeleton {...rest} />
     </Circle>
   )
-}
+})
 
 export interface SkeletonTextProps extends ChakraSkeletonProps {
   noOfLines?: number
 }
 
-export const SkeletonText = forwardRef<HTMLDivElement, SkeletonTextProps>(
+export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
   function SkeletonText(props, ref) {
     const { noOfLines = 3, gap, ...rest } = props
     return (

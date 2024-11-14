@@ -113,9 +113,7 @@
     "id": "data-list",
     "file": "data-list.tsx",
     "component": "DataList",
-    "npmDependencies": [
-      "react-icons"
-    ],
+    "npmDependencies": [],
     "fileDependencies": [
       "compositions/ui/toggle-tip"
     ]
@@ -271,9 +269,7 @@
     "id": "progress",
     "file": "progress.tsx",
     "component": "Progress",
-    "npmDependencies": [
-      "react-icons"
-    ],
+    "npmDependencies": [],
     "fileDependencies": [
       "compositions/ui/toggle-tip"
     ]
@@ -359,9 +355,7 @@
     "id": "stat",
     "file": "stat.tsx",
     "component": "Stat",
-    "npmDependencies": [
-      "react-icons"
-    ],
+    "npmDependencies": [],
     "fileDependencies": [
       "compositions/ui/toggle-tip"
     ]

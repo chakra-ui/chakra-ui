@@ -1,6 +1,6 @@
 import { Alert as ChakraAlert } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
-import { forwardRef } from "react"
+import * as React from "react"
 
 export interface AlertProps extends Omit<ChakraAlert.RootProps, "title"> {
   startElement?: React.ReactNode
@@ -11,7 +11,7 @@ export interface AlertProps extends Omit<ChakraAlert.RootProps, "title"> {
   onClose?: () => void
 }
 
-export const Alert = forwardRef<HTMLDivElement, AlertProps>(
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   function Alert(props, ref) {
     const {
       title,

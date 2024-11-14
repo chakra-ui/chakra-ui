@@ -1,13 +1,13 @@
 "use client"
 
 import { NativeSelect as Select } from "@chakra-ui/react"
-import { forwardRef, useMemo } from "react"
+import * as React from "react"
 
 interface NativeSelectRootProps extends Select.RootProps {
   icon?: React.ReactNode
 }
 
-export const NativeSelectRoot = forwardRef<
+export const NativeSelectRoot = React.forwardRef<
   HTMLDivElement,
   NativeSelectRootProps
 >(function NativeSelect(props, ref) {
@@ -30,13 +30,13 @@ interface NativeSelectField extends Select.FieldProps {
   items?: Array<string | NativeSelectItem>
 }
 
-export const NativeSelectField = forwardRef<
+export const NativeSelectField = React.forwardRef<
   HTMLSelectElement,
   NativeSelectField
 >(function NativeSelectField(props, ref) {
   const { items: itemsProp, children, ...rest } = props
 
-  const items = useMemo(
+  const items = React.useMemo(
     () =>
       itemsProp?.map((item) =>
         typeof item === "string" ? { label: item, value: item } : item,

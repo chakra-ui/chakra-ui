@@ -1,5 +1,5 @@
 import { Field as ChakraField } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import * as React from "react"
 
 export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   label?: React.ReactNode
@@ -8,7 +8,7 @@ export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   optionalText?: React.ReactNode
 }
 
-export const Field = forwardRef<HTMLDivElement, FieldProps>(
+export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
   function Field(props, ref) {
     const { label, children, helperText, errorText, optionalText, ...rest } =
       props
