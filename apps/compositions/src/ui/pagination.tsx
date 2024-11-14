@@ -192,12 +192,12 @@ export const PaginationPageText = forwardRef<
   PageTextProps
 >(function PaginationPageText(props, ref) {
   const { format = "compact", ...rest } = props
-  const { page, pages, pageRange, count } = usePaginationContext()
+  const { page, totalPages, pageRange, count } = usePaginationContext()
   const content = useMemo(() => {
-    if (format === "short") return `${page} / ${pages.length}`
-    if (format === "compact") return `${page} of ${pages.length}`
+    if (format === "short") return `${page} / ${totalPages}`
+    if (format === "compact") return `${page} of ${totalPages}`
     return `${pageRange.start + 1} - ${pageRange.end} of ${count}`
-  }, [format, page, pages.length, pageRange, count])
+  }, [format, page, totalPages, pageRange, count])
 
   return (
     <Text fontWeight="medium" ref={ref} {...rest}>
