@@ -1,4 +1,5 @@
 import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion"
+import { createAnatomy } from "@ark-ui/react/anatomy"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
@@ -10,7 +11,6 @@ import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/ratin
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
-import { createAnatomy } from "@zag-js/anatomy"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
 
