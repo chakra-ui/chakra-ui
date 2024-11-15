@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.1.2
+
+### Patch Changes
+
+- [`65952d7`](https://github.com/chakra-ui/chakra-ui/commit/65952d7a796ae491ea6a0d57661a25a404a11452)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **General:** Fix
+  issue where value change types were not re-exported from Ark UI
+
+  - **Layer Style:** Fix issue where `fill.surface` layer style doesn't render
+    the correct styles
+  - **Pagination:** Fix issue where `PaginationPageText` did not render the
+    correct page range
+
 ## 3.1.1
 
 ### Patch Changes
