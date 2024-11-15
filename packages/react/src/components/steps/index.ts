@@ -39,6 +39,12 @@ export type {
   StepsChangeDetails,
 } from "./steps"
 
-export { useStepsContext } from "@ark-ui/react/steps"
+export {
+  useStepsContext,
+  useStepsItemContext,
+  useSteps,
+} from "@ark-ui/react/steps"
+
+export type { UseStepsProps, UseStepsReturn } from "@ark-ui/react/steps"
 
 export * as Steps from "./namespace"
