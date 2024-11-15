@@ -24,6 +24,7 @@ export type {
 } from "./rating-group"
 
 export {
+  useRatingGroup,
   useRatingGroupContext,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"

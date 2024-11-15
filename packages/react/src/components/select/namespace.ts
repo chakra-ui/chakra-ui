@@ -13,6 +13,7 @@ export {
   SelectLabel as Label,
   SelectPositioner as Positioner,
   SelectRoot as Root,
+  SelectRootProvider as RootProvider,
   SelectContext as Context,
   SelectPropsProvider as PropsProvider,
   SelectTrigger as Trigger,

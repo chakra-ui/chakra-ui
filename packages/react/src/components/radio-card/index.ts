@@ -30,6 +30,7 @@ export type {
 } from "./radio-card"
 
 export {
+  useRadioGroup as useRadioCardGroup,
   useRadioGroupContext as useRadioCardContext,
   useRadioGroupItemContext as useRadioCardItemContext,
 } from "@ark-ui/react/radio-group"

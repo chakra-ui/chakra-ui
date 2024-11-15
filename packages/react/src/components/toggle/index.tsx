@@ -4,7 +4,6 @@ export {
   TogglePropsProvider,
   ToggleRoot,
   useToggleStyles,
-  useToggleContext,
 } from "./toggle"
 
 export type {
@@ -12,5 +11,7 @@ export type {
   ToggleRootBaseProps,
   ToggleRootProps,
 } from "./toggle"
+
+export { useToggle, useToggleContext } from "@ark-ui/react/toggle"
 
 export * as Toggle from "./namespace"
