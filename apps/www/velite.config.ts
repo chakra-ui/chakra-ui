@@ -123,9 +123,56 @@ const blogs = defineCollection({
     }),
 })
 
+const guideCollectionId = s.enum([
+  "overview",
+  "snippets",
+  "recipe",
+  "components",
+  "next-js",
+  "styling",
+  "theming",
+])
+
+const guides = defineCollection({
+  name: "Guides",
+  pattern: "content/guides/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string(),
+      description: s.string(),
+      metadata: s.metadata(),
+      content: s.mdx(),
+      publishedAt: s.string(),
+      collection: guideCollectionId,
+    })
+    .transform((data, { meta }) => {
+      return {
+        ...data,
+        slug: slugify(meta.path),
+      }
+    }),
+})
+
+const guideCollections = defineCollection({
+  name: "GuideCollection",
+  pattern: "content/guides.json",
+  schema: s.object({
+    id: guideCollectionId,
+    title: s.string(),
+    description: s.string(),
+  }),
+})
+
 export default defineConfig({
   root: cwd,
-  collections: { docs, showcases, notes, blogs },
+  collections: {
+    docs,
+    showcases,
+    notes,
+    blogs,
+    guides,
+    guideCollections,
+  },
   mdx: {
     remarkPlugins: [
       remarkDirective,

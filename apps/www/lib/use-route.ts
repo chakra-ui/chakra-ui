@@ -1,6 +1,5 @@
 import { FlattenNavItem, NavItem, docsConfig } from "@/docs.config"
 import { usePathname } from "next/navigation"
-import { useLayoutEffect } from "react"
 
 const join = (...args: Array<string | undefined>) =>
   `/${args.filter(Boolean).join("/")}`
@@ -10,12 +9,6 @@ export function useRoute() {
 
   const [primaryHref, secondaryHref] = currentUrl.split("/").slice(1)
   const flattenedItems = getFlattenedNavItems()
-
-  useLayoutEffect(() => {
-    document.querySelectorAll("[aria-current=page]").forEach((el) => {
-      el.scrollIntoView({ block: "center" })
-    })
-  }, [])
 
   function getPrimaryNavItems() {
     return docsConfig.navigation.map((item) => {
@@ -95,9 +88,10 @@ export function useRoute() {
           group?.items?.map((item) => ({
             status: item.status,
             title: item.title,
-            url: item.url?.startsWith("http")
-              ? item.url
-              : join(primaryNav.url, secondaryNav.url, group.url, item.url),
+            url:
+              item.url?.startsWith("http") || item.external
+                ? item.url
+                : join(primaryNav.url, secondaryNav.url, group.url, item.url),
             current: currentUrl.startsWith(
               join(primaryNav.url, secondaryNav.url, group.url, item.url),
             ),

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "overview",
+    "title": "Overview",
+    "description": "High-level questions about Chakra UI v3.0"
+  },
+  {
+    "id": "snippets",
+    "title": "Snippets",
+    "description": "Questions about component snippets"
+  },
+  {
+    "id": "recipe",
+    "title": "Recipes",
+    "description": "Understanding recipe customizations and design"
+  },
+  {
+    "id": "components",
+    "title": "Components",
+    "description": "Tips and recommendations for components"
+  },
+  {
+    "id": "next-js",
+    "title": "Next.js",
+    "description": "Using Chakra UI with Next.js App or Pages Router"
+  },
+  {
+    "id": "styling",
+    "title": "Styling",
+    "description": "Styling Chakra UI components"
+  },
+  {
+    "id": "theming",
+    "title": "Theming",
+    "description": "Configuring colors, fonts, breakpoints, and more"
+  }
+]

@@ -13,7 +13,7 @@ const docsLinks: NavItem = {
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
-            { title: "Showcase", url: "showcase" },
+            { title: "Showcase", url: "/showcase", external: true },
           ],
         },
         {
@@ -283,7 +283,7 @@ export const docsConfig: DocsConfig = {
   navigation: [
     docsLinks,
     { title: "Playground", url: "playground" },
-    { title: "Enterprise", url: "enterprise" },
+    { title: "Guides", url: "guides" },
     { title: "Blog", url: "blog" },
   ],
   proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
@@ -308,6 +308,7 @@ interface DocsConfig {
 export interface NavItem {
   title: string
   url?: string
+  external?: boolean
   status?: string
   items?: NavItem[]
 }

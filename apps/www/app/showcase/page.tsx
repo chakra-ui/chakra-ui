@@ -4,11 +4,11 @@ import {
   Card,
   Container,
   Heading,
-  Image,
   SimpleGrid,
   Stack,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { showcases } from ".velite"
 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function ShowcasePage() {
   return (
-    <Box py="20">
+    <Box py="20" width="full">
       <Container>
         <Stack gap={{ base: "5", md: "10" }} mb="20">
           <Stack gap="5" pr="4" maxW="3xl" px="1.5">
@@ -45,9 +45,10 @@ export default function ShowcasePage() {
             >
               <Link href={url}>
                 <Image
-                  src={image}
+                  src={`/${image}`}
                   alt={title}
-                  aspectRatio="16/9"
+                  width={420}
+                  height={236}
                   objectFit="cover"
                 />
 

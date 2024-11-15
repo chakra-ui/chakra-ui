@@ -38,8 +38,8 @@ const LogoLink = () => (
 const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
   { title: "Playground", url: "/playground" },
+  { title: "Guides", url: "/guides" },
   { title: "Blog", url: "/blog" },
-  { title: "Enterprise", url: "/enterprise" },
 ]
 
 const DesktopNav = () => (
