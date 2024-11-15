@@ -3,7 +3,8 @@ import Link, { LinkProps } from "next/link"
 
 interface SideNavItem {
   title: React.ReactNode
-  url: LinkProps["href"]
+  url: LinkProps["href"] | undefined
+  external?: boolean
   status?: string
 }
 
@@ -42,7 +43,7 @@ export const SideNav = (props: SideNavProps) => {
             }}
           >
             <Link
-              href={item.url}
+              href={item.url!}
               aria-current={item.url === currentUrl ? "page" : undefined}
             >
               {item.title}{" "}

@@ -1,0 +1,99 @@
+---
+title: Creating custom colors
+description: Learn how to create custom colors in Chakra UI
+publishedAt: "2024-11-15"
+collection: theming
+---
+
+To create custom colors in Chakra UI, you want to define two things:
+
+- **tokens**: For the 50-950 color palette
+- **semanticTokens**: For the `solid`, `contrast`, `fg`, `muted`, `subtle`,
+  `emphasized`, and `focusRing` color keys
+
+> To learn more about tokens and semantic tokens, refer to the
+> [theming guide](/docs/theming/customization/colors#semantic-tokens).
+
+```tsx title="components/theme.ts" /brand: {/
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          50: { value: "#e6f2ff" },
+          100: { value: "#e6f2ff" },
+          200: { value: "#bfdeff" },
+          300: { value: "#99caff" },
+          // ...
+          950: { value: "#001a33" },
+        },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        brand: {
+          solid: { value: "{colors.brand.500}" },
+          contrast: { value: "{colors.brand.100}" },
+          fg: { value: "{colors.brand.700}" },
+          muted: { value: "{colors.brand.100}" },
+          subtle: { value: "{colors.brand.200}" },
+          emphasized: { value: "{colors.brand.300}" },
+          focusRing: { value: "{colors.brand.500}" },
+        },
+      },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+Next, you add the new `system` to your `components/ui/provider.tsx` files
+
+```tsx /value={system}/
+"use client"
+
+import { system } from "@/components/theme"
+import {
+  ColorModeProvider,
+  type ColorModeProviderProps,
+} from "@/components/ui/color-mode"
+import { ChakraProvider } from "@chakra-ui/react"
+
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```
+
+Next, you run the CLI `typegen` command to generate the types.
+
+```bash
+npx chakra typegen ./theme.ts
+```
+
+## Using the color
+
+With that in place, you can use the color in components as well as
+`colorPalette` utilities.
+
+```tsx /brand/
+<Button colorPalette="brand">Click me</Button>
+```
+
+You can also use the semantic token directly.
+
+```tsx /brand./
+<Box color="brand.contrast" bg="brand.solid">
+  Hello world
+</Box>
+```
+
+Alternatively, you can use the raw token value.
+
+```tsx /brand.500/
+<Box color="brand.500">Hello world</Box>
+```

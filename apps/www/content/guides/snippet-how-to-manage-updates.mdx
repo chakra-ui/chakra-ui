@@ -1,0 +1,23 @@
+---
+title: How to manage updates
+description: Learn how to manage updates for component snippets
+publishedAt: "2024-11-15"
+collection: snippets
+---
+
+When snippets are updated from Chakra UI, we document them in the changelog so
+you're aware.
+
+In your project, it's up to you to decide whether to update the snippets or not.
+In most cases, you can check the
+[snippet directory](https://github.com/chakra-ui/chakra-ui/tree/main/apps/compositions/src/ui)
+to see the changes.
+
+When running the `npx chakra snippet add` command, the CLI will check for
+existing snippets in your project and skip adding them if they already exist.
+
+If you want to overwrite the existing snippets, run the following command:
+
+```bash
+npx chakra snippet add --force
+```

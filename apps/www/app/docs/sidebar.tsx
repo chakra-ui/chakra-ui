@@ -2,6 +2,7 @@
 
 import { SideNav } from "@/components/sidenav"
 import { useRoute } from "@/lib/use-route"
+import { useScrollIntoView } from "@/lib/use-scroll-into-view"
 import {
   Box,
   BoxProps,
@@ -25,7 +26,11 @@ import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu, AiOutlineRight } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const route = useRoute()
+
+  useScrollIntoView(containerRef, '[aria-current="page"]', "center")
+
   return (
     <Box
       className="no-bg-scrollbar"
@@ -36,6 +41,7 @@ export const SidebarStart = (props: BoxProps) => {
       ms="-3"
       py="8"
       flexShrink="0"
+      ref={containerRef}
       height="var(--content-height)"
       overflowY="auto"
       overscrollBehavior="contain"
