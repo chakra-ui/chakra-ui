@@ -7,11 +7,13 @@ import {
   Heading,
   Link,
   SimpleGrid,
+  Skeleton,
   Square,
   Text,
   VStack,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
+import { Suspense } from "react"
 import { LuChevronRight } from "react-icons/lu"
 import { GuideSearchInput } from "./search-input"
 
@@ -39,7 +41,9 @@ export default function GuidePage() {
           </VStack>
 
           <Box flex="1" alignSelf="stretch">
-            <GuideSearchInput />
+            <Suspense fallback={<Skeleton width="full" height="12" />}>
+              <GuideSearchInput />
+            </Suspense>
           </Box>
         </VStack>
       </Container>

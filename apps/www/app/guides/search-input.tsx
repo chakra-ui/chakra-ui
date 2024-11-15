@@ -3,6 +3,7 @@
 import { Guides, guides } from "@/.velite"
 import { Combobox, Portal, createListCollection } from "@ark-ui/react"
 import { Box, For, Icon, Input, Text, chakra } from "@chakra-ui/react"
+import { CloseButton } from "compositions/ui/close-button"
 import { InputGroup } from "compositions/ui/input-group"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
@@ -24,9 +25,9 @@ const ComboboxContent = chakra(
       padding: "2",
       overflowY: "auto",
       maxHeight: "20rem",
-      boxShadow: "md",
+      boxShadow: "lg",
       bg: "bg.panel",
-      borderRadius: "l3",
+      borderRadius: "l2",
     },
   },
   { forwardAsChild: true },
@@ -38,6 +39,7 @@ const ComboboxItem = chakra(
     base: {
       display: "flex",
       flexDirection: "column",
+      borderRadius: "l1",
       gap: "1",
       px: "4",
       py: "2",
@@ -65,7 +67,7 @@ export const GuideSearchInput = () => {
         const title = `${guide.title} ${guide.description}`
         return title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
       })
-      .slice(0, 5)
+      .slice(0, 20)
 
     return createCollection(items)
   }, [query])
@@ -74,6 +76,7 @@ export const GuideSearchInput = () => {
     <ComboboxRoot
       collection={collection}
       inputBehavior="autohighlight"
+      openOnClick={!!query}
       openOnChange={(e) => e.inputValue.length > 3}
       selectionBehavior="clear"
       onInputValueChange={(e) => {
@@ -94,8 +97,13 @@ export const GuideSearchInput = () => {
               <LuSearch />
             </Icon>
           }
+          endElement={
+            <Combobox.ClearTrigger hidden={!query} asChild>
+              <CloseButton me="-2" variant="plain" colorPalette="gray" />
+            </Combobox.ClearTrigger>
+          }
         >
-          <Combobox.Input asChild>
+          <Combobox.Input defaultValue={query ?? ""} asChild>
             <Input bg="bg" ps="12" placeholder="Search guides..." size="xl" />
           </Combobox.Input>
         </InputGroup>
