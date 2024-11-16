@@ -1,4 +1,4 @@
-import { colorPickerAnatomy } from "@ark-ui/anatomy"
+import { colorPickerAnatomy } from "@ark-ui/react/color-picker"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const colorPickerSlotRecipe = defineSlotRecipe({
