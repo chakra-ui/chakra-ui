@@ -125,6 +125,9 @@ export const NumberInputScrubber = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface NumberInputValueTextProps
+  extends HTMLChakraProps<"span", ArkNumberInput.ValueTextBaseProps> {}
+
 export const NumberInputValueText = withContext<
   HTMLSpanElement,
   NumberInputValueTextProps
@@ -137,5 +140,8 @@ export const NumberInputContext = ArkNumberInput.Context
 export interface NumberInputValueChangeDetails
   extends ArkNumberInput.ValueChangeDetails {}
 
-export interface NumberInputValueTextProps
-  extends HTMLChakraProps<"span", ArkNumberInput.ValueTextBaseProps> {}
+export interface NumberInputFocusChangeDetails
+  extends ArkNumberInput.FocusChangeDetails {}
+
+export interface NumberInputValueInvalidDetails
+  extends ArkNumberInput.ValueInvalidDetails {}

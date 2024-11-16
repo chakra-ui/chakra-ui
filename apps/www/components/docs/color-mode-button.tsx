@@ -10,7 +10,7 @@ export const ColorModeButton = () => {
     setTheme(theme === "light" ? "dark" : "light")
   }
   return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
+    <ClientOnly fallback={<Skeleton boxSize="9" />}>
       <IconButton onClick={handleClick} variant="ghost" size="sm">
         {theme === "light" ? <LuSun /> : <LuMoon />}
       </IconButton>

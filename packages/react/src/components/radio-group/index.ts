@@ -22,6 +22,10 @@ export type {
   RadioGroupValueChangeDetails,
 } from "./radio-group"
 
-export { useRadioGroupContext } from "@ark-ui/react/radio-group"
+export {
+  useRadioGroup,
+  useRadioGroupItemContext,
+  useRadioGroupContext,
+} from "@ark-ui/react/radio-group"
 
 export * as RadioGroup from "./namespace"

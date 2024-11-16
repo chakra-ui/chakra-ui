@@ -47,4 +47,6 @@ export type {
   MenuTriggerItemProps as TriggerItemProps,
   MenuTriggerProps as TriggerProps,
   MenuOpenChangeDetails as OpenChangeDetails,
+  MenuSelectionDetails as SelectionDetails,
+  MenuHighlightChangeDetails as HighlightChangeDetails,
 } from "./menu"

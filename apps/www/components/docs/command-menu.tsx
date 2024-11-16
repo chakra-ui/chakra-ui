@@ -32,12 +32,6 @@ const ComboboxContent = chakra(Combobox.Content, {
 })
 const ComboboxList = chakra(Combobox.List)
 const ComboboxItemGroup = chakra(Combobox.ItemGroup)
-const ComboboxItemGroupLabel = chakra(Combobox.ItemGroupLabel, {
-  base: {
-    px: "4",
-    py: "3",
-  },
-})
 const ComboboxItem = chakra(Combobox.Item, {
   base: {
     borderRadius: "md",
@@ -77,7 +71,7 @@ export const CommandMenu = (props: Props) => {
 
   return (
     <DialogRoot
-      centered
+      placement="center"
       motionPreset="slide-in-bottom"
       open={open}
       onOpenChange={(event) => setOpen(event.open)}

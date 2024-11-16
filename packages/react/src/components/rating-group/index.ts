@@ -20,9 +20,11 @@ export type {
   RatingGroupRootProps,
   RatingGroupRootProviderProps,
   RatingGroupValueChangeDetails,
+  RatingGroupHoverChangeDetails,
 } from "./rating-group"
 
 export {
+  useRatingGroup,
   useRatingGroupContext,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"

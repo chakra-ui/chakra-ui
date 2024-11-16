@@ -635,6 +635,7 @@ export type FileUploadSlot =
   | "itemSizeText"
   | "label"
   | "trigger"
+  | "clearTrigger"
   | "itemContent"
   | "dropzoneContent"
 

@@ -1,27 +1,16 @@
-import {
-  accordionAnatomy as arkAccordionAnatomy,
-  avatarAnatomy as arkAvatarAnatomy,
-  checkboxAnatomy as arkCheckboxAnatomy,
-  collapsibleAnatomy as arkCollapsibleAnatomy,
-  dialogAnatomy as arkDialogAnatomy,
-  editableAnatomy as arkEditableAnatomy,
-  fieldAnatomy as arkFieldAnatomy,
-  fileUploadAnatomy as arkFileUploadAnatomy,
-  hoverCardAnatomy as arkHoverCardAnatomy,
-  menuAnatomy as arkMenuAnatomy,
-  numberInputAnatomy as arkNumberInputAnatomy,
-  pinInputAnatomy as arkPinInputAnatomy,
-  popoverAnatomy as arkPopoverAnatomy,
-  progressAnatomy as arkProgressAnatomy,
-  radioGroupAnatomy as arkRadioGroupAnatomy,
-  ratingGroupAnatomy as arkRatingGroupAnatomy,
-  segmentGroupAnatomy as arkSegmentGroupAnatomy,
-  selectAnatomy as arkSelectAnatomy,
-  sliderAnatomy as arkSliderAnatomy,
-  switchAnatomy as arkSwitchAnatomy,
-  tooltipAnatomy as arkTooltipAnatomy,
-  createAnatomy,
-} from "@ark-ui/anatomy"
+import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion"
+import { createAnatomy } from "@ark-ui/react/anatomy"
+import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
+import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
+import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
+import { fileUploadAnatomy as arkFileUploadAnatomy } from "@ark-ui/react/file-upload"
+import { menuAnatomy as arkMenuAnatomy } from "@ark-ui/react/menu"
+import { popoverAnatomy as arkPopoverAnatomy } from "@ark-ui/react/popover"
+import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-group"
+import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/rating-group"
+import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
+import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
+import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
 
@@ -40,8 +29,6 @@ export const alertAnatomy = createAnatomy("alert").parts(
   "indicator",
   "content",
 )
-
-export const avatarAnatomy = arkAvatarAnatomy
 
 export const breadcrumbAnatomy = createAnatomy("breadcrumb").parts(
   "link",
@@ -69,8 +56,6 @@ export const cardAnatomy = createAnatomy("card").parts(
   "description",
 )
 
-export const checkboxAnatomy = arkCheckboxAnatomy
-
 export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "root",
   "control",
@@ -80,8 +65,6 @@ export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "indicator",
   "content",
 ])
-
-export const collapsibleAnataomy = arkCollapsibleAnatomy
 
 export const dataListAnatomy = createAnatomy("data-list").parts(
   "root",
@@ -121,8 +104,6 @@ export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
   "dropzoneContent",
 )
 
-export const hoverCardAnatomy = arkHoverCardAnatomy
-
 export const listAnatomy = createAnatomy("list").parts(
   "root",
   "item",
@@ -137,17 +118,11 @@ export const nativeSelectAnatomy = createAnatomy("select").parts(
   "indicator",
 )
 
-export const numberInputAnatomy = arkNumberInputAnatomy
-
-export const pinInputAnatomy = arkPinInputAnatomy
-
 export const popoverAnatomy = arkPopoverAnatomy.extendWith(
   "header",
   "body",
   "footer",
 )
-
-export const progressAnatomy = arkProgressAnatomy
 
 export const radioGroupAnatomy = arkRadioGroupAnatomy.extendWith(
   "itemAddon",
@@ -161,8 +136,6 @@ export const radioCardAnatomy = radioGroupAnatomy.extendWith(
 
 export const ratingGroupAnatomy =
   arkRatingGroupAnatomy.extendWith("itemIndicator")
-
-export const segmentGroupAnatomy = arkSegmentGroupAnatomy
 
 export const selectAnatomy = arkSelectAnatomy.extendWith("indicatorGroup")
 
@@ -244,4 +217,13 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "description",
 )
 
-export const tooltipAnatomy = arkTooltipAnatomy
+export { avatarAnatomy } from "@ark-ui/react/avatar"
+export { checkboxAnatomy } from "@ark-ui/react/checkbox"
+export { collapsibleAnatomy } from "@ark-ui/react/collapsible"
+export { fieldsetAnatomy } from "@ark-ui/react/fieldset"
+export { hoverCardAnatomy } from "@ark-ui/react/hover-card"
+export { numberInputAnatomy } from "@ark-ui/react/number-input"
+export { pinInputAnatomy } from "@ark-ui/react/pin-input"
+export { progressAnatomy } from "@ark-ui/react/progress"
+export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
+export { tooltipAnatomy } from "@ark-ui/react/tooltip"

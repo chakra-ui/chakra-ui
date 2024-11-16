@@ -16,10 +16,10 @@ export const layerStyles = defineLayerStyles({
   },
   "fill.surface": {
     value: {
-      background: "colorPalette.muted",
+      background: "colorPalette.subtle",
       color: "colorPalette.fg",
-      boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
-      boxShadowColor: "colorPalette.subtle",
+      boxShadow: "0 0 0px 1px var(--shadow-color)",
+      boxShadowColor: "colorPalette.muted",
     },
   },
   "fill.solid": {

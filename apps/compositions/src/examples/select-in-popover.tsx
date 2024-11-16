@@ -5,6 +5,7 @@ import { Button } from "compositions/ui/button"
 import {
   PopoverBody,
   PopoverContent,
+  PopoverHeader,
   PopoverRoot,
   PopoverTrigger,
 } from "compositions/ui/popover"
@@ -26,6 +27,7 @@ export const SelectInPopover = () => {
       </PopoverTrigger>
 
       <PopoverContent>
+        <PopoverHeader>Select in Popover</PopoverHeader>
         <PopoverBody>
           <SelectRoot
             collection={frameworks}
@@ -36,9 +38,9 @@ export const SelectInPopover = () => {
               <SelectValueText placeholder="Select" />
             </SelectTrigger>
             <SelectContent portalled={false} width="full">
-              {frameworks.items.map((movie) => (
-                <SelectItem item={movie} key={movie.value}>
-                  {movie.label}
+              {frameworks.items.map((item) => (
+                <SelectItem item={item} key={item.value}>
+                  {item.label}
                 </SelectItem>
               ))}
             </SelectContent>

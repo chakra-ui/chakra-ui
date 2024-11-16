@@ -28,6 +28,23 @@ export { useCheckboxStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CheckboxRootProviderBaseProps
+  extends Assign<
+      ArkCheckbox.RootProviderBaseProps,
+      SlotRecipeProps<"checkbox">
+    >,
+    UnstyledProp {}
+
+export interface CheckboxRootProviderProps
+  extends HTMLChakraProps<"div", CheckboxRootProviderBaseProps> {}
+
+export const CheckboxRootProvider = withProvider<
+  HTMLDivElement,
+  CheckboxRootProviderProps
+>(ArkCheckbox.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CheckboxRootBaseProps
   extends Assign<ArkCheckbox.RootBaseProps, SlotRecipeProps<"checkbox">>,
     UnstyledProp {}

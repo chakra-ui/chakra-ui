@@ -3,6 +3,7 @@ export {
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxRoot,
+  CheckboxRootProvider,
   CheckboxPropsProvider,
   CheckboxContext,
   CheckboxGroup,

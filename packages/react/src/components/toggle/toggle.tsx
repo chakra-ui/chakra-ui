@@ -1,7 +1,7 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Toggle as ArkToggle, useToggleContext } from "@ark-ui/react/toggle"
+import { Toggle as ArkToggle } from "@ark-ui/react/toggle"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -19,6 +19,20 @@ const {
 } = createSlotRecipeContext({ key: "toggle" })
 
 export { useToggleStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ToggleRootProviderBaseProps
+  extends Assign<ArkToggle.RootBaseProps, SlotRecipeProps<"toggle">>,
+    UnstyledProp {}
+
+export interface ToggleRootProviderProps
+  extends HTMLChakraProps<"button", ToggleRootProviderBaseProps> {}
+
+export const ToggleRootProvider = withProvider<
+  HTMLButtonElement,
+  ToggleRootProviderProps
+>(ArkToggle.Root, "root", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,4 +67,3 @@ export const ToggleIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const ToggleContext = ArkToggle.Context
-export { useToggleContext }

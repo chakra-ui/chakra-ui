@@ -25,7 +25,7 @@ export {
   useMenuStyles,
 } from "./menu"
 
-export { useMenuContext, useMenuItemContext } from "@ark-ui/react/menu"
+export { useMenu, useMenuContext, useMenuItemContext } from "@ark-ui/react/menu"
 
 export type {
   MenuArrowProps,
@@ -49,6 +49,8 @@ export type {
   MenuTriggerItemProps,
   MenuTriggerProps,
   MenuOpenChangeDetails,
+  MenuSelectionDetails,
+  MenuHighlightChangeDetails,
 } from "./menu"
 
 export * as Menu from "./namespace"

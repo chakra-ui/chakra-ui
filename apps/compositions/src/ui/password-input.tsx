@@ -15,7 +15,7 @@ import {
   mergeRefs,
   useControllableState,
 } from "@chakra-ui/react"
-import { forwardRef, useRef } from "react"
+import * as React from "react"
 import { LuEye, LuEyeOff } from "react-icons/lu"
 import { InputGroup } from "./input-group"
 
@@ -32,54 +32,55 @@ export interface PasswordInputProps
   rootProps?: GroupProps
 }
 
-export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  function PasswordInput(props, ref) {
-    const {
-      rootProps,
-      defaultVisible,
-      visible: visibleProp,
-      onVisibleChange,
-      visibilityIcon = { on: <LuEye />, off: <LuEyeOff /> },
-      ...rest
-    } = props
+export const PasswordInput = React.forwardRef<
+  HTMLInputElement,
+  PasswordInputProps
+>(function PasswordInput(props, ref) {
+  const {
+    rootProps,
+    defaultVisible,
+    visible: visibleProp,
+    onVisibleChange,
+    visibilityIcon = { on: <LuEye />, off: <LuEyeOff /> },
+    ...rest
+  } = props
 
-    const [visible, setVisible] = useControllableState({
-      value: visibleProp,
-      defaultValue: defaultVisible || false,
-      onChange: onVisibleChange,
-    })
+  const [visible, setVisible] = useControllableState({
+    value: visibleProp,
+    defaultValue: defaultVisible || false,
+    onChange: onVisibleChange,
+  })
 
-    const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
-    return (
-      <InputGroup
-        width="full"
-        endElement={
-          <VisibilityTrigger
-            disabled={rest.disabled}
-            onPointerDown={(e) => {
-              if (rest.disabled) return
-              if (e.button !== 0) return
-              e.preventDefault()
-              setVisible(!visible)
-            }}
-          >
-            {visible ? visibilityIcon.off : visibilityIcon.on}
-          </VisibilityTrigger>
-        }
-        {...rootProps}
-      >
-        <Input
-          {...rest}
-          ref={mergeRefs(ref, inputRef)}
-          type={visible ? "text" : "password"}
-        />
-      </InputGroup>
-    )
-  },
-)
+  return (
+    <InputGroup
+      width="full"
+      endElement={
+        <VisibilityTrigger
+          disabled={rest.disabled}
+          onPointerDown={(e) => {
+            if (rest.disabled) return
+            if (e.button !== 0) return
+            e.preventDefault()
+            setVisible(!visible)
+          }}
+        >
+          {visible ? visibilityIcon.off : visibilityIcon.on}
+        </VisibilityTrigger>
+      }
+      {...rootProps}
+    >
+      <Input
+        {...rest}
+        ref={mergeRefs(ref, inputRef)}
+        type={visible ? "text" : "password"}
+      />
+    </InputGroup>
+  )
+})
 
-const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
+const VisibilityTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function VisibilityTrigger(props, ref) {
     return (
       <IconButton
@@ -102,7 +103,7 @@ interface PasswordStrengthMeterProps extends StackProps {
   value: number
 }
 
-export const PasswordStrengthMeter = forwardRef<
+export const PasswordStrengthMeter = React.forwardRef<
   HTMLDivElement,
   PasswordStrengthMeterProps
 >(function PasswordStrengthMeter(props, ref) {

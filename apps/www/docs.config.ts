@@ -13,6 +13,7 @@ const docsLinks: NavItem = {
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
+            { title: "Showcase", url: "/showcase", external: true },
           ],
         },
         {
@@ -55,6 +56,7 @@ const docsLinks: NavItem = {
             { title: "Float", url: "float" },
             { title: "Grid", url: "grid" },
             { title: "Group", url: "group" },
+            { title: "SimpleGrid", url: "simple-grid" },
             { title: "Stack", url: "stack" },
             { title: "Theme", url: "theme" },
           ],
@@ -280,9 +282,9 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Enterprise", url: "enterprise" },
+    { title: "Playground", url: "playground" },
+    { title: "Guides", url: "guides" },
     { title: "Blog", url: "blog" },
-    { title: "Showcase", url: "showcase" },
   ],
   proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
 }
@@ -306,6 +308,7 @@ interface DocsConfig {
 export interface NavItem {
   title: string
   url?: string
+  external?: boolean
   status?: string
   items?: NavItem[]
 }

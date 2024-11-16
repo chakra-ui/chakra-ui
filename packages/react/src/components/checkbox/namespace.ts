@@ -1,19 +1,21 @@
 export {
+  CheckboxContext as Context,
   CheckboxControl as Control,
-  CheckboxRoot as Root,
-  CheckboxPropsProvider as PropsProvider,
+  CheckboxGroup as Group,
+  CheckboxHiddenInput as HiddenInput,
   CheckboxIndicator as Indicator,
   CheckboxLabel as Label,
-  CheckboxGroup as Group,
-  CheckboxContext as Context,
-  CheckboxHiddenInput as HiddenInput,
+  CheckboxPropsProvider as PropsProvider,
+  CheckboxRoot as Root,
+  CheckboxRootProvider as RootProvider,
 } from "./checkbox"
 
 export type {
+  CheckboxCheckedChangeDetails as CheckedChangeDetails,
+  CheckboxRootProviderProps as RootProviderProps,
   CheckboxControlProps as ControlProps,
-  CheckboxRootProps as RootProps,
+  CheckboxGroupProps as GroupProps,
   CheckboxIndicatorProps as IndicatorProps,
   CheckboxLabelProps as LabelProps,
-  CheckboxGroupProps as GroupProps,
-  CheckboxCheckedChangeDetails as CheckedChangeDetails,
+  CheckboxRootProps as RootProps,
 } from "./checkbox"

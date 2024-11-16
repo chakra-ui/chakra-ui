@@ -138,7 +138,7 @@ export const buttonRecipe = defineRecipe({
       surface: {
         bg: "colorPalette.subtle",
         color: "colorPalette.fg",
-        shadow: "inset 0 0 0px 1px var(--shadow-color)",
+        shadow: "0 0 0px 1px var(--shadow-color)",
         shadowColor: "colorPalette.muted",
         _hover: {
           bg: "colorPalette.muted",

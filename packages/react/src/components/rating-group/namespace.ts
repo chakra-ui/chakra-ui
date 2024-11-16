@@ -20,4 +20,5 @@ export type {
   RatingGroupRootProps as RootProps,
   RatingGroupRootProviderProps as RootProviderProps,
   RatingGroupValueChangeDetails as ValueChangeDetails,
+  RatingGroupHoverChangeDetails as HoverChangeDetails,
 } from "./rating-group"

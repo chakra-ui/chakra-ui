@@ -1,5 +1,6 @@
 pre.shiki {
   position: relative;
+  line-height: 1.25 !important;
 }
 
 pre.shiki code * {
@@ -7,6 +8,7 @@ pre.shiki code * {
   hyphens: none;
   white-space: pre;
   font-style: normal !important;
+  font-family: var(--font-geist-mono);
 }
 
 code .diff {

@@ -18,6 +18,7 @@ export type {
   AccordionItemBodyProps as ItemBodyProps,
   AccordionItemTriggerProps as ItemTriggerProps,
   AccordionRootProps as RootProps,
+  AccordionRootProviderProps as RootProviderProps,
   AccordionFocusChangeDetails as FocusChangeDetails,
   AccordionValueChangeDetails as ValueChangeDetails,
 } from "./accordion"

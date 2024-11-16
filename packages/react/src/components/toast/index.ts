@@ -2,17 +2,17 @@ export {
   ToastActionTrigger,
   ToastCloseTrigger,
   ToastDescription,
+  ToastIndicator,
   ToastRoot,
   ToastTitle,
-  ToastIndicator,
 } from "./toast"
 export type {
   ToastActionTriggerProps,
   ToastCloseTriggerProps,
   ToastDescriptionProps,
+  ToastIndicatorProps,
   ToastRootProps,
   ToastTitleProps,
-  ToastIndicatorProps,
 } from "./toast"
 
 export * as Toast from "./namespace"
@@ -20,6 +20,6 @@ export * as Toast from "./namespace"
 export { Toaster, createToaster, useToastStyles } from "./toast"
 export type {
   CreateToasterProps,
-  ToasterProps,
   CreateToasterReturn,
+  ToasterProps,
 } from "./toast"

@@ -71,19 +71,20 @@ export const timelineSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         indicator: {
-          bg: "bg.muted",
+          bg: "colorPalette.muted",
         },
       },
       solid: {
         indicator: {
-          bg: "bg.inverted",
-          color: "fg.inverted",
+          bg: "colorPalette.solid",
+          color: "colorPalette.contrast",
         },
       },
       outline: {
         indicator: {
-          bg: "bg",
-          borderWidth: "2px",
+          bg: "currentBg",
+          borderWidth: "1px",
+          borderColor: "colorPalette.muted",
         },
       },
       plain: {},

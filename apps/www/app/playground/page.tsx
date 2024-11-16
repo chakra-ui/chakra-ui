@@ -4,16 +4,19 @@ import {
   Button,
   Code,
   Container,
-  Flex,
   For,
   HStack,
   Kbd,
   SimpleGrid,
+  Spinner,
   Stack,
   TabsList,
   TabsRoot,
   TabsTrigger,
 } from "@chakra-ui/react"
+import { PaginationBasic } from "compositions/examples/pagination-basic"
+import { StepsBasic } from "compositions/examples/steps-basic"
+import { TimelineBasic } from "compositions/examples/timeline-basic"
 import { Avatar } from "compositions/ui/avatar"
 import { Blockquote } from "compositions/ui/blockquote"
 import { Checkbox } from "compositions/ui/checkbox"
@@ -21,6 +24,7 @@ import {
   ProgressCircleRing,
   ProgressCircleRoot,
 } from "compositions/ui/progress-circle"
+import { Radio, RadioGroup } from "compositions/ui/radio"
 import { Rating } from "compositions/ui/rating"
 import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
@@ -51,7 +55,7 @@ export default async function Page() {
   const radius = cookies().get("chakra-radius")
 
   return (
-    <Container display="flex" gap="10" maxW="8xl" py="4">
+    <Container display="flex" gap="10" maxW="8xl">
       <Box
         maxW="5xl"
         width="full"
@@ -81,7 +85,7 @@ export default async function Page() {
                 {
                   label: "Gray",
                   component: (
-                    <HStack colorPalette="accent">
+                    <HStack colorPalette="gray">
                       <For each={buttonVariants}>
                         {(variant) => (
                           <Button key={variant} variant={variant}>
@@ -167,17 +171,11 @@ export default async function Page() {
           </Playground.SectionTitle>
           <Playground.SectionContent>
             <HStack wrap="wrap" gap="8">
-              <For each={["outline", "subtle"]}>
+              <For each={["solid", "outline", "subtle"]}>
                 {(variant) => (
                   <Stack key={variant} gap="5">
                     <Checkbox variant={variant}>Accept terms</Checkbox>
-                    <Checkbox disabled variant={variant}>
-                      Accept terms
-                    </Checkbox>
                     <Checkbox defaultChecked variant={variant}>
-                      Accept terms
-                    </Checkbox>
-                    <Checkbox disabled defaultChecked variant={variant}>
                       Accept terms
                     </Checkbox>
                   </Stack>
@@ -188,11 +186,42 @@ export default async function Page() {
         </Playground.Section>
 
         <Playground.Section>
+          <Playground.SectionTitle id="pagination">
+            Pagination
+          </Playground.SectionTitle>
+          <Playground.SectionContent>
+            <PaginationBasic />
+          </Playground.SectionContent>
+        </Playground.Section>
+
+        <Playground.Section>
+          <Playground.SectionTitle id="radio">Radio</Playground.SectionTitle>
+          <Playground.SectionContent>
+            <Stack wrap="wrap" gap="6">
+              <For each={["solid", "outline", "subtle"]}>
+                {(variant) => (
+                  <RadioGroup
+                    defaultValue="two"
+                    variant={variant}
+                    key={variant}
+                  >
+                    <HStack gap="5">
+                      <Radio value="one">Radio one</Radio>
+                      <Radio value="two">Radio second</Radio>
+                    </HStack>
+                  </RadioGroup>
+                )}
+              </For>
+            </Stack>
+          </Playground.SectionContent>
+        </Playground.Section>
+
+        <Playground.Section>
           <Playground.SectionTitle id="rating">Rating</Playground.SectionTitle>
           <Playground.SectionContent>
             <HStack wrap="wrap" gap="8">
               <Rating defaultValue={3} size="sm" />
-              <Rating defaultValue={3} size="sm" colorPalette="accent" />
+              <Rating defaultValue={3} size="sm" colorPalette="gray" />
             </HStack>
           </Playground.SectionContent>
         </Playground.Section>
@@ -203,7 +232,7 @@ export default async function Page() {
             <HStack wrap="wrap" gap="8">
               <Switch />
               <Switch defaultChecked />
-              <Switch defaultChecked colorPalette="accent" />
+              <Switch defaultChecked colorPalette="gray" />
             </HStack>
           </Playground.SectionContent>
         </Playground.Section>
@@ -260,7 +289,7 @@ export default async function Page() {
               <ProgressCircleRoot size="md" value={30}>
                 <ProgressCircleRing cap="round" />
               </ProgressCircleRoot>
-              <ProgressCircleRoot size="md" value={30} colorPalette="accent">
+              <ProgressCircleRoot size="md" value={30} colorPalette="gray">
                 <ProgressCircleRing cap="round" />
               </ProgressCircleRoot>
             </HStack>
@@ -277,9 +306,40 @@ export default async function Page() {
             </HStack>
           </Playground.SectionContent>
         </Playground.Section>
+
+        <Playground.Section>
+          <Playground.SectionTitle id="spinner">
+            Spinner
+          </Playground.SectionTitle>
+          <Playground.SectionContent>
+            <HStack gap="8" ps="4">
+              <Spinner size="sm" color="colorPalette.solid" />
+              <Spinner size="md" color="colorPalette.solid" />
+              <Spinner size="lg" color="colorPalette.solid" />
+            </HStack>
+          </Playground.SectionContent>
+        </Playground.Section>
+
+        <Playground.Section>
+          <Playground.SectionTitle id="steps">Steps</Playground.SectionTitle>
+          <Playground.SectionContent>
+            <StepsBasic />
+          </Playground.SectionContent>
+        </Playground.Section>
+
+        <Playground.Section>
+          <Playground.SectionTitle id="timeline">
+            Timeline
+          </Playground.SectionTitle>
+          <Playground.SectionContent>
+            <TimelineBasic />
+          </Playground.SectionContent>
+        </Playground.Section>
       </Box>
 
-      <Box pos="fixed" pt="8" top="20" right="20">
+      <Box w="sm" hideBelow="md" />
+
+      <Box pos="fixed" pt="8" top="24" right="12" hideBelow="md">
         <ThemePanel
           accentColor={accentColor?.value}
           fontFamily={fontFamily?.value}

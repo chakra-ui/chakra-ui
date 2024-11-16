@@ -26,6 +26,7 @@ export const alertSlotRecipe = defineSlotRecipe({
       flexShrink: "0",
       width: "1em",
       height: "1em",
+      _icon: { boxSize: "full" },
     },
     content: {
       display: "flex",

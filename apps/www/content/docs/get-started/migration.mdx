@@ -25,7 +25,8 @@ packages are no longer required in Chakra UI.
 npm uninstall @emotion/styled framer-motion
 ```
 
-Install updated versions of the packages: `@chakra-ui/react` and `@emotion/react`.
+Install updated versions of the packages: `@chakra-ui/react` and
+`@emotion/react`.
 
 ```bash
 npm install @chakra-ui/react@latest @emotion/react@latest
@@ -266,6 +267,7 @@ export default preview
 - **StackItem**: You don't need this anymore. Use `Box` instead.
 - **FocusLock**: We no longer ship a focus lock component. Use
   `react-focus-lock` instead.
+- **FormControl** and **FormErrorMessage**: Replace with the `Field` component
 
 ## Prop Changes
 
@@ -428,6 +430,35 @@ This was done for two reasons:
 
 ## Component Changes
 
+### ChakraProvider
+
+- Removed `theme` prop in favor of passing the `system` prop instead. Import the
+  `defaultSystem` module instead of `theme`
+
+- Removed `resetCss` prop in favor of passing `preflight: false` to the
+  `createSystem` function
+
+Before
+
+```tsx
+<ChakraProvider resetCss={false}>
+  <Component />
+</ChakraProvider>
+```
+
+After
+
+```tsx
+const system = createSystem(defaultConfig, { preflight: false })
+
+<Provider value={system}>
+  <Component />
+</Provider>
+```
+
+- Removed support for configuring toast options. Pass it to the `createToaster`
+  function in `components/ui/toaster.tsx` file instead.
+
 ### Modal
 
 - Renamed to `Dialog`
@@ -568,3 +599,8 @@ After
   Click me
 </Link>
 ```
+
+### IconButton
+
+- Removed `icon` prop in favor of rendering the `children` prop directly
+- Removed `isRounded` in favor of using the `borderRadius=full` prop

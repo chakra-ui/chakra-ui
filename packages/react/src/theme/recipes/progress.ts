@@ -34,6 +34,8 @@ export const progressSlotRecipe = defineSlotRecipe({
     label: {
       display: "inline-flex",
       fontWeight: "medium",
+      alignItems: "center",
+      gap: "1",
     },
     valueText: {
       textStyle: "xs",

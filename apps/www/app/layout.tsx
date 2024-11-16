@@ -2,6 +2,7 @@ import { ProAdBanner } from "@/components/pro-banner"
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
 import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
+import localFont from "next/font/local"
 import Script from "next/script"
 import { Provider } from "./provider"
 import "./scrollbar.css"
@@ -28,6 +29,17 @@ const outfit = Outfit({
   variable: "--font-outfit",
 })
 
+const geistSans = localFont({
+  src: "../public/fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+})
+const geistMono = localFont({
+  src: "../public/fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://next.chakra-ui.com"),
   title: {
@@ -48,7 +60,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${figTree.variable} ${roboto.variable} ${outfit.variable}`}
+      className={[
+        inter.variable,
+        figTree.variable,
+        roboto.variable,
+        outfit.variable,
+        geistSans.variable,
+        geistMono.variable,
+      ].join(" ")}
     >
       <head>
         <Script
