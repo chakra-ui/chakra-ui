@@ -6,6 +6,7 @@ import {
   ColorSemanticTokenDoc,
   ColorTokenDoc,
 } from "compositions/lib/color-token-doc"
+import { ConditionalStylesReferenceDoc } from "compositions/lib/conditional-styles-reference-doc"
 import { CursorTokenDoc } from "compositions/lib/cursor-token-doc"
 import { DurationTokenDoc, KeyframeDoc } from "compositions/lib/keyframe-doc"
 import { ShadowTokenDoc } from "compositions/lib/shadow-token-doc"
@@ -78,6 +79,7 @@ const sharedComponents = {
   SizesTokenDoc,
   ZIndexTokenDoc,
   CursorTokenDoc,
+  ConditionalStylesReferenceDoc,
 }
 
 const useMDXComponent = (code: string) => {
