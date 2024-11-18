@@ -255,6 +255,21 @@ export type RadiomarkVariantMap = {
   [K in keyof RadiomarkVariant]: Array<RadiomarkVariant[K]>
 }
 
+export interface ColorSwatchVariant {
+  /** @default "md" */
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inherit" | "full"
+  /** @default "rounded" */
+  shape?: "square" | "circle" | "rounded"
+}
+
+export type ColorSwatchVariantProps = {
+  [K in keyof ColorSwatchVariant]?: ConditionalValue<ColorSwatchVariant[K]> | undefined
+}
+
+export type ColorSwatchVariantMap = {
+  [K in keyof ColorSwatchVariant]: Array<ColorSwatchVariant[K]>
+}
+
 export interface ConfigRecipes {
   badge: SystemRecipeFn<BadgeVariantProps, BadgeVariantMap>
   button: SystemRecipeFn<ButtonVariantProps, ButtonVariantMap>
@@ -274,6 +289,7 @@ export interface ConfigRecipes {
   icon: SystemRecipeFn<IconVariantProps, IconVariantMap>
   checkmark: SystemRecipeFn<CheckmarkVariantProps, CheckmarkVariantMap>
   radiomark: SystemRecipeFn<RadiomarkVariantProps, RadiomarkVariantMap>
+  colorSwatch: SystemRecipeFn<ColorSwatchVariantProps, ColorSwatchVariantMap>
 }
 
 // Accordion
@@ -589,7 +605,7 @@ export type EmptyStateVariantMap = {
 
 // Field
 
-export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator"
+export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator" | "requiredIndicator"
 
 export interface FieldVariant {
   /** @default "vertical" */
@@ -969,7 +985,18 @@ export type SelectVariantMap = {
 
 // Slider
 
-export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker" | "markerIndicator"
+export type SliderSlot =
+  | "root"
+  | "label"
+  | "thumb"
+  | "valueText"
+  | "track"
+  | "range"
+  | "control"
+  | "markerGroup"
+  | "marker"
+  | "draggingIndicator"
+  | "markerIndicator"
 
 export interface SliderVariant {
   /** @default "md" */
@@ -1184,6 +1211,50 @@ export type TimelineVariantMap = {
   [K in keyof TimelineVariant]: Array<TimelineVariant[K]>
 }
 
+// ColorPicker
+
+export type ColorPickerSlot =
+  | "root"
+  | "label"
+  | "control"
+  | "trigger"
+  | "positioner"
+  | "content"
+  | "area"
+  | "areaThumb"
+  | "valueText"
+  | "areaBackground"
+  | "channelSlider"
+  | "channelSliderLabel"
+  | "channelSliderTrack"
+  | "channelSliderThumb"
+  | "channelSliderValueText"
+  | "channelInput"
+  | "transparencyGrid"
+  | "swatchGroup"
+  | "swatchTrigger"
+  | "swatchIndicator"
+  | "swatch"
+  | "eyeDropperTrigger"
+  | "formatTrigger"
+  | "formatSelect"
+  | "view"
+
+export interface ColorPickerVariant {
+  /** @default "md" */
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  /** @default "outline" */
+  variant?: "outline" | "subtle"
+}
+
+export type ColorPickerVariantProps = {
+  [K in keyof ColorPickerVariant]?: ConditionalValue<ColorPickerVariant[K]> | undefined
+}
+
+export type ColorPickerVariantMap = {
+  [K in keyof ColorPickerVariant]: Array<ColorPickerVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1228,6 +1299,7 @@ export interface ConfigSlotRecipes {
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps, TooltipVariantMap>
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps, StatusVariantMap>
   timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps, TimelineVariantMap>
+  colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1274,6 +1346,7 @@ export interface ConfigRecipeSlots {
   tooltip: TooltipSlot
   status: StatusSlot
   timeline: TimelineSlot
+  colorPicker: ColorPickerSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>

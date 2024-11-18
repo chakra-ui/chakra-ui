@@ -2,6 +2,7 @@ import { badgeRecipe } from "./recipes/badge"
 import { buttonRecipe } from "./recipes/button"
 import { checkmarkRecipe } from "./recipes/checkmark"
 import { codeRecipe } from "./recipes/code"
+import { colorSwatchRecipe } from "./recipes/color-swatch"
 import { containerRecipe } from "./recipes/container"
 import { headingRecipe } from "./recipes/heading"
 import { iconRecipe } from "./recipes/icon"
@@ -36,4 +37,5 @@ export const recipes = {
   icon: iconRecipe,
   checkmark: checkmarkRecipe,
   radiomark: radiomarkRecipe,
+  colorSwatch: colorSwatchRecipe,
 }

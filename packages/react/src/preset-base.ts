@@ -32,7 +32,7 @@ const createFocusRing = (selector: string) => {
           "--focus-ring-color": focusRingColor,
           [selector]: {
             outlineWidth: "var(--focus-ring-width, 2px)",
-            outlineOffset: "2px",
+            outlineOffset: "var(--focus-ring-offset, 2px)",
             outlineStyle: "var(--focus-ring-style, solid)",
             outlineColor: "var(--focus-ring-color)",
           },
@@ -650,6 +650,10 @@ export const defaultBaseConfig = defineConfig({
     focusRingColor: {
       values: colorValues,
       transform: createColorMixTransform("--focus-ring-color"),
+    },
+    focusRingOffset: {
+      values: "spacing",
+      transform: (v) => ({ "--focus-ring-offset": v }),
     },
     focusRingWidth: {
       values: "borderWidths",
