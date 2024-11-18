@@ -49,6 +49,10 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
         borderColor: "var(--focus-color)",
         outline: "1px solid var(--focus-color)",
       },
+      "&[data-fit-content]": {
+        "--input-height": "unset",
+        px: "0",
+      },
     },
     content: {
       display: "flex",

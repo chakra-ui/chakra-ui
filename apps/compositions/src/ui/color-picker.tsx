@@ -12,10 +12,15 @@ import { LuCheck, LuPipette } from "react-icons/lu"
 
 export const ColorPickerTrigger = forwardRef<
   HTMLButtonElement,
-  ChakraColorPicker.TriggerProps
+  ChakraColorPicker.TriggerProps & { fitContent?: boolean }
 >(function ColorPickerTrigger(props, ref) {
+  const { fitContent, ...rest } = props
   return (
-    <ChakraColorPicker.Trigger ref={ref} {...props}>
+    <ChakraColorPicker.Trigger
+      data-fit-content={fitContent || undefined}
+      ref={ref}
+      {...rest}
+    >
       {props.children || <ChakraColorPicker.ValueSwatch />}
     </ChakraColorPicker.Trigger>
   )

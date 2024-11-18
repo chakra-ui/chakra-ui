@@ -36,7 +36,11 @@ export const ColorPickerWithSizes = () => {
               </HStack>
               <ColorPickerSwatchGroup>
                 {["red", "blue", "green"].map((item) => (
-                  <ColorPickerSwatchTrigger key={item} value={item} />
+                  <ColorPickerSwatchTrigger
+                    swatchSize="4.5"
+                    key={item}
+                    value={item}
+                  />
                 ))}
               </ColorPickerSwatchGroup>
             </ColorPickerContent>

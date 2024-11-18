@@ -1,4 +1,4 @@
-import { HStack, parseColor } from "@chakra-ui/react"
+import { HStack, Square, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
   ColorPickerContent,
@@ -10,10 +10,8 @@ import {
   ColorPickerSwatchGroup,
   ColorPickerSwatchTrigger,
   ColorPickerTrigger,
-  ColorPickerValueSwatch,
   ColorPickerValueText,
 } from "compositions/ui/color-picker"
-import { LuChevronDown } from "react-icons/lu"
 
 export const ColorPickerWithSwatchesAndTrigger = () => {
   return (
@@ -27,8 +25,12 @@ export const ColorPickerWithSwatchesAndTrigger = () => {
             <ColorPickerSwatchTrigger key={item} value={item} />
           ))}
           <ColorPickerTrigger textStyle="lg">
-            <ColorPickerValueSwatch />
-            <LuChevronDown />
+            <Square
+              size="7"
+              bgImage="url(https://static.canva.com/web/images/788ee7a68293bd0264fc31f22c31e62d.png)"
+              bgSize="cover"
+              rounded="sm"
+            />
           </ColorPickerTrigger>
         </ColorPickerSwatchGroup>
       </ColorPickerControl>
