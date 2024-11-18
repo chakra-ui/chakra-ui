@@ -605,7 +605,7 @@ export type EmptyStateVariantMap = {
 
 // Field
 
-export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator"
+export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator" | "requiredIndicator"
 
 export interface FieldVariant {
   /** @default "vertical" */
@@ -985,7 +985,18 @@ export type SelectVariantMap = {
 
 // Slider
 
-export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker" | "markerIndicator"
+export type SliderSlot =
+  | "root"
+  | "label"
+  | "thumb"
+  | "valueText"
+  | "track"
+  | "range"
+  | "control"
+  | "markerGroup"
+  | "marker"
+  | "draggingIndicator"
+  | "markerIndicator"
 
 export interface SliderVariant {
   /** @default "md" */
@@ -1231,7 +1242,9 @@ export type ColorPickerSlot =
 
 export interface ColorPickerVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  /** @default "outline" */
+  variant?: "outline" | "subtle"
 }
 
 export type ColorPickerVariantProps = {

@@ -1,10 +1,11 @@
 "use client"
 
-import { parseColor } from "@chakra-ui/react"
+import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
   ColorPickerContent,
   ColorPickerControl,
+  ColorPickerEyeDropper,
   ColorPickerHexInput,
   ColorPickerLabel,
   ColorPickerRoot,
@@ -29,7 +30,10 @@ export const ColorPickerControlled = () => {
       </ColorPickerControl>
       <ColorPickerContent>
         <ColorPickerArea />
-        <ColorPickerSliderControl />
+        <HStack>
+          <ColorPickerEyeDropper />
+          <ColorPickerSliderControl />
+        </HStack>
       </ColorPickerContent>
     </ColorPickerRoot>
   )

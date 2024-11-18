@@ -1,5 +1,7 @@
 import { colorPickerAnatomy } from "@ark-ui/react/color-picker"
 import { defineSlotRecipe } from "../../styled-system"
+import { colorSwatchRecipe } from "./color-swatch"
+import { inputRecipe } from "./input"
 
 export const colorPickerSlotRecipe = defineSlotRecipe({
   className: "colorPicker",
@@ -9,8 +11,6 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1.5",
-      "--thumb-size": "sizes.4",
-      "--swatch-size": "sizes.6",
     },
     label: {
       color: "fg",
@@ -24,26 +24,33 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "row",
       gap: "2",
+      position: "relative",
+    },
+    swatchTrigger: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
     trigger: {
       display: "flex",
-      flexDirection: "row",
       alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+      flexShrink: "0",
       gap: "2",
       textStyle: "sm",
-      focusRing: "outside",
-      borderWidth: "1px",
-      minH: "8",
+      minH: "var(--input-height)",
+      minW: "var(--input-height)",
       px: "1",
       rounded: "l2",
-      _disabled: {
-        opacity: "0.5",
+      _disabled: { opacity: "0.5" },
+      "--focus-color": "colors.colorPalette.focusRing",
+      "&:focus-visible": {
+        borderColor: "var(--focus-color)",
+        outline: "1px solid var(--focus-color)",
       },
     },
     content: {
-      "--thumb-size": "sizes.4.5",
-      "--swatch-size": "sizes.6",
-      "--slider-height": "sizes.5",
       display: "flex",
       flexDirection: "column",
       bg: "bg.panel",
@@ -51,6 +58,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       boxShadow: "lg",
       width: "240px",
       p: "4",
+      gap: "3",
       zIndex: "dropdown",
       _open: {
         animationStyle: "slide-fade-in",
@@ -70,10 +78,12 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       borderRadius: "full",
       height: "var(--thumb-size)",
       width: "var(--thumb-size)",
-      borderWidth: "0.25rem",
+      borderWidth: "2px",
       borderColor: "white",
       shadow: "sm",
-      outline: "none",
+      transformOrigin: "center",
+      focusVisibleRing: "mixed",
+      focusRingColor: "white",
     },
     areaBackground: {
       height: "full",
@@ -92,26 +102,30 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       gap: "2",
     },
     swatch: {
-      height: "var(--swatch-size)",
-      width: "var(--swatch-size)",
+      ...colorSwatchRecipe.base,
       borderRadius: "l1",
-      boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     },
     swatchIndicator: {
       color: "white",
+      rounded: "full",
     },
     channelSliderThumb: {
       borderRadius: "full",
       height: "var(--thumb-size)",
       width: "var(--thumb-size)",
-      borderWidth: "0.25rem",
+      borderWidth: "2px",
       borderColor: "white",
       shadow: "sm",
       transform: "translate(-50%, -50%)",
-      outline: "none",
+      focusVisibleRing: "outside",
+      focusRingOffset: "1px",
+    },
+    channelInput: {
+      ...inputRecipe.base,
+      "&::-webkit-inner-spin-button, &::-webkit-outer-spin-button": {
+        WebkitAppearance: "none",
+        margin: 0,
+      },
     },
     transparencyGrid: {
       borderRadius: "l2",
@@ -120,15 +134,98 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
-      xs: {},
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
+      "2xs": {
+        channelInput: inputRecipe.variants?.size?.["2xs"],
+        swatch: { "--swatch-size": "sizes.4.5" },
+        trigger: { "--input-height": "sizes.7" },
+        area: { "--thumb-size": "sizes.3" },
+        channelSlider: {
+          "--slider-height": "sizes.3",
+          "--thumb-size": "sizes.3",
+        },
+      },
+      xs: {
+        channelInput: inputRecipe.variants?.size?.xs,
+        swatch: { "--swatch-size": "sizes.5" },
+        trigger: { "--input-height": "sizes.8" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+      sm: {
+        channelInput: inputRecipe.variants?.size?.sm,
+        swatch: { "--swatch-size": "sizes.6" },
+        trigger: { "--input-height": "sizes.9" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+      md: {
+        channelInput: inputRecipe.variants?.size?.md,
+        swatch: { "--swatch-size": "sizes.7" },
+        trigger: { "--input-height": "sizes.10" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+      lg: {
+        channelInput: inputRecipe.variants?.size?.lg,
+        swatch: { "--swatch-size": "sizes.7" },
+        trigger: { "--input-height": "sizes.11" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+      xl: {
+        channelInput: inputRecipe.variants?.size?.xl,
+        swatch: { "--swatch-size": "sizes.8" },
+        trigger: { "--input-height": "sizes.12" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+      "2xl": {
+        channelInput: inputRecipe.variants?.size?.["2xl"],
+        swatch: { "--swatch-size": "sizes.10" },
+        trigger: { "--input-height": "sizes.16" },
+        area: { "--thumb-size": "sizes.3.5" },
+        channelSlider: {
+          "--slider-height": "sizes.3.5",
+          "--thumb-size": "sizes.3.5",
+        },
+      },
+    },
+
+    variant: {
+      outline: {
+        channelInput: inputRecipe.variants?.variant?.outline,
+        trigger: {
+          borderWidth: "1px",
+        },
+      },
+      subtle: {
+        channelInput: inputRecipe.variants?.variant?.subtle,
+        trigger: {
+          borderWidth: "1px",
+          borderColor: "transparent",
+          bg: "bg.muted",
+        },
+      },
     },
   },
 
   defaultVariants: {
     size: "md",
+    variant: "outline",
   },
 })

@@ -1,12 +1,14 @@
-import { parseColor } from "@chakra-ui/react"
+import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
   ColorPickerContent,
   ColorPickerControl,
+  ColorPickerEyeDropper,
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliderControl,
   ColorPickerTrigger,
+  ColorPickerValueSwatch,
   ColorPickerValueText,
 } from "compositions/ui/color-picker"
 
@@ -15,13 +17,18 @@ export const ColorPickerTriggerOnly = () => {
     <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
       <ColorPickerLabel>Color</ColorPickerLabel>
       <ColorPickerControl alignItems="center">
-        <ColorPickerTrigger>
+        <ColorPickerTrigger px="2">
+          <ColorPickerValueSwatch boxSize="6" />
           <ColorPickerValueText minW="160px" />
         </ColorPickerTrigger>
       </ColorPickerControl>
       <ColorPickerContent>
         <ColorPickerArea />
-        <ColorPickerSliderControl />
+        <HStack>
+          <ColorPickerEyeDropper />
+          <ColorPickerSliderControl />
+          <ColorPickerValueSwatch />
+        </HStack>
       </ColorPickerContent>
     </ColorPickerRoot>
   )

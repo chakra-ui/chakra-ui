@@ -1,37 +1,30 @@
-import { HStack, parseColor } from "@chakra-ui/react"
+import { ColorPickerChannelInput, parseColor } from "@chakra-ui/react"
 import {
-  ColorPickerArea,
   ColorPickerContent,
   ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerHexInput,
-  ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
   ColorPickerSwatchGroup,
   ColorPickerSwatchTrigger,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 
-export const ColorPickerWithDisabled = () => {
+export const ColorPickerWithSwatchAndInput = () => {
   return (
-    <ColorPickerRoot disabled defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
+    <ColorPickerRoot
+      size="xs"
+      defaultValue={parseColor("#eb5e41")}
+      maxW="200px"
+    >
       <ColorPickerControl alignItems="center">
-        <ColorPickerHexInput />
         <ColorPickerTrigger />
       </ColorPickerControl>
       <ColorPickerContent>
-        <ColorPickerArea />
-        <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
-        </HStack>
         <ColorPickerSwatchGroup>
           {["red", "blue", "green"].map((item) => (
             <ColorPickerSwatchTrigger key={item} value={item} />
           ))}
         </ColorPickerSwatchGroup>
+        <ColorPickerChannelInput channel="hex" />
       </ColorPickerContent>
     </ColorPickerRoot>
   )

@@ -8,14 +8,20 @@ import {
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliderControl,
+  ColorPickerSwatchGroup,
+  ColorPickerSwatchTrigger,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 
-export const ColorPickerBasic = () => {
+export const ColorPickerWithFormat = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
+    <ColorPickerRoot
+      defaultValue={parseColor("#eb5e41")}
+      maxW="200px"
+      format="hsla"
+    >
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl>
+      <ColorPickerControl alignItems="center">
         <ColorPickerHexInput />
         <ColorPickerTrigger />
       </ColorPickerControl>
@@ -25,6 +31,11 @@ export const ColorPickerBasic = () => {
           <ColorPickerEyeDropper />
           <ColorPickerSliderControl />
         </HStack>
+        <ColorPickerSwatchGroup>
+          {["red", "blue", "green"].map((item) => (
+            <ColorPickerSwatchTrigger key={item} value={item} />
+          ))}
+        </ColorPickerSwatchGroup>
       </ColorPickerContent>
     </ColorPickerRoot>
   )
