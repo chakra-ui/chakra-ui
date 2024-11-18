@@ -107,33 +107,21 @@ export const ColorPickerSwatchTrigger = forwardRef<
     swatchSize?: ChakraColorPicker.SwatchTriggerProps["boxSize"]
   }
 >(function ColorPickerSwatchTrigger(props, ref) {
-  const { swatchSize, ...rest } = props
+  const { swatchSize, children, ...rest } = props
   return (
     <ChakraColorPicker.SwatchTrigger
       ref={ref}
       style={{ ["--color" as string]: props.value }}
       {...rest}
     >
-      <ChakraColorPicker.Swatch boxSize={swatchSize} value={props.value}>
-        <ChakraColorPicker.SwatchIndicator>
-          <LuCheck />
-        </ChakraColorPicker.SwatchIndicator>
-      </ChakraColorPicker.Swatch>
+      {children || (
+        <ChakraColorPicker.Swatch boxSize={swatchSize} value={props.value}>
+          <ChakraColorPicker.SwatchIndicator>
+            <LuCheck />
+          </ChakraColorPicker.SwatchIndicator>
+        </ChakraColorPicker.Swatch>
+      )}
     </ChakraColorPicker.SwatchTrigger>
-  )
-})
-
-export const ColorPickerSwatchGroup = forwardRef<
-  HTMLDivElement,
-  ChakraColorPicker.SwatchGroupProps & { rowCount?: number }
->(function ColorPickerSwatchGroup(props, ref) {
-  const { rowCount = 7, ...rest } = props
-  return (
-    <ChakraColorPicker.SwatchGroup
-      ref={ref}
-      style={{ ["--swatch-per-row" as string]: rowCount }}
-      {...rest}
-    />
   )
 })
 
@@ -186,3 +174,4 @@ export const ColorPickerControl = ChakraColorPicker.Control
 export const ColorPickerValueText = ChakraColorPicker.ValueText
 export const ColorPickerValueSwatch = ChakraColorPicker.ValueSwatch
 export const ColorPickerChannelInput = ChakraColorPicker.ChannelInput
+export const ColorPickerSwatchGroup = ChakraColorPicker.SwatchGroup
