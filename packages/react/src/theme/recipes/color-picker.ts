@@ -22,6 +22,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
     },
     control: {
       display: "flex",
+      alignItems: "center",
       flexDirection: "row",
       gap: "2",
       position: "relative",
@@ -52,6 +53,7 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       "&[data-fit-content]": {
         "--input-height": "unset",
         px: "0",
+        border: "0",
       },
     },
     content: {

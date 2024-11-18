@@ -21,7 +21,7 @@ export const ColorPickerCloseOnSwatchClick = () => {
       maxW="200px"
     >
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerInput />
         <ColorPickerTrigger />
       </ColorPickerControl>

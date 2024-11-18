@@ -15,7 +15,7 @@ export const ColorPickerWithSwatchAndInput = () => {
       defaultValue={parseColor("#eb5e41")}
       maxW="200px"
     >
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerTrigger />
       </ColorPickerControl>
       <ColorPickerContent>

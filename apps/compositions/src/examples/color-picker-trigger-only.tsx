@@ -16,7 +16,7 @@ export const ColorPickerTriggerOnly = () => {
   return (
     <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerTrigger px="2">
           <ColorPickerValueSwatch boxSize="6" />
           <ColorPickerValueText minW="160px" />

@@ -21,7 +21,7 @@ export const ColorPickerWithFormat = () => {
       format="hsla"
     >
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerInput />
         <ColorPickerTrigger />
       </ColorPickerControl>

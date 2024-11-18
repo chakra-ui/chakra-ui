@@ -31,4 +31,5 @@ export { ColorPickerWithSizes as Sizes } from "compositions/examples/color-picke
 export { ColorPickerWithSwatchAndInput as SwatchAndInput } from "compositions/examples/color-picker-with-swatch-and-input"
 export { ColorPickerWithSwatches as Swatches } from "compositions/examples/color-picker-with-swatches"
 export { ColorPickerWithSwatchesAndTrigger as SwatchesAndTrigger } from "compositions/examples/color-picker-with-swatches-and-trigger"
+export { ColorPickerWithTriggerInInput as TriggerInInput } from "compositions/examples/color-picker-with-trigger-in-input"
 export { ColorPickerWithVariants as Variants } from "compositions/examples/color-picker-with-variants"

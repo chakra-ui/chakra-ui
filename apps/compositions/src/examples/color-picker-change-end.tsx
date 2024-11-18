@@ -27,7 +27,7 @@ export const ColorPickerChangeEnd = () => {
         onValueChangeEnd={(e) => setValue(e.value)}
       >
         <ColorPickerLabel>Color</ColorPickerLabel>
-        <ColorPickerControl alignItems="center">
+        <ColorPickerControl>
           <ColorPickerInput />
           <ColorPickerTrigger />
         </ColorPickerControl>

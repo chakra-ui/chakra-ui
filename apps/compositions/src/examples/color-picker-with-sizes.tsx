@@ -24,7 +24,7 @@ export const ColorPickerWithSizes = () => {
             size={size}
           >
             <ColorPickerLabel>Color ({size})</ColorPickerLabel>
-            <ColorPickerControl alignItems="center">
+            <ColorPickerControl>
               <ColorPickerInput />
               <ColorPickerTrigger />
             </ColorPickerControl>

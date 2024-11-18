@@ -17,7 +17,7 @@ export const ColorPickerWithDisabled = () => {
   return (
     <ColorPickerRoot disabled defaultValue={parseColor("#eb5e41")} maxW="200px">
       <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerInput />
         <ColorPickerTrigger />
       </ColorPickerControl>

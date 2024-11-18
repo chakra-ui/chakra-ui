@@ -1,7 +1,6 @@
 import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
-  ColorPickerChannelInputs,
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
@@ -10,15 +9,28 @@ import {
   ColorPickerRoot,
   ColorPickerSliders,
   ColorPickerTrigger,
+  ColorPickerValueSwatch,
 } from "compositions/ui/color-picker"
+import { InputGroup } from "compositions/ui/input-group"
 
-export const ColorPickerWithChannelInput = () => {
+export const ColorPickerWithTriggerInInput = () => {
   return (
     <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
+      <ColorPickerLabel>Trigger on swatch</ColorPickerLabel>
       <ColorPickerControl>
-        <ColorPickerInput />
-        <ColorPickerTrigger />
+        <InputGroup
+          startOffset="0px"
+          startElementProps={{ pointerEvents: "all" }}
+          startElement={
+            <ColorPickerTrigger fitContent>
+              <ColorPickerValueSwatch boxSize="4.5" />
+            </ColorPickerTrigger>
+          }
+          endElementProps={{ px: "1" }}
+          endElement={<ColorPickerEyeDropper variant="ghost" />}
+        >
+          <ColorPickerInput />
+        </InputGroup>
       </ColorPickerControl>
       <ColorPickerContent>
         <ColorPickerArea />
@@ -26,9 +38,6 @@ export const ColorPickerWithChannelInput = () => {
           <ColorPickerEyeDropper />
           <ColorPickerSliders />
         </HStack>
-        <ColorPickerChannelInputs format="rgba" />
-        <ColorPickerChannelInputs format="hsla" />
-        <ColorPickerChannelInputs format="hsba" />
       </ColorPickerContent>
     </ColorPickerRoot>
   )

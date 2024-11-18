@@ -20,7 +20,7 @@ export const ColorPickerWithSwatchesAndTrigger = () => {
       <ColorPickerLabel>
         Color: <ColorPickerValueText />
       </ColorPickerLabel>
-      <ColorPickerControl alignItems="center">
+      <ColorPickerControl>
         <ColorPickerSwatchGroup>
           {["red", "blue", "green"].map((item) => (
             <ColorPickerSwatchTrigger key={item} value={item} />

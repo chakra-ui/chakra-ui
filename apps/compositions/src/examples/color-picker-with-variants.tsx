@@ -24,7 +24,7 @@ export const ColorPickerWithVariants = () => {
             variant={variant}
           >
             <ColorPickerLabel>Color ({variant})</ColorPickerLabel>
-            <ColorPickerControl alignItems="center">
+            <ColorPickerControl>
               <ColorPickerInput />
               <ColorPickerTrigger />
             </ColorPickerControl>
