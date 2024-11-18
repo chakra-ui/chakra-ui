@@ -1,11 +1,14 @@
-import { ColorSwatchMix, Stack, Text } from "@chakra-ui/react"
+import { ColorSwatchMix, Stack } from "@chakra-ui/react"
 
 export const ColorSwatchWithMix = () => {
   return (
     <Stack>
-      <Text>Mixed</Text>
-      <ColorSwatchMix items={["red", "pink"]} />
-      <ColorSwatchMix items={["lightgreen", "green", "darkgreen", "black"]} />
+      <ColorSwatchMix size="lg" items={["red", "pink"]} />
+      <ColorSwatchMix size="lg" items={["red", "pink", "green"]} />
+      <ColorSwatchMix
+        size="lg"
+        items={["lightgreen", "green", "darkgreen", "black"]}
+      />
     </Stack>
   )
 }

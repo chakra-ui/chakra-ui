@@ -49,12 +49,32 @@ export interface ColorSwatchMixProps extends Omit<ColorSwatchProps, "value"> {
 
 export const ColorSwatchMix = (props: ColorSwatchMixProps) => {
   const { items, ...restProps } = props
+
+  if (items.length > 4) {
+    throw new Error("ColorSwatchMix doesn't support more than 4 colors")
+  }
+
+  const isThreeColors = items.length === 3
+
   return (
     <ColorSwatch overflow="hidden" {...restProps} value="transparent">
       <Grid templateColumns="var(--swatch-size) var(--swatch-size)">
-        {items.map((item) => (
-          <ColorSwatch size="inherit" key={item} rounded="none" value={item} />
-        ))}
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1
+          return (
+            <ColorSwatch
+              size="inherit"
+              key={item}
+              rounded="none"
+              value={item}
+              boxShadow="none"
+              gridColumn={
+                isThreeColors && isLast ? "span 2 / span 2" : undefined
+              }
+              width={isThreeColors && isLast ? "unset" : undefined}
+            />
+          )
+        })}
       </Grid>
     </ColorSwatch>
   )
