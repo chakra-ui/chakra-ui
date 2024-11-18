@@ -2,13 +2,13 @@
 title: Add custom fonts to a Next.js project
 description:
   Learn how to add a custom font when using Chakra UI in a Next.js project
-publishedAt: "2024-11-19"
+publishedAt: "2024-11-18"
 collection: theming
 ---
 
 ## Loading the custom fonts
 
-In Next.js, Google Fonts are available by default. At the top of your
+Google Fonts are available in Next.js by default. At the top of your
 `layout.tsx` file, import the font from `next/font/google`:
 
 ```tsx title="layout.tsx"
@@ -19,13 +19,13 @@ Configure the font by defining the variable and subsets to include:
 
 ```tsx title="layout.tsx"
 const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage", // Define the CSS variable for the font
-  subsets: ["latin"], // Specify subsets (e.g., Latin)
+  variable: "--font-bricolage",
+  subsets: ["latin"],
 })
 ```
 
 Now, attach the font to the `<html>` element in your application. This ensures
-that the font is loaded globally.
+that the font is available to be used in Chakra UI.
 
 ```tsx /className={bricolage.variable}/
 <html className={bricolage.variable} lang="en" suppressHydrationWarning>
@@ -35,9 +35,9 @@ that the font is loaded globally.
 </html>
 ```
 
-## Using the custom font
+## Configure the custom font
 
-With the `createSystem` method, define the custom font in Chakra UI's theme
+Use the `createSystem` method to define the custom font in Chakra UI's theme
 configuration:
 
 ```tsx title="components/ui/provider.tsx"
@@ -57,9 +57,13 @@ const system = createSystem(defaultConfig, {
 })
 ```
 
-> You can customize which text elements use the font by specifying it for
-> `heading`, `body`, or both. In this case, we are setting both the body and
-> heading fonts to Bricolage Grotesque.
+:::info
+
+You can customize which text elements use the font by specifying it for
+`heading`, `body`, or both. In this case, we are setting both the body and
+heading fonts to "Bricolage Grotesque".
+
+:::
 
 Finally, pass the `system` into the `ChakraProvider`
 
