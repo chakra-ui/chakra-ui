@@ -15,5 +15,6 @@ export default {
 export { ColorSwatchBasic as Basic } from "compositions/examples/color-swatch-basic"
 export { ColorSwatchWithMix as Mixed } from "compositions/examples/color-swatch-mixed"
 export { ColorSwatchWithAlpha as WithAlpha } from "compositions/examples/color-swatch-with-alpha"
+export { ColorSwatchWithBadge as WithBadge } from "compositions/examples/color-swatch-with-badge"
 export { ColorSwatchWithSizes as WithSizes } from "compositions/examples/color-swatch-with-sizes"
 export { ColorSwatchWithTransparent as WithTransparent } from "compositions/examples/color-swatch-with-transparent"

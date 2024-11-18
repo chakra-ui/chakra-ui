@@ -4,8 +4,10 @@ export {
   ColorPickerAreaThumb,
   ColorPickerChannelInput,
   ColorPickerChannelSlider,
+  ColorPickerChannelSliderLabel,
   ColorPickerChannelSliderThumb,
   ColorPickerChannelSliderTrack,
+  ColorPickerChannelSliderValueText,
   ColorPickerContent,
   ColorPickerContext,
   ColorPickerControl,
@@ -31,8 +33,8 @@ export {
 } from "./color-picker"
 
 export type {
-  ColorPickerAreaProps,
   ColorPickerAreaBackgroundProps,
+  ColorPickerAreaProps,
   ColorPickerAreaThumbProps,
   ColorPickerChannelInputProps,
   ColorPickerChannelSliderProps,
@@ -57,6 +59,8 @@ export type {
   ColorPickerValueSwatchProps,
   ColorPickerValueTextProps,
   ColorPickerViewProps,
+  ColorPickerChannelSliderValueTextProps,
+  ColorPickerChannelSliderLabelProps,
 } from "./color-picker"
 
 export {
@@ -64,5 +68,7 @@ export {
   useColorPicker,
   useColorPickerContext,
 } from "@ark-ui/react/color-picker"
+
+export type { ColorPickerColorFormat, Color } from "@ark-ui/react/color-picker"
 
 export * as ColorPicker from "./namespace"

@@ -4,8 +4,10 @@ export {
   ColorPickerAreaThumb as AreaThumb,
   ColorPickerChannelInput as ChannelInput,
   ColorPickerChannelSlider as ChannelSlider,
+  ColorPickerChannelSliderLabel as ChannelSliderLabel,
   ColorPickerChannelSliderThumb as ChannelSliderThumb,
   ColorPickerChannelSliderTrack as ChannelSliderTrack,
+  ColorPickerChannelSliderValueText as ChannelSliderValueText,
   ColorPickerContent as Content,
   ColorPickerContext as Context,
   ColorPickerControl as Control,
@@ -30,8 +32,8 @@ export {
 } from "./color-picker"
 
 export type {
-  ColorPickerAreaProps as AreaProps,
   ColorPickerAreaBackgroundProps as AreaBackgroundProps,
+  ColorPickerAreaProps as AreaProps,
   ColorPickerAreaThumbProps as AreaThumbProps,
   ColorPickerChannelInputProps as ChannelInputProps,
   ColorPickerChannelSliderProps as ChannelSliderProps,
@@ -56,4 +58,6 @@ export type {
   ColorPickerValueSwatchProps as ValueSwatchProps,
   ColorPickerValueTextProps as ValueTextProps,
   ColorPickerViewProps as ViewProps,
+  ColorPickerChannelSliderValueTextProps as ChannelSliderValueTextProps,
+  ColorPickerChannelSliderLabelProps as ChannelSliderLabelProps,
 } from "./color-picker"

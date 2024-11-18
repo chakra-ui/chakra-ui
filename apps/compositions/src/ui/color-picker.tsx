@@ -1,8 +1,10 @@
 import type { IconButtonProps, StackProps } from "@chakra-ui/react"
 import {
   ColorPicker as ChakraColorPicker,
+  For,
   IconButton,
   Portal,
+  Span,
   Stack,
   Text,
   VStack,
@@ -56,8 +58,8 @@ export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
   function ColorPickerSliders(props, ref) {
     return (
       <Stack gap="1" flex="1" px="1" ref={ref} {...props}>
-        <ColorPickerSlider channel="hue" />
-        <ColorPickerSlider channel="alpha" />
+        <ColorPickerChannelSlider channel="hue" />
+        <ColorPickerChannelSlider channel="alpha" />
       </Stack>
     )
   },
@@ -88,7 +90,7 @@ export const ColorPickerEyeDropper = forwardRef<
   )
 })
 
-export const ColorPickerSlider = forwardRef<
+export const ColorPickerChannelSlider = forwardRef<
   HTMLDivElement,
   ChakraColorPicker.ChannelSliderProps
 >(function ColorPickerSlider(props, ref) {
@@ -144,20 +146,20 @@ const formatMap = {
   hexa: ["hex", "alpha"],
 } as const
 
-export const ColorPickerFormatInput = (props: ChakraColorPicker.ViewProps) => {
+export const ColorPickerChannelInputs = forwardRef<
+  HTMLDivElement,
+  ChakraColorPicker.ViewProps
+>(function ColorPickerChannelInputs(props, ref) {
   const channels = formatMap[props.format]
   return (
-    <ChakraColorPicker.View
-      display="flex"
-      flexDirection="row"
-      gap="2"
-      {...props}
-    >
+    <ChakraColorPicker.View ref={ref} {...props}>
       {channels.map((channel) => (
         <VStack gap="1" key={channel} flex="1">
           <ColorPickerChannelInput
             channel={channel}
             px="0"
+            height="7"
+            textStyle="xs"
             textAlign="center"
           />
           <Text textStyle="xs" color="fg.muted" fontWeight="medium">
@@ -167,7 +169,33 @@ export const ColorPickerFormatInput = (props: ChakraColorPicker.ViewProps) => {
       ))}
     </ChakraColorPicker.View>
   )
-}
+})
+
+export const ColorPickerChannelSliders = forwardRef<
+  HTMLDivElement,
+  ChakraColorPicker.ViewProps
+>(function ColorPickerChannelSliders(props, ref) {
+  const channels = formatMap[props.format]
+  return (
+    <ChakraColorPicker.View {...props} ref={ref}>
+      <For each={channels}>
+        {(channel) => (
+          <Stack gap="1" key={channel}>
+            <Span
+              textStyle="xs"
+              minW="5ch"
+              textTransform="capitalize"
+              fontWeight="medium"
+            >
+              {channel}
+            </Span>
+            <ColorPickerChannelSlider channel={channel} />
+          </Stack>
+        )}
+      </For>
+    </ChakraColorPicker.View>
+  )
+})
 
 export const ColorPickerLabel = ChakraColorPicker.Label
 export const ColorPickerControl = ChakraColorPicker.Control

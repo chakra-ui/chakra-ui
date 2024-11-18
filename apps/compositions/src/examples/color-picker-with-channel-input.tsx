@@ -1,10 +1,10 @@
 import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
+  ColorPickerChannelInputs,
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerFormatInput,
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
@@ -26,9 +26,9 @@ export const ColorPickerWithChannelInput = () => {
           <ColorPickerEyeDropper />
           <ColorPickerSliders />
         </HStack>
-        <ColorPickerFormatInput format="rgba" />
-        <ColorPickerFormatInput format="hsla" />
-        <ColorPickerFormatInput format="hsba" />
+        <ColorPickerChannelInputs format="rgba" />
+        <ColorPickerChannelInputs format="hsla" />
+        <ColorPickerChannelInputs format="hsba" />
       </ColorPickerContent>
     </ColorPickerRoot>
   )

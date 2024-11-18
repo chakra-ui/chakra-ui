@@ -297,6 +297,33 @@ export const ColorPickerEyeDropperTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ColorPickerChannelSliderValueTextProps
+  extends HTMLChakraProps<
+    "div",
+    ArkColorPicker.ChannelSliderValueTextBaseProps
+  > {}
+
+export const ColorPickerChannelSliderValueText = withContext<
+  HTMLDivElement,
+  ColorPickerChannelSliderValueTextProps
+>(ArkColorPicker.ChannelSliderValueText, "channelSliderValueText", {
+  forwardAsChild: true,
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ColorPickerChannelSliderLabelProps
+  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderLabelBaseProps> {}
+
+export const ColorPickerChannelSliderLabel = withContext<
+  HTMLDivElement,
+  ColorPickerChannelSliderLabelProps
+>(ArkColorPicker.ChannelSliderLabel, "channelSliderLabel", {
+  forwardAsChild: true,
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const ColorPickerHiddenInput = ArkColorPicker.HiddenInput
 
 export const ColorPickerContext = ArkColorPicker.Context
