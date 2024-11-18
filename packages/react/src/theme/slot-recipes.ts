@@ -9,6 +9,7 @@ import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { collapsibleSlotRecipe } from "./recipes/collapsible"
 import { comboboxSlotRecipe } from "./recipes/combobox"
+import { colorPickerSlotRecipe } from "./recipes/color-picker"
 import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
@@ -88,4 +89,5 @@ export const slotRecipes = {
   tooltip: tooltipSlotRecipe,
   status: statusSlotRecipe,
   timeline: timelineSlotRecipe,
+  colorPicker: colorPickerSlotRecipe,
 }

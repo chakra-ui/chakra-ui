@@ -26,6 +26,25 @@ export function createRecipeContext<K extends RecipeKey>(
     providerName: `${contextName}PropsContext`,
   })
 
+  function useRecipeResult(props: any) {
+    const { unstyled, ...restProps } = props
+
+    const recipe = useRecipe({
+      key: recipeKey,
+      recipe: restProps.recipe || recipeConfig,
+    })
+
+    // @ts-ignore
+    const [variantProps, otherProps] = recipe.splitVariantProps(restProps)
+    const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
+
+    return {
+      styles,
+      className: recipe.className,
+      props: otherProps,
+    }
+  }
+
   const withContext = <T, P>(
     Component: React.ElementType<any>,
     options?: JsxFactoryOptions<P>,
@@ -35,21 +54,14 @@ export function createRecipeContext<K extends RecipeKey>(
     const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
       const props = mergeProps(usePropsContext(), inProps)
-
-      const { unstyled, ...otherProps } = props
-      const fallbackRecipe = props.recipe || recipeConfig
-
-      const recipe = useRecipe({ key: recipeKey, recipe: fallbackRecipe })
-      // @ts-ignore
-      const [variantProps, localProps] = recipe.splitVariantProps(otherProps)
-      const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
+      const { styles, className, props: localProps } = useRecipeResult(props)
 
       return (
         <SuperComponent
           {...localProps}
           ref={ref}
           css={[styles, props.css]}
-          className={cx(recipe.className, props.className)}
+          className={cx(className, props.className)}
         />
       )
     })
@@ -59,9 +71,15 @@ export function createRecipeContext<K extends RecipeKey>(
     return StyledComponent as any
   }
 
+  function withPropsProvider<P>(): React.Provider<Partial<P>> {
+    return PropsProvider as any
+  }
+
   return {
     withContext,
     PropsProvider,
+    withPropsProvider,
     usePropsContext,
+    useRecipeResult,
   }
 }

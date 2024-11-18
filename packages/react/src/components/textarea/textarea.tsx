@@ -14,6 +14,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 
 export interface TextareaBaseProps
   extends RecipeProps<"textarea">,
+    Field.TextareaBaseProps,
     UnstyledProp {}
 
 export interface TextareaProps

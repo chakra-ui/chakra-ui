@@ -1,0 +1,83 @@
+---
+title: Add custom fonts to a Next.js project
+description:
+  Learn how to add a custom font when using Chakra UI in a Next.js project
+publishedAt: "2024-11-18"
+collection: theming
+---
+
+## Loading the custom fonts
+
+Google Fonts are available in Next.js by default. At the top of your
+`layout.tsx` file, import the font from `next/font/google`:
+
+```tsx title="layout.tsx"
+import { Bricolage_Grotesque } from "next/font/google"
+```
+
+Configure the font by defining the variable and subsets to include:
+
+```tsx title="layout.tsx"
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+})
+```
+
+Now, attach the font to the `<html>` element in your application. This ensures
+that the font is available to be used in Chakra UI.
+
+```tsx /className={bricolage.variable}/
+<html className={bricolage.variable} lang="en" suppressHydrationWarning>
+  <body>
+    <Provider>{children}</Provider>
+  </body>
+</html>
+```
+
+## Configure the custom font
+
+Use the `createSystem` method to define the custom font in Chakra UI's theme
+configuration:
+
+```tsx title="components/ui/provider.tsx"
+"use client"
+
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: "var(--font-bricolage)" },
+        body: { value: "var(--font-bricolage)" },
+      },
+    },
+  },
+})
+```
+
+:::info
+
+You can customize which text elements use the font by specifying it for
+`heading`, `body`, or both. In this case, we are setting both the body and
+heading fonts to "Bricolage Grotesque".
+
+:::
+
+Finally, pass the `system` into the `ChakraProvider`
+
+```tsx title="components/ui/provider.tsx" /value={system}/
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```
+
+This ensures that the custom font is applied across your entire app.
+
+> Remember to remove any unused styles from your `global.css` and
+> `page.module.css` files to prevent your custom font from being overridden.
