@@ -2,7 +2,7 @@ import { parseColor } from "@chakra-ui/react"
 import {
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerHexInput,
+  ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerValueSwatch,
@@ -20,7 +20,7 @@ export const ColorPickerInputOnly = () => {
           endElementProps={{ px: "1" }}
           endElement={<ColorPickerEyeDropper variant="ghost" />}
         >
-          <ColorPickerHexInput />
+          <ColorPickerInput />
         </InputGroup>
       </ColorPickerControl>
     </ColorPickerRoot>

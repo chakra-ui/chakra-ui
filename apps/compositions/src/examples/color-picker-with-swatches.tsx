@@ -4,7 +4,7 @@ import {
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerHexInput,
+  ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliderControl,
@@ -21,7 +21,7 @@ export const ColorPickerWithSwatches = () => {
     <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
       <ColorPickerLabel>Color</ColorPickerLabel>
       <ColorPickerControl alignItems="center">
-        <ColorPickerHexInput />
+        <ColorPickerInput />
         <ColorPickerTrigger />
       </ColorPickerControl>
       <ColorPickerContent>

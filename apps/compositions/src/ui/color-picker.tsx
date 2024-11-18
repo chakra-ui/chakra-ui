@@ -21,7 +21,7 @@ export const ColorPickerTrigger = forwardRef<
   )
 })
 
-export const ColorPickerHexInput = forwardRef<
+export const ColorPickerInput = forwardRef<
   HTMLInputElement,
   Omit<ChakraColorPicker.ChannelInputProps, "channel">
 >(function ColorHexInput(props, ref) {

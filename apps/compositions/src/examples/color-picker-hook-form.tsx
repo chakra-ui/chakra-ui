@@ -6,7 +6,7 @@ import {
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerHexInput,
+  ColorPickerInput,
   ColorPickerRoot,
   ColorPickerSliderControl,
   ColorPickerTrigger,
@@ -48,7 +48,7 @@ export const ColorPickerWithHookForm = () => {
                 maxW="200px"
               >
                 <ColorPickerControl alignItems="center">
-                  <ColorPickerHexInput />
+                  <ColorPickerInput />
                   <ColorPickerTrigger />
                 </ColorPickerControl>
                 <ColorPickerContent>

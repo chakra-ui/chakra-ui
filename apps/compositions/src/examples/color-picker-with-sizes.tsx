@@ -4,7 +4,7 @@ import {
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerHexInput,
+  ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliderControl,
@@ -25,7 +25,7 @@ export const ColorPickerWithSizes = () => {
           >
             <ColorPickerLabel>Color ({size})</ColorPickerLabel>
             <ColorPickerControl alignItems="center">
-              <ColorPickerHexInput />
+              <ColorPickerInput />
               <ColorPickerTrigger />
             </ColorPickerControl>
             <ColorPickerContent>

@@ -6,7 +6,7 @@ import {
   ColorPickerContent,
   ColorPickerControl,
   ColorPickerEyeDropper,
-  ColorPickerHexInput,
+  ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliderControl,
@@ -30,7 +30,7 @@ export const ColorPickerChangeEnd = () => {
       >
         <ColorPickerLabel>Color</ColorPickerLabel>
         <ColorPickerControl alignItems="center">
-          <ColorPickerHexInput />
+          <ColorPickerInput />
           <ColorPickerTrigger />
         </ColorPickerControl>
         <ColorPickerContent>
