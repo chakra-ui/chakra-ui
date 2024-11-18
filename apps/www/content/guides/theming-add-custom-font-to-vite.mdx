@@ -1,0 +1,68 @@
+---
+title: Add custom fonts to a Vite project
+description:
+  Learn how to add a custom font when using Chakra UI in a Vite project
+publishedAt: "2024-11-18"
+collection: theming
+---
+
+## Loading the custom fonts
+
+To add a custom font in your project, install the Google font you want to use
+from [Fontsource](https://fontsource.org/). For this guide, we'll use the
+["Bricolage Grotesque"](https://fontsource.org/fonts/bricolage-grotesque) font
+as an example.
+
+```bash
+pnpm add @fontsource-variable/bricolage-grotesque
+```
+
+Next, import the font at the root of your project, referencing the `css` path:
+
+```tsx title="main.tsx"
+import "@fontsource-variable/bricolage-grotesque/index.css"
+```
+
+## Configure the custom font
+
+Use the `createSystem` method to define the custom font in Chakra UI's theme
+configuration:
+
+```tsx title="components/ui/provider.tsx"
+"use client"
+
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: "Bricolage Grotesque Variable" },
+        body: { value: "Bricolage Grotesque Variable" },
+      },
+    },
+  },
+})
+```
+
+:::info
+
+You can customize which text elements use the font by specifying it for
+`heading`, `body`, or both. In this case, we are setting both the body and
+heading fonts to "Bricolage Grotesque".
+
+:::
+
+Finally, pass the `system` into the `ChakraProvider`
+
+```tsx title="components/ui/provider.tsx" /value={system}/
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```
+
+This ensures that the custom font is applied across your entire app.
