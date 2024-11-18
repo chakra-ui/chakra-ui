@@ -54,6 +54,21 @@ export const ColorPickerContent = forwardRef<
   )
 })
 
+export const ColorPickerInlineContent = forwardRef<
+  HTMLDivElement,
+  ChakraColorPicker.ContentProps
+>(function ColorPickerInlineContent(props, ref) {
+  return (
+    <ChakraColorPicker.Content
+      animation="none"
+      shadow="none"
+      padding="0"
+      ref={ref}
+      {...props}
+    />
+  )
+})
+
 export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
   function ColorPickerSliders(props, ref) {
     return (
@@ -96,7 +111,7 @@ export const ColorPickerChannelSlider = forwardRef<
 >(function ColorPickerSlider(props, ref) {
   return (
     <ChakraColorPicker.ChannelSlider ref={ref} {...props}>
-      <ChakraColorPicker.TransparencyGrid />
+      <ChakraColorPicker.TransparencyGrid size="0.6rem" />
       <ChakraColorPicker.ChannelSliderTrack />
       <ChakraColorPicker.ChannelSliderThumb />
     </ChakraColorPicker.ChannelSlider>
