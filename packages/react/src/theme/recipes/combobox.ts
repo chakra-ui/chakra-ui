@@ -46,13 +46,14 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       cursor: "pointer",
       width: "var(--chakra-sizes-5)",
       height: "var(--chakra-sizes-5)",
-      top: "0",
-      right: "0",
+      top: "0.35rem",
+      right: "var(--chakra-sizes-1)",
+      border: "0",
     },
     clearTrigger: {
       pos: "absolute",
       top: "0",
-      right: "var(--chakra-sizes-8)",
+      right: "var(--chakra-sizes-4)",
     },
     control: {
       pos: "relative",

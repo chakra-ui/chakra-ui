@@ -37,7 +37,6 @@ export type {
   ComboboxRootProviderProps,
   ComboboxTriggerProps,
   ComboboxValueChangeDetails,
-  ComboboxInputValueChangeDetails,
 } from "./combobox"
 
 export {

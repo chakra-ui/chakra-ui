@@ -1,6 +1,5 @@
 "use client"
 
-import { Select as ChakraSelect } from "@chakra-ui/react"
 import { Combobox as ChakraCombobox, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button.tsx"
 import * as React from "react"
@@ -99,4 +98,4 @@ export const ComboboxItemGroup = React.forwardRef<
 })
 
 export const ComboboxLabel = ChakraCombobox.Label
-export const ComboboxItemText = ChakraSelect.ItemText
+export const ComboboxItemText = ChakraCombobox.ItemText
