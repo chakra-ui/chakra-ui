@@ -7,7 +7,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerSwatchGroup,
   ColorPickerSwatchTrigger,
   ColorPickerTrigger,
@@ -28,11 +28,15 @@ export const ColorPickerWithSwatches = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
         <ColorPickerSwatchGroup>
           {swatches.map((item) => (
-            <ColorPickerSwatchTrigger key={item} value={item} />
+            <ColorPickerSwatchTrigger
+              swatchSize="4.5"
+              key={item}
+              value={item}
+            />
           ))}
         </ColorPickerSwatchGroup>
       </ColorPickerContent>

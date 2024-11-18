@@ -97,8 +97,9 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
     },
     swatchGroup: {
-      display: "grid",
-      gridTemplateColumns: "repeat(var(--swatch-per-row, 7), 1fr)",
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
       gap: "2",
     },
     swatch: {

@@ -7,7 +7,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerSwatchGroup,
   ColorPickerSwatchTrigger,
   ColorPickerTrigger,
@@ -25,7 +25,7 @@ export const ColorPickerWithReadonly = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
         <ColorPickerSwatchGroup>
           {["red", "blue", "green"].map((item) => (

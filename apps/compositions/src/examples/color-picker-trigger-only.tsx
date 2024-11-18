@@ -6,7 +6,7 @@ import {
   ColorPickerEyeDropper,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerTrigger,
   ColorPickerValueSwatch,
   ColorPickerValueText,
@@ -26,7 +26,7 @@ export const ColorPickerTriggerOnly = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
           <ColorPickerValueSwatch />
         </HStack>
       </ColorPickerContent>

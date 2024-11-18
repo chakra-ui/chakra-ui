@@ -9,9 +9,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
+  ColorPickerSliders,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 import { useState } from "react"
@@ -37,13 +35,8 @@ export const ColorPickerChangeEnd = () => {
           <ColorPickerArea />
           <HStack>
             <ColorPickerEyeDropper />
-            <ColorPickerSliderControl />
+            <ColorPickerSliders />
           </HStack>
-          <ColorPickerSwatchGroup>
-            {["red", "blue", "green"].map((item) => (
-              <ColorPickerSwatchTrigger key={item} value={item} />
-            ))}
-          </ColorPickerSwatchGroup>
         </ColorPickerContent>
       </ColorPickerRoot>
     </Stack>

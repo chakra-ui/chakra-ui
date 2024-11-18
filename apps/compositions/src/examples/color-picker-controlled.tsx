@@ -9,7 +9,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 import { useState } from "react"
@@ -20,6 +20,7 @@ export const ColorPickerControlled = () => {
   return (
     <ColorPickerRoot
       value={color}
+      format="hsla"
       onValueChange={(e) => setColor(e.value)}
       maxW="200px"
     >
@@ -32,7 +33,7 @@ export const ColorPickerControlled = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
       </ColorPickerContent>
     </ColorPickerRoot>

@@ -6,29 +6,37 @@ import {
   ColorPickerEyeDropper,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerSwatchGroup,
   ColorPickerSwatchTrigger,
   ColorPickerTrigger,
+  ColorPickerValueSwatch,
+  ColorPickerValueText,
 } from "compositions/ui/color-picker"
+import { LuChevronDown } from "react-icons/lu"
 
 export const ColorPickerWithSwatchesAndTrigger = () => {
   return (
     <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
+      <ColorPickerLabel>
+        Color: <ColorPickerValueText />
+      </ColorPickerLabel>
       <ColorPickerControl alignItems="center">
         <ColorPickerSwatchGroup>
-          <ColorPickerTrigger />
           {["red", "blue", "green"].map((item) => (
             <ColorPickerSwatchTrigger key={item} value={item} />
           ))}
+          <ColorPickerTrigger textStyle="lg">
+            <ColorPickerValueSwatch />
+            <LuChevronDown />
+          </ColorPickerTrigger>
         </ColorPickerSwatchGroup>
       </ColorPickerControl>
       <ColorPickerContent>
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
       </ColorPickerContent>
     </ColorPickerRoot>

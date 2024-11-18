@@ -8,10 +8,9 @@ import {
   ColorPickerEyeDropper,
   ColorPickerInput,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
-import { Field } from "compositions/ui/field"
 import { Controller, useForm } from "react-hook-form"
 
 interface FormValues {
@@ -19,11 +18,7 @@ interface FormValues {
 }
 
 export const ColorPickerWithHookForm = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: { color: "#000000" },
   })
 
@@ -36,30 +31,23 @@ export const ColorPickerWithHookForm = () => {
           name="color"
           control={control}
           render={({ field }) => (
-            <Field
-              label="Color"
-              invalid={!!errors.color}
-              errorText={errors.color?.message}
+            <ColorPickerRoot
+              name={field.name}
+              defaultValue={parseColor(field.value)}
+              onValueChange={({ value }) => field.onChange(value)}
             >
-              <ColorPickerRoot
-                name={field.name}
-                defaultValue={parseColor(field.value)}
-                onValueChange={({ value }) => field.onChange(value)}
-                maxW="200px"
-              >
-                <ColorPickerControl alignItems="center">
-                  <ColorPickerInput />
-                  <ColorPickerTrigger />
-                </ColorPickerControl>
-                <ColorPickerContent>
-                  <ColorPickerArea />
-                  <HStack>
-                    <ColorPickerEyeDropper />
-                    <ColorPickerSliderControl />
-                  </HStack>
-                </ColorPickerContent>
-              </ColorPickerRoot>
-            </Field>
+              <ColorPickerControl>
+                <ColorPickerInput />
+                <ColorPickerTrigger />
+              </ColorPickerControl>
+              <ColorPickerContent>
+                <ColorPickerArea />
+                <HStack>
+                  <ColorPickerEyeDropper />
+                  <ColorPickerSliders />
+                </HStack>
+              </ColorPickerContent>
+            </ColorPickerRoot>
           )}
         />
 

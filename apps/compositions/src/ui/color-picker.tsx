@@ -47,8 +47,8 @@ export const ColorPickerContent = forwardRef<
   )
 })
 
-export const ColorPickerSliderControl = forwardRef<HTMLDivElement, StackProps>(
-  function ColorPickerSliderControl(props, ref) {
+export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
+  function ColorPickerSliders(props, ref) {
     return (
       <Stack gap="1" flex="1" px="1" ref={ref} {...props}>
         <ColorPickerSlider channel="hue" />
@@ -98,15 +98,18 @@ export const ColorPickerSlider = forwardRef<
 
 export const ColorPickerSwatchTrigger = forwardRef<
   HTMLButtonElement,
-  ChakraColorPicker.SwatchTriggerProps
+  ChakraColorPicker.SwatchTriggerProps & {
+    swatchSize?: ChakraColorPicker.SwatchTriggerProps["boxSize"]
+  }
 >(function ColorPickerSwatchTrigger(props, ref) {
+  const { swatchSize, ...rest } = props
   return (
     <ChakraColorPicker.SwatchTrigger
       ref={ref}
       style={{ ["--color" as string]: props.value }}
-      {...props}
+      {...rest}
     >
-      <ChakraColorPicker.Swatch value={props.value}>
+      <ChakraColorPicker.Swatch boxSize={swatchSize} value={props.value}>
         <ChakraColorPicker.SwatchIndicator>
           <LuCheck />
         </ChakraColorPicker.SwatchIndicator>

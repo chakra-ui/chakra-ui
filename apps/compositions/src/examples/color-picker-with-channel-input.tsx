@@ -8,7 +8,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 
@@ -24,7 +24,7 @@ export const ColorPickerWithChannelInput = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
         <ColorPickerFormatInput format="rgba" />
         <ColorPickerFormatInput format="hsla" />

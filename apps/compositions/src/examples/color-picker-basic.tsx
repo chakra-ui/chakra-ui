@@ -7,7 +7,7 @@ import {
   ColorPickerInput,
   ColorPickerLabel,
   ColorPickerRoot,
-  ColorPickerSliderControl,
+  ColorPickerSliders,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 
@@ -23,7 +23,7 @@ export const ColorPickerBasic = () => {
         <ColorPickerArea />
         <HStack>
           <ColorPickerEyeDropper />
-          <ColorPickerSliderControl />
+          <ColorPickerSliders />
         </HStack>
       </ColorPickerContent>
     </ColorPickerRoot>
