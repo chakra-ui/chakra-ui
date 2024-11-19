@@ -22,7 +22,7 @@ import { Portal } from "@chakra-ui/react"
 
 ### Custom Container
 
-Use the `containerRef` prop to render the portal in a custom container.
+Use the `container` prop to render the portal in a custom container.
 
 ```jsx
 import { Portal } from "@chakra-ui/react"
@@ -31,7 +31,7 @@ const Demo = () => {
   const containerRef = React.useRef()
   return (
     <>
-      <Portal containerRef={containerRef}>
+      <Portal container={containerRef}>
         <div>Portal content</div>
       </Portal>
       <div ref={containerRef} />
