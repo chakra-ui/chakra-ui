@@ -94,6 +94,7 @@ const docsLinks: NavItem = {
             { title: "Clipboard", url: "clipboard" },
             { title: "Close Button", url: "close-button" },
             { title: "Collapsible", url: "collapsible" },
+            { title: "Color Picker", url: "color-picker", status: "preview" },
             { title: "Data List", url: "data-list" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
