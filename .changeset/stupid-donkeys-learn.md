@@ -6,3 +6,5 @@
   rgb, hsb formats.
 
 - Add new `ColorSwatch` component to preview a color.
+
+- Fix issue where `mergeConfigs` mutates the underlying configs passed to it.
