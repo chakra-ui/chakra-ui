@@ -1,3 +1,5 @@
+"use client"
+
 import { parseColor } from "@chakra-ui/react"
 import {
   ColorPickerControl,
