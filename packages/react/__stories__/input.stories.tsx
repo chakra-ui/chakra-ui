@@ -23,3 +23,4 @@ export { InputWithHelperText as HelperText } from "compositions/examples/input-w
 export { InputWithHookForm as HookForm } from "compositions/examples/input-with-hook-form"
 export { InputWithLeftAndRightElement as LeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 export { InputWithLeftElement as LeftElement } from "compositions/examples/input-with-left-element"
+export { InputWithMask as Mask } from "compositions/examples/input-with-mask"
