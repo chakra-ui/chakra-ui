@@ -20,7 +20,7 @@ export const ColorPickerWithSwatchAndInput = () => {
       </ColorPickerControl>
       <ColorPickerContent>
         <ColorPickerSwatchGroup>
-          {["red", "blue", "green"].map((item) => (
+          {swatches.map((item) => (
             <ColorPickerSwatchTrigger key={item} value={item} />
           ))}
         </ColorPickerSwatchGroup>
@@ -29,3 +29,5 @@ export const ColorPickerWithSwatchAndInput = () => {
     </ColorPickerRoot>
   )
 }
+
+const swatches = ["red", "blue", "green"]

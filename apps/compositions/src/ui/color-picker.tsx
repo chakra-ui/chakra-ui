@@ -192,7 +192,7 @@ export const ColorPickerChannelSliders = forwardRef<
 >(function ColorPickerChannelSliders(props, ref) {
   const channels = formatMap[props.format]
   return (
-    <ChakraColorPicker.View {...props} ref={ref}>
+    <ChakraColorPicker.View flexDirection="row" {...props} ref={ref}>
       <For each={channels}>
         {(channel) => (
           <Stack gap="1" key={channel}>

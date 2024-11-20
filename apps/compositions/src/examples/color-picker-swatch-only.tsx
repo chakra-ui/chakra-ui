@@ -13,10 +13,12 @@ export const ColorPickerSwatchOnly = () => {
         Color: <ColorPickerValueText />
       </ColorPickerLabel>
       <ColorPickerSwatchGroup>
-        {["red", "green", "blue", "purple", "orange", "pink"].map((item) => (
+        {swatches.map((item) => (
           <ColorPickerSwatchTrigger key={item} value={item} />
         ))}
       </ColorPickerSwatchGroup>
     </ColorPickerRoot>
   )
 }
+
+const swatches = ["red", "green", "blue", "purple", "orange", "pink"]

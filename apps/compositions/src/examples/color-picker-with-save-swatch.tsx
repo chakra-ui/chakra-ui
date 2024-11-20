@@ -25,13 +25,13 @@ import { LuPlus, LuType } from "react-icons/lu"
 
 export const ColorPickerWithSaveSwatch = () => {
   const [color, setColor] = useState(parseColor("#000"))
+  const [view, setView] = useState<"picker" | "swatch">("swatch")
   const [swatches, setSwatches] = useState<string[]>([
     "#FF0000",
     "#00FF00",
     "#0000FF",
     "#FFFF00",
   ])
-  const [view, setView] = useState<"picker" | "swatch">("swatch")
 
   return (
     <ColorPickerRoot

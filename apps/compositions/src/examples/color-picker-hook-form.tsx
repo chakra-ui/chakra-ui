@@ -34,7 +34,7 @@ export const ColorPickerWithHookForm = () => {
             <ColorPickerRoot
               name={field.name}
               defaultValue={parseColor(field.value)}
-              onValueChange={({ value }) => field.onChange(value)}
+              onValueChange={(e) => field.onChange(e.valueAsString)}
             >
               <ColorPickerControl>
                 <ColorPickerInput />
