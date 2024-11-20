@@ -6,7 +6,17 @@ export type {
   GlobalStyleObject,
   JsxStyleProps,
   SystemStyleObject,
+  CssKeyframes,
 } from "./css.types"
+export type {
+  AnimationStyle,
+  AnimationStyles,
+  LayerStyle,
+  CompositionStyles,
+  LayerStyles,
+  TextStyle,
+  TextStyles,
+} from "./composition"
 export * from "./empty"
 export { chakra } from "./factory"
 export type {
@@ -29,6 +39,7 @@ export type {
   SystemConfig,
   SystemContext,
   Token as TokenInterface,
+  ThemingConfig,
 } from "./types"
 export * from "./use-recipe"
 export * from "./use-slot-recipe"
