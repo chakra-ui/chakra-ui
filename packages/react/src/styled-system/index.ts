@@ -24,6 +24,14 @@ export type {
   HTMLChakraProps,
   InferRecipeProps,
   UnstyledProp,
+  StyledFactoryFn,
+  DataAttr,
+  HtmlProp,
+  HtmlProps,
+  JsxElement,
+  JsxFactory,
+  JsxFactoryOptions,
+  PolymorphicProps,
 } from "./factory.types"
 export type {
   RecipeProps,
