@@ -48,7 +48,13 @@ export const SideNav = (props: SideNavProps) => {
             >
               {item.title}{" "}
               {item.status && (
-                <Badge variant="solid" colorPalette="purple" rounded="full">
+                <Badge
+                  size="xs"
+                  textStyle="xs"
+                  variant="solid"
+                  colorPalette="teal"
+                  textTransform="capitalize"
+                >
                   {item.status}
                 </Badge>
               )}

@@ -4,7 +4,7 @@ import {
   FileUploadClearTrigger,
   FileUploadLabel,
   FileUploadRoot,
-} from "compositions/ui/file-button"
+} from "compositions/ui/file-upload"
 import { InputGroup } from "compositions/ui/input-group"
 import { LuFileUp } from "react-icons/lu"
 
