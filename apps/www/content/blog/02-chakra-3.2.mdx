@@ -1,0 +1,68 @@
+---
+title: Chakra 3.2
+description:
+  "Introducing new color components, input masking example, and CLI improvements"
+type: release
+version: "3.2"
+authors: ["sage"]
+publishedAt: "2024-11-21"
+---
+
+We're excited to announce the release of Chakra UI v3.2.0! This release brings
+several exciting new features and improvements to enhance your development
+experience.
+
+## ColorPicker (Preview)
+
+The new `ColorPicker` component allows users to select colors in various formats
+including HSL, RGB, and HSB. This component is perfect for applications that
+need sophisticated color selection capabilities.
+
+<Example name="color-picker-basic" />
+
+## ColorSwatch
+
+Alongside the ColorPicker, we've added the `ColorSwatch` component for
+previewing colors. This simple yet powerful component makes it easy to display
+color samples in your UI.
+
+<Example name="color-swatch-with-sizes" />
+
+## New Examples
+
+### Input Masking
+
+We showcase how to compose the `use-mask-input` library with the `Input`
+component to mask input values. This is particularly useful for formatting phone
+numbers and credit card numbers.
+
+<Example name="input-with-mask" />
+
+## CLI Improvements
+
+We've enhanced our CLI with more flexible snippet installation options:
+
+### New --all Flag
+
+By default, the CLI installs a curated set of recommended snippets including
+Provider, Avatar, Button, Checkbox, Radio, Input Group, Slider, Popover, Dialog,
+Drawer, Tooltip, and Field.
+
+> You can now use the `--all` flag to install all available snippets instead of
+> just the recommended ones.
+
+## Bug Fixes
+
+This release also includes important bug fixes:
+
+- Fixed an issue where `mergeConfigs` was mutating the underlying configs
+- Resolved a problem where typegen wasn't working when the CLI was installed
+  globally or run using `npx`
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
