@@ -14,6 +14,7 @@ import {
   chakra,
 } from "../../styled-system"
 import { cx } from "../../utils"
+import { Box } from "../box"
 import type { StackDirection } from "./get-separator-style"
 import { getSeparatorStyles } from "./get-separator-style"
 
@@ -48,7 +49,7 @@ interface StackOptions {
    * If `true`, each stack item will show a separator
    * @type React.ReactElement
    */
-  separator?: React.ReactElement
+  separator?: boolean | React.ReactElement
 }
 
 export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}
@@ -87,9 +88,14 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
       if (!separator) return children
       return getValidChildren(children).map((child, index, arr) => {
         const key = typeof child.key !== "undefined" ? child.key : index
-        const sep = cloneElement(separator, {
-          css: [separatorStyle, separator.props.css],
-        })
+        const sep =
+          typeof separator === "boolean"
+            ? cloneElement(<Box />, {
+                css: separatorStyle,
+              })
+            : cloneElement(separator, {
+                css: separator.props.css,
+              })
         return (
           <Fragment key={key}>
             {child}
