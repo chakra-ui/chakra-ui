@@ -1,3 +1,5 @@
+"use client"
+
 import { Code, Stack, Tabs, useTabs } from "@chakra-ui/react"
 import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
 

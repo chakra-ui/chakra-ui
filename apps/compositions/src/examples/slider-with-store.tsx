@@ -1,3 +1,5 @@
+"use client"
+
 import { Code, Slider, Stack, useSlider } from "@chakra-ui/react"
 
 export const SliderWithStore = () => {

@@ -1,3 +1,5 @@
+"use client"
+
 import { Code, Editable, Stack, useEditable } from "@chakra-ui/react"
 
 export const EditableWithStore = () => {
