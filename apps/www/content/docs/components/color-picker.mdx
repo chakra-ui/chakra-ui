@@ -5,7 +5,7 @@ description:
 links:
   source: components/color-picker
   storybook: components-color-picker--basic
-  recipe: color-picer
+  recipe: color-picker
   ark: https://ark-ui.com/react/docs/components/color-picker
 ---
 
@@ -48,10 +48,8 @@ import {
   </ColorPickerControl>
   <ColorPickerContent>
     <ColorPickerArea />
-    <HStack>
-      <ColorPickerEyeDropper />
-      <ColorPickerSliders />
-    </HStack>
+    <ColorPickerEyeDropper />
+    <ColorPickerSliders />
   </ColorPickerContent>
 </ColorPickerRoot>
 ```
@@ -111,35 +109,35 @@ Pass the `disabled` prop to disable the color picker.
 
 <ExampleTabs name="color-picker-with-disabled" />
 
-### With Input Only
+### Input Only
 
 Combine the `ColorPickerValueSwatch` and the `ColorPickerEyeDropper` on the
 `InputGroup` to render a color picker that contains only an input.
 
 <ExampleTabs name="color-picker-input-only" />
 
-### With Swatch Only
+### Swatch Only
 
 Use the `ColorPickerSwatchGroup` and `ColorPickerSwatchTrigger` to render only
 the color swatches.
 
 <ExampleTabs name="color-picker-swatch-only" />
 
-### With Trigger Only
+### Trigger Only
 
 Compose the color picker to initially show only a trigger using the
 `ColorPickerValueSwatch` and `ColorPickerValueText`.
 
 <ExampleTabs name="color-picker-trigger-only" />
 
-### With Trigger In Input
+### Trigger Inside Input
 
 Compose the color picker to trigger in input using the `InputGroup` and
 `ColorPickerInput`.
 
 <ExampleTabs name="color-picker-trigger-only" />
 
-### With Channel Input
+### Channel Input
 
 Use the `ChannelFormatSelect` and `ColorPickerChannelInputs` to create a color
 picker that allows users to select their preferred channel.
@@ -162,19 +160,19 @@ Here's an example of how to save a selected color as a swatch.
 
 <ExampleTabs name="color-picker-with-save-swatch" />
 
-### With Swatches
+### Swatches
 
 Here's an example of how to combine the color picker with pre-defined swatches.
 
 <ExampleTabs name="color-picker-with-swatches" />
 
-### With Swatch and Input
+### Swatch and Input
 
 Here's how to compose a swatch with an input.
 
 <ExampleTabs name="color-picker-with-swatch-and-input" />
 
-### With Swatch and Trigger
+### Swatch and Trigger
 
 Here's how to compose a swatch with a trigger.
 
