@@ -5,6 +5,33 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.2.0](./#3.2.0) - 2024-11-20
+
+### Added
+
+- **Input:** Add support for `use-mask-input` library to mask the input shape
+
+- **CLI**: Add support for `--all` flag to add all snippets. By default, we only
+  install a minimal/recommended set of snippets
+
+  > **Recommended snippets:** provider, avatar, button, checkbox, radio,
+  > input-group, slider, popover, dialog, drawer, tooltip, field
+
+  If you want to add all snippets, you can use the `--all` flag
+
+- **[Preview]** Add new `ColorPicker` component to allow users pick a color in
+  hsl, rgb, hsb formats
+
+- **[Preview]** Add new `ColorSwatch` component to preview a color
+
+### Fixed
+
+- **System**: Fix issue where `mergeConfigs` mutates the underlying configs
+  passed to it
+
+- **CLI:** Fix issue where typegen doesn't work when CLI installed globally or
+  run using `npx`
+
 ## [3.1.2](./#3.1.2) - 2024-11-15
 
 ### Fixed

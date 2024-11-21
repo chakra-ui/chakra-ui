@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.2.0
+
+### Minor Changes
+
+- [#9130](https://github.com/chakra-ui/chakra-ui/pull/9130)
+  [`e5880fb`](https://github.com/chakra-ui/chakra-ui/commit/e5880fb7eafe9044604ffb893589792b35961eaf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - [Preview] Add new
+  `ColorPicker` component to allow users pick a color in hsl, rgb, hsb formats.
+
+  - Add new `ColorSwatch` component to preview a color.
+  - Fix issue where `mergeConfigs` mutates the underlying configs passed to it.
+
 ## 3.1.2
 
 ### Patch Changes
