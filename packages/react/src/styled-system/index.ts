@@ -29,6 +29,12 @@ export type {
   JsxFactory,
   JsxElement,
   PolymorphicProps,
+  HtmlProp,
+  HtmlProps,
+  JsxFactoryOptions,
+  JsxHtmlProps,
+  PatchHtmlProps,
+  StyledFactoryFn,
 } from "./factory.types"
 export type {
   RecipeProps,
