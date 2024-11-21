@@ -4,7 +4,7 @@ export { createSlotRecipeContext } from "./create-slot-recipe-context"
 export type {
   ConditionalValue,
   GlobalStyleObject,
-  JsxStyleProps,
+  // JsxStyleProps,
   SystemStyleObject,
   CssKeyframes,
 } from "./css.types"
@@ -33,6 +33,7 @@ export type {
   PatchHtmlProps,
   PolymorphicProps,
   JsxHtmlProps,
+  JsxStyleProps,
   StyledFactoryFn,
 } from "./factory.types"
 export type {
