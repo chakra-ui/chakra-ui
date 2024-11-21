@@ -48,9 +48,9 @@ export type HtmlProp =
   | "height"
   | "content"
 
-type PatchHtmlProps<T> = DistributiveOmit<T, HtmlProp> & HtmlProps
+export type PatchHtmlProps<T> = DistributiveOmit<T, HtmlProp> & HtmlProps
 
-type JsxHtmlProps<T extends Dict, P extends Dict = {}> = Assign<
+export type JsxHtmlProps<T extends Dict, P extends Dict = {}> = Assign<
   PatchHtmlProps<T>,
   P
 >
