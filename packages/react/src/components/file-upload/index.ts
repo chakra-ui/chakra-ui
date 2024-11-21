@@ -10,6 +10,7 @@ export {
   FileUploadItemPreviewImage,
   FileUploadItemSizeText,
   FileUploadItemName,
+  FileUploadHiddenInput,
   FileUploadItemGroup,
   FileUploadItemContent,
   FileUploadDropzoneContent,

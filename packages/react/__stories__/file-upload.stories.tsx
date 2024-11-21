@@ -22,3 +22,4 @@ export { FileUploadWithDropzone as Dropzone } from "compositions/examples/file-u
 export { FileUploadWithHookForm as HookForm } from "compositions/examples/file-upload-with-hook-form"
 export { FileUploadWithInput as Input } from "compositions/examples/file-upload-with-input"
 export { FileUploadWithInputClear as InputClear } from "compositions/examples/file-upload-with-input-clear"
+export { FileUploadWithStore as Store } from "compositions/examples/file-upload-with-store"

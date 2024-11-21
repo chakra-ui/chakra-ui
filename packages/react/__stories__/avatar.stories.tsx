@@ -24,3 +24,4 @@ export { AvatarWithGroup as Group } from "compositions/examples/avatar-with-grou
 export { AvatarWithOverflow as Overflow } from "compositions/examples/avatar-with-overflow"
 export { AvatarWithRandomColor as RandomColor } from "compositions/examples/avatar-with-random-color"
 export { AvatarWithShape as Shape } from "compositions/examples/avatar-with-shape"
+export { AvatarWithStore as Store } from "compositions/examples/avatar-with-store"

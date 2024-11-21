@@ -26,3 +26,4 @@ export { SliderWithLabel as Label } from "compositions/examples/slider-with-labe
 export { SliderWithMarks as Marks } from "compositions/examples/slider-with-marks"
 export { SliderWithMultipleThumbs as RangeSlider } from "compositions/examples/slider-with-multiple-thumbs"
 export { SliderWithStep as Step } from "compositions/examples/slider-with-step"
+export { SliderWithStore as Store } from "compositions/examples/slider-with-store"

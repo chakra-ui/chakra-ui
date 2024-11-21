@@ -18,4 +18,5 @@ export { EditableDisabled as Disabled } from "compositions/examples/editable-dis
 export { EditableWithControls as Controls } from "compositions/examples/editable-with-controls"
 export { EditableWithDoubleClick as DoubleClick } from "compositions/examples/editable-with-double-click"
 export { EditableWithFinalFocus as FinalFocus } from "compositions/examples/editable-with-final-focus"
+export { EditableWithStore as Store } from "compositions/examples/editable-with-store"
 export { EditableWithTextarea as Textarea } from "compositions/examples/editable-with-textarea"
