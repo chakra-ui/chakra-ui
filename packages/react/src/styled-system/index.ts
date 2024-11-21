@@ -25,6 +25,8 @@ export type {
   InferRecipeProps,
   UnstyledProp,
   JsxStyleProps,
+  DataAttr,
+  JsxFactory,
 } from "./factory.types"
 export type {
   RecipeProps,
