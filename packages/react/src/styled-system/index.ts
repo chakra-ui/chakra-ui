@@ -27,6 +27,8 @@ export type {
   JsxStyleProps,
   DataAttr,
   JsxFactory,
+  JsxElement,
+  PolymorphicProps,
 } from "./factory.types"
 export type {
   RecipeProps,
