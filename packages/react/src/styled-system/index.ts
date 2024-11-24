@@ -43,6 +43,7 @@ export type {
   RecipeProps,
   SlotRecipeProps,
   SlotRecipeRecord,
+  ConfigRecipeSlots,
 } from "./generated/recipes.gen"
 export type { ColorPalette, Token, Tokens } from "./generated/token.gen"
 export * from "./provider"
