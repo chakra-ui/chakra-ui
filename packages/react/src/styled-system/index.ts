@@ -2,6 +2,10 @@ export * from "./config"
 export { createRecipeContext } from "./create-recipe-context"
 export { createSlotRecipeContext } from "./create-slot-recipe-context"
 export type {
+  WithProviderOptions,
+  WithContextOptions,
+} from "./create-slot-recipe-context"
+export type {
   ConditionalValue,
   GlobalStyleObject,
   SystemStyleObject,
@@ -39,6 +43,7 @@ export type {
   RecipeProps,
   SlotRecipeProps,
   SlotRecipeRecord,
+  ConfigRecipeSlots,
 } from "./generated/recipes.gen"
 export type { ColorPalette, Token, Tokens } from "./generated/token.gen"
 export * from "./provider"
