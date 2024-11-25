@@ -35,7 +35,9 @@ function getFramework(files: string[], cwd: string) {
       },
     )
     const viteConfig = readFileSync(viteConfigPath, "utf-8")
-    const isRemix = !!viteConfig?.includes("@remix-run/dev")
+    const isRemix =
+      !!viteConfig?.includes("@remix-run/dev") ||
+      !!viteConfig?.includes("@react-router/dev/vite")
     return isRemix ? "remix" : "vite"
   }
 
