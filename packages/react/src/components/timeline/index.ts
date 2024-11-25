@@ -7,6 +7,7 @@ export {
   TimelineRoot,
   TimelineRootPropsProvider,
   TimelineSeparator,
+  TimelineTitle,
   useTimelineStyles,
 } from "./timeline"
 
