@@ -295,8 +295,8 @@ importers:
   apps/www:
     dependencies:
       '@ark-ui/react':
-        specifier: 4.4.3
-        version: 4.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 4.4.4
+        version: 4.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -456,8 +456,8 @@ importers:
   packages/react:
     dependencies:
       '@ark-ui/react':
-        specifier: 4.4.3
-        version: 4.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 4.4.4
+        version: 4.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@emotion/is-prop-valid':
         specifier: 1.3.1
         version: 1.3.1
@@ -745,8 +745,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@ark-ui/react@4.4.3':
-    resolution: {integrity: sha512-Prd5EWcyL5PIigl8H70acVacL+Abl0l9gFw0sRNAZ9+3cGaXPhL4ol3s3AW9MU811ZAESU1xifsrwMyhpmcgmg==}
+  '@ark-ui/react@4.4.4':
+    resolution: {integrity: sha512-oYIHk12bLM0VvqmDNLD4lINeoctDijLpuN0L9Rycp6MH9h4JNbSPN2LKgpHhPwoe0nEau3let6wsBOIydPcCvw==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
@@ -9515,7 +9515,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@ark-ui/react@4.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@ark-ui/react@4.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.5.6
       '@zag-js/accordion': 0.77.1

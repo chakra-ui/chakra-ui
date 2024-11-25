@@ -16,7 +16,7 @@
     "prebuild": "pnpm generate:composition"
   },
   "dependencies": {
-    "@ark-ui/react": "4.4.3",
+    "@ark-ui/react": "4.4.4",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "11.13.3",
     "@shikijs/rehype": "1.13.0",
