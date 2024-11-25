@@ -16,7 +16,10 @@ export const getFileDependencies = (compositions: Compositions, id: string) => {
   const npmDependencies = new Set<string>(composition.npmDependencies)
 
   const collect = (id: string) => {
-    const comp = findCompositionById(compositions, id)
+    const comp = findCompositionById(
+      compositions,
+      id.replace("compositions/ui/", ""),
+    )
     if (!comp) return
 
     comp.npmDependencies.forEach((dep) => {
