@@ -21,12 +21,13 @@ interface ConfigItem<T> {
   color: Tokens["colors"] | React.CSSProperties["color"]
   icon?: React.ReactNode
   label?: React.ReactNode
+  stackId?: string
   strokeDasharray?: string
 }
 
 interface UseChartConfigProps<T> {
   data: T[]
-  series: ConfigItem<T>[]
+  series?: ConfigItem<T>[]
 }
 
 export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
@@ -41,6 +42,7 @@ interface UseChartConfigReturn<T> {
   setHighlightedArea: (area: string | null) => void
   isHighlighted: (area: string) => boolean
   data: T[]
+  getSeries: (key: string) => ConfigItem<T> | undefined
 }
 
 function useToken(category: "colors" | "space") {
@@ -51,7 +53,7 @@ function useToken(category: "colors" | "space") {
 export function useChartConfig<T>(
   props: UseChartConfigProps<T>,
 ): UseChartConfigReturn<T> {
-  const { series } = props
+  const { series = [] } = props
 
   const id = React.useId()
   const [highlightedArea, setHighlightedArea] = React.useState<string | null>(
@@ -69,9 +71,14 @@ export function useChartConfig<T>(
     [env.locale],
   )
 
+  const getSeries = (key: string) => {
+    return series.find((item) => item.dataKey === key)
+  }
+
   return {
     data: props.data,
     series,
+    getSeries,
     id,
     key: (v) => v,
     color,
@@ -184,13 +191,13 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
       {title && <Text fontWeight="medium">{title}</Text>}
       <Flex
         data-orientation={orientation}
-        gap="3"
+        gap="2.5"
         direction={{ _horizontal: "row", _vertical: "column" }}
         align={{ _horizontal: "center", _vertical: "flex-start" }}
       >
         {filteredPayload.map((item) => {
           const key = `${nameKey || item.dataKey || "value"}`
-          const config = lookupSeries(chart.series, key)
+          const config = chart.getSeries(key)
           if (!config || !config.color) return null
           return (
             <HStack
@@ -211,10 +218,6 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
   )
 }
 
-function lookupSeries<T>(series: ConfigItem<T>[], dataKey: string) {
-  return series.find((item) => item.dataKey === dataKey)
-}
-
 interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   hideLabel?: boolean
   hideIndicator?: boolean
@@ -233,7 +236,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
   const tooltipLabel = React.useMemo(() => {
     const item = filteredPayload?.[0]
     const key = `${item?.dataKey || item?.name || "value"}`
-    const itemConfig = lookupSeries(chart.series, key)
+    const itemConfig = chart.getSeries(key)
     const value = itemConfig?.label || label
     return labelFormatter?.(value, filteredPayload ?? []) ?? value
   }, [filteredPayload, chart, label, labelFormatter])
@@ -259,7 +262,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
         )}
         {filteredPayload.map((item) => {
           const key = `${item.dataKey || item.name || "value"}`
-          const config = lookupSeries(chart.series, key)
+          const config = chart.getSeries(key)
           return (
             <Flex
               gap="1.5"
