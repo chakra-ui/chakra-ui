@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.2.1
+
+### Patch Changes
+
+- [`c79b7bf`](https://github.com/chakra-ui/chakra-ui/commit/c79b7bf2190c002ec9ff222e6e6ad1fbf1aa50d7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
+  npmDependencies for snippets were not auto-installed
+  - Support React Router 7 framework detection
+
 ## 3.2.0
 
 ### Minor Changes

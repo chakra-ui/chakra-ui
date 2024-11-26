@@ -1,5 +1,19 @@
 # @chakra-ui/react
 
+## 3.2.1
+
+### Patch Changes
+
+- [#9240](https://github.com/chakra-ui/chakra-ui/pull/9240)
+  [`561ccc0`](https://github.com/chakra-ui/chakra-ui/commit/561ccc015561203f53cc12d7c5e6606283bb41ab)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - - **System**: Fix issue
+  where exporting `withProvider` and `withContext` would result in type error
+
+  - **Timeline**: Fix issue where `TimelineTitle` was missing from the export
+  - **Tabs**: Fix issue where `useTabs` and `useTabsContext` were not exported
+  - **Snippets / ColorPicker**: Fix flex direction of `ColorPickerChannelInputs`
+    and `ColorPickerChannelSliders`
+
 ## 3.2.0
 
 ### Minor Changes
