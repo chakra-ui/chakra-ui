@@ -201,14 +201,13 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
           const config = chart.getSeries(key)
           if (!config || !config.color) return null
           return (
-            <HStack
-              data-orientation={orientation}
-              gap="1"
-              key={key}
-              _icon={{ boxSize: "3" }}
-            >
+            <HStack gap="1" key={key} _icon={{ boxSize: "3" }}>
               {config.icon || (
-                <ColorSwatch boxSize="2.5" value={token(config.color)} />
+                <ColorSwatch
+                  boxSize="2.5"
+                  rounded="full"
+                  value={token(config.color)}
+                />
               )}
               <Span color="fg.muted">{config.label || key}</Span>
             </HStack>
@@ -275,7 +274,11 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
             >
               {config?.icon}
               {config?.color && !config.icon && !hideIndicator && (
-                <ColorSwatch boxSize="2" value={chart.color(config.color)} />
+                <ColorSwatch
+                  rounded="full"
+                  boxSize="2"
+                  value={chart.color(config.color)}
+                />
               )}
               <HStack justify="space-between" flex="1">
                 <Span color="fg.muted">{config?.label || key}</Span>
