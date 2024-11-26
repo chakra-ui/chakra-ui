@@ -16,24 +16,25 @@ import * as React from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 
-interface ConfigItem<T> {
+interface SeriesItem<T> {
   dataKey: keyof T
   color: Tokens["colors"] | React.CSSProperties["color"]
   icon?: React.ReactNode
   label?: React.ReactNode
   stackId?: string
+  yAxisId?: string
   strokeDasharray?: string
 }
 
 interface UseChartConfigProps<T> {
   data: T[]
-  series?: ConfigItem<T>[]
+  series?: SeriesItem<T>[]
 }
 
 export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
 
 interface UseChartConfigReturn<T> {
-  series: ConfigItem<T>[]
+  series: SeriesItem<T>[]
   id: string
   key: <K extends keyof T>(prop: K) => K
   color: (key: ChartColor) => string
@@ -42,7 +43,7 @@ interface UseChartConfigReturn<T> {
   setHighlightedArea: (area: string | null) => void
   isHighlighted: (area: string) => boolean
   data: T[]
-  getSeries: (key: string) => ConfigItem<T> | undefined
+  getSeries: (key: string) => SeriesItem<T> | undefined
 }
 
 function useToken(category: "colors" | "space") {
@@ -227,7 +228,8 @@ interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
 }
 
 export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
-  const { payload, chart, label, labelFormatter, hideLabel } = props
+  const { payload, chart, label, labelFormatter, hideLabel, hideIndicator } =
+    props
 
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
@@ -248,7 +250,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
       minW="8rem"
       gap="1.5"
       rounded="l2"
-      bg="bg"
+      bg="bg.panel"
       px="2.5"
       py="1"
       textStyle="xs"
@@ -272,7 +274,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
               _icon={{ boxSize: "2.5" }}
             >
               {config?.icon}
-              {config?.color && !config.icon && (
+              {config?.color && !config.icon && !hideIndicator && (
                 <ColorSwatch boxSize="2" value={chart.color(config.color)} />
               )}
               <HStack justify="space-between" flex="1">
