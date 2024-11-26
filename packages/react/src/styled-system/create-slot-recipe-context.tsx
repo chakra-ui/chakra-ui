@@ -19,7 +19,7 @@ interface WrapElementProps<P> {
   wrapElement?(element: React.ReactElement, props: P): React.ReactElement
 }
 
-interface WithRootProviderOptions<P> extends WrapElementProps<P> {
+export interface WithRootProviderOptions<P> extends WrapElementProps<P> {
   defaultProps?: Partial<P>
 }
 

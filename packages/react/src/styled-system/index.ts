@@ -4,6 +4,7 @@ export { createSlotRecipeContext } from "./create-slot-recipe-context"
 export type {
   WithProviderOptions,
   WithContextOptions,
+  WithRootProviderOptions,
 } from "./create-slot-recipe-context"
 export type {
   ConditionalValue,
