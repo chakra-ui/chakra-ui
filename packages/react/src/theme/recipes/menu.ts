@@ -10,10 +10,12 @@ export const menuSlotRecipe = defineSlotRecipe({
       bg: "bg.panel",
       boxShadow: "lg",
       color: "fg",
+      maxHeight: "var(--available-height)",
       "--menu-z-index": "zIndex.dropdown",
       zIndex: "calc(var(--menu-z-index) + var(--layer-index, 0))",
       borderRadius: "l2",
       overflow: "hidden",
+      overflowY: "auto",
       _open: {
         animationStyle: "slide-fade-in",
         animationDuration: "fast",
