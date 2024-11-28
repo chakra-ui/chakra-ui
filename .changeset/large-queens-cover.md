@@ -2,5 +2,5 @@
 "@chakra-ui/react": patch
 ---
 
-Fixed issue where exporting withRootProvider would result in type
-error
+- **System**: Fixed issue where exporting `withRootProvider` would result in
+  type error

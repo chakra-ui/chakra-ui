@@ -2,4 +2,5 @@
 "@chakra-ui/react": patch
 ---
 
-Add max available height to menu recipe
+- **Menu**: Update recipe to use `--available-height` css variable to keep the
+  menu's height within the available space
