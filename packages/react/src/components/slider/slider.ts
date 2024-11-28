@@ -151,6 +151,16 @@ export const SliderMarkerIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SliderDraggingIndicatorProps
+  extends HTMLChakraProps<"div", ArkSlider.DraggingIndicatorBaseProps> {}
+
+export const SliderDraggingIndicator = withContext<
+  HTMLDivElement,
+  SliderDraggingIndicatorProps
+>(ArkSlider.DraggingIndicator, "draggingIndicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const SliderContext = ArkSlider.Context
 export const SliderHiddenInput = ArkSlider.HiddenInput
 

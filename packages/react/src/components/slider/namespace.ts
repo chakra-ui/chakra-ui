@@ -13,6 +13,7 @@ export {
   SliderMarkerGroup as MarkerGroup,
   SliderContext as Context,
   SliderHiddenInput as HiddenInput,
+  SliderDraggingIndicator as DraggingIndicator,
 } from "./slider"
 
 export type {
@@ -27,5 +28,6 @@ export type {
   SliderLabelProps as LabelProps,
   SliderTrackProps as TrackProps,
   SliderMarkerGroupProps as MarkerGroupProps,
+  SliderDraggingIndicatorProps as DraggingIndicatorProps,
   SliderValueChangeDetails as ValueChangeDetails,
 } from "./slider"

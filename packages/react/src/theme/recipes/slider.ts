@@ -9,10 +9,14 @@ export const sliderSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1",
-      fontSize: "sm",
+      textStyle: "sm",
       position: "relative",
       isolation: "isolate",
       touchAction: "none",
+    },
+    label: {
+      fontWeight: "medium",
+      textStyle: "sm",
     },
     control: {
       display: "inline-flex",
@@ -31,18 +35,15 @@ export const sliderSlotRecipe = defineSlotRecipe({
     },
     markerGroup: {
       position: "absolute!",
-      top: "var(--slider-marker-top)",
-      insetInline: "var(--slider-marker-inset)",
       zIndex: "1",
     },
     marker: {
       "--marker-bg": { base: "white", _underValue: "colors.bg" },
       display: "flex",
-      flexDirection: "column",
       alignItems: "center",
-      gap: "1.5",
+      gap: "calc(var(--slider-thumb-size) / 2)",
       color: "fg.muted",
-      fontSize: "xs",
+      textStyle: "xs",
     },
     markerIndicator: {
       width: "var(--slider-marker-size)",
@@ -74,7 +75,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         root: {
           "--slider-thumb-size": "sizes.4",
           "--slider-track-size": "sizes.1.5",
-          "--slider-marker-top": "6px",
+          "--slider-marker-center": "6px",
           "--slider-marker-size": "sizes.1",
           "--slider-marker-inset": "3px",
         },
@@ -83,7 +84,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         root: {
           "--slider-thumb-size": "sizes.5",
           "--slider-track-size": "sizes.2",
-          "--slider-marker-top": "8px",
+          "--slider-marker-center": "8px",
           "--slider-marker-size": "sizes.1",
           "--slider-marker-inset": "4px",
         },
@@ -92,7 +93,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         root: {
           "--slider-thumb-size": "sizes.6",
           "--slider-track-size": "sizes.2.5",
-          "--slider-marker-top": "9px",
+          "--slider-marker-center": "9px",
           "--slider-marker-size": "sizes.1.5",
           "--slider-marker-inset": "5px",
         },
@@ -144,6 +145,9 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           height: "100%",
           minWidth: "var(--slider-thumb-size)",
+          "&[data-has-mark-label]": {
+            marginEnd: "4",
+          },
         },
         track: {
           width: "var(--slider-track-size)",
@@ -152,12 +156,22 @@ export const sliderSlotRecipe = defineSlotRecipe({
           left: "50%",
           translate: "-50% 0",
         },
+        markerGroup: {
+          insetStart: "var(--slider-marker-center)",
+          insetBlock: "var(--slider-marker-inset)",
+        },
+        marker: {
+          flexDirection: "row",
+        },
       },
       horizontal: {
         control: {
           flexDirection: "row",
           width: "100%",
           minHeight: "var(--slider-thumb-size)",
+          "&[data-has-mark-label]": {
+            marginBottom: "4",
+          },
         },
         track: {
           height: "var(--slider-track-size)",
@@ -165,6 +179,13 @@ export const sliderSlotRecipe = defineSlotRecipe({
         thumb: {
           top: "50%",
           translate: "0 -50%",
+        },
+        markerGroup: {
+          top: "var(--slider-marker-center)",
+          insetInline: "var(--slider-marker-inset)",
+        },
+        marker: {
+          flexDirection: "column",
         },
       },
     },

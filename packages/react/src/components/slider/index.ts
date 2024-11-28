@@ -11,6 +11,7 @@ export {
   SliderThumb,
   SliderTrack,
   SliderValueText,
+  SliderDraggingIndicator,
   SliderContext,
   SliderHiddenInput,
   useSliderStyles,
@@ -28,6 +29,7 @@ export type {
   SliderTrackProps,
   SliderValueTextProps,
   SliderMarkerGroupProps,
+  SliderDraggingIndicatorProps,
   SliderValueChangeDetails,
 } from "./slider"
 
