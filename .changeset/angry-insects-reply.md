@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/react": minor
+"@chakra-ui/react": patch
 ---
 
 - **Slider**
