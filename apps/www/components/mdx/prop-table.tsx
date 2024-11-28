@@ -18,6 +18,7 @@ import { kebabCase } from "scule"
 interface PropTableProps {
   component: string
   part?: string
+  omit?: string[]
 }
 
 interface Properties {
@@ -65,14 +66,16 @@ async function getComponentTypes(component: string) {
 }
 
 export const PropTable = async (props: PropTableProps) => {
-  const { component, part } = props
+  const { component, part, omit } = props
 
   const componentTypes = await getComponentTypes(component)
   const componentType = part ? componentTypes[part] : componentTypes
 
   if (!componentType?.props) return null
 
-  const properties = sortEntries(componentType.props)
+  const properties = sortEntries(componentType.props).filter(
+    ([name]) => !omit?.includes(name),
+  )
 
   return (
     <Box
