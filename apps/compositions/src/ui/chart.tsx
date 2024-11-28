@@ -6,6 +6,7 @@ import {
   ColorSwatch,
   Flex,
   HStack,
+  Separator,
   Span,
   Stack,
   Text,
@@ -221,18 +222,30 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
 interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   hideLabel?: boolean
   hideIndicator?: boolean
+  showTotal?: boolean
   indicator?: "line" | "dot" | "dashed"
   nameKey?: string
   chart: UseChartConfigReturn<T>
 }
 
 export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
-  const { payload, chart, label, labelFormatter, hideLabel, hideIndicator } =
-    props
+  const {
+    payload,
+    chart,
+    label,
+    labelFormatter,
+    hideLabel,
+    hideIndicator,
+    showTotal,
+  } = props
 
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
+
+  const total = filteredPayload?.reduce((acc, item) => {
+    return acc + (Number(item.value) ?? 0)
+  }, 0)
 
   const tooltipLabel = React.useMemo(() => {
     const item = filteredPayload?.[0]
@@ -245,9 +258,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
   if (!filteredPayload?.length) return null
 
   return (
-    <Box
+    <Stack
       minW="8rem"
-      gap="1.5"
+      gap="1"
       rounded="l2"
       bg="bg.panel"
       px="2.5"
@@ -255,12 +268,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
       textStyle="xs"
       shadow="md"
     >
+      {!hideLabel && <Text fontWeight="medium">{tooltipLabel}</Text>}
+
       <Box>
-        {!hideLabel && (
-          <Text fontWeight="medium" mb="1">
-            {tooltipLabel}
-          </Text>
-        )}
         {filteredPayload.map((item) => {
           const key = `${item.dataKey || item.name || "value"}`
           const config = chart.getSeries(key)
@@ -296,6 +306,22 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
           )
         })}
       </Box>
-    </Box>
+
+      {showTotal && total != null && (
+        <>
+          <Separator mt="1" />
+          <HStack gap="1" justify="space-between" pb="1">
+            <Span color="fg.muted">Total</Span>
+            <Text
+              fontFamily="mono"
+              fontWeight="medium"
+              fontVariantNumeric="tabular-nums"
+            >
+              {total.toLocaleString()}
+            </Text>
+          </HStack>
+        </>
+      )}
+    </Stack>
   )
 }
