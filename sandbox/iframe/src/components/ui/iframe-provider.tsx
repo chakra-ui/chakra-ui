@@ -5,12 +5,7 @@ import {
 } from "@chakra-ui/react"
 import createCache from "@emotion/cache"
 import { CacheProvider } from "@emotion/react"
-import weakMemoize from "@emotion/weak-memoize"
 import Iframe, { FrameContextConsumer } from "react-frame-component"
-
-const createCacheFn = weakMemoize((container: HTMLElement) =>
-  createCache({ container, key: "frame" }),
-)
 
 export const IframeProvider = (props: React.PropsWithChildren) => {
   const { children } = props
@@ -34,3 +29,17 @@ export const IframeProvider = (props: React.PropsWithChildren) => {
     </Iframe>
   )
 }
+
+function memoize<T extends object, R>(func: (arg: T) => R): (arg: T) => R {
+  const cache = new WeakMap<T, R>()
+  return (arg: T) => {
+    if (cache.has(arg)) return cache.get(arg)!
+    const ret = func(arg)
+    cache.set(arg, ret)
+    return ret
+  }
+}
+
+const createCacheFn = memoize((container: HTMLElement) =>
+  createCache({ container, key: "frame" }),
+)
