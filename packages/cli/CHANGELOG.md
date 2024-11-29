@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.2.2
+
+### Patch Changes
+
+- [#9254](https://github.com/chakra-ui/chakra-ui/pull/9254)
+  [`6d4e7b6`](https://github.com/chakra-ui/chakra-ui/commit/6d4e7b6c794171392c57f394523e1298dfdc454e)
+  Thanks [@TinsFox](https://github.com/TinsFox)! - Output the real version from
+  `package.json`
+
 ## 3.2.1
 
 ### Patch Changes
