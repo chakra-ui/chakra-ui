@@ -19,6 +19,7 @@
     "remix-ts",
     "storybook-ts",
     "shadow-dom",
+    "sandbox-iframe",
     "@chakra-ui/www",
     "@chakra-ui/compositions"
   ]
