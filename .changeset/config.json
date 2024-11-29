@@ -18,6 +18,7 @@
     "vite-ts",
     "remix-ts",
     "storybook-ts",
+    "shadow-dom",
     "@chakra-ui/www",
     "@chakra-ui/compositions"
   ]
