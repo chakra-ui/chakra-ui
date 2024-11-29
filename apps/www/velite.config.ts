@@ -1,7 +1,6 @@
 import rehypeShiki from "@shikijs/rehype"
 import {
   transformerMetaHighlight,
-  transformerMetaWordHighlight,
   transformerNotationDiff,
   transformerNotationFocus,
   transformerNotationHighlight,
@@ -18,6 +17,7 @@ import { remarkCard } from "./lib/remark-card"
 import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
+import { transformerMetaWordHighlight } from "./lib/shiki-highlight-word"
 
 const cwd = process.cwd()
 

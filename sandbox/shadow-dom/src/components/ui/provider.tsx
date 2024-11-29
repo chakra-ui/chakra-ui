@@ -18,11 +18,11 @@ const varRoot = ":host"
 const config = defineConfig({
   cssVarsRoot: varRoot,
   conditions: {
-    light: `${varRoot}, .light`,
+    light: `${varRoot} &, .light &`,
   },
   preflight: { scope: varRoot },
   globalCss: {
-    [varRoot]: defaultConfig.globalCss!.html,
+    [varRoot]: defaultConfig.globalCss?.html ?? {},
   },
 })
 
