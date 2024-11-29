@@ -244,7 +244,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
   )
 
   const total = filteredPayload?.reduce((acc, item) => {
-    return acc + (Number(item.value) ?? 0)
+    const num = Number(item.value)
+    const value = isNaN(num) ? 0 : num
+    return acc + value
   }, 0)
 
   const tooltipLabel = React.useMemo(() => {
