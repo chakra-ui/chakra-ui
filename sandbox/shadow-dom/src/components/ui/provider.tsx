@@ -52,6 +52,7 @@ export function Provider(props: ThemeProviderProps) {
               <ThemeProvider
                 disableTransitionOnChange
                 attribute="class"
+                forcedTheme="light"
                 {...props}
               />
             </ChakraProvider>
