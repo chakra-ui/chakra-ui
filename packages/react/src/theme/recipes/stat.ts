@@ -13,6 +13,9 @@ export const statSlotRecipe = defineSlotRecipe({
       flex: "1",
     },
     label: {
+      display: "inline-flex",
+      gap: "1.5",
+      alignItems: "center",
       color: "fg.muted",
       textStyle: "sm",
     },

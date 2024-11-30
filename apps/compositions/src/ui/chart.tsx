@@ -40,9 +40,9 @@ interface UseChartConfigReturn<T> {
   key: <K extends keyof T>(prop: K) => K
   color: (key: ChartColor) => string
   formatter: (options: Intl.NumberFormatOptions) => (value: number) => string
-  highlightedArea: string | null
-  setHighlightedArea: (area: string | null) => void
-  isHighlighted: (area: string) => boolean
+  activeSeries: string | null
+  setActiveSeries: (series: string | null) => void
+  isActiveSeries: (series: string) => boolean
   data: T[]
   getSeries: (key: string) => SeriesItem<T> | undefined
 }
@@ -58,9 +58,8 @@ export function useChartConfig<T>(
   const { series = [] } = props
 
   const id = React.useId()
-  const [highlightedArea, setHighlightedArea] = React.useState<string | null>(
-    null,
-  )
+  const [activeSeries, setActiveSeries] = React.useState<string | null>(null)
+  const isActiveSeries = (series: string) => activeSeries === series
 
   const env = useLocaleContext()
   const color = useToken("colors")
@@ -73,9 +72,7 @@ export function useChartConfig<T>(
     [env.locale],
   )
 
-  const getSeries = (key: string) => {
-    return series.find((item) => item.dataKey === key)
-  }
+  const getSeries = (key: string) => series.find((item) => item.dataKey === key)
 
   return {
     data: props.data,
@@ -85,9 +82,9 @@ export function useChartConfig<T>(
     key: (v) => v,
     color,
     formatter,
-    highlightedArea,
-    setHighlightedArea,
-    isHighlighted: (area) => highlightedArea === area,
+    activeSeries,
+    setActiveSeries,
+    isActiveSeries,
   }
 }
 
@@ -222,7 +219,9 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
 interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   hideLabel?: boolean
   hideIndicator?: boolean
+  hideSeriesLabel?: boolean
   showTotal?: boolean
+  fitContent?: boolean
   indicator?: "line" | "dot" | "dashed"
   nameKey?: string
   chart: UseChartConfigReturn<T>
@@ -236,7 +235,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
     labelFormatter,
     hideLabel,
     hideIndicator,
+    hideSeriesLabel,
     showTotal,
+    fitContent,
   } = props
 
   const filteredPayload = payload?.filter(
@@ -261,7 +262,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
 
   return (
     <Stack
-      minW="8rem"
+      minW={fitContent ? undefined : "8rem"}
       gap="1"
       rounded="l2"
       bg="bg.panel"
@@ -293,7 +294,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
                 />
               )}
               <HStack justify="space-between" flex="1">
-                <Span color="fg.muted">{config?.label || key}</Span>
+                {!hideSeriesLabel && (
+                  <Span color="fg.muted">{config?.label || key}</Span>
+                )}
                 {item.value && (
                   <Text
                     fontFamily="mono"
