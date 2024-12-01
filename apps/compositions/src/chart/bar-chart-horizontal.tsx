@@ -26,9 +26,9 @@ export const BarChartHorizontal = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid", stackId: "a" },
-      { dataKey: "mac", color: "purple.solid", stackId: "a" },
-      { dataKey: "linux", color: "blue.solid", stackId: "a" },
+      { name: "windows", color: "teal.solid", stackId: "a" },
+      { name: "mac", color: "purple.solid", stackId: "a" },
+      { name: "linux", color: "blue.solid", stackId: "a" },
     ],
   })
 
@@ -53,8 +53,8 @@ export const BarChartHorizontal = () => {
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
             stackId={item.stackId}

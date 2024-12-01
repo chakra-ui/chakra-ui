@@ -20,9 +20,9 @@ export const AreaChartWithAxes = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid" },
-      { dataKey: "mac", color: "purple.solid" },
-      { dataKey: "linux", color: "orange.solid" },
+      { name: "windows", color: "teal.solid" },
+      { name: "mac", color: "purple.solid" },
+      { name: "linux", color: "orange.solid" },
     ],
   })
 
@@ -48,9 +48,9 @@ export const AreaChartWithAxes = () => {
         {chart.series.map((item) => (
           <Area
             type="natural"
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             fillOpacity={0.2}
             stroke={chart.color(item.color)}

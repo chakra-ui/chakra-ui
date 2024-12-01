@@ -30,8 +30,8 @@ export const LineChartBiaxial = () => {
       { windows: 185, mac: 41, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid", yAxisId: "left" },
-      { dataKey: "mac", color: "purple.solid", yAxisId: "right" },
+      { name: "windows", color: "teal.solid", yAxisId: "left" },
+      { name: "mac", color: "purple.solid", yAxisId: "right" },
     ],
   })
 
@@ -86,9 +86,9 @@ export const LineChartBiaxial = () => {
           <Line
             type="bump"
             yAxisId={item.yAxisId}
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
             activeDot={{ stroke: chart.color(item.color) }}

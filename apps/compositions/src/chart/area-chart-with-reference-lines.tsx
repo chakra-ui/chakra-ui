@@ -30,9 +30,9 @@ export const AreaChartWithReferenceLines = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid" },
-      { dataKey: "mac", color: "purple.solid" },
-      { dataKey: "linux", color: "blue.solid" },
+      { name: "windows", color: "teal.solid" },
+      { name: "mac", color: "purple.solid" },
+      { name: "linux", color: "blue.solid" },
     ],
   })
 
@@ -64,9 +64,9 @@ export const AreaChartWithReferenceLines = () => {
         />
         {chart.series.map((item) => (
           <Area
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             fillOpacity={0.2}
             stroke={chart.color(item.color)}

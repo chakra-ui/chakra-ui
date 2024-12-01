@@ -25,9 +25,9 @@ export const BarChartWithBarLabel = () => {
       { windows: 195, mac: 88, linux: 130, month: "May" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid" },
-      { dataKey: "mac", color: "purple.solid" },
-      { dataKey: "linux", color: "blue.solid" },
+      { name: "windows", color: "teal.solid" },
+      { name: "mac", color: "purple.solid" },
+      { name: "linux", color: "blue.solid" },
     ],
   })
 
@@ -50,14 +50,14 @@ export const BarChartWithBarLabel = () => {
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
             stackId={item.stackId}
           >
             <LabelList
-              dataKey={chart.key(item.dataKey)}
+              dataKey={chart.key(item.name)}
               position="top"
               style={{ fontWeight: "600", fill: chart.color("fg") }}
             />

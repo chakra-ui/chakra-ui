@@ -28,7 +28,7 @@ export const AreaChartWithPointLabel = () => {
       { sales: 185, month: "November" },
       { sales: 300, month: "December" },
     ],
-    series: [{ dataKey: "sales", color: "teal.solid" }],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
@@ -49,9 +49,9 @@ export const AreaChartWithPointLabel = () => {
         <Legend content={<ChartLegendContent chart={chart} />} />
         {chart.series.map((item) => (
           <Area
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             fillOpacity={0.2}
             stroke={chart.color(item.color)}
@@ -69,8 +69,8 @@ export const AreaChartWithPointLabel = () => {
               fill: "currentColor",
               style: { fontWeight: "600" },
             }}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             dot={{ fill: chart.color(item.color), fillOpacity: 1 }}
             activeDot={false}
             fill="none"

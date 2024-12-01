@@ -19,7 +19,7 @@ export const BarChartBasic = () => {
       { sales: 95000, month: "November" },
       { sales: 88000, month: "December" },
     ],
-    series: [{ dataKey: "sales", color: "teal.solid" }],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
@@ -41,8 +41,8 @@ export const BarChartBasic = () => {
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
           />
         ))}

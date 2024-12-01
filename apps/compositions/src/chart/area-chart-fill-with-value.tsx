@@ -32,8 +32,8 @@ export const AreaChartFillWithValue = () => {
   const chart = useChartConfig({
     data,
     series: [
-      { dataKey: "uv", color: "teal.solid" },
-      { dataKey: "pv", color: "purple.solid" },
+      { name: "uv", color: "teal.solid" },
+      { name: "pv", color: "purple.solid" },
     ],
   })
 

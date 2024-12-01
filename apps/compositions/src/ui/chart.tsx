@@ -17,14 +17,17 @@ import * as React from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 
+export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
+
 interface SeriesItem<T> {
-  dataKey: keyof T
-  color: Tokens["colors"] | React.CSSProperties["color"]
+  name?: keyof T
+  color: ChartColor
   icon?: React.ReactNode
   label?: React.ReactNode
   stackId?: string
   yAxisId?: string
   strokeDasharray?: string
+  id?: string
 }
 
 interface UseChartConfigProps<T> {
@@ -32,19 +35,21 @@ interface UseChartConfigProps<T> {
   series?: SeriesItem<T>[]
 }
 
-export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
-
 interface UseChartConfigReturn<T> {
   series: SeriesItem<T>[]
   id: string
-  key: <K extends keyof T>(prop: K) => K
+  key: <K extends keyof T>(prop: K | undefined) => K
   color: (key: ChartColor) => string
   formatter: (options: Intl.NumberFormatOptions) => (value: number) => string
   activeSeries: string | null
   setActiveSeries: (series: string | null) => void
   isActiveSeries: (series: string) => boolean
   data: T[]
-  getSeries: (key: string) => SeriesItem<T> | undefined
+  getSeries: (payload: unknown) => SeriesItem<T> | undefined
+  getTotal: (key: keyof T) => number
+  getPayloadTotal: <T extends { value?: string }>(
+    payload: Array<T> | undefined,
+  ) => number | undefined
 }
 
 function useToken(category: "colors" | "space") {
@@ -52,10 +57,18 @@ function useToken(category: "colors" | "space") {
   return (key: string | undefined) => sys.token(`${category}.${key}`, key)
 }
 
+const isObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null
+
+function getProp<T = unknown>(item: unknown, key: string): T | undefined {
+  if (!isObject(item)) return
+  return Reflect.get(item, key) as T | undefined
+}
+
 export function useChartConfig<T>(
   props: UseChartConfigProps<T>,
 ): UseChartConfigReturn<T> {
-  const { series = [] } = props
+  const { data, series = [] } = props
 
   const id = React.useId()
   const [activeSeries, setActiveSeries] = React.useState<string | null>(null)
@@ -63,6 +76,9 @@ export function useChartConfig<T>(
 
   const env = useLocaleContext()
   const color = useToken("colors")
+
+  const key = <K extends keyof T>(prop: K | undefined): K =>
+    prop ?? ("value" as K)
 
   const formatter = React.useCallback(
     (options: Intl.NumberFormatOptions) => {
@@ -72,37 +88,74 @@ export function useChartConfig<T>(
     [env.locale],
   )
 
-  const getSeries = (key: string) => series.find((item) => item.dataKey === key)
+  const getSeries = (item: unknown) => {
+    if (!isObject(item)) return
+    const result = series.find((s) => {
+      return (
+        s.name === item.name ||
+        s.name === getProp(item.payload, "name") ||
+        s.name === item.dataKey ||
+        s.name === getProp(item.payload, "dataKey")
+      )
+    }) || { color: undefined }
+
+    result.color ||= getProp(item.payload, "color")
+    result.label ||=
+      result.name?.toLocaleString() || getProp(item.payload, "name")
+
+    return result
+  }
+
+  const getTotal = (key: keyof T) => {
+    return data.reduce((acc, d) => acc + Number(d[key]), 0)
+  }
+
+  const getPayloadTotal = <T extends { value?: string }>(
+    payload: Array<T> | undefined,
+  ) => {
+    return payload?.reduce((acc, item) => {
+      if (!item.value) return acc
+      const num = Number(item.value)
+      const value = isNaN(num) ? 0 : num
+      return acc + value
+    }, 0)
+  }
 
   return {
-    data: props.data,
+    data,
     series,
     getSeries,
     id,
-    key: (v) => v,
+    key,
     color,
     formatter,
     activeSeries,
     setActiveSeries,
     isActiveSeries,
+    getTotal,
+    getPayloadTotal,
   }
 }
 
 interface ChartRootProps extends BoxProps {
   children: React.ReactElement
-  label?: React.ReactNode
 }
 
 export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
   function ChartRoot(props, ref) {
-    const { children, label, ...rest } = props
+    const { children, title, ...rest } = props
     return (
       <Box
         ref={ref}
         aspectRatio="landscape"
         textStyle="xs"
         css={{
-          "& .recharts-cartesian-axis-tick-value": { fill: "fg.muted" },
+          "& .recharts-cartesian-axis-tick-value": {
+            fill: "fg.muted",
+          },
+          "& .recharts-pie-label-text": {
+            fill: "fg",
+          },
           "& .recharts-cartesian-axis .recharts-label": {
             fill: "fg",
             fontWeight: "medium",
@@ -110,9 +163,9 @@ export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
         }}
         {...rest}
       >
-        {label && (
-          <Text fontWeight="medium" mb="4">
-            {label}
+        {title && (
+          <Text fontWeight="medium" textStyle="md" mb="4">
+            {title}
           </Text>
         )}
         <ResponsiveContainer>{children}</ResponsiveContainer>
@@ -150,7 +203,6 @@ export const ChartGradient = React.forwardRef<
 interface ChartLegendContentProps<T extends Record<string, unknown>>
   extends LegendProps {
   chart: UseChartConfigReturn<T>
-  nameKey?: Exclude<keyof T, number | symbol>
   title?: React.ReactNode
 }
 
@@ -168,7 +220,6 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
     payload,
     verticalAlign = "bottom",
     align = "center",
-    nameKey,
     title,
     orientation,
   } = props
@@ -178,6 +229,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
+
   if (!filteredPayload?.length) return null
 
   return (
@@ -193,21 +245,20 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
         gap="2.5"
         direction={{ _horizontal: "row", _vertical: "column" }}
         align={{ _horizontal: "center", _vertical: "flex-start" }}
+        flexWrap="wrap"
       >
-        {filteredPayload.map((item) => {
-          const key = `${nameKey || item.dataKey || "value"}`
-          const config = chart.getSeries(key)
-          if (!config || !config.color) return null
+        {filteredPayload.map((item, index) => {
+          const config = chart.getSeries(item)
           return (
-            <HStack gap="1" key={key} _icon={{ boxSize: "3" }}>
-              {config.icon || (
+            <HStack gap="1" key={index} _icon={{ boxSize: "3" }}>
+              {config?.icon || (
                 <ColorSwatch
                   boxSize="2.5"
                   rounded="full"
-                  value={token(config.color)}
+                  value={token(config?.color)}
                 />
               )}
-              <Span color="fg.muted">{config.label || key}</Span>
+              <Span color="fg.muted">{config?.label}</Span>
             </HStack>
           )
         })}
@@ -223,13 +274,12 @@ interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   showTotal?: boolean
   fitContent?: boolean
   indicator?: "line" | "dot" | "dashed"
-  nameKey?: string
   chart: UseChartConfigReturn<T>
 }
 
 export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
   const {
-    payload,
+    payload: payloadProp,
     chart,
     label,
     labelFormatter,
@@ -240,25 +290,20 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
     fitContent,
   } = props
 
-  const filteredPayload = payload?.filter(
+  const payload = payloadProp?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
 
-  const total = filteredPayload?.reduce((acc, item) => {
-    const num = Number(item.value)
-    const value = isNaN(num) ? 0 : num
-    return acc + value
-  }, 0)
+  const total = chart.getPayloadTotal(payload)
 
   const tooltipLabel = React.useMemo(() => {
-    const item = filteredPayload?.[0]
-    const key = `${item?.dataKey || item?.name || "value"}`
-    const itemConfig = chart.getSeries(key)
-    const value = itemConfig?.label || label
-    return labelFormatter?.(value, filteredPayload ?? []) ?? value
-  }, [filteredPayload, chart, label, labelFormatter])
+    const item = payload?.[0]
+    const config = chart.getSeries(item)
+    const tooltipLabel = config?.label || label
+    return labelFormatter?.(tooltipLabel, payload ?? []) ?? tooltipLabel
+  }, [payload, chart, labelFormatter, label])
 
-  if (!filteredPayload?.length) return null
+  if (!payload?.length) return null
 
   return (
     <Stack
@@ -274,19 +319,18 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
       {!hideLabel && <Text fontWeight="medium">{tooltipLabel}</Text>}
 
       <Box>
-        {filteredPayload.map((item) => {
-          const key = `${item.dataKey || item.name || "value"}`
-          const config = chart.getSeries(key)
+        {payload.map((item, index) => {
+          const config = chart.getSeries(item)
           return (
             <Flex
               gap="1.5"
-              key={key}
+              key={index}
               wrap="wrap"
               align="center"
               _icon={{ boxSize: "2.5" }}
             >
               {config?.icon}
-              {config?.color && !config.icon && !hideIndicator && (
+              {config?.color && !config?.icon && !hideIndicator && (
                 <ColorSwatch
                   rounded="full"
                   boxSize="2"
@@ -295,7 +339,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
               )}
               <HStack justify="space-between" flex="1">
                 {!hideSeriesLabel && (
-                  <Span color="fg.muted">{config?.label || key}</Span>
+                  <Span color="fg.muted">{`${config?.label || item.name}`}</Span>
                 )}
                 {item.value && (
                   <Text

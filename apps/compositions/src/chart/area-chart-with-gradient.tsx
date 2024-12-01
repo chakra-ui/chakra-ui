@@ -31,9 +31,9 @@ export const AreaChartWithGradient = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid" },
-      { dataKey: "mac", color: "purple.solid" },
-      { dataKey: "linux", color: "blue.solid" },
+      { name: "windows", color: "teal.solid" },
+      { name: "mac", color: "purple.solid" },
+      { name: "linux", color: "blue.solid" },
     ],
   })
 
@@ -56,10 +56,10 @@ export const AreaChartWithGradient = () => {
         />
         <Legend content={<ChartLegendContent chart={chart} />} />
         {chart.series.map((item) => (
-          <React.Fragment key={item.dataKey}>
+          <React.Fragment key={item.name}>
             <defs>
               <ChartGradient
-                id={`${item.dataKey}-gradient`}
+                id={`${item.name}-gradient`}
                 stops={[
                   { offset: "0%", color: item.color, opacity: 1 },
                   { offset: "100%", color: item.color, opacity: 0.01 },
@@ -69,8 +69,8 @@ export const AreaChartWithGradient = () => {
             <Area
               type="natural"
               isAnimationActive={false}
-              dataKey={chart.key(item.dataKey)}
-              fill={`url(#${item.dataKey}-gradient)`}
+              dataKey={chart.key(item.name)}
+              fill={`url(#${item.name}-gradient)`}
               stroke={chart.color(item.color)}
               strokeWidth={2}
               stackId="a"

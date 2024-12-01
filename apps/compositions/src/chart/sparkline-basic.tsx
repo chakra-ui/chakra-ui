@@ -19,7 +19,7 @@ export const SparklineBasic = () => {
       { value: 10 },
       { value: 18 },
     ],
-    series: [{ dataKey: "value", color: "teal.solid" }],
+    series: [{ name: "value", color: "teal.solid" }],
   })
 
   return (
@@ -39,9 +39,9 @@ export const SparklineBasic = () => {
         />
         {chart.series.map((item) => (
           <Area
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             fillOpacity={0.2}
             stroke={chart.color(item.color)}

@@ -42,9 +42,9 @@ export const AreaChartWithTypes = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { dataKey: "windows", color: "teal.solid" },
-      { dataKey: "mac", color: "orange.solid" },
-      { dataKey: "linux", color: "blue.solid" },
+      { name: "windows", color: "teal.solid" },
+      { name: "mac", color: "orange.solid" },
+      { name: "linux", color: "blue.solid" },
     ],
   })
 
@@ -79,9 +79,9 @@ export const AreaChartWithTypes = () => {
                 {chart.series.map((item) => (
                   <Area
                     type={type}
-                    key={item.dataKey}
+                    key={item.name}
                     isAnimationActive={false}
-                    dataKey={chart.key(item.dataKey)}
+                    dataKey={chart.key(item.name)}
                     fill={chart.color(item.color)}
                     fillOpacity={0.8}
                     activeDot={{ fill: chart.color(item.color) }}

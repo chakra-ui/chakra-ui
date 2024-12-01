@@ -21,7 +21,7 @@ export const SparklineWithGradient = () => {
       { value: 10 },
       { value: 18 },
     ],
-    series: [{ dataKey: "value", color: "teal.solid" }],
+    series: [{ name: "value", color: "teal.solid" }],
   })
 
   return (
@@ -40,10 +40,10 @@ export const SparklineWithGradient = () => {
           }
         />
         {chart.series.map((item) => (
-          <React.Fragment key={item.dataKey}>
+          <React.Fragment key={item.name}>
             <defs>
               <ChartGradient
-                id={`${item.dataKey}-gradient`}
+                id={`${item.name}-gradient`}
                 stops={[
                   { offset: "0%", color: item.color, opacity: 1 },
                   { offset: "100%", color: item.color, opacity: 0.01 },
@@ -53,8 +53,8 @@ export const SparklineWithGradient = () => {
             <Area
               type="natural"
               isAnimationActive={false}
-              dataKey={chart.key(item.dataKey)}
-              fill={`url(#${item.dataKey}-gradient)`}
+              dataKey={chart.key(item.name)}
+              fill={`url(#${item.name}-gradient)`}
               stroke={chart.color(item.color)}
               strokeWidth={2}
             />

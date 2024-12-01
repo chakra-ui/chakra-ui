@@ -19,7 +19,7 @@ export const SparklineWithLatestValue = () => {
       { value: 310000 },
       { value: 345000 },
     ],
-    series: [{ dataKey: "value", color: "teal.solid" }],
+    series: [{ name: "value", color: "teal.solid" }],
   })
 
   const lastIndex = chart.data.length - 1
@@ -59,9 +59,9 @@ export const SparklineWithLatestValue = () => {
           {chart.series.map((item) => (
             <Area
               activeDot={{ stroke: chart.color("bg") }}
-              key={item.dataKey}
+              key={item.name}
               isAnimationActive={false}
-              dataKey={chart.key(item.dataKey)}
+              dataKey={chart.key(item.name)}
               fill={chart.color(item.color)}
               fillOpacity={0.2}
               stroke={chart.color(item.color)}

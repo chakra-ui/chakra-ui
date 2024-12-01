@@ -25,10 +25,10 @@ export const BarChartMultiple = () => {
       { type: "ecommerce", poor: 75, fair: 155, good: 75, excellent: 325 },
     ],
     series: [
-      { dataKey: "poor", color: "red.solid" },
-      { dataKey: "fair", color: "orange.solid" },
-      { dataKey: "good", color: "yellow.solid" },
-      { dataKey: "excellent", color: "green.solid" },
+      { name: "poor", color: "red.solid" },
+      { name: "fair", color: "orange.solid" },
+      { name: "good", color: "yellow.solid" },
+      { name: "excellent", color: "green.solid" },
     ],
   })
 
@@ -57,8 +57,8 @@ export const BarChartMultiple = () => {
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
           />
         ))}

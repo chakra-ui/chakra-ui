@@ -29,7 +29,7 @@ export const SparklineWithStat = () => {
 const SparkLine = (props: { data: number[] }) => {
   const chart = useChartConfig({
     data: props.data.map((value) => ({ value })),
-    series: [{ dataKey: "value", color: "teal.solid" }],
+    series: [{ name: "value", color: "teal.solid" }],
   })
 
   return (
@@ -51,9 +51,9 @@ const SparkLine = (props: { data: number[] }) => {
         />
         {chart.series.map((item) => (
           <Area
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             fillOpacity={0.2}
             stroke={chart.color(item.color)}

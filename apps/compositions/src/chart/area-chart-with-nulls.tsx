@@ -29,7 +29,7 @@ export const AreaChartWithConnectNulls = () => {
       { sales: 185, month: "November" },
       { sales: 300, month: "December" },
     ],
-    series: [{ dataKey: "sales", color: "teal.solid" }],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
@@ -38,7 +38,7 @@ export const AreaChartWithConnectNulls = () => {
         {(connectNulls) => (
           <ChartRoot
             key={connectNulls.toString()}
-            label={`connectNulls: ${connectNulls.toString()}`}
+            title={`connectNulls: ${connectNulls.toString()}`}
             maxW="sm"
           >
             <AreaChart data={chart.data}>
@@ -60,9 +60,9 @@ export const AreaChartWithConnectNulls = () => {
               <Legend content={<ChartLegendContent chart={chart} />} />
               {chart.series.map((item) => (
                 <Area
-                  key={item.dataKey}
+                  key={item.name}
                   isAnimationActive={false}
-                  dataKey={chart.key(item.dataKey)}
+                  dataKey={chart.key(item.name)}
                   fill={chart.color(item.color)}
                   fillOpacity={0.2}
                   connectNulls={connectNulls === "true"}

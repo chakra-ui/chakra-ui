@@ -20,7 +20,7 @@ export const LineChartWithGradient = () => {
       { temp: 40, month: "October" },
       { temp: -10, month: "November" },
     ],
-    series: [{ dataKey: "temp", color: "teal.solid" }],
+    series: [{ name: "temp", color: "teal.solid" }],
   })
 
   return (
@@ -59,10 +59,10 @@ export const LineChartWithGradient = () => {
         </defs>
         {chart.series.map((item) => (
           <Line
-            key={item.dataKey}
+            key={item.name}
             isAnimationActive={false}
             type="natural"
-            dataKey={chart.key(item.dataKey)}
+            dataKey={chart.key(item.name)}
             fill="none"
             stroke="url(#gradient)"
             r={2}

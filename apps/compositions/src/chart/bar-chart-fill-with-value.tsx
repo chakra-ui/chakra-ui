@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
   useChartConfig,
@@ -12,7 +11,6 @@ import {
   CartesianGrid,
   Cell,
   LabelList,
-  Legend,
   Tooltip,
 } from "recharts"
 
@@ -27,7 +25,7 @@ export const BarChartFillWithValue = () => {
       { name: "Page F", views: 239 },
       { name: "Page G", views: 349 },
     ],
-    series: [{ dataKey: "views", color: "teal.solid" }],
+    series: [{ name: "views", color: "teal.solid" }],
   })
 
   return (
@@ -38,12 +36,11 @@ export const BarChartFillWithValue = () => {
           cursor={{ fill: chart.color("bg.muted") }}
           content={<ChartTooltipContent hideLabel chart={chart} />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
-            key={item.dataKey}
-            dataKey={chart.key(item.dataKey)}
+            key={item.name}
+            dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
           >
             <LabelList
