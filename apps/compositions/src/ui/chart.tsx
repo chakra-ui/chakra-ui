@@ -144,17 +144,20 @@ interface ChartRootProps extends BoxProps {
 export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
   function ChartRoot(props, ref) {
     const { children, title, ...rest } = props
+
     return (
       <Box
         ref={ref}
         aspectRatio="landscape"
         textStyle="xs"
         css={{
-          "& .recharts-cartesian-axis-tick-value": {
+          [`& :where(${[
+            ".recharts-cartesian-axis-tick-value",
+            ".recharts-polar-angle-axis-tick-value",
+            ".recharts-polar-radius-axis-tick-value",
+            ".recharts-pie-label-text",
+          ].join(", ")})`]: {
             fill: "fg.muted",
-          },
-          "& .recharts-pie-label-text": {
-            fill: "fg",
           },
           "& .recharts-cartesian-axis .recharts-label": {
             fill: "fg",
@@ -298,10 +301,9 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
 
   const tooltipLabel = React.useMemo(() => {
     const item = payload?.[0]
-    const config = chart.getSeries(item)
-    const tooltipLabel = config?.label || label
-    return labelFormatter?.(tooltipLabel, payload ?? []) ?? tooltipLabel
-  }, [payload, chart, labelFormatter, label])
+    const itemLabel = `${label || item?.dataKey || item?.name || "value"}`
+    return labelFormatter?.(itemLabel, payload ?? []) ?? itemLabel
+  }, [payload, labelFormatter, label])
 
   if (!payload?.length) return null
 
