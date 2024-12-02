@@ -65,6 +65,29 @@ This will provide autocompletion for your tokens in your editor.
 </Box>
 ```
 
+### Token reference syntax
+
+Chakra UI enables you to reference design tokens within composite values for CSS
+properties like `border`, `padding`, and `box-shadow`.  
+This is achieved through the token reference syntax: `{path.to.token}`.
+
+:::note
+
+It is important to use the complete token path; for example, instead of using
+`red.300`, you must reference it as `colors.red.300`.
+
+:::
+
+Here’s an example where token reference syntax is applied to both the border and
+p (padding) props:
+
+```tsx
+<Box
+  border="1px solid {colors.red.300}"
+  p="{spacing.4} {spacing.6} {spacing.8} {spacing.10}"
+/>
+```
+
 ## Token Nesting
 
 Tokens can be nested to create a hierarchy of tokens. This is useful when you
