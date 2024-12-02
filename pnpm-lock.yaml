@@ -282,8 +282,8 @@ importers:
         specifier: 2.13.3
         version: 2.13.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       use-mask-input:
-        specifier: 3.4.0
-        version: 3.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.4.2
+        version: 3.4.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       zod:
         specifier: 3.23.8
         version: 3.23.8
@@ -9675,8 +9675,8 @@ packages:
       '@types/react':
         optional: true
 
-  use-mask-input@3.4.0:
-    resolution: {integrity: sha512-FdCoqgM9/sZz9VNNuH3EjCNojTGi82nw7ACC/a5OhnoqQG6ZMMh4WuscgayNJquqsnIVfCXkkMLSw6V8kSXSBg==}
+  use-mask-input@3.4.2:
+    resolution: {integrity: sha512-d+lYFl/6rsmdya3bZfMoMqZYC5uSKDPtWp/BD+FQ6KRsAKaPfRO1Z/jvagrytKCpvIrpER3i/WKC/4baIzlr+A==}
     engines: {node: '>=16', npm: '>=7'}
     peerDependencies:
       react: 18.2.0
@@ -21496,7 +21496,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.11
 
-  use-mask-input@3.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  use-mask-input@3.4.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
