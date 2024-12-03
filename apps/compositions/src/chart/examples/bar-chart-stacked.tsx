@@ -4,12 +4,12 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from "recharts"
 
 export const BarChartStacked = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
       { windows: 165, mac: 95, linux: 110, month: "February" },

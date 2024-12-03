@@ -6,10 +6,10 @@ import {
   BarSegmentRoot,
   BarSegmentValue,
 } from "compositions/chart/bar-segment"
-import { useChartConfig } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 
 export const BarSegmentWithReference = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Google", value: 500000, color: "teal.solid" },

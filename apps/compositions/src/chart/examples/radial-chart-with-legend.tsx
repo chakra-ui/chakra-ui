@@ -4,12 +4,12 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, Legend, RadialBar, RadialBarChart, Tooltip } from "recharts"
 
 export const RadialChartWithLegend = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { value: 165, month: "January", color: "teal.solid" },
       { value: 190, month: "February", color: "purple.solid" },

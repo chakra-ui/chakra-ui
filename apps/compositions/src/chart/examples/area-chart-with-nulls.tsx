@@ -5,8 +5,8 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   Area,
   AreaChart,
@@ -17,7 +17,7 @@ import {
 } from "recharts"
 
 export const AreaChartWithConnectNulls = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { sales: 186, month: "January" },
       { sales: null, month: "February" },

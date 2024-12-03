@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from "recharts"
 
 export const RadarChartWithTooltip = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 110, month: "January" },
       { windows: 130, month: "February" },

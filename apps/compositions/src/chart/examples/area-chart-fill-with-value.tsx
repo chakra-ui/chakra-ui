@@ -4,8 +4,8 @@ import {
   ChartGradient,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -29,7 +29,7 @@ const gradientOffset = () => {
 const offset = gradientOffset()
 
 export const AreaChartFillWithValue = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data,
     series: [
       { name: "uv", color: "teal.solid" },

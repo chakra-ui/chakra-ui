@@ -4,12 +4,12 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from "recharts"
 
 export const BarChartBasic = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { sales: 63000, month: "June" },
       { sales: 72000, month: "July" },

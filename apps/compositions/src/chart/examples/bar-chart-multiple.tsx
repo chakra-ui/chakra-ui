@@ -4,8 +4,8 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   Bar,
   BarChart,
@@ -17,7 +17,7 @@ import {
 } from "recharts"
 
 export const BarChartMultiple = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { type: "mobile", poor: 40, fair: 100, good: 265, excellent: 70 },
       { type: "marketing", poor: 15, fair: 40, good: 120, excellent: 90 },

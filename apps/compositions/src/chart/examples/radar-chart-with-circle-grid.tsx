@@ -1,6 +1,7 @@
 "use client"
 
-import { ChartRoot, useChartConfig } from "compositions/chart/chart"
+import { ChartRoot } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -10,7 +11,7 @@ import {
 } from "recharts"
 
 export const RadarChartWithCircleGrid = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 120, month: "January" },
       { windows: 120, month: "February" },

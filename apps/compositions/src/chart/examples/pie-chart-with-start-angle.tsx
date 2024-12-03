@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
 export const PieChartWithStartAngle = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { name: "typescript", value: 400, color: "blue.solid" },
       { name: "javascript", value: 120, color: "orange.solid" },

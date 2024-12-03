@@ -4,13 +4,13 @@ import {
   ChartGradient,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import * as React from "react"
 import { Area, AreaChart, Tooltip } from "recharts"
 
 export const SparklineWithGradient = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { value: 10 },
       { value: 16 },

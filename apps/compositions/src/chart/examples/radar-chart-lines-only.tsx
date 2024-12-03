@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartLegendContent, ChartRoot } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Legend, PolarGrid, Radar, RadarChart } from "recharts"
 
 export const RadarChartLinesOnly = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 30, mac: 100, month: "January" },
       { windows: 120, mac: 20, month: "February" },

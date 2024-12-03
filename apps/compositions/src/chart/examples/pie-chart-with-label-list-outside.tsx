@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
 export const PieChartWithLabelListOutside = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
       { name: "mac", value: 300, color: "orange.solid" },

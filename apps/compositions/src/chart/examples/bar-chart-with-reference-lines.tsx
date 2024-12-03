@@ -1,10 +1,7 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   Bar,
   BarChart,
@@ -16,7 +13,7 @@ import {
 } from "recharts"
 
 export const BarChartWithReferenceLines = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { sales: 63000, month: "June" },
       { sales: 72000, month: "July" },

@@ -1,6 +1,6 @@
 "use client"
 
-import { useChartConfig } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import type { BarListData } from "../bar-list"
 import {
   BarList,
@@ -11,7 +11,7 @@ import {
 } from "../bar-list"
 
 export const BarListWithLabel = () => {
-  const chart = useChartConfig<BarListData>({
+  const chart = useChartState<BarListData>({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Google", value: 1200000 },

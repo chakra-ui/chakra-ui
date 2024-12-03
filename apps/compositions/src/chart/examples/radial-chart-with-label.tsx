@@ -1,10 +1,11 @@
 "use client"
 
-import { ChartRoot, useChartConfig } from "compositions/chart/chart"
+import { ChartRoot } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, RadialBar, RadialBarChart } from "recharts"
 
 export const RadialChartWithLabel = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { value: 165, month: "January", color: "teal.solid" },
       { value: 190, month: "February", color: "purple.solid" },

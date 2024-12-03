@@ -1,10 +1,7 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   CartesianGrid,
   LabelList,
@@ -15,7 +12,7 @@ import {
 } from "recharts"
 
 export const LineChartWithPointLabel = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { name: "Jan", uv: 400 },
       { name: "Feb", uv: 300 },

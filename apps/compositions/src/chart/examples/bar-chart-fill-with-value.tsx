@@ -1,10 +1,7 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   Bar,
   BarChart,
@@ -15,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartFillWithValue = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { name: "Page A", views: 400 },
       { name: "Page B", views: -300 },

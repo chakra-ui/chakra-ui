@@ -4,8 +4,8 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   CartesianGrid,
   Label,
@@ -18,7 +18,7 @@ import {
 } from "recharts"
 
 export const LineChartBiaxial = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 186, mac: 20, month: "January" },
       { windows: 165, mac: 45, month: "February" },

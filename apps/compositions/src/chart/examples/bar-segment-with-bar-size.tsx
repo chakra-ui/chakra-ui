@@ -1,4 +1,4 @@
-import { useChartConfig } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   BarSegment,
   BarSegmentContent,
@@ -7,7 +7,7 @@ import {
 } from "../bar-segment"
 
 export const BarSegmentWithBarSize = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Ruby", value: 450000, color: "green.solid" },

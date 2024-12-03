@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartLegendContent, ChartRoot } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, Legend, Pie, PieChart } from "recharts"
 
 export const PieChartWithLegend = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
       { name: "mac", value: 300, color: "orange.solid" },

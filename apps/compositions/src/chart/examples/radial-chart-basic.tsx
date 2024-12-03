@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Cell, RadialBar, RadialBarChart, Tooltip } from "recharts"
 
 export const RadialChartBasic = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { value: 165, month: "January", color: "teal.solid" },
       { value: 190, month: "February", color: "purple.solid" },

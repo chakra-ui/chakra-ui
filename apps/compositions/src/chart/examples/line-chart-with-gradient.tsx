@@ -4,12 +4,12 @@ import {
   ChartGradient,
   ChartRoot,
   ChartTooltipContent,
-  useChartConfig,
 } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const LineChartWithGradient = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { temp: -20, month: "January" },
       { temp: -10, month: "February" },

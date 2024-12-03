@@ -1,11 +1,8 @@
 "use client"
 
 import { Card } from "@chakra-ui/react"
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { SegmentedControl } from "compositions/ui/segmented-control"
 import * as React from "react"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
@@ -15,7 +12,7 @@ type CurrentKey = "windows" | "mac" | "linux"
 export const BarChartComposition = () => {
   const [currentKey, setCurrentKey] = React.useState<CurrentKey>("windows")
 
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
       { windows: 165, mac: 95, linux: 110, month: "February" },

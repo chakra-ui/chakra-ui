@@ -1,4 +1,5 @@
-import { ChartRoot, useChartConfig } from "compositions/chart/chart"
+import { ChartRoot } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -30,7 +31,7 @@ const CustomTick = (props: Partial<CartesianTickProps>) => {
 }
 
 export const BarChartWithAvatarTicks = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data,
     series: [{ name: "value", color: "teal.solid" }],
   })

@@ -1,4 +1,4 @@
-import { useChartConfig } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import {
   BarSegment,
   BarSegmentContent,
@@ -7,7 +7,7 @@ import {
 } from "../bar-segment"
 
 export const BarSegmentWithTooltip = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Google", value: 500000, color: "teal.solid" },

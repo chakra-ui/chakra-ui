@@ -1,14 +1,11 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartConfig,
-} from "compositions/chart/chart"
+import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
+import { useChartState } from "compositions/chart/use-chart-state"
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const AreaChartWithAxes = () => {
-  const chart = useChartConfig({
+  const chart = useChartState({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
       { windows: 165, mac: 95, linux: 110, month: "February" },

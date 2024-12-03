@@ -10,8 +10,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { type UseChartConfigReturn } from "compositions/chart/chart"
 import * as React from "react"
+import { type UseChartStateReturn } from "./use-chart-state"
 
 export interface BarListData {
   name: string
@@ -20,12 +20,10 @@ export interface BarListData {
 }
 
 interface ChartProps {
-  chart: UseChartConfigReturn<BarListData>
+  chart: UseChartStateReturn<BarListData>
 }
 
-const ChartContext = React.createContext(
-  {} as UseChartConfigReturn<BarListData>,
-)
+const ChartContext = React.createContext({} as UseChartStateReturn<BarListData>)
 
 interface BarListRootProps extends StackProps, ChartProps {
   barSize?: Tokens["sizes"]

@@ -1,6 +1,6 @@
 "use client"
 
-import type { BoxProps, Tokens } from "@chakra-ui/react"
+import type { BoxProps } from "@chakra-ui/react"
 import {
   Box,
   ColorSwatch,
@@ -11,154 +11,15 @@ import {
   Stack,
   Text,
   useChakraContext,
-  useLocaleContext,
 } from "@chakra-ui/react"
 import * as React from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
-
-export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
-
-interface SeriesItem<T> {
-  name?: keyof T
-  color?: ChartColor
-  icon?: React.ReactNode
-  label?: React.ReactNode
-  stackId?: string
-  yAxisId?: string
-  strokeDasharray?: string
-  id?: string
-}
-
-interface UseChartConfigProps<T> {
-  data: T[]
-  series?: SeriesItem<T>[]
-  sort?: { by: keyof T; direction: "asc" | "desc" }
-}
-
-type ValueDomain =
-  | [number, number]
-  | ((props: { min: number; max: number }) => [number, number])
-
-export type UseChartConfigReturn<T> = ReturnType<typeof useChartConfig<T>>
-
-function useToken(category: keyof Tokens) {
-  const sys = useChakraContext()
-  return (key: string | undefined) => sys.token(`${category}.${key}`, key)
-}
-
-const isObject = (value: unknown): value is Record<string, unknown> =>
-  typeof value === "object" && value !== null
-
-function getProp<T = unknown>(
-  item: unknown,
-  key: string | undefined,
-): T | undefined {
-  if (!key || !isObject(item)) return
-  return Reflect.get(item, key) as T | undefined
-}
-
-export function useChartConfig<T>(props: UseChartConfigProps<T>) {
-  const { data, series = [], sort } = props
-
-  const id = React.useId()
-  const [selectedSeries, setSelectedSeries] = React.useState<string | null>(
-    null,
-  )
-  const [highlightedSeries, setHighlightedSeries] = React.useState<
-    string | null
-  >(null)
-
-  const env = useLocaleContext()
-
-  const color = useToken("colors")
-  const size = useToken("sizes")
-
-  const key = <K extends keyof T>(prop: K | undefined): K =>
-    prop ?? ("value" as K)
-
-  const formatter = React.useCallback(
-    (options: Intl.NumberFormatOptions) => {
-      const formatter = new Intl.NumberFormat(env.locale, options)
-      return (value: number) => formatter.format(value)
-    },
-    [env.locale],
-  )
-
-  const getSeries = (item: unknown) => {
-    if (!isObject(item)) return
-    const result = series.find((s) => {
-      return (
-        s.name === item.name ||
-        s.name === getProp(item.payload, "name") ||
-        s.name === item.dataKey ||
-        s.name === getProp(item.payload, "dataKey")
-      )
-    }) || { color: undefined }
-
-    result.color ||= getProp(item.payload, "color")
-    result.label ||=
-      result.name?.toLocaleString() || getProp(item.payload, "name")
-
-    return result
-  }
-
-  const getTotal = (key: keyof T) => {
-    return data.reduce((acc, d) => acc + Number(d[key]), 0)
-  }
-
-  const getPayloadTotal = <T extends { value?: string }>(
-    payload: Array<T> | undefined,
-  ) => {
-    return payload?.reduce((acc, item) => {
-      if (!item.value) return acc
-      const num = Number(item.value)
-      const value = Number.isNaN(num) ? 0 : num
-      return acc + value
-    }, 0)
-  }
-
-  const getValuePercent = (
-    key: keyof T,
-    value: number,
-    domain?: ValueDomain,
-  ) => {
-    const min = Math.min(...data.map((d) => Number(d[key])))
-    const max = Math.max(...data.map((d) => Number(d[key])))
-    if (domain) {
-      const d = typeof domain === "function" ? domain({ min, max }) : domain
-      return ((value - d[0]) / (d[1] - d[0])) * 100
-    }
-    return (value / getTotal(key)) * 100
-  }
-
-  const sortedData = React.useMemo(() => {
-    if (!sort) return data
-    return data.sort((a, b) => {
-      const aValue = Number(a[sort.by])
-      const bValue = Number(b[sort.by])
-      return sort.direction === "desc" ? bValue - aValue : aValue - bValue
-    })
-  }, [data, sort])
-
-  return {
-    data: sortedData,
-    series,
-    getSeries,
-    id,
-    key,
-    color,
-    size,
-    formatter,
-    selectedSeries,
-    setSelectedSeries,
-    highlightedSeries,
-    setHighlightedSeries,
-    getTotal,
-    getPayloadTotal,
-    getValuePercent,
-  }
-}
+import {
+  type ChartColor,
+  type UseChartStateReturn,
+  getProp,
+} from "./use-chart-state"
 
 interface ChartRootProps extends BoxProps {
   children: React.ReactElement
@@ -210,7 +71,8 @@ export const ChartGradient = React.forwardRef<
   SVGLinearGradientElement,
   ChartGradientProps
 >(function ChartGradient(props, ref) {
-  const token = useToken("colors")
+  const sys = useChakraContext()
+  const token = (key: string | undefined) => sys.token("colors", key)
   const { id, fillOpacity, stops } = props
   return (
     <linearGradient id={id} x1="0" y1="0" x2="0" y2="1" ref={ref}>
@@ -228,7 +90,7 @@ export const ChartGradient = React.forwardRef<
 
 interface ChartLegendContentProps<T extends Record<string, unknown>>
   extends LegendProps {
-  chart: UseChartConfigReturn<T>
+  chart: UseChartStateReturn<T>
   title?: React.ReactNode
   nameKey?: string
 }
@@ -251,8 +113,6 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
     orientation,
     nameKey,
   } = props
-
-  const token = useToken("colors")
 
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
@@ -284,7 +144,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
                 <ColorSwatch
                   boxSize="2.5"
                   rounded="full"
-                  value={token(config?.color)}
+                  value={chart.color(config?.color)}
                 />
               )}
               <Span color="fg.muted">{name || config?.label}</Span>
@@ -304,7 +164,7 @@ interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   fitContent?: boolean
   nameKey?: string
   indicator?: "line" | "dot" | "dashed"
-  chart: UseChartConfigReturn<T>
+  chart: UseChartStateReturn<T>
 }
 
 export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
