@@ -2,12 +2,12 @@ import { useChartConfig } from "compositions/chart/chart"
 import {
   BarSegment,
   BarSegmentContent,
-  BarSegmentLabel,
+  BarSegmentLegend,
   BarSegmentRoot,
   BarSegmentValue,
 } from "../bar-segment"
 
-export const BarSegmentBasic = () => {
+export const BarSegmentWithLegend = () => {
   const chart = useChartConfig({
     sort: { by: "value", direction: "desc" },
     data: [
@@ -23,8 +23,8 @@ export const BarSegmentBasic = () => {
       <BarSegmentContent>
         <BarSegmentValue />
         <BarSegment />
-        <BarSegmentLabel />
       </BarSegmentContent>
+      <BarSegmentLegend showPercent />
     </BarSegmentRoot>
   )
 }

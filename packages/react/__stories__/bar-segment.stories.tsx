@@ -12,4 +12,7 @@ export default {
 }
 
 export { BarSegmentBasic as Basic } from "compositions/chart/examples/bar-segment-basic"
-export { BarSegmentWithReference as WithReference } from "compositions/chart/examples/bar-segment-with-reference"
+export { BarSegmentWithReference as Reference } from "compositions/chart/examples/bar-segment-with-reference"
+export { BarSegmentWithLegend as Legend } from "compositions/chart/examples/bar-segment-with-legend"
+export { BarSegmentWithBarSize as BarSize } from "compositions/chart/examples/bar-segment-with-bar-size"
+export { BarSegmentWithTooltip as Tooltip } from "compositions/chart/examples/bar-segment-with-tooltip"

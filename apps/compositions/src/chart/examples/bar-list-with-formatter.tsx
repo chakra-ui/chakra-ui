@@ -1,11 +1,11 @@
 "use client"
 
-import { Box } from "@chakra-ui/react"
 import { useChartConfig } from "compositions/chart/chart"
+import type { BarListData } from "../bar-list"
 import { BarList, BarListContent, BarListRoot, BarListValue } from "../bar-list"
 
 export const BarListWithFormatter = () => {
-  const chart = useChartConfig({
+  const chart = useChartConfig<BarListData>({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Created", value: 120 },
@@ -20,16 +20,13 @@ export const BarListWithFormatter = () => {
     chart.getValuePercent("value", value).toFixed(0)
 
   return (
-    <Box maxW="sm">
-      <BarListRoot>
-        <BarListContent>
-          <BarList chart={chart} />
-          <BarListValue
-            chart={chart}
-            valueFormatter={(value) => `${value} (${getPercent(value)}%)`}
-          />
-        </BarListContent>
-      </BarListRoot>
-    </Box>
+    <BarListRoot chart={chart} maxW="sm">
+      <BarListContent>
+        <BarList />
+        <BarListValue
+          valueFormatter={(value) => `${value} (${getPercent(value)}%)`}
+        />
+      </BarListContent>
+    </BarListRoot>
   )
 }

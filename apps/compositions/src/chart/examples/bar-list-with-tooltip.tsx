@@ -1,7 +1,7 @@
 "use client"
 
-import { Box } from "@chakra-ui/react"
 import { useChartConfig } from "compositions/chart/chart"
+import type { BarListData } from "../bar-list"
 import {
   BarList,
   BarListContent,
@@ -11,7 +11,7 @@ import {
 } from "../bar-list"
 
 export const BarListWithTooltip = () => {
-  const chart = useChartConfig({
+  const chart = useChartConfig<BarListData>({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Google", value: 1200000 },
@@ -26,17 +26,15 @@ export const BarListWithTooltip = () => {
   })
 
   return (
-    <Box maxW="sm">
-      <BarListRoot>
-        <BarListContent>
-          <BarListLabel title="Search Engine" flex="1">
-            <BarList chart={chart} showTooltip />
-          </BarListLabel>
-          <BarListLabel title="Downloads" titleAlignment="end">
-            <BarListValue chart={chart} />
-          </BarListLabel>
-        </BarListContent>
-      </BarListRoot>
-    </Box>
+    <BarListRoot chart={chart} maxW="sm">
+      <BarListContent>
+        <BarListLabel title="Search Engine" flex="1">
+          <BarList showTooltip />
+        </BarListLabel>
+        <BarListLabel title="Downloads" titleAlignment="end">
+          <BarListValue />
+        </BarListLabel>
+      </BarListContent>
+    </BarListRoot>
   )
 }

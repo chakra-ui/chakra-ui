@@ -1,11 +1,11 @@
 "use client"
 
-import { Box } from "@chakra-ui/react"
 import { useChartConfig } from "compositions/chart/chart"
+import type { BarListData } from "../bar-list"
 import { BarList, BarListContent, BarListRoot, BarListValue } from "../bar-list"
 
 export const BarListWithLink = () => {
-  const chart = useChartConfig({
+  const chart = useChartConfig<BarListData>({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Created", value: 120, href: "#" },
@@ -17,16 +17,13 @@ export const BarListWithLink = () => {
   })
 
   return (
-    <Box maxW="sm">
-      <BarListRoot>
-        <BarListContent>
-          <BarList
-            chart={chart}
-            label={({ payload }) => <a href={payload.href}>{payload.name}</a>}
-          />
-          <BarListValue chart={chart} />
-        </BarListContent>
-      </BarListRoot>
-    </Box>
+    <BarListRoot chart={chart} maxW="sm">
+      <BarListContent>
+        <BarList
+          label={({ payload }) => <a href={payload.href}>{payload.name}</a>}
+        />
+        <BarListValue />
+      </BarListContent>
+    </BarListRoot>
   )
 }

@@ -42,7 +42,7 @@ type ValueDomain =
 
 export type UseChartConfigReturn<T> = ReturnType<typeof useChartConfig<T>>
 
-function useToken(category: "colors" | "space") {
+function useToken(category: keyof Tokens) {
   const sys = useChakraContext()
   return (key: string | undefined) => sys.token(`${category}.${key}`, key)
 }
@@ -70,7 +70,9 @@ export function useChartConfig<T>(props: UseChartConfigProps<T>) {
   >(null)
 
   const env = useLocaleContext()
+
   const color = useToken("colors")
+  const size = useToken("sizes")
 
   const key = <K extends keyof T>(prop: K | undefined): K =>
     prop ?? ("value" as K)
@@ -146,6 +148,7 @@ export function useChartConfig<T>(props: UseChartConfigProps<T>) {
     id,
     key,
     color,
+    size,
     formatter,
     selectedSeries,
     setSelectedSeries,

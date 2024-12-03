@@ -1,30 +1,43 @@
 "use client"
 
+import type { FlexProps, StackProps, Tokens } from "@chakra-ui/react"
 import {
   AbsoluteCenter,
   Box,
   Flex,
-  type FlexProps,
   HStack,
   Show,
   Stack,
-  type StackProps,
   Text,
 } from "@chakra-ui/react"
 import { type UseChartConfigReturn } from "compositions/chart/chart"
+import * as React from "react"
 
-interface BarListData {
+export interface BarListData {
   name: string
   value: number
-  href?: URL | string | undefined
+  href?: string
 }
 
-interface ChartProps<T extends BarListData> {
-  chart: UseChartConfigReturn<T>
+interface ChartProps {
+  chart: UseChartConfigReturn<BarListData>
 }
 
-export const BarListRoot = (props: StackProps) => {
-  return <Box {...props} css={{ "--bar-size": "sizes.10" }} />
+const ChartContext = React.createContext(
+  {} as UseChartConfigReturn<BarListData>,
+)
+
+interface BarListRootProps extends StackProps, ChartProps {
+  barSize?: Tokens["sizes"]
+}
+
+export function BarListRoot(props: BarListRootProps) {
+  const { chart, barSize = "10", children, ...rest } = props
+  return (
+    <Box {...rest} css={{ "--bar-size": chart.size(barSize) }}>
+      <ChartContext.Provider value={chart}>{children}</ChartContext.Provider>
+    </Box>
+  )
 }
 
 export const BarListTitle = (props: StackProps) => {
@@ -35,16 +48,14 @@ export const BarListContent = (props: FlexProps) => {
   return <Flex flexWrap="nowrap" align="flex-end" gap="4" {...props} />
 }
 
-interface BarListTooltipProps<T extends BarListData> {
-  chart: UseChartConfigReturn<T>
-  payload: T
+interface BarListTooltipProps {
+  payload: BarListData
   labelFormatter?: (value: number) => React.ReactNode
 }
 
-export function BarListTooltip<T extends BarListData>(
-  props: BarListTooltipProps<T>,
-) {
-  const { chart, payload, labelFormatter } = props
+export function BarListTooltip(props: BarListTooltipProps) {
+  const { payload, labelFormatter } = props
+  const chart = React.useContext(ChartContext)
   const formatter = labelFormatter || chart.formatter({ style: "decimal" })
   return (
     <AbsoluteCenter
@@ -66,16 +77,15 @@ export function BarListTooltip<T extends BarListData>(
   )
 }
 
-interface BarListProps<T extends BarListData>
-  extends StackProps,
-    ChartProps<T> {
+interface BarListProps extends StackProps {
   showTooltip?: boolean
-  label?: (props: { payload: T; index: number }) => React.ReactNode
+  label?: (props: { payload: BarListData; index: number }) => React.ReactNode
 }
 
-export function BarList<T extends BarListData>(props: BarListProps<T>) {
-  const { chart, label, showTooltip, ...rest } = props
+export function BarList(props: BarListProps) {
+  const { label, showTooltip, ...rest } = props
 
+  const chart = React.useContext(ChartContext)
   const getPercent = (value: number) =>
     chart.getValuePercent("value", value, (e) => [0, e.max])
 
@@ -103,7 +113,7 @@ export function BarList<T extends BarListData>(props: BarListProps<T>) {
         >
           <Box pos="relative" flex="1" className="group">
             {showTooltip && chart.highlightedSeries === item.name && (
-              <BarListTooltip chart={chart} payload={item} />
+              <BarListTooltip payload={item} />
             )}
             <Box
               pos="absolute"
@@ -137,16 +147,14 @@ export function BarList<T extends BarListData>(props: BarListProps<T>) {
   )
 }
 
-interface BarListValueProps<T extends BarListData>
-  extends ChartProps<T>,
-    StackProps {
+interface BarListValueProps extends StackProps {
   valueFormatter?: (value: number) => React.ReactNode
 }
 
-export function BarListValue<T extends BarListData>(
-  props: BarListValueProps<T>,
-) {
-  const { chart, valueFormatter, ...rest } = props
+export function BarListValue(props: BarListValueProps) {
+  const { valueFormatter, ...rest } = props
+
+  const chart = React.useContext(ChartContext)
 
   const formatter =
     valueFormatter ||
