@@ -6,10 +6,13 @@ authors: ["esther"]
 publishedAt: "2024-12-03"
 ---
 
-Last Thursday, 28th November, 2024, the Chakra UI community gathered in London
-for our Meetup. It was an exciting time to engage and meet in real life some of
-the members who we had connected with online for months and even years, thanks
-to open source.
+The Chakra UI London Meetup was a special evening where we got to meet
+face-to-face with many community members who we had only known through online
+interactions in the open source world. Some of these connections spanned months
+or even years, making the in-person gathering even more meaningful.
+
+The event held on Thursday, November 28th, 2024 where we talked about Chakra UI
+v3, and the future of Chakra UI.
 
 The evening kicked off with light refreshments and chats. We exchanged ideas,
 shared our favorite Chakra components, and of course, grabbed some stickers.
@@ -22,7 +25,17 @@ shared our favorite Chakra components, and of course, grabbed some stickers.
   height="500px"
 />
 
-### How We Built Chakra UI v3
+## Talks
+
+We had three amazing talks that evening, each bringing unique insights into
+Chakra UI's evolution and new features.
+
+### Building Chakra UI v3
+
+The opening talk was delivered by [Sage](https://x.com/thesegunadebayo), the
+creator of Chakra UI. His talk provided a technical deep dive into the process
+behind building Chakra UI v3, going from the logic layer to the presentation
+layer.
 
 <Image
   src="/images/sage-talk.png"
@@ -32,29 +45,36 @@ shared our favorite Chakra components, and of course, grabbed some stickers.
   height="500px"
 />
 
-The first session of the evening was delivered by none other than
-[Segun Adebayo](https://x.com/thesegunadebayo), the creator of Chakra UI. His
-talk provided a deep dive into the process behind building Chakra UI v3.
+Key highlights from the talk:
 
-Key highlights from Segun’s talk:
+- **Component Design**: Using the slider component, Sage showcased how
+  components are now built in Chakra UI. Going from the headless layer to the
+  presentation layer, and leveraging state machines to handle interactions.
 
-✅ **Building the Slider**: Segun showcased how Chakra UI’s Slider component
-uses state machines to handle interactions seamlessly.
+  - **Logic Layer** powered by [Zag.js](https://zagjs.com/)
+  - **Headless UI Layer** handled by [Ark UI](https://ark-ui.com/)
+  - **Presentation Layer** handled by Chakra's theming system
 
-✅ **Component Anatomy**: He broke down the structure of Chakra UI components
-into three layers:
+- **Component Anatomy**: He broke down the structure of Chakra UI components
+  into separate parts so create a shared language for developers and designers.
 
-- **Logic Layer** powered by [Zag.js](https://zagjs.com/)
-- **Headless UI Layer** handled by [Ark UI](https://ark-ui.com/)
-- **Presentation Layer** for improved developer experience - Chakra UI.
+- **Component API**: Sage emphasized how Chakra UI v3 leverages both open and
+  closed component APIs to provide a flexible and consistent developer
+  experience.
 
-✅ **Modular and Flexible Design**: Segun emphasized how Chakra UI v3 is crafted
-to be highly modular, flexible, and developer-friendly.
+<ResourceCard
+  type="figma"
+  title="View the slides"
+  url="https://www.figma.com/deck/WbCGjQGQCupXNvCiSqMHsf/Chakra-Meetup-Nov.?node-id=1-25&node-type=slide&viewport=-136%2C-13%2C0.63&t=tAFo6Oa8uI2pxIW5-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+/>
 
-**Explore Segun’s Slides**:
-[View Here](https://www.figma.com/deck/WbCGjQGQCupXNvCiSqMHsf/Chakra-Meetup-Nov.?node-id=1-25&node-type=slide&viewport=-136%2C-13%2C0.63&t=tAFo6Oa8uI2pxIW5-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+<br />
 
 ### Hidden Gems of Chakra UI v3
+
+Next up, [Ivica Batinić](https://x.com/_isBatak) took the stage to highlight new
+features in Chakra v3, showing how the theming system works, and ways to improve
+runtime performance of dynamic styles.
 
 <Image
   src="/images/ivica-talk.png"
@@ -64,25 +84,32 @@ to be highly modular, flexible, and developer-friendly.
   height="500px"
 />
 
-Next up, [Ivica Batinić](https://x.com/_isBatak) took the stage to highlight
-advanced features and lesser-known capabilities of Chakra UI v3.
+Key highlights from the talk:
 
-Key takeaways from Ivica’s talk:
+- **Multipart Component Nuances**: Understanding the finer details of multipart
+  components.
 
-✅ **Multipart Component Nuances**: Understanding the finer details of multipart
-components.
+- **Performant Dynamic Styles**: Techniques for optimizing styles dynamically.
 
-✅ **Performant Dynamic Styles**: Techniques for optimizing styles dynamically.
+- **Modernized Polymorphic Patterns**: Leveraging patterns that boost
+  flexibility in component usage.
 
-✅ **Modernized Polymorphic Patterns**: Leveraging patterns that boost
-flexibility in component usage.
+- **Advanced Styling Features**: Unlocking powerful new styling capabilities.
 
-✅ **Advanced Styling Features**: Unlocking powerful new styling capabilities.
+<ResourceCard
+  type="site"
+  title="View the slides"
+  url="https://hidden-gems-of-chakra-ui-v3.vercel.app/1"
+/>
 
-**Check out Ivica’s Slides**:
-[View Here](https://hidden-gems-of-chakra-ui-v3.vercel.app/1)
+<br />
 
-### Color Your World with Chakra’s Color Picker
+### Exploring Chakra's Color Picker
+
+The final talk of the night was led by
+[Esther Adebayo](https://x.com/_estheradebayo), who gave a stunning demo of the
+new Color Picker component in Chakra UI v3, showing how to build a page with
+real-time color customization.
 
 <Image
   src="/images/esther-talk.png"
@@ -92,35 +119,34 @@ flexibility in component usage.
   height="500px"
 />
 
-The final session of the night was led by
-[Esther Adebayo](https://x.com/_estheradebayo), who introduced us to the newest
-addition to Chakra UI, the Color Picker component.
+Key highlights from the talk:
 
-Key points from Esther’s session:
+- **Color Picker Overview**: Why a Color Picker is an essential tool for any
+  design system.
 
-✅ **The Role of a Color Picker**: Why a Color Picker is an essential tool for
-any design system.
+- **Design Considerations**: What makes a good color picker component, and how
+  to build one.
 
-✅ **What Makes a Great Color Picker**: Features that enhance usability and
-functionality.
+- **Component Anatomy**: A walkthrough of the Color Picker's anatomy.
 
-✅ **Component Overview**: A walkthrough of the Color Picker’s anatomy.
+- **Live Demo**: Esther demoed the ColorPicker component, showing how it can be
+  used to style a login screen in real time.
 
-✅ **Live Demo**: Esther showed how the Color Picker can be used to style a
-login screen in real time.
+<ResourceCard
+  type="youtube"
+  title="Watch the talk"
+  url="https://youtu.be/neesBbYuGT0"
+/>
 
-**Esther’s Slides**:
-[View Here](https://www.canva.com/design/DAGXaWgPwRE/aZJdpuPF6835coWXm-MVFA/view?utm_content=DAGXaWgPwRE&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+<br />
 
-**Watch Esther’s Talk**: [View Here](https://youtu.be/neesBbYuGT0)
+## Conclusion
 
 We wrapped up the evening with a Q&A session where attendees got the chance to
-ask their questions, from technical details to what’s next for Chakra UI.
-
-### Thank You!
+ask their questions, from technical details to what's next for Chakra UI.
 
 A huge thank you to everyone who attended and made this meetup so special. We
-couldn’t do this without you, and we look forward to the next one.
+couldn't do this without you, and we look forward to the next one.
 
 <Image
   src="/images/stickers.png"
@@ -130,10 +156,12 @@ couldn’t do this without you, and we look forward to the next one.
   height="500px"
 />
 
-**Stay connected:**
+## Connect with us
 
 - Join our [Discord community](https://discord.gg/chakra-ui).
 - Follow us on [X](https://x.com/chakra_ui).
 - Keep an eye out for future events!
+
+<br />
 
 Until next time, keep building with Chakra UI!
