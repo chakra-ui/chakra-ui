@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.2.3
+
+### Patch Changes
+
+- [`d821ab5`](https://github.com/chakra-ui/chakra-ui/commit/d821ab58b893f725ae7cbcf5122edb7ea1e11756)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  responsive semantic tokens doesn't work as expected.
+
 ## 3.2.2
 
 ### Patch Changes
