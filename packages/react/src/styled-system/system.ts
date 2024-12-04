@@ -134,14 +134,9 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     for (const [key, values] of tokens.cssVarMap.entries()) {
       const varsObj = Object.fromEntries(values) as any
       if (Object.keys(varsObj).length === 0) continue
-
-      if (key === "base") {
-        const cssObj = css(serialize({ [cssVarsRoot]: varsObj }))
-        mergeWith(result, cssObj)
-      } else {
-        const cssObject = css(serialize({ [key]: varsObj }))
-        mergeWith(result, cssObject)
-      }
+      const selector = key === "base" ? cssVarsRoot : conditions.resolve(key)
+      const cssObject = css(serialize({ [selector]: varsObj }))
+      mergeWith(result, cssObject)
     }
 
     return layers.wrap("tokens", result)
