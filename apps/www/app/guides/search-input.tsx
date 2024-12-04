@@ -28,6 +28,7 @@ const ComboboxContent = chakra(
       boxShadow: "lg",
       bg: "bg.panel",
       borderRadius: "l2",
+      zIndex: "popover",
     },
   },
   { forwardAsChild: true },
