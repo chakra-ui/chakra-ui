@@ -314,6 +314,49 @@ Usage in any component, you can do something like:
 </Box>
 ```
 
+If you are using custom colors, you must define two things to make
+`colorPalette` work:
+
+- **tokens**: For the 50-950 color palette
+- **semanticTokens**: For the `solid`, `contrast`, `fg`, `muted`, `subtle`,
+  `emphasized`, and `focusRing` color keys
+
+```tsx title="theme.ts" /brand: {/ /tokens: {/ /semanticTokens: {/
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          50: { value: "#e6f2ff" },
+          100: { value: "#e6f2ff" },
+          200: { value: "#bfdeff" },
+          300: { value: "#99caff" },
+          // ...
+          950: { value: "#001a33" },
+        },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        brand: {
+          solid: { value: "{colors.brand.500}" },
+          contrast: { value: "{colors.brand.100}" },
+          fg: { value: "{colors.brand.700}" },
+          muted: { value: "{colors.brand.100}" },
+          subtle: { value: "{colors.brand.200}" },
+          emphasized: { value: "{colors.brand.300}" },
+          focusRing: { value: "{colors.brand.500}" },
+        },
+      },
+    },
+  },
+})
+```
+
+> Read more about it [here](/guides/theming-custom-colors).
+
 ### Gradient Props
 
 Gradient style prop simplified to `gradient` and `gradientFrom` and `gradientTo`
