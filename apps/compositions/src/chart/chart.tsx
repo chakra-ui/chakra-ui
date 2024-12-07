@@ -15,6 +15,7 @@ import {
 import * as React from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
+import type { Payload } from "recharts/types/component/DefaultTooltipContent"
 import {
   type ChartColor,
   type UseChartStateReturn,
@@ -165,6 +166,7 @@ interface ChartTooltipContentProps<T> extends TooltipProps<string, string> {
   nameKey?: string
   indicator?: "line" | "dot" | "dashed"
   chart: UseChartStateReturn<T>
+  render?: (item: Payload<string, string>) => React.ReactNode
 }
 
 export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
@@ -179,6 +181,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
     showTotal,
     fitContent,
     nameKey,
+    render,
   } = props
 
   const payload = payloadProp?.filter(
@@ -211,6 +214,7 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
       <Box>
         {payload.map((item, index) => {
           const config = chart.getSeries(item)
+          if (render) return render(item.payload)
           return (
             <Flex
               gap="1.5"
