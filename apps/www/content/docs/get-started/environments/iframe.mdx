@@ -77,7 +77,7 @@ import {
 } from "@chakra-ui/react"
 import createCache from "@emotion/cache"
 import { CacheProvider } from "@emotion/react"
-import Iframe, { type FrameContextConsumer } from "react-frame-component"
+import Iframe, { FrameContextConsumer } from "react-frame-component"
 
 function memoize<T extends object, R>(func: (arg: T) => R): (arg: T) => R {
   const cache = new WeakMap<T, R>()
