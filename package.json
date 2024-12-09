@@ -81,7 +81,7 @@
     "@typescript-eslint/parser": "7.14.1",
     "consola": "^3.2.3",
     "cross-env": "7.0.3",
-    "dotenv": "16.4.5",
+    "dotenv": "16.4.7",
     "edit-json-file": "1.8.0",
     "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "18.0.0",
