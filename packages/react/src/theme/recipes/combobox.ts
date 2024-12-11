@@ -23,10 +23,12 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      background: "bg.panel",
       width: "full",
       minH: "var(--chakra-sizes-8)",
       px: "var(--select-trigger-padding-x)",
       borderRadius: "l2",
+      outline: 0,
       userSelect: "none",
       textAlign: "start",
       focusVisibleRing: "inside",
@@ -36,6 +38,10 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         layerStyle: "disabled",
+      },
+      _focusVisible: {
+        borderColor: "border",
+        outlineColor: "border",
       },
       _invalid: {
         borderColor: "border.error",
