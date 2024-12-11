@@ -1,3 +1,5 @@
+"use client"
+
 import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
@@ -8,8 +10,6 @@ import {
   ColorPickerLabel,
   ColorPickerRoot,
   ColorPickerSliders,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
   ColorPickerTrigger,
 } from "compositions/ui/color-picker"
 
@@ -27,11 +27,6 @@ export const ColorPickerWithDisabled = () => {
           <ColorPickerEyeDropper />
           <ColorPickerSliders />
         </HStack>
-        <ColorPickerSwatchGroup>
-          {["red", "blue", "green"].map((item) => (
-            <ColorPickerSwatchTrigger key={item} value={item} />
-          ))}
-        </ColorPickerSwatchGroup>
       </ColorPickerContent>
     </ColorPickerRoot>
   )

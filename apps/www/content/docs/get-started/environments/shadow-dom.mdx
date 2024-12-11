@@ -1,0 +1,188 @@
+---
+title: Using Chakra UI in Shadow DOM
+description: A guide for installing Chakra UI with Shadow DOM
+---
+
+When developing extensions for browsers or using Chakra as part of a large
+project, leveraging the Shadow DOM is useful for style and logic encapsulation.
+
+## Template
+
+Use the following template to get started quickly
+
+:::card-group
+
+<ResourceCard
+  type="github"
+  title="Shadow DOM template"
+  url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/shadow-dom"
+/>
+
+:::
+
+## Installation
+
+> The minimum node version required is Node.20.x
+
+:::steps
+
+### Install dependencies
+
+```bash
+npm i @chakra-ui/react @emotion/react @emotion/cache react-shadow
+```
+
+The additional packages used are:
+
+- `react-shadow` used to create a Shadow DOM easily
+- `@emotion/cache` used to create a custom insertion point for styles
+
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli snippet add
+```
+
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+### Configure style engine
+
+Create a `system.ts` file in the root of your project and configure the style
+engine.
+
+```tsx title="components/ui/system.ts"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const varRoot = ":host"
+
+const config = defineConfig({
+  cssVarsRoot: varRoot,
+  conditions: {
+    light: `${varRoot} &, .light &`,
+  },
+  preflight: { scope: varRoot },
+  globalCss: {
+    [varRoot]: defaultConfig.globalCss?.html ?? {},
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+> **Good to know**: The main purpose of the `system.ts` file is to configure the
+> style engine to target the Shadow DOM.
+
+### Setup provider
+
+Update the generated `components/ui/provider` component with the `Provider`
+component.
+
+This provider composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `EnvironmentProvider` from `react-shadow` to ensure Chakra components query
+  the DOM correctly
+- `CacheProvider` from `@emotion/react` to provide the custom insertion point
+- `ThemeProvider` from `next-themes` for color mode
+
+```tsx title="components/ui/provider.tsx"
+"use client"
+
+import { ChakraProvider, EnvironmentProvider } from "@chakra-ui/react"
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
+import { ThemeProvider, type ThemeProviderProps } from "next-themes"
+import { useEffect, useState } from "react"
+import root from "react-shadow/emotion"
+import { system } from "./system"
+
+export function Provider(props: ThemeProviderProps) {
+  const [shadow, setShadow] = useState<HTMLElement | null>(null)
+  const [cache, setCache] = useState<ReturnType<typeof createCache> | null>(
+    null,
+  )
+
+  useEffect(() => {
+    if (!shadow?.shadowRoot || cache) return
+    const emotionCache = createCache({
+      key: "root",
+      container: shadow.shadowRoot,
+    })
+    setCache(emotionCache)
+  }, [shadow, cache])
+
+  return (
+    <root.div ref={setShadow}>
+      {shadow && cache && (
+        <EnvironmentProvider value={() => shadow.shadowRoot ?? document}>
+          <CacheProvider value={cache}>
+            <ChakraProvider value={system}>
+              <ThemeProvider {...props} />
+            </ChakraProvider>
+          </CacheProvider>
+        </EnvironmentProvider>
+      )}
+    </root.div>
+  )
+}
+```
+
+### Use the provider
+
+Wrap your application with the `Provider` component generated in the
+`components/ui/provider` component at the root of your application.
+
+```tsx title="src/main.tsx" {1,8,10}
+import { Provider } from "@/components/ui/provider"
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import App from "./App.tsx"
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <Provider>
+      <App />
+    </Provider>
+  </StrictMode>,
+)
+```
+
+### Enjoy!
+
+With the power of the snippets and the primitive components from Chakra UI, you
+can build your UI faster.
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { HStack } from "@chakra-ui/react"
+
+export default function App() {
+  return (
+    <HStack>
+      <Button>Click me</Button>
+      <Button>Click me</Button>
+    </HStack>
+  )
+}
+```
+
+:::

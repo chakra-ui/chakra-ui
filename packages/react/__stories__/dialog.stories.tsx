@@ -26,3 +26,4 @@ export { DialogWithOutsideScroll as OutsideScroll } from "compositions/examples/
 export { DialogWithPlacement as Placement } from "compositions/examples/dialog-with-placement"
 export { DialogWithRole as Role } from "compositions/examples/dialog-with-role"
 export { DialogWithSizes as Sizes } from "compositions/examples/dialog-with-sizes"
+export { DialogWithStore as Store } from "compositions/examples/dialog-with-store"

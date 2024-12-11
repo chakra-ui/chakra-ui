@@ -17,6 +17,7 @@ export { PopoverControlled as Controlled } from "compositions/examples/popover-c
 export { PopoverLazyMounted as LazyMounted } from "compositions/examples/popover-lazy-mounted"
 export { PopoverNested as Nested } from "compositions/examples/popover-nested"
 export { PopoverSizeTable as Sizes } from "compositions/examples/popover-size-table"
+export { PopoverWithCustomBg as CustomBg } from "compositions/examples/popover-with-custom-bg"
 export { PopoverWithForm as Form } from "compositions/examples/popover-with-form"
 export { PopoverWithInitialFocus as InitialFocus } from "compositions/examples/popover-with-initial-focus"
 export { PopoverWithOffset as Offset } from "compositions/examples/popover-with-offset"

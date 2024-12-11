@@ -1,3 +1,5 @@
+"use client"
+
 import { HStack, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,

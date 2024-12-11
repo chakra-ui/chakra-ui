@@ -1,0 +1,192 @@
+---
+title: Using Chakra UI in Iframe
+description: A guide for installing and using Chakra UI in an Iframe
+---
+
+Iframes are useful for isolating styles and logic in a separate context. For
+example, you might want to showcase a Chakra component in dedicated sandbox.
+
+## Template
+
+Use the following template to get started quickly
+
+:::card-group
+
+<ResourceCard
+  type="github"
+  title="Iframe template"
+  url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/iframe"
+/>
+
+:::
+
+## Installation
+
+> The minimum node version required is Node.20.x
+
+:::steps
+
+### Install dependencies
+
+```bash
+npm i @chakra-ui/react @emotion/react @emotion/cache react-frame-component
+```
+
+The additional packages used are:
+
+- `react-frame-component` used to create an iframe easily
+- `@emotion/cache` used to create a custom insertion point for styles
+
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli snippet add
+```
+
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+### Setup Iframe
+
+Create a `components/ui/iframe-provider.tsx` file to setup the iframe using the
+`react-frame-component` package.
+
+```tsx title="components/ui/iframe-provider.tsx"
+import {
+  ChakraProvider,
+  EnvironmentProvider,
+  defaultSystem,
+} from "@chakra-ui/react"
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
+import Iframe, { FrameContextConsumer } from "react-frame-component"
+
+function memoize<T extends object, R>(func: (arg: T) => R): (arg: T) => R {
+  const cache = new WeakMap<T, R>()
+  return (arg: T) => {
+    if (cache.has(arg)) return cache.get(arg)!
+    const ret = func(arg)
+    cache.set(arg, ret)
+    return ret
+  }
+}
+
+const createCacheFn = memoize((container: HTMLElement) =>
+  createCache({ container, key: "frame" }),
+)
+
+export const IframeProvider = (props: React.PropsWithChildren) => {
+  const { children } = props
+  return (
+    <Iframe>
+      <FrameContextConsumer>
+        {(frame) => {
+          const head = frame.document?.head
+          if (!head) return null
+          return (
+            <CacheProvider value={createCacheFn(head)}>
+              <EnvironmentProvider value={() => head.ownerDocument}>
+                <ChakraProvider value={defaultSystem}>
+                  {children}
+                </ChakraProvider>
+              </EnvironmentProvider>
+            </CacheProvider>
+          )
+        }}
+      </FrameContextConsumer>
+    </Iframe>
+  )
+}
+```
+
+### Setup provider
+
+Wrap your application with the `Provider` component generated in the
+`components/ui/provider` component at the root of your application.
+
+This provider composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ThemeProvider` from `next-themes` for color mode
+
+```jsx
+import { Provider } from "@/components/ui/provider"
+import React from "react"
+import ReactDOM from "react-dom/client"
+import App from "./App"
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <Provider>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+)
+```
+
+### Use the IframeProvider
+
+At any component in your application, wrap it with the `IframeProvider`
+component to render it inside the iframe.
+
+```tsx title="src/App.tsx"
+import { Button, Container, Heading, Stack } from "@chakra-ui/react"
+import { IframeProvider } from "./components/ui/iframe-provider"
+
+function App() {
+  return (
+    <Container py="8">
+      <Heading mb="5">Outside Iframe</Heading>
+
+      <IframeProvider>
+        <Stack p="6" align="flex-start" border="1px solid red">
+          <Heading>Inside Iframe</Heading>
+          <Button>Click me</Button>
+        </Stack>
+      </IframeProvider>
+    </Container>
+  )
+}
+
+export default App
+```
+
+:::
+
+## Customization
+
+If you created a custom theme using the `createSystem` function, ensure it's
+passed to the `IframeProvider` and `Provider` components to ensure it's used
+inside the iframe.
+
+For example, let's say you created a custom theme:
+
+```ts
+export const system = createSystem(defaultConfig, {
+  theme: { colors: {} },
+})
+```
+
+Then, pass it to the `IframeProvider` and `Provider` components:
+
+```tsx
+<ChakraProvider value={system}>{/* ... */}</ChakraProvider>
+```

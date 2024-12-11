@@ -31,3 +31,25 @@ const customConfig = defineConfig({
 
 export const system = createSystem(defaultConfig, customConfig)
 ```
+
+After customizing the global CSS, make sure to update your provider component to
+use the new system.
+
+```tsx title="components/ui/provider.tsx" /value={system}/
+"use client"
+
+import { system } from "@/components/theme"
+import {
+  ColorModeProvider,
+  type ColorModeProviderProps,
+} from "@/components/ui/color-mode"
+import { ChakraProvider } from "@chakra-ui/react"
+
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```

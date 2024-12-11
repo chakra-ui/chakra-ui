@@ -1,0 +1,145 @@
+---
+title: Customize dark mode colors
+description:
+  Learn how to customize the entire theme colors for dark mode in Chakra UI
+publishedAt: "2024-12-05"
+collection: theming
+---
+
+You can customize the dark mode colors in Chakra UI by modifying the `_dark`
+values of the semantic color tokens. This guide will show you how to override
+the default dark mode colors.
+
+## Customizing dark mode colors
+
+Use the `createSystem` method to override the dark mode colors in your theme
+configuration:
+
+```tsx title="components/theme.ts" /_dark/
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        bg: {
+          DEFAULT: {
+            value: { _light: "{colors.white}", _dark: "#141414" }, // Custom dark background
+          },
+          subtle: {
+            value: { _light: "{colors.gray.50}", _dark: "#1a1a1a" }, // Custom dark subtle background
+          },
+          muted: {
+            value: { _light: "{colors.gray.100}", _dark: "#262626" }, // Custom dark muted background
+          },
+        },
+        fg: {
+          DEFAULT: {
+            value: { _light: "{colors.black}", _dark: "#e5e5e5" }, // Custom dark text color
+          },
+          muted: {
+            value: { _light: "{colors.gray.600}", _dark: "#a3a3a3" }, // Custom dark muted text
+          },
+        },
+        border: {
+          DEFAULT: {
+            value: { _light: "{colors.gray.200}", _dark: "#404040" }, // Custom dark border
+          },
+        },
+      },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+:::info
+
+To see the full list of semantic color tokens, see the
+[semantic tokens source code](https://github.com/chakra-ui/chakra-ui/blob/main/packages/react/src/theme/semantic-tokens/colors.ts).
+
+:::
+
+Next, add the new `system` to your `components/ui/provider.tsx` file:
+
+```tsx /value={system}/
+"use client"
+
+import { system } from "@/components/theme"
+import { ChakraProvider } from "@chakra-ui/react"
+
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```
+
+## Understanding semantic color tokens
+
+The semantic color tokens in Chakra UI follow this pattern:
+
+```tsx
+{
+  [colorKey]: {
+    [variant]: {
+      value: {
+        _light: string, // Light mode value
+        _dark: string   // Dark mode value
+      }
+    }
+  }
+}
+```
+
+Common color keys include:
+
+- `bg` - Background colors
+- `fg` - Foreground/text colors
+- `border` - Border colors
+
+Each color key has variants like:
+
+- `DEFAULT` - Base color
+- `subtle` - Subtle variation
+- `muted` - Muted variation
+- `emphasized` - Emphasized variation
+
+## Customizing specific color palettes
+
+You can also customize specific color palettes for dark mode:
+
+```tsx
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        blue: {
+          solid: {
+            value: { _light: "{colors.blue.600}", _dark: "#0284c7" }, // Custom dark blue
+          },
+          muted: {
+            value: { _light: "{colors.blue.100}", _dark: "#082f49" }, // Custom dark muted blue
+          },
+        },
+        // Add more color palettes as needed
+      },
+    },
+  },
+})
+```
+
+## Best practices
+
+1. **Color contrast**: Ensure your custom dark mode colors maintain sufficient
+   contrast for accessibility.
+
+2. **Consistent palette**: Keep your dark mode colors consistent across your
+   application by using a cohesive color palette.
+
+3. **Testing**: Always test your custom colors in both light and dark modes to
+   ensure good readability and visual harmony.
+
+> For more information about semantic tokens, see the
+> [semantic tokens guide](/docs/theming/semantic-tokens).

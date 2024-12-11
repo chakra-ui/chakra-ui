@@ -1,5 +1,6 @@
 export {
   AvatarRoot as Root,
+  AvatarRootProvider as RootProvider,
   AvatarPropsProvider as PropsProvider,
   AvatarImage as Image,
   AvatarFallback as Fallback,

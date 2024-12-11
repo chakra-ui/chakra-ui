@@ -2,7 +2,7 @@ import {
   FileInput,
   FileUploadLabel,
   FileUploadRoot,
-} from "compositions/ui/file-button"
+} from "compositions/ui/file-upload"
 
 export const FileUploadWithInput = () => {
   return (

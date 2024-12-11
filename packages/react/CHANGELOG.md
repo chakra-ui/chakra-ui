@@ -1,5 +1,59 @@
 # @chakra-ui/react
 
+## 3.2.3
+
+### Patch Changes
+
+- [`d821ab5`](https://github.com/chakra-ui/chakra-ui/commit/d821ab58b893f725ae7cbcf5122edb7ea1e11756)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  responsive semantic tokens doesn't work as expected.
+
+## 3.2.2
+
+### Patch Changes
+
+- [`7234d75`](https://github.com/chakra-ui/chakra-ui/commit/7234d756315ed4ccce127229e0687eef060266c4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Slider**
+
+  - Add `DraggingIndicator` component to show an element only while dragging
+  - Fix issue where slider marks were not styled correctly in vertical
+    orientation
+  - **Menu**: Update recipe to use `--available-height` css variable to keep the
+    menu's height within the available space
+  - **System**: Fixed issue where exporting `withRootProvider` would result in
+    type error
+  - **Snippets / Slider**
+
+    - Move `MarkerGroup` into the `Control` component
+    - Remove hardcoded margin values in favor of recipes and
+      `data-has-mark-label` attribute
+
+## 3.2.1
+
+### Patch Changes
+
+- [#9240](https://github.com/chakra-ui/chakra-ui/pull/9240)
+  [`561ccc0`](https://github.com/chakra-ui/chakra-ui/commit/561ccc015561203f53cc12d7c5e6606283bb41ab)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - - **System**: Fix issue
+  where exporting `withProvider` and `withContext` would result in type error
+
+  - **Timeline**: Fix issue where `TimelineTitle` was missing from the export
+  - **Tabs**: Fix issue where `useTabs` and `useTabsContext` were not exported
+  - **Snippets / ColorPicker**: Fix flex direction of `ColorPickerChannelInputs`
+    and `ColorPickerChannelSliders`
+
+## 3.2.0
+
+### Minor Changes
+
+- [#9130](https://github.com/chakra-ui/chakra-ui/pull/9130)
+  [`e5880fb`](https://github.com/chakra-ui/chakra-ui/commit/e5880fb7eafe9044604ffb893589792b35961eaf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - [Preview] Add new
+  `ColorPicker` component to allow users pick a color in hsl, rgb, hsb formats.
+
+  - Add new `ColorSwatch` component to preview a color.
+  - Fix issue where `mergeConfigs` mutates the underlying configs passed to it.
+
 ## 3.1.2
 
 ### Patch Changes

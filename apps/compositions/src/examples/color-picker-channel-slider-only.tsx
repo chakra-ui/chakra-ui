@@ -1,3 +1,5 @@
+"use client"
+
 import { ColorPickerFormatSelect, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerChannelSliders,

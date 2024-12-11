@@ -2,7 +2,7 @@ import {
   FileUploadDropzone,
   FileUploadList,
   FileUploadRoot,
-} from "compositions/ui/file-button"
+} from "compositions/ui/file-upload"
 
 export const FileUploadWithDropzone = () => {
   return (

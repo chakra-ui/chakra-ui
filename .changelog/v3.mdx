@@ -5,6 +5,83 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.2.3](./#3.2.3) - 2024-12-05
+
+### Fixed
+
+- **System**: Fix issue where responsive semantic tokens doesn't work as
+  expected
+
+## [3.2.2](./#3.2.2) - 2024-11-29
+
+### Fixed
+
+- **Slider**
+
+  - Add `DraggingIndicator` component to show an element only while dragging
+  - Fix issue where slider marks were not styled correctly in vertical
+    orientation
+
+- **Menu**: Update recipe to use `--available-height` css variable to keep the
+  menu's height within the available space
+
+- **System**: Fixed issue where exporting `withRootProvider` would result in
+  type error
+
+- **Snippets / Slider**
+
+  - Move `MarkerGroup` into the `Control` component
+  - Remove hardcoded margin values in favor of recipes and `data-has-mark-label`
+    attribute
+
+- **CLI**: Output the real version from `package.json`
+
+## [3.2.1](./#3.2.1) - 2024-11-26
+
+### Fixed
+
+- **System**: Fix issue where exporting `withProvider` and `withContext` would
+  result in type error
+
+- **Timeline**: Fix issue where `TimelineTitle` was missing from the export
+
+- **Tabs**: Fix issue where `useTabs` and `useTabsContext` were not exported
+
+- **Snippets / ColorPicker**: Fix flex direction of `ColorPickerChannelInputs`
+  and `ColorPickerChannelSliders`
+
+- **CLI**
+
+  - Fix issue where npmDependencies for snippets were not auto-installed
+  - Support React Router 7 framework detection
+
+## [3.2.0](./#3.2.0) - 2024-11-20
+
+### Added
+
+- **Input:** Add support for `use-mask-input` library to mask the input shape
+
+- **CLI**: Add support for `--all` flag to add all snippets. By default, we only
+  install a minimal/recommended set of snippets
+
+  > **Recommended snippets:** provider, avatar, button, checkbox, radio,
+  > input-group, slider, popover, dialog, drawer, tooltip, field
+
+  If you want to add all snippets, you can use the `--all` flag
+
+- **[Preview]** Add new `ColorPicker` component to allow users pick a color in
+  hsl, rgb, hsb formats
+
+- **[Preview]** Add new `ColorSwatch` component to preview a color
+
+### Fixed
+
+- **System**: Fix issue where `mergeConfigs` mutates the underlying configs
+  passed to it
+
+- **CLI:** Fix issue where typegen doesn't work when CLI installed globally or
+  run using `npx`
+
 ## [3.1.2](./#3.1.2) - 2024-11-15
 
 ### Fixed

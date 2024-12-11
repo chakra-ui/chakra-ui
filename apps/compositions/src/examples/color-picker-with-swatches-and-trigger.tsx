@@ -1,3 +1,5 @@
+"use client"
+
 import { HStack, Square, parseColor } from "@chakra-ui/react"
 import {
   ColorPickerArea,
@@ -22,7 +24,7 @@ export const ColorPickerWithSwatchesAndTrigger = () => {
       </ColorPickerLabel>
       <ColorPickerControl>
         <ColorPickerSwatchGroup>
-          {["red", "blue", "green"].map((item) => (
+          {swatches.map((item) => (
             <ColorPickerSwatchTrigger key={item} value={item} />
           ))}
           <ColorPickerTrigger textStyle="lg">
@@ -48,3 +50,5 @@ export const ColorPickerWithSwatchesAndTrigger = () => {
     </ColorPickerRoot>
   )
 }
+
+const swatches = ["red", "blue", "green"]

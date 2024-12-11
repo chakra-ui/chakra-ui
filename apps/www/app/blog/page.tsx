@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const activeBlogs = blogs.filter((blog) => !blog.draft)
+  const activeBlogs = blogs
+    .filter((blog) => !blog.draft)
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    )
   return (
     <Box py="20" flex="1">
       <Container>

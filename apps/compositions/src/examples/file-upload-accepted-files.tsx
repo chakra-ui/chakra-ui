@@ -3,7 +3,7 @@ import {
   FileUploadList,
   FileUploadRoot,
   FileUploadTrigger,
-} from "compositions/ui/file-button"
+} from "compositions/ui/file-upload"
 import { HiUpload } from "react-icons/hi"
 
 export const FileUploadAcceptedFiles = () => {

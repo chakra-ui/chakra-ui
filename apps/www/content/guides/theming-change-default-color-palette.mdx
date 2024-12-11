@@ -1,0 +1,82 @@
+---
+title: Change the default color palette
+description: Learn how to change the default color palette in Chakra UI
+publishedAt: "2024-12-04"
+collection: theming
+---
+
+By default, Chakra UI uses the `gray` color palette for various UI elements like
+selection backgrounds and hover states. You can customize this default behavior
+by modifying the global CSS configuration.
+
+## Customizing the default color palette
+
+Use the `createSystem` method to override the default color palette in your
+theme configuration:
+
+```tsx title="components/theme.ts"
+const config = defineConfig({
+  theme: {
+    extend: {
+      globalStyles: {
+        html: {
+          colorPalette: "blue", // Change this to any color palette you prefer
+        },
+      },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+Next, add the new `system` to your `components/ui/provider.tsx` file:
+
+```tsx /value={system}/
+"use client"
+
+import { system } from "@/components/theme"
+import { ChakraProvider } from "@chakra-ui/react"
+
+export function Provider(props: ColorModeProviderProps) {
+  return (
+    <ChakraProvider value={system}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
+```
+
+## What this affects
+
+Changing the default color palette will affect various UI elements across your
+application, including:
+
+- Text selection background colors
+- Default hover states
+- Focus states
+- Other interactive elements that use the default color palette
+
+## Using custom color palettes
+
+You can use any of the built-in color palettes or your own custom color palette:
+
+```tsx
+// Built-in color palettes
+colorPalette: "blue"
+colorPalette: "green"
+colorPalette: "red"
+
+// Custom color palette (if defined in your theme)
+colorPalette: "brand"
+```
+
+:::warning
+
+When using a custom color palette, make sure you've defined all the necessary
+color tokens (50-900) and semantic tokens in your theme configuration.
+
+:::
+
+> For more information about creating custom color palettes, see the guide on
+> [creating custom colors](/docs/guides/theming-custom-colors).

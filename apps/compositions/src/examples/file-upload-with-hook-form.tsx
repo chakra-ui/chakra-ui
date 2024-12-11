@@ -7,7 +7,7 @@ import {
   FileUploadList,
   FileUploadRoot,
   FileUploadTrigger,
-} from "compositions/ui/file-button"
+} from "compositions/ui/file-upload"
 import { Controller, useForm } from "react-hook-form"
 import { HiUpload } from "react-icons/hi"
 import { z } from "zod"

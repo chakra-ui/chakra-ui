@@ -1,5 +1,45 @@
 # @chakra-ui/cli
 
+## 3.2.3
+
+## 3.2.2
+
+### Patch Changes
+
+- [#9254](https://github.com/chakra-ui/chakra-ui/pull/9254)
+  [`6d4e7b6`](https://github.com/chakra-ui/chakra-ui/commit/6d4e7b6c794171392c57f394523e1298dfdc454e)
+  Thanks [@TinsFox](https://github.com/TinsFox)! - Output the real version from
+  `package.json`
+
+## 3.2.1
+
+### Patch Changes
+
+- [`c79b7bf`](https://github.com/chakra-ui/chakra-ui/commit/c79b7bf2190c002ec9ff222e6e6ad1fbf1aa50d7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
+  npmDependencies for snippets were not auto-installed
+  - Support React Router 7 framework detection
+
+## 3.2.0
+
+### Minor Changes
+
+- [`069e39d`](https://github.com/chakra-ui/chakra-ui/commit/069e39d793b78896291144e0dda9db7fb6d7d8fe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `--all` flag to add all snippets. By default, we only install a
+  minimal/recommended set of snippets.
+
+  > **Recommended snippets:** provider, avatar, button, checkbox, radio,
+  > input-group, slider, popover, dialog, drawer, tooltip, field
+
+  If you want to add all snippets, you can use the `--all` flag.
+
+### Patch Changes
+
+- [`a3ba8e6`](https://github.com/chakra-ui/chakra-ui/commit/a3ba8e630fba4743d0a9384a7d3ea011c66c3a9a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  typegen doesn't work when CLI installed globally or run using `npx`
+
 ## 3.1.2
 
 ## 3.1.1

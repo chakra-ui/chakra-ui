@@ -8,9 +8,20 @@ import { HiPause, HiPlay } from "react-icons/hi"
 export const ToasterPauseAndPlay = () => {
   const id = useId()
   const [paused, setPaused] = useState(false)
+  const [shown, setShown] = useState(false)
 
   const show = () => {
-    toaster.success({ id, title: "This is a success toast" })
+    toaster.success({
+      id,
+      title: "This is a success toast",
+      onStatusChange: (details) => {
+        if (details.status === "visible") {
+          setShown(true)
+        } else if (details.status === "dismissing") {
+          setShown(false)
+        }
+      },
+    })
   }
 
   const pause = () => {
@@ -25,14 +36,24 @@ export const ToasterPauseAndPlay = () => {
 
   return (
     <HStack>
-      <Button variant="outline" size="sm" onClick={show}>
+      <Button variant="outline" size="sm" onClick={show} disabled={shown}>
         Show Toast
       </Button>
-      <Button variant="outline" size="sm" onClick={pause} disabled={!paused}>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={pause}
+        disabled={!shown || paused}
+      >
         <HiPause />
         Pause Toast
       </Button>
-      <Button variant="outline" size="sm" onClick={play} disabled={paused}>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={play}
+        disabled={!shown || !paused}
+      >
         <HiPlay />
         Play Toast
       </Button>

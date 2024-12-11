@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/react"
-import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import { LuMoon, LuSun } from "react-icons/lu"
 
 export function ColorModeToggle() {
   const { theme, setTheme } = useTheme()
@@ -9,7 +9,7 @@ export function ColorModeToggle() {
   }
   return (
     <IconButton aria-label="toggle color mode" onClick={toggleColorMode}>
-      {theme === "light" ? <Moon /> : <Sun />}
+      {theme === "light" ? <LuMoon /> : <LuSun />}
     </IconButton>
   )
 }

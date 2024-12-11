@@ -16,7 +16,7 @@ If you don't already have the snippet, run the following command to add the
 `select` snippet
 
 ```sh
-chakra snippet add select
+npx @chakra-ui/cli snippet add select
 ```
 
 The snippet includes a closed component composition for the `Select` component.
@@ -72,6 +72,13 @@ Use the `value` and `onValueChange` props to control the select component.
 
 <ExampleTabs name="select-controlled" />
 
+### Async Loading
+
+Here's an example of how to populate the select `collection` from a remote
+source.
+
+<ExampleTabs name="select-async-loading" />
+
 ### Hook Form
 
 Here's an example of how to use the `Select` component with `react-hook-form`.
@@ -90,6 +97,12 @@ Here's an example of how to compose the `Select` component with the `Field`
 component to display an error state.
 
 <ExampleTabs name="select-with-invalid" />
+
+### Multiple
+
+Use the `multiple` prop to allow multiple selections.
+
+<ExampleTabs name="select-with-multiple" />
 
 ### Positioning
 

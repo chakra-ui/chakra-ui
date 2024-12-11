@@ -16,7 +16,7 @@ If you don't already have the snippet, run the following command to add the
 `toaster` snippet
 
 ```sh
-chakra snippet add toaster
+npx @chakra-ui/cli snippet add toaster
 ```
 
 The snippet includes a closed component composition for the `Toast` component.
@@ -84,6 +84,9 @@ Use the `duration` prop to set the duration of the toast.
 
 Use the `pause` and `resume` methods on the `toaster` object to pause and play
 the toast.
+
+Pausing a toast prevents it from timing out, while resuming it will reenable the
+timeout using the remaining duration.
 
 <ExampleTabs name="toaster-pause-and-play" />
 

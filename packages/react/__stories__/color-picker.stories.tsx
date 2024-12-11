@@ -16,7 +16,7 @@ export { ColorPickerBasic as Basic } from "compositions/examples/color-picker-ba
 export { ColorPickerChangeEnd as ChangeEnd } from "compositions/examples/color-picker-change-end"
 export { ColorPickerChannelSliderOnly as ChannelSliderOnly } from "compositions/examples/color-picker-channel-slider-only"
 export { ColorPickerControlled as Controlled } from "compositions/examples/color-picker-controlled"
-export { ColorPickerWithHookForm as HookForm } from "compositions/examples/color-picker-hook-form"
+export { ColorPickerWithHookForm as HookForm } from "compositions/examples/color-picker-with-hook-form"
 export { ColorPickerInline as Inline } from "compositions/examples/color-picker-inline"
 export { ColorPickerInputOnly as InputOnly } from "compositions/examples/color-picker-input-only"
 export { ColorPickerSwatchOnly as SwatchOnly } from "compositions/examples/color-picker-swatch-only"

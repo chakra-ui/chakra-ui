@@ -1,0 +1,185 @@
+---
+title: Color Picker
+description:
+  Used to select colors from a color area or a set of defined swatches
+links:
+  source: components/color-picker
+  storybook: components-color-picker--basic
+  recipe: color-picker
+  ark: https://ark-ui.com/react/docs/components/color-picker
+---
+
+<ExampleTabs name="color-picker-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`color-picker` snippet
+
+```sh
+npx @chakra-ui/cli snippet add color-picker
+```
+
+The snippet includes a closed component composition for the `ColorPicker`
+component.
+
+## Usage
+
+```jsx
+import {
+  ColorPickerArea,
+  ColorPickerContent,
+  ColorPickerControl,
+  ColorPickerEyeDropper,
+  ColorPickerInput,
+  ColorPickerLabel,
+  ColorPickerRoot,
+  ColorPickerSliders,
+  ColorPickerTrigger,
+} from "@/components/ui/color-picker"
+```
+
+```jsx
+<ColorPickerRoot>
+  <ColorPickerLabel />
+  <ColorPickerControl>
+    <ColorPickerInput />
+    <ColorPickerTrigger />
+  </ColorPickerControl>
+  <ColorPickerContent>
+    <ColorPickerArea />
+    <ColorPickerEyeDropper />
+    <ColorPickerSliders />
+  </ColorPickerContent>
+</ColorPickerRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the color picker.
+
+<ExampleTabs name="color-picker-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the color picker. Values
+can be either `outline` or `subtle`.
+
+<ExampleTabs name="color-picker-with-variants" />
+
+### Input Only
+
+Combine the `ColorPickerValueSwatch` and the `ColorPickerEyeDropper` on the
+`InputGroup` to render a color picker that contains only an input.
+
+<ExampleTabs name="color-picker-input-only" />
+
+### Swatch Only
+
+Use the `ColorPickerSwatchGroup` and `ColorPickerSwatchTrigger` to render only
+the color swatches.
+
+<ExampleTabs name="color-picker-swatch-only" />
+
+### Trigger Only
+
+Compose the color picker to initially show only a trigger using the
+`ColorPickerValueSwatch` and `ColorPickerValueText`.
+
+<ExampleTabs name="color-picker-trigger-only" />
+
+### Trigger Inside Input
+
+Compose the color picker to trigger in input using the `InputGroup` and
+`ColorPickerInput`.
+
+<ExampleTabs name="color-picker-trigger-only" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the state of the color
+picker.
+
+<ExampleTabs name="color-picker-controlled" />
+
+### Change End
+
+Use the `onValueChangeEnd` to listen to when the user finishes selecting a
+color, rather than while they are scrubbing or dragging through the color area.
+
+<ExampleTabs name="color-picker-change-end" />
+
+### Channel Slider
+
+Combine the `ColorPickerChannelSliders` and the `format` prop to add the
+different color channels to the color picker.
+
+<ExampleTabs name="color-picker-channel-slider-only" />
+
+### Hook Form
+
+Here's an example of how to integrate the color picker with `react-hook-form`.
+
+<ExampleTabs name="color-picker-with-hook-form" />
+
+### Inline
+
+Use the `ColorPickerInlineContent` and pass `open` to the `ColorPickerRoot` to
+display an inline version of the color picker.
+
+<ExampleTabs name="color-picker-inline" />
+
+### Disabled
+
+Pass the `disabled` prop to disable the color picker.
+
+<ExampleTabs name="color-picker-with-disabled" />
+
+### Channel Input
+
+Use the `ChannelFormatSelect` and `ColorPickerChannelInputs` to create a color
+picker that allows users to select their preferred channel.
+
+<ExampleTabs name="color-picker-with-channel-input" />
+
+### Fit Content
+
+Here's an example of how to create a rounded trigger that fits the content.
+
+<ExampleTabs name="color-picker-with-fit-content" />
+
+### ReadOnly
+
+Use the `readOnly` prop to make the color picker component read-only.
+
+### Save Swatch
+
+Here's an example of how to save a selected color as a swatch.
+
+<ExampleTabs name="color-picker-with-save-swatch" />
+
+### Swatches
+
+Here's an example of how to combine the color picker with pre-defined swatches.
+
+<ExampleTabs name="color-picker-with-swatches" />
+
+### Swatch and Input
+
+Here's how to compose a swatch with an input.
+
+<ExampleTabs name="color-picker-with-swatch-and-input" />
+
+### Swatch and Trigger
+
+Here's how to compose a swatch with a trigger.
+
+<ExampleTabs name="color-picker-with-swatch-and-input" />
+
+## Props
+
+### Root
+
+<PropTable component="ColorPicker" part="Root" />

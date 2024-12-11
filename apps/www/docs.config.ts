@@ -27,6 +27,15 @@ const docsLinks: NavItem = {
             { title: "Vite", url: "vite" },
           ],
         },
+        {
+          title: "Environments",
+          url: "environments",
+          status: "new",
+          items: [
+            { title: "Shadow DOM", url: "shadow-dom" },
+            { title: "Iframe", url: "iframe" },
+          ],
+        },
       ],
     },
 
@@ -94,6 +103,8 @@ const docsLinks: NavItem = {
             { title: "Clipboard", url: "clipboard" },
             { title: "Close Button", url: "close-button" },
             { title: "Collapsible", url: "collapsible" },
+            { title: "Color Picker", url: "color-picker", status: "preview" },
+            { title: "Color Swatch", url: "color-swatch" },
             { title: "Data List", url: "data-list" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },

@@ -59,6 +59,7 @@ export const SidebarStart = (props: BoxProps) => {
               currentUrl={route.currentUrl}
               title={group.title}
               items={group.items}
+              status={group.status}
             />
           ))}
       </Stack>

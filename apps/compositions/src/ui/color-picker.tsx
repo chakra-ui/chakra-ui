@@ -167,7 +167,7 @@ export const ColorPickerChannelInputs = forwardRef<
 >(function ColorPickerChannelInputs(props, ref) {
   const channels = formatMap[props.format]
   return (
-    <ChakraColorPicker.View ref={ref} {...props}>
+    <ChakraColorPicker.View flexDirection="row" ref={ref} {...props}>
       {channels.map((channel) => (
         <VStack gap="1" key={channel} flex="1">
           <ColorPickerChannelInput

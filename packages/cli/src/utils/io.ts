@@ -4,8 +4,8 @@ import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
 import { existsSync, mkdirSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
+import { createRequire } from "node:module"
 import { dirname, join, resolve } from "node:path"
-import { fileURLToPath } from "node:url"
 
 interface ReadResult {
   mod: SystemContext
@@ -31,19 +31,17 @@ export const read = async (file: string): Promise<ReadResult> => {
   return { mod: resolvedMod, dependencies }
 }
 
+const req = createRequire(import.meta.url)
+
 const getBasePath = () => {
+  const cwd = process.cwd()
+
   if (!process.env.LOCAL) {
-    const root = import.meta.resolve("@chakra-ui/react")
-    return resolve(
-      fileURLToPath(dirname(root)),
-      "..",
-      "types",
-      "styled-system",
-      "generated",
-    )
+    const root = req.resolve("@chakra-ui/react", { paths: [cwd] })
+    return resolve(root, "..", "..", "types", "styled-system", "generated")
   }
 
-  const root = join(process.cwd(), "packages", "react", "src")
+  const root = join(cwd, "packages", "react", "src")
   return join(root, "styled-system", "generated")
 }
 

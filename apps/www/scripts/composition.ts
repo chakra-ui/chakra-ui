@@ -83,9 +83,7 @@ async function main() {
   const srcDir = join(dir, "src", "ui")
   //   const examplesDir = join(dir, "src", "examples")
 
-  const files = readdirSync(srcDir, { encoding: "utf-8" }).filter(
-    (file) => !file.includes("color-picker"),
-  )
+  const files = readdirSync(srcDir, { encoding: "utf-8" })
 
   const result = files.map((file) => {
     const filePath = join(srcDir, file)

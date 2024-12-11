@@ -1,18 +1,23 @@
 import { CollectionIcon } from "@/components/collection-icon"
 import { getGuideCollections } from "@/lib/guide"
 import {
+  Badge,
   Box,
   Card,
   Container,
+  Flex,
+  HStack,
   Heading,
   Link,
   SimpleGrid,
   Skeleton,
   Square,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
+import NextLink from "next/link"
 import { Suspense } from "react"
 import { LuChevronRight } from "react-icons/lu"
 import { GuideSearchInput } from "./search-input"
@@ -26,7 +31,9 @@ export const metadata: Metadata = {
 }
 
 export default function GuidePage() {
-  const collections = getGuideCollections()
+  const collections = getGuideCollections().sort(
+    (a, b) => b.guides.length - a.guides.length,
+  )
   return (
     <Box flex="1" colorPalette="teal">
       <Container maxW="2xl" py="20">
@@ -49,34 +56,49 @@ export default function GuidePage() {
       </Container>
 
       <Container pt="8" pb="16">
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="8">
+        <Stack gap="8">
           {collections.map((collection) => (
             <Card.Root variant="elevated" key={collection.id}>
               <Card.Header gap="1">
-                <Square size="8" layerStyle="fill.solid" rounded="l2">
-                  <CollectionIcon value={collection.id} />
-                </Square>
-                <Card.Title mt="3">{collection.title}</Card.Title>
-                <Text color="fg.muted" textStyle="sm" minH="2lh">
-                  {collection.description}
-                </Text>
+                <Flex gap="3">
+                  <Square size="10" layerStyle="fill.solid" rounded="l2">
+                    <CollectionIcon value={collection.id} />
+                  </Square>
+                  <Stack gap="0" mt="-1">
+                    <HStack>
+                      <Card.Title>{collection.title}</Card.Title>
+                      <Badge size="sm" variant="subtle" colorPalette="gray">
+                        {collection.guides.length} articles
+                      </Badge>
+                    </HStack>
+                    <Text color="fg.muted" textStyle="sm" minH="2lh">
+                      {collection.description}
+                    </Text>
+                  </Stack>
+                </Flex>
               </Card.Header>
 
-              <Card.Body gap="1" divideY="1px">
-                {collection.guides.slice(0, 4).map((guide) => (
-                  <Link
-                    href={guide.slug}
-                    key={guide.collection}
-                    textStyle="sm"
-                    py="2"
-                  >
-                    {guide.title} <LuChevronRight />
-                  </Link>
-                ))}
+              <Card.Body gap="1">
+                <SimpleGrid columns={{ base: 1, md: 3 }} gap="4">
+                  {collection.guides.map((guide) => (
+                    <Link
+                      borderWidth="1px"
+                      key={guide.collection}
+                      textStyle="sm"
+                      padding="4"
+                      rounded="md"
+                      asChild
+                    >
+                      <NextLink href={guide.slug}>
+                        {guide.title} <LuChevronRight />
+                      </NextLink>
+                    </Link>
+                  ))}
+                </SimpleGrid>
               </Card.Body>
             </Card.Root>
           ))}
-        </SimpleGrid>
+        </Stack>
       </Container>
     </Box>
   )

@@ -19,15 +19,15 @@ interface WrapElementProps<P> {
   wrapElement?(element: React.ReactElement, props: P): React.ReactElement
 }
 
-interface WithRootProviderOptions<P> extends WrapElementProps<P> {
+export interface WithRootProviderOptions<P> extends WrapElementProps<P> {
   defaultProps?: Partial<P>
 }
 
-interface WithProviderOptions<P>
+export interface WithProviderOptions<P>
   extends JsxFactoryOptions<P>,
     WrapElementProps<P> {}
 
-interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
+export interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
 
 const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 

@@ -17,7 +17,7 @@ If you don't already have the snippet, run the following command to add the
 `tooltip` snippet
 
 ```sh
-chakra snippet add tooltip
+npx @chakra-ui/cli snippet add tooltip
 ```
 
 The snippet includes a closed component composition for the `Tooltip` component.
@@ -60,6 +60,13 @@ Use the `openDelay` and `closeDelay` prop to change the delay of the tooltip.
 
 <ExampleTabs name="tooltip-with-delay" />
 
+### Custom Background
+
+Use the `--tooltip-bg` CSS variable to change the background color of the
+tooltip.
+
+<ExampleTabs name="tooltip-with-custom-bg" />
+
 ### Controlled
 
 Use the `open` and `onOpenChange` prop to control the visibility of the tooltip.
@@ -79,6 +86,38 @@ Use the `disabled` prop to disable the tooltip. When disabled, the tooltip will
 not be shown.
 
 <ExampleTabs name="tooltip-with-disabled" />
+
+### With Avatar
+
+Here's an example of how to use the `Tooltip` component with an `Avatar`
+component.
+
+<ExampleTabs name="tooltip-with-avatar" />
+
+### With Checkbox
+
+Here's an example of how to use the `Tooltip` component with a `Checkbox`
+component.
+
+<ExampleTabs name="tooltip-with-checkbox" />
+
+### With MenuItem
+
+Here's an example of how to use the `Tooltip` with a `MenuItem` component.
+
+<ExampleTabs name="tooltip-with-menu-item" />
+
+### With Switch
+
+Here's an example of how to wrap `Tooltip` around a `Switch` component.
+
+<ExampleTabs name="tooltip-with-switch" />
+
+### With Tabs
+
+Here's an example of how to wrap `Tooltip` around a `Tabs` component.
+
+<ExampleTabs name="tooltip-with-tab" />
 
 ## Props
 
