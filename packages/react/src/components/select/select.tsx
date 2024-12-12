@@ -2,6 +2,7 @@
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
 import { Select as ArkSelect } from "@ark-ui/react/select"
+import type { JSX } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,

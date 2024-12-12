@@ -4,6 +4,7 @@ import type {
   ComponentPropsWithoutRef,
   ElementType,
   FunctionComponent,
+  JSX,
 } from "react"
 import type {
   Dict,

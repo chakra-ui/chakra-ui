@@ -1,7 +1,7 @@
 "use client"
 
 import { type HighlightChunk, useHighlight } from "@ark-ui/react/highlight"
-import { Fragment } from "react"
+import { Fragment, type JSX } from "react"
 import { type SystemStyleObject } from "../../styled-system"
 import { For } from "../for"
 import { Mark } from "../typography/mark"

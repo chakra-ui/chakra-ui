@@ -7,6 +7,7 @@ import {
   type UseRadioGroupItemContext,
   useRadioGroupItemContext,
 } from "@ark-ui/react/radio-group"
+import type { JSX } from "react"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
