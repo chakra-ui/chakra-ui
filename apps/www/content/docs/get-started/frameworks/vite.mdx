@@ -38,6 +38,24 @@ Using the `@chakra-ui/cli` you can add snippets to your project.
 npx @chakra-ui/cli snippet add
 ```
 
+### Update tsconfig
+
+If you're using TypeScript, in the `tsconfig.app.json` file, make sure the
+`compilerOptions` includes the following:
+
+```json title="tsconfig.app.json"
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
 ### Setup provider
 
 Wrap your application with the `Provider` component at the root of your
@@ -61,24 +79,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </Provider>
   </React.StrictMode>,
 )
-```
-
-### Update tsconfig
-
-If you're using TypeScript, in the `tsconfig.app.json` file, make sure the
-`compilerOptions` includes the following:
-
-```json title="tsconfig.app.json"
-{
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
 ```
 
 ### Setup Vite Config Paths

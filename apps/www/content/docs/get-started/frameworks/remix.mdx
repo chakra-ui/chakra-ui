@@ -43,7 +43,22 @@ application.
 
 [Emotion cache snippet](https://github.com/chakra-ui/chakra-ui/blob/main/sandbox/remix-ts/app/emotion)
 
-### Setup root
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true
+  }
+}
+```
+
+### Setup provider
 
 Wrap your application with the `Provider` component at the root of your
 application.
@@ -65,21 +80,6 @@ export default function App() {
       <Outlet />
     </Provider>
   )
-}
-```
-
-### Update tsconfig
-
-If you're using TypeScript, you need to update the `compilerOptions` in the
-tsconfig file to include the following options:
-
-```json title="tsconfig.json"
-{
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true
-  }
 }
 ```
 
