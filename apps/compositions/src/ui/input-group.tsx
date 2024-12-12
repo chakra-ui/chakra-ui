@@ -25,6 +25,9 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
       ...rest
     } = props
 
+    const child =
+      React.Children.only<React.ReactElement<InputElementProps>>(children)
+
     return (
       <Group ref={ref} {...rest}>
         {startElement && (
@@ -32,7 +35,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
             {startElement}
           </InputElement>
         )}
-        {React.cloneElement(children, {
+        {React.cloneElement(child, {
           ...(startElement && {
             ps: `calc(var(--input-height) - ${startOffset})`,
           }),
