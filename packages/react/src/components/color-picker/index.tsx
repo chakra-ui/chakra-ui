@@ -69,6 +69,11 @@ export {
   useColorPickerContext,
 } from "@ark-ui/react/color-picker"
 
-export type { ColorPickerColorFormat, Color } from "@ark-ui/react/color-picker"
+export type {
+  ColorPickerColorFormat,
+  Color,
+  UseColorPickerProps,
+  UseColorPickerReturn,
+} from "@ark-ui/react/color-picker"
 
 export * as ColorPicker from "./namespace"

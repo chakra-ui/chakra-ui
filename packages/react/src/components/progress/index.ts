@@ -22,3 +22,8 @@ export type {
 export * as Progress from "./namespace"
 
 export { useProgress, useProgressContext } from "@ark-ui/react/progress"
+
+export type {
+  UseProgressProps,
+  UseProgressReturn,
+} from "@ark-ui/react/progress"

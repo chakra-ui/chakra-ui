@@ -29,4 +29,9 @@ export {
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"
 
+export type {
+  UseRatingGroupProps,
+  UseRatingGroupReturn,
+} from "@ark-ui/react/rating-group"
+
 export * as RatingGroup from "./namespace"

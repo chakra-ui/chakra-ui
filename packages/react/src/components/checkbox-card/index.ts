@@ -30,4 +30,9 @@ export {
   useCheckboxContext as useCheckboxCardContext,
 } from "@ark-ui/react/checkbox"
 
+export type {
+  UseCheckboxProps as UseCheckboxCardProps,
+  UseCheckboxReturn as UseCheckboxCardReturn,
+} from "@ark-ui/react/checkbox"
+
 export * as CheckboxCard from "./namespace"

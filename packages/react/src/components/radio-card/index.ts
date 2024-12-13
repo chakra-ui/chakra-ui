@@ -36,3 +36,8 @@ export {
 } from "@ark-ui/react/radio-group"
 
 export * as RadioCard from "./namespace"
+
+export type {
+  UseRadioGroupProps as UseRadioCardGroupProps,
+  UseRadioGroupReturn as UseRadioCardGroupReturn,
+} from "@ark-ui/react/radio-group"

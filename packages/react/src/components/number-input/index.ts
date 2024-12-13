@@ -33,4 +33,9 @@ export {
   useNumberInputContext,
 } from "@ark-ui/react/number-input"
 
+export type {
+  UseNumberInputProps,
+  UseNumberInputReturn,
+} from "@ark-ui/react/number-input"
+
 export * as NumberInput from "./namespace"

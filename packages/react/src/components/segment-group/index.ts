@@ -26,4 +26,9 @@ export {
   useSegmentGroupItemContext,
 } from "@ark-ui/react/segment-group"
 
+export type {
+  UseSegmentGroupProps,
+  UseSegmentGroupReturn,
+} from "@ark-ui/react/segment-group"
+
 export * as SegmentGroup from "./namespace"

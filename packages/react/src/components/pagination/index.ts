@@ -21,4 +21,9 @@ export type {
 
 export { usePagination, usePaginationContext } from "@ark-ui/react/pagination"
 
+export type {
+  UsePaginationProps,
+  UsePaginationReturn,
+} from "@ark-ui/react/pagination"
+
 export * as Pagination from "./namespace"

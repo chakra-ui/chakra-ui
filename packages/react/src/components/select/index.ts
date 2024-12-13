@@ -50,4 +50,6 @@ export {
   useSelectItemContext,
 } from "@ark-ui/react/select"
 
+export type { UseSelectProps, UseSelectReturn } from "@ark-ui/react/select"
+
 export * as Select from "./namespace"

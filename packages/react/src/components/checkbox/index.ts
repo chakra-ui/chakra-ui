@@ -27,4 +27,11 @@ export {
   useCheckboxGroupContext,
 } from "@ark-ui/react/checkbox"
 
+export type {
+  UseCheckboxProps,
+  UseCheckboxReturn,
+  UseCheckboxGroupProps,
+  UseCheckboxGroupReturn,
+} from "@ark-ui/react/checkbox"
+
 export * as Checkbox from "./namespace"

@@ -25,3 +25,5 @@ export type {
 export * as Tooltip from "./namespace"
 
 export { useTooltip, useTooltipContext } from "@ark-ui/react/tooltip"
+
+export type { UseTooltipProps, UseTooltipReturn } from "@ark-ui/react/tooltip"

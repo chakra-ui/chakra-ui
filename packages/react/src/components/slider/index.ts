@@ -35,4 +35,6 @@ export type {
 
 export { useSlider, useSliderContext } from "@ark-ui/react/slider"
 
+export type { UseSliderProps, UseSliderReturn } from "@ark-ui/react/slider"
+
 export * as Slider from "./namespace"

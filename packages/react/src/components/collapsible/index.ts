@@ -21,4 +21,9 @@ export {
   useCollapsibleContext,
 } from "@ark-ui/react/collapsible"
 
+export type {
+  UseCollapsibleProps,
+  UseCollapsibleReturn,
+} from "@ark-ui/react/collapsible"
+
 export * as Collapsible from "./namespace"

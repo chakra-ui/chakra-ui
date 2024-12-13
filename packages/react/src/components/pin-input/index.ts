@@ -22,3 +22,8 @@ export type {
 export * as PinInput from "./namespace"
 
 export { usePinInput, usePinInputContext } from "@ark-ui/react/pin-input"
+
+export type {
+  UsePinInputProps,
+  UsePinInputReturn,
+} from "@ark-ui/react/pin-input"

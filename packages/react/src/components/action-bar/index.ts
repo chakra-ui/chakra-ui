@@ -27,4 +27,9 @@ export {
   usePopoverContext as useActionBarContext,
 } from "@ark-ui/react/popover"
 
+export type {
+  UsePopoverProps as UseActionBarProps,
+  UsePopoverReturn as UseActionBarReturn,
+} from "@ark-ui/react/popover"
+
 export * as ActionBar from "./namespace"

@@ -30,4 +30,9 @@ export type {
 
 export { useEditable, useEditableContext } from "@ark-ui/react/editable"
 
+export type {
+  UseEditableProps,
+  UseEditableReturn,
+} from "@ark-ui/react/editable"
+
 export * as Editable from "./namespace"

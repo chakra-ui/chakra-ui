@@ -14,4 +14,6 @@ export type {
 
 export { useToggle, useToggleContext } from "@ark-ui/react/toggle"
 
+export type { UseToggleProps, UseToggleReturn } from "@ark-ui/react/toggle"
+
 export * as Toggle from "./namespace"

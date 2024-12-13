@@ -25,3 +25,8 @@ export type {
 export * as HoverCard from "./namespace"
 
 export { useHoverCard, useHoverCardContext } from "@ark-ui/react/hover-card"
+
+export type {
+  UseHoverCardProps,
+  UseHoverCardReturn,
+} from "@ark-ui/react/hover-card"

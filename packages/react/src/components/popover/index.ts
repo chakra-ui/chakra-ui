@@ -36,6 +36,8 @@ export type {
   PopoverTriggerProps,
 } from "./popover"
 
+export * as Popover from "./namespace"
+
 export { usePopover, usePopoverContext } from "@ark-ui/react/popover"
 
-export * as Popover from "./namespace"
+export type { UsePopoverProps, UsePopoverReturn } from "@ark-ui/react/popover"
