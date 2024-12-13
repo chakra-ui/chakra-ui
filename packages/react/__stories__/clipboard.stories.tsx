@@ -17,3 +17,4 @@ export { ClipboardWithButton as Button } from "compositions/examples/clipboard-w
 export { ClipboardWithTimeout as Timeout } from "compositions/examples/clipboard-with-timeout"
 export { ClipboardWithInput as Input } from "compositions/examples/clipboard-with-input"
 export { ClipboardWithLink as Link } from "compositions/examples/clipboard-with-link"
+export { ClipboardWithoutSnippet as WithoutSnippet } from "compositions/examples/clipboard-without-snippet"

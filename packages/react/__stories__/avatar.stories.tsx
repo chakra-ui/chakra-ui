@@ -14,7 +14,7 @@ export default {
 
 export { AvatarBasic as Basic } from "compositions/examples/avatar-basic"
 export { AvatarGroupWithStacking as GroupStacking } from "compositions/examples/avatar-group-with-stacking"
-export { AvatarManual as Manual } from "compositions/examples/avatar-manual"
+export { AvatarWithoutSnippet as WithoutSnippet } from "compositions/examples/avatar-without-snippet"
 export { AvatarPersona as Persona } from "compositions/examples/avatar-persona"
 export { AvatarSizeTable as Sizes } from "compositions/examples/avatar-size-table"
 export { AvatarVariantTable as Variants } from "compositions/examples/avatar-variant-table"

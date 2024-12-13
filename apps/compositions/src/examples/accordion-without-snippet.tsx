@@ -1,6 +1,6 @@
 import { Accordion } from "@chakra-ui/react"
 
-export const AccordionManual = () => {
+export const AccordionWithoutSnippet = () => {
   return (
     <Accordion.Root collapsible defaultValue={["b"]}>
       {items.map((item, index) => (

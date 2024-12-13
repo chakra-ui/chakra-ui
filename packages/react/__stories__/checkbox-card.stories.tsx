@@ -20,3 +20,4 @@ export { CheckboxCardWithIcon as Icon } from "compositions/examples/checkbox-car
 export { CheckboxCardVariantTable as Variants } from "compositions/examples/checkbox-card-variant-table"
 export { CheckboxCardSizeTable as Sizes } from "compositions/examples/checkbox-card-size-table"
 export { CheckboxCardWithGroup as Group } from "compositions/examples/checkbox-card-with-group"
+export { CheckboxCardWithoutSnippet as WithoutSnippet } from "compositions/examples/checkbox-card-without-snippet"

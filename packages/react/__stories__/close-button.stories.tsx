@@ -15,3 +15,4 @@ export default {
 export { CloseButtonBasic as Basic } from "compositions/examples/close-button-basic"
 export { CloseButtonWithSizes as Sizes } from "compositions/examples/close-button-with-sizes"
 export { CloseButtonWithVariants as Variants } from "compositions/examples/close-button-with-variants"
+export { CloseButtonWithoutSnippet as WithoutSnippet } from "compositions/examples/close-button-without-snippet"

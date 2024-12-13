@@ -1,6 +1,6 @@
 import { Blockquote } from "@chakra-ui/react"
 
-export const BlockquoteManual = () => {
+export const BlockquoteWithoutSnippet = () => {
   return (
     <Blockquote.Root>
       <Blockquote.Content>

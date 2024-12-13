@@ -1,6 +1,6 @@
 import { Alert } from "@chakra-ui/react"
 
-export const AlertManual = () => {
+export const AlertWithoutSnippet = () => {
   return (
     <Alert.Root status="info">
       <Alert.Indicator />

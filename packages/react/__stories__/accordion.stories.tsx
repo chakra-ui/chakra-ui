@@ -22,3 +22,4 @@ export { AccordionWithDisabledItem as DisabledItem } from "compositions/examples
 export { AccordionWithIcon as Icon } from "compositions/examples/accordion-with-icon"
 export { AccordionWithMultiple as Multiple } from "compositions/examples/accordion-with-multiple"
 export { AccordionWithSubtext as Subtext } from "compositions/examples/accordion-with-subtext"
+export { AccordionWithoutSnippet as WithoutSnippet } from "compositions/examples/accordion-without-snippet"

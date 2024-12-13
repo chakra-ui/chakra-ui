@@ -1,6 +1,6 @@
 import { Avatar } from "@chakra-ui/react"
 
-export const AvatarManual = () => {
+export const AvatarWithoutSnippet = () => {
   return (
     <Avatar.Root>
       <Avatar.Image src="https://bit.ly/sage-adebayo" />
