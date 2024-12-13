@@ -23,3 +23,4 @@ export { PopoverWithInitialFocus as InitialFocus } from "compositions/examples/p
 export { PopoverWithOffset as Offset } from "compositions/examples/popover-with-offset"
 export { PopoverWithPlacement as Placement } from "compositions/examples/popover-with-placement"
 export { PopoverWithSameWidth as SameWidth } from "compositions/examples/popover-with-same-width"
+export { PopoverWithoutSnippet as WithoutSnippet } from "compositions/examples/popover-without-snippet"

@@ -22,3 +22,4 @@ export { PinInputWithMask as WithMask } from "compositions/examples/pin-input-wi
 export { PinInputWithOtp as WithOtp } from "compositions/examples/pin-input-with-otp"
 export { PinInputWithPlaceholder as WithPlaceholder } from "compositions/examples/pin-input-with-placeholder"
 export { PinInputWithSizes as Sizes } from "compositions/examples/pin-input-with-sizes"
+export { PinInputWithoutSnippet as WithoutSnippet } from "compositions/examples/pin-input-without-snippet"

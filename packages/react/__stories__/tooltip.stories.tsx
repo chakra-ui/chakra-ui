@@ -28,3 +28,4 @@ export { TooltipWithOffset as Offset } from "compositions/examples/tooltip-with-
 export { TooltipWithPlacement as Placement } from "compositions/examples/tooltip-with-placement"
 export { TooltipWithSwitch as WithSwitch } from "compositions/examples/tooltip-with-switch"
 export { TooltipWithTab as WithTab } from "compositions/examples/tooltip-with-tab"
+export { TooltipWithoutSnippet as WithoutSnippet } from "compositions/examples/tooltip-without-snippet"
