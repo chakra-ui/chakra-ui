@@ -261,6 +261,7 @@ const docsLinks: NavItem = {
           url: "customization",
           items: [
             { title: "Overview", url: "overview" },
+            { title: "Animations", url: "animations" },
             { title: "Breakpoints", url: "breakpoints" },
             { title: "Colors", url: "colors" },
             { title: "Conditions", url: "conditions" },
