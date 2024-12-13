@@ -1,6 +1,6 @@
 ---
 title: Animations
-description: Learn how to customize animations in Chakra UI
+description: Learn how to customize animations and keyframes in Chakra UI
 ---
 
 :::info
@@ -10,9 +10,10 @@ how to properly customize the styling engine, and get type safety.
 
 :::
 
-## Example
+## Keyframes
 
-Here's an example of how to customize keyframes in Chakra UI.
+Keyframes are used to define the animation sequence. Here's how to define custom
+keyframes:
 
 ```tsx title="theme.ts"
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
@@ -20,14 +21,34 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 const config = defineConfig({
   theme: {
     keyframes: {
-      wiggle: {
-        "0%, 100%": { transform: "rotate(-3deg)" },
-        "50%": { transform: "rotate(3deg)" },
+      shakeX: {
+        "0%, 100%": { transform: "translateX(-100%)" },
+        "50%": { transform: "translateX(100%)" },
       },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+## Animation Tokens
+
+After defining keyframes, you can create animation tokens that reference them.
+Animation tokens can include the keyframe name, duration, timing function, and
+other animation properties.
+
+```tsx title="theme.ts"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    keyframes: {
+      // ... keyframes from above
     },
     tokens: {
       animations: {
-        wiggle: { value: "wiggle 1s infinite" },
+        shakeX: { value: "shakeX 1s ease-in-out infinite" },
       },
     },
   },
@@ -38,10 +59,19 @@ export const system = createSystem(defaultConfig, config)
 
 ## Usage
 
-Set the value value of `animationName` or `animation` style prop to apply the
-keyframes and animation respectively.
+You can use the animation token directly in your component style props.
 
-```tsx title="app.tsx"
-<Box animation="wiggle" />
-<Box animationName="wiggle" animationDuration="fast" animationIterationCount="infinite" />
+```tsx
+<Box animation="shakeX" />
+```
+
+or as individual animation properties
+
+```tsx
+<Box
+  animationName="shakeX"
+  animationDuration="1s"
+  animationTimingFunction="ease-in-out"
+  animationIterationCount="infinite"
+/>
 ```
