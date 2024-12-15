@@ -124,7 +124,10 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     }
     trigger = cloneElement(
       child,
-      tooltip.getTriggerProps(child.props, child.ref),
+      tooltip.getTriggerProps(
+        child.props, 
+        Object.getOwnPropertyDescriptor(child, 'ref').value
+      ),
     )
   }
 
