@@ -124,7 +124,7 @@
     "overrides": {
       "react": "18.2.0",
       "react-dom": "18.2.0",
-      "prism-react-renderer": "2.4.0",
+      "prism-react-renderer": "2.4.1",
       "@emotion/react": "11.11.4"
     }
   },
