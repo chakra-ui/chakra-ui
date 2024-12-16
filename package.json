@@ -56,7 +56,7 @@
     "@commitlint/config-conventional": "19.2.2",
     "@octokit/rest": "^21.0.0",
     "@rollup/plugin-alias": "5.1.1",
-    "@rollup/plugin-node-resolve": "15.3.0",
+    "@rollup/plugin-node-resolve": "15.3.1",
     "@rollup/plugin-replace": "5.0.7",
     "@storybook/addon-a11y": "8.1.11",
     "@storybook/addon-essentials": "8.1.11",
