@@ -2,7 +2,7 @@ import { InputGroup } from "compositions/ui/input-group"
 import {
   NumberInputField,
   NumberInputRoot,
-  NumberInputScruber,
+  NumberInputScrubber,
 } from "compositions/ui/number-input"
 import { LuArrowRightLeft } from "react-icons/lu"
 
@@ -12,9 +12,9 @@ export const NumberInputWithScrubber = () => {
       <InputGroup
         startElementProps={{ pointerEvents: "auto" }}
         startElement={
-          <NumberInputScruber>
+          <NumberInputScrubber>
             <LuArrowRightLeft />
-          </NumberInputScruber>
+          </NumberInputScrubber>
         }
       >
         <NumberInputField />
