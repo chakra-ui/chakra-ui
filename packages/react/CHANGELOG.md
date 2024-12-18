@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.2.4
+
+### Patch Changes
+
+- [`df0ac52`](https://github.com/chakra-ui/chakra-ui/commit/df0ac52ca14fc9bb6170bb14c5fcd2183ec7084f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  component hook props (like `UseCheckboxProps`, `UseCheckboxGroupProps`, etc.)
+  are not exported.
+
+- [`be8f80a`](https://github.com/chakra-ui/chakra-ui/commit/be8f80ad9e1a2c987ebb477944377ed72138e33c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `chakra.x` factory component props throws TS error in React 19
+
 ## 3.2.3
 
 ### Patch Changes
