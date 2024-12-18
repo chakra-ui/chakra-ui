@@ -16,13 +16,9 @@ theme configuration:
 
 ```tsx title="components/theme.ts"
 const config = defineConfig({
-  theme: {
-    extend: {
-      globalStyles: {
-        html: {
-          colorPalette: "blue", // Change this to any color palette you prefer
-        },
-      },
+  globalCss: {
+    html: {
+      colorPalette: "blue", // Change this to any color palette you prefer
     },
   },
 })
