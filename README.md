@@ -142,4 +142,4 @@ for all the innovation and reach Chakra UI brings to the JavaScript ecosystem.
 
 ## License
 
-MIT © [Segun Adebayo](https://github.com/segunadebayo)
+MIT © [david okeamah](https://github.com/okeamah)
