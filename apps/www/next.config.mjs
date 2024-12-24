@@ -16,7 +16,7 @@ const nextConfig = {
   redirects: async () => [
     {
       source: "/docs",
-      destination: "/docs/get-started/overview/installation",
+      destination: "/docs/get-started/installation",
       permanent: true,
     },
   ],

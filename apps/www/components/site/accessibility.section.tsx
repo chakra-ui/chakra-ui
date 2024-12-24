@@ -44,7 +44,7 @@ const Intro = () => (
       w="fit-content"
       px="8"
     >
-      <Link href="/docs/get-started/overview/installation">Start Building</Link>
+      <Link href="/docs/get-started/installation">Start Building</Link>
     </Button>
   </Stack>
 )
