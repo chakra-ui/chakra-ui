@@ -13,9 +13,9 @@ Next.js that gives you a smoother experience when using both frameworks.
 
 <PackageManagers
   command={{
-    npm: 'npm i @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
-    yarn: 'yarn add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
-    pnpm: 'pnpm add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    npm: 'npm i @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    yarn: 'yarn add @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    pnpm: 'pnpm add @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
   }}
 />
 
@@ -42,21 +42,23 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Alternatively, if a hydration error is thrown in Next.js 13 after integrating `Providers` in the `Layout`, replace the `Providers` code with the following implementation:
+Alternatively, if a hydration error is thrown in Next.js 13 after integrating
+`Providers` in the `Layout`, replace the `Providers` code with the following
+implementation:
 
 ```jsx live=false
 // app/providers.tsx
-'use client';
+'use client'
 
-import { CacheProvider } from '@chakra-ui/next-js';
-import { ChakraProvider } from '@chakra-ui/react';
+import { CacheProvider } from '@chakra-ui/next-js'
+import { ChakraProvider } from '@chakra-ui/react'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <CacheProvider>
       <ChakraProvider>{children}</ChakraProvider>
     </CacheProvider>
-  );
+  )
 }
 ```
 

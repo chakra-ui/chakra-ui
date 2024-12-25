@@ -16,9 +16,9 @@ Next.js that gives you a smoother experience when using both frameworks.
 
 <PackageManagers
   command={{
-    npm: 'npm i @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
-    yarn: 'yarn add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
-    pnpm: 'pnpm add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    npm: 'npm i @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    yarn: 'yarn add @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    pnpm: 'pnpm add @chakra-ui/react@2 @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
   }}
 />
 
@@ -100,7 +100,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       </ChakraProvider>
     </>
-  );
+  )
 }
 ```
 
