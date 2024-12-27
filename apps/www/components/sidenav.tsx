@@ -54,13 +54,25 @@ export const SideNav = (props: SideNavProps) => {
               layerStyle: "fill.subtle",
             }}
           >
-            <Link
-              href={item.url!}
-              aria-current={item.url === currentUrl ? "page" : undefined}
-            >
-              {item.title}
-              {item.status && <StatusBadge>{item.status}</StatusBadge>}
-            </Link>
+            {item.external ? (
+              <a
+                href={item.url as string}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-current={item.url === currentUrl ? "page" : undefined}
+              >
+                {item.title}
+                {item.status && <StatusBadge>{item.status}</StatusBadge>}
+              </a>
+            ) : (
+              <Link
+                href={item.url!}
+                aria-current={item.url === currentUrl ? "page" : undefined}
+              >
+                {item.title}
+                {item.status && <StatusBadge>{item.status}</StatusBadge>}
+              </Link>
+            )}
           </HStack>
         ))}
       </Stack>

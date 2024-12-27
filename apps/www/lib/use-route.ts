@@ -51,11 +51,20 @@ export function useRoute() {
   function getFlattenedNavItems(): FlattenNavItem[] {
     const result: FlattenNavItem[] = []
     const iterate = (item: NavItem, parentUrl = "") => {
-      const url = item.url ? `${parentUrl}/${item.url}` : parentUrl
+      const url = item.external
+        ? item.url
+        : item.url
+          ? `${parentUrl}/${item.url}`
+          : parentUrl
       if (item.items) {
         item.items.forEach((child) => iterate(child, url))
       } else {
-        result.push({ title: item.title, url, status: item.status })
+        result.push({
+          title: item.title,
+          url,
+          status: item.status,
+          external: item.external,
+        })
       }
     }
     docsConfig.navigation.forEach((item) => iterate(item))
@@ -95,6 +104,7 @@ export function useRoute() {
             current: currentUrl.startsWith(
               join(primaryNav.url, secondaryNav.url, group.url, item.url),
             ),
+            external: item.external,
           })) || [],
       })) || []
     )
