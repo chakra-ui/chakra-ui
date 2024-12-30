@@ -1,7 +1,6 @@
 import { GuideCollection } from "@/.velite"
 import {
   LuCode,
-  LuCode2,
   LuGlobe,
   LuLayoutGrid,
   LuPaintbrush,
@@ -11,7 +10,7 @@ import {
 
 const iconMap: Record<GuideCollection["id"], React.ElementType> = {
   components: LuLayoutGrid,
-  "next-js": LuCode2,
+  "next-js": LuCode,
   recipe: LuSparkle,
   snippets: LuCode,
   styling: LuPaintbrush,
