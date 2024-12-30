@@ -214,7 +214,7 @@ importers:
         version: 0.4.0(rollup@4.22.4)
       storybook:
         specifier: 8.1.11
-        version: 8.4.7(prettier@3.3.3)
+        version: 8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tsup:
         specifier: 8.1.0
         version: 8.1.0(postcss@8.4.49)(typescript@5.6.3)
@@ -429,7 +429,7 @@ importers:
         version: 14.0.2
       https-proxy-agent:
         specifier: ^7.0.5
-        version: 7.0.5
+        version: 7.0.6
       node-fetch:
         specifier: 3.3.2
         version: 3.3.2
@@ -4790,8 +4790,8 @@ packages:
     resolution: {integrity: sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==}
     engines: {node: '>= 10.0.0'}
 
-  agent-base@7.1.1:
-    resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
+  agent-base@7.1.3:
+    resolution: {integrity: sha512-jRR5wdylq8CkOe6hei19GGZnxM6rBGwFl3Bg0YItGDimvjGtAvdZk4Pu6Cl4u4Igsws4a1fd1Vq3ezrhn4KmFw==}
     engines: {node: '>= 14'}
 
   aggregate-error@3.1.0:
@@ -6630,8 +6630,8 @@ packages:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
 
-  https-proxy-agent@7.0.5:
-    resolution: {integrity: sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==}
+  https-proxy-agent@7.0.6:
+    resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
     engines: {node: '>= 14'}
 
   human-id@1.0.2:
@@ -9043,6 +9043,10 @@ packages:
   store2@2.14.3:
     resolution: {integrity: sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==}
 
+  storybook@8.1.11:
+    resolution: {integrity: sha512-3KjIhF8lczXhKKHyHbOqV30dvuRYJSxc0d1as/C8kybuwE7cLaydhWGma7VBv5bTSPv0rDzucx7KcO+achArPg==}
+    hasBin: true
+
   storybook@8.4.7:
     resolution: {integrity: sha512-RP/nMJxiWyFc8EVMH5gp20ID032Wvk+Yr3lmKidoegto5Iy+2dVQnUoElZb2zpbVXNHWakGuAkfI0dY1Hfp/vw==}
     hasBin: true
@@ -11103,7 +11107,7 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/parser': 7.26.2
       '@babel/types': 7.26.0
-      debug: 4.3.7
+      debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -11115,7 +11119,7 @@ snapshots:
       '@babel/parser': 7.26.2
       '@babel/template': 7.25.0
       '@babel/types': 7.26.0
-      debug: 4.3.7
+      debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -14426,7 +14430,7 @@ snapshots:
       '@typescript-eslint/types': 8.16.0
       '@typescript-eslint/typescript-estree': 8.16.0(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 8.16.0
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 9.15.0(jiti@1.21.6)
     optionalDependencies:
       typescript: 5.6.3
@@ -14457,7 +14461,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 7.14.1(typescript@5.6.3)
       '@typescript-eslint/utils': 7.14.1(eslint@8.57.0)(typescript@5.6.3)
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 8.57.0
       ts-api-utils: 1.3.0(typescript@5.6.3)
     optionalDependencies:
@@ -14469,7 +14473,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 8.16.0(typescript@5.6.3)
       '@typescript-eslint/utils': 8.16.0(eslint@9.15.0(jiti@1.21.6))(typescript@5.6.3)
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 9.15.0(jiti@1.21.6)
       ts-api-utils: 1.3.0(typescript@5.6.3)
     optionalDependencies:
@@ -14489,7 +14493,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.7
+      debug: 4.4.0
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.6.3
@@ -14533,7 +14537,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.16.0
       '@typescript-eslint/visitor-keys': 8.16.0
-      debug: 4.3.7
+      debug: 4.4.0
       fast-glob: 3.3.2
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -15336,11 +15340,7 @@ snapshots:
 
   address@1.2.2: {}
 
-  agent-base@7.1.1:
-    dependencies:
-      debug: 4.3.7
-    transitivePeerDependencies:
-      - supports-color
+  agent-base@7.1.3: {}
 
   aggregate-error@3.1.0:
     dependencies:
@@ -16221,7 +16221,7 @@ snapshots:
   detect-port@1.6.1:
     dependencies:
       address: 1.2.2
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
@@ -17720,14 +17720,14 @@ snapshots:
 
   http-proxy-agent@7.0.2:
     dependencies:
-      agent-base: 7.1.1
-      debug: 4.3.7
+      agent-base: 7.1.3
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
 
-  https-proxy-agent@7.0.5:
+  https-proxy-agent@7.0.6:
     dependencies:
-      agent-base: 7.1.1
+      agent-base: 7.1.3
       debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
@@ -18133,7 +18133,7 @@ snapshots:
       form-data: 4.0.0
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.5
+      https-proxy-agent: 7.0.6
       is-potential-custom-element-name: 1.0.1
       nwsapi: 2.2.13
       parse5: 7.1.2
@@ -19175,7 +19175,7 @@ snapshots:
   micromark@4.0.0:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.7
+      debug: 4.4.0
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1
@@ -20770,6 +20770,18 @@ snapshots:
 
   store2@2.14.3: {}
 
+  storybook@8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@storybook/cli': 8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/preset-env'
+      - bufferutil
+      - encoding
+      - react
+      - react-dom
+      - supports-color
+      - utf-8-validate
+
   storybook@8.4.7(prettier@3.3.3):
     dependencies:
       '@storybook/core': 8.4.7(prettier@3.3.3)
@@ -21546,7 +21558,7 @@ snapshots:
   vite-node@2.1.4(@types/node@22.7.4)(terser@5.34.1):
     dependencies:
       cac: 6.7.14
-      debug: 4.3.7
+      debug: 4.4.0
       pathe: 1.1.2
       vite: 5.3.6(@types/node@22.7.4)(terser@5.34.1)
     transitivePeerDependencies:
@@ -21676,7 +21688,7 @@ snapshots:
       '@vitest/spy': 2.1.4
       '@vitest/utils': 2.1.4
       chai: 5.1.2
-      debug: 4.3.7
+      debug: 4.4.0
       expect-type: 1.1.0
       magic-string: 0.30.12
       pathe: 1.1.2
