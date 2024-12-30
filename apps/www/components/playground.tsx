@@ -2,6 +2,7 @@
 
 import { Flex, Link, Stack, StackProps, Text, chakra } from "@chakra-ui/react"
 import NextLink from "next/link"
+import type { JSX } from "react"
 
 const Section = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -87,4 +88,4 @@ const DemoList = (props: DemoListProps) => {
   )
 }
 
-export { Section, SectionTitle, Table, SectionContent, DemoList }
+export { DemoList, Section, SectionContent, SectionTitle, Table }
