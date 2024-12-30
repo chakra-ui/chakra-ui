@@ -1,7 +1,7 @@
 "use client"
 
 import { HStack, Span } from "@chakra-ui/react"
-import { LuArrowUpCircle } from "react-icons/lu"
+import { LuCircleArrowUp } from "react-icons/lu"
 import { useScrollPosition } from "../lib/use-scroll-position"
 
 export const ScrollToTop = () => {
@@ -28,7 +28,7 @@ export const ScrollToTop = () => {
       css={{ "& svg": { fontSize: "lg" } }}
     >
       <button onClick={scrollToTop}>
-        <LuArrowUpCircle />
+        <LuCircleArrowUp />
         <Span fontSize="0.8rem">Scroll to top</Span>
       </button>
     </HStack>
