@@ -214,7 +214,7 @@ importers:
         version: 0.4.0(rollup@4.22.4)
       storybook:
         specifier: 8.1.11
-        version: 8.4.7(prettier@3.3.3)
+        version: 8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tsup:
         specifier: 8.1.0
         version: 8.1.0(postcss@8.4.49)(typescript@5.6.3)
@@ -408,7 +408,7 @@ importers:
         version: 4.1.12
       '@visulima/boxen':
         specifier: ^1.0.10
-        version: 1.0.21
+        version: 1.0.22
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -4443,9 +4443,9 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@visulima/boxen@1.0.21':
-    resolution: {integrity: sha512-n/tL6Vh2RezjVzgGCPLT5zmnGgrwPBbWLN6R4FzyXTz+C0Vtttbc5gyr2c/16Oaz8DIL0HD2Uz2RStT2q62Wcw==}
-    engines: {node: '>=18.* <=22.*'}
+  '@visulima/boxen@1.0.22':
+    resolution: {integrity: sha512-y18w6Qhy++In+dR57ThjhkZSYFM+iQqsYD/wU5RTDEtWhY7v2oscnhSzJIVLsh5bER5aV8d3pobPu0gKz925OQ==}
+    engines: {node: '>=18.* <=23.*'}
     os: [darwin, linux, win32]
 
   '@vitejs/plugin-react@4.3.4':
@@ -9042,6 +9042,10 @@ packages:
 
   store2@2.14.3:
     resolution: {integrity: sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==}
+
+  storybook@8.1.11:
+    resolution: {integrity: sha512-3KjIhF8lczXhKKHyHbOqV30dvuRYJSxc0d1as/C8kybuwE7cLaydhWGma7VBv5bTSPv0rDzucx7KcO+achArPg==}
+    hasBin: true
 
   storybook@8.4.7:
     resolution: {integrity: sha512-RP/nMJxiWyFc8EVMH5gp20ID032Wvk+Yr3lmKidoegto5Iy+2dVQnUoElZb2zpbVXNHWakGuAkfI0dY1Hfp/vw==}
@@ -14655,7 +14659,7 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@visulima/boxen@1.0.21': {}
+  '@visulima/boxen@1.0.22': {}
 
   '@vitejs/plugin-react@4.3.4(vite@5.3.6(@types/node@22.7.5)(terser@5.34.1))':
     dependencies:
@@ -20769,6 +20773,18 @@ snapshots:
       internal-slot: 1.0.7
 
   store2@2.14.3: {}
+
+  storybook@8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@storybook/cli': 8.1.11(@babel/preset-env@7.25.4(@babel/core@7.24.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    transitivePeerDependencies:
+      - '@babel/preset-env'
+      - bufferutil
+      - encoding
+      - react
+      - react-dom
+      - supports-color
+      - utf-8-validate
 
   storybook@8.4.7(prettier@3.3.3):
     dependencies:
