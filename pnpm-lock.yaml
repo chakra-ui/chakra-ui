@@ -249,8 +249,8 @@ importers:
         specifier: 8.19.3
         version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes:
-        specifier: 0.4.3
-        version: 0.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 0.4.4
+        version: 0.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -325,8 +325,8 @@ importers:
         specifier: 14.2.12
         version: 14.2.12(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-themes:
-        specifier: 0.4.3
-        version: 0.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 0.4.4
+        version: 0.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       node-fetch:
         specifier: 3.3.2
         version: 3.3.2
@@ -7816,6 +7816,12 @@ packages:
 
   next-themes@0.4.3:
     resolution: {integrity: sha512-nG84VPkTdUHR2YeD89YchvV4I9RbiMAql3GiLEQlPvq1ioaqPaIReK+yMRdg/zgiXws620qS1rU30TiWmmG9lA==}
+    peerDependencies:
+      react: 18.2.0
+      react-dom: 18.2.0
+
+  next-themes@0.4.4:
+    resolution: {integrity: sha512-LDQ2qIOJF0VnuVrrMSMLrWGjRMkq+0mpgl6e0juCLqdJ+oo8Q84JRWT6Wh11VDQKkMMe+dVzDKLWs5n87T+PkQ==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
@@ -19324,6 +19330,11 @@ snapshots:
   neo-async@2.6.2: {}
 
   next-themes@0.4.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
+  next-themes@0.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
