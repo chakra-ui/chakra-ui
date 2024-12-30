@@ -13,15 +13,15 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@remix-run/node": "^2.10.0",
     "@remix-run/react": "^2.10.0",
     "@remix-run/serve": "^2.10.0",
     "isbot": "^5.1.11",
-    "react-icons": "5.3.0",
-    "next-themes": "^0.4.3",
+    "react-icons": "5.4.0",
+    "next-themes": "^0.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -39,7 +39,7 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "postcss": "^8.4.38",
-    "typescript": "^5.6.2",
+    "typescript": "^5.7.2",
     "vite": "^5.3.6",
     "vite-tsconfig-paths": "^4.3.2"
   },

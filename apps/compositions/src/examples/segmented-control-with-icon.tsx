@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react"
 import { SegmentedControl } from "compositions/ui/segmented-control"
-import { LuGrid, LuList, LuTable } from "react-icons/lu"
+import { LuGrid2X2, LuList, LuTable } from "react-icons/lu"
 
 export const SegmentedControlWithIcon = () => {
   return (
@@ -20,7 +20,7 @@ export const SegmentedControlWithIcon = () => {
           value: "board",
           label: (
             <HStack>
-              <LuGrid />
+              <LuGrid2X2 />
               Board
             </HStack>
           ),

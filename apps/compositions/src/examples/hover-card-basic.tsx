@@ -6,7 +6,7 @@ import {
   HoverCardRoot,
   HoverCardTrigger,
 } from "compositions/ui/hover-card"
-import { LuLineChart } from "react-icons/lu"
+import { LuChartLine } from "react-icons/lu"
 
 export const HoverCardBasic = () => {
   return (
@@ -32,7 +32,7 @@ export const HoverCardBasic = () => {
             </Stack>
             <HStack color="fg.subtle">
               <Icon size="sm">
-                <LuLineChart />
+                <LuChartLine />
               </Icon>
               <Text textStyle="xs">2.5M Downloads</Text>
             </HStack>

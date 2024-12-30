@@ -5,7 +5,7 @@ import {
   AccordionItemTrigger,
   AccordionRoot,
 } from "compositions/ui/accordion"
-import { LuBarChart, LuTags } from "react-icons/lu"
+import { LuChartBarStacked, LuTags } from "react-icons/lu"
 
 export const AccordionWithIcon = () => {
   return (
@@ -38,7 +38,7 @@ const items = [
   },
   {
     value: "stats",
-    icon: <LuBarChart />,
+    icon: <LuChartBarStacked />,
     title: "Stats",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.",

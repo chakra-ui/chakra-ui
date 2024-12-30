@@ -1,6 +1,6 @@
 import { Tabs } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
-import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
+import { LuFolder, LuSquareCheck, LuUser } from "react-icons/lu"
 
 export const TooltipWithTab = () => {
   return (
@@ -24,7 +24,7 @@ export const TooltipWithTab = () => {
           Projects
         </Tabs.Trigger>
         <Tabs.Trigger value="tasks">
-          <LuCheckSquare />
+          <LuSquareCheck />
           Settings
         </Tabs.Trigger>
       </Tabs.List>

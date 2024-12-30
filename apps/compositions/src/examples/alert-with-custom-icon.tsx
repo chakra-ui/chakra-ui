@@ -1,10 +1,10 @@
 import { Alert } from "compositions/ui/alert"
-import { LuAlarmPlus } from "react-icons/lu"
+import { LuAlarmClockPlus } from "react-icons/lu"
 
 export const AlertWithCustomIcon = () => {
   return (
     <Alert
-      icon={<LuAlarmPlus />}
+      icon={<LuAlarmClockPlus />}
       status="warning"
       title="Submitting this form will delete your account"
     />

@@ -3,13 +3,13 @@ import {
   BreadcrumbLink,
   BreadcrumbRoot,
 } from "compositions/ui/breadcrumb"
-import { LuHome, LuShirt } from "react-icons/lu"
+import { LuHouse, LuShirt } from "react-icons/lu"
 
 export const BreadcrumbWithIcon = () => {
   return (
     <BreadcrumbRoot>
       <BreadcrumbLink href="#">
-        <LuHome /> Home
+        <LuHouse /> Home
       </BreadcrumbLink>
       <BreadcrumbLink href="#">
         <LuShirt /> Men Wear

@@ -1,7 +1,7 @@
 "use client"
 
 import { Code, Stack, Tabs, useTabs } from "@chakra-ui/react"
-import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
+import { LuFolder, LuSquareCheck, LuUser } from "react-icons/lu"
 
 export const TabsWithStore = () => {
   const tabs = useTabs({
@@ -22,7 +22,7 @@ export const TabsWithStore = () => {
             Projects
           </Tabs.Trigger>
           <Tabs.Trigger value="tasks">
-            <LuCheckSquare />
+            <LuSquareCheck />
             Tasks
           </Tabs.Trigger>
         </Tabs.List>

@@ -1,5 +1,5 @@
 import { Tabs } from "@chakra-ui/react"
-import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
+import { LuFolder, LuSquareCheck, LuUser } from "react-icons/lu"
 
 export const TabsWithIndicator = () => {
   return (
@@ -14,7 +14,7 @@ export const TabsWithIndicator = () => {
           Projects
         </Tabs.Trigger>
         <Tabs.Trigger value="tasks">
-          <LuCheckSquare />
+          <LuSquareCheck />
           Settings
         </Tabs.Trigger>
         <Tabs.Indicator rounded="l2" />

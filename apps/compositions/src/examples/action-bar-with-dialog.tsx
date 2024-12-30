@@ -19,7 +19,7 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 import { useState } from "react"
-import { LuPlusSquare, LuTrash2 } from "react-icons/lu"
+import { LuSquarePlus, LuTrash2 } from "react-icons/lu"
 
 export const ActionBarWithDialog = () => {
   const [checked, setChecked] = useState(false)
@@ -35,7 +35,7 @@ export const ActionBarWithDialog = () => {
           <ActionBarSeparator />
 
           <Button variant="outline" size="sm">
-            <LuPlusSquare />
+            <LuSquarePlus />
             Add to collection
           </Button>
 
