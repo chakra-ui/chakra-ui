@@ -1,0 +1,129 @@
+---
+title: Handling dynamic styling in recipes
+description: Learn how to create recipes with dynamic styling
+publishedAt: "2025-01-03"
+collection: theming
+---
+
+Suppose that you need to change the padding of a button based on some pressed
+state.
+
+```tsx
+const App = () => {
+  const [isPressed, setPressed] = useState(false)
+  // How do style the button separately based on the pressed state?
+  return <Button>Click Me</Button>
+}
+```
+
+You might be tempted to do something like this:
+
+```tsx {9-12}
+import { defineRecipe } from "@chakra-ui/react"
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: "flex",
+  },
+  variants: {
+    size: {
+      sm: ({ isPressed }) => ({
+        padding: isPressed ? "8" : "4",
+        fontSize: "12px",
+      }),
+    },
+  },
+})
+```
+
+This doesn't work because Chakra doesn't support functions in recipes. We
+require recipes to be serializable.
+
+There are two ways to handle this:
+
+## Using `data-*` attributes
+
+First, apply the dynamic values to the component using the `data-*` attribute.
+
+```tsx /data-pressed={isPressed || undefined}/
+const App = () => {
+  const [isPressed, setPressed] = useState(false)
+  return <Button data-pressed={isPressed || undefined}>Click Me</Button>
+}
+```
+
+Next, style the recipe using the `data-*` attribute.
+
+```tsx {10-12}
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: "flex",
+  },
+  variants: {
+    size: {
+      sm: {
+        padding: "4",
+        fontSize: "12px",
+        "&[data-pressed]": {
+          padding: "8",
+        },
+      },
+    },
+  },
+})
+```
+
+## Using `compoundVariants`
+
+Compound variants allow you to create style overrides based on variant
+combinations.
+
+- First, create a `isActive` variant
+- Next, create a `compoundVariants` array that contains the style overrides
+
+```ts {15-17, 20-24}
+import { defineRecipe } from "@chakra-ui/react"
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: "flex",
+  },
+  variants: {
+    size: {
+      sm: {
+        padding: "4",
+        fontSize: "12px",
+      },
+    },
+    isPressed: {
+      true: {},
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      size: "sm",
+      isPressed: true,
+      css: {
+        padding: "8px",
+        fontSize: "12px",
+      },
+    },
+  ],
+})
+```
+
+Then, you can pass the `isPressed` variant to the component as props.
+
+```tsx /isPressed={isPressed}/
+<Button visual="solid" isPressed={isPressed}>
+  Click Me
+</Button>
+```
+
+:::note
+
+If you use TypeScript, don't forget to run the `npx @chakra-ui/cli typegen`
+command to generate the types for the recipe.
+
+:::
