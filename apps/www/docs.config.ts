@@ -30,7 +30,6 @@ const docsLinks: NavItem = {
         {
           title: "Environments",
           url: "environments",
-          status: "new",
           items: [
             { title: "Shadow DOM", url: "shadow-dom" },
             { title: "Iframe", url: "iframe" },
