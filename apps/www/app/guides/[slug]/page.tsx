@@ -13,15 +13,16 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-interface Props {
-  params: { slug: string[] }
+interface PageContext {
+  params: Promise<{ slug: string[] }>
 }
 
 export const generateStaticParams = async () => {
   return guides.map((guide) => ({ slug: guide.slug.replace("guides/", "") }))
 }
 
-export const generateMetadata = ({ params }: Props): Metadata => {
+export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
+  const params = await ctx.params
   const guide = guides.find((guide) => guide.slug === `guides/${params.slug}`)
 
   return {
@@ -33,7 +34,8 @@ export const generateMetadata = ({ params }: Props): Metadata => {
   }
 }
 
-export default function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage(props: PageContext) {
+  const params = await props.params
   const guide = guides.find((guide) => guide.slug === `guides/${params.slug}`)
   if (!guide) return notFound()
 

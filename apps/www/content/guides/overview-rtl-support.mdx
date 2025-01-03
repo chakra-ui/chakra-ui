@@ -1,0 +1,56 @@
+---
+title: RTL Support
+description: How to use Chakra UI with RTL languages
+publishedAt: "2025-01-03"
+collection: overview
+---
+
+Chakra UI v3.0 supports RTL languages. The key things you need to know are:
+
+- The `dir` prop on the `html` element or any parent element
+- The `LocaleProvider` component is used to set the `locale` and `dir` on logic
+  based components from Ark UI
+
+When these are set, the components will be rendered in the correct direction and
+the accessibility attributes will be set correctly.
+
+<ExampleTabs name="locale-provider-basic" />
+
+## Setting the `dir` prop
+
+The `dir` prop on the `html` element or any parent element will set the
+direction of the component.
+
+```tsx /dir="rtl"/
+<html dir="rtl">
+  <Heading>RTL - الى أن مرجع ويتّفق, ان </Heading>
+  <Slider />
+</html>
+```
+
+## Using the `LocaleProvider` component
+
+The `LocaleProvider` component is used to set the `locale` and `dir` on logic
+based components from Ark UI.
+
+```tsx {1}
+<LocaleProvider locale="ar-Ar">
+  <Heading>RTL - الى أن مرجع ويتّفق, ان </Heading>
+  <Slider />
+</LocaleProvider>
+```
+
+> Ensure you wrap the root component in the `LocaleProvider` component.
+
+## Conclusion
+
+Bringing it all together, here's how the RTL support works:
+
+```tsx {1} /dir="rtl"/
+<LocaleProvider locale="ar-Ar">
+  <Stack dir="rtl">
+    <Heading>RTL - الى أن مرجع ويتّفق, ان </Heading>
+    <Slider />
+  </Stack>
+</LocaleProvider>
+```

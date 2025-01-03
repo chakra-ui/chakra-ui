@@ -13,12 +13,12 @@ import { notFound } from "next/navigation"
 import { SidebarEnd } from "../sidebar"
 import { docs } from ".velite"
 
-interface Props {
-  params: { slug: string[] }
+interface PageContext {
+  params: Promise<{ slug: string[] }>
 }
 
-export default function Page(props: Props) {
-  const { params } = props
+export default async function Page(props: PageContext) {
+  const params = await props.params
 
   const page = docs.find(
     (doc) => doc.slug === ["docs", ...params.slug].join("/"),
@@ -67,8 +67,9 @@ export default function Page(props: Props) {
   )
 }
 
-export const generateMetadata = (props: Props): Metadata => {
-  const page = getPageBySlug(props.params.slug)
+export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
+  const params = await ctx.params
+  const page = getPageBySlug(params.slug)
 
   const category = page?.slug
     .replace("docs/", "")

@@ -14,17 +14,17 @@ import { Avatar } from "compositions/ui/avatar"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-interface Props {
-  params: { slug: string[] }
+interface PageContext {
+  params: Promise<{ slug: string[] }>
 }
 
 export const generateStaticParams = async () => {
   return blogs.map((blog) => ({ slug: blog.slug.replace("blog/", "") }))
 }
 
-export const generateMetadata = ({ params }: Props): Metadata => {
+export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
+  const params = await ctx.params
   const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
-
   return {
     title: blog?.title,
     description: blog?.description,
@@ -34,7 +34,8 @@ export const generateMetadata = ({ params }: Props): Metadata => {
   }
 }
 
-export default function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage(props: PageContext) {
+  const params = await props.params
   const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
   if (!blog) return notFound()
 
