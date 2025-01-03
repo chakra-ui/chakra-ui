@@ -16,6 +16,7 @@
     "next-app",
     "next-pages",
     "vite-ts",
+    "vite-jsx",
     "remix-ts",
     "storybook-ts",
     "shadow-dom",
