@@ -33,21 +33,22 @@ export function useMediaQuery(
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
   const [value, setValue] = useState(() => {
-    return queries.map((query, index) => ({
-      media: query,
-      matches: !ssr
-        ? (getWindow?.() ?? window).matchMedia?.(query)?.matches
-        : !!fallback[index],
-    }))
+    return queries.map((query, index) => {
+      if (!ssr) {
+        const { media, matches } = (getWindow?.() ?? window).matchMedia(query)
+        return { media, matches }
+      }
+      return { media: query, matches: !!fallback[index] }
+    })
   })
 
   useEffect(() => {
     const win = getWin() ?? window
     setValue((prev) => {
-      const current = queries.map((query) => ({
-        media: query,
-        matches: win.matchMedia(query).matches,
-      }))
+      const current = queries.map((query) => {
+        const { media, matches } = win.matchMedia(query)
+        return { media, matches }
+      })
 
       return prev.every(
         (v, i) =>
