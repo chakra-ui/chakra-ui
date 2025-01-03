@@ -108,3 +108,15 @@ To hide an element below the `md` breakpoint, use the `hideBelow` utility:
 
 To learn how to customize breakpoints, please refer to the
 [customizing breakpoints](/docs/theming/customization/breakpoints) section.
+
+## FAQs
+
+### Why are breakpoints converted to `rem`?
+
+The conversion to `rem` is intentional and beneficial for accessibility reasons:
+
+- User Changed Their Browser's Font Setting
+- User Zooms In
+- Font size Changed in HTML
+
+> Learn more here: https://zellwk.com/blog/media-query-units/
