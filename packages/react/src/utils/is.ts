@@ -1,22 +1,10 @@
-export function isObject(value: any): value is Record<string, any> {
-  const type = typeof value
-  return (
-    value != null &&
-    (type === "object" || type === "function") &&
-    !Array.isArray(value)
-  )
-}
+export const isObject = (v: any): v is Record<string, any> =>
+  v != null && typeof v === "object" && !Array.isArray(v)
 
-export function isCssVar(value: string): boolean {
-  return /^var\(--.+\)$/.test(value)
-}
+export const isCssVar = (v: string): boolean => /^var\(--.+\)$/.test(v)
 
-export function isString(value: any): value is string {
-  return Object.prototype.toString.call(value) === "[object String]"
-}
+export const isString = (v: any): v is string => typeof v === "string"
 
-export function isFunction<T extends Function = Function>(
-  value: any,
-): value is T {
-  return typeof value === "function"
-}
+type AnyFunction = (...args: any[]) => any
+
+export const isFunction = (v: any): v is AnyFunction => typeof v === "function"
