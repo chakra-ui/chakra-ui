@@ -3,6 +3,7 @@ import { createAnatomy } from "@ark-ui/react/anatomy"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
+import { fieldsetAnatomy as arkFieldsetAnatomy } from "@ark-ui/react/fieldset"
 import { fileUploadAnatomy as arkFileUploadAnatomy } from "@ark-ui/react/file-upload"
 import { menuAnatomy as arkMenuAnatomy } from "@ark-ui/react/menu"
 import { popoverAnatomy as arkPopoverAnatomy } from "@ark-ui/react/popover"
@@ -98,6 +99,8 @@ export const emptyStateAnatomy = createAnatomy("empty-state", [
 ])
 
 export const fieldAnatomy = arkFieldAnatomy.extendWith("requiredIndicator")
+
+export const fieldsetAnatomy = arkFieldsetAnatomy.extendWith("content")
 
 export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
   "itemContent",
@@ -220,7 +223,7 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"
-export { fieldsetAnatomy } from "@ark-ui/react/fieldset"
+export { colorPickerAnatomy } from "@ark-ui/react/color-picker"
 export { hoverCardAnatomy } from "@ark-ui/react/hover-card"
 export { numberInputAnatomy } from "@ark-ui/react/number-input"
 export { pinInputAnatomy } from "@ark-ui/react/pin-input"
