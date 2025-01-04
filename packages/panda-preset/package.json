@@ -34,11 +34,11 @@
   "scripts": {
     "theme:eject": "chakra eject --outdir=src",
     "theme:sync": "tsx scripts/sync.ts",
-    "prepare": "pnpm theme:eject && pnpm theme:sync",
+    "theme": "pnpm theme:eject && pnpm theme:sync",
     "prepack": "tsx ../../scripts/conditions.ts",
     "postpack": "tsx ../../scripts/conditions.ts --restore",
     "build:fast": "tsx ../../scripts/build/main.ts",
-    "prebuild": "pnpm clean",
+    "prebuild": "pnpm clean && pnpm theme",
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "tsx scripts/clean.ts",
