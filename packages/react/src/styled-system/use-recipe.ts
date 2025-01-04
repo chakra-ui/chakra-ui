@@ -3,7 +3,12 @@
 import { useMemo } from "react"
 import type { ConfigRecipes } from "./generated/recipes.gen"
 import { useChakraContext } from "./provider"
-import type { RecipeDefinition, SystemRecipeFn } from "./recipe.types"
+import type {
+  RecipeDefinition,
+  RecipeVariantMap,
+  RecipeVariantProps,
+  SystemRecipeFn,
+} from "./recipe.types"
 
 export type RecipeKey = keyof ConfigRecipes | (string & {})
 
@@ -12,9 +17,21 @@ export interface UseRecipeOptions<K extends RecipeKey> {
   recipe?: RecipeDefinition
 }
 
-export function useRecipe<K extends RecipeKey>(
-  options: UseRecipeOptions<K>,
-): K extends keyof ConfigRecipes ? ConfigRecipes[K] : SystemRecipeFn<{}, {}> {
+export function useRecipe<
+  Options extends { key: RecipeKey; recipe?: RecipeDefinition },
+>(
+  options: Options,
+): Options["key"] extends keyof ConfigRecipes
+  ? ConfigRecipes[Options["key"]]
+  : never
+
+export function useRecipe<Options extends { recipe: RecipeDefinition }>(
+  options: Options,
+): Options["recipe"] extends RecipeDefinition<infer T>
+  ? SystemRecipeFn<RecipeVariantProps<Options["recipe"]>, RecipeVariantMap<T>>
+  : never
+
+export function useRecipe(options: any): any {
   const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {

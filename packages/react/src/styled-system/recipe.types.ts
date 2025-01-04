@@ -27,7 +27,7 @@ export type RecipeVariantProps<
       ? RecipeSelection<U>
       : never
 
-type RecipeVariantMap<T extends RecipeVariantRecord> = {
+export type RecipeVariantMap<T extends RecipeVariantRecord> = {
   [K in keyof T]: Array<keyof T[K]>
 }
 
