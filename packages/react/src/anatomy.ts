@@ -220,6 +220,7 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"
+export { colorPickerAnatomy } from "@ark-ui/react/color-picker"
 export { fieldsetAnatomy } from "@ark-ui/react/fieldset"
 export { hoverCardAnatomy } from "@ark-ui/react/hover-card"
 export { numberInputAnatomy } from "@ark-ui/react/number-input"
