@@ -5,6 +5,36 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.2.5](./#3.2.5) - 2025-01-04
+
+### Fixed
+
+- **useMediaQuery**: Fix issue where partial media queries like
+  `aspect-ratio < 1` doesn't return the correct result.
+
+  > **Good to know**: Partial media queries like `aspect-ratio < 1` resolves to
+  > `aspect-ratio < 1 / 1` in the browser.
+
+- **System**
+
+  - Improve type-safety in `useRecipe` and `useSlotRecipe` hooks
+  - Fix issue where composing `Input` component throws `asChild` React HTML prop
+    warning.
+  - Fix issue where `mergeConfigs` does not override functions
+
+- **Snippets / Pagination**: Fix issue where pagination page text renders
+  incorrectly when the `pageSize` is greater than the `count` value with
+  `format=long`
+
+- **Snippets / InputGroup**: Improve typings for `children` prop to prevent TS
+  errors
+
+- **FileUpload**: Resolved an issue where the `accept` attribute wasn’t applied
+  to the hidden input.
+
+- **NumberInput**: Fixed issue where the input event wasn’t triggered on the
+  first click of the increment/decrement controls.
+
 ## [3.2.4](./#3.2.4) - 2024-12-30
 
 ### Fixed
