@@ -12,7 +12,7 @@ const triggerStyle = defineStyle({
   cursor: "button",
   lineHeight: "1",
   color: "fg.muted",
-  "--stepper-base-radius": "radii.xs",
+  "--stepper-base-radius": "radii.l1",
   "--stepper-radius": "calc(var(--stepper-base-radius) + 1px)",
   _icon: {
     boxSize: "1em",
