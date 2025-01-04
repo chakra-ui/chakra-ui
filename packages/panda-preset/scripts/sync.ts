@@ -1,6 +1,7 @@
 import { globby } from "globby"
 import { readFile, writeFile } from "node:fs/promises"
-import { dirname, join, relative } from "node:path"
+import { dirname, join, relative, resolve } from "node:path"
+import { format } from "prettier"
 import { cleanFiles } from "./shared"
 
 async function main() {
@@ -13,6 +14,10 @@ async function main() {
   const files = await globby("src/**/*.{ts,tsx}", { ignore: ["src/index.ts"] })
   const defFile = join("src", "def.ts")
 
+  // eslint-disable-next-line import/extensions
+  const configPath = resolve("../../.prettierrc")
+  const prettierConfig = JSON.parse(await readFile(configPath, "utf8"))
+
   const promises = files.map(async (file) => {
     const content = await readFile(file, "utf8")
 
@@ -23,6 +28,11 @@ async function main() {
       .replace("@chakra-ui/react", relativePath.replace(".ts", ""))
       .replace("chakra-", "")
       .replace("switch:", "swittch:")
+
+    updatedContent = await format(updatedContent, {
+      parser: "typescript",
+      ...prettierConfig,
+    })
 
     return writeFile(file, updatedContent)
   })
