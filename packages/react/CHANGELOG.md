@@ -1,5 +1,45 @@
 # @chakra-ui/react
 
+## 3.2.5
+
+### Patch Changes
+
+- [`d195ced`](https://github.com/chakra-ui/chakra-ui/commit/d195ced85f53d4d2e0ef39aff3912aee8c94fa62)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Snippets /
+  Pagination**: Fix issue where pagination page text renders incorrectly when
+  the `pageSize` is greater than the `count` value with `format=long`
+
+  - **Snippets / InputGroup**: Improve typings for `children` prop to prevent TS
+    errors
+
+- [`609855d`](https://github.com/chakra-ui/chakra-ui/commit/609855df6ae6f3f19b74b65c8d87dd73769be4d4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve type-safety
+  in `useRecipe` and `useSlotRecipe` hooks
+
+- [`636c61f`](https://github.com/chakra-ui/chakra-ui/commit/636c61f80ae575c4f37d2d03d3577cc386ea1b0a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **useMediaQuery**:
+  Fix issue where partial media queries like `aspect-ratio < 1` doesn't return
+  the correct result.
+
+  > **Good to know**: Partial media queries like `aspect-ratio < 1` resolves to
+  > `aspect-ratio < 1 / 1` in the browser.
+
+- [`b1c3f74`](https://github.com/chakra-ui/chakra-ui/commit/b1c3f7467048be9d3ef20062819b0fbfefb1733b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  composing `Input` component throws `asChild` React HTML prop warning.
+
+- [`e7fddd5`](https://github.com/chakra-ui/chakra-ui/commit/e7fddd502150f3781b6569c7042608de82f30e1e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `mergeConfigs` does not override functions
+
+- [`55258da`](https://github.com/chakra-ui/chakra-ui/commit/55258daf9c4eec8c3bd8b88b2cf6e7bdbb1905a9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **FileUpload**:
+  Resolved an issue where the `accept` attribute wasn’t applied to the hidden
+  input.
+
+  - **NumberInput**: Fixed issue where the input event wasn’t triggered on the
+    first click of the increment/decrement controls.
+
 ## 3.2.4
 
 ### Patch Changes
