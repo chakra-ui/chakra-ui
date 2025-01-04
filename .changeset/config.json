@@ -18,6 +18,7 @@
     "vite-ts",
     "vite-jsx",
     "remix-ts",
+    "panda-preset",
     "storybook-ts",
     "shadow-dom",
     "sandbox-iframe",
