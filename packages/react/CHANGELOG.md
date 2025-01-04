@@ -1,5 +1,37 @@
 # @chakra-ui/react
 
+## 3.2.5
+
+### Patch Changes
+
+- [`d195ced`](https://github.com/chakra-ui/chakra-ui/commit/d195ced85f53d4d2e0ef39aff3912aee8c94fa62)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Snippets /
+  Pagination**: Fix issue where pagination page text renders incorrectly when
+  the `pageSize` is greater than the `count` value with `format=long`
+
+  - **Snippets / InputGroup**: Improve typings for `children` prop to prevent TS
+    errors
+
+- [`636c61f`](https://github.com/chakra-ui/chakra-ui/commit/636c61f80ae575c4f37d2d03d3577cc386ea1b0a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **useMediaQuery**:
+  Fix issue where partial media queries like `aspect-ratio < 1` doesn't return
+  the correct result.
+
+  > **Good to know**: Partial media queries like `aspect-ratio < 1` resolves to
+  > `aspect-ratio < 1 / 1` in the browser.
+
+- [`e7fddd5`](https://github.com/chakra-ui/chakra-ui/commit/e7fddd502150f3781b6569c7042608de82f30e1e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `mergeConfigs` does not override functions
+
+- [`55258da`](https://github.com/chakra-ui/chakra-ui/commit/55258daf9c4eec8c3bd8b88b2cf6e7bdbb1905a9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **FileUpload**:
+  Resolved an issue where the `accept` attribute wasn’t applied to the hidden
+  input.
+
+  - **NumberInput**: Fixed issue where the input event wasn’t triggered on the
+    first click of the increment/decrement controls.
+
 ## 3.2.4
 
 ### Patch Changes
