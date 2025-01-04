@@ -193,7 +193,11 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     if (props.asChild && !forwardAsChild) {
       const child = React.Children.only(props.children)
       FinalTag = child.type
+
+      // clean props
       newProps.children = null
+      Reflect.deleteProperty(newProps, "asChild")
+
       newProps = mergeProps(newProps, child.props)
       newProps.ref = mergeRefs(ref, child.ref)
     }
