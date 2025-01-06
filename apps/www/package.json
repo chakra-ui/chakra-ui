@@ -42,7 +42,7 @@
     "scule": "1.3.0",
     "shiki": "1.26.1",
     "unist-util-visit": "5.0.0",
-    "velite": "0.2.1"
+    "velite": "0.2.2"
   },
   "devDependencies": {
     "@svgr/core": "8.1.0",

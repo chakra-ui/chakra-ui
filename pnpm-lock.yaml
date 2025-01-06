@@ -361,8 +361,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       velite:
-        specifier: 0.2.1
-        version: 0.2.1(acorn@8.14.0)
+        specifier: 0.2.2
+        version: 0.2.2(acorn@8.14.0)
     devDependencies:
       '@svgr/core':
         specifier: 8.1.0
@@ -9233,8 +9233,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  velite@0.2.1:
-    resolution: {integrity: sha512-yhugij87X4v63c7Y4pODvDLrLc0HFU7v8BfNzPeqEnJRKxGbV6+EESNcOQehHt91crGfJVepfCvoH52Si2+zTQ==}
+  velite@0.2.2:
+    resolution: {integrity: sha512-VuaowCAIrlarURqVvTeTc1pMCLXUjjrw6FqwpxFahPht9AsWWZ1i8P/DY411n82s5ZwLqC3f8K4ZqzAnAGvJMA==}
     engines: {node: ^18.17.0 || >=20.3.0}
     hasBin: true
 
@@ -20297,7 +20297,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  velite@0.2.1(acorn@8.14.0):
+  velite@0.2.2(acorn@8.14.0):
     dependencies:
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       esbuild: 0.24.0
