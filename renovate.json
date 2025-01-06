@@ -31,6 +31,10 @@
     {
       "groupName": "babel",
       "matchPackagePatterns": ["@babel*"]
+    },
+    {
+      "groupName": "panda",
+      "matchPackagePatterns": ["@pandacss/*"]
     }
   ]
 }
