@@ -94,7 +94,7 @@
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-testing-library": "6.2.2",
     "execa": "9.3.0",
-    "fast-glob": "3.3.2",
+    "fast-glob": "3.3.3",
     "find-packages": "10.0.4",
     "find-up": "7.0.0",
     "fs-extra": "11.2.0",
