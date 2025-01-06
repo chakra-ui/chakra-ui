@@ -33,7 +33,7 @@ export interface ActionBarRootProviderProps
   extends ActionBarRootProviderBaseProps {}
 
 export const ActionBarRootProvider =
-  withRootProvider<ActionBarRootProviderBaseProps>(ArkPopover.Root, {
+  withRootProvider<ActionBarRootProviderBaseProps>(ArkPopover.RootProvider, {
     defaultProps: {
       lazyMount: true,
       unmountOnExit: true,

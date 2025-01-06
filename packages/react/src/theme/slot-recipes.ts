@@ -26,6 +26,7 @@ import { pinInputSlotRecipe } from "./recipes/pin-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { progressCircleSlotRecipe } from "./recipes/progress-circle"
+import { qrCodeSlotRecipe } from "./recipes/qr-code"
 import { radioCardSlotRecipe } from "./recipes/radio-card"
 import { radioGroupSlotRecipe } from "./recipes/radio-group"
 import { ratingGroupSlotRecipe } from "./recipes/rating-group"
@@ -88,4 +89,5 @@ export const slotRecipes = {
   status: statusSlotRecipe,
   timeline: timelineSlotRecipe,
   colorPicker: colorPickerSlotRecipe,
+  qrCode: qrCodeSlotRecipe,
 }

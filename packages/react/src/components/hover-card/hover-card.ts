@@ -35,7 +35,7 @@ export interface HoverCardRootProviderProps
 }
 
 export const HoverCardRootProvider =
-  withRootProvider<HoverCardRootProviderProps>(ArkHoverCard.Root)
+  withRootProvider<HoverCardRootProviderProps>(ArkHoverCard.RootProvider)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
