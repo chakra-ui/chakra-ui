@@ -411,7 +411,7 @@ importers:
         version: 4.1.12
       '@visulima/boxen':
         specifier: ^1.0.10
-        version: 1.0.22
+        version: 1.0.23
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -3950,8 +3950,8 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@visulima/boxen@1.0.22':
-    resolution: {integrity: sha512-y18w6Qhy++In+dR57ThjhkZSYFM+iQqsYD/wU5RTDEtWhY7v2oscnhSzJIVLsh5bER5aV8d3pobPu0gKz925OQ==}
+  '@visulima/boxen@1.0.23':
+    resolution: {integrity: sha512-os8zpUA6Iizcbp2JtH43diakJB1EagyEk57v1KaNd6Eh1A7XekNZw0AyUW5AdVmOoeWC0wZkrMXBNWxHL35AQQ==}
     engines: {node: '>=18.* <=23.*'}
     os: [darwin, linux, win32]
 
@@ -13221,7 +13221,7 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@visulima/boxen@1.0.22': {}
+  '@visulima/boxen@1.0.23': {}
 
   '@vitejs/plugin-react@4.3.4(vite@5.3.6(@types/node@22.7.5)(terser@5.37.0))':
     dependencies:
