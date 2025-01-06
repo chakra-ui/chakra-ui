@@ -50,7 +50,7 @@
     "@pandacss/is-valid-prop": "0.41.0",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
-    "@visulima/boxen": "^1.0.10",
+    "@visulima/boxen": "^1.0.23",
     "bundle-n-require": "1.1.1",
     "globby": "14.0.2",
     "chokidar": "3.6.0",

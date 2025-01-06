@@ -94,7 +94,7 @@
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-testing-library": "6.2.2",
     "execa": "9.3.0",
-    "fast-glob": "3.3.2",
+    "fast-glob": "3.3.3",
     "find-packages": "10.0.4",
     "find-up": "7.0.0",
     "fs-extra": "11.2.0",
@@ -115,7 +115,7 @@
     "tsup": "8.1.0",
     "tsx": "4.16.2",
     "typescript": "5.7.2",
-    "vite": "5.3.6",
+    "vite": "6.0.7",
     "vitest": "1.6.0",
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "1.0.6"
@@ -125,10 +125,10 @@
       "react": "18.2.0",
       "react-dom": "18.2.0",
       "prism-react-renderer": "2.4.1",
-      "@emotion/react": "11.11.4"
+      "@emotion/react": "11.14.0"
     }
   },
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.15.3",
   "engines": {
     "node": ">=18.x"
   }
