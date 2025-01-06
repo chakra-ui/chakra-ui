@@ -25,9 +25,9 @@ async function main() {
     relativePath = relativePath === "def.ts" ? "./def.ts" : relativePath
 
     let updatedContent = content
-      .replace("@chakra-ui/react", relativePath.replace(".ts", ""))
-      .replace("chakra-", "")
-      .replace("switch:", "swittch:")
+      .replaceAll("@chakra-ui/react", relativePath.replace(".ts", ""))
+      .replaceAll("chakra-", "")
+      .replaceAll("switch:", "swittch:")
 
     updatedContent = await format(updatedContent, {
       parser: "typescript",
