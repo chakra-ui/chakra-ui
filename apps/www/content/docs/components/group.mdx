@@ -35,6 +35,28 @@ Use the `attached` prop to attach the children together.
 
 <ExampleTabs name="group-with-attached" />
 
+**Note:** When composing custom components and attaching them to a `Group`,
+ensure you forward props.
+
+```tsx {10} /{...props}/
+export const Demo = () => {
+  return (
+    <Group attached>
+      <FocusButton />
+      <IconButton variant="outline">Two</IconButton>
+    </Group>
+  )
+}
+
+function FocusButton(props: ButtonProps) {
+  return (
+    <IconButton variant="outline" {...props}>
+      <LuFocus />
+    </IconButton>
+  )
+}
+```
+
 ### Grow
 
 Use the `grow` prop to make the children grow to fill the available space.
