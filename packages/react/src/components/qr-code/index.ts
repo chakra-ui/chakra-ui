@@ -1,5 +1,6 @@
 export {
   QrCodeRoot,
+  QrCodeRootProvider,
   QrCodeFrame,
   QrCodePattern,
   QrCodeOverlay,

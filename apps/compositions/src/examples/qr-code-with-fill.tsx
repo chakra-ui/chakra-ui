@@ -5,7 +5,9 @@ export const QrCodeWithFill = () => {
   return (
     <Flex gap="4">
       <For each={["#5417D7", "#FF0000"]}>
-        {(fill) => <QrCode fill={fill} value="https://www.google.com" />}
+        {(fill) => (
+          <QrCode key={fill} fill={fill} value="https://www.google.com" />
+        )}
       </For>
     </Flex>
   )

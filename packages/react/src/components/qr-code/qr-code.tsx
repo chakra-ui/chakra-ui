@@ -83,7 +83,8 @@ export const QrCodeOverlay = withContext<HTMLDivElement, QrCodeOverlayProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface QrCodeDownloadTriggerProps extends HTMLChakraProps<"button"> {}
+export interface QrCodeDownloadTriggerProps
+  extends Assign<ArkQrCode.DownloadTriggerProps, HTMLChakraProps<"button">> {}
 
 export const QrCodeDownloadTrigger = withContext<
   HTMLButtonElement,
