@@ -1257,7 +1257,7 @@ export type ColorPickerVariantMap = {
 
 // QrCode
 
-export type QrCodeSlot = "root" | "frame" | "pattern" | "overlay"
+export type QrCodeSlot = "root" | "frame" | "pattern" | "overlay" | "downloadTrigger"
 
 export interface QrCodeVariant {
   /** @default "md" */

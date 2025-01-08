@@ -8,6 +8,7 @@ export {
   ClipboardLabel as Label,
   ClipboardInput as Input,
   ClipboardContext as Context,
+  ClipboardValueText as ValueText,
 } from "./clipboard"
 
 export type {
@@ -19,4 +20,5 @@ export type {
   ClipboardTriggerProps as TriggerProps,
   ClipboardInputProps as InputProps,
   ClipboardCopyStatusDetails as CopyStatusDetails,
+  ClipboardValueTextProps as ValueTextProps,
 } from "./clipboard"

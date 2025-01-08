@@ -80,3 +80,12 @@ export const QrCodeOverlay = withContext<HTMLDivElement, QrCodeOverlayProps>(
   "overlay",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface QrCodeDownloadTriggerProps extends HTMLChakraProps<"button"> {}
+
+export const QrCodeDownloadTrigger = withContext<
+  HTMLButtonElement,
+  QrCodeDownloadTriggerProps
+>(ArkQrCode.DownloadTrigger, "downloadTrigger", { forwardAsChild: true })

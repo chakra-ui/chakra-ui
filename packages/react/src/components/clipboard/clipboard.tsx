@@ -113,3 +113,13 @@ export const ClipboardContext = ArkClipboard.Context
 
 export interface ClipboardCopyStatusDetails
   extends ArkClipboard.CopyStatusDetails {}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ClipboardValueTextProps
+  extends HTMLChakraProps<"div", ArkClipboard.ValueTextProps> {}
+
+export const ClipboardValueText = withContext<
+  HTMLDivElement,
+  ClipboardValueTextProps
+>(ArkClipboard.ValueText, "valueText", { forwardAsChild: true })
