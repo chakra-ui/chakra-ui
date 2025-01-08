@@ -18,6 +18,7 @@ export { MenuWithContextTrigger as ContextTrigger } from "compositions/examples/
 export { MenuWithDangerItem as DangerItem } from "compositions/examples/menu-with-danger-item"
 export { MenuWithGroup as Group } from "compositions/examples/menu-with-group"
 export { MenuWithGroupDynamic as GroupDynamic } from "compositions/examples/menu-with-group-dynamic"
+export { MenuWithHideWhenDetached as HideWhenDetached } from "compositions/examples/menu-with-hide-when-detached"
 export { MenuWithIconAndCommand as IconAndCommand } from "compositions/examples/menu-with-icon-and-command"
 export { MenuWithLinks as Links } from "compositions/examples/menu-with-links"
 export { MenuWithMixedLayout as MixedLayout } from "compositions/examples/menu-with-mixed-layout"
