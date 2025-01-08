@@ -125,6 +125,7 @@ const docsLinks: NavItem = {
             { title: "Popover", url: "popover" },
             { title: "Progress Circle", url: "progress-circle" },
             { title: "Progress", url: "progress" },
+            // { title: "QR Code", url: "qr-code", status: "new" },
             { title: "Radio Card", url: "radio-card" },
             { title: "Radio", url: "radio" },
             { title: "Rating", url: "rating" },
