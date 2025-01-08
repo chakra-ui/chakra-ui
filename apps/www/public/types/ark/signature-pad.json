@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Control": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Guide": {
     "props": {
@@ -29,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "HiddenInput": {
     "props": {
@@ -44,8 +41,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "Label": {
     "props": {
@@ -55,8 +51,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -112,8 +107,7 @@
         "description": "The translations of the signature pad. Useful for internationalization."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -127,8 +121,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Segment": {
     "props": {
@@ -138,7 +131,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGSVGElement",
-    "tag": "svg"
+    "element": "SVGSVGElement"
   }
 }

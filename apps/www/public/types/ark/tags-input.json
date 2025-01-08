@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Control": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "HiddenInput": {
     "props": {
@@ -29,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "Input": {
     "props": {
@@ -40,8 +37,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "ItemDeleteTrigger": {
     "props": {
@@ -51,8 +47,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "ItemInput": {
     "props": {
@@ -62,8 +57,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "ItemPreview": {
     "props": {
@@ -73,8 +67,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -96,8 +89,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemText": {
     "props": {
@@ -107,8 +99,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement",
-    "tag": "span"
+    "element": "HTMLSpanElement"
   },
   "Label": {
     "props": {
@@ -118,8 +109,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -169,7 +159,7 @@
         "type": "boolean",
         "isRequired": false,
         "defaultValue": "true",
-        "description": "Whether a tag can be edited after creation, by presing `Enter` or double clicking."
+        "description": "Whether a tag can be edited after creation, by pressing `Enter` or double clicking."
       },
       "form": {
         "type": "string",
@@ -273,8 +263,7 @@
         "description": "The tag values"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -288,7 +277,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   }
 }

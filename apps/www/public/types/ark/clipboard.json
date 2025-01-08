@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Indicator": {
     "props": {
@@ -18,12 +17,11 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "copied": {
-        "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Input": {
     "props": {
@@ -33,8 +31,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "Label": {
     "props": {
@@ -44,8 +41,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -76,8 +72,7 @@
         "description": "The value to be copied to the clipboard"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -91,8 +86,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Trigger": {
     "props": {
@@ -102,7 +96,16 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
+  },
+  "ValueText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
   }
 }

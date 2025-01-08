@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ArrowTip": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "CheckboxItem": {
     "props": {
@@ -59,8 +57,7 @@
         "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Content": {
     "props": {
@@ -70,8 +67,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ContextTrigger": {
     "props": {
@@ -81,8 +77,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Indicator": {
     "props": {
@@ -92,8 +87,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemGroupLabel": {
     "props": {
@@ -103,8 +97,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemGroup": {
     "props": {
@@ -114,8 +107,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemIndicator": {
     "props": {
@@ -125,8 +117,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -156,8 +147,7 @@
         "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemText": {
     "props": {
@@ -167,8 +157,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Positioner": {
     "props": {
@@ -178,8 +167,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RadioItemGroup": {
     "props": {
@@ -197,8 +185,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RadioItem": {
     "props": {
@@ -228,8 +215,7 @@
         "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
@@ -291,6 +277,11 @@
         "isRequired": false,
         "defaultValue": "false",
         "description": "Whether to loop the keyboard navigation."
+      },
+      "navigate": {
+        "type": "(details: NavigateDetails) => void",
+        "isRequired": false,
+        "description": "Function to navigate to the selected item if it's an anchor element"
       },
       "onEscapeKeyDown": {
         "type": "(event: KeyboardEvent) => void",
@@ -404,8 +395,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLHRElement",
-    "tag": "hr"
+    "element": "HTMLHRElement"
   },
   "TriggerItem": {
     "props": {
@@ -415,8 +405,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Trigger": {
     "props": {
@@ -426,7 +415,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   }
 }

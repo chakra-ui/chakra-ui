@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Content": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Control": {
     "props": {
@@ -29,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "HiddenSelect": {
     "props": {
@@ -40,8 +37,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement",
-    "tag": "select"
+    "element": "HTMLSelectElement"
   },
   "Indicator": {
     "props": {
@@ -51,8 +47,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemGroupLabel": {
     "props": {
@@ -62,8 +57,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemGroup": {
     "props": {
@@ -73,8 +67,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemIndicator": {
     "props": {
@@ -84,8 +77,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -105,8 +97,7 @@
         "description": "Whether hovering outside should clear the highlighted state"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemText": {
     "props": {
@@ -116,8 +107,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "span"
+    "element": "HTMLDivElement"
   },
   "Label": {
     "props": {
@@ -127,8 +117,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "List": {
     "props": {
@@ -138,8 +127,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Positioner": {
     "props": {
@@ -149,15 +137,14 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
-      "items": {
-        "type": "T[] | readonly T[]",
+      "collection": {
+        "type": "ListCollection<T>",
         "isRequired": true,
-        "description": "The options of the select"
+        "description": "The collection of items"
       },
       "asChild": {
         "type": "boolean",
@@ -185,6 +172,11 @@
         "type": "string[]",
         "isRequired": false,
         "description": "The initial value of the select when it is first rendered.\nUse when you do not need to control the state of the select."
+      },
+      "deselectable": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the value can be cleared by clicking the selected item.\n\n**Note:** this is only applicable for single selection"
       },
       "disabled": {
         "type": "boolean",
@@ -220,21 +212,6 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the select is invalid"
-      },
-      "isItemDisabled": {
-        "type": "(item: T) => boolean",
-        "isRequired": false,
-        "description": "Whether the item is disabled"
-      },
-      "itemToString": {
-        "type": "(item: T) => string",
-        "isRequired": false,
-        "description": "The label of the item"
-      },
-      "itemToValue": {
-        "type": "(item: T) => string",
-        "isRequired": false,
-        "description": "The value of the item"
       },
       "lazyMount": {
         "type": "boolean",
@@ -334,8 +311,7 @@
         "isRequired": false,
         "description": "The keys of the selected items"
       }
-    },
-    "tag": "div"
+    }
   },
   "RootProvider": {
     "props": {
@@ -375,8 +351,7 @@
         "defaultValue": "false",
         "description": "Whether to unmount on exit."
       }
-    },
-    "tag": "div"
+    }
   },
   "Trigger": {
     "props": {
@@ -386,8 +361,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "ValueText": {
     "props": {
@@ -402,7 +376,6 @@
         "description": "Text to display when no value is selected."
       }
     },
-    "element": "HTMLSpanElement",
-    "tag": "span"
+    "element": "HTMLSpanElement"
   }
 }

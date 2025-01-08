@@ -1,4 +1,14 @@
 {
+  "ClearTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
   "Dropzone": {
     "props": {
       "asChild": {
@@ -7,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "HiddenInput": {
     "props": {
@@ -18,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "ItemDeleteTrigger": {
     "props": {
@@ -29,8 +37,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "ItemGroup": {
     "props": {
@@ -40,8 +47,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLUListElement",
-    "tag": "ul"
+    "element": "HTMLUListElement"
   },
   "ItemName": {
     "props": {
@@ -51,8 +57,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemPreviewImage": {
     "props": {
@@ -62,8 +67,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLImageElement",
-    "tag": "img"
+    "element": "HTMLImageElement"
   },
   "ItemPreview": {
     "props": {
@@ -79,8 +83,7 @@
         "description": "The file type to match against. Matches all file types by default."
       }
     },
-    "element": "HTMLImageElement",
-    "tag": "div"
+    "element": "HTMLImageElement"
   },
   "Item": {
     "props": {
@@ -94,8 +97,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLIElement",
-    "tag": "li"
+    "element": "HTMLLIElement"
   },
   "ItemSizeText": {
     "props": {
@@ -105,8 +107,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Label": {
     "props": {
@@ -116,8 +117,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -206,6 +206,12 @@
         "isRequired": false,
         "description": "Function called when the file is rejected"
       },
+      "preventDocumentDrop": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to prevent the drop event on the document"
+      },
       "required": {
         "type": "boolean",
         "isRequired": false,
@@ -217,13 +223,12 @@
         "description": "The localized messages to use."
       },
       "validate": {
-        "type": "(file: File) => FileError[] | null",
+        "type": "(file: File, details: FileValidateDetails) => FileError[] | null",
         "isRequired": false,
         "description": "Function to validate a file"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -237,8 +242,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Trigger": {
     "props": {
@@ -248,7 +252,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   }
 }

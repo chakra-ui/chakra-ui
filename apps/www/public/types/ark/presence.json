@@ -33,7 +33,6 @@
         "defaultValue": "false",
         "description": "Whether to unmount on exit."
       }
-    },
-    "tag": "div"
+    }
   }
 }

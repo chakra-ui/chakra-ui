@@ -1,4 +1,29 @@
 {
+  "DownloadTrigger": {
+    "props": {
+      "fileName": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The name of the file."
+      },
+      "mimeType": {
+        "type": "DataUrlType",
+        "isRequired": true,
+        "description": "The mime type of the image."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "quality": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The quality of the image."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
   "Frame": {
     "props": {
       "asChild": {
@@ -7,8 +32,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGSVGElement",
-    "tag": "svg"
+    "element": "SVGSVGElement"
   },
   "Overlay": {
     "props": {
@@ -18,8 +42,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Pattern": {
     "props": {
@@ -29,8 +52,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGPathElement",
-    "tag": "path"
+    "element": "SVGPathElement"
   },
   "Root": {
     "props": {
@@ -39,15 +61,30 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the qr code when it is first rendered.\nUse when you do not need to control the state of the qr code."
+      },
       "encoding": {
         "type": "QrCodeGenerateOptions",
         "isRequired": false,
         "description": "The qr code encoding options."
       },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
       "ids": {
         "type": "Partial<{ root: string; frame: string }>",
         "isRequired": false,
         "description": "The element ids."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Callback fired when the value changes."
       },
       "value": {
         "type": "string",
@@ -55,8 +92,7 @@
         "description": "The value to encode."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -70,7 +106,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   }
 }

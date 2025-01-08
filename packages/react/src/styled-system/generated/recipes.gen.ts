@@ -1255,6 +1255,23 @@ export type ColorPickerVariantMap = {
   [K in keyof ColorPickerVariant]: Array<ColorPickerVariant[K]>
 }
 
+// QrCode
+
+export type QrCodeSlot = "root" | "frame" | "pattern" | "overlay" | "downloadTrigger"
+
+export interface QrCodeVariant {
+  /** @default "md" */
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+}
+
+export type QrCodeVariantProps = {
+  [K in keyof QrCodeVariant]?: ConditionalValue<QrCodeVariant[K]> | undefined
+}
+
+export type QrCodeVariantMap = {
+  [K in keyof QrCodeVariant]: Array<QrCodeVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1300,6 +1317,7 @@ export interface ConfigSlotRecipes {
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps, StatusVariantMap>
   timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps, TimelineVariantMap>
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
+  qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1347,6 +1365,7 @@ export interface ConfigRecipeSlots {
   status: StatusSlot
   timeline: TimelineSlot
   colorPicker: ColorPickerSlot
+  qrCode: QrCodeSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
