@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Area": {
     "props": {
@@ -26,8 +25,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "AreaThumb": {
     "props": {
@@ -37,8 +35,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ChannelInput": {
     "props": {
@@ -56,8 +53,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "ChannelSliderLabel": {
     "props": {
@@ -67,8 +63,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "ChannelSlider": {
     "props": {
@@ -86,8 +81,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ChannelSliderThumb": {
     "props": {
@@ -97,8 +91,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ChannelSliderTrack": {
     "props": {
@@ -108,8 +101,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ChannelSliderValueText": {
     "props": {
@@ -119,8 +111,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement",
-    "tag": "span"
+    "element": "HTMLSpanElement"
   },
   "Content": {
     "props": {
@@ -130,8 +121,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Control": {
     "props": {
@@ -141,8 +131,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "EyeDropperTrigger": {
     "props": {
@@ -152,8 +141,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "FormatSelect": {
     "props": {
@@ -163,8 +151,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement",
-    "tag": "select"
+    "element": "HTMLSelectElement"
   },
   "FormatTrigger": {
     "props": {
@@ -174,8 +161,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "HiddenInput": {
     "props": {
@@ -185,8 +171,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "Label": {
     "props": {
@@ -196,8 +181,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "Positioner": {
     "props": {
@@ -207,8 +191,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
@@ -229,7 +212,7 @@
         "description": "The initial open state of the color picker when it is first rendered.\nUse when you do not need to control its open state."
       },
       "defaultValue": {
-        "type": "string",
+        "type": "Color",
         "isRequired": false,
         "description": "The initial value of the color picker when it is first rendered.\nUse when you do not need to control the state of the color picker."
       },
@@ -263,6 +246,11 @@
         "type": "() => HTMLElement | null",
         "isRequired": false,
         "description": "The initial focus element when the color picker is opened."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the color picker is invalid"
       },
       "lazyMount": {
         "type": "boolean",
@@ -320,6 +308,12 @@
         "isRequired": false,
         "description": "Whether the color picker is open"
       },
+      "openAutoFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to auto focus the color picker when it is opened"
+      },
       "positioning": {
         "type": "PositioningOptions",
         "isRequired": false,
@@ -347,13 +341,13 @@
         "description": "Whether to unmount on exit."
       },
       "value": {
-        "type": "string",
+        "type": "Color",
         "isRequired": false,
-        "description": "The current value of the color picker."
+        "defaultValue": "#000000",
+        "description": "The current color value"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -394,8 +388,7 @@
         "description": "Whether to unmount on exit."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "SwatchGroup": {
     "props": {
@@ -405,8 +398,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "SwatchIndicator": {
     "props": {
@@ -416,8 +408,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Swatch": {
     "props": {
@@ -437,8 +428,7 @@
         "description": "Whether to include the alpha channel in the color"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "SwatchTrigger": {
     "props": {
@@ -458,8 +448,7 @@
         "description": "Whether the swatch trigger is disabled"
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "TransparencyGrid": {
     "props": {
@@ -473,8 +462,7 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Trigger": {
     "props": {
@@ -484,8 +472,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "ValueSwatch": {
     "props": {
@@ -500,8 +487,7 @@
         "description": "Whether to include the alpha channel in the color"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ValueText": {
     "props": {
@@ -511,8 +497,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "span"
+    "element": "HTMLDivElement"
   },
   "View": {
     "props": {
@@ -526,7 +511,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   }
 }

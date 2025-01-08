@@ -2,7 +2,7 @@
   "Portal": {
     "props": {
       "container": {
-        "type": "RefObject<HTMLElement>",
+        "type": "RefObject<HTMLElement | null>",
         "isRequired": false
       },
       "disabled": {

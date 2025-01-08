@@ -11,8 +11,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -30,8 +29,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "NextTrigger": {
     "props": {
@@ -41,8 +39,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "PrevTrigger": {
     "props": {
@@ -52,8 +49,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Root": {
     "props": {
@@ -117,8 +113,7 @@
         "description": "The type of the trigger element"
       }
     },
-    "element": "HTMLElement",
-    "tag": "nav"
+    "element": "HTMLElement"
   },
   "RootProvider": {
     "props": {
@@ -132,7 +127,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLElement",
-    "tag": "nav"
+    "element": "HTMLElement"
   }
 }

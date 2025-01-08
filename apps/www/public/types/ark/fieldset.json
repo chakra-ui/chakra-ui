@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement",
-    "tag": "span"
+    "element": "HTMLSpanElement"
   },
   "HelperText": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement",
-    "tag": "span"
+    "element": "HTMLSpanElement"
   },
   "Legend": {
     "props": {
@@ -29,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLegendElement",
-    "tag": "legend"
+    "element": "HTMLLegendElement"
   },
   "Root": {
     "props": {
@@ -45,13 +42,12 @@
         "description": "Indicates whether the fieldset is invalid."
       }
     },
-    "element": "HTMLFieldSetElement",
-    "tag": "fieldset"
+    "element": "HTMLFieldSetElement"
   },
   "RootProvider": {
     "props": {
       "value": {
-        "type": "UseFieldsetReturn",
+        "type": "{ refs: { rootRef: RefObject<HTMLFieldSetElement | null>; }; disabled: boolean; invalid: boolean; getRootProps: () => Omit<DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement>, \"ref\">; getLegendProps: () => Omit<...>; getHelperTextProps: () => Omit<...>; getErrorTextProps: () => Omit<....",
         "isRequired": true
       },
       "asChild": {
@@ -60,7 +56,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLFieldSetElement",
-    "tag": "fieldset"
+    "element": "HTMLFieldSetElement"
   }
 }

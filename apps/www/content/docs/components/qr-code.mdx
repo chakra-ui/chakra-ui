@@ -1,0 +1,118 @@
+---
+title: QR Code
+description: A component that generates a QR code based on the provided data.
+links:
+  source: components/qr-code
+  storybook: components-qr-code--basic
+  recipe: qr-code
+  ark: https://ark-ui.com/react/docs/components/qr-code
+---
+
+<ExampleTabs name="qr-code-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`qr-code` snippet
+
+```sh
+npx @chakra-ui/cli snippet add qr-code
+```
+
+The snippet includes a closed component composition for the `QR Code` component.
+
+## Usage
+
+Learn how to use the `QR Code` component in your project. Let's take a look at
+the most basic example:
+
+```tsx
+import { QrCode } from "@/components/ui/qr-code"
+```
+
+```tsx
+<QrCode value="..." />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to set the size of the QR code.
+
+<ExampleTabs name="qr-code-with-sizes" />
+
+### Logo Overlay
+
+Pass the children prop to the `QrCode.Overlay` component to add a logo or
+overlay to the QR code.
+
+<ExampleTabs name="qr-code-with-overlay" />
+
+### Fill
+
+Use the `fill` prop to set the fill color of the QR code.
+
+<ExampleTabs name="qr-code-with-fill" />
+
+### Download
+
+Use the `QrCode.DownloadTrigger` to download the QR code.
+
+> The `fileName` and the `mimeType` props are required.
+
+<ExampleTabs name="qr-code-with-export" />
+
+### Error Correction
+
+In cases where the link is too long or the logo overlay covers a significant
+area, the error correction level can be increased.
+
+Use the `encoding.ecc` or `encoding.boostEcc` property to set the error
+correction level:
+
+- `L`: Allows recovery of up to 7% data loss (default)
+- `M`: Allows recovery of up to 15% data loss
+- `Q`: Allows recovery of up to 25% data loss
+- `H`: Allows recovery of up to 30% data loss
+
+<ExampleTabs name="qr-code-with-error-level" />
+
+### Store
+
+The `RootProvider` component provides a context for the QR code.
+
+It accepts the value of the `useQrCode` hook. You can leverage it to access the
+component state and methods from outside the QR code.
+
+<ExampleTabs name="qr-code-with-store" />
+
+### Input
+
+Here's an example of how to use the `QrCode` component with an `Input`
+component.
+
+<ExampleTabs name="qr-code-with-input" />
+
+### Spinner
+
+Here's an example of how to use the `QrCode` component with a `Spinner`
+component.
+
+<ExampleTabs name="qr-code-with-spinner" />
+
+### Without Snippet
+
+Here's how to setup the QR code without using the snippet.
+
+<ExampleTabs name="qr-code-without-snippet" />
+
+## Props
+
+### Root
+
+<PropTable component="QrCode" part="Root" />
+
+### DownloadTrigger
+
+<PropTable component="QrCode" part="DownloadTrigger" />

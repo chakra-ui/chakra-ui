@@ -7,8 +7,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   },
   "Content": {
     "props": {
@@ -18,8 +17,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Control": {
     "props": {
@@ -29,8 +27,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Input": {
     "props": {
@@ -40,8 +37,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement",
-    "tag": "input"
+    "element": "HTMLInputElement"
   },
   "ItemGroupLabel": {
     "props": {
@@ -51,8 +47,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemGroup": {
     "props": {
@@ -62,8 +57,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemIndicator": {
     "props": {
@@ -73,8 +67,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -94,8 +87,7 @@
         "description": "Whether hovering outside should clear the highlighted state"
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "ItemText": {
     "props": {
@@ -105,8 +97,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "span"
+    "element": "HTMLDivElement"
   },
   "Label": {
     "props": {
@@ -116,8 +107,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement",
-    "tag": "label"
+    "element": "HTMLLabelElement"
   },
   "List": {
     "props": {
@@ -127,8 +117,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Positioner": {
     "props": {
@@ -138,15 +127,14 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement",
-    "tag": "div"
+    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
-      "items": {
-        "type": "T[] | readonly T[]",
+      "collection": {
+        "type": "ListCollection<T>",
         "isRequired": true,
-        "description": "The options of the select"
+        "description": "The collection of items"
       },
       "allowCustomValue": {
         "type": "boolean",
@@ -199,11 +187,6 @@
         "isRequired": false,
         "description": "The associate form of the combobox."
       },
-      "getSelectionValue": {
-        "type": "(details: SelectionValueDetails<T>) => string",
-        "isRequired": false,
-        "description": "Function to get the display value of the selected item"
-      },
       "highlightedValue": {
         "type": "string",
         "isRequired": false,
@@ -240,21 +223,6 @@
         "isRequired": false,
         "description": "Whether the combobox is invalid"
       },
-      "isItemDisabled": {
-        "type": "(item: T) => boolean",
-        "isRequired": false,
-        "description": "Whether the item is disabled"
-      },
-      "itemToString": {
-        "type": "(item: T) => string",
-        "isRequired": false,
-        "description": "The label of the item"
-      },
-      "itemToValue": {
-        "type": "(item: T) => string",
-        "isRequired": false,
-        "description": "The value of the item"
-      },
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
@@ -276,6 +244,11 @@
         "type": "string",
         "isRequired": false,
         "description": "The `name` attribute of the combobox's input. Useful for form submission"
+      },
+      "navigate": {
+        "type": "(details: NavigateDetails) => void",
+        "isRequired": false,
+        "description": "Function to navigate to the selected item"
       },
       "onExitComplete": {
         "type": "() => void",
@@ -392,8 +365,7 @@
         "isRequired": false,
         "description": "The keys of the selected items"
       }
-    },
-    "tag": "div"
+    }
   },
   "RootProvider": {
     "props": {
@@ -433,8 +405,7 @@
         "defaultValue": "false",
         "description": "Whether to unmount on exit."
       }
-    },
-    "tag": "div"
+    }
   },
   "Trigger": {
     "props": {
@@ -449,7 +420,6 @@
         "description": "Whether the trigger is focusable"
       }
     },
-    "element": "HTMLButtonElement",
-    "tag": "button"
+    "element": "HTMLButtonElement"
   }
 }
