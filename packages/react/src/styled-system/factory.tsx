@@ -22,7 +22,7 @@ import { mergeRefs } from "../merge-refs"
 import { compact, cx, interopDefault } from "../utils"
 import type { JsxFactory, StyledFactoryFn } from "./factory.types"
 import { useChakraContext } from "./provider"
-import { useResolvedProps } from "./use-resolved-props"
+import { isHtmlProp, useResolvedProps } from "./use-resolved-props"
 
 const isPropValid = interopDefault(emotionIsPropValid)
 
@@ -139,6 +139,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       cvaRecipe,
       shouldForwardProp,
     )
+
     let className = ""
     let classInterpolations: any[] = [styleProps]
     let mergedProps: any = props
@@ -174,18 +175,24 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     const shouldUseAs = !shouldForwardProp("as")
 
     let FinalTag = (shouldUseAs && props.as) || baseTag
-    let newProps: any = {}
+    let finalProps: any = {}
 
     for (let prop in props) {
       if (shouldUseAs && prop === "as") continue
 
+      if (isHtmlProp(prop)) {
+        const nativeProp = prop.replace("html", "").toLowerCase()
+        finalProps[nativeProp] = props[prop]
+        continue
+      }
+
       if (shouldForwardProp(prop)) {
-        newProps[prop] = props[prop]
+        finalProps[prop] = props[prop]
       }
     }
 
-    newProps.className = className.trim()
-    newProps.ref = ref
+    finalProps.className = className.trim()
+    finalProps.ref = ref
 
     const forwardAsChild =
       options.forwardAsChild || options.forwardProps?.includes("asChild")
@@ -195,45 +202,45 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       FinalTag = child.type
 
       // clean props
-      newProps.children = null
-      Reflect.deleteProperty(newProps, "asChild")
+      finalProps.children = null
+      Reflect.deleteProperty(finalProps, "asChild")
 
-      newProps = mergeProps(newProps, child.props)
-      newProps.ref = mergeRefs(ref, child.ref)
+      finalProps = mergeProps(finalProps, child.props)
+      finalProps.ref = mergeRefs(ref, child.ref)
     }
 
-    if (newProps.as && forwardAsChild) {
-      newProps.as = undefined
+    if (finalProps.as && forwardAsChild) {
+      finalProps.as = undefined
       return (
-        <>
+        <React.Fragment>
           <Insertion
             cache={cache}
             serialized={serialized}
             isStringTag={typeof FinalTag === "string"}
           />
-          <FinalTag asChild {...newProps}>
-            <props.as>{newProps.children}</props.as>
+          <FinalTag asChild {...finalProps}>
+            <props.as>{finalProps.children}</props.as>
           </FinalTag>
-        </>
+        </React.Fragment>
       )
     }
 
     return (
-      <>
+      <React.Fragment>
         <Insertion
           cache={cache}
           serialized={serialized}
           isStringTag={typeof FinalTag === "string"}
         />
-        <FinalTag {...newProps} />
-      </>
+        <FinalTag {...finalProps} />
+      </React.Fragment>
     )
   })
 
   Styled.displayName =
     identifierName !== undefined
       ? identifierName
-      : `Styled(${
+      : `chakra(${
           typeof baseTag === "string"
             ? baseTag
             : baseTag.displayName || baseTag.name || "Component"

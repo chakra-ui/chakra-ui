@@ -2,24 +2,33 @@ import { useMemo } from "react"
 import { splitProps } from "../utils"
 import { useChakraContext } from "./provider"
 
+const htmlProps = new Set([
+  "htmlWidth",
+  "htmlHeight",
+  "htmlSize",
+  "htmlTranslate",
+])
+
+export function isHtmlProp(prop: unknown) {
+  return typeof prop === "string" && htmlProps.has(prop)
+}
+
+interface ResolvedPropsResult {
+  styles: Record<string, any>
+  props: Record<string, any>
+}
+
 export function useResolvedProps(
   inProps: any,
   cvaRecipe: any,
   shouldForwardProps: any,
-) {
+): ResolvedPropsResult {
   const { css, isValidProperty } = useChakraContext()
 
   const { children, ...props } = inProps
 
   const result = useMemo(() => {
-    const [htmlProps, restProps_A] = splitProps(props, [
-      "htmlWidth",
-      "htmlHeight",
-      "htmlSize",
-      "htmlTranslate",
-    ])
-
-    const [forwardedProps, restProps_B] = splitProps(restProps_A, (key) =>
+    const [forwardedProps, restProps_B] = splitProps(props, (key) =>
       shouldForwardProps(key, cvaRecipe.variantKeys),
     )
 
@@ -31,7 +40,6 @@ export function useResolvedProps(
     const [styleProps, elementProps] = splitProps(restProps_C, isValidProperty)
 
     return {
-      htmlProps: getHtmlProps(htmlProps),
       forwardedProps,
       variantProps,
       styleProps,
@@ -61,20 +69,9 @@ export function useResolvedProps(
     props: {
       ...result.forwardedProps,
       ...result.elementProps,
-      ...result.htmlProps,
       children,
     },
   }
-}
-
-const getHtmlProps = (props: any) => {
-  const htmlProps: any = {}
-  for (const key in props) {
-    if (key.startsWith("html")) {
-      htmlProps[key.replace("html", "").toLowerCase()] = props[key]
-    }
-  }
-  return htmlProps
 }
 
 const toArray = (val: any) => {
