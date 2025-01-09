@@ -58,6 +58,7 @@
     "commander": "12.1.0",
     "debug": "^4.3.5",
     "https-proxy-agent": "^7.0.5",
+    "look-it-up": "2.1.0",
     "node-fetch": "3.3.2",
     "package-manager-detector": "0.1.2",
     "prettier": "3.3.3",

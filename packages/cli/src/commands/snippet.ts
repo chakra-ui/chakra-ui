@@ -36,7 +36,11 @@ export const SnippetCommand = new Command("snippet")
         const parsedFlags = addCommandFlagsSchema.parse(flags)
         const { dryRun, force, all, tsx } = parsedFlags
 
-        const ctx = await getProjectContext({ cwd: process.cwd(), tsx })
+        const ctx = await getProjectContext({
+          cwd: parsedFlags.outdir || process.cwd(),
+          tsx,
+        })
+
         debug("context", ctx)
 
         const jsx = !ctx.isTypeScript

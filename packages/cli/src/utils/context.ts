@@ -1,6 +1,7 @@
 import { globbySync } from "globby"
+import { lookItUpSync } from "look-it-up"
 import { existsSync, readFileSync } from "node:fs"
-import { join, resolve } from "node:path"
+import { join } from "node:path"
 
 export interface ProjectScope {
   framework: "next" | "remix" | "vite" | null
@@ -63,8 +64,7 @@ function getComponentsDir(scope: ProjectScope, cwd: string) {
 export async function getProjectContext(opts: ProjectContextOptions) {
   const { cwd = process.cwd(), tsx } = opts
 
-  const isTypeScript =
-    tsx != null ? tsx : existsSync(resolve(cwd, "tsconfig.json"))
+  const isTypeScript = tsx != null ? tsx : !!lookItUpSync("tsconfig.json", cwd)
 
   const scope: ProjectScope = {
     framework: "next",
