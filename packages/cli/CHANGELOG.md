@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.3.0
+
+### Minor Changes
+
+- [`e5ecd91`](https://github.com/chakra-ui/chakra-ui/commit/e5ecd91b6395c4d98f94c6490686b79a01a6075f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `--tsx` flag in the `snippet add` command to allow explicitly specifying
+  tsx/jsx file generation.
+
 ## 3.2.5
 
 ## 3.2.4
