@@ -15,6 +15,7 @@ export interface ProjectContext {
 
 export interface ProjectContextOptions {
   cwd?: string
+  tsx?: boolean
 }
 
 function getFramework(files: string[], cwd: string) {
@@ -60,8 +61,10 @@ function getComponentsDir(scope: ProjectScope, cwd: string) {
 }
 
 export async function getProjectContext(opts: ProjectContextOptions) {
-  const { cwd = process.cwd() } = opts
-  const isTypeScript = existsSync(resolve(cwd, "tsconfig.json"))
+  const { cwd = process.cwd(), tsx } = opts
+
+  const isTypeScript =
+    tsx != null ? tsx : existsSync(resolve(cwd, "tsconfig.json"))
 
   const scope: ProjectScope = {
     framework: "next",

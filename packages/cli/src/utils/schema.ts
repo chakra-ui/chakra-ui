@@ -39,6 +39,7 @@ export const addCommandFlagsSchema = z.object({
   dryRun: z.boolean().optional(),
   outdir: z.string().optional(),
   all: z.boolean().optional(),
+  tsx: z.boolean().optional(),
 })
 
 export interface AddCommandFlags

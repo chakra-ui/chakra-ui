@@ -31,11 +31,12 @@ export const SnippetCommand = new Command("snippet")
       .option("--outdir <dir>", "Output directory to write the snippets")
       .option("--all", "Add all snippets")
       .option("-f, --force", "Overwrite existing files")
+      .option("--tsx", "Convert to TSX")
       .action(async (selectedComponents: string[], flags: unknown) => {
         const parsedFlags = addCommandFlagsSchema.parse(flags)
-        const { dryRun, force, all } = parsedFlags
+        const { dryRun, force, all, tsx } = parsedFlags
 
-        const ctx = await getProjectContext({ cwd: process.cwd() })
+        const ctx = await getProjectContext({ cwd: process.cwd(), tsx })
         debug("context", ctx)
 
         const jsx = !ctx.isTypeScript
