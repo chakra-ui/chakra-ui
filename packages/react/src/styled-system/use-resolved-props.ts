@@ -41,10 +41,16 @@ export function useResolvedProps(
 
   const { css: cssStyles, ...propStyles } = result.styleProps
 
-  const cvaStyles = useMemo(
-    () => cvaRecipe(result.variantProps),
-    [cvaRecipe, result.variantProps],
-  )
+  const cvaStyles = useMemo(() => {
+    const variantProps = { ...result.variantProps }
+    if (!cvaRecipe.variantKeys.includes("colorPalette")) {
+      variantProps.colorPalette = props.colorPalette
+    }
+    if (!cvaRecipe.variantKeys.includes("orientation")) {
+      variantProps.orientation = props.orientation
+    }
+    return cvaRecipe(variantProps)
+  }, [cvaRecipe, result.variantProps, props.colorPalette, props.orientation])
 
   const styles = useMemo((): any => {
     return css(cvaStyles, ...toArray(cssStyles), propStyles)
