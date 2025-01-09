@@ -1,0 +1,87 @@
+---
+title: Chakra 3.3
+description: "Introducing QR Code component, and new examples"
+type: release
+version: "3.3"
+authors: ["sage"]
+publishedAt: "2025-01-09"
+---
+
+We're excited to announce the release of Chakra UI v3.3.0! This release brings
+several exciting new features and improvements to enhance your development
+experience.
+
+## QR Code
+
+The new `QRCode` component allows users to generate QR codes for various use
+cases. This component is perfect for applications that need to generate QR codes
+for sharing information.
+
+<Example name="qr-code-basic" />
+
+## New Examples
+
+### File Upload with Paste Event
+
+We showcase how to handle files pasted from the clipboard using the `FileUpload`
+component.
+
+<Example name="file-upload-with-paste-event" />
+
+### Menu Detached
+
+We showcase how to hide menu content when it's detached from its trigger using
+the `hideWhenDetached` positioning option.
+
+<Example name="menu-with-hide-when-detached" />
+
+## CLI Improvements
+
+We've enhanced our CLI with more flexible snippet installation options:
+
+### New --tsx Flag
+
+By default, the CLI detects if your project is a TypeScript project and installs
+the appropriate jsx or tsx snippets.
+
+With this flag, you can explicitly install the jsx or tsx snippets.
+
+```bash
+npx @chakra-ui/cli@latest snippet add [...components] --tsx
+```
+
+## Bug Fixes
+
+This release also includes important bug fixes:
+
+- **Collapsible**: Fixed a bug where the opening animation replayed when an open
+  collapsible was re-rendered.
+
+- **Dialog, Popover**: Fixed an issue causing dialogs or popovers to close if
+  the focused element was removed from the DOM.
+
+- **FileUpload**: Fixed a bug causing the hidden input to be out of sync with
+  accepted files.
+
+- **Menu, Popover**: Fixed inconsistent interaction detection outside the
+  component when the trigger was inside a scrollable container.
+
+- **Pagination**: Corrected an issue where the page range returned an incorrect
+  `end` value when `pageSize` exceeded `count`.
+
+- **Image**: Fix issue where `htmlWidth` and `htmlHeight` doesn't work in
+  `Image` or `chakra.image` elements.
+
+- **System**
+
+  - Improve typesafety for layer styles to support common shorthands like `bg`,
+    `bgColor`, `bgImage`.
+  - Fix compound variant matching not working with `colorPalette` prop.
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
