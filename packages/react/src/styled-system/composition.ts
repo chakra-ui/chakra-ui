@@ -71,8 +71,11 @@ type Radius =
 
 type LayerStyleProperty =
   | "background"
+  | "bg"
   | "backgroundColor"
+  | "bgColor"
   | "backgroundImage"
+  | "bgImage"
   | "content"
   | "borderRadius"
   | "border"
@@ -102,6 +105,7 @@ type LayerStyleProperty =
   | `border${Placement}Style`
   | "padding"
   | "position"
+  | "zIndex"
   | `padding${Placement}`
   | "height"
   | "width"
@@ -110,6 +114,7 @@ type LayerStyleProperty =
   | "maxHeight"
   | "maxWidth"
   | `margin${Placement}`
+  | "inset"
   | `inset${LogicalPlacement}`
   | Lowercase<PhysicalPlacement>
   | "outline"
