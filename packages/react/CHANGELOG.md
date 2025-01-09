@@ -1,5 +1,75 @@
 # @chakra-ui/react
 
+## 3.3.0
+
+### Minor Changes
+
+- [#9437](https://github.com/chakra-ui/chakra-ui/pull/9437)
+  [`791bcec`](https://github.com/chakra-ui/chakra-ui/commit/791bcec921913cedfe2316b21ed3edfd5d86d07b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+
+  - **Clipboard**: Introduced `Clipboard.ValueText` to display clipboard
+    content.
+  - **FileUpload**:
+    - Added `preventDropOnDocument` to block file drops on the document when the
+      file upload component is active.
+    - Added `setClipboardFiles` to the API for setting files from clipboard
+      data.
+  - **Progress**: Added support for`onValueChange` and `defaultValue`.
+  - **Tabs, Menu, Combobox**: Added `navigate` property for custom router
+    navigation when selections render as links.
+  - **QrCode**:
+    - Added support for `onValueChange` and `defaultValue`.
+    - Added `QrCode.DownloadTrigger` to enable QR code image downloads.
+
+  ### Fixed
+
+  - **Collapsible**: Fixed a bug where the opening animation replayed when an
+    open collapsible was re-rendered.
+  - **Dialog, Popover**: Resolved an issue causing dialogs or popovers to close
+    if the focused element was removed from the DOM.
+  - **FileUpload**: Fixed a bug causing the hidden input to desync from accepted
+    files.
+  - **Menu, Popover**: Fixed inconsistent interaction detection outside the
+    component when the trigger was inside a scrollable container.
+  - **Pagination**: Corrected an issue where the page range returned an
+    incorrect `end` value when `pageSize` exceeded `count`.
+  - **QRCode**: Fixed `getDataUrl` to generate a properly sized QR code.
+
+- [#9437](https://github.com/chakra-ui/chakra-ui/pull/9437)
+  [`791bcec`](https://github.com/chakra-ui/chakra-ui/commit/791bcec921913cedfe2316b21ed3edfd5d86d07b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new QRCode
+  component for converting text and links to QR codes.
+
+  ```tsx
+  import { QrCode } from "@chakra-ui/react"
+
+  export const QrCodeWithoutSnippet = () => {
+    return (
+      <QrCode.Root value="..." size="md">
+        <QrCode.Frame>
+          <QrCode.Pattern />
+        </QrCode.Frame>
+      </QrCode.Root>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [`d3f1c19`](https://github.com/chakra-ui/chakra-ui/commit/d3f1c1918d3bb0bb98260f2a3623776f0f392f99)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `htmlWidth` and `htmlHeight` doesn't work in `Image` or `chakra.image`
+  elements.
+
+- [`f32cb4a`](https://github.com/chakra-ui/chakra-ui/commit/f32cb4a7e2240bfd9879b3b4b093d76020f766ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve typesafety
+  for layer styles to support common shorthands like `bg`, `bgColor`, `bgImage`
+
+- [`b11587b`](https://github.com/chakra-ui/chakra-ui/commit/b11587b8b93fd55d30aeac17a7c2413ddc72395d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix compound
+  variant matching not working with `colorPalette` prop
+
 ## 3.2.5
 
 ### Patch Changes
