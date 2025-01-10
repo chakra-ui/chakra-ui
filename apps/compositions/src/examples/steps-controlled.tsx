@@ -1,3 +1,5 @@
+"use client"
+
 import { Group } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
@@ -9,10 +11,13 @@ import {
   StepsPrevTrigger,
   StepsRoot,
 } from "compositions/ui/steps"
+import { useState } from "react"
 
-export const StepsBasic = () => {
+export const StepsControlled = () => {
+  const [step, setStep] = useState(1)
+
   return (
-    <StepsRoot defaultStep={1} count={3}>
+    <StepsRoot step={step} onStepChange={(e) => setStep(e.step)} count={3}>
       <StepsList>
         <StepsItem index={0} title="Step 1" />
         <StepsItem index={1} title="Step 2" />

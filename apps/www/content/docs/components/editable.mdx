@@ -25,11 +25,7 @@ import { Editable } from "@chakra-ui/react"
 
 ## Examples
 
-### Controlled
-
-<ExampleTabs name="editable-controlled" />
-
-### With Double Click
+### Double Click
 
 Use the `activationMode` prop to make the content editable when users double
 click.
@@ -42,7 +38,7 @@ Use the `disabled` prop to disable the editable component.
 
 <ExampleTabs name="editable-disabled" />
 
-### TextArea
+### Textarea
 
 You can make a text area editable.
 
@@ -54,6 +50,22 @@ Add controls such as "edit", "cancel" and "submit" to `Editable` for better user
 experience.
 
 <ExampleTabs name="editable-with-controls" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the editable component.
+
+<ExampleTabs name="editable-controlled" />
+
+### Store
+
+An alternative way to control the editable component is to use the
+`RootProvider` component and the `useEditable` store hook.
+
+This way you can access the editable state and methods from outside the
+editable.
+
+<ExampleTabs name="editable-with-store" />
 
 ## Props
 

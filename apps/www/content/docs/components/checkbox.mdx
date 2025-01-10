@@ -40,13 +40,6 @@ Use the `variant` prop to change the visual style of the checkbox.
 
 <ExampleTabs name="checkbox-with-variants" />
 
-### Controlled
-
-Use the `checked` and `onCheckedChange` props to control the state of the
-checkbox.
-
-<ExampleTabs name="checkbox-controlled" />
-
 ### Colors
 
 Use the `colorPalette` prop to change the color of the checkbox.
@@ -64,6 +57,23 @@ Use the `size` prop to change the size of the checkbox.
 Use the `disabled` or `invalid` prop to change the visual state of the checkbox.
 
 <ExampleTabs name="checkbox-with-states" />
+
+### Controlled
+
+Use the `checked` and `onCheckedChange` props to control the state of the
+checkbox.
+
+<ExampleTabs name="checkbox-controlled" />
+
+### Store
+
+An alternative way to control the checkbox is to use the `RootProvider`
+component and the `useCheckbox` store hook.
+
+This way you can access the checkbox state and methods from outside the
+checkbox.
+
+<ExampleTabs name="checkbox-with-store" />
 
 ### Hook Form
 

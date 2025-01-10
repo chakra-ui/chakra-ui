@@ -26,6 +26,7 @@ export { TooltipWithInteractive as Interactive } from "compositions/examples/too
 export { TooltipWithMenuItem as WithMenuItem } from "compositions/examples/tooltip-with-menu-item"
 export { TooltipWithOffset as Offset } from "compositions/examples/tooltip-with-offset"
 export { TooltipWithPlacement as Placement } from "compositions/examples/tooltip-with-placement"
+export { TooltipWithStore as WithStore } from "compositions/examples/tooltip-with-store"
 export { TooltipWithSwitch as WithSwitch } from "compositions/examples/tooltip-with-switch"
 export { TooltipWithTab as WithTab } from "compositions/examples/tooltip-with-tab"
 export { TooltipWithoutSnippet as WithoutSnippet } from "compositions/examples/tooltip-without-snippet"

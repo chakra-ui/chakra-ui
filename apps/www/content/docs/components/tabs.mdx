@@ -67,6 +67,15 @@ Use the `value` and `onValueChange` prop to control the active tab.
 
 <ExampleTabs name="tabs-controlled" />
 
+### Store
+
+An alternative way to control the tabs is to use the `RootProvider` component
+and the `useTabs` store hook.
+
+This way you can access the tabs state and methods from outside the tabs.
+
+<ExampleTabs name="tabs-with-store" />
+
 ### Disabled Tab
 
 Set the `disabled` prop on the `Tabs.Trigger` component to disable a tab.

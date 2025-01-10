@@ -73,6 +73,22 @@ Use the `orientation` prop to change the orientation of the steps component.
 
 <ExampleTabs name="steps-vertical" />
 
+### Controlled
+
+Use the `step` and `onStepChange` props to control the current step of the steps
+component.
+
+<ExampleTabs name="steps-controlled" />
+
+### Store
+
+An alternative way to control the steps is to use the `RootProvider` component
+and the `useSteps` store hook.
+
+This way you can access the steps state and methods from outside the steps.
+
+<ExampleTabs name="steps-with-store" />
+
 ### Icon
 
 Pass the `icon` prop to the `StepsItem` component to display an icon.
