@@ -108,6 +108,16 @@ element of your application.
 </Box>
 ```
 
+The same applied to forcing light mode, use the `light` className.
+
+```tsx /className="light"/
+<Box bg="white" className="light">
+  <Box bg="bg.subtle">
+    <Text>Hello</Text>
+  </Box>
+</Box>
+```
+
 ### Page specific dark mode
 
 Use the `ColorModeProvider` component to set the dark mode for a page.
