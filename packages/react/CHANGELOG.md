@@ -1,5 +1,19 @@
 # @chakra-ui/react
 
+## 3.3.1
+
+### Patch Changes
+
+- [`0fc040a`](https://github.com/chakra-ui/chakra-ui/commit/0fc040adedce9239bb00d7001e0cffc861ff4ea0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **HoverCard,
+  Tooltip**: Resolved an issue where the controlled open state could become
+  inconsistent during the `opening` or `closing` phases.
+
+- [`1439548`](https://github.com/chakra-ui/chakra-ui/commit/1439548c7f72b02133e3dba7211879c12b698303)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `useRecipe` and `useSlotRecipe` returns `never` when key does not match
+  built-in recipe.
+
 ## 3.3.0
 
 ### Minor Changes
