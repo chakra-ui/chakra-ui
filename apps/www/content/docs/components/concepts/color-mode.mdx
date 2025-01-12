@@ -1,0 +1,72 @@
+---
+title: Color Mode
+description: Adding support for light and dark color mode
+---
+
+Chakra UI relies on [`next-themes`](https://github.com/pacocoursey/next-themes)
+to add support for light and dark color mode.
+
+## Setup
+
+In most cases, you have it installed and set up by the CLI in the `Provider`
+component. If not, you can install it manually.
+
+```bash
+npx @chakra-ui/cli snippet add provider
+```
+
+The snippet includes hooks and components that make it feel similar to Chakra
+v2.
+
+```jsx
+import {
+  ColorModeButton,
+  useColorMode,
+  useColorModeValue,
+} from "@/components/ui/color-mode"
+```
+
+## `useColorMode`
+
+The `useColorMode` hook returns the current color mode and a function to toggle
+the color mode.
+
+<ExampleTabs name="color-mode-basic" />
+
+Calling `toggleColorMode` or `setColorMode` anywhere in your app tree toggles
+the color mode from light or dark and vice versa.
+
+## `useColorModeValue`
+
+The `useColorModeValue` hook returns a value based on the current color mode.
+
+Here's the signature:
+
+```tsx
+const result = useColorModeValue("<light-mode-value>", "<dark-mode-value>")
+```
+
+The value returned will be the value of the light mode if the color mode is
+`light`, and the value of the dark mode if the color mode is `dark`.
+
+<ExampleTabs name="color-mode-value" />
+
+## Hydration Mismatch
+
+When using `useColorModeValue` or `useColorMode` in SSR, you may notice a
+hydration mismatch when the page is mounted. This is because the color mode
+value is computed on the server side.
+
+To avoid this, use the `ClientOnly` component to wrap the component that uses
+`useColorModeValue` and render a skeleton until mounted on the client side.
+
+<ExampleTabs name="color-mode-value-fallback" />
+
+## ColorModeButton
+
+The color mode snippet comes with the `ColorModeButton` component built-in, you
+can import it to render an icon button that toggles the color mode.
+
+It renders a skeleton on the server side and the icon on the client side.
+
+<ExampleTabs name="color-mode-icon-button" />
