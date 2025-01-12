@@ -14,6 +14,7 @@ export default {
 
 export { TooltipBasic as Basic } from "compositions/examples/tooltip-basic"
 export { TooltipControlled as Controlled } from "compositions/examples/tooltip-controlled"
+export { TooltipControlledMultiple as ControlledMultiple } from "compositions/examples/tooltip-controlled-multiple"
 export { TooltipMultiple as Multiple } from "compositions/examples/tooltip-multiple"
 export { TooltipWithArrow as Arrow } from "compositions/examples/tooltip-with-arrow"
 export { TooltipWithAvatar as WithAvatar } from "compositions/examples/tooltip-with-avatar"
