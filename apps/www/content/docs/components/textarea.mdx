@@ -64,6 +64,13 @@ Use the `resize` prop to control the resize behavior of the textarea.
 
 <ExampleTabs name="textarea-with-resize" />
 
+To limit the maximum height (or rows) of the textarea, we recommend using the
+`maxHeight` prop and setting the value to a `lh` unit.
+
+```tsx
+<Textarea autoresize maxH="5lh" />
+```
+
 ### Autoresize
 
 Use the `autoresize` prop to make the textarea autoresize vertically as you
