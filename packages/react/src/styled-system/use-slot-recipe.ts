@@ -28,7 +28,7 @@ export function useSlotRecipe<
   options: Options,
 ): Options["key"] extends keyof ConfigSlotRecipes
   ? ConfigSlotRecipes[Options["key"]]
-  : never
+  : SystemSlotRecipeFn<string, {}, {}>
 
 export function useSlotRecipe<Options extends { recipe: SlotRecipeConfig }>(
   options: Options,

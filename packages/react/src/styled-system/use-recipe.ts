@@ -23,7 +23,7 @@ export function useRecipe<
   options: Options,
 ): Options["key"] extends keyof ConfigRecipes
   ? ConfigRecipes[Options["key"]]
-  : never
+  : SystemRecipeFn<{}, {}>
 
 export function useRecipe<Options extends { recipe: RecipeDefinition }>(
   options: Options,
