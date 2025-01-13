@@ -1,9 +1,9 @@
 export {
   ComboboxClearTrigger,
-  ComboboxInput,
   ComboboxContent,
   ComboboxContext,
   ComboboxControl,
+  ComboboxInput,
   ComboboxItem,
   ComboboxItemContext,
   ComboboxItemGroup,
@@ -20,11 +20,12 @@ export {
 } from "./combobox"
 
 export type {
-  ComboboxInputProps,
   ComboboxClearTriggerProps,
   ComboboxContentProps,
   ComboboxControlProps,
   ComboboxHighlightChangeDetails,
+  ComboboxInputProps,
+  ComboboxInputValueChangeDetails,
   ComboboxItemGroupLabelProps,
   ComboboxItemGroupProps,
   ComboboxItemIndicatorProps,

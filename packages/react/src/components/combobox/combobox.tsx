@@ -217,3 +217,6 @@ export interface ComboboxValueChangeDetails<T extends CollectionItem = any>
 
 export interface ComboboxOpenChangeDetails
   extends ArkCombobox.OpenChangeDetails {}
+
+export interface ComboboxInputValueChangeDetails
+  extends ArkCombobox.InputValueChangeDetails {}

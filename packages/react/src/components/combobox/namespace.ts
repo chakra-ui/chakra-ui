@@ -33,5 +33,6 @@ export type {
   ComboboxTriggerProps as TriggerProps,
   ComboboxOpenChangeDetails as OpenChangeDetails,
   ComboboxValueChangeDetails as ValueChangeDetails,
+  ComboboxInputValueChangeDetails as InputValueChangeDetails,
   ComboboxRootComponent as RootComponent,
 } from "./combobox"
