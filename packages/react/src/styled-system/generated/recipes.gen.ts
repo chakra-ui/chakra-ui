@@ -983,6 +983,39 @@ export type SelectVariantMap = {
   [K in keyof SelectVariant]: Array<SelectVariant[K]>
 }
 
+// Combobox
+
+export type ComboboxSlot =
+  | "root"
+  | "clearTrigger"
+  | "content"
+  | "control"
+  | "input"
+  | "item"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "itemIndicator"
+  | "itemText"
+  | "label"
+  | "list"
+  | "positioner"
+  | "trigger"
+
+export interface ComboboxVariant {
+  /** @default "outline" */
+  variant?: "outline" | "subtle"
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
+export type ComboboxVariantProps = {
+  [K in keyof ComboboxVariant]?: ConditionalValue<ComboboxVariant[K]> | undefined
+}
+
+export type ComboboxVariantMap = {
+  [K in keyof ComboboxVariant]: Array<ComboboxVariant[K]>
+}
+
 // Slider
 
 export type SliderSlot =
@@ -1305,6 +1338,7 @@ export interface ConfigSlotRecipes {
   ratingGroup: SystemSlotRecipeFn<RatingGroupSlot, RatingGroupVariantProps, RatingGroupVariantMap>
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps, SegmentGroupVariantMap>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
+  combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
   steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps, StepsVariantMap>
@@ -1353,6 +1387,7 @@ export interface ConfigRecipeSlots {
   ratingGroup: RatingGroupSlot
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
+  combobox: ComboboxSlot
   slider: SliderSlot
   stat: StatSlot
   steps: StepsSlot

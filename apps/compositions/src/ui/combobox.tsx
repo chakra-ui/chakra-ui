@@ -1,5 +1,3 @@
-"use client"
-
 import { Combobox as ChakraCombobox, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button.tsx"
 import * as React from "react"
@@ -13,7 +11,7 @@ export const ComboboxRoot = React.forwardRef<
       {...props}
       ref={ref}
       positioning={{ sameWidth: true, ...props.positioning }}
-    ></ChakraCombobox.Root>
+    />
   )
 }) as ChakraCombobox.RootComponent
 
@@ -73,7 +71,7 @@ export const ComboboxItem = React.forwardRef<
 >(function ComboboxItem(props, ref) {
   const { item, children, ...rest } = props
   return (
-    <ChakraCombobox.Item key={item.value} item={item} {...rest} ref={ref}>
+    <ChakraCombobox.Item item={item} {...rest} ref={ref}>
       {children}
       <ChakraCombobox.ItemIndicator />
     </ChakraCombobox.Item>
