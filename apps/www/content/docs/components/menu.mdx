@@ -79,6 +79,25 @@ Pass the `asChild` prop to the `MenuItem` component to render a link.
 
 <ExampleTabs name="menu-with-links" />
 
+When using custom router links, you need to set the `navigate` prop on the
+`MenuRoot` component.
+
+```tsx
+"use client"
+
+import { Menu } from "@/components/ui/menu"
+import { useNavigate } from "react-router-dom"
+
+const Demo = () => {
+  const navigate = useNavigate()
+  return (
+    <MenuRoot navigate={({ value, node }) => navigate(`/${value}`)}>
+      {/* ... */}
+    </MenuRoot>
+  )
+}
+```
+
 ### With Radio
 
 Here's an example of how to create a menu with radio.
