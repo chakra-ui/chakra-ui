@@ -2,4 +2,4 @@
 "@chakra-ui/react": patch
 ---
 
-Use the same semantic token for select `_highlighted` state
+**Menu, Select:** Use the same semantic token for select `_highlighted` state
