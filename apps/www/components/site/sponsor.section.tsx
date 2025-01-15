@@ -19,6 +19,7 @@ import {
   Patreon,
   SilverSponsorIcon,
 } from "./icons"
+import { SponsorImage } from "./sponsor-image"
 import { BlitzHeading, HighlightHeading } from "./typography"
 
 const CallToActions = () => (
@@ -82,11 +83,10 @@ const SponsorGroup = (props: {
               target="_blank"
               rel="noopener"
             >
-              <Image
-                src={sponsor.image}
-                alt={sponsor.name}
-                boxSize={size}
-                rounded="md"
+              <SponsorImage
+                image={sponsor.image}
+                name={sponsor.name}
+                size={size}
               />
             </a>
           </Center>
