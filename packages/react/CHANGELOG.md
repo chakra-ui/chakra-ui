@@ -1,5 +1,20 @@
 # @chakra-ui/react
 
+## 3.3.2
+
+### Patch Changes
+
+- [#9470](https://github.com/chakra-ui/chakra-ui/pull/9470)
+  [`4bd9f8d`](https://github.com/chakra-ui/chakra-ui/commit/4bd9f8d6db8a7f2174ce184e4a921f6b0a6b86f6)
+  Thanks [@lcswillems](https://github.com/lcswillems)! - - **Menu, Select:** Use
+  the same semantic token for select `_highlighted` state
+
+  - **Toast:** Fix issue where toast close trigger was not visible
+
+- [`e506044`](https://github.com/chakra-ui/chakra-ui/commit/e506044a175a241b43c1b23b612e322b42de15a9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  factory shows a warning React 19 due to accessing `child.ref`
+
 ## 3.3.1
 
 ### Patch Changes
