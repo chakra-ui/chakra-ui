@@ -68,6 +68,17 @@ Use the `Group` component to group buttons together
 
 <ExampleTabs name="button-with-group" />
 
+### Ref
+
+Here's how to access the underlying element reference
+
+```tsx
+const Demo = () => {
+  const ref = useRef<HTMLButtonElement | null>(null)
+  return <Button ref={ref}>Click me</Button>
+}
+```
+
 ## Props
 
 <PropTable component="Button" part="Button" />

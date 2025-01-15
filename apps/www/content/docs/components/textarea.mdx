@@ -78,6 +78,17 @@ type.
 
 <ExampleTabs name="textarea-with-autoresize" />
 
+### Ref
+
+Here's how to access the underlying element reference
+
+```tsx
+const Demo = () => {
+  const ref = useRef<HTMLTextAreaElement | null>(null)
+  return <Textarea ref={ref} />
+}
+```
+
 ## Props
 
 <PropTable component="Textarea" part="Textarea" />

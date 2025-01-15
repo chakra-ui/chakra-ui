@@ -42,3 +42,14 @@ Use the `truncate` prop to truncate the text after a single line.
 Use the `lineClamp` prop to truncate the text after a certain number of lines.
 
 <ExampleTabs name="text-with-line-clamp" />
+
+### Ref
+
+Here's how to access the underlying element reference
+
+```tsx
+const Demo = () => {
+  const ref = useRef<HTMLParagraphElement | null>(null)
+  return <Text ref={ref}>This is the text component</Text>
+}
+```

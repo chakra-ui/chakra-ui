@@ -73,6 +73,24 @@ Here is an example of how to use the `NativeSelect` component with
 
 <ExampleTabs name="native-select-with-hook-form" />
 
+### Ref
+
+Here's how to access the underlying element reference
+
+```tsx
+const Demo = () => {
+  const ref = useRef<HTMLSelectElement | null>(null)
+  return (
+    <NativeSelectRoot>
+      <NativeSelectField ref={ref}>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </NativeSelectField>
+    </NativeSelectRoot>
+  )
+}
+```
+
 ## Props
 
 ### Root
