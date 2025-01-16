@@ -228,6 +228,29 @@ defineStyle({
 Due to the simplification of the `as` prop, we no longer provide a custom
 `forwardRef`. Prefer to use `forwardRef` from React directly.
 
+Before:
+
+```tsx {3}
+import { Button as ChakraButton, forwardRef } from "@chakra-ui/react"
+
+const Button = forwardRef<ButtonProps, "button">(function Button(props, ref) {
+  return <ChakraButton ref={ref} {...props} />
+})
+```
+
+After:
+
+```tsx {2, 4}
+import { Button as ChakraButton } from "@chakra-ui/react"
+import { forwardRef } from "react"
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(props, ref) {
+    return <ChakraButton ref={ref} {...props} />
+  },
+)
+```
+
 ### Icons
 
 Removed `@chakra-ui/icons` package. Prefer to use `lucide-react` or
