@@ -4,7 +4,7 @@ import type {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import type { Interpolation } from "@emotion/react"
-import { ElementType } from "react"
+import { ElementType, type JSX } from "react"
 
 export interface ChakraProps extends SystemProps {
   /**

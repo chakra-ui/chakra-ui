@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { Fragment } from "react"
+import { Fragment, type JSX } from "react"
 import { Chunk } from "./highlight-words"
 import { Mark } from "./mark"
 import { useHighlight } from "./use-highlight"
