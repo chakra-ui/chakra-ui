@@ -1,5 +1,31 @@
 # @chakra-ui/react
 
+## 3.3.2
+
+### Patch Changes
+
+- [`855bb29`](https://github.com/chakra-ui/chakra-ui/commit/855bb290d3e89533e43833abfa21a6863d367953)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Icon:**
+  Refactor icon recipe `size=inherit` to allow for composition with button
+
+  - **Snippet / Tooltip:** Set `portalled` to `true` by default
+
+- [#9470](https://github.com/chakra-ui/chakra-ui/pull/9470)
+  [`4bd9f8d`](https://github.com/chakra-ui/chakra-ui/commit/4bd9f8d6db8a7f2174ce184e4a921f6b0a6b86f6)
+  Thanks [@lcswillems](https://github.com/lcswillems)! - - **Menu, Select:** Use
+  the same semantic token for select `_highlighted` state
+
+  - **Toast:** Fix issue where toast close trigger was not visible
+
+- [`e4fe984`](https://github.com/chakra-ui/chakra-ui/commit/e4fe984a14d2538a7913db85eb486491b5d8a9c9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  using `<Icon as={...} />` throws an error, forcing users to use the `asChild`
+  approach
+
+- [`e506044`](https://github.com/chakra-ui/chakra-ui/commit/e506044a175a241b43c1b23b612e322b42de15a9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  factory shows a warning React 19 due to accessing `child.ref`
+
 ## 3.3.1
 
 ### Patch Changes
