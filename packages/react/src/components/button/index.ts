@@ -1,4 +1,4 @@
-export { Button } from "./button"
+export { Button, ButtonPropsProvider } from "./button"
 export type { ButtonProps } from "./button"
 
 export { IconButton } from "./icon-button"

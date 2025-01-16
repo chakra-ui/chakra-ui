@@ -9,7 +9,7 @@ import {
 } from "../../styled-system"
 import { cx } from "../../utils"
 
-const { useRecipeResult } = createRecipeContext({ key: "icon" })
+const { useRecipeResult, PropsProvider } = createRecipeContext({ key: "icon" })
 
 export interface IconProps
   extends HTMLChakraProps<"svg">,
@@ -39,3 +39,5 @@ export const Icon = React.forwardRef<SVGSVGElement, IconProps>(
     )
   },
 )
+
+export const IconPropsProvider = PropsProvider as React.Provider<IconProps>
