@@ -80,7 +80,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       borderRadius: "l1",
       _highlighted: {
-        bg: "bg.emphasized",
+        bg: "bg.emphasized/60",
       },
       _disabled: {
         pointerEvents: "none",
