@@ -673,3 +673,20 @@ After
 
 - Removed `icon` prop in favor of rendering the `children` prop directly
 - Removed `isRounded` in favor of using the `borderRadius=full` prop
+
+### Spinner
+
+- Change the `thickness` prop to `borderWidth`
+- Change the `speed` prop to `animationDuration`
+
+Before
+
+```tsx
+<Spinner thickness="2px" speed="0.5s" />
+```
+
+After
+
+```tsx
+<Spinner borderWidth="2px" animationDuration="0.5s" />
+```
