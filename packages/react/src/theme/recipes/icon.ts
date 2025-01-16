@@ -13,12 +13,12 @@ export const iconRecipe = defineRecipe({
   variants: {
     size: {
       inherit: {},
-      xs: { boxSize: "sizes.3" },
-      sm: { boxSize: "sizes.4" },
-      md: { boxSize: "sizes.5" },
-      lg: { boxSize: "sizes.6" },
-      xl: { boxSize: "sizes.7" },
-      "2xl": { boxSize: "sizes.8" },
+      xs: { boxSize: "3" },
+      sm: { boxSize: "4" },
+      md: { boxSize: "5" },
+      lg: { boxSize: "6" },
+      xl: { boxSize: "7" },
+      "2xl": { boxSize: "8" },
     },
   },
 
