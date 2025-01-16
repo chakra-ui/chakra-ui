@@ -8,19 +8,18 @@ export const iconRecipe = defineRecipe({
     flexShrink: "0",
     color: "currentcolor",
     verticalAlign: "middle",
-    width: "var(--icon-size)",
-    height: "var(--icon-size)",
   },
 
   variants: {
     size: {
-      inherit: { "--icon-size": "1em" },
-      xs: { "--icon-size": "sizes.3" },
-      sm: { "--icon-size": "sizes.4" },
-      md: { "--icon-size": "sizes.5" },
-      lg: { "--icon-size": "sizes.6" },
-      xl: { "--icon-size": "sizes.7" },
-      "2xl": { "--icon-size": "sizes.8" },
+      none: {},
+      inherit: { boxSize: "1em" },
+      xs: { boxSize: "sizes.3" },
+      sm: { boxSize: "sizes.4" },
+      md: { boxSize: "sizes.5" },
+      lg: { boxSize: "sizes.6" },
+      xl: { boxSize: "sizes.7" },
+      "2xl": { boxSize: "sizes.8" },
     },
   },
 

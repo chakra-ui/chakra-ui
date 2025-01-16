@@ -214,7 +214,7 @@ export type TextareaVariantMap = {
 
 export interface IconVariant {
   /** @default "inherit" */
-  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "none" | "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 }
 
 export type IconVariantProps = {
