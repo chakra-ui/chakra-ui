@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.3.3
+
+### Patch Changes
+
+- [`9c55f21`](https://github.com/chakra-ui/chakra-ui/commit/9c55f2138fdb7cfe7422223f11dc4153421c654b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  icon sizes doesn't work anymore
+
 ## 3.3.2
 
 ### Patch Changes
