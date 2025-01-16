@@ -1,3 +1,5 @@
+"use client"
+
 import { DialogContext } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
