@@ -11,6 +11,7 @@ import {
   motion,
 } from "framer-motion"
 import { Children, cloneElement, isValidElement } from "react"
+import { getElementRef } from "../element-ref"
 import { popperCSSVars } from "../popper"
 import { Portal, PortalProps } from "../portal"
 import {
@@ -124,7 +125,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     }
     trigger = cloneElement(
       child,
-      tooltip.getTriggerProps(child.props, child.ref),
+      tooltip.getTriggerProps(child.props, getElementRef(child)),
     )
   }
 
