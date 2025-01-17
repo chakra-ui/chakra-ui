@@ -1,5 +1,39 @@
 # @chakra-ui/react
 
+## 3.4.0
+
+### Minor Changes
+
+- [`375e05f`](https://github.com/chakra-ui/chakra-ui/commit/375e05ff087ec79c0d900a5bc01da8ffddc59dbc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **[New]
+  Presence:** Add component to animate an element using css animation, and
+  control the mount/unmount behavior
+
+### Patch Changes
+
+- [`882c7f6`](https://github.com/chakra-ui/chakra-ui/commit/882c7f67b3c6de9c15acd97703dc810599fb8562)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Separator**:
+  Fix issue where `aria-orientation` was missing in the DOM and `orientation`
+  was added instead.
+
+  - **FileUpload**
+    - Resolved an issue where form-related components reset despite the reset
+      event being cancelled.
+    - Fixed a brief warning display when a new image file is added to the
+      preview.
+    - Enhanced click detection for the dropzone and added support for the
+      `disableClick` prop.
+
+- [`4c885df`](https://github.com/chakra-ui/chakra-ui/commit/4c885dfd0be37d00a49201d4930aa76397eeaa61)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Button, Icon**
+  Fix issue where button and icon doesn't export props providers
+
+- [`b39ea43`](https://github.com/chakra-ui/chakra-ui/commit/b39ea43b1d44305cded9fed1766a2b8ba9969d64)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **System**: Fix
+  issue where render times feels slower compared to v2 due to the global style
+  computation in the provider component. Now, it is much faster.
+  [See Discussion](https://github.com/chakra-ui/chakra-ui/discussions/9488#discussioncomment-11868684)
+
 ## 3.3.3
 
 ### Patch Changes
