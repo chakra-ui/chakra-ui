@@ -283,6 +283,7 @@ export interface Layers {
 export interface SystemContext {
   $$chakra: true
   _config: SystemConfig
+  _global: Dict[]
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary
