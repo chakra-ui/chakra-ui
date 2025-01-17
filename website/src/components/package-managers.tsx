@@ -7,8 +7,9 @@ import {
   TabPanels,
   Tabs,
 } from '@chakra-ui/react'
-import { ImNpm } from 'react-icons/im'
+import type { JSX } from 'react'
 import { FaYarn } from 'react-icons/fa'
+import { ImNpm } from 'react-icons/im'
 import { SiPnpm } from 'react-icons/si'
 import { BunIcon } from './icons/bun'
 

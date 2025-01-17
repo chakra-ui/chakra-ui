@@ -1,5 +1,6 @@
 import { isObject } from '@chakra-ui/utils'
 import { MDXComponents } from 'components/mdx-components'
+import type { JSX } from 'react'
 
 /**
  * Replace the code blocks wrapped in backticks
