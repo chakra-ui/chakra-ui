@@ -5,6 +5,25 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.4.0](./#3.4.0) - 2025-01-17
+
+### Added
+
+- **[NEW] Presence:** Add new presence component to animate the entry and exit
+  of an element while controlling the render behavior.
+
+### Fixed
+
+- **Separator**: Fix issue where `aria-orientation` was missing in the DOM and
+  `orientation` was added instead.
+
+- **Button, Icon** Fix issue where button and icon doesn't export props
+  providers
+
+- **System**: Fix performance issue where initial render time feels slower
+  compared to v2 due to the global style computation in the provider component.
+  [See Discussion](https://github.com/chakra-ui/chakra-ui/discussions/9488#discussioncomment-11868684)
+
 ## [3.3.3](./#3.3.3) - 2025-01-16
 
 ### Fixed
