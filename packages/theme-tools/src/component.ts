@@ -3,6 +3,7 @@ import type {
   StyleFunctionProps,
   SystemStyleInterpolation,
 } from "@chakra-ui/styled-system"
+import { type JSX } from "react"
 
 export type {
   StyleConfig,

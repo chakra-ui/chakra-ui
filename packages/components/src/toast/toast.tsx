@@ -1,3 +1,4 @@
+import { type JSX } from "react"
 import { chakra } from "../system"
 import {
   Alert,
