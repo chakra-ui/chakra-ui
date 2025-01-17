@@ -160,6 +160,7 @@ const docsLinks: NavItem = {
             { title: "FormatNumber", url: "format-number" },
             { title: "FormatByte", url: "format-byte" },
             { title: "LocaleProvider", url: "locale-provider" },
+            // { title: "Presence", url: "presence", status: "new" },
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
             { title: "Visually Hidden", url: "visually-hidden" },
