@@ -141,8 +141,8 @@ function mergeThemeCustomizer(
     }
   }
 
-  if (isArray(source) && isArray(override)) {
-    return [...source, ...override]
+  if (isObject(source) && isArray(override)) {
+    return override
   }
 
   if (isArray(source) && isObject(override)) {
