@@ -28,7 +28,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       focusVisibleRing: "inside",
       lineHeight: "normal",
       "& > option, & > optgroup": {
-        bg: "inherit",
+        bg: "bg",
       },
     },
     indicator: {
