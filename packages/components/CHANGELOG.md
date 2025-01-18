@@ -1,5 +1,16 @@
 # @chakra-ui/react
 
+## 2.10.5
+
+### Patch Changes
+
+- [`1efcb51`](https://github.com/chakra-ui/chakra-ui/commit/1efcb51c09353da877884b47d00e2d980e3247f0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue in
+  React 19 where deprecation warning is shown when accessing `element.ref`
+
+  - Fix issue where extended theme component values in responsive array get
+    concatenated with base values
+
 ## 2.10.4
 
 ### Patch Changes
