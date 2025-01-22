@@ -1,8 +1,10 @@
-import { HStack } from "@chakra-ui/react"
+"use client"
+
 import { Button } from "compositions/ui/button"
 import {
   DialogBody,
   DialogContent,
+  DialogHeader,
   DialogRoot,
   DialogTitle,
   DialogTrigger,
@@ -13,9 +15,11 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "compositions/ui/menu"
+import { useRef } from "react"
 import Lorem from "react-lorem-ipsum"
 
 export const MenuWithinDialog = () => {
+  const contentRef = useRef<HTMLDivElement>(null)
   return (
     <DialogRoot>
       <DialogTrigger asChild>
@@ -23,26 +27,26 @@ export const MenuWithinDialog = () => {
           Open
         </Button>
       </DialogTrigger>
-      <DialogContent>
-        <DialogBody>
-          <HStack justify="space-between" mb="6">
-            <DialogTitle>Welcome to the menu</DialogTitle>
-            <MenuRoot>
-              <MenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  Menu
-                </Button>
-              </MenuTrigger>
-              <MenuContent portalled={false}>
-                <MenuItem value="new-txt">New Text File</MenuItem>
-                <MenuItem value="new-file">New File...</MenuItem>
-                <MenuItem value="new-win">New Window</MenuItem>
-                <MenuItem value="open-file">Open File...</MenuItem>
-                <MenuItem value="export">Export</MenuItem>
-              </MenuContent>
-            </MenuRoot>
-          </HStack>
-          <Lorem p={4} />
+      <DialogContent ref={contentRef}>
+        <DialogHeader>
+          <DialogTitle>Welcome to the menu</DialogTitle>
+        </DialogHeader>
+        <DialogBody spaceY="4">
+          <MenuRoot>
+            <MenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                Menu
+              </Button>
+            </MenuTrigger>
+            <MenuContent portalRef={contentRef}>
+              <MenuItem value="new-txt">New Text File</MenuItem>
+              <MenuItem value="new-file">New File...</MenuItem>
+              <MenuItem value="new-win">New Window</MenuItem>
+              <MenuItem value="open-file">Open File...</MenuItem>
+              <MenuItem value="export">Export</MenuItem>
+            </MenuContent>
+          </MenuRoot>
+          <Lorem p={1} />
         </DialogBody>
       </DialogContent>
     </DialogRoot>
