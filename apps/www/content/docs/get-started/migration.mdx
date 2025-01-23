@@ -3,6 +3,8 @@ title: Migration to v3
 description: How to migrate to Chakra UI v3.x from v2.x
 ---
 
+<FeaturedVideo />
+
 :::warning
 
 This guide is a work in progress and will be updated from time to time. If you
@@ -109,18 +111,16 @@ export const App = ({ Component }) => (
 )
 ```
 
-
 ```tsx {1,3}
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-
-import { ColorModeProvider } from '@/components/ui/color-mode';
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 
 export function Provider(props) {
   return (
     <ChakraProvider value={defaultSystem}>
       <ColorModeProvider {...props} />
     </ChakraProvider>
-  );
+  )
 }
 ```
 
