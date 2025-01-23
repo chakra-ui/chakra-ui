@@ -220,6 +220,22 @@ When you use the `size="small"` and `visual="outline"` variants together, the
 </Button>
 ```
 
+### Caveat
+
+Due to the design constraints, using `compoundVariants` with responsive values
+doesn't work.
+
+This means a code like this will not work:
+
+```tsx
+<Button size={{ base: "sm", md: "lg" }} visual="outline">
+  Click Me
+</Button>
+```
+
+For this cases, we recommend rendering multiple versions of the component with
+different breakpoints, then hide/show as needed.
+
 ## Theme Usage
 
 To use the recipe in a reusable manner, move it to the system theme and add it
