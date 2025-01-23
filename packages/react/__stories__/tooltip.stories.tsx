@@ -25,6 +25,7 @@ export { TooltipWithDialog as WithDialog } from "compositions/examples/tooltip-w
 export { TooltipWithDisabled as Disabled } from "compositions/examples/tooltip-with-disabled"
 export { TooltipWithInteractive as Interactive } from "compositions/examples/tooltip-with-interactive"
 export { TooltipWithMenuItem as WithMenuItem } from "compositions/examples/tooltip-with-menu-item"
+export { TooltipWithMenuTrigger as WithMenuTrigger } from "compositions/examples/tooltip-with-menu-trigger"
 export { TooltipWithOffset as Offset } from "compositions/examples/tooltip-with-offset"
 export { TooltipWithPlacement as Placement } from "compositions/examples/tooltip-with-placement"
 export { TooltipWithStore as WithStore } from "compositions/examples/tooltip-with-store"
