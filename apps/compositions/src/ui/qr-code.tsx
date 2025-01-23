@@ -12,7 +12,7 @@ export const QrCode = React.forwardRef<HTMLDivElement, QrCodeProps>(
     const { children, fill, overlay, ...rest } = props
     return (
       <ChakraQrCode.Root ref={ref} {...rest}>
-        <ChakraQrCode.Frame fill={fill}>
+        <ChakraQrCode.Frame style={{ fill }}>
           <ChakraQrCode.Pattern />
         </ChakraQrCode.Frame>
         {overlay}
