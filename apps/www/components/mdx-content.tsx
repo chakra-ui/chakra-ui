@@ -33,6 +33,7 @@ import { ResourceCard } from "./mdx/resource-card"
 import { Steps } from "./mdx/steps"
 import { Table } from "./mdx/table"
 import { P, Strong } from "./mdx/text"
+import { FeaturedVideo } from "./mdx/video-card"
 
 const sharedComponents = {
   a: Anchor,
@@ -64,6 +65,7 @@ const sharedComponents = {
   hr: Hr,
   PropTable,
   ComponentGrid,
+  FeaturedVideo,
   ResourceCard: ResourceCard,
   "code-block": CodeBlock,
   ColorTokenDoc,
