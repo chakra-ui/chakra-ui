@@ -1,19 +1,24 @@
 "use client"
 
 import {
+  Alert,
   Button,
   Center,
   Presence,
   Stack,
   useDisclosure,
 } from "@chakra-ui/react"
-import { Alert } from "compositions/ui/alert"
 
 export const PresenceLazyMount = () => {
   const { open, onToggle } = useDisclosure()
   return (
     <Stack gap="4">
-      <Alert title="Check the DOM to see that the element not mounted initially" />
+      <Alert.Root>
+        <Alert.Indicator />
+        <Alert.Title>
+          Check the DOM to see that the element not mounted initially
+        </Alert.Title>
+      </Alert.Root>
       <Button alignSelf="flex-start" onClick={onToggle}>
         Click Me
       </Button>

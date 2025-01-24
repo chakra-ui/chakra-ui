@@ -205,7 +205,6 @@ function printFileSync(item: CompositionFile) {
 const RECOMMENDED_SNIPPETS = [
   "provider",
   "avatar",
-  "button",
   "checkbox",
   "radio",
   "input-group",

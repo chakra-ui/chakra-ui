@@ -1,10 +1,8 @@
 "use client"
 
-import type { AlertRootProps } from "@chakra-ui/react"
-import { For, Span, useSlotRecipe } from "@chakra-ui/react"
+import { Alert, For, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Alert } from "compositions/ui/alert"
 
 export const AlertVariantTable = () => {
   const recipe = useSlotRecipe({ key: "alert" })
@@ -42,10 +40,16 @@ export const AlertVariantTable = () => {
   )
 }
 
-const AlertDemo = (props: AlertRootProps) => {
+const AlertDemo = (props: Alert.RootProps) => {
   return (
-    <Alert title="Alert Title" {...props}>
-      Chakra UI v3 is the greatest
-    </Alert>
+    <Alert.Root {...props}>
+      <Alert.Indicator />
+      <Alert.Content>
+        <Alert.Title>Alert Title</Alert.Title>
+        <Alert.Description>
+          Chakra UI v3 is the greatest! Check it out.
+        </Alert.Description>
+      </Alert.Content>
+    </Alert.Root>
   )
 }

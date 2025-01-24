@@ -7,3 +7,6 @@
 
 - **ColorPicker, HoverCard, Tooltip:** Fixed intermittent placement shifts
   caused by updates to the `data-placement` attribute
+
+- **Snippets / Alert:** Deprecate the `Alert` snippet in favor of using the
+  `Alert` component directly from `@chakra-ui/react`.
