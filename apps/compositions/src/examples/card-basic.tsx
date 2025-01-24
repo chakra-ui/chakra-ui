@@ -1,6 +1,5 @@
-import { Card } from "@chakra-ui/react"
+import { Button, Card } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
-import { Button } from "compositions/ui/button"
 
 export const CardBasic = () => {
   return (

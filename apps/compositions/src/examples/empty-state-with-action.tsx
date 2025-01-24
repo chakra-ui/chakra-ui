@@ -1,5 +1,4 @@
-import { Group } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Group } from "@chakra-ui/react"
 import { EmptyState } from "compositions/ui/empty-state"
 import { HiColorSwatch } from "react-icons/hi"
 

@@ -1,6 +1,5 @@
-import { Card, HStack, Stack, Strong, Text } from "@chakra-ui/react"
+import { Button, Card, HStack, Stack, Strong, Text } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
-import { Button } from "compositions/ui/button"
 import { LuCheck, LuX } from "react-icons/lu"
 
 export const CardWithAvatar = () => {

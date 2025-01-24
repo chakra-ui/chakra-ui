@@ -1,5 +1,4 @@
-import { Text } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Text } from "@chakra-ui/react"
 import {
   PopoverArrow,
   PopoverBody,

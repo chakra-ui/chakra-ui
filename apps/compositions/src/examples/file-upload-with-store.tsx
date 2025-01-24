@@ -1,13 +1,13 @@
 "use client"
 
 import {
+  Button,
   Code,
   FileUploadHiddenInput,
   FileUploadRootProvider,
   Stack,
   useFileUpload,
 } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
 import { FileUploadList, FileUploadTrigger } from "compositions/ui/file-upload"
 import { HiUpload } from "react-icons/hi"
 

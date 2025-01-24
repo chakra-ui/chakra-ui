@@ -1,5 +1,4 @@
-import { For, Group, Stack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, For, Group, Stack } from "@chakra-ui/react"
 import {
   StepsCompletedContent,
   StepsContent,

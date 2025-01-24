@@ -1,4 +1,4 @@
-import { Button } from "compositions/ui/button"
+import { Button } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
 import { FaBell } from "react-icons/fa"
 

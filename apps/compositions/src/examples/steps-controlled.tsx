@@ -1,7 +1,6 @@
 "use client"
 
-import { Group } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Group } from "@chakra-ui/react"
 import {
   StepsCompletedContent,
   StepsContent,

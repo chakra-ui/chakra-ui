@@ -1,7 +1,6 @@
 "use client"
 
-import { DialogRootProvider, useDialog } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, DialogRootProvider, useDialog } from "@chakra-ui/react"
 import {
   DialogActionTrigger,
   DialogBody,

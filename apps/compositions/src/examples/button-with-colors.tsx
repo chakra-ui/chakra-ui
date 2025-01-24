@@ -1,6 +1,5 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { Button, Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { Button } from "compositions/ui/button"
 
 export const ButtonWithColors = () => {
   return (

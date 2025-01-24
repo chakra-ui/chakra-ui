@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, useRecipe } from "@chakra-ui/react"
+import { Button, For, Span, useRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Button } from "compositions/ui/button"
 import { HiArrowRight } from "react-icons/hi"
 
 export const ButtonVariantTable = () => {

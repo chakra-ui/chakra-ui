@@ -1,8 +1,14 @@
 "use client"
 
-import { For, Heading, Textarea, chakra, useSlotRecipe } from "@chakra-ui/react"
+import {
+  Button,
+  For,
+  Heading,
+  Textarea,
+  chakra,
+  useSlotRecipe,
+} from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Button } from "compositions/ui/button"
 import {
   PopoverArrow,
   PopoverBody,

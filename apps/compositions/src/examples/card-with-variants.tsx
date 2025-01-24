@@ -1,6 +1,5 @@
-import { Card, For, Stack } from "@chakra-ui/react"
+import { Button, Card, For, Stack } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
-import { Button } from "compositions/ui/button"
 
 export const CardWithVariants = () => {
   return (

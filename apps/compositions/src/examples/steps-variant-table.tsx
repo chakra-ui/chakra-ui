@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Button,
   For,
   Group,
   Span,
@@ -9,7 +10,6 @@ import {
 } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Button } from "compositions/ui/button"
 import {
   StepsCompletedContent,
   StepsContent,

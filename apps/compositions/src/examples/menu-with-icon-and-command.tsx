@@ -1,5 +1,4 @@
-import { Box } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Box, Button } from "@chakra-ui/react"
 import {
   MenuContent,
   MenuItem,

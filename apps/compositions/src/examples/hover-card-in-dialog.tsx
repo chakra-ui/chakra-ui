@@ -1,7 +1,6 @@
 "use client"
 
-import { Link, Stack, Text } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Link, Stack, Text } from "@chakra-ui/react"
 import {
   DialogBackdrop,
   DialogBody,

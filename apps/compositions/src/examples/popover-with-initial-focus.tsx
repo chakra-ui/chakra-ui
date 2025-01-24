@@ -1,7 +1,6 @@
 "use client"
 
-import { Box, Group } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Box, Button, Group } from "@chakra-ui/react"
 import {
   PopoverArrow,
   PopoverBody,

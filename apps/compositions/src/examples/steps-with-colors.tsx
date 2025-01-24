@@ -1,6 +1,5 @@
-import { For, Group, Stack } from "@chakra-ui/react"
+import { Button, For, Group, Stack } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { Button } from "compositions/ui/button"
 import {
   StepsCompletedContent,
   StepsContent,

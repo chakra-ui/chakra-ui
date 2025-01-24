@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Button,
   For,
   Group,
   Span,
@@ -8,7 +9,6 @@ import {
   useSlotRecipe,
 } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Button } from "compositions/ui/button"
 import {
   StepsCompletedContent,
   StepsContent,

@@ -1,5 +1,4 @@
-import { For, HStack, Kbd } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, For, HStack, Kbd } from "@chakra-ui/react"
 import {
   DrawerActionTrigger,
   DrawerBackdrop,

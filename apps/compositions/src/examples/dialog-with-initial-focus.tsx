@@ -1,7 +1,6 @@
 "use client"
 
-import { Input, Stack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Input, Stack } from "@chakra-ui/react"
 import {
   DialogActionTrigger,
   DialogBody,

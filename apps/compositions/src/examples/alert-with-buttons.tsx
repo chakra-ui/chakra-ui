@@ -1,6 +1,5 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Button } from "@chakra-ui/react"
 import { Alert } from "compositions/ui/alert"
-import { Button } from "compositions/ui/button"
 
 export const AlertWithButtons = () => {
   return (

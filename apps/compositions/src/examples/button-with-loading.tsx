@@ -1,5 +1,4 @@
-import { Stack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, Stack } from "@chakra-ui/react"
 
 export const ButtonWithLoading = () => {
   return (

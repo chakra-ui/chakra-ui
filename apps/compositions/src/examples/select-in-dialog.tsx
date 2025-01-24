@@ -1,7 +1,6 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, createListCollection } from "@chakra-ui/react"
 import {
   DialogBackdrop,
   DialogBody,

@@ -1,7 +1,6 @@
 "use client"
 
-import { DrawerContext } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, DrawerContext } from "@chakra-ui/react"
 import {
   DrawerBackdrop,
   DrawerBody,

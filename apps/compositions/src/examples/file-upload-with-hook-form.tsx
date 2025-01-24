@@ -1,7 +1,7 @@
 "use client"
 
+import { Button } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "compositions/ui/button"
 import { Field } from "compositions/ui/field"
 import {
   FileUploadList,

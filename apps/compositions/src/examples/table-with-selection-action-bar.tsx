@@ -1,13 +1,12 @@
 "use client"
 
-import { Kbd, Table } from "@chakra-ui/react"
+import { Button, Kbd, Table } from "@chakra-ui/react"
 import {
   ActionBarContent,
   ActionBarRoot,
   ActionBarSelectionTrigger,
   ActionBarSeparator,
 } from "compositions/ui/action-bar"
-import { Button } from "compositions/ui/button"
 import { Checkbox } from "compositions/ui/checkbox"
 import { useState } from "react"
 

@@ -1,5 +1,5 @@
 import type { MenuItemProps } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button } from "@chakra-ui/react"
 import {
   MenuContent,
   MenuItem,
