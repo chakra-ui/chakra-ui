@@ -1,3 +1,5 @@
+"use client"
+
 import { forwardRef } from "react"
 import type { RecipeProps } from "../../styled-system"
 import { useRecipe } from "../../styled-system"
