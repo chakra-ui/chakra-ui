@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
+import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,
   type RecipeProps,
@@ -8,7 +9,7 @@ import {
   chakra,
   createRecipeContext,
 } from "../../styled-system"
-import { compact, cx } from "../../utils"
+import { cx } from "../../utils"
 import { Loader } from "../loader"
 
 const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
@@ -43,7 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(inProps, ref) {
     const propsContext = usePropsContext()
     const props = useMemo(
-      () => ({ ...propsContext, ...compact(inProps) }),
+      () => mergeProps(propsContext, inProps),
       [propsContext, inProps],
     )
     const result = useRecipeResult(props)
