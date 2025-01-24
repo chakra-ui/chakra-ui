@@ -30,6 +30,11 @@ export interface ButtonLoadingProps {
    * The spinner to show while loading.
    */
   spinner?: React.ReactNode
+  /**
+   * The placement of the spinner
+   * @default "start"
+   */
+  spinnerPlacement?: "start" | "end"
 }
 
 export interface ButtonBaseProps
@@ -48,17 +53,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       [propsContext, inProps],
     )
     const result = useRecipeResult(props)
-    const { loading, loadingText, children, spinner, ...rest } = result.props
+    const {
+      loading,
+      loadingText,
+      children,
+      spinner,
+      spinnerPlacement,
+      ...rest
+    } = result.props
     return (
       <chakra.button
         type="button"
         ref={ref}
         {...rest}
+        disabled={loading || rest.disabled}
         className={cx(result.className, props.className)}
         css={[result.styles, props.css]}
       >
         {!props.asChild && loading ? (
-          <Loader spinner={spinner} text={loadingText}>
+          <Loader
+            spinner={spinner}
+            text={loadingText}
+            spinnerPlacement={spinnerPlacement}
+          >
             {children}
           </Loader>
         ) : (

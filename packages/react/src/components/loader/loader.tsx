@@ -15,6 +15,11 @@ export interface LoaderProps extends HTMLChakraProps<"span"> {
    */
   spinner?: React.ReactNode
   /**
+   * The placement of the spinner
+   * @default "start"
+   */
+  spinnerPlacement?: "start" | "end"
+  /**
    * The text to display when loading
    */
   text?: React.ReactNode
@@ -26,6 +31,7 @@ export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
       spinner = (
         <Spinner size="inherit" borderWidth="0.125em" color="inherit" />
       ),
+      spinnerPlacement = "start",
       children,
       text,
       visible = true,
@@ -37,8 +43,9 @@ export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
     if (text) {
       return (
         <Span ref={ref} display="contents" {...rest}>
-          {spinner}
+          {spinnerPlacement === "start" && spinner}
           {text}
+          {spinnerPlacement === "end" && spinner}
         </Span>
       )
     }

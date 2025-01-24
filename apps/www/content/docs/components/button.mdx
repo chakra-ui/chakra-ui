@@ -60,7 +60,8 @@ behavior of the link and add the `data-disabled` attribute.
 
 ### Loading
 
-Use the `Loader` component to show a loading spinner and add a loading text.
+Pass the `loading` and `loadingText` props to the `Button` component to show a
+loading spinner and add a loading text.
 
 <ExampleTabs name="button-with-loading" />
 
@@ -68,6 +69,18 @@ Here's an example of how to toggle the loading state of a button while keeping
 the width of the button the same.
 
 <ExampleTabs name="button-with-loading-toggle" />
+
+### Spinner Placement
+
+Use the `spinnerPlacement` prop to change the placement of the spinner.
+
+<ExampleTabs name="button-with-spinner-placement" />
+
+### Custom Spinner
+
+Use the `spinner` prop to change the spinner.
+
+<ExampleTabs name="button-with-custom-spinner" />
 
 ### Group
 
@@ -79,6 +92,12 @@ you pass common recipe properties to inner buttons.
 To flush the buttons, pass the `attached` prop.
 
 <ExampleTabs name="button-with-group-flushed" />
+
+### Radius
+
+Use the `rounded` prop to change the radius of the button.
+
+<ExampleTabs name="button-with-radius" />
 
 ### As Link
 
