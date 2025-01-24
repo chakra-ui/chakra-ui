@@ -65,8 +65,9 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
     <Box
       height="100%"
       overflow="auto"
+      colorScheme="dark"
+      pos="relative"
       css={{
-        position: "relative",
         "& pre": {
           px,
           py,
