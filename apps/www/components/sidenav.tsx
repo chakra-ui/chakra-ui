@@ -1,4 +1,4 @@
-import { Badge, BadgeProps, HStack, Stack, Text } from "@chakra-ui/react"
+import { Badge, BadgeProps, HStack, Stack, StackProps } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 
 interface SideNavItem {
@@ -26,6 +26,27 @@ const StatusBadge = (props: BadgeProps) => (
   />
 )
 
+const SideNavItem = (props: StackProps) => {
+  return (
+    <HStack
+      py="1.5"
+      ps="4"
+      pe="3"
+      rounded="sm"
+      color="fg.muted"
+      _hover={{
+        layerStyle: "fill.subtle",
+      }}
+      _currentPage={{
+        colorPalette: "teal",
+        fontWeight: "medium",
+        layerStyle: "fill.subtle",
+      }}
+      {...props}
+    />
+  )
+}
+
 export const SideNav = (props: SideNavProps) => {
   const { title, items, currentUrl, status } = props
   return (
@@ -38,23 +59,7 @@ export const SideNav = (props: SideNavProps) => {
       )}
       <Stack gap="1px">
         {items.map((item, index) => (
-          <HStack
-            key={index}
-            asChild
-            py="1.5"
-            ps="4"
-            pe="3"
-            rounded="sm"
-            color="fg.muted"
-            colorPalette="gray"
-            _hover={{
-              layerStyle: "fill.subtle",
-            }}
-            _currentPage={{
-              fontWeight: "medium",
-              layerStyle: "fill.subtle",
-            }}
-          >
+          <SideNavItem key={index} asChild>
             {item.external ? (
               <a
                 href={item.url as string}
@@ -74,7 +79,7 @@ export const SideNav = (props: SideNavProps) => {
                 {item.status && <StatusBadge>{item.status}</StatusBadge>}
               </Link>
             )}
-          </HStack>
+          </SideNavItem>
         ))}
       </Stack>
     </Stack>

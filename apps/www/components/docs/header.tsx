@@ -69,7 +69,7 @@ const TopNavLink = chakra(Link, {
         borderColor: "transparent",
         transition: "border-color 0.2s",
         _hover: { borderColor: "border" },
-        _currentPage: { borderColor: "fg!" },
+        _currentPage: { borderColor: "teal.solid!" },
       },
     },
   },
