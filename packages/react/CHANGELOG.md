@@ -1,5 +1,25 @@
 # @chakra-ui/react
 
+## 3.5.0
+
+### Minor Changes
+
+- [`30a12d0`](https://github.com/chakra-ui/chakra-ui/commit/30a12d01af9672ebf36ea872f3d9bdfcc2b212d2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Native Select**
+
+  - Fix issue where `disabled` and `invalid` props were not being passed to the
+    `NativeSelectField` component.
+  - Persist error focus ring when `invalid` prop is set.
+  - Fix issue where native select isn't readable in dark mode for Windows/Linux
+    devices.
+  - **[New] Loader:** Add new `Loader` and `LoaderOverlay` components.
+  - **[New] Button Group:** Add new `ButtonGroup` component similar to v2 for
+    grouping similar buttons.
+  - **Button:** Add `loading` and `loadingText` props to the `Button` component.
+  - **Snippets / Menu:** Refactor checkbox item to fix rendering
+  - **Snippets / Button:** Removed the button snippet in favor of built-in
+    component.
+
 ## 3.4.0
 
 ### Minor Changes
