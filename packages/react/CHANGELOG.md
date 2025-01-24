@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.5.1
+
+### Patch Changes
+
+- [`34d46e3`](https://github.com/chakra-ui/chakra-ui/commit/34d46e38eb16bb5adda70f5445d9e406b4da415b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Button:** Fix
+  issue where button is not disabled when loading props is passed
+
+  - **ColorPicker, HoverCard, Tooltip:** Fixed intermittent placement shifts
+    caused by updates to the `data-placement` attribute
+  - **Snippets / Alert:** Deprecate the `Alert` snippet in favor of using the
+    `Alert` component directly from `@chakra-ui/react`.
+
 ## 3.5.0
 
 ### Minor Changes
