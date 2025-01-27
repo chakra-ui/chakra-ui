@@ -417,7 +417,7 @@ importers:
         version: 4.1.12
       '@visulima/boxen':
         specifier: ^1.0.23
-        version: 1.0.26
+        version: 1.0.29
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -4271,9 +4271,9 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@visulima/boxen@1.0.26':
-    resolution: {integrity: sha512-lcQmryoryQmudNbWvJLWe9ohj4Hh8jYczY0RAoB8VJ93uUXbtJ+FEJx3WmSNljOwSK99PP9KoktWoBHFQKYlNg==}
-    engines: {node: '>=18.* <=23.*'}
+  '@visulima/boxen@1.0.29':
+    resolution: {integrity: sha512-z+JkZVhUTKfAdM1vjILnWwAd75NFFZH0/4Y2ByYnXNroZq5fB9Qv316lyA4LI9DZgoFhxgwf9Z+HWw8tagLvWw==}
+    engines: {node: '>=18.0.0 <=23.x'}
     os: [darwin, linux, win32]
 
   '@vitejs/plugin-react@4.3.4':
@@ -14134,7 +14134,7 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@visulima/boxen@1.0.26': {}
+  '@visulima/boxen@1.0.29': {}
 
   '@vitejs/plugin-react@4.3.4(vite@6.0.9(@types/node@22.7.5)(jiti@1.21.6)(lightningcss@1.25.1)(terser@5.37.0)(tsx@4.16.2)(yaml@2.5.1))':
     dependencies:
