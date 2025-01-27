@@ -1,17 +1,17 @@
-import { AbsoluteCenter, Box, Spinner } from "@chakra-ui/react"
-import { QrCode } from "compositions/ui/qr-code"
+import { AbsoluteCenter, Box, QrCode, Spinner } from "@chakra-ui/react"
 
 export const QrCodeWithSpinner = () => {
   return (
     <Box position="relative">
-      <QrCode
-        value="https://www.google.com"
-        overlay={
-          <AbsoluteCenter bg="bg/80" boxSize="100%">
-            <Spinner color="red" />
-          </AbsoluteCenter>
-        }
-      />
+      <QrCode.Root value="https://www.google.com">
+        <QrCode.Frame>
+          <QrCode.Pattern />
+        </QrCode.Frame>
+
+        <AbsoluteCenter bg="bg/80" boxSize="100%">
+          <Spinner color="red" />
+        </AbsoluteCenter>
+      </QrCode.Root>
     </Box>
   )
 }
