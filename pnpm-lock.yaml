@@ -270,8 +270,8 @@ importers:
         specifier: 1.4.10
         version: 1.4.10
       react-markdown:
-        specifier: 9.0.1
-        version: 9.0.1(@types/react@18.3.11)(react@18.2.0)
+        specifier: 9.0.3
+        version: 9.0.3(@types/react@18.3.11)(react@18.2.0)
       react-spinners:
         specifier: 0.15.0
         version: 0.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -349,8 +349,8 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
       remark-directive:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.1
+        version: 3.0.1
       remark-gfm:
         specifier: 4.0.0
         version: 4.0.0
@@ -8534,8 +8534,8 @@ packages:
   react-lorem-ipsum@1.4.10:
     resolution: {integrity: sha512-PCEuauLZTGJkm++oxJeUycEgQOBg3qmmD7pn5sUyq9e0OvvNbW32RKQsSgalAYGUIbS91UkDgxvt6iHVAsqYJw==}
 
-  react-markdown@9.0.1:
-    resolution: {integrity: sha512-186Gw/vF1uRkydbsOIkcGXw7aHq0sZOCRFFjGrr7b9+nVZg4UfA4enXCaxm4fUzecU38sWfrNDitGhshuU7rdg==}
+  react-markdown@9.0.3:
+    resolution: {integrity: sha512-Yk7Z94dbgYTOrdk41Z74GoKA7rThnsbbqBTRYuxoe08qvfQ9tJVhmAKw6BJS/ZORG7kTy/s1QvYzSuaoBA1qfw==}
     peerDependencies:
       '@types/react': '>=18'
       react: 18.2.0
@@ -8709,8 +8709,8 @@ packages:
   rehype-slug@6.0.0:
     resolution: {integrity: sha512-lWyvf/jwu+oS5+hL5eClVd3hNdmwM1kAC0BUvEGD19pajQMIzcNUd/k9GsfQ+FfECvX+JE+e9/btsKH0EjJT6A==}
 
-  remark-directive@3.0.0:
-    resolution: {integrity: sha512-l1UyWJ6Eg1VPU7Hm/9tt0zKtReJQNOA4+iDMAxTyZNWnJnFlbS/7zhiel/rogTLQ2vMYwDzSJa4BiVNqGlqIMA==}
+  remark-directive@3.0.1:
+    resolution: {integrity: sha512-gwglrEQEZcZYgVyG1tQuA+h58EZfq5CSULw7J90AFuCTyib1thgHPoqQ+h9iFvU6R+vnZ5oNFQR5QKgGpk741A==}
 
   remark-frontmatter@4.0.1:
     resolution: {integrity: sha512-38fJrB0KnmD3E33a5jZC/5+gGAC2WKNiPw1/fdXJvijBlhA7RCsvJklrYJakS0HedninvaCYW8lQGf9C918GfA==}
@@ -19826,7 +19826,7 @@ snapshots:
 
   react-lorem-ipsum@1.4.10: {}
 
-  react-markdown@9.0.1(@types/react@18.3.11)(react@18.2.0):
+  react-markdown@9.0.3(@types/react@18.3.11)(react@18.2.0):
     dependencies:
       '@types/hast': 3.0.4
       '@types/react': 18.3.11
@@ -20117,7 +20117,7 @@ snapshots:
       hast-util-to-string: 3.0.1
       unist-util-visit: 5.0.0
 
-  remark-directive@3.0.0:
+  remark-directive@3.0.1:
     dependencies:
       '@types/mdast': 4.0.4
       mdast-util-directive: 3.0.0
