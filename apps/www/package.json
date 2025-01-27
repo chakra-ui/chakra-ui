@@ -37,7 +37,7 @@
     "react-icons": "5.4.0",
     "rehype-autolink-headings": "7.1.0",
     "rehype-slug": "6.0.0",
-    "remark-directive": "3.0.0",
+    "remark-directive": "3.0.1",
     "remark-gfm": "4.0.0",
     "scule": "1.3.0",
     "shiki": "1.26.1",
