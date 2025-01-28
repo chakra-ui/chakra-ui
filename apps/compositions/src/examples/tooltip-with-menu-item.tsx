@@ -7,6 +7,7 @@ import {
   MenuTrigger,
 } from "compositions/ui/menu"
 import { Tooltip } from "compositions/ui/tooltip"
+import { useId } from "react"
 
 export const TooltipWithMenuItem = () => {
   return (
@@ -30,9 +31,11 @@ export const TooltipWithMenuItem = () => {
 
 const TooltipMenuItem = (props: MenuItemProps & { tooltip: string }) => {
   const { value, tooltip, ...rest } = props
+  const triggerId = useId()
+
   return (
     <Tooltip
-      ids={{ trigger: value }}
+      ids={{ trigger: triggerId }}
       openDelay={200}
       closeDelay={0}
       positioning={{ placement: "right" }}
