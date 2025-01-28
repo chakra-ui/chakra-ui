@@ -17,7 +17,7 @@ const SelectValueItem = () => (
       const { name, avatar } = items[0]
       return (
         <HStack>
-          <Avatar name={name} size="xs" src={avatar} />
+          <Avatar shape="rounded" name={name} size="2xs" src={avatar} />
           {name}
         </HStack>
       )
@@ -41,7 +41,12 @@ export const SelectWithAvatar = () => {
       <SelectContent portalled={false}>
         {members.items.map((item) => (
           <SelectItem item={item} key={item.id} justifyContent="flex-start">
-            <Avatar name={item.name} src={item.avatar} size="xs" />
+            <Avatar
+              shape="rounded"
+              name={item.name}
+              src={item.avatar}
+              size="2xs"
+            />
             {item.name}
           </SelectItem>
         ))}

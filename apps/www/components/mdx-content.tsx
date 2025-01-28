@@ -15,7 +15,13 @@ import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
 import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
-import { Example, ExamplePreview, ExampleTabs } from "./example"
+import {
+  Example,
+  ExampleCode,
+  ExampleCodeWrapper,
+  ExamplePreview,
+  ExampleTabs,
+} from "./example"
 import { Anchor } from "./mdx/anchor"
 import { Blockquote } from "./mdx/blockquote"
 import { Callout } from "./mdx/callout"
@@ -57,6 +63,13 @@ const sharedComponents = {
   callout: Callout,
   "code-group": CodeGroup,
   Example: Example,
+  ExampleCode(props: { name: string }) {
+    return (
+      <ExampleCodeWrapper maxHeight="480px" height="auto" mb="2" mt="6">
+        <ExampleCode name={props.name} />
+      </ExampleCodeWrapper>
+    )
+  },
   ExampleTabs: ExampleTabs,
   ExamplePreview: ExamplePreview,
   card: Card,

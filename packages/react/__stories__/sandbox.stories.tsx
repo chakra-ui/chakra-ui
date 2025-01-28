@@ -69,7 +69,7 @@ export const ColorPalette = () => {
 export const SelfClosing = () => {
   return (
     <Box rounded="full" overflow="hidden" asChild>
-      <img src="https://via.placeholder.com/150" alt="placeholder" />
+      <img src="https://i.pravatar.cc/150?u=1" alt="placeholder" />
     </Box>
   )
 }

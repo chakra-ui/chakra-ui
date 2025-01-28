@@ -44,7 +44,9 @@ export interface MenuRootProps extends MenuRootBaseProps {
   children: React.ReactNode
 }
 
-export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root)
+export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root, {
+  defaultProps: { lazyMount: true, unmountOnExit: true },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
