@@ -306,9 +306,26 @@ export default preview
 - **Wrap**: Replace with `HStack` and add `wrap=wrap` to it.
 - **WrapItem**: Replace with `Flex` and add `align=flex-start` to it.
 - **StackItem**: You don't need this anymore. Use `Box` instead.
-- **FocusLock**: We no longer ship a focus lock component. Use
-  `react-focus-lock` instead.
-- **FormControl** and **FormErrorMessage**: Replace with the `Field` component
+- **FocusLock**: We no longer ship a focus lock component. Install and use
+  `react-focus-lock` directly.
+- **FormControl**: Replace with the `Field` component
+- **FormErrorMessage**: Replace with the `Field.ErrorText` component Before:
+
+```tsx
+<FormControl>
+  <Input />
+  <FormErrorMessage>This field is required</FormErrorMessage>
+</FormControl>
+```
+
+After:
+
+```tsx
+<Field.Root>
+  <Input />
+  <Field.ErrorText>This field is required</Field.ErrorText>
+</Field.Root>
+```
 
 ## Prop Changes
 
