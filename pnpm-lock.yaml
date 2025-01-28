@@ -568,7 +568,7 @@ importers:
         version: 0.4.14(eslint@9.15.0(jiti@1.21.6))
       globals:
         specifier: ^15.12.0
-        version: 15.12.0
+        version: 15.14.0
       typescript:
         specifier: ~5.7.2
         version: 5.7.2
@@ -838,7 +838,7 @@ importers:
         version: 0.4.14(eslint@9.15.0(jiti@1.21.6))
       globals:
         specifier: ^15.12.0
-        version: 15.12.0
+        version: 15.14.0
       typescript:
         specifier: ~5.7.2
         version: 5.7.2
@@ -6360,10 +6360,6 @@ packages:
 
   globals@14.0.0:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
-    engines: {node: '>=18'}
-
-  globals@15.12.0:
-    resolution: {integrity: sha512-1+gLErljJFhbOVyaetcwJiJ4+eLe45S2E7P5UiZ9xGfeq3ATQf5DOv9G7MH3gGbKQLkzmNh2DxfZwLdw+j6oTQ==}
     engines: {node: '>=18'}
 
   globals@15.14.0:
@@ -17164,8 +17160,6 @@ snapshots:
       type-fest: 0.20.2
 
   globals@14.0.0: {}
-
-  globals@15.12.0: {}
 
   globals@15.14.0: {}
 
