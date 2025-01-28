@@ -159,17 +159,17 @@ export function createUtility(options: Options) {
     return values
   }
 
-  const defaultTransform = memo((prop: string, value: string) => {
+  const defaultTransform = (prop: string, value: string) => {
     return {
       [prop]: prop.startsWith("--") ? tokens.getVar(value, value) : value,
     }
-  })
+  }
 
   const tokenFn = Object.assign(tokens.getVar, {
     raw: (path: string) => tokens.getByName(path),
   })
 
-  const transform = memo((prop: string, raw: any) => {
+  const transform = (prop: string, raw: any) => {
     const key = resolveShorthand(prop)
 
     // skip emotion generated keyframes
@@ -194,7 +194,7 @@ export function createUtility(options: Options) {
       token: tokenFn,
       utils: { colorMix: _colorMix },
     })
-  })
+  }
 
   function build() {
     assignShorthands()
@@ -207,9 +207,9 @@ export function createUtility(options: Options) {
 
   const hasShorthand = shorthands.size > 0
 
-  const resolveShorthand = memo((prop: string) => {
+  const resolveShorthand = (prop: string) => {
     return shorthands.get(prop) ?? prop
-  })
+  }
 
   const keys = () => {
     return [...Array.from(shorthands.keys()), ...Object.keys(configs)]

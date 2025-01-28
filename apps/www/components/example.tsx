@@ -51,22 +51,17 @@ export const ExampleCode = async (props: CodeProps) => {
   )
 }
 
-interface CodeWrapperProps {
-  maxHeight?: BoxProps["maxHeight"]
-  bg?: BoxProps["bg"]
-  px?: BoxProps["px"]
-  py?: BoxProps["py"]
-  children: React.ReactNode
-}
+interface CodeWrapperProps extends BoxProps {}
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight, bg, px = 8, py = 6 } = props
+  const { children, maxHeight, bg, px = "8", py = "6", ...rest } = props
   return (
     <Box
       height="100%"
       overflow="auto"
       colorScheme="dark"
       pos="relative"
+      {...rest}
       css={{
         "& pre": {
           px,
