@@ -1,10 +1,10 @@
-import { Textarea } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Textarea } from "@chakra-ui/react"
 
 export const FieldWithTextarea = () => {
   return (
-    <Field label="Email">
+    <Field.Root>
+      <Field.Label>Email</Field.Label>
       <Textarea placeholder="Email" />
-    </Field>
+    </Field.Root>
   )
 }

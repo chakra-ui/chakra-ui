@@ -10,40 +10,35 @@ links:
 
 <ExampleTabs name="field-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`field` snippet
-
-```sh
-npx @chakra-ui/cli snippet add field
-```
-
-The snippet includes a closed component composition for the `Field` component.
-
 ## Usage
 
-```jsx
-import { Field } from "@/components/ui/field"
+```tsx
+import { Field } from "@chakra-ui/react"
 ```
 
-```jsx
-<Field>
+```tsx
+<Field.Root>
+  <Field.Label>
+    <Field.RequiredIndicator />
+  </Field.Label>
   <Input />
-</Field>
+  <Field.HelperText />
+  <Field.ErrorText />
+</Field.Root>
 ```
 
 ## Examples
 
 ### Error Text
 
-Use the `invalid` and `errorText` to indicate that the field is invalid.
+Pass the `invalid` prop to `Field.Root` and use the `Field.ErrorText` to
+indicate that the field is invalid.
 
 <ExampleTabs name="field-with-error-text" />
 
 ### Helper Text
 
-Use the `helperText` prop to add helper text to the field.
+Use the `Field.HelperText` to add helper text to the field.
 
 <ExampleTabs name="field-with-helper-text" />
 
@@ -74,15 +69,22 @@ Here's how to use the field component with a native select.
 
 ### Required
 
-Use the `required` prop to indicate that the field is required.
+Pass the `required` prop to `Field.Root` and use the `Field.RequiredIndicator`
+to indicate that the field is required.
 
 <ExampleTabs name="field-with-required" />
 
 ### Optional
 
-Use the `optionalText` prop to indicate that the field is optional.
+Use the `fallback` prop to pass optional text.
 
 <ExampleTabs name="field-with-optional" />
+
+### Closed Component
+
+Here's how to setup the Field for a closed component composition.
+
+<ExampleCode name="field-closed-component" />
 
 ## Props
 

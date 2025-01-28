@@ -1,17 +1,19 @@
-import { Badge, Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Badge, Field, Input } from "@chakra-ui/react"
 
 export const FieldWithOptional = () => {
   return (
-    <Field
-      label="Email"
-      optionalText={
-        <Badge size="xs" variant="surface">
-          Optional
-        </Badge>
-      }
-    >
+    <Field.Root>
+      <Field.Label>
+        Email
+        <Field.RequiredIndicator
+          fallback={
+            <Badge size="xs" variant="surface">
+              Optional
+            </Badge>
+          }
+        />
+      </Field.Label>
       <Input placeholder="me@example.com" />
-    </Field>
+    </Field.Root>
   )
 }
