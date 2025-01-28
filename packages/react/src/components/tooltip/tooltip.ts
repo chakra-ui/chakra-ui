@@ -44,7 +44,9 @@ export interface TooltipRootProps extends TooltipRootBaseProps {
   children?: React.ReactNode
 }
 
-export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root)
+export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root, {
+  defaultProps: { lazyMount: true, unmountOnExit: true },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
