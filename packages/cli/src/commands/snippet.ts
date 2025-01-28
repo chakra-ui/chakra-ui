@@ -8,7 +8,10 @@ import { join } from "node:path/posix"
 import { getProjectContext } from "../utils/context"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
-import { getFileDependencies } from "../utils/get-file-dependencies"
+import {
+  findCompositionById,
+  getFileDependencies,
+} from "../utils/get-file-dependencies"
 import { ensureDir } from "../utils/io"
 import { installCommand } from "../utils/run-command"
 import {
@@ -117,7 +120,13 @@ export const SnippetCommand = new Command("snippet")
             task: async () => {
               await Promise.all(
                 components.map(async (id) => {
-                  if (existsSync(join(outdir, id)) && !force) {
+                  let filename =
+                    findCompositionById(items, id)?.file ?? id + ".tsx"
+                  if (jsx) {
+                    filename = filename.replace(".tsx", ".jsx")
+                  }
+
+                  if (existsSync(join(outdir, filename)) && !force) {
                     skippedFiles.push(id)
                     return
                   }
