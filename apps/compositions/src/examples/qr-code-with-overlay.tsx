@@ -1,10 +1,15 @@
-import { QrCode } from "compositions/ui/qr-code"
+import { QrCode } from "@chakra-ui/react"
 
 export const QrCodeWithOverlay = () => {
   return (
-    <QrCode value="https://www.google.com">
-      <Logo />
-    </QrCode>
+    <QrCode.Root value="https://www.google.com">
+      <QrCode.Frame>
+        <QrCode.Pattern />
+      </QrCode.Frame>
+      <QrCode.Overlay>
+        <Logo />
+      </QrCode.Overlay>
+    </QrCode.Root>
   )
 }
 

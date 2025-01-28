@@ -1,12 +1,15 @@
-import { For, Stack } from "@chakra-ui/react"
-import { QrCode } from "compositions/ui/qr-code"
+import { For, QrCode, Stack } from "@chakra-ui/react"
 
 export const QrCodeWithSizes = () => {
   return (
     <Stack>
       <For each={["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]}>
         {(size) => (
-          <QrCode size={size} value="https://www.google.com" key={size} />
+          <QrCode.Root size={size} value="https://www.google.com" key={size}>
+            <QrCode.Frame>
+              <QrCode.Pattern />
+            </QrCode.Frame>
+          </QrCode.Root>
         )}
       </For>
     </Stack>

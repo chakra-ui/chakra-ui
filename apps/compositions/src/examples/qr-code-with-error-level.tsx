@@ -1,7 +1,6 @@
 "use client"
 
-import { Stack } from "@chakra-ui/react"
-import { QrCode } from "compositions/ui/qr-code"
+import { QrCode, Stack } from "@chakra-ui/react"
 import { SegmentedControl } from "compositions/ui/segmented-control"
 import { useState } from "react"
 
@@ -11,11 +10,15 @@ export const QrCodeWithErrorLevel = () => {
   const [errorLevel, setErrorLevel] = useState<ErrorLevel>("L")
   return (
     <Stack align="flex-start">
-      <QrCode
-        size="xl"
+      <QrCode.Root
         value="https://www.google.com"
+        size="xl"
         encoding={{ ecc: errorLevel }}
-      />
+      >
+        <QrCode.Frame>
+          <QrCode.Pattern />
+        </QrCode.Frame>
+      </QrCode.Root>
       <SegmentedControl
         size="sm"
         defaultValue={"L"}
