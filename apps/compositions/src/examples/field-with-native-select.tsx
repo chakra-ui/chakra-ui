@@ -1,4 +1,4 @@
-import { Field } from "compositions/ui/field"
+import { Field } from "@chakra-ui/react"
 import {
   NativeSelectField,
   NativeSelectRoot,
@@ -6,10 +6,11 @@ import {
 
 export const FieldWithNativeSelect = () => {
   return (
-    <Field label="Email">
+    <Field.Root>
+      <Field.Label>Email</Field.Label>
       <NativeSelectRoot>
         <NativeSelectField items={["Option 1", "Option 2", "Option 3"]} />
       </NativeSelectRoot>
-    </Field>
+    </Field.Root>
   )
 }

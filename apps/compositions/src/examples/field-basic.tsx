@@ -1,10 +1,10 @@
-import { Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Input } from "@chakra-ui/react"
 
 export const FieldBasic = () => {
   return (
-    <Field label="Email">
+    <Field.Root>
+      <Field.Label>Email</Field.Label>
       <Input placeholder="me@example.com" />
-    </Field>
+    </Field.Root>
   )
 }
