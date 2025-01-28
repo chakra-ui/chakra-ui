@@ -327,6 +327,30 @@ After:
 </Field.Root>
 ```
 
+- **AlertDialog**
+
+  - Replace with the `Dialog` component and set `role=alertdialog`
+  - Set `leastDestructiveRef` prop to the `initialFocusEl` to the `Dialog.Root`
+    component
+
+- **Collapse**: Replace with the `Collapsible` component.
+
+Before:
+
+```tsx
+<Collapse in={isOpen} animateOpacity>
+  Some content
+</Collapse>
+```
+
+After:
+
+```tsx
+<Collapsible.Root open={isOpen}>
+  <Collapsible.Content>Some content</Collapsible.Content>
+</Collapsible.Root>
+```
+
 ## Prop Changes
 
 ### Boolean Props
