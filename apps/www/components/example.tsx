@@ -63,7 +63,7 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
   const { children, maxHeight, bg, px = 8, py = 6 } = props
   return (
     <Box
-      height="100%"
+      my="2"
       overflow="auto"
       colorScheme="dark"
       pos="relative"
