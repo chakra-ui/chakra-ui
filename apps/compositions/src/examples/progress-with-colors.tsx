@@ -1,6 +1,5 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { Progress, Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
 
 export const ProgressWithColors = () => {
   return (
@@ -14,22 +13,27 @@ export const ProgressWithColors = () => {
           px="4"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <ProgressRoot
+
+          <Progress.Root
             width="120px"
             defaultValue={40}
             colorPalette={colorPalette}
             variant="outline"
           >
-            <ProgressBar />
-          </ProgressRoot>
-          <ProgressRoot
+            <Progress.Track>
+              <Progress.Range />
+            </Progress.Track>
+          </Progress.Root>
+          <Progress.Root
             width="120px"
             defaultValue={40}
             colorPalette={colorPalette}
             variant="subtle"
           >
-            <ProgressBar />
-          </ProgressRoot>
+            <Progress.Track>
+              <Progress.Range />
+            </Progress.Track>
+          </Progress.Root>
         </Stack>
       ))}
     </Stack>
