@@ -12,3 +12,5 @@
 - **AbsoluteCenter:** Fix issue where axis doesn't work in RTL mode.
 
 - **Snippets / QRCode:** Remove snippet in favor of compound component pattern.
+
+- **List:** Fix issue where list items don't wrap correctly.
