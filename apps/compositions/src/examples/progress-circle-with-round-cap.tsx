@@ -1,12 +1,12 @@
-import {
-  ProgressCircleRing,
-  ProgressCircleRoot,
-} from "compositions/ui/progress-circle"
+import { ProgressCircle } from "@chakra-ui/react"
 
 export const ProgressCircleWithRoundCap = () => {
   return (
-    <ProgressCircleRoot value={75}>
-      <ProgressCircleRing cap="round" />
-    </ProgressCircleRoot>
+    <ProgressCircle.Root value={75}>
+      <ProgressCircle.Circle>
+        <ProgressCircle.Track />
+        <ProgressCircle.Range strokeLinecap="round" />
+      </ProgressCircle.Circle>
+    </ProgressCircle.Root>
   )
 }

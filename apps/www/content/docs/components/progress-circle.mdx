@@ -10,35 +10,30 @@ links:
 
 <ExampleTabs name="progress-circle-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`progress-circle` snippet
-
-```sh
-npx @chakra-ui/cli snippet add progress-circle
-```
-
-The snippet includes a closed component composition for the `ProgressCircle`
-component.
-
 ## Usage
 
-```jsx
-import {
-  ProgressCircleRing,
-  ProgressCircleRoot,
-} from "@/components/ui/progress-circle"
+```tsx
+import { ProgressCircle } from "@chakra-ui/react"
 ```
 
-```jsx
-<ProgressCircleRoot>
-  <ProgressCircleRing />
-  <ProgressCircleValueText />
-</ProgressCircleRoot>
+```tsx
+<ProgressCircle.Root>
+  <ProgressCircle.Circle>
+    <ProgressCircle.Track />
+    <ProgressCircle.Range />
+  </ProgressCircle.Circle>
+  <ProgressCircle.ValueText />
+</ProgressCircle.Root>
 ```
 
 ## Examples
+
+### Rounded
+
+Use the `strokeLinecap` prop on `ProgressCircle.Range` to make the ends of the
+progress circle rounded.
+
+<ExampleTabs name="progress-circle-with-round-cap" />
 
 ### Sizes
 
@@ -54,7 +49,7 @@ Use the `colorPalette` prop to change the color scheme of the component.
 
 ### Value Text
 
-Render the `ProgressCircleValueText` component to display the progress value.
+Render the `ProgressCircle.ValueText` component to display the progress value.
 
 <ExampleTabs name="progress-circle-with-value-text" />
 
@@ -70,6 +65,12 @@ change the thickness of the ring.
 Set the `value` prop to `null` to render the indeterminate state.
 
 <ExampleTabs name="progress-circle-indeterminate" />
+
+### Closed Component
+
+Here's how to setup the Progress Circle for a closed component composition.
+
+<ExampleCode name="progress-circle-closed-component" />
 
 ## Props
 
