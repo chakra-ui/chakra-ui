@@ -30,7 +30,7 @@ export const listSlotRecipe = defineSlotRecipe({
     variant: {
       marker: {
         root: {
-          listStyle: "revert",
+          listStyle: "initial",
         },
         item: {
           _marker: {
