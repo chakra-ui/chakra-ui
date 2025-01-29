@@ -1,18 +1,13 @@
-import {
-  StatLabel,
-  StatRoot,
-  StatValueText,
-  StatValueUnit,
-} from "compositions/ui/stat"
+import { Stat } from "@chakra-ui/react"
 
 export const StatWithValueUnit = () => {
   return (
-    <StatRoot>
-      <StatLabel>Time to complete</StatLabel>
-      <StatValueText alignItems="baseline">
-        3 <StatValueUnit>hr</StatValueUnit>
-        20 <StatValueUnit>min</StatValueUnit>
-      </StatValueText>
-    </StatRoot>
+    <Stat.Root>
+      <Stat.Label>Time to complete</Stat.Label>
+      <Stat.ValueText alignItems="baseline">
+        3 <Stat.ValueUnit>hr</Stat.ValueUnit>
+        20 <Stat.ValueUnit>min</Stat.ValueUnit>
+      </Stat.ValueText>
+    </Stat.Root>
   )
 }

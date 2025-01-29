@@ -1,17 +1,16 @@
-import { HStack, Icon } from "@chakra-ui/react"
-import { StatLabel, StatRoot, StatValueText } from "compositions/ui/stat"
+import { HStack, Icon, Stat } from "@chakra-ui/react"
 import { LuDollarSign } from "react-icons/lu"
 
 export const StatWithIcon = () => {
   return (
-    <StatRoot maxW="240px" borderWidth="1px" p="4" rounded="md">
+    <Stat.Root maxW="240px" borderWidth="1px" p="4" rounded="md">
       <HStack justify="space-between">
-        <StatLabel>Sales</StatLabel>
+        <Stat.Label>Sales</Stat.Label>
         <Icon color="fg.muted">
           <LuDollarSign />
         </Icon>
       </HStack>
-      <StatValueText>$4.24k</StatValueText>
-    </StatRoot>
+      <Stat.ValueText>$4.24k</Stat.ValueText>
+    </Stat.Root>
   )
 }
