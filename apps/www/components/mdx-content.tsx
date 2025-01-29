@@ -65,7 +65,7 @@ const sharedComponents = {
   Example: Example,
   ExampleCode(props: { name: string }) {
     return (
-      <ExampleCodeWrapper maxHeight="480px" height="auto" my="2">
+      <ExampleCodeWrapper maxHeight="480px" height="auto" mb="2" mt="6">
         <ExampleCode name={props.name} />
       </ExampleCodeWrapper>
     )
