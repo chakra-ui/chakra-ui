@@ -1,10 +1,11 @@
-import { Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Input } from "@chakra-ui/react"
 
 export const FieldWithErrorText = () => {
   return (
-    <Field label="Email" invalid errorText="This is an error text">
+    <Field.Root invalid>
+      <Field.Label>Email</Field.Label>
       <Input placeholder="me@example.com" />
-    </Field>
+      <Field.ErrorText>This is an error text</Field.ErrorText>
+    </Field.Root>
   )
 }
