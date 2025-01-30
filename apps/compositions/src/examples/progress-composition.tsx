@@ -43,7 +43,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
   const { data, icon } = props
   return (
     <HStack gap="4">
-      <Square borderRadius="sm" bg="bg.subtle" size="10">
+      <Square borderRadius="sm" bg="bg.muted" size="10">
         {icon}
       </Square>
       <ProgressRoot
