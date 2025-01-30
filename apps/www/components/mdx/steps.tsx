@@ -17,7 +17,7 @@ export const Steps = (props: React.PropsWithChildren<{}>) => {
               <TimelineIndicator rounded="md">{index + 1}</TimelineIndicator>
             </TimelineConnector>
             <TimelineContent
-              maxW="calc(100% - 40px)"
+              maxW="calc(100% - 50px)"
               flex="1"
               pb="8"
               gap="0"
