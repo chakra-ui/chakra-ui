@@ -5,33 +5,41 @@ import {
 } from "@chakra-ui/react"
 import * as React from "react"
 
-interface ProgressCircleRingProps extends ChakraProgressCircle.CircleProps {
+interface ProgressCircleProps extends ChakraProgressCircle.RootProps {
+  showValueText?: boolean
+  valueText?: React.ReactNode
   trackColor?: SystemStyleObject["stroke"]
   cap?: SystemStyleObject["strokeLinecap"]
+  thickness?: SystemStyleObject["strokeWidth"]
 }
 
-export const ProgressCircleRing = React.forwardRef<
-  SVGSVGElement,
-  ProgressCircleRingProps
->(function ProgressCircleRing(props, ref) {
-  const { trackColor, cap, color, ...rest } = props
-  return (
-    <ChakraProgressCircle.Circle {...rest} ref={ref}>
-      <ChakraProgressCircle.Track stroke={trackColor} />
-      <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />
-    </ChakraProgressCircle.Circle>
-  )
-})
-
-export const ProgressCircleValueText = React.forwardRef<
+export const ProgressCircle = React.forwardRef<
   HTMLDivElement,
-  ChakraProgressCircle.ValueTextProps
->(function ProgressCircleValueText(props, ref) {
+  ProgressCircleProps
+>(function ProgressCircle(props, ref) {
+  const {
+    showValueText,
+    valueText,
+    trackColor,
+    color,
+    cap,
+    thickness,
+    ...rest
+  } = props
+
   return (
-    <AbsoluteCenter>
-      <ChakraProgressCircle.ValueText {...props} ref={ref} />
-    </AbsoluteCenter>
+    <ChakraProgressCircle.Root {...rest} ref={ref}>
+      <ChakraProgressCircle.Circle css={{ "--thickness": thickness }}>
+        <ChakraProgressCircle.Track stroke={trackColor} />
+        <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />
+      </ChakraProgressCircle.Circle>
+      {showValueText && (
+        <AbsoluteCenter>
+          <ChakraProgressCircle.ValueText ref={ref}>
+            {valueText}
+          </ChakraProgressCircle.ValueText>
+        </AbsoluteCenter>
+      )}
+    </ChakraProgressCircle.Root>
   )
 })
-
-export const ProgressCircleRoot = ChakraProgressCircle.Root
