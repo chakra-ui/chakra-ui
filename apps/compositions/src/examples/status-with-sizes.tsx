@@ -1,5 +1,4 @@
-import { For, HStack, Stack } from "@chakra-ui/react"
-import { Status } from "compositions/ui/status"
+import { For, HStack, Stack, Status } from "@chakra-ui/react"
 
 export const StatusWithSizes = () => {
   return (
@@ -7,15 +6,18 @@ export const StatusWithSizes = () => {
       <For each={["sm", "md", "lg"]}>
         {(size) => (
           <HStack key={size} gap="10" px="4">
-            <Status size={size} width="100px" value="warning">
+            <Status.Root size={size} width="100px" colorPalette="orange">
+              <Status.Indicator />
               In Review
-            </Status>
-            <Status size={size} width="100px" value="error">
+            </Status.Root>
+            <Status.Root size={size} width="100px" colorPalette="red">
+              <Status.Indicator />
               Error
-            </Status>
-            <Status size={size} width="100px" value="success">
+            </Status.Root>
+            <Status.Root size={size} width="100px" colorPalette="green">
+              <Status.Indicator />
               Approved
-            </Status>
+            </Status.Root>
           </HStack>
         )}
       </For>

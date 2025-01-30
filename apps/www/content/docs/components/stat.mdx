@@ -9,39 +9,26 @@ links:
 
 <ExampleTabs name="stat-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`stat` snippet
-
-```sh
-npx @chakra-ui/cli snippet add stat
-```
-
-The snippet includes a closed component composition for the `Stat` component.
-
 ## Usage
 
-```jsx
-import { StatLabel, StatRoot, StatValueText } from "@/components/ui/stat"
+```tsx
+import { Stat } from "@chakra-ui/react"
 ```
 
-```jsx
-<StatRoot>
-  <StatLabel />
-  <StatValueText />
-  <StatHelpText>
-    <StatUpIndicator />
-    <StatDownIndicator />
-  </StatHelpText>
-</StatRoot>
+```tsx
+<Stat.Root>
+  <Stat.Label />
+  <Stat.ValueText />
+  <Stat.HelpText />
+  <Stat.UpIndicator />
+</Stat.Root>
 ```
 
 ## Examples
 
 ### Format Options
 
-Pass the `formatOptions` to the `StatValueText` component to format the value.
+Use the `FormatNumber` component within `Stat.ValueText` to format the value.
 
 <ExampleTabs name="stat-with-format-options" />
 
@@ -53,7 +40,7 @@ Here's an example of how to display a statistic with an indicator.
 
 ### Info Tip
 
-Pass the `info` prop to the `StatLabel` component to display an info tip.
+Compose the `InfoTip` and `Stat.Label` components to display an info tip.
 
 <ExampleTabs name="stat-with-info-tip" />
 
@@ -80,6 +67,12 @@ Here's an example of how to display a statistic with an icon.
 Here's an example of how to display a statistic with a trend indicator.
 
 <ExampleTabs name="stat-with-trend" />
+
+### Closed Component
+
+Here's how to setup the Stat for a closed component composition.
+
+<ExampleCode name="stat-closed-component" />
 
 ## Props
 

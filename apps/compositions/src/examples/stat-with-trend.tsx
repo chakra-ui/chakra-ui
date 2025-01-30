@@ -1,24 +1,19 @@
-import { HStack } from "@chakra-ui/react"
-import {
-  StatHelpText,
-  StatLabel,
-  StatRoot,
-  StatUpTrend,
-  StatValueText,
-} from "compositions/ui/stat"
+import { Badge, FormatNumber, HStack, Stat } from "@chakra-ui/react"
 
 export const StatWithTrend = () => {
   return (
-    <StatRoot>
-      <StatLabel>Unique </StatLabel>
+    <Stat.Root>
+      <Stat.Label>Unique </Stat.Label>
       <HStack>
-        <StatValueText
-          value={8456.4}
-          formatOptions={{ style: "currency", currency: "USD" }}
-        />
-        <StatUpTrend>12%</StatUpTrend>
+        <Stat.ValueText>
+          <FormatNumber value={8456.4} style="currency" currency="USD" />
+        </Stat.ValueText>
+        <Badge colorPalette="green" gap="0">
+          <Stat.UpIndicator />
+          12%
+        </Badge>
       </HStack>
-      <StatHelpText>since last month</StatHelpText>
-    </StatRoot>
+      <Stat.HelpText>since last month</Stat.HelpText>
+    </Stat.Root>
   )
 }

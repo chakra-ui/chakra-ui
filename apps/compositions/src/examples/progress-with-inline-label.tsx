@@ -1,19 +1,15 @@
-import { HStack } from "@chakra-ui/react"
-import {
-  ProgressBar,
-  ProgressLabel,
-  ProgressRoot,
-  ProgressValueText,
-} from "compositions/ui/progress"
+import { HStack, Progress } from "@chakra-ui/react"
 
 export const ProgressWithInlineLabel = () => {
   return (
-    <ProgressRoot defaultValue={40} maxW="sm">
+    <Progress.Root defaultValue={40} maxW="sm">
       <HStack gap="5">
-        <ProgressLabel>Usage</ProgressLabel>
-        <ProgressBar flex="1" />
-        <ProgressValueText>40%</ProgressValueText>
+        <Progress.Label>Usage</Progress.Label>
+        <Progress.Track flex="1">
+          <Progress.Range />
+        </Progress.Track>
+        <Progress.ValueText>40%</Progress.ValueText>
       </HStack>
-    </ProgressRoot>
+    </Progress.Root>
   )
 }

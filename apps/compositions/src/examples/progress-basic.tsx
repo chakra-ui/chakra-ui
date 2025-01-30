@@ -1,9 +1,11 @@
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
+import { Progress } from "@chakra-ui/react"
 
 export const ProgressBasic = () => {
   return (
-    <ProgressRoot maxW="240px">
-      <ProgressBar />
-    </ProgressRoot>
+    <Progress.Root maxW="240px">
+      <Progress.Track>
+        <Progress.Range />
+      </Progress.Track>
+    </Progress.Root>
   )
 }

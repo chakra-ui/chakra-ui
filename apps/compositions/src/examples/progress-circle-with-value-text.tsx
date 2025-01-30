@@ -1,19 +1,19 @@
-import { For, HStack } from "@chakra-ui/react"
-import {
-  ProgressCircleRing,
-  ProgressCircleRoot,
-  ProgressCircleValueText,
-} from "compositions/ui/progress-circle"
+import { AbsoluteCenter, For, HStack, ProgressCircle } from "@chakra-ui/react"
 
 export const ProgressCircleWithValueText = () => {
   return (
     <HStack gap="8">
       <For each={["md", "lg", "xl"]}>
         {(size) => (
-          <ProgressCircleRoot value={5} size={size}>
-            <ProgressCircleValueText />
-            <ProgressCircleRing />
-          </ProgressCircleRoot>
+          <ProgressCircle.Root size={size} key={size} value={5}>
+            <ProgressCircle.Circle>
+              <ProgressCircle.Track />
+              <ProgressCircle.Range />
+            </ProgressCircle.Circle>
+            <AbsoluteCenter>
+              <ProgressCircle.ValueText />
+            </AbsoluteCenter>
+          </ProgressCircle.Root>
         )}
       </For>
     </HStack>

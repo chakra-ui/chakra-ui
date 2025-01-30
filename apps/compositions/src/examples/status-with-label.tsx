@@ -1,13 +1,24 @@
-import { HStack } from "@chakra-ui/react"
-import { Status } from "compositions/ui/status"
+import { HStack, Status } from "@chakra-ui/react"
 
 export const StatusWithLabel = () => {
   return (
     <HStack gap="6">
-      <Status value="error">Error</Status>
-      <Status value="info">Info</Status>
-      <Status value="warning">Warning</Status>
-      <Status value="success">Success</Status>
+      <Status.Root colorPalette="red">
+        <Status.Indicator />
+        Error
+      </Status.Root>
+      <Status.Root colorPalette="blue">
+        <Status.Indicator />
+        Info
+      </Status.Root>
+      <Status.Root colorPalette="orange">
+        <Status.Indicator />
+        Warning
+      </Status.Root>
+      <Status.Root colorPalette="green">
+        <Status.Indicator />
+        Success
+      </Status.Root>
     </HStack>
   )
 }
