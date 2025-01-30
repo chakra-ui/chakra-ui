@@ -5,7 +5,7 @@ export const ProgressCircleWithValueText = () => {
     <HStack gap="8">
       <For each={["md", "lg", "xl"]}>
         {(size) => (
-          <ProgressCircle.Root key={size} value={5}>
+          <ProgressCircle.Root size={size} key={size} value={5}>
             <ProgressCircle.Circle>
               <ProgressCircle.Track />
               <ProgressCircle.Range />

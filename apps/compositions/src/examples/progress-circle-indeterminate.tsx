@@ -5,7 +5,7 @@ export const ProgressCircleIndeterminate = () => {
     <ProgressCircle.Root value={null} size="sm">
       <ProgressCircle.Circle>
         <ProgressCircle.Track />
-        <ProgressCircle.Range />
+        <ProgressCircle.Range strokeLinecap="round" />
       </ProgressCircle.Circle>
     </ProgressCircle.Root>
   )
