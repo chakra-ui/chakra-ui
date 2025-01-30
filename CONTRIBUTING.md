@@ -67,16 +67,10 @@ pnpm build:fast
 pnpm storybook
 ```
 
-- Start development server
-
-```bash
-pnpm www dev
-```
-
 - Start documentation website
 
 ```bash
-pnpm docs dev
+pnpm www dev
 ```
 
 - Run tests
