@@ -23,9 +23,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           <ChakraProgress.Range />
         </ChakraProgress.Track>
         {showValueText && (
-          <ChakraProgress.ValueText ref={ref}>
-            {valueText}
-          </ChakraProgress.ValueText>
+          <ChakraProgress.ValueText>{valueText}</ChakraProgress.ValueText>
         )}
       </ChakraProgress.Root>
     )

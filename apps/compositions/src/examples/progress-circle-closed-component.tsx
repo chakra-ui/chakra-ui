@@ -35,7 +35,7 @@ export const ProgressCircle = React.forwardRef<
       </ChakraProgressCircle.Circle>
       {showValueText && (
         <AbsoluteCenter>
-          <ChakraProgressCircle.ValueText ref={ref}>
+          <ChakraProgressCircle.ValueText>
             {valueText}
           </ChakraProgressCircle.ValueText>
         </AbsoluteCenter>
