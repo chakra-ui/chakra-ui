@@ -1,68 +1,47 @@
-import {
-  Badge,
-  type BadgeProps,
-  Stat as ChakraStat,
-  FormatNumber,
-} from "@chakra-ui/react"
+import { Badge, Stat as ChakraStat, FormatNumber, Show } from "@chakra-ui/react"
 import { InfoTip } from "compositions/ui/toggle-tip"
 import * as React from "react"
 
-interface StatLabelProps extends ChakraStat.LabelProps {
-  info?: React.ReactNode
-}
-
-export const StatLabel = React.forwardRef<HTMLDivElement, StatLabelProps>(
-  function StatLabel(props, ref) {
-    const { info, children, ...rest } = props
-    return (
-      <ChakraStat.Label {...rest} ref={ref}>
-        {children}
-        {info && <InfoTip>{info}</InfoTip>}
-      </ChakraStat.Label>
-    )
-  },
-)
-
-interface StatValueTextProps extends ChakraStat.ValueTextProps {
+interface StatProps extends ChakraStat.RootProps {
+  label?: React.ReactNode
   value?: number
+  info?: React.ReactNode
+  valueText?: React.ReactNode
   formatOptions?: Intl.NumberFormatOptions
+  change?: number
 }
 
-export const StatValueText = React.forwardRef<
-  HTMLDivElement,
-  StatValueTextProps
->(function StatValueText(props, ref) {
-  const { value, formatOptions, children, ...rest } = props
-  return (
-    <ChakraStat.ValueText {...rest} ref={ref}>
-      {children ||
-        (value != null && <FormatNumber value={value} {...formatOptions} />)}
-    </ChakraStat.ValueText>
-  )
-})
-
-export const StatUpTrend = React.forwardRef<HTMLDivElement, BadgeProps>(
-  function StatUpTrend(props, ref) {
+export const Stat = React.forwardRef<HTMLDivElement, StatProps>(
+  function Stat(props, ref) {
+    const { label, value, valueText, change, info, formatOptions, ...rest } =
+      props
     return (
-      <Badge colorPalette="green" gap="0" {...props} ref={ref}>
-        <ChakraStat.UpIndicator />
-        {props.children}
-      </Badge>
+      <ChakraStat.Root {...rest}>
+        {label && (
+          <ChakraStat.Label>
+            {label}
+            {info && <InfoTip>{info}</InfoTip>}
+          </ChakraStat.Label>
+        )}
+        <ChakraStat.ValueText {...rest} ref={ref}>
+          {valueText ||
+            (value != null && formatOptions && (
+              <FormatNumber value={value} {...formatOptions} />
+            ))}
+        </ChakraStat.ValueText>
+        {change != null && (
+          <Badge colorPalette={change > 0 ? "green" : "red"} gap="0">
+            <Show when={change > 0} fallback={<ChakraStat.DownIndicator />}>
+              <ChakraStat.UpIndicator />
+            </Show>
+            <FormatNumber
+              value={Math.abs(change)}
+              style="percent"
+              maximumFractionDigits={2}
+            />
+          </Badge>
+        )}
+      </ChakraStat.Root>
     )
   },
 )
-
-export const StatDownTrend = React.forwardRef<HTMLDivElement, BadgeProps>(
-  function StatDownTrend(props, ref) {
-    return (
-      <Badge colorPalette="red" gap="0" {...props} ref={ref}>
-        <ChakraStat.DownIndicator />
-        {props.children}
-      </Badge>
-    )
-  },
-)
-
-export const StatRoot = ChakraStat.Root
-export const StatHelpText = ChakraStat.HelpText
-export const StatValueUnit = ChakraStat.ValueUnit

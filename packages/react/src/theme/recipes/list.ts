@@ -31,7 +31,6 @@ export const listSlotRecipe = defineSlotRecipe({
       marker: {
         root: {
           listStyle: "revert",
-          listStylePosition: "inside",
         },
         item: {
           _marker: {
