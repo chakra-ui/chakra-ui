@@ -9,29 +9,29 @@ links:
 
 <ExampleTabs name="empty-state-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`empty-state` snippet
-
-```sh
-npx @chakra-ui/cli snippet add empty-state
-```
-
-The snippet includes a closed component composition for the `EmptyState`
-component.
-
 ## Usage
 
-```jsx
-import { EmptyState } from "@/components/ui/empty-state"
+```tsx
+import { EmptyState } from "@chakra-ui/react"
 ```
 
-```jsx
-<EmptyState />
+```tsx
+<EmptyState.Root>
+  <EmptyState.Content>
+    <EmptyState.Indicator />
+    <EmptyState.Title />
+    <EmptyState.Description />
+  </EmptyState.Content>
+</EmptyState.Root>
 ```
 
 ## Examples
+
+### Sizes
+
+Use the `size` prop to set the size of the Empty state.
+
+<ExampleTabs name="empty-state-sizes" />
 
 ### Action
 
@@ -44,6 +44,12 @@ Here's an example of an empty state with an action button.
 Here's an example of an empty state with a list.
 
 <ExampleTabs name="empty-state-with-list" />
+
+### Closed Component
+
+Here's how to setup the Empty State for a closed component composition.
+
+<ExampleCode name="empty-state-closed-component" />
 
 ## Props
 
