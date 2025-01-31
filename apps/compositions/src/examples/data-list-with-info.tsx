@@ -1,4 +1,5 @@
-import { DataListItem, DataListRoot } from "compositions/ui/data-list"
+import { DataList } from "@chakra-ui/react"
+import { InfoTip } from "compositions/ui/toggle-tip"
 
 const stats = [
   { label: "New Users", value: "234", diff: -12, helpText: "Till date" },
@@ -8,15 +9,16 @@ const stats = [
 
 export const DataListWithInfo = () => {
   return (
-    <DataListRoot orientation="horizontal">
+    <DataList.Root orientation="horizontal">
       {stats.map((item) => (
-        <DataListItem
-          info="This is some info"
-          key={item.label}
-          label={item.label}
-          value={item.value}
-        />
+        <DataList.Item key={item.label}>
+          <DataList.ItemLabel>
+            {item.label}
+            <InfoTip>This is some info</InfoTip>
+          </DataList.ItemLabel>
+          <DataList.ItemValue>{item.value}</DataList.ItemValue>
+        </DataList.Item>
       ))}
-    </DataListRoot>
+    </DataList.Root>
   )
 }

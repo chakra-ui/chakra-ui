@@ -9,30 +9,21 @@ links:
 
 <ExampleTabs name="data-list-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`data-list` snippet
-
-```sh
-npx @chakra-ui/cli snippet add data-list
-```
-
-The snippet includes a closed component composition for the `DataList`
-component.
-
 ## Usage
 
-```jsx
-import { DataListItem, DataListRoot } from "@/components/ui/data-list"
+```tsx
+import { DataList } from "@chakra-ui/react"
 ```
 
-```jsx
-<DataListRoot>
+```tsx
+<DataList.Root>
   {data.map((item) => (
-    <DataListItem key={item.label} label={item.label} value={item.value} />
+    <DataList.Item key={item.label}>
+      <DataList.ItemLabel>{item.label}</DataList.ItemLabel>
+      <DataList.ItemValue>{item.value}</DataList.ItemValue>
+    </DataList.Item>
   ))}
-</DataListRoot>
+</DataList.Root>
 ```
 
 ## Examples
@@ -59,16 +50,22 @@ Use the `orientation` prop to change the orientation of the datalist component.
 
 ### Info Tip
 
-Use the `info` prop on the `DataListItem` to provide additional context to the
-datalist.
+Render the `InfoTip` component within `DataList.Item` to provide additional
+context to the datalist.
 
 <ExampleTabs name="data-list-with-info" />
 
 ### Separator
 
-Use the `divideY` prop on the `DataListRoot` to add a separator between items.
+Use the `divideY` prop on the `DataList.Root` to add a separator between items.
 
 <ExampleTabs name="data-list-with-separator" />
+
+### Closed Component
+
+Here's how to setup the Data List for a closed component composition.
+
+<ExampleCode name="data-list-closed-component" />
 
 ## Props
 

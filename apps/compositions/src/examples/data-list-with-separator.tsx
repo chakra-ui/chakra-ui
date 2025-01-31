@@ -1,19 +1,15 @@
-import { DataListItem } from "compositions/ui/data-list"
-import { DataListRoot } from "compositions/ui/data-list"
+import { DataList } from "@chakra-ui/react"
 
 export const DataListWithSeparator = () => {
   return (
-    <DataListRoot orientation="horizontal" divideY="1px" maxW="md">
+    <DataList.Root orientation="horizontal" divideY="1px" maxW="md">
       {items.map((item) => (
-        <DataListItem
-          pt="4"
-          grow
-          key={item.value}
-          label={item.label}
-          value={item.value}
-        />
+        <DataList.Item key={item.label} pt="4">
+          <DataList.ItemLabel>{item.label}</DataList.ItemLabel>
+          <DataList.ItemValue>{item.value}</DataList.ItemValue>
+        </DataList.Item>
       ))}
-    </DataListRoot>
+    </DataList.Root>
   )
 }
 
