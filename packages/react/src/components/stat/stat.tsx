@@ -7,6 +7,7 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
+  useSlotRecipe,
 } from "../../styled-system"
 import { ArrowDownIcon, ArrowUpIcon } from "../icons"
 
@@ -108,16 +109,20 @@ export interface StatGroupProps
 
 export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
   function StatGroup(props, ref) {
+    const recipe = useSlotRecipe({ key: "stat" })
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
-      <chakra.div
-        ref={ref}
-        role="group"
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="space-around"
-        alignItems="flex-start"
-        {...props}
-      />
+      <PropsProvider value={variantProps}>
+        <chakra.div
+          ref={ref}
+          role="group"
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="space-around"
+          alignItems="flex-start"
+          {...localProps}
+        />
+      </PropsProvider>
     )
   },
 )
