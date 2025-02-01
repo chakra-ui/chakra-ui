@@ -14,3 +14,5 @@
 - **Snippets / QRCode:** Remove snippet in favor of compound component pattern.
 
 - **List:** Fix issue where list items don't wrap correctly.
+
+- **Stat:** Bring back `StatGroup` component from v2.
