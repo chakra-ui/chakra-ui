@@ -1,20 +1,18 @@
-import { For, Stack } from "@chakra-ui/react"
-import { DataListItem, DataListRoot } from "compositions/ui/data-list"
+import { DataList, For, Stack } from "@chakra-ui/react"
 
 export const DataListWithVariants = () => {
   return (
     <Stack gap="8">
       <For each={["subtle", "bold"]}>
         {(variant) => (
-          <DataListRoot variant={variant} key={variant}>
+          <DataList.Root variant={variant} key={variant}>
             {stats.map((item) => (
-              <DataListItem
-                key={item.label}
-                label={item.label}
-                value={item.value}
-              />
+              <DataList.Item key={item.label}>
+                <DataList.ItemLabel>{item.label}</DataList.ItemLabel>
+                <DataList.ItemValue>{item.value}</DataList.ItemValue>
+              </DataList.Item>
             ))}
-          </DataListRoot>
+          </DataList.Root>
         )}
       </For>
     </Stack>

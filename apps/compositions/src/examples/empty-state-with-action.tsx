@@ -1,18 +1,24 @@
-import { Button, Group } from "@chakra-ui/react"
-import { EmptyState } from "compositions/ui/empty-state"
+import { Button, ButtonGroup, EmptyState, VStack } from "@chakra-ui/react"
 import { HiColorSwatch } from "react-icons/hi"
 
 export const EmptyStateWithAction = () => {
   return (
-    <EmptyState
-      icon={<HiColorSwatch />}
-      title="Start adding tokens"
-      description="Add a new design token to get started"
-    >
-      <Group>
-        <Button>Create token</Button>
-        <Button variant="outline">Import</Button>
-      </Group>
-    </EmptyState>
+    <EmptyState.Root>
+      <EmptyState.Content>
+        <EmptyState.Indicator>
+          <HiColorSwatch />
+        </EmptyState.Indicator>
+        <VStack textAlign="center">
+          <EmptyState.Title>Start adding tokens</EmptyState.Title>
+          <EmptyState.Description>
+            Add a new design token to get started
+          </EmptyState.Description>
+        </VStack>
+        <ButtonGroup>
+          <Button>Create token</Button>
+          <Button variant="outline">Import</Button>
+        </ButtonGroup>
+      </EmptyState.Content>
+    </EmptyState.Root>
   )
 }
