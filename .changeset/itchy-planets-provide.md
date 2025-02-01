@@ -16,3 +16,5 @@
 - **List:** Fix issue where list items don't wrap correctly.
 
 - **Stat:** Bring back `StatGroup` component from v2.
+
+- **Close Button:** Add `CloseButton` component.
