@@ -30,7 +30,7 @@
     "@codesandbox/sandpack-themes": "2.0.21",
     "@docsearch/react": "^1.0.0-alpha.27",
     "@docusaurus/utils": "2.4.3",
-    "@emotion/react": "^11.10.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.9.3",
     "@octokit/rest": "^19.0.5",
     "contentlayer": "0.3.0",

@@ -56,8 +56,8 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@tanstack/react-table": "^8.10.7",
     "@testing-library/react": "^14.0.0",
     "framer-motion": "10.16.15",
