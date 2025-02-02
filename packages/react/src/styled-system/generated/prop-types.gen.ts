@@ -40,7 +40,7 @@ export interface UtilityValues {
   gradientFrom: Tokens["colors"] | "currentBg"
   gradientTo: Tokens["colors"] | "currentBg"
   gradientVia: Tokens["colors"] | "currentBg"
-  backgroundImage: Tokens["gradients"]
+  backgroundImage: Tokens["gradients"] | Tokens["assets"]
   border: Tokens["borders"]
   borderTop: Tokens["borders"]
   borderLeft: Tokens["borders"]
@@ -163,6 +163,7 @@ export interface UtilityValues {
   scrollSnapMarginBottom: Tokens["spacing"]
   scrollSnapMarginLeft: Tokens["spacing"]
   scrollSnapMarginRight: Tokens["spacing"]
+  listStyleImage: Tokens["assets"]
   zIndex: Tokens["zIndex"]
   inset: Tokens["spacing"]
   insetInline: Tokens["spacing"]

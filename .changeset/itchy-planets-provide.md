@@ -1,10 +1,13 @@
 ---
-"@chakra-ui/react": patch
+"@chakra-ui/react": minor
 ---
 
-- **Styled System:** Boost performance of style resolution by removing
-  `JSON.stringify` in `memo` function and avoid memoizing non-primitive
-  arguments.
+- **Styled System:**
+
+  - Boost performance of style resolution by removing `JSON.stringify` in `memo`
+    function and avoid memoizing non-primitive arguments.
+  - Connect `assets` token to `backgroundImage` and `listStyleImage` css
+    properties.
 
 - **Menu, Tooltip:** Set `lazyMount` and `unmountOnExit` to `true` in the `Root`
   component to improve initial rendering performance.

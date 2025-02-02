@@ -278,7 +278,7 @@ export interface SystemProperties {
   lineHeight?: ConditionalValue<UtilityValues["lineHeight"] | CssVars | CssProperties["lineHeight"] | AnyString>
   lineHeightStep?: ConditionalValue<CssProperties["lineHeightStep"] | AnyString>
   listStyle?: ConditionalValue<CssProperties["listStyle"] | AnyString>
-  listStyleImage?: ConditionalValue<CssProperties["listStyleImage"] | AnyString>
+  listStyleImage?: ConditionalValue<UtilityValues["listStyleImage"] | CssVars | CssProperties["listStyleImage"] | AnyString>
   listStylePosition?: ConditionalValue<CssProperties["listStylePosition"] | AnyString>
   listStyleType?: ConditionalValue<CssProperties["listStyleType"] | AnyString>
   margin?: ConditionalValue<UtilityValues["margin"] | CssVars | CssProperties["margin"] | AnyString>
@@ -581,7 +581,7 @@ export interface SystemProperties {
   scrollPaddingX?: ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | AnyString>
   scrollPaddingY?: ConditionalValue<UtilityValues["scrollPaddingBlock"] | CssVars | CssProperties["scrollPaddingBlock"] | AnyString>
   listStylePos?: ConditionalValue<CssProperties["listStylePosition"] | AnyString>
-  listStyleImg?: ConditionalValue<CssProperties["listStyleImage"] | AnyString>
+  listStyleImg?: ConditionalValue<UtilityValues["listStyleImage"] | CssVars | CssProperties["listStyleImage"] | AnyString>
   pos?: ConditionalValue<CssProperties["position"] | AnyString>
   insetX?: ConditionalValue<UtilityValues["insetInline"] | CssVars | CssProperties["insetInline"] | AnyString>
   insetY?: ConditionalValue<UtilityValues["insetBlock"] | CssVars | CssProperties["insetBlock"] | AnyString>
