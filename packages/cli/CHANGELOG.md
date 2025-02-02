@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.6.0
+
+### Patch Changes
+
+- [`07f2c56`](https://github.com/chakra-ui/chakra-ui/commit/07f2c56af4e6224d419a82217f4d3351e1b6ca87)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where CLI
+  doesn't properly check for existing files when adding snippets.
+
 ## 3.5.1
 
 ## 3.5.0
