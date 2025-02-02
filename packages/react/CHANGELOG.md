@@ -1,5 +1,26 @@
 # @chakra-ui/react
 
+## 3.6.0
+
+### Minor Changes
+
+- [`04a1a07`](https://github.com/chakra-ui/chakra-ui/commit/04a1a07f1eb8924648b7d1a0de005777330cf5f3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System:**
+
+  - Boost performance of style resolution by removing `JSON.stringify` in `memo`
+    function and avoid memoizing non-primitive arguments.
+  - Connect `assets` token to `backgroundImage` and `listStyleImage` css
+    properties.
+  - **Menu, Tooltip:** Set `lazyMount` and `unmountOnExit` to `true` in the
+    `Root` component to improve initial rendering performance.
+  - **AbsoluteCenter:** Fix issue where axis doesn't work in RTL mode.
+  - **Snippets / QRCode:** Remove snippet in favor of compound component
+    pattern.
+  - **List:** Fix issue where list items don't wrap correctly.
+  - **Stat:** Bring back `StatGroup` component from v2.
+  - **Close Button:** Add `CloseButton` component.
+
 ## 3.5.1
 
 ### Patch Changes
