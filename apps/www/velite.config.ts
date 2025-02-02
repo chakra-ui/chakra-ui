@@ -6,6 +6,7 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers"
+import fs from "node:fs"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
 import remarkDirective from "remark-directive"
@@ -40,6 +41,11 @@ const docs = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
+      llm: s
+        .custom()
+        .transform(async (data, { meta }) =>
+          replaceExampleTabs(meta.content ?? ""),
+        ),
       hideToc: s.boolean().optional(),
       composition: s.boolean().optional(),
       links: s
@@ -211,3 +217,25 @@ export default defineConfig({
     ],
   },
 })
+
+function replaceExampleTabs(text: string) {
+  const matches = text.matchAll(/<ExampleTabs name="([^"]+)" \/>/g)
+
+  if (!matches) return text
+
+  for (const match of matches) {
+    const name = match[1]
+
+    const example = fs.readFileSync(
+      `../compositions/src/examples/${name}.tsx`,
+      "utf-8",
+    )
+
+    text = text.replace(
+      `<ExampleTabs name="${name}" \/>`,
+      `\`\`\`tsx\n${example}\n\`\`\``,
+    )
+  }
+
+  return text
+}
