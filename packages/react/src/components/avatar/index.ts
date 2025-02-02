@@ -5,6 +5,7 @@ export {
   AvatarImage,
   AvatarFallback,
   AvatarIcon,
+  AvatarGroup,
   AvatarContext,
   useAvatarStyles,
 } from "./avatar"
@@ -15,6 +16,7 @@ export type {
   AvatarFallbackProps,
   AvatarIconProps,
   AvatarStatusChangeDetails,
+  AvatarGroupProps,
 } from "./avatar"
 
 export { useAvatar, useAvatarContext } from "@ark-ui/react/avatar"

@@ -9,7 +9,9 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
+  useSlotRecipe,
 } from "../../styled-system"
+import { Group, type GroupProps } from "../group"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,3 +115,21 @@ export const AvatarContext = ArkAvatar.Context
 
 export interface AvatarStatusChangeDetails
   extends ArkAvatar.StatusChangeDetails {}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface AvatarGroupProps
+  extends GroupProps,
+    SlotRecipeProps<"avatar"> {}
+
+export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
+  function AvatarGroup(props, ref) {
+    const recipe = useSlotRecipe({ key: "avatar" })
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    return (
+      <PropsProvider value={variantProps}>
+        <Group gap="0" spaceX="-3" ref={ref} {...localProps} />
+      </PropsProvider>
+    )
+  },
+)

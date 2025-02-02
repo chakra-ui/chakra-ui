@@ -5,6 +5,37 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.6.0](./#3.6.0) - 2025-02-02
+
+### Fixed
+
+- **CLI:** Fix issue where CLI doesn't properly check for existing files when
+  adding snippets.
+
+### Added
+
+- **[New] Close Button:** Add `CloseButton` component.
+- **Stat:** Bring back `StatGroup` component from v2.
+- **Avatar:** Bring back `AvatarGroup` component from v2.
+
+### Changed
+
+- **Styled System:**
+
+  - Boost performance of style resolution by removing `JSON.stringify` in `memo`
+    function and avoid memoizing non-primitive arguments.
+  - Connect `assets` token to `backgroundImage` and `listStyleImage` css
+    properties.
+
+- **Menu, Tooltip:** Set `lazyMount` and `unmountOnExit` to `true` in the `Root`
+  component to improve initial rendering performance.
+
+- **AbsoluteCenter:** Fix issue where axis doesn't work in RTL mode.
+
+- **Snippets / QRCode:** Remove snippet in favor of compound component pattern.
+
+- **List:** Fix issue where list items don't wrap correctly.
+
 ## [3.5.1](./#3.5.1) - 2025-01-24
 
 ### Fixed
