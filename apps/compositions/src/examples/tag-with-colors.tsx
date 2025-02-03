@@ -1,6 +1,5 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { Stack, Tag, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { Tag } from "compositions/ui/tag"
 import { HiPlus } from "react-icons/hi"
 
 export const TagWithColors = () => {
@@ -15,15 +14,22 @@ export const TagWithColors = () => {
           px="4"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <Tag size="sm" colorPalette={colorPalette}>
-            Content
-          </Tag>
-          <Tag startElement={<HiPlus />} size="sm" colorPalette={colorPalette}>
-            Content
-          </Tag>
-          <Tag size="sm" colorPalette={colorPalette} variant="solid" closable>
-            Content
-          </Tag>
+
+          <Tag.Root size="sm" colorPalette={colorPalette}>
+            <Tag.Label>Content</Tag.Label>
+          </Tag.Root>
+          <Tag.Root size="sm" colorPalette={colorPalette}>
+            <Tag.StartElement>
+              <HiPlus />
+            </Tag.StartElement>
+            <Tag.Label>Content</Tag.Label>
+          </Tag.Root>
+          <Tag.Root colorPalette={colorPalette} variant="solid">
+            <Tag.Label>Content</Tag.Label>
+            <Tag.EndElement>
+              <Tag.CloseTrigger />
+            </Tag.EndElement>
+          </Tag.Root>
         </Stack>
       ))}
     </Stack>
