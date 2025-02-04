@@ -46,7 +46,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "0.7.0",
+    "@clack/prompts": "0.9.1",
     "@pandacss/is-valid-prop": "0.41.0",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
