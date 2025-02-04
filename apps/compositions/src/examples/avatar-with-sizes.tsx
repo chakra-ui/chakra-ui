@@ -1,15 +1,16 @@
-import { HStack } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Avatar, For, HStack } from "@chakra-ui/react"
 
 export const AvatarWithSizes = () => {
   return (
     <HStack gap="3">
-      <Avatar size="xs" name="Sage" src="https://bit.ly/sage-adebayo" />
-      <Avatar size="sm" name="Sage" src="https://bit.ly/sage-adebayo" />
-      <Avatar size="md" name="Sage" src="https://bit.ly/sage-adebayo" />
-      <Avatar size="lg" name="Sage" src="https://bit.ly/sage-adebayo" />
-      <Avatar size="xl" name="Sage" src="https://bit.ly/sage-adebayo" />
-      <Avatar size="2xl" name="Sage" src="https://bit.ly/sage-adebayo" />
+      <For each={["xs", "sm", "md", "lg", "xl", "2xl"]}>
+        {(size) => (
+          <Avatar.Root size={size} key={size}>
+            <Avatar.Fallback>SA</Avatar.Fallback>
+            <Avatar.Image src="https://bit.ly/sage-adebayo" />
+          </Avatar.Root>
+        )}
+      </For>
     </HStack>
   )
 }

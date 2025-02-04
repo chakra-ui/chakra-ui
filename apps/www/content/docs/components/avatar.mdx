@@ -10,25 +10,13 @@ links:
 
 <ExampleTabs name="avatar-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`avatar` snippet
-
-```sh
-npx @chakra-ui/cli snippet add avatar
-```
-
-The snippet includes a closed component composition for the `Avatar` and
-`AvatarGroup` components.
-
 ## Usage
 
-```jsx
-import { Avatar, AvatarGroup } from "@/components/ui/avatar"
+```tsx
+import { Avatar, AvatarGroup } from "@chakra-ui/react"
 ```
 
-```jsx
+```tsx
 <AvatarGroup>
   <Avatar />
 </AvatarGroup>
@@ -57,7 +45,7 @@ Use the `shape` prop to change the shape of the avatar, from `rounded` to
 
 ### Fallback
 
-The initials of the name can be used as a fallback when the `src` prop is not
+Render `Avatar.Icon` as the fallback when the initials of the name is not
 provided or when the image fails to load.
 
 <ExampleTabs name="avatar-with-fallback" />
@@ -108,6 +96,26 @@ Here's an example of how to handle an overflow of avatars by composing the
 `Menu` and `Avatar` components.
 
 <ExampleTabs name="avatar-with-overflow" />
+
+### Next.js
+
+Here's an example of how to compose the avatar with Next.js Image.
+
+```tsx
+import { getImageProps } from "next/image"
+
+function Demo() {
+  const imageProps = getImageProps({
+    src: "/image.png",
+  })
+  return (
+    <Avatar.Root>
+      <Avatar.Fallback>SA</Avatar.Fallback>
+      <Avatar.Image {...imageProps} />
+    </Avatar.Root>
+  )
+}
+```
 
 ### Without Snippet
 

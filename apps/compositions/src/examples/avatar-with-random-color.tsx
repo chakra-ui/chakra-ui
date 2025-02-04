@@ -1,5 +1,4 @@
-import { HStack } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Avatar, HStack } from "@chakra-ui/react"
 
 const colorPalette = ["red", "blue", "green", "yellow", "purple", "orange"]
 
@@ -11,9 +10,15 @@ const pickPalette = (name: string) => {
 export const AvatarWithRandomColor = () => {
   return (
     <HStack>
-      <Avatar name="Shane Nelson" colorPalette={pickPalette("Shane Nelson")} />
-      <Avatar name="Brook Lesnar" colorPalette={pickPalette("Brook Lesnar")} />
-      <Avatar name="John Lennon" colorPalette={pickPalette("John Lennon")} />
+      <Avatar.Root colorPalette={pickPalette("Shane Nelson")}>
+        <Avatar.Fallback>SN</Avatar.Fallback>
+      </Avatar.Root>
+      <Avatar.Root colorPalette={pickPalette("Brook Lesnar")}>
+        <Avatar.Fallback>BL</Avatar.Fallback>
+      </Avatar.Root>
+      <Avatar.Root colorPalette={pickPalette("John Lennon")}>
+        <Avatar.Fallback>JL</Avatar.Fallback>
+      </Avatar.Root>
     </HStack>
   )
 }
