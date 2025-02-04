@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.7.0
+
+### Minor Changes
+
+- [`cb0ffc9`](https://github.com/chakra-ui/chakra-ui/commit/cb0ffc99b47da92482294bf0cef9743d1eb4c188)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Avatar:** Add
+  support for passing `name` to the `AvatarFallback` to render the initials. If
+  no `name` or `children` is passed, it'll render either the initials or a
+  fallback icon.
+
+  - **Hooks**: Add `useConst` and `useUpdateEffect` hooks from v2.
+  - **Wrap:** Bring back the `Wrap` component from v2.
+
 ## 3.6.0
 
 ### Minor Changes
