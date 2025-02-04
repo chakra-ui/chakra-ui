@@ -404,8 +404,8 @@ importers:
   packages/cli:
     dependencies:
       '@clack/prompts':
-        specifier: 0.7.0
-        version: 0.7.0
+        specifier: 0.9.1
+        version: 0.9.1
       '@pandacss/is-valid-prop':
         specifier: 0.41.0
         version: 0.41.0
@@ -1812,10 +1812,16 @@ packages:
   '@clack/core@0.3.4':
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
 
+  '@clack/core@0.4.1':
+    resolution: {integrity: sha512-Pxhij4UXg8KSr7rPek6Zowm+5M22rbd2g1nfojHJkxp5YkFqiZ2+YLEM/XGVIzvGOcM0nqjIFxrpDwWRZYWYjA==}
+
   '@clack/prompts@0.7.0':
     resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
     bundledDependencies:
       - is-unicode-supported
+
+  '@clack/prompts@0.9.1':
+    resolution: {integrity: sha512-JIpyaboYZeWYlyP0H+OoPPxd6nqueG/CmN6ixBiNFsIDHREevjIf0n0Ohh5gr5C8pEDknzgvz+pIJ8dMhzWIeg==}
 
   '@commitlint/cli@19.3.0':
     resolution: {integrity: sha512-LgYWOwuDR7BSTQ9OLZ12m7F/qhNY+NpAyPBgo4YNMkACE7lGuUnuQq1yi9hz1KA4+3VqpOYl8H1rY/LYK43v7g==}
@@ -11441,13 +11447,24 @@ snapshots:
 
   '@clack/core@0.3.4':
     dependencies:
-      picocolors: 1.1.0
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
+
+  '@clack/core@0.4.1':
+    dependencies:
+      picocolors: 1.1.1
       sisteransi: 1.0.5
 
   '@clack/prompts@0.7.0':
     dependencies:
       '@clack/core': 0.3.4
-      picocolors: 1.1.0
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
+
+  '@clack/prompts@0.9.1':
+    dependencies:
+      '@clack/core': 0.4.1
+      picocolors: 1.1.1
       sisteransi: 1.0.5
 
   '@commitlint/cli@19.3.0(@types/node@22.7.4)(typescript@5.7.2)':
@@ -14181,7 +14198,7 @@ snapshots:
       lru-cache: 10.4.3
       media-query-parser: 2.0.2
       modern-ahocorasick: 1.0.1
-      picocolors: 1.1.0
+      picocolors: 1.1.1
     transitivePeerDependencies:
       - babel-plugin-macros
 
@@ -21460,19 +21477,19 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   update-browserslist-db@1.1.1(browserslist@4.24.0):
     dependencies:
       browserslist: 4.24.0
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   update-browserslist-db@1.1.1(browserslist@4.24.2):
     dependencies:
       browserslist: 4.24.2
       escalade: 3.2.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   uqr@0.1.2: {}
 
