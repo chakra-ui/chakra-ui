@@ -1,0 +1,62 @@
+---
+title: Wrap
+description:
+  Used to add space between elements and wraps automatically if there isn't
+  enough space.
+links:
+  source: components/wrap
+---
+
+<ExampleTabs name="wrap-basic" />
+
+## Usage
+
+By default, `Wrap` applies `display: flex`, `flex-wrap: wrap`, and `gap: 8px` to
+its children.
+
+```tsx
+import { Wrap, WrapItem } from "@chakra-ui/react"
+```
+
+```tsx
+<Wrap>
+  <div />
+  <div />
+</Wrap>
+```
+
+## Examples
+
+### Gap or Spacing
+
+Pass the `gap` prop to apply a consistent spacing between each child, even if it
+wraps.
+
+<ExampleTabs name="wrap-with-gap" />
+
+### Alignment
+
+Pass the `align` prop to change the alignment of the child along the cross axis.
+
+<ExampleTabs name="wrap-with-align" />
+
+### Justify
+
+Pass the `justify` prop to change the alignment of the child along the main
+axis.
+
+<ExampleTabs name="wrap-with-justify" />
+
+### Row and Column Gap
+
+Pass the `rowGap` and `columnGap` props to apply a consistent spacing between
+the rows and columns.
+
+<ExampleTabs name="wrap-with-row-column-gap" />
+
+### Responsive
+
+Use responsive values for the `gap`, `rowGap`, and `columnGap` props to apply
+responsive spacing between each child.
+
+<ExampleTabs name="wrap-responsive" />

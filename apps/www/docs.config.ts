@@ -68,6 +68,7 @@ const docsLinks: NavItem = {
             { title: "SimpleGrid", url: "simple-grid" },
             { title: "Stack", url: "stack" },
             { title: "Theme", url: "theme" },
+            // { title: "Wrap", url: "wrap" },
           ],
         },
         {
