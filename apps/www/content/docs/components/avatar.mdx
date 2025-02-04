@@ -45,8 +45,8 @@ Use the `shape` prop to change the shape of the avatar, from `rounded` to
 
 ### Fallback
 
-Render `Avatar.Icon` as the fallback when the initials of the name is not
-provided or when the image fails to load.
+Render `Avatar.Icon` as the fallback when the name is not provided or when the
+image fails to load.
 
 <ExampleTabs name="avatar-with-fallback" />
 
@@ -110,18 +110,12 @@ function Demo() {
   })
   return (
     <Avatar.Root>
-      <Avatar.Fallback>SA</Avatar.Fallback>
+      <Avatar.Fallback name="Segun Adebayo" />
       <Avatar.Image {...imageProps} />
     </Avatar.Root>
   )
 }
 ```
-
-### Without Snippet
-
-Here's an example of how to use the `Avatar` without the snippet.
-
-<ExampleTabs name="avatar-without-snippet" />
 
 ### Store
 
@@ -129,6 +123,12 @@ An alternative way to access the avatar state and methods is to use the
 `RootProvider` component and the `useAvatar` store hook.
 
 <ExampleTabs name="avatar-with-store" />
+
+### Closed Component
+
+Here's how to setup the Avatar for a closed component composition.
+
+<ExampleCode name="avatar-closed-component" />
 
 ## Props
 

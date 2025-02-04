@@ -7,21 +7,21 @@ import {
 } from "compositions/ui/menu"
 
 const names = [
-  { name: "Naruto Uzumaki", initials: "NU" },
-  { name: "Sakura Haruno", initials: "SH" },
-  { name: "Kakashi Hatake", initials: "KH" },
-  { name: "Hinata Hyuga", initials: "HH" },
-  { name: "Shikamaru Nara", initials: "SN" },
+  "Naruto Uzumaki",
+  "Sakura Haruno",
+  "Kakashi Hatake",
+  "Hinata Hyuga",
+  "Shikamaru Nara",
 ]
 const maxAvatars = 3
 
 export const AvatarWithOverflow = () => {
-  const { items, overflow } = partition(name, maxAvatars)
+  const { items, overflow } = partition(names, maxAvatars)
   return (
     <Group gap="0" spaceX="2">
       {items.map((item) => (
         <Avatar.Root key={item} colorPalette={pickPalette(item)}>
-          <Avatar.Fallback>{item}</Avatar.Fallback>
+          <Avatar.Fallback name={item} />
         </Avatar.Root>
       ))}
       {overflow.length > 0 && (
@@ -35,7 +35,7 @@ export const AvatarWithOverflow = () => {
             {overflow.map((item) => (
               <MenuItem value={item} key={item}>
                 <Avatar.Root size="xs" colorPalette={pickPalette(item)}>
-                  <Avatar.Fallback>{item}</Avatar.Fallback>
+                  <Avatar.Fallback name={item} />
                 </Avatar.Root>
                 {item}
               </MenuItem>

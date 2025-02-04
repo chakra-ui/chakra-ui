@@ -6,11 +6,11 @@ export const AvatarPersona = () => {
       {users.map((user) => (
         <HStack key={user.email} gap="4">
           <Avatar.Root>
-            <Avatar.Fallback>{user.initials}</Avatar.Fallback>
+            <Avatar.Fallback name={user.name} />
             <Avatar.Image src={user.avatar} />
           </Avatar.Root>
           <Stack gap="0">
-            <Text fontWeight="medium">{user.initials}</Text>
+            <Text fontWeight="medium">{user.name}</Text>
             <Text color="fg.muted" textStyle="sm">
               {user.email}
             </Text>
@@ -24,13 +24,13 @@ export const AvatarPersona = () => {
 const users = [
   {
     id: "1",
-    initials: "JM",
+    name: "John Mason",
     email: "john.mason@example.com",
     avatar: "https://i.pravatar.cc/300?u=iu",
   },
   {
     id: "2",
-    initials: "MJ",
+    name: "Melissa Jones",
     email: "melissa.jones@example.com",
     avatar: "https://i.pravatar.cc/300?u=po",
   },

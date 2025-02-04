@@ -6,7 +6,7 @@ export const AvatarWithSizes = () => {
       <For each={["xs", "sm", "md", "lg", "xl", "2xl"]}>
         {(size) => (
           <Avatar.Root size={size} key={size}>
-            <Avatar.Fallback>SA</Avatar.Fallback>
+            <Avatar.Fallback name="Segun Adebayo" />
             <Avatar.Image src="https://bit.ly/sage-adebayo" />
           </Avatar.Root>
         )}

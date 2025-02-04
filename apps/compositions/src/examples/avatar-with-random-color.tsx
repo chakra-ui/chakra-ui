@@ -11,13 +11,13 @@ export const AvatarWithRandomColor = () => {
   return (
     <HStack>
       <Avatar.Root colorPalette={pickPalette("Shane Nelson")}>
-        <Avatar.Fallback>SN</Avatar.Fallback>
+        <Avatar.Fallback name="Shane Nelson" />
       </Avatar.Root>
       <Avatar.Root colorPalette={pickPalette("Brook Lesnar")}>
-        <Avatar.Fallback>BL</Avatar.Fallback>
+        <Avatar.Fallback name="Brook Lesnar" />
       </Avatar.Root>
       <Avatar.Root colorPalette={pickPalette("John Lennon")}>
-        <Avatar.Fallback>JL</Avatar.Fallback>
+        <Avatar.Fallback name="John Lennon" />
       </Avatar.Root>
     </HStack>
   )

@@ -6,7 +6,7 @@ export const AvatarWithVariants = () => {
       <For each={["solid", "outline", "subtle"]}>
         {(variant) => (
           <Avatar.Root key={variant} variant={variant}>
-            <Avatar.Fallback>SA</Avatar.Fallback>
+            <Avatar.Fallback name="Segun Adebayo" />
           </Avatar.Root>
         )}
       </For>
