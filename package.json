@@ -116,7 +116,7 @@
     "tsx": "4.16.2",
     "typescript": "5.7.2",
     "vite": "6.0.11",
-    "vitest": "1.6.0",
+    "vitest": "1.6.1",
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "1.0.6"
   },
