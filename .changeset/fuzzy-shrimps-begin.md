@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/react": patch
+"@chakra-ui/react": minor
 ---
 
 - **Avatar:** Add support for passing `name` to the `AvatarFallback` to render
@@ -7,3 +7,5 @@
   initials or a fallback icon.
 
 - **Hooks**: Add `useConst` and `useUpdateEffect` hooks from v2.
+
+- **Wrap:** Bring back the `Wrap` component from v2.
