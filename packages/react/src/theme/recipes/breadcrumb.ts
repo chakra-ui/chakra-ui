@@ -10,7 +10,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       wordBreak: "break-word",
       color: "fg.muted",
-      listStyle: "none"
+      listStyle: "none",
     },
     link: {
       outline: "0",
@@ -33,7 +33,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       },
       _rtl: {
         rotate: "180deg",
-      }
+      },
     },
     ellipsis: {
       display: "inline-flex",
