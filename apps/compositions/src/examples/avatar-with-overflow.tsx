@@ -1,5 +1,4 @@
-import { Group } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Avatar, Group } from "@chakra-ui/react"
 import {
   MenuContent,
   MenuItem,
@@ -14,7 +13,6 @@ const names = [
   "Hinata Hyuga",
   "Shikamaru Nara",
 ]
-
 const maxAvatars = 3
 
 export const AvatarWithOverflow = () => {
@@ -22,21 +20,23 @@ export const AvatarWithOverflow = () => {
   return (
     <Group gap="0" spaceX="2">
       {items.map((item) => (
-        <Avatar key={item} name={item} colorPalette={pickPalette(item)} />
+        <Avatar.Root key={item} colorPalette={pickPalette(item)}>
+          <Avatar.Fallback name={item} />
+        </Avatar.Root>
       ))}
       {overflow.length > 0 && (
         <MenuRoot positioning={{ placement: "bottom" }}>
           <MenuTrigger rounded="full" focusRing="outside">
-            <Avatar variant="outline" fallback={`+${overflow.length}`} />
+            <Avatar.Root variant="outline">
+              <Avatar.Fallback>+{overflow.length}</Avatar.Fallback>
+            </Avatar.Root>
           </MenuTrigger>
           <MenuContent>
             {overflow.map((item) => (
               <MenuItem value={item} key={item}>
-                <Avatar
-                  size="xs"
-                  name={item}
-                  colorPalette={pickPalette(item)}
-                />
+                <Avatar.Root size="xs" colorPalette={pickPalette(item)}>
+                  <Avatar.Fallback name={item} />
+                </Avatar.Root>
                 {item}
               </MenuItem>
             ))}

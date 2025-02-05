@@ -10,25 +10,13 @@ links:
 
 <ExampleTabs name="avatar-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`avatar` snippet
-
-```sh
-npx @chakra-ui/cli snippet add avatar
-```
-
-The snippet includes a closed component composition for the `Avatar` and
-`AvatarGroup` components.
-
 ## Usage
 
-```jsx
-import { Avatar, AvatarGroup } from "@/components/ui/avatar"
+```tsx
+import { Avatar, AvatarGroup } from "@chakra-ui/react"
 ```
 
-```jsx
+```tsx
 <AvatarGroup>
   <Avatar />
 </AvatarGroup>
@@ -63,8 +51,8 @@ Use the `colorPalette` prop to change the color of the avatar
 
 ### Fallback
 
-The initials of the name can be used as a fallback when the `src` prop is not
-provided or when the image fails to load.
+Render `Avatar.Icon` as the fallback when the name is not provided or when the
+image fails to load.
 
 <ExampleTabs name="avatar-with-fallback" />
 
@@ -115,11 +103,25 @@ Here's an example of how to handle an overflow of avatars by composing the
 
 <ExampleTabs name="avatar-with-overflow" />
 
-### Without Snippet
+### Next.js
 
-Here's an example of how to use the `Avatar` without the snippet.
+Here's an example of how to compose the avatar with Next.js Image.
 
-<ExampleTabs name="avatar-without-snippet" />
+```tsx
+import { getImageProps } from "next/image"
+
+function Demo() {
+  const imageProps = getImageProps({
+    src: "/image.png",
+  })
+  return (
+    <Avatar.Root>
+      <Avatar.Fallback name="Segun Adebayo" />
+      <Avatar.Image {...imageProps} />
+    </Avatar.Root>
+  )
+}
+```
 
 ### Store
 
@@ -127,6 +129,12 @@ An alternative way to access the avatar state and methods is to use the
 `RootProvider` component and the `useAvatar` store hook.
 
 <ExampleTabs name="avatar-with-store" />
+
+### Closed Component
+
+Here's how to setup the Avatar for a closed component composition.
+
+<ExampleCode name="avatar-closed-component" />
 
 ## Props
 

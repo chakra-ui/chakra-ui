@@ -8,7 +8,7 @@ export const AvatarWithStore = () => {
     <Stack align="flex-start">
       <Avatar.RootProvider value={avatar}>
         <Avatar.Image src="https://bit.ly/sage-adebayo" />
-        <Avatar.Fallback>SA</Avatar.Fallback>
+        <Avatar.Fallback name="Segun Adebayo" />
       </Avatar.RootProvider>
       <Code>{avatar.loaded ? "loaded" : "not loaded"}</Code>
     </Stack>
