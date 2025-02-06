@@ -14,7 +14,7 @@ import {
   type JsxStyleProps,
   chakra,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
+import { cx, dataAttr } from "../../utils"
 
 const StyledGroup = chakra("div", {
   base: {
@@ -131,12 +131,9 @@ export const Group = memo(
       ...rest
     } = props
 
-    const count = Children.count(children)
-
     const _children = useMemo(() => {
-      const childArray = Children.toArray(children).filter(
-        isValidElement,
-      ) as React.ReactElement<any, any>[]
+      const childArray = Children.toArray(children).filter(isValidElement)
+      const count = childArray.length
 
       return childArray.map((child, index) => {
         const childProps = child.props as any
@@ -153,7 +150,7 @@ export const Group = memo(
           },
         } as any)
       })
-    }, [children, count])
+    }, [children])
 
     return (
       <StyledGroup
@@ -162,6 +159,7 @@ export const Group = memo(
         justifyContent={justify}
         flexWrap={wrap}
         {...rest}
+        className={cx("chakra-group", props.className)}
       >
         {_children}
       </StyledGroup>
