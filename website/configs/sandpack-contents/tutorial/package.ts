@@ -10,8 +10,8 @@ export const packageJson = `
   "main": "src/index.js",
   "dependencies": {
     "@chakra-ui/react": "1.8.6",
-    "@emotion/react": "11.8.1",
-    "@emotion/styled": "11.8.1",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
     "framer-motion": "6.2.8",
     "hash-it": "5.0.2",
     "react": "17.0.2",

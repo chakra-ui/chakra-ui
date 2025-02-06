@@ -36,7 +36,7 @@
     "build:fast": "tsup src"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0"
+    "@emotion/cache": "^11.14.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.4.0",
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.14.0",
     "next": ">=14",
     "react": "^18.2.0"
   },
