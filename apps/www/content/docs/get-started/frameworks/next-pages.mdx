@@ -128,6 +128,26 @@ This also helps to resolve warnings like:
 [webpack.cache.PackFileCacheStrategy] Serializing big strings (xxxkiB)
 ```
 
+### Hydration errors
+
+If you see an error like this: **Hydration failed because the initial server
+rendered HTML did not match the client**, and the error looks similar to:
+
+```diff
++<div className="chakra-xxx">
+-<style data-emotion="css-global xxx" data-s="">
+```
+
+This is caused by how Next.js hydrates Emotion CSS in `--turbo` mode. Please
+remove the `--turbo` flag from your `dev` script in your `package.json` file.
+
+```diff
+- "dev": "next dev --turbo"
++ "dev": "next dev"
+```
+
+When this is fixed by the `Next.js` team, we'll update this guide.
+
 ### Enjoy!
 
 With the power of the snippets and the primitive components from Chakra UI, you
