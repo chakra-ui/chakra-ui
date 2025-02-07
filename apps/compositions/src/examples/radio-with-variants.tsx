@@ -1,4 +1,4 @@
-import { For, Stack } from "@chakra-ui/react"
+import { For, HStack, Stack } from "@chakra-ui/react"
 import { Radio, RadioGroup } from "compositions/ui/radio"
 
 export const RadioWithVariants = () => {
@@ -10,13 +10,14 @@ export const RadioWithVariants = () => {
             key={variant}
             variant={variant}
             defaultValue="react"
-            spaceX="4"
             colorPalette="teal"
           >
-            <Radio value="react" minW="120px">
-              Radio ({variant})
-            </Radio>
-            <Radio value="vue">Vue ({variant})</Radio>
+            <HStack gap="4">
+              <Radio value="react" minW="120px">
+                Radio ({variant})
+              </Radio>
+              <Radio value="vue">Vue ({variant})</Radio>
+            </HStack>
           </RadioGroup>
         )}
       </For>
