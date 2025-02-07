@@ -13,3 +13,5 @@ export default {
 } satisfies Meta
 
 export { ComboboxBasic as Basic } from "compositions/examples/combobox-basic"
+export { ComboboxMultiDefault as MultiDefault } from "compositions/examples/combobox-multi-default"
+export { ComboboxMultiWithReplaceSelectionBehavior as MultiWithReplaceSelectionBehaviors } from "compositions/examples/combobox-multi-with-replace-selection-behavior"
