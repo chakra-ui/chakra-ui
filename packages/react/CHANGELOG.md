@@ -1,5 +1,27 @@
 # @chakra-ui/react
 
+## 3.8.0
+
+### Minor Changes
+
+- [`fa5e966`](https://github.com/chakra-ui/chakra-ui/commit/fa5e966f389e75f4bb795b31e6f6b5dd8df017ba)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new hooks
+  `useElementRect`, `useForceUpdate`, `useLiveRef`,`usePrevious` and
+  `useSafeLayoutEffect`
+
+  - Add new `FocusTrap` component for trapping focus within a container
+
+### Patch Changes
+
+- [#9616](https://github.com/chakra-ui/chakra-ui/pull/9616)
+  [`54a73a7`](https://github.com/chakra-ui/chakra-ui/commit/54a73a79c6121d3b367ffcff1860347d97ab0fd9)
+  Thanks [@mhsattarian](https://github.com/mhsattarian)! - - **Breadcrumb**: Fix
+  issue where breadcrumb arrow don't flip in RTL
+  - **Snippets / Color Mode**: Add `LightMode` and `DarkMode` components to
+    force light and dark color mode in a subtree
+  - **Docs / Testing**: Add testing guideline for Vitest
+  - **Group**: Fix issue where `Group` component doesn't skip invalid children
+
 ## 3.7.0
 
 ### Minor Changes
