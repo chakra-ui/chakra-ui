@@ -25,7 +25,6 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",
-    "website": "pnpm --filter=./website",
     "www": "pnpm --filter=./apps/www",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages --cache",
