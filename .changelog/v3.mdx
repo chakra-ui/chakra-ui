@@ -5,6 +5,31 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.8.0](./#3.8.0) - 2025-02-09
+
+### Added
+
+- **[New] Hooks:**
+
+  - `useElementRect`: Get the dimensions and position of an element
+  - `useForceUpdate`: Force a component re-render
+  - `useLiveRef`: Create a ref that stays up-to-date with its value
+  - `usePrevious`: Access the previous value of a state or prop
+  - `useSafeLayoutEffect`: A safer version of `useLayoutEffect`
+
+- **[New] Focus Trap:** Add `FocusTrap` component for trapping focus within a
+  container
+
+### Fixed
+
+- **Breadcrumb:** Fix issue where breadcrumb arrow doesn't flip in RTL mode
+- **Group:** Fix issue where `Group` component doesn't skip invalid children
+
+### Added
+
+- **Color Mode:** Add `LightMode` and `DarkMode` components to force light and
+  dark color mode in a subtree
+
 ## [3.7.0](./#3.7.0) - 2025-02-04
 
 ### Added

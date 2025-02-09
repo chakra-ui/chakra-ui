@@ -51,7 +51,7 @@ const docsLinks: NavItem = {
             { title: "Animation", url: "animation" },
             { title: "Color Mode", url: "color-mode" },
             { title: "Server Component", url: "server-components" },
-            { title: "Testing", url: "testing", status: "new" },
+            { title: "Testing", url: "testing" },
           ],
         },
         {
