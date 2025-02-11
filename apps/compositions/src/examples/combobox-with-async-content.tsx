@@ -71,6 +71,7 @@ export const ComboboxWithAsyncContent = () => {
 
   return (
     <ComboboxRoot
+      width="320px"
       collection={collection}
       placeholder="Example: Rick"
       onInputValueChange={(details) => setInputValue(details.inputValue)}

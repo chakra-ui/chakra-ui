@@ -73,6 +73,7 @@ export const ComboboxCustomFilter = () => {
 
   return (
     <ComboboxRoot
+      width="320px"
       value={value}
       collection={collection}
       inputBehavior="autocomplete"
@@ -86,17 +87,13 @@ export const ComboboxCustomFilter = () => {
         <ComboboxItemGroup label="People">
           {collection.items.map((person) => (
             <ComboboxItem item={person} key={person.id}>
-              <Stack>
-                <Text fontWeight="medium">{person.name}</Text>
-                <Stack
-                  textStyle="sm"
-                  direction="row"
-                  color="gray.500"
-                  justify="space-between"
-                >
-                  <span>{person.email}</span>
-                  <span>{person.role}</span>
-                </Stack>
+              <Stack gap={0}>
+                <Text textStyle="sm" fontWeight="medium">
+                  {person.name}
+                </Text>
+                <Text textStyle="xs" color="gray.500">
+                  {person.email}
+                </Text>
               </Stack>
             </ComboboxItem>
           ))}
