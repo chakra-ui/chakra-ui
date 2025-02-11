@@ -123,7 +123,7 @@ const companies: Company[] = [
   },
 ]
 
-export const ComboboxWithRichContent = () => {
+export const ComboboxWithCustomOptions = () => {
   const [items, setItems] = useState<Company[]>(companies)
 
   const collection = useMemo(
