@@ -17,9 +17,9 @@ import { Blockquote } from "@chakra-ui/react"
 
 ```tsx
 <Blockquote.Root>
-  <Blockquote.Content cite="Uzumaki Naruto" citeUrl="#" />
+  <Blockquote.Content cite="https://" />
   <Blockquote.Caption>
-    — <cite>Uzumaki Naruto</cite>
+    <cite>Uzumaki Naruto</cite>
   </Blockquote.Caption>
 </Blockquote.Root>
 ```
@@ -28,8 +28,10 @@ import { Blockquote } from "@chakra-ui/react"
 
 ### With Cite
 
-Use the `cite` prop and `Blockquote.Caption` to provide the source of the
-blockquote. This will be displayed below the blockquote.
+To provide reference about the blockquote:
+
+- pass the `cite` prop to `Blockquote.Content` pointing to the quote url
+- render the `Blockquote.Caption` component to display name of quote author
 
 <ExampleTabs name="blockquote-with-cite" />
 
@@ -41,42 +43,37 @@ Use the `colorPalette` prop to change the color of the blockquote.
 
 ### Variants
 
-Use the `variant` prop to change the visual style of the blockquote. Values can
-be either `subtle`, `solid`, `plain`.
+Use the `variant` prop to change the visual style of the blockquote.
 
 <ExampleTabs name="blockquote-with-variants" />
 
 ### Icon
 
-Combine the `Float` and `Blockquote.Icon` components to show an icon on the
-blockquote. The default icon is a double quote.
+Here's an example of how to compose the `Float` and `BlockquoteIcon` to show an
+icon on the blockquote. The default icon is a double quote.
 
 <ExampleTabs name="blockquote-with-icon" />
 
-### Justify
-
-Use the `justify` prop to change the alignment of the blockquote. Values can be
-either `start`, `center`, `end`.
-
-<ExampleTabs name="blockquote-with-justify" />
-
-### Custom Icon
-
-Compose the `Float` component with a specific icon to create a custom icon
-inside a blockquote.
+Alternatively, you can render a custom icon.
 
 <ExampleTabs name="blockquote-with-custom-icon" />
 
+### Justify
+
+Use the `justify` prop to change the alignment of the blockquote.
+
+<ExampleTabs name="blockquote-with-justify" />
+
 ### With Avatar
 
-Here's an example of how to use the `Blockquote` with an avatar and float
+Here's an example of how to compose the `Blockquote`, `Avatar` and `Float`
 components to create a stunning testimonial component.
 
 <ExampleTabs name="blockquote-with-avatar" />
 
 ### Closed Component
 
-Here's how to setup the Blockquote for a closed component composition.
+Here's an example of how to create a closed component composition
 
 <ExampleCode name="blockquote-closed-component" />
 
