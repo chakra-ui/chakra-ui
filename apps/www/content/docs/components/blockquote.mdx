@@ -9,32 +9,27 @@ links:
 
 <ExampleTabs name="blockquote-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`blockquote` snippet
-
-```sh
-npx @chakra-ui/cli snippet add blockquote
-```
-
-The snippet includes a closed component composition for the `Blockquote`
-component.
+## Usage
 
 ```jsx
-import { Blockquote } from "@/components/ui/blockquote"
+import { Blockquote } from "@chakra-ui/react"
 ```
 
-```jsx
-<Blockquote dash cite="Uzumaki Naruto" citeUrl="#" />
+```tsx
+<Blockquote.Root>
+  <Blockquote.Content cite="Uzumaki Naruto" citeUrl="#" />
+  <Blockquote.Caption>
+    — <cite>Uzumaki Naruto</cite>
+  </Blockquote.Caption>
+</Blockquote.Root>
 ```
 
 ## Examples
 
 ### With Cite
 
-Use the `cite` prop to provide the source of the blockquote. This will be
-displayed below the blockquote.
+Use the `cite` prop and `Blockquote.Caption` to provide the source of the
+blockquote. This will be displayed below the blockquote.
 
 <ExampleTabs name="blockquote-with-cite" />
 
@@ -53,8 +48,8 @@ be either `subtle`, `solid`, `plain`.
 
 ### Icon
 
-Use the `showIcon` prop to show an icon on the blockquote. The default icon is a
-double quote.
+Combine the `Float` and `Blockquote.Icon` components to show an icon on the
+blockquote. The default icon is a double quote.
 
 <ExampleTabs name="blockquote-with-icon" />
 
@@ -67,7 +62,8 @@ either `start`, `center`, `end`.
 
 ### Custom Icon
 
-Use the `icon` prop to change the icon of the blockquote.
+Compose the `Float` component with a specific icon to create a custom icon
+inside a blockquote.
 
 <ExampleTabs name="blockquote-with-custom-icon" />
 
@@ -78,12 +74,11 @@ components to create a stunning testimonial component.
 
 <ExampleTabs name="blockquote-with-avatar" />
 
-### Without Snippet
+### Closed Component
 
-If you don't want to use the snippet, you can use the `Blockquote` component
-from the `@chakra-ui/react` package.
+Here's how to setup the Blockquote for a closed component composition.
 
-<ExampleTabs name="blockquote-without-snippet" />
+<ExampleCode name="blockquote-closed-component" />
 
 ## Props
 
