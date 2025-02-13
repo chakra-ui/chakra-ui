@@ -19,4 +19,3 @@ export { BlockquoteWithCite as Cite } from "compositions/examples/blockquote-wit
 export { BlockquoteWithCustomIcon as CustomIcon } from "compositions/examples/blockquote-with-custom-icon"
 export { BlockquoteWithIcon as Icon } from "compositions/examples/blockquote-with-icon"
 export { BlockquoteWithJustify as Justify } from "compositions/examples/blockquote-with-justify"
-export { BlockquoteWithoutSnippet as WithoutSnippet } from "compositions/examples/blockquote-without-snippet"
