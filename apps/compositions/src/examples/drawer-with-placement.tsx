@@ -17,7 +17,7 @@ export const DrawerWithPlacement = () => {
     <HStack wrap="wrap">
       <For each={["bottom", "top", "start", "end"]}>
         {(placement) => (
-          <DrawerRoot key={placement} placement={placement}>
+          <DrawerRoot key={placement} positioning={{ placement: placement}}>
             <DrawerBackdrop />
             <DrawerTrigger asChild>
               <Button variant="outline" size="sm">
