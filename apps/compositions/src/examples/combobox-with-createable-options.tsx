@@ -1,0 +1,146 @@
+"use client"
+
+import {
+  Combobox,
+  Icon,
+  Stack,
+  Text,
+  createListCollection,
+} from "@chakra-ui/react"
+import {
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxItemGroup,
+  ComboboxLabel,
+  ComboboxRoot,
+} from "compositions/ui/combobox"
+import { useMemo, useState } from "react"
+
+interface Tag {
+  id: string
+  name: string
+  count: number
+  isCustom?: boolean
+}
+
+const defaultTags = [
+  { id: "react", name: "react" },
+  { id: "typescript", name: "typescript" },
+  { id: "javascript", name: "javascript" },
+  { id: "nextjs", name: "nextjs" },
+] as Tag[]
+
+export const ComboboxWithCreateableOptions = () => {
+  const [tags, setTags] = useState<Tag[]>(defaultTags)
+  const [inputValue, setInputValue] = useState("")
+
+  const collection = useMemo(
+    () =>
+      createListCollection({
+        items: tags,
+        itemToString: (item) => item.name,
+        itemToValue: (item) => item.id,
+      }),
+    [tags],
+  )
+
+  const handleValueChange = (details: Combobox.ValueChangeDetails) => {
+    const selectedValue = details.value[0]
+
+    if (!tags.find((tag) => tag.id === selectedValue)) {
+      const newTag: Tag = {
+        id: selectedValue.toLowerCase(),
+        name: selectedValue,
+        count: 1,
+        isCustom: true,
+      }
+      setTags((prev) => [...prev, newTag])
+    }
+
+    setInputValue(selectedValue)
+  }
+  const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
+    setInputValue(details.inputValue)
+  }
+
+  const showCreateOption =
+    inputValue &&
+    !tags.find((tag) => tag.name.toLowerCase() === inputValue.toLowerCase())
+
+  return (
+    <Stack gap={4} maxW="320px">
+      <ComboboxRoot
+        allowCustomValue
+        collection={collection}
+        inputValue={inputValue}
+        selectionBehavior="preserve"
+        placeholder="Type to search or create..."
+        onValueChange={handleValueChange}
+        onInputValueChange={handleInputChange}
+      >
+        <ComboboxLabel>Add Tags</ComboboxLabel>
+        <ComboboxInput />
+        <ComboboxContent>
+          <ComboboxItemGroup label="Tags">
+            {showCreateOption && (
+              <ComboboxItem item={inputValue}>
+                <Stack direction="row" align="center" gap={2}>
+                  <Icon asChild fontSize={16} color="blue.500">
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M12 5v14" />
+                    </svg>
+                  </Icon>
+                  <Text>Create &quot;{inputValue}&quot;</Text>
+                </Stack>
+              </ComboboxItem>
+            )}
+
+            {collection.items.map((tag) => (
+              <ComboboxItem key={tag.id} item={tag}>
+                <Stack direction="row" justify="space-between" align="center">
+                  <Stack direction="row" align="center" gap={2}>
+                    <Text fontWeight="medium">{tag.name}</Text>
+                    {tag.isCustom && (
+                      <Text fontSize="xs" color="blue.500" fontWeight="medium">
+                        CUSTOM
+                      </Text>
+                    )}
+                  </Stack>
+                </Stack>
+              </ComboboxItem>
+            ))}
+          </ComboboxItemGroup>
+        </ComboboxContent>
+      </ComboboxRoot>
+
+      <Stack>
+        <Text fontWeight="medium">Current Tags:</Text>
+        <Stack direction="row" flexWrap="wrap" gap={2}>
+          {tags.map((tag) => (
+            <Text
+              key={tag.id}
+              px={2}
+              py={1}
+              fontSize="sm"
+              borderRadius="md"
+              backgroundColor={tag.isCustom ? "blue.100" : "gray.100"}
+            >
+              {tag.name}
+            </Text>
+          ))}
+        </Stack>
+      </Stack>
+    </Stack>
+  )
+}

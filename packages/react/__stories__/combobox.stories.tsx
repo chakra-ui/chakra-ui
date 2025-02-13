@@ -20,3 +20,4 @@ export { ComboboxWithAsyncContent as AsyncCombobox } from "compositions/examples
 export { ComboboxWithCustomOptions as CustomOptions } from "compositions/examples/combobox-with-custom-options"
 export { ComboboxWithDisabledOptions as DisableOptions } from "compositions/examples/combobox-with-disabled-options"
 export { ComboboxSelectionBehavior as SelectionBehavior } from "compositions/examples/combobox-with-selection-behavior"
+export { ComboboxWithCreateableOptions as CreateableOptions } from "compositions/examples/combobox-with-createable-options"
