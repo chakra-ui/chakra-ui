@@ -1,24 +1,27 @@
-import { Stack } from "@chakra-ui/react"
-import {
-  BreadcrumbCurrentLink,
-  BreadcrumbLink,
-  BreadcrumbRoot,
-} from "compositions/ui/breadcrumb"
+import { Breadcrumb, For, Stack } from "@chakra-ui/react"
 
 export const BreadcrumbWithVariants = () => {
   return (
     <Stack>
-      <BreadcrumbRoot variant="plain">
-        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-        <BreadcrumbLink href="#">Components</BreadcrumbLink>
-        <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-      </BreadcrumbRoot>
-
-      <BreadcrumbRoot variant="underline">
-        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-        <BreadcrumbLink href="#">Components</BreadcrumbLink>
-        <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-      </BreadcrumbRoot>
+      <For each={["plain", "underline"]}>
+        {(variant) => (
+          <Breadcrumb.Root key={variant} variant={variant}>
+            <Breadcrumb.List>
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#">Components</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
+        )}
+      </For>
     </Stack>
   )
 }

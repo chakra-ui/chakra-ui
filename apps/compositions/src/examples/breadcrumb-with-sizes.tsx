@@ -1,30 +1,27 @@
-import { Stack } from "@chakra-ui/react"
-import {
-  BreadcrumbCurrentLink,
-  BreadcrumbLink,
-  BreadcrumbRoot,
-} from "compositions/ui/breadcrumb"
+import { Breadcrumb, For, Stack } from "@chakra-ui/react"
 
 export const BreadcrumbWithSizes = () => {
   return (
     <Stack>
-      <BreadcrumbRoot size="sm">
-        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-        <BreadcrumbLink href="#">Components</BreadcrumbLink>
-        <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-      </BreadcrumbRoot>
-
-      <BreadcrumbRoot size="md">
-        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-        <BreadcrumbLink href="#">Components</BreadcrumbLink>
-        <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-      </BreadcrumbRoot>
-
-      <BreadcrumbRoot size="lg">
-        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-        <BreadcrumbLink href="#">Components</BreadcrumbLink>
-        <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-      </BreadcrumbRoot>
+      <For each={["sm", "md", "lg"]}>
+        {(size) => (
+          <Breadcrumb.Root key={size} size={size}>
+            <Breadcrumb.List>
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#">Components</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
+        )}
+      </For>
     </Stack>
   )
 }
