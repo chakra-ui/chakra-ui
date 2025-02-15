@@ -22,3 +22,4 @@ export { ComboboxWithDisabledOptions as DisableOptions } from "compositions/exam
 export { ComboboxSelectionBehavior as SelectionBehavior } from "compositions/examples/combobox-with-selection-behavior"
 export { ComboboxWithCreateableOptions as CreateableOptions } from "compositions/examples/combobox-with-createable-options"
 export { ColorPickerCombobox as ColorPicker } from "compositions/examples/combobox-color-picker"
+export { ComboboxWithStore as WithStore } from "compositions/examples/combobox-with-store"

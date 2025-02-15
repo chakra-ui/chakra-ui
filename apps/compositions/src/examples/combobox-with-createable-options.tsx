@@ -20,7 +20,6 @@ import { useMemo, useState } from "react"
 interface Tag {
   id: string
   name: string
-  count: number
   isCustom?: boolean
 }
 
@@ -34,6 +33,7 @@ const defaultTags = [
 export const ComboboxWithCreateableOptions = () => {
   const [tags, setTags] = useState<Tag[]>(defaultTags)
   const [inputValue, setInputValue] = useState("")
+  const [value, setValue] = useState<string[]>([])
 
   const collection = useMemo(
     () =>
@@ -48,30 +48,59 @@ export const ComboboxWithCreateableOptions = () => {
   const handleValueChange = (details: Combobox.ValueChangeDetails) => {
     const selectedValue = details.value[0]
 
-    if (!tags.find((tag) => tag.id === selectedValue)) {
-      const newTag: Tag = {
-        id: selectedValue.toLowerCase(),
-        name: selectedValue,
-        count: 1,
-        isCustom: true,
+    const selectedTag = collection.find(selectedValue)
+
+    const tempTags = tags.map((tag) => {
+      if (tag.id === "custom" && selectedTag) {
+        return { id: selectedTag.name, name: selectedTag.name, isCustom: true }
       }
-      setTags((prev) => [...prev, newTag])
+
+      return tag
+    })
+
+    setValue(
+      selectedValue === "custom" && selectedTag
+        ? [selectedTag?.name]
+        : details.value,
+    )
+    setTags(tempTags)
+
+    setInputValue(selectedTag?.name ?? "")
+  }
+
+  const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
+    const value = details.inputValue
+
+    if (!value) {
+      return
     }
 
-    setInputValue(selectedValue)
-  }
-  const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
-    setInputValue(details.inputValue)
-  }
+    const newTag: Tag = {
+      id: "custom",
+      name: value,
+    }
 
-  const showCreateOption =
-    inputValue &&
-    !tags.find((tag) => tag.name.toLowerCase() === inputValue.toLowerCase())
+    setTags((prev) => {
+      if (collection.has("custom")) {
+        return prev.map((tag) => {
+          if (tag.id === "custom") {
+            return newTag
+          }
+          return tag
+        })
+      }
+
+      return [newTag, ...prev]
+    })
+
+    setInputValue(value)
+  }
 
   return (
     <Stack gap={4} maxW="320px">
       <ComboboxRoot
         allowCustomValue
+        value={value}
         collection={collection}
         inputValue={inputValue}
         selectionBehavior="preserve"
@@ -83,43 +112,51 @@ export const ComboboxWithCreateableOptions = () => {
         <ComboboxInput />
         <ComboboxContent>
           <ComboboxItemGroup label="Tags">
-            {showCreateOption && (
-              <ComboboxItem item={inputValue}>
-                <Stack direction="row" align="center" gap={2}>
-                  <Icon asChild fontSize={16} color="blue.500">
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="none"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="M12 5v14" />
-                    </svg>
-                  </Icon>
-                  <Text>Create &quot;{inputValue}&quot;</Text>
-                </Stack>
-              </ComboboxItem>
-            )}
+            {collection.items.map((tag) => {
+              if (tag.id === "custom") {
+                return (
+                  <ComboboxItem item={tag} key={tag.id}>
+                    <Stack direction="row" align="center" gap={2}>
+                      <Icon asChild fontSize={16} color="blue.500">
+                        <svg
+                          width="24"
+                          height="24"
+                          fill="none"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14" />
+                          <path d="M12 5v14" />
+                        </svg>
+                      </Icon>
+                      <Text>Create &quot;{inputValue}&quot;</Text>
+                    </Stack>
+                  </ComboboxItem>
+                )
+              }
 
-            {collection.items.map((tag) => (
-              <ComboboxItem key={tag.id} item={tag}>
-                <Stack direction="row" justify="space-between" align="center">
-                  <Stack direction="row" align="center" gap={2}>
-                    <Text fontWeight="medium">{tag.name}</Text>
-                    {tag.isCustom && (
-                      <Text fontSize="xs" color="blue.500" fontWeight="medium">
-                        CUSTOM
-                      </Text>
-                    )}
+              return (
+                <ComboboxItem key={tag.id} item={tag}>
+                  <Stack direction="row" justify="space-between" align="center">
+                    <Stack direction="row" align="center" gap={2}>
+                      <Text fontWeight="medium">{tag.name}</Text>
+                      {tag.isCustom && (
+                        <Text
+                          fontSize="xs"
+                          color="blue.500"
+                          fontWeight="medium"
+                        >
+                          CUSTOM
+                        </Text>
+                      )}
+                    </Stack>
                   </Stack>
-                </Stack>
-              </ComboboxItem>
-            ))}
+                </ComboboxItem>
+              )
+            })}
           </ComboboxItemGroup>
         </ComboboxContent>
       </ComboboxRoot>

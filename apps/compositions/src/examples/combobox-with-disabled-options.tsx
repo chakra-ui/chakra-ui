@@ -154,7 +154,7 @@ export const ComboboxWithDisabledOptions = () => {
       placeholder="Type to search companies"
       onInputValueChange={handleInputChange}
     >
-      <ComboboxLabel>Select a Country</ComboboxLabel>
+      <ComboboxLabel>Select a Company</ComboboxLabel>
       <ComboboxInput />
       <ComboboxContent>
         <ComboboxItemGroup label="Companies">
