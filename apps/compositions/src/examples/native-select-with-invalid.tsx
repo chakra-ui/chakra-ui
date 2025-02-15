@@ -1,17 +1,15 @@
-import { Field } from "compositions/ui/field"
-import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from "compositions/ui/native-select"
+import { Field, NativeSelect } from "@chakra-ui/react"
 
 export const NativeSelectWithInvalid = () => (
-  <Field invalid errorText="This is an error" width="240px">
-    <NativeSelectRoot>
-      <NativeSelectField placeholder="Select option">
+  <Field.Root invalid width="240px">
+    <NativeSelect.Root>
+      <NativeSelect.Field placeholder="Select option">
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
         <option value="Option 3">Option 3</option>
-      </NativeSelectField>
-    </NativeSelectRoot>
-  </Field>
+      </NativeSelect.Field>
+      <NativeSelect.Indicator />
+    </NativeSelect.Root>
+    <Field.ErrorText>This is an error</Field.ErrorText>
+  </Field.Root>
 )

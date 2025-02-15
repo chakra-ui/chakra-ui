@@ -1,12 +1,7 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
+import { Button, Field, NativeSelect } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from "compositions/ui/native-select"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -29,19 +24,22 @@ export const NativeSelectWithHookForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Field
-        label="Framework"
-        invalid={!!errors.framework}
-        errorText={errors.framework?.message}
-      >
-        <NativeSelectRoot size="sm" width="240px">
-          <NativeSelectField
+      <Field.Root invalid={!!errors.framework}>
+        <Field.Label>Framework</Field.Label>
+        <NativeSelect.Root size="sm" width="240px">
+          <NativeSelect.Field
+            placeholder="Select option"
             {...register("framework")}
-            placeholder="Select framework"
-            items={["React", "Vue", "Angular", "Svelte"]}
-          />
-        </NativeSelectRoot>
-      </Field>
+          >
+            <option value="react">React</option>
+            <option value="vue">Vue</option>
+            <option value="angular">Angular</option>
+            <option value="svelte">Svelte</option>
+          </NativeSelect.Field>
+          <NativeSelect.Indicator />
+        </NativeSelect.Root>
+        <Field.ErrorText>{errors.framework?.message}</Field.ErrorText>
+      </Field.Root>
 
       <Button size="sm" type="submit" mt="4">
         Submit
