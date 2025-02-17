@@ -395,8 +395,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       ts-morph:
-        specifier: 25.0.0
-        version: 25.0.0
+        specifier: 25.0.1
+        version: 25.0.1
       typescript:
         specifier: ^5
         version: 5.7.3
@@ -9496,8 +9496,8 @@ packages:
   ts-morph@24.0.0:
     resolution: {integrity: sha512-2OAOg/Ob5yx9Et7ZX4CvTCc0UFoZHwLEJ+dpDPSUi5TgwwlTlX47w+iFRrEwzUZwYACjq83cgjS/Da50Ga37uw==}
 
-  ts-morph@25.0.0:
-    resolution: {integrity: sha512-ERPTUVO5qF8cEGJgAejGOsCVlbk8d0SDyiJsucKQT5XgqoZslv0Qml+gnui6Yy6o+uQqw5SestyW2HvlVtT/Sg==}
+  ts-morph@25.0.1:
+    resolution: {integrity: sha512-QJEiTdnz1YjrB3JFhd626gX4rKHDLSjSVMvGGG4v7ONc3RBwa0Eei98G9AT9uNFDMtV54JyuXsFeC+OH0n6bXQ==}
 
   ts-pattern@5.0.8:
     resolution: {integrity: sha512-aafbuAQOTEeWmA7wtcL94w6I89EgLD7F+IlWkr596wYxeb0oveWDO5dQpv85YP0CGbxXT/qXBIeV6IYLcoZ2uA==}
@@ -21209,7 +21209,7 @@ snapshots:
       '@ts-morph/common': 0.25.0
       code-block-writer: 13.0.3
 
-  ts-morph@25.0.0:
+  ts-morph@25.0.1:
     dependencies:
       '@ts-morph/common': 0.26.0
       code-block-writer: 13.0.3
