@@ -1,6 +1,5 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { RatingGroup, Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { Rating } from "compositions/ui/rating"
 
 export const RatingWithColors = () => {
   return (
@@ -14,9 +13,22 @@ export const RatingWithColors = () => {
           px="4"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <Rating defaultValue={3} size="sm" colorPalette={colorPalette}>
-            Button
-          </Rating>
+
+          <RatingGroup.Root
+            count={5}
+            defaultValue={3}
+            size="sm"
+            colorPalette={colorPalette}
+          >
+            <RatingGroup.HiddenInput />
+            <RatingGroup.Control>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <RatingGroup.Item key={index} index={index + 1}>
+                  <RatingGroup.ItemIndicator />
+                </RatingGroup.Item>
+              ))}
+            </RatingGroup.Control>
+          </RatingGroup.Root>
         </Stack>
       ))}
     </Stack>
