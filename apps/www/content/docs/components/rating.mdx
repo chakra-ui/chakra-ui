@@ -9,26 +9,21 @@ links:
 
 <ExampleTabs name="rating-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`rating` snippet
-
-```sh
-npx @chakra-ui/cli snippet add rating
-```
-
-The snippet includes a closed component composition for the `RatingGroup`
-component.
-
 ## Usage
 
-```jsx
-import { Rating } from "@/components/ui/rating"
+```tsx
+import { RatingGroup } from "@chakra-ui/react"
 ```
 
-```jsx
-<Rating />
+```tsx
+<RatingGroup.Root>
+  <RatingGroup.HiddenInput />
+  <RatingGroup.Control>
+    <RatingGroup.Item>
+      <RatingGroup.ItemIndicator />
+    </RatingGroup.Item>
+  </RatingGroup.Control>
+</RatingGroup.Root>
 ```
 
 ## Examples
@@ -76,11 +71,29 @@ Compose the rating component with emojis.
 
 <ExampleTabs name="rating-emoji" />
 
+### Colors
+
+Use the `colorPalette` prop to change the color of the rating
+
+<ExampleTabs name="rating-with-colors" />
+
 ### Testimonial
 
 Use the rating component to show testimonials.
 
 <ExampleTabs name="rating-in-testimonial" />
+
+### Closed Component
+
+Here's how to setup the Rating for a closed component composition.
+
+<ExampleCode name="rating-closed-component" />
+
+#### Usage
+
+```tsx
+<Rating defaultValue={3} size="sm" />
+```
 
 ## Props
 
