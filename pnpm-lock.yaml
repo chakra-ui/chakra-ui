@@ -568,7 +568,7 @@ importers:
         version: 0.4.14(eslint@9.15.0(jiti@2.4.2))
       globals:
         specifier: ^15.12.0
-        version: 15.14.0
+        version: 15.15.0
       typescript:
         specifier: ~5.7.3
         version: 5.7.3
@@ -689,7 +689,7 @@ importers:
         version: 0.4.16(eslint@9.17.0(jiti@2.4.2))
       globals:
         specifier: ^15.14.0
-        version: 15.14.0
+        version: 15.15.0
       typescript:
         specifier: ~5.7.3
         version: 5.7.3
@@ -838,7 +838,7 @@ importers:
         version: 0.4.14(eslint@9.15.0(jiti@2.4.2))
       globals:
         specifier: ^15.12.0
-        version: 15.14.0
+        version: 15.15.0
       typescript:
         specifier: ~5.7.3
         version: 5.7.3
@@ -945,7 +945,7 @@ importers:
         version: 0.4.16(eslint@9.17.0(jiti@2.4.2))
       globals:
         specifier: ^15.14.0
-        version: 15.14.0
+        version: 15.15.0
       vite:
         specifier: ^6.0.9
         version: 6.1.0(@types/node@22.7.5)(jiti@2.4.2)(lightningcss@1.25.1)(terser@5.37.0)(tsx@4.16.2)(yaml@2.5.1)
@@ -6418,8 +6418,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.14.0:
-    resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
+  globals@15.15.0:
+    resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -17375,7 +17375,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.14.0: {}
+  globals@15.15.0: {}
 
   globalthis@1.0.4:
     dependencies:
