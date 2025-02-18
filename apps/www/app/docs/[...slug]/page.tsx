@@ -1,5 +1,4 @@
 import { EditPageButton } from "@/components/edit-page-button"
-// import { EventBadge } from "@/components/event-badge"
 import { MDXContent } from "@/components/mdx-content"
 import { MDXPagination } from "@/components/mdx-pagination"
 import { PageHeader } from "@/components/page-header"
@@ -59,7 +58,6 @@ export default async function Page(props: PageContext) {
           <Stack borderTopWidth="1px" pt="4" align="start">
             <EditPageButton href={`${docsConfig.editUrl}/${page.slug}.mdx`} />
             <ScrollToTop />
-            {/* <EventBadge /> */}
           </Stack>
         </SidebarEnd>
       </Show>
