@@ -305,6 +305,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
         "aria-describedby": ariaDescribedBy,
         "aria-disabled": isDisabled,
+        "aria-checked": isIndeterminate ? 'mixed' : isChecked,
         style: visuallyHiddenStyle,
       }
     },
