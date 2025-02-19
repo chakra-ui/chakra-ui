@@ -1,3 +1,4 @@
+import { isFunction } from "./is"
 import type { Dict } from "./types"
 
 type PredicateFn<T> = (key: T) => boolean
@@ -14,22 +15,25 @@ export interface SplitPropsFn {
   ): [Dict, Dict]
 }
 
-export const splitProps: SplitPropsFn = (props: any, keys: any[]) => {
-  const descriptors = Object.getOwnPropertyDescriptors(props)
-  const dKeys = Object.keys(descriptors)
-  const split = (k: string[]) => {
-    const clone = {} as Dict
-    for (let i = 0; i < k.length; i++) {
-      const key = k[i]
-      if (descriptors[key]) {
-        Object.defineProperty(clone, key, descriptors[key])
-        delete descriptors[key]
-      }
+const splitPropFn = (props: Dict, predicate: PredicateFn<keyof Dict>) => {
+  const rest: Dict = {}
+  const result: Dict = {}
+  const allKeys = Object.keys(props)
+  for (const key of allKeys) {
+    if (predicate(key)) {
+      result[key] = props[key]
+    } else {
+      rest[key] = props[key]
     }
-    return clone
   }
-  const fn = (key: any) => split(Array.isArray(key) ? key : dKeys.filter(key))
-  return [keys].map(fn).concat(split(dKeys)) as any
+  return [result, rest] as any
+}
+
+export const splitProps: SplitPropsFn = (props: any, keys: any[]) => {
+  const predicate = isFunction(keys)
+    ? keys
+    : (key: keyof Dict) => keys.includes(key)
+  return splitPropFn(props, predicate)
 }
 
 export const createSplitProps = <T>(keys: (keyof T)[]) => {

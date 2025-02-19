@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
@@ -71,8 +71,14 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     })
 
     // @ts-ignore
-    const [variantProps, otherProps] = slotRecipe.splitVariantProps(restProps)
-    const styles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
+    const [variantProps, otherProps] = useMemo(
+      () => slotRecipe.splitVariantProps(restProps),
+      [restProps, slotRecipe],
+    )
+    const styles = useMemo(
+      () => (unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)),
+      [unstyled, variantProps, slotRecipe],
+    )
 
     return {
       styles: styles as Record<string, SystemStyleObject>,
@@ -88,7 +94,11 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     const { defaultProps } = options
 
     const StyledComponent = (inProps: any) => {
-      const props = mergeProps(defaultProps, usePropsContext(), inProps)
+      const propsContext = usePropsContext()
+      const props = useMemo(
+        () => mergeProps(defaultProps, propsContext, inProps),
+        [propsContext, inProps],
+      )
       const { styles, classNames, props: rootProps } = useRecipeResult(props)
 
       return (
@@ -116,7 +126,11 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     const SuperComponent = chakra(Component, {}, restOptions as any)
 
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
-      const props = mergeProps(defaultProps ?? {}, usePropsContext(), inProps)
+      const propsContext = usePropsContext()
+      const props = useMemo(
+        () => mergeProps(defaultProps ?? {}, propsContext, inProps),
+        [propsContext, inProps],
+      )
       const { styles, props: rootProps, classNames } = useRecipeResult(props)
       const className = classNames[slot as keyof typeof classNames]
 

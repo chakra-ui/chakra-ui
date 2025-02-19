@@ -2,7 +2,7 @@
 
 import type { Assign } from "@ark-ui/react"
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar"
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -161,7 +161,10 @@ export interface AvatarGroupProps
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
     const recipe = useSlotRecipe({ key: "avatar" })
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const [variantProps, localProps] = useMemo(
+      () => recipe.splitVariantProps(props),
+      [props, recipe],
+    )
     return (
       <PropsProvider value={variantProps}>
         <Group gap="0" spaceX="-3" ref={ref} {...localProps} />
