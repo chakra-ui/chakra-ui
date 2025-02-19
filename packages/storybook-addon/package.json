@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/storybook-addon",
-  "version": "5.2.6",
+  "version": "5.2.7",
   "description": "The official Storybook Addon for Chakra UI",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",

@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#9593](https://github.com/chakra-ui/chakra-ui/pull/9593)
+  [`6d78072`](https://github.com/chakra-ui/chakra-ui/commit/6d78072fbacbf7e826891f138b328360ff04c9c0)
+  Thanks [@isBatak](https://github.com/isBatak)! - Use
+  `__unsafe_useEmotionCache` Instead of `withEmotionCache`. This fixes this
+  issue: [#9579](https://github.com/chakra-ui/chakra-ui/issues/9579)
+- Updated dependencies
+  [[`ea124c0`](https://github.com/chakra-ui/chakra-ui/commit/ea124c00bd213e1ecbed80a1cc3b15f4fcbaab59),
+  [`6d78072`](https://github.com/chakra-ui/chakra-ui/commit/6d78072fbacbf7e826891f138b328360ff04c9c0)]:
+  - @chakra-ui/react@2.10.6
+  - @chakra-ui/theme@3.4.8
+  - @chakra-ui/utils@2.2.4
+
 ## 2.1.11
 
 ### Patch Changes

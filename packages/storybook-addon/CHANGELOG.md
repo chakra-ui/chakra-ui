@@ -1,5 +1,15 @@
 # @chakra-ui/storybook-addon
 
+## 5.2.7
+
+### Patch Changes
+
+- [#9593](https://github.com/chakra-ui/chakra-ui/pull/9593)
+  [`6d78072`](https://github.com/chakra-ui/chakra-ui/commit/6d78072fbacbf7e826891f138b328360ff04c9c0)
+  Thanks [@isBatak](https://github.com/isBatak)! - Use
+  `__unsafe_useEmotionCache` Instead of `withEmotionCache`. This fixes this
+  issue: [#9579](https://github.com/chakra-ui/chakra-ui/issues/9579)
+
 ## 5.2.6
 
 ### Patch Changes

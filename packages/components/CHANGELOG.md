@@ -1,5 +1,32 @@
 # @chakra-ui/react
 
+## 2.10.6
+
+### Patch Changes
+
+- [#9625](https://github.com/chakra-ui/chakra-ui/pull/9625)
+  [`ea124c0`](https://github.com/chakra-ui/chakra-ui/commit/ea124c00bd213e1ecbed80a1cc3b15f4fcbaab59)
+  Thanks [@isBatak](https://github.com/isBatak)! - - Add support for React 19
+  `Ref` and `RefObject` typings
+
+  - **Descendant**: Export `useDescendant` hooks
+  - **NumberInput**: Allow `role` to be customizable
+  - **Checkbox**
+    - Fix `aria-checked` value when `isIndeterminate` is `true`
+    - Fix removed `for` attribute on checkbox input
+
+- [#9593](https://github.com/chakra-ui/chakra-ui/pull/9593)
+  [`6d78072`](https://github.com/chakra-ui/chakra-ui/commit/6d78072fbacbf7e826891f138b328360ff04c9c0)
+  Thanks [@isBatak](https://github.com/isBatak)! - Use
+  `__unsafe_useEmotionCache` Instead of `withEmotionCache`. This fixes this
+  issue: [#9579](https://github.com/chakra-ui/chakra-ui/issues/9579)
+- Updated dependencies
+  [[`6d78072`](https://github.com/chakra-ui/chakra-ui/commit/6d78072fbacbf7e826891f138b328360ff04c9c0)]:
+  - @chakra-ui/styled-system@2.12.2
+  - @chakra-ui/hooks@2.4.4
+  - @chakra-ui/theme@3.4.8
+  - @chakra-ui/utils@2.2.4
+
 ## 2.10.5
 
 ### Patch Changes
