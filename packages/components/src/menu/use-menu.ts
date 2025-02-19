@@ -63,7 +63,7 @@ export interface UseMenuProps
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: React.RefObject<{ focus(): void }>
+  initialFocusRef?: React.RefObject<{ focus(): void } | null>
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
@@ -158,8 +158,8 @@ export function useMenu(props: UseMenuProps = {}) {
   /**
    * Prepare the reference to the menu and disclosure
    */
-  const menuRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement | null>(null)
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
 
   const scrollIntoViewRef = useRef(true)
 

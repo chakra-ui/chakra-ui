@@ -42,11 +42,11 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
   /**
    * The `ref` of element to receive focus when the modal opens.
    */
-  initialFocusRef?: React.RefObject<FocusableElement>
+  initialFocusRef?: React.RefObject<FocusableElement | null>
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: React.RefObject<FocusableElement>
+  finalFocusRef?: React.RefObject<FocusableElement | null>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true

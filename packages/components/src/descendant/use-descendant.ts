@@ -47,7 +47,7 @@ export function createDescendantContext<
   const useDescendant = (options?: DescendantOptions<K>) => {
     const descendants = useDescendantsContext()
     const [index, setIndex] = useState(-1)
-    const ref = useRef<T>(null)
+    const ref = useRef<T | null>(null)
 
     useSafeLayoutEffect(() => {
       return () => {

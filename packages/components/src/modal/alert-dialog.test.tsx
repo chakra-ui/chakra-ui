@@ -19,7 +19,7 @@ const BasicUsage = (props: BasicUsageProps) => {
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
 
-  const cancelRef = React.useRef<HTMLButtonElement>(null)
+  const cancelRef = React.useRef<HTMLButtonElement | null>(null)
 
   return (
     <>

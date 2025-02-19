@@ -36,7 +36,7 @@ export interface EnvironmentProviderProps {
 
 export function EnvironmentProvider(props: EnvironmentProviderProps) {
   const { children, environment: environmentProp, disabled } = props
-  const ref = useRef<HTMLSpanElement>(null)
+  const ref = useRef<HTMLSpanElement | null>(null)
 
   const context = useMemo<Environment>(() => {
     if (environmentProp) return environmentProp

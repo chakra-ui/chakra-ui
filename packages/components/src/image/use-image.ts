@@ -78,7 +78,7 @@ export function useImage(props: UseImageProps) {
     setStatus(src ? "loading" : "pending")
   }, [src])
 
-  const imageRef = useRef<HTMLImageElement | null>()
+  const imageRef = useRef<HTMLImageElement | null>(null)
 
   const load = useCallback(() => {
     if (!src) return

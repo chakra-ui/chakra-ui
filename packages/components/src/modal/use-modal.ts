@@ -64,8 +64,8 @@ export function useModal(props: UseModalProps) {
     onEsc,
   } = props
 
-  const dialogRef = useRef<HTMLElement>(null)
-  const overlayRef = useRef<HTMLElement>(null)
+  const dialogRef = useRef<HTMLElement | null>(null)
+  const overlayRef = useRef<HTMLElement | null>(null)
 
   const [dialogId, headerId, bodyId] = useIds(
     id,
@@ -192,7 +192,7 @@ export type UseModalReturn = ReturnType<typeof useModal>
  * @param shouldHide whether `aria-hidden` should be applied
  */
 export function useAriaHidden(
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   shouldHide: boolean,
 ) {
   // save current ref in a local var to trigger the effect on identity change

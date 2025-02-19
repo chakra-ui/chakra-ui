@@ -232,8 +232,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const isVertical = orientation === "vertical"
 
-  const trackRef = useRef<HTMLElement>(null)
-  const rootRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLElement | null>(null)
+  const rootRef = useRef<HTMLElement | null>(null)
 
   const reactId = useId()
   const uuid = idProp ?? reactId

@@ -71,7 +71,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     return trackFocusVisible(setIsFocusVisible)
   }, [])
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [rootIsLabelElement, setRootIsLabelElement] = useState(true)
 
   const [checkedState, setCheckedState] = useState(!!defaultChecked)

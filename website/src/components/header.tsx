@@ -31,7 +31,7 @@ function HeaderContent() {
 
   const text = useColorModeValue('dark', 'light')
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
-  const mobileNavBtnRef = useRef<HTMLButtonElement>()
+  const mobileNavBtnRef = useRef<HTMLButtonElement | null>(null)
 
   useUpdateEffect(() => {
     mobileNavBtnRef.current?.focus()
@@ -136,7 +136,7 @@ function HeaderContent() {
 
 function Header(props: HTMLChakraProps<'header'>) {
   const { maxW = '8xl', maxWidth = '8xl' } = props
-  const ref = useRef<HTMLHeadingElement>()
+  const ref = useRef<HTMLHeadingElement | null>(null)
   const [y, setY] = useState(0)
   const { height = 0 } = ref.current?.getBoundingClientRect() ?? {}
 

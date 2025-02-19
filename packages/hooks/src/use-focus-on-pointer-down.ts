@@ -2,8 +2,8 @@ import { useEventListener } from "./use-event-listener"
 
 export interface UseFocusOnMouseDownProps {
   enabled?: boolean
-  ref: React.RefObject<HTMLElement>
-  elements?: Array<React.RefObject<HTMLElement> | HTMLElement | null>
+  ref: React.RefObject<HTMLElement | null>
+  elements?: Array<React.RefObject<HTMLElement | null> | HTMLElement | null>
 }
 
 function isRefObject(val: any): val is { current: any } {

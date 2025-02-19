@@ -4,7 +4,7 @@ import { useEventListener } from "./use-event-listener"
 
 export interface UseAnimationStateProps {
   isOpen: boolean
-  ref: React.RefObject<HTMLElement>
+  ref: React.RefObject<HTMLElement | null>
 }
 
 export function useAnimationState(props: UseAnimationStateProps) {

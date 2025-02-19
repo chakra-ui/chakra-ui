@@ -12,16 +12,16 @@ export interface FocusLockProps {
   /**
    * `ref` of the element to receive focus initially
    */
-  initialFocusRef?: React.RefObject<FocusableElement>
+  initialFocusRef?: React.RefObject<FocusableElement | null>
   /**
    * `ref` of the element to return focus to when `FocusLock`
    * unmounts
    */
-  finalFocusRef?: React.RefObject<FocusableElement>
+  finalFocusRef?: React.RefObject<FocusableElement | null>
   /**
    * The `ref` of the wrapper for which the focus-lock wraps
    */
-  contentRef?: React.RefObject<HTMLElement>
+  contentRef?: React.RefObject<HTMLElement | null>
   /**
    * If `true`, focus will be restored to the element that
    * triggered the `FocusLock` once it unmounts

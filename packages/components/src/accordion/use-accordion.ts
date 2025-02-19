@@ -197,7 +197,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const { isDisabled, isFocusable, id, ...htmlProps } = props
   const { getAccordionItemProps, setFocusedIndex } = useAccordionContext()
 
-  const buttonRef = useRef<HTMLElement>(null)
+  const buttonRef = useRef<HTMLElement | null>(null)
 
   /**
    * Generate unique ids for all accordion item components (button and panel)

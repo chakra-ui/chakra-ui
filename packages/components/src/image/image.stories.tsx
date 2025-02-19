@@ -89,8 +89,8 @@ export const Bug = () => {
 }
 
 export const WithSrcSet = () => {
-  const firstRef = React.useRef<HTMLImageElement>(null)
-  const secondRef = React.useRef<HTMLImageElement>(null)
+  const firstRef = React.useRef<HTMLImageElement | null>(null)
+  const secondRef = React.useRef<HTMLImageElement | null>(null)
 
   const firstLog = (e: any) => {
     console.log(1, "Image", e.type, firstRef.current?.currentSrc)

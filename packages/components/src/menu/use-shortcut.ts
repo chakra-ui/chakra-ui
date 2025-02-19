@@ -22,7 +22,7 @@ export function useShortcut(props: UseShortcutProps = {}) {
   const { timeout = 300, preventDefault = () => true } = props
 
   const [keys, setKeys] = useState<string[]>([])
-  const timeoutRef = useRef<any>()
+  const timeoutRef = useRef<any>(undefined)
 
   const flush = () => {
     if (timeoutRef.current) {

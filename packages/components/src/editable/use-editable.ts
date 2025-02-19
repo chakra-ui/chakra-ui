@@ -75,7 +75,7 @@ export interface UseEditableProps {
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: RefObject<FocusableElement>
+  finalFocusRef?: RefObject<FocusableElement | null>
 }
 
 function contains(parent: HTMLElement | null, child: HTMLElement) {
@@ -128,12 +128,12 @@ export function useEditable(props: UseEditableProps = {}) {
   /**
    * Ref to help focus the input in edit mode
    */
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null)
   const previewRef = useRef<any>(null)
 
-  const editButtonRef = useRef<HTMLButtonElement>(null)
-  const cancelButtonRef = useRef<HTMLElement>(null)
-  const submitButtonRef = useRef<HTMLElement>(null)
+  const editButtonRef = useRef<HTMLButtonElement | null>(null)
+  const cancelButtonRef = useRef<HTMLElement | null>(null)
+  const submitButtonRef = useRef<HTMLElement | null>(null)
 
   useFocusOnPointerDown({
     ref: inputRef,

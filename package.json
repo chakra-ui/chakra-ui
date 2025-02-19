@@ -130,5 +130,6 @@
   },
   "engines": {
     "node": ">=18.x"
-  }
+  },
+  "packageManager": "pnpm@9.15.5"
 }
