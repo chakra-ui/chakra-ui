@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
@@ -35,7 +35,10 @@ export function createRecipeContext<K extends RecipeKey>(
     })
 
     // @ts-ignore
-    const [variantProps, otherProps] = recipe.splitVariantProps(restProps)
+    const [variantProps, otherProps] = useMemo(
+      () => recipe.splitVariantProps(restProps),
+      [recipe, restProps],
+    )
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
     return {
@@ -53,7 +56,11 @@ export function createRecipeContext<K extends RecipeKey>(
   > => {
     const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
-      const props = mergeProps(usePropsContext(), inProps)
+      const propsContext = usePropsContext()
+      const props = useMemo(
+        () => mergeProps(propsContext, inProps),
+        [inProps, propsContext],
+      )
       const { styles, className, props: localProps } = useRecipeResult(props)
 
       return (

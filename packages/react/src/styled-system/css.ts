@@ -3,6 +3,7 @@ import {
   compact,
   isObject,
   isString,
+  memo,
   mergeWith,
   walkObject,
 } from "../utils"
@@ -27,7 +28,7 @@ export function createCssFn(context: CssFnOptions) {
   const { transform, conditions, normalize } = context
   const mergeFn = mergeCss(context)
 
-  return function cssFn(...styleArgs: SystemStyleObject[]) {
+  return memo(function cssFn(...styleArgs: SystemStyleObject[]) {
     const styles = mergeFn(...styleArgs)
 
     const normalized = normalize(styles)
@@ -57,7 +58,7 @@ export function createCssFn(context: CssFnOptions) {
     })
 
     return sortAtRules(result)
-  }
+  })
 }
 
 function mergeByPath(target: Dict, paths: string[], value: Dict) {
@@ -82,7 +83,7 @@ function mergeCss(ctx: CssFnOptions) {
     if (comp.length === 1) return comp
     return comp.map((style) => ctx.normalize(style))
   }
-  return function mergeFn(...styles: Dict[]) {
+  return memo(function mergeFn(...styles: Dict[]) {
     return mergeWith({}, ...resolve(styles))
-  }
+  })
 }
