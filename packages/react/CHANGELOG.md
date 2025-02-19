@@ -1,5 +1,15 @@
 # @chakra-ui/react
 
+## 3.8.1
+
+### Patch Changes
+
+- [`cdb9459`](https://github.com/chakra-ui/chakra-ui/commit/cdb9459a764800391e15864108fbd8fa94a7164c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix performance
+  regression from `v3.5.x` by reverting memoization logic
+  - Add `useMemo` to provider components and styling hooks to avoid unnecessary
+    recomputations
+
 ## 3.8.0
 
 ### Minor Changes
