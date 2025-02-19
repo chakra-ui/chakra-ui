@@ -10,7 +10,7 @@ const emojiMap: Record<string, string> = {
 
 export const RatingEmoji = () => {
   return (
-    <RatingGroup.Root defaultValue={3}>
+    <RatingGroup.Root count={5} defaultValue={3}>
       <RatingGroup.Control>
         {Array.from({ length: 5 }).map((_, index) => (
           <RatingGroup.Item
