@@ -204,10 +204,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   const [isFocused, setFocused] = useState(false)
   const isInteractive = !(isReadOnly || isDisabled)
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const inputSelectionRef = useRef<InputSelection | null>(null)
-  const incrementButtonRef = useRef<HTMLButtonElement>(null)
-  const decrementButtonRef = useRef<HTMLButtonElement>(null)
+  const incrementButtonRef = useRef<HTMLButtonElement | null>(null)
+  const decrementButtonRef = useRef<HTMLButtonElement | null>(null)
 
   const sanitize = useCallback(
     (value: string) => value.split("").filter(isValidCharacter).join(""),
@@ -517,6 +517,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-describedby": ariaDescBy,
         id,
         disabled: isDisabled,
+        role: "spinbutton",
         ...props,
         readOnly: props.readOnly ?? isReadOnly,
         "aria-readonly": props.readOnly ?? isReadOnly,
@@ -524,7 +525,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         required: props.required ?? isRequired,
         ref: mergeRefs(inputRef, ref),
         value: format(counter.value),
-        role: "spinbutton",
         "aria-valuemin": min,
         "aria-valuemax": max,
         "aria-valuenow": Number.isNaN(counter.valueAsNumber)

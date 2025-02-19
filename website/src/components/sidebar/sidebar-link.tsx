@@ -57,7 +57,7 @@ const SidebarLink = ({
   const router = useRouter()
   const isActive = checkHref(href, router.query.slug) || href === router.asPath
 
-  const link = useRef<HTMLAnchorElement>()
+  const link = useRef<HTMLAnchorElement | null>(null)
 
   useEffect(() => {
     if (isActive && router.query.scroll === 'true') {

@@ -123,8 +123,8 @@ function OmniSearch() {
   const menu = useDisclosure()
   const modal = useDisclosure()
   const [menuNodes] = React.useState(() => new MultiRef<number, HTMLElement>())
-  const menuRef = React.useRef<HTMLDivElement>(null)
-  const eventRef = React.useRef<'mouse' | 'keyboard'>(null)
+  const menuRef = React.useRef<HTMLDivElement | null>(null)
+  const eventRef = React.useRef<'mouse' | 'keyboard' | null>(null)
 
   React.useEffect(() => {
     router.events.on('routeChangeComplete', modal.onClose)

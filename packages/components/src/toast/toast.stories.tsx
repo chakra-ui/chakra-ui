@@ -429,7 +429,7 @@ export const ToastWithCustomIcon = () => {
 
 export function WithDoubleUpdate() {
   const toast = useToast()
-  const toastIdRef = React.useRef<ToastId>()
+  const toastIdRef = React.useRef<ToastId | undefined>(undefined)
 
   function updateOne() {
     if (toastIdRef.current) {

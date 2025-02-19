@@ -9,7 +9,7 @@ export interface UseOutsideClickProps {
   /**
    * The reference to a DOM element.
    */
-  ref: React.RefObject<HTMLElement>
+  ref: React.RefObject<HTMLElement | null>
   /**
    * Function invoked when a click is triggered outside the referenced element.
    */
@@ -74,7 +74,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   }, [handler, ref, savedHandler, state, enabled])
 }
 
-function isValidEvent(event: Event, ref: React.RefObject<HTMLElement>) {
+function isValidEvent(event: Event, ref: React.RefObject<HTMLElement | null>) {
   const target = (event.composedPath?.()[0] ?? event.target) as HTMLElement
 
   if (target) {

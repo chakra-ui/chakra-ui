@@ -584,7 +584,7 @@ export const WithoutMenuButton = () => {
 }
 
 export const ProgrammaticFocusMenuOption = () => {
-  const item = React.useRef<HTMLButtonElement>(null)
+  const item = React.useRef<HTMLButtonElement | null>(null)
   return (
     <Menu initialFocusRef={item}>
       <MenuButton>Welcome</MenuButton>
@@ -605,7 +605,7 @@ export const ProgrammaticFocusMenuOption = () => {
 }
 
 export const ProgrammaticFocusMenuItem = () => {
-  const item = React.useRef<HTMLButtonElement>(null)
+  const item = React.useRef<HTMLButtonElement | null>(null)
   return (
     <Menu initialFocusRef={item}>
       <MenuButton>Welcome</MenuButton>

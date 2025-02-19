@@ -38,7 +38,7 @@ test("passes a11y test", async () => {
 
 test("focuses initialFocusRef on render", () => {
   const Component = () => {
-    const ref = React.useRef<HTMLInputElement>(null)
+    const ref = React.useRef<HTMLInputElement | null>(null)
     return (
       <FocusLock initialFocusRef={ref}>
         <input />
@@ -55,7 +55,7 @@ test("focuses initialFocusRef on render", () => {
 test("focuses finalFocusRef on unmount", () => {
   const Component = () => {
     const [show, setShow] = React.useState(true)
-    const ref = React.useRef<HTMLButtonElement>(null)
+    const ref = React.useRef<HTMLButtonElement | null>(null)
     return (
       <div>
         <button ref={ref} data-testid="button" onClick={() => setShow(false)}>

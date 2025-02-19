@@ -65,7 +65,7 @@ interface MobileNavContentProps {
 
 export function MobileNavContent(props: MobileNavContentProps) {
   const { isOpen, onClose } = props
-  const closeBtnRef = useRef<HTMLButtonElement>()
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null)
   const { pathname, asPath } = useRouter()
   const bgColor = useColorModeValue('white', 'gray.800')
 
@@ -162,7 +162,7 @@ const ScrollView = (props: BoxProps & { onScroll?: any }) => {
   const { onScroll, ...rest } = props
   const [y, setY] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const elRef = useRef<any>()
+  const elRef = useRef<any>(undefined)
   const { scrollY } = useElementScroll(elRef)
   useEffect(() => {
     return scrollY.onChange(() => setY(scrollY.get()))

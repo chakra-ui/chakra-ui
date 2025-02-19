@@ -168,7 +168,7 @@ const data = [
 ]
 
 export function WithSearchFilter() {
-  const inputRef = React.useRef<HTMLInputElement>(null)
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
   const [index, setIndex] = React.useState(-1)

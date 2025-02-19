@@ -14,7 +14,7 @@ export interface UsePanEventProps {
 }
 
 export function usePanEvent(
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   options: UsePanEventProps,
 ) {
   const {

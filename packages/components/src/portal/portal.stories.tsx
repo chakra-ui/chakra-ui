@@ -23,7 +23,7 @@ export const WithinIFrame = () => (
 )
 
 export const WithMountRef = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement | null>(null)
 
   return (
     <>
@@ -77,7 +77,7 @@ export const NestedPortals = () => (
 )
 
 export const WithCustomContainer = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement | null>(null)
   return (
     <div>
       <Portal containerRef={ref}>

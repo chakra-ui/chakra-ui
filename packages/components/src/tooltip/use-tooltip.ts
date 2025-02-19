@@ -140,9 +140,9 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   const uid = id ?? uuid
   const tooltipId = `tooltip-${uid}`
 
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement | null>(null)
 
-  const enterTimeout = useRef<number>()
+  const enterTimeout = useRef<number | undefined>(undefined)
   const clearEnterTimeout = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
@@ -150,7 +150,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     }
   }, [])
 
-  const exitTimeout = useRef<number>()
+  const exitTimeout = useRef<number | undefined>(undefined)
   const clearExitTimeout = useCallback(() => {
     if (exitTimeout.current) {
       clearTimeout(exitTimeout.current)
@@ -327,7 +327,7 @@ export type UseTooltipReturn = ReturnType<typeof useTooltip>
 
 const closeEventName = "chakra-ui:close-tooltip"
 
-function useCloseEvent(ref: RefObject<Element>, close: () => void) {
+function useCloseEvent(ref: RefObject<Element | null>, close: () => void) {
   useEffect(() => {
     const doc = getDoc(ref)
     doc.addEventListener(closeEventName, close)

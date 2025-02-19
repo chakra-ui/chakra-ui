@@ -63,7 +63,7 @@ export function BasicUsage() {
 
 export function ReturnFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef<any>()
+  const finalRef = React.useRef<HTMLDivElement | null>(null)
 
   return (
     <>
@@ -250,7 +250,7 @@ export function WithCustomMotionProps() {
 
 export function WithInitialFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialFocusRef = React.useRef(null)
+  const initialFocusRef = React.useRef<HTMLInputElement | null>(null)
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
@@ -283,7 +283,7 @@ export function WithInitialFocus() {
 
 export const InitialFocusRef = () => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const inputRef = React.useRef<any>()
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
   return (
     <>
       <button data-testid="button" onClick={() => setIsOpen(true)}>

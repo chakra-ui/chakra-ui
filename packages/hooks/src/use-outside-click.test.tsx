@@ -10,7 +10,7 @@ const OutsideClicker = ({
   enabled?: boolean
   onOutsideClick: () => void
 }) => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement | null>(null)
   useOutsideClick({
     enabled,
     ref,

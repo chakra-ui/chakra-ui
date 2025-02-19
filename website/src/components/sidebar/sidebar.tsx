@@ -240,7 +240,7 @@ export const MainNavLinkGroup = (props: ListProps) => {
 
 const Sidebar = ({ routes }) => {
   const { pathname } = useRouter()
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
 
   return (
     <Box

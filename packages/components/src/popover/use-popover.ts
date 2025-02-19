@@ -43,7 +43,7 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: React.RefObject<{ focus(): void }>
+  initialFocusRef?: React.RefObject<{ focus(): void } | null>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
    * when it closes
@@ -164,9 +164,9 @@ export function usePopover(props: UsePopoverProps = {}) {
   const [restoreFocus, setRestoreFocus] = useState(returnFocusOnClose)
   useEffect(() => setRestoreFocus(returnFocusOnClose), [returnFocusOnClose])
 
-  const anchorRef = useRef<HTMLElement>(null)
-  const triggerRef = useRef<HTMLElement>(null)
-  const popoverRef = useRef<HTMLElement>(null)
+  const anchorRef = useRef<HTMLElement | null>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+  const popoverRef = useRef<HTMLElement | null>(null)
 
   const isHoveringRef = useRef(false)
 
@@ -344,8 +344,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     [anchorRef, referenceRef],
   )
 
-  const openTimeout = useRef<number>()
-  const closeTimeout = useRef<number>()
+  const openTimeout = useRef<number | undefined>(undefined)
+  const closeTimeout = useRef<number | undefined>(undefined)
 
   const maybeReferenceRef = useCallback(
     (node: Element) => {

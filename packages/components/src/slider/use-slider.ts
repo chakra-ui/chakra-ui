@@ -216,9 +216,9 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Let's keep a reference to the slider track and thumb
    */
-  const trackRef = useRef<HTMLElement>(null)
-  const thumbRef = useRef<HTMLElement>(null)
-  const rootRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLElement | null>(null)
+  const thumbRef = useRef<HTMLElement | null>(null)
+  const rootRef = useRef<HTMLElement | null>(null)
 
   /**
    * Generate unique ids for component parts
