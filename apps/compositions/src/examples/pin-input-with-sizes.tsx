@@ -1,12 +1,22 @@
-import { Stack } from "@chakra-ui/react"
-import { PinInput } from "compositions/ui/pin-input"
+import { For, Group, PinInput, Stack } from "@chakra-ui/react"
 
 export const PinInputWithSizes = () => {
   return (
     <Stack gap="4">
-      <PinInput size="sm" />
-      <PinInput size="md" />
-      <PinInput size="lg" />
+      <For each={["sm", "md", "lg"]}>
+        {(size) => (
+          <PinInput.Root key={size} size={size}>
+            <PinInput.HiddenInput />
+            <PinInput.Control>
+              <Group>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <PinInput.Input key={index} index={index} />
+                ))}
+              </Group>
+            </PinInput.Control>
+          </PinInput.Root>
+        )}
+      </For>
     </Stack>
   )
 }
