@@ -22,3 +22,4 @@ export { RatingWithCustomIcon as CustomIcon } from "compositions/examples/rating
 export { RatingWithHalf as Half } from "compositions/examples/rating-with-half"
 export { RatingWithHookForm as HookForm } from "compositions/examples/rating-with-hook-form"
 export { RatingWithReadonly as ReadOnly } from "compositions/examples/rating-with-readonly"
+export { RatingWithStore as Store } from "compositions/examples/rating-with-store"
