@@ -1,9 +1,7 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Field, RatingGroup, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import { Rating } from "compositions/ui/rating"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -27,23 +25,31 @@ export const RatingWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
-        <Field
-          label="Rating"
-          invalid={!!errors.rating}
-          errorText={errors.rating?.message}
-        >
+        <Field.Root invalid={!!errors.rating}>
+          <Field.Label>Rating</Field.Label>
           <Controller
             control={control}
             name="rating"
             render={({ field }) => (
-              <Rating
+              <RatingGroup.Root
+                count={5}
                 name={field.name}
                 value={field.value}
                 onValueChange={({ value }) => field.onChange(value)}
-              />
+              >
+                <RatingGroup.HiddenInput />
+                <RatingGroup.Control>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <RatingGroup.Item key={index} index={index + 1}>
+                      <RatingGroup.ItemIndicator />
+                    </RatingGroup.Item>
+                  ))}
+                </RatingGroup.Control>
+              </RatingGroup.Root>
             )}
           />
-        </Field>
+          <Field.ErrorText>{errors.rating?.message}</Field.ErrorText>
+        </Field.Root>
         <Button size="sm" type="submit">
           Submit
         </Button>
