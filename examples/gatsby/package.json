@@ -7,8 +7,8 @@
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "workspace:*",
     "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "framer-motion": "^10.16.1",
     "gatsby": "^5.11.0",
     "gatsby-image": "^3.11.0",

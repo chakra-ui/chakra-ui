@@ -1,5 +1,5 @@
 import { isBrowser } from "@chakra-ui/utils"
-import { EmotionCache, withEmotionCache } from "@emotion/react"
+import { __unsafe_useEmotionCache } from "@emotion/react"
 import {
   useCallback,
   useEffect,
@@ -38,10 +38,7 @@ function getTheme(manager: StorageManager, fallback?: ColorMode) {
  * Returns the color mode and function to toggle the color mode
  */
 export const ColorModeProvider: React.FC<ColorModeProviderProps> =
-  withEmotionCache(function ColorModeProvider(
-    props: ColorModeProviderProps,
-    cache: EmotionCache,
-  ) {
+  function ColorModeProvider(props: ColorModeProviderProps) {
     const {
       value,
       children,
@@ -52,6 +49,8 @@ export const ColorModeProvider: React.FC<ColorModeProviderProps> =
       } = {},
       colorModeManager = localStorageManager,
     } = props
+
+    const cache = __unsafe_useEmotionCache()
 
     const defaultColorMode = initialColorMode === "dark" ? "dark" : "light"
 
@@ -139,7 +138,7 @@ export const ColorModeProvider: React.FC<ColorModeProviderProps> =
         {children}
       </ColorModeContext.Provider>
     )
-  })
+  }
 
 ColorModeProvider.displayName = "ColorModeProvider"
 

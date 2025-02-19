@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
