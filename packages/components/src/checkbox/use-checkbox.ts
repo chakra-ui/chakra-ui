@@ -247,6 +247,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const getRootProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => ({
       ...htmlProps,
+      htmlFor: rootIsLabelElement ? id : undefined,
       ...props,
       ref: mergeRefs(forwardedRef, (node: HTMLElement) => {
         if (!node) return
@@ -274,7 +275,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement, id],
   )
 
   const getInputProps: PropGetter = useCallback(
@@ -305,7 +306,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
         "aria-describedby": ariaDescribedBy,
         "aria-disabled": isDisabled,
-        "aria-checked": isIndeterminate ? 'mixed' : isChecked,
+        "aria-checked": isIndeterminate ? "mixed" : isChecked,
         style: visuallyHiddenStyle,
       }
     },
@@ -313,6 +314,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       name,
       value,
       id,
+      tabIndex,
       handleChange,
       onBlurProp,
       onFocusProp,
@@ -328,7 +330,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isInvalid,
       ariaDescribedBy,
       isDisabled,
-      tabIndex,
+      isIndeterminate,
     ],
   )
 
