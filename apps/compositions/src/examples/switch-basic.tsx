@@ -1,5 +1,13 @@
-import { Switch } from "compositions/ui/switch"
+import { Switch } from "@chakra-ui/react"
 
 export const SwitchBasic = () => {
-  return <Switch>Activate Chakra</Switch>
+  return (
+    <Switch.Root>
+      <Switch.HiddenInput />
+      <Switch.Control>
+        <Switch.Thumb />
+      </Switch.Control>
+      <Switch.Label>Activate Chakra</Switch.Label>
+    </Switch.Root>
+  )
 }
