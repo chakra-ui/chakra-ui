@@ -26,7 +26,7 @@ export interface AspectRatioProps
  */
 export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
   function AspectRatio(props, ref) {
-    const { ratio = 4 / 3, children, className, ...rest } = props
+    const { ratio = 4 / 3, children, className, css, ...rest } = props
     const child = Children.only(children)
 
     return (
@@ -57,7 +57,7 @@ export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
           "& > img, & > video": {
             objectFit: "cover",
           },
-          ...props.css,
+          ...css,
         }}
         {...rest}
       >
