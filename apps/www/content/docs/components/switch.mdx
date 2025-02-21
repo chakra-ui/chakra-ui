@@ -10,44 +10,42 @@ links:
 
 <ExampleTabs name="switch-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`switch` snippet
-
-```sh
-npx @chakra-ui/cli snippet add switch
-```
-
-The snippet includes a closed component composition for the `Switch` component.
-
 ## Usage
 
-```jsx
-import { Switch } from "@/components/ui/switch"
+```tsx
+import { Switch } from "@chakra-ui/react"
 ```
 
-```jsx
-<Switch>Label</Switch>
+```tsx
+<Switch.Root>
+  <Switch.HiddenInput />
+  <Switch.Control>
+    <Switch.Thumb />
+  </Switch.Control>
+  <Switch.Label>Label</Switch.Label>
+</Switch.Root>
 ```
 
 ## Examples
 
 ### Sizes
 
-Use the `size` prop to change the size of the switch component.
+Pass the `size` prop to the `Switch.Root` component to change the size of the
+switch component.
 
 <ExampleTabs name="switch-with-sizes" />
 
 ### Variants
 
-Use the `variant` prop to change the visual style of the switch.
+Pass the `variant` prop to the `Switch.Root` component to change the visual
+style of the switch.
 
 <ExampleTabs name="switch-with-variants" />
 
 ### Colors
 
-Use the `colorPalette` prop to change the color scheme of the component.
+Pass the `colorPalette` prop to the `Switch.Root` component to change the color
+scheme of the component.
 
 <ExampleTabs name="switch-with-colors" />
 
@@ -65,33 +63,54 @@ Here's an example of integrating the switch with `react-hook-form`.
 
 ### Disabled
 
-Use the `disabled` prop to disable the switch.
+Pass the `disabled` prop to the `Switch.Root` component to disable the switch.
 
 <ExampleTabs name="switch-with-disabled" />
 
 ### Invalid
 
-Use the `invalid` prop to indicate an error state for the switch.
+Pass the `invalid` prop to the `Switch.Root` component to indicate an error
+state for the switch.
 
 <ExampleTabs name="switch-with-invalid" />
 
 ### Tooltip
 
-Here's an example of a switch with a tooltip.
+Here's an example of how to compose a switch with a tooltip.
 
 <ExampleTabs name="switch-with-tooltip" />
 
-### Track Label
+### Track Indicator
 
-Use the `trackLabel` prop to display different label based on the checked state.
+Use the `Switch.Indicator` component to display different indicators based on
+the checked state.
 
-<ExampleTabs name="switch-with-track-label" />
+<ExampleTabs name="switch-with-track-indicator" />
 
-### Thumb Label
+### Thumb Indicator
 
-Use the `thumbLabel` prop to add an icon to the switch thumb.
+Use the `Switch.ThumbIndicator` component to add an icon to the switch thumb.
 
-<ExampleTabs name="switch-with-thumb-label" />
+<ExampleTabs name="switch-with-thumb-indicator" />
+
+### Closed Component
+
+Here's how to setup the Switch for a closed component composition.
+
+<ExampleCode name="switch-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add switch
+```
+
+#### Usage
+
+```tsx
+<Switch>Activate Chakra</Switch>
+```
 
 ## Props
 
