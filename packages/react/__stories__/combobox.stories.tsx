@@ -23,3 +23,4 @@ export { ComboboxSelectionBehavior as SelectionBehavior } from "compositions/exa
 export { ComboboxWithCreateableOptions as CreateableOptions } from "compositions/examples/combobox-with-createable-options"
 export { ColorPickerCombobox as ColorPicker } from "compositions/examples/combobox-color-picker"
 export { ComboboxWithStore as WithStore } from "compositions/examples/combobox-with-store"
+export { ComboboxWithInputInContent as WithInputInContent } from "compositions/examples/combobox-with-input-in-content"
