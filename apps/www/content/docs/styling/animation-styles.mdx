@@ -56,9 +56,7 @@ import { animationStyles } from "./animation-styles"
 
 const config = defineConfig({
   theme: {
-    extend: {
-      animationStyles,
-    },
+    animationStyles,
   },
 })
 
@@ -68,7 +66,7 @@ export default createSystem(defaultConfig, config)
 After updating the theme, run this command to generate the animations.
 
 ```bash
-npx @chakra-ui/cli typegen
+npx @chakra-ui/cli typegen ./theme.ts
 ```
 
 These animation styles can be composed with other styles like `_open` and
@@ -80,6 +78,6 @@ These animation styles can be composed with other styles like `_open` and
   animationDuration="slow"
   animationStyle={{ _open: "slide-fade-in", _closed: "slide-fade-out" }}
 >
-  > This content will fade in
+  This content will fade in
 </Box>
 ```
