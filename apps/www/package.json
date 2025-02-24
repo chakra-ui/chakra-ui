@@ -26,7 +26,7 @@
     "@shikijs/rehype": "1.26.1",
     "@shikijs/transformers": "1.26.1",
     "compositions": "../compositions/src",
-    "hastscript": "9.0.0",
+    "hastscript": "9.0.1",
     "match-sorter": "6.3.4",
     "mdast": "3.0.0",
     "next": "15.1.3",
