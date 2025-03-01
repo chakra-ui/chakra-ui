@@ -18,9 +18,19 @@ import { Avatar, AvatarGroup } from "@chakra-ui/react"
 
 ```tsx
 <AvatarGroup>
-  <Avatar />
+  <Avatar.Root>
+    <Avatar.Fallback />
+    <Avatar.Image />
+  </Avatar.Root>
 </AvatarGroup>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
@@ -135,6 +145,13 @@ An alternative way to access the avatar state and methods is to use the
 Here's how to setup the Avatar for a closed component composition.
 
 <ExampleCode name="avatar-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add avatar
+```
 
 ## Props
 
