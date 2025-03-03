@@ -101,7 +101,7 @@ We'll appreciate some support. Thank you to all our supporters! 🙏
 > the accessibility on the couple components I looked is complete.
 >
 > Great work @thesegunadebayo, really inspiring work. –
-> [Ryan Florence](https://twitter.com/ryanflorence/status/1169260008069947392)
+> [Ryan Florence](https://twitter.com/ryanflorence)
 
 > Awesome new open-source component library from @thesegunadebayo. Really
 > impressive stuff! –
