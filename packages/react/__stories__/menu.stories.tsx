@@ -28,3 +28,4 @@ export { MenuWithRadioItems as RadioItems } from "compositions/examples/menu-wit
 export { MenuWithSubmenu as Submenu } from "compositions/examples/menu-with-submenu"
 export { MenuWithSubmenuDynamic as SubmenuDynamic } from "compositions/examples/menu-with-submenu-dynamic"
 export { MenuWithinDialog as WithDialog } from "compositions/examples/menu-within-dialog"
+export { MenuWithAnchorRect as AnchorRect } from "compositions/examples/menu-with-anchor-rect"
