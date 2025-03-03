@@ -840,7 +840,7 @@ export const defaultBaseConfig = defineConfig({
     // margin
     margin: { values: "spacing", shorthand: ["m"] },
     marginTop: { values: "spacing", shorthand: ["mt"] },
-    marginBlockStart: { values: "spacing", shorthand: ["mt"] },
+    marginBlockStart: { values: "spacing" },
     marginRight: { values: "spacing", shorthand: ["mr"] },
     marginBottom: { values: "spacing", shorthand: ["mb"] },
     marginBlockEnd: { values: "spacing" },
