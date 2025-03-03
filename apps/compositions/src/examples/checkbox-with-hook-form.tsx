@@ -1,9 +1,8 @@
 "use client"
 
-import { Button, Code, HStack, Stack } from "@chakra-ui/react"
+import { Button, Checkbox, Code, Field, HStack, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Checkbox } from "compositions/ui/checkbox"
-import { Field } from "compositions/ui/field"
+import "compositions/ui/field"
 import { Controller, useController, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -33,18 +32,21 @@ export const CheckboxWithHookForm = () => {
           control={form.control}
           name="enabled"
           render={({ field }) => (
-            <Field
-              disabled={field.disabled}
-              invalid={invalid}
-              errorText={form.formState.errors.enabled?.message}
-            >
-              <Checkbox
+            <Field.Root invalid={invalid} disabled={field.disabled}>
+              <Checkbox.Root
                 checked={field.value}
                 onCheckedChange={({ checked }) => field.onChange(checked)}
               >
-                Checkbox
-              </Checkbox>
-            </Field>
+                <Checkbox.HiddenInput />
+                <Checkbox.Control>
+                  <Checkbox.Indicator />
+                </Checkbox.Control>
+                <Checkbox.Label>Checkbox</Checkbox.Label>
+              </Checkbox.Root>
+              <Field.ErrorText>
+                {form.formState.errors.enabled?.message}
+              </Field.ErrorText>
+            </Field.Root>
           )}
         />
 

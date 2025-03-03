@@ -1,5 +1,4 @@
-import { CheckboxGroup, Flex, Text } from "@chakra-ui/react"
-import { CheckboxCard } from "compositions/ui/checkbox-card"
+import { CheckboxCard, CheckboxGroup, Flex, Text } from "@chakra-ui/react"
 
 export const CheckboxCardWithGroup = () => {
   return (
@@ -9,12 +8,18 @@ export const CheckboxCardWithGroup = () => {
       </Text>
       <Flex gap="2">
         {items.map((item) => (
-          <CheckboxCard
-            label={item.title}
-            description={item.description}
-            key={item.value}
-            value={item.value}
-          />
+          <CheckboxCard.Root key={item.value} value={item.value}>
+            <CheckboxCard.HiddenInput />
+            <CheckboxCard.Control>
+              <CheckboxCard.Content>
+                <CheckboxCard.Label>{item.title}</CheckboxCard.Label>
+                <CheckboxCard.Description>
+                  {item.description}
+                </CheckboxCard.Description>
+              </CheckboxCard.Content>
+              <CheckboxCard.Indicator />
+            </CheckboxCard.Control>
+          </CheckboxCard.Root>
         ))}
       </Flex>
     </CheckboxGroup>

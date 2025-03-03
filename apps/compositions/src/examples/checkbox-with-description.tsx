@@ -1,13 +1,18 @@
-import { Box } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Box, Checkbox, Stack } from "@chakra-ui/react"
 
 export const CheckboxWithDescription = () => {
   return (
-    <Checkbox gap="4" alignItems="flex-start">
-      <Box lineHeight="1">I agree to the terms and conditions</Box>
-      <Box fontWeight="normal" color="fg.muted" mt="1">
-        By clicking this, you agree to our Terms and Privacy Policy.
-      </Box>
-    </Checkbox>
+    <Checkbox.Root gap="4" alignItems="flex-start">
+      <Checkbox.HiddenInput />
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      <Stack gap="1">
+        <Checkbox.Label>I agree to the terms and conditions</Checkbox.Label>
+        <Box textStyle="sm" color="fg.muted">
+          By clicking this, you agree to our Terms and Privacy Policy.
+        </Box>
+      </Stack>
+    </Checkbox.Root>
   )
 }

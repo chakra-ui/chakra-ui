@@ -10,29 +10,39 @@ links:
 
 <ExampleTabs name="checkbox-card-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`checkbox-card` snippet
-
-```sh
-npx @chakra-ui/cli snippet add checkbox-card
-```
-
-The snippet includes a closed component composition for the `CheckboxCard`
-component.
-
 ## Usage
 
-```jsx
-import { CheckboxCard } from "@/components/ui/checkbox-card"
+```tsx
+import { CheckboxCard } from "@chakra-ui/react"
 ```
 
-```jsx
-<CheckboxCard label="Checkbox Card" />
+```tsx
+<CheckboxCard.Root>
+  <CheckboxCard.HiddenInput />
+  <CheckboxCard.Control>
+    <CheckboxCard.Content>
+      <CheckboxCard.Label />
+      <CheckboxCard.Description />
+    <CheckboxCard.Indicator />
+  </CheckboxCard.Control>
+</CheckboxCard.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
+
+### Description
+
+Use the `CheckboxCard.Description` component to add a description to the
+checkbox card.
+
+<ExampleTabs name="checkbox-card-with-description" />
 
 ### Group
 
@@ -42,40 +52,62 @@ Use the `CheckboxCardGroup` component to group multiple checkbox cards.
 
 ### Sizes
 
-Use the `size` prop to change the size of the checkbox card.
+Pass the `size` prop to the `CheckboxCard.Root` component to change the size of
+the checkbox card.
 
 <ExampleTabs name="checkbox-card-with-sizes" />
 
 ### Variants
 
-Use the `variant` prop to change the variant of the checkbox card.
+Use the `variant` prop to Pass the `variant` prop to the `CheckboxCard.Root`
+component to change the variant of the checkbox card.
 
 <ExampleTabs name="checkbox-card-with-variants" />
 
 ### Disabled
 
-Use the `disabled` prop to make the checkbox card disabled.
+Pass the `disabled` prop to the `CheckboxCard.Root` component to make the
+checkbox card disabled.
 
 <ExampleTabs name="checkbox-card-disabled" />
 
 ### Addon
 
-Use the `CheckboxCardAddon` to add some more context to the checkbox card.
+Render additional content within the `CheckboxCard.Addon` component to add some
+more context to the checkbox card.
 
 <ExampleTabs name="checkbox-card-with-addon" />
 
+### No Indicator
+
+Here's an example of how to use the checkbox card without an indicator.
+
+<ExampleTabs name="checkbox-card-no-indicator" />
+
 ### Icon
 
-Render custom icons within the checkbox card.
+Here's an example of how to render custom icons within the checkbox card.
 
 <ExampleTabs name="checkbox-card-with-icon" />
 
-### Without Snippet
+### Closed Component
 
-If you don't want to use the snippet, you can use the `CheckboxCard` component
-from the `@chakra-ui/react` package.
+Here's how to setup the Checkbox card for a closed component composition.
 
-<ExampleTabs name="checkbox-card-without-snippet" />
+<ExampleCode name="checkbox-card-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add checkbox-card
+```
+
+#### Usage
+
+```tsx
+<CheckboxCard label="Checkbox Card" />
+```
 
 ## Props
 
