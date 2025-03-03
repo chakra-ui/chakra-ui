@@ -24,10 +24,10 @@ describe("css", () => {
           "padding": "20px",
         },
         "@media screen and (min-width: 48rem)": {
-          "marginBlockStart": "20px",
+          "marginTop": "20px",
         },
         "color": "red",
-        "marginBlockStart": "40px",
+        "marginTop": "40px",
         "padding": "10px",
       }
     `)
@@ -100,8 +100,8 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "marginBlockStart": "calc(var(--chakra-spacing-3) * -1)",
         "marginInline": "calc(var(--chakra-spacing-4) * -1)",
+        "marginTop": "calc(var(--chakra-spacing-3) * -1)",
       }
     `)
   })
