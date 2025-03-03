@@ -27,4 +27,4 @@ export { CheckboxWithIndeterminate as Indeterminate } from "compositions/example
 export { CheckboxWithLink as Link } from "compositions/examples/checkbox-with-link"
 export { CheckboxWithStates as States } from "compositions/examples/checkbox-with-states"
 export { CheckboxWithStore as Store } from "compositions/examples/checkbox-with-store"
-export { CheckboxWithLabelPosition as Position } from "compositions/examples/checkbox-with-label-position"
+export { CheckboxWithLabelPosition as LabelPosition } from "compositions/examples/checkbox-with-label-position"
