@@ -10,26 +10,19 @@ links:
 
 <ExampleTabs name="pin-input-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`pin-input` snippet
-
-```sh
-npx @chakra-ui/cli snippet add pin-input
-```
-
-The snippet includes a closed component composition for the `PinInput`
-component.
-
 ## Usage
 
-```jsx
-import { PinInput } from "@/components/ui/pin-input"
+```tsx
+import { PinInput } from "@chakra-ui/react"
 ```
 
-```jsx
-<PinInput />
+```tsx
+<PinInput.Root>
+  <PinInput.HiddenInput />
+  <PinInput.Control>
+    <PinInput.Input />
+  </PinInput.Control>
+</PinInput.Root>
 ```
 
 ## Examples
@@ -90,7 +83,8 @@ component.
 
 ### Attached
 
-Use the `attached` prop to attach the pin input to the input field
+Use the `attached` prop on the `Group` component to attach the pin input to the
+input field
 
 <ExampleTabs name="pin-input-attached" />
 
@@ -101,18 +95,24 @@ can be either `alphanumeric`, `numeric`, or `alphabetic`
 
 <ExampleTabs name="pin-input-alphanumeric" />
 
-### Without Snippet
+### Input Fields
 
-If you don't want to use the snippet, you can use the `PinInput` component from
-the `@chakra-ui/react` package.
-
-<ExampleTabs name="pin-input-without-snippet" />
-
-### Count
-
-To increase the number of input fields, you can use the `count` prop.
+Increase the number of input fields by changing the length of the array to your
+desired number
 
 <ExampleTabs name="pin-input-count" />
+
+### Closed Component
+
+Here's how to setup the Pin input for a closed component composition.
+
+<ExampleCode name="pin-input-closed-component" />
+
+#### Usage
+
+```tsx
+<PinInput mask />
+```
 
 ## Props
 
