@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.8.2
+
+### Patch Changes
+
+- [`91945b7`](https://github.com/chakra-ui/chakra-ui/commit/91945b78792962913fb862ca60cfc1599b655ccf)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `mt` alias to `marginBlockStart` instead of `marginTop`
+
+- [#9712](https://github.com/chakra-ui/chakra-ui/pull/9712)
+  [`f733a87`](https://github.com/chakra-ui/chakra-ui/commit/f733a87477d371a7dc66c69b321f079c0bbe75bd)
+  Thanks [@CerealeZ](https://github.com/CerealeZ)! - AspectRatio: Fix issue
+  where `css` prop was not respected
+
 ## 3.8.1
 
 ### Patch Changes
