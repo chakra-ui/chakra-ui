@@ -127,7 +127,7 @@
       "@emotion/react": "11.14.0"
     }
   },
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@9.15.6",
   "engines": {
     "node": ">=18.x"
   }
