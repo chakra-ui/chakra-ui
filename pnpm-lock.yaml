@@ -865,8 +865,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@chromatic-com/storybook':
-        specifier: ^3.2.3
-        version: 3.2.4(react@18.2.0)(storybook@8.4.7(prettier@3.3.3))
+        specifier: ^3.2.5
+        version: 3.2.5(react@18.2.0)(storybook@8.4.7(prettier@3.3.3))
       '@storybook/addon-essentials':
         specifier: ^8.4.7
         version: 8.4.7(@types/react@18.3.11)(storybook@8.4.7(prettier@3.3.3))(webpack-sources@3.2.3)
@@ -1860,8 +1860,8 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@chromatic-com/storybook@3.2.4':
-    resolution: {integrity: sha512-5/bOOYxfwZ2BktXeqcCpOVAoR6UCoeART5t9FVy22hoo8F291zOuX4y3SDgm10B1GVU/ZTtJWPT2X9wZFlxYLg==}
+  '@chromatic-com/storybook@3.2.5':
+    resolution: {integrity: sha512-Y388ft6po5FmGKdkcqz3r2sW6aMF5DSBaatC0jvT5bI/Dh27RJw3gPTmXJcZVNjteNl6tpiP3qxZ9MswAk5luw==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
@@ -11957,7 +11957,7 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@chromatic-com/storybook@3.2.4(react@18.2.0)(storybook@8.4.7(prettier@3.3.3))':
+  '@chromatic-com/storybook@3.2.5(react@18.2.0)(storybook@8.4.7(prettier@3.3.3))':
     dependencies:
       chromatic: 11.25.0
       filesize: 10.1.6
