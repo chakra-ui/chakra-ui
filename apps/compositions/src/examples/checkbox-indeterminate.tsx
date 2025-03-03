@@ -1,7 +1,6 @@
 "use client"
 
-import { Stack } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox, Stack } from "@chakra-ui/react"
 import { useState } from "react"
 
 const initialValues = [
@@ -18,7 +17,7 @@ export const CheckboxIndeterminate = () => {
   const indeterminate = values.some((value) => value.checked) && !allChecked
 
   const items = values.map((item, index) => (
-    <Checkbox
+    <Checkbox.Root
       ms="6"
       key={item.value}
       checked={item.checked}
@@ -30,13 +29,17 @@ export const CheckboxIndeterminate = () => {
         })
       }}
     >
-      {item.label}
-    </Checkbox>
+      <Checkbox.HiddenInput />
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      <Checkbox.Label>{item.label}</Checkbox.Label>
+    </Checkbox.Root>
   ))
 
   return (
     <Stack align="flex-start">
-      <Checkbox
+      <Checkbox.Root
         checked={indeterminate ? "indeterminate" : allChecked}
         onCheckedChange={(e) => {
           setValues((current) =>
@@ -44,8 +47,12 @@ export const CheckboxIndeterminate = () => {
           )
         }}
       >
-        Weekdays
-      </Checkbox>
+        <Checkbox.HiddenInput />
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        <Checkbox.Label>Weekdays</Checkbox.Label>
+      </Checkbox.Root>
       {items}
     </Stack>
   )

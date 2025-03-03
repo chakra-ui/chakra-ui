@@ -1,5 +1,4 @@
-import { CheckboxGroup, Fieldset } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox, CheckboxGroup, Fieldset, For } from "@chakra-ui/react"
 
 export const CheckboxWithGroup = () => {
   return (
@@ -9,10 +8,19 @@ export const CheckboxWithGroup = () => {
           Select framework
         </Fieldset.Legend>
         <Fieldset.Content>
-          <Checkbox value="react">React</Checkbox>
-          <Checkbox value="svelte">Svelte</Checkbox>
-          <Checkbox value="vue">Vue</Checkbox>
-          <Checkbox value="angular">Angular</Checkbox>
+          <For each={["react", "svelte", "vue", "angular"]}>
+            {(value) => (
+              <Checkbox.Root key={value} value={value}>
+                <Checkbox.HiddenInput />
+                <Checkbox.Control>
+                  <Checkbox.Indicator />
+                </Checkbox.Control>
+                <Checkbox.Label>
+                  {value[0].toUpperCase() + value.slice(1)}
+                </Checkbox.Label>
+              </Checkbox.Root>
+            )}
+          </For>
         </Fieldset.Content>
       </CheckboxGroup>
     </Fieldset.Root>
