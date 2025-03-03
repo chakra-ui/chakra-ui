@@ -1,7 +1,16 @@
-import { CheckboxCard } from "compositions/ui/checkbox-card"
+import { CheckboxCard } from "@chakra-ui/react"
 
 export const CheckboxCardBasic = () => {
   return (
-    <CheckboxCard label="Next.js" description="Best for apps" maxW="240px" />
+    <CheckboxCard.Root maxW="240px">
+      <CheckboxCard.HiddenInput />
+      <CheckboxCard.Control>
+        <CheckboxCard.Content>
+          <CheckboxCard.Label>Next.js</CheckboxCard.Label>
+          <CheckboxCard.Description>Best for apps</CheckboxCard.Description>
+        </CheckboxCard.Content>
+        <CheckboxCard.Indicator />
+      </CheckboxCard.Control>
+    </CheckboxCard.Root>
   )
 }
