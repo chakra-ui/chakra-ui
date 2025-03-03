@@ -122,6 +122,15 @@ Use the `positioning.placement` prop to control the placement of the menu.
 
 <ExampleTabs name="menu-with-placement" />
 
+### Anchor Point
+
+Use the `positioning.anchorPoint` prop to control the anchor point of the menu.
+You can derive it from the `getBoundingClientRect` of a DOM element, or use
+something like `DOMRect.fromRect({ x: 0, y: 0, width: 1, height: 1 })` to create
+a new rect.
+
+<ExampleTabs name="menu-with-anchor-rect" />
+
 ### Mixed Layout
 
 Here's an example of how to create a mixed layout of menu items. In this layout,
