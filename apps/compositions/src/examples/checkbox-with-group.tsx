@@ -8,16 +8,14 @@ export const CheckboxWithGroup = () => {
           Select framework
         </Fieldset.Legend>
         <Fieldset.Content>
-          <For each={["react", "svelte", "vue", "angular"]}>
+          <For each={["React", "Svelte", "Vue", "Angular"]}>
             {(value) => (
               <Checkbox.Root key={value} value={value}>
                 <Checkbox.HiddenInput />
                 <Checkbox.Control>
                   <Checkbox.Indicator />
                 </Checkbox.Control>
-                <Checkbox.Label>
-                  {value[0].toUpperCase() + value.slice(1)}
-                </Checkbox.Label>
+                <Checkbox.Label>{value}</Checkbox.Label>
               </Checkbox.Root>
             )}
           </For>
