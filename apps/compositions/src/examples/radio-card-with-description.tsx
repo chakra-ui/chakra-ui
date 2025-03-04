@@ -1,6 +1,6 @@
 import { HStack, RadioCard } from "@chakra-ui/react"
 
-export const RadioCardWithAddon = () => {
+export const RadioCardWithDescription = () => {
   return (
     <RadioCard.Root defaultValue="next">
       <RadioCard.Label>Select framework</RadioCard.Label>
@@ -11,14 +11,12 @@ export const RadioCardWithAddon = () => {
             <RadioCard.ItemControl>
               <RadioCard.ItemContent>
                 <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-
                 <RadioCard.ItemDescription>
                   {item.description}
                 </RadioCard.ItemDescription>
               </RadioCard.ItemContent>
               <RadioCard.ItemIndicator />
             </RadioCard.ItemControl>
-            <RadioCard.ItemAddon>Some addon text</RadioCard.ItemAddon>
           </RadioCard.Item>
         ))}
       </HStack>
