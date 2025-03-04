@@ -15,13 +15,13 @@ export const RadioWithVariants = () => {
               <RadioGroup.Item value="react" minW="120px">
                 <RadioGroup.ItemHiddenInput />
                 <RadioGroup.ItemIndicator />
-                <RadioGroup.ItemText>Radio ({variant})</RadioGroup.ItemText>
+                <RadioGroup.ItemText>React ({variant})</RadioGroup.ItemText>
               </RadioGroup.Item>
 
               <RadioGroup.Item value="vue">
                 <RadioGroup.ItemHiddenInput />
                 <RadioGroup.ItemIndicator />
-                <RadioGroup.ItemText>Radio ({variant})</RadioGroup.ItemText>
+                <RadioGroup.ItemText>Vue ({variant})</RadioGroup.ItemText>
               </RadioGroup.Item>
             </HStack>
           </RadioGroup.Root>
