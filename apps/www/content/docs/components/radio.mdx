@@ -9,58 +9,56 @@ links:
 
 <ExampleTabs name="radio-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`radio` snippet
-
-```sh
-npx @chakra-ui/cli snippet add radio
-```
-
-The snippet includes a closed component composition for the `RadioGroup`
-
 ## Usage
 
-```jsx
-import { Radio, RadioGroup } from "@/components/ui/radio"
+```tsx
+import { Radio, RadioGroup } from "@chakra-ui/react"
 ```
 
-```jsx
-<RadioGroup>
-  <Radio />
-</RadioGroup>
+```tsx
+<RadioGroup.Root>
+  <RadioGroup.Item>
+    <RadioGroup.ItemHiddenInput />
+    <RadioGroup.ItemIndicator />
+    <RadioGroup.ItemText />
+  </RadioGroup.Item>
+</RadioGroup.Root>
 ```
 
 ## Examples
 
 ### Controlled
 
-Use the `value` and `onValueChange` prop to control the selected radio button
+Pass the `value` and `onValueChange` prop to the `RadioGroup.Root` component to
+control the selected radio button.
 
 <ExampleTabs name="radio-controlled" />
 
 ### Colors
 
-Use the `colorPalette` prop to change the color scheme of the component.
+Pass the `colorPalette` prop to the `RadioGroup.Root` component to change the
+color scheme of the component.
 
 <ExampleTabs name="radio-with-colors" />
 
 ### Sizes
 
-Use the `size` prop to change the size of the radio component.
+Pass the `size` prop to the `RadioGroup.Root` component to change the size of
+the radio component.
 
 <ExampleTabs name="radio-with-sizes" />
 
 ### Variants
 
-Use the `variant` prop to change the appearance of the radio component.
+Pass the `variant` prop to the `RadioGroup.Root` component to change the
+appearance of the radio component.
 
 <ExampleTabs name="radio-with-variants" />
 
 ### Disabled
 
-Use the `disabled` prop to make the radio disabled.
+Pass the `disabled` prop to the `RadioGroup.Item` component to make the radio
+disabled.
 
 <ExampleTabs name="radio-disabled" />
 
