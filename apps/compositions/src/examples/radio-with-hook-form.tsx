@@ -1,8 +1,7 @@
 "use client"
 
-import { Button, Fieldset, HStack } from "@chakra-ui/react"
+import { Button, Fieldset, HStack, RadioGroup } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Radio, RadioGroup } from "compositions/ui/radio"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -37,7 +36,7 @@ export const RadioWithHookForm = () => {
           name="value"
           control={control}
           render={({ field }) => (
-            <RadioGroup
+            <RadioGroup.Root
               name={field.name}
               value={field.value}
               onValueChange={({ value }) => {
@@ -46,16 +45,14 @@ export const RadioWithHookForm = () => {
             >
               <HStack gap="6">
                 {items.map((item) => (
-                  <Radio
-                    key={item.value}
-                    value={item.value}
-                    inputProps={{ onBlur: field.onBlur }}
-                  >
-                    {item.label}
-                  </Radio>
+                  <RadioGroup.Item key={item.value} value={item.value}>
+                    <RadioGroup.ItemHiddenInput onBlur={field.onBlur} />
+                    <RadioGroup.ItemIndicator />
+                    <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+                  </RadioGroup.Item>
                 ))}
               </HStack>
-            </RadioGroup>
+            </RadioGroup.Root>
           )}
         />
 
