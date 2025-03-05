@@ -1,17 +1,24 @@
-import { For, Stack } from "@chakra-ui/react"
-import { CheckboxCard } from "compositions/ui/checkbox-card"
+import { CheckboxCard, For, Stack } from "@chakra-ui/react"
 
 export const CheckboxCardWithVariants = () => {
   return (
     <Stack maxW="320px">
       <For each={["subtle", "surface", "outline"]}>
         {(variant) => (
-          <CheckboxCard
+          <CheckboxCard.Root
             defaultChecked
-            label={`Checkbox (${variant})`}
-            colorPalette="teal"
+            key={variant}
             variant={variant}
-          />
+            colorPalette="teal"
+          >
+            <CheckboxCard.HiddenInput />
+            <CheckboxCard.Control>
+              <CheckboxCard.Content>
+                <CheckboxCard.Label>Checkbox {variant}</CheckboxCard.Label>
+              </CheckboxCard.Content>
+              <CheckboxCard.Indicator />
+            </CheckboxCard.Control>
+          </CheckboxCard.Root>
         )}
       </For>
     </Stack>
