@@ -86,17 +86,6 @@ export const TooltipContent = withContext<HTMLDivElement, TooltipContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TooltipArrowProps
-  extends HTMLChakraProps<"div", ArkTooltip.ArrowProps> {}
-
-export const TooltipArrow = withContext<HTMLDivElement, TooltipArrowProps>(
-  ArkTooltip.Arrow,
-  "arrow",
-  { forwardAsChild: true },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface TooltipArrowTipProps
   extends HTMLChakraProps<"div", ArkTooltip.ArrowTipProps> {}
 
@@ -104,6 +93,17 @@ export const TooltipArrowTip = withContext<
   HTMLDivElement,
   TooltipArrowTipProps
 >(ArkTooltip.ArrowTip, "arrowTip", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TooltipArrowProps
+  extends HTMLChakraProps<"div", ArkTooltip.ArrowProps> {}
+
+export const TooltipArrow = withContext<HTMLDivElement, TooltipArrowProps>(
+  ArkTooltip.Arrow,
+  "arrow",
+  { forwardAsChild: true, defaultProps: { children: <TooltipArrowTip /> } },
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 

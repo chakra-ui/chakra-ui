@@ -82,18 +82,7 @@ export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
   { forwardAsChild: true },
 )
 
-// arrow
-
-export interface PopoverArrowProps
-  extends HTMLChakraProps<"div", ArkPopover.ArrowBaseProps> {}
-
-export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
-  ArkPopover.Arrow,
-  "arrow",
-  { forwardAsChild: true },
-)
-
-// arrow tip
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverArrowTipProps
   extends HTMLChakraProps<"div", ArkPopover.ArrowTipBaseProps> {}
@@ -103,7 +92,21 @@ export const PopoverArrowTip = withContext<
   PopoverArrowTipProps
 >(ArkPopover.ArrowTip, "arrowTip", { forwardAsChild: true })
 
-// close trigger
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverArrowProps
+  extends HTMLChakraProps<"div", ArkPopover.ArrowBaseProps> {}
+
+export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
+  ArkPopover.Arrow,
+  "arrow",
+  {
+    forwardAsChild: true,
+    defaultProps: { children: <PopoverArrowTip /> },
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverCloseTriggerProps
   extends HTMLChakraProps<"button", ArkPopover.CloseTriggerBaseProps> {}
