@@ -74,17 +74,6 @@ export const CheckboxLabel = withContext<HTMLElement, CheckboxLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxControlProps
-  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps> {}
-
-export const CheckboxControl = withContext<HTMLElement, CheckboxControlProps>(
-  ArkCheckbox.Control,
-  "control",
-  { forwardAsChild: true },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface CheckboxIndicatorProps extends HTMLChakraProps<"svg"> {
   checked?: React.ReactElement
   indeterminate?: React.ReactElement
@@ -137,6 +126,20 @@ export const CheckboxIndicator = forwardRef<
     />
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CheckboxControlProps
+  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps> {}
+
+export const CheckboxControl = withContext<HTMLElement, CheckboxControlProps>(
+  ArkCheckbox.Control,
+  "control",
+  {
+    forwardAsChild: true,
+    defaultProps: { children: <CheckboxIndicator /> },
+  },
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 

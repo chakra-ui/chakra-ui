@@ -3,6 +3,7 @@
 import type { Assign } from "@ark-ui/react"
 import {
   RatingGroup as ArkRatingGroup,
+  useRatingGroupContext,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"
 import { cloneElement, forwardRef, isValidElement } from "react"
@@ -13,6 +14,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 import { StarIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -74,16 +76,6 @@ export const RatingGroupLabel = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RatingGroupControlProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps> {}
-
-export const RatingGroupControl = withContext<
-  HTMLDivElement,
-  RatingGroupControlProps
->(ArkRatingGroup.Control, "control", { forwardAsChild: true })
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface RatingGroupItemProps
   extends HTMLChakraProps<"div", ArkRatingGroup.ItemBaseProps> {}
 
@@ -125,6 +117,34 @@ export const RatingGroupItemIndicator = forwardRef<
       {cloneIcon(icon, "fg")}
     </chakra.span>
   )
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const RatingGroupItems = (props: Omit<RatingGroupItemProps, "index">) => {
+  const api = useRatingGroupContext()
+  return (
+    <For each={api.items}>
+      {(index) => (
+        <RatingGroupItem key={index} index={index} {...props}>
+          <RatingGroupItemIndicator />
+        </RatingGroupItem>
+      )}
+    </For>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RatingGroupControlProps
+  extends HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps> {}
+
+export const RatingGroupControl = withContext<
+  HTMLDivElement,
+  RatingGroupControlProps
+>(ArkRatingGroup.Control, "control", {
+  forwardAsChild: true,
+  defaultProps: { children: <RatingGroupItems /> },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////

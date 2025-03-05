@@ -781,6 +781,7 @@ export interface PinInputVariant {
   size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "subtle" | "flushed"
+  attached?: boolean
 }
 
 export type PinInputVariantProps = {

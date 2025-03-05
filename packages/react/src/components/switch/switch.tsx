@@ -70,17 +70,6 @@ export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SwitchControlProps
-  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps> {}
-
-export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
-  ArkSwitch.Control,
-  "control",
-  { forwardAsChild: true },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface SwitchThumbProps
   extends HTMLChakraProps<"span", ArkSwitch.ThumbBaseProps> {}
 
@@ -88,6 +77,20 @@ export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
   ArkSwitch.Thumb,
   "thumb",
   { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SwitchControlProps
+  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps> {}
+
+export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
+  ArkSwitch.Control,
+  "control",
+  {
+    forwardAsChild: true,
+    defaultProps: { children: <SwitchThumb /> },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

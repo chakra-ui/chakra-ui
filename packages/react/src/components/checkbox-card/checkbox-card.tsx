@@ -10,6 +10,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
 import { Checkmark } from "../checkmark"
@@ -75,10 +76,22 @@ export const CheckboxCardLabel = withContext<
 
 export interface CheckboxCardDescriptionProps extends HTMLChakraProps<"div"> {}
 
-export const CheckboxCardDescription = withContext<
+export const CheckboxCardDescription = forwardRef<
   HTMLDivElement,
   CheckboxCardDescriptionProps
->("div", "description")
+>(function CheckboxCardDescription(props, ref) {
+  const styles = useCheckboxCardStyles()
+  const api = useCheckboxContext()
+  return (
+    <chakra.div
+      ref={ref}
+      {...props}
+      css={[styles.description, props.css]}
+      data-disabled={api.disabled ? "" : undefined}
+      data-state={api.checked ? "checked" : "unchecked"}
+    />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
