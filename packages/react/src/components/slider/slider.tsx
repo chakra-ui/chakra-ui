@@ -1,13 +1,15 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Slider as ArkSlider } from "@ark-ui/react/slider"
+import { Slider as ArkSlider, useSliderContext } from "@ark-ui/react/slider"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,17 +55,6 @@ export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
 
 export const SliderPropsProvider =
   PropsProvider as React.Provider<SliderRootBaseProps>
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export interface SliderControlProps
-  extends HTMLChakraProps<"div", ArkSlider.ControlBaseProps> {}
-
-export const SliderControl = withContext<HTMLDivElement, SliderControlProps>(
-  ArkSlider.Control,
-  "control",
-  { forwardAsChild: true },
-)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,6 +149,62 @@ export const SliderDraggingIndicator = withContext<
   HTMLDivElement,
   SliderDraggingIndicatorProps
 >(ArkSlider.DraggingIndicator, "draggingIndicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SliderThumbs = (props: Omit<SliderThumbProps, "index">) => {
+  const api = useSliderContext()
+  return (
+    <For each={api.value}>
+      {(_, index) => (
+        <SliderThumb key={index} index={index} {...props}>
+          <SliderHiddenInput />
+        </SliderThumb>
+      )}
+    </For>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SliderMarksProps extends SliderMarkerGroupProps {
+  marks?: Array<number | { value: number; label: React.ReactNode }>
+}
+
+export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(
+  function SliderMarks(props, ref) {
+    const { marks, ...rest } = props
+    if (!marks?.length) return null
+
+    return (
+      <SliderMarkerGroup ref={ref} {...rest}>
+        {marks.map((mark, index) => {
+          const value = typeof mark === "number" ? mark : mark.value
+          const label = typeof mark === "number" ? undefined : mark.label
+          return (
+            <SliderMarker key={index} value={value}>
+              <SliderMarkerIndicator />
+              {label != null && (
+                <span className="chakra-slider__marker-label">{label}</span>
+              )}
+            </SliderMarker>
+          )
+        })}
+      </SliderMarkerGroup>
+    )
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SliderControlProps
+  extends HTMLChakraProps<"div", ArkSlider.ControlBaseProps> {}
+
+export const SliderControl = withContext<HTMLDivElement, SliderControlProps>(
+  ArkSlider.Control,
+  "control",
+  { forwardAsChild: true },
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
