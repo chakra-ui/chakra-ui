@@ -20,9 +20,7 @@ import { Checkbox } from "@chakra-ui/react"
 ```tsx
 <Checkbox.Root>
   <Checkbox.HiddenInput />
-  <Checkbox.Control>
-    <Checkbox.Indicator />
-  </Checkbox.Control>
+  <Checkbox.Control />
   <Checkbox.Label />
 </Checkbox.Root>
 ```
@@ -86,6 +84,12 @@ This way you can access the checkbox state and methods from outside the
 checkbox.
 
 <ExampleTabs name="checkbox-with-store" />
+
+### Composition
+
+Here's an example of how to compose a checkbox with a field component.
+
+<ExampleTabs name="checkbox-with-form" />
 
 ### Hook Form
 

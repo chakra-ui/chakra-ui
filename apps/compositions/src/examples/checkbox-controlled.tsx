@@ -11,9 +11,7 @@ export const CheckboxControlled = () => {
       onCheckedChange={(e) => setChecked(!!e.checked)}
     >
       <Checkbox.HiddenInput />
-      <Checkbox.Control>
-        <Checkbox.Indicator />
-      </Checkbox.Control>
+      <Checkbox.Control />
       <Checkbox.Label>Accept terms and conditions</Checkbox.Label>
     </Checkbox.Root>
   )

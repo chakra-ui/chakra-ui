@@ -38,9 +38,7 @@ export const CheckboxWithHookForm = () => {
                 onCheckedChange={({ checked }) => field.onChange(checked)}
               >
                 <Checkbox.HiddenInput />
-                <Checkbox.Control>
-                  <Checkbox.Indicator />
-                </Checkbox.Control>
+                <Checkbox.Control />
                 <Checkbox.Label>Checkbox</Checkbox.Label>
               </Checkbox.Root>
               <Field.ErrorText>

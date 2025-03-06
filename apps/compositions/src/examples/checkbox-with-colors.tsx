@@ -18,9 +18,7 @@ export const CheckboxWithColors = () => {
               <Stack key={variant} mb="4">
                 <Checkbox.Root variant={variant} colorPalette={colorPalette}>
                   <Checkbox.HiddenInput />
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
+                  <Checkbox.Control />
                   <Checkbox.Label>Checkbox</Checkbox.Label>
                 </Checkbox.Root>
 
@@ -30,9 +28,7 @@ export const CheckboxWithColors = () => {
                   colorPalette={colorPalette}
                 >
                   <Checkbox.HiddenInput />
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
+                  <Checkbox.Control />
                   <Checkbox.Label>Checkbox</Checkbox.Label>
                 </Checkbox.Root>
               </Stack>
