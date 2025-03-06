@@ -68,6 +68,7 @@
     "typedocs": "tsx scripts/typedocs.ts",
     "typecheck": "tsc --noEmit"
   },
+  "preferUnplugged": true,
   "exports": {
     ".": {
       "source": "./src/index.ts",
