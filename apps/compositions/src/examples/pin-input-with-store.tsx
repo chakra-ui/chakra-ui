@@ -13,10 +13,11 @@ export const PinInputWithStore = () => {
   return (
     <Stack align="flex-start">
       <PinInput.RootProvider value={store}>
-        <PinInput.Control display="flex" gap="2">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <PinInput.Input key={index} index={index} />
-          ))}
+        <PinInput.Control>
+          <PinInput.Input index={0} />
+          <PinInput.Input index={1} />
+          <PinInput.Input index={2} />
+          <PinInput.Input index={3} />
         </PinInput.Control>
       </PinInput.RootProvider>
 
