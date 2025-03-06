@@ -1,4 +1,4 @@
-import { For, Group, PinInput, Stack } from "@chakra-ui/react"
+import { For, PinInput, Stack } from "@chakra-ui/react"
 
 export const PinInputWithSizes = () => {
   return (
@@ -8,11 +8,10 @@ export const PinInputWithSizes = () => {
           <PinInput.Root key={size} size={size}>
             <PinInput.HiddenInput />
             <PinInput.Control>
-              <Group>
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <PinInput.Input key={index} index={index} />
-                ))}
-              </Group>
+              <PinInput.Input index={0} />
+              <PinInput.Input index={1} />
+              <PinInput.Input index={2} />
+              <PinInput.Input index={3} />
             </PinInput.Control>
           </PinInput.Root>
         )}

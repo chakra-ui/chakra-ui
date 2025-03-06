@@ -1,15 +1,14 @@
-import { Group, PinInput } from "@chakra-ui/react"
+import { PinInput } from "@chakra-ui/react"
 
 export const PinInputWithOtp = () => {
   return (
     <PinInput.Root otp>
       <PinInput.HiddenInput />
       <PinInput.Control>
-        <Group>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <PinInput.Input key={index} index={index} />
-          ))}
-        </Group>
+        <PinInput.Input index={0} />
+        <PinInput.Input index={1} />
+        <PinInput.Input index={2} />
+        <PinInput.Input index={3} />
       </PinInput.Control>
     </PinInput.Root>
   )
