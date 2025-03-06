@@ -7,13 +7,7 @@ export const RatingWithStore = () => {
   return (
     <RatingGroup.RootProvider value={store} size="sm">
       <RatingGroup.HiddenInput />
-      <RatingGroup.Control>
-        {store.items.map((index) => (
-          <RatingGroup.Item key={index} index={index}>
-            <RatingGroup.ItemIndicator />
-          </RatingGroup.Item>
-        ))}
-      </RatingGroup.Control>
+      <RatingGroup.Control />
     </RatingGroup.RootProvider>
   )
 }

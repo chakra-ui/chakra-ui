@@ -38,13 +38,7 @@ export const RatingWithHookForm = () => {
                 onValueChange={({ value }) => field.onChange(value)}
               >
                 <RatingGroup.HiddenInput />
-                <RatingGroup.Control>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <RatingGroup.Item key={index} index={index + 1}>
-                      <RatingGroup.ItemIndicator />
-                    </RatingGroup.Item>
-                  ))}
-                </RatingGroup.Control>
+                <RatingGroup.Control />
               </RatingGroup.Root>
             )}
           />
