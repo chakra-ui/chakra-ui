@@ -16,17 +16,13 @@ export const SwitchWithColors = () => {
 
           <Switch.Root colorPalette={colorPalette}>
             <Switch.HiddenInput />
-            <Switch.Control>
-              <Switch.Thumb />
-            </Switch.Control>
+            <Switch.Control />
             <Switch.Label />
           </Switch.Root>
 
           <Switch.Root colorPalette={colorPalette} defaultChecked>
             <Switch.HiddenInput />
-            <Switch.Control>
-              <Switch.Thumb />
-            </Switch.Control>
+            <Switch.Control />
             <Switch.Label />
           </Switch.Root>
         </Stack>

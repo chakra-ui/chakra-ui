@@ -8,9 +8,7 @@ export const SwitchWithTooltip = () => {
     <Tooltip ids={{ trigger: id }} content="This is a tooltip">
       <Switch.Root ids={{ root: id }}>
         <Switch.HiddenInput />
-        <Switch.Control>
-          <Switch.Thumb />
-        </Switch.Control>
+        <Switch.Control />
         <Switch.Label>Switch with tooltip</Switch.Label>
       </Switch.Root>
     </Tooltip>

@@ -35,9 +35,7 @@ export const SwitchWithHookForm = () => {
                 onCheckedChange={({ checked }) => field.onChange(checked)}
               >
                 <Switch.HiddenInput onBlur={field.onBlur} />
-                <Switch.Control>
-                  <Switch.Thumb />
-                </Switch.Control>
+                <Switch.Control />
                 <Switch.Label>Activate Chakra</Switch.Label>
               </Switch.Root>
               <Field.ErrorText>{errors.active?.message}</Field.ErrorText>
