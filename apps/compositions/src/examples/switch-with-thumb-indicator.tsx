@@ -7,7 +7,7 @@ export const SwitchWithThumbIndicator = () => {
       <Switch.HiddenInput />
       <Switch.Control>
         <Switch.Thumb>
-          <Switch.ThumbIndicator fallback={<HiX />}>
+          <Switch.ThumbIndicator fallback={<HiX color="black" />}>
             <HiCheck />
           </Switch.ThumbIndicator>
         </Switch.Thumb>
