@@ -13,9 +13,7 @@ export const CheckboxCardWithVariants = () => {
           >
             <CheckboxCard.HiddenInput />
             <CheckboxCard.Control>
-              <CheckboxCard.Content>
-                <CheckboxCard.Label>Checkbox {variant}</CheckboxCard.Label>
-              </CheckboxCard.Content>
+              <CheckboxCard.Label>Checkbox {variant}</CheckboxCard.Label>
               <CheckboxCard.Indicator />
             </CheckboxCard.Control>
           </CheckboxCard.Root>

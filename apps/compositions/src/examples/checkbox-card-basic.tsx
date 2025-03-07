@@ -5,9 +5,7 @@ export const CheckboxCardBasic = () => {
     <CheckboxCard.Root maxW="240px">
       <CheckboxCard.HiddenInput />
       <CheckboxCard.Control>
-        <CheckboxCard.Content>
-          <CheckboxCard.Label>Next.js</CheckboxCard.Label>
-        </CheckboxCard.Content>
+        <CheckboxCard.Label>Next.js</CheckboxCard.Label>
         <CheckboxCard.Indicator />
       </CheckboxCard.Control>
     </CheckboxCard.Root>
