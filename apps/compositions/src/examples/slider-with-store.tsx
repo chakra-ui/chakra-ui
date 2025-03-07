@@ -17,9 +17,7 @@ export const SliderWithStore = () => {
           <Slider.Track>
             <Slider.Range />
           </Slider.Track>
-          <Slider.Thumb index={0}>
-            <Slider.HiddenInput />
-          </Slider.Thumb>
+          <Slider.Thumbs />
         </Slider.Control>
       </Slider.RootProvider>
     </Stack>

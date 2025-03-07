@@ -10,25 +10,77 @@ links:
 
 <ExampleTabs name="slider-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`slider` snippet
-
-```sh
-npx @chakra-ui/cli snippet add slider
-```
-
-The snippet includes a closed component composition for the `Slider` component.
-
 ## Usage
 
-```jsx
-import { Slider } from "@/components/ui/slider"
+```tsx
+import { Slider } from "@chakra-ui/react"
 ```
 
-```jsx
-<Slider defaultValue={[40]} />
+```tsx
+<Slider.Root>
+  <Slider.Label />
+  <Slider.ValueText />
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Range />
+    </Slider.Track>
+    <Slider.Thumb>
+      <Slider.DraggingIndicator />
+      <Slider.HiddenInput />
+    </Slider.Thumb>
+    <Slider.MarkerGroup>
+      <Slider.Marker />
+    </Slider.MarkerGroup>
+  </Slider.Control>
+</Slider.Root>
+```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
+## Shortcuts
+
+### `Slider.Thumbs`
+
+The `Slider.Thumbs` component is a shortcut for the `Slider.Thumb` and
+`Slider.HiddenInput` components. It renders a thumb for each value.
+
+The code below works:
+
+```tsx
+<Slider.Thumb index={0}>
+  <Slider.HiddenInput />
+</Slider.Thumb>
+```
+
+but this might be better if you don't need to customize the thumb:
+
+```tsx
+<Slider.Thumbs />
+```
+
+### `Slider.Marks`
+
+The `Slider.Marks` component is a shortcut for the `Slider.MarkerGroup` and
+`Slider.Marker` components.
+
+The code below works:
+
+```tsx
+<Slider.MarkerGroup>
+  <Slider.Marker value={0} />
+  <Slider.Marker value={50} />
+</Slider.MarkerGroup>
+```
+
+but this might be better if you don't need to customize the marker:
+
+```tsx
+<Slider.Marks marks={[0, 50]} />
 ```
 
 ## Examples
@@ -62,6 +114,24 @@ Use the `label` prop to add a label to the slider.
 Set the `value` or `defaultValue` prop to an array to create a range slider.
 
 <ExampleTabs name="slider-with-multiple-thumbs" />
+
+### Prevent Overlap
+
+Use the `minStepsBetweenThumbs` prop to avoid thumbs with the same value.
+
+<ExampleTabs name="slider-prevent-overlap" />
+
+### Customization
+
+Here's an example of customizing the thumb with custom icon and background.
+
+<ExampleTabs name="slider-customization" />
+
+### Value Text
+
+Use the `Slider.ValueText` component to show the current value of the slider.
+
+<ExampleTabs name="slider-with-value-text" />
 
 ### Controlled
 
@@ -130,6 +200,29 @@ Use the `orientation` prop to change the orientation of the slider.
 Here's an example of a vertical slider with marks.
 
 <ExampleTabs name="slider-with-marks-vertical" />
+
+### Dragging Indicator
+
+Render the the `Slider.DraggingIndicator` component to show an indicator or
+tooltip when dragging the thumb.
+
+> Pro Tip: You can render the `Slider.ValueText` component inside the
+> `Slider.DraggingIndicator` to show the current value.
+
+<ExampleTabs name="slider-with-dragging-indicator" />
+
+### Closed Component
+
+If you prefer a closed component composition, check out the snippet below.
+
+<ExampleCode name="slider-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add slider
+```
 
 ## Props
 

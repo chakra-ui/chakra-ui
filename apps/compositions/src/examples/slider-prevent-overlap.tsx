@@ -1,13 +1,8 @@
 import { Slider } from "@chakra-ui/react"
 
-export const SliderThumbContained = () => {
+export const SliderPreventOverlap = () => {
   return (
-    <Slider.Root
-      width="200px"
-      thumbAlignment="contain"
-      thumbSize={{ width: 16, height: 16 }}
-      defaultValue={[40]}
-    >
+    <Slider.Root maxW="md" defaultValue={[20, 60]} minStepsBetweenThumbs={8}>
       <Slider.Control>
         <Slider.Track>
           <Slider.Range />
