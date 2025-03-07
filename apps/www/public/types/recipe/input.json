@@ -14,7 +14,7 @@
         "description": "The size of the component"
       },
       "variant": {
-        "type": "\"outline\" | \"filled\" | \"flushed\"",
+        "type": "\"outline\" | \"subtle\" | \"flushed\"",
         "defaultValue": "outline",
         "isRequired": false,
         "description": "The variant of the component"
