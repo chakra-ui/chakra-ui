@@ -19,7 +19,7 @@ export { SliderCustomization as Customization } from "compositions/examples/slid
 export { SliderDisabled as Disabled } from "compositions/examples/slider-disabled"
 export { SliderPreventOverlap as PreventOverlap } from "compositions/examples/slider-prevent-overlap"
 export { SliderSizeTable as Sizes } from "compositions/examples/slider-size-table"
-export { SliderThumbContained as ThumbContained } from "compositions/examples/slider-thumb-contained"
+export { SliderWithThumbAlignment as ThumbAlignment } from "compositions/examples/slider-with-thumb-alignment"
 export { SliderVariantTable as Variants } from "compositions/examples/slider-variant-table"
 export { SliderVertical as Vertical } from "compositions/examples/slider-vertical"
 export { SliderWithColors as Colors } from "compositions/examples/slider-with-colors"
