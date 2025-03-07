@@ -57,10 +57,8 @@ export const CheckboxWithGroupHookForm = () => {
             {items.map((item) => (
               <Checkbox.Root key={item.value} value={item.value}>
                 <Checkbox.HiddenInput />
-                <Checkbox.Control>
-                  <Checkbox.Indicator />
-                </Checkbox.Control>
-                <Checkbox.Label> {item.label}</Checkbox.Label>
+                <Checkbox.Control />
+                <Checkbox.Label>{item.label}</Checkbox.Label>
               </Checkbox.Root>
             ))}
           </Fieldset.Content>

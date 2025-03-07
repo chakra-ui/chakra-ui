@@ -5,9 +5,7 @@ export const CheckboxWithLabelPosition = () => {
     <Checkbox.Root>
       <Checkbox.HiddenInput />
       <Checkbox.Label>Accept terms and conditions</Checkbox.Label>
-      <Checkbox.Control>
-        <Checkbox.Indicator />
-      </Checkbox.Control>
+      <Checkbox.Control />
     </Checkbox.Root>
   )
 }

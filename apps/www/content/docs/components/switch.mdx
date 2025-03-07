@@ -22,7 +22,7 @@ import { Switch } from "@chakra-ui/react"
   <Switch.Control>
     <Switch.Thumb />
   </Switch.Control>
-  <Switch.Label>Label</Switch.Label>
+  <Switch.Label />
 </Switch.Root>
 ```
 
@@ -32,6 +32,34 @@ If you prefer a closed component composition, check out the
 [snippet below](#closed-component).
 
 :::
+
+## Shortcuts
+
+The `Switch` component also provides a set of shortcuts for common use cases.
+
+### SwitchControl
+
+The `Switch.Control` renders the `Switch.Thumb` within it by default.
+
+This works:
+
+```tsx
+<Switch.Root>
+  <Switch.HiddenInput />
+  <Switch.Control>
+    <Switch.Thumb />
+  </Switch.Control>
+</Switch.Root>
+```
+
+This might be more concise, if you don't need to customize the thumb:
+
+```tsx
+<Switch.Root>
+  <Switch.HiddenInput />
+  <Switch.Control />
+</Switch.Root>
+```
 
 ## Examples
 

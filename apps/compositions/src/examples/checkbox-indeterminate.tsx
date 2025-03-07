@@ -30,9 +30,7 @@ export const CheckboxIndeterminate = () => {
       }}
     >
       <Checkbox.HiddenInput />
-      <Checkbox.Control>
-        <Checkbox.Indicator />
-      </Checkbox.Control>
+      <Checkbox.Control />
       <Checkbox.Label>{item.label}</Checkbox.Label>
     </Checkbox.Root>
   ))

@@ -23,7 +23,7 @@ export { CheckboxWithForm as Form } from "compositions/examples/checkbox-with-fo
 export { CheckboxWithGroup as Group } from "compositions/examples/checkbox-with-group"
 export { CheckboxWithGroupHookForm as GroupHookForm } from "compositions/examples/checkbox-with-group-hook-form"
 export { CheckboxWithHookForm as HookForm } from "compositions/examples/checkbox-with-hook-form"
-export { CheckboxWithIndeterminate as Indeterminate } from "compositions/examples/checkbox-with-indeterminate"
+export { CheckboxIndeterminate as Indeterminate } from "compositions/examples/checkbox-indeterminate"
 export { CheckboxWithLink as Link } from "compositions/examples/checkbox-with-link"
 export { CheckboxWithStates as States } from "compositions/examples/checkbox-with-states"
 export { CheckboxWithStore as Store } from "compositions/examples/checkbox-with-store"

@@ -7,9 +7,7 @@ export const SwitchWithSizes = () => {
         {(size) => (
           <Switch.Root key={size} size={size}>
             <Switch.HiddenInput />
-            <Switch.Control>
-              <Switch.Thumb />
-            </Switch.Control>
+            <Switch.Control />
             <Switch.Label />
           </Switch.Root>
         )}

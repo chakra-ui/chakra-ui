@@ -34,6 +34,34 @@ If you prefer a closed component composition, check out the
 
 :::
 
+## Shortcuts
+
+The `Checkbox` component also provides a set of shortcuts for common use cases.
+
+### CheckboxControl
+
+The `Checkbox.Control` renders the `Checkbox.Indicator` within it by default.
+
+This works:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+</Checkbox.Root>
+```
+
+This might be more concise, if you don't need to customize the indicator:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control />
+</Checkbox.Root>
+```
+
 ## Examples
 
 ### Variants
@@ -86,6 +114,12 @@ This way you can access the checkbox state and methods from outside the
 checkbox.
 
 <ExampleTabs name="checkbox-with-store" />
+
+### Composition
+
+Here's an example of how to compose a checkbox with a field component.
+
+<ExampleTabs name="checkbox-with-form" />
 
 ### Hook Form
 

@@ -9,9 +9,7 @@ export const CheckboxWithVariants = () => {
             <Text>{variant}</Text>
             <Checkbox.Root defaultChecked variant={variant}>
               <Checkbox.HiddenInput />
-              <Checkbox.Control>
-                <Checkbox.Indicator />
-              </Checkbox.Control>
+              <Checkbox.Control />
               <Checkbox.Label>Checkbox</Checkbox.Label>
             </Checkbox.Root>
           </Stack>

@@ -7,9 +7,7 @@ export const CheckboxWithSizes = () => {
         {(size) => (
           <Checkbox.Root defaultChecked size={size} key={size}>
             <Checkbox.HiddenInput />
-            <Checkbox.Control>
-              <Checkbox.Indicator />
-            </Checkbox.Control>
+            <Checkbox.Control />
             <Checkbox.Label>Checkbox</Checkbox.Label>
           </Checkbox.Root>
         )}

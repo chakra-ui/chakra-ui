@@ -17,6 +17,7 @@ import { RatingGroup } from "@chakra-ui/react"
 
 ```tsx
 <RatingGroup.Root>
+  <RatingGroup.Label />
   <RatingGroup.HiddenInput />
   <RatingGroup.Control>
     <RatingGroup.Item>
@@ -26,7 +27,51 @@ import { RatingGroup } from "@chakra-ui/react"
 </RatingGroup.Root>
 ```
 
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
+## Shortcuts
+
+The `Rating` component also provides a set of shortcuts for common use cases.
+
+### RatingControl
+
+By default, the `RatingControl` shortcut renders the number of rating items
+specified in the `count` prop.
+
+This works:
+
+```tsx
+<RatingGroup.Root count={5}>
+  <RatingGroup.HiddenInput />
+  <RatingGroup.Control>
+    {Array.from({ length: 5 }).map((_, index) => (
+      <RatingGroup.Item key={index} index={index + 1}>
+        <RatingGroup.ItemIndicator />
+      </RatingGroup.Item>
+    ))}
+  </RatingGroup.Control>
+</RatingGroup.Root>
+```
+
+This might be more concise, if you don't need to customize the rating icons:
+
+```tsx
+<RatingGroup.Root count={5}>
+  <RatingGroup.HiddenInput />
+  <RatingGroup.Control />
+</RatingGroup.Root>
+```
+
 ## Examples
+
+### Basic
+
+<ExampleTabs name="rating-basic" />
 
 ### Sizes
 
@@ -67,6 +112,13 @@ Use the `icon` prop to pass a custom icon to the rating component. This will
 override the default star icon.
 
 <ExampleTabs name="rating-with-custom-icon" />
+
+### Label
+
+Render the `RatingGroup.Label` component to provide a human-readable label for
+the rating component.
+
+<ExampleTabs name="rating-with-label" />
 
 ### Half Star
 
