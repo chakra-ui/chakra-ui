@@ -62,13 +62,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onBlurProp = useCallbackRef(onBlur)
   const onFocusProp = useCallbackRef(onFocus)
 
-  const [isFocusVisible, setIsFocusVisible] = useState(false)
   const [isFocused, setFocused] = useState(false)
   const [isHovered, setHovered] = useState(false)
   const [isActive, setActive] = useState(false)
 
+  const isFocusVisibleRef = useRef(false)
   useEffect(() => {
-    return trackFocusVisible(setIsFocusVisible)
+    return trackFocusVisible((state) => {
+      isFocusVisibleRef.current = state
+    })
   }, [])
 
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -188,7 +190,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-hover": dataAttr(isHovered),
         "data-checked": dataAttr(isChecked),
         "data-focus": dataAttr(isFocused),
-        "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+        "data-focus-visible": dataAttr(isFocused && isFocusVisibleRef.current),
         "data-indeterminate": dataAttr(isIndeterminate),
         "data-disabled": dataAttr(isDisabled),
         "data-invalid": dataAttr(isInvalid),
@@ -209,7 +211,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isChecked,
       isDisabled,
       isFocused,
-      isFocusVisible,
       isHovered,
       isIndeterminate,
       isInvalid,
@@ -225,7 +226,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-hover": dataAttr(isHovered),
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-focus-visible": dataAttr(isFocused && isFocusVisibleRef.current),
       "data-indeterminate": dataAttr(isIndeterminate),
       "data-disabled": dataAttr(isDisabled),
       "data-invalid": dataAttr(isInvalid),
@@ -236,7 +237,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isChecked,
       isDisabled,
       isFocused,
-      isFocusVisible,
       isHovered,
       isIndeterminate,
       isInvalid,
