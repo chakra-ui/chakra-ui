@@ -1,4 +1,4 @@
-import { Skeleton } from "compositions/ui/skeleton"
+import { Skeleton } from "@chakra-ui/react"
 
 export const SkeletonWithStartEndColor = () => {
   return (
