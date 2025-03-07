@@ -1,17 +1,18 @@
 "use client"
 
-import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
+import { NumberInput } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const NumberInputControlled = () => {
   const [value, setValue] = useState("10")
   return (
-    <NumberInputRoot
+    <NumberInput.Root
       maxW="200px"
       value={value}
       onValueChange={(e) => setValue(e.value)}
     >
-      <NumberInputField />
-    </NumberInputRoot>
+      <NumberInput.Control />
+      <NumberInput.Input />
+    </NumberInput.Root>
   )
 }

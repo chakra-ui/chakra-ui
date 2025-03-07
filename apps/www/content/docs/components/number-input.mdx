@@ -12,54 +12,79 @@ links:
 
 <ExampleTabs name="number-input-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`number-input` snippet
-
-```sh
-npx @chakra-ui/cli snippet add number-input
-```
-
-The snippet includes a closed component composition for the `NumberInput`
-component.
-
 ## Usage
 
-```jsx
-import {
-  NumberInputField,
-  NumberInputLabel,
-  NumberInputRoot,
-} from "@/components/ui/number-input"
+```tsx
+import { NumberInput } from "@chakra-ui/react"
 ```
 
-```jsx
-<NumberInputRoot>
-  <NumberInputLabel />
-  <NumberInputField />
-</NumberInputRoot>
+```tsx
+<NumberInput.Root>
+  <NumberInput.Control />
+  <NumberInput.Input />
+</NumberInput.Root>
+```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
+## Shortcuts
+
+The `NumberInput` component also provides a set of shortcuts for common use
+cases.
+
+### NumberInputControl
+
+The `NumberInput.Control` renders the `NumberInput.IncrementTrigger` and
+`NumberInput.DecrementTrigger` within it by default.
+
+This works:
+
+```tsx
+<NumberInput.Root>
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+  <NumberInput.Input />
+</NumberInput.Root>
+```
+
+This might be more concise, if you don't need to customize the increment or
+decrement triggers:
+
+```tsx
+<NumberInput.Root>
+  <NumberInput.Control />
+  <NumberInput.Input />
+</NumberInput.Root>
 ```
 
 ## Examples
 
 ### Sizes
 
-Use the `size` prop to change the size of the number input.
+Pass the `size` prop to the `NumberInput.Root` component to change the size of
+the number input.
 
 <ExampleTabs name="number-input-with-sizes" />
 
 ### Formatting
 
-Use the `formatOptions` prop to format the number input value. The value of this
-maps to `Intl.NumberFormatOptions` and is applied based on the current locale.
+Pass the `formatOptions` prop to the `NumberInput.Root` component to format the
+number input value. The value of this maps to `Intl.NumberFormatOptions` and is
+applied based on the current locale.
 
 <ExampleTabs name="number-input-with-format-options" />
 
 ### Min and Max
 
-Use the `min` and `max` props to set the minimum and maximum values of the
-number input.
+Pass the `min` and `max` props to the `NumberInput.Root` component to set the
+minimum and maximum values of the number input.
 
 If value entered is less than `min` or greater than `max`, the value will be
 clamped to the nearest boundary on blur, or enter key press.
@@ -68,51 +93,68 @@ clamped to the nearest boundary on blur, or enter key press.
 
 ### Step
 
-Use the `step` prop to change the increment or decrement interval of the number
-input.
+Pass the `step` prop to the `NumberInput.Root` component to change the increment
+or decrement interval of the number input.
 
 <ExampleTabs name="number-input-with-step" />
 
 ### Controlled
 
-Use the `value` and `onValueChange` props to control the value of the number
-input.
+Pass the `value` and `onValueChange` props to the `NumberInput.Root` component
+to control the value of the number input.
 
 <ExampleTabs name="number-input-controlled" />
 
 ### Mobile Stepper
 
-Use the `StepperInput` component to create a stepper input for mobile devices.
+Here's an example of how to compose the number input as a mobile stepper.
 
-> You can also apply `spinOnPress: false` to disable the spin functionality.
+> To disable the spin functionality, pass the `spinOnPress` prop to the
+> `NumberInput.Root` component and set it to false.
 
 <ExampleTabs name="number-input-with-stepper" />
 
 ### Mouse Wheel
 
-Use the `allowMouseWheel` prop to enable or disable the mouse wheel to change
+Pass the `allowMouseWheel` prop to the `NumberInput.Root` component to enable or
+disable the mouse wheel to change
 
 <ExampleTabs name="number-input-with-mouse-wheel" />
 
 ### Disabled
 
-Use the `disabled` prop to disable the number input.
+Pass the `disabled` prop to the `NumberInput.Root` component to disable the
+number input.
 
 <ExampleTabs name="number-input-with-disabled" />
 
 ### Invalid
 
-Use the `Field` component and pass the `invalid` prop to indicate that the
-number input is invalid.
+Use the `Field` component and the `invalid` prop to indicate that the number
+input is invalid.
 
 <ExampleTabs name="number-input-with-invalid" />
 
 ### Helper Text
 
-Use the `Field` component and pass the `helperText` prop to add helper text to
-the number input.
+Compose the `Field` and `Field.HelperText` components to add helper text to the
+number input.
 
 <ExampleTabs name="number-input-with-field" />
+
+### Element
+
+Here's an example of how to compose the number input with the input group
+component to add an element on either the left or right.
+
+<ExampleTabs name="number-input-with-element" />
+
+### Scrubber
+
+Use the `NumberInput.Scrubber` component to make the number input supports
+scrubber interactions.
+
+<ExampleTabs name="number-input-with-scrubber" />
 
 ### Hook Form
 
@@ -120,6 +162,27 @@ Here is an example of how to use the `NumberInput` component with
 `react-hook-form`.
 
 <ExampleTabs name="number-input-with-hook-form" />
+
+### Closed Component
+
+Here's how to setup the Number Input for a closed component composition.
+
+<ExampleCode name="number-input-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add number-input
+```
+
+#### Usage
+
+```tsx
+<NumberInputRoot>
+  <NumberInputField />
+</NumberInputRoot>
+```
 
 ## Props
 
