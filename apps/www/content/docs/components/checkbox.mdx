@@ -20,7 +20,9 @@ import { Checkbox } from "@chakra-ui/react"
 ```tsx
 <Checkbox.Root>
   <Checkbox.HiddenInput />
-  <Checkbox.Control />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
   <Checkbox.Label />
 </Checkbox.Root>
 ```
@@ -31,6 +33,34 @@ If you prefer a closed component composition, check out the
 [snippet below](#closed-component).
 
 :::
+
+## Shortcuts
+
+The `Checkbox` component also provides a set of shortcuts for common use cases.
+
+### CheckboxControl
+
+The `Checkbox.Control` renders the `Checkbox.Indicator` within it by default.
+
+This works:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+</Checkbox.Root>
+```
+
+This might be more concise, if you don't need to customize the indicator:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control />
+</Checkbox.Root>
+```
 
 ## Examples
 

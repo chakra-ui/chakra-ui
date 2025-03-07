@@ -27,13 +27,21 @@ import { RatingGroup } from "@chakra-ui/react"
 </RatingGroup.Root>
 ```
 
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
 ## Shortcuts
+
+The `Rating` component also provides a set of shortcuts for common use cases.
 
 ### RatingControl
 
-If you don't need to customize the rating icons or indicators, you can render
-the `RatingControl` as a self closing element. By default, the control will
-render the number of items specified in the `count` prop.
+By default, the `RatingControl` shortcut renders the number of rating items
+specified in the `count` prop.
 
 This works:
 
@@ -50,7 +58,7 @@ This works:
 </RatingGroup.Root>
 ```
 
-This might be more concise:
+This might be more concise, if you don't need to customize the rating icons:
 
 ```tsx
 <RatingGroup.Root count={5}>
