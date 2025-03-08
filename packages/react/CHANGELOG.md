@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.10.0
+
+### Minor Changes
+
+- [`11bdf77`](https://github.com/chakra-ui/chakra-ui/commit/11bdf77f897ecf36da0ee45f0f52b9edb974da5e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Menu**
+
+  - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`
+  - **HoverCard**
+
+    - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`
+
+  - **Dialog, Drawer**
+
+    - Update recipe to include absolute positioning styles for close trigger,
+      instead of relying on snippet styles.
+
 ## 3.9.0
 
 ### Minor Changes
