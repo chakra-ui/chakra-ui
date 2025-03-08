@@ -13,26 +13,22 @@ export const RadioWithColors = () => {
             defaultValue="react"
             spaceX="8"
           >
-            <RadioGroup.Item value="react">
-              <RadioGroup.ItemHiddenInput />
-              <RadioGroup.ItemIndicator />
-              <RadioGroup.ItemText>React</RadioGroup.ItemText>
-            </RadioGroup.Item>
-
-            <RadioGroup.Item value="vue">
-              <RadioGroup.ItemHiddenInput />
-              <RadioGroup.ItemIndicator />
-              <RadioGroup.ItemText>Vue</RadioGroup.ItemText>
-            </RadioGroup.Item>
-
-            <RadioGroup.Item value="solid">
-              <RadioGroup.ItemHiddenInput />
-              <RadioGroup.ItemIndicator />
-              <RadioGroup.ItemText>Solid</RadioGroup.ItemText>
-            </RadioGroup.Item>
+            {items.map((item) => (
+              <RadioGroup.Item key={item.value} value={item.value}>
+                <RadioGroup.ItemHiddenInput />
+                <RadioGroup.ItemIndicator />
+                <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+              </RadioGroup.Item>
+            ))}
           </RadioGroup.Root>
         </HStack>
       ))}
     </Stack>
   )
 }
+
+const items = [
+  { label: "React", value: "react" },
+  { label: "Vue", value: "vue" },
+  { label: "Solid", value: "solid" },
+]

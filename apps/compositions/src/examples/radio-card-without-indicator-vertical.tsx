@@ -18,9 +18,7 @@ export const RadioCardWithoutIndicatorVertical = () => {
               <Icon fontSize="2xl" color="fg.muted">
                 {item.icon}
               </Icon>
-              <RadioCard.ItemContent>
-                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-              </RadioCard.ItemContent>
+              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
             </RadioCard.ItemControl>
           </RadioCard.Item>
         ))}

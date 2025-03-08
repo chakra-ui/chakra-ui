@@ -13,9 +13,7 @@ export const RadioCardCentered = () => {
               <Icon fontSize="2xl" color="fg.muted" mb="2">
                 {item.icon}
               </Icon>
-              <RadioCard.ItemContent>
-                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-              </RadioCard.ItemContent>
+              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
               <RadioCard.ItemIndicator />
             </RadioCard.ItemControl>
           </RadioCard.Item>

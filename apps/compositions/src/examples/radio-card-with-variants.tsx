@@ -17,9 +17,7 @@ export const RadioCardWithVariants = () => {
                 <RadioCard.Item key={item.value} value={item.value}>
                   <RadioCard.ItemHiddenInput />
                   <RadioCard.ItemControl>
-                    <RadioCard.ItemContent>
-                      <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-                    </RadioCard.ItemContent>
+                    <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
                     <RadioCard.ItemIndicator />
                   </RadioCard.ItemControl>
                 </RadioCard.Item>

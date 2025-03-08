@@ -4,24 +4,24 @@ export const RadioDisabled = () => {
   return (
     <RadioGroup.Root defaultValue="2">
       <HStack gap="6">
-        <RadioGroup.Item value="1" disabled>
-          <RadioGroup.ItemHiddenInput />
-          <RadioGroup.ItemIndicator />
-          <RadioGroup.ItemText>Option 1</RadioGroup.ItemText>
-        </RadioGroup.Item>
-
-        <RadioGroup.Item value="2">
-          <RadioGroup.ItemHiddenInput />
-          <RadioGroup.ItemIndicator />
-          <RadioGroup.ItemText>Option 2</RadioGroup.ItemText>
-        </RadioGroup.Item>
-
-        <RadioGroup.Item value="3">
-          <RadioGroup.ItemHiddenInput />
-          <RadioGroup.ItemIndicator />
-          <RadioGroup.ItemText>Option 3</RadioGroup.ItemText>
-        </RadioGroup.Item>
+        {items.map((item) => (
+          <RadioGroup.Item
+            key={item.value}
+            value={item.value}
+            disabled={item.disabled}
+          >
+            <RadioGroup.ItemHiddenInput />
+            <RadioGroup.ItemIndicator />
+            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        ))}
       </HStack>
     </RadioGroup.Root>
   )
 }
+
+const items = [
+  { label: "Option 1", value: "1" },
+  { label: "Option 2", value: "2", disabled: true },
+  { label: "Option 3", value: "3" },
+]

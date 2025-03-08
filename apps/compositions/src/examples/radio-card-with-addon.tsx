@@ -11,7 +11,6 @@ export const RadioCardWithAddon = () => {
             <RadioCard.ItemControl>
               <RadioCard.ItemContent>
                 <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-
                 <RadioCard.ItemDescription>
                   {item.description}
                 </RadioCard.ItemDescription>
