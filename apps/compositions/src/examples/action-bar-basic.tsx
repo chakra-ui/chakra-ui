@@ -1,13 +1,6 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
-import {
-  ActionBarContent,
-  ActionBarRoot,
-  ActionBarSelectionTrigger,
-  ActionBarSeparator,
-} from "compositions/ui/action-bar"
-import { Checkbox } from "compositions/ui/checkbox"
+import { ActionBar, Button, Checkbox, Portal } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuShare, LuTrash2 } from "react-icons/lu"
 
@@ -15,23 +8,31 @@ export const ActionBarBasic = () => {
   const [checked, setChecked] = useState(false)
   return (
     <>
-      <Checkbox onCheckedChange={(e) => setChecked(!!e.checked)}>
-        Show Action bar
-      </Checkbox>
-      <ActionBarRoot open={checked}>
-        <ActionBarContent>
-          <ActionBarSelectionTrigger>2 selected</ActionBarSelectionTrigger>
-          <ActionBarSeparator />
-          <Button variant="outline" size="sm">
-            <LuTrash2 />
-            Delete
-          </Button>
-          <Button variant="outline" size="sm">
-            <LuShare />
-            Share
-          </Button>
-        </ActionBarContent>
-      </ActionBarRoot>
+      <Checkbox.Root onCheckedChange={(e) => setChecked(!!e.checked)}>
+        <Checkbox.HiddenInput />
+        <Checkbox.Control />
+        <Checkbox.Label>Show Action bar</Checkbox.Label>
+      </Checkbox.Root>
+      <ActionBar.Root open={checked}>
+        <Portal>
+          <ActionBar.Positioner>
+            <ActionBar.Content>
+              <ActionBar.SelectionTrigger>
+                2 selected
+              </ActionBar.SelectionTrigger>
+              <ActionBar.Separator />
+              <Button variant="outline" size="sm">
+                <LuTrash2 />
+                Delete
+              </Button>
+              <Button variant="outline" size="sm">
+                <LuShare />
+                Share
+              </Button>
+            </ActionBar.Content>
+          </ActionBar.Positioner>
+        </Portal>
+      </ActionBar.Root>
     </>
   )
 }

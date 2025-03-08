@@ -88,17 +88,6 @@ export const HoverCardContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface HoverCardArrowProps
-  extends HTMLChakraProps<"div", ArkHoverCard.ArrowBaseProps> {}
-
-export const HoverCardArrow = withContext<HTMLDivElement, HoverCardArrowProps>(
-  ArkHoverCard.Arrow,
-  "arrow",
-  { forwardAsChild: true },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface HoverCardArrowTipProps
   extends HTMLChakraProps<"div", ArkHoverCard.ArrowTipBaseProps> {}
 
@@ -106,6 +95,20 @@ export const HoverCardArrowTip = withContext<
   HTMLDivElement,
   HoverCardArrowTipProps
 >(ArkHoverCard.ArrowTip, "arrowTip", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface HoverCardArrowProps
+  extends HTMLChakraProps<"div", ArkHoverCard.ArrowBaseProps> {}
+
+export const HoverCardArrow = withContext<HTMLDivElement, HoverCardArrowProps>(
+  ArkHoverCard.Arrow,
+  "arrow",
+  {
+    forwardAsChild: true,
+    defaultProps: { children: <HoverCardArrowTip /> },
+  },
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 

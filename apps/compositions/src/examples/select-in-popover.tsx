@@ -1,13 +1,6 @@
 "use client"
 
-import { Button, createListCollection } from "@chakra-ui/react"
-import {
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverRoot,
-  PopoverTrigger,
-} from "compositions/ui/popover"
+import { Button, Popover, Portal, createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -18,35 +11,39 @@ import {
 
 export const SelectInPopover = () => {
   return (
-    <PopoverRoot size="xs">
-      <PopoverTrigger asChild>
+    <Popover.Root size="xs">
+      <Popover.Trigger asChild>
         <Button variant="outline" size="sm">
           Select in Popover
         </Button>
-      </PopoverTrigger>
+      </Popover.Trigger>
 
-      <PopoverContent>
-        <PopoverHeader>Select in Popover</PopoverHeader>
-        <PopoverBody>
-          <SelectRoot
-            collection={frameworks}
-            size="sm"
-            positioning={{ sameWidth: true, placement: "bottom" }}
-          >
-            <SelectTrigger>
-              <SelectValueText placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent portalled={false} width="full">
-              {frameworks.items.map((item) => (
-                <SelectItem item={item} key={item.value}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectRoot>
-        </PopoverBody>
-      </PopoverContent>
-    </PopoverRoot>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Header>Select in Popover</Popover.Header>
+            <Popover.Body>
+              <SelectRoot
+                collection={frameworks}
+                size="sm"
+                positioning={{ sameWidth: true, placement: "bottom" }}
+              >
+                <SelectTrigger>
+                  <SelectValueText placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent portalled={false} width="full">
+                  {frameworks.items.map((item) => (
+                    <SelectItem item={item} key={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </SelectRoot>
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
   )
 }
 

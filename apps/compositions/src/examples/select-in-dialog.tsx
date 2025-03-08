@@ -1,17 +1,12 @@
 "use client"
 
-import { Button, createListCollection } from "@chakra-ui/react"
 import {
-  DialogBackdrop,
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+  Button,
+  CloseButton,
+  Dialog,
+  Portal,
+  createListCollection,
+} from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -25,34 +20,40 @@ import { useRef } from "react"
 export const SelectInDialog = () => {
   const contentRef = useRef<HTMLDivElement>(null)
   return (
-    <DialogRoot>
-      <DialogBackdrop />
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent ref={contentRef}>
-        <DialogCloseTrigger />
-        <DialogHeader>
-          <DialogTitle>Select in Dialog</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <SelectRoot collection={frameworks} size="sm">
-            <SelectLabel>Select framework</SelectLabel>
-            <SelectTrigger>
-              <SelectValueText placeholder="Select movie" />
-            </SelectTrigger>
-            <SelectContent portalRef={contentRef}>
-              {frameworks.items.map((item) => (
-                <SelectItem item={item} key={item.value}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectRoot>
-        </DialogBody>
-        <DialogFooter />
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content ref={contentRef}>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton />
+            </Dialog.CloseTrigger>
+            <Dialog.Header>
+              <Dialog.Title>Select in Dialog</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>
+              <SelectRoot collection={frameworks} size="sm">
+                <SelectLabel>Select framework</SelectLabel>
+                <SelectTrigger>
+                  <SelectValueText placeholder="Select movie" />
+                </SelectTrigger>
+                <SelectContent portalRef={contentRef}>
+                  {frameworks.items.map((item) => (
+                    <SelectItem item={item} key={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </SelectRoot>
+            </Dialog.Body>
+            <Dialog.Footer />
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }
 

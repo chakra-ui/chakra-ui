@@ -1,12 +1,6 @@
 "use client"
 
-import { Button, Kbd, Table } from "@chakra-ui/react"
-import {
-  ActionBarContent,
-  ActionBarRoot,
-  ActionBarSelectionTrigger,
-  ActionBarSeparator,
-} from "compositions/ui/action-bar"
+import { ActionBar, Button, Kbd, Portal, Table } from "@chakra-ui/react"
 import { Checkbox } from "compositions/ui/checkbox"
 import { useState } from "react"
 
@@ -66,20 +60,24 @@ export const TableWithSelectionActionBar = () => {
         <Table.Body>{rows}</Table.Body>
       </Table.Root>
 
-      <ActionBarRoot open={hasSelection}>
-        <ActionBarContent>
-          <ActionBarSelectionTrigger>
-            {selection.length} selected
-          </ActionBarSelectionTrigger>
-          <ActionBarSeparator />
-          <Button variant="outline" size="sm">
-            Delete <Kbd>⌫</Kbd>
-          </Button>
-          <Button variant="outline" size="sm">
-            Share <Kbd>T</Kbd>
-          </Button>
-        </ActionBarContent>
-      </ActionBarRoot>
+      <ActionBar.Root open={hasSelection}>
+        <Portal>
+          <ActionBar.Positioner>
+            <ActionBar.Content>
+              <ActionBar.SelectionTrigger>
+                {selection.length} selected
+              </ActionBar.SelectionTrigger>
+              <ActionBar.Separator />
+              <Button variant="outline" size="sm">
+                Delete <Kbd>⌫</Kbd>
+              </Button>
+              <Button variant="outline" size="sm">
+                Share <Kbd>T</Kbd>
+              </Button>
+            </ActionBar.Content>
+          </ActionBar.Positioner>
+        </Portal>
+      </ActionBar.Root>
     </>
   )
 }

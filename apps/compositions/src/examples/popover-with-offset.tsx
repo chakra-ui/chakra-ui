@@ -1,24 +1,22 @@
-import { Button } from "@chakra-ui/react"
-import {
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "compositions/ui/popover"
+import { Button, Popover, Portal } from "@chakra-ui/react"
 
 export const PopoverWithOffset = () => {
   return (
-    <PopoverRoot positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>
-      <PopoverTrigger asChild>
+    <Popover.Root positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>
+      <Popover.Trigger asChild>
         <Button size="sm" variant="outline">
           Open
         </Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverBody>
-          This is a popover with the same width as the trigger button
-        </PopoverBody>
-      </PopoverContent>
-    </PopoverRoot>
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Body>
+              This popover has a custom offset from its trigger
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
   )
 }

@@ -10,35 +10,46 @@ links:
 
 <ExampleTabs name="hover-card-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`hover-card` snippet
-
-```sh
-npx @chakra-ui/cli snippet add hover-card
-```
-
-The snippet includes component compositions based on the `HoverCard` component.
-
 ## Usage
 
 ```jsx
-import {
-  HoverCardArrow,
-  HoverCardContent,
-  HoverCardRoot,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+import { HoverCard } from "@chakra-ui/react"
 ```
 
 ```jsx
-<HoverCardRoot>
-  <HoverCardTrigger />
-  <HoverCardContent>
-    <HoverCardArrow />
-  </HoverCardContent>
-</HoverCardRoot>
+<HoverCard.Root>
+  <HoverCard.Trigger />
+  <HoverCard.Positioner>
+    <HoverCard.Content>
+      <HoverCard.Arrow>
+        <HoverCard.ArrowTip />
+      </HoverCard.Arrow>
+    </HoverCard.Content>
+  </HoverCard.Positioner>
+</HoverCard.Root>
+```
+
+## Shortcuts
+
+The `HoverCard` provides a shortcuts for common use cases.
+
+### Arrow
+
+The `HoverCard.Arrow` renders the `HoverCard.ArrowTip` component within in by
+default.
+
+This works:
+
+```jsx
+<HoverCard.Arrow>
+  <HoverCard.ArrowTip />
+</HoverCard.Arrow>
+```
+
+This might be more concise, if you don't need to customize the arrow tip.
+
+```jsx
+<HoverCard.Arrow />
 ```
 
 ## Examples
@@ -82,3 +93,4 @@ avoid placing crucial content within it.
 ## Props
 
 <PropTable component="HoverCard" part="Root" />
+```

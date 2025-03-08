@@ -1,13 +1,4 @@
-import { Button } from "@chakra-ui/react"
-import {
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+import { Button, Dialog, Portal } from "@chakra-ui/react"
 import {
   FileUploadDropzone,
   FileUploadList,
@@ -16,22 +7,32 @@ import {
 
 export const FileUploadInDialog = () => {
   return (
-    <DialogRoot size="sm" placement="center">
-      <DialogTrigger asChild>
+    <Dialog.Root size="sm" placement="center">
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader spaceY="1">
-          <DialogTitle>Upload File</DialogTitle>
-          <DialogDescription>Upload a file to the server</DialogDescription>
-        </DialogHeader>
-        <DialogBody pb="6">
-          <FileUploadRoot>
-            <FileUploadDropzone width="full" label="Drag and drop files here" />
-            <FileUploadList />
-          </FileUploadRoot>
-        </DialogBody>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header spaceY="1">
+              <Dialog.Title>Upload File</Dialog.Title>
+              <Dialog.Description>
+                Upload a file to the server
+              </Dialog.Description>
+            </Dialog.Header>
+            <Dialog.Body pb="6">
+              <FileUploadRoot>
+                <FileUploadDropzone
+                  width="full"
+                  label="Drag and drop files here"
+                />
+                <FileUploadList />
+              </FileUploadRoot>
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

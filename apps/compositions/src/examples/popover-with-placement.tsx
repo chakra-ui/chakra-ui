@@ -1,24 +1,21 @@
-import { Button } from "@chakra-ui/react"
-import {
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "compositions/ui/popover"
+import { Button, Popover, Portal } from "@chakra-ui/react"
 
 export const PopoverWithPlacement = () => {
   return (
-    <PopoverRoot positioning={{ placement: "bottom-end" }}>
-      <PopoverTrigger asChild>
+    <Popover.Root positioning={{ placement: "bottom-end" }}>
+      <Popover.Trigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverBody>Some content</PopoverBody>
-      </PopoverContent>
-    </PopoverRoot>
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Arrow />
+            <Popover.Body>Some content</Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
   )
 }

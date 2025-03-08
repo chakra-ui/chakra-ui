@@ -107,18 +107,7 @@ export const MenuContent = withContext<HTMLDivElement, MenuContentProps>(
   { forwardAsChild: true },
 )
 
-// arrow
-
-export interface MenuArrowProps
-  extends HTMLChakraProps<"div", ArkMenu.ArrowBaseProps> {}
-
-export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
-  ArkMenu.Arrow,
-  "arrow",
-  { forwardAsChild: true },
-)
-
-// arrow tip
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuArrowTipProps
   extends HTMLChakraProps<"div", ArkMenu.ArrowTipBaseProps> {}
@@ -127,6 +116,17 @@ export const MenuArrowTip = withContext<HTMLDivElement, MenuArrowTipProps>(
   ArkMenu.ArrowTip,
   "arrowTip",
   { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface MenuArrowProps
+  extends HTMLChakraProps<"div", ArkMenu.ArrowBaseProps> {}
+
+export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
+  ArkMenu.Arrow,
+  "arrow",
+  { forwardAsChild: true, defaultProps: { children: <MenuArrowTip /> } },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

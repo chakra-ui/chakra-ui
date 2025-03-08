@@ -1,63 +1,61 @@
 "use client"
 
-import { Button, Link, Stack, Text } from "@chakra-ui/react"
 import {
-  DialogBackdrop,
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
-import {
-  HoverCardArrow,
-  HoverCardContent,
-  HoverCardRoot,
-  HoverCardTrigger,
-} from "compositions/ui/hover-card"
+  Button,
+  CloseButton,
+  Dialog,
+  HoverCard,
+  Link,
+  Portal,
+  Stack,
+  Text,
+} from "@chakra-ui/react"
 import { useRef } from "react"
 
 export const HoverCardInDialog = () => {
   const contentRef = useRef<HTMLDivElement>(null)
   return (
-    <DialogRoot>
-      <DialogBackdrop />
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent ref={contentRef}>
-        <DialogCloseTrigger />
-        <DialogHeader>
-          <DialogTitle>Select in Dialog</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <HoverCardRoot size="sm">
-            <HoverCardTrigger asChild>
-              <Link href="#">@chakra_ui</Link>
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <HoverCardArrow />
-              <Stack gap="4" direction="row">
-                <Stack gap="3">
-                  <Stack gap="1">
-                    <Text textStyle="sm" fontWeight="semibold">
-                      Chakra UI
-                    </Text>
-                    <Text textStyle="sm" color="fg.muted">
-                      The most powerful toolkit for building modern web
-                      applications.
-                    </Text>
-                  </Stack>
-                </Stack>
-              </Stack>
-            </HoverCardContent>
-          </HoverCardRoot>
-        </DialogBody>
-        <DialogFooter />
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content ref={contentRef}>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
+            <Dialog.Header>
+              <Dialog.Title>Select in Dialog</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>
+              <HoverCard.Root size="sm">
+                <HoverCard.Trigger asChild>
+                  <Link href="#">@chakra_ui</Link>
+                </HoverCard.Trigger>
+                <Portal container={contentRef}>
+                  <HoverCard.Positioner>
+                    <HoverCard.Content>
+                      <HoverCard.Arrow />
+                      <Stack gap="1">
+                        <Text textStyle="sm" fontWeight="semibold">
+                          Chakra UI
+                        </Text>
+                        <Text textStyle="sm" color="fg.muted">
+                          The most powerful toolkit for building modern web
+                          applications.
+                        </Text>
+                      </Stack>
+                    </HoverCard.Content>
+                  </HoverCard.Positioner>
+                </Portal>
+              </HoverCard.Root>
+            </Dialog.Body>
+            <Dialog.Footer />
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

@@ -1,19 +1,14 @@
-"use client"
-
 import {
   Button,
+  ButtonGroup,
   CloseButton,
   Drawer,
-  Input,
   Portal,
-  Stack,
 } from "@chakra-ui/react"
-import { useRef } from "react"
 
-export const DrawerWithInitialFocus = () => {
-  const ref = useRef<HTMLInputElement>(null)
+export const DrawerWithHeaderActions = () => {
   return (
-    <Drawer.Root initialFocusEl={() => ref.current}>
+    <Drawer.Root size="md">
       <Drawer.Trigger asChild>
         <Button variant="outline" size="sm">
           Open Drawer
@@ -24,25 +19,21 @@ export const DrawerWithInitialFocus = () => {
         <Drawer.Positioner>
           <Drawer.Content>
             <Drawer.Header>
-              <Drawer.Title>Drawer Title</Drawer.Title>
+              <Drawer.CloseTrigger asChild pos="initial">
+                <CloseButton />
+              </Drawer.CloseTrigger>
+              <Drawer.Title flex="1">Drawer Title</Drawer.Title>
+              <ButtonGroup>
+                <Button variant="outline">Cancel</Button>
+                <Button>Save</Button>
+              </ButtonGroup>
             </Drawer.Header>
             <Drawer.Body>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
-              <Stack mt="5">
-                <Input defaultValue="Naruto" placeholder="First name" />
-                <Input ref={ref} placeholder="Email" />
-              </Stack>
             </Drawer.Body>
-            <Drawer.Footer>
-              <Button variant="outline">Cancel</Button>
-              <Button>Save</Button>
-            </Drawer.Footer>
-            <Drawer.CloseTrigger asChild>
-              <CloseButton size="sm" />
-            </Drawer.CloseTrigger>
           </Drawer.Content>
         </Drawer.Positioner>
       </Portal>
