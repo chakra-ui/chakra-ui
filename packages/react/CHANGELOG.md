@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.11.0
+
+### Minor Changes
+
+- [`8789401`](https://github.com/chakra-ui/chakra-ui/commit/87894014191052a24a8cb3716ed068be9a744fbc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Accordion**
+
+  - Fix issue where `Accordion.ItemTrigger` doesn't apply `textAlign: start`
+  - **SegmentGroup**
+
+    - Add new `SegmentGroup.Items` shortcut component to render multiple
+      `SegmentGroup.Item` components based on the `items` prop
+
 ## 3.10.0
 
 ### Minor Changes
