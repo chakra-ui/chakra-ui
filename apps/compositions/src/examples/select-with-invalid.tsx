@@ -1,7 +1,6 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -13,7 +12,7 @@ import {
 
 export const SelectWithInvalid = () => {
   return (
-    <Field invalid errorText="This is an error">
+    <Field.Root invalid>
       <SelectRoot collection={frameworks} size="sm" width="320px">
         <SelectLabel>Select framework</SelectLabel>
         <SelectTrigger>
@@ -27,7 +26,8 @@ export const SelectWithInvalid = () => {
           ))}
         </SelectContent>
       </SelectRoot>
-    </Field>
+      <Field.ErrorText>This is an error</Field.ErrorText>
+    </Field.Root>
   )
 }
 

@@ -1,15 +1,20 @@
-import { HStack, Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, HStack, Input } from "@chakra-ui/react"
 
 export const InputWithField = () => {
   return (
     <HStack gap="10" width="full">
-      <Field label="Email" required>
+      <Field.Root required>
+        <Field.Label>
+          Email <Field.RequiredIndicator />
+        </Field.Label>
         <Input placeholder="me@example.com" variant="subtle" />
-      </Field>
-      <Field label="Email" required>
+      </Field.Root>
+      <Field.Root required>
+        <Field.Label>
+          Email <Field.RequiredIndicator />
+        </Field.Label>
         <Input placeholder="me@example.com" variant="outline" />
-      </Field>
+      </Field.Root>
     </HStack>
   )
 }

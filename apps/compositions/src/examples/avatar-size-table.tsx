@@ -1,9 +1,8 @@
 "use client"
 
-import { For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
+import { Avatar, For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Avatar } from "compositions/ui/avatar"
 
 function omit<T extends string | undefined>(
   arr: T[] | undefined,
@@ -36,14 +35,18 @@ export const AvatarSizeTable = () => {
                 {(v) => (
                   <td key={v}>
                     <HStack>
-                      <Avatar
-                        src="https://bit.ly/dan-abramov"
-                        name="Dan Abramov"
-                        colorPalette={c}
-                        size={v}
-                      />
-                      <Avatar name="Dan Abramov" colorPalette={c} size={v} />
-                      <Avatar colorPalette={c} size={v} />
+                      <Avatar.Root colorPalette={c} size={v}>
+                        <Avatar.Image src="https://bit.ly/dan-abramov" />
+                        <Avatar.Fallback name="Dan Abramov" />
+                      </Avatar.Root>
+                      <Avatar.Root colorPalette={c} size={v}>
+                        <Avatar.Image />
+                        <Avatar.Fallback name="Dan Abramov" />
+                      </Avatar.Root>
+                      <Avatar.Root colorPalette={c} size={v}>
+                        <Avatar.Image />
+                        <Avatar.Fallback />
+                      </Avatar.Root>
                     </HStack>
                   </td>
                 )}

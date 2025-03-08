@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
+import { Avatar, For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Avatar } from "compositions/ui/avatar"
 import { Tag } from "compositions/ui/tag"
 import { HiCheck, HiOutlineBriefcase } from "react-icons/hi"
 
@@ -61,11 +60,10 @@ export const TagVariantTable = () => {
                         colorPalette={c}
                         borderRadius="full"
                         startElement={
-                          <Avatar
-                            size="full"
-                            src="https://bit.ly/dan-abramov"
-                            name="Dan Abramov"
-                          />
+                          <Avatar.Root size="full">
+                            <Avatar.Image src="https://bit.ly/dan-abramov" />
+                            <Avatar.Fallback name="Dan Abramov" />
+                          </Avatar.Root>
                         }
                       >
                         Dan Abramov

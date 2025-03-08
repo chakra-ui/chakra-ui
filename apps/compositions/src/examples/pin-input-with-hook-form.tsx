@@ -1,8 +1,7 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Field, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
 import { PinInput } from "compositions/ui/pin-input"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -25,10 +24,7 @@ export const PinInputWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start" maxW="sm">
-        <Field
-          invalid={!!formState.errors.pin}
-          errorText={formState.errors.pin?.message}
-        >
+        <Field.Root invalid={!!formState.errors.pin}>
           <Controller
             control={control}
             name="pin"
@@ -39,7 +35,8 @@ export const PinInputWithHookForm = () => {
               />
             )}
           />
-        </Field>
+          <Field.ErrorText>{formState.errors.pin?.message}</Field.ErrorText>
+        </Field.Root>
         <Button type="submit">Submit</Button>
       </Stack>
     </form>

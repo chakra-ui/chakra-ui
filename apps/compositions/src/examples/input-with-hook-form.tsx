@@ -1,7 +1,6 @@
 "use client"
 
-import { Button, Input, Stack } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Button, Field, Input, Stack } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
 interface FormValues {
@@ -21,24 +20,18 @@ export const InputWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start" maxW="sm">
-        <Field
-          label="First name"
-          invalid={!!errors.firstName}
-          errorText={errors.firstName?.message}
-        >
-          <Input
-            {...register("firstName", { required: "First name is required" })}
-          />
-        </Field>
-        <Field
-          label="Last name"
-          invalid={!!errors.lastName}
-          errorText={errors.lastName?.message}
-        >
-          <Input
-            {...register("lastName", { required: "Last name is required" })}
-          />
-        </Field>
+        <Field.Root invalid={!!errors.firstName}>
+          <Field.Label>First name</Field.Label>
+          <Input {...register("firstName")} />
+          <Field.ErrorText>{errors.firstName?.message}</Field.ErrorText>
+        </Field.Root>
+
+        <Field.Root invalid={!!errors.lastName}>
+          <Field.Label>Last name</Field.Label>
+          <Input {...register("lastName")} />
+          <Field.ErrorText>{errors.lastName?.message}</Field.ErrorText>
+        </Field.Root>
+
         <Button type="submit">Submit</Button>
       </Stack>
     </form>

@@ -9,6 +9,7 @@ export {
   SegmentGroupItemContext,
   SegmentGroupContext,
   useSegmentGroupStyles,
+  SegmentGroupItems,
 } from "./segment-group"
 
 export type {
@@ -18,6 +19,7 @@ export type {
   SegmentGroupItemTextProps,
   SegmentGroupIndicatorProps,
   SegmentGroupValueChangeDetails,
+  SegmentGroupItemsProps,
 } from "./segment-group"
 
 export {

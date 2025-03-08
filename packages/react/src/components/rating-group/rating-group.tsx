@@ -121,7 +121,9 @@ export const RatingGroupItemIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const RatingGroupItems = (props: Omit<RatingGroupItemProps, "index">) => {
+export const RatingGroupItems = (
+  props: Omit<RatingGroupItemProps, "index">,
+) => {
   const api = useRatingGroupContext()
   return (
     <For each={api.items}>

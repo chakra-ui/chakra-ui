@@ -1,8 +1,7 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
+import { Button, Field } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
 import {
   FileUploadList,
   FileUploadRoot,
@@ -38,11 +37,8 @@ export const FileUploadWithHookForm = () => {
         control={control}
         name="images"
         render={({ field }) => (
-          <Field
-            label="Images"
-            invalid={!!errors.images}
-            errorText={errors.images?.message}
-          >
+          <Field.Root invalid={!!errors.images}>
+            <Field.Label>Images</Field.Label>
             <FileUploadRoot
               name={field.name}
               onFileChange={(e) => {
@@ -57,7 +53,8 @@ export const FileUploadWithHookForm = () => {
 
               <FileUploadList showSize />
             </FileUploadRoot>
-          </Field>
+            <Field.ErrorText>{errors.images?.message}</Field.ErrorText>
+          </Field.Root>
         )}
       />
 

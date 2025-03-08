@@ -1,9 +1,12 @@
-import { Button, Fieldset, Input, Stack } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
 import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from "compositions/ui/native-select"
+  Button,
+  Field,
+  Fieldset,
+  For,
+  Input,
+  NativeSelect,
+  Stack,
+} from "@chakra-ui/react"
 
 export const FieldsetBasic = () => {
   return (
@@ -16,26 +19,31 @@ export const FieldsetBasic = () => {
       </Stack>
 
       <Fieldset.Content>
-        <Field label="Name">
+        <Field.Root>
+          <Field.Label>Name</Field.Label>
           <Input name="name" />
-        </Field>
+        </Field.Root>
 
-        <Field label="Email address">
+        <Field.Root>
+          <Field.Label>Email address</Field.Label>
           <Input name="email" type="email" />
-        </Field>
+        </Field.Root>
 
-        <Field label="Country">
-          <NativeSelectRoot>
-            <NativeSelectField
-              name="country"
-              items={[
-                "United Kingdom (UK)",
-                "Canada (CA)",
-                "United States (US)",
-              ]}
-            />
-          </NativeSelectRoot>
-        </Field>
+        <Field.Root>
+          <Field.Label>Country</Field.Label>
+          <NativeSelect.Root>
+            <NativeSelect.Field name="country">
+              <For each={["United Kingdom", "Canada", "United States"]}>
+                {(item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                )}
+              </For>
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
+        </Field.Root>
       </Fieldset.Content>
 
       <Button type="submit" alignSelf="flex-start">

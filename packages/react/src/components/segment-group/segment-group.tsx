@@ -2,12 +2,14 @@
 
 import type { Assign } from "@ark-ui/react"
 import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/react/segment-group"
+import { useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,6 +90,41 @@ export const SegmentGroupIndicator = withContext<
   HTMLSpanElement,
   SegmentGroupIndicatorProps
 >(ArkSegmentGroup.Indicator, "indicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+interface Item {
+  value: string
+  label: React.ReactNode
+  disabled?: boolean
+}
+
+export interface SegmentGroupItemsProps
+  extends Omit<SegmentGroupItemProps, "value"> {
+  items: Array<string | Item>
+}
+
+function normalize(items: Array<string | Item>): Item[] {
+  return items.map((item) => {
+    if (typeof item === "string") return { value: item, label: item }
+    return item
+  })
+}
+
+export const SegmentGroupItems = (props: SegmentGroupItemsProps) => {
+  const { items, ...rest } = props
+  const data = useMemo(() => normalize(items), [items])
+  return (
+    <For each={data}>
+      {(item) => (
+        <SegmentGroupItem key={item.value} value={item.value} {...rest}>
+          <SegmentGroupItemText>{item.label}</SegmentGroupItemText>
+          <SegmentGroupItemHiddenInput />
+        </SegmentGroupItem>
+      )}
+    </For>
+  )
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 

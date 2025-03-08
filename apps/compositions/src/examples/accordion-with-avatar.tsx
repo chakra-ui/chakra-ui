@@ -1,5 +1,4 @@
-import { Accordion, Badge, HStack } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Accordion, Avatar, Badge, HStack } from "@chakra-ui/react"
 import { LuTrophy } from "react-icons/lu"
 import { LoremIpsum } from "react-lorem-ipsum"
 
@@ -9,7 +8,10 @@ export const AccordionWithAvatar = () => {
       {items.map((item, index) => (
         <Accordion.Item key={index} value={item.name}>
           <Accordion.ItemTrigger>
-            <Avatar shape="rounded" src={item.image} name={item.name} />
+            <Avatar.Root shape="rounded">
+              <Avatar.Image src={item.image} />
+              <Avatar.Fallback name={item.name} />
+            </Avatar.Root>
             <HStack flex="1">
               {item.name}{" "}
               {item.topRated && (

@@ -1,8 +1,7 @@
 "use client"
 
-import { Button, Stack, createListCollection } from "@chakra-ui/react"
+import { Button, Field, Stack, createListCollection } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
 import {
   SelectContent,
   SelectItem,
@@ -33,12 +32,8 @@ export const SelectWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
-        <Field
-          label="Rating"
-          invalid={!!errors.framework}
-          errorText={errors.framework?.message}
-          width="320px"
-        >
+        <Field.Root invalid={!!errors.framework} width="320px">
+          <Field.Label>Rating</Field.Label>
           <Controller
             control={control}
             name="framework"
@@ -63,7 +58,8 @@ export const SelectWithHookForm = () => {
               </SelectRoot>
             )}
           />
-        </Field>
+          <Field.ErrorText>{errors.framework?.message}</Field.ErrorText>
+        </Field.Root>
 
         <Button size="sm" type="submit">
           Submit

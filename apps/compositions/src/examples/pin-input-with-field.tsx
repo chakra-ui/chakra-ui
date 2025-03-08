@@ -1,10 +1,11 @@
-import { Field } from "compositions/ui/field"
+import { Field } from "@chakra-ui/react"
 import { PinInput } from "compositions/ui/pin-input"
 
 export const PinInputWithField = () => {
   return (
-    <Field label="Enter otp">
+    <Field.Root>
+      <Field.Label>Enter otp</Field.Label>
       <PinInput />
-    </Field>
+    </Field.Root>
   )
 }

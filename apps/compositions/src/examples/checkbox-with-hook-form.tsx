@@ -2,7 +2,6 @@
 
 import { Button, Checkbox, Code, Field, HStack, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import "compositions/ui/field"
 import { Controller, useController, useForm } from "react-hook-form"
 import { z } from "zod"
 

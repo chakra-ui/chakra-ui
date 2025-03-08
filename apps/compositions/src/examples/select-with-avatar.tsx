@@ -1,7 +1,6 @@
 "use client"
 
-import { HStack, createListCollection } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Avatar, HStack, createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
@@ -17,7 +16,10 @@ const SelectValueItem = () => (
       const { name, avatar } = items[0]
       return (
         <HStack>
-          <Avatar shape="rounded" name={name} size="2xs" src={avatar} />
+          <Avatar.Root shape="rounded" size="2xs">
+            <Avatar.Image src={avatar} />
+            <Avatar.Fallback name={name} />
+          </Avatar.Root>
           {name}
         </HStack>
       )
@@ -41,12 +43,10 @@ export const SelectWithAvatar = () => {
       <SelectContent portalled={false}>
         {members.items.map((item) => (
           <SelectItem item={item} key={item.id} justifyContent="flex-start">
-            <Avatar
-              shape="rounded"
-              name={item.name}
-              src={item.avatar}
-              size="2xs"
-            />
+            <Avatar.Root shape="rounded" size="2xs">
+              <Avatar.Image src={item.avatar} />
+              <Avatar.Fallback name={item.name} />
+            </Avatar.Root>
             {item.name}
           </SelectItem>
         ))}

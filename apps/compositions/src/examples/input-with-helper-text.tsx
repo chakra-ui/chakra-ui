@@ -1,10 +1,13 @@
-import { Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Input } from "@chakra-ui/react"
 
 export const InputWithHelperText = () => {
   return (
-    <Field label="Email" required helperText="We'll never share your email.">
+    <Field.Root required>
+      <Field.Label>
+        Email <Field.RequiredIndicator />
+      </Field.Label>
       <Input placeholder="Enter your email" />
-    </Field>
+      <Field.HelperText>We'll never share your email.</Field.HelperText>
+    </Field.Root>
   )
 }

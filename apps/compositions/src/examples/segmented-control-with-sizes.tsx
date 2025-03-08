@@ -1,5 +1,4 @@
-import { For, Stack, Text, VStack } from "@chakra-ui/react"
-import { SegmentedControl } from "compositions/ui/segmented-control"
+import { For, SegmentGroup, Stack, Text, VStack } from "@chakra-ui/react"
 
 export const SegmentedControlWithSizes = () => {
   return (
@@ -7,11 +6,10 @@ export const SegmentedControlWithSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <VStack key={size} align="flex-start">
-            <SegmentedControl
-              size={size}
-              defaultValue="React"
-              items={["React", "Vue", "Solid"]}
-            />
+            <SegmentGroup.Root size={size} defaultValue="React">
+              <SegmentGroup.Indicator />
+              <SegmentGroup.Items items={["React", "Vue", "Solid"]} />
+            </SegmentGroup.Root>
             <Text>size = {size}</Text>
           </VStack>
         )}

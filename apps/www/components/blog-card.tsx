@@ -1,6 +1,8 @@
 import { Blog } from "@/.velite"
 import { formatBlogDate, getBlogAuthor } from "@/lib/blog"
 import {
+  Avatar,
+  AvatarGroup,
   Badge,
   Box,
   Button,
@@ -11,7 +13,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { Avatar, AvatarGroup } from "compositions/ui/avatar"
 import Link from "next/link"
 import { Logo, LogoIcon } from "./logo"
 
@@ -47,7 +48,12 @@ export const BlogCard = (props: Props) => {
             <AvatarGroup size="xs">
               {authors.map((author) => {
                 const { name, image } = getBlogAuthor(author)
-                return <Avatar key={author} src={image} name={name} />
+                return (
+                  <Avatar.Root key={author}>
+                    <Avatar.Image src={image} />
+                    <Avatar.Fallback name={name} />
+                  </Avatar.Root>
+                )
               })}
             </AvatarGroup>
           </Flex>

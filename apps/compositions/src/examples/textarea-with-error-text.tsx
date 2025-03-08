@@ -1,15 +1,22 @@
-import { HStack, Textarea } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, HStack, Textarea } from "@chakra-ui/react"
 
 export const TextareaWithErrorText = () => {
   return (
     <HStack gap="10" width="full">
-      <Field invalid label="Comment" required errorText="Field is required">
+      <Field.Root invalid>
+        <Field.Label>
+          Comment <Field.RequiredIndicator />
+        </Field.Label>
         <Textarea placeholder="Start typing..." variant="subtle" />
-      </Field>
-      <Field invalid label="Comment" required errorText="Field is required">
+        <Field.ErrorText>Field is required</Field.ErrorText>
+      </Field.Root>
+      <Field.Root invalid>
+        <Field.Label>
+          Comment <Field.RequiredIndicator />
+        </Field.Label>
         <Textarea placeholder="Start typing..." variant="outline" />
-      </Field>
+        <Field.ErrorText>Field is required</Field.ErrorText>
+      </Field.Root>
     </HStack>
   )
 }

@@ -9,6 +9,7 @@ export {
   RatingGroupPropsProvider,
   RatingGroupRoot,
   RatingGroupRootProvider,
+  RatingGroupItems,
   useRatingGroupStyles,
 } from "./rating-group"
 

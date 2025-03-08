@@ -1,5 +1,4 @@
-import { Badge, For, Span, Stack } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
+import { Avatar, Badge, For, Span, Stack } from "@chakra-ui/react"
 import {
   TimelineConnector,
   TimelineContent,
@@ -17,11 +16,10 @@ export const TimelineWithSizes = () => {
           <TimelineRoot key={size} size={size}>
             <TimelineItem>
               <TimelineConnector>
-                <Avatar
-                  size="full"
-                  name="Sage"
-                  src="https://bit.ly/sage-adebayo"
-                />
+                <Avatar.Root size="full">
+                  <Avatar.Image src="https://bit.ly/sage-adebayo" />
+                  <Avatar.Fallback name="Sage" />
+                </Avatar.Root>
               </TimelineConnector>
               <TimelineContent textStyle="xs">
                 <TimelineTitle>

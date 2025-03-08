@@ -1,5 +1,4 @@
-import { Button, Card, Input, Stack } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Button, Card, Field, Input, Stack } from "@chakra-ui/react"
 
 export const CardWithForm = () => (
   <Card.Root maxW="sm">
@@ -11,12 +10,14 @@ export const CardWithForm = () => (
     </Card.Header>
     <Card.Body>
       <Stack gap="4" w="full">
-        <Field label="First Name">
+        <Field.Root>
+          <Field.Label>First Name</Field.Label>
           <Input />
-        </Field>
-        <Field label="Last Name">
+        </Field.Root>
+        <Field.Root>
+          <Field.Label>Last Name</Field.Label>
           <Input />
-        </Field>
+        </Field.Root>
       </Stack>
     </Card.Body>
     <Card.Footer justifyContent="flex-end">

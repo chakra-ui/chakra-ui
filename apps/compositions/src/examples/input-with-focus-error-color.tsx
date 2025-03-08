@@ -1,18 +1,20 @@
-import { Input, Stack } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Input, Stack } from "@chakra-ui/react"
 
 export const InputWithFocusErrorColor = () => {
   return (
     <Stack gap="4">
-      <Field label="focusColor=lime">
+      <Field.Root>
+        <Field.Label>focusColor=lime</Field.Label>
         <Input placeholder="Focus me" css={{ "--focus-color": "lime" }} />
-      </Field>
-      <Field invalid label="errorColor=green">
+      </Field.Root>
+      <Field.Root invalid>
+        <Field.Label>errorColor=green</Field.Label>
         <Input placeholder="Email" css={{ "--error-color": "green" }} />
-      </Field>
-      <Field invalid label="errorColor=blue">
+      </Field.Root>
+      <Field.Root invalid>
+        <Field.Label>errorColor=blue</Field.Label>
         <Input placeholder="Password" css={{ "--error-color": "blue" }} />
-      </Field>
+      </Field.Root>
     </Stack>
   )
 }

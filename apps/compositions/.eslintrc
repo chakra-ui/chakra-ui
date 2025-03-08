@@ -17,5 +17,6 @@
   "plugins": ["@typescript-eslint/eslint-plugin"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
   },
 }

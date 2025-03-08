@@ -9,26 +9,49 @@ links:
 
 <ExampleTabs name="segmented-control-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`segmented-control` snippet
-
-```sh
-npx @chakra-ui/cli snippet add segmented-control
-```
-
-The snippet includes a closed component composition for the `SegmentGroup`
-component.
-
 ## Usage
 
-```jsx
-import { SegmentedControl } from "@/components/ui/segmented-control"
+```tsx
+import { SegmentGroup } from "@chakra-ui/react"
 ```
 
-```jsx
-<SegmentedControl items={[]} />
+```tsx
+<SegmentGroup.Root>
+  <SegmentGroup.Indicator />
+  <SegmentGroup.Item>
+    <SegmentGroup.ItemText />
+    <SegmentGroup.ItemHiddenInput />
+  </SegmentGroup.Item>
+</SegmentGroup.Root>
+```
+
+## Shortcuts
+
+The `SegmentGroup` component also provides a set of shortcuts for common use
+cases.
+
+### SegmentGroupItems
+
+The `SegmentGroupItems` shortcut renders a list of items based on the `items`
+prop.
+
+This works:
+
+```tsx
+<>
+  {items.map((item) => (
+    <SegmentGroup.Item key={item.value} value={item.value}>
+      <SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>
+      <SegmentGroup.ItemHiddenInput />
+    </SegmentGroup.Item>
+  ))}
+</>
+```
+
+This might be more concise, if you don't need to customize the items:
+
+```tsx
+<SegmentGroup.Items items={items} />
 ```
 
 ## Examples
