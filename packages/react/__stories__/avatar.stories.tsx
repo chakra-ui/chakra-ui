@@ -25,4 +25,3 @@ export { AvatarWithOverflow as Overflow } from "compositions/examples/avatar-wit
 export { AvatarWithRandomColor as RandomColor } from "compositions/examples/avatar-with-random-color"
 export { AvatarWithShape as Shape } from "compositions/examples/avatar-with-shape"
 export { AvatarWithStore as Store } from "compositions/examples/avatar-with-store"
-export { AvatarWithoutSnippet as WithoutSnippet } from "compositions/examples/avatar-without-snippet"
