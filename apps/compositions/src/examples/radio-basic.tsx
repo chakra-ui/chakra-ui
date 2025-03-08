@@ -1,14 +1,23 @@
-import { HStack } from "@chakra-ui/react"
-import { Radio, RadioGroup } from "compositions/ui/radio"
+import { HStack, RadioGroup } from "@chakra-ui/react"
 
 export const RadioBasic = () => {
   return (
-    <RadioGroup defaultValue="1">
+    <RadioGroup.Root defaultValue="1">
       <HStack gap="6">
-        <Radio value="1">Option 1</Radio>
-        <Radio value="2">Option 2</Radio>
-        <Radio value="3">Option 3</Radio>
+        {items.map((item) => (
+          <RadioGroup.Item key={item.value} value={item.value}>
+            <RadioGroup.ItemHiddenInput />
+            <RadioGroup.ItemIndicator />
+            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        ))}
       </HStack>
-    </RadioGroup>
+    </RadioGroup.Root>
   )
 }
+
+const items = [
+  { label: "Option 1", value: "1" },
+  { label: "Option 2", value: "2" },
+  { label: "Option 3", value: "3" },
+]
