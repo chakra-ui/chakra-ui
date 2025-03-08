@@ -1,29 +1,25 @@
-import { Heading, Icon, Stack } from "@chakra-ui/react"
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "compositions/ui/accordion"
+import { Accordion, Heading, Icon, Stack } from "@chakra-ui/react"
 import { LuChartBarStacked, LuTags } from "react-icons/lu"
 
 export const AccordionWithIcon = () => {
   return (
     <Stack width="full" maxW="400px">
       <Heading size="md">Product details</Heading>
-      <AccordionRoot collapsible defaultValue={["info"]}>
+      <Accordion.Root collapsible defaultValue={["info"]}>
         {items.map((item) => (
-          <AccordionItem key={item.value} value={item.value}>
-            <AccordionItemTrigger>
+          <Accordion.Item key={item.value} value={item.value}>
+            <Accordion.ItemTrigger>
               <Icon fontSize="lg" color="fg.subtle">
                 {item.icon}
               </Icon>
               {item.title}
-            </AccordionItemTrigger>
-            <AccordionItemContent>{item.content}</AccordionItemContent>
-          </AccordionItem>
+            </Accordion.ItemTrigger>
+            <Accordion.ItemContent>
+              <Accordion.ItemBody>{item.content}</Accordion.ItemBody>
+            </Accordion.ItemContent>
+          </Accordion.Item>
         ))}
-      </AccordionRoot>
+      </Accordion.Root>
     </Stack>
   )
 }

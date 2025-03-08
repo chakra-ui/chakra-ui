@@ -8,6 +8,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { ChevronDownIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +106,12 @@ export interface AccordionItemIndicatorProps
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,
   AccordionItemIndicatorProps
->(ArkAccordion.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+>(ArkAccordion.ItemIndicator, "itemIndicator", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <ChevronDownIcon />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,10 +1,4 @@
-import { Stack, Text } from "@chakra-ui/react"
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "compositions/ui/accordion"
+import { Accordion, Stack, Text } from "@chakra-ui/react"
 import { LoremIpsum } from "react-lorem-ipsum"
 
 const items = [
@@ -15,20 +9,22 @@ const items = [
 
 export const AccordionWithSubtext = () => {
   return (
-    <AccordionRoot collapsible>
+    <Accordion.Root collapsible>
       {items.map((item, index) => (
-        <AccordionItem key={index} value={item.value}>
-          <AccordionItemTrigger>
+        <Accordion.Item key={index} value={item.value}>
+          <Accordion.ItemTrigger>
             <Stack gap="1">
               <Text>{item.title}</Text>
               <Text fontSize="sm" color="fg.muted">
                 Click to expand
               </Text>
             </Stack>
-          </AccordionItemTrigger>
-          <AccordionItemContent>{item.text}</AccordionItemContent>
-        </AccordionItem>
+          </Accordion.ItemTrigger>
+          <Accordion.ItemContent>
+            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
+          </Accordion.ItemContent>
+        </Accordion.Item>
       ))}
-    </AccordionRoot>
+    </Accordion.Root>
   )
 }

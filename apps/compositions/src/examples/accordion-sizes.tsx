@@ -1,31 +1,25 @@
-import { For, Stack, Text } from "@chakra-ui/react"
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "compositions/ui/accordion"
+import { Accordion, For, Span, Stack, Text } from "@chakra-ui/react"
 
 export const AccordionSizes = () => {
   return (
     <Stack gap="8">
       <For each={["sm", "md", "lg"]}>
         {(size) => (
-          <Stack gap="2">
+          <Stack gap="2" key={size}>
             <Text fontWeight="semibold">{size}</Text>
-            <AccordionRoot
-              size={size}
-              key={size}
-              collapsible
-              defaultValue={["b"]}
-            >
+            <Accordion.Root size={size} collapsible defaultValue={["b"]}>
               {items.map((item, index) => (
-                <AccordionItem key={index} value={item.value}>
-                  <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
-                  <AccordionItemContent>{item.text}</AccordionItemContent>
-                </AccordionItem>
+                <Accordion.Item key={index} value={item.value}>
+                  <Accordion.ItemTrigger>
+                    <Span flex="1">{item.title}</Span>
+                    <Accordion.ItemIndicator />
+                  </Accordion.ItemTrigger>
+                  <Accordion.ItemContent>
+                    <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
+                  </Accordion.ItemContent>
+                </Accordion.Item>
               ))}
-            </AccordionRoot>
+            </Accordion.Root>
           </Stack>
         )}
       </For>
