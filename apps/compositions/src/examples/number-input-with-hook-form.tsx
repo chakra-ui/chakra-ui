@@ -1,9 +1,7 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
+import { Button, Field, NumberInput } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -26,16 +24,13 @@ export const NumberInputWithHookForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Field
-        label="Number"
-        invalid={!!errors.number}
-        errorText={errors.number?.message}
-      >
+      <Field.Root invalid={!!errors.number}>
+        <Field.Label>Number</Field.Label>
         <Controller
           name="number"
           control={control}
           render={({ field }) => (
-            <NumberInputRoot
+            <NumberInput.Root
               disabled={field.disabled}
               name={field.name}
               value={field.value}
@@ -43,12 +38,13 @@ export const NumberInputWithHookForm = () => {
                 field.onChange(value)
               }}
             >
-              <NumberInputField onBlur={field.onBlur} />
-            </NumberInputRoot>
+              <NumberInput.Control />
+              <NumberInput.Input onBlur={field.onBlur} />
+            </NumberInput.Root>
           )}
         />
-      </Field>
-
+        <Field.ErrorText>{errors.number?.message}</Field.ErrorText>
+      </Field.Root>
       <Button size="sm" type="submit" mt="4">
         Submit
       </Button>

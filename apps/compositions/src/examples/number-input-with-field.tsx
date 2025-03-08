@@ -1,12 +1,14 @@
-import { Field } from "compositions/ui/field"
-import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
+import { Field, NumberInput } from "@chakra-ui/react"
 
 export const NumberInputWithField = () => {
   return (
-    <Field label="Enter Number" helperText="Enter a number between 1 and 10">
-      <NumberInputRoot width="200px">
-        <NumberInputField />
-      </NumberInputRoot>
-    </Field>
+    <Field.Root>
+      <Field.Label>Enter Number</Field.Label>
+      <NumberInput.Root width="200px">
+        <NumberInput.Control />
+        <NumberInput.Input />
+      </NumberInput.Root>
+      <Field.HelperText>Enter a number between 1 and 10</Field.HelperText>
+    </Field.Root>
   )
 }
