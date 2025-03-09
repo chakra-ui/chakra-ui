@@ -140,7 +140,9 @@ export const PropTable = async (props: PropTableProps) => {
                     <Text as="span">
                       For more details, read our{" "}
                       <Link asChild>
-                        <NextLink href={`/docs/guides/composition`}>
+                        <NextLink
+                          href={`/docs/components/concepts/composition`}
+                        >
                           Composition
                         </NextLink>
                       </Link>{" "}
