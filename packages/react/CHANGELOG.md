@@ -1,5 +1,18 @@
 # @chakra-ui/react
 
+## 3.12.0
+
+### Minor Changes
+
+- [`7abe7e3`](https://github.com/chakra-ui/chakra-ui/commit/7abe7e3ccc589c7088f32d5e8f76d471747bd4eb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **FileUpload:**
+
+  - Add `FileUpload.FileText` to render the list of uploaded file names.
+  - Add `FileUpload.Items` shorcut component to render the list of uploaded
+    files.
+  - Add `FileUpload.List` shortcut component that combines `FileUpload.Items`
+    and `FileUpload.ItemGroup`.
+
 ## 3.11.0
 
 ### Minor Changes
