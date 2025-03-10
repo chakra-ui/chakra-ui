@@ -22,7 +22,6 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       focusVisibleRing: "outside",
       _disabled: {
         opacity: "0.8",
-        borderColor: "border.subtle",
       },
       _invalid: {
         outline: "2px solid",
@@ -42,6 +41,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       gap: "2",
+      flex: "1",
       _disabled: {
         opacity: "0.5",
       },
@@ -49,6 +49,9 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
     description: {
       opacity: "0.64",
       textStyle: "sm",
+      _disabled: {
+        opacity: "0.5",
+      },
     },
     addon: {
       _disabled: {
