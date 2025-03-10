@@ -97,6 +97,9 @@ export const toastSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       textStyle: "md",
       transition: "background 200ms",
+      _icon: {
+        boxSize: "1em",
+      },
     },
   },
 })

@@ -39,7 +39,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       focusVisibleRing: "inside",
       _placeholderShown: {
-        color: "fg.muted",
+        color: "fg.muted/80",
       },
       _disabled: {
         layerStyle: "disabled",
@@ -100,10 +100,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       borderRadius: "l1",
       _highlighted: {
-        bg: {
-          _light: "bg.muted",
-          _dark: "bg.emphasized",
-        },
+        bg: "bg.emphasized/60",
       },
       _disabled: {
         pointerEvents: "none",

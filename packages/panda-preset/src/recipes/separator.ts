@@ -20,11 +20,9 @@ export const separatorRecipe = defineRecipe({
     },
     orientation: {
       vertical: {
-        height: "100%",
         borderInlineStartWidth: "var(--separator-thickness)",
       },
       horizontal: {
-        width: "100%",
         borderTopWidth: "var(--separator-thickness)",
       },
     },
