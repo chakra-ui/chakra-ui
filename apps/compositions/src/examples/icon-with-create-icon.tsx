@@ -15,6 +15,6 @@ const HeartIcon = createIcon({
   ),
 })
 
-export const IconWithCreateIcon = () => (
-  <HeartIcon boxSize="40px" color="blue.400" />
-)
+export const IconWithCreateIcon = () => {
+  return <HeartIcon size="lg" color="blue.400" />
+}
