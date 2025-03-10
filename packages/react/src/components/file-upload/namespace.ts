@@ -12,11 +12,14 @@ export {
   FileUploadDropzoneContent as DropzoneContent,
   FileUploadItemSizeText as ItemSizeText,
   FileUploadItemName as ItemName,
+  FileUploadFileText as FileText,
   FileUploadItemGroup as ItemGroup,
   FileUploadItemDeleteTrigger as ItemDeleteTrigger,
   FileUploadContext as Context,
   FileUploadHiddenInput as HiddenInput,
   FileUploadClearTrigger as ClearTrigger,
+  FileUploadItems as Items,
+  FileUploadList as List,
 } from "./file-upload"
 
 export type {
@@ -30,6 +33,7 @@ export type {
   FileUploadItemPreviewImageProps as ItemPreviewImageProps,
   FileUploadItemSizeTextProps as ItemSizeTextProps,
   FileUploadItemNameProps as ItemNameProps,
+  FileUploadFileTextProps as FileTextProps,
   FileUploadItemContentProps as ItemContentProps,
   FileUploadDropzoneContentProps as DropzoneContentProps,
   FileUploadItemGroupProps as ItemGroupProps,
@@ -37,4 +41,6 @@ export type {
   FileUploadFileAcceptDetails as FileAcceptDetails,
   FileUploadFileChangeDetails as FileChangeDetails,
   FileUploadFileRejectDetails as FileRejectDetails,
+  FileUploadItemsProps as ItemsProps,
+  FileUploadListProps as ListProps,
 } from "./file-upload"

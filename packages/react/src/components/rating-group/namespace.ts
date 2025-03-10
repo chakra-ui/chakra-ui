@@ -18,6 +18,7 @@ export type {
   RatingGroupItemProps as ItemProps,
   RatingGroupItemIndicatorProps as ItemIndicatorProps,
   RatingGroupLabelProps as LabelProps,
+  RatingGroupItemsProps as ItemsProps,
   RatingGroupRootProps as RootProps,
   RatingGroupRootProviderProps as RootProviderProps,
   RatingGroupValueChangeDetails as ValueChangeDetails,

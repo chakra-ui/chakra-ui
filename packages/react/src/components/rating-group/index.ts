@@ -17,6 +17,7 @@ export type {
   RatingGroupControlProps,
   RatingGroupItemIndicatorProps,
   RatingGroupItemProps,
+  RatingGroupItemsProps,
   RatingGroupLabelProps,
   RatingGroupRootProps,
   RatingGroupRootProviderProps,

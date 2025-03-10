@@ -1,14 +1,15 @@
-import {
-  FileInput,
-  FileUploadLabel,
-  FileUploadRoot,
-} from "compositions/ui/file-upload"
+import { FileUpload, Input } from "@chakra-ui/react"
 
 export const FileUploadWithInput = () => {
   return (
-    <FileUploadRoot gap="1" maxWidth="300px">
-      <FileUploadLabel>Upload file</FileUploadLabel>
-      <FileInput />
-    </FileUploadRoot>
+    <FileUpload.Root gap="1" maxWidth="300px">
+      <FileUpload.HiddenInput />
+      <FileUpload.Label>Upload file</FileUpload.Label>
+      <Input asChild>
+        <FileUpload.Trigger>
+          <FileUpload.FileText />
+        </FileUpload.Trigger>
+      </Input>
+    </FileUpload.Root>
   )
 }

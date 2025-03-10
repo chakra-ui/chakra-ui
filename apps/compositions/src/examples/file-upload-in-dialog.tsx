@@ -1,9 +1,5 @@
-import { Button, Dialog, Portal } from "@chakra-ui/react"
-import {
-  FileUploadDropzone,
-  FileUploadList,
-  FileUploadRoot,
-} from "compositions/ui/file-upload"
+import { Button, Dialog, FileUpload, Icon, Portal } from "@chakra-ui/react"
+import { LuUpload } from "react-icons/lu"
 
 export const FileUploadInDialog = () => {
   return (
@@ -15,20 +11,25 @@ export const FileUploadInDialog = () => {
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header spaceY="1">
+            <Dialog.Header>
               <Dialog.Title>Upload File</Dialog.Title>
-              <Dialog.Description>
-                Upload a file to the server
-              </Dialog.Description>
             </Dialog.Header>
             <Dialog.Body pb="6">
-              <FileUploadRoot>
-                <FileUploadDropzone
-                  width="full"
-                  label="Drag and drop files here"
-                />
-                <FileUploadList />
-              </FileUploadRoot>
+              <Dialog.Description mb="4">
+                Here's a dialog with a file dropzone component.
+              </Dialog.Description>
+              <FileUpload.Root>
+                <FileUpload.HiddenInput />
+                <FileUpload.Dropzone width="full">
+                  <Icon size="xl" color="fg.muted">
+                    <LuUpload />
+                  </Icon>
+                  <FileUpload.DropzoneContent>
+                    Drag and drop files here
+                  </FileUpload.DropzoneContent>
+                </FileUpload.Dropzone>
+                <FileUpload.List />
+              </FileUpload.Root>
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>
