@@ -1,5 +1,4 @@
-import { Field, Input, Stack } from "@chakra-ui/react"
-import { Switch } from "compositions/ui/switch"
+import { Field, Input, Stack, Switch } from "@chakra-ui/react"
 
 export const FieldHorizontal = () => {
   return (
@@ -16,7 +15,10 @@ export const FieldHorizontal = () => {
 
       <Field.Root orientation="horizontal">
         <Field.Label>Hide email</Field.Label>
-        <Switch />
+        <Switch.Root>
+          <Switch.HiddenInput />
+          <Switch.Control />
+        </Switch.Root>
       </Field.Root>
     </Stack>
   )

@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
+import { Checkbox, For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Checkbox } from "compositions/ui/checkbox"
 
 export const CheckboxSizeTable = () => {
   const recipe = useSlotRecipe({ key: "checkbox" })
@@ -28,12 +27,16 @@ export const CheckboxSizeTable = () => {
                 {(v) => (
                   <td>
                     <Stack>
-                      <Checkbox colorPalette={c} size={v}>
-                        Checkbox
-                      </Checkbox>
-                      <Checkbox colorPalette={c} size={v} defaultChecked>
-                        Checkbox
-                      </Checkbox>
+                      <Checkbox.Root colorPalette={c} size={v}>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Indicator />
+                        <Checkbox.Label>Checkbox</Checkbox.Label>
+                      </Checkbox.Root>
+                      <Checkbox.Root colorPalette={c} size={v} defaultChecked>
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Indicator />
+                        <Checkbox.Label>Checkbox</Checkbox.Label>
+                      </Checkbox.Root>
                     </Stack>
                   </td>
                 )}
