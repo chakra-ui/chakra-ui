@@ -10,54 +10,57 @@ links:
 
 <ExampleTabs name="menu-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`menu` snippet
-
-```sh
-npx @chakra-ui/cli snippet add menu
-```
-
-The snippet includes a closed component composition for the `Menu` component.
-
 ## Usage
 
-```jsx
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu"
+```tsx
+import { Menu } from "@chakra-ui/react"
 ```
 
-```jsx
-<MenuRoot>
-  <MenuTrigger />
-  <MenuContent>
-    <MenuItem value="..." />
-  </MenuContent>
-</MenuRoot>
+```tsx
+<Menu.Root>
+  <Menu.Trigger />
+  <Menu.Positioner>
+    <Menu.Content>
+      <Menu.Item />
+
+      <Menu.ItemGroup>
+        <Menu.Item />
+      </Menu.ItemGroup>
+
+      <Menu.Separator />
+      <Menu.Arrow />
+
+      <Menu.CheckboxItem>
+        <Menu.ItemIndicator />
+      </Menu.CheckboxItem>
+
+      <Menu.RadioItemGroup>
+        <Menu.RadioItem>
+          <Menu.ItemIndicator />
+        </Menu.RadioItem>
+      </Menu.RadioItemGroup>
+    </Menu.Content>
+  </Menu.Positioner>
+</Menu.Root>
 ```
 
 ## Examples
 
 ### Command
 
-Use the `MenuItemCommand` component to display a command in the menu.
+Use the `Menu.ItemCommand` component to display a command in the menu.
 
 <ExampleTabs name="menu-with-command" />
 
 ### Context menu
 
-Use the `MenuContextTrigger` component to create a context menu.
+Use the `Menu.ContextTrigger` component to create a context menu.
 
 <ExampleTabs name="menu-with-context-trigger" />
 
 ### Group
 
-Use the `MenuItemGroup` component to group related menu items.
+Use the `Menu.ItemGroup` component to group related menu items.
 
 <ExampleTabs name="menu-with-group" />
 
@@ -75,25 +78,25 @@ Here's an example of how to create a submenu.
 
 ### Links
 
-Pass the `asChild` prop to the `MenuItem` component to render a link.
+Pass the `asChild` prop to the `Menu.Item` component to render a link.
 
 <ExampleTabs name="menu-with-links" />
 
 When using custom router links, you need to set the `navigate` prop on the
-`MenuRoot` component.
+`Menu.Root` component.
 
 ```tsx
 "use client"
 
-import { Menu } from "@/components/ui/menu"
+import { Menu } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 
 const Demo = () => {
   const navigate = useNavigate()
   return (
-    <MenuRoot navigate={({ value, node }) => navigate(`/${value}`)}>
+    <Menu.Root navigate={({ value, node }) => navigate(`/${value}`)}>
       {/* ... */}
-    </MenuRoot>
+    </Menu.Root>
   )
 }
 ```
@@ -125,6 +128,7 @@ Use the `positioning.placement` prop to control the placement of the menu.
 ### Anchor Point
 
 Use the `positioning.anchorPoint` prop to control the anchor point of the menu.
+
 You can derive it from the `getBoundingClientRect` of a DOM element, or use
 something like `DOMRect.fromRect({ x: 0, y: 0, width: 1, height: 1 })` to create
 a new rect.

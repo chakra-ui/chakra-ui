@@ -13,16 +13,12 @@ import {
   Center,
   Container,
   HStack,
+  Menu,
+  Portal,
   Span,
   Stack,
   Tabs,
 } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
 import { PinInput } from "compositions/ui/pin-input"
 import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
@@ -106,28 +102,32 @@ const ComponentDemos = () => {
 
       <DemoFrame id="menu">
         <DemoFrameContent>
-          <MenuRoot positioning={{ placement: "bottom" }}>
-            <MenuTrigger asChild>
+          <Menu.Root positioning={{ placement: "bottom" }}>
+            <Menu.Trigger asChild>
               <Button variant="outline" size="sm">
                 Open Menu
               </Button>
-            </MenuTrigger>
-            <MenuContent
-              onKeyDownCapture={(e) => {
-                setTimeout(() => {
-                  if (e.key === "Tab" && !e.shiftKey) {
-                    document.getElementById("switch")?.focus()
-                  } else if (e.key === "Tab" && e.shiftKey) {
-                    document.getElementById("menu")?.focus()
-                  }
-                }, 0)
-              }}
-            >
-              <MenuItem value="new-txt">New Text File</MenuItem>
-              <MenuItem value="new-file">New File...</MenuItem>
-              <MenuItem value="new-win">New Window</MenuItem>
-            </MenuContent>
-          </MenuRoot>
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content
+                  onKeyDownCapture={(e) => {
+                    setTimeout(() => {
+                      if (e.key === "Tab" && !e.shiftKey) {
+                        document.getElementById("switch")?.focus()
+                      } else if (e.key === "Tab" && e.shiftKey) {
+                        document.getElementById("menu")?.focus()
+                      }
+                    }, 0)
+                  }}
+                >
+                  <Menu.Item value="new-txt">New Text File</Menu.Item>
+                  <Menu.Item value="new-file">New File...</Menu.Item>
+                  <Menu.Item value="new-win">New Window</Menu.Item>
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
         </DemoFrameContent>
         <DemoFrameText>Menu</DemoFrameText>
       </DemoFrame>

@@ -1,11 +1,32 @@
-import { Breadcrumb } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Breadcrumb, Menu, Portal } from "@chakra-ui/react"
 import { LuChevronDown } from "react-icons/lu"
+
+interface BreadcrumbMenuItemProps {
+  children: React.ReactNode
+  items: Array<{ label: string; value: string }>
+}
+
+const BreadcrumbMenuItem = (props: BreadcrumbMenuItemProps) => {
+  const { children, items } = props
+  return (
+    <Breadcrumb.Item>
+      <Menu.Root>
+        <Menu.Trigger asChild>{children}</Menu.Trigger>
+        <Portal>
+          <Menu.Positioner>
+            <Menu.Content>
+              {items.map((item) => (
+                <Menu.Item key={item.value} value={item.value}>
+                  {item.label}
+                </Menu.Item>
+              ))}
+            </Menu.Content>
+          </Menu.Positioner>
+        </Portal>
+      </Menu.Root>
+    </Breadcrumb.Item>
+  )
+}
 
 export const BreadcrumbWithMenu = () => {
   return (
@@ -16,21 +37,18 @@ export const BreadcrumbWithMenu = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Separator>/</Breadcrumb.Separator>
 
-        <Breadcrumb.Item>
-          <MenuRoot>
-            <MenuTrigger asChild>
-              <Breadcrumb.Link as="button">
-                Components
-                <LuChevronDown />
-              </Breadcrumb.Link>
-            </MenuTrigger>
-            <MenuContent>
-              <MenuItem value="theme">Theme</MenuItem>
-              <MenuItem value="props">Props</MenuItem>
-              <MenuItem value="custom">Customization</MenuItem>
-            </MenuContent>
-          </MenuRoot>
-        </Breadcrumb.Item>
+        <BreadcrumbMenuItem
+          items={[
+            { label: "Components", value: "components" },
+            { label: "Props", value: "props" },
+            { label: "Customization", value: "customization" },
+          ]}
+        >
+          <Breadcrumb.Link as="button">
+            Components
+            <LuChevronDown />
+          </Breadcrumb.Link>
+        </BreadcrumbMenuItem>
 
         <Breadcrumb.Separator>/</Breadcrumb.Separator>
         <Breadcrumb.Item>

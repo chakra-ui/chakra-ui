@@ -1,37 +1,34 @@
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuItemCommand,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuWithCommand = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem value="new-txt-a">
-          New Text File <MenuItemCommand>⌘E</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="new-file-a">
-          New File... <MenuItemCommand>⌘N</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="new-win-a">
-          New Window <MenuItemCommand>⌘⇧N</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="open-file-a">
-          Open File... <MenuItemCommand>⌘O</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="export-a">
-          Export <MenuItemCommand>⌘S</MenuItemCommand>
-        </MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="new-txt-a">
+              New Text File <Menu.ItemCommand>⌘E</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="new-file-a">
+              New File... <Menu.ItemCommand>⌘N</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="new-win-a">
+              New Window <Menu.ItemCommand>⌘W</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="open-file-a">
+              Open File... <Menu.ItemCommand>⌘O</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="export-a">
+              Export <Menu.ItemCommand>⌘S</Menu.ItemCommand>
+            </Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

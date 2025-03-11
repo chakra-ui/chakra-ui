@@ -211,19 +211,7 @@ function printFileSync(item: CompositionFile) {
   p.log.info(boxText)
 }
 
-const RECOMMENDED_SNIPPETS = [
-  "provider",
-  "avatar",
-  "checkbox",
-  "radio",
-  "input-group",
-  "slider",
-  "popover",
-  "dialog",
-  "drawer",
-  "tooltip",
-  "field",
-]
+const RECOMMENDED_SNIPPETS = ["provider", "toaster", "tooltip"]
 
 function getComponents(opts: {
   components: string[]

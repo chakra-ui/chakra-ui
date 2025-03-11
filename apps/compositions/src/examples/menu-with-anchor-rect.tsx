@@ -1,40 +1,33 @@
 "use client"
 
-import { Box, Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Box, Button, Menu, Portal } from "@chakra-ui/react"
 import { useRef } from "react"
 
 export const MenuWithAnchorRect = () => {
   const ref = useRef<HTMLDivElement | null>(null)
+  const getAnchorRect = () => ref.current!.getBoundingClientRect()
 
   return (
-    <MenuRoot
-      positioning={{
-        getAnchorRect() {
-          return ref.current!.getBoundingClientRect()
-        },
-      }}
-    >
-      <MenuTrigger asChild>
+    <Menu.Root positioning={{ getAnchorRect }}>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </MenuTrigger>
+      </Menu.Trigger>
       <Box layerStyle="fill.subtle" p="4" ref={ref} mt="4">
         Anchor
       </Box>
-      <MenuContent>
-        <MenuItem value="new-txt">New Text File</MenuItem>
-        <MenuItem value="new-file">New File...</MenuItem>
-        <MenuItem value="new-win">New Window</MenuItem>
-        <MenuItem value="open-file">Open File...</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="new-txt">New Text File</Menu.Item>
+            <Menu.Item value="new-file">New File...</Menu.Item>
+            <Menu.Item value="new-win">New Window</Menu.Item>
+            <Menu.Item value="open-file">Open File...</Menu.Item>
+            <Menu.Item value="export">Export</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

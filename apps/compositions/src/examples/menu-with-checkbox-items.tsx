@@ -1,39 +1,38 @@
 "use client"
 
-import { Button, useCheckboxGroup } from "@chakra-ui/react"
-import {
-  MenuCheckboxItem,
-  MenuContent,
-  MenuItemGroup,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal, useCheckboxGroup } from "@chakra-ui/react"
 import { HiCog } from "react-icons/hi"
 
 export const MenuWithCheckboxItems = () => {
-  const group = useCheckboxGroup({ defaultValue: ["bar"] })
+  const group = useCheckboxGroup({ defaultValue: ["autosave"] })
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           <HiCog /> Features
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItemGroup title="Features">
-          {items.map(({ title, value }) => (
-            <MenuCheckboxItem
-              key={value}
-              value={value}
-              checked={group.isChecked(value)}
-              onCheckedChange={() => group.toggleValue(value)}
-            >
-              {title}
-            </MenuCheckboxItem>
-          ))}
-        </MenuItemGroup>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.ItemGroup>
+              <Menu.ItemGroupLabel>Features</Menu.ItemGroupLabel>
+              {items.map(({ title, value }) => (
+                <Menu.CheckboxItem
+                  key={value}
+                  value={value}
+                  checked={group.isChecked(value)}
+                  onCheckedChange={() => group.toggleValue(value)}
+                >
+                  {title}
+                  <Menu.ItemIndicator />
+                </Menu.CheckboxItem>
+              ))}
+            </Menu.ItemGroup>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }
 

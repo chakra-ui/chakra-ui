@@ -8,6 +8,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { CheckIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -210,7 +211,10 @@ export interface MenuItemIndicatorProps
 export const MenuItemIndicator = withContext<
   HTMLDivElement,
   MenuItemIndicatorProps
->(ArkMenu.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+>(ArkMenu.ItemIndicator, "itemIndicator", {
+  forwardAsChild: true,
+  defaultProps: { children: <CheckIcon boxSize="4" /> },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

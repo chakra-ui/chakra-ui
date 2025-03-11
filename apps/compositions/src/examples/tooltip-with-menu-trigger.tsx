@@ -1,36 +1,34 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
 import { useId } from "react"
 
 export const TooltipWithMenuTrigger = () => {
   const triggerId = useId()
   return (
-    <MenuRoot ids={{ trigger: triggerId }}>
+    <Menu.Root ids={{ trigger: triggerId }}>
       <Tooltip
         ids={{ trigger: triggerId }}
         positioning={{ placement: "top" }}
         content="Tooltip content"
       >
-        <MenuTrigger asChild>
+        <Menu.Trigger asChild>
           <Button variant="outline" size="sm">
             Open
           </Button>
-        </MenuTrigger>
+        </Menu.Trigger>
       </Tooltip>
-      <MenuContent>
-        <MenuItem value="new-txt">Open tooltip</MenuItem>
-        <MenuItem value="new-file">New File...</MenuItem>
-        <MenuItem value="new-win">New Window</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="new-txt">Open tooltip</Menu.Item>
+            <Menu.Item value="new-file">New File...</Menu.Item>
+            <Menu.Item value="new-win">New Window</Menu.Item>
+            <Menu.Item value="export">Export</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

@@ -1,34 +1,40 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuRadioItem,
-  MenuRadioItemGroup,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 import { useState } from "react"
 import { HiSortAscending } from "react-icons/hi"
 
 export const MenuWithRadioItems = () => {
   const [value, setValue] = useState("asc")
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           <HiSortAscending /> Sort
         </Button>
-      </MenuTrigger>
-      <MenuContent minW="10rem">
-        <MenuRadioItemGroup
-          value={value}
-          onValueChange={(e) => setValue(e.value)}
-        >
-          <MenuRadioItem value="asc">Ascending</MenuRadioItem>
-          <MenuRadioItem value="desc">Descending</MenuRadioItem>
-        </MenuRadioItemGroup>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content minW="10rem">
+            <Menu.RadioItemGroup
+              value={value}
+              onValueChange={(e) => setValue(e.value)}
+            >
+              {items.map((item) => (
+                <Menu.RadioItem key={item.value} value={item.value}>
+                  {item.label}
+                  <Menu.ItemIndicator />
+                </Menu.RadioItem>
+              ))}
+            </Menu.RadioItemGroup>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }
+
+const items = [
+  { label: "Ascending", value: "asc" },
+  { label: "Descending", value: "desc" },
+]
