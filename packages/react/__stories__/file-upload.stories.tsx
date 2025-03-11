@@ -14,6 +14,7 @@ export default {
 
 export { FileUploadAcceptedFiles as AcceptedFiles } from "compositions/examples/file-upload-accepted-files"
 export { FileUploadBasic as Basic } from "compositions/examples/file-upload-basic"
+export { FileUploadCustomPreview as CustomPreview } from "compositions/examples/file-upload-custom-preview"
 export { FileUploadDirectory as Directory } from "compositions/examples/file-upload-directory"
 export { FileUploadInDialog as Dialog } from "compositions/examples/file-upload-in-dialog"
 export { FileUploadMediaCapture as MediaCapture } from "compositions/examples/file-upload-media-capture"

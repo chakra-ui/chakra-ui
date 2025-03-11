@@ -46,7 +46,7 @@ export const globalCss = defineGlobalStyles({
     lineHeight: "1.5",
     colorPalette: "gray",
   },
-  "*::placeholder": {
+  "*::placeholder, *[data-placeholder]": {
     color: "fg.muted/80",
   },
   "*::selection": {

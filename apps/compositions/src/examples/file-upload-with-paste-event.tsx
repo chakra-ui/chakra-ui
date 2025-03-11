@@ -2,7 +2,6 @@
 
 import {
   FileUpload,
-  FileUploadItemPreviewImage,
   Float,
   HStack,
   Input,
@@ -45,7 +44,7 @@ const FileImageList = () => {
               <HiX />
             </FileUpload.ItemDeleteTrigger>
           </Float>
-          <FileUploadItemPreviewImage
+          <FileUpload.ItemPreviewImage
             boxSize="12"
             rounded="l1"
             objectFit="cover"

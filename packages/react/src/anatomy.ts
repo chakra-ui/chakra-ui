@@ -105,6 +105,7 @@ export const fieldsetAnatomy = arkFieldsetAnatomy.extendWith("content")
 export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
   "itemContent",
   "dropzoneContent",
+  "fileText",
 )
 
 export const listAnatomy = createAnatomy("list").parts(

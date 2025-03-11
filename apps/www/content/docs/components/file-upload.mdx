@@ -10,40 +10,104 @@ links:
 
 <ExampleTabs name="file-upload-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`file-upload` snippet
-
-```sh
-npx @chakra-ui/cli snippet add file-upload
-```
-
-The snippet includes a closed component composition for the `FileUpload`
-component.
-
 ## Usage
 
 ```jsx
-import {
-  FileUploadList,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "@/components/ui/file-upload"
+import { FileUpload } from "@chakra-ui/react"
 ```
 
 ```jsx
-<FileUploadRoot>
-  <FileUploadTrigger>
-    <Button>
-      <HiUpload /> Upload file
-    </Button>
-  </FileUploadTrigger>
-  <FileUploadList />
-</FileUploadRoot>
+<FileUpload.Root>
+  <FileUpload.HiddenInput />
+  <FileUpload.Label />
+  <FileUpload.Dropzone>
+    <FileUpload.DropzoneContent />
+  </FileUpload.Dropzone>
+  <FileUpload.Trigger />
+  <FileUpload.ItemGroup>
+    <FileUpload.Item>
+      <FileUpload.ItemPreview />
+      <FileUpload.ItemFileName />
+      <FileUpload.ItemSizeText />
+      <FileUpload.ItemDeleteTrigger />
+    </FileUpload.Item>
+  </FileUpload.ItemGroup>
+</FileUpload.Root>
+```
+
+## Shortcuts
+
+The `FileUpload` component also provides a set of shortcuts for common use
+cases.
+
+### FileUploadItems
+
+By default, the `FileUploadItems` shortcut renders the list of uploaded files.
+
+This works:
+
+```tsx
+<FileUpload.ItemGroup>
+  <FileUpload.Context>
+    {({ acceptedFiles }) =>
+      acceptedFiles.map((file) => (
+        <FileUpload.Item key={file.name} file={file}>
+          <FileUpload.ItemPreview />
+          <FileUpload.ItemName />
+          <FileUpload.ItemSizeText />
+          <FileUpload.ItemDeleteTrigger />
+        </FileUpload.Item>
+      ))
+    }
+  </FileUpload.Context>
+</FileUpload.ItemGroup>
+```
+
+This might be more concise, if you don't need to customize the file upload
+items:
+
+```tsx
+<FileUpload.ItemGroup>
+  <FileUpload.Items />
+</FileUpload.ItemGroup>
+```
+
+### FileUploadList
+
+The `FileUploadList` shortcut renders the list of uploaded files. It composes
+the `FileUpload.ItemGroup` and `FileUpload.Items` components.
+
+```tsx
+<FileUpload.List />
+```
+
+is the same as:
+
+```tsx
+<FileUpload.ItemGroup>
+  <FileUpload.Items />
+</FileUpload.ItemGroup>
 ```
 
 ## Examples
+
+### Accepted Files
+
+Define the accepted files for upload using the `accept` prop.
+
+<ExampleTabs name="file-upload-accepted-files" />
+
+### Multiple Files
+
+Upload multiple files at once by using the `maxFiles` prop.
+
+<ExampleTabs name="file-upload-multiple" />
+
+### Custom Preview
+
+Here's an example of how to show a custom image preview for files.
+
+<ExampleTabs name="file-upload-custom-preview" />
 
 ### Directory
 
@@ -61,12 +125,6 @@ and media types.
 > all browsers.
 
 <ExampleTabs name="file-upload-media-capture" />
-
-### Multiple Files
-
-Upload multiple files at once by using the `maxFiles` prop.
-
-<ExampleTabs name="file-upload-multiple" />
 
 ### Dropzone
 
@@ -86,12 +144,6 @@ Use the `FileInput` component to create a trigger that looks like a text input.
 Here's an example of a clearable file upload input.
 
 <ExampleTabs name="file-upload-with-input-clear" />
-
-### Accepted Files
-
-Define the accepted files for upload using the `accept` prop.
-
-<ExampleTabs name="file-upload-accepted-files" />
 
 ### Pasting Files
 

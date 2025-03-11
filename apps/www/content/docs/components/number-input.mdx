@@ -20,7 +20,13 @@ import { NumberInput } from "@chakra-ui/react"
 
 ```tsx
 <NumberInput.Root>
-  <NumberInput.Control />
+  <NumberInput.Label />
+  <NumberInput.ValueText />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+  <NumberInput.Scrubber />
   <NumberInput.Input />
 </NumberInput.Root>
 ```
@@ -45,23 +51,17 @@ The `NumberInput.Control` renders the `NumberInput.IncrementTrigger` and
 This works:
 
 ```tsx
-<NumberInput.Root>
-  <NumberInput.Control>
-    <NumberInput.IncrementTrigger />
-    <NumberInput.DecrementTrigger />
-  </NumberInput.Control>
-  <NumberInput.Input />
-</NumberInput.Root>
+<NumberInput.Control>
+  <NumberInput.IncrementTrigger />
+  <NumberInput.DecrementTrigger />
+</NumberInput.Control>
 ```
 
 This might be more concise, if you don't need to customize the increment or
 decrement triggers:
 
 ```tsx
-<NumberInput.Root>
-  <NumberInput.Control />
-  <NumberInput.Input />
-</NumberInput.Root>
+<NumberInput.Control />
 ```
 
 ## Examples
@@ -173,7 +173,7 @@ command:
 npx @chakra-ui/cli snippet add number-input
 ```
 
-#### Usage
+Here's how to use the it
 
 ```tsx
 <NumberInputRoot>

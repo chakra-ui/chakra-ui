@@ -654,6 +654,7 @@ export type FileUploadSlot =
   | "clearTrigger"
   | "itemContent"
   | "dropzoneContent"
+  | "fileText"
 
 export interface FileUploadVariant {}
 
