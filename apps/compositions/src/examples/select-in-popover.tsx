@@ -1,13 +1,12 @@
 "use client"
 
-import { Button, Popover, Portal, createListCollection } from "@chakra-ui/react"
 import {
-  SelectContent,
-  SelectItem,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+  Button,
+  Popover,
+  Portal,
+  Select,
+  createListCollection,
+} from "@chakra-ui/react"
 
 export const SelectInPopover = () => {
   return (
@@ -23,22 +22,31 @@ export const SelectInPopover = () => {
           <Popover.Content>
             <Popover.Header>Select in Popover</Popover.Header>
             <Popover.Body>
-              <SelectRoot
+              <Select.Root
                 collection={frameworks}
                 size="sm"
                 positioning={{ sameWidth: true, placement: "bottom" }}
               >
-                <SelectTrigger>
-                  <SelectValueText placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent portalled={false} width="full">
-                  {frameworks.items.map((item) => (
-                    <SelectItem item={item} key={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </SelectRoot>
+                <Select.HiddenSelect />
+                <Select.Control>
+                  <Select.Trigger>
+                    <Select.ValueText placeholder="Select" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Select.Positioner>
+                  <Select.Content width="full">
+                    {frameworks.items.map((item) => (
+                      <Select.Item item={item} key={item.value}>
+                        {item.label}
+                        <Select.ItemIndicator />
+                      </Select.Item>
+                    ))}
+                  </Select.Content>
+                </Select.Positioner>
+              </Select.Root>
             </Popover.Body>
           </Popover.Content>
         </Popover.Positioner>

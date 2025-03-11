@@ -1,30 +1,33 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+import { Portal, Select, createListCollection } from "@chakra-ui/react"
 
 export const SelectWithOverflow = () => {
   return (
-    <SelectRoot collection={animeMovies} size="sm" width="240px">
-      <SelectLabel>Select anime</SelectLabel>
-      <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
-      </SelectTrigger>
-      <SelectContent>
-        {animeMovies.items.map((movie) => (
-          <SelectItem item={movie} key={movie.value}>
-            {movie.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </SelectRoot>
+    <Select.Root collection={animeMovies} size="sm" width="240px">
+      <Select.HiddenSelect />
+      <Select.Label>Select anime</Select.Label>
+      <Select.Control>
+        <Select.Trigger>
+          <Select.ValueText placeholder="Select movie" />
+        </Select.Trigger>
+        <Select.IndicatorGroup>
+          <Select.Indicator />
+        </Select.IndicatorGroup>
+      </Select.Control>
+      <Portal>
+        <Select.Positioner>
+          <Select.Content>
+            {animeMovies.items.map((movie) => (
+              <Select.Item item={movie} key={movie.value}>
+                {movie.label}
+                <Select.ItemIndicator />
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Positioner>
+      </Portal>
+    </Select.Root>
   )
 }
 

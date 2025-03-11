@@ -10,40 +10,38 @@ links:
 
 <ExampleTabs name="select-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`select` snippet
-
-```sh
-npx @chakra-ui/cli snippet add select
-```
-
-The snippet includes a closed component composition for the `Select` component.
-
 ## Usage
 
 ```jsx
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "@/components/ui/select"
+import { Select } from "@chakra-ui/react"
 ```
 
 ```jsx
-<SelectRoot>
-  <SelectLabel />
-  <SelectTrigger>
-    <SelectValueText />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem />
-  </SelectContent>
-</SelectRoot>
+<Select.Root>
+  <Select.HiddenSelect />
+  <Select.Label />
+
+  <Select.Control>
+    <Select.Trigger>
+      <Select.ValueText />
+    </Select.Trigger>
+    <Select.IndicatorGroup>
+      <Select.Indicator />
+      <Select.ClearTrigger />
+    </Select.IndicatorGroup>
+  </Select.Control>
+
+  <Select.Positioner>
+    <Select.Content>
+      <Select.Item />
+
+      <Select.ItemGroup>
+        <Select.ItemGroupLabel />
+        <Select.Item />
+      </Select.ItemGroup>
+    </Select.Content>
+  </Select.Positioner>
+</Select.Root>
 ```
 
 ## Examples
@@ -62,7 +60,7 @@ Use the `variant` prop to change the appearance of the select component.
 
 ### Option Group
 
-Use the `SelectItemGroup` component to group select options.
+Use the `Select.ItemGroup` component to group select options.
 
 <ExampleTabs name="select-with-option-group" />
 
@@ -111,6 +109,26 @@ the select component.
 
 <ExampleTabs name="select-with-positioning" />
 
+### Clear Trigger
+
+Render the `Select.ClearTrigger` component to show a clear button. Clicking the
+clear button will clear the selected value.
+
+<ExampleTabs name="select-with-clear" />
+
+### Overflow
+
+When the options are too many, the options will overflow the container due to
+the `maxHeight` set.
+
+<ExampleTabs name="select-with-overflow" />
+
+### Item Description
+
+Here's an example of how to render a description for each item.
+
+<ExampleTabs name="select-with-item-description" />
+
 ### Within Popover
 
 Here's an example of how to use the `Select` within a `Popover` component.
@@ -132,18 +150,17 @@ Here's an example of how to compose the `Select` and the `Avatar`.
 
 <ExampleTabs name="select-with-avatar" />
 
-### Clear Trigger
+### Country Select
 
-Pass the `clearable` prop to the `SelectTrigger`.
+Here's an example of how to use the `Select` component to select a country.
 
-<ExampleTabs name="select-with-clear" />
+<ExampleTabs name="select-with-country" />
 
-### Overflow
+### Icon Button
 
-When the options are too many, the options will overflow the container due to
-the `maxHeight` set.
+Here's an example of how to trigger the select component with an `IconButton`.
 
-<ExampleTabs name="select-with-overflow" />
+<ExampleTabs name="select-with-icon-button" />
 
 ## Props
 

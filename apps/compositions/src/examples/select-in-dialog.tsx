@@ -5,16 +5,9 @@ import {
   CloseButton,
   Dialog,
   Portal,
+  Select,
   createListCollection,
 } from "@chakra-ui/react"
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
 import { useRef } from "react"
 
 export const SelectInDialog = () => {
@@ -35,19 +28,29 @@ export const SelectInDialog = () => {
               <Dialog.Title>Select in Dialog</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-              <SelectRoot collection={frameworks} size="sm">
-                <SelectLabel>Select framework</SelectLabel>
-                <SelectTrigger>
-                  <SelectValueText placeholder="Select movie" />
-                </SelectTrigger>
-                <SelectContent portalRef={contentRef}>
-                  {frameworks.items.map((item) => (
-                    <SelectItem item={item} key={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </SelectRoot>
+              <Select.Root collection={frameworks} size="sm">
+                <Select.HiddenSelect />
+                <Select.Label>Select framework</Select.Label>
+                <Select.Control>
+                  <Select.Trigger>
+                    <Select.ValueText placeholder="Select movie" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Portal container={contentRef}>
+                  <Select.Positioner>
+                    <Select.Content>
+                      {frameworks.items.map((item) => (
+                        <Select.Item item={item} key={item.value}>
+                          {item.label}
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Positioner>
+                </Portal>
+              </Select.Root>
             </Dialog.Body>
             <Dialog.Footer />
           </Dialog.Content>
