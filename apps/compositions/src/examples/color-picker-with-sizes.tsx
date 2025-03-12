@@ -20,6 +20,7 @@ export const ColorPickerWithSizes = () => {
             defaultValue={parseColor("#eb5e41")}
             size={size}
           >
+            <ColorPicker.HiddenInput />
             <ColorPicker.Label>Color ({size})</ColorPicker.Label>
             <ColorPicker.Control>
               <ColorPicker.Input />

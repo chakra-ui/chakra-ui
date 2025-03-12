@@ -1,13 +1,7 @@
 "use client"
 
-import {
-  ColorPicker,
-  HStack,
-  IconButton,
-  Portal,
-  parseColor,
-} from "@chakra-ui/react"
-import { LuCheck, LuPipette } from "react-icons/lu"
+import { ColorPicker, HStack, Portal, parseColor } from "@chakra-ui/react"
+import { LuCheck } from "react-icons/lu"
 
 export const ColorPickerWithSwatches = () => {
   return (
@@ -23,11 +17,7 @@ export const ColorPickerWithSwatches = () => {
           <ColorPicker.Content>
             <ColorPicker.Area />
             <HStack>
-              <ColorPicker.EyeDropperTrigger asChild>
-                <IconButton size="xs" variant="ghost">
-                  <LuPipette />
-                </IconButton>
-              </ColorPicker.EyeDropperTrigger>
+              <ColorPicker.EyeDropper size="xs" variant="outline" />
               <ColorPicker.Sliders />
             </HStack>
             <ColorPicker.SwatchGroup>

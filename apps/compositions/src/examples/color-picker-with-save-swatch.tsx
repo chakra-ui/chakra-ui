@@ -34,7 +34,7 @@ export const ColorPickerWithSaveSwatch = () => {
         <ColorPicker.Trigger data-fit-content>
           <VStack gap="1">
             <LuType />
-            <ColorPicker.Swatch h="2" value={color.toString("css")} />
+            <ColorPicker.ValueSwatch h="2" />
           </VStack>
         </ColorPicker.Trigger>
       </ColorPicker.Control>

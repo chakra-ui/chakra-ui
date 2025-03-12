@@ -9,6 +9,7 @@ export const ColorPickerWithDisabled = () => {
       defaultValue={parseColor("#eb5e41")}
       maxW="200px"
     >
+      <ColorPicker.HiddenInput />
       <ColorPicker.Label>Color</ColorPicker.Label>
       <ColorPicker.Control>
         <ColorPicker.Input />
