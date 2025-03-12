@@ -28,7 +28,7 @@ export const TooltipWithMenuItem = () => {
 const MenuItem = (props: Menu.ItemProps) => {
   const { value, title, ...rest } = props
   return (
-    <Show when={title} fallback={<MenuItem value={value} {...rest} />}>
+    <Show when={title} fallback={<Menu.Item value={value} {...rest} />}>
       <Tooltip
         ids={{ trigger: value }}
         openDelay={200}
@@ -36,7 +36,7 @@ const MenuItem = (props: Menu.ItemProps) => {
         positioning={{ placement: "right" }}
         content={title}
       >
-        <MenuItem value={value} {...rest} />
+        <Menu.Item value={value} {...rest} />
       </Tooltip>
     </Show>
   )
