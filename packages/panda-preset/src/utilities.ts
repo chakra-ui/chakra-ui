@@ -80,4 +80,8 @@ export const utilities = defineUtilities({
     property: "outlineStyle",
     transform: (v) => ({ "--focus-ring-style": v }),
   },
+  boxSize: {
+    values: "sizes",
+    transform: (value) => ({ width: value, height: value }),
+  },
 })
