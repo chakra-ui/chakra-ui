@@ -1,5 +1,5 @@
 {
-  "Root": {
+  "ColorSwatch": {
     "props": {
       "colorPalette": {
         "defaultValue": "gray",
@@ -7,17 +7,17 @@
         "isRequired": false,
         "description": "The color palette of the component"
       },
-      "justify": {
-        "type": "\"start\" | \"center\" | \"end\"",
-        "defaultValue": "start",
+      "size": {
+        "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"inherit\" | \"full\"",
+        "defaultValue": "md",
         "isRequired": false,
-        "description": "The justify of the component"
+        "description": "The size of the component"
       },
-      "variant": {
-        "type": "\"subtle\" | \"solid\" | \"plain\"",
-        "defaultValue": "subtle",
+      "shape": {
+        "type": "\"square\" | \"circle\" | \"rounded\"",
+        "defaultValue": "rounded",
         "isRequired": false,
-        "description": "The variant of the component"
+        "description": "The shape of the component"
       }
     }
   }
