@@ -1,13 +1,15 @@
 import { Button, ButtonGroup, Steps } from "@chakra-ui/react"
 
-export const StepsBasic = () => {
+export const StepsWithTrigger = () => {
   return (
     <Steps.Root defaultValue={1} count={steps.length}>
       <Steps.List>
         {steps.map((step, index) => (
           <Steps.Item key={index} index={index} title={step.title}>
-            <Steps.Indicator />
-            <Steps.Title>{step.title}</Steps.Title>
+            <Steps.Trigger>
+              <Steps.Indicator />
+              <Steps.Title>{step.title}</Steps.Title>
+            </Steps.Trigger>
             <Steps.Separator />
           </Steps.Item>
         ))}

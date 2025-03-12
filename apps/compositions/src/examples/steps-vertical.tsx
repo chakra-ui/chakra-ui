@@ -1,42 +1,55 @@
-import { Button, Group, Stack } from "@chakra-ui/react"
-import {
-  StepsCompletedContent,
-  StepsContent,
-  StepsItem,
-  StepsList,
-  StepsNextTrigger,
-  StepsPrevTrigger,
-  StepsRoot,
-} from "compositions/ui/steps"
+import { Button, ButtonGroup, Stack, Steps } from "@chakra-ui/react"
 
 export const StepsVertical = () => {
   return (
-    <StepsRoot orientation="vertical" height="400px" defaultValue={1} count={3}>
-      <StepsList>
-        <StepsItem index={0} title="Step 1" />
-        <StepsItem index={1} title="Step 2" />
-        <StepsItem index={2} title="Step 3" />
-      </StepsList>
+    <Steps.Root
+      orientation="vertical"
+      height="400px"
+      defaultValue={1}
+      count={steps.length}
+    >
+      <Steps.List>
+        {steps.map((step, index) => (
+          <Steps.Item key={index} index={index} title={step.title}>
+            <Steps.Indicator />
+            <Steps.Title>{step.title}</Steps.Title>
+            <Steps.Separator />
+          </Steps.Item>
+        ))}
+      </Steps.List>
 
       <Stack>
-        <StepsContent index={0}>Step 1</StepsContent>
-        <StepsContent index={1}>Step 2</StepsContent>
-        <StepsContent index={2}>Step 3</StepsContent>
-        <StepsCompletedContent>All steps are complete!</StepsCompletedContent>
+        {steps.map((step, index) => (
+          <Steps.Content key={index} index={index}>
+            {step.description}
+          </Steps.Content>
+        ))}
+        <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>
 
-        <Group>
-          <StepsPrevTrigger asChild>
-            <Button variant="outline" size="sm">
-              Prev
-            </Button>
-          </StepsPrevTrigger>
-          <StepsNextTrigger asChild>
-            <Button variant="outline" size="sm">
-              Next
-            </Button>
-          </StepsNextTrigger>
-        </Group>
+        <ButtonGroup size="sm" variant="outline">
+          <Steps.PrevTrigger asChild>
+            <Button>Prev</Button>
+          </Steps.PrevTrigger>
+          <Steps.NextTrigger asChild>
+            <Button>Next</Button>
+          </Steps.NextTrigger>
+        </ButtonGroup>
       </Stack>
-    </StepsRoot>
+    </Steps.Root>
   )
 }
+
+const steps = [
+  {
+    title: "Step 1",
+    description: "Step 1 description",
+  },
+  {
+    title: "Step 2",
+    description: "Step 2 description",
+  },
+  {
+    title: "Step 3",
+    description: "Step 3 description",
+  },
+]

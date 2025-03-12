@@ -1,41 +1,50 @@
-import { Button, Group } from "@chakra-ui/react"
-import {
-  StepsCompletedContent,
-  StepsContent,
-  StepsItem,
-  StepsList,
-  StepsNextTrigger,
-  StepsPrevTrigger,
-  StepsRoot,
-} from "compositions/ui/steps"
-import { LuCalendar, LuUser, LuWallet } from "react-icons/lu"
+import { Button, ButtonGroup, Steps } from "@chakra-ui/react"
+import { LuCalendar, LuCheck, LuUser, LuWallet } from "react-icons/lu"
 
 export const StepsWithIcon = () => {
   return (
-    <StepsRoot defaultValue={1} count={3}>
-      <StepsList>
-        <StepsItem index={0} icon={<LuUser />} />
-        <StepsItem index={1} icon={<LuWallet />} />
-        <StepsItem index={2} icon={<LuCalendar />} />
-      </StepsList>
+    <Steps.Root defaultValue={1} count={steps.length} size="sm">
+      <Steps.List>
+        {steps.map((step, index) => (
+          <Steps.Item key={index} index={index}>
+            <Steps.Indicator>
+              <Steps.Status incomplete={step.icon} complete={<LuCheck />} />
+            </Steps.Indicator>
+            <Steps.Separator />
+          </Steps.Item>
+        ))}
+      </Steps.List>
 
-      <StepsContent index={0}>Contact Details</StepsContent>
-      <StepsContent index={1}>Payment</StepsContent>
-      <StepsContent index={2}>Book an Appointment</StepsContent>
-      <StepsCompletedContent>All steps are complete!</StepsCompletedContent>
+      {steps.map((step, index) => (
+        <Steps.Content key={index} index={index}>
+          {step.description}
+        </Steps.Content>
+      ))}
+      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>
 
-      <Group>
-        <StepsPrevTrigger asChild>
-          <Button variant="outline" size="sm">
-            Prev
-          </Button>
-        </StepsPrevTrigger>
-        <StepsNextTrigger asChild>
-          <Button variant="outline" size="sm">
-            Next
-          </Button>
-        </StepsNextTrigger>
-      </Group>
-    </StepsRoot>
+      <ButtonGroup size="sm" variant="outline">
+        <Steps.PrevTrigger asChild>
+          <Button>Prev</Button>
+        </Steps.PrevTrigger>
+        <Steps.NextTrigger asChild>
+          <Button>Next</Button>
+        </Steps.NextTrigger>
+      </ButtonGroup>
+    </Steps.Root>
   )
 }
+
+const steps = [
+  {
+    icon: <LuUser />,
+    description: "Contact Details",
+  },
+  {
+    icon: <LuWallet />,
+    description: "Payment",
+  },
+  {
+    icon: <LuCalendar />,
+    description: "Book an Appointment",
+  },
+]

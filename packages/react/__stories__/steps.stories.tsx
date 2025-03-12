@@ -21,3 +21,4 @@ export { StepsWithDescription as Description } from "compositions/examples/steps
 export { StepsWithIcon as Icon } from "compositions/examples/steps-with-icon"
 export { StepsWithLines as Lines } from "compositions/examples/steps-with-lines"
 export { StepsWithStore as Store } from "compositions/examples/steps-with-store"
+export { StepsWithTrigger as Trigger } from "compositions/examples/steps-with-trigger"
