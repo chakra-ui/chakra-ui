@@ -11,7 +11,7 @@ import {
 } from "compositions/ui/select"
 
 const SelectValueItem = () => (
-  <SelectValueText placeholder="Select movie">
+  <SelectValueText placeholder="Select member">
     {(items: Array<{ name: string; avatar: string }>) => {
       const { name, avatar } = items[0]
       return (

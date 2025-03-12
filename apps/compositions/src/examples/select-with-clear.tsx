@@ -20,12 +20,12 @@ export const SelectWithClear = () => {
     >
       <SelectLabel>Select fav. anime</SelectLabel>
       <SelectTrigger clearable>
-        <SelectValueText placeholder="Select movie" />
+        <SelectValueText placeholder="Select anime" />
       </SelectTrigger>
       <SelectContent>
-        {animeMovies.items.map((movie) => (
-          <SelectItem item={movie} key={movie.value}>
-            {movie.label}
+        {animeMovies.items.map((item) => (
+          <SelectItem item={item} key={item.value}>
+            {item.label}
           </SelectItem>
         ))}
       </SelectContent>

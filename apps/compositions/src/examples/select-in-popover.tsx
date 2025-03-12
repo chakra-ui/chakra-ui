@@ -29,7 +29,7 @@ export const SelectInPopover = () => {
                 positioning={{ sameWidth: true, placement: "bottom" }}
               >
                 <SelectTrigger>
-                  <SelectValueText placeholder="Select" />
+                  <SelectValueText placeholder="Select framework" />
                 </SelectTrigger>
                 <SelectContent portalled={false} width="full">
                   {frameworks.items.map((item) => (

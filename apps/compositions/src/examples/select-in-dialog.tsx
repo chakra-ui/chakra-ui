@@ -38,7 +38,7 @@ export const SelectInDialog = () => {
               <SelectRoot collection={frameworks} size="sm">
                 <SelectLabel>Select framework</SelectLabel>
                 <SelectTrigger>
-                  <SelectValueText placeholder="Select movie" />
+                  <SelectValueText placeholder="Select framework" />
                 </SelectTrigger>
                 <SelectContent portalRef={contentRef}>
                   {frameworks.items.map((item) => (

@@ -15,12 +15,12 @@ export const SelectWithDisabled = () => {
     <SelectRoot disabled collection={frameworks} size="sm" width="320px">
       <SelectLabel>Select framework</SelectLabel>
       <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
+        <SelectValueText placeholder="Select framework" />
       </SelectTrigger>
       <SelectContent>
-        {frameworks.items.map((movie) => (
-          <SelectItem item={movie} key={movie.value}>
-            {movie.label}
+        {frameworks.items.map((item) => (
+          <SelectItem item={item} key={item.value}>
+            {item.label}
           </SelectItem>
         ))}
       </SelectContent>

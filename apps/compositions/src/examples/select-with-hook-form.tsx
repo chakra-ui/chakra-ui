@@ -33,7 +33,7 @@ export const SelectWithHookForm = () => {
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
         <Field.Root invalid={!!errors.framework} width="320px">
-          <Field.Label>Rating</Field.Label>
+          <Field.Label>Select framework</Field.Label>
           <Controller
             control={control}
             name="framework"
@@ -46,12 +46,12 @@ export const SelectWithHookForm = () => {
                 collection={frameworks}
               >
                 <SelectTrigger>
-                  <SelectValueText placeholder="Select movie" />
+                  <SelectValueText placeholder="Select framework" />
                 </SelectTrigger>
                 <SelectContent>
-                  {frameworks.items.map((movie) => (
-                    <SelectItem item={movie} key={movie.value}>
-                      {movie.label}
+                  {frameworks.items.map((item) => (
+                    <SelectItem item={item} key={item.value}>
+                      {item.label}
                     </SelectItem>
                   ))}
                 </SelectContent>

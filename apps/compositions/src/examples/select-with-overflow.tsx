@@ -15,12 +15,12 @@ export const SelectWithOverflow = () => {
     <SelectRoot collection={animeMovies} size="sm" width="240px">
       <SelectLabel>Select anime</SelectLabel>
       <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
+        <SelectValueText placeholder="Select anime" />
       </SelectTrigger>
       <SelectContent>
-        {animeMovies.items.map((movie) => (
-          <SelectItem item={movie} key={movie.value}>
-            {movie.label}
+        {animeMovies.items.map((item) => (
+          <SelectItem item={item} key={item.value}>
+            {item.label}
           </SelectItem>
         ))}
       </SelectContent>

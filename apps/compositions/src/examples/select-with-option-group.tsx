@@ -13,10 +13,10 @@ import {
 
 export const SelectWithOptionGroup = () => {
   return (
-    <SelectRoot collection={frameworks} size="sm" width="320px">
-      <SelectLabel>Select framework</SelectLabel>
+    <SelectRoot collection={collection} size="sm" width="320px">
+      <SelectLabel>Select an option</SelectLabel>
       <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
+        <SelectValueText placeholder="Select an option" />
       </SelectTrigger>
       <SelectContent>
         {categories.map((category) => (
@@ -33,7 +33,7 @@ export const SelectWithOptionGroup = () => {
   )
 }
 
-const frameworks = createListCollection({
+const collection = createListCollection({
   items: [
     { label: "Naruto", value: "naruto", group: "Anime" },
     { label: "One Piece", value: "one-piece", group: "Anime" },
@@ -48,7 +48,7 @@ const frameworks = createListCollection({
   ],
 })
 
-const categories = frameworks.items.reduce(
+const categories = collection.items.reduce(
   (acc, item) => {
     const group = acc.find((group) => group.group === item.group)
     if (group) {
@@ -58,5 +58,5 @@ const categories = frameworks.items.reduce(
     }
     return acc
   },
-  [] as { group: string; items: (typeof frameworks)["items"] }[],
+  [] as { group: string; items: (typeof collection)["items"] }[],
 )
