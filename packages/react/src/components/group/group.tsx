@@ -119,6 +119,10 @@ export interface GroupProps extends HTMLChakraProps<"div", VariantProps> {
    * The `flexWrap` style property
    */
   wrap?: JsxStyleProps["flexWrap"]
+  /**
+   * A function that determines if a child should be skipped
+   */
+  skip?: (child: React.ReactElement) => boolean
 }
 
 export const Group = memo(
@@ -128,29 +132,36 @@ export const Group = memo(
       justify = "flex-start",
       children,
       wrap,
+      skip,
       ...rest
     } = props
 
     const _children = useMemo(() => {
-      const childArray = Children.toArray(children).filter(isValidElement)
-      const count = childArray.length
+      let childArray = Children.toArray(children).filter(isValidElement)
+      if (childArray.length === 1) return childArray
 
-      return childArray.map((child, index) => {
+      const validChildArray = childArray.filter((child) => !skip?.(child))
+      const validChildCount = validChildArray.length
+      if (validChildArray.length === 1) return childArray
+
+      return childArray.map((child) => {
         const childProps = child.props as any
+        if (skip?.(child)) return child
+        const index = validChildArray.indexOf(child)
         return cloneElement(child, {
           ...childProps,
           "data-group-item": "",
           "data-first": dataAttr(index === 0),
-          "data-last": dataAttr(index === count - 1),
-          "data-between": dataAttr(index > 0 && index < count - 1),
+          "data-last": dataAttr(index === validChildCount - 1),
+          "data-between": dataAttr(index > 0 && index < validChildCount - 1),
           style: {
-            "--group-count": count,
+            "--group-count": validChildCount,
             "--group-index": index,
             ...(childProps?.style ?? {}),
           },
         } as any)
       })
-    }, [children])
+    }, [children, skip])
 
     return (
       <StyledGroup

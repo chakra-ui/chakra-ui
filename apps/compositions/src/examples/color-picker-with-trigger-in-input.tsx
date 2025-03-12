@@ -1,7 +1,6 @@
 "use client"
 
-import { ColorPicker, Portal, parseColor } from "@chakra-ui/react"
-import { InputGroup } from "compositions/ui/input-group"
+import { ColorPicker, InputGroup, Portal, parseColor } from "@chakra-ui/react"
 
 export const ColorPickerWithTriggerInInput = () => {
   return (
@@ -10,7 +9,6 @@ export const ColorPickerWithTriggerInInput = () => {
       <ColorPicker.Label>Trigger on swatch</ColorPicker.Label>
       <ColorPicker.Control>
         <InputGroup
-          startOffset="0px"
           startElementProps={{ pointerEvents: "all" }}
           startElement={
             <ColorPicker.Trigger data-fit-content>

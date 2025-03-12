@@ -33,10 +33,12 @@
     "react-icons": "5.5.0",
     "react-lorem-ipsum": "1.4.10",
     "use-mask-input": "3.4.2",
+    "react-payment-inputs": "1.2.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/react-payment-inputs": "1.1.4"
   }
 }

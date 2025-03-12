@@ -1,7 +1,6 @@
 "use client"
 
-import { ColorPicker, parseColor } from "@chakra-ui/react"
-import { InputGroup } from "compositions/ui/input-group"
+import { ColorPicker, InputGroup, parseColor } from "@chakra-ui/react"
 
 export const ColorPickerInputOnly = () => {
   return (
@@ -10,7 +9,6 @@ export const ColorPickerInputOnly = () => {
       <ColorPicker.Label>Color</ColorPicker.Label>
       <ColorPicker.Control>
         <InputGroup
-          startOffset="0px"
           startElement={<ColorPicker.ValueSwatch boxSize="4.5" />}
           endElementProps={{ px: "1" }}
           endElement={<ColorPicker.EyeDropper size="xs" variant="ghost" />}

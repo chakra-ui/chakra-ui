@@ -1,11 +1,10 @@
-import { Clipboard, IconButton, Input } from "@chakra-ui/react"
-import { InputGroup } from "compositions/ui/input-group"
+import { Clipboard, IconButton, Input, InputGroup } from "@chakra-ui/react"
 
 export const ClipboardWithInput = () => {
   return (
     <Clipboard.Root maxW="300px" value="https://chakra-ui.com">
       <Clipboard.Label textStyle="label">Document Link</Clipboard.Label>
-      <InputGroup width="full" endElement={<ClipboardIconButton />}>
+      <InputGroup endElement={<ClipboardIconButton />}>
         <Clipboard.Input asChild>
           <Input />
         </Clipboard.Input>
