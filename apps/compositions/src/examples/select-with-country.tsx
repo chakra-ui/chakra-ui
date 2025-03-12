@@ -1,3 +1,5 @@
+"use client"
+
 import { Portal, Select, createListCollection } from "@chakra-ui/react"
 import { groupBy } from "es-toolkit"
 
