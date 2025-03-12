@@ -4,9 +4,7 @@ import { InputGroup } from "compositions/ui/input-group"
 export const ClipboardWithInput = () => {
   return (
     <Clipboard.Root maxW="300px" value="https://sharechakra-ui.com/dfr3def">
-      <Clipboard.Label textStyle="label" mb="5">
-        Document Link
-      </Clipboard.Label>
+      <Clipboard.Label textStyle="label">Document Link</Clipboard.Label>
       <InputGroup width="full" endElement={<ClipboardIconButton />}>
         <Clipboard.Input asChild>
           <Input />
