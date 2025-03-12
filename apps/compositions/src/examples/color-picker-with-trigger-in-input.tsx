@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorPicker, parseColor } from "@chakra-ui/react"
+import { ColorPicker, Portal, parseColor } from "@chakra-ui/react"
 import { InputGroup } from "compositions/ui/input-group"
 
 export const ColorPickerWithTriggerInInput = () => {
@@ -25,10 +25,14 @@ export const ColorPickerWithTriggerInInput = () => {
           <ColorPicker.Input />
         </InputGroup>
       </ColorPicker.Control>
-      <ColorPicker.Content>
-        <ColorPicker.Area />
-        <ColorPicker.Sliders />
-      </ColorPicker.Content>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <ColorPicker.Area />
+            <ColorPicker.Sliders />
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
     </ColorPicker.Root>
   )
 }
