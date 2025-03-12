@@ -19,19 +19,23 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export const SelectWithHookForm = () => {
-  const form = useForm<FormValues>({
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   })
 
-  const onSubmit = form.handleSubmit((data) => console.log(data))
+  const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
-        <Field.Root invalid={!!form.formState.errors.framework} width="320px">
+        <Field.Root invalid={!!errors.framework} width="320px">
           <Field.Label>Framework</Field.Label>
           <Controller
-            control={form.control}
+            control={control}
             name="framework"
             render={({ field }) => (
               <Select.Root
@@ -65,9 +69,7 @@ export const SelectWithHookForm = () => {
               </Select.Root>
             )}
           />
-          <Field.ErrorText>
-            {form.formState.errors.framework?.message}
-          </Field.ErrorText>
+          <Field.ErrorText>{errors.framework?.message}</Field.ErrorText>
         </Field.Root>
 
         <Button size="sm" type="submit">
