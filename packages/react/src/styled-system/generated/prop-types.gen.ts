@@ -228,7 +228,7 @@ export interface UtilityValues {
   caretColor: Tokens["colors"] | "currentBg"
   cursor: Tokens["cursor"]
   divideStyle: CssProperties["borderStyle"]
-  textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "none"
+  textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "none" | "label"
   layerStyle:
     | "fill.muted"
     | "fill.subtle"

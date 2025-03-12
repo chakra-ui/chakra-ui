@@ -1,34 +1,38 @@
 "use client"
 
-import { ColorPickerChannelInput, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerRoot,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
+import { ColorPicker, Portal, parseColor } from "@chakra-ui/react"
+import { LuCheck } from "react-icons/lu"
 
 export const ColorPickerWithSwatchAndInput = () => {
   return (
-    <ColorPickerRoot
+    <ColorPicker.Root
       size="xs"
       defaultValue={parseColor("#eb5e41")}
       maxW="200px"
     >
-      <ColorPickerControl>
-        <ColorPickerTrigger />
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerSwatchGroup>
-          {swatches.map((item) => (
-            <ColorPickerSwatchTrigger key={item} value={item} />
-          ))}
-        </ColorPickerSwatchGroup>
-        <ColorPickerChannelInput channel="hex" />
-      </ColorPickerContent>
-    </ColorPickerRoot>
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Control>
+        <ColorPicker.Trigger />
+      </ColorPicker.Control>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <ColorPicker.SwatchGroup>
+              {swatches.map((item) => (
+                <ColorPicker.SwatchTrigger key={item} value={item}>
+                  <ColorPicker.Swatch value={item}>
+                    <ColorPicker.SwatchIndicator>
+                      <LuCheck />
+                    </ColorPicker.SwatchIndicator>
+                  </ColorPicker.Swatch>
+                </ColorPicker.SwatchTrigger>
+              ))}
+            </ColorPicker.SwatchGroup>
+            <ColorPicker.ChannelInput channel="hex" />
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
+    </ColorPicker.Root>
   )
 }
 

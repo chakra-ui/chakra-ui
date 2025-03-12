@@ -2,26 +2,16 @@
 
 import {
   Button,
+  ColorPicker,
   HStack,
   IconButton,
+  Portal,
   Show,
   VStack,
   parseColor,
 } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
-  ColorPickerTrigger,
-  ColorPickerValueSwatch,
-} from "compositions/ui/color-picker"
 import { useState } from "react"
-import { LuPlus, LuType } from "react-icons/lu"
+import { LuCheck, LuPlus, LuType } from "react-icons/lu"
 
 export const ColorPickerWithSaveSwatch = () => {
   const [color, setColor] = useState(parseColor("#000"))
@@ -34,51 +24,62 @@ export const ColorPickerWithSaveSwatch = () => {
   ])
 
   return (
-    <ColorPickerRoot
+    <ColorPicker.Root
       defaultValue={color}
       onValueChange={(e) => setColor(e.value)}
       maxW="200px"
     >
-      <ColorPickerControl>
-        <ColorPickerTrigger>
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Control>
+        <ColorPicker.Trigger data-fit-content>
           <VStack gap="1">
             <LuType />
-            <ColorPickerValueSwatch h="2" />
+            <ColorPicker.Swatch h="2" value={color.toString("css")} />
           </VStack>
-        </ColorPickerTrigger>
-      </ColorPickerControl>
+        </ColorPicker.Trigger>
+      </ColorPicker.Control>
 
-      <ColorPickerContent>
-        <Show when={view === "picker"}>
-          <ColorPickerArea />
-          <HStack>
-            <ColorPickerEyeDropper />
-            <ColorPickerSliders />
-          </HStack>
-          <Button
-            onClick={() => {
-              setSwatches((prev) => [...prev, color.toString("css")])
-              setView("swatch")
-            }}
-          >
-            Save Swatch
-          </Button>
-        </Show>
-        <Show when={view === "swatch"}>
-          <ColorPickerSwatchGroup>
-            {swatches.map((swatch) => (
-              <ColorPickerSwatchTrigger key={swatch} value={swatch} />
-            ))}
-            <IconButton
-              variant="outline"
-              size="xs"
-              onClick={() => setView("picker")}
-            >
-              <LuPlus />
-            </IconButton>
-          </ColorPickerSwatchGroup>
-        </Show>
-      </ColorPickerContent>
-    </ColorPickerRoot>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <Show when={view === "picker"}>
+              <ColorPicker.Area />
+              <HStack>
+                <ColorPicker.EyeDropper size="sm" variant="outline" />
+                <ColorPicker.Sliders />
+              </HStack>
+              <Button
+                onClick={() => {
+                  setSwatches((prev) => [...prev, color.toString("css")])
+                  setView("swatch")
+                }}
+              >
+                Save Swatch
+              </Button>
+            </Show>
+            <Show when={view === "swatch"}>
+              <ColorPicker.SwatchGroup>
+                {swatches.map((swatch) => (
+                  <ColorPicker.SwatchTrigger key={swatch} value={swatch}>
+                    <ColorPicker.Swatch value={swatch}>
+                      <ColorPicker.SwatchIndicator>
+                        <LuCheck />
+                      </ColorPicker.SwatchIndicator>
+                    </ColorPicker.Swatch>
+                  </ColorPicker.SwatchTrigger>
+                ))}
+                <IconButton
+                  variant="outline"
+                  size="xs"
+                  onClick={() => setView("picker")}
+                >
+                  <LuPlus />
+                </IconButton>
+              </ColorPicker.SwatchGroup>
+            </Show>
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
+    </ColorPicker.Root>
   )
 }

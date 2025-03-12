@@ -11,47 +11,93 @@ links:
 
 <ExampleTabs name="color-picker-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`color-picker` snippet
-
-```sh
-npx @chakra-ui/cli snippet add color-picker
-```
-
-The snippet includes a closed component composition for the `ColorPicker`
-component.
-
 ## Usage
 
 ```jsx
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-} from "@/components/ui/color-picker"
+import { ColorPicker } from "@chakra-ui/react"
 ```
 
 ```jsx
-<ColorPickerRoot>
-  <ColorPickerLabel />
-  <ColorPickerControl>
-    <ColorPickerInput />
-    <ColorPickerTrigger />
-  </ColorPickerControl>
-  <ColorPickerContent>
-    <ColorPickerArea />
-    <ColorPickerEyeDropper />
-    <ColorPickerSliders />
-  </ColorPickerContent>
-</ColorPickerRoot>
+<ColorPicker.Root>
+  <ColorPicker.HiddenInput />
+  <ColorPicker.Label />
+  <ColorPicker.Control>
+    <ColorPicker.Input />
+    <ColorPicker.Trigger />
+  </ColorPicker.Control>
+  <ColorPicker.Positioner>
+    <ColorPicker.Content>
+      <ColorPicker.Area />
+      <ColorPicker.EyeDropper />
+      <ColorPicker.Sliders />
+      <ColorPicker.SwatchGroup>
+        <ColorPicker.SwatchTrigger>
+          <ColorPicker.Swatch />
+        </ColorPicker.SwatchTrigger>
+      </ColorPicker.SwatchGroup>
+    </ColorPicker.Content>
+  </ColorPicker.Positioner>
+</ColorPicker.Root>
+```
+
+## Shortcuts
+
+### ColorPicker.ChannelSlider
+
+This component renders the slider track, thumb and transparency grid.
+
+```tsx
+<ColorPicker.ChannelSlider />
+```
+
+is the same as:
+
+```tsx
+<ColorPicker.ChannelSlider>
+  <ColorPickerTransparencyGrid />
+  <ColorPickerChannelSliderTrack />
+  <ColorPickerChannelSliderThumb />
+</ColorPicker.ChannelSlider>
+```
+
+### ColorPicker.Sliders
+
+This is a shortcut component for the hue and alpha sliders:
+
+```tsx
+<Stack>
+  <ColorPickerChannelSlider channel="hue" />
+  <ColorPickerChannelSlider channel="alpha" />
+</Stack>
+```
+
+### ColorPicker.Area
+
+This component renders the color area thumb and background.
+
+```tsx
+<ColorPicker.Area>
+  <ColorPicker.AreaThumb />
+  <ColorPicker.AreaBackground />
+</ColorPicker.Area>
+```
+
+is the same as:
+
+```tsx
+<ColorPicker.Area />
+```
+
+### ColorPicker.EyeDropper
+
+This is a shortcut component for:
+
+```tsx
+<ColorPicker.EyeDropperTrigger asChild>
+  <IconButton>
+    <LuPipette />
+  </IconButton>
+</ColorPicker.EyeDropperTrigger>
 ```
 
 ## Examples
@@ -71,14 +117,14 @@ can be either `outline` or `subtle`.
 
 ### Input Only
 
-Combine the `ColorPickerValueSwatch` and the `ColorPickerEyeDropper` on the
+Combine the `ColorPicker.ValueSwatch` and the `ColorPicker.EyeDropper` on the
 `InputGroup` to render a color picker that contains only an input.
 
 <ExampleTabs name="color-picker-input-only" />
 
 ### Swatch Only
 
-Use the `ColorPickerSwatchGroup` and `ColorPickerSwatchTrigger` to render only
+Use the `ColorPicker.SwatchGroup` and `ColorPicker.SwatchTrigger` to render only
 the color swatches.
 
 <ExampleTabs name="color-picker-swatch-only" />
@@ -86,7 +132,7 @@ the color swatches.
 ### Trigger Only
 
 Compose the color picker to initially show only a trigger using the
-`ColorPickerValueSwatch` and `ColorPickerValueText`.
+`ColorPicker.ValueSwatch` and `ColorPicker.ValueText`.
 
 <ExampleTabs name="color-picker-trigger-only" />
 
@@ -136,8 +182,7 @@ Here's an example of how to integrate the color picker with `react-hook-form`.
 
 ### Inline
 
-Use the `ColorPickerInlineContent` and pass `open` to the `ColorPickerRoot` to
-display an inline version of the color picker.
+Here's an example of how to display an inline version of the color picker.
 
 <ExampleTabs name="color-picker-inline" />
 
@@ -149,7 +194,7 @@ Pass the `disabled` prop to disable the color picker.
 
 ### Channel Input
 
-Use the `ChannelFormatSelect` and `ColorPickerChannelInputs` to create a color
+Use the `ChannelFormat.Select` and `ColorPicker.ChannelInput` to create a color
 picker that allows users to select their preferred channel.
 
 <ExampleTabs name="color-picker-with-channel-input" />

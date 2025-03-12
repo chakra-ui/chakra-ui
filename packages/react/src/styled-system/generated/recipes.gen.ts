@@ -1241,6 +1241,7 @@ export type ColorPickerSlot =
   | "formatTrigger"
   | "formatSelect"
   | "view"
+  | "channelText"
 
 export interface ColorPickerVariant {
   /** @default "md" */

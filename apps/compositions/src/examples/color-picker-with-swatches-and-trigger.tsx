@@ -1,33 +1,27 @@
 "use client"
 
-import { HStack, Square, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
-  ColorPickerTrigger,
-  ColorPickerValueText,
-} from "compositions/ui/color-picker"
-import { LuPlus } from "react-icons/lu"
+import { ColorPicker, HStack, Square, parseColor } from "@chakra-ui/react"
+import { LuCheck, LuPlus } from "react-icons/lu"
 
 export const ColorPickerWithSwatchesAndTrigger = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>
-        Color: <ColorPickerValueText />
-      </ColorPickerLabel>
-      <ColorPickerControl>
-        <ColorPickerSwatchGroup>
+    <ColorPicker.Root defaultValue={parseColor("#eb5e41")} maxW="200px">
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Label>
+        Color: <ColorPicker.ValueText />
+      </ColorPicker.Label>
+      <ColorPicker.Control>
+        <ColorPicker.SwatchGroup>
           {swatches.map((item) => (
-            <ColorPickerSwatchTrigger key={item} value={item} />
+            <ColorPicker.SwatchTrigger key={item} value={item}>
+              <ColorPicker.Swatch value={item}>
+                <ColorPicker.SwatchIndicator>
+                  <LuCheck />
+                </ColorPicker.SwatchIndicator>
+              </ColorPicker.Swatch>
+            </ColorPicker.SwatchTrigger>
           ))}
-          <ColorPickerTrigger textStyle="lg">
+          <ColorPicker.Trigger textStyle="lg">
             <Square
               size="7"
               bgSize="cover"
@@ -37,17 +31,17 @@ export const ColorPickerWithSwatchesAndTrigger = () => {
             >
               <LuPlus />
             </Square>
-          </ColorPickerTrigger>
-        </ColorPickerSwatchGroup>
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerArea />
+          </ColorPicker.Trigger>
+        </ColorPicker.SwatchGroup>
+      </ColorPicker.Control>
+      <ColorPicker.Content>
+        <ColorPicker.Area />
         <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
+          <ColorPicker.EyeDropper size="xs" variant="outline" />
+          <ColorPicker.Sliders />
         </HStack>
-      </ColorPickerContent>
-    </ColorPickerRoot>
+      </ColorPicker.Content>
+    </ColorPicker.Root>
   )
 }
 

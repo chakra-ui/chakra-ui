@@ -1,23 +1,22 @@
-import {
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
-  ColorPickerValueText,
-} from "compositions/ui/color-picker"
+import { ColorPicker } from "@chakra-ui/react"
 
 export const ColorPickerSwatchOnly = () => {
   return (
-    <ColorPickerRoot alignItems="flex-start">
-      <ColorPickerLabel>
-        Color: <ColorPickerValueText />
-      </ColorPickerLabel>
-      <ColorPickerSwatchGroup>
+    <ColorPicker.Root alignItems="flex-start">
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Label>
+        Color: <ColorPicker.ValueText />
+      </ColorPicker.Label>
+      <ColorPicker.SwatchGroup>
         {swatches.map((item) => (
-          <ColorPickerSwatchTrigger key={item} value={item} />
+          <ColorPicker.SwatchTrigger key={item} value={item}>
+            <ColorPicker.Swatch value={item}>
+              <ColorPicker.SwatchIndicator boxSize="3" bg="white" />
+            </ColorPicker.Swatch>
+          </ColorPicker.SwatchTrigger>
         ))}
-      </ColorPickerSwatchGroup>
-    </ColorPickerRoot>
+      </ColorPicker.SwatchGroup>
+    </ColorPicker.Root>
   )
 }
 

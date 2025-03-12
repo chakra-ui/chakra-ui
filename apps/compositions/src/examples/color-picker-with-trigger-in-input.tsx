@@ -1,46 +1,34 @@
 "use client"
 
-import { HStack, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-  ColorPickerValueSwatch,
-} from "compositions/ui/color-picker"
+import { ColorPicker, parseColor } from "@chakra-ui/react"
 import { InputGroup } from "compositions/ui/input-group"
 
 export const ColorPickerWithTriggerInInput = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Trigger on swatch</ColorPickerLabel>
-      <ColorPickerControl>
+    <ColorPicker.Root defaultValue={parseColor("#eb5e41")} maxW="200px">
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Label>Trigger on swatch</ColorPicker.Label>
+      <ColorPicker.Control>
         <InputGroup
           startOffset="0px"
           startElementProps={{ pointerEvents: "all" }}
           startElement={
-            <ColorPickerTrigger fitContent>
-              <ColorPickerValueSwatch boxSize="4.5" />
-            </ColorPickerTrigger>
+            <ColorPicker.Trigger data-fit-content>
+              <ColorPicker.ValueSwatch boxSize="4.5" />
+            </ColorPicker.Trigger>
           }
           endElementProps={{ px: "1" }}
-          endElement={<ColorPickerEyeDropper variant="ghost" />}
+          endElement={
+            <ColorPicker.EyeDropperTrigger size="xs" variant="ghost" />
+          }
         >
-          <ColorPickerInput />
+          <ColorPicker.Input />
         </InputGroup>
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerArea />
-        <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
-        </HStack>
-      </ColorPickerContent>
-    </ColorPickerRoot>
+      </ColorPicker.Control>
+      <ColorPicker.Content>
+        <ColorPicker.Area />
+        <ColorPicker.Sliders />
+      </ColorPicker.Content>
+    </ColorPicker.Root>
   )
 }
