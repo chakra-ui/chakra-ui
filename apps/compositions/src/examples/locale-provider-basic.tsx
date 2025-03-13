@@ -10,7 +10,6 @@ export const LocaleProviderBasic = () => {
           بسهولة.
         </Text>
         <Slider.Root defaultValue={[50]}>
-          <Slider.HiddenInput />
           <Slider.Control>
             <Slider.Track>
               <Slider.Range />
