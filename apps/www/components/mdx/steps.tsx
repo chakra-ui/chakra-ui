@@ -1,22 +1,17 @@
-import {
-  TimelineConnector,
-  TimelineContent,
-  TimelineIndicator,
-  TimelineItem,
-  TimelineRoot,
-} from "compositions/ui/timeline"
+import { Timeline } from "@chakra-ui/react"
 import { Children, isValidElement } from "react"
 
 export const Steps = (props: React.PropsWithChildren<{}>) => {
   return (
-    <TimelineRoot mt="10" mb="6" size="xl">
+    <Timeline.Root mt="10" mb="6" size="xl">
       {Children.map(props.children, (child, index) => {
         return (
-          <TimelineItem>
-            <TimelineConnector>
-              <TimelineIndicator rounded="md">{index + 1}</TimelineIndicator>
-            </TimelineConnector>
-            <TimelineContent
+          <Timeline.Item>
+            <Timeline.Connector>
+              <Timeline.Separator />
+              <Timeline.Indicator rounded="md">{index + 1}</Timeline.Indicator>
+            </Timeline.Connector>
+            <Timeline.Content
               maxW="calc(100% - 50px)"
               flex="1"
               pb="8"
@@ -30,10 +25,10 @@ export const Steps = (props: React.PropsWithChildren<{}>) => {
               }}
             >
               {isValidElement(child) ? child.props.children : child}
-            </TimelineContent>
-          </TimelineItem>
+            </Timeline.Content>
+          </Timeline.Item>
         )
       })}
-    </TimelineRoot>
+    </Timeline.Root>
   )
 }

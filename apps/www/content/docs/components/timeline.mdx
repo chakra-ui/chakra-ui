@@ -23,15 +23,23 @@ component.
 
 ## Usage
 
-```jsx
-import { TimelineItem, TimelineRoot } from "@/components/ui/timeline"
+```tsx
+import { Timeline } from "@chakra-ui/react"
 ```
 
-```jsx
-<TimelineRoot>
-  <TimelineItem />
-  <TimelineItem />
-</TimelineRoot>
+```tsx
+<Timeline.Root>
+  <Timeline.Item>
+    <Timeline.Connector>
+      <Timeline.Separator />
+      <Timeline.Indicator />
+    </Timeline.Connector>
+    <Timeline.Content>
+      <Timeline.Title />
+      <Timeline.Description />
+    </Timeline.Content>
+  </Timeline.Item>
+</Timeline.Root>
 ```
 
 ## Examples
