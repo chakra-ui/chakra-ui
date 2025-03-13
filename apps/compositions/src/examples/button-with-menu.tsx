@@ -1,24 +1,27 @@
-import { Button, Group, IconButton, MenuTrigger } from "@chakra-ui/react"
-import { MenuContent, MenuItem, MenuRoot } from "compositions/ui/menu"
+import { Button, Group, IconButton, Menu, Portal } from "@chakra-ui/react"
 import { LuChevronDown } from "react-icons/lu"
 
 export const ButtonWithMenu = () => {
   return (
-    <MenuRoot positioning={{ placement: "bottom-end" }}>
+    <Menu.Root positioning={{ placement: "bottom-end" }}>
       <Group attached>
         <Button size="sm" variant="outline">
           Accept
         </Button>
-        <MenuTrigger asChild>
+        <Menu.Trigger asChild>
           <IconButton size="sm" variant="outline">
             <LuChevronDown />
           </IconButton>
-        </MenuTrigger>
+        </Menu.Trigger>
       </Group>
-      <MenuContent>
-        <MenuItem value="all">Accept All</MenuItem>
-        <MenuItem value="selected">Accept Selected</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="all">Accept All</Menu.Item>
+            <Menu.Item value="selected">Accept Selected</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

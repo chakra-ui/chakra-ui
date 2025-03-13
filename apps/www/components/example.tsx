@@ -7,6 +7,7 @@ import { ErrorBoundary } from "./error-boundary"
 
 interface Props {
   name: string
+  scope?: "examples" | "ui"
 }
 
 function formatComponentName(name: string) {
@@ -17,10 +18,10 @@ function formatComponentName(name: string) {
 }
 
 export const ExamplePreview = (props: Props) => {
-  const { name } = props
+  const { name, scope = "examples" } = props
   const componentName = formatComponentName(name)
   const Component = dynamic(() =>
-    import(`../../compositions/src/examples/${name}`).then(
+    import(`../../compositions/src/${scope}/${name}`).then(
       (mod) => mod[componentName],
     ),
   )
@@ -33,8 +34,8 @@ interface CodeProps extends Props {
 }
 
 export const ExampleCode = async (props: CodeProps) => {
-  const { name, showCopy = true, ext = "tsx" } = props
-  const content = await readExampleFile(name, ext)
+  const { name, showCopy = true, ext = "tsx", scope = "examples" } = props
+  const content = await readExampleFile(name, scope, ext)
   const html = await highlightCode(content)
   return (
     <>

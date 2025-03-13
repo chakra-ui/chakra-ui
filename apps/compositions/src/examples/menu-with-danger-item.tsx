@@ -1,30 +1,28 @@
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuWithDangerItem = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open Menu
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem value="rename">Rename</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-        <MenuItem
-          value="delete"
-          color="fg.error"
-          _hover={{ bg: "bg.error", color: "fg.error" }}
-        >
-          Delete...
-        </MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="rename">Rename</Menu.Item>
+            <Menu.Item value="export">Export</Menu.Item>
+            <Menu.Item
+              value="delete"
+              color="fg.error"
+              _hover={{ bg: "bg.error", color: "fg.error" }}
+            >
+              Delete...
+            </Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

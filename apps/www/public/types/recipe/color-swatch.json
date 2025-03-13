@@ -1,0 +1,24 @@
+{
+  "ColorSwatch": {
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"inherit\" | \"full\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "shape": {
+        "type": "\"square\" | \"circle\" | \"rounded\"",
+        "defaultValue": "rounded",
+        "isRequired": false,
+        "description": "The shape of the component"
+      }
+    }
+  }
+}

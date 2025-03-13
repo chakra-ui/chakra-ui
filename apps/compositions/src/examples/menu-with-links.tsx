@@ -1,48 +1,41 @@
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuWithLinks = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button size="sm" variant="outline">
           Select Anime
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem asChild value="naruto">
-          <a
-            href="https://www.crunchyroll.com/naruto"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Naruto
-          </a>
-        </MenuItem>
-        <MenuItem asChild value="one-piece">
-          <a
-            href="https://www.crunchyroll.com/one-piece"
-            target="_blank"
-            rel="noreferrer"
-          >
-            One Piece
-          </a>
-        </MenuItem>
-        <MenuItem asChild value="attack-on-titan">
-          <a
-            href="https://www.crunchyroll.com/attack-on-titan"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Attack on Titan
-          </a>
-        </MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            {links.map((link) => (
+              <Menu.Item key={link.href} asChild value={link.title}>
+                <a href={link.href} target="_blank" rel="noreferrer">
+                  {link.title}
+                </a>
+              </Menu.Item>
+            ))}
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }
+
+const links = [
+  {
+    title: "Naruto",
+    href: "https://www.crunchyroll.com/naruto",
+  },
+  {
+    title: "One Piece",
+    href: "https://www.crunchyroll.com/one-piece",
+  },
+  {
+    title: "Attack on Titan",
+    href: "https://www.crunchyroll.com/attack-on-titan",
+  },
+]

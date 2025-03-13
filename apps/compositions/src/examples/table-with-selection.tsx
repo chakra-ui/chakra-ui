@@ -1,7 +1,6 @@
 "use client"
 
-import { Table } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox, Table } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const TableWithSelection = () => {
@@ -15,7 +14,8 @@ export const TableWithSelection = () => {
       data-selected={selection.includes(item.name) ? "" : undefined}
     >
       <Table.Cell>
-        <Checkbox
+        <Checkbox.Root
+          size="sm"
           mt="0.5"
           aria-label="Select row"
           checked={selection.includes(item.name)}
@@ -26,7 +26,10 @@ export const TableWithSelection = () => {
                 : selection.filter((name) => name !== item.name),
             )
           }}
-        />
+        >
+          <Checkbox.HiddenInput />
+          <Checkbox.Control />
+        </Checkbox.Root>
       </Table.Cell>
       <Table.Cell>{item.name}</Table.Cell>
       <Table.Cell>{item.category}</Table.Cell>
@@ -38,8 +41,9 @@ export const TableWithSelection = () => {
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeader>
-            <Checkbox
+          <Table.ColumnHeader w="6">
+            <Checkbox.Root
+              size="sm"
               mt="0.5"
               aria-label="Select all rows"
               checked={indeterminate ? "indeterminate" : selection.length > 0}
@@ -48,7 +52,10 @@ export const TableWithSelection = () => {
                   changes.checked ? items.map((item) => item.name) : [],
                 )
               }}
-            />
+            >
+              <Checkbox.HiddenInput />
+              <Checkbox.Control />
+            </Checkbox.Root>
           </Table.ColumnHeader>
           <Table.ColumnHeader>Product</Table.ColumnHeader>
           <Table.ColumnHeader>Category</Table.ColumnHeader>

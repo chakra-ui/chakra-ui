@@ -1,8 +1,7 @@
 "use client"
 
-import { Badge, For, useSlotRecipe } from "@chakra-ui/react"
+import { Badge, DataList, For, useSlotRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { DataListItem, DataListRoot } from "compositions/ui/data-list"
 
 export const DataListSizeTable = () => {
   const recipe = useSlotRecipe({ key: "dataList" })
@@ -20,14 +19,22 @@ export const DataListSizeTable = () => {
           <For each={recipe.variantMap.size}>
             {(v) => (
               <td>
-                <DataListRoot size={v}>
-                  <DataListItem label="Name" value="John Doe" />
-                  <DataListItem label="Email" value="john@test.com" />
-                  <DataListItem
-                    label="Status"
-                    value={<Badge colorPalette="teal">Active</Badge>}
-                  />
-                </DataListRoot>
+                <DataList.Root size={v}>
+                  <DataList.Item>
+                    <DataList.ItemLabel>Name</DataList.ItemLabel>
+                    <DataList.ItemValue>John Doe</DataList.ItemValue>
+                  </DataList.Item>
+                  <DataList.Item>
+                    <DataList.ItemLabel>Email</DataList.ItemLabel>
+                    <DataList.ItemValue>john@test.com</DataList.ItemValue>
+                  </DataList.Item>
+                  <DataList.Item>
+                    <DataList.ItemLabel>Status</DataList.ItemLabel>
+                    <DataList.ItemValue>
+                      <Badge colorPalette="teal">Active</Badge>
+                    </DataList.ItemValue>
+                  </DataList.Item>
+                </DataList.Root>
               </td>
             )}
           </For>

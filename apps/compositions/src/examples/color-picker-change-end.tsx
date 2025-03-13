@@ -1,17 +1,13 @@
 "use client"
 
-import { Code, HStack, Stack, parseColor } from "@chakra-ui/react"
 import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
+  Code,
+  ColorPicker,
+  HStack,
+  Portal,
+  Stack,
+  parseColor,
+} from "@chakra-ui/react"
 import { useState } from "react"
 
 export const ColorPickerChangeEnd = () => {
@@ -22,23 +18,28 @@ export const ColorPickerChangeEnd = () => {
       <Code>
         onChangeEnd: <b>{value.toString("hex")}</b>
       </Code>
-      <ColorPickerRoot
+      <ColorPicker.Root
         defaultValue={value}
         onValueChangeEnd={(e) => setValue(e.value)}
       >
-        <ColorPickerLabel>Color</ColorPickerLabel>
-        <ColorPickerControl>
-          <ColorPickerInput />
-          <ColorPickerTrigger />
-        </ColorPickerControl>
-        <ColorPickerContent>
-          <ColorPickerArea />
-          <HStack>
-            <ColorPickerEyeDropper />
-            <ColorPickerSliders />
-          </HStack>
-        </ColorPickerContent>
-      </ColorPickerRoot>
+        <ColorPicker.HiddenInput />
+        <ColorPicker.Label>Color</ColorPicker.Label>
+        <ColorPicker.Control>
+          <ColorPicker.Input />
+          <ColorPicker.Trigger />
+        </ColorPicker.Control>
+        <Portal>
+          <ColorPicker.Positioner>
+            <ColorPicker.Content>
+              <ColorPicker.Area />
+              <HStack>
+                <ColorPicker.EyeDropper size="xs" variant="outline" />
+                <ColorPicker.Sliders />
+              </HStack>
+            </ColorPicker.Content>
+          </ColorPicker.Positioner>
+        </Portal>
+      </ColorPicker.Root>
     </Stack>
   )
 }

@@ -1,37 +1,30 @@
 "use client"
 
-import { HStack, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-  ColorPickerValueSwatch,
-  ColorPickerValueText,
-} from "compositions/ui/color-picker"
+import { ColorPicker, HStack, Portal, parseColor } from "@chakra-ui/react"
 
 export const ColorPickerTriggerOnly = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl>
-        <ColorPickerTrigger px="2">
-          <ColorPickerValueSwatch boxSize="6" />
-          <ColorPickerValueText minW="160px" />
-        </ColorPickerTrigger>
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerArea />
-        <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
-          <ColorPickerValueSwatch />
-        </HStack>
-      </ColorPickerContent>
-    </ColorPickerRoot>
+    <ColorPicker.Root defaultValue={parseColor("#eb5e41")} maxW="200px">
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Label>Color</ColorPicker.Label>
+      <ColorPicker.Control>
+        <ColorPicker.Trigger px="2">
+          <ColorPicker.ValueSwatch boxSize="6" />
+          <ColorPicker.ValueText minW="160px" />
+        </ColorPicker.Trigger>
+      </ColorPicker.Control>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <ColorPicker.Area />
+            <HStack>
+              <ColorPicker.EyeDropper size="sm" variant="outline" />
+              <ColorPicker.Sliders />
+              <ColorPicker.ValueSwatch />
+            </HStack>
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
+    </ColorPicker.Root>
   )
 }

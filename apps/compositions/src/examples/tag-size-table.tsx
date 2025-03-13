@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, Span, Tag, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Tag } from "compositions/ui/tag"
 
 export const TagSizeTable = () => {
   const recipe = useSlotRecipe({ key: "tag" })
@@ -27,9 +26,12 @@ export const TagSizeTable = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td key={v}>
-                    <Tag size={v} colorPalette={c} closable>
-                      Gray
-                    </Tag>
+                    <Tag.Root size={v} colorPalette={c}>
+                      <Tag.Label>Gray</Tag.Label>
+                      <Tag.EndElement>
+                        <Tag.CloseTrigger />
+                      </Tag.EndElement>
+                    </Tag.Root>
                   </td>
                 )}
               </For>

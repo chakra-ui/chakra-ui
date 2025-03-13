@@ -1,9 +1,13 @@
-import { ClipboardIconButton, ClipboardRoot } from "compositions/ui/clipboard"
+import { Clipboard, IconButton } from "@chakra-ui/react"
 
 export const ClipboardBasic = () => {
   return (
-    <ClipboardRoot value="https://chakra-ui.com">
-      <ClipboardIconButton />
-    </ClipboardRoot>
+    <Clipboard.Root value="https://chakra-ui.com">
+      <Clipboard.Trigger asChild>
+        <IconButton variant="surface" size="xs">
+          <Clipboard.Indicator />
+        </IconButton>
+      </Clipboard.Trigger>
+    </Clipboard.Root>
   )
 }

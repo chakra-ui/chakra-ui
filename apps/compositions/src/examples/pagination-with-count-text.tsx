@@ -1,19 +1,22 @@
-import { HStack } from "@chakra-ui/react"
-import {
-  PaginationNextTrigger,
-  PaginationPageText,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "compositions/ui/pagination"
+import { ButtonGroup, IconButton, Pagination } from "@chakra-ui/react"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 export const PaginationWithCountText = () => {
   return (
-    <PaginationRoot count={50} pageSize={5} defaultPage={1} maxW="240px">
-      <HStack gap="4">
-        <PaginationPageText format="long" flex="1" />
-        <PaginationPrevTrigger />
-        <PaginationNextTrigger />
-      </HStack>
-    </PaginationRoot>
+    <Pagination.Root count={50} pageSize={5} defaultPage={1} maxW="240px">
+      <ButtonGroup variant="ghost" size="sm" w="full">
+        <Pagination.PageText format="long" flex="1" />
+        <Pagination.PrevTrigger asChild>
+          <IconButton>
+            <LuChevronLeft />
+          </IconButton>
+        </Pagination.PrevTrigger>
+        <Pagination.NextTrigger asChild>
+          <IconButton>
+            <LuChevronRight />
+          </IconButton>
+        </Pagination.NextTrigger>
+      </ButtonGroup>
+    </Pagination.Root>
   )
 }

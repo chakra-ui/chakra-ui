@@ -62,7 +62,10 @@ export interface ToggleIndicatorProps
 export const ToggleIndicator = withContext<
   HTMLButtonElement,
   ToggleIndicatorProps
->(ArkToggle.Indicator, "indicator", { forwardAsChild: true })
+>(ArkToggle.Indicator, "indicator", {
+  forwardAsChild: true,
+  defaultProps: { _empty: { display: "none" } },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

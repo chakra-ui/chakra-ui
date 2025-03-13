@@ -10,41 +10,29 @@ links:
 
 <ExampleTabs name="steps-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`steps` snippet
-
-```sh
-npx @chakra-ui/cli snippet add steps
-```
-
-The snippet includes a closed component composition for the `Steps` component.
-
 ## Usage
 
-```jsx
-import {
-  StepsCompletedContent,
-  StepsContent,
-  StepsItem,
-  StepsList,
-  StepsNextTrigger,
-  StepsPrevTrigger,
-  StepsRoot,
-} from "@/components/ui/steps"
+```tsx
+import { Steps } from "@chakra-ui/react"
 ```
 
-```jsx
-<StepsRoot>
-  <StepsList>
-    <StepsItem />
-  </StepsList>
-  <StepsContent />
-  <StepsCompleteContent />
-  <StepsPrevTrigger />
-  <StepsNextTrigger />
-</StepsRoot>
+```tsx
+<Steps.Root>
+  <Steps.List>
+    <Steps.Item>
+      <Steps.Trigger>
+        <Steps.Indicator />
+        <Steps.Title />
+        <Steps.Description />
+      </Steps.Trigger>
+      <Steps.Separator />
+    </Steps.Item>
+  </Steps.List>
+  <Steps.Content />
+  <Steps.CompletedContent />
+  <Steps.PrevTrigger />
+  <Steps.NextTrigger />
+</Steps.Root>
 ```
 
 ## Examples
@@ -66,6 +54,12 @@ Use the `variant` prop to change the appearance of the steps component.
 Use the `colorPalette` prop to change the color scheme of the component.
 
 <ExampleTabs name="steps-with-colors" />
+
+### Trigger
+
+Use the `Steps.Trigger` component to make the step clickable.
+
+<ExampleTabs name="steps-with-trigger" />
 
 ### Vertical
 

@@ -1,10 +1,4 @@
-import { Avatar, Group } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Avatar, Group, Menu, Portal } from "@chakra-ui/react"
 
 const names = [
   "Naruto Uzumaki",
@@ -25,23 +19,27 @@ export const AvatarWithOverflow = () => {
         </Avatar.Root>
       ))}
       {overflow.length > 0 && (
-        <MenuRoot positioning={{ placement: "bottom" }}>
-          <MenuTrigger rounded="full" focusRing="outside">
+        <Menu.Root positioning={{ placement: "bottom" }}>
+          <Menu.Trigger rounded="full" focusRing="outside">
             <Avatar.Root variant="outline">
               <Avatar.Fallback>+{overflow.length}</Avatar.Fallback>
             </Avatar.Root>
-          </MenuTrigger>
-          <MenuContent>
-            {overflow.map((item) => (
-              <MenuItem value={item} key={item}>
-                <Avatar.Root size="xs" colorPalette={pickPalette(item)}>
-                  <Avatar.Fallback name={item} />
-                </Avatar.Root>
-                {item}
-              </MenuItem>
-            ))}
-          </MenuContent>
-        </MenuRoot>
+          </Menu.Trigger>
+          <Portal>
+            <Menu.Positioner>
+              <Menu.Content>
+                {overflow.map((item) => (
+                  <Menu.Item value={item} key={item}>
+                    <Avatar.Root size="xs" colorPalette={pickPalette(item)}>
+                      <Avatar.Fallback name={item} />
+                    </Avatar.Root>
+                    {item}
+                  </Menu.Item>
+                ))}
+              </Menu.Content>
+            </Menu.Positioner>
+          </Portal>
+        </Menu.Root>
       )}
     </Group>
   )

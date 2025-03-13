@@ -1,14 +1,14 @@
 "use client"
 
-import { Button, Field, Stack, createListCollection } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
 import {
-  SelectContent,
-  SelectItem,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+  Button,
+  Field,
+  Portal,
+  Select,
+  Stack,
+  createListCollection,
+} from "@chakra-ui/react"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -33,29 +33,40 @@ export const SelectWithHookForm = () => {
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
         <Field.Root invalid={!!errors.framework} width="320px">
-          <Field.Label>Rating</Field.Label>
+          <Field.Label>Framework</Field.Label>
           <Controller
             control={control}
             name="framework"
             render={({ field }) => (
-              <SelectRoot
+              <Select.Root
                 name={field.name}
                 value={field.value}
                 onValueChange={({ value }) => field.onChange(value)}
                 onInteractOutside={() => field.onBlur()}
                 collection={frameworks}
               >
-                <SelectTrigger>
-                  <SelectValueText placeholder="Select movie" />
-                </SelectTrigger>
-                <SelectContent>
-                  {frameworks.items.map((movie) => (
-                    <SelectItem item={movie} key={movie.value}>
-                      {movie.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </SelectRoot>
+                <Select.HiddenSelect />
+                <Select.Control>
+                  <Select.Trigger>
+                    <Select.ValueText placeholder="Select framework" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Portal>
+                  <Select.Positioner>
+                    <Select.Content>
+                      {frameworks.items.map((framework) => (
+                        <Select.Item item={framework} key={framework.value}>
+                          {framework.label}
+                          <Select.ItemIndicator />
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Positioner>
+                </Portal>
+              </Select.Root>
             )}
           />
           <Field.ErrorText>{errors.framework?.message}</Field.ErrorText>

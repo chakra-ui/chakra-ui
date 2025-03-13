@@ -29,6 +29,10 @@ export {
   ColorPickerValueSwatch as ValueSwatch,
   ColorPickerValueText as ValueText,
   ColorPickerView as View,
+  ColorPickerSliders as Sliders,
+  ColorPickerInput as Input,
+  ColorPickerChannelText as ChannelText,
+  ColorPickerEyeDropper as EyeDropper,
 } from "./color-picker"
 
 export type {
@@ -60,4 +64,8 @@ export type {
   ColorPickerViewProps as ViewProps,
   ColorPickerChannelSliderValueTextProps as ChannelSliderValueTextProps,
   ColorPickerChannelSliderLabelProps as ChannelSliderLabelProps,
+  ColorPickerChannelTextProps as ChannelTextProps,
+  ColorPickerEyeDropperProps as EyeDropperProps,
 } from "./color-picker"
+
+export type { ColorPickerColorFormat as ColorFormat } from "@ark-ui/react/color-picker"

@@ -1,10 +1,11 @@
-import { HStack, Heading, Span, Square, Stack } from "@chakra-ui/react"
 import {
-  ProgressBar,
-  ProgressLabel,
-  ProgressRoot,
-  ProgressValueText,
-} from "compositions/ui/progress"
+  HStack,
+  Heading,
+  Progress,
+  Span,
+  Square,
+  Stack,
+} from "@chakra-ui/react"
 import { HiFolder, HiLockClosed, HiPencil } from "react-icons/hi"
 
 export const ProgressComposition = () => {
@@ -46,7 +47,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
       <Square borderRadius="sm" bg="bg.muted" size="10">
         {icon}
       </Square>
-      <ProgressRoot
+      <Progress.Root
         size="sm"
         min={data.min}
         max={data.max}
@@ -54,13 +55,15 @@ const FeatureUsage = (props: FeatureUsageProps) => {
         flex="1"
       >
         <HStack justify="space-between">
-          <ProgressLabel>{data.label}</ProgressLabel>
-          <ProgressValueText color="inherit">
+          <Progress.Label>{data.label}</Progress.Label>
+          <Progress.ValueText color="inherit">
             {data.value} <Span color="fg.muted">/ {data.max}</Span>
-          </ProgressValueText>
+          </Progress.ValueText>
         </HStack>
-        <ProgressBar mt="2" />
-      </ProgressRoot>
+        <Progress.Track mt="2">
+          <Progress.Range />
+        </Progress.Track>
+      </Progress.Root>
     </HStack>
   )
 }

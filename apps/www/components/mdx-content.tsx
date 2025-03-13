@@ -76,6 +76,19 @@ const sharedComponents = {
       </ExampleCodeWrapper>
     )
   },
+  SnippetCode(props: { name: string }) {
+    return (
+      <ExampleCodeWrapper
+        maxHeight="480px"
+        rounded="lg"
+        height="auto"
+        mb="2"
+        mt="6"
+      >
+        <ExampleCode name={props.name} scope="ui" />
+      </ExampleCodeWrapper>
+    )
+  },
   ExampleTabs: ExampleTabs,
   ExamplePreview: ExamplePreview,
   card: Card,

@@ -1,21 +1,12 @@
 "use client"
 
 import {
-  ColorPickerRootProvider,
+  ColorPicker,
   HStack,
+  Portal,
   parseColor,
   useColorPicker,
 } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
 
 export const ColorPickerWithStore = () => {
   const colorPicker = useColorPicker({
@@ -23,19 +14,23 @@ export const ColorPickerWithStore = () => {
   })
 
   return (
-    <ColorPickerRootProvider value={colorPicker} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl>
-        <ColorPickerInput />
-        <ColorPickerTrigger />
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerArea />
-        <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
-        </HStack>
-      </ColorPickerContent>
-    </ColorPickerRootProvider>
+    <ColorPicker.RootProvider value={colorPicker} maxW="200px">
+      <ColorPicker.Label>Color</ColorPicker.Label>
+      <ColorPicker.Control>
+        <ColorPicker.Input />
+        <ColorPicker.Trigger />
+      </ColorPicker.Control>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <ColorPicker.Area />
+            <HStack>
+              <ColorPicker.EyeDropper size="xs" variant="outline" />
+              <ColorPicker.Sliders />
+            </HStack>
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
+    </ColorPicker.RootProvider>
   )
 }

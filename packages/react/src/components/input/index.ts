@@ -6,3 +6,6 @@ export type { InputAddonProps } from "./input-addon"
 
 export { InputElement } from "./input-element"
 export type { InputElementProps } from "./input-element"
+
+export { InputGroup } from "./input-group"
+export type { InputGroupProps } from "./input-group"

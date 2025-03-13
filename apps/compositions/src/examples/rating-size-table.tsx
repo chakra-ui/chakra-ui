@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, RatingGroup, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Rating } from "compositions/ui/rating"
 
 export const RatingSizeTable = () => {
   const recipe = useSlotRecipe({ key: "ratingGroup" })
@@ -27,12 +26,15 @@ export const RatingSizeTable = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td>
-                    <Rating
+                    <RatingGroup.Root
                       allowHalf
                       defaultValue={3.5}
                       colorPalette={c}
                       size={v}
-                    />
+                    >
+                      <RatingGroup.HiddenInput />
+                      <RatingGroup.Control />
+                    </RatingGroup.Root>
                   </td>
                 )}
               </For>

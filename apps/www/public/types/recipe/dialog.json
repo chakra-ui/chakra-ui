@@ -3,15 +3,15 @@
     "props": {
       "colorPalette": {
         "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
         "isRequired": false,
         "description": "The color palette of the component"
       },
-      "centered": {
-        "type": "\"true\" | \"false\"",
-        "defaultValue": false,
+      "placement": {
+        "type": "\"center\" | \"top\" | \"bottom\"",
+        "defaultValue": "top",
         "isRequired": false,
-        "description": "The centered of the component"
+        "description": "The placement of the component"
       },
       "scrollBehavior": {
         "type": "\"inside\" | \"outside\"",
@@ -20,7 +20,7 @@
         "description": "The scrollBehavior of the component"
       },
       "size": {
-        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"cover\" | \"full\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"

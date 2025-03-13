@@ -9,7 +9,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { CheckIcon, ChevronDownIcon } from "../icons"
+import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,7 +60,10 @@ export interface SelectRootComponent {
 export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
   ArkSelect.Root,
   "root",
-  { forwardAsChild: true },
+  {
+    forwardAsChild: true,
+    defaultProps: { positioning: { sameWidth: true } },
+  },
 ) as SelectRootComponent
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +121,10 @@ export interface SelectClearTriggerProps
 export const SelectClearTrigger = withContext<
   HTMLButtonElement,
   SelectClearTriggerProps
->(ArkSelect.ClearTrigger, "clearTrigger", { forwardAsChild: true })
+>(ArkSelect.ClearTrigger, "clearTrigger", {
+  forwardAsChild: true,
+  defaultProps: { children: <CloseIcon boxSize="1em" /> },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

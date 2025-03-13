@@ -1,26 +1,19 @@
 "use client"
 
-import { HStack, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerEyeDropper,
-  ColorPickerInlineContent,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerValueSwatch,
-} from "compositions/ui/color-picker"
+import { ColorPicker, HStack, parseColor } from "@chakra-ui/react"
 
 export const ColorPickerInline = () => {
   return (
-    <ColorPickerRoot open defaultValue={parseColor("#000")}>
-      <ColorPickerInlineContent>
-        <ColorPickerArea />
+    <ColorPicker.Root open defaultValue={parseColor("#000")}>
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Content animation="none" shadow="none" padding="0">
+        <ColorPicker.Area />
         <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
-          <ColorPickerValueSwatch />
+          <ColorPicker.EyeDropper size="xs" variant="outline" />
+          <ColorPicker.Sliders />
+          <ColorPicker.ValueSwatch />
         </HStack>
-      </ColorPickerInlineContent>
-    </ColorPickerRoot>
+      </ColorPicker.Content>
+    </ColorPicker.Root>
   )
 }

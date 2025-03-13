@@ -1,9 +1,8 @@
 "use client"
 
-import { For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, HStack, RadioGroup, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Radio, RadioGroup } from "compositions/ui/radio"
 
 export const RadioVariantTable = () => {
   const recipe = useSlotRecipe({ key: "radioGroup" })
@@ -12,13 +11,15 @@ export const RadioVariantTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
         </tr>
       </thead>
       <tbody>
         <For each={colorPalettes}>
           {(c) => (
-            <tr>
+            <tr key={c}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
@@ -26,8 +27,8 @@ export const RadioVariantTable = () => {
               </td>
               <For each={recipe.variantMap.variant}>
                 {(v) => (
-                  <td>
-                    <RadioGroup
+                  <td key={v}>
+                    <RadioGroup.Root
                       defaultValue="1"
                       colorPalette={c}
                       variant={v}
@@ -35,10 +36,10 @@ export const RadioVariantTable = () => {
                       minWidth="200px"
                     >
                       <HStack gap="4">
-                        <Radio value="1">Radio</Radio>
-                        <Radio value="2">Radio</Radio>
+                        <DemoRadio value="1">Radio</DemoRadio>
+                        <DemoRadio value="2">Radio</DemoRadio>
                       </HStack>
-                    </RadioGroup>
+                    </RadioGroup.Root>
                   </td>
                 )}
               </For>
@@ -47,5 +48,15 @@ export const RadioVariantTable = () => {
         </For>
       </tbody>
     </PlaygroundTable>
+  )
+}
+
+const DemoRadio = (props: RadioGroup.ItemProps) => {
+  return (
+    <RadioGroup.Item {...props}>
+      <RadioGroup.ItemHiddenInput />
+      <RadioGroup.ItemIndicator />
+      <RadioGroup.ItemText>{props.children}</RadioGroup.ItemText>
+    </RadioGroup.Item>
   )
 }

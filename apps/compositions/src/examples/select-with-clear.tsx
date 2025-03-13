@@ -1,35 +1,39 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+import { Portal, Select, createListCollection } from "@chakra-ui/react"
 
 export const SelectWithClear = () => {
   return (
-    <SelectRoot
+    <Select.Root
       collection={animeMovies}
       defaultValue={["spirited_away"]}
       size="sm"
       width="320px"
     >
-      <SelectLabel>Select fav. anime</SelectLabel>
-      <SelectTrigger clearable>
-        <SelectValueText placeholder="Select movie" />
-      </SelectTrigger>
-      <SelectContent>
-        {animeMovies.items.map((movie) => (
-          <SelectItem item={movie} key={movie.value}>
-            {movie.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </SelectRoot>
+      <Select.HiddenSelect />
+      <Select.Label>Select fav. anime</Select.Label>
+      <Select.Control>
+        <Select.Trigger>
+          <Select.ValueText placeholder="Select anime" />
+        </Select.Trigger>
+        <Select.IndicatorGroup>
+          <Select.ClearTrigger />
+          <Select.Indicator />
+        </Select.IndicatorGroup>
+      </Select.Control>
+      <Portal>
+        <Select.Positioner>
+          <Select.Content>
+            {animeMovies.items.map((anime) => (
+              <Select.Item item={anime} key={anime.value}>
+                {anime.label}
+                <Select.ItemIndicator />
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Positioner>
+      </Portal>
+    </Select.Root>
   )
 }
 

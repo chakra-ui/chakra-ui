@@ -1,10 +1,8 @@
-import { Button } from "@chakra-ui/react"
-import { HStack, Steps } from "@chakra-ui/react"
-import { Center } from "@chakra-ui/react/"
+import { Button, Center, HStack, Steps } from "@chakra-ui/react"
 
 export const StepsWithLines = () => {
   return (
-    <Steps.Root defaultValue={1} count={steps.length}>
+    <Steps.Root defaultStep={1} count={steps.length}>
       <Steps.List gap="4">
         {steps.map((item, index) => (
           <Steps.Item
@@ -55,7 +53,7 @@ export const StepsWithLines = () => {
 }
 
 const steps = [
-  { value: "first", title: "First", description: "Contact Info" },
-  { value: "second", title: "Second", description: "Date & Time" },
-  { value: "third", title: "Third", description: "Select Rooms" },
+  { title: "Step One", description: "Contact Info" },
+  { title: "Step Two", description: "Date & Time" },
+  { title: "Step Three", description: "Select Rooms" },
 ]

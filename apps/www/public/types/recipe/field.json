@@ -1,5 +1,18 @@
 {
   "Root": {
-    "props": {}
+    "props": {
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "orientation": {
+        "type": "\"vertical\" | \"horizontal\"",
+        "defaultValue": "vertical",
+        "isRequired": false,
+        "description": "The orientation of the component"
+      }
+    }
   }
 }
