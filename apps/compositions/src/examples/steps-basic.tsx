@@ -2,7 +2,7 @@ import { Button, ButtonGroup, Steps } from "@chakra-ui/react"
 
 export const StepsBasic = () => {
   return (
-    <Steps.Root defaultValue={1} count={steps.length}>
+    <Steps.Root defaultStep={1} count={steps.length}>
       <Steps.List>
         {steps.map((step, index) => (
           <Steps.Item key={index} index={index} title={step.title}>

@@ -5,7 +5,7 @@ export const StepsVertical = () => {
     <Steps.Root
       orientation="vertical"
       height="400px"
-      defaultValue={1}
+      defaultStep={1}
       count={steps.length}
     >
       <Steps.List>

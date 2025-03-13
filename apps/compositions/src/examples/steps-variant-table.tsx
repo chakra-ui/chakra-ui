@@ -40,7 +40,7 @@ export const StepsVariantTable = () => {
                       variant={v}
                       colorPalette={c}
                       minW="600px"
-                      defaultValue={1}
+                      defaultStep={1}
                     />
                   </td>
                 )}

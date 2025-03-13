@@ -37,7 +37,7 @@ export const StepsSizeTable = () => {
                       size={v}
                       variant={c}
                       minW="600px"
-                      defaultValue={1}
+                      defaultStep={1}
                     />
                   </td>
                 )}

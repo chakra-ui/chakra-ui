@@ -3,7 +3,7 @@ import { LuCalendar, LuCheck, LuUser, LuWallet } from "react-icons/lu"
 
 export const StepsWithIcon = () => {
   return (
-    <Steps.Root defaultValue={1} count={steps.length} size="sm">
+    <Steps.Root defaultStep={1} count={steps.length} size="sm">
       <Steps.List>
         {steps.map((step, index) => (
           <Steps.Item key={index} index={index}>

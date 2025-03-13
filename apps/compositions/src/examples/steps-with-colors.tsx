@@ -8,7 +8,7 @@ export const StepsWithColors = () => {
         {(colorPalette) => (
           <Steps.Root
             key={colorPalette}
-            defaultValue={1}
+            defaultStep={1}
             count={steps.length}
             colorPalette={colorPalette}
           >
