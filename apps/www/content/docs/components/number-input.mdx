@@ -40,28 +40,26 @@ If you prefer a closed component composition, check out the
 
 ## Shortcuts
 
-The `NumberInput` component also provides a set of shortcuts for common use
-cases.
+The `NumberInput` component provides a set of shortcuts for common use cases
 
 ### NumberInputControl
 
-The `NumberInput.Control` renders the `NumberInput.IncrementTrigger` and
+This component renders the `NumberInput.IncrementTrigger` and
 `NumberInput.DecrementTrigger` within it by default.
 
-This works:
+Writing this:
+
+```tsx
+<NumberInput.Control />
+```
+
+is shorthand for writing this if you don't need to customize the triggers:
 
 ```tsx
 <NumberInput.Control>
   <NumberInput.IncrementTrigger />
   <NumberInput.DecrementTrigger />
 </NumberInput.Control>
-```
-
-This might be more concise, if you don't need to customize the increment or
-decrement triggers:
-
-```tsx
-<NumberInput.Control />
 ```
 
 ## Examples
