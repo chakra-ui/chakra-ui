@@ -116,6 +116,7 @@ export const buttonRecipe = defineRecipe({
       solid: {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
+        borderColor: "transparent",
         _hover: {
           bg: "colorPalette.solid/90",
         },
@@ -127,6 +128,7 @@ export const buttonRecipe = defineRecipe({
       subtle: {
         bg: "colorPalette.subtle",
         color: "colorPalette.fg",
+        borderColor: "transparent",
         _hover: {
           bg: "colorPalette.muted",
         },
@@ -161,6 +163,7 @@ export const buttonRecipe = defineRecipe({
       },
 
       ghost: {
+        bg: "transparent",
         color: "colorPalette.fg",
         _hover: {
           bg: "colorPalette.subtle",
