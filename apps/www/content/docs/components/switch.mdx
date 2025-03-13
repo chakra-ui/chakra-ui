@@ -44,21 +44,15 @@ The `Switch.Control` renders the `Switch.Thumb` within it by default.
 This works:
 
 ```tsx
-<Switch.Root>
-  <Switch.HiddenInput />
-  <Switch.Control>
-    <Switch.Thumb />
-  </Switch.Control>
-</Switch.Root>
+<Switch.Control>
+  <Switch.Thumb />
+</Switch.Control>
 ```
 
 This might be more concise, if you don't need to customize the thumb:
 
 ```tsx
-<Switch.Root>
-  <Switch.HiddenInput />
-  <Switch.Control />
-</Switch.Root>
+<Switch.Control />
 ```
 
 ## Examples

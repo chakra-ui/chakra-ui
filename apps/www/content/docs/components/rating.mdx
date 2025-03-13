@@ -40,31 +40,24 @@ The `Rating` component also provides a set of shortcuts for common use cases.
 
 ### RatingControl
 
-By default, the `RatingControl` shortcut renders the number of rating items
-specified in the `count` prop.
+This component renders the number of rating items specified in the `count` prop.
 
 This works:
 
 ```tsx
-<RatingGroup.Root count={5}>
-  <RatingGroup.HiddenInput />
-  <RatingGroup.Control>
-    {Array.from({ length: 5 }).map((_, index) => (
-      <RatingGroup.Item key={index} index={index + 1}>
-        <RatingGroup.ItemIndicator />
-      </RatingGroup.Item>
-    ))}
-  </RatingGroup.Control>
-</RatingGroup.Root>
+<RatingGroup.Control>
+  {Array.from({ length: 5 }).map((_, index) => (
+    <RatingGroup.Item key={index} index={index + 1}>
+      <RatingGroup.ItemIndicator />
+    </RatingGroup.Item>
+  ))}
+</RatingGroup.Control>
 ```
 
 This might be more concise, if you don't need to customize the rating icons:
 
 ```tsx
-<RatingGroup.Root count={5}>
-  <RatingGroup.HiddenInput />
-  <RatingGroup.Control />
-</RatingGroup.Root>
+<RatingGroup.Control />
 ```
 
 ## Examples
