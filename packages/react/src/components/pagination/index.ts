@@ -7,7 +7,9 @@ export {
   PaginationEllipsis,
   PaginationItem,
   PaginationContext,
+  PaginationPageText,
   usePaginationStyles,
+  PaginationItems,
 } from "./pagination"
 
 export type {
@@ -17,6 +19,8 @@ export type {
   PaginationNextTriggerProps,
   PaginationEllipsisProps,
   PaginationItemProps,
+  PaginationPageTextProps,
+  PaginationItemsProps,
 } from "./pagination"
 
 export { usePagination, usePaginationContext } from "@ark-ui/react/pagination"

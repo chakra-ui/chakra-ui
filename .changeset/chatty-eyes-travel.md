@@ -12,3 +12,10 @@
 - **InputGroup**
 
   - Export directly from the `@chakra-ui/react` package
+
+- **Pagination**
+
+  - Add `Pagination.Items` shortcut component to render the number of pages
+    based on the `count` and `pageSize` props.
+  - Add `Pagination.PageText` component to render the current page and total
+    pages.
