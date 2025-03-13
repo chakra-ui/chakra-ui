@@ -1,5 +1,13 @@
 # @chakra-ui/panda-preset
 
+## 3.13.0
+
+### Patch Changes
+
+- [#9786](https://github.com/chakra-ui/chakra-ui/pull/9786)
+  [`65f932d`](https://github.com/chakra-ui/chakra-ui/commit/65f932dd52782de35e69157dcac7fee255c4efc0)
+  Thanks [@isBatak](https://github.com/isBatak)! - Generate latest preset
+
 ## 3.12.0
 
 ## 3.11.0
