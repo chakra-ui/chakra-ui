@@ -1,15 +1,8 @@
 "use client"
 
-import {
-  type CheckboxCardRootProps,
-  For,
-  Span,
-  Stack,
-  useSlotRecipe,
-} from "@chakra-ui/react"
+import { CheckboxCard, For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { CheckboxCard } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardVariantTable = () => {
   const recipe = useSlotRecipe({ key: "checkboxCard" })
@@ -60,13 +53,17 @@ export const CheckboxCardVariantTable = () => {
   )
 }
 
-const DemoCheckboxCard = (props: CheckboxCardRootProps) => {
+const DemoCheckboxCard = (props: CheckboxCard.RootProps) => {
   return (
-    <CheckboxCard
-      label="Next.js"
-      description="Best for apps"
-      maxW="240px"
-      {...props}
-    />
+    <CheckboxCard.Root maxW="240px" {...props}>
+      <CheckboxCard.HiddenInput />
+      <CheckboxCard.Control>
+        <CheckboxCard.Content>
+          <CheckboxCard.Label>Next.js</CheckboxCard.Label>
+          <CheckboxCard.Description>Best for apps</CheckboxCard.Description>
+        </CheckboxCard.Content>
+        <CheckboxCard.Indicator />
+      </CheckboxCard.Control>
+    </CheckboxCard.Root>
   )
 }

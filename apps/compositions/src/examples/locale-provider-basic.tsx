@@ -1,5 +1,4 @@
-import { Heading, LocaleProvider, Stack, Text } from "@chakra-ui/react"
-import { Slider } from "compositions/ui/slider"
+import { Heading, LocaleProvider, Slider, Stack, Text } from "@chakra-ui/react"
 
 export const LocaleProviderBasic = () => {
   return (
@@ -10,7 +9,15 @@ export const LocaleProviderBasic = () => {
           هذا مثال على كيفية استخدام موفر اللغة في تطبيقك. يمكنك تغيير اللغة
           بسهولة.
         </Text>
-        <Slider defaultValue={[50]} />
+        <Slider.Root defaultValue={[50]}>
+          <Slider.HiddenInput />
+          <Slider.Control>
+            <Slider.Track>
+              <Slider.Range />
+            </Slider.Track>
+            <Slider.Thumbs />
+          </Slider.Control>
+        </Slider.Root>
       </Stack>
     </LocaleProvider>
   )

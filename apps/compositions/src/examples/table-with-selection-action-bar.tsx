@@ -1,7 +1,13 @@
 "use client"
 
-import { ActionBar, Button, Kbd, Portal, Table } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import {
+  ActionBar,
+  Button,
+  Checkbox,
+  Kbd,
+  Portal,
+  Table,
+} from "@chakra-ui/react"
 import { useState } from "react"
 
 export const TableWithSelectionActionBar = () => {
@@ -16,8 +22,9 @@ export const TableWithSelectionActionBar = () => {
       data-selected={selection.includes(item.name) ? "" : undefined}
     >
       <Table.Cell>
-        <Checkbox
-          top="1"
+        <Checkbox.Root
+          size="sm"
+          top="0.5"
           aria-label="Select row"
           checked={selection.includes(item.name)}
           onCheckedChange={(changes) => {
@@ -27,7 +34,10 @@ export const TableWithSelectionActionBar = () => {
                 : selection.filter((name) => name !== item.name),
             )
           }}
-        />
+        >
+          <Checkbox.HiddenInput />
+          <Checkbox.Control />
+        </Checkbox.Root>
       </Table.Cell>
       <Table.Cell>{item.name}</Table.Cell>
       <Table.Cell>{item.category}</Table.Cell>
@@ -41,8 +51,9 @@ export const TableWithSelectionActionBar = () => {
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeader w="6">
-              <Checkbox
-                top="1"
+              <Checkbox.Root
+                size="sm"
+                top="0.5"
                 aria-label="Select all rows"
                 checked={indeterminate ? "indeterminate" : selection.length > 0}
                 onCheckedChange={(changes) => {
@@ -50,7 +61,10 @@ export const TableWithSelectionActionBar = () => {
                     changes.checked ? items.map((item) => item.name) : [],
                   )
                 }}
-              />
+              >
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+              </Checkbox.Root>
             </Table.ColumnHeader>
             <Table.ColumnHeader>Product</Table.ColumnHeader>
             <Table.ColumnHeader>Category</Table.ColumnHeader>
