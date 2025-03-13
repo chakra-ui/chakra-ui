@@ -30,7 +30,7 @@ export const SelectInPopover = () => {
                 <Select.HiddenSelect />
                 <Select.Control>
                   <Select.Trigger>
-                    <Select.ValueText placeholder="Select" />
+                    <Select.ValueText placeholder="Select framework" />
                   </Select.Trigger>
                   <Select.IndicatorGroup>
                     <Select.Indicator />

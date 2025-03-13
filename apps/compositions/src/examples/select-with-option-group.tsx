@@ -5,7 +5,7 @@ import { groupBy } from "es-toolkit"
 
 export const SelectWithOptionGroup = () => {
   return (
-    <Select.Root collection={frameworks} size="sm" width="320px">
+    <Select.Root collection={collection} size="sm" width="320px">
       <Select.HiddenSelect />
       <Select.Label>Select framework</Select.Label>
       <Select.Control>
@@ -37,7 +37,7 @@ export const SelectWithOptionGroup = () => {
   )
 }
 
-const frameworks = createListCollection({
+const collection = createListCollection({
   items: [
     { label: "Naruto", value: "naruto", category: "Anime" },
     { label: "One Piece", value: "one-piece", category: "Anime" },
@@ -53,5 +53,5 @@ const frameworks = createListCollection({
 })
 
 const categories = Object.entries(
-  groupBy(frameworks.items, (item) => item.category),
+  groupBy(collection.items, (item) => item.category),
 )

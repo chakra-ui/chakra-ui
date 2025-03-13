@@ -13,7 +13,7 @@ const SelectValue = () => {
   const items = select.selectedItems as Array<{ name: string; avatar: string }>
   const { name, avatar } = items[0]
   return (
-    <Select.ValueText placeholder="Select movie">
+    <Select.ValueText placeholder="Select member">
       <HStack>
         <Avatar.Root shape="rounded" size="2xs">
           <Avatar.Image src={avatar} alt={name} />

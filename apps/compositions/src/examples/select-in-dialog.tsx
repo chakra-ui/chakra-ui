@@ -33,7 +33,7 @@ export const SelectInDialog = () => {
                 <Select.Label>Select framework</Select.Label>
                 <Select.Control>
                   <Select.Trigger>
-                    <Select.ValueText placeholder="Select movie" />
+                    <Select.ValueText placeholder="Select framework" />
                   </Select.Trigger>
                   <Select.IndicatorGroup>
                     <Select.Indicator />

@@ -16,7 +16,7 @@ export const SelectControlled = () => {
       <Select.Label>Select framework</Select.Label>
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Select movie" />
+          <Select.ValueText placeholder="Select framework" />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.Indicator />
@@ -25,9 +25,9 @@ export const SelectControlled = () => {
       <Portal>
         <Select.Positioner>
           <Select.Content>
-            {frameworks.items.map((movie) => (
-              <Select.Item item={movie} key={movie.value}>
-                {movie.label}
+            {frameworks.items.map((framework) => (
+              <Select.Item item={framework} key={framework.value}>
+                {framework.label}
                 <Select.ItemIndicator />
               </Select.Item>
             ))}

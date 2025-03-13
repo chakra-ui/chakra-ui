@@ -14,7 +14,7 @@ export const SelectWithClear = () => {
       <Select.Label>Select fav. anime</Select.Label>
       <Select.Control>
         <Select.Trigger>
-          <Select.ValueText placeholder="Select movie" />
+          <Select.ValueText placeholder="Select anime" />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.ClearTrigger />
@@ -24,9 +24,9 @@ export const SelectWithClear = () => {
       <Portal>
         <Select.Positioner>
           <Select.Content>
-            {animeMovies.items.map((movie) => (
-              <Select.Item item={movie} key={movie.value}>
-                {movie.label}
+            {animeMovies.items.map((anime) => (
+              <Select.Item item={anime} key={anime.value}>
+                {anime.label}
                 <Select.ItemIndicator />
               </Select.Item>
             ))}
