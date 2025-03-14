@@ -47,11 +47,11 @@ export const SelectWithIconButton = () => {
       <Portal>
         <Select.Positioner>
           <Select.Content minW="32">
-            {frameworks.items.map((movie) => (
-              <Select.Item item={movie} key={movie.value}>
+            {frameworks.items.map((framework) => (
+              <Select.Item item={framework} key={framework.value}>
                 <HStack>
-                  {movie.icon}
-                  {movie.label}
+                  {framework.icon}
+                  {framework.label}
                 </HStack>
                 <Select.ItemIndicator />
               </Select.Item>
