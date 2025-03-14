@@ -44,7 +44,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "bundle-n-require": "^1.0.1",
+    "bundle-n-require": "^1.1.1",
     "chokidar": "^3.5.3",
     "cli-welcome": "^2.2.2",
     "commander": "^11.0.0",
