@@ -247,7 +247,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const getRootProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => ({
       ...htmlProps,
-      htmlFor: rootIsLabelElement ? id : undefined,
       ...props,
       ref: mergeRefs(forwardedRef, (node: HTMLElement) => {
         if (!node) return
@@ -275,7 +274,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement, id],
+    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
