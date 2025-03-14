@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 2.5.8
+
+### Patch Changes
+
+- [`7caaf05`](https://github.com/chakra-ui/chakra-ui/commit/7caaf050b1364175ce06318f8726229241455cee)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump
+  `bundle-n-require` to fix vulnerability warning.
+
 ## 2.5.7
 
 ### Patch Changes

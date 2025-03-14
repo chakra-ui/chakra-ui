@@ -1,5 +1,20 @@
 # @chakra-ui/react
 
+## 2.10.7
+
+### Patch Changes
+
+- [#9772](https://github.com/chakra-ui/chakra-ui/pull/9772)
+  [`229c809`](https://github.com/chakra-ui/chakra-ui/commit/229c8091213264441378397a084fa11b9f12d432)
+  Thanks [@timkindberg](https://github.com/timkindberg)! - - **Checkbox**
+  - Fix performance issue where all checkboxes and radios would rerender
+    whenever trackFocusVisible modality changed, e.g. click into an input then
+    type
+  - Fix regression where checkbox group doesn't work when wrapped in
+    `FormControl`
+- Updated dependencies []:
+  - @chakra-ui/theme@3.4.8
+
 ## 2.10.6
 
 ### Patch Changes
