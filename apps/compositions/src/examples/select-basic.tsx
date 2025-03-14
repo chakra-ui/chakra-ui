@@ -18,9 +18,9 @@ export const SelectBasic = () => {
       <Portal>
         <Select.Positioner>
           <Select.Content>
-            {frameworks.items.map((movie) => (
-              <Select.Item item={movie} key={movie.value}>
-                {movie.label}
+            {frameworks.items.map((framework) => (
+              <Select.Item item={framework} key={framework.value}>
+                {framework.label}
                 <Select.ItemIndicator />
               </Select.Item>
             ))}

@@ -29,12 +29,12 @@ export const SelectWithItemDescription = () => {
       <Portal>
         <Select.Positioner>
           <Select.Content>
-            {frameworks.items.map((movie) => (
-              <Select.Item item={movie} key={movie.value}>
+            {frameworks.items.map((framework) => (
+              <Select.Item item={framework} key={framework.value}>
                 <Stack gap="0">
-                  <Select.ItemText>{movie.label}</Select.ItemText>
+                  <Select.ItemText>{framework.label}</Select.ItemText>
                   <Span color="fg.muted" textStyle="xs">
-                    {movie.description}
+                    {framework.description}
                   </Span>
                 </Stack>
                 <Select.ItemIndicator />
