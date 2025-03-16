@@ -1,5 +1,14 @@
-import { Slider } from "compositions/ui/slider"
+import { Slider } from "@chakra-ui/react"
 
 export const SliderBasic = () => {
-  return <Slider width="200px" defaultValue={[40]} />
+  return (
+    <Slider.Root width="200px" defaultValue={[40]}>
+      <Slider.Control>
+        <Slider.Track>
+          <Slider.Range />
+        </Slider.Track>
+        <Slider.Thumbs />
+      </Slider.Control>
+    </Slider.Root>
+  )
 }

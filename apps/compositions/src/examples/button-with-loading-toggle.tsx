@@ -1,7 +1,6 @@
 "use client"
 
-import { Button, VStack } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Button, Checkbox, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const ButtonWithLoadingToggle = () => {
@@ -11,13 +10,15 @@ export const ButtonWithLoadingToggle = () => {
       <Button loading={loading} onClick={() => setLoading(!loading)}>
         Click me
       </Button>
-      <Checkbox
+      <Checkbox.Root
         size="sm"
         checked={loading}
         onCheckedChange={() => setLoading(!loading)}
       >
-        Loading
-      </Checkbox>
+        <Checkbox.HiddenInput />
+        <Checkbox.Control />
+        <Checkbox.Label>Loading</Checkbox.Label>
+      </Checkbox.Root>
     </VStack>
   )
 }

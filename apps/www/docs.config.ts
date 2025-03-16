@@ -51,6 +51,7 @@ const docsLinks: NavItem = {
             { title: "Animation", url: "animation" },
             { title: "Color Mode", url: "color-mode" },
             { title: "Server Component", url: "server-components" },
+            { title: "Testing", url: "testing" },
           ],
         },
         {
@@ -68,6 +69,7 @@ const docsLinks: NavItem = {
             { title: "SimpleGrid", url: "simple-grid" },
             { title: "Stack", url: "stack" },
             { title: "Theme", url: "theme" },
+            { title: "Wrap", url: "wrap" },
           ],
         },
         {
@@ -126,7 +128,7 @@ const docsLinks: NavItem = {
             { title: "Popover", url: "popover" },
             { title: "Progress Circle", url: "progress-circle" },
             { title: "Progress", url: "progress" },
-            { title: "QR Code", url: "qr-code", status: "new" },
+            { title: "QR Code", url: "qr-code" },
             { title: "Radio Card", url: "radio-card" },
             { title: "Radio", url: "radio" },
             { title: "Rating", url: "rating" },
@@ -160,7 +162,7 @@ const docsLinks: NavItem = {
             { title: "FormatNumber", url: "format-number" },
             { title: "FormatByte", url: "format-byte" },
             { title: "LocaleProvider", url: "locale-provider" },
-            { title: "Presence", url: "presence", status: "new" },
+            { title: "Presence", url: "presence" },
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
             { title: "Visually Hidden", url: "visually-hidden" },

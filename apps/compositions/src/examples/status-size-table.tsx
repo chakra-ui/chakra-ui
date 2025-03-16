@@ -1,9 +1,8 @@
 "use client"
 
-import { For, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, Span, Status, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Status } from "compositions/ui/status"
 
 export const StatusSizeTable = () => {
   const recipe = useSlotRecipe({ key: "status" })
@@ -27,9 +26,10 @@ export const StatusSizeTable = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td key={v}>
-                    <Status colorPalette={c} size={v}>
+                    <Status.Root colorPalette={c} size={v}>
+                      <Status.Indicator />
                       Status
-                    </Status>
+                    </Status.Root>
                   </td>
                 )}
               </For>

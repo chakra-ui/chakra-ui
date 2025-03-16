@@ -1,30 +1,33 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+import { Portal, Select, createListCollection } from "@chakra-ui/react"
 
 export const SelectWithDisabledOption = () => {
   return (
-    <SelectRoot collection={animals} size="sm" width="320px">
-      <SelectLabel>Select animal</SelectLabel>
-      <SelectTrigger>
-        <SelectValueText placeholder="Animal" />
-      </SelectTrigger>
-      <SelectContent>
-        {animals.items.map((animal) => (
-          <SelectItem item={animal} key={animal.value}>
-            {animal.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </SelectRoot>
+    <Select.Root collection={animals} size="sm" width="320px">
+      <Select.HiddenSelect />
+      <Select.Label>Select animal</Select.Label>
+      <Select.Control>
+        <Select.Trigger>
+          <Select.ValueText placeholder="Animal" />
+        </Select.Trigger>
+        <Select.IndicatorGroup>
+          <Select.Indicator />
+        </Select.IndicatorGroup>
+      </Select.Control>
+      <Portal>
+        <Select.Positioner>
+          <Select.Content>
+            {animals.items.map((animal) => (
+              <Select.Item item={animal} key={animal.value}>
+                {animal.label}
+                <Select.ItemIndicator />
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Positioner>
+      </Portal>
+    </Select.Root>
   )
 }
 

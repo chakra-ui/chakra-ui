@@ -1,13 +1,14 @@
 "use client"
 
-import { HStack, Stack, Text } from "@chakra-ui/react"
 import {
-  PaginationItems,
-  PaginationNextTrigger,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "compositions/ui/pagination"
+  ButtonGroup,
+  IconButton,
+  Pagination,
+  Stack,
+  Text,
+} from "@chakra-ui/react"
 import { useState } from "react"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 
 const pageSize = 5
 const count = 50
@@ -30,18 +31,34 @@ export const PaginationWithContent = () => {
           <Text key={item}>{item}</Text>
         ))}
       </Stack>
-      <PaginationRoot
-        page={page}
+      <Pagination.Root
         count={count}
         pageSize={pageSize}
+        page={page}
         onPageChange={(e) => setPage(e.page)}
       >
-        <HStack>
-          <PaginationPrevTrigger />
-          <PaginationItems />
-          <PaginationNextTrigger />
-        </HStack>
-      </PaginationRoot>
+        <ButtonGroup variant="ghost" size="sm">
+          <Pagination.PrevTrigger asChild>
+            <IconButton>
+              <HiChevronLeft />
+            </IconButton>
+          </Pagination.PrevTrigger>
+
+          <Pagination.Items
+            render={(page) => (
+              <IconButton variant={{ base: "ghost", _selected: "outline" }}>
+                {page.value}
+              </IconButton>
+            )}
+          />
+
+          <Pagination.NextTrigger asChild>
+            <IconButton>
+              <HiChevronRight />
+            </IconButton>
+          </Pagination.NextTrigger>
+        </ButtonGroup>
+      </Pagination.Root>
     </Stack>
   )
 }

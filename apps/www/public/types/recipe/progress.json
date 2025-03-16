@@ -3,7 +3,7 @@
     "props": {
       "colorPalette": {
         "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
         "isRequired": false,
         "description": "The color palette of the component"
       },
@@ -14,7 +14,7 @@
         "description": "The variant of the component"
       },
       "shape": {
-        "type": "\"square\" | \"rounded\" | \"pill\"",
+        "type": "\"square\" | \"rounded\" | \"full\"",
         "defaultValue": "rounded",
         "isRequired": false,
         "description": "The shape of the component"
@@ -30,7 +30,7 @@
         "description": "The animated of the component"
       },
       "size": {
-        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"

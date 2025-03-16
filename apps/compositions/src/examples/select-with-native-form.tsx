@@ -1,14 +1,12 @@
 "use client"
 
-import { Button, Stack, createListCollection } from "@chakra-ui/react"
 import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+  Button,
+  Portal,
+  Select,
+  Stack,
+  createListCollection,
+} from "@chakra-ui/react"
 
 export const SelectWithNativeForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,19 +18,30 @@ export const SelectWithNativeForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Stack gap="4" align="flex-start" maxW="sm">
-        <SelectRoot collection={frameworks} size="sm" name="framework">
-          <SelectLabel>Select framework</SelectLabel>
-          <SelectTrigger>
-            <SelectValueText placeholder="Select movie" />
-          </SelectTrigger>
-          <SelectContent>
-            {frameworks.items.map((movie) => (
-              <SelectItem item={movie} key={movie.value}>
-                {movie.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </SelectRoot>
+        <Select.Root collection={frameworks} size="sm" name="framework">
+          <Select.HiddenSelect />
+          <Select.Label>Select framework</Select.Label>
+          <Select.Control>
+            <Select.Trigger>
+              <Select.ValueText placeholder="Select framework" />
+            </Select.Trigger>
+            <Select.IndicatorGroup>
+              <Select.Indicator />
+            </Select.IndicatorGroup>
+          </Select.Control>
+          <Portal>
+            <Select.Positioner>
+              <Select.Content>
+                {frameworks.items.map((framework) => (
+                  <Select.Item item={framework} key={framework.value}>
+                    {framework.label}
+                    <Select.ItemIndicator />
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Positioner>
+          </Portal>
+        </Select.Root>
         <Button type="submit">Submit</Button>
       </Stack>
     </form>

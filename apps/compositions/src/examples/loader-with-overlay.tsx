@@ -3,12 +3,12 @@
 import {
   Box,
   Button,
+  Field,
   Input,
   Loader,
   LoaderOverlay,
   Stack,
 } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
 import { useState } from "react"
 
 export const LoaderWithOverlay = () => {
@@ -17,12 +17,14 @@ export const LoaderWithOverlay = () => {
     <Stack maxW="xl" gap="4">
       <Box position="relative" p="6" bg="bg.panel" shadow="sm" rounded="l3">
         <Stack gap="4">
-          <Field label="First name">
+          <Field.Root>
+            <Field.Label>First name</Field.Label>
             <Input />
-          </Field>
-          <Field label="Last name">
+          </Field.Root>
+          <Field.Root>
+            <Field.Label>Last name</Field.Label>
             <Input />
-          </Field>
+          </Field.Root>
           <Button>Click me</Button>
         </Stack>
         {loading && (

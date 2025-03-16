@@ -654,6 +654,7 @@ export type FileUploadSlot =
   | "clearTrigger"
   | "itemContent"
   | "dropzoneContent"
+  | "fileText"
 
 export interface FileUploadVariant {}
 
@@ -781,6 +782,7 @@ export interface PinInputVariant {
   size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   /** @default "outline" */
   variant?: "outline" | "subtle" | "flushed"
+  attached?: boolean
 }
 
 export type PinInputVariantProps = {
@@ -1239,6 +1241,7 @@ export type ColorPickerSlot =
   | "formatTrigger"
   | "formatSelect"
   | "view"
+  | "channelText"
 
 export interface ColorPickerVariant {
   /** @default "md" */

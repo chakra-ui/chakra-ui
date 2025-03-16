@@ -59,16 +59,6 @@ export const NumberInputPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface NumberInputControlProps
-  extends HTMLChakraProps<"div", ArkNumberInput.ControlBaseProps> {}
-
-export const NumberInputControl = withContext<
-  HTMLDivElement,
-  NumberInputControlProps
->(ArkNumberInput.Control, "control", { forwardAsChild: true })
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface NumberInputLabelProps
   extends HTMLChakraProps<"label", ArkNumberInput.LabelBaseProps> {}
 
@@ -111,6 +101,26 @@ export const NumberInputDecrementTrigger = withContext<
 >(ArkNumberInput.DecrementTrigger, "decrementTrigger", {
   forwardAsChild: true,
   defaultProps: { children: <ChevronDownIcon /> },
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface NumberInputControlProps
+  extends HTMLChakraProps<"div", ArkNumberInput.ControlBaseProps> {}
+
+export const NumberInputControl = withContext<
+  HTMLDivElement,
+  NumberInputControlProps
+>(ArkNumberInput.Control, "control", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: (
+      <>
+        <NumberInputIncrementTrigger />
+        <NumberInputDecrementTrigger />
+      </>
+    ),
+  },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////

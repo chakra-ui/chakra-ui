@@ -9,29 +9,62 @@ links:
 
 <ExampleTabs name="rating-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`rating` snippet
-
-```sh
-npx @chakra-ui/cli snippet add rating
-```
-
-The snippet includes a closed component composition for the `RatingGroup`
-component.
-
 ## Usage
 
-```jsx
-import { Rating } from "@/components/ui/rating"
+```tsx
+import { RatingGroup } from "@chakra-ui/react"
 ```
 
-```jsx
-<Rating />
+```tsx
+<RatingGroup.Root>
+  <RatingGroup.Label />
+  <RatingGroup.HiddenInput />
+  <RatingGroup.Control>
+    <RatingGroup.Item>
+      <RatingGroup.ItemIndicator />
+    </RatingGroup.Item>
+  </RatingGroup.Control>
+</RatingGroup.Root>
+```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
+## Shortcuts
+
+The `Rating` component also provides a set of shortcuts for common use cases.
+
+### RatingControl
+
+This component renders the number of rating items specified in the `count` prop.
+
+This works:
+
+```tsx
+<RatingGroup.Control>
+  {Array.from({ length: 5 }).map((_, index) => (
+    <RatingGroup.Item key={index} index={index + 1}>
+      <RatingGroup.ItemIndicator />
+    </RatingGroup.Item>
+  ))}
+</RatingGroup.Control>
+```
+
+This might be more concise, if you don't need to customize the rating icons:
+
+```tsx
+<RatingGroup.Control />
 ```
 
 ## Examples
+
+### Basic
+
+<ExampleTabs name="rating-basic" />
 
 ### Sizes
 
@@ -44,6 +77,15 @@ Use the `size` prop to change the size of the rating component.
 Use the `value` and `onValueChange` prop to control the rating value.
 
 <ExampleTabs name="rating-controlled" />
+
+### Store
+
+An alternative way to control the rating is to use the `RootProvider` component
+and the `useRatingGroup` store hook.
+
+This way you can access the rating state and methods from outside the component.
+
+<ExampleTabs name="rating-with-store" />
 
 ### ReadOnly
 
@@ -64,6 +106,13 @@ override the default star icon.
 
 <ExampleTabs name="rating-with-custom-icon" />
 
+### Label
+
+Render the `RatingGroup.Label` component to provide a human-readable label for
+the rating component.
+
+<ExampleTabs name="rating-with-label" />
+
 ### Half Star
 
 Use the `allowHalf` prop to allow half-star ratings.
@@ -76,11 +125,29 @@ Compose the rating component with emojis.
 
 <ExampleTabs name="rating-emoji" />
 
+### Colors
+
+Use the `colorPalette` prop to change the color of the rating
+
+<ExampleTabs name="rating-with-colors" />
+
 ### Testimonial
 
 Use the rating component to show testimonials.
 
 <ExampleTabs name="rating-in-testimonial" />
+
+### Closed Component
+
+Here's how to setup the Rating for a closed component composition.
+
+<ExampleCode name="rating-closed-component" />
+
+Here's how to use the it
+
+```tsx
+<Rating defaultValue={3} size="sm" />
+```
 
 ## Props
 

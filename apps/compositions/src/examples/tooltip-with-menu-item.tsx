@@ -1,44 +1,43 @@
-import type { MenuItemProps } from "@chakra-ui/react"
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal, Show } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
 
 export const TooltipWithMenuItem = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <TooltipMenuItem value="new-txt" tooltip="This is the tooltip content">
-          Open tooltip
-        </TooltipMenuItem>
-        <MenuItem value="new-file">New File...</MenuItem>
-        <MenuItem value="new-win">New Window</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <MenuItem value="new-txt" title="This is the tooltip content">
+              Open tooltip
+            </MenuItem>
+            <MenuItem value="new-file">New File...</MenuItem>
+            <MenuItem value="new-win">New Window</MenuItem>
+            <MenuItem value="export">Export</MenuItem>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }
 
-const TooltipMenuItem = (props: MenuItemProps & { tooltip: string }) => {
-  const { value, tooltip, ...rest } = props
+const MenuItem = (props: Menu.ItemProps) => {
+  const { value, title, ...rest } = props
   return (
-    <Tooltip
-      ids={{ trigger: value }}
-      openDelay={200}
-      closeDelay={0}
-      positioning={{ placement: "right" }}
-      content={tooltip}
-    >
-      <MenuItem value={value} {...rest} />
-    </Tooltip>
+    <Show when={title} fallback={<Menu.Item value={value} {...rest} />}>
+      <Tooltip
+        ids={{ trigger: value }}
+        openDelay={200}
+        closeDelay={0}
+        positioning={{ placement: "right" }}
+        content={title}
+      >
+        <Menu.Item value={value} {...rest} />
+      </Tooltip>
+    </Show>
   )
 }

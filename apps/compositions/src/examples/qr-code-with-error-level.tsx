@@ -1,7 +1,6 @@
 "use client"
 
-import { QrCode, Stack } from "@chakra-ui/react"
-import { SegmentedControl } from "compositions/ui/segmented-control"
+import { QrCode, SegmentGroup, Stack } from "@chakra-ui/react"
 import { useState } from "react"
 
 type ErrorLevel = "L" | "M" | "Q" | "H"
@@ -15,16 +14,16 @@ export const QrCodeWithErrorLevel = () => {
         size="xl"
         encoding={{ ecc: errorLevel }}
       >
-        <QrCode.Frame>
-          <QrCode.Pattern />
-        </QrCode.Frame>
+        <QrCode.Frame />
       </QrCode.Root>
-      <SegmentedControl
+      <SegmentGroup.Root
         size="sm"
         defaultValue={"L"}
-        items={["L", "M", "Q", "H"]}
         onValueChange={(e) => setErrorLevel(e.value as ErrorLevel)}
-      />
+      >
+        <SegmentGroup.Indicator />
+        <SegmentGroup.Items items={["L", "M", "Q", "H"]} />
+      </SegmentGroup.Root>
     </Stack>
   )
 }

@@ -17,10 +17,12 @@
   "license": "ISC",
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@hookform/resolvers": "3.9.1",
-    "@tanstack/react-table": "8.19.3",
+    "@hookform/resolvers": "3.10.0",
+    "@tanstack/react-table": "8.21.2",
+    "@tanstack/react-virtual": "3.13.2",
+    "es-toolkit": "1.33.0",
     "react-spinners": "0.15.0",
-    "next-themes": "0.4.4",
+    "next-themes": "0.4.5",
     "recharts": "2.13.3",
     "react": "^18",
     "react-dom": "^18",
@@ -28,13 +30,15 @@
     "react-frame-component": "5.2.7",
     "react-hook-form": "7.53.2",
     "react-markdown": "9.0.3",
-    "react-icons": "5.4.0",
+    "react-icons": "5.5.0",
     "react-lorem-ipsum": "1.4.10",
     "use-mask-input": "3.4.2",
+    "react-payment-inputs": "1.2.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/react-payment-inputs": "1.1.4"
   }
 }

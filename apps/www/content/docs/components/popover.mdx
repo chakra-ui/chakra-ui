@@ -10,38 +10,50 @@ links:
 
 <ExampleTabs name="popover-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`popover` snippet
-
-```sh
-npx @chakra-ui/cli snippet add popover
-```
-
-The snippet includes component compositions based on the `Popover` component.
-
 ## Usage
 
-```jsx
-import {
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTitle,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+```tsx
+import { Popover } from "@chakra-ui/react"
 ```
 
+```tsx
+<Popover.Root>
+  <Popover.Trigger />
+  <Popover.Positioner>
+    <Popover.Content>
+      <Popover.CloseTrigger />
+      <Popover.Arrow>
+        <Popover.ArrowTip />
+      </Popover.Arrow>
+      <Popover.Body>
+        <Popover.Title />
+      </Popover.Body>
+    </Popover.Content>
+  </Popover.Positioner>
+</Popover.Root>
+```
+
+## Shortcuts
+
+The `Popover` provides a shortcuts for common use cases.
+
+### Arrow
+
+The `Popover.Arrow` renders the `Popover.ArrowTip` component within in by
+default.
+
+This works:
+
 ```jsx
-<PopoverRoot>
-  <PopoverTrigger />
-  <PopoverContent>
-    <PopoverBody>
-      <PopoverTitle />
-    </PopoverBody>
-  </PopoverContent>
-</PopoverRoot>
+<Popover.Arrow>
+  <Popover.ArrowTip />
+</Popover.Arrow>
+```
+
+This might be more concise, if you don't need to customize the arrow tip.
+
+```jsx
+<Popover.Arrow />
 ```
 
 ## Examples
@@ -112,13 +124,6 @@ Use the `--popover-bg` CSS variable to change the background color of the
 popover content and its arrow.
 
 <ExampleTabs name="popover-with-custom-bg" />
-
-### Without Snippet
-
-If you don't want to use the snippet, you can use the `Popover` component from
-the `@chakra-ui/react` package.
-
-<ExampleTabs name="popover-without-snippet" />
 
 ## Props
 

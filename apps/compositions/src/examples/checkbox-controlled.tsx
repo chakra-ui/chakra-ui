@@ -1,16 +1,18 @@
 "use client"
 
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const CheckboxControlled = () => {
   const [checked, setChecked] = useState(false)
   return (
-    <Checkbox
+    <Checkbox.Root
       checked={checked}
       onCheckedChange={(e) => setChecked(!!e.checked)}
     >
-      Accept terms and conditions
-    </Checkbox>
+      <Checkbox.HiddenInput />
+      <Checkbox.Control />
+      <Checkbox.Label>Accept terms and conditions</Checkbox.Label>
+    </Checkbox.Root>
   )
 }

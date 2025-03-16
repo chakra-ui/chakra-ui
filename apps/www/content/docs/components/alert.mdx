@@ -25,6 +25,13 @@ import { Alert } from "@chakra-ui/react"
 </Alert.Root>
 ```
 
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
 ## Examples
 
 ### Description
@@ -80,6 +87,19 @@ color palette, pass the `colorPalette` prop.
 You can style the `Alert` component using style props.
 
 <ExampleTabs name="alert-with-customization" />
+
+### Closed Component
+
+Here's how to setup the `Alert` for a closed component composition.
+
+<ExampleCode name="alert-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add alert
+```
 
 ## Props
 

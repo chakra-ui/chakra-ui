@@ -1,62 +1,57 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import {
-  SelectContent,
-  SelectItem,
-  SelectItemGroup,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+import { Portal, Select, createListCollection } from "@chakra-ui/react"
+import { groupBy } from "es-toolkit"
 
 export const SelectWithOptionGroup = () => {
   return (
-    <SelectRoot collection={frameworks} size="sm" width="320px">
-      <SelectLabel>Select framework</SelectLabel>
-      <SelectTrigger>
-        <SelectValueText placeholder="Select movie" />
-      </SelectTrigger>
-      <SelectContent>
-        {categories.map((category) => (
-          <SelectItemGroup key={category.group} label={category.group}>
-            {category.items.map((item) => (
-              <SelectItem item={item} key={item.value}>
-                {item.label}
-              </SelectItem>
+    <Select.Root collection={collection} size="sm" width="320px">
+      <Select.HiddenSelect />
+      <Select.Label>Select framework</Select.Label>
+      <Select.Control>
+        <Select.Trigger>
+          <Select.ValueText placeholder="Select framework" />
+        </Select.Trigger>
+        <Select.IndicatorGroup>
+          <Select.Indicator />
+        </Select.IndicatorGroup>
+      </Select.Control>
+      <Portal>
+        <Select.Positioner>
+          <Select.Content>
+            {categories.map(([category, items]) => (
+              <Select.ItemGroup key={category}>
+                <Select.ItemGroupLabel>{category}</Select.ItemGroupLabel>
+                {items.map((item) => (
+                  <Select.Item item={item} key={item.value}>
+                    {item.label}
+                    <Select.ItemIndicator />
+                  </Select.Item>
+                ))}
+              </Select.ItemGroup>
             ))}
-          </SelectItemGroup>
-        ))}
-      </SelectContent>
-    </SelectRoot>
+          </Select.Content>
+        </Select.Positioner>
+      </Portal>
+    </Select.Root>
   )
 }
 
-const frameworks = createListCollection({
+const collection = createListCollection({
   items: [
-    { label: "Naruto", value: "naruto", group: "Anime" },
-    { label: "One Piece", value: "one-piece", group: "Anime" },
-    { label: "Dragon Ball", value: "dragon-ball", group: "Anime" },
+    { label: "Naruto", value: "naruto", category: "Anime" },
+    { label: "One Piece", value: "one-piece", category: "Anime" },
+    { label: "Dragon Ball", value: "dragon-ball", category: "Anime" },
     {
       label: "The Shawshank Redemption",
       value: "the-shawshank-redemption",
-      group: "Movies",
+      category: "Movies",
     },
-    { label: "The Godfather", value: "the-godfather", group: "Movies" },
-    { label: "The Dark Knight", value: "the-dark-knight", group: "Movies" },
+    { label: "The Godfather", value: "the-godfather", category: "Movies" },
+    { label: "The Dark Knight", value: "the-dark-knight", category: "Movies" },
   ],
 })
 
-const categories = frameworks.items.reduce(
-  (acc, item) => {
-    const group = acc.find((group) => group.group === item.group)
-    if (group) {
-      group.items.push(item)
-    } else {
-      acc.push({ group: item.group, items: [item] })
-    }
-    return acc
-  },
-  [] as { group: string; items: (typeof frameworks)["items"] }[],
+const categories = Object.entries(
+  groupBy(collection.items, (item) => item.category),
 )

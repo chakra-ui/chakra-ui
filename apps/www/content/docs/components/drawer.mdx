@@ -11,46 +11,27 @@ links:
 
 <ExampleTabs name="drawer-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`drawer` snippet
-
-```sh
-npx @chakra-ui/cli snippet add drawer
-```
-
-The snippet includes a closed component composition for the `Drawer` component.
-
 ## Usage
 
-```jsx
-import {
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerCloseTrigger,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerRoot,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
+```tsx
+import { Drawer } from "@chakra-ui/react"
 ```
 
-```jsx
-<DrawerRoot>
-  <DrawerBackdrop />
-  <DrawerTrigger />
-  <DrawerContent>
-    <DrawerCloseTrigger />
-    <DrawerHeader>
-      <DrawerTitle />
-    </DrawerHeader>
-    <DrawerBody />
-    <DrawerFooter />
-  </DrawerContent>
-</DrawerRoot>
+```tsx
+<Drawer.Root>
+  <Drawer.Backdrop />
+  <Drawer.Trigger />
+  <Drawer.Positioner>
+    <Drawer.Content>
+      <Drawer.CloseTrigger />
+      <Drawer.Header>
+        <Drawer.Title />
+      </Drawer.Header>
+      <Drawer.Body />
+      <Drawer.Footer />
+    </Drawer.Content>
+  </Drawer.Positioner>
+</Drawer.Root>
 ```
 
 ## Examples
@@ -61,18 +42,18 @@ Use the `open` and `onOpenChange` props to control the drawer component.
 
 <ExampleTabs name="drawer-controlled" />
 
+### Sizes
+
+Use the `size` prop to change the size of the drawer component.
+
+<ExampleTabs name="drawer-with-sizes" />
+
 ### Context
 
 Use the `DrawerContext` component to access the drawer state and methods from
 outside the drawer.
 
 <ExampleTabs name="drawer-with-context" />
-
-### Sizes
-
-Use the `size` prop to change the size of the drawer component.
-
-<ExampleTabs name="drawer-with-sizes" />
 
 ### Offset
 
@@ -92,6 +73,21 @@ Use the `placement` prop to change the placement of the drawer component.
 Use the `initialFocusEl` prop to set the initial focus of the drawer component.
 
 <ExampleTabs name="drawer-with-initial-focus" />
+
+### Custom Container
+
+Here's an example of how to render the drawer component in a custom container.
+
+Consider setting `closeOnInteractOutside` to `false` to prevent the drawer from
+closing when interacting outside the drawer.
+
+<ExampleTabs name="drawer-with-custom-container" />
+
+### Header Actions
+
+Here's an example of rendering actions in the header of the drawer component.
+
+<ExampleTabs name="drawer-with-header-actions" />
 
 ## Props
 

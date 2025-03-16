@@ -1,28 +1,42 @@
-import { Stack } from "@chakra-ui/react"
-import { Avatar, AvatarGroup } from "compositions/ui/avatar"
+import { Avatar, AvatarGroup, Stack } from "@chakra-ui/react"
 
 export const AvatarGroupWithStacking = () => {
   return (
     <Stack>
       <AvatarGroup size="lg" stacking="last-on-top">
         {items.map((item) => (
-          <Avatar key={item.name} src={item.src} name={item.name} />
+          <Avatar.Root key={item.name}>
+            <Avatar.Fallback name={item.name} />
+            <Avatar.Image src={item.src} />
+          </Avatar.Root>
         ))}
-        <Avatar fallback="+3" />
+        <Avatar.Root>
+          <Avatar.Fallback>+3</Avatar.Fallback>
+        </Avatar.Root>
       </AvatarGroup>
 
       <AvatarGroup size="lg" stacking="first-on-top">
         {items.map((item) => (
-          <Avatar key={item.name} src={item.src} name={item.name} />
+          <Avatar.Root key={item.name}>
+            <Avatar.Fallback name={item.name} />
+            <Avatar.Image src={item.src} />
+          </Avatar.Root>
         ))}
-        <Avatar fallback="+3" />
+        <Avatar.Root>
+          <Avatar.Fallback>+3</Avatar.Fallback>
+        </Avatar.Root>
       </AvatarGroup>
 
       <AvatarGroup size="lg" spaceX="1" borderless>
         {items.map((item) => (
-          <Avatar key={item.name} src={item.src} name={item.name} />
+          <Avatar.Root key={item.name}>
+            <Avatar.Fallback name={item.name} />
+            <Avatar.Image src={item.src} />
+          </Avatar.Root>
         ))}
-        <Avatar fallback="+3" />
+        <Avatar.Root>
+          <Avatar.Fallback>+3</Avatar.Fallback>
+        </Avatar.Root>
       </AvatarGroup>
     </Stack>
   )

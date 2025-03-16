@@ -1,9 +1,8 @@
 "use client"
 
-import { Card } from "@chakra-ui/react"
+import { Card, Stat } from "@chakra-ui/react"
 import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
 import { useChartState } from "compositions/chart/use-chart-state"
-import { StatLabel, StatRoot, StatValueText } from "compositions/ui/stat"
 import { LuGlobe } from "react-icons/lu"
 import { Area, AreaChart, Tooltip } from "recharts"
 
@@ -11,12 +10,12 @@ export const SparklineWithStat = () => {
   return (
     <Card.Root>
       <Card.Body>
-        <StatRoot>
-          <StatLabel>
+        <Stat.Root>
+          <Stat.Label>
             <LuGlobe /> Unique visitors
-          </StatLabel>
-          <StatValueText>192.1k</StatValueText>
-        </StatRoot>
+          </Stat.Label>
+          <Stat.ValueText>192.1k</Stat.ValueText>
+        </Stat.Root>
       </Card.Body>
       <SparkLine data={[10, 16, 19, 15, 12, 15, 10, 18]} />
     </Card.Root>

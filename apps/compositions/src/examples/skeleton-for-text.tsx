@@ -1,4 +1,4 @@
-import { SkeletonText } from "compositions/ui/skeleton"
+import { SkeletonText } from "@chakra-ui/react"
 
 export const SkeletonForText = () => {
   return <SkeletonText noOfLines={3} gap="4" />

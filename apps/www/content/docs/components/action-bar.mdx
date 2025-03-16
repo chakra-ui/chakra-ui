@@ -9,49 +9,32 @@ links:
 
 <ExampleTabs name="action-bar-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`action-bar` snippet
-
-```sh
-npx @chakra-ui/cli snippet add action-bar
-```
-
-The snippet includes a closed component composition based on the `Popover`
-component.
-
 ## Usage
 
 The action bar is designed to be controlled by table or checkbox selections. It
 provides a set of actions that can be performed on the selected items.
 
-```jsx
-import {
-  ActionBarCloseTrigger,
-  ActionBarContent,
-  ActionBarRoot,
-  ActionBarSelectionTrigger,
-  ActionBarSeparator,
-} from "@/components/ui/action-bar"
+```tsx
+import { ActionBar } from "@chakra-ui/react"
 ```
 
-```jsx
-<ActionBarRoot>
-  <ActionBarContent>
-    <ActionBarCloseTrigger />
-    <ActionBarSelectionTrigger />
-    <ActionBarSeparator />
-    <Button />
-  </ActionBarContent>
-</ActionBarRoot>
+```tsx
+<ActionBar.Root>
+  <ActionBar.Positioner>
+    <ActionBar.Content>
+      <ActionBar.CloseTrigger />
+      <ActionBar.SelectionTrigger />
+      <ActionBar.Separator />
+    </ActionBar.Content>
+  </ActionBar.Positioner>
+</ActionBar.Root>
 ```
 
 ## Examples
 
 ### Close Trigger
 
-Render the `ActionBarCloseTrigger` to close the action bar, and pass the
+Render the `ActionBar.CloseTrigger` to close the action bar, and pass the
 `onOpenChange` handler to control the visibility of the action bar.
 
 > The `open` and `onOpenChange` props control the visibility of the action bar.
@@ -66,13 +49,6 @@ delete action on a set of selected items.
 > Press the `Delete projects` button to open the dialog.
 
 <ExampleTabs name="action-bar-with-dialog" />
-
-### Without Snippet
-
-If you don't want to use the snippet, you can use the `ActionBar` component from
-the `@chakra-ui/react` package.
-
-<ExampleTabs name="action-bar-without-snippet" />
 
 ## Props
 

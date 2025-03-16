@@ -2,6 +2,7 @@ import { blogs } from "@/.velite"
 import { MDXContent } from "@/components/mdx-content"
 import { formatBlogDate, getBlogAuthor } from "@/lib/blog"
 import {
+  Avatar,
   Badge,
   Container,
   HStack,
@@ -10,7 +11,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -63,7 +63,10 @@ export default async function BlogPostPage(props: PageContext) {
               const author = getBlogAuthor(authorId)
               return (
                 <HStack key={author.name} gap="4">
-                  <Avatar src={author.image} name={author.name} />
+                  <Avatar.Root>
+                    <Avatar.Image src={author.image} />
+                    <Avatar.Fallback name={author.name} />
+                  </Avatar.Root>
                   <Stack gap="0" fontSize="sm">
                     <Text fontWeight="medium">{author.name}</Text>
                     <Text color="fg.muted">{author.x.username}</Text>

@@ -1,10 +1,4 @@
-import { Box, Center, Flex, Text } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Box, Center, Flex, Menu, Portal, Text } from "@chakra-ui/react"
 
 export const MenuWithHideWhenDetached = () => {
   return (
@@ -24,20 +18,24 @@ export const MenuWithHideWhenDetached = () => {
           </Box>
         ))}
         <Box>
-          <MenuRoot positioning={{ hideWhenDetached: true }}>
-            <MenuTrigger asChild>
+          <Menu.Root positioning={{ hideWhenDetached: true }}>
+            <Menu.Trigger asChild>
               <Box as="button" bg="green.100" p="4" borderRadius="md">
                 Menu
               </Box>
-            </MenuTrigger>
-            <MenuContent>
-              <MenuItem value="new-txt">New Text File</MenuItem>
-              <MenuItem value="new-file">New File...</MenuItem>
-              <MenuItem value="new-win">New Window</MenuItem>
-              <MenuItem value="open-file">Open File...</MenuItem>
-              <MenuItem value="export">Export</MenuItem>
-            </MenuContent>
-          </MenuRoot>
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content>
+                  <Menu.Item value="new-txt">New Text File</Menu.Item>
+                  <Menu.Item value="new-file">New File...</Menu.Item>
+                  <Menu.Item value="new-win">New Window</Menu.Item>
+                  <Menu.Item value="open-file">Open File...</Menu.Item>
+                  <Menu.Item value="export">Export</Menu.Item>
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
         </Box>
       </Flex>
     </Center>

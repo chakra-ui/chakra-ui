@@ -1,17 +1,10 @@
-import { Center } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuContextTrigger,
-  MenuItem,
-  MenuRoot,
-} from "compositions/ui/menu"
+import { Center, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuWithContextTrigger = () => {
   return (
-    <MenuRoot>
-      <MenuContextTrigger w="full">
+    <Menu.Root>
+      <Menu.ContextTrigger width="full">
         <Center
-          width="full"
           height="40"
           userSelect="none"
           borderWidth="2px"
@@ -21,14 +14,18 @@ export const MenuWithContextTrigger = () => {
         >
           Right click here
         </Center>
-      </MenuContextTrigger>
-      <MenuContent>
-        <MenuItem value="new-txt">New Text File</MenuItem>
-        <MenuItem value="new-file">New File...</MenuItem>
-        <MenuItem value="new-win">New Window</MenuItem>
-        <MenuItem value="open-file">Open File...</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.ContextTrigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="new-txt">New Text File</Menu.Item>
+            <Menu.Item value="new-file">New File...</Menu.Item>
+            <Menu.Item value="new-win">New Window</Menu.Item>
+            <Menu.Item value="open-file">Open File...</Menu.Item>
+            <Menu.Item value="export">Export</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

@@ -1,9 +1,10 @@
-import { HStack, Stack } from "@chakra-ui/react"
 import {
+  HStack,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
-} from "compositions/ui/skeleton"
+  Stack,
+} from "@chakra-ui/react"
 
 export const SkeletonForFeed = () => {
   return (

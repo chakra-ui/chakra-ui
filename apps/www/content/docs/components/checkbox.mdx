@@ -11,50 +11,78 @@ links:
 
 <ExampleTabs name="checkbox-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`checkbox` snippet
-
-```sh
-npx @chakra-ui/cli snippet add checkbox
-```
-
-The snippet includes a closed component composition for the `Checkbox`
-
 ## Usage
 
-```jsx
-import { Checkbox } from "@/components/ui/checkbox"
+```tsx
+import { Checkbox } from "@chakra-ui/react"
 ```
 
-```jsx
-<Checkbox>Click me</Checkbox>
+```tsx
+<Checkbox.Root>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+  <Checkbox.Label />
+</Checkbox.Root>
+```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
+
+## Shortcuts
+
+The `Checkbox` component also provides a set of shortcuts for common use cases.
+
+### CheckboxControl
+
+This component renders the `Checkbox.Indicator` within it by default.
+
+This works:
+
+```tsx
+<Checkbox.Control>
+  <Checkbox.Indicator />
+</Checkbox.Control>
+```
+
+This might be more concise, if you don't need to customize the indicator:
+
+```tsx
+<Checkbox.Control />
 ```
 
 ## Examples
 
 ### Variants
 
-Use the `variant` prop to change the visual style of the checkbox.
+Pass the `variant` prop to the `Checkbox.Root` component to change the visual
+style of the checkbox.
 
 <ExampleTabs name="checkbox-with-variants" />
 
 ### Colors
 
-Use the `colorPalette` prop to change the color of the checkbox.
+Pass the `colorPalette` prop to the `Checkbox.Root` component to change the
+color of the checkbox.
 
 <ExampleTabs name="checkbox-with-colors" />
 
 ### Sizes
 
-Use the `size` prop to change the size of the checkbox.
+Pass the `size` prop to the `Checkbox.Root` component to change the size of the
+checkbox.
 
 <ExampleTabs name="checkbox-with-sizes" />
 
 ### States
 
-Use the `disabled` or `invalid` prop to change the visual state of the checkbox.
+Pass the `disabled` or `invalid` prop to the `Checkbox.Root` component to change
+the visual state of the checkbox.
 
 <ExampleTabs name="checkbox-with-states" />
 
@@ -65,6 +93,12 @@ checkbox.
 
 <ExampleTabs name="checkbox-controlled" />
 
+### Label Position
+
+Here's an example of how to change the label position to the right.
+
+<ExampleTabs name="checkbox-with-label-position" />
+
 ### Store
 
 An alternative way to control the checkbox is to use the `RootProvider`
@@ -74,6 +108,12 @@ This way you can access the checkbox state and methods from outside the
 checkbox.
 
 <ExampleTabs name="checkbox-with-store" />
+
+### Composition
+
+Here's an example of how to compose a checkbox with a field component.
+
+<ExampleTabs name="checkbox-with-form" />
 
 ### Hook Form
 
@@ -97,7 +137,8 @@ Here's an example of how to use the `CheckboxGroup` component with the
 
 ### Custom Icon
 
-Use the `icon` prop to change the icon of the checkbox.
+Render a custom icon within `Checkbox.Control` to change the icon of the
+checkbox.
 
 <ExampleTabs name="checkbox-with-custom-icon" />
 
@@ -110,22 +151,34 @@ indeterminate state.
 
 ### Description
 
-Add content to the children of the `Checkbox` component to add a description.
+Here's an example of how to add some further description to the checkbox.
 
 <ExampleTabs name="checkbox-with-description" />
 
 ### Link
 
-Render an anchor tag as the checkbox label.
+Render an anchor tag within the `Checkbox.Label` to add a link to the label.
 
 <ExampleTabs name="checkbox-with-link" />
 
-### Without Snippet
+### Closed Component
 
-If you don't want to use the snippet, you can use the `Checkbox` component from
-the `@chakra-ui/react` package.
+Here's how to setup the Checkbox for a closed component composition.
 
-<ExampleTabs name="checkbox-without-snippet" />
+<ExampleCode name="checkbox-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add checkbox
+```
+
+Here's how to use the it
+
+```tsx
+<Checkbox>Accept terms and conditions</Checkbox>
+```
 
 ## Props
 

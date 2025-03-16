@@ -1,19 +1,15 @@
-import { HStack } from "@chakra-ui/react"
-import {
-  ProgressBar,
-  ProgressLabel,
-  ProgressRoot,
-  ProgressValueText,
-} from "compositions/ui/progress"
+import { HStack, Progress } from "@chakra-ui/react"
 
-export const ProgressBarWithLabel = () => {
+export const ProgressWithLabel = () => {
   return (
-    <ProgressRoot defaultValue={40}>
+    <Progress.Root defaultValue={40} maxW="240px">
       <HStack justify="space-between" mb="1">
-        <ProgressLabel>Token usage</ProgressLabel>
-        <ProgressValueText />
+        <Progress.Label>Token usage</Progress.Label>
+        <Progress.ValueText />
       </HStack>
-      <ProgressBar />
-    </ProgressRoot>
+      <Progress.Track>
+        <Progress.Range />
+      </Progress.Track>
+    </Progress.Root>
   )
 }

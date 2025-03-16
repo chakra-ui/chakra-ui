@@ -1,27 +1,26 @@
-import { Group } from "@chakra-ui/react"
-import {
-  RadioCardItem,
-  RadioCardLabel,
-  RadioCardRoot,
-} from "compositions/ui/radio-card"
+import { Group, RadioCard } from "@chakra-ui/react"
 
 export const RadioCardComposition = () => {
   return (
-    <RadioCardRoot defaultValue="next" gap="4" maxW="sm">
-      <RadioCardLabel>How well do you know React?</RadioCardLabel>
+    <RadioCard.Root defaultValue="next" gap="4" maxW="sm">
+      <RadioCard.Label>How well do you know React?</RadioCard.Label>
       <Group attached orientation="vertical">
         {items.map((item) => (
-          <RadioCardItem
-            width="full"
-            indicatorPlacement="start"
-            label={item.title}
-            description={item.description}
-            key={item.value}
-            value={item.value}
-          />
+          <RadioCard.Item key={item.value} value={item.value} width="full">
+            <RadioCard.ItemHiddenInput />
+            <RadioCard.ItemControl>
+              <RadioCard.ItemIndicator />
+              <RadioCard.ItemContent>
+                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
+                <RadioCard.ItemDescription>
+                  {item.description}
+                </RadioCard.ItemDescription>
+              </RadioCard.ItemContent>
+            </RadioCard.ItemControl>
+          </RadioCard.Item>
         ))}
       </Group>
-    </RadioCardRoot>
+    </RadioCard.Root>
   )
 }
 

@@ -1,6 +1,7 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import type { Preview, ReactRenderer } from "@storybook/react"
 import React from "react"
+import { ColorModeProvider } from "../apps/compositions/src/ui/color-mode"
 import {
   ChakraProvider,
   createSystem,
@@ -36,9 +37,11 @@ const preview: Preview = {
       },
     }),
     (Story) => (
-      <ChakraProvider value={system}>
-        <Story />
-      </ChakraProvider>
+      <ColorModeProvider>
+        <ChakraProvider value={system}>
+          <Story />
+        </ChakraProvider>
+      </ColorModeProvider>
     ),
   ],
 }

@@ -40,6 +40,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
     },
     itemText: {
       fontWeight: "medium",
+      flex: "1",
     },
     itemDescription: {
       opacity: "0.64",

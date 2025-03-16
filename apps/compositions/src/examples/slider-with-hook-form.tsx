@@ -1,9 +1,7 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Field, Slider, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import { Slider } from "compositions/ui/slider"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -36,24 +34,29 @@ export const SliderWithHookForm = () => {
           name="value"
           control={control}
           render={({ field }) => (
-            <Field
-              label={`Slider: ${field.value[0]}`}
-              invalid={!!errors.value?.length}
-              errorText={errors.value?.[0]?.message}
-            >
-              <Slider
+            <Field.Root invalid={!!errors.value?.length}>
+              <Field.Label>Slider: {field.value[0]}</Field.Label>
+              <Slider.Root
                 width="full"
-                onFocusChange={({ focusedIndex }) => {
-                  if (focusedIndex !== -1) return
-                  field.onBlur()
-                }}
                 name={field.name}
                 value={field.value}
                 onValueChange={({ value }) => {
                   field.onChange(value)
                 }}
-              />
-            </Field>
+                onFocusChange={({ focusedIndex }) => {
+                  if (focusedIndex !== -1) return
+                  field.onBlur()
+                }}
+              >
+                <Slider.Control>
+                  <Slider.Track>
+                    <Slider.Range />
+                  </Slider.Track>
+                  <Slider.Thumbs />
+                </Slider.Control>
+              </Slider.Root>
+              <Field.ErrorText>{errors.value?.[0]?.message}</Field.ErrorText>
+            </Field.Root>
           )}
         />
 

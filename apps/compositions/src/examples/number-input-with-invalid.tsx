@@ -1,12 +1,14 @@
-import { Field } from "compositions/ui/field"
-import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
+import { Field, NumberInput } from "@chakra-ui/react"
 
 export const NumberInputWithInvalid = () => {
   return (
-    <Field label="Enter Number" invalid errorText="The entry is invalid">
-      <NumberInputRoot defaultValue="10" width="200px">
-        <NumberInputField />
-      </NumberInputRoot>
-    </Field>
+    <Field.Root invalid>
+      <Field.Label>Enter Number</Field.Label>
+      <NumberInput.Root defaultValue="10" width="200px">
+        <NumberInput.Control />
+        <NumberInput.Input />
+      </NumberInput.Root>
+      <Field.ErrorText>The entry is invalid</Field.ErrorText>
+    </Field.Root>
   )
 }

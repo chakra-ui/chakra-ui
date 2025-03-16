@@ -1,30 +1,28 @@
-import { Button } from "@chakra-ui/react"
-import {
-  MenuContent,
-  MenuItem,
-  MenuItemGroup,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuWithGroupDynamic = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline">Window</Button>
-      </MenuTrigger>
-      <MenuContent spaceY="2">
-        {items.map((item) => (
-          <MenuItemGroup key={item.name} title={item.name}>
-            {item.children.map((child) => (
-              <MenuItem key={child.value} value={child.value}>
-                {child.name}
-              </MenuItem>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            {items.map((group) => (
+              <Menu.ItemGroup key={group.name}>
+                <Menu.ItemGroupLabel>{group.name}</Menu.ItemGroupLabel>
+                {group.children.map((item) => (
+                  <Menu.Item key={item.value} value={item.value}>
+                    {item.name}
+                  </Menu.Item>
+                ))}
+              </Menu.ItemGroup>
             ))}
-          </MenuItemGroup>
-        ))}
-      </MenuContent>
-    </MenuRoot>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }
 

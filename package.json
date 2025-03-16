@@ -25,7 +25,6 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",
-    "website": "pnpm --filter=./website",
     "www": "pnpm --filter=./apps/www",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages --cache",
@@ -45,15 +44,15 @@
   },
   "version": "2.0.0",
   "dependencies": {
-    "@babel/core": "7.24.7",
-    "@babel/eslint-parser": "7.24.7",
+    "@babel/core": "7.26.9",
+    "@babel/eslint-parser": "7.26.8",
     "@chakra-ui/cli": "workspace:*",
-    "@changesets/changelog-github": "0.5.0",
-    "@changesets/cli": "2.27.12",
-    "@changesets/get-release-plan": "4.0.6",
-    "@changesets/types": "6.0.0",
-    "@commitlint/cli": "19.3.0",
-    "@commitlint/config-conventional": "19.2.2",
+    "@changesets/changelog-github": "0.5.1",
+    "@changesets/cli": "2.28.1",
+    "@changesets/get-release-plan": "4.0.8",
+    "@changesets/types": "6.1.0",
+    "@commitlint/cli": "19.7.1",
+    "@commitlint/config-conventional": "19.7.1",
     "@octokit/rest": "^21.0.0",
     "@rollup/plugin-alias": "5.1.1",
     "@rollup/plugin-node-resolve": "15.3.1",
@@ -82,7 +81,7 @@
     "consola": "^3.2.3",
     "cross-env": "7.0.3",
     "dotenv": "16.4.7",
-    "edit-json-file": "1.8.0",
+    "edit-json-file": "1.8.1",
     "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "9.1.0",
@@ -114,11 +113,11 @@
     "storybook": "8.4.7",
     "tsup": "8.1.0",
     "tsx": "4.16.2",
-    "typescript": "5.7.2",
-    "vite": "6.0.11",
-    "vitest": "1.6.0",
+    "typescript": "5.8.2",
+    "vite": "6.2.1",
+    "vitest": "3.0.8",
     "vitest-axe": "0.1.0",
-    "vitest-matchmedia-mock": "1.0.6"
+    "vitest-matchmedia-mock": "2.0.1"
   },
   "pnpm": {
     "overrides": {
@@ -128,7 +127,7 @@
       "@emotion/react": "11.14.0"
     }
   },
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": ">=18.x"
   }

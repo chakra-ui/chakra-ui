@@ -1,20 +1,16 @@
-import { Button } from "@chakra-ui/react"
-import {
-  FileUploadList,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "compositions/ui/file-upload"
+import { Button, FileUpload } from "@chakra-ui/react"
 import { HiCamera } from "react-icons/hi"
 
 export const FileUploadMediaCapture = () => {
   return (
-    <FileUploadRoot capture="environment">
-      <FileUploadTrigger asChild>
+    <FileUpload.Root capture="environment">
+      <FileUpload.HiddenInput />
+      <FileUpload.Trigger asChild>
         <Button variant="outline" size="sm">
           <HiCamera /> Open Camera
         </Button>
-      </FileUploadTrigger>
-      <FileUploadList />
-    </FileUploadRoot>
+      </FileUpload.Trigger>
+      <FileUpload.List />
+    </FileUpload.Root>
   )
 }

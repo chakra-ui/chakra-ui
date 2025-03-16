@@ -1,9 +1,7 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Field, SegmentGroup, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import { SegmentedControl } from "compositions/ui/segmented-control"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -32,19 +30,18 @@ export const SegmentedControlWithHookForm = () => {
           control={control}
           name="fontSize"
           render={({ field }) => (
-            <Field
-              label="Font size"
-              invalid={!!errors.fontSize}
-              errorText={errors.fontSize?.message}
-            >
-              <SegmentedControl
+            <Field.Root invalid={!!errors.fontSize}>
+              <Field.Label>Font size</Field.Label>
+              <SegmentGroup.Root
                 onBlur={field.onBlur}
                 name={field.name}
                 value={field.value}
-                items={["sm", "md", "lg"]}
                 onValueChange={({ value }) => field.onChange(value)}
-              />
-            </Field>
+              >
+                <SegmentGroup.Items items={["sm", "md", "lg"]} />
+              </SegmentGroup.Root>
+              <Field.ErrorText>{errors.fontSize?.message}</Field.ErrorText>
+            </Field.Root>
           )}
         />
 

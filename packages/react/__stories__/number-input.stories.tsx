@@ -24,3 +24,5 @@ export { NumberInputWithMouseWheel as MouseWheel } from "compositions/examples/n
 export { NumberInputWithScrubber as Scrubber } from "compositions/examples/number-input-with-scrubber"
 export { NumberInputWithSizes as Sizes } from "compositions/examples/number-input-with-sizes"
 export { NumberInputWithStep as Step } from "compositions/examples/number-input-with-step"
+export { NumberInputWithStepper as Stepper } from "compositions/examples/number-input-with-stepper"
+export { NumberInputWithElement as Element } from "compositions/examples/number-input-with-element"

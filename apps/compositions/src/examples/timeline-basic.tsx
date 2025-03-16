@@ -1,50 +1,51 @@
-import { Text } from "@chakra-ui/react"
-import {
-  TimelineConnector,
-  TimelineContent,
-  TimelineDescription,
-  TimelineItem,
-  TimelineRoot,
-  TimelineTitle,
-} from "compositions/ui/timeline"
+import { Text, Timeline } from "@chakra-ui/react"
 import { LuCheck, LuPackage, LuShip } from "react-icons/lu"
 
 export const TimelineBasic = () => {
   return (
-    <TimelineRoot maxW="400px">
-      <TimelineItem>
-        <TimelineConnector>
-          <LuShip />
-        </TimelineConnector>
-        <TimelineContent>
-          <TimelineTitle>Product Shipped</TimelineTitle>
-          <TimelineDescription>13th May 2021</TimelineDescription>
+    <Timeline.Root maxW="400px">
+      <Timeline.Item>
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator>
+            <LuShip />
+          </Timeline.Indicator>
+        </Timeline.Connector>
+        <Timeline.Content>
+          <Timeline.Title>Product Shipped</Timeline.Title>
+          <Timeline.Description>13th May 2021</Timeline.Description>
           <Text textStyle="sm">
             We shipped your product via <strong>FedEx</strong> and it should
             arrive within 3-5 business days.
           </Text>
-        </TimelineContent>
-      </TimelineItem>
+        </Timeline.Content>
+      </Timeline.Item>
 
-      <TimelineItem>
-        <TimelineConnector>
-          <LuCheck />
-        </TimelineConnector>
-        <TimelineContent>
-          <TimelineTitle textStyle="sm">Order Confirmed</TimelineTitle>
-          <TimelineDescription>18th May 2021</TimelineDescription>
-        </TimelineContent>
-      </TimelineItem>
+      <Timeline.Item>
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator>
+            <LuCheck />
+          </Timeline.Indicator>
+        </Timeline.Connector>
+        <Timeline.Content>
+          <Timeline.Title textStyle="sm">Order Confirmed</Timeline.Title>
+          <Timeline.Description>18th May 2021</Timeline.Description>
+        </Timeline.Content>
+      </Timeline.Item>
 
-      <TimelineItem>
-        <TimelineConnector>
-          <LuPackage />
-        </TimelineConnector>
-        <TimelineContent>
-          <TimelineTitle textStyle="sm">Order Delivered</TimelineTitle>
-          <TimelineDescription>20th May 2021, 10:30am</TimelineDescription>
-        </TimelineContent>
-      </TimelineItem>
-    </TimelineRoot>
+      <Timeline.Item>
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator>
+            <LuPackage />
+          </Timeline.Indicator>
+        </Timeline.Connector>
+        <Timeline.Content>
+          <Timeline.Title textStyle="sm">Order Delivered</Timeline.Title>
+          <Timeline.Description>20th May 2021, 10:30am</Timeline.Description>
+        </Timeline.Content>
+      </Timeline.Item>
+    </Timeline.Root>
   )
 }

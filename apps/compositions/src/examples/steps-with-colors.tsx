@@ -1,54 +1,62 @@
-import { Button, For, Group, Stack } from "@chakra-ui/react"
+import { Button, ButtonGroup, For, Stack, Steps } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import {
-  StepsCompletedContent,
-  StepsContent,
-  StepsItem,
-  StepsList,
-  StepsNextTrigger,
-  StepsPrevTrigger,
-  StepsRoot,
-} from "compositions/ui/steps"
 
 export const StepsWithColors = () => {
   return (
     <Stack gap="10" width="full">
       <For each={colorPalettes}>
         {(colorPalette) => (
-          <StepsRoot
+          <Steps.Root
             key={colorPalette}
-            defaultValue={1}
-            count={3}
+            defaultStep={1}
+            count={steps.length}
             colorPalette={colorPalette}
           >
-            <StepsList>
-              <StepsItem index={0} title="Step 1" />
-              <StepsItem index={1} title="Step 2" />
-              <StepsItem index={2} title="Step 3" />
-            </StepsList>
+            <Steps.List>
+              {steps.map((step, index) => (
+                <Steps.Item key={index} index={index} title={step.title}>
+                  <Steps.Indicator />
+                  <Steps.Title>{step.title}</Steps.Title>
+                  <Steps.Separator />
+                </Steps.Item>
+              ))}
+            </Steps.List>
 
-            <StepsContent index={0}>Step 1</StepsContent>
-            <StepsContent index={1}>Step 2</StepsContent>
-            <StepsContent index={2}>Step 3</StepsContent>
-            <StepsCompletedContent>
+            {steps.map((step, index) => (
+              <Steps.Content key={index} index={index}>
+                {step.description}
+              </Steps.Content>
+            ))}
+            <Steps.CompletedContent>
               All steps are complete!
-            </StepsCompletedContent>
+            </Steps.CompletedContent>
 
-            <Group>
-              <StepsPrevTrigger asChild>
-                <Button variant="outline" size="sm">
-                  Prev
-                </Button>
-              </StepsPrevTrigger>
-              <StepsNextTrigger asChild>
-                <Button variant="outline" size="sm">
-                  Next
-                </Button>
-              </StepsNextTrigger>
-            </Group>
-          </StepsRoot>
+            <ButtonGroup size="sm" variant="outline">
+              <Steps.PrevTrigger asChild>
+                <Button>Prev</Button>
+              </Steps.PrevTrigger>
+              <Steps.NextTrigger asChild>
+                <Button>Next</Button>
+              </Steps.NextTrigger>
+            </ButtonGroup>
+          </Steps.Root>
         )}
       </For>
     </Stack>
   )
 }
+
+const steps = [
+  {
+    title: "Step 1",
+    description: "Step 1 description",
+  },
+  {
+    title: "Step 2",
+    description: "Step 2 description",
+  },
+  {
+    title: "Step 3",
+    description: "Step 3 description",
+  },
+]

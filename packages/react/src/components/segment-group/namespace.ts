@@ -8,6 +8,7 @@ export {
   SegmentGroupPropsProvider as PropsProvider,
   SegmentGroupRoot as Root,
   SegmentGroupRootProvider as RootProvider,
+  SegmentGroupItems as Items,
 } from "./segment-group"
 
 export type {
@@ -17,4 +18,5 @@ export type {
   SegmentGroupRootProps as RootProps,
   SegmentGroupRootProviderProps as RootProviderProps,
   SegmentGroupValueChangeDetails as ValueChangeDetails,
+  SegmentGroupItemsProps as ItemsProps,
 } from "./segment-group"

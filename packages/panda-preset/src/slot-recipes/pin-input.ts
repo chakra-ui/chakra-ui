@@ -24,6 +24,11 @@ export const pinInputSlotRecipe = defineSlotRecipe({
         borderColor: "var(--error-color)",
       },
     },
+    control: {
+      display: "inline-flex",
+      gap: "2",
+      isolation: "isolate",
+    },
   },
   variants: {
     size: {
@@ -104,6 +109,25 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           _focusVisible: {
             borderColor: "var(--focus-color)",
             boxShadow: "0px 1px 0px 0px var(--focus-color)",
+          },
+        },
+      },
+    },
+    attached: {
+      true: {
+        control: {
+          gap: "0",
+          spaceX: "-1px",
+        },
+        input: {
+          _notFirst: {
+            borderStartRadius: "0",
+          },
+          _notLast: {
+            borderEndRadius: "0",
+          },
+          _focusVisible: {
+            zIndex: "1",
           },
         },
       },

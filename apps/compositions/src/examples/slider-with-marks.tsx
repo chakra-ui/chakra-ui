@@ -1,5 +1,4 @@
-import { For, Stack, Text, VStack } from "@chakra-ui/react"
-import { Slider } from "compositions/ui/slider"
+import { For, Slider, Stack, Text, VStack } from "@chakra-ui/react"
 
 export const SliderWithMarks = () => {
   return (
@@ -7,14 +6,20 @@ export const SliderWithMarks = () => {
       <For each={["sm", "md", "lg"]}>
         {(size) => (
           <VStack key={size} align="flex-start">
-            <Slider
+            <Slider.Root
               key={size}
               size={size}
-              width="200px"
-              colorPalette="pink"
               defaultValue={[40]}
-              marks={[0, 50, 100]}
-            />
+              width="200px"
+            >
+              <Slider.Control>
+                <Slider.Track>
+                  <Slider.Range />
+                </Slider.Track>
+                <Slider.Thumbs />
+                <Slider.Marks marks={[0, 50, 100]} />
+              </Slider.Control>
+            </Slider.Root>
             <Text>size = {size}</Text>
           </VStack>
         )}

@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -110,7 +110,10 @@ export interface StatGroupProps
 export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
   function StatGroup(props, ref) {
     const recipe = useSlotRecipe({ key: "stat" })
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const [variantProps, localProps] = useMemo(
+      () => recipe.splitVariantProps(props),
+      [props, recipe],
+    )
     return (
       <PropsProvider value={variantProps}>
         <chakra.div

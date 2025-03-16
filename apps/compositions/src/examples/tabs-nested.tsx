@@ -1,5 +1,4 @@
-import { Heading, Input, Tabs, Text } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Heading, Input, Tabs, Text } from "@chakra-ui/react"
 
 export const TabsNested = () => {
   return (
@@ -18,14 +17,16 @@ export const TabsNested = () => {
             <Tabs.Trigger value="two">Tab 1.2</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="one" py="4">
-            <Field label="Tab 1.1">
+            <Field.Root>
+              <Field.Label>Tab 1.1</Field.Label>
               <Input />
-            </Field>
+            </Field.Root>
           </Tabs.Content>
           <Tabs.Content value="two" py="4">
-            <Field label="Tab 1.2">
+            <Field.Root>
+              <Field.Label>Tab 1.2</Field.Label>
               <Input />
-            </Field>
+            </Field.Root>
           </Tabs.Content>
         </Tabs.Root>
       </Tabs.Content>

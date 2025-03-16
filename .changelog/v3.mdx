@@ -5,6 +5,211 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.13.0](./#3.13.0) - 2025-03-13
+
+### Added
+
+- **ColorPicker**
+
+  - Add support for `ColorPicker.ChannelText` component
+  - Add `ColorPicker.EyeDropper` component that wraps `IconButton`
+  - Add `ColorPicker.Slider` and `ColorPicker.Input` shortcut components to
+    reduce LOC.
+
+- **InputGroup**
+
+  - Export directly from the `@chakra-ui/react` package
+
+- **Pagination**
+
+  - Add `Pagination.Items` shortcut component to render the number of pages
+    based on the `count` and `pageSize` props.
+  - Add `Pagination.PageText` component to render the current page and total
+    pages.
+
+## [3.12.0](./#3.12.0) - 2025-03-10
+
+### Added
+
+- **FileUpload**
+
+  - Add `FileUpload.FileText` to render the list of uploaded file names.
+  - Add `FileUpload.Items` shorcut component to render the list of uploaded
+    files.
+  - Add `FileUpload.List` shortcut component that combines `FileUpload.Items`
+    and `FileUpload.ItemGroup`.
+
+## [3.11.0](./#3.11.0) - 2025-03-09
+
+### Fixed
+
+- **Accordion**
+
+  - Fix issue where `Accordion.ItemTrigger` doesn't apply `textAlign: start`
+
+### Added
+
+- **SegmentGroup**
+
+  - Add new `SegmentGroup.Items` shortcut component to render multiple
+    `SegmentGroup.Item` components based on the `items` prop
+
+## [3.10.0](./#3.10.0) - 2025-03-08
+
+### Changed
+
+- **Menu**
+
+  - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`, reducing LOC in
+    common use cases.
+
+- **HoverCard**
+
+  - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`,
+    reducing LOC in common use cases.
+
+- **Dialog, Drawer**
+
+  - Update recipe to include absolute positioning styles for close trigger,
+    instead of relying on snippet styles.
+
+## [3.9.0](./#3.9.0) - 2025-03-05
+
+### Added
+
+- **Skeleton** Bring back `SkeletonCircle` and `SkeletonText` components from
+  v2.
+
+- **Switch**
+
+  - Transition background color when checked
+  - Set `Switch.Control` to include `Switch.Thumb` as its default children,
+    reducing LOC in common use cases.
+
+- **Checkbox**
+
+  - Set `Checkbox.Control` to include `Checkbox.Indicator` as its default
+    children, reducing LOC in common use cases.
+
+- **NumberInput**
+
+  - Set `NumberInput.Control` to include `NumberInput.IncrementTrigger` and
+    `NumberInput.DecrementTrigger` as its default children, reducing LOC in
+    common use cases.
+
+- **QrCode**
+
+  - Set `QrCode.Frame` to include `QrCode.Pattern` as its default children,
+    reducing LOC in common use cases.
+
+- **RatingGroup**
+
+  - Set `RatingGroup.Control` to include an array of `RatingGroup.Item`
+    components as its default children, reducing LOC in common use cases.
+
+- **Slider**
+
+  - Add `Slider.Marks` component to render marks on the slider track. This is a
+    closed composition of `Slider.MarkerGroup` and `Slider.Marker` to reduce LOC
+    for common use cases.
+  - Add `Slider.Thumbs` component to render thumbs on the slider track. This is
+    a closed composition of `Slider.Thumb` to reduce LOC for common use cases.
+
+- **PinInput**
+
+  - Add support for `attached` variant prop to render a pin input with attached
+    inputs. This removes the need for the `Group` component to wrap the inputs.
+
+- **Tooltip, Popover**
+
+  - Set `Tooltip.Arrow` and `Popover.Arrow` to include `Tooltip.ArrowTip` and
+    `Popover.ArrowTip` as its default children, reducing LOC in common use
+    cases.
+
+## [3.8.2](./#3.8.2) - 2025-03-04
+
+### Fixed
+
+- **AspectRatio:** Fix issue where `css` prop was not respected
+- **System:** Fix issue where `mt` shorthand resolves to `marginBlockStart`
+  instead of `marginTop`
+
+## [3.8.1](./#3.8.1) - 2025-02-19
+
+### Fixed
+
+- Fix performance regression from `v3.5.x` by reverting memoization logic
+- Add `useMemo` to provider components and styling hooks to avoid unnecessary
+  recomputations
+
+## [3.8.0](./#3.8.0) - 2025-02-09
+
+### Added
+
+- **[New] Hooks:**
+
+  - `useElementRect`: Get the dimensions and position of an element
+  - `useForceUpdate`: Force a component re-render
+  - `useLiveRef`: Create a ref that stays up-to-date with its value
+  - `usePrevious`: Access the previous value of a state or prop
+  - `useSafeLayoutEffect`: A safer version of `useLayoutEffect`
+
+- **[New] Focus Trap:** Add `FocusTrap` component for trapping focus within a
+  container
+
+### Fixed
+
+- **Breadcrumb:** Fix issue where breadcrumb arrow doesn't flip in RTL mode
+- **Group:** Fix issue where `Group` component doesn't skip invalid children
+
+### Added
+
+- **Color Mode:** Add `LightMode` and `DarkMode` components to force light and
+  dark color mode in a subtree
+
+## [3.7.0](./#3.7.0) - 2025-02-04
+
+### Added
+
+- **Avatar:** Add support for passing `name` to the `AvatarFallback` to render
+  the initials. If no `name` or `children` is passed, it'll render either the
+  initials or a fallback icon.
+
+- **[New] Hooks:** Add `useConst` and `useUpdateEffect` hooks from v2.
+
+- **[New] Wrap:** Bring back the `Wrap` component from v2.
+
+## [3.6.0](./#3.6.0) - 2025-02-02
+
+### Fixed
+
+- **CLI:** Fix issue where CLI doesn't properly check for existing files when
+  adding snippets.
+
+### Added
+
+- **[New] Close Button:** Add `CloseButton` component.
+- **Stat:** Bring back `StatGroup` component from v2.
+- **Avatar:** Bring back `AvatarGroup` component from v2.
+
+### Changed
+
+- **Styled System:**
+
+  - Boost performance of style resolution by removing `JSON.stringify` in `memo`
+    function and avoid memoizing non-primitive arguments.
+  - Connect `assets` token to `backgroundImage` and `listStyleImage` css
+    properties.
+
+- **Menu, Tooltip:** Set `lazyMount` and `unmountOnExit` to `true` in the `Root`
+  component to improve initial rendering performance.
+
+- **AbsoluteCenter:** Fix issue where axis doesn't work in RTL mode.
+
+- **Snippets / QRCode:** Remove snippet in favor of compound component pattern.
+
+- **List:** Fix issue where list items don't wrap correctly.
+
 ## [3.5.1](./#3.5.1) - 2025-01-24
 
 ### Fixed

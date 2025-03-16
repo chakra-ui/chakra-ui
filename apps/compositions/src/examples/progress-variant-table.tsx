@@ -1,15 +1,8 @@
 "use client"
 
-import {
-  For,
-  type ProgressRootProps,
-  Span,
-  Stack,
-  useSlotRecipe,
-} from "@chakra-ui/react"
+import { For, Progress, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
 
 export const ProgressVariantTable = () => {
   const recipe = useSlotRecipe({ key: "progress" })
@@ -60,10 +53,12 @@ export const ProgressVariantTable = () => {
   )
 }
 
-export const DemoProgress = (props: ProgressRootProps) => {
+export const DemoProgress = (props: Progress.RootProps) => {
   return (
-    <ProgressRoot {...props}>
-      <ProgressBar />
-    </ProgressRoot>
+    <Progress.Root {...props}>
+      <Progress.Track>
+        <Progress.Range />
+      </Progress.Track>
+    </Progress.Root>
   )
 }

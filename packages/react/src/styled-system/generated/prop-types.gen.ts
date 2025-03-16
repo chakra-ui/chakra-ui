@@ -40,7 +40,7 @@ export interface UtilityValues {
   gradientFrom: Tokens["colors"] | "currentBg"
   gradientTo: Tokens["colors"] | "currentBg"
   gradientVia: Tokens["colors"] | "currentBg"
-  backgroundImage: Tokens["gradients"]
+  backgroundImage: Tokens["gradients"] | Tokens["assets"]
   border: Tokens["borders"]
   borderTop: Tokens["borders"]
   borderLeft: Tokens["borders"]
@@ -163,6 +163,7 @@ export interface UtilityValues {
   scrollSnapMarginBottom: Tokens["spacing"]
   scrollSnapMarginLeft: Tokens["spacing"]
   scrollSnapMarginRight: Tokens["spacing"]
+  listStyleImage: Tokens["assets"]
   zIndex: Tokens["zIndex"]
   inset: Tokens["spacing"]
   insetInline: Tokens["spacing"]
@@ -227,7 +228,7 @@ export interface UtilityValues {
   caretColor: Tokens["colors"] | "currentBg"
   cursor: Tokens["cursor"]
   divideStyle: CssProperties["borderStyle"]
-  textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "none"
+  textStyle: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "none" | "label"
   layerStyle:
     | "fill.muted"
     | "fill.subtle"

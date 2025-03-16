@@ -1,5 +1,6 @@
 import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion"
 import { createAnatomy } from "@ark-ui/react/anatomy"
+import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
@@ -105,6 +106,7 @@ export const fieldsetAnatomy = arkFieldsetAnatomy.extendWith("content")
 export const fileUploadAnatomy = arkFileUploadAnatomy.extendWith(
   "itemContent",
   "dropzoneContent",
+  "fileText",
 )
 
 export const listAnatomy = createAnatomy("list").parts(
@@ -220,10 +222,12 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "description",
 )
 
+export const colorPickerAnatomy =
+  arkColorPickerAnatomy.extendWith("channelText")
+
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"
-export { colorPickerAnatomy } from "@ark-ui/react/color-picker"
 export { hoverCardAnatomy } from "@ark-ui/react/hover-card"
 export { numberInputAnatomy } from "@ark-ui/react/number-input"
 export { pinInputAnatomy } from "@ark-ui/react/pin-input"

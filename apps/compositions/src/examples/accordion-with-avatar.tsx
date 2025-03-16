@@ -1,22 +1,18 @@
-import { Badge, HStack } from "@chakra-ui/react"
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "compositions/ui/accordion"
-import { Avatar } from "compositions/ui/avatar"
+import { Accordion, Avatar, Badge, HStack } from "@chakra-ui/react"
 import { LuTrophy } from "react-icons/lu"
 import { LoremIpsum } from "react-lorem-ipsum"
 
 export const AccordionWithAvatar = () => {
   return (
-    <AccordionRoot collapsible defaultValue={["b"]}>
+    <Accordion.Root collapsible defaultValue={["b"]}>
       {items.map((item, index) => (
-        <AccordionItem key={index} value={item.name}>
-          <AccordionItemTrigger>
-            <Avatar shape="rounded" src={item.image} name={item.name} />
-            <HStack>
+        <Accordion.Item key={index} value={item.name}>
+          <Accordion.ItemTrigger>
+            <Avatar.Root shape="rounded">
+              <Avatar.Image src={item.image} />
+              <Avatar.Fallback name={item.name} />
+            </Avatar.Root>
+            <HStack flex="1">
               {item.name}{" "}
               {item.topRated && (
                 <Badge colorPalette="green">
@@ -25,11 +21,14 @@ export const AccordionWithAvatar = () => {
                 </Badge>
               )}
             </HStack>
-          </AccordionItemTrigger>
-          <AccordionItemContent>{item.bio}</AccordionItemContent>
-        </AccordionItem>
+            <Accordion.ItemIndicator />
+          </Accordion.ItemTrigger>
+          <Accordion.ItemContent>
+            <Accordion.ItemBody>{item.bio}</Accordion.ItemBody>
+          </Accordion.ItemContent>
+        </Accordion.Item>
       ))}
-    </AccordionRoot>
+    </Accordion.Root>
   )
 }
 

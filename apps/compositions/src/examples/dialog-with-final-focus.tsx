@@ -1,15 +1,13 @@
 "use client"
 
-import { Box, Button, Stack } from "@chakra-ui/react"
 import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+  Box,
+  Button,
+  CloseButton,
+  Dialog,
+  Portal,
+  Stack,
+} from "@chakra-ui/react"
 import { useRef } from "react"
 import Lorem from "react-lorem-ipsum"
 
@@ -17,20 +15,27 @@ export const DialogWithFinalFocus = () => {
   const finalRef = useRef<HTMLDivElement>(null)
   return (
     <Stack align="start">
-      <DialogRoot finalFocusEl={() => finalRef.current}>
-        <DialogTrigger asChild>
+      <Dialog.Root finalFocusEl={() => finalRef.current}>
+        <Dialog.Trigger asChild>
           <Button variant="outline">Open</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Dialog Title</DialogTitle>
-          </DialogHeader>
-          <DialogCloseTrigger />
-          <DialogBody>
-            <Lorem p={1} />
-          </DialogBody>
-        </DialogContent>
-      </DialogRoot>
+        </Dialog.Trigger>
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Dialog.Header>
+                <Dialog.Title>Dialog Title</Dialog.Title>
+              </Dialog.Header>
+              <Dialog.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </Dialog.CloseTrigger>
+              <Dialog.Body>
+                <Lorem p={1} />
+              </Dialog.Body>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
       <Box
         padding="4"
         borderWidth="2px"

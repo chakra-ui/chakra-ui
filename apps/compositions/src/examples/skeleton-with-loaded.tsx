@@ -1,7 +1,6 @@
 "use client"
 
-import { Button, Stack, Text } from "@chakra-ui/react"
-import { Skeleton } from "compositions/ui/skeleton"
+import { Button, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const SkeletonWithLoaded = () => {

@@ -1,9 +1,8 @@
 "use client"
 
-import { Card } from "@chakra-ui/react"
+import { Card, SegmentGroup } from "@chakra-ui/react"
 import { ChartRoot, ChartTooltipContent } from "compositions/chart/chart"
 import { useChartState } from "compositions/chart/use-chart-state"
-import { SegmentedControl } from "compositions/ui/segmented-control"
 import * as React from "react"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
 
@@ -53,19 +52,26 @@ export const BarChartComposition = () => {
     <Card.Root>
       <Card.Header alignItems="flex-start">
         <Card.Title>OS Downloads</Card.Title>
-        <SegmentedControl
+        <SegmentGroup.Root
           size="sm"
-          items={[
-            {
-              value: "windows",
-              label: `Windows (${formatNumber(totals.windows)})`,
-            },
-            { value: "mac", label: `Mac (${formatNumber(totals.mac)})` },
-            { value: "linux", label: `Linux (${formatNumber(totals.linux)})` },
-          ]}
           value={currentKey}
           onValueChange={(e) => setCurrentKey(e.value as CurrentKey)}
-        />
+        >
+          <SegmentGroup.Indicator />
+          <SegmentGroup.Items
+            items={[
+              {
+                value: "windows",
+                label: `Windows (${formatNumber(totals.windows)})`,
+              },
+              { value: "mac", label: `Mac (${formatNumber(totals.mac)})` },
+              {
+                value: "linux",
+                label: `Linux (${formatNumber(totals.linux)})`,
+              },
+            ]}
+          />
+        </SegmentGroup.Root>
       </Card.Header>
       <Card.Body>
         <ChartRoot height="20rem">

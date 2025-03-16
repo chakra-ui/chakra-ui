@@ -16,6 +16,9 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       color: "fg",
       fontWeight: "medium",
       textStyle: "sm",
+      _disabled: {
+        opacity: "0.5",
+      },
     },
     valueText: {
       textAlign: "start",
@@ -101,6 +104,12 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       height: "var(--slider-height)",
       borderRadius: "inherit",
       boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)",
+    },
+    channelText: {
+      textStyle: "xs",
+      color: "fg.muted",
+      fontWeight: "medium",
+      textTransform: "capitalize",
     },
     swatchGroup: {
       display: "flex",

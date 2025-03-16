@@ -1,0 +1,130 @@
+---
+title: "Testing"
+description:
+  "Best practices for testing React components using Vitest and Jest."
+---
+
+When writing tests with Vitest or Jest, use the following practices to get the
+best results.
+
+:::note
+
+In general, we recommend using [Vitest](https://vitest.dev/) over
+[Jest](https://jestjs.io/) but the setup are similar.
+
+:::
+
+## Setup
+
+Before writing tests, ensure your project has the necessary dependencies:
+
+```sh
+npm install --save-dev vitest jsdom @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/user-event
+```
+
+## Configuration
+
+Create the `vite.config.ts` file to configure Vitest.
+
+```ts
+import { defineConfig } from "vitest/config"
+
+export default defineConfig({
+  // ...
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./setup-test.ts",
+  },
+})
+```
+
+Setting `globals: true` will automatically import the Vitest globals and removes
+the need to import `expect`, `test`, `describe`, etc.
+
+## Setup Test File
+
+Create the `setup-test.ts` file to configure the testing environment and mock
+unimplemented APIs.
+
+Here's a common example for Chakra v3 projects:
+
+```ts
+import "@testing-library/jest-dom/vitest"
+import { JSDOM } from "jsdom"
+import ResizeObserver from "resize-observer-polyfill"
+import { vi } from "vitest"
+import "vitest-axe/extend-expect"
+
+const { window } = new JSDOM()
+
+// ResizeObserver mock
+vi.stubGlobal("ResizeObserver", ResizeObserver)
+window["ResizeObserver"] = ResizeObserver
+
+// IntersectionObserver mock
+const IntersectionObserverMock = vi.fn(() => ({
+  disconnect: vi.fn(),
+  observe: vi.fn(),
+  takeRecords: vi.fn(),
+  unobserve: vi.fn(),
+}))
+vi.stubGlobal("IntersectionObserver", IntersectionObserverMock)
+window["IntersectionObserver"] = IntersectionObserverMock
+
+// Scroll Methods mock
+window.Element.prototype.scrollTo = () => {}
+window.Element.prototype.scrollIntoView = () => {}
+
+// requestAnimationFrame mock
+window.requestAnimationFrame = (cb) => setTimeout(cb, 1000 / 60)
+
+// URL object mock
+window.URL.createObjectURL = () => "https://i.pravatar.cc/300"
+window.URL.revokeObjectURL = () => {}
+
+// navigator mock
+Object.defineProperty(window, "navigator", {
+  value: {
+    clipboard: {
+      writeText: vi.fn(),
+    },
+  },
+})
+
+// Override globalThis
+Object.assign(global, { window, document: window.document })
+```
+
+## Custom Render
+
+First, you need to create a custom render function to wrap your component in the
+ChakraProvider.
+
+```tsx title="test-utils/render.tsx"
+// ./testing/render.tsx
+import { Provider } from "@/components/ui/provider"
+import { render as rtlRender } from "@testing-library/react"
+
+export function render(ui: React.ReactNode) {
+  return rtlRender(<>{ui}</>, {
+    wrapper: (props: React.PropsWithChildren) => (
+      <Provider>{props.children}</Provider>
+    ),
+  })
+}
+```
+
+## Testing Components
+
+Now, you can use the `render` function to test your components.
+
+```tsx title="testing/render.tsx"
+import { Button } from "@chakra-ui/react"
+import { render } from "./testing/render"
+
+test("renders a button", () => {
+  render(<Button>Click me</Button>)
+  expect(screen.getByText("Click me")).toBeInTheDocument()
+})
+```

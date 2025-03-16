@@ -1,8 +1,9 @@
-import { Input } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Field, Input } from "@chakra-ui/react"
 
 export const InputWithInvalid = () => (
-  <Field id="first-name" invalid errorText="First name is required">
+  <Field.Root id="first-name" invalid>
+    <Field.Label>First name</Field.Label>
     <Input placeholder="Enter first name" />
-  </Field>
+    <Field.ErrorText>First name is required</Field.ErrorText>
+  </Field.Root>
 )

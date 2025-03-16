@@ -2,9 +2,16 @@
 
 import { Guides, guides } from "@/.velite"
 import { Combobox, Portal, createListCollection } from "@ark-ui/react"
-import { Box, For, Icon, Input, Text, chakra } from "@chakra-ui/react"
-import { CloseButton } from "compositions/ui/close-button"
-import { InputGroup } from "compositions/ui/input-group"
+import {
+  Box,
+  CloseButton,
+  For,
+  Icon,
+  Input,
+  InputGroup,
+  Text,
+  chakra,
+} from "@chakra-ui/react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useMemo } from "react"
@@ -92,7 +99,6 @@ export const GuideSearchInput = () => {
     >
       <Combobox.Control asChild>
         <InputGroup
-          width="full"
           startElement={
             <Icon size="lg">
               <LuSearch />

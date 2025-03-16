@@ -1,7 +1,6 @@
-import { For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
+import { Avatar, For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Avatar } from "compositions/ui/avatar"
 
 export const AvatarVariantTable = () => {
   const recipe = useSlotRecipe({ key: "avatar" })
@@ -28,14 +27,16 @@ export const AvatarVariantTable = () => {
                 {(v) => (
                   <td key={v}>
                     <HStack>
-                      <Avatar
-                        src="https://bit.ly/dan-abramov"
-                        name="Dan Abramov"
-                        colorPalette={c}
-                        variant={v}
-                      />
-                      <Avatar name="Dan Abramov" colorPalette={c} variant={v} />
-                      <Avatar colorPalette={c} variant={v} />
+                      <Avatar.Root colorPalette={c} variant={v}>
+                        <Avatar.Image src="https://bit.ly/dan-abramov" />
+                        <Avatar.Fallback name="Dan Abramov" />
+                      </Avatar.Root>
+                      <Avatar.Root colorPalette={c} variant={v}>
+                        <Avatar.Fallback name="Dan Abramov" />
+                      </Avatar.Root>
+                      <Avatar.Root colorPalette={c} variant={v}>
+                        <Avatar.Fallback />
+                      </Avatar.Root>
                     </HStack>
                   </td>
                 )}

@@ -7,6 +7,8 @@ export {
   PaginationRootProvider as RootProvider,
   PaginationPropsProvider as PropsProvider,
   PaginationContext as Context,
+  PaginationPageText as PageText,
+  PaginationItems as Items,
 } from "./pagination"
 
 export type {
@@ -18,4 +20,6 @@ export type {
   PaginationRootProviderProps as RootProviderProps,
   PaginationPageChangeDetails as PageChangeDetails,
   PaginationPageSizeChangeDetails as PageSizeChangeDetails,
+  PaginationPageTextProps as PageTextProps,
+  PaginationItemsProps as ItemsProps,
 } from "./pagination"

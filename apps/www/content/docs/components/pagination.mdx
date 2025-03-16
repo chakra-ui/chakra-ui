@@ -9,37 +9,52 @@ links:
 
 <ExampleTabs name="pagination-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`pagination` snippet
-
-```sh
-npx @chakra-ui/cli snippet add pagination
-```
-
-The snippet includes a closed component composition for the `Pagination`
-component.
-
 ## Usage
 
-```jsx
-import {
-  PaginationItems,
-  PaginationNextTrigger,
-  PaginationPageText,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "@/components/ui/pagination"
+```tsx
+import { Pagination } from "@chakra-ui/react"
 ```
 
-```jsx
-<PaginationRoot>
-  <PaginationPrevTrigger />
-  <PaginationItems />
-  <PaginationPageText />
-  <PaginationNextTrigger />
-</PaginationRoot>
+```tsx
+<Pagination.Root>
+  <Pagination.PrevTrigger />
+  <Pagination.Ellipsis />
+  <Pagination.Item />
+  <Pagination.PageText />
+  <Pagination.NextTrigger />
+</Pagination.Root>
+```
+
+## Shortcuts
+
+The `Pagination` component also provides a set of shortcuts for common use
+cases.
+
+### PaginationItems
+
+This component renders the number of pages based on the `count` and `pageSize`
+props.
+
+Rendering this:
+
+```tsx
+<Pagination.Items />
+```
+
+is shorthand for this:
+
+```tsx
+<Pagination.Context>
+  {({ pages }) =>
+    pages.map((page, index) =>
+      page.type === "page" ? (
+        <Pagination.Item key={index} {...page} />
+      ) : (
+        <Pagination.Ellipsis key={index} index={index} />
+      ),
+    )
+  }
+</Pagination.Context>
 ```
 
 ## Examples
@@ -80,22 +95,14 @@ after the current page.
 
 ### Compact
 
-Use the `PaginationPageText` to create a compact pagination. This can be useful
+Use the `Pagination.PageText` to create a compact pagination. This can be useful
 for mobile views.
 
 <ExampleTabs name="pagination-compact" />
 
 ### As Link
 
-Use the `getHref` prop to create a pagination that navigates via links. This
-will use the `LinkButton` component to create the links.
-
-:::info
-
-Edit the `LinkButton` component to point to the correct framework link component
-if needed.
-
-:::
+Here's an example of rendering the pagination as links.
 
 <ExampleTabs name="pagination-as-link" />
 
@@ -108,7 +115,8 @@ attach the pagination items and triggers.
 
 ### Count Text
 
-Pass `format=long` to the `PaginationPageText` component to show the count text
+Pass `format="long"` to the `Pagination.PageText` component to show the count
+text.
 
 <ExampleTabs name="pagination-with-count-text" />
 

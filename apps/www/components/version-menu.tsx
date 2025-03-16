@@ -1,10 +1,11 @@
-import { Button, LinkProps, Span } from "@chakra-ui/react"
 import {
-  MenuContent,
+  Button,
+  LinkProps,
+  Menu,
   MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+  Portal,
+  Span,
+} from "@chakra-ui/react"
 import Link from "next/link"
 import { LuChevronDown } from "react-icons/lu"
 
@@ -23,25 +24,29 @@ export const VersionMenu = (props: Props) => {
   const { items, portalRef } = props
   const [currentItem, ...restItems] = items
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button size="sm" variant="outline" gap="1" pe="2">
           {currentItem.value}
           <LuChevronDown />
         </Button>
-      </MenuTrigger>
-      <MenuContent portalRef={portalRef}>
-        {restItems.map((item, index) => (
-          <MenuItem value={item.value} key={index} asChild>
-            <Link href={item.url}>
-              <Span fontWeight="medium" flex="1">
-                {item.title}
-              </Span>
-              <Span color="fg.muted">{item.value}</Span>
-            </Link>
-          </MenuItem>
-        ))}
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal container={portalRef}>
+        <Menu.Positioner>
+          <Menu.Content>
+            {restItems.map((item, index) => (
+              <MenuItem value={item.value} key={index} asChild>
+                <Link href={item.url}>
+                  <Span fontWeight="medium" flex="1">
+                    {item.title}
+                  </Span>
+                  <Span color="fg.muted">{item.value}</Span>
+                </Link>
+              </MenuItem>
+            ))}
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

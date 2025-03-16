@@ -1,5 +1,4 @@
-import { For, HStack, Stack } from "@chakra-ui/react"
-import { Tag } from "compositions/ui/tag"
+import { For, HStack, Stack, Tag } from "@chakra-ui/react"
 import { HiCheck } from "react-icons/hi"
 
 export const TagWithVariants = () => {
@@ -8,13 +7,21 @@ export const TagWithVariants = () => {
       <For each={["subtle", "solid", "outline", "surface"]}>
         {(variant) => (
           <HStack key={variant}>
-            <Tag variant={variant}>Gray</Tag>
-            <Tag variant={variant} closable>
-              Gray
-            </Tag>
-            <Tag endElement={<HiCheck />} variant={variant}>
-              Gray
-            </Tag>
+            <Tag.Root variant={variant}>
+              <Tag.Label>Gray</Tag.Label>
+            </Tag.Root>
+            <Tag.Root variant={variant}>
+              <Tag.Label>Gray</Tag.Label>
+              <Tag.EndElement>
+                <Tag.CloseTrigger />
+              </Tag.EndElement>
+            </Tag.Root>
+            <Tag.Root variant={variant}>
+              <Tag.Label>Gray</Tag.Label>
+              <Tag.EndElement>
+                <HiCheck />
+              </Tag.EndElement>
+            </Tag.Root>
           </HStack>
         )}
       </For>

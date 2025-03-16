@@ -3,12 +3,12 @@
     "props": {
       "colorPalette": {
         "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"accent\"",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
         "isRequired": false,
         "description": "The color palette of the component"
       },
       "size": {
-        "type": "\"sm\" | \"md\" | \"lg\"",
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"

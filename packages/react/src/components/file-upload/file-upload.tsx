@@ -5,14 +5,16 @@ import {
   FileUpload as ArkFileUpload,
   useFileUploadContext,
 } from "@ark-ui/react/file-upload"
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { Span } from "../box"
+import { For } from "../for"
+import { CloseIcon, FileIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,28 +69,10 @@ export const FileUploadPropsProvider =
 export interface FileUploadClearTriggerProps
   extends HTMLChakraProps<"button"> {}
 
-export const FileUploadClearTrigger = forwardRef<
+export const FileUploadClearTrigger = withContext<
   HTMLButtonElement,
   FileUploadClearTriggerProps
->(function FileUploadClearTrigger(props, ref) {
-  const fileUpload = useFileUploadContext()
-  return (
-    <chakra.button
-      ref={ref}
-      type="button"
-      data-scope="file-upload"
-      data-part="clear-trigger"
-      aria-label="Clear selected files"
-      hidden={fileUpload.acceptedFiles.length === 0}
-      {...props}
-      onClick={(event) => {
-        props.onClick?.(event)
-        if (event.defaultPrevented) return
-        fileUpload.clearFiles()
-      }}
-    />
-  )
-})
+>(ArkFileUpload.ClearTrigger, "clearTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,6 +124,9 @@ export const FileUploadItemDeleteTrigger = withContext<
   FileUploadItemDeleteTriggerProps
 >(ArkFileUpload.ItemDeleteTrigger, "itemDeleteTrigger", {
   forwardAsChild: true,
+  defaultProps: {
+    children: <CloseIcon />,
+  },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +157,12 @@ export interface FileUploadItemPreviewProps
 export const FileUploadItemPreview = withContext<
   HTMLDivElement,
   FileUploadItemPreviewProps
->(ArkFileUpload.ItemPreview, "itemPreview", { forwardAsChild: true })
+>(ArkFileUpload.ItemPreview, "itemPreview", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <FileIcon />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -211,6 +203,100 @@ export const FileUploadTrigger = withContext<
   HTMLButtonElement,
   FileUploadTriggerProps
 >(ArkFileUpload.Trigger, "trigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface FileUploadItemsBaseProps {
+  showSize?: boolean
+  clearable?: boolean
+  files?: File[]
+}
+
+export interface FileUploadItemsProps
+  extends Omit<FileUploadItemProps, "file">,
+    FileUploadItemsBaseProps {}
+
+export const FileUploadItems = (props: FileUploadItemsProps) => {
+  const { showSize, clearable, files, ...rest } = props
+  const fileUpload = useFileUploadContext()
+  const acceptedFiles = files ?? fileUpload.acceptedFiles
+  return (
+    <For each={acceptedFiles}>
+      {(file) => (
+        <FileUploadItem file={file} key={file.name} {...rest}>
+          <FileUploadItemPreview />
+          {showSize ? (
+            <FileUploadItemContent>
+              <FileUploadItemName />
+              <FileUploadItemSizeText />
+            </FileUploadItemContent>
+          ) : (
+            <FileUploadItemName flex="1" />
+          )}
+          {clearable && <FileUploadItemDeleteTrigger />}
+        </FileUploadItem>
+      )}
+    </For>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface FileUploadListProps extends FileUploadItemsBaseProps {}
+
+export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
+  function FileUploadList(props, ref) {
+    const { showSize, clearable, files, ...rest } = props
+    return (
+      <FileUploadItemGroup ref={ref} {...rest}>
+        <FileUploadItems
+          showSize={showSize}
+          clearable={clearable}
+          files={files}
+        />
+      </FileUploadItemGroup>
+    )
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface FileUploadFileTextProps extends HTMLChakraProps<"span"> {
+  fallback?: string
+}
+
+export const FileUploadFileText = forwardRef<
+  HTMLSpanElement,
+  FileUploadFileTextProps
+>(function FileUploadFileText(props, ref) {
+  const { fallback = "Select file(s)", ...rest } = props
+
+  const fileUpload = useFileUploadContext()
+  const styles = useFileUploadStyles()
+
+  const acceptedFiles = fileUpload.acceptedFiles
+
+  const fileText = useMemo(() => {
+    if (acceptedFiles.length === 1) {
+      return acceptedFiles[0].name
+    }
+    if (acceptedFiles.length > 1) {
+      return `${acceptedFiles.length} files`
+    }
+    return fallback
+  }, [acceptedFiles, fallback])
+
+  return (
+    <Span
+      ref={ref}
+      data-placeholder={fileText === fallback ? "" : undefined}
+      {...rest}
+      css={[styles.fileText, props.css]}
+    >
+      {fileText}
+    </Span>
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

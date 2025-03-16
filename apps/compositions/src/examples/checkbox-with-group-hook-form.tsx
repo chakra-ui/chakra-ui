@@ -1,8 +1,13 @@
 "use client"
 
-import { Button, CheckboxGroup, Code, Fieldset } from "@chakra-ui/react"
+import {
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Code,
+  Fieldset,
+} from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Checkbox } from "compositions/ui/checkbox"
 import { useController, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -50,9 +55,11 @@ export const CheckboxWithGroupHookForm = () => {
         >
           <Fieldset.Content>
             {items.map((item) => (
-              <Checkbox key={item.value} value={item.value}>
-                {item.label}
-              </Checkbox>
+              <Checkbox.Root key={item.value} value={item.value}>
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+                <Checkbox.Label>{item.label}</Checkbox.Label>
+              </Checkbox.Root>
             ))}
           </Fieldset.Content>
         </CheckboxGroup>

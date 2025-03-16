@@ -1,5 +1,4 @@
-import { For, HStack, Stack } from "@chakra-ui/react"
-import { Tag } from "compositions/ui/tag"
+import { For, HStack, Stack, Tag } from "@chakra-ui/react"
 import { HiCheck } from "react-icons/hi"
 
 export const TagWithSizes = () => {
@@ -8,13 +7,21 @@ export const TagWithSizes = () => {
       <For each={["sm", "md", "lg"]}>
         {(size) => (
           <HStack key={size}>
-            <Tag size={size}>Gray</Tag>
-            <Tag size={size} closable>
-              Gray
-            </Tag>
-            <Tag endElement={<HiCheck />} size={size}>
-              Gray
-            </Tag>
+            <Tag.Root size={size}>
+              <Tag.Label>Gray</Tag.Label>
+            </Tag.Root>
+            <Tag.Root size={size}>
+              <Tag.Label>Gray</Tag.Label>
+              <Tag.EndElement>
+                <Tag.CloseTrigger />
+              </Tag.EndElement>
+            </Tag.Root>
+            <Tag.Root size={size}>
+              <Tag.Label>Gray</Tag.Label>
+              <Tag.EndElement>
+                <HiCheck />
+              </Tag.EndElement>
+            </Tag.Root>
           </HStack>
         )}
       </For>

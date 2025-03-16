@@ -8,22 +8,10 @@ links:
 
 <ExampleTabs name="close-button-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`close-button` snippet
-
-```sh
-npx @chakra-ui/cli snippet add close-button
-```
-
-The snippet includes a `CloseButton` component composition based on the
-`IconButton` component.
-
 ## Usage
 
 ```jsx
-import { CloseButton } from "@/components/ui/close-button"
+import { CloseButton } from "@chakra-ui/react"
 ```
 
 ```jsx
@@ -44,12 +32,11 @@ Use the `variant` prop to change the appearance of the close button.
 
 <ExampleTabs name="close-button-with-variants" />
 
-### Without Snippet
+### Custom Icon
 
-If you don't want to use the snippet, you can use the `IconButton` component
-from the `@chakra-ui/react` package.
+Pass the custom icon to the `children` of the `CloseButton` component.
 
-<ExampleTabs name="close-button-without-snippet" />
+<ExampleTabs name="close-button-with-custom-icon" />
 
 ## Props
 

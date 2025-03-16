@@ -1,45 +1,40 @@
 "use client"
 
-import { HStack, parseColor } from "@chakra-ui/react"
-import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerSwatchGroup,
-  ColorPickerSwatchTrigger,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
+import { ColorPicker, HStack, Portal, parseColor } from "@chakra-ui/react"
+import { LuCheck } from "react-icons/lu"
 
 export const ColorPickerWithSwatches = () => {
   return (
-    <ColorPickerRoot defaultValue={parseColor("#eb5e41")} maxW="200px">
-      <ColorPickerLabel>Color</ColorPickerLabel>
-      <ColorPickerControl>
-        <ColorPickerInput />
-        <ColorPickerTrigger />
-      </ColorPickerControl>
-      <ColorPickerContent>
-        <ColorPickerArea />
-        <HStack>
-          <ColorPickerEyeDropper />
-          <ColorPickerSliders />
-        </HStack>
-        <ColorPickerSwatchGroup>
-          {swatches.map((item) => (
-            <ColorPickerSwatchTrigger
-              swatchSize="4.5"
-              key={item}
-              value={item}
-            />
-          ))}
-        </ColorPickerSwatchGroup>
-      </ColorPickerContent>
-    </ColorPickerRoot>
+    <ColorPicker.Root defaultValue={parseColor("#eb5e41")} maxW="200px">
+      <ColorPicker.HiddenInput />
+      <ColorPicker.Label>Color</ColorPicker.Label>
+      <ColorPicker.Control>
+        <ColorPicker.Input />
+        <ColorPicker.Trigger />
+      </ColorPicker.Control>
+      <Portal>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content>
+            <ColorPicker.Area />
+            <HStack>
+              <ColorPicker.EyeDropper size="xs" variant="outline" />
+              <ColorPicker.Sliders />
+            </HStack>
+            <ColorPicker.SwatchGroup>
+              {swatches.map((item) => (
+                <ColorPicker.SwatchTrigger key={item} value={item}>
+                  <ColorPicker.Swatch boxSize="4.5" value={item}>
+                    <ColorPicker.SwatchIndicator>
+                      <LuCheck />
+                    </ColorPicker.SwatchIndicator>
+                  </ColorPicker.Swatch>
+                </ColorPicker.SwatchTrigger>
+              ))}
+            </ColorPicker.SwatchGroup>
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+      </Portal>
+    </ColorPicker.Root>
   )
 }
 

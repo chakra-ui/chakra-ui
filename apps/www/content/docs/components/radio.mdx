@@ -9,58 +9,63 @@ links:
 
 <ExampleTabs name="radio-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`radio` snippet
-
-```sh
-npx @chakra-ui/cli snippet add radio
-```
-
-The snippet includes a closed component composition for the `RadioGroup`
-
 ## Usage
 
-```jsx
-import { Radio, RadioGroup } from "@/components/ui/radio"
+```tsx
+import { Radio, RadioGroup } from "@chakra-ui/react"
 ```
 
-```jsx
-<RadioGroup>
-  <Radio />
-</RadioGroup>
+```tsx
+<RadioGroup.Root>
+  <RadioGroup.Item>
+    <RadioGroup.ItemHiddenInput />
+    <RadioGroup.ItemIndicator />
+    <RadioGroup.ItemText />
+  </RadioGroup.Item>
+</RadioGroup.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
 ### Controlled
 
-Use the `value` and `onValueChange` prop to control the selected radio button
+Pass the `value` and `onValueChange` prop to the `RadioGroup.Root` component to
+control the selected radio button.
 
 <ExampleTabs name="radio-controlled" />
 
 ### Colors
 
-Use the `colorPalette` prop to change the color scheme of the component.
+Pass the `colorPalette` prop to the `RadioGroup.Root` component to change the
+color scheme of the component.
 
 <ExampleTabs name="radio-with-colors" />
 
 ### Sizes
 
-Use the `size` prop to change the size of the radio component.
+Pass the `size` prop to the `RadioGroup.Root` component to change the size of
+the radio component.
 
 <ExampleTabs name="radio-with-sizes" />
 
 ### Variants
 
-Use the `variant` prop to change the appearance of the radio component.
+Pass the `variant` prop to the `RadioGroup.Root` component to change the
+appearance of the radio component.
 
 <ExampleTabs name="radio-with-variants" />
 
 ### Disabled
 
-Use the `disabled` prop to make the radio disabled.
+Pass the `disabled` prop to the `RadioGroup.Item` component to make the radio
+disabled.
 
 <ExampleTabs name="radio-disabled" />
 
@@ -70,6 +75,27 @@ Use the `Controller` component from `react-hook-form` to control the radio group
 withing a form
 
 <ExampleTabs name="radio-with-hook-form" />
+
+### Closed Component
+
+Here's how to setup the Radio for a closed component composition.
+
+<ExampleCode name="radio-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add radio
+```
+
+Here's how to use the it
+
+```tsx
+<RadioGroup>
+  <Radio />
+</RadioGroup>
+```
 
 ## Props
 

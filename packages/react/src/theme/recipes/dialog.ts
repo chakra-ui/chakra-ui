@@ -55,6 +55,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
       },
     },
     header: {
+      display: "flex",
+      gap: "2",
       flex: 0,
       px: "6",
       pt: "6",
@@ -81,6 +83,11 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     description: {
       color: "fg.muted",
+    },
+    closeTrigger: {
+      pos: "absolute",
+      top: "2",
+      insetEnd: "2",
     },
   },
 
