@@ -19,6 +19,7 @@ import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
 import { transformerMetaWordHighlight } from "./lib/shiki-highlight-word"
+import { propsToMdTable } from "./utils/get-component-props.js"
 
 const cwd = process.cwd()
 
@@ -41,11 +42,11 @@ const docs = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
-      llm: s
-        .custom()
-        .transform(async (data, { meta }) =>
-          replaceExampleTabs(meta.content ?? ""),
-        ),
+      llm: s.custom().transform((data, { meta }) => {
+        const content = replaceExampleTabs(meta.content ?? "")
+
+        return replacePropsTable(content)
+      }),
       hideToc: s.boolean().optional(),
       composition: s.boolean().optional(),
       links: s
@@ -238,4 +239,41 @@ function replaceExampleTabs(text: string) {
   }
 
   return text
+}
+
+function replacePropsTable(text: string) {
+  try {
+    const matches = text.matchAll(
+      /<PropTable\s+component="([^"]+)"\s+part="([^"]+)"(?:\s+omit=\{(\[.*?\])\})?\s*\/>/g,
+    )
+
+    if (!matches) return text
+
+    for (const match of matches) {
+      const component = match[1]
+      const part = match[2]
+      const omit = match[3]
+
+      const omitArray = omit ? JSON.parse(omit) : undefined
+
+      const mdTable = propsToMdTable({ component, part, omit: omitArray })
+
+      if (!mdTable) {
+        console.log("no mdTable", component, part)
+        continue
+      }
+
+      text = text.replace(
+        omit
+          ? `<PropTable component="${component}" part="${part}" omit={${omit}} \/>`
+          : `<PropTable component="${component}" part="${part}" \/>`,
+        mdTable,
+      )
+    }
+
+    return text
+  } catch (error) {
+    console.error(error)
+    return text
+  }
 }

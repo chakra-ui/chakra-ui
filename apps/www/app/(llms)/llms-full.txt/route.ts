@@ -7,7 +7,7 @@ export async function GET() {
     "<SYSTEM>This is the full developer documentation for Chakra UI v3.</SYSTEM>\n\n"
 
   for (const doc of docs) {
-    if (doc.llm.length === 0) continue
+    if (!doc.llm || doc.llm?.length === 0) continue
 
     content += `# ${doc.title}\n\n${doc.llm}\n\n`
   }
