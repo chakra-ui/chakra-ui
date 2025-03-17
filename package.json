@@ -44,8 +44,8 @@
   },
   "version": "2.0.0",
   "dependencies": {
-    "@babel/core": "7.26.9",
-    "@babel/eslint-parser": "7.26.8",
+    "@babel/core": "7.26.10",
+    "@babel/eslint-parser": "7.26.10",
     "@chakra-ui/cli": "workspace:*",
     "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.28.1",
