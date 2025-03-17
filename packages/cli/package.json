@@ -51,7 +51,7 @@
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
     "@visulima/boxen": "^1.0.30",
-    "bundle-n-require": "1.1.1",
+    "bundle-n-require": "1.1.2",
     "globby": "14.0.2",
     "chokidar": "3.6.0",
     "cli-table": "^0.3.11",
