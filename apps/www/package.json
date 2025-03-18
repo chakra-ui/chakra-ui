@@ -17,7 +17,8 @@
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:types": "pnpm types:ark && pnpm types:recipe && pnpm types:component",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
-    "prebuild": "pnpm generate:composition"
+    "build:react": "cd ../../ && pnpm react build:fast",
+    "prebuild": "pnpm generate:composition && pnpm build:react"
   },
   "dependencies": {
     "@ark-ui/react": "4.9.2",
