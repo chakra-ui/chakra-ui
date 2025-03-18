@@ -113,12 +113,12 @@ pass the `shouldForwardProp` option.
 
 Here's an example that forwards all props that doesn't start with `$`
 
-```jsx
-const Component = chakra("div", {
-  shouldForwardProp(prop) {
-    return !prop.startsWith("$")
-  },
-})
+```tsx
+function shouldForwardProp(prop: string) {
+  return !prop.startsWith("$")
+}
+
+const Component = chakra("div", {}, { shouldForwardProp })
 ```
 
 To create custom forward props logic, combine the
@@ -131,12 +131,12 @@ import shouldForwardProp from "@emotion/is-prop-valid"
 
 const { isValidProperty } = defaultSystem
 
-const Component = chakra("div", {
-  shouldForwardProp(prop, variantKeys) {
-    const chakraSfp = !variantKeys?.includes(prop) && !isValidProperty(prop)
-    return shouldForwardProp(prop) && chakraSfp
-  },
-})
+function shouldForwardProp(prop: string, variantKeys: string[]) {
+  const chakraSfp = !variantKeys?.includes(prop) && !isValidProperty(prop)
+  return shouldForwardProp(prop) && chakraSfp
+}
+
+const Component = chakra("div", {}, { shouldForwardProp })
 ```
 
 ## Default Props
