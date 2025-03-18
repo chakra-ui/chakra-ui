@@ -26,6 +26,11 @@ export const GET = async () => {
       href: `${baseUrl}/llms-theming.txt`,
       description: "Documentation for theming Chakra UI v3.",
     },
+    {
+      title: "Migrating to v3",
+      href: `${baseUrl}/llms-v3-migration.txt`,
+      description: "Documentation for migrating to Chakra UI v3.",
+    },
   ]
 
   const content = TEMPLATE.replace(
