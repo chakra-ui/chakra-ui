@@ -1,8 +1,9 @@
+import { getBaseUrl } from "../shared"
+
 export const dynamic = "force-static"
 
 export const GET = async () => {
-  const baseUrl =
-    process.env.VERCEL_URL ?? process.env.HOST ?? "http://localhost:3000"
+  const baseUrl = getBaseUrl()
 
   const documentSets = [
     {

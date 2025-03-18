@@ -1,7 +1,7 @@
 import { ensureDirSync } from "fs-extra"
 import { writeFile } from "node:fs/promises"
 import { join } from "node:path"
-import { ProjectSdk } from "./project-sdk"
+import { ProjectSdk } from "../utils/project-sdk"
 
 async function main() {
   const project = new ProjectSdk()

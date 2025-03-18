@@ -20,6 +20,7 @@ import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
 import { transformerMetaWordHighlight } from "./lib/shiki-highlight-word"
 import { propsToMdTable } from "./utils/get-component-props.js"
+import { replaceTokenDoc } from "./utils/get-theming-doc.js"
 
 const cwd = process.cwd()
 
@@ -42,10 +43,9 @@ const docs = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
-      llm: s.custom().transform((data, { meta }) => {
+      llm: s.custom().transform((_data, { meta }) => {
         const content = replaceExampleTabs(meta.content ?? "")
-
-        return replacePropsTable(content)
+        return replacePropsTable(replaceTokenDoc(content))
       }),
       hideToc: s.boolean().optional(),
       composition: s.boolean().optional(),
@@ -227,10 +227,12 @@ function replaceExampleTabs(text: string) {
   for (const match of matches) {
     const name = match[1]
 
-    const example = fs.readFileSync(
+    let example = fs.readFileSync(
       `../compositions/src/examples/${name}.tsx`,
       "utf-8",
     )
+
+    example = example.replaceAll("compositions/ui", "@/components/ui")
 
     text = text.replace(
       `<ExampleTabs name="${name}" \/>`,

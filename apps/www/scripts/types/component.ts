@@ -4,19 +4,19 @@ import { unlink, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import { camelCase, kebabCase, titleCase } from "scule"
 import { defaultSystem } from "../../../../packages/react/src/preset"
-import { extractTypes } from "../extract-types"
+import { extractTypes } from "../../utils/extract-types"
 import {
   getComponentDir,
   getComponentList,
   staticComponentList,
-} from "../get-component-list"
+} from "../../utils/get-component-list"
 import {
   filterEmpty,
   isEmptyObject,
   mapEntries,
   stringify,
   uniq,
-} from "../shared"
+} from "../../utils/shared"
 
 export const main = async () => {
   const componentDir = getComponentDir()

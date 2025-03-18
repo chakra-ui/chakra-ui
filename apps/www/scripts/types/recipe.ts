@@ -3,9 +3,9 @@ import { ensureDirSync } from "fs-extra"
 import { writeFile } from "node:fs/promises"
 import { camelCase, kebabCase } from "scule"
 import { defaultSystem } from "../../../../packages/react/src/preset"
-import { getComponentList } from "../get-component-list"
-import { getRecipeTypes } from "../get-recipe-types"
-import { stringify, toComponentCase } from "../shared"
+import { getComponentList } from "../../utils/get-component-list"
+import { getRecipeTypes } from "../../utils/get-recipe-types"
+import { stringify, toComponentCase } from "../../utils/shared"
 
 export const main = async () => {
   const dirs = await getComponentList()

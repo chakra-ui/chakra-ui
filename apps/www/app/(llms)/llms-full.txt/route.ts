@@ -1,3 +1,4 @@
+import { cleanupContent } from "../shared"
 import { default as docs } from ".velite/docs.json"
 
 export const dynamic = "force-static"
@@ -8,8 +9,8 @@ export async function GET() {
 
   for (const doc of docs) {
     if (!doc.llm || doc.llm?.length === 0) continue
-
-    content += `# ${doc.title}\n\n${doc.llm}\n\n`
+    const llm = cleanupContent(doc.llm)
+    content += `# ${doc.title}\n\n${llm}\n\n`
   }
 
   return new Response(content, {

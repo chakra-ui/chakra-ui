@@ -639,8 +639,8 @@ After
 
 ### PinInput
 
-- Changed `value`, `defaultValue` and `onChange` to use `string[]` instead of
-  `string`
+- Changed `value`, `defaultValue` to use `string[]` instead of `string`
+- `onChange` prop is now called `onValueChange`
 - Add new `PinInput.Control` and `PinInput.Label` component parts
 - `PinInput.Root` now renders a `div` element by default. Consider combining
   with `Stack` or `Group` for better layout control
@@ -650,6 +650,7 @@ After
 - Rename `NumberInputStepper` to `NumberInput.Control`
 - Rename `NumberInputStepperIncrement` to `NumberInput.IncrementTrigger`
 - Rename `NumberInputStepperDecrement` to `NumberInput.DecrementTrigger`
+- `onChange` prop is now called `onValueChange`
 - Remove `focusBorderColor` and `errorBorderColor`, consider setting the
   `--focus-color` and `--error-color` css variables instead
 
@@ -699,9 +700,11 @@ Before
 After
 
 ```tsx
-<Field invalid label="Email" errorText="This field is required">
+<Field.Root invalid>
+  <Field.Label>Email</Field.Label>
   <Input />
-</Field>
+  <Field.ErrorText>This field is required</Field.ErrorText>
+</Field.Root>
 ```
 
 ### Link

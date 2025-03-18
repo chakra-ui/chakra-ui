@@ -10,12 +10,6 @@ export interface Properties {
   description?: string | undefined
 }
 
-const stringify = (value: any) => {
-  if (value === "true") return `true`
-  if (value === "false") return `false`
-  return JSON.stringify(value)
-}
-
 const sortEntries = (props: Record<string, any>): [string, Properties][] => {
   return Object.entries(props).sort(([, a], [, b]) => {
     if (a.isRequired && !b.isRequired) return -1
