@@ -26,11 +26,11 @@ export const BlogCard = (props: Props) => {
           <Text textStyle="sm" color="fg.muted">
             {formatBlogDate(publishedAt)}
           </Text>
-          <AvatarGroup size="2xs">
+          <AvatarGroup size="2xs" spaceX="-2">
             {authors.map((author) => {
               const { name, image } = getBlogAuthor(author)
               return (
-                <Avatar.Root key={author}>
+                <Avatar.Root key={author} boxSizing="content-box">
                   <Avatar.Image src={image} />
                   <Avatar.Fallback name={name} />
                 </Avatar.Root>
@@ -38,7 +38,7 @@ export const BlogCard = (props: Props) => {
             })}
           </AvatarGroup>
         </Flex>
-        <Card.Title mt="-2" textStyle="lg">
+        <Card.Title textStyle="lg">
           <LinkOverlay asChild>
             <Link href={`/${data.slug}`}>{title}</Link>
           </LinkOverlay>

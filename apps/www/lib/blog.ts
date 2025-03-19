@@ -16,13 +16,18 @@ interface Author {
 const authorMap: Record<string, Author> = {
   sage: {
     name: "Segun Adebayo",
-    image: "https://bit.ly/sage-adebayo",
-    x: { url: "https://x.com/sage_adebayo", username: "@thesegunadebayo" },
+    image: "/authors/segun-headshot.png",
+    x: { url: "https://x.com/thesegunadebayo", username: "@thesegunadebayo" },
   },
   esther: {
     name: "Esther Adebayo",
     image: "/authors/esther-headshot.jpg",
     x: { url: "https://x.com/_estheradebayo", username: "@_estheradebayo" },
+  },
+  eelco: {
+    name: "Eelco Wiersma",
+    image: "/authors/eelco-headshot.png",
+    x: { url: "https://x.com/eelcodotdev", username: "@eelcodotdev" },
   },
 }
 

@@ -12,6 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface PageContext {
@@ -57,25 +58,27 @@ export default async function BlogPostPage(props: PageContext) {
           </Text>
         </HStack>
         <Heading size="4xl">{blog.title}</Heading>
-        <Stack mt="4" gap="3">
-          <HStack>
-            {blog.authors.map((authorId) => {
-              const author = getBlogAuthor(authorId)
-              return (
-                <HStack key={author.name} gap="4">
-                  <Avatar.Root>
-                    <Avatar.Image src={author.image} />
-                    <Avatar.Fallback name={author.name} />
-                  </Avatar.Root>
-                  <Stack gap="0" fontSize="sm">
-                    <Text fontWeight="medium">{author.name}</Text>
-                    <Text color="fg.muted">{author.x.username}</Text>
-                  </Stack>
-                </HStack>
-              )
-            })}
-          </HStack>
-        </Stack>
+        <HStack gap="8" mt="4">
+          {blog.authors.map((authorId) => {
+            const author = getBlogAuthor(authorId)
+            return (
+              <HStack key={author.name} gap="2">
+                <Avatar.Root>
+                  <Avatar.Image src={author.image} />
+                  <Avatar.Fallback name={author.name} />
+                </Avatar.Root>
+                <Stack gap="0" fontSize="sm">
+                  <Text fontWeight="medium">{author.name}</Text>
+                  <Link href={author.x.url}>
+                    <Text color="fg.muted" textStyle="xs">
+                      {author.x.username}
+                    </Text>
+                  </Link>
+                </Stack>
+              </HStack>
+            )
+          })}
+        </HStack>
       </Stack>
       <MDXContent code={blog.content} />
     </Container>

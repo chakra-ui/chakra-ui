@@ -6,6 +6,7 @@
     "dev:content": "velite --watch",
     "dev:next": "next dev",
     "dev": "run-p dev:*",
+    "predev": "pnpm build:react",
     "build:content": "velite --clean",
     "build:next": "next build",
     "build": "run-s build:*",
