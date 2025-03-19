@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/blog/00-announcing-v3">
+          <Link href="/blog/06-making-docs-ai-friendly">
             <LuPartyPopper />
-            Celebrating the launch of Chakra 3.0
+            [New] Our docs are now AI-friendly via LLMs.txt
             <HiArrowRight />
           </Link>
         </Annoucement>
