@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.14.0
+
+### Minor Changes
+
+- [`354eaa6`](https://github.com/chakra-ui/chakra-ui/commit/354eaa6a68dd49c3e983f12afb0350c3fc615c6b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve render
+  performance by upgrading to the latest Ark UI v5.
+
+  This brings a **1.5x–4x** performance improvements across components. Learn
+  more from the
+  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+
 ## 3.13.0
 
 ### Minor Changes
