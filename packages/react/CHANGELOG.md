@@ -1,5 +1,16 @@
 # @chakra-ui/react
 
+## 3.14.1
+
+### Patch Changes
+
+- [`0eb769e`](https://github.com/chakra-ui/chakra-ui/commit/0eb769ef66e3766aa3f78983054766d4371d2008)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Fix
+  issue where output of `<system>.css(...)` from Chakra UI can't be assigned to
+  `Interpolation<Theme>` from `@emotion/react`.
+
+  - **General**: Bump `@ark-ui/react` to latest version.
+
 ## 3.14.0
 
 ### Minor Changes
