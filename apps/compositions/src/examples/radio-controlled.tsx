@@ -4,7 +4,7 @@ import { HStack, RadioGroup } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const RadioControlled = () => {
-  const [value, setValue] = useState("1")
+  const [value, setValue] = useState<string | null>(null)
   return (
     <RadioGroup.Root value={value} onValueChange={(e) => setValue(e.value)}>
       <HStack gap="6">

@@ -11,18 +11,21 @@ export const SegmentedControlInCard = () => {
         <Field.Root>
           <Field.Label>Bedrooms</Field.Label>
           <SegmentGroup.Root defaultValue="Any">
+            <SegmentGroup.Indicator />
             <SegmentGroup.Items items={["Any", "1", "2", "3", "3+"]} />
           </SegmentGroup.Root>
         </Field.Root>
         <Field.Root>
           <Field.Label>Beds</Field.Label>
           <SegmentGroup.Root defaultValue="1">
+            <SegmentGroup.Indicator />
             <SegmentGroup.Items items={["Any", "1", "2", "2+"]} />
           </SegmentGroup.Root>
         </Field.Root>
         <Field.Root>
           <Field.Label>Bathrooms</Field.Label>
           <SegmentGroup.Root defaultValue="3">
+            <SegmentGroup.Indicator />
             <SegmentGroup.Items items={["Any", "1", "2", "3"]} />
           </SegmentGroup.Root>
         </Field.Root>
