@@ -304,8 +304,8 @@ importers:
   apps/www:
     dependencies:
       '@ark-ui/react':
-        specifier: 5.3.0
-        version: 5.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 5.3.1
+        version: 5.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -490,8 +490,8 @@ importers:
   packages/react:
     dependencies:
       '@ark-ui/react':
-        specifier: 5.3.0
-        version: 5.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 5.3.1
+        version: 5.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@emotion/is-prop-valid':
         specifier: 1.3.1
         version: 1.3.1
@@ -1008,8 +1008,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@ark-ui/react@5.3.0':
-    resolution: {integrity: sha512-vh5bD9JJM8W3W5qBTCF9s9sNIop3QYEaetBImQtevwb4lAtEyf0X3m1dyspUGZxO7wFwoJm6RF0kH8eqZITvOg==}
+  '@ark-ui/react@5.3.1':
+    resolution: {integrity: sha512-kayabYf6TFFCcwiE0IxBcz4M7rLu1l8bVu9Xk41XYNCn98NW8bh9BMkasFxcaJshtiKCOXs5S1CaSwfxeyRsJg==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -10211,7 +10211,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@ark-ui/react@5.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@ark-ui/react@5.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@internationalized/date': 3.7.0
       '@zag-js/accordion': 1.6.0
@@ -10266,6 +10266,7 @@ snapshots:
       '@zag-js/tour': 1.6.0
       '@zag-js/tree-view': 1.6.0
       '@zag-js/types': 1.6.0
+      '@zag-js/utils': 1.6.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
