@@ -14,6 +14,13 @@ description:
   the
   [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
 
+- **RadioGroup**: Allow passing `null` as a valid value to clear the value. This
+  means the signature of `onValueChange` now supports `string | null` instead of
+  just `string`.
+
+  > This might be a potential breaking TS change but it's a needed change to
+  > allow clearing the value.
+
 ## [3.13.0](./#3.13.0) - 2025-03-13
 
 ### Added
