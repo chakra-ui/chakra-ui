@@ -22,7 +22,7 @@
     "prebuild": "pnpm generate:composition && pnpm build:react"
   },
   "dependencies": {
-    "@ark-ui/react": "4.9.2",
+    "@ark-ui/react": "5.2.0",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "11.14.0",
     "@shikijs/rehype": "1.26.1",
@@ -34,8 +34,8 @@
     "next": "15.2.1",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-icons": "5.5.0",
     "rehype-autolink-headings": "7.1.0",
     "rehype-slug": "6.0.0",

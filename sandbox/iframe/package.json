@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.14.0",
     "@emotion/cache": "^11.14.0",
