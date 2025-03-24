@@ -270,9 +270,7 @@ export interface TokenFn {
   var(path: string, fallback?: any): any
 }
 
-export type CssFn = (
-  ...styles: (SystemStyleObject | undefined)[]
-) => SystemStyleObject
+export type CssFn = (...styles: (SystemStyleObject | undefined)[]) => Dict
 
 export interface Layers {
   wrap(layer: CascadeLayer, styles: Dict): Dict
