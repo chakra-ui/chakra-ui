@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.14.2
+
+### Patch Changes
+
+- [`87a072b`](https://github.com/chakra-ui/chakra-ui/commit/87a072b7c0c699154651a9f415d578a8c972b21d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix potential
+  import error from `@zag-js/utils` in `@ark-ui/react`
+
 ## 3.14.1
 
 ### Patch Changes
