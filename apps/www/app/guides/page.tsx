@@ -80,10 +80,10 @@ export default function GuidePage() {
 
               <Card.Body gap="1">
                 <SimpleGrid columns={{ base: 1, md: 3 }} gap="4">
-                  {collection.guides.map((guide) => (
+                  {collection.guides.map((guide, index) => (
                     <Link
                       borderWidth="1px"
-                      key={guide.collection}
+                      key={`${guide.collection}-${index}`}
                       textStyle="sm"
                       padding="4"
                       rounded="md"

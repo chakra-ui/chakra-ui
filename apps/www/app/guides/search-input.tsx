@@ -13,7 +13,7 @@ import {
   chakra,
 } from "@chakra-ui/react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useMemo } from "react"
 import { LuSearch } from "react-icons/lu"
 
@@ -66,6 +66,7 @@ const createCollection = (items: Guides[]) =>
 
 export const GuideSearchInput = () => {
   const params = useSearchParams()
+  const router = useRouter()
   const query = params.get("query")
 
   const collection = useMemo(() => {
@@ -82,7 +83,13 @@ export const GuideSearchInput = () => {
 
   return (
     <ComboboxRoot
+      //@ts-expect-error fix later
       collection={collection}
+      navigate={({ value }) => {
+        requestAnimationFrame(() => {
+          router.push(`/${value}`)
+        })
+      }}
       inputBehavior="autohighlight"
       openOnClick={!!query}
       openOnChange={(e) => e.inputValue.length > 3}

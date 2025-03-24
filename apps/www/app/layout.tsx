@@ -59,6 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       className={[
         inter.variable,
@@ -75,7 +76,7 @@ export default function RootLayout({
           data-domain="chakra-ui.com"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Provider>
           <ProAdBanner />
           {children}
