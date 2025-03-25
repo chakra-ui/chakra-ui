@@ -11,6 +11,6 @@ export default {
   ],
 }
 
-export { RadialChartBasic as Basic } from "compositions/chart/examples/radial-chart-basic"
-export { RadialChartWithLegend as Legend } from "compositions/chart/examples/radial-chart-with-legend"
-export { RadialChartWithLabel as Label } from "compositions/chart/examples/radial-chart-with-label"
+export { RadialChartBasic as Basic } from "compositions/examples/charts/radial-chart-basic"
+export { RadialChartWithLegend as Legend } from "compositions/examples/charts/radial-chart-with-legend"
+export { RadialChartWithLabel as Label } from "compositions/examples/charts/radial-chart-with-label"

@@ -67,7 +67,7 @@ export interface BarListTooltipProps extends AbsoluteCenterProps {
 export function BarListTooltip(props: BarListTooltipProps) {
   const { payload, labelFormatter, ...rest } = props
   const chart = React.useContext(ChartContext)
-  const formatter = labelFormatter || chart.formatter({ style: "decimal" })
+  const formatter = labelFormatter || chart.formatNumber({ style: "decimal" })
   return (
     <AbsoluteCenter
       display={{ base: "none", _groupHover: "block" }}
@@ -174,7 +174,7 @@ export function BarListValue(props: BarListValueProps) {
 
   const formatter =
     valueFormatter ||
-    chart.formatter({
+    chart.formatNumber({
       notation: "compact",
       maximumFractionDigits: 2,
     })

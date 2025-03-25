@@ -48,10 +48,18 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
   const key = <K extends keyof T>(prop: K | undefined): K =>
     prop ?? ("value" as K)
 
-  const formatter = React.useCallback(
+  const formatNumber = React.useCallback(
     (options: Intl.NumberFormatOptions) => {
       const formatter = new Intl.NumberFormat(env.locale, options)
       return (value: number) => formatter.format(value)
+    },
+    [env.locale],
+  )
+
+  const formatDate = React.useCallback(
+    (options: Intl.DateTimeFormatOptions) => {
+      return (value: string) =>
+        new Date(value).toLocaleDateString(env.locale, options)
     },
     [env.locale],
   )
@@ -120,7 +128,8 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
     key,
     color,
     size,
-    formatter,
+    formatNumber,
+    formatDate,
     selectedSeries,
     setSelectedSeries,
     highlightedSeries,

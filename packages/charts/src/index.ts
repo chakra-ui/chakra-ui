@@ -24,6 +24,7 @@ export {
 } from "./bar-list"
 
 export type {
+  BarListData,
   BarListProps,
   BarListRootProps,
   BarListValueProps,

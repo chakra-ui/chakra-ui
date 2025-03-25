@@ -204,7 +204,7 @@ export function BarSegmentLegend(props: BarSegmentLegendProps) {
   const { showPercent, showValue, valueFormatter, ...rest } = props
   const chart = React.useContext(ChartContext)
   const formatter =
-    valueFormatter || chart.formatter({ maximumFractionDigits: 2 })
+    valueFormatter || chart.formatNumber({ maximumFractionDigits: 2 })
 
   return (
     <HStack wrap="wrap" gap="4" textStyle="sm" {...rest}>
@@ -247,7 +247,7 @@ export function BarSegmentTooltip(props: BarSegmentTooltipProps) {
   const item = chart.data.find((d) => d.name === payload.name)
   if (!item) return null
 
-  const formatter = chart.formatter({ maximumFractionDigits: 2 })
+  const formatter = chart.formatNumber({ maximumFractionDigits: 2 })
 
   return (
     <HStack
