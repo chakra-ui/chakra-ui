@@ -3,7 +3,7 @@
 import { ChartRoot, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
-export const BarChartBasic = () => {
+export const BarChartRounded = () => {
   const chart = useChartState({
     data: [
       { allocation: 60, type: "Stock" },
@@ -32,6 +32,7 @@ export const BarChartBasic = () => {
             barSize={40}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
+            radius={99}
           />
         ))}
       </BarChart>

@@ -88,8 +88,8 @@ export const BarChartComposition = () => {
               tickLine={false}
               dataKey={chart.key("month")}
               tickFormatter={(value) => value.slice(0, 3)}
-              padding={{ left: 0, right: 0 }}
             />
+
             <Tooltip
               cursor={false}
               animationDuration={100}
@@ -98,6 +98,7 @@ export const BarChartComposition = () => {
             <Bar
               dataKey={chart.key(currentKey)}
               fill={chart.color(series?.color)}
+              radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </ChartRoot>

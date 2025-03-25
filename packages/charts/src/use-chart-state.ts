@@ -6,6 +6,7 @@ import * as React from "react"
 
 export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
 export type ChartSize = Tokens["sizes"] | (string & {})
+export type ChartSpacing = Tokens["spacing"] | (string & {})
 
 interface SeriesItem<T> {
   name?: keyof T
@@ -44,6 +45,8 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
 
   const color = (key: ChartColor | undefined) => sys.token(`colors.${key}`, key)
   const size = (key: ChartSize | undefined) => sys.token(`sizes.${key}`, key)
+  const spacing = (key: ChartSpacing | undefined) =>
+    sys.token(`spacing.${key}`, key)
 
   const key = <K extends keyof T>(prop: K | undefined): K =>
     prop ?? ("value" as K)
@@ -121,19 +124,30 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
   }, [data, sort])
 
   return {
+    id,
+    key,
+
+    // series
     data: sortedData,
     series,
     getSeries,
-    id,
-    key,
+
+    // token functions
     color,
     size,
+    spacing,
+
+    // formatters
     formatNumber,
     formatDate,
+
+    // state
     selectedSeries,
     setSelectedSeries,
     highlightedSeries,
     setHighlightedSeries,
+
+    // value functions
     getTotal,
     getPayloadTotal,
     getValuePercent,

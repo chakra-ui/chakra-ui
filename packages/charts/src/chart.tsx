@@ -129,6 +129,7 @@ const hAlignMap = {
 export function ChartLegendContent<T extends Record<string, unknown>>(
   props: ChartLegendContentProps<T>,
 ) {
+  console.log(props)
   const {
     chart,
     payload,
@@ -137,6 +138,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
     title,
     orientation,
     nameKey,
+    spacing = "2.5",
   } = props
 
   const filteredPayload = payload?.filter(
@@ -144,6 +146,8 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
   )
 
   if (!filteredPayload?.length) return null
+  const spacingValue =
+    typeof spacing === "number" ? `${spacing}px` : chart.spacing(spacing)
 
   return (
     <Stack
@@ -155,7 +159,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
       {title && <Text fontWeight="medium">{title}</Text>}
       <Flex
         data-orientation={orientation}
-        gap="2.5"
+        gap={spacingValue}
         direction={{ _horizontal: "row", _vertical: "column" }}
         align={{ _horizontal: "center", _vertical: "flex-start" }}
         flexWrap="wrap"

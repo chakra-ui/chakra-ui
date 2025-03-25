@@ -6,17 +6,9 @@ import {
   ChartTooltipContent,
   useChartState,
 } from "@chakra-ui/charts"
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from "recharts"
 
-export const BarChartPercent = () => {
+export const BarChartStackedMix = () => {
   const chart = useChartState({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
@@ -30,14 +22,14 @@ export const BarChartPercent = () => {
     ],
     series: [
       { name: "windows", color: "teal.solid", stackId: "a" },
-      { name: "mac", color: "purple.solid", stackId: "a" },
-      { name: "linux", color: "blue.solid", stackId: "a" },
+      { name: "mac", color: "purple.solid", stackId: "b" },
+      { name: "linux", color: "blue.solid", stackId: "b" },
     ],
   })
 
   return (
     <ChartRoot maxW="lg">
-      <BarChart stackOffset="expand" data={chart.data}>
+      <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
           axisLine={false}
@@ -45,12 +37,8 @@ export const BarChartPercent = () => {
           dataKey={chart.key("month")}
           tickFormatter={(value) => value.slice(0, 3)}
         />
-        <YAxis
-          stroke={chart.color("border.emphasized")}
-          tickFormatter={chart.formatNumber({ style: "percent" })}
-        />
         <Tooltip
-          cursor={{ fill: chart.color("bg.muted") }}
+          cursor={false}
           animationDuration={100}
           content={<ChartTooltipContent chart={chart} />}
         />
@@ -61,7 +49,6 @@ export const BarChartPercent = () => {
             key={item.name}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
-            stroke={chart.color(item.color)}
             stackId={item.stackId}
           />
         ))}

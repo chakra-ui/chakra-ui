@@ -11,6 +11,7 @@ export default {
   ],
 }
 
+export { BarChartBarColor as BarColor } from "compositions/examples/charts/bar-chart-bar-color"
 export { BarChartBasic as Basic } from "compositions/examples/charts/bar-chart-basic"
 export { BarChartComposition as Composition } from "compositions/examples/charts/bar-chart-composition"
 export { BarChartFillWithValue as FillWithValue } from "compositions/examples/charts/bar-chart-fill-with-value"
@@ -19,8 +20,11 @@ export { BarChartLegendPosition as LegendPosition } from "compositions/examples/
 export { BarChartMultiple as Multiple } from "compositions/examples/charts/bar-chart-multiple"
 export { BarChartPercent as Percent } from "compositions/examples/charts/bar-chart-percent"
 export { BarChartRange as Range } from "compositions/examples/charts/bar-chart-range"
+export { BarChartRounded as Rounded } from "compositions/examples/charts/bar-chart-rounded"
 export { BarChartStacked as Stacked } from "compositions/examples/charts/bar-chart-stacked"
+export { BarChartStackedMix as StackedMix } from "compositions/examples/charts/bar-chart-stacked-mix"
 export { BarChartWithAvatarTicks as AvatarTicks } from "compositions/examples/charts/bar-chart-with-avatar-ticks"
 export { BarChartWithBarLabel as BarLabel } from "compositions/examples/charts/bar-chart-with-bar-label"
+export { BarChartWithFormatter as Formatter } from "compositions/examples/charts/bar-chart-with-formatter"
 export { BarChartWithNoGap as NoGap } from "compositions/examples/charts/bar-chart-with-no-gap"
 export { BarChartWithReferenceLines as ReferenceLines } from "compositions/examples/charts/bar-chart-with-reference-lines"
