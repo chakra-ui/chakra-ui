@@ -1,7 +1,7 @@
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Radar Chart",
+  title: "Charts / Radar Chart",
   decorators: [
     (Story: any) => (
       <Box p="10">

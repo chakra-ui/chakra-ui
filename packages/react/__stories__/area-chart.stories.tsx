@@ -1,7 +1,7 @@
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Area Chart",
+  title: "Charts / Area Chart",
   decorators: [
     (Story: any) => (
       <Box p="10">
@@ -12,8 +12,8 @@ export default {
 }
 
 export { AreaChartBasic as Basic } from "compositions/chart/examples/area-chart-basic"
-export { AreaChartPercent as Percent } from "compositions/chart/examples/area-chart-percent"
 export { AreaChartFillWithValue as FillWithValue } from "compositions/chart/examples/area-chart-fill-with-value"
+export { AreaChartPercent as Percent } from "compositions/chart/examples/area-chart-percent"
 export { AreaChartWithAxes as Axes } from "compositions/chart/examples/area-chart-with-axes"
 export { AreaChartWithAxisLabel as AxisLabel } from "compositions/chart/examples/area-chart-with-axis-label"
 export { AreaChartWithDashedArea as DashedArea } from "compositions/chart/examples/area-chart-with-dashed-area"

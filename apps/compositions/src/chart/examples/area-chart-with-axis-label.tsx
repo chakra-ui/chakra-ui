@@ -1,7 +1,6 @@
 "use client"
 
-import { ChartRoot } from "compositions/chart/chart"
-import { useChartState } from "compositions/chart/use-chart-state"
+import { ChartRoot, useChartState } from "@chakra-ui/charts"
 import { Area, AreaChart, Label, Tooltip, XAxis, YAxis } from "recharts"
 
 export const AreaChartWithAxisLabel = () => {

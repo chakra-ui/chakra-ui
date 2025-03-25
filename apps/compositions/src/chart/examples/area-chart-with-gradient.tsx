@@ -5,9 +5,8 @@ import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-} from "compositions/chart/chart"
-import { useChartState } from "compositions/chart/use-chart-state"
-import * as React from "react"
+  useChartState,
+} from "@chakra-ui/charts"
 import {
   Area,
   AreaChart,
@@ -39,7 +38,7 @@ export const AreaChartWithGradient = () => {
 
   return (
     <ChartRoot maxW="400px">
-      <AreaChart accessibilityLayer data={chart.data}>
+      <AreaChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
           dataKey={chart.key("month")}
@@ -55,27 +54,30 @@ export const AreaChartWithGradient = () => {
           content={<ChartTooltipContent chart={chart} />}
         />
         <Legend content={<ChartLegendContent chart={chart} />} />
+
         {chart.series.map((item) => (
-          <React.Fragment key={item.name}>
-            <defs>
-              <ChartGradient
-                id={`${item.name}-gradient`}
-                stops={[
-                  { offset: "0%", color: item.color, opacity: 1 },
-                  { offset: "100%", color: item.color, opacity: 0.01 },
-                ]}
-              />
-            </defs>
-            <Area
-              type="natural"
-              isAnimationActive={false}
-              dataKey={chart.key(item.name)}
-              fill={`url(#${item.name}-gradient)`}
-              stroke={chart.color(item.color)}
-              strokeWidth={2}
-              stackId="a"
+          <defs key={item.name}>
+            <ChartGradient
+              id={`${item.name}-gradient`}
+              stops={[
+                { offset: "0%", color: item.color, opacity: 1 },
+                { offset: "100%", color: item.color, opacity: 0.1 },
+              ]}
             />
-          </React.Fragment>
+          </defs>
+        ))}
+
+        {chart.series.map((item) => (
+          <Area
+            key={item.name}
+            type="natural"
+            isAnimationActive={false}
+            dataKey={chart.key(item.name)}
+            fill={`url(#${item.name}-gradient)`}
+            stroke={chart.color(item.color)}
+            strokeWidth={2}
+            stackId="a"
+          />
         ))}
       </AreaChart>
     </ChartRoot>

@@ -1,7 +1,7 @@
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Sparkline",
+  title: "Charts / Sparkline",
   decorators: [
     (Story: any) => (
       <Box p="10">

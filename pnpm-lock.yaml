@@ -233,6 +233,9 @@ importers:
 
   apps/compositions:
     dependencies:
+      '@chakra-ui/charts':
+        specifier: workspace:*
+        version: link:../../packages/charts
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -409,6 +412,15 @@ importers:
       typescript:
         specifier: ^5
         version: 5.7.3
+
+  packages/charts:
+    devDependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../react
+      recharts:
+        specifier: 2.13.3
+        version: 2.13.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
   packages/cli:
     dependencies:

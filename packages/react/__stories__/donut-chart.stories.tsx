@@ -2,7 +2,7 @@ import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Donut Chart",
+  title: "Charts / Donut Chart",
   decorators: [
     (Story) => (
       <Box p="10">

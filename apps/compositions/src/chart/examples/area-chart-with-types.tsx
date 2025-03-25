@@ -1,12 +1,12 @@
 "use client"
 
-import { For, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import {
   ChartLegendContent,
   ChartRoot,
   ChartTooltipContent,
-} from "compositions/chart/chart"
-import { useChartState } from "compositions/chart/use-chart-state"
+  useChartState,
+} from "@chakra-ui/charts"
+import { For, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import {
   Area,
   AreaChart,

@@ -4,8 +4,8 @@ import {
   ChartGradient,
   ChartRoot,
   ChartTooltipContent,
-} from "compositions/chart/chart"
-import { useChartState } from "compositions/chart/use-chart-state"
+  useChartState,
+} from "@chakra-ui/charts"
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 const data = [

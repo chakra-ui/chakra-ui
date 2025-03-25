@@ -1,0 +1,64 @@
+{
+  "name": "@chakra-ui/charts",
+  "version": "3.14.2",
+  "description": "Data visualization components for Chakra UI",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/charts"
+  },
+  "keywords": [
+    "ui",
+    "charts",
+    "chart",
+    "react",
+    "recharts",
+    "chartjs"
+  ],
+  "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "prebuild": "pnpm clean && pnpm theme",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "tsx scripts/clean.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "recharts": "2.13.3"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=3",
+    "recharts": ">=2"
+  }
+}
