@@ -19,7 +19,7 @@ export const RadioCardWithoutIndicator = () => {
               <Icon fontSize="2xl" color="fg.subtle">
                 {item.icon}
               </Icon>
-              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
+              <RadioCard.ItemText ms="-4">{item.title}</RadioCard.ItemText>
             </RadioCard.ItemControl>
           </RadioCard.Item>
         ))}
