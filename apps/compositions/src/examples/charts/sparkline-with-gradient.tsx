@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartGradient,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import * as React from "react"
 import { Area, AreaChart, Tooltip } from "recharts"
 
@@ -25,24 +20,18 @@ export const SparklineWithGradient = () => {
   })
 
   return (
-    <ChartRoot height="10">
+    <Chart.Root height="10" chart={chart}>
       <AreaChart accessibilityLayer data={chart.data}>
         <Tooltip
           position={{ y: -24 }}
           content={
-            <ChartTooltipContent
-              hideIndicator
-              hideLabel
-              hideSeriesLabel
-              fitContent
-              chart={chart}
-            />
+            <Chart.Tooltip hideIndicator hideLabel hideSeriesLabel fitContent />
           }
         />
         {chart.series.map((item) => (
           <React.Fragment key={item.name}>
             <defs>
-              <ChartGradient
+              <Chart.Gradient
                 id={`${item.name}-gradient`}
                 stops={[
                   { offset: "0%", color: item.color, opacity: 1 },
@@ -61,6 +50,6 @@ export const SparklineWithGradient = () => {
           </React.Fragment>
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

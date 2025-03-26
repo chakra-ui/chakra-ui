@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -32,7 +27,7 @@ export const BarChartWithBarLabel = () => {
   })
 
   return (
-    <ChartRoot maxW="lg">
+    <Chart.Root maxW="lg" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -44,9 +39,9 @@ export const BarChartWithBarLabel = () => {
         <Tooltip
           cursor={{ fill: chart.color("bg.muted") }}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
@@ -64,6 +59,6 @@ export const BarChartWithBarLabel = () => {
           </Bar>
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Box, Flex, FormatNumber, HStack, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuDownload } from "react-icons/lu"
@@ -46,7 +46,7 @@ export const SparklineWithLatestValue = () => {
           <FormatNumber value={value} />
         </Text>
       </Box>
-      <ChartRoot width="full" height="12" flex="2">
+      <Chart.Root width="full" height="12" flex="2" chart={chart}>
         <AreaChart
           data={chart.data}
           onMouseMove={onMouseMove}
@@ -69,7 +69,7 @@ export const SparklineWithLatestValue = () => {
             />
           ))}
         </AreaChart>
-      </ChartRoot>
+      </Chart.Root>
     </Flex>
   )
 }

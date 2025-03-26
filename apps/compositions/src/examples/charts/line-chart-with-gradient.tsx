@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartGradient,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const LineChartWithGradient = () => {
@@ -24,7 +19,7 @@ export const LineChartWithGradient = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <LineChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
@@ -43,10 +38,10 @@ export const LineChartWithGradient = () => {
         <Tooltip
           animationDuration={100}
           cursor={{ stroke: chart.color("border") }}
-          content={<ChartTooltipContent hideIndicator chart={chart} />}
+          content={<Chart.Tooltip hideIndicator />}
         />
         <defs>
-          <ChartGradient
+          <Chart.Gradient
             id="gradient"
             stops={[
               { offset: "0%", color: "teal.solid" },
@@ -81,6 +76,6 @@ export const LineChartWithGradient = () => {
           />
         ))}
       </LineChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

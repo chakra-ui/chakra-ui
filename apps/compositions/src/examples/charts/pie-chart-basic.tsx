@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
 export const PieChartBasic = () => {
@@ -18,12 +14,12 @@ export const PieChartBasic = () => {
   })
 
   return (
-    <ChartRoot aspectRatio="square" w="40" title="Operating System">
+    <Chart.Root aspectRatio="square" w="40" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent hideLabel chart={chart} />}
+          content={<Chart.Tooltip hideLabel />}
         />
         <Pie
           isAnimationActive={false}
@@ -36,6 +32,6 @@ export const PieChartBasic = () => {
           })}
         </Pie>
       </PieChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

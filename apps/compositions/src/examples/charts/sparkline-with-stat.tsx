@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Card, Stat } from "@chakra-ui/react"
 import { LuGlobe } from "react-icons/lu"
 import { Area, AreaChart, Tooltip } from "recharts"
@@ -32,20 +28,14 @@ const SparkLine = (props: { data: number[] }) => {
   })
 
   return (
-    <ChartRoot height="10">
+    <Chart.Root height="10" chart={chart}>
       <AreaChart data={chart.data}>
         <Tooltip
           position={{ y: -24 }}
           animationDuration={0}
           cursor={{ stroke: chart.color("teal.solid"), strokeWidth: 2 }}
           content={
-            <ChartTooltipContent
-              hideIndicator
-              hideLabel
-              hideSeriesLabel
-              fitContent
-              chart={chart}
-            />
+            <Chart.Tooltip hideIndicator hideLabel hideSeriesLabel fitContent />
           }
         />
         {chart.series.map((item) => (
@@ -60,6 +50,6 @@ const SparkLine = (props: { data: number[] }) => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

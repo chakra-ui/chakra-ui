@@ -11,7 +11,6 @@ import {
   Stack,
   Text,
   defineStyle,
-  useChakraContext,
 } from "@chakra-ui/react"
 import * as React from "react"
 import { useMemo } from "react"
@@ -22,7 +21,14 @@ import {
   type ChartColor,
   type UseChartStateReturn,
   getProp,
-} from "./use-chart-state"
+} from "../use-chart-state"
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const ChartContext = React.createContext({} as UseChartStateReturn<any>)
+const useChartContext = () => React.useContext(ChartContext)
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface ChartTitleProps extends BoxProps {
   children: React.ReactNode
@@ -30,11 +36,8 @@ export interface ChartTitleProps extends BoxProps {
 
 export const ChartTitle = React.forwardRef<HTMLDivElement, ChartTitleProps>(
   function ChartTitle(props, ref) {
-    const { children, ...rest } = props
     return (
-      <Text ref={ref} fontWeight="medium" textStyle="md" mb="4" {...rest}>
-        {children}
-      </Text>
+      <Text ref={ref} fontWeight="medium" textStyle="md" mb="4" {...props} />
     )
   },
 )
@@ -43,6 +46,7 @@ export const ChartTitle = React.forwardRef<HTMLDivElement, ChartTitleProps>(
 
 export interface ChartRootProps extends BoxProps {
   children: React.ReactElement
+  chart: UseChartStateReturn<unknown>
 }
 
 const baseCss = defineStyle({
@@ -65,19 +69,19 @@ const baseCss = defineStyle({
 
 export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
   function ChartRoot(props, ref) {
-    const { children, title, css, ...rest } = props
-
+    const { children, css, chart, ...rest } = props
     return (
-      <Box
-        ref={ref}
-        aspectRatio="landscape"
-        textStyle="xs"
-        css={[baseCss, css]}
-        {...rest}
-      >
-        {title && <ChartTitle>{title}</ChartTitle>}
-        <ResponsiveContainer>{children}</ResponsiveContainer>
-      </Box>
+      <ChartContext.Provider value={chart}>
+        <Box
+          ref={ref}
+          aspectRatio="landscape"
+          textStyle="xs"
+          css={[baseCss, css]}
+          {...rest}
+        >
+          <ResponsiveContainer>{children}</ResponsiveContainer>
+        </Box>
+      </ChartContext.Provider>
     )
   },
 )
@@ -94,8 +98,7 @@ export const ChartGradient = React.forwardRef<
   SVGLinearGradientElement,
   ChartGradientProps
 >(function ChartGradient(props, ref) {
-  const sys = useChakraContext()
-  const token = (key: string | undefined) => sys.token(`colors.${key}`, key)
+  const chart = useChartContext()
   const { id, fillOpacity, stops } = props
   return (
     <linearGradient id={id} x1="0" y1="0" x2="0" y2="1" ref={ref}>
@@ -103,7 +106,7 @@ export const ChartGradient = React.forwardRef<
         <stop
           key={index}
           offset={stop.offset}
-          stopColor={token(stop.color)}
+          stopColor={chart.color(stop.color)}
           stopOpacity={stop.opacity ?? fillOpacity}
         />
       ))}
@@ -113,9 +116,7 @@ export const ChartGradient = React.forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartLegendContentProps<T extends Record<string, unknown>>
-  extends LegendProps {
-  chart: UseChartStateReturn<T>
+export interface ChartLegendProps extends LegendProps {
   title?: React.ReactNode
   nameKey?: string
 }
@@ -126,11 +127,8 @@ const hAlignMap = {
   right: "flex-end",
 }
 
-export function ChartLegendContent<T extends Record<string, unknown>>(
-  props: ChartLegendContentProps<T>,
-) {
+export function ChartLegend(props: ChartLegendProps) {
   const {
-    chart,
     payload,
     verticalAlign = "bottom",
     align = "center",
@@ -139,7 +137,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
     nameKey,
     spacing = "2.5",
   } = props
-
+  const chart = useChartContext()
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
@@ -186,8 +184,7 @@ export function ChartLegendContent<T extends Record<string, unknown>>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartTooltipContentProps<T>
-  extends TooltipProps<string, string> {
+export interface ChartTooltipProps extends TooltipProps<string, string> {
   hideLabel?: boolean
   hideIndicator?: boolean
   hideSeriesLabel?: boolean
@@ -195,14 +192,12 @@ export interface ChartTooltipContentProps<T>
   fitContent?: boolean
   nameKey?: string
   indicator?: "line" | "dot" | "dashed"
-  chart: UseChartStateReturn<T>
   render?: (item: Payload<string, string>) => React.ReactNode
 }
 
-export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
+export function ChartTooltip(props: ChartTooltipProps) {
   const {
     payload: payloadProp,
-    chart,
     label,
     labelFormatter,
     hideLabel,
@@ -213,6 +208,8 @@ export function ChartTooltipContent<T>(props: ChartTooltipContentProps<T>) {
     nameKey,
     render,
   } = props
+
+  const chart = useChartContext()
 
   const payload = payloadProp?.filter(
     (item) => item.color !== "none" || item.type !== "none",

@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  ChartGradient,
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Area,
   AreaChart,
@@ -37,7 +31,7 @@ export const AreaChartWithGradient = () => {
   })
 
   return (
-    <ChartRoot maxW="400px">
+    <Chart.Root maxW="400px" chart={chart}>
       <AreaChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
@@ -51,13 +45,13 @@ export const AreaChartWithGradient = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
 
         {chart.series.map((item) => (
           <defs key={item.name}>
-            <ChartGradient
+            <Chart.Gradient
               id={`${item.name}-gradient`}
               stops={[
                 { offset: "0%", color: item.color, opacity: 1 },
@@ -80,6 +74,6 @@ export const AreaChartWithGradient = () => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

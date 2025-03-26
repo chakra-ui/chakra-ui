@@ -1,4 +1,6 @@
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+"use client"
+
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -14,7 +16,6 @@ interface CartesianTickProps {
   index: number
 }
 
-// Custom X-axis tick component
 const CustomTick = (props: Partial<CartesianTickProps>) => {
   const { x, y, index } = props as CartesianTickProps
   const avatarUrl = data[index].avatar
@@ -35,7 +36,7 @@ export const BarChartWithAvatarTicks = () => {
     series: [{ name: "value", color: "teal.solid" }],
   })
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <BarChart data={chart.data} margin={{ bottom: 20 }} barSize={20}>
         <XAxis
           dataKey="name"
@@ -51,6 +52,6 @@ export const BarChartWithAvatarTicks = () => {
           />
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

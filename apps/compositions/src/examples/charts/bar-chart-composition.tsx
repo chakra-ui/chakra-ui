@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Card, SegmentGroup } from "@chakra-ui/react"
 import * as React from "react"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
@@ -77,7 +73,7 @@ export const BarChartComposition = () => {
         </SegmentGroup.Root>
       </Card.Header>
       <Card.Body>
-        <ChartRoot height="10rem">
+        <Chart.Root height="10rem" chart={chart}>
           <BarChart data={chart.data}>
             <CartesianGrid
               stroke={chart.color("border.muted")}
@@ -93,7 +89,7 @@ export const BarChartComposition = () => {
             <Tooltip
               cursor={false}
               animationDuration={100}
-              content={<ChartTooltipContent chart={chart} />}
+              content={<Chart.Tooltip />}
             />
             <Bar
               dataKey={chart.key(currentKey)}
@@ -101,7 +97,7 @@ export const BarChartComposition = () => {
               radius={[4, 4, 0, 0]}
             />
           </BarChart>
-        </ChartRoot>
+        </Chart.Root>
       </Card.Body>
     </Card.Root>
   )

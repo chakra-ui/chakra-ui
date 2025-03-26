@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -22,7 +22,7 @@ export const RadarChartBasic = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <RadarChart data={chart.data}>
         <PolarGrid stroke={chart.color("border")} />
         <PolarAngleAxis dataKey={chart.key("month")} />
@@ -39,6 +39,6 @@ export const RadarChartBasic = () => {
           />
         ))}
       </RadarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

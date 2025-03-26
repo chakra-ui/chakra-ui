@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -30,7 +26,7 @@ export const BarChartWithReferenceLines = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -42,7 +38,7 @@ export const BarChartWithReferenceLines = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
         <ReferenceArea
           y1={76000}
@@ -70,6 +66,6 @@ export const BarChartWithReferenceLines = () => {
           />
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

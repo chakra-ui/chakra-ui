@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts"
 
 export const BarChartBarColor = () => {
@@ -14,7 +14,7 @@ export const BarChartBarColor = () => {
   })
 
   return (
-    <ChartRoot maxW="xl">
+    <Chart.Root maxW="xl" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
@@ -34,6 +34,6 @@ export const BarChartBarColor = () => {
           ))}
         </Bar>
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 export const BarChartRounded = () => {
@@ -15,7 +15,7 @@ export const BarChartRounded = () => {
   })
 
   return (
-    <ChartRoot maxW="xl">
+    <Chart.Root maxW="xl" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
@@ -36,6 +36,6 @@ export const BarChartRounded = () => {
           />
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

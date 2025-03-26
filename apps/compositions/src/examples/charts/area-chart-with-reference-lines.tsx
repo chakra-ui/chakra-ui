@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Area,
   AreaChart,
@@ -37,7 +32,7 @@ export const AreaChartWithReferenceLines = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <AreaChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <YAxis stroke={chart.color("border")} />
@@ -50,9 +45,9 @@ export const AreaChartWithReferenceLines = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         <ReferenceLine
           x="August"
           label={{
@@ -74,6 +69,6 @@ export const AreaChartWithReferenceLines = () => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

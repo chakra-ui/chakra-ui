@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Cell, RadialBar, RadialBarChart } from "recharts"
 
 export const RadialChartWithLabel = () => {
@@ -14,7 +14,7 @@ export const RadialChartWithLabel = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <RadialBarChart data={chart.data} innerRadius={30} outerRadius={100}>
         <RadialBar
           isAnimationActive={false}
@@ -33,6 +33,6 @@ export const RadialChartWithLabel = () => {
           ))}
         </RadialBar>
       </RadialBarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

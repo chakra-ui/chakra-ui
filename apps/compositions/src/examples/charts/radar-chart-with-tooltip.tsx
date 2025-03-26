@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from "recharts"
 
 export const RadarChartWithTooltip = () => {
@@ -20,11 +16,11 @@ export const RadarChartWithTooltip = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <RadarChart data={chart.data}>
         <PolarGrid stroke={chart.color("border")} />
         <PolarAngleAxis dataKey={chart.key("month")} />
-        <Tooltip content={<ChartTooltipContent chart={chart} />} />
+        <Tooltip content={<Chart.Tooltip />} />
         {chart.series.map((item) => (
           <Radar
             isAnimationActive={false}
@@ -37,6 +33,6 @@ export const RadarChartWithTooltip = () => {
           />
         ))}
       </RadarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

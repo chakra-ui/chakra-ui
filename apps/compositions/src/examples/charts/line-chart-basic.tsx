@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   CartesianGrid,
   Legend,
@@ -36,7 +31,7 @@ export const LineChartBasic = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <LineChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
@@ -55,13 +50,9 @@ export const LineChartBasic = () => {
         <Tooltip
           animationDuration={100}
           cursor={{ stroke: chart.color("border") }}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend
-          verticalAlign="top"
-          align="right"
-          content={<ChartLegendContent chart={chart} />}
-        />
+        <Legend verticalAlign="top" align="right" content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Line
             key={item.name}
@@ -74,6 +65,6 @@ export const LineChartBasic = () => {
           />
         ))}
       </LineChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

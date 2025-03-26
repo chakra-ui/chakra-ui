@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { For, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import {
   Area,
@@ -56,7 +51,7 @@ export const AreaChartWithTypes = () => {
             <Text textStyle="sm" fontWeight="semibold" ms="8">
               {type.toString()}
             </Text>
-            <ChartRoot maxW="400px">
+            <Chart.Root maxW="400px" chart={chart}>
               <AreaChart accessibilityLayer data={chart.data}>
                 <CartesianGrid
                   stroke={chart.color("border")}
@@ -73,9 +68,9 @@ export const AreaChartWithTypes = () => {
                 <Tooltip
                   cursor={false}
                   animationDuration={100}
-                  content={<ChartTooltipContent chart={chart} />}
+                  content={<Chart.Tooltip />}
                 />
-                <Legend content={<ChartLegendContent chart={chart} />} />
+                <Legend content={<Chart.Legend />} />
                 {chart.series.map((item) => (
                   <Area
                     type={type}
@@ -91,7 +86,7 @@ export const AreaChartWithTypes = () => {
                   />
                 ))}
               </AreaChart>
-            </ChartRoot>
+            </Chart.Root>
           </Stack>
         )}
       </For>

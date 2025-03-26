@@ -1,12 +1,7 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
-import { For, SimpleGrid } from "@chakra-ui/react"
+import { Chart, useChartState } from "@chakra-ui/charts"
+import { Box, For, Heading, SimpleGrid } from "@chakra-ui/react"
 import {
   Area,
   AreaChart,
@@ -36,42 +31,43 @@ export const AreaChartWithConnectNulls = () => {
     <SimpleGrid gap="10" minChildWidth="400px">
       <For each={["false", "true"]}>
         {(connectNulls) => (
-          <ChartRoot
-            key={connectNulls.toString()}
-            title={`connectNulls: ${connectNulls.toString()}`}
-            maxW="sm"
-          >
-            <AreaChart data={chart.data}>
-              <CartesianGrid
-                stroke={chart.color("border.muted")}
-                vertical={false}
-              />
-              <XAxis
-                axisLine={false}
-                tickLine={false}
-                dataKey={chart.key("month")}
-                tickFormatter={(value) => value.slice(0, 3)}
-              />
-              <Tooltip
-                cursor={false}
-                animationDuration={100}
-                content={<ChartTooltipContent chart={chart} />}
-              />
-              <Legend content={<ChartLegendContent chart={chart} />} />
-              {chart.series.map((item) => (
-                <Area
-                  key={item.name}
-                  isAnimationActive={false}
-                  dataKey={chart.key(item.name)}
-                  fill={chart.color(item.color)}
-                  fillOpacity={0.2}
-                  connectNulls={connectNulls === "true"}
-                  stroke={chart.color(item.color)}
-                  stackId="a"
+          <Box key={connectNulls.toString()}>
+            <Heading size="md" mb="4">
+              {`connectNulls: ${connectNulls.toString()}`}
+            </Heading>
+            <Chart.Root maxW="sm" chart={chart}>
+              <AreaChart data={chart.data}>
+                <CartesianGrid
+                  stroke={chart.color("border.muted")}
+                  vertical={false}
                 />
-              ))}
-            </AreaChart>
-          </ChartRoot>
+                <XAxis
+                  axisLine={false}
+                  tickLine={false}
+                  dataKey={chart.key("month")}
+                  tickFormatter={(value) => value.slice(0, 3)}
+                />
+                <Tooltip
+                  cursor={false}
+                  animationDuration={100}
+                  content={<Chart.Tooltip />}
+                />
+                <Legend content={<Chart.Legend />} />
+                {chart.series.map((item) => (
+                  <Area
+                    key={item.name}
+                    isAnimationActive={false}
+                    dataKey={chart.key(item.name)}
+                    fill={chart.color(item.color)}
+                    fillOpacity={0.2}
+                    connectNulls={connectNulls === "true"}
+                    stroke={chart.color(item.color)}
+                    stackId="a"
+                  />
+                ))}
+              </AreaChart>
+            </Chart.Root>
+          </Box>
         )}
       </For>
     </SimpleGrid>

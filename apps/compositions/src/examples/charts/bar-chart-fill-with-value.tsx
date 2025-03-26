@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -29,12 +25,12 @@ export const BarChartFillWithValue = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <BarChart data={chart.data} margin={{ top: 30 }}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <Tooltip
           cursor={{ fill: chart.color("bg.muted") }}
-          content={<ChartTooltipContent hideLabel chart={chart} />}
+          content={<Chart.Tooltip hideLabel />}
         />
         {chart.series.map((item) => (
           <Bar
@@ -58,6 +54,6 @@ export const BarChartFillWithValue = () => {
           </Bar>
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

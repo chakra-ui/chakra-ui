@@ -8,8 +8,10 @@ export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
 export type ChartSize = Tokens["sizes"] | (string & {})
 export type ChartSpacing = Tokens["spacing"] | (string & {})
 
+type ItemDataKey<T> = T extends Array<infer U> ? keyof U : keyof T
+
 interface SeriesItem<T> {
-  name?: keyof T
+  name?: ItemDataKey<T>
   color?: ChartColor
   icon?: React.ReactNode
   label?: React.ReactNode
@@ -48,7 +50,7 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
   const spacing = (key: ChartSpacing | undefined) =>
     sys.token(`spacing.${key}`, key)
 
-  const key = <K extends keyof T>(prop: K | undefined): K =>
+  const key = <K extends ItemDataKey<T>>(prop: K | undefined): K =>
     prop ?? ("value" as K)
 
   const formatNumber = React.useCallback(

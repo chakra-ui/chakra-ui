@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   CartesianGrid,
   Label,
@@ -36,7 +31,7 @@ export const LineChartBiaxial = () => {
   })
 
   return (
-    <ChartRoot maxW="lg">
+    <Chart.Root maxW="lg" chart={chart}>
       <LineChart
         data={chart.data}
         margin={{ left: 20, bottom: 20, right: 20, top: 20 }}
@@ -74,13 +69,13 @@ export const LineChartBiaxial = () => {
         <Tooltip
           animationDuration={100}
           cursor={{ stroke: chart.color("border") }}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
         <Legend
           verticalAlign="top"
           align="right"
           wrapperStyle={{ marginTop: -20, marginRight: 20 }}
-          content={<ChartLegendContent chart={chart} />}
+          content={<Chart.Legend />}
         />
         {chart.series.map((item) => (
           <Line
@@ -96,6 +91,6 @@ export const LineChartBiaxial = () => {
           />
         ))}
       </LineChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

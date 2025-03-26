@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   Area,
   AreaChart,
@@ -35,7 +30,7 @@ export const AreaChartWithDashedArea = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <AreaChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -47,9 +42,9 @@ export const AreaChartWithDashedArea = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Area
             key={item.name}
@@ -64,6 +59,6 @@ export const AreaChartWithDashedArea = () => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

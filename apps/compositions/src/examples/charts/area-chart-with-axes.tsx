@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const AreaChartWithAxes = () => {
@@ -27,7 +23,7 @@ export const AreaChartWithAxes = () => {
   })
 
   return (
-    <ChartRoot maxW="400px">
+    <Chart.Root maxW="400px" chart={chart}>
       <AreaChart
         accessibilityLayer
         data={chart.data}
@@ -43,7 +39,7 @@ export const AreaChartWithAxes = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
         {chart.series.map((item) => (
           <Area
@@ -58,6 +54,6 @@ export const AreaChartWithAxes = () => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

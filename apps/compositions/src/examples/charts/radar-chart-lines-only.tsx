@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartLegendContent, ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Legend, PolarGrid, Radar, RadarChart } from "recharts"
 
 export const RadarChartLinesOnly = () => {
@@ -20,10 +20,10 @@ export const RadarChartLinesOnly = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <RadarChart data={chart.data}>
         <PolarGrid stroke={chart.color("border")} />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Radar
             isAnimationActive={false}
@@ -36,6 +36,6 @@ export const RadarChartLinesOnly = () => {
           />
         ))}
       </RadarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

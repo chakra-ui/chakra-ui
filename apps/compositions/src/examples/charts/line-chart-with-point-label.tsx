@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import {
   CartesianGrid,
   LabelList,
@@ -28,7 +24,7 @@ export const LineChartWithPointLabel = () => {
   })
 
   return (
-    <ChartRoot maxW="lg">
+    <Chart.Root maxW="lg" chart={chart}>
       <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>
         <CartesianGrid
           stroke={chart.color("border")}
@@ -43,7 +39,7 @@ export const LineChartWithPointLabel = () => {
         <Tooltip
           animationDuration={100}
           cursor={{ stroke: chart.color("border") }}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
         <Line
           isAnimationActive={false}
@@ -61,6 +57,6 @@ export const LineChartWithPointLabel = () => {
           />
         </Line>
       </LineChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

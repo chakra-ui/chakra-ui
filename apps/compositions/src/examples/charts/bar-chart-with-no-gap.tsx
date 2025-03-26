@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
 
 export const BarChartWithNoGap = () => {
@@ -22,7 +18,7 @@ export const BarChartWithNoGap = () => {
   })
 
   return (
-    <ChartRoot maxW="sm">
+    <Chart.Root maxW="sm" chart={chart}>
       <BarChart barCategoryGap="0" data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -34,7 +30,7 @@ export const BarChartWithNoGap = () => {
         <Tooltip
           cursor={{ fill: chart.color("bg.muted") }}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
         {chart.series.map((item) => (
           <Bar
@@ -46,6 +42,6 @@ export const BarChartWithNoGap = () => {
           />
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

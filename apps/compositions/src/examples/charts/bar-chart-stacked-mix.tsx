@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ChartLegendContent,
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from "recharts"
 
 export const BarChartStackedMix = () => {
@@ -28,7 +23,7 @@ export const BarChartStackedMix = () => {
   })
 
   return (
-    <ChartRoot maxW="lg">
+    <Chart.Root maxW="lg" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -40,9 +35,9 @@ export const BarChartStackedMix = () => {
         <Tooltip
           cursor={false}
           animationDuration={100}
-          content={<ChartTooltipContent chart={chart} />}
+          content={<Chart.Tooltip />}
         />
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
@@ -53,6 +48,6 @@ export const BarChartStackedMix = () => {
           />
         ))}
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

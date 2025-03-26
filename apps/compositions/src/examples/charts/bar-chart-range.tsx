@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  ChartRoot,
-  ChartTooltipContent,
-  useChartState,
-} from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { HStack, Span } from "@chakra-ui/react"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
@@ -19,7 +15,7 @@ export const BarChartRange = () => {
   })
 
   return (
-    <ChartRoot maxW="xs">
+    <Chart.Root maxW="xs" chart={chart}>
       <BarChart
         barSize={20}
         data={chart.data}
@@ -30,8 +26,7 @@ export const BarChartRange = () => {
         <YAxis domain={[0, "dataMax + 5"]} axisLine={false} tickLine={false} />
         <Tooltip
           content={
-            <ChartTooltipContent
-              chart={chart}
+            <Chart.Tooltip
               render={({ value, name, payload }) => (
                 <HStack fontWeight="medium">
                   <pre>{JSON.stringify(payload, null, 2)}</pre>
@@ -56,6 +51,6 @@ export const BarChartRange = () => {
           stroke={chart.color("teal.solid")}
         />
       </BarChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

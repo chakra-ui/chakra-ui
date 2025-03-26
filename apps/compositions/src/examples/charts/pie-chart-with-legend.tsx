@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartLegendContent, ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Cell, Legend, Pie, PieChart } from "recharts"
 
 export const PieChartWithLegend = () => {
@@ -14,9 +14,9 @@ export const PieChartWithLegend = () => {
   })
 
   return (
-    <ChartRoot aspectRatio="square" w="xs" title="Operating System">
+    <Chart.Root aspectRatio="square" w="xs" chart={chart}>
       <PieChart>
-        <Legend content={<ChartLegendContent chart={chart} />} />
+        <Legend content={<Chart.Legend />} />
         <Pie
           isAnimationActive={false}
           data={chart.data}
@@ -28,6 +28,6 @@ export const PieChartWithLegend = () => {
           })}
         </Pie>
       </PieChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }

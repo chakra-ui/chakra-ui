@@ -1,6 +1,6 @@
 "use client"
 
-import { ChartRoot, useChartState } from "@chakra-ui/charts"
+import { Chart, useChartState } from "@chakra-ui/charts"
 import { Area, AreaChart, Label, Tooltip, XAxis, YAxis } from "recharts"
 
 export const AreaChartWithAxisLabel = () => {
@@ -23,7 +23,7 @@ export const AreaChartWithAxisLabel = () => {
   })
 
   return (
-    <ChartRoot maxW="400px">
+    <Chart.Root maxW="400px" chart={chart}>
       <AreaChart
         accessibilityLayer
         data={chart.data}
@@ -57,6 +57,6 @@ export const AreaChartWithAxisLabel = () => {
           />
         ))}
       </AreaChart>
-    </ChartRoot>
+    </Chart.Root>
   )
 }
