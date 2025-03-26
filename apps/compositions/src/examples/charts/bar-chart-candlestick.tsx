@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartCandlestick = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data,
     series: [{ name: "open_close", color: "teal.solid" }],
   })

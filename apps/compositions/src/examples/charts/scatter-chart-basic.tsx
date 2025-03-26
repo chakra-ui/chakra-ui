@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
 
 export const ScatterChartBasic = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { x: 100, y: 200, z: 200 },
       { x: 120, y: 100, z: 260 },

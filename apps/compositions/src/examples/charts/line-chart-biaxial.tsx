@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   CartesianGrid,
   Label,
@@ -13,7 +13,7 @@ import {
 } from "recharts"
 
 export const LineChartBiaxial = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { windows: 186, mac: 20, month: "January" },
       { windows: 165, mac: 45, month: "February" },

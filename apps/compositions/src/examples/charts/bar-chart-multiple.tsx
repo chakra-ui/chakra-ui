@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartMultiple = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { type: "mobile", poor: 40, fair: 100, good: 265, excellent: 70 },
       { type: "marketing", poor: 15, fair: 40, good: 120, excellent: 90 },

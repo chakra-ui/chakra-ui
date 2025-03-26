@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartLegendPosition = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { category: "Web Server", value: 200, maxValue: 450 },
       { category: "Credit Card", value: 700, maxValue: 900 },

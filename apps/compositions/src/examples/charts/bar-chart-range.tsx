@@ -1,11 +1,11 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { HStack, Span } from "@chakra-ui/react"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 export const BarChartRange = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { name: "UK", low: 10, high: 20 },
       { name: "US", low: 15, high: 25 },

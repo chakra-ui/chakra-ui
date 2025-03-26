@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -11,7 +11,7 @@ import {
 } from "recharts"
 
 export const BarChartFillWithValue = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { name: "Page A", views: 400 },
       { name: "Page B", views: -300 },

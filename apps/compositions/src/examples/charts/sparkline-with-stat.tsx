@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Card, Stat } from "@chakra-ui/react"
 import { LuGlobe } from "react-icons/lu"
 import { Area, AreaChart, Tooltip } from "recharts"
@@ -22,7 +22,7 @@ export const SparklineWithStat = () => {
 }
 
 const SparkLine = (props: { data: number[] }) => {
-  const chart = useChartState({
+  const chart = useChart({
     data: props.data.map((value) => ({ value })),
     series: [{ name: "value", color: "teal.solid" }],
   })

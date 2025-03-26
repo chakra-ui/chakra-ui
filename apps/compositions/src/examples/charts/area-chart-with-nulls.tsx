@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Box, For, Heading, SimpleGrid } from "@chakra-ui/react"
 import {
   Area,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const AreaChartWithConnectNulls = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { sales: 186, month: "January" },
       { sales: null, month: "February" },

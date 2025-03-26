@@ -1,5 +1,5 @@
-export { useChartState } from "./use-chart-state"
-export type { UseChartStateProps, UseChartStateReturn } from "./use-chart-state"
+export { useChart } from "./use-chart"
+export type { UseChartProps, UseChartReturn } from "./use-chart"
 
 export * from "./chart"
 export * from "./bar-list"

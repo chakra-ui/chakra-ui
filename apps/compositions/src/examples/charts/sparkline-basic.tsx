@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Area, AreaChart, Tooltip } from "recharts"
 
 export const SparklineBasic = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { value: 10 },
       { value: 16 },

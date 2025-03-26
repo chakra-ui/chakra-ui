@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   CartesianGrid,
   LabelList,
@@ -11,7 +11,7 @@ import {
 } from "recharts"
 
 export const LineChartWithPointLabel = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { name: "Jan", uv: 400 },
       { name: "Feb", uv: 300 },

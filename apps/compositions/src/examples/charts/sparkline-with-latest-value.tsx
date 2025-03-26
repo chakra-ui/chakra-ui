@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Box, Flex, FormatNumber, HStack, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuDownload } from "react-icons/lu"
@@ -8,7 +8,7 @@ import { Area, AreaChart, Tooltip } from "recharts"
 import type { CategoricalChartState } from "recharts/types/chart/types"
 
 export const SparklineWithLatestValue = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { value: 125000 },
       { value: 158000 },

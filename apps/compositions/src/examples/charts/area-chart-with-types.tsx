@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { For, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import {
   Area,
@@ -25,7 +25,7 @@ const curveTypes: Exclude<AreaProps["type"], undefined>[] = [
 ]
 
 export const AreaChartWithTypes = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
       { windows: 165, mac: 95, linux: 110, month: "February" },

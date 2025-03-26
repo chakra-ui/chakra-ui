@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Area,
   AreaChart,
@@ -11,7 +11,7 @@ import {
 } from "recharts"
 
 export const AreaChartWithPointLabel = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { sales: 186, month: "January" },
       { sales: 40, month: "February" },

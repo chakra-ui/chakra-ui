@@ -1,9 +1,9 @@
 "use client"
 
-import { BarSegment, useChartState } from "@chakra-ui/charts"
+import { BarSegment, useChart } from "@chakra-ui/charts"
 
 export const BarSegmentWithReference = () => {
-  const chart = useChartState({
+  const chart = useChart({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Google", value: 500000, color: "teal.solid" },

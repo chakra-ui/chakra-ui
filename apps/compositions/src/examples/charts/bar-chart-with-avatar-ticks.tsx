@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -31,7 +31,7 @@ const CustomTick = (props: Partial<CartesianTickProps>) => {
 }
 
 export const BarChartWithAvatarTicks = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data,
     series: [{ name: "value", color: "teal.solid" }],
   })

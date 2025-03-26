@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, ChartGradient, useChartState } from "@chakra-ui/charts"
+import { Chart, ChartGradient, useChart } from "@chakra-ui/charts"
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -24,7 +24,7 @@ const gradientOffset = () => {
 const offset = gradientOffset()
 
 export const AreaChartFillWithValue = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data,
     series: [
       { name: "uv", color: "teal.solid" },

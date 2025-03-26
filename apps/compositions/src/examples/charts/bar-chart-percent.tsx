@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartPercent = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
       { windows: 165, mac: 95, linux: 110, month: "February" },

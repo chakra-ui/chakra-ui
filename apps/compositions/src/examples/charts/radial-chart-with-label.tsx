@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, RadialBar, RadialBarChart } from "recharts"
 
 export const RadialChartWithLabel = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { value: 165, month: "January", color: "teal.solid" },
       { value: 190, month: "February", color: "purple.solid" },

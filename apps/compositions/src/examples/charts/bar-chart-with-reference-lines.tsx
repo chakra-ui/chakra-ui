@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   Bar,
   BarChart,
@@ -12,7 +12,7 @@ import {
 } from "recharts"
 
 export const BarChartWithReferenceLines = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { sales: 63000, month: "June" },
       { sales: 72000, month: "July" },

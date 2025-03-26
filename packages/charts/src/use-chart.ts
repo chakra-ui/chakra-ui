@@ -21,7 +21,7 @@ interface SeriesItem<T> {
   id?: string
 }
 
-export interface UseChartStateProps<T> {
+export interface UseChartProps<T> {
   data: T[]
   series?: SeriesItem<T>[]
   sort?: { by: keyof T; direction: "asc" | "desc" }
@@ -31,7 +31,7 @@ type ValueDomain =
   | [number, number]
   | ((props: { min: number; max: number }) => [number, number])
 
-export function useChartState<T>(props: UseChartStateProps<T>) {
+export function useChart<T>(props: UseChartProps<T>) {
   const { data, series = [], sort } = props
 
   const id = React.useId()
@@ -152,7 +152,7 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
   }
 }
 
-export type UseChartStateReturn<T> = ReturnType<typeof useChartState<T>>
+export type UseChartReturn<T> = ReturnType<typeof useChart<T>>
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null

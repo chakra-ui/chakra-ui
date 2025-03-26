@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, LabelList, Pie, PieChart, Tooltip } from "recharts"
 
 export const PieChartWithLabelList = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
       { name: "mac", value: 300, color: "orange.solid" },

@@ -1,11 +1,11 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import * as React from "react"
 import { Area, AreaChart, Tooltip } from "recharts"
 
 export const SparklineWithGradient = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { value: 10 },
       { value: 16 },

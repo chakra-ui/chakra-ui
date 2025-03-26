@@ -17,22 +17,18 @@ import { useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
-import {
-  type ChartColor,
-  type UseChartStateReturn,
-  getProp,
-} from "../use-chart-state"
+import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const ChartContext = React.createContext({} as UseChartStateReturn<any>)
+const ChartContext = React.createContext({} as UseChartReturn<any>)
 const useChartContext = () => React.useContext(ChartContext)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ChartRootProps extends BoxProps {
   children: React.ReactElement
-  chart: UseChartStateReturn<unknown>
+  chart: UseChartReturn<unknown>
 }
 
 const baseCss = defineStyle({

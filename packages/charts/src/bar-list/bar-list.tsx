@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import * as React from "react"
-import { type UseChartStateReturn } from "../use-chart-state"
+import { type UseChartReturn } from "../use-chart"
 
 export interface BarListData {
   name: string
@@ -25,10 +25,10 @@ export interface BarListData {
 }
 
 interface ChartProps {
-  chart: UseChartStateReturn<BarListData>
+  chart: UseChartReturn<BarListData>
 }
 
-const ChartContext = React.createContext({} as UseChartStateReturn<BarListData>)
+const ChartContext = React.createContext({} as UseChartReturn<BarListData>)
 
 ////////////////////////////////////////////////////////////////////////////////////
 

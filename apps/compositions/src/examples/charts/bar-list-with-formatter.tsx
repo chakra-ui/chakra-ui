@@ -1,9 +1,9 @@
 "use client"
 
-import { BarList, type BarListData, useChartState } from "@chakra-ui/charts"
+import { BarList, type BarListData, useChart } from "@chakra-ui/charts"
 
 export const BarListWithFormatter = () => {
-  const chart = useChartState<BarListData>({
+  const chart = useChart<BarListData>({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Created", value: 120 },

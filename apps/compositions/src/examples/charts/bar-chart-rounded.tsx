@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 export const BarChartRounded = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { allocation: 60, type: "Stock" },
       { allocation: 45, type: "Crypto" },

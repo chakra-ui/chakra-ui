@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -10,7 +10,7 @@ import {
 } from "recharts"
 
 export const RadarChartBasic = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { windows: 110, month: "January" },
       { windows: 130, month: "February" },

@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const LineChartWithGradient = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { temp: -20, month: "January" },
       { temp: -10, month: "February" },

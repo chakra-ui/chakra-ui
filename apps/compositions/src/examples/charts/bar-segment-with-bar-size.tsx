@@ -1,9 +1,9 @@
 "use client"
 
-import { BarSegment, useChartState } from "@chakra-ui/charts"
+import { BarSegment, useChart } from "@chakra-ui/charts"
 
 export const BarSegmentWithBarSize = () => {
-  const chart = useChartState({
+  const chart = useChart({
     sort: { by: "value", direction: "desc" },
     data: [
       { name: "Ruby", value: 450000, color: "green.solid" },

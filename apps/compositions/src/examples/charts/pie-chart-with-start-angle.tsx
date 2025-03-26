@@ -1,10 +1,10 @@
 "use client"
 
-import { Chart, useChartState } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
 export const PieChartWithStartAngle = () => {
-  const chart = useChartState({
+  const chart = useChart({
     data: [
       { name: "typescript", value: 400, color: "blue.solid" },
       { name: "javascript", value: 120, color: "orange.solid" },
