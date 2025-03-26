@@ -33,10 +33,9 @@
     "prepack": "tsx ../../scripts/conditions.ts",
     "postpack": "tsx ../../scripts/conditions.ts --restore",
     "build:fast": "tsx ../../scripts/build/main.ts",
-    "prebuild": "pnpm clean && pnpm theme",
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
-    "clean": "tsx scripts/clean.ts",
+    "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },
   "exports": {
@@ -55,10 +54,14 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "recharts": "2.13.3"
+    "recharts": "2.13.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=3",
-    "recharts": ">=2"
+    "recharts": ">=2",
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }
