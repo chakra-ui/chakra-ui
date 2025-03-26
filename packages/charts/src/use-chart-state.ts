@@ -54,7 +54,7 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
     prop ?? ("value" as K)
 
   const formatNumber = React.useCallback(
-    (options: Intl.NumberFormatOptions) => {
+    (options?: Intl.NumberFormatOptions) => {
       const formatter = new Intl.NumberFormat(env.locale, options)
       return (value: number) => formatter.format(value)
     },
@@ -62,7 +62,7 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
   )
 
   const formatDate = React.useCallback(
-    (options: Intl.DateTimeFormatOptions) => {
+    (options?: Intl.DateTimeFormatOptions) => {
       return (value: string) =>
         new Date(value).toLocaleDateString(env.locale, options)
     },

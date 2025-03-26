@@ -13,6 +13,7 @@ export default {
 
 export { BarChartBarColor as BarColor } from "compositions/examples/charts/bar-chart-bar-color"
 export { BarChartBasic as Basic } from "compositions/examples/charts/bar-chart-basic"
+export { BarChartCandlestick as Candlestick } from "compositions/examples/charts/bar-chart-candlestick"
 export { BarChartComposition as Composition } from "compositions/examples/charts/bar-chart-composition"
 export { BarChartFillWithValue as FillWithValue } from "compositions/examples/charts/bar-chart-fill-with-value"
 export { BarChartHorizontal as Horizontal } from "compositions/examples/charts/bar-chart-horizontal"
