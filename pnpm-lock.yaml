@@ -418,6 +418,12 @@ importers:
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../react
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       recharts:
         specifier: 2.13.3
         version: 2.13.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
