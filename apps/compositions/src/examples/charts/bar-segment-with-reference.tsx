@@ -1,12 +1,6 @@
-import {
-  BarSegment,
-  BarSegmentContent,
-  BarSegmentLabel,
-  BarSegmentReference,
-  BarSegmentRoot,
-  BarSegmentValue,
-  useChartState,
-} from "@chakra-ui/charts"
+"use client"
+
+import { BarSegment, useChartState } from "@chakra-ui/charts"
 
 export const BarSegmentWithReference = () => {
   const chart = useChartState({
@@ -20,14 +14,14 @@ export const BarSegmentWithReference = () => {
   })
 
   return (
-    <BarSegmentRoot chart={chart}>
-      <BarSegmentContent>
-        <BarSegmentValue />
-        <BarSegment>
-          <BarSegmentReference label="Target" value={200000} />
-        </BarSegment>
-        <BarSegmentLabel />
-      </BarSegmentContent>
-    </BarSegmentRoot>
+    <BarSegment.Root chart={chart}>
+      <BarSegment.Content>
+        <BarSegment.Value />
+        <BarSegment.Bar>
+          <BarSegment.Reference label="Target" value={200000} />
+        </BarSegment.Bar>
+        <BarSegment.Label />
+      </BarSegment.Content>
+    </BarSegment.Root>
   )
 }

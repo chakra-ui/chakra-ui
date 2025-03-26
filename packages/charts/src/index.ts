@@ -14,23 +14,4 @@ export type {
 } from "./chart"
 
 export * from "./bar-list"
-
-export {
-  BarSegment,
-  BarSegmentContent,
-  BarSegmentLabel,
-  BarSegmentRoot,
-  BarSegmentValue,
-  BarSegmentLegend,
-  BarSegmentReference,
-} from "./bar-segment"
-export type {
-  BarSegmentData,
-  BarSegmentLegendProps,
-  BarSegmentRootProps,
-  BarSegmentValueProps,
-  BarSegmentReferenceProps,
-  BarSegmentProps,
-  BarSegmentLabelProps,
-  BarSegmentTooltipProps,
-} from "./bar-segment"
+export * from "./bar-segment"

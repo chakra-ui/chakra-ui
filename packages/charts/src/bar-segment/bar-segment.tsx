@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import * as React from "react"
-import type { UseChartStateReturn } from "./use-chart-state"
+import type { UseChartStateReturn } from "../use-chart-state"
 
 export interface BarSegmentData {
   name: string
@@ -90,11 +90,11 @@ export function BarSegmentLabel(props: BarSegmentLabelProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BarSegmentProps extends StackProps {
+export interface BarSegmentBarProps extends StackProps {
   showTooltip?: boolean
 }
 
-export function BarSegment(props: BarSegmentProps) {
+export function BarSegmentBar(props: BarSegmentBarProps) {
   const { showTooltip, children, ...rest } = props
   const chart = React.useContext(ChartContext)
   const getPercent = (value: number) => chart.getValuePercent("value", value)

@@ -129,7 +129,6 @@ const hAlignMap = {
 export function ChartLegendContent<T extends Record<string, unknown>>(
   props: ChartLegendContentProps<T>,
 ) {
-  console.log(props)
   const {
     chart,
     payload,
