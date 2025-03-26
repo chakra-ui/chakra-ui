@@ -45,7 +45,7 @@ const baseCss = defineStyle({
     fill: "fg",
     fontWeight: "medium",
   },
-  "& .recharts-surface": {
+  "& *": {
     outline: "none",
   },
   "& svg": {

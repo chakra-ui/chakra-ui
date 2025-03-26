@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
-export const PieChartBasic = () => {
+export const PieChartNoStroke = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -26,6 +26,7 @@ export const PieChartBasic = () => {
           data={chart.data}
           dataKey={chart.key("value")}
           nameKey="name"
+          stroke="none"
         >
           {chart.data.map((item) => (
             <Cell key={item.name} fill={chart.color(item.color)} />

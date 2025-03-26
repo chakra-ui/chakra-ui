@@ -50,7 +50,7 @@ export const DonutWithCenteredText = () => {
                     <tspan
                       x={viewBox.cx}
                       y={(viewBox.cy || 0) + 24}
-                      style={{ fontWeight: 500, fill: chart.color("fg.muted") }}
+                      style={{ fill: chart.color("fg.muted") }}
                     >
                       users
                     </tspan>
@@ -59,10 +59,9 @@ export const DonutWithCenteredText = () => {
               }
             }}
           />
-          {chart.data.map((item, index) => {
-            const { color } = chart.series[index]
-            return <Cell key={item.name} fill={chart.color(color)} />
-          })}
+          {chart.data.map((item) => (
+            <Cell key={item.color} fill={chart.color(item.color)} />
+          ))}
         </Pie>
       </PieChart>
     </Chart.Root>

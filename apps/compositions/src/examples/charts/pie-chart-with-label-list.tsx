@@ -14,7 +14,7 @@ export const PieChartWithLabelList = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxH="sm" mx="auto" chart={chart}>
+    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
@@ -26,8 +26,6 @@ export const PieChartWithLabelList = () => {
           data={chart.data}
           dataKey={chart.key("value")}
           nameKey="name"
-          outerRadius={100}
-          innerRadius={0}
         >
           <LabelList
             dataKey="name"
