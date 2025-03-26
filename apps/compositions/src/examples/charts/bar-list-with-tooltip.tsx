@@ -1,14 +1,6 @@
 "use client"
 
-import type { BarListData } from "@chakra-ui/charts"
-import {
-  BarList,
-  BarListContent,
-  BarListLabel,
-  BarListRoot,
-  BarListValue,
-  useChartState,
-} from "@chakra-ui/charts"
+import { BarList, type BarListData, useChartState } from "@chakra-ui/charts"
 
 export const BarListWithTooltip = () => {
   const chart = useChartState<BarListData>({
@@ -26,15 +18,15 @@ export const BarListWithTooltip = () => {
   })
 
   return (
-    <BarListRoot chart={chart} maxW="sm">
-      <BarListContent>
-        <BarListLabel title="Search Engine" flex="1">
-          <BarList showTooltip />
-        </BarListLabel>
-        <BarListLabel title="Downloads" titleAlignment="end">
-          <BarListValue />
-        </BarListLabel>
-      </BarListContent>
-    </BarListRoot>
+    <BarList.Root chart={chart} maxW="sm">
+      <BarList.Content>
+        <BarList.Label title="Search Engine" flex="1">
+          <BarList.Bar showTooltip />
+        </BarList.Label>
+        <BarList.Label title="Downloads" titleAlignment="end">
+          <BarList.Value />
+        </BarList.Label>
+      </BarList.Content>
+    </BarList.Root>
   )
 }

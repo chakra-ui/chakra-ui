@@ -1,14 +1,6 @@
 "use client"
 
-import type { BarListData } from "@chakra-ui/charts"
-import {
-  BarList,
-  BarListContent,
-  BarListLabel,
-  BarListRoot,
-  BarListValue,
-  useChartState,
-} from "@chakra-ui/charts"
+import { BarList, type BarListData, useChartState } from "@chakra-ui/charts"
 
 export const BarListWithMultiValue = () => {
   const chart = useChartState<BarListData>({
@@ -29,18 +21,18 @@ export const BarListWithMultiValue = () => {
     chart.getValuePercent("value", value).toFixed(2)
 
   return (
-    <BarListRoot chart={chart} maxW="md">
-      <BarListContent>
-        <BarListLabel title="Search Engine" flex="1">
-          <BarList />
-        </BarListLabel>
-        <BarListLabel title="Downloads" minW="16" titleAlignment="end">
-          <BarListValue />
-        </BarListLabel>
-        <BarListLabel title="%" minW="16" titleAlignment="end">
-          <BarListValue valueFormatter={(value) => `${getPercent(value)}%`} />
-        </BarListLabel>
-      </BarListContent>
-    </BarListRoot>
+    <BarList.Root chart={chart} maxW="md">
+      <BarList.Content>
+        <BarList.Label title="Search Engine" flex="1">
+          <BarList.Bar />
+        </BarList.Label>
+        <BarList.Label title="Downloads" minW="16" titleAlignment="end">
+          <BarList.Value />
+        </BarList.Label>
+        <BarList.Label title="%" minW="16" titleAlignment="end">
+          <BarList.Value valueFormatter={(value) => `${getPercent(value)}%`} />
+        </BarList.Label>
+      </BarList.Content>
+    </BarList.Root>
   )
 }

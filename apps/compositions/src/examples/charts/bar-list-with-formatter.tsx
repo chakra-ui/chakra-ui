@@ -1,13 +1,6 @@
 "use client"
 
-import type { BarListData } from "@chakra-ui/charts"
-import {
-  BarList,
-  BarListContent,
-  BarListRoot,
-  BarListValue,
-  useChartState,
-} from "@chakra-ui/charts"
+import { BarList, type BarListData, useChartState } from "@chakra-ui/charts"
 
 export const BarListWithFormatter = () => {
   const chart = useChartState<BarListData>({
@@ -25,13 +18,13 @@ export const BarListWithFormatter = () => {
     chart.getValuePercent("value", value).toFixed(0)
 
   return (
-    <BarListRoot chart={chart} maxW="sm">
-      <BarListContent>
-        <BarList />
-        <BarListValue
+    <BarList.Root chart={chart} maxW="sm">
+      <BarList.Content>
+        <BarList.Bar />
+        <BarList.Value
           valueFormatter={(value) => `${value} (${getPercent(value)}%)`}
         />
-      </BarListContent>
-    </BarListRoot>
+      </BarList.Content>
+    </BarList.Root>
   )
 }

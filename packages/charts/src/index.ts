@@ -13,24 +13,7 @@ export type {
   ChartTooltipContentProps,
 } from "./chart"
 
-export {
-  BarList,
-  BarListContent,
-  BarListRoot,
-  BarListValue,
-  BarListTitle,
-  BarListLabel,
-  BarListTooltip,
-} from "./bar-list"
-
-export type {
-  BarListData,
-  BarListProps,
-  BarListRootProps,
-  BarListValueProps,
-  BarListLabelProps,
-  BarListTooltipProps,
-} from "./bar-list"
+export * from "./bar-list"
 
 export {
   BarSegment,

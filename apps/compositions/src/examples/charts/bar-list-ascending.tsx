@@ -1,13 +1,6 @@
 "use client"
 
-import type { BarListData } from "@chakra-ui/charts"
-import {
-  BarList,
-  BarListContent,
-  BarListRoot,
-  BarListValue,
-  useChartState,
-} from "@chakra-ui/charts"
+import { BarList, type BarListData, useChartState } from "@chakra-ui/charts"
 
 export const BarListAscending = () => {
   const chart = useChartState<BarListData>({
@@ -25,11 +18,11 @@ export const BarListAscending = () => {
   })
 
   return (
-    <BarListRoot chart={chart} maxW="full">
-      <BarListContent>
-        <BarList />
-        <BarListValue />
-      </BarListContent>
-    </BarListRoot>
+    <BarList.Root chart={chart} maxW="full">
+      <BarList.Content>
+        <BarList.Bar />
+        <BarList.Value />
+      </BarList.Content>
+    </BarList.Root>
   )
 }

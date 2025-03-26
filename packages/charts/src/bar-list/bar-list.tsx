@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import * as React from "react"
-import { type UseChartStateReturn } from "./use-chart-state"
+import { type UseChartStateReturn } from "../use-chart-state"
 
 export interface BarListData {
   name: string
@@ -91,12 +91,12 @@ export function BarListTooltip(props: BarListTooltipProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BarListProps extends StackProps {
+export interface BarListBarProps extends StackProps {
   showTooltip?: boolean
   label?: (props: { payload: BarListData; index: number }) => React.ReactNode
 }
 
-export function BarList(props: BarListProps) {
+export function BarListBar(props: BarListBarProps) {
   const { label, showTooltip, ...rest } = props
 
   const chart = React.useContext(ChartContext)
