@@ -23,9 +23,9 @@ export interface UseMediaQueryOptions {
 
 export function useMediaQuery(
   query: string[],
-  options: UseMediaQueryOptions,
+  options: UseMediaQueryOptions = {},
 ): boolean[] {
-  const { fallback: _fallback, ssr = true, getWindow } = options
+  const { fallback: _fallback = [], ssr = true, getWindow } = options
   const getWin = useCallbackRef(getWindow)
 
   const queries = Array.isArray(query) ? query : [query]
