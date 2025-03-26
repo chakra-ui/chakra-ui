@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Area, AreaChart, Tooltip } from "recharts"
+import { Area, AreaChart } from "recharts"
 
 export const SparklineBasic = () => {
   const chart = useChart({
@@ -21,12 +21,6 @@ export const SparklineBasic = () => {
   return (
     <Chart.Root height="10" chart={chart}>
       <AreaChart data={chart.data}>
-        <Tooltip
-          position={{ y: -24 }}
-          content={
-            <Chart.Tooltip hideIndicator hideLabel hideSeriesLabel fitContent />
-          }
-        />
         {chart.series.map((item) => (
           <Area
             key={item.name}

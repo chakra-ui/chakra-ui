@@ -16,3 +16,4 @@ export { LineChartBiaxial as Biaxial } from "compositions/examples/charts/line-c
 export { LineChartNoDots as NoDots } from "compositions/examples/charts/line-chart-no-dots"
 export { LineChartWithGradient as Gradient } from "compositions/examples/charts/line-chart-with-gradient"
 export { LineChartWithPointLabel as PointLabel } from "compositions/examples/charts/line-chart-with-point-label"
+export { LineChartWithDashed as Dashed } from "compositions/examples/charts/line-chart-with-dashed"

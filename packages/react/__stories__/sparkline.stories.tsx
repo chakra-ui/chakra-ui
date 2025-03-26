@@ -13,5 +13,6 @@ export default {
 
 export { SparklineBasic as Basic } from "compositions/examples/charts/sparkline-basic"
 export { SparklineWithGradient as Gradient } from "compositions/examples/charts/sparkline-with-gradient"
-export { SparklineWithStat as Stat } from "compositions/examples/charts/sparkline-with-stat"
 export { SparklineWithLatestValue as LatestValue } from "compositions/examples/charts/sparkline-with-latest-value"
+export { SparklineWithReference as Reference } from "compositions/examples/charts/sparkline-with-reference"
+export { SparklineWithStat as Stat } from "compositions/examples/charts/sparkline-with-stat"

@@ -30,34 +30,13 @@ export const DonutWithCenteredText = () => {
           nameKey="name"
         >
           <Label
-            content={({ viewBox }) => {
-              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                return (
-                  <text
-                    x={viewBox.cx}
-                    y={viewBox.cy}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill={chart.color("fg")}
-                  >
-                    <tspan
-                      x={viewBox.cx}
-                      y={viewBox.cy}
-                      style={{ fontSize: 36, fontWeight: 600 }}
-                    >
-                      {chart.getTotal("value").toLocaleString()}
-                    </tspan>
-                    <tspan
-                      x={viewBox.cx}
-                      y={(viewBox.cy || 0) + 24}
-                      style={{ fill: chart.color("fg.muted") }}
-                    >
-                      users
-                    </tspan>
-                  </text>
-                )
-              }
-            }}
+            content={({ viewBox }) => (
+              <Chart.RadialText
+                viewBox={viewBox}
+                title={chart.getTotal("value").toLocaleString()}
+                description="users"
+              />
+            )}
           />
           {chart.data.map((item) => (
             <Cell key={item.color} fill={chart.color(item.color)} />

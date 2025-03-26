@@ -17,6 +17,7 @@ import { useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
+import type { PolarViewBox, ViewBox } from "recharts/types/util/types"
 import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -279,5 +280,47 @@ export function ChartTooltip(props: ChartTooltipProps) {
         </>
       )}
     </Stack>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ChartRadialTextProps {
+  viewBox: ViewBox | undefined
+  title: React.ReactNode
+  description: React.ReactNode
+  gap?: number
+}
+
+const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBox =>
+  "cx" in viewBox && "cy" in viewBox
+
+export function ChartRadialText(props: ChartRadialTextProps) {
+  const { viewBox, title, description, gap = 24 } = props
+  const chart = useChartContext()
+  if (!viewBox || !isPolarViewBox(viewBox)) return null
+  return (
+    <text
+      x={viewBox.cx}
+      y={viewBox.cy}
+      textAnchor="middle"
+      dominantBaseline="middle"
+      fill={chart.color("fg")}
+    >
+      <tspan
+        x={viewBox.cx}
+        y={viewBox.cy}
+        style={{ fontSize: "2rem", fontWeight: 600 }}
+      >
+        {title}
+      </tspan>
+      <tspan
+        x={viewBox.cx}
+        y={(viewBox.cy || 0) + gap}
+        style={{ fill: chart.color("fg.muted") }}
+      >
+        {description}
+      </tspan>
+    </text>
   )
 }

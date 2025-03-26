@@ -6,12 +6,18 @@ import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
 export const ScatterChartBasic = () => {
   const chart = useChart({
     data: [
-      { x: 100, y: 200, z: 200 },
-      { x: 120, y: 100, z: 260 },
-      { x: 170, y: 300, z: 400 },
-      { x: 140, y: 250, z: 280 },
-      { x: 150, y: 400, z: 500 },
-      { x: 110, y: 280, z: 200 },
+      { x: 100, y: 200 },
+      { x: 120, y: 100 },
+      { x: 170, y: 300 },
+      { x: 140, y: 250 },
+      { x: 150, y: 400 },
+      { x: 110, y: 280 },
+      { x: 130, y: 220 },
+      { x: 160, y: 180 },
+      { x: 125, y: 350 },
+      { x: 180, y: 270 },
+      { x: 135, y: 320 },
+      { x: 145, y: 190 },
     ],
     series: [{ label: "Group 1", color: "blue.solid" }],
   })

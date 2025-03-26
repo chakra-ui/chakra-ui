@@ -39,7 +39,7 @@ export const LineChartWithPointLabel = () => {
         <Tooltip
           animationDuration={100}
           cursor={{ stroke: chart.color("border") }}
-          content={<Chart.Tooltip />}
+          content={<Chart.Tooltip hideLabel />}
         />
         <Line
           isAnimationActive={false}

@@ -102,9 +102,17 @@ export function useChart<T>(props: UseChartProps<T>) {
     }, 0)
   }
 
+  function getMin(key: keyof T) {
+    return Math.min(...data.map((d) => Number(d[key])))
+  }
+
+  function getMax(key: keyof T) {
+    return Math.max(...data.map((d) => Number(d[key])))
+  }
+
   function getValuePercent(key: keyof T, value: number, domain?: ValueDomain) {
-    const min = Math.min(...data.map((d) => Number(d[key])))
-    const max = Math.max(...data.map((d) => Number(d[key])))
+    const min = getMin(key)
+    const max = getMax(key)
     if (domain) {
       const d = typeof domain === "function" ? domain({ min, max }) : domain
       return ((value - d[0]) / (d[1] - d[0])) * 100
@@ -147,6 +155,8 @@ export function useChart<T>(props: UseChartProps<T>) {
 
     // value functions
     getTotal,
+    getMin,
+    getMax,
     getPayloadTotal,
     getValuePercent,
   }
