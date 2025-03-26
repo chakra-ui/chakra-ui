@@ -30,26 +30,13 @@ const useChartContext = () => React.useContext(ChartContext)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartTitleProps extends BoxProps {
-  children: React.ReactNode
-}
-
-export const ChartTitle = React.forwardRef<HTMLDivElement, ChartTitleProps>(
-  function ChartTitle(props, ref) {
-    return (
-      <Text ref={ref} fontWeight="medium" textStyle="md" mb="4" {...props} />
-    )
-  },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface ChartRootProps extends BoxProps {
   children: React.ReactElement
   chart: UseChartStateReturn<unknown>
 }
 
 const baseCss = defineStyle({
+  width: "100%",
   [`& :where(${[
     ".recharts-cartesian-axis-tick-value",
     ".recharts-polar-angle-axis-tick-value",
@@ -64,6 +51,9 @@ const baseCss = defineStyle({
   },
   "& .recharts-surface": {
     outline: "none",
+  },
+  "& svg": {
+    overflow: "visible",
   },
 })
 

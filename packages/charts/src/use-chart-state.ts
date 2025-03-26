@@ -91,9 +91,9 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
     return data.reduce((acc, d) => acc + Number(d[key]), 0)
   }
 
-  const getPayloadTotal = <T extends { value?: string }>(
+  function getPayloadTotal<T extends { value?: string }>(
     payload: Array<T> | undefined,
-  ) => {
+  ) {
     return payload?.reduce((acc, item) => {
       if (!item.value) return acc
       const num = Number(item.value)
@@ -102,11 +102,7 @@ export function useChartState<T>(props: UseChartStateProps<T>) {
     }, 0)
   }
 
-  const getValuePercent = (
-    key: keyof T,
-    value: number,
-    domain?: ValueDomain,
-  ) => {
+  function getValuePercent(key: keyof T, value: number, domain?: ValueDomain) {
     const min = Math.min(...data.map((d) => Number(d[key])))
     const max = Math.max(...data.map((d) => Number(d[key])))
     if (domain) {

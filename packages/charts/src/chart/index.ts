@@ -1,10 +1,4 @@
-export {
-  ChartGradient,
-  ChartLegend,
-  ChartRoot,
-  ChartTitle,
-  ChartTooltip,
-} from "./chart"
+export { ChartGradient, ChartLegend, ChartRoot, ChartTooltip } from "./chart"
 export type {
   ChartRootProps,
   ChartGradientProps,
