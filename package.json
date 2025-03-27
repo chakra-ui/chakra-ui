@@ -122,5 +122,8 @@
   "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": ">=18.x"
+  },
+  "devDependencies": {
+    "@codecov/rollup-plugin": "^1.9.0"
   }
 }
