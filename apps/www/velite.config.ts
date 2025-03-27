@@ -220,24 +220,28 @@ export default defineConfig({
 })
 
 function replaceExampleTabs(text: string) {
-  const matches = text.matchAll(/<ExampleTabs name="([^"]+)" \/>/g)
+  const matches = text.matchAll(/<ExampleTabs name="(.*?)" \/>/g)
 
   if (!matches) return text
 
   for (const match of matches) {
-    const name = match[1]
+    try {
+      const name = match[1]
 
-    let example = fs.readFileSync(
-      `../compositions/src/examples/${name}.tsx`,
-      "utf-8",
-    )
+      let example = fs.readFileSync(
+        `../compositions/src/examples/${name}.tsx`,
+        "utf-8",
+      )
 
-    example = example.replaceAll("compositions/ui", "@/components/ui")
+      example = example.replaceAll("compositions/ui", "@/components/ui")
 
-    text = text.replace(
-      `<ExampleTabs name="${name}" \/>`,
-      `\`\`\`tsx\n${example}\n\`\`\``,
-    )
+      text = text.replace(
+        `<ExampleTabs name="${name}" \/>`,
+        `\`\`\`tsx\n${example}\n\`\`\``,
+      )
+    } catch {
+      console.log("[velite] no example", match)
+    }
   }
 
   return text

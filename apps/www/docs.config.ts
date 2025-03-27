@@ -173,6 +173,26 @@ const docsLinks: NavItem = {
     },
 
     {
+      title: "Charts",
+      url: "charts",
+      status: "new",
+      items: [
+        {
+          title: "Overview",
+          url: "overview",
+          items: [{ title: "Installation", url: "installation" }],
+        },
+        {
+          title: "Charts",
+          items: [
+            { title: "Bar Chart", url: "bar-chart" },
+            { title: "Area Chart", url: "area-chart" },
+          ],
+        },
+      ],
+    },
+
+    {
       title: "Styling",
       url: "styling",
       items: [

@@ -43,6 +43,7 @@ export function useRoute() {
           title: item.title,
           url: firstChild?.url,
           current: currentUrl.startsWith(join(nav.url, item.url)),
+          status: item.status,
         }
       }) || []
     )

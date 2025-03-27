@@ -12,6 +12,7 @@ interface Props {
 
 function formatComponentName(name: string) {
   return name
+    .replace("charts/", "")
     .split(/[-\/]/)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("")
@@ -101,7 +102,7 @@ export const Example = (props: Props) => {
 }
 
 export const ExampleTabs = (props: Props) => {
-  const { name } = props
+  const { name, scope = "examples" } = props
   if (!name) return null
   return (
     <Tabs.Root
@@ -119,12 +120,12 @@ export const ExampleTabs = (props: Props) => {
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
         <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>
           <ErrorBoundary>
-            <ExamplePreview name={name} />
+            <ExamplePreview name={name} scope={scope} />
           </ErrorBoundary>
         </Tabs.Content>
         <Tabs.Content value="code" pt="0!">
           <ExampleCodeWrapper maxHeight="480px">
-            <ExampleCode name={name} />
+            <ExampleCode name={name} scope={scope} />
           </ExampleCodeWrapper>
         </Tabs.Content>
       </Tabs.ContentGroup>

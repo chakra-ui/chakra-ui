@@ -10,7 +10,7 @@ import {
   YAxis,
 } from "recharts"
 
-export const ContinuousHistogram = () => {
+export const BarChartHistogram = () => {
   const chart = useChart({ data })
   return (
     <Chart.Root maxW="xl" chart={chart}>

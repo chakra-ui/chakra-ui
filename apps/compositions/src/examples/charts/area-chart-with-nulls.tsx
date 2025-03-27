@@ -11,7 +11,7 @@ import {
   XAxis,
 } from "recharts"
 
-export const AreaChartWithConnectNulls = () => {
+export const AreaChartWithNulls = () => {
   const chart = useChart({
     data: [
       { sales: 186, month: "January" },
