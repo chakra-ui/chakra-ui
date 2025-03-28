@@ -1,0 +1,120 @@
+---
+title: Area Chart
+description:
+  Used to display quantitative data by filling the area between the line and
+  axis, showing trends and patterns over time
+---
+
+<ExampleTabs name="charts/area-chart-basic" />
+
+## Usage
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
+```
+
+```tsx
+<Chart.Root>
+  <AreaChart>
+    <CartesianGrid />
+    <XAxis />
+    <YAxis />
+  </AreaChart>
+</Chart.Root>
+```
+
+### Value Axis
+
+Use the `YAxis` component from `recharts` to display the y-axis.
+
+<ExampleTabs name="charts/area-chart-with-value-axis" />
+
+### Fill With Value
+
+Use the `Chart.Gradient` component to create a gradient fill that changes from
+one color to another based on the value.
+
+```tsx {4-7}
+<defs>
+  <Chart.Gradient
+    id="uv-gradient"
+    stops={[
+      { offset, color: "teal.solid", opacity: 1 },
+      { offset, color: "red.solid", opacity: 1 },
+    ]}
+  />
+</defs>
+```
+
+When the value is positive, it uses the first color, and when negative, it uses
+the second color.
+
+<ExampleTabs name="charts/area-chart-fill-with-value" />
+
+### Percent
+
+To render the area chart as a percentage, with value normalized to 100%:
+
+- Set the `stackId` prop on the `Area` component to the same value
+- Set the `stackOffset` prop to `expand` on the `AreaChart` component
+- Format the y-axis via the `tickFormatter` prop to percentage format
+
+<ExampleTabs name="charts/area-chart-percent" />
+
+### Dashed Area
+
+Set the `strokeDasharray` prop to the `series` you want to display as a dashed
+line.
+
+<ExampleTabs name="charts/area-chart-with-dashed-area" />
+
+### Gradient Area
+
+Use the `Chart.Gradient` component to create a gradient fill for the area.
+
+> **Note:** The `id` of the gradient must be unique and referenced in the `fill`
+> prop of the `Area` component.
+
+<ExampleTabs name="charts/area-chart-with-gradient" />
+
+### Dots
+
+Set the `dot` prop on the `Area` component to display dots that map to each data
+point.
+
+```tsx
+<Area dot={{ fill: "red", fillOpacity: 1 }} activeDot={false} />
+```
+
+<ExampleTabs name="charts/area-chart-with-dots" />
+
+### Connect Nulls
+
+Use the `connectNulls` prop to connect data points even when there are `null`
+values in between. This is useful when you want to show a continuous line
+despite missing data points.
+
+<ExampleTabs name="charts/area-chart-with-nulls" />
+
+### Reference Line
+
+Adding a reference line is useful when you want to highlight a specific value in
+the chart. Use the `ReferenceLine` component from `recharts` to add this.
+
+<ExampleTabs name="charts/area-chart-with-reference-lines" />
+
+### Reference Area
+
+Adding a reference area is useful when you want to highlight a specific range in
+the chart. Use the `ReferenceArea` component from `recharts` to add this.
+
+<ExampleTabs name="charts/area-chart-with-reference-area" />
+
+### Area Types
+
+Here are the different types of area charts you can create:
+
+<Box mt="12" borderWidth="1px" ps="3" pe="10" py="10" rounded="l2">
+  <ExamplePreview name="charts/area-chart-with-types" />
+</Box>

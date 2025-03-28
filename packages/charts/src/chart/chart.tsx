@@ -290,13 +290,14 @@ export interface ChartRadialTextProps {
   title: React.ReactNode
   description: React.ReactNode
   gap?: number
+  fontSize?: string
 }
 
 const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBox =>
   "cx" in viewBox && "cy" in viewBox
 
 export function ChartRadialText(props: ChartRadialTextProps) {
-  const { viewBox, title, description, gap = 24 } = props
+  const { viewBox, title, description, gap = 24, fontSize = "2rem" } = props
   const chart = useChartContext()
   if (!viewBox || !isPolarViewBox(viewBox)) return null
   return (
@@ -310,7 +311,7 @@ export function ChartRadialText(props: ChartRadialTextProps) {
       <tspan
         x={viewBox.cx}
         y={viewBox.cy}
-        style={{ fontSize: "2rem", fontWeight: 600 }}
+        style={{ fontSize, fontWeight: 600 }}
       >
         {title}
       </tspan>

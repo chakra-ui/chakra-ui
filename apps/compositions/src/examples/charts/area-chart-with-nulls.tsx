@@ -2,14 +2,7 @@
 
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Box, For, Heading, SimpleGrid } from "@chakra-ui/react"
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Legend,
-  Tooltip,
-  XAxis,
-} from "recharts"
+import { Area, AreaChart, CartesianGrid, Tooltip, XAxis } from "recharts"
 
 export const AreaChartWithNulls = () => {
   const chart = useChart({
@@ -33,9 +26,9 @@ export const AreaChartWithNulls = () => {
         {(connectNulls) => (
           <Box key={connectNulls.toString()}>
             <Heading size="md" mb="4">
-              {`connectNulls: ${connectNulls.toString()}`}
+              {`<Area connectNulls={${connectNulls.toString()}} />`}
             </Heading>
-            <Chart.Root maxW="sm" chart={chart}>
+            <Chart.Root maxH="sm" chart={chart}>
               <AreaChart data={chart.data}>
                 <CartesianGrid
                   stroke={chart.color("border.muted")}
@@ -52,7 +45,6 @@ export const AreaChartWithNulls = () => {
                   animationDuration={100}
                   content={<Chart.Tooltip />}
                 />
-                <Legend content={<Chart.Legend />} />
                 {chart.series.map((item) => (
                   <Area
                     key={item.name}
