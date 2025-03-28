@@ -18,7 +18,7 @@ export const BarChartCandlestick = () => {
   })
 
   return (
-    <Chart.Root maxW="xl" chart={chart}>
+    <Chart.Root maxH="md" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} />
         <XAxis

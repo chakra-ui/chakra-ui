@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Card, SegmentGroup } from "@chakra-ui/react"
 import * as React from "react"
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
+import { Bar, BarChart, XAxis } from "recharts"
 
 type CurrentKey = "windows" | "mac" | "linux"
 
@@ -48,7 +48,7 @@ export const BarChartComposition = () => {
   })
 
   return (
-    <Card.Root maxW="sm">
+    <Card.Root maxW="md">
       <Card.Header alignItems="flex-start">
         <Card.Title>OS Downloads</Card.Title>
         <SegmentGroup.Root
@@ -75,26 +75,15 @@ export const BarChartComposition = () => {
       <Card.Body>
         <Chart.Root height="10rem" chart={chart}>
           <BarChart data={chart.data}>
-            <CartesianGrid
-              stroke={chart.color("border.muted")}
-              vertical={false}
-            />
             <XAxis
               axisLine={false}
               tickLine={false}
               dataKey={chart.key("month")}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-
-            <Tooltip
-              cursor={false}
-              animationDuration={100}
-              content={<Chart.Tooltip />}
-            />
             <Bar
               dataKey={chart.key(currentKey)}
               fill={chart.color(series?.color)}
-              radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </Chart.Root>

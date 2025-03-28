@@ -14,77 +14,173 @@ import { Chart, useChart } from "@chakra-ui/charts"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 ```
 
-### Basic
+```tsx
+<Chart.Root>
+  <BarChart>
+    <CartesianGrid />
+    <XAxis />
+    <YAxis />
+    <Bar />
+  </BarChart>
+</Chart.Root>
+```
 
-<ExampleTabs name="charts/bar-chart-basic" />
+## Examples
+
+### Bar color
+
+Here's an example of coloring the bars based on the data.
+
+> We use the `Cell` component from `recharts` to color the bars.
+
+```tsx
+<Bar dataKey="allocation">
+  <Cell fill="red" />
+</Bar>
+```
+
+<ExampleTabs name="charts/bar-chart-bar-color" />
+
+### Bar Label
+
+Render the `LabelList` component from `recharts` to display the label of the
+bar.
+
+<ExampleTabs name="charts/bar-chart-with-bar-label" />
+
+### Formatter
+
+Use the formatter provided from the `useChart` hook to format the value axis.
+
+```tsx
+<YAxis
+  tickFormatter={chart.formatNumber({
+    style: "currency",
+    currency: "USD",
+    notation: "compact",
+  })}
+/>
+```
+
+<ExampleTabs name="charts/bar-chart-with-formatter" />
+
+### No Gap
+
+To remove the gap between the bars, set the `barCategoryGap` prop to `0` on the
+`BarChart` component.
+
+<ExampleTabs name="charts/bar-chart-with-no-gap" />
+
+### Fill With Value
+
+Compose the `LabelList` and `Cell` components from `recharts` to render bars
+upward or downward based on the value.
+
+```tsx /fill={item.views > 0 ? "green" : "red"}/
+<Bar dataKey="views">
+  <LabelList dataKey="views" position="top" />
+  {chart.data.map((item, index) => (
+    <Cell key={index} fill={item.views > 0 ? "green" : "red"} />
+  ))}
+</Bar>
+```
+
+<ExampleTabs name="charts/bar-chart-fill-with-value" />
+
+### Horizontal
+
+Pass the `layout="vertical"` prop to the `BarChart` component to render the bars
+horizontally.
+
+<ExampleTabs name="charts/bar-chart-horizontal" />
+
+### Rounded
+
+Pass the `radius` prop to the `Bar` component to render the bars with rounded
+corners.
+
+<ExampleTabs name="charts/bar-chart-rounded" />
+
+### Range
+
+Passing an array of values to the `dataKey` prop will render a range bar that
+indicates the lower and upper bounds of the values.
+
+```ts /value: [10, 20]/
+const chart = useChart({
+  data: [
+    { name: "UK", value: [10, 20] },
+    // ...
+  ],
+})
+```
+
+<ExampleTabs name="charts/bar-chart-range" />
+
+### Multiple
+
+Render multiple `Bar` components to create a bar chart with multiple series.
+
+<ExampleTabs name="charts/bar-chart-multiple" />
+
+### Legend Position
+
+Use the `layout` prop to the `Legend` component from `recharts` to configure the
+position of the legend.
+
+<ExampleTabs name="charts/bar-chart-legend-position" />
+
+### Percent
+
+Set the `stackOffset` prop to `expand` on the `BarChart` component to render the
+bars with value normalized to 100%.
+
+<ExampleTabs name="charts/bar-chart-percent" />
+
+### Stacked
+
+Render multiple `Bar` components and set their `stackId` prop to the same value
+to stack them.
+
+<ExampleTabs name="charts/bar-chart-stacked" />
+
+### Stacked Mix
+
+Render multiple `Bar` components with different `stackId` props to create a bar
+chart with some series stacked and some not.
+
+<ExampleTabs name="charts/bar-chart-stacked-mix" />
+
+### Reference Lines
+
+To make reference to a specific value on the chart, use the `ReferenceLine`
+component from `recharts`.
+
+<ExampleTabs name="charts/bar-chart-with-reference-lines" />
+
+### Histogram
+
+For those mathematics wiz, you can compose the barchart to create a histogram.
+
+<ExampleTabs name="charts/bar-chart-histogram" />
+
+### Avatar Ticks
+
+Here's an example of rendering images as the `XAxis` tick by leveraging svg
+`foreignObject`.
+
+<ExampleTabs name="charts/bar-chart-with-avatar-ticks" />
 
 ### Candlestick
 
-You can combine the bar chart with the `ErrorBar` and `Bar` components to create
-a candlestick chart.
+Combine the bar chart with the `ErrorBar` and `Bar` components to create a
+candlestick chart.
 
 <ExampleTabs name="charts/bar-chart-candlestick" />
 
 ### Composition
 
+Here's an example of composing the `BarChart`, `Card` and `SegmentGroup`
+components.
+
 <ExampleTabs name="charts/bar-chart-composition" />
-
-### Fill With Value
-
-<ExampleTabs name="charts/bar-chart-fill-with-value" />
-
-### Histogram
-
-<ExampleTabs name="charts/bar-chart-histogram" />
-
-### Horizontal
-
-<ExampleTabs name="charts/bar-chart-horizontal" />
-
-### Legend Position
-
-<ExampleTabs name="charts/bar-chart-legend-position" />
-
-### Multiple
-
-<ExampleTabs name="charts/bar-chart-multiple" />
-
-### Percent
-
-<ExampleTabs name="charts/bar-chart-percent" />
-
-### Range
-
-<ExampleTabs name="charts/bar-chart-range" />
-
-### Rounded
-
-<ExampleTabs name="charts/bar-chart-rounded" />
-
-### Stacked Mix
-
-<ExampleTabs name="charts/bar-chart-stacked-mix" />
-
-### Stacked
-
-<ExampleTabs name="charts/bar-chart-stacked" />
-
-### With Avatar Ticks
-
-<ExampleTabs name="charts/bar-chart-with-avatar-ticks" />
-
-### With Bar Label
-
-<ExampleTabs name="charts/bar-chart-with-bar-label" />
-
-### With Formatter
-
-<ExampleTabs name="charts/bar-chart-with-formatter" />
-
-### With No Gap
-
-<ExampleTabs name="charts/bar-chart-with-no-gap" />
-
-### With Reference Lines
-
-<ExampleTabs name="charts/bar-chart-with-reference-lines" />

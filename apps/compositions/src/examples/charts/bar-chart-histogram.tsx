@@ -1,28 +1,19 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import {
-  Bar,
-  CartesianGrid,
-  ComposedChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 export const BarChartHistogram = () => {
   const chart = useChart({ data })
   return (
-    <Chart.Root maxW="xl" chart={chart}>
-      <ComposedChart
+    <Chart.Root maxH="sm" chart={chart}>
+      <BarChart
         data={chart.data}
         margin={{ top: 20, right: 20, bottom: 20, left: 40 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" stroke={chart.color("border")} />
         <XAxis
           dataKey="from"
-          type="number"
-          domain={[0, 330]}
           ticks={ticks}
           label={{ value: "Value Range", position: "insideBottom", offset: -5 }}
         />
@@ -36,8 +27,12 @@ export const BarChartHistogram = () => {
             return bin ? `Range: ${bin.from}-${bin.to}` : ""
           }}
         />
-        <Bar dataKey="value" fill="#8884d8" barSize={14} name="Frequency" />
-      </ComposedChart>
+        <Bar
+          dataKey="value"
+          fill={chart.color("teal.solid")}
+          name="Frequency"
+        />
+      </BarChart>
     </Chart.Root>
   )
 }

@@ -16,14 +16,14 @@ export const BarChartStacked = () => {
       { windows: 185, mac: 91, linux: 126, month: "November" },
     ],
     series: [
-      { name: "windows", color: "teal.solid" },
-      { name: "mac", color: "purple.solid" },
-      { name: "linux", color: "blue.solid" },
+      { name: "windows", color: "teal.solid", stackId: "a" },
+      { name: "mac", color: "purple.solid", stackId: "a" },
+      { name: "linux", color: "blue.solid", stackId: "a" },
     ],
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -44,7 +44,7 @@ export const BarChartStacked = () => {
             key={item.name}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
-            stackId="a"
+            stackId={item.stackId}
           />
         ))}
       </BarChart>
