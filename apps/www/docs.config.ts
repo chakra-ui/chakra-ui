@@ -187,6 +187,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Area Chart", url: "area-chart" },
             { title: "Bar Chart", url: "bar-chart" },
+            { title: "Bar List", url: "bar-list" },
           ],
         },
       ],

@@ -18,7 +18,7 @@ export const BarListAscending = () => {
   })
 
   return (
-    <BarList.Root chart={chart} maxW="full">
+    <BarList.Root chart={chart}>
       <BarList.Content>
         <BarList.Bar />
         <BarList.Value />
