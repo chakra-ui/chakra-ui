@@ -14,7 +14,7 @@
     "@types/node": "^22.7.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "next": "^15.2.3",
+    "next": "^15.2.4",
     "next-themes": "^0.4.5",
     "react-icons": "5.5.0",
     "react": "^19.0.0",
