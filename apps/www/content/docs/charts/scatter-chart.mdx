@@ -1,0 +1,58 @@
+---
+title: Scatter Chart
+description: Used to show the relationship between two sets of data
+---
+
+<ExampleTabs name="charts/scatter-chart-basic" />
+
+## Usage
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
+```
+
+```tsx
+<Chart.Root>
+  <ScatterChart>
+    <XAxis />
+    <YAxis />
+    <Scatter />
+  </ScatterChart>
+</Chart.Root>
+```
+
+## Examples
+
+### Multiple
+
+<ExampleTabs name="charts/scatter-chart-multiple" />
+
+### Legend
+
+<ExampleTabs name="charts/scatter-chart-legend" />
+
+### Trend Line
+
+Here's an example that shows a trend line on the chart using the least squares
+regression method.
+
+To show the trend line, we're using the `Scatter` component from the `recharts`
+library.
+
+```tsx
+<Scatter data={trendLine} shape={() => <Fragment />} />
+```
+
+<ExampleTabs name="charts/scatter-chart-trend-line" />
+
+### Connect Dots
+
+To draw a line between the dots, pass the `line` prop to the `Scatter`
+component.
+
+```tsx
+<Scatter line={{ stroke: "red" }} />
+```
+
+<ExampleTabs name="charts/scatter-chart-connect-dots" />

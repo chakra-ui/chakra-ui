@@ -12,7 +12,7 @@ import {
   Text,
   defineStyle,
 } from "@chakra-ui/react"
-import { createContext, forwardRef, useContext, useMemo } from "react"
+import { createContext, useContext, useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
@@ -26,9 +26,9 @@ const useChartContext = () => useContext(ChartContext)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartRootProps extends BoxProps {
+export interface ChartRootProps<T> extends BoxProps {
   children: React.ReactElement
-  chart: UseChartReturn<unknown>
+  chart: UseChartReturn<T>
 }
 
 const baseCss = defineStyle({
@@ -53,24 +53,21 @@ const baseCss = defineStyle({
   },
 })
 
-export const ChartRoot = forwardRef<HTMLDivElement, ChartRootProps>(
-  function ChartRoot(props, ref) {
-    const { children, css, chart, ...rest } = props
-    return (
-      <ChartContext.Provider value={chart}>
-        <Box
-          ref={ref}
-          aspectRatio="landscape"
-          textStyle="xs"
-          css={[baseCss, css]}
-          {...rest}
-        >
-          <ResponsiveContainer>{children}</ResponsiveContainer>
-        </Box>
-      </ChartContext.Provider>
-    )
-  },
-)
+export function ChartRoot<T>(props: ChartRootProps<T>) {
+  const { children, css, chart, ...rest } = props
+  return (
+    <ChartContext.Provider value={chart}>
+      <Box
+        aspectRatio="landscape"
+        textStyle="xs"
+        css={[baseCss, css]}
+        {...rest}
+      >
+        <ResponsiveContainer>{children}</ResponsiveContainer>
+      </Box>
+    </ChartContext.Provider>
+  )
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,14 +77,11 @@ export interface ChartGradientProps {
   stops: { color: ChartColor; offset: string | number; opacity?: number }[]
 }
 
-export const ChartGradient = forwardRef<
-  SVGLinearGradientElement,
-  ChartGradientProps
->(function ChartGradient(props, ref) {
+export function ChartGradient(props: ChartGradientProps) {
   const chart = useChartContext()
   const { id, fillOpacity, stops } = props
   return (
-    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1" ref={ref}>
+    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
       {stops.map((stop, index) => (
         <stop
           key={index}
@@ -98,7 +92,7 @@ export const ChartGradient = forwardRef<
       ))}
     </linearGradient>
   )
-})
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 

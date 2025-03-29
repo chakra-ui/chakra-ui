@@ -8,7 +8,7 @@ export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]
 export type ChartSize = Tokens["sizes"] | (string & {})
 export type ChartSpacing = Tokens["spacing"] | (string & {})
 
-type ItemDataKey<T> = T extends Array<infer U> ? keyof U : keyof T
+type ItemDataKey<T> = keyof T
 
 interface SeriesItem<T> {
   name?: ItemDataKey<T>
@@ -24,14 +24,14 @@ interface SeriesItem<T> {
 export interface UseChartProps<T> {
   data: T[]
   series?: SeriesItem<T>[]
-  sort?: { by: keyof T; direction: "asc" | "desc" }
+  sort?: { by: ItemDataKey<T>; direction: "asc" | "desc" }
 }
 
 type ValueDomain =
   | [number, number]
   | ((props: { min: number; max: number }) => [number, number])
 
-export function useChart<T>(props: UseChartProps<T>) {
+export function useChart<T = any>(props: UseChartProps<T>) {
   const { data, series = [], sort } = props
 
   const id = React.useId()
@@ -134,12 +134,17 @@ export function useChart<T>(props: UseChartProps<T>) {
       return isHighlightedSeries(name) ? 1 : fallback
   }
 
+  const groupByImpl = (key: ItemDataKey<T>) => {
+    return groupBy(data, key)
+  }
+
   return {
     id,
     key,
 
     // series
     data: sortedData,
+    groupBy: groupByImpl,
     series,
     getSeries,
 
@@ -178,4 +183,15 @@ export function getProp<T = unknown>(
 ): T | undefined {
   if (!key || !isObject(item)) return
   return Reflect.get(item, key) as T | undefined
+}
+
+function groupBy<T>(data: T[], key: keyof T): T[][] {
+  const groups = new Map<unknown, T[]>()
+  for (const item of data) {
+    const value = item[key]
+    const group = groups.get(value) || []
+    group.push(item)
+    groups.set(value, group)
+  }
+  return Array.from(groups.values())
 }
