@@ -35,12 +35,12 @@ export function useChart<T>(props: UseChartProps<T>) {
   const { data, series = [], sort } = props
 
   const id = React.useId()
-  const [selectedSeries, setSelectedSeries] = React.useState<string | null>(
-    null,
-  )
+
   const [highlightedSeries, setHighlightedSeries] = React.useState<
     string | null
   >(null)
+  const isHighlightedSeries = (name: string | undefined) =>
+    highlightedSeries === name
 
   const env = useLocaleContext()
   const sys = useChakraContext()
@@ -129,6 +129,11 @@ export function useChart<T>(props: UseChartProps<T>) {
     })
   }, [data, sort])
 
+  const getSeriesOpacity = (name: string | undefined, fallback = 0.2) => {
+    if (name && highlightedSeries)
+      return isHighlightedSeries(name) ? 1 : fallback
+  }
+
   return {
     id,
     key,
@@ -148,10 +153,10 @@ export function useChart<T>(props: UseChartProps<T>) {
     formatDate,
 
     // state
-    selectedSeries,
-    setSelectedSeries,
     highlightedSeries,
     setHighlightedSeries,
+    isHighlightedSeries,
+    getSeriesOpacity,
 
     // value functions
     getTotal,
