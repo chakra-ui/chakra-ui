@@ -175,7 +175,7 @@ const docsLinks: NavItem = {
     {
       title: "Charts",
       url: "charts",
-      status: "new",
+      status: "beta",
       items: [
         {
           title: "Overview",

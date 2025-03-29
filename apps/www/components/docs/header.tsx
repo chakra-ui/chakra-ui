@@ -8,7 +8,6 @@ import { VersionMenu } from "@/components/version-menu"
 import { docsConfig } from "@/docs.config"
 import { useRoute } from "@/lib/use-route"
 import {
-  Badge,
   Box,
   Container,
   HStack,
@@ -32,8 +31,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
-import { LuChartBar, LuChartColumn, LuHeartPulse } from "react-icons/lu"
 import { SponsorButton } from "../sponsor-button"
+import { StatusBadge } from "../status-badge"
 import { CommandMenu } from "./command-menu"
 
 const HeaderRoot = chakra("header", {
@@ -134,17 +133,7 @@ const HeaderSecondaryNavbar = () => {
           aria-current={item.current ? "page" : undefined}
         >
           {item.title}{" "}
-          {item.status && (
-            <Badge
-              size="sm"
-              colorPalette="teal"
-              variant="solid"
-              textTransform="capitalize"
-              ms="1"
-            >
-              New
-            </Badge>
-          )}
+          {item.status && <StatusBadge ms="1">{item.status}</StatusBadge>}
         </TopNavLink>
       ))}
     </HStack>
