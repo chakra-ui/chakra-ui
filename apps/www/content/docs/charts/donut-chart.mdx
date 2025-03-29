@@ -1,0 +1,86 @@
+---
+title: Donut Chart
+description:
+  Used to display data as segments of a circular chart that looks like a donut
+---
+
+<ExampleTabs name="charts/donut-chart-basic" />
+
+## Usage
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Cell, Pie, PieChart } from "recharts"
+```
+
+```tsx
+<Chart.Root>
+  <PieChart>
+    <Pie>
+      <Cell />
+    </Pie>
+  </PieChart>
+</Chart.Root>
+```
+
+## Examples
+
+### Point Label
+
+To display a point label on the chart, you can use the `PointLabel` component
+from `recharts`.
+
+<ExampleTabs name="charts/donut-chart-with-point-label" />
+
+### Start and End Angle
+
+Customizing the `startAngle` and `endAngle` prop of the `<Pie>` component can
+create partial donuts.
+
+```tsx
+<Pie startAngle={180} endAngle={0}>
+  {/* ... */}
+</Pie>
+```
+
+<ExampleTabs name="charts/donut-chart-with-start-and-end-angle" />
+
+### Angle Padding
+
+To add some space between the segments, you can use the `paddingAngle` prop.
+
+> **Pro Tip:** You can also use the `cornerRadius` prop to round the corners of
+> the segments.
+
+<ExampleTabs name="charts/donut-chart-with-angle-padding" />
+
+### Detached Segment
+
+To create an effect where the active segment is scaled and detached from the
+rest of the segments, use the `activeIndex` prop and the `activeShape` prop.
+
+```tsx /activeIndex/ /activeShape/
+<Pie
+  innerRadius={60}
+  outerRadius={100}
+  activeIndex={0}
+  activeShape={<Sector outerRadius={120} />}
+/>
+```
+
+<ExampleTabs name="charts/donut-chart-with-detached-segment" />
+
+### Centered Text
+
+Use the `Chart.RadialText` component to display a centered text on the chart
+with an optional description.
+
+```tsx
+<Label
+  content={({ viewBox }) => (
+    <Chart.RadialText viewBox={viewBox} title={1200} description="users" />
+  )}
+/>
+```
+
+<ExampleTabs name="charts/donut-chart-with-centered-text" />

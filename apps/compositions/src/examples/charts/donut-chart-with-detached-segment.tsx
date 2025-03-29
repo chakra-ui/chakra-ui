@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Sector, Tooltip } from "recharts"
 
-export const DonutWithDetachedSegment = () => {
+export const DonutChartWithDetachedSegment = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -14,7 +14,7 @@ export const DonutWithDetachedSegment = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root boxSize="200px" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}

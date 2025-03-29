@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Label, Pie, PieChart, Tooltip } from "recharts"
 
-export const DonutWithCenteredText = () => {
+export const DonutChartWithCenteredText = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -14,7 +14,7 @@ export const DonutWithCenteredText = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="200px" chart={chart}>
+    <Chart.Root boxSize="200px" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
