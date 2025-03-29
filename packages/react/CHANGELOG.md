@@ -1,5 +1,26 @@
 # @chakra-ui/react
 
+## 3.15.0
+
+### Minor Changes
+
+- [`2f4ea3b`](https://github.com/chakra-ui/chakra-ui/commit/2f4ea3b31792b6df212798c5f00e174276acc274)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - -
+  **useMediaQuery**: Fix type signature to allow skipping the second argument
+
+  - **RadioCard**: Fix accessibility issue due to html structure
+  - **Slider**
+
+    - Add support for `origin: end` to align the thumb to the end of the track.
+    - Expose `thumbSize` as CSS variables in the root element. Can be useful for
+      styling the slider.
+
+  - **Menu**
+
+    - Added `onSelect` event to the `Menu.Item` component.
+    - Ensure menu items have unique IDs to improve accessibility and HTML
+      validation.
+
 ## 3.14.2
 
 ### Patch Changes
