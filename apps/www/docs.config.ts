@@ -12,7 +12,7 @@ const docsLinks: NavItem = {
             { title: "Installation", url: "installation" },
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
-            { title: "LLMs.txt", url: "llms", status: "new" },
+            { title: "LLMs.txt", url: "llms" },
             { title: "Contributing", url: "contributing" },
             { title: "Showcase", url: "/showcase", external: true },
           ],
@@ -180,7 +180,12 @@ const docsLinks: NavItem = {
         {
           title: "Overview",
           url: "overview",
-          items: [{ title: "Installation", url: "installation" }],
+          items: [
+            { title: "Installation", url: "installation" },
+            { title: "useChart", url: "use-chart" },
+            { title: "Axis (X and Y)", url: "xy-axis" },
+            { title: "Cartesian Grid", url: "cartesian-grid" },
+          ],
         },
         {
           title: "Charts",

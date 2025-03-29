@@ -1,8 +1,8 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Box, HStack } from "@chakra-ui/react"
-import { LuArrowRight } from "react-icons/lu"
+import { HStack, VStack } from "@chakra-ui/react"
+import { LuArrowUp } from "react-icons/lu"
 import {
   CartesianGrid,
   Legend,
@@ -72,18 +72,16 @@ export const LineChartLegendInteraction = () => {
 const Container = (props: React.PropsWithChildren) => {
   const { children } = props
   return (
-    <Box pos="relative">
+    <VStack pos="relative" gap="4">
       {children}
       <HStack
-        pos="absolute"
         textStyle="xs"
-        left="40%"
         bottom="1"
         color="teal.fg"
-        animation="slide-to-right 1s infinite"
+        animation="slide-to-top 1s infinite"
       >
-        Hover me <LuArrowRight />
+        Hover on "mac" <LuArrowUp />
       </HStack>
-    </Box>
+    </VStack>
   )
 }

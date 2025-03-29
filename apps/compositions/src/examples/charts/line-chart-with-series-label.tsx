@@ -1,7 +1,15 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts"
 
 export const LineChartWithSeriesLabel = () => {
   const chart = useChart({
@@ -40,6 +48,7 @@ export const LineChartWithSeriesLabel = () => {
           cursor={false}
           content={<Chart.Tooltip />}
         />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Line
             key={item.name}

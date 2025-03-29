@@ -42,7 +42,7 @@ export const LineChartWithGradient = () => {
         />
         <defs>
           <Chart.Gradient
-            id="gradient"
+            id="lc-gradient"
             stops={[
               { offset: "0%", color: "teal.solid" },
               { offset: "20%", color: "purple.solid" },
@@ -59,7 +59,7 @@ export const LineChartWithGradient = () => {
             type="natural"
             dataKey={chart.key(item.name)}
             fill="none"
-            stroke="url(#gradient)"
+            stroke="url(#lc-gradient)"
             r={2}
             dot={{
               stroke: chart.color("bg"),
