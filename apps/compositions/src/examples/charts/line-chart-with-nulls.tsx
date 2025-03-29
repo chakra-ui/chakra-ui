@@ -3,22 +3,18 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
-export const LineChartWithDashed = () => {
+export const LineChartWithNulls = () => {
   const chart = useChart({
     data: [
-      { windows: 186, mac: 165, month: "January" },
-      { windows: 165, mac: 155, month: "February" },
-      { windows: 190, mac: 175, month: "March" },
-      { windows: 195, mac: 180, month: "May" },
-      { windows: 182, mac: 170, month: "June" },
-      { windows: 175, mac: 160, month: "August" },
-      { windows: 180, mac: 165, month: "October" },
-      { windows: 185, mac: 170, month: "November" },
+      { sales: 186, month: "January" },
+      { sales: null, month: "February" },
+      { sales: 190, month: "March" },
+      { sales: 195, month: "May" },
+      { sales: null, month: "June" },
+      { sales: 175, month: "August" },
+      { sales: 180, month: "October" },
     ],
-    series: [
-      { name: "windows", color: "teal.solid", strokeDasharray: "5 5" },
-      { name: "mac", color: "purple.solid" },
-    ],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
@@ -35,7 +31,7 @@ export const LineChartWithDashed = () => {
           stroke={chart.color("border")}
         />
         <YAxis
-          dataKey={chart.key("windows")}
+          dataKey={chart.key("sales")}
           stroke={chart.color("border")}
           domain={[140, "dataMax"]}
         />
@@ -47,6 +43,7 @@ export const LineChartWithDashed = () => {
         {chart.series.map((item) => (
           <Line
             key={item.name}
+            connectNulls
             isAnimationActive={false}
             dataKey={chart.key(item.name)}
             stroke={chart.color(item.color)}

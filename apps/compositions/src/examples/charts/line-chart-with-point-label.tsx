@@ -46,7 +46,6 @@ export const LineChartWithPointLabel = () => {
           dataKey={chart.key("uv")}
           fill={chart.color("teal.solid")}
           stroke={chart.color("teal.solid")}
-          activeDot={{ stroke: chart.color("teal.solid") }}
           strokeWidth={2}
         >
           <LabelList

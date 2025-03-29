@@ -1,9 +1,9 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
-export const LineChartBasic = () => {
+export const LineChartStartEndTick = () => {
   const chart = useChart({
     data: [
       { sale: 10, month: "January" },
@@ -25,6 +25,11 @@ export const LineChartBasic = () => {
           dataKey={chart.key("month")}
           tickFormatter={(value) => value.slice(0, 3)}
           stroke={chart.color("border")}
+          ticks={[chart.data[0].month, chart.data[chart.data.length - 1].month]}
+          label={{
+            value: "[January - August] Customers",
+            position: "bottom",
+          }}
         />
         <YAxis
           axisLine={false}
@@ -32,13 +37,9 @@ export const LineChartBasic = () => {
           tickMargin={10}
           stroke={chart.color("border")}
         />
-        <Tooltip
-          animationDuration={100}
-          cursor={false}
-          content={<Chart.Tooltip />}
-        />
         {chart.series.map((item) => (
           <Line
+            type="natural"
             key={item.name}
             isAnimationActive={false}
             dataKey={chart.key(item.name)}

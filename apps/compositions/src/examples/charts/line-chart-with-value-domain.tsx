@@ -3,27 +3,21 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
-export const LineChartWithDashed = () => {
+export const LineChartWithValueDomain = () => {
   const chart = useChart({
     data: [
-      { windows: 186, mac: 165, month: "January" },
-      { windows: 165, mac: 155, month: "February" },
-      { windows: 190, mac: 175, month: "March" },
-      { windows: 195, mac: 180, month: "May" },
-      { windows: 182, mac: 170, month: "June" },
-      { windows: 175, mac: 160, month: "August" },
-      { windows: 180, mac: 165, month: "October" },
-      { windows: 185, mac: 170, month: "November" },
+      { sales: 186, month: "January" },
+      { sales: 190, month: "March" },
+      { sales: 195, month: "May" },
+      { sales: 175, month: "August" },
+      { sales: 180, month: "October" },
     ],
-    series: [
-      { name: "windows", color: "teal.solid", strokeDasharray: "5 5" },
-      { name: "mac", color: "purple.solid" },
-    ],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>
+      <LineChart data={chart.data}>
         <CartesianGrid
           stroke={chart.color("border")}
           strokeDasharray="3 3"
@@ -35,9 +29,9 @@ export const LineChartWithDashed = () => {
           stroke={chart.color("border")}
         />
         <YAxis
-          dataKey={chart.key("windows")}
+          dataKey={chart.key("sales")}
           stroke={chart.color("border")}
-          domain={[140, "dataMax"]}
+          domain={[160, "dataMax + 10"]}
         />
         <Tooltip
           animationDuration={100}
@@ -46,14 +40,15 @@ export const LineChartWithDashed = () => {
         />
         {chart.series.map((item) => (
           <Line
+            type="natural"
             key={item.name}
+            connectNulls
             isAnimationActive={false}
             dataKey={chart.key(item.name)}
             stroke={chart.color(item.color)}
             fill={chart.color(item.color)}
             dot={{ strokeDasharray: "0" }}
-            strokeWidth={2}
-            strokeDasharray={item.strokeDasharray}
+            strokeWidth={4}
           />
         ))}
       </LineChart>

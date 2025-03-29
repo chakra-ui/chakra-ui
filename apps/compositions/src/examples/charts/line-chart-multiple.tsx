@@ -1,19 +1,30 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts"
 
-export const LineChartBasic = () => {
+export const LineChartMultiple = () => {
   const chart = useChart({
     data: [
-      { sale: 10, month: "January" },
-      { sale: 95, month: "February" },
-      { sale: 87, month: "March" },
-      { sale: 88, month: "May" },
-      { sale: 65, month: "June" },
-      { sale: 90, month: "August" },
+      { mac: 10, linux: 120, month: "January" },
+      { mac: 95, linux: 110, month: "February" },
+      { mac: 87, linux: 125, month: "March" },
+      { mac: 88, linux: 30, month: "May" },
+      { mac: 98, linux: 122, month: "June" },
+      { mac: 90, linux: 15, month: "August" },
     ],
-    series: [{ name: "sale", color: "teal.solid" }],
+    series: [
+      { name: "mac", color: "purple.solid" },
+      { name: "linux", color: "blue.solid" },
+    ],
   })
 
   return (
@@ -37,14 +48,15 @@ export const LineChartBasic = () => {
           cursor={false}
           content={<Chart.Tooltip />}
         />
+        <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Line
             key={item.name}
             isAnimationActive={false}
             dataKey={chart.key(item.name)}
+            fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
             strokeWidth={2}
-            dot={false}
           />
         ))}
       </LineChart>

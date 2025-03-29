@@ -3,17 +3,17 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
-export const LineChartBasic = () => {
+export const LineChartValueFormatter = () => {
   const chart = useChart({
     data: [
-      { sale: 10, month: "January" },
-      { sale: 95, month: "February" },
-      { sale: 87, month: "March" },
-      { sale: 88, month: "May" },
-      { sale: 65, month: "June" },
-      { sale: 90, month: "August" },
+      { revenue: 10000, month: "January" },
+      { revenue: 95000, month: "February" },
+      { revenue: 87000, month: "March" },
+      { revenue: 88000, month: "May" },
+      { revenue: 65000, month: "June" },
+      { revenue: 90000, month: "August" },
     ],
-    series: [{ name: "sale", color: "teal.solid" }],
+    series: [{ name: "revenue", color: "teal.solid" }],
   })
 
   return (
@@ -31,6 +31,11 @@ export const LineChartBasic = () => {
           tickLine={false}
           tickMargin={10}
           stroke={chart.color("border")}
+          tickFormatter={chart.formatNumber({
+            style: "currency",
+            currency: "USD",
+            notation: "compact",
+          })}
         />
         <Tooltip
           animationDuration={100}

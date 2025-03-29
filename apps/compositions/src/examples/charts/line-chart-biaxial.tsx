@@ -31,7 +31,7 @@ export const LineChartBiaxial = () => {
   })
 
   return (
-    <Chart.Root maxW="lg" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <LineChart
         data={chart.data}
         margin={{ left: 20, bottom: 20, right: 20, top: 20 }}
@@ -79,14 +79,12 @@ export const LineChartBiaxial = () => {
         />
         {chart.series.map((item) => (
           <Line
-            type="bump"
             yAxisId={item.yAxisId}
             key={item.name}
             isAnimationActive={false}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
-            activeDot={{ stroke: chart.color(item.color) }}
             strokeWidth={2}
           />
         ))}
