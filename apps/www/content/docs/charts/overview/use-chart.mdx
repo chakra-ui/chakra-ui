@@ -1,0 +1,177 @@
+---
+title: useChart
+description: Provides utilities to manage and format data for charts
+---
+
+The `useChart` hook provides a set of utilities to manage and format data for
+charts efficiently. It offers various helpers for:
+
+- aggregating the series data to compute values such as totals, minimums,
+  maximums, and percentages
+- formatting **numbers and dates**
+- querying **color, size, and spacing** tokens
+
+## Usage
+
+```tsx
+import { useChart } from "@chakra-ui/charts"
+```
+
+```tsx
+const chart = useChart({
+  data: [
+    { date: "2024-01-01", revenue: 1000 },
+    { date: "2024-01-02", revenue: 2000 },
+    { date: "2024-01-03", revenue: 3000 },
+  ],
+  series: [{ name: "revenue", color: "blue.500" }],
+})
+```
+
+## Aggregation
+
+### `getTotal`
+
+Computes the **total sum** of a given series across all entries.
+
+```tsx
+console.log(chart.getTotal("revenue")) // 6000
+```
+
+### `getMin`
+
+Finds the **minimum value** for a given key in the dataset.
+
+```tsx
+console.log(chart.getMin("revenue")) // 1000
+```
+
+### `getMax`
+
+Finds the **maximum value** for a given key in the dataset.
+
+```tsx
+console.log(chart.getMax("revenue")) // 3000
+```
+
+### `getValuePercent`
+
+Calculates **the percentage** of a value relative to the dataset or a given
+domain.
+
+```tsx
+const percentage = chart.getValuePercent("revenue", 5000)
+console.log(percentage) // 0.5
+```
+
+## Formatting
+
+### `formatNumber`
+
+Formats numbers using the current locale from `EnvironmentProvider` and
+`Intl.NumberFormatOptions` provided.
+
+```tsx
+const format = chart.formatNumber({ style: "currency", currency: "USD" })
+console.log(format(1000)) // "$1,000.00"
+```
+
+### `formatDate`
+
+Formats a date string based on **locale settings**.
+
+```tsx
+const formatDate = chart.formatDate({ year: "numeric", month: "short" })
+console.log(formatDate("2024-03-28")) // "Mar 2024"
+```
+
+## Design Tokens
+
+### `color`
+
+Retrieves a **Chakra UI color token**.
+
+```tsx
+const barColor = chart.color("blue.500") // var(--chakra-colors-blue-500)
+```
+
+### `size`
+
+Retrieves a **Chakra UI size token**.
+
+```tsx
+const chartPadding = chart.spacing("4") // var(--chakra-spacing-4)
+```
+
+### `spacing`
+
+Retrieves a **Chakra UI spacing token**.
+
+```tsx
+const barColor = chart.color("blue.500") // var(--chakra-colors-blue-500)
+const chartPadding = chart.spacing("4") // var(--chakra-spacing-4)
+```
+
+## Sorting
+
+Automatically sorts the chart data based on a specified key and direction.
+
+```tsx /sort: { by: "date", direction: "asc" }/
+const chart = useChart({
+  data: [
+    { date: "2024-01-01", revenue: 1000 },
+    { date: "2024-01-02", revenue: 2000 },
+    { date: "2024-01-03", revenue: 3000 },
+  ],
+  sort: { by: "date", direction: "asc" },
+  series: [{ name: "revenue", color: "blue.500" }],
+})
+```
+
+## Highlighting
+
+When interacting with the chart legends, the series can be highlighted based on
+`click` or `hover` events. The `highlightedSeries` state is used to track which
+series is currently highlighted.
+
+> This is mostly useful when you have multiple series in the chart.
+
+### `highlightedSeries`
+
+Tracks which series is currently highlighted.
+
+### `setHighlightedSeries`
+
+Sets the highlighted series.
+
+```tsx
+chart.setHighlightedSeries("revenue")
+```
+
+### `isHighlightedSeries`
+
+Checks if a series is highlighted.
+
+```tsx
+const isActive = chart.isHighlightedSeries("revenue")
+```
+
+## API Table
+
+| Helper                                | Purpose                           |
+| ------------------------------------- | --------------------------------- |
+| `getSeries(item)`                     | Finds details of a series item    |
+| `getSeriesOpacity(name, fallback)`    | Controls series opacity           |
+| `getTotal(key)`                       | Computes total sum of a key       |
+| `getMin(key)`                         | Gets minimum value for a key      |
+| `getMax(key)`                         | Gets maximum value for a key      |
+| `getValuePercent(key, value, domain)` | Calculates percentage of a value  |
+| `formatNumber(options)`               | Formats numbers based on locale   |
+| `formatDate(options)`                 | Formats dates based on locale     |
+| `color(key)`                          | Retrieves Chakra UI color token   |
+| `size(key)`                           | Retrieves Chakra UI size token    |
+| `spacing(key)`                        | Retrieves Chakra UI spacing token |
+| `data`                                | The resolved chart data           |
+| `highlightedSeries`                   | Tracks highlighted series         |
+| `setHighlightedSeries(name)`          | Sets highlighted series           |
+| `isHighlightedSeries(name)`           | Checks if a series is highlighted |

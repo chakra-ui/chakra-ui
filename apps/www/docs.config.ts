@@ -183,7 +183,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Installation", url: "installation" },
             { title: "useChart", url: "use-chart" },
-            { title: "Axis (X and Y)", url: "xy-axis" },
+            { title: "Axis (X and Y)", url: "axes" },
             { title: "Cartesian Grid", url: "cartesian-grid" },
           ],
         },
