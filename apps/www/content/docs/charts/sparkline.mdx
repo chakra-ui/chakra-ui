@@ -1,0 +1,80 @@
+---
+title: Sparkline
+description:
+  A small, simple chart without axes or coordinates that shows the general shape
+  of data variation, typically used inline with text or in small spaces
+---
+
+<ExampleTabs name="charts/sparkline-basic" />
+
+## Usage
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Area, AreaChart } from "recharts"
+```
+
+```tsx
+<Chart.Root>
+  <AreaChart>
+    <Area />
+  </AreaChart>
+</Chart.Root>
+```
+
+## Examples
+
+### Bar Chart
+
+Sparklines can be made with bar charts.
+
+<ExampleTabs name="charts/sparkline-bar-chart" />
+
+### Line Chart
+
+Sparklines can also be made with line charts.
+
+<ExampleTabs name="charts/sparkline-line-chart" />
+
+### Stock
+
+Here's a composition of a sparkline that shows stock prices.
+
+<ExampleTabs name="charts/sparkline-composition-stock" />
+
+### Stat
+
+Here's a composition of a sparkline that shows a SaaS dashboard stat.
+
+<ExampleTabs name="charts/sparkline-composition-stat" />
+
+### Gradient
+
+Use the `Chart.Gradient` component to create a gradient fill.
+
+```tsx {4-7}
+<defs>
+  <Chart.Gradient
+    id="custom-gradient"
+    stops={[
+      { offset: "0%", color: "teal.solid", opacity: 1 },
+      { offset: "100%", color: "teal.solid", opacity: 0.01 },
+    ]}
+  />
+</defs>
+```
+
+<ExampleTabs name="charts/sparkline-with-gradient" />
+
+### Reference
+
+To reference a specific value on the sparkline, use the `Reference` component
+from `recharts`.
+
+<ExampleTabs name="charts/sparkline-with-reference" />
+
+### Interaction
+
+Here's an example that mimics the NPM download stats.
+
+<ExampleTabs name="charts/sparkline-with-interaction" />

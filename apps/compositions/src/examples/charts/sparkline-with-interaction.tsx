@@ -7,7 +7,7 @@ import { LuDownload } from "react-icons/lu"
 import { Area, AreaChart, Tooltip } from "recharts"
 import type { CategoricalChartState } from "recharts/types/chart/types"
 
-export const SparklineWithLatestValue = () => {
+export const SparklineWithInteraction = () => {
   const chart = useChart({
     data: [
       { value: 125000 },
@@ -37,7 +37,7 @@ export const SparklineWithLatestValue = () => {
   }
 
   return (
-    <Flex align="flex-end">
+    <Flex align="flex-end" maxW="sm">
       <Box flex="1" fontWeight="medium">
         <HStack textStyle="sm" color="fg.muted">
           <LuDownload /> Weekly Downloads
@@ -46,7 +46,7 @@ export const SparklineWithLatestValue = () => {
           <FormatNumber value={value} />
         </Text>
       </Box>
-      <Chart.Root width="full" height="12" flex="2" chart={chart}>
+      <Chart.Root width="full" height="12" flex="1" chart={chart}>
         <AreaChart
           data={chart.data}
           onMouseMove={onMouseMove}
