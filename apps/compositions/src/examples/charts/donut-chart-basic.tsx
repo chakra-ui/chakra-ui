@@ -14,7 +14,7 @@ export const DonutChartBasic = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="200px" chart={chart}>
+    <Chart.Root boxSize="200px" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}

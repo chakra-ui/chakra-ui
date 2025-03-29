@@ -18,6 +18,11 @@ export const GET = async () => {
       description: "Documentation for all components in Chakra UI v3.",
     },
     {
+      title: "Charts",
+      href: `${baseUrl}/llms-charts.txt`,
+      description: "Documentation for the charts in Chakra UI v3.",
+    },
+    {
       title: "Styling",
       href: `${baseUrl}/llms-styling.txt`,
       description: "Documentation for the styling system in Chakra UI v3.",

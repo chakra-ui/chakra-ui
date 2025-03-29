@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, ChartGradient, useChart } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -33,7 +33,7 @@ export const AreaChartFillWithValue = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart data={chart.data}>
         <CartesianGrid strokeDasharray="3 3" stroke={chart.color("border")} />
         <XAxis
@@ -58,7 +58,7 @@ export const AreaChartFillWithValue = () => {
           content={<Chart.Tooltip />}
         />
         <defs>
-          <ChartGradient
+          <Chart.Gradient
             id="uv-gradient"
             stops={[
               { offset, color: "teal.solid", opacity: 1 },

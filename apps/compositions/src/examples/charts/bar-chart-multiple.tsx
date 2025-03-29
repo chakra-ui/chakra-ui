@@ -14,10 +14,10 @@ import {
 export const BarChartMultiple = () => {
   const chart = useChart({
     data: [
-      { type: "mobile", poor: 40, fair: 100, good: 265, excellent: 70 },
+      { type: "mobile", poor: 40, fair: 100, good: 200, excellent: 70 },
       { type: "marketing", poor: 15, fair: 40, good: 120, excellent: 90 },
-      { type: "social", poor: 70, fair: 135, good: 290, excellent: 180 },
-      { type: "ecommerce", poor: 75, fair: 155, good: 75, excellent: 325 },
+      { type: "social", poor: 70, fair: 135, good: 220, excellent: 180 },
+      { type: "ecommerce", poor: 175, fair: 155, good: 75, excellent: 95 },
     ],
     series: [
       { name: "poor", color: "blue.solid" },
@@ -28,7 +28,7 @@ export const BarChartMultiple = () => {
   })
 
   return (
-    <Chart.Root maxW="lg" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis

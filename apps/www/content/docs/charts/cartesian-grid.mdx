@@ -1,0 +1,62 @@
+---
+title: Cartesian Grid
+description: How to customize the cartesian grid of the charts component
+---
+
+This guide will show you how to customize the cartesian grid of the charts
+component.
+
+:::note
+
+The charts component is built on top of [Recharts](https://recharts.org), so you
+should also check their documentation for more details.
+
+:::
+
+## Usage
+
+```tsx
+import { CartesianGrid } from "recharts"
+```
+
+```tsx
+<CartesianGrid />
+```
+
+This will render a default grid with light gray lines on both the X and Y axes.
+
+## Customize Stroke
+
+You can modify the appearance of the grid lines using `stroke`,
+`strokeDasharray`, and `opacity`
+
+```tsx
+<CartesianGrid stroke="#ccc" strokeDasharray="3 3" opacity={0.5} />
+```
+
+| Property          | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `stroke`          | Changes the grid line color (e.g., `#ddd`, `red`, etc.). |
+| `strokeDasharray` | Defines the dash pattern (e.g., `5 5` for dashed lines). |
+| `opacity`         | Controls grid line transparency (0 to 1).                |
+
+## Show/Hide Grid Lines
+
+To control whether horizontal or vertical lines are displayed:
+
+```tsx
+<CartesianGrid vertical={false} horizontal={true} />
+```
+
+- `vertical={false}` → Hides vertical grid lines
+- `horizontal={false}` → Hides horizontal grid lines
+- `horizontal={true}` and `vertical={true}` → Shows both (default behavior)
+
+## Remove Grid Lines
+
+If you want to remove the grid completely, simply omit the `CartesianGrid`
+component or explicitly hide both horizontal and vertical lines:
+
+```tsx
+<CartesianGrid horizontal={false} vertical={false} />
+```

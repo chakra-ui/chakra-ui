@@ -31,7 +31,7 @@ export const AreaChartWithDots = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart data={chart.data} margin={{ right: 20 }}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <YAxis stroke={chart.color("border")} axisLine={false} />

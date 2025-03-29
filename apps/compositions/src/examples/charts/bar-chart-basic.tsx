@@ -15,7 +15,7 @@ export const BarChartBasic = () => {
   })
 
   return (
-    <Chart.Root maxW="xl" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
@@ -29,7 +29,6 @@ export const BarChartBasic = () => {
           <Bar
             key={item.name}
             isAnimationActive={false}
-            barSize={40}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
           />

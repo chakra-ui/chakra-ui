@@ -354,6 +354,9 @@ importers:
       react-icons:
         specifier: 5.5.0
         version: 5.5.0(react@19.0.0)
+      recharts:
+        specifier: 2.13.3
+        version: 2.13.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       rehype-autolink-headings:
         specifier: 7.1.0
         version: 7.1.0

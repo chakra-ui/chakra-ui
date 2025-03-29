@@ -14,11 +14,11 @@ export const BarChartWithNoGap = () => {
       { sales: 95000, month: "November" },
       { sales: 88000, month: "December" },
     ],
-    series: [{ name: "sales", color: "orange.solid" }],
+    series: [{ name: "sales", color: "teal.solid" }],
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="md" chart={chart}>
       <BarChart barCategoryGap="0" data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis

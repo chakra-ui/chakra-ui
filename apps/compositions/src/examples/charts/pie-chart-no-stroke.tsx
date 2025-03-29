@@ -14,7 +14,7 @@ export const PieChartNoStroke = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root boxSize="200px" mx="auto" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}

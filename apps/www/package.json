@@ -35,6 +35,7 @@
     "next": "15.2.4",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
+    "recharts": "2.13.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-icons": "5.5.0",

@@ -23,7 +23,7 @@ export const BarChartStackedMix = () => {
   })
 
   return (
-    <Chart.Root maxW="lg" chart={chart}>
+    <Chart.Root maxH="md" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis

@@ -2,18 +2,9 @@
 
 import { Chart, useChart } from "@chakra-ui/charts"
 import { For, SimpleGrid, Stack, Text } from "@chakra-ui/react"
-import {
-  Area,
-  AreaChart,
-  type AreaProps,
-  CartesianGrid,
-  Legend,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
-const curveTypes: Exclude<AreaProps["type"], undefined>[] = [
+const curveTypes = [
   "linear",
   "bump",
   "basis",
@@ -22,7 +13,7 @@ const curveTypes: Exclude<AreaProps["type"], undefined>[] = [
   "stepAfter",
   "natural",
   "monotone",
-]
+] as const
 
 export const AreaChartWithTypes = () => {
   const chart = useChart({
@@ -49,9 +40,9 @@ export const AreaChartWithTypes = () => {
         {(type) => (
           <Stack key={type.toString()} gap="4">
             <Text textStyle="sm" fontWeight="semibold" ms="8">
-              {type.toString()}
+              {`<Area type="${type}" />`}
             </Text>
-            <Chart.Root maxW="400px" chart={chart}>
+            <Chart.Root maxH="sm" chart={chart}>
               <AreaChart accessibilityLayer data={chart.data}>
                 <CartesianGrid
                   stroke={chart.color("border")}
@@ -65,12 +56,6 @@ export const AreaChartWithTypes = () => {
                   tickFormatter={(value) => value.slice(0, 3)}
                 />
                 <YAxis tickLine={false} axisLine={false} />
-                <Tooltip
-                  cursor={false}
-                  animationDuration={100}
-                  content={<Chart.Tooltip />}
-                />
-                <Legend content={<Chart.Legend />} />
                 {chart.series.map((item) => (
                   <Area
                     type={type}

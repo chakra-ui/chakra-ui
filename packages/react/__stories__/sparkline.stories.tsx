@@ -11,8 +11,11 @@ export default {
   ],
 }
 
+export { SparklineBarChart as BarChart } from "compositions/examples/charts/sparkline-bar-chart"
 export { SparklineBasic as Basic } from "compositions/examples/charts/sparkline-basic"
+export { SparklineCompositionStock as Stock } from "compositions/examples/charts/sparkline-composition-stock"
+export { SparklineLineChart as LineChart } from "compositions/examples/charts/sparkline-line-chart"
 export { SparklineWithGradient as Gradient } from "compositions/examples/charts/sparkline-with-gradient"
-export { SparklineWithLatestValue as LatestValue } from "compositions/examples/charts/sparkline-with-latest-value"
+export { SparklineWithInteraction as Interaction } from "compositions/examples/charts/sparkline-with-interaction"
 export { SparklineWithReference as Reference } from "compositions/examples/charts/sparkline-with-reference"
-export { SparklineWithStat as Stat } from "compositions/examples/charts/sparkline-with-stat"
+export { SparklineCompositionStat as Stat } from "compositions/examples/charts/sparkline-composition-stat"

@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 
-export const AreaChartWithAxes = () => {
+export const AreaChartWithValueAxis = () => {
   const chart = useChart({
     data: [
       { windows: 186, mac: 80, linux: 120, month: "January" },
@@ -23,7 +23,7 @@ export const AreaChartWithAxes = () => {
   })
 
   return (
-    <Chart.Root maxW="400px" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart
         accessibilityLayer
         data={chart.data}

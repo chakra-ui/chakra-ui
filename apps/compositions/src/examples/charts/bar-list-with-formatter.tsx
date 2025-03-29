@@ -18,7 +18,7 @@ export const BarListWithFormatter = () => {
     chart.getValuePercent("value", value).toFixed(0)
 
   return (
-    <BarList.Root chart={chart} maxW="sm">
+    <BarList.Root chart={chart}>
       <BarList.Content>
         <BarList.Bar />
         <BarList.Value

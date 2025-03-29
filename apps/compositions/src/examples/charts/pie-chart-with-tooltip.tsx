@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
 
-export const DonutWithAnglePadding = () => {
+export const PieChartBasic = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -14,26 +14,22 @@ export const DonutWithAnglePadding = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root boxSize="200px" chart={chart}>
       <PieChart>
-        <Tooltip
-          cursor={false}
-          animationDuration={100}
-          content={<Chart.Tooltip hideLabel />}
-        />
         <Pie
-          innerRadius={60}
-          outerRadius={100}
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
-          nameKey="name"
-          paddingAngle={8}
         >
           {chart.data.map((item) => (
             <Cell key={item.name} fill={chart.color(item.color)} />
           ))}
         </Pie>
+        <Tooltip
+          cursor={false}
+          animationDuration={100}
+          content={<Chart.Tooltip hideLabel />}
+        />
       </PieChart>
     </Chart.Root>
   )

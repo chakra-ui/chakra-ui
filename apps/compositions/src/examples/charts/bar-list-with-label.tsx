@@ -18,7 +18,7 @@ export const BarListWithLabel = () => {
   })
 
   return (
-    <BarList.Root chart={chart} maxW="sm">
+    <BarList.Root chart={chart}>
       <BarList.Content>
         <BarList.Label title="Search Engine" flex="1">
           <BarList.Bar />

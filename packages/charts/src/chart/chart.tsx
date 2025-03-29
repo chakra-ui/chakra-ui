@@ -12,8 +12,7 @@ import {
   Text,
   defineStyle,
 } from "@chakra-ui/react"
-import * as React from "react"
-import { useMemo } from "react"
+import { createContext, useContext, useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
@@ -22,14 +21,14 @@ import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const ChartContext = React.createContext({} as UseChartReturn<any>)
-const useChartContext = () => React.useContext(ChartContext)
+const ChartContext = createContext({} as UseChartReturn<any>)
+const useChartContext = () => useContext(ChartContext)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartRootProps extends BoxProps {
+export interface ChartRootProps<T> extends BoxProps {
   children: React.ReactElement
-  chart: UseChartReturn<unknown>
+  chart: UseChartReturn<T>
 }
 
 const baseCss = defineStyle({
@@ -54,24 +53,21 @@ const baseCss = defineStyle({
   },
 })
 
-export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
-  function ChartRoot(props, ref) {
-    const { children, css, chart, ...rest } = props
-    return (
-      <ChartContext.Provider value={chart}>
-        <Box
-          ref={ref}
-          aspectRatio="landscape"
-          textStyle="xs"
-          css={[baseCss, css]}
-          {...rest}
-        >
-          <ResponsiveContainer>{children}</ResponsiveContainer>
-        </Box>
-      </ChartContext.Provider>
-    )
-  },
-)
+export function ChartRoot<T>(props: ChartRootProps<T>) {
+  const { children, css, chart, ...rest } = props
+  return (
+    <ChartContext.Provider value={chart}>
+      <Box
+        aspectRatio="landscape"
+        textStyle="xs"
+        css={[baseCss, css]}
+        {...rest}
+      >
+        <ResponsiveContainer>{children}</ResponsiveContainer>
+      </Box>
+    </ChartContext.Provider>
+  )
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,14 +77,11 @@ export interface ChartGradientProps {
   stops: { color: ChartColor; offset: string | number; opacity?: number }[]
 }
 
-export const ChartGradient = React.forwardRef<
-  SVGLinearGradientElement,
-  ChartGradientProps
->(function ChartGradient(props, ref) {
+export function ChartGradient(props: ChartGradientProps) {
   const chart = useChartContext()
   const { id, fillOpacity, stops } = props
   return (
-    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1" ref={ref}>
+    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
       {stops.map((stop, index) => (
         <stop
           key={index}
@@ -99,13 +92,14 @@ export const ChartGradient = React.forwardRef<
       ))}
     </linearGradient>
   )
-})
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ChartLegendProps extends LegendProps {
   title?: React.ReactNode
   nameKey?: string
+  interaction?: "hover" | "click"
 }
 
 const hAlignMap = {
@@ -122,9 +116,12 @@ export function ChartLegend(props: ChartLegendProps) {
     title,
     orientation,
     nameKey,
-    spacing = "2.5",
+    spacing = "3",
+    interaction = "hover",
   } = props
+
   const chart = useChartContext()
+
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
@@ -150,15 +147,36 @@ export function ChartLegend(props: ChartLegendProps) {
       >
         {filteredPayload.map((item, index) => {
           const config = chart.getSeries(item)
+          const seriesName = config?.name?.toString()
           const name = getProp<string>(item.payload, nameKey)
           return (
-            <HStack gap="1" key={index} _icon={{ boxSize: "3" }}>
+            <HStack
+              gap="1.5"
+              key={index}
+              _icon={{ boxSize: "3" }}
+              style={{
+                opacity: chart.getSeriesOpacity(seriesName, 0.6),
+              }}
+              onClick={() => {
+                if (interaction === "click" && seriesName) {
+                  chart.setHighlightedSeries((prev) =>
+                    prev === seriesName ? null : seriesName,
+                  )
+                }
+              }}
+              onMouseEnter={() => {
+                if (interaction === "hover" && seriesName) {
+                  chart.setHighlightedSeries(seriesName)
+                }
+              }}
+              onMouseLeave={() => {
+                if (interaction === "hover" && seriesName) {
+                  chart.setHighlightedSeries(null)
+                }
+              }}
+            >
               {config?.icon || (
-                <ColorSwatch
-                  boxSize="2.5"
-                  rounded="full"
-                  value={chart.color(config?.color)}
-                />
+                <ColorSwatch boxSize="2" value={chart.color(config?.color)} />
               )}
               <Span color="fg.muted">{name || config?.label}</Span>
             </HStack>
@@ -204,7 +222,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
 
   const total = useMemo(() => chart.getPayloadTotal(payload), [payload, chart])
 
-  const tooltipLabel = React.useMemo(() => {
+  const tooltipLabel = useMemo(() => {
     const item = payload?.[0]
     const itemLabel = `${getProp(item?.payload, nameKey) || label || item?.dataKey || "value"}`
     return labelFormatter?.(itemLabel, payload ?? []) ?? itemLabel
@@ -290,13 +308,14 @@ export interface ChartRadialTextProps {
   title: React.ReactNode
   description: React.ReactNode
   gap?: number
+  fontSize?: string
 }
 
 const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBox =>
   "cx" in viewBox && "cy" in viewBox
 
 export function ChartRadialText(props: ChartRadialTextProps) {
-  const { viewBox, title, description, gap = 24 } = props
+  const { viewBox, title, description, gap = 24, fontSize = "2rem" } = props
   const chart = useChartContext()
   if (!viewBox || !isPolarViewBox(viewBox)) return null
   return (
@@ -310,7 +329,7 @@ export function ChartRadialText(props: ChartRadialTextProps) {
       <tspan
         x={viewBox.cx}
         y={viewBox.cy}
-        style={{ fontSize: "2rem", fontWeight: 600 }}
+        style={{ fontSize, fontWeight: 600 }}
       >
         {title}
       </tspan>

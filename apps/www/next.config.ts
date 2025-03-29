@@ -2,7 +2,7 @@ import { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
+    optimizePackageImports: ["@chakra-ui/react", "@ark-ui/react"],
     externalDir: true,
   },
   typescript: {
@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
       {
         source: "/docs",
         destination: "/docs/get-started/installation",
+        permanent: true,
+      },
+      {
+        source: "/charts",
+        destination: "/docs/charts/installation",
         permanent: true,
       },
     ]
