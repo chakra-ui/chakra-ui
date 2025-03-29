@@ -3,7 +3,7 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, LabelList, Pie, PieChart, Tooltip } from "recharts"
 
-export const PieChartWithLabelList = () => {
+export const PieChartWithLabelInside = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -14,7 +14,7 @@ export const PieChartWithLabelList = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root boxSize="320px" mx="auto" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
@@ -25,17 +25,11 @@ export const PieChartWithLabelList = () => {
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
-          nameKey="name"
         >
-          <LabelList
-            dataKey="name"
-            position="inside"
-            fill="white"
-            stroke="none"
-          />
-          {chart.data.map((item) => {
-            return <Cell key={item.name} fill={chart.color(item.color)} />
-          })}
+          <LabelList position="inside" fill="white" stroke="none" />
+          {chart.data.map((item) => (
+            <Cell key={item.name} fill={chart.color(item.color)} />
+          ))}
         </Pie>
       </PieChart>
     </Chart.Root>

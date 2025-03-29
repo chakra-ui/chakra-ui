@@ -21,3 +21,60 @@ import { Pie, PieChart } from "recharts"
 ```
 
 ## Examples
+
+### Label inside
+
+Render the `LabelList` from `recharts` inside the `Pie` to display the label
+inside the pie chart.
+
+```tsx
+<Pie>
+  <LabelList dataKey="name" position="inside" />
+</Pie>
+```
+
+<ExampleTabs name="charts/pie-chart-with-label-inside" />
+
+### Label outside
+
+Pass the `label` prop to the `Pie` component to display the label outside the
+pie chart.
+
+```tsx
+<Pie labelLine={false} label={({ name, value }) => `${name}: ${value}`}>
+  {/* ... */}
+</Pie>
+```
+
+<ExampleTabs name="charts/pie-chart-with-label-outside" />
+
+### Remove Stroke
+
+Set the `stroke` prop to `none` to remove the stroke from the pie chart.
+
+<ExampleTabs name="charts/pie-chart-no-stroke" />
+
+### Legend
+
+Render the `Chart.Legend` component to display a legend for the pie chart.
+
+<ExampleTabs name="charts/pie-chart-with-legend" />
+
+### Point Label
+
+Just another example of point labels
+
+<ExampleTabs name="charts/pie-chart-with-point-label" />
+
+### Start Angle
+
+Set the `startAngle` and `endAngle` props to the desired start and end angles
+for the pie chart.
+
+```tsx
+<Pie startAngle={180} endAngle={0}>
+  {/* ... */}
+</Pie>
+```
+
+<ExampleTabs name="charts/pie-chart-with-start-angle" />

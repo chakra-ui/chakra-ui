@@ -9,14 +9,12 @@ export const PieChartWithStartAngle = () => {
       { name: "typescript", value: 400, color: "blue.solid" },
       { name: "javascript", value: 120, color: "orange.solid" },
       { name: "python", value: 300, color: "pink.solid" },
-      { name: "go", value: 200, color: "green.solid" },
       { name: "rust", value: 278, color: "purple.solid" },
-      { name: "other", value: 189, color: "teal.solid" },
     ],
   })
 
   return (
-    <Chart.Root aspectRatio="square" w="sm" chart={chart}>
+    <Chart.Root boxSize="320px" mx="auto" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
@@ -30,11 +28,10 @@ export const PieChartWithStartAngle = () => {
           nameKey="name"
           startAngle={180}
           endAngle={0}
-          label
         >
-          {chart.data.map((item) => {
-            return <Cell key={item.name} fill={chart.color(item.color)} />
-          })}
+          {chart.data.map((item) => (
+            <Cell key={item.name} fill={chart.color(item.color)} />
+          ))}
         </Pie>
       </PieChart>
     </Chart.Root>
