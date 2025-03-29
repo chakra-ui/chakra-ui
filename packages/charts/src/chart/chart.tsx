@@ -12,8 +12,7 @@ import {
   Text,
   defineStyle,
 } from "@chakra-ui/react"
-import * as React from "react"
-import { useMemo } from "react"
+import { createContext, forwardRef, useContext, useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
@@ -22,8 +21,8 @@ import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const ChartContext = React.createContext({} as UseChartReturn<any>)
-const useChartContext = () => React.useContext(ChartContext)
+const ChartContext = createContext({} as UseChartReturn<any>)
+const useChartContext = () => useContext(ChartContext)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,7 +53,7 @@ const baseCss = defineStyle({
   },
 })
 
-export const ChartRoot = React.forwardRef<HTMLDivElement, ChartRootProps>(
+export const ChartRoot = forwardRef<HTMLDivElement, ChartRootProps>(
   function ChartRoot(props, ref) {
     const { children, css, chart, ...rest } = props
     return (
@@ -81,7 +80,7 @@ export interface ChartGradientProps {
   stops: { color: ChartColor; offset: string | number; opacity?: number }[]
 }
 
-export const ChartGradient = React.forwardRef<
+export const ChartGradient = forwardRef<
   SVGLinearGradientElement,
   ChartGradientProps
 >(function ChartGradient(props, ref) {
@@ -106,6 +105,7 @@ export const ChartGradient = React.forwardRef<
 export interface ChartLegendProps extends LegendProps {
   title?: React.ReactNode
   nameKey?: string
+  interaction?: "hover" | "click"
 }
 
 const hAlignMap = {
@@ -122,9 +122,12 @@ export function ChartLegend(props: ChartLegendProps) {
     title,
     orientation,
     nameKey,
-    spacing = "2.5",
+    spacing = "3",
+    interaction = "hover",
   } = props
+
   const chart = useChartContext()
+
   const filteredPayload = payload?.filter(
     (item) => item.color !== "none" || item.type !== "none",
   )
@@ -150,15 +153,36 @@ export function ChartLegend(props: ChartLegendProps) {
       >
         {filteredPayload.map((item, index) => {
           const config = chart.getSeries(item)
+          const seriesName = config?.name?.toString()
           const name = getProp<string>(item.payload, nameKey)
           return (
-            <HStack gap="1" key={index} _icon={{ boxSize: "3" }}>
+            <HStack
+              gap="1.5"
+              key={index}
+              _icon={{ boxSize: "3" }}
+              style={{
+                opacity: chart.getSeriesOpacity(seriesName, 0.6),
+              }}
+              onClick={() => {
+                if (interaction === "click" && seriesName) {
+                  chart.setHighlightedSeries((prev) =>
+                    prev === seriesName ? null : seriesName,
+                  )
+                }
+              }}
+              onMouseEnter={() => {
+                if (interaction === "hover" && seriesName) {
+                  chart.setHighlightedSeries(seriesName)
+                }
+              }}
+              onMouseLeave={() => {
+                if (interaction === "hover" && seriesName) {
+                  chart.setHighlightedSeries(null)
+                }
+              }}
+            >
               {config?.icon || (
-                <ColorSwatch
-                  boxSize="2.5"
-                  rounded="full"
-                  value={chart.color(config?.color)}
-                />
+                <ColorSwatch boxSize="2" value={chart.color(config?.color)} />
               )}
               <Span color="fg.muted">{name || config?.label}</Span>
             </HStack>
@@ -204,7 +228,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
 
   const total = useMemo(() => chart.getPayloadTotal(payload), [payload, chart])
 
-  const tooltipLabel = React.useMemo(() => {
+  const tooltipLabel = useMemo(() => {
     const item = payload?.[0]
     const itemLabel = `${getProp(item?.payload, nameKey) || label || item?.dataKey || "value"}`
     return labelFormatter?.(itemLabel, payload ?? []) ?? itemLabel
