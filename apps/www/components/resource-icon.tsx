@@ -5,7 +5,7 @@ import {
   IoLogoGithub,
   IoLogoNpm,
 } from "react-icons/io5"
-import { LuFigma, LuGlobe, LuYoutube } from "react-icons/lu"
+import { LuChartColumn, LuFigma, LuGlobe, LuYoutube } from "react-icons/lu"
 
 interface ResourceIconProps {
   type:
@@ -74,6 +74,8 @@ export const ResourceIcon = (props: ResourceIconProps) => {
             return <LuGlobe />
           case "youtube":
             return <LuYoutube />
+          case "recharts":
+            return <LuChartColumn />
           default:
             return <IoLink />
         }

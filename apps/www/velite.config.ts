@@ -55,6 +55,7 @@ const docs = defineCollection({
           storybook: s.string().optional(),
           recipe: s.string().optional(),
           ark: s.string().optional(),
+          recharts: s.string().optional(),
         })
         .optional(),
     })
