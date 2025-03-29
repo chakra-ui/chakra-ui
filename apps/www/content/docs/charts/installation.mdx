@@ -1,12 +1,11 @@
 ---
-title: Installation
-description: How to set up the beautiful charts component
+title: Charts
+description: Creating beautiful charts with recharts and Chakra UI
 ---
 
 Charts are designed to look great out of the box, seamlessly integrating with
-other Chakra UI's theming system.
-
-> Good to know: The charts are built on top of [Recharts](https://recharts.org),
+other Chakra UI's theming system. The charts are built on top of
+[recharts](https://recharts.org)
 
 ## Installation
 
@@ -23,6 +22,10 @@ npm i @chakra-ui/charts recharts
 
 ### Import the charts component
 
+In most cases, you will only need to import the `Charts` and `useChart` hooks
+from the `@chakra-ui/charts` package, then combine them with the components
+`recharts`
+
 ```tsx
 import { Charts, useChart } from "@chakra-ui/charts"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
@@ -30,13 +33,23 @@ import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 ### Define chart data
 
+Pass the chart data to the `useChart` hook to create a chart instance.
+
+> Learn more about the [`useChart`](/docs/charts/use-chart) hook.
+
 ```tsx
 const chart = useChart({
-  data: [],
+  data: [
+    { month: "January", value: 100 },
+    { month: "February", value: 200 },
+  ],
 })
 ```
 
 ### Render the chart
+
+Depending on the chart type you need from the `recharts` library, wrap the chart
+component within the `Charts.Root` component.
 
 ```tsx
 <Charts.Root chart={chart}>
@@ -65,10 +78,6 @@ The `useChart` hook provides a `color` function that you can use to query
 semantic colors for the chart component from `recharts`.
 
 ```tsx
-const chart = useChart({
-  data: [],
-})
-
 <CartesianGrid stroke={chart.color("border.muted")} />
 ```
 
@@ -78,20 +87,10 @@ The `useChart` hook provides a `formatDate` and `formatNumber` function that you
 can use to format the date and number respectively. This is useful for
 formatting the x, y axis labels and tooltips.
 
-Here's an example of the `formatDate` function:
-
 ```tsx
-const chart = useChart({
-  data: [],
-})
+// format the x-axis labels
+<XAxis tickFormatter={chart.formatDate({ month: "short", day: "2-digit" })} />
 
-<XAxis
-  tickFormatter={chart.formatDate({ month: "short", day: "2-digit" })}
-/>
-```
-
-Here's an example of the `formatNumber` function:
-
-```tsx
+// format the y-axis labels
 <YAxis tickFormatter={chart.formatNumber({ maximumFractionDigits: 1 })} />
 ```

@@ -22,8 +22,6 @@ export const Pre = (props: BoxProps) => {
           letterSpacing: "inherit",
           borderWidth: "inherit",
           padding: "0",
-          display: "flex",
-          flexDirection: "column",
         },
       }}
     />

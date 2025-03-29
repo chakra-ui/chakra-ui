@@ -28,6 +28,17 @@ const chart = useChart({
 })
 ```
 
+## Series
+
+### `getKey`
+
+Returns the key for a given series item. It's an identity function but provides
+a **typesafe** way to access the series data.
+
+```tsx
+const key = chart.getKey("revenue")
+```
+
 ## Aggregation
 
 ### `getTotal`

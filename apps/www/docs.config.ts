@@ -179,7 +179,6 @@ const docsLinks: NavItem = {
       items: [
         {
           title: "Overview",
-          url: "overview",
           items: [
             { title: "Installation", url: "installation" },
             { title: "useChart", url: "use-chart" },
