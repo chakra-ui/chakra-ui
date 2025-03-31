@@ -9,8 +9,7 @@ other Chakra UI's theming system. The charts are built on top of
 
 ## Installation
 
-Run the following command to install the charts component and its peer
-dependencies.
+Run the following command to install the charts and its peer dependencies.
 
 ```bash
 npm i @chakra-ui/charts recharts
@@ -22,12 +21,11 @@ npm i @chakra-ui/charts recharts
 
 ### Import the charts component
 
-In most cases, you will only need to import the `Charts` and `useChart` hooks
-from the `@chakra-ui/charts` package, then combine them with the components
-`recharts`
+In most cases, you need to import the `Chart` and `useChart` hook from the
+`@chakra-ui/charts` package, then combine them with the components `recharts`
 
 ```tsx
-import { Charts, useChart } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 ```
 
@@ -49,10 +47,10 @@ const chart = useChart({
 ### Render the chart
 
 Depending on the chart type you need from the `recharts` library, wrap the chart
-component within the `Charts.Root` component.
+component within the `Chart.Root` component.
 
 ```tsx
-<Charts.Root chart={chart}>
+<Chart.Root chart={chart}>
   <BarChart data={chart.data}>
     {chart.series.map((item) => (
       <Bar
@@ -62,7 +60,7 @@ component within the `Charts.Root` component.
       />
     ))}
   </BarChart>
-</Charts.Root>
+</Chart.Root>
 ```
 
 :::

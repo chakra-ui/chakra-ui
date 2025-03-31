@@ -30,12 +30,6 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
 ## Examples
 
-### Multiple
-
-Here's an example of a line chart with multiple series.
-
-<ExampleTabs name="charts/line-chart-multiple" />
-
 ### Axes Label
 
 To add labels to the x and y axes, use the `Label` component from `recharts`.
@@ -57,6 +51,19 @@ Set `dot` and `activeDot` to `false` to hide the dots completely.
 
 <ExampleTabs name="charts/line-chart-no-dots" />
 
+### Point Labels
+
+Render the `LabelList` component from `recharts` inside the `Line` component to
+show labels at each data point.
+
+```tsx
+<Line>
+  <LabelList position="right" offset={10} />
+</Line>
+```
+
+<ExampleTabs name="charts/line-chart-with-point-label" />
+
 ### Gradient
 
 Use the `Chart.Gradient` component to create a gradient. Ensure the `id` is
@@ -70,19 +77,6 @@ unique and used in the `stroke` prop of the `Line` component.
 ```
 
 <ExampleTabs name="charts/line-chart-with-gradient" />
-
-### Point Labels
-
-Render the `LabelList` component from `recharts` inside the `Line` component to
-show labels at each data point.
-
-```tsx
-<Line>
-  <LabelList position="right" offset={10} />
-</Line>
-```
-
-<ExampleTabs name="charts/line-chart-with-point-label" />
 
 ### Dashed
 
@@ -102,6 +96,12 @@ const chart = useChart({
 ```
 
 <ExampleTabs name="charts/line-chart-with-dashed" />
+
+### Multiple
+
+Here's an example of a line chart with multiple series.
+
+<ExampleTabs name="charts/line-chart-multiple" />
 
 ### Legend Interaction
 
@@ -199,8 +199,7 @@ const chart = useChart({
 
 ### Reference Point
 
-To highlight a specific data point, use the reference components from
-`recharts`.
+Use the reference components from `recharts` to highlight a specific data point.
 
 ```tsx
 <ReferenceDot x="August" y={110} r={6} />
@@ -211,8 +210,8 @@ To highlight a specific data point, use the reference components from
 
 ### Value Domain
 
-To set the domain (upper and lower bounds) of the value axis, use the `domain`
-prop in the `YAxis` component.
+Pass the `domain` prop to the `YAxis` component to set the domain (upper and
+lower bounds) of the value axis.
 
 ```tsx /domain: [0, 100]/
 <YAxis domain={[0, 100]} />
@@ -240,7 +239,9 @@ together to create a stunning visualization.
 
 ### Line Types
 
-Here are the different types of line charts you can create:
+Recharts provides flexible support for various kinds of line charts.
+
+Below are the different types of line charts you can create:
 
 <Box mt="12" borderWidth="1px" ps="3" pe="10" py="10" rounded="l2">
   <ExamplePreview name="charts/line-chart-with-types" />
