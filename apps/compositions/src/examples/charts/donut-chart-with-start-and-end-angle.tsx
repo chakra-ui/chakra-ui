@@ -14,7 +14,7 @@ export const DonutChartWithStartAndEndAngle = () => {
   })
 
   return (
-    <Chart.Root boxSize="200px" chart={chart}>
+    <Chart.Root boxSize="200px" chart={chart} mx="auto">
       <PieChart>
         <Tooltip
           cursor={false}

@@ -14,7 +14,7 @@ export const RadialChartWithLabel = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxW="sm" chart={chart} mx="auto">
       <RadialBarChart data={chart.data} innerRadius={30} outerRadius={100}>
         <RadialBar
           isAnimationActive={false}

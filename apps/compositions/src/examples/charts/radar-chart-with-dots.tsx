@@ -16,7 +16,7 @@ export const RadarChartWithDots = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxW="sm" chart={chart} mx="auto">
       <RadarChart data={chart.data}>
         <PolarGrid stroke={chart.color("border")} />
         <PolarAngleAxis dataKey={chart.key("month")} />

@@ -46,7 +46,7 @@ export const DonutChartWithOtherLabel = () => {
   }
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root aspectRatio="square" maxW="sm" chart={chart} mx="auto">
       <PieChart>
         <Tooltip
           cursor={false}
