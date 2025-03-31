@@ -16,7 +16,7 @@ export const BarSegmentWithTooltip = () => {
   return (
     <BarSegment.Root chart={chart}>
       <BarSegment.Content>
-        <BarSegment.Bar showTooltip />
+        <BarSegment.Bar tooltip />
       </BarSegment.Content>
       <BarSegment.Legend showPercent />
     </BarSegment.Root>

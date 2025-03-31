@@ -6,6 +6,7 @@ export {
   BarSegmentValue as Value,
   BarSegmentLegend as Legend,
   BarSegmentReference as Reference,
+  BarSegmentTooltip as Tooltip,
 } from "./bar-segment"
 
 export type {
