@@ -16,7 +16,7 @@ export const RadarChartWithFilledGrid = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxW="sm" chart={chart} mx="auto">
       <RadarChart data={chart.data}>
         <PolarGrid
           stroke="none"

@@ -31,6 +31,7 @@ const SparkLine = () => {
       { value: 12 },
       { value: 15 },
     ],
+    series: [{ color: "teal.solid" }],
   })
 
   return (

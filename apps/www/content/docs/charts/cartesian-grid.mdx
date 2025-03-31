@@ -8,8 +8,8 @@ component.
 
 :::note
 
-The charts component is built on top of [Recharts](https://recharts.org), so you
-should also check their documentation for more details.
+The charts component is built on top of [Recharts](https://recharts.org). For
+advanced usage, refer to their documentation.
 
 :::
 
@@ -27,8 +27,8 @@ This will render a default grid with light gray lines on both the X and Y axes.
 
 ## Customize Stroke
 
-You can modify the appearance of the grid lines using `stroke`,
-`strokeDasharray`, and `opacity`
+Modify the appearance of the grid lines using `stroke`, `strokeDasharray`, and
+`opacity`
 
 ```tsx
 <CartesianGrid stroke="#ccc" strokeDasharray="3 3" opacity={0.5} />
@@ -54,8 +54,8 @@ To control whether horizontal or vertical lines are displayed:
 
 ## Remove Grid Lines
 
-If you want to remove the grid completely, simply omit the `CartesianGrid`
-component or explicitly hide both horizontal and vertical lines:
+To remove the grid completely, simply omit the `CartesianGrid` component or
+explicitly hide both horizontal and vertical lines:
 
 ```tsx
 <CartesianGrid horizontal={false} vertical={false} />
