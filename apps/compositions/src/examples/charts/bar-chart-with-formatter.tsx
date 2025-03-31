@@ -18,7 +18,7 @@ export const BarChartWithFormatter = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
@@ -38,7 +38,7 @@ export const BarChartWithFormatter = () => {
         />
         <Tooltip
           cursor={{ fill: chart.color("bg.muted") }}
-          animationDuration={100}
+          animationDuration={0}
           content={<Chart.Tooltip />}
         />
         {chart.series.map((item) => (

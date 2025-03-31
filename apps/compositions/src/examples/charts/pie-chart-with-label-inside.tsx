@@ -1,9 +1,9 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import { Cell, LabelList, Pie, PieChart, Tooltip } from "recharts"
 
-export const DonutWithStartAndEndAngle = () => {
+export const PieChartWithLabelInside = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -14,7 +14,7 @@ export const DonutWithStartAndEndAngle = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root boxSize="320px" mx="auto" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
@@ -22,15 +22,11 @@ export const DonutWithStartAndEndAngle = () => {
           content={<Chart.Tooltip hideLabel />}
         />
         <Pie
-          innerRadius={60}
-          outerRadius={100}
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
-          nameKey="name"
-          startAngle={180}
-          endAngle={0}
         >
+          <LabelList position="inside" fill="white" stroke="none" />
           {chart.data.map((item) => (
             <Cell key={item.name} fill={chart.color(item.color)} />
           ))}

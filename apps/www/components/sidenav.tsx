@@ -1,5 +1,6 @@
 import { Badge, BadgeProps, HStack, Stack, StackProps } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
+import { StatusBadge } from "./status-badge"
 
 interface SideNavItem {
   title: React.ReactNode
@@ -14,17 +15,6 @@ interface SideNavProps {
   status?: string
   items: Array<SideNavItem>
 }
-
-const StatusBadge = (props: BadgeProps) => (
-  <Badge
-    size="xs"
-    textStyle="xs"
-    variant="solid"
-    colorPalette="teal"
-    textTransform="capitalize"
-    {...props}
-  />
-)
 
 const SideNavItem = (props: StackProps) => {
   return (

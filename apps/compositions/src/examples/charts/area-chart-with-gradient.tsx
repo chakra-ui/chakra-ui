@@ -31,9 +31,13 @@ export const AreaChartWithGradient = () => {
   })
 
   return (
-    <Chart.Root maxW="400px" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart data={chart.data}>
-        <CartesianGrid stroke={chart.color("border")} vertical={false} />
+        <CartesianGrid
+          stroke={chart.color("border")}
+          vertical={false}
+          strokeDasharray="3 3"
+        />
         <XAxis
           dataKey={chart.key("month")}
           tickLine={false}
@@ -54,8 +58,8 @@ export const AreaChartWithGradient = () => {
             <Chart.Gradient
               id={`${item.name}-gradient`}
               stops={[
-                { offset: "0%", color: item.color, opacity: 1 },
-                { offset: "100%", color: item.color, opacity: 0.1 },
+                { offset: "0%", color: item.color, opacity: 0.3 },
+                { offset: "100%", color: item.color, opacity: 0.05 },
               ]}
             />
           </defs>

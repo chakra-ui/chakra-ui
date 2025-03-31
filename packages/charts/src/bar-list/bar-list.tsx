@@ -68,6 +68,9 @@ export function BarListTooltip(props: BarListTooltipProps) {
   const { payload, labelFormatter, ...rest } = props
   const chart = React.useContext(ChartContext)
   const formatter = labelFormatter || chart.formatNumber({ style: "decimal" })
+
+  if (!payload || chart.highlightedSeries !== payload.name) return null
+
   return (
     <AbsoluteCenter
       display={{ base: "none", _groupHover: "block" }}
@@ -92,12 +95,12 @@ export function BarListTooltip(props: BarListTooltipProps) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BarListBarProps extends StackProps {
-  showTooltip?: boolean
+  tooltip?: boolean | ((props: BarListTooltipProps) => React.ReactNode)
   label?: (props: { payload: BarListData; index: number }) => React.ReactNode
 }
 
 export function BarListBar(props: BarListBarProps) {
-  const { label, showTooltip, ...rest } = props
+  const { label, tooltip, ...rest } = props
 
   const chart = React.useContext(ChartContext)
   const getPercent = (value: number) =>
@@ -116,17 +119,18 @@ export function BarListBar(props: BarListBarProps) {
           gap="8"
           _hover={{ bg: "bg.subtle" }}
           onMouseMove={() => {
-            if (!showTooltip) return
+            if (!tooltip) return
             if (chart.highlightedSeries === item.name) return
             chart.setHighlightedSeries(item.name)
           }}
           onMouseLeave={() => {
-            if (!showTooltip) return
+            if (!tooltip) return
             chart.setHighlightedSeries(null)
           }}
         >
           <Box pos="relative" flex="1" className="group">
-            {showTooltip && chart.highlightedSeries === item.name && (
+            {typeof tooltip === "function" ? tooltip({ payload: item }) : null}
+            {typeof tooltip === "boolean" && tooltip && (
               <BarListTooltip payload={item} />
             )}
             <Box

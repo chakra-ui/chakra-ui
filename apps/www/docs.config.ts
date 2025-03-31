@@ -12,7 +12,7 @@ const docsLinks: NavItem = {
             { title: "Installation", url: "installation" },
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
-            { title: "LLMs.txt", url: "llms", status: "new" },
+            { title: "LLMs.txt", url: "llms" },
             { title: "Contributing", url: "contributing" },
             { title: "Showcase", url: "/showcase", external: true },
           ],
@@ -167,6 +167,38 @@ const docsLinks: NavItem = {
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
             { title: "Visually Hidden", url: "visually-hidden" },
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Charts",
+      url: "charts",
+      status: "beta",
+      items: [
+        {
+          title: "Overview",
+          items: [
+            { title: "Installation", url: "installation" },
+            { title: "useChart", url: "use-chart" },
+            { title: "Axis (X and Y)", url: "axes" },
+            { title: "Cartesian Grid", url: "cartesian-grid" },
+          ],
+        },
+        {
+          title: "Charts",
+          items: [
+            { title: "Area Chart", url: "area-chart" },
+            { title: "Bar Chart", url: "bar-chart" },
+            { title: "Bar List", url: "bar-list" },
+            { title: "Bar Segment", url: "bar-segment" },
+            { title: "Donut Chart", url: "donut-chart" },
+            { title: "Line Chart", url: "line-chart" },
+            { title: "Pie Chart", url: "pie-chart" },
+            { title: "Radar Chart", url: "radar-chart" },
+            { title: "Scatter Chart", url: "scatter-chart" },
+            { title: "Sparkline", url: "sparkline" },
           ],
         },
       ],

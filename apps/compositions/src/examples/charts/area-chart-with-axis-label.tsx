@@ -23,7 +23,7 @@ export const AreaChartWithAxisLabel = () => {
   })
 
   return (
-    <Chart.Root maxW="400px" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart
         accessibilityLayer
         data={chart.data}

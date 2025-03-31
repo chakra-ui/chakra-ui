@@ -1,14 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  LabelList,
-  Tooltip,
-} from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
 
 export const BarChartFillWithValue = () => {
   const chart = useChart({
@@ -25,25 +18,22 @@ export const BarChartFillWithValue = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data} margin={{ top: 30 }}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
-        <Tooltip
-          cursor={{ fill: chart.color("bg.muted") }}
-          content={<Chart.Tooltip hideLabel />}
-        />
         {chart.series.map((item) => (
           <Bar
             isAnimationActive={false}
             key={item.name}
+            radius={4}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
           >
             <LabelList
               position="top"
-              dataKey={chart.key("name")}
-              formatter={(value: string) => value.replace("Page ", "")}
-              fillOpacity={1}
+              dataKey={chart.key("views")}
+              offset={10}
+              style={{ fontWeight: "500" }}
             />
             {chart.data.map((item) => (
               <Cell

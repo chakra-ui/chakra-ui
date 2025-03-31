@@ -36,4 +36,13 @@ const components = docs
     category: "Component",
   }))
 
-export const data = { getStarted, styling, theming, components }
+const charts = docs
+  .filter((page) => page.category.startsWith("docs/charts"))
+  .map((page) => ({
+    label: page.title === "Charts" ? "Get Started" : page.title,
+    value: page.slug,
+    description: page.description,
+    category: "Charts",
+  }))
+
+export const data = { getStarted, styling, theming, components, charts }

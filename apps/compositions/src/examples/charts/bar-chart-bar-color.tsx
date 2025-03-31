@@ -14,7 +14,7 @@ export const BarChartBarColor = () => {
   })
 
   return (
-    <Chart.Root maxW="xl" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
@@ -24,11 +24,7 @@ export const BarChartBarColor = () => {
           domain={[0, 100]}
           tickFormatter={(value) => `${value}%`}
         />
-        <Bar
-          isAnimationActive={false}
-          barSize={40}
-          dataKey={chart.key("allocation")}
-        >
+        <Bar isAnimationActive={false} dataKey={chart.key("allocation")}>
           {chart.data.map((item) => (
             <Cell key={item.type} fill={chart.color(item.color)} />
           ))}

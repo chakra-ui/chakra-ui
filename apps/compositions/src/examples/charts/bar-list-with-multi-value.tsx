@@ -21,7 +21,7 @@ export const BarListWithMultiValue = () => {
     chart.getValuePercent("value", value).toFixed(2)
 
   return (
-    <BarList.Root chart={chart} maxW="md">
+    <BarList.Root chart={chart}>
       <BarList.Content>
         <BarList.Label title="Search Engine" flex="1">
           <BarList.Bar />

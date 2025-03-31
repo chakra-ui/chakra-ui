@@ -18,10 +18,10 @@ export const BarListWithTooltip = () => {
   })
 
   return (
-    <BarList.Root chart={chart} maxW="sm">
+    <BarList.Root chart={chart}>
       <BarList.Content>
         <BarList.Label title="Search Engine" flex="1">
-          <BarList.Bar showTooltip />
+          <BarList.Bar tooltip />
         </BarList.Label>
         <BarList.Label title="Downloads" titleAlignment="end">
           <BarList.Value />

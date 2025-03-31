@@ -23,7 +23,7 @@ const rawData: DataItem[] = [
 const threshold = 100
 
 // Group items with value < 100 into "Other"
-const processedData = rawData.reduce<DataItem[]>((acc, item) => {
+const data = rawData.reduce<DataItem[]>((acc, item) => {
   if (item.value >= threshold) {
     acc.push(item)
   } else {
@@ -37,8 +37,8 @@ const processedData = rawData.reduce<DataItem[]>((acc, item) => {
   return acc
 }, [])
 
-export const DonutWithOtherLabel = () => {
-  const chart = useChart({ data: processedData })
+export const DonutChartWithOtherLabel = () => {
+  const chart = useChart({ data: data })
 
   const label = (entry: DataItem) => {
     const percent = chart.getValuePercent("value", entry.value)
@@ -46,7 +46,7 @@ export const DonutWithOtherLabel = () => {
   }
 
   return (
-    <Chart.Root aspectRatio="square" maxW="sm" chart={chart}>
+    <Chart.Root aspectRatio="square" maxW="sm" chart={chart} mx="auto">
       <PieChart>
         <Tooltip
           cursor={false}

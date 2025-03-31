@@ -1,0 +1,127 @@
+---
+title: Axis
+description: How to customize the axis of the charts component
+---
+
+This guide will show you how to customize the x and y axis of the charts
+component.
+
+:::note
+
+The charts component is built on top of [Recharts](https://recharts.org). For
+advanced usage, refer to their documentation.
+
+:::
+
+## X-Axis
+
+### Custom Tick Formatting
+
+To format the labels on the X-axis (e.g., abbreviate months from `January` to
+`Jan` based on locale):
+
+```tsx
+<XAxis dataKey="date" tickFormatter={chart.formatDate({ month: "short" })} />
+```
+
+### Rotate X-Axis Labels
+
+If labels overlap, rotate them for better readability:
+
+```tsx
+<XAxis dataKey="name" angle={-45} textAnchor="end" />
+```
+
+### Adjust X-Axis Padding
+
+Control the spacing between the first and last tick labels:
+
+```tsx
+<XAxis dataKey="name" padding={{ left: 20, right: 20 }} />
+```
+
+### Hide X-Axis
+
+If you need to remove the X-axis completely:
+
+```tsx
+<XAxis hide />
+```
+
+### Custom X-Axis Labels
+
+Render custom labels using a function:
+
+```tsx
+<XAxis dataKey="name" tick={{ fontSize: 12, fill: "blue" }} />
+```
+
+## Y-Axis
+
+### Set Domain
+
+Define the minimum and maximum values manually:
+
+```tsx
+<YAxis domain={[0, "dataMax + 100"]} />
+```
+
+### Format Labels
+
+For example, converting values to percentages:
+
+```tsx
+<YAxis tickFormatter={(value) => `${value}%`} />
+```
+
+### Adjust Width
+
+Control the space allocated to Y-axis labels:
+
+```tsx
+<YAxis width={50} />
+```
+
+### Hide Y-Axis
+
+To remove the Y-axis from the chart:
+
+```tsx
+<YAxis hide />
+```
+
+### Custom Grid Lines
+
+Enable or remove grid lines tied to the Y-axis:
+
+```tsx
+<YAxis tickLine={false} axisLine={false} />
+```
+
+## Additional Customizations
+
+### Multiple X or Y Axes
+
+Overlay multiple axes in a single chart:
+
+```tsx
+<YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+<YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+```
+
+### Reference Lines
+
+Highlight a specific value with a reference line:
+
+```tsx
+<ReferenceLine y={1000} stroke="red" label="Threshold" />
+```
+
+### Axis Ticks and Lines
+
+Remove the tick and axis lines by setting them to false.
+
+```tsx
+<XAxis tickLine={false} axisLine={false} />
+<YAxis tickLine={false} axisLine={false} />
+```

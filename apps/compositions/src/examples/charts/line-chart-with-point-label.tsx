@@ -24,7 +24,7 @@ export const LineChartWithPointLabel = () => {
   })
 
   return (
-    <Chart.Root maxW="lg" chart={chart}>
+    <Chart.Root maxH="md" chart={chart}>
       <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>
         <CartesianGrid
           stroke={chart.color("border")}
@@ -46,14 +46,16 @@ export const LineChartWithPointLabel = () => {
           dataKey={chart.key("uv")}
           fill={chart.color("teal.solid")}
           stroke={chart.color("teal.solid")}
-          activeDot={{ stroke: chart.color("teal.solid") }}
           strokeWidth={2}
         >
           <LabelList
-            dataKey="uv"
+            dataKey={chart.key("uv")}
             position="right"
             offset={10}
-            style={{ fill: chart.color("fg") }}
+            style={{
+              fontWeight: "600",
+              fill: chart.color("fg"),
+            }}
           />
         </Line>
       </LineChart>

@@ -27,7 +27,7 @@ export const BarChartLegendPosition = () => {
   })
 
   return (
-    <Chart.Root chart={chart}>
+    <Chart.Root chart={chart} maxH="sm">
       <BarChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis

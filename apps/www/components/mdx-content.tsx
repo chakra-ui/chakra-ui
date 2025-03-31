@@ -1,4 +1,4 @@
-import { Kbd } from "@chakra-ui/react"
+import { Box, Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-doc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
@@ -42,6 +42,7 @@ import { P, Strong } from "./mdx/text"
 import { FeaturedVideo } from "./mdx/video-card"
 
 const sharedComponents = {
+  Box,
   a: Anchor,
   blockquote: Blockquote,
   img: Img,

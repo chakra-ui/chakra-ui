@@ -14,7 +14,7 @@ export const RadialChartWithLegend = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxW="sm" chart={chart} mx="auto">
       <RadialBarChart data={chart.data} barSize={20}>
         <Tooltip cursor={false} content={<Chart.Tooltip nameKey="month" />} />
         <Legend content={<Chart.Legend nameKey="month" />} />

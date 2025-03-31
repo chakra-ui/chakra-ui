@@ -14,7 +14,7 @@ export const PieChartWithPointLabel = () => {
   })
 
   return (
-    <Chart.Root aspectRatio="square" maxH="sm" chart={chart}>
+    <Chart.Root boxSize="320px" mx="auto" chart={chart}>
       <PieChart>
         <Tooltip
           cursor={false}
@@ -25,15 +25,15 @@ export const PieChartWithPointLabel = () => {
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
-          nameKey="name"
           labelLine={{ stroke: chart.color("border.emphasized") }}
           label={{
             fill: chart.color("fg.muted"),
+            style: { fontWeight: "600" },
           }}
         >
-          {chart.data.map((item) => {
-            return <Cell key={item.name} fill={chart.color(item.color)} />
-          })}
+          {chart.data.map((item) => (
+            <Cell key={item.name} fill={chart.color(item.color)} />
+          ))}
         </Pie>
       </PieChart>
     </Chart.Root>

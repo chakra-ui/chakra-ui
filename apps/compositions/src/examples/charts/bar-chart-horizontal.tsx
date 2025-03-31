@@ -28,7 +28,7 @@ export const BarChartHorizontal = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="md" chart={chart}>
       <BarChart layout="vertical" data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis type="number" axisLine={false} tickLine={false} />
@@ -36,7 +36,7 @@ export const BarChartHorizontal = () => {
           type="category"
           dataKey={chart.key("month")}
           orientation="left"
-          stroke={chart.color("border.emphasized")}
+          stroke={chart.color("border")}
           tickFormatter={(value) => value.slice(0, 3)}
         />
         <Tooltip
@@ -47,6 +47,7 @@ export const BarChartHorizontal = () => {
         <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Bar
+            barSize={30}
             isAnimationActive={false}
             key={item.name}
             dataKey={chart.key(item.name)}

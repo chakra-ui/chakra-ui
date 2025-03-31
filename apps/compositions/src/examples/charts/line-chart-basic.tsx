@@ -1,37 +1,23 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 export const LineChartBasic = () => {
   const chart = useChart({
     data: [
-      { windows: 186, mac: 80, linux: 120, month: "January" },
-      { windows: 165, mac: 95, linux: 110, month: "February" },
-      { windows: 190, mac: 87, linux: 125, month: "March" },
-      { windows: 195, mac: 88, linux: 130, month: "May" },
-      { windows: 182, mac: 98, linux: 122, month: "June" },
-      { windows: 175, mac: 90, linux: 115, month: "August" },
-      { windows: 180, mac: 86, linux: 124, month: "October" },
-      { windows: 185, mac: 91, linux: 126, month: "November" },
+      { sale: 10, month: "January" },
+      { sale: 95, month: "February" },
+      { sale: 87, month: "March" },
+      { sale: 88, month: "May" },
+      { sale: 65, month: "June" },
+      { sale: 90, month: "August" },
     ],
-    series: [
-      { name: "windows", color: "teal.solid" },
-      { name: "mac", color: "purple.solid" },
-      { name: "linux", color: "blue.solid" },
-    ],
+    series: [{ name: "sale", color: "teal.solid" }],
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <LineChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
@@ -44,24 +30,21 @@ export const LineChartBasic = () => {
           axisLine={false}
           tickLine={false}
           tickMargin={10}
-          dataKey={chart.key("windows")}
           stroke={chart.color("border")}
         />
         <Tooltip
           animationDuration={100}
-          cursor={{ stroke: chart.color("border") }}
+          cursor={false}
           content={<Chart.Tooltip />}
         />
-        <Legend verticalAlign="top" align="right" content={<Chart.Legend />} />
         {chart.series.map((item) => (
           <Line
             key={item.name}
             isAnimationActive={false}
             dataKey={chart.key(item.name)}
-            fill={chart.color(item.color)}
             stroke={chart.color(item.color)}
-            activeDot={{ stroke: chart.color(item.color) }}
             strokeWidth={2}
+            dot={false}
           />
         ))}
       </LineChart>

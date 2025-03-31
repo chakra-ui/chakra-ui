@@ -1,0 +1,90 @@
+---
+title: Bar List
+description:
+  Used to display categorical data with horizontal bars, showing comparisons
+  between different categories or items
+links:
+  storybook: charts-bar-list--basic
+---
+
+<ExampleTabs name="charts/bar-list-basic" />
+
+## Usage
+
+```tsx
+import { BarList, Chart, useChart } from "@chakra-ui/charts"
+```
+
+```tsx
+<BarList.Root>
+  <BarList.Content>
+    <BarList.Bar />
+    <BarList.Value />
+  </BarList.Content>
+</BarList.Root>
+```
+
+## Examples
+
+### Sort Order
+
+Set the `sort` key to `{ by: "value", direction: "asc" }` to sort the bars in
+ascending order.
+
+```ts
+const chart = useChart<BarListData>({
+  sort: { by: "value", direction: "asc" },
+  // ...
+})
+```
+
+<ExampleTabs name="charts/bar-list-ascending" />
+
+### Format Value
+
+Pass the `valueFormatter` prop to the `BarList.Value` component to format the
+value of the bars.
+
+```tsx /valueFormatter={(value) => value.toLocaleString()}/
+<BarList.Value valueFormatter={(value) => value.toLocaleString()} />
+```
+
+<ExampleTabs name="charts/bar-list-with-formatter" />
+
+### Labels
+
+To add name and value labels to the bars, use the `BarList.Label` component.
+
+```tsx
+<BarList.Label title="Search Engine" flex="1">
+  <BarList.Bar />
+</BarList.Label>
+```
+
+<ExampleTabs name="charts/bar-list-with-label" />
+
+### Link
+
+To make the bars render a link, pass the `label` prop to the `BarList.Bar`
+component.
+
+```tsx
+<BarList.Bar
+  label={({ payload }) => <a href={payload.href}>{payload.name}</a>}
+/>
+```
+
+<ExampleTabs name="charts/bar-list-with-link" />
+
+### Tooltip
+
+Pass the `tooltip` prop to the `BarList.Bar` component to show a tooltip when
+hovering over the bar.
+
+<ExampleTabs name="charts/bar-list-with-tooltip" />
+
+### Multiple values
+
+Here's an example of how to render the value and percent of the bars.
+
+<ExampleTabs name="charts/bar-list-with-multi-value" />

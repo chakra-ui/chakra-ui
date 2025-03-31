@@ -32,7 +32,7 @@ export const AreaChartWithReferenceLines = () => {
   })
 
   return (
-    <Chart.Root maxW="sm" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <AreaChart data={chart.data}>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <YAxis stroke={chart.color("border")} />

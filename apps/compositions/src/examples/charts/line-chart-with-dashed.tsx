@@ -22,7 +22,7 @@ export const LineChartWithDashed = () => {
   })
 
   return (
-    <Chart.Root maxW="lg" chart={chart}>
+    <Chart.Root maxH="sm" chart={chart}>
       <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>
         <CartesianGrid
           stroke={chart.color("border")}

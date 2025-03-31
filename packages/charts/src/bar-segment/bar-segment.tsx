@@ -1,6 +1,6 @@
 "use client"
 
-import type { StackProps, Tokens } from "@chakra-ui/react"
+import type { BoxProps, StackProps, Tokens } from "@chakra-ui/react"
 import {
   Box,
   ColorSwatch,
@@ -89,11 +89,11 @@ export function BarSegmentLabel(props: BarSegmentLabelProps) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BarSegmentBarProps extends StackProps {
-  showTooltip?: boolean
+  tooltip?: boolean | ((props: BarSegmentTooltipProps) => React.ReactNode)
 }
 
 export function BarSegmentBar(props: BarSegmentBarProps) {
-  const { showTooltip, children, ...rest } = props
+  const { tooltip, children, ...rest } = props
   const chart = React.useContext(ChartContext)
   const getPercent = (value: number) => chart.getValuePercent("value", value)
   return (
@@ -108,14 +108,17 @@ export function BarSegmentBar(props: BarSegmentBarProps) {
           bg={item.color}
           rounded="l1"
           onMouseMove={() => {
-            if (!showTooltip) return
+            if (!tooltip) return
             chart.setHighlightedSeries(item.name)
           }}
           style={{
             ["--bar-percent" as string]: `${getPercent(item.value)}%`,
           }}
         >
-          {showTooltip && <BarSegmentTooltip payload={item} />}
+          {typeof tooltip === "function" ? tooltip({ payload: item }) : null}
+          {typeof tooltip === "boolean" && tooltip && (
+            <BarSegmentTooltip payload={item} />
+          )}
         </Box>
       ))}
       {children}
@@ -125,13 +128,13 @@ export function BarSegmentBar(props: BarSegmentBarProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BarSegmentReferenceProps {
+export interface BarSegmentReferenceProps extends BoxProps {
   value: number
   label?: React.ReactNode
 }
 
 export function BarSegmentReference(props: BarSegmentReferenceProps) {
-  const { value, label } = props
+  const { value, label, ...rest } = props
   const chart = React.useContext(ChartContext)
   const getPercent = (value: number) => chart.getValuePercent("value", value)
   return (
@@ -141,6 +144,7 @@ export function BarSegmentReference(props: BarSegmentReferenceProps) {
       insetStart={`var(--bar-percent)`}
       bottom="0"
       style={{ ["--bar-percent" as string]: `${getPercent(value)}%` }}
+      {...rest}
     >
       <Flex gap="2" h="full">
         <Span
@@ -232,18 +236,15 @@ export function BarSegmentLegend(props: BarSegmentLegendProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BarSegmentTooltipProps {
+export interface BarSegmentTooltipProps extends StackProps {
   payload: BarSegmentData
 }
 
 export function BarSegmentTooltip(props: BarSegmentTooltipProps) {
-  const { payload } = props
+  const { payload, ...rest } = props
 
   const chart = React.useContext(ChartContext)
   if (!payload || chart.highlightedSeries !== payload.name) return null
-
-  const item = chart.data.find((d) => d.name === payload.name)
-  if (!item) return null
 
   const formatter = chart.formatNumber({ maximumFractionDigits: 2 })
 
@@ -260,16 +261,16 @@ export function BarSegmentTooltip(props: BarSegmentTooltipProps) {
       gap="1.5"
       rounded="l2"
       shadow="md"
-      {...props}
+      {...rest}
     >
       <ColorSwatch
-        value={chart.color(item.color)}
+        value={chart.color(payload.color)}
         boxSize="0.82em"
         rounded="full"
       />
-      <Span>{item.name}</Span>
+      <Span>{payload.name}</Span>
       <Span fontFamily="mono" fontWeight="medium">
-        {formatter(item.value)}
+        {formatter(payload.value)}
       </Span>
     </HStack>
   )

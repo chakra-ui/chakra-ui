@@ -3,11 +3,11 @@
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Card, Stat } from "@chakra-ui/react"
 import { LuGlobe } from "react-icons/lu"
-import { Area, AreaChart, Tooltip } from "recharts"
+import { Area, AreaChart } from "recharts"
 
-export const SparklineWithStat = () => {
+export const SparklineCompositionStat = () => {
   return (
-    <Card.Root>
+    <Card.Root maxW="sm" size="sm" overflow="hidden">
       <Card.Body>
         <Stat.Root>
           <Stat.Label>
@@ -16,28 +16,30 @@ export const SparklineWithStat = () => {
           <Stat.ValueText>192.1k</Stat.ValueText>
         </Stat.Root>
       </Card.Body>
-      <SparkLine data={[10, 16, 19, 15, 12, 15, 10, 18]} />
+      <SparkLine />
     </Card.Root>
   )
 }
 
-const SparkLine = (props: { data: number[] }) => {
+const SparkLine = () => {
   const chart = useChart({
-    data: props.data.map((value) => ({ value })),
-    series: [{ name: "value", color: "teal.solid" }],
+    data: [
+      { value: 10 },
+      { value: 16 },
+      { value: 19 },
+      { value: 15 },
+      { value: 12 },
+      { value: 15 },
+    ],
+    series: [{ color: "teal.solid" }],
   })
 
   return (
     <Chart.Root height="10" chart={chart}>
-      <AreaChart data={chart.data}>
-        <Tooltip
-          position={{ y: -24 }}
-          animationDuration={0}
-          cursor={{ stroke: chart.color("teal.solid"), strokeWidth: 2 }}
-          content={
-            <Chart.Tooltip hideIndicator hideLabel hideSeriesLabel fitContent />
-          }
-        />
+      <AreaChart
+        data={chart.data}
+        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+      >
         {chart.series.map((item) => (
           <Area
             key={item.name}
