@@ -43,14 +43,15 @@ export async function buildProject(options: BuildOptions) {
     //
   } else {
     //
-    const build = await rollup.rollup(config)
 
     const outputs: rollup.OutputOptions[] = Array.isArray(config.output)
       ? config.output
       : [config.output!]
 
-    await Promise.all(outputs.map((output) => build.write(output)))
-
+    outputs.map(async (output) => {
+      const build = await rollup.rollup(config)
+      await build.write(output)
+    })
     console.log(`[${name}][JS] Generated CJS and ESM files ✅`)
 
     if (dts) {
