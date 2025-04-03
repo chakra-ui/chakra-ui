@@ -40,16 +40,14 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
         }
       },
     },
-    {
-      name: "@codecov/rollup-plugin",
-      ...codecovRollupPlugin({
-        bundleName: packageJson.name,
-        // Only upload bundle stats if the token is set
-        enableBundleAnalysis: !!process.env.CODECOV_TOKEN,
-        uploadToken: process.env.CODECOV_TOKEN,
-        gitService: "github",
-      }),
-    },
+    // @ts-expect-error - @codecov/rollup-plugin has an underlying type issue
+    codecovRollupPlugin({
+      bundleName: packageJson.name,
+      // Only upload bundle stats if the token is set
+      enableBundleAnalysis: !!process.env.CODECOV_TOKEN,
+      uploadToken: process.env.CODECOV_TOKEN,
+      gitService: "github",
+    }),
   ]
 
   const deps = [
