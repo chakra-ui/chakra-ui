@@ -48,10 +48,11 @@ export async function buildProject(options: BuildOptions) {
       ? config.output
       : [config.output!]
 
-    outputs.map(async (output) => {
+    for (const output of outputs) {
       const build = await rollup.rollup(config)
       await build.write(output)
-    })
+    }
+
     console.log(`[${name}][JS] Generated CJS and ESM files ✅`)
 
     if (dts) {
