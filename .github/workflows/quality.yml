@@ -20,6 +20,8 @@ jobs:
         uses: ./.github/composite-actions/install
 
       - name: Build packages
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: pnpm build
 
   tests:
