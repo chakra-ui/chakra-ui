@@ -48,8 +48,8 @@ export async function buildProject(options: BuildOptions) {
       ? config.output
       : [config.output!]
 
+    const build = await rollup.rollup(config)
     for (const output of outputs) {
-      const build = await rollup.rollup(config)
       await build.write(output)
     }
 
