@@ -43,8 +43,9 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
     // @ts-expect-error - @codecov/rollup-plugin has an underlying type issue
     codecovRollupPlugin({
       bundleName: packageJson.name,
-      // Only upload bundle stats if the token is set
-      enableBundleAnalysis: !!process.env.CODECOV_TOKEN,
+      // we want to always have this set to true as with forked uploads the token won't
+      // be present but will use a tokenless upload
+      enableBundleAnalysis: true,
       uploadToken: process.env.CODECOV_TOKEN,
       gitService: "github",
     }),
