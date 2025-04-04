@@ -110,7 +110,7 @@
     "rollup": "4.22.4",
     "rollup-plugin-esbuild": "6.1.1",
     "rollup-plugin-preserve-directives": "0.4.0",
-    "storybook": "8.6.9",
+    "storybook": "8.6.12",
     "tsup": "8.1.0",
     "tsx": "4.16.2",
     "typescript": "5.8.2",
