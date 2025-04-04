@@ -49,7 +49,7 @@ export async function buildProject(options: BuildOptions) {
       : [config.output!]
 
     await Promise.all(
-      outputs.map(async (output) =>
+      outputs.map((output) =>
         // we need to call getConfig again because we don't want the config to be shared
         // between builds as it is leaking data between builds
         getConfig({ dir, aliases })
