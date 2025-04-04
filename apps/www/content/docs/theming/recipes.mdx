@@ -242,7 +242,7 @@ To use the recipe in a reusable manner, move it to the system theme and add it
 to `theme.recipes` property.
 
 ```tsx title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 const config = defineConfig({
@@ -253,7 +253,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### TypeScript

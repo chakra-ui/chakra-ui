@@ -138,7 +138,7 @@ In most cases, the value of a semantic token references to an existing token.
 To reference a value in a semantic token, use the token reference `{}` syntax.
 
 ```ts
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -155,7 +155,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ## Customizing the semantic tokens
