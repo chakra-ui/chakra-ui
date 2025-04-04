@@ -1,3 +1,4 @@
+import { comboboxAnatomy as arkComboboxAnatomy } from "@ark-ui/react"
 import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion"
 import { createAnatomy } from "@ark-ui/react/anatomy"
 import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
@@ -143,6 +144,8 @@ export const ratingGroupAnatomy =
   arkRatingGroupAnatomy.extendWith("itemIndicator")
 
 export const selectAnatomy = arkSelectAnatomy.extendWith("indicatorGroup")
+
+export const comboboxAnatomy = arkComboboxAnatomy
 
 export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
 
