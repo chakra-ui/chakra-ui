@@ -50,6 +50,8 @@ export async function buildProject(options: BuildOptions) {
 
     await Promise.all(
       outputs.map(async (output) =>
+        // we need to call getConfig again because we don't want the config to be shared
+        // between builds as it is leaking data between builds
         getConfig({ dir, aliases })
           .then((config) => rollup.rollup(config))
           .then((build) => build.write(output)),
