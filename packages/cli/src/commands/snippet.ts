@@ -131,23 +131,29 @@ export const SnippetCommand = new Command("snippet")
                     return
                   }
 
-                  const item = await fetchComposition(id)
+                  try {
+                    const item = await fetchComposition(id)
+                    if (jsx) {
+                      item.file.name = item.file.name.replace(".tsx", ".jsx")
+                      await transformToJsx(item)
+                    }
 
-                  if (jsx) {
-                    item.file.name = item.file.name.replace(".tsx", ".jsx")
-                    await transformToJsx(item)
-                  }
+                    const outPath = join(outdir, item.file.name)
 
-                  const outPath = join(outdir, item.file.name)
-
-                  if (dryRun) {
-                    printFileSync(item)
-                  } else {
-                    await writeFile(
-                      outPath,
-                      item.file.content.replace("compositions/ui", "."),
-                      "utf-8",
-                    )
+                    if (dryRun) {
+                      printFileSync(item)
+                    } else {
+                      await writeFile(
+                        outPath,
+                        item.file.content.replace("compositions/ui", "."),
+                        "utf-8",
+                      )
+                    }
+                  } catch (error) {
+                    if (error instanceof Error) {
+                      p.log.error(error?.message)
+                      process.exit(0)
+                    }
                   }
                 }),
               )
