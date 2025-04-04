@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.15.1
+
+### Patch Changes
+
+- [`e3d7db7`](https://github.com/chakra-ui/chakra-ui/commit/e3d7db72dbe53c159a8813fca05f5472aa21d10f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  backdrop could overlap positioner when reopened quickly
+
 ## 3.15.0
 
 ### Minor Changes
