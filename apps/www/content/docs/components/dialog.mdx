@@ -124,6 +124,17 @@ position the close button outside the dialog component.
 
 <ExampleTabs name="dialog-with-close-outside" />
 
+### Non-Modal Dialog
+
+We don't recommend using a non-modal dialog due to the accessibility concerns
+they present. In event you need it, here's what you can do:
+
+- set the `modal` prop to `false`
+- set `pointerEvents` to `none` on the `Dialog.Positioner` component
+- (optional)set the `closeOnInteractOutside` prop to `false`
+
+<ExampleTabs name="dialog-non-modal" />
+
 ### DataList
 
 Here's an example of how to compose the dialog component with the `DataList`
