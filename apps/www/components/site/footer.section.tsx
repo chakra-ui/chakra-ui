@@ -31,7 +31,6 @@ const linkTree = [
   {
     title: "Community",
     items: [
-      { label: "Team", href: "/team" },
       { label: "Discord", href: "https://discord.gg/chakra-ui" },
       { label: "Twitter", href: "https://x.com/chakra_ui" },
       { label: "GitHub", href: "https://github.com/chakra-ui/chakra-ui" },
