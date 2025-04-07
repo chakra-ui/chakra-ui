@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.15.1
+
+### Patch Changes
+
+- [`dc4915a`](https://github.com/chakra-ui/chakra-ui/commit/dc4915af0b0ada5450acbf861d9e5977d6125e40)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve CLI
+  response when passing an unknown snippet id
+
 ## 3.15.0
 
 ## 3.14.2
