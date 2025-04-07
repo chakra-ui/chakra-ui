@@ -38,8 +38,8 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@types/react-payment-inputs": "1.1.4"
   }
 }

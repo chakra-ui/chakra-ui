@@ -48,7 +48,7 @@ interface StackOptions {
    * If `true`, each stack item will show a separator
    * @type React.ReactElement
    */
-  separator?: React.ReactElement
+  separator?: React.ReactElement<any>
 }
 
 export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}

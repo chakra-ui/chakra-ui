@@ -27,7 +27,7 @@ export async function main() {
     body: JSON.stringify({
       project: "chakra-ui",
       version,
-      url: `https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v${version}.mdx`,
+      url: `https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v3#${version}`,
       discord:
         "https://discordapp.com/channels/660863154703695893/660865232004055050",
       twitter: "https://twitter.com/chakra_ui",
