@@ -133,7 +133,7 @@ const { isValidProperty } = defaultSystem
 
 function shouldForwardProp(prop: string, variantKeys: string[]) {
   const chakraSfp = !variantKeys?.includes(prop) && !isValidProperty(prop)
-  return shouldForwardProp(prop) && chakraSfp
+  return shouldForwardProp(prop) || chakraSfp
 }
 
 const Component = chakra("div", {}, { shouldForwardProp })
