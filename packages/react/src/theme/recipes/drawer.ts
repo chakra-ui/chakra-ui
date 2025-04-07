@@ -12,7 +12,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100vw",
       h: "100dvh",
-      zIndex: "calc(var(--chakra-z-index-modal) - 1)",
+      zIndex: "calc({zIndex.modal} - 1)",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
