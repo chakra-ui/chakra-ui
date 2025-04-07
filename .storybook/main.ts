@@ -1,4 +1,4 @@
-import { StorybookConfig } from "@storybook/react-vite"
+import type { StorybookConfig } from "@storybook/react-vite"
 
 const config: StorybookConfig = {
   stories: ["../packages/react/__stories__/*.stories.tsx"],

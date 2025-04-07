@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "recharts": "2.13.3",
+    "recharts": "2.15.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
