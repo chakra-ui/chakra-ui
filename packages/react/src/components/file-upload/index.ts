@@ -11,13 +11,16 @@ export {
   FileUploadItemSizeText,
   FileUploadItemName,
   FileUploadHiddenInput,
+  FileUploadFileText,
   FileUploadItemGroup,
   FileUploadItemContent,
   FileUploadDropzoneContent,
   FileUploadItemDeleteTrigger,
   FileUploadClearTrigger,
+  FileUploadItems,
   useFileUploadStyles,
   FileUploadContext,
+  FileUploadList,
 } from "./file-upload"
 
 export type {
@@ -31,6 +34,7 @@ export type {
   FileUploadItemPreviewImageProps,
   FileUploadItemSizeTextProps,
   FileUploadItemNameProps,
+  FileUploadFileTextProps,
   FileUploadItemGroupProps,
   FileUploadItemContentProps,
   FileUploadDropzoneContentProps,
@@ -38,7 +42,9 @@ export type {
   FileUploadFileAcceptDetails,
   FileUploadFileRejectDetails,
   FileUploadFileChangeDetails,
+  FileUploadItemsProps,
   FileUploadClearTriggerProps,
+  FileUploadListProps,
 } from "./file-upload"
 
 export { useFileUpload, useFileUploadContext } from "@ark-ui/react/file-upload"

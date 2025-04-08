@@ -1,5 +1,6 @@
 import * as Playground from "@/components/playground"
 import {
+  Avatar,
   Box,
   Button,
   Code,
@@ -10,14 +11,11 @@ import {
   SimpleGrid,
   Spinner,
   Stack,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
+  Tabs,
 } from "@chakra-ui/react"
 import { PaginationBasic } from "compositions/examples/pagination-basic"
 import { StepsBasic } from "compositions/examples/steps-basic"
 import { TimelineBasic } from "compositions/examples/timeline-basic"
-import { Avatar } from "compositions/ui/avatar"
 import { Blockquote } from "compositions/ui/blockquote"
 import { Checkbox } from "compositions/ui/checkbox"
 import {
@@ -50,9 +48,10 @@ const buttonVariants = [
 ] as const
 
 export default async function Page() {
-  const accentColor = cookies().get("chakra-accent-color")
-  const fontFamily = cookies().get("chakra-font")
-  const radius = cookies().get("chakra-radius")
+  const cookieStore = await cookies()
+  const accentColor = cookieStore.get("chakra-accent-color")
+  const fontFamily = cookieStore.get("chakra-font")
+  const radius = cookieStore.get("chakra-radius")
 
   return (
     <Container display="flex" gap="10" maxW="8xl">
@@ -123,20 +122,16 @@ export default async function Page() {
               <For each={["subtle", "solid"]}>
                 {(variant) => (
                   <HStack key={variant}>
-                    <Avatar
-                      variant={variant}
-                      name="Sage Adebayo"
-                      src="https://bit.ly/sage-adebayo"
-                      shape="rounded"
-                      size="lg"
-                    />
-                    <Avatar
-                      name="Dan Abramov"
-                      shape="rounded"
-                      size="lg"
-                      variant={variant}
-                    />
-                    <Avatar size="lg" shape="rounded" variant={variant} />
+                    <Avatar.Root variant={variant} size="lg" shape="rounded">
+                      <Avatar.Image src="https://bit.ly/sage-adebayo" />
+                      <Avatar.Fallback name="Sage Adebayo" />
+                    </Avatar.Root>
+                    <Avatar.Root variant={variant} size="lg" shape="rounded">
+                      <Avatar.Fallback name="Dan Abramov" />
+                    </Avatar.Root>
+                    <Avatar.Root variant={variant} size="lg" shape="rounded">
+                      <Avatar.Fallback />
+                    </Avatar.Root>
                   </HStack>
                 )}
               </For>
@@ -151,13 +146,15 @@ export default async function Page() {
               <For each={["line", "subtle", "enclosed", "outline"]}>
                 {(variant) => (
                   <HStack key={variant}>
-                    <TabsRoot variant={variant} defaultValue="components">
-                      <TabsList>
-                        <TabsTrigger value="components">Components</TabsTrigger>
-                        <TabsTrigger value="hooks">Hooks</TabsTrigger>
-                        <TabsTrigger value="utilities">Utilities</TabsTrigger>
-                      </TabsList>
-                    </TabsRoot>
+                    <Tabs.Root variant={variant} defaultValue="components">
+                      <Tabs.List>
+                        <Tabs.Trigger value="components">
+                          Components
+                        </Tabs.Trigger>
+                        <Tabs.Trigger value="hooks">Hooks</Tabs.Trigger>
+                        <Tabs.Trigger value="utilities">Utilities</Tabs.Trigger>
+                      </Tabs.List>
+                    </Tabs.Root>
                   </HStack>
                 )}
               </For>

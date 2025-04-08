@@ -10,29 +10,26 @@ links:
 
 <ExampleTabs name="qr-code-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`qr-code` snippet
-
-```sh
-npx @chakra-ui/cli snippet add qr-code
-```
-
-The snippet includes a closed component composition for the `QR Code` component.
-
 ## Usage
 
-Learn how to use the `QR Code` component in your project. Let's take a look at
-the most basic example:
-
 ```tsx
-import { QrCode } from "@/components/ui/qr-code"
+import { QrCode } from "@chakra-ui/react"
 ```
 
 ```tsx
-<QrCode value="..." />
+<QrCode.Root value="...">
+  <QrCode.Frame>
+    <QrCode.Pattern />
+  </QrCode.Frame>
+</QrCode.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
@@ -101,11 +98,18 @@ component.
 
 <ExampleTabs name="qr-code-with-spinner" />
 
-### Without Snippet
+### Closed Component
 
-Here's how to setup the QR code without using the snippet.
+Here's how to setup the QR code for a closed component composition.
 
-<ExampleTabs name="qr-code-without-snippet" />
+<ExampleCode name="qr-code-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add qr-code
+```
 
 ## Props
 

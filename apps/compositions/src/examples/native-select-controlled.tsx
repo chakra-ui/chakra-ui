@@ -1,16 +1,13 @@
 "use client"
 
-import {
-  NativeSelectField,
-  NativeSelectRoot,
-} from "compositions/ui/native-select"
+import { NativeSelect } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const NativeSelectControlled = () => {
   const [value, setValue] = useState("")
   return (
-    <NativeSelectRoot size="sm" width="240px">
-      <NativeSelectField
+    <NativeSelect.Root size="sm" width="240px">
+      <NativeSelect.Field
         placeholder="Select option"
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
@@ -19,7 +16,8 @@ export const NativeSelectControlled = () => {
         <option value="vue">Vue</option>
         <option value="angular">Angular</option>
         <option value="svelte">Svelte</option>
-      </NativeSelectField>
-    </NativeSelectRoot>
+      </NativeSelect.Field>
+      <NativeSelect.Indicator />
+    </NativeSelect.Root>
   )
 }

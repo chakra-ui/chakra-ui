@@ -10,52 +10,56 @@ links:
 
 <ExampleTabs name="pin-input-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`pin-input` snippet
-
-```sh
-npx @chakra-ui/cli snippet add pin-input
-```
-
-The snippet includes a closed component composition for the `PinInput`
-component.
-
 ## Usage
 
-```jsx
-import { PinInput } from "@/components/ui/pin-input"
+```tsx
+import { PinInput } from "@chakra-ui/react"
 ```
 
-```jsx
-<PinInput />
+```tsx
+<PinInput.Root>
+  <PinInput.HiddenInput />
+  <PinInput.Control>
+    <PinInput.Input />
+  </PinInput.Control>
+</PinInput.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
 ### Sizes
 
-Use the `size` prop to change the size of the pin input component.
+Pass the `size` prop to the `PinInput.Root` component to change the size of the
+pin input component
 
 <ExampleTabs name="pin-input-with-sizes" />
 
 ### One time code
 
-Use the `otp` prop to make the pin input component behave like a one-time code
-input. This helps improve the user experience when entering OTP codes.
+Pass the `otp` prop to the `PinInput.Root` component to make the pin input
+component behave like a one-time code input. This helps improve the user
+experience when entering OTP codes
 
 <ExampleTabs name="pin-input-with-otp" />
 
 ### Mask
 
-Use the `mask` prop to obscure the entered pin code.
+Pass the `mask` prop to the `PinInput.Root` component to obscure the entered pin
+code
 
 <ExampleTabs name="pin-input-with-mask" />
 
 ### Placeholder
 
-Use the `placeholder` prop to add a placeholder to the pin input component.
+Pass the `placeholder` prop to the `PinInPut.Root` component to add a
+placeholder to the pin input
 
 <ExampleTabs name="pin-input-with-placeholder" />
 
@@ -74,29 +78,47 @@ with `react-hook-form`
 
 ### Controlled
 
-Use the `value` and `onValueChange` props to control the value of the pin input
+Pass the `value` and `onValueChange` props to the `PinInPut.Root` component to
+control the value of the pin input
 
 <ExampleTabs name="pin-input-controlled" />
 
+### Store
+
+An alternative way to control the pin input is to use the `RootProvider`
+component and the `usePinInput` store hook.
+
+This way you can access the pin input state and methods from outside the
+component.
+
+<ExampleTabs name="pin-input-with-store" />
+
 ### Attached
 
-Use the `attached` prop to attach the pin input to the input field
+Pass the `attached` prop to the `PinInput.Root` component to attach the pin
+input to the input field
 
 <ExampleTabs name="pin-input-attached" />
 
 ### Alphanumeric
 
-Use the `type` prop to allow the user to enter alphanumeric characters. Values
-can be either `alphanumeric`, `numeric`, or `alphabetic`
+Pass the `type` prop to the `PinInput.Root` component to allow the user to enter
+alphanumeric characters. Values can be either `alphanumeric`, `numeric`, or
+`alphabetic`
 
 <ExampleTabs name="pin-input-alphanumeric" />
 
-### Without Snippet
+### Closed Component
 
-If you don't want to use the snippet, you can use the `PinInput` component from
-the `@chakra-ui/react` package.
+Here's how to setup the Pin input for a closed component composition.
 
-<ExampleTabs name="pin-input-without-snippet" />
+<ExampleCode name="pin-input-closed-component" />
+
+#### Usage
+
+```tsx
+<PinInput mask />
+```
 
 ## Props
 

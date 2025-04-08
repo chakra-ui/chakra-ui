@@ -1,0 +1,57 @@
+---
+title: Bar Segment
+description:
+  Used to display data as segments within a horizontal bar, showing proportions
+  and part-to-whole relationships between values
+links:
+  storybook: charts-bar-segment--basic
+---
+
+<ExampleTabs name="charts/bar-segment-basic" />
+
+## Usage
+
+```tsx
+import { BarSegment, Chart, useChart } from "@chakra-ui/charts"
+```
+
+```tsx
+<BarSegment.Root>
+  <BarSegment.Content>
+    <BarSegment.Value />
+    <BarSegment.Bar />
+    <BarSegment.Label />
+  </BarSegment.Content>
+</BarSegment.Root>
+```
+
+## Examples
+
+### Bar Size
+
+Pass the `barSize` prop to the `BarSegment.Root` component to configure the size
+of the bar.
+
+<ExampleTabs name="charts/bar-segment-with-bar-size" />
+
+### Legend
+
+Use the `BarSegment.Legend` component to render the legend. You can pass
+`showPercent` and `showValue` to control the visibility of the percentage and
+values.
+
+<ExampleTabs name="charts/bar-segment-with-legend" />
+
+### Tooltip
+
+Pass the `tooltip` prop to the `BarSegment.Bar` component to show a tooltip when
+hovering over the bar.
+
+<ExampleTabs name="charts/bar-segment-with-tooltip" />
+
+### Reference
+
+To reference a specific value on the chart, use the `BarSegment.Reference`
+component.
+
+<ExampleTabs name="charts/bar-segment-with-reference" />

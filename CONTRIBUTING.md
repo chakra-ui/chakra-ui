@@ -70,7 +70,7 @@ pnpm storybook
 - Start documentation website
 
 ```bash
-pnpm docs dev
+pnpm www dev
 ```
 
 - Run tests

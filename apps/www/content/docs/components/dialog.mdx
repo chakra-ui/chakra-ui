@@ -10,45 +10,27 @@ links:
 
 <ExampleTabs name="dialog-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`dialog` snippet
-
-```sh
-npx @chakra-ui/cli snippet add dialog
-```
-
-The snippet includes a closed component composition for the `Dialog` component.
-
 ## Usage
 
-```jsx
-import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+```tsx
+import { Dialog } from "@chakra-ui/react"
 ```
 
-```jsx
-<DialogRoot>
-  <DialogBackdrop />
-  <DialogTrigger />
-  <DialogContent>
-    <DialogCloseTrigger />
-    <DialogHeader>
-      <DialogTitle />
-    </DialogHeader>
-    <DialogBody />
-    <DialogFooter />
-  </DialogContent>
-</DialogRoot>
+```tsx
+<Dialog.Root>
+  <Dialog.Trigger />
+  <Dialog.Backdrop />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.CloseTrigger />
+      <Dialog.Header>
+        <Dialog.Title />
+      </Dialog.Header>
+      <Dialog.Body />
+      <Dialog.Footer />
+    </Dialog.Content>
+  </Dialog.Positioner>
+</Dialog.Root>
 ```
 
 ## Examples
@@ -95,6 +77,13 @@ This way you can access the dialog state and methods from outside the dialog.
 
 <ExampleTabs name="dialog-with-store" />
 
+### Context
+
+Use the `DialogContext` component to access the dialog state and methods from
+outside the dialog.
+
+<ExampleTabs name="dialog-with-context" />
+
 ### Initial Focus
 
 Use the `initialFocusEl` prop to set the initial focus of the dialog component.
@@ -130,12 +119,23 @@ dialog.
 
 ### Close Button Outside
 
-Here's an example of how to customize the `DialogCloseTrigger` component to
+Here's an example of how to customize the `Dialog.CloseTrigger` component to
 position the close button outside the dialog component.
 
 <ExampleTabs name="dialog-with-close-outside" />
 
-### With DataList
+### Non-Modal Dialog
+
+We don't recommend using a non-modal dialog due to the accessibility concerns
+they present. In event you need it, here's what you can do:
+
+- set the `modal` prop to `false`
+- set `pointerEvents` to `none` on the `Dialog.Positioner` component
+- (optional)set the `closeOnInteractOutside` prop to `false`
+
+<ExampleTabs name="dialog-non-modal" />
+
+### DataList
 
 Here's an example of how to compose the dialog component with the `DataList`
 component.

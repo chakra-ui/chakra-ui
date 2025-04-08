@@ -1,7 +1,7 @@
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Pie Chart",
+  title: "Charts / Pie Chart",
   decorators: [
     (Story: any) => (
       <Box p="10">
@@ -11,9 +11,10 @@ export default {
   ],
 }
 
-export { PieChartBasic as Basic } from "compositions/chart/examples/pie-chart-basic"
-export { PieChartWithLabelList as LabelList } from "compositions/chart/examples/pie-chart-with-label-list"
-export { PieChartWithPointLabel as PointLabel } from "compositions/chart/examples/pie-chart-with-point-label"
-export { PieChartWithLegend as Legend } from "compositions/chart/examples/pie-chart-with-legend"
-export { PieChartWithStartAngle as StartAngle } from "compositions/chart/examples/pie-chart-with-start-angle"
-export { PieChartWithLabelListOutside as LabelListOutside } from "compositions/chart/examples/pie-chart-with-label-list-outside"
+export { PieChartBasic as Basic } from "compositions/examples/charts/pie-chart-basic"
+export { PieChartNoStroke as NoStroke } from "compositions/examples/charts/pie-chart-no-stroke"
+export { PieChartWithLabelInside as LabelInside } from "compositions/examples/charts/pie-chart-with-label-inside"
+export { PieChartWithLabelOutside as LabelOutside } from "compositions/examples/charts/pie-chart-with-label-outside"
+export { PieChartWithLegend as Legend } from "compositions/examples/charts/pie-chart-with-legend"
+export { PieChartWithPointLabel as PointLabel } from "compositions/examples/charts/pie-chart-with-point-label"
+export { PieChartWithStartAngle as StartAngle } from "compositions/examples/charts/pie-chart-with-start-angle"

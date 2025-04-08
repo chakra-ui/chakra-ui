@@ -1,27 +1,23 @@
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
-import {
-  StatHelpText,
-  StatLabel,
-  StatRoot,
-  StatValueText,
-} from "compositions/ui/stat"
+import { FormatNumber, Progress, Stat } from "@chakra-ui/react"
 
 export const StatWithProgressBar = () => {
   return (
-    <StatRoot maxW="240px">
-      <StatLabel>This week</StatLabel>
-      <StatValueText
-        value={1340}
-        formatOptions={{
-          currency: "USD",
-          style: "currency",
-          maximumFractionDigits: 0,
-        }}
-      />
-      <StatHelpText mb="2">+12% from last week</StatHelpText>
-      <ProgressRoot>
-        <ProgressBar />
-      </ProgressRoot>
-    </StatRoot>
+    <Stat.Root maxW="240px">
+      <Stat.Label>This week</Stat.Label>
+      <Stat.ValueText>
+        <FormatNumber
+          value={1340}
+          style="currency"
+          currency="USD"
+          maximumFractionDigits={0}
+        />
+      </Stat.ValueText>
+      <Stat.HelpText mb="2">+12% from last week</Stat.HelpText>
+      <Progress.Root>
+        <Progress.Track>
+          <Progress.Range />
+        </Progress.Track>
+      </Progress.Root>
+    </Stat.Root>
   )
 }

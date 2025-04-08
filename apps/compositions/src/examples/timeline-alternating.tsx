@@ -1,37 +1,40 @@
-import {
-  TimelineConnector,
-  TimelineContent,
-  TimelineItem,
-  TimelineRoot,
-  TimelineTitle,
-} from "compositions/ui/timeline"
+import { Timeline } from "@chakra-ui/react"
 
 export const TimelineAlternating = () => {
   return (
-    <TimelineRoot size="sm" variant="outline">
-      <TimelineItem>
-        <TimelineContent flex="1" />
-        <TimelineConnector />
-        <TimelineContent flex="1">
-          <TimelineTitle>Placed Order</TimelineTitle>
-        </TimelineContent>
-      </TimelineItem>
+    <Timeline.Root size="sm" variant="outline">
+      <Timeline.Item>
+        <Timeline.Content flex="1" />
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator />
+        </Timeline.Connector>
+        <Timeline.Content flex="1">
+          <Timeline.Title>Placed Order</Timeline.Title>
+        </Timeline.Content>
+      </Timeline.Item>
 
-      <TimelineItem>
-        <TimelineContent flex="1" alignItems="flex-end">
-          <TimelineTitle>Prepared Order</TimelineTitle>
-        </TimelineContent>
-        <TimelineConnector />
-        <TimelineContent flex="1" />
-      </TimelineItem>
+      <Timeline.Item>
+        <Timeline.Content flex="1" alignItems="flex-end">
+          <Timeline.Title>Prepared Order</Timeline.Title>
+        </Timeline.Content>
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator />
+        </Timeline.Connector>
+        <Timeline.Content flex="1" />
+      </Timeline.Item>
 
-      <TimelineItem>
-        <TimelineContent flex="1" />
-        <TimelineConnector />
-        <TimelineContent flex="1">
-          <TimelineTitle>Order Delivered</TimelineTitle>
-        </TimelineContent>
-      </TimelineItem>
-    </TimelineRoot>
+      <Timeline.Item>
+        <Timeline.Content flex="1" />
+        <Timeline.Connector>
+          <Timeline.Separator />
+          <Timeline.Indicator />
+        </Timeline.Connector>
+        <Timeline.Content flex="1">
+          <Timeline.Title>Order Delivered</Timeline.Title>
+        </Timeline.Content>
+      </Timeline.Item>
+    </Timeline.Root>
   )
 }

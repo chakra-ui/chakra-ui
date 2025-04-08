@@ -1,16 +1,16 @@
-import {
-  ProgressBar,
-  ProgressLabel,
-  ProgressRoot,
-} from "compositions/ui/progress"
+import { Progress } from "@chakra-ui/react"
+import { InfoTip } from "compositions/ui/toggle-tip"
 
 export const ProgressWithLabelInfo = () => {
   return (
-    <ProgressRoot maxW="240px">
-      <ProgressLabel info="Uploading document to the server" mb="2">
+    <Progress.Root maxW="240px">
+      <Progress.Label mb="2">
         Uploading
-      </ProgressLabel>
-      <ProgressBar />
-    </ProgressRoot>
+        <InfoTip>Uploading document to the server</InfoTip>
+      </Progress.Label>
+      <Progress.Track>
+        <Progress.Range />
+      </Progress.Track>
+    </Progress.Root>
   )
 }

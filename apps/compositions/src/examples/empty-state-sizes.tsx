@@ -1,5 +1,4 @@
-import { For, Stack } from "@chakra-ui/react"
-import { EmptyState } from "compositions/ui/empty-state"
+import { EmptyState, For, Stack, VStack } from "@chakra-ui/react"
 import { LuShoppingCart } from "react-icons/lu"
 
 export const EmptyStateSizes = () => {
@@ -7,12 +6,19 @@ export const EmptyStateSizes = () => {
     <Stack>
       <For each={["sm", "md", "lg"]}>
         {(size) => (
-          <EmptyState
-            size={size}
-            icon={<LuShoppingCart />}
-            title="Your cart is empty"
-            description="Explore our products and add items to your cart"
-          />
+          <EmptyState.Root size={size} key={size}>
+            <EmptyState.Content>
+              <EmptyState.Indicator>
+                <LuShoppingCart />
+              </EmptyState.Indicator>
+              <VStack textAlign="center">
+                <EmptyState.Title>Your cart is empty</EmptyState.Title>
+                <EmptyState.Description>
+                  Explore our products and add items to your cart
+                </EmptyState.Description>
+              </VStack>
+            </EmptyState.Content>
+          </EmptyState.Root>
         )}
       </For>
     </Stack>

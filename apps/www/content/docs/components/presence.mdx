@@ -1,0 +1,77 @@
+---
+title: Presence
+description:
+  Used to animate the entry and exit of an element while controlled the render
+  behavior
+links:
+  source: components/presence
+  storybook: components-presence--basic
+  recipe: presence
+  ark: https://ark-ui.com/react/docs/components/presence
+---
+
+<ExampleTabs name="presence-fade" />
+
+## Usage
+
+```jsx
+import { Presence } from "@chakra-ui/react"
+```
+
+```jsx
+<Presence present={true}>
+  <div>Presence content</div>
+</Presence>
+```
+
+Think of `Presence` like the `AnimatePresence` component from Framer Motion,
+except that it's built for CSS animations instead.
+
+The key things to note:
+
+- the `present` prop is a boolean that controls the presence state of the
+  component.
+- the `_open` condition is used to style the open state.
+- the `_closed` condition is used to style the closed state.
+
+## Examples
+
+### Fade
+
+Setting the animation name to `fade-in` and `fade-out`, the component will
+animate the entry and exit of the element.
+
+<ExampleTabs name="presence-fade" />
+
+### Scale Fade
+
+Using the animation styles `scale-fade-in` and `scale-fade-out`, the component
+will animate the entry and exit of the element.
+
+<ExampleTabs name="presence-scale-fade" />
+
+### Slide Fade
+
+Here's an example that uses the animation names `slide-from-bottom` and
+`slide-to-bottom` to animate the entry and exit of the element.
+
+<ExampleTabs name="presence-slide-fade" />
+
+### Slide
+
+Here's an example that uses the animation names `slide-from-bottom-full` and
+`slide-to-bottom-full` to animate the entry and exit of the element.
+
+<ExampleTabs name="presence-slide" />
+
+### Lazy Mount
+
+Use the `lazyMount` prop to delay the mount of the component until it's present.
+
+<ExampleTabs name="presence-lazy-mount" />
+
+### Unmount On Exit
+
+Use the `unmountOnExit` prop to unmount the component when it's not present.
+
+<ExampleTabs name="presence-unmount-on-exit" />

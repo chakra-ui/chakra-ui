@@ -1,7 +1,6 @@
 "use client"
 
-import { Button, Input, Stack, Textarea } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Button, Field, Input, Stack, Textarea } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
 interface FormValues {
@@ -21,27 +20,24 @@ export const TextareaWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start" maxW="sm">
-        <Field
-          label="Username"
-          invalid={!!errors.username}
-          errorText={errors.username?.message}
-        >
+        <Field.Root invalid={!!errors.username}>
+          <Field.Label>Username</Field.Label>
           <Input
             placeholder="@username"
             {...register("username", { required: "Username is required" })}
           />
-        </Field>
-        <Field
-          label="Profile bio"
-          invalid={!!errors.bio}
-          helperText="A short description of yourself"
-          errorText={errors.bio?.message}
-        >
+          <Field.ErrorText>{errors.username?.message}</Field.ErrorText>
+        </Field.Root>
+
+        <Field.Root invalid={!!errors.bio}>
+          <Field.Label>Profile bio</Field.Label>
           <Textarea
             placeholder="I am ..."
             {...register("bio", { required: "Bio is required" })}
           />
-        </Field>
+          <Field.HelperText>A short description of yourself</Field.HelperText>
+          <Field.ErrorText>{errors.bio?.message}</Field.ErrorText>
+        </Field.Root>
         <Button type="submit">Submit</Button>
       </Stack>
     </form>

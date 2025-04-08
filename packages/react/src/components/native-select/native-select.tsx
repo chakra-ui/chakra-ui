@@ -13,17 +13,18 @@ import {
 import { cx, dataAttr } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
-interface BaseProps {
+interface NativeSelectBaseProps {
   disabled?: boolean
   invalid?: boolean
 }
 
-const [BasePropsProvider, useBasePropsContext] = createContext<BaseProps>({
-  name: "BasePropsContext",
-  hookName: "useBasePropsContext",
-  providerName: "<NativeSelect />",
-  strict: false,
-})
+const [NativeSelectBasePropsProvider, useNativeSelectBaseProps] =
+  createContext<NativeSelectBaseProps>({
+    name: "NativeSelectBasePropsContext",
+    hookName: "useNativeSelectBaseProps",
+    providerName: "<NativeSelectRoot />",
+    strict: false,
+  })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +42,7 @@ export { useNativeSelectStyles }
 export interface NativeSelectRootBaseProps
   extends SlotRecipeProps<"nativeSelect">,
     UnstyledProp,
-    BaseProps {}
+    NativeSelectBaseProps {}
 
 export interface NativeSelectRootProps
   extends HTMLChakraProps<"div", NativeSelectRootBaseProps> {}
@@ -58,9 +59,9 @@ export const NativeSelectRoot = withProvider<
     const invalid = Boolean(field?.invalid ?? props.invalid)
 
     return (
-      <BasePropsProvider value={{ disabled, invalid }}>
+      <NativeSelectBasePropsProvider value={{ disabled, invalid }}>
         {element}
-      </BasePropsProvider>
+      </NativeSelectBasePropsProvider>
     )
   },
 })
@@ -87,11 +88,14 @@ export const NativeSelectField = forwardRef<
 >(function NativeSelectField(props, ref) {
   const { children, placeholder, ...restProps } = props
 
+  const { disabled, invalid } = useNativeSelectBaseProps()
   const styles = useNativeSelectStyles()
   const classNames = useClassNames()
 
   return (
     <StyledSelect
+      disabled={disabled}
+      data-invalid={dataAttr(invalid)}
       {...(restProps as any)}
       ref={ref}
       className={cx(classNames.field, props.className)}
@@ -109,7 +113,7 @@ export interface NativeSelectIndicatorProps extends HTMLChakraProps<"div"> {}
 
 export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
   const styles = useNativeSelectStyles()
-  const { disabled, invalid } = useBasePropsContext()
+  const { disabled, invalid } = useNativeSelectBaseProps()
   const classNames = useClassNames()
   return (
     <chakra.div

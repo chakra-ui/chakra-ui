@@ -18,9 +18,11 @@ npx @chakra-ui/cli snippet add color-mode
 The snippet includes hooks and components that make it feel similar to Chakra
 v2.
 
-```jsx
+```tsx
 import {
   ColorModeButton,
+  DarkMode,
+  LightMode,
   useColorMode,
   useColorModeValue,
 } from "@/components/ui/color-mode"
@@ -70,3 +72,13 @@ can import it to render an icon button that toggles the color mode.
 It renders a skeleton on the server side and the icon on the client side.
 
 <ExampleTabs name="color-mode-icon-button" />
+
+## Forced Color Mode
+
+The color mode snippet comes with the `LightMode` and `DarkMode` components
+built-in, you can import it to force the color mode.
+
+<ExampleTabs name="color-mode-forced" />
+
+> You might need to update the `color-mode.tsx` snippet since the `LightMode`
+> and `DarkMode` components were recently added to the snippet.

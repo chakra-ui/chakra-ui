@@ -11,13 +11,13 @@ import {
   HStack,
   IconButton,
   Input,
+  InputGroup,
   Stack,
   mergeRefs,
   useControllableState,
 } from "@chakra-ui/react"
 import * as React from "react"
 import { LuEye, LuEyeOff } from "react-icons/lu"
-import { InputGroup } from "./input-group"
 
 export interface PasswordVisibilityProps {
   defaultVisible?: boolean
@@ -55,7 +55,6 @@ export const PasswordInput = React.forwardRef<
 
   return (
     <InputGroup
-      width="full"
       endElement={
         <VisibilityTrigger
           disabled={rest.disabled}

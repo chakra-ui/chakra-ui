@@ -1,0 +1,207 @@
+---
+title: Refactoring Snippets
+description:
+  We're refactoring the snippets to make Chakra UI more consistent and easier to
+  use
+type: article
+authors: ["sage"]
+publishedAt: "2025-03-13"
+---
+
+After the launch of Chakra UI v3, a common feedback we received was around
+snippets. Users felt that snippets were required to make components work, unlike
+in v2.
+
+This wasn't our intention - snippets were designed to be helpful pre-made
+component compositions, not mandatory boilerplate. We want to clarify that
+snippets are entirely optional and simply provide convenient starting points.
+
+For this reason, we've reworked the documentation to always show the complete
+code that imports directly from `@chakra-ui/react`.
+
+:::info
+
+**TLDR:** Migrate to the most recent version of Chakra UI to get the best
+experience.
+
+:::
+
+This way, you can copy and paste the code without having to run any commands.
+
+## Replacing Snippets
+
+Here's a quick overview of the changes:
+
+### Accordion
+
+Before:
+
+```tsx
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion"
+
+const Demo = () => {
+  return (
+    <AccordionRoot>
+      <AccordionItem>
+        <AccordionItemTrigger>Item</AccordionItemTrigger>
+        <AccordionItemContent>Content</AccordionItemContent>
+      </AccordionItem>
+    </AccordionRoot>
+  )
+}
+```
+
+After:
+
+```tsx
+import { Accordion } from "@chakra-ui/react"
+
+const Demo = () => {
+  return (
+    <Accordion.Root>
+      <Accordion.Item>
+        <Accordion.ItemTrigger>
+          Item
+          <Accordion.ItemIndicator />
+        </Accordion.ItemTrigger>
+        <Accordion.ItemContent>
+          <Accordion.ItemBody>Content</Accordion.ItemBody>
+        </Accordion.ItemContent>
+      </Accordion.Item>
+    </Accordion.Root>
+  )
+}
+```
+
+### Menu
+
+Before:
+
+```tsx
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu"
+
+const Demo = () => {
+  return (
+    <MenuRoot>
+      <MenuTrigger asChild>
+        <Button>Open</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuItem value="..." />
+      </MenuContent>
+    </MenuRoot>
+  )
+}
+```
+
+After:
+
+```tsx
+import { Menu, Portal } from "@chakra-ui/react"
+
+const Demo = () => {
+  return (
+    <Menu.Root>
+      <Menu.Trigger asChild>
+        <Button>Open</Button>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="..." />
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
+  )
+}
+```
+
+## Shortcuts
+
+To make your code more concise and easier to write, we've introduced shortcut
+components for common use cases.
+
+We achieved that by setting the default `children` prop, or creating sugar
+components that compose the existing components.
+
+:::info
+
+Shortcuts are optional but help make your code more concise and readable
+
+:::
+
+### Checkbox
+
+Here's a checkbox example.
+
+This works:
+
+```tsx
+<Checkbox.Control>
+  <Checkbox.Indicator />
+</Checkbox.Control>
+```
+
+but can be simplified if you don't need to customize the checkbox icons:
+
+```tsx
+<Checkbox.Control />
+```
+
+### Rating
+
+The same goes for the `Rating` component.
+
+This works:
+
+```tsx
+<RatingGroup.Control>
+  {Array.from({ length: 5 }).map((_, index) => (
+    <RatingGroup.Item key={index} index={index + 1}>
+      <RatingGroup.ItemIndicator />
+    </RatingGroup.Item>
+  ))}
+</RatingGroup.Control>
+```
+
+but can be simplified if you don't need to customize the rating icons:
+
+```tsx
+<RatingGroup.Control />
+```
+
+## Exceptions
+
+The following components are exceptions to the rule and will continue to use
+snippets:
+
+- `Provider`: The provider is the root component that you need to wrap your app
+- `Toaster`: The toaster is a component that is used to display notifications
+- `PasswordInput`: The password input is used to collect passwords
+- `Tooltip`: The tooltip is a component that is used to display a tooltip
+- `Toggletip`: The toggletip looks like a tooltip, but works like a popover
+
+These components will remain as snippets due to the ease of use they provide.
+
+## What's Next?
+
+Now that we've refactored the snippets, we're moving on to next phase of Chakra.
+
+- Bump `@ark-ui/react` to v5 to boost render performance
+- Implement `Combobox` and `CommandMenu` components
+- Build and launch `@chakra-ui/charts` for data visualization
+
+If you have any feedback, please
+[open an discussion](https://github.com/chakra-ui/chakra-ui/discussions/new) and
+let us know.

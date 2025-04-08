@@ -1,17 +1,13 @@
-import { Card } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
-import { Button } from "compositions/ui/button"
+import { Avatar, Button, Card } from "@chakra-ui/react"
 
 export const CardBasic = () => {
   return (
     <Card.Root width="320px">
       <Card.Body gap="2">
-        <Avatar
-          src="https://picsum.photos/200/300"
-          name="Nue Camp"
-          size="lg"
-          shape="rounded"
-        />
+        <Avatar.Root size="lg" shape="rounded">
+          <Avatar.Image src="https://picsum.photos/200/300" />
+          <Avatar.Fallback name="Nue Camp" />
+        </Avatar.Root>
         <Card.Title mt="2">Nue Camp</Card.Title>
         <Card.Description>
           This is the card body. Lorem ipsum dolor sit amet, consectetur

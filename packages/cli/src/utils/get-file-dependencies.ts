@@ -1,6 +1,6 @@
 import type { Compositions } from "./schema"
 
-const findCompositionById = (compositions: Compositions, id: string) => {
+export const findCompositionById = (compositions: Compositions, id: string) => {
   return compositions.find((comp) => comp.id === id)
 }
 

@@ -1,5 +1,6 @@
 import { OpenGraphImage, size } from "@/components/open-graph-image"
 import { ImageResponse } from "next/og"
+import { NextRequest } from "next/server"
 
 export const runtime = "edge"
 
@@ -7,12 +8,11 @@ export { size } from "@/components/open-graph-image"
 
 export const contentType = "image/png"
 
-type Params = {
-  category?: string
-  title?: string
-}
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams
+  const category = searchParams.get("category") || "Documentation"
+  const title = searchParams.get("title") || "Chakra UI"
 
-export async function GET(request: Request, context: { params: Params }) {
   const satoshiBold = fetch(
     new URL("../../public/fonts/Satoshi-Bold.otf", import.meta.url),
   ).then((res) => res.arrayBuffer())
@@ -20,8 +20,6 @@ export async function GET(request: Request, context: { params: Params }) {
   const backgroundArrayBuffer = await fetch(
     new URL("../../public/open-graph-bg.png", import.meta.url),
   ).then((res) => res.arrayBuffer())
-
-  const { category, title } = context.params
 
   return new ImageResponse(
     (

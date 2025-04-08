@@ -1,26 +1,24 @@
-import { Button } from "compositions/ui/button"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Button, Menu, Portal } from "@chakra-ui/react"
 
 export const MenuBasic = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem value="new-txt">New Text File</MenuItem>
-        <MenuItem value="new-file">New File...</MenuItem>
-        <MenuItem value="new-win">New Window</MenuItem>
-        <MenuItem value="open-file">Open File...</MenuItem>
-        <MenuItem value="export">Export</MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="new-txt">New Text File</Menu.Item>
+            <Menu.Item value="new-file">New File...</Menu.Item>
+            <Menu.Item value="new-win">New Window</Menu.Item>
+            <Menu.Item value="open-file">Open File...</Menu.Item>
+            <Menu.Item value="export">Export</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

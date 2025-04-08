@@ -1,5 +1,14 @@
-import { Slider } from "compositions/ui/slider"
+import { Slider } from "@chakra-ui/react"
 
 export const SliderVertical = () => {
-  return <Slider height="200px" orientation="vertical" defaultValue={[40]} />
+  return (
+    <Slider.Root height="200px" orientation="vertical" defaultValue={[40]}>
+      <Slider.Control>
+        <Slider.Track>
+          <Slider.Range />
+        </Slider.Track>
+        <Slider.Thumbs />
+      </Slider.Control>
+    </Slider.Root>
+  )
 }

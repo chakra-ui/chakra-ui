@@ -1,7 +1,10 @@
-import { SegmentedControl } from "compositions/ui/segmented-control"
+import { SegmentGroup } from "@chakra-ui/react"
 
 export const SegmentedControlBasic = () => {
   return (
-    <SegmentedControl defaultValue="React" items={["React", "Vue", "Solid"]} />
+    <SegmentGroup.Root defaultValue="React">
+      <SegmentGroup.Indicator />
+      <SegmentGroup.Items items={["React", "Vue", "Solid"]} />
+    </SegmentGroup.Root>
   )
 }

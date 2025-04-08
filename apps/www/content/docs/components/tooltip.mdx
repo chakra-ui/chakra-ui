@@ -13,14 +13,16 @@ links:
 
 ## Setup
 
-If you don't already have the snippet, run the following command to add the
-`tooltip` snippet
+For ease of use, create a closed component composition for the `Tooltip`
+component.
+
+<SnippetCode name="tooltip" />
+
+Alternatively, you can add it to your project using the following command.
 
 ```sh
 npx @chakra-ui/cli snippet add tooltip
 ```
-
-The snippet includes a closed component composition for the `Tooltip` component.
 
 ## Usage
 
@@ -116,6 +118,12 @@ Here's an example of how to use the `Tooltip` with a `MenuItem` component.
 
 <ExampleTabs name="tooltip-with-menu-item" />
 
+### With MenuTrigger
+
+Here's an example of how to use the `Tooltip` with a `MenuTrigger` component.
+
+<ExampleTabs name="tooltip-with-menu-trigger" />
+
 ### With Switch
 
 Here's an example of how to wrap `Tooltip` around a `Switch` component.
@@ -128,15 +136,8 @@ Here's an example of how to wrap `Tooltip` around a `Tabs` component.
 
 <ExampleTabs name="tooltip-with-tab" />
 
-### Without Snippet
-
-If you don't want to use the snippet, you can use the `Tooltip` component from
-the `@chakra-ui/react` package.
-
-<ExampleTabs name="tooltip-without-snippet" />
-
 ## Props
 
 ### Root
 
-<PropTable component="tooltip" part="root" />
+<PropTable component="Tooltip" part="Root" />

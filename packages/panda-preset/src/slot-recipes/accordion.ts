@@ -21,6 +21,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
     itemTrigger: {
       display: "flex",
       alignItems: "center",
+      textAlign: "start",
       width: "full",
       outline: "0",
       gap: "3",

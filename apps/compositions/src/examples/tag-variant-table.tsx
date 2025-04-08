@@ -1,10 +1,8 @@
 "use client"
 
-import { For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
+import { Avatar, For, Span, Stack, Tag, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Avatar } from "compositions/ui/avatar"
-import { Tag } from "compositions/ui/tag"
 import { HiCheck, HiOutlineBriefcase } from "react-icons/hi"
 
 export const TagVariantTable = () => {
@@ -32,44 +30,44 @@ export const TagVariantTable = () => {
                 {(v) => (
                   <td key={v}>
                     <Stack align="flex-start">
-                      <Tag variant={v} colorPalette={c}>
-                        Gray
-                      </Tag>
+                      <Tag.Root variant={v} colorPalette={c}>
+                        <Tag.Label>Gray</Tag.Label>
+                      </Tag.Root>
 
-                      <Tag variant={v} colorPalette={c} closable>
-                        Gray
-                      </Tag>
+                      <Tag.Root variant={v} colorPalette={c}>
+                        <Tag.Label>Gray</Tag.Label>
+                        <Tag.EndElement>
+                          <Tag.CloseTrigger />
+                        </Tag.EndElement>
+                      </Tag.Root>
 
-                      <Tag
-                        variant={v}
-                        colorPalette={c}
-                        startElement={<HiCheck />}
-                      >
-                        Gray
-                      </Tag>
+                      <Tag.Root variant={v} colorPalette={c}>
+                        <Tag.StartElement>
+                          <HiCheck />
+                        </Tag.StartElement>
+                        <Tag.Label>Gray</Tag.Label>
+                      </Tag.Root>
 
-                      <Tag
-                        variant={v}
-                        colorPalette={c}
-                        startElement={<HiOutlineBriefcase />}
-                      >
-                        Projects
-                      </Tag>
+                      <Tag.Root variant={v} colorPalette={c}>
+                        <Tag.StartElement>
+                          <HiOutlineBriefcase />
+                        </Tag.StartElement>
+                        <Tag.Label>Projects</Tag.Label>
+                      </Tag.Root>
 
-                      <Tag
+                      <Tag.Root
                         variant={v}
                         colorPalette={c}
                         borderRadius="full"
-                        startElement={
-                          <Avatar
-                            size="full"
-                            src="https://bit.ly/dan-abramov"
-                            name="Dan Abramov"
-                          />
-                        }
                       >
-                        Dan Abramov
-                      </Tag>
+                        <Tag.StartElement>
+                          <Avatar.Root size="full">
+                            <Avatar.Image src="https://bit.ly/dan-abramov" />
+                            <Avatar.Fallback name="Dan Abramov" />
+                          </Avatar.Root>
+                        </Tag.StartElement>
+                        <Tag.Label>Dan Abramov</Tag.Label>
+                      </Tag.Root>
                     </Stack>
                   </td>
                 )}

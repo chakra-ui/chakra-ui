@@ -1,10 +1,12 @@
-import { Toggle } from "compositions/ui/toggle"
+import { Button, Toggle } from "@chakra-ui/react"
 import { LuBold } from "react-icons/lu"
 
 export const ToggleBasic = () => {
   return (
-    <Toggle px="0">
-      <LuBold />
-    </Toggle>
+    <Toggle.Root px="0" asChild>
+      <Button variant={{ base: "subtle", _pressed: "solid" }}>
+        <LuBold />
+      </Button>
+    </Toggle.Root>
   )
 }

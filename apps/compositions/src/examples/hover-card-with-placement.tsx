@@ -1,24 +1,22 @@
-import { Box, Link, Strong } from "@chakra-ui/react"
-import {
-  HoverCardArrow,
-  HoverCardContent,
-  HoverCardRoot,
-  HoverCardTrigger,
-} from "compositions/ui/hover-card"
+import { Box, HoverCard, Link, Portal, Strong } from "@chakra-ui/react"
 
 export const HoverCardWithPlacement = () => {
   return (
-    <HoverCardRoot size="sm" positioning={{ placement: "top" }}>
-      <HoverCardTrigger asChild>
+    <HoverCard.Root size="sm" positioning={{ placement: "top" }}>
+      <HoverCard.Trigger asChild>
         <Link href="#">@chakra_ui</Link>
-      </HoverCardTrigger>
-      <HoverCardContent maxWidth="240px">
-        <HoverCardArrow />
-        <Box>
-          <Strong>Chakra</Strong> is a Sanskrit word that means disk or wheel,
-          referring to energy centers in the body
-        </Box>
-      </HoverCardContent>
-    </HoverCardRoot>
+      </HoverCard.Trigger>
+      <Portal>
+        <HoverCard.Positioner>
+          <HoverCard.Content maxWidth="240px">
+            <HoverCard.Arrow />
+            <Box>
+              <Strong>Chakra</Strong> is a Sanskrit word that means disk or
+              wheel, referring to energy centers in the body
+            </Box>
+          </HoverCard.Content>
+        </HoverCard.Positioner>
+      </Portal>
+    </HoverCard.Root>
   )
 }

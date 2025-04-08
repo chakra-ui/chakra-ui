@@ -1,9 +1,7 @@
 "use client"
 
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Field, Stack, Switch } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Field } from "compositions/ui/field"
-import { Switch } from "compositions/ui/switch"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -29,16 +27,18 @@ export const SwitchWithHookForm = () => {
           name="active"
           control={control}
           render={({ field }) => (
-            <Field invalid={!!errors.active} errorText={errors.active?.message}>
-              <Switch
+            <Field.Root invalid={!!errors.active}>
+              <Switch.Root
                 name={field.name}
                 checked={field.value}
                 onCheckedChange={({ checked }) => field.onChange(checked)}
-                inputProps={{ onBlur: field.onBlur }}
               >
-                Activate Chakra
-              </Switch>
-            </Field>
+                <Switch.HiddenInput onBlur={field.onBlur} />
+                <Switch.Control />
+                <Switch.Label>Activate Chakra</Switch.Label>
+              </Switch.Root>
+              <Field.ErrorText>{errors.active?.message}</Field.ErrorText>
+            </Field.Root>
           )}
         />
         <Button size="sm" type="submit" mt="4">

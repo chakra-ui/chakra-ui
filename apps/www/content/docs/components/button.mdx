@@ -9,21 +9,10 @@ links:
 
 <ExampleTabs name="button-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`button` snippet
-
-```sh
-npx @chakra-ui/cli snippet add button
-```
-
-The snippet includes enhances the Button with `loading` and `loadingText` props.
-
 ## Usage
 
 ```jsx
-import { Button } from "@/components/ui/button"
+import { Button, ButtonGroup } from "@chakra-ui/react"
 ```
 
 ```jsx
@@ -56,17 +45,76 @@ Use the `colorPalette` prop to change the color of the button
 
 <ExampleTabs name="button-with-colors" />
 
+### Disabled
+
+Use the `disabled` prop to disable the button.
+
+<ExampleTabs name="button-with-disabled" />
+
+### Disabled Link
+
+When using the `disabled` prop with a link, you need to prevent the default
+behavior of the link and add the `data-disabled` attribute.
+
+<ExampleTabs name="button-with-disabled-link" />
+
 ### Loading
 
-Use the `loading` and `loadingText` prop to show a loading spinner
+Pass the `loading` and `loadingText` props to the `Button` component to show a
+loading spinner and add a loading text.
 
 <ExampleTabs name="button-with-loading" />
 
+Here's an example of how to toggle the loading state of a button while keeping
+the width of the button the same.
+
+<ExampleTabs name="button-with-loading-toggle" />
+
+### Spinner Placement
+
+Use the `spinnerPlacement` prop to change the placement of the spinner.
+
+<ExampleTabs name="button-with-spinner-placement" />
+
+### Custom Spinner
+
+Use the `spinner` prop to change the spinner.
+
+<ExampleTabs name="button-with-custom-spinner" />
+
 ### Group
 
-Use the `Group` component to group buttons together
+Use the `ButtonGroup` component to group buttons together. This component allows
+you pass common recipe properties to inner buttons.
 
 <ExampleTabs name="button-with-group" />
+
+To flush the buttons, pass the `attached` prop.
+
+<ExampleTabs name="button-with-group-flushed" />
+
+### Radius
+
+Use the `rounded` prop to change the radius of the button.
+
+<ExampleTabs name="button-with-radius" />
+
+### As Link
+
+Use the `asChild` prop to render a button as a link.
+
+<ExampleTabs name="button-as-link" />
+
+### Ref
+
+Here's how to access the underlying element reference
+
+```tsx
+const Demo = () => {
+  const ref = useRef<HTMLButtonElement | null>(null)
+  return <Button ref={ref}>Click me</Button>
+}
+```
 
 ## Props
 

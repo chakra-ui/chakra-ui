@@ -1,9 +1,8 @@
 "use client"
 
-import { For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, HStack, RadioGroup, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Radio, RadioGroup } from "compositions/ui/radio"
 
 export const RadioSizeTable = () => {
   const recipe = useSlotRecipe({ key: "radioGroup" })
@@ -27,17 +26,17 @@ export const RadioSizeTable = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td>
-                    <RadioGroup
+                    <RadioGroup.Root
                       colorPalette={c}
                       size={v}
                       defaultValue="1"
                       minWidth="200px"
                     >
                       <HStack gap="4">
-                        <Radio value="1">Radio</Radio>
-                        <Radio value="2">Radio</Radio>
+                        <DemoRadio value="1">Radio</DemoRadio>
+                        <DemoRadio value="2">Radio</DemoRadio>
                       </HStack>
-                    </RadioGroup>
+                    </RadioGroup.Root>
                   </td>
                 )}
               </For>
@@ -46,5 +45,15 @@ export const RadioSizeTable = () => {
         </For>
       </tbody>
     </PlaygroundTable>
+  )
+}
+
+const DemoRadio = (props: RadioGroup.ItemProps) => {
+  return (
+    <RadioGroup.Item {...props}>
+      <RadioGroup.ItemHiddenInput />
+      <RadioGroup.ItemIndicator />
+      <RadioGroup.ItemText>{props.children}</RadioGroup.ItemText>
+    </RadioGroup.Item>
   )
 }

@@ -1,11 +1,14 @@
-"use client"
-
-import { ClipboardLink, ClipboardRoot } from "compositions/ui/clipboard"
+import { Clipboard, Link } from "@chakra-ui/react"
 
 export const ClipboardWithLink = () => {
   return (
-    <ClipboardRoot value="https://chakra-ui.com">
-      <ClipboardLink color="blue.fg" textStyle="sm" />
-    </ClipboardRoot>
+    <Clipboard.Root value="https://chakra-ui.com">
+      <Clipboard.Trigger asChild>
+        <Link as="span" color="blue.fg" textStyle="sm">
+          <Clipboard.Indicator />
+          <Clipboard.ValueText />
+        </Link>
+      </Clipboard.Trigger>
+    </Clipboard.Root>
   )
 }

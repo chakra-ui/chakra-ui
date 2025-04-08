@@ -1,19 +1,25 @@
-import { Input, Stack } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
-import { Switch } from "compositions/ui/switch"
+import { Field, Input, Stack, Switch } from "@chakra-ui/react"
 
 export const FieldHorizontal = () => {
   return (
     <Stack gap="8" maxW="sm" css={{ "--field-label-width": "96px" }}>
-      <Field orientation="horizontal" label="Name">
+      <Field.Root orientation="horizontal">
+        <Field.Label>Name</Field.Label>
         <Input placeholder="John Doe" flex="1" />
-      </Field>
-      <Field orientation="horizontal" label="Email">
+      </Field.Root>
+
+      <Field.Root orientation="horizontal">
+        <Field.Label>Email</Field.Label>
         <Input placeholder="me@example.com" flex="1" />
-      </Field>
-      <Field orientation="horizontal" label="Hide email">
-        <Switch />
-      </Field>
+      </Field.Root>
+
+      <Field.Root orientation="horizontal">
+        <Field.Label>Hide email</Field.Label>
+        <Switch.Root>
+          <Switch.HiddenInput />
+          <Switch.Control />
+        </Switch.Root>
+      </Field.Root>
     </Stack>
   )
 }

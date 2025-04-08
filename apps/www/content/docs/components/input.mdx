@@ -11,12 +11,12 @@ links:
 
 ## Usage
 
-```jsx
+```tsx
 import { Input } from "@chakra-ui/react"
 ```
 
-```jsx
-<Input placeholder="..." />
+```tsx
+<Input />
 ```
 
 ## Examples
@@ -58,26 +58,65 @@ Here's an example of how to integrate the input with `react-hook-form`.
 
 <ExampleTabs name="input-with-hook-form" />
 
-### Left and Right Element
+### Element
 
-Pair the input with the `InputElement` component to add an element to the left
-or right of the input.
+Use the `startElement` and `endElement` on the `InputGroup` component to add an
+element to the start and end of the input.
 
-<ExampleTabs name="input-with-left-element" />
+#### Start Icon
 
-<ExampleTabs name="input-with-left-and-right-element" />
+<ExampleTabs name="input-with-start-icon" />
+
+#### Start Text
+
+<ExampleTabs name="input-with-start-text" />
+
+#### Start and End Text
+
+<ExampleTabs name="input-with-start-and-end-text" />
+
+#### Kbd
+
+<ExampleTabs name="input-with-kbd" />
+
+#### Select
+
+<ExampleTabs name="input-with-select" />
 
 ### Addon
 
 Use the `InputAddon` and `Group` components to add an addon to the input.
 
-<ExampleTabs name="input-with-addon" />
+#### Start Addon
+
+<ExampleTabs name="input-with-start-addon" />
+
+#### End Addon
+
+<ExampleTabs name="input-with-end-addon" />
+
+#### Start and End Addon
+
+<ExampleTabs name="input-with-start-and-end-addon" />
 
 ### Disabled
 
 Use the `disabled` prop to disable the input.
 
 <ExampleTabs name="input-with-disabled" />
+
+### Button
+
+Use the `Group` component to attach a button to the input.
+
+<ExampleTabs name="input-with-end-button" />
+
+### Focus and Error Color
+
+Use the `--focus-color` and `--error-color` CSS custom properties to change the
+color of the input when it is focused or in an error state.
+
+<ExampleTabs name="input-with-focus-error-color" />
 
 ### Placeholder Style
 
@@ -96,6 +135,29 @@ Here's an example of how to build a floating label to the input.
 Here's an example of using the `use-mask-input` library to mask the input shape.
 
 <ExampleTabs name="input-with-mask" />
+
+### Character Counter
+
+Here's an example of how to add a character counter to the input.
+
+<ExampleTabs name="input-with-character-counter" />
+
+### Card Number
+
+Here's an example of using `react-payment-inputs` to create a card number input.
+
+<ExampleTabs name="input-with-card-number" />
+
+You can create a full card inputs for a card number, expiry date, and CVC.
+
+<ExampleTabs name="input-with-card-details" />
+
+### Clear Button
+
+Combine the `Input` and `CloseButton` components to create a clear button. This
+is useful for building search inputs.
+
+<ExampleTabs name="input-with-clear-button" />
 
 ## Props
 

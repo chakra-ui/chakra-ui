@@ -18,7 +18,7 @@ In most cases, the value of a semantic token references to an existing token.
 > To reference a value in a semantic token, use the token reference `{}` syntax.
 
 ```js title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -35,7 +35,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ## Using Semantic Tokens
@@ -62,7 +62,7 @@ For example, if you want a color to change automatically based on light or dark
 mode.
 
 ```js title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -79,7 +79,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 :::info
@@ -101,7 +101,7 @@ Use the `DEFAULT` key to define the default value of a nested token.
 :::
 
 ```js title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -117,7 +117,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 This allows the use of the `bg` token in the following ways:

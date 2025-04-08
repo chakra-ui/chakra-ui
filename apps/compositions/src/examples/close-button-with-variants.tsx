@@ -1,5 +1,4 @@
-import { HStack } from "@chakra-ui/react"
-import { CloseButton } from "compositions/ui/close-button"
+import { CloseButton, HStack } from "@chakra-ui/react"
 
 export const CloseButtonWithVariants = () => {
   return (

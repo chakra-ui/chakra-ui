@@ -22,7 +22,7 @@ A design token consists of the following properties:
 Tokens are defined in the under the `theme` key in your system config.
 
 ```ts title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -38,7 +38,7 @@ const config = defineConfig({
   },
 })
 
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, config)
 ```
 
 :::warning
@@ -101,7 +101,7 @@ Use the `DEFAULT` key to define the default value of a nested token.
 :::
 
 ```ts title="theme.ts"
-import { defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -116,7 +116,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ```tsx

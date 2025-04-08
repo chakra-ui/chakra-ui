@@ -1,14 +1,8 @@
 "use client"
 
-import { For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
+import { Breadcrumb, For, Span, Stack, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import {
-  BreadcrumbCurrentLink,
-  BreadcrumbLink,
-  BreadcrumbRoot,
-  type BreadcrumbRootProps,
-} from "compositions/ui/breadcrumb"
 
 export const BreadcrumbSizeTable = () => {
   const recipe = useSlotRecipe({ key: "breadcrumb" })
@@ -47,12 +41,25 @@ export const BreadcrumbSizeTable = () => {
   )
 }
 
-const DemoBreadcrumb = (props: BreadcrumbRootProps) => {
+const DemoBreadcrumb = (
+  props: Breadcrumb.RootProps & { separator?: string },
+) => {
+  const { separator, ...rest } = props
   return (
-    <BreadcrumbRoot {...props}>
-      <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-      <BreadcrumbLink href="#">Components</BreadcrumbLink>
-      <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-    </BreadcrumbRoot>
+    <Breadcrumb.Root {...rest}>
+      <Breadcrumb.List>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Components</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>
   )
 }

@@ -1,5 +1,4 @@
-import { For, HStack, Stack, Text } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox, For, HStack, Stack, Text } from "@chakra-ui/react"
 
 export const CheckboxWithVariants = () => {
   return (
@@ -8,9 +7,11 @@ export const CheckboxWithVariants = () => {
         {(variant) => (
           <Stack align="flex-start" flex="1" key={variant}>
             <Text>{variant}</Text>
-            <Checkbox defaultChecked variant={variant}>
-              Checkbox
-            </Checkbox>
+            <Checkbox.Root defaultChecked variant={variant}>
+              <Checkbox.HiddenInput />
+              <Checkbox.Control />
+              <Checkbox.Label>Checkbox</Checkbox.Label>
+            </Checkbox.Root>
           </Stack>
         )}
       </For>

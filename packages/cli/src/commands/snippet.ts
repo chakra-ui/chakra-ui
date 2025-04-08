@@ -8,7 +8,10 @@ import { join } from "node:path/posix"
 import { getProjectContext } from "../utils/context"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
-import { getFileDependencies } from "../utils/get-file-dependencies"
+import {
+  findCompositionById,
+  getFileDependencies,
+} from "../utils/get-file-dependencies"
 import { ensureDir } from "../utils/io"
 import { installCommand } from "../utils/run-command"
 import {
@@ -117,28 +120,40 @@ export const SnippetCommand = new Command("snippet")
             task: async () => {
               await Promise.all(
                 components.map(async (id) => {
-                  if (existsSync(join(outdir, id)) && !force) {
+                  let filename =
+                    findCompositionById(items, id)?.file ?? id + ".tsx"
+                  if (jsx) {
+                    filename = filename.replace(".tsx", ".jsx")
+                  }
+
+                  if (existsSync(join(outdir, filename)) && !force) {
                     skippedFiles.push(id)
                     return
                   }
 
-                  const item = await fetchComposition(id)
+                  try {
+                    const item = await fetchComposition(id)
+                    if (jsx) {
+                      item.file.name = item.file.name.replace(".tsx", ".jsx")
+                      await transformToJsx(item)
+                    }
 
-                  if (jsx) {
-                    item.file.name = item.file.name.replace(".tsx", ".jsx")
-                    await transformToJsx(item)
-                  }
+                    const outPath = join(outdir, item.file.name)
 
-                  const outPath = join(outdir, item.file.name)
-
-                  if (dryRun) {
-                    printFileSync(item)
-                  } else {
-                    await writeFile(
-                      outPath,
-                      item.file.content.replace("compositions/ui", "."),
-                      "utf-8",
-                    )
+                    if (dryRun) {
+                      printFileSync(item)
+                    } else {
+                      await writeFile(
+                        outPath,
+                        item.file.content.replace("compositions/ui", "."),
+                        "utf-8",
+                      )
+                    }
+                  } catch (error) {
+                    if (error instanceof Error) {
+                      p.log.error(error?.message)
+                      process.exit(0)
+                    }
                   }
                 }),
               )
@@ -202,20 +217,7 @@ function printFileSync(item: CompositionFile) {
   p.log.info(boxText)
 }
 
-const RECOMMENDED_SNIPPETS = [
-  "provider",
-  "avatar",
-  "button",
-  "checkbox",
-  "radio",
-  "input-group",
-  "slider",
-  "popover",
-  "dialog",
-  "drawer",
-  "tooltip",
-  "field",
-]
+const RECOMMENDED_SNIPPETS = ["provider", "toaster", "tooltip"]
 
 function getComponents(opts: {
   components: string[]

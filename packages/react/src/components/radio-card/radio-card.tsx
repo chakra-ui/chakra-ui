@@ -16,6 +16,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { dataAttr } from "../../utils"
 import { Radiomark } from "../radiomark"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +113,26 @@ export const RadioCardItemDescription = withContext<
 export interface RadioCardItemControlProps
   extends HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps> {}
 
-export const RadioCardItemControl = withContext<
+export const RadioCardItemControl = forwardRef<
   HTMLDivElement,
   RadioCardItemControlProps
->(ArkRadioGroup.ItemControl, "itemControl", { forwardAsChild: true })
+>(function RadioCardItemControl(props, ref) {
+  const api = useRadioGroupItemContext()
+  const styles = useRadioCardStyles()
+  return (
+    <chakra.div
+      ref={ref}
+      data-focus={dataAttr(api.focused)}
+      data-disabled={dataAttr(api.disabled)}
+      data-state={api.checked ? "checked" : "unchecked"}
+      data-hover={dataAttr(api.hovered)}
+      data-active={dataAttr(api.active)}
+      data-invalid={dataAttr(api.invalid)}
+      {...props}
+      css={[styles["itemControl"], props.css]}
+    />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -155,6 +172,7 @@ export const RadioCardItemIndicator = forwardRef<
         ref={ref}
         asChild
         {...rest}
+        aria-hidden="true"
         css={[styles["itemIndicator"], props.css]}
       >
         {checked}
@@ -167,6 +185,7 @@ export const RadioCardItemIndicator = forwardRef<
       ref={ref}
       unstyled
       {...props}
+      aria-hidden="true"
       checked={itemContext.checked}
       disabled={itemContext.disabled}
       css={[styles["itemIndicator"], props.css]}

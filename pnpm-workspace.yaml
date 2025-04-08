@@ -1,5 +1,4 @@
 packages:
   - "packages/**/**"
   - "sandbox/**"
-  - "website"
   - "apps/**"

@@ -1,50 +1,49 @@
-import { HStack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import {
-  DialogBody,
-  DialogContent,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+"use client"
+
+import { Button, Dialog, Menu, Portal } from "@chakra-ui/react"
+import { useRef } from "react"
 import Lorem from "react-lorem-ipsum"
 
 export const MenuWithinDialog = () => {
+  const contentRef = useRef<HTMLDivElement | null>(null)
   return (
-    <DialogRoot>
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogBody>
-          <HStack justify="space-between" mb="6">
-            <DialogTitle>Welcome to the menu</DialogTitle>
-            <MenuRoot>
-              <MenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  Menu
-                </Button>
-              </MenuTrigger>
-              <MenuContent portalled={false}>
-                <MenuItem value="new-txt">New Text File</MenuItem>
-                <MenuItem value="new-file">New File...</MenuItem>
-                <MenuItem value="new-win">New Window</MenuItem>
-                <MenuItem value="open-file">Open File...</MenuItem>
-                <MenuItem value="export">Export</MenuItem>
-              </MenuContent>
-            </MenuRoot>
-          </HStack>
-          <Lorem p={4} />
-        </DialogBody>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content ref={contentRef}>
+            <Dialog.Header>
+              <Dialog.Title>Welcome to the menu</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body spaceY="4">
+              <Menu.Root>
+                <Menu.Trigger asChild>
+                  <Button variant="outline" size="sm">
+                    Menu
+                  </Button>
+                </Menu.Trigger>
+                <Portal container={contentRef}>
+                  <Menu.Positioner>
+                    <Menu.Content>
+                      <Menu.Item value="new-txt">New Text File</Menu.Item>
+                      <Menu.Item value="new-file">New File...</Menu.Item>
+                      <Menu.Item value="new-win">New Window</Menu.Item>
+                      <Menu.Item value="open-file">Open File...</Menu.Item>
+                      <Menu.Item value="export">Export</Menu.Item>
+                    </Menu.Content>
+                  </Menu.Positioner>
+                </Portal>
+              </Menu.Root>
+              <Lorem p={1} />
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

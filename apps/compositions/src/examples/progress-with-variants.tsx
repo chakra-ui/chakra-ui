@@ -1,15 +1,18 @@
-import { Stack } from "@chakra-ui/react"
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
+import { Progress, Stack } from "@chakra-ui/react"
 
 export const ProgressWithVariants = () => {
   return (
-    <Stack gap="4" maxW="200px">
-      <ProgressRoot variant="subtle">
-        <ProgressBar />
-      </ProgressRoot>
-      <ProgressRoot variant="outline">
-        <ProgressBar />
-      </ProgressRoot>
+    <Stack gap="4" maxW="240px">
+      <Progress.Root variant="subtle">
+        <Progress.Track>
+          <Progress.Range />
+        </Progress.Track>
+      </Progress.Root>
+      <Progress.Root variant="outline">
+        <Progress.Track>
+          <Progress.Range />
+        </Progress.Track>
+      </Progress.Root>
     </Stack>
   )
 }

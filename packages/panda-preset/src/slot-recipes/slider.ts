@@ -160,7 +160,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           height: "100%",
           minWidth: "var(--slider-thumb-size)",
-          "&[data-has-mark-label]": {
+          "&[data-has-mark-label], &:has(.slider__marker-label)": {
             marginEnd: "4",
           },
         },
@@ -184,7 +184,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "row",
           width: "100%",
           minHeight: "var(--slider-thumb-size)",
-          "&[data-has-mark-label]": {
+          "&[data-has-mark-label], &:has(.slider__marker-label)": {
             marginBottom: "4",
           },
         },

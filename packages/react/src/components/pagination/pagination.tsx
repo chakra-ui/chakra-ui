@@ -1,13 +1,21 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Pagination as ArkPagination } from "@ark-ui/react/pagination"
+import {
+  Pagination as ArkPagination,
+  usePaginationContext,
+} from "@ark-ui/react/pagination"
+import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { Box, type BoxProps } from "../box"
+import { IconButton } from "../button"
+import { For } from "../for"
+import { EllipsisIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -109,3 +117,70 @@ export interface PaginationPageChangeDetails
 
 export interface PaginationPageSizeChangeDetails
   extends ArkPagination.PageSizeChangeDetails {}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PaginationPageTextProps extends BoxProps {
+  format?: "short" | "compact" | "long"
+}
+
+export const PaginationPageText = forwardRef<
+  HTMLParagraphElement,
+  PaginationPageTextProps
+>(function PaginationPageText(props, ref) {
+  const { format = "compact", ...rest } = props
+  const { page, totalPages, pageRange, count } = usePaginationContext()
+  const content = useMemo(() => {
+    if (format === "short") return `${page} / ${totalPages}`
+    if (format === "compact") return `${page} of ${totalPages}`
+    return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`
+  }, [format, page, totalPages, pageRange, count])
+
+  return (
+    <Box fontWeight="medium" ref={ref} {...rest}>
+      {content}
+    </Box>
+  )
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PaginationItemsProps
+  extends React.HTMLAttributes<HTMLElement> {
+  render: (page: { type: "page"; value: number }) => React.ReactNode
+  ellipsis?: React.ReactElement
+}
+
+export const PaginationItems = (props: PaginationItemsProps) => {
+  const { pages } = usePaginationContext()
+  const { render, ellipsis, ...rest } = props
+  return (
+    <For each={pages}>
+      {(page, index) => {
+        if (page.type === "ellipsis") {
+          return (
+            <PaginationEllipsis asChild key={index} index={index} {...rest}>
+              {ellipsis || (
+                <IconButton as="span">
+                  <EllipsisIcon />
+                </IconButton>
+              )}
+            </PaginationEllipsis>
+          )
+        }
+
+        return (
+          <PaginationItem
+            asChild
+            key={index}
+            type="page"
+            value={page.value}
+            {...rest}
+          >
+            {render(page)}
+          </PaginationItem>
+        )
+      }}
+    </For>
+  )
+}

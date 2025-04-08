@@ -1,9 +1,6 @@
 "use client"
 
-import { Input, Stack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import { Checkbox } from "compositions/ui/checkbox"
-import { Field } from "compositions/ui/field"
+import { Button, Checkbox, Field, Input, Stack } from "@chakra-ui/react"
 
 export const CheckboxWithForm = () => {
   return (
@@ -14,16 +11,20 @@ export const CheckboxWithForm = () => {
       }}
     >
       <Stack maxW="sm" gap="4" align="flex-start">
-        <Field label="User name">
-          <Input name="username" />
-        </Field>
-        <Field label="Password">
-          <Input name="password" />
-        </Field>
+        <Field.Root>
+          <Field.Label>Username</Field.Label>
+          <Input placeholder="username" />
+        </Field.Root>
+        <Field.Root>
+          <Field.Label>Password</Field.Label>
+          <Input placeholder="password" />
+        </Field.Root>
 
-        <Checkbox mt="2" name="remember" value="one">
-          Remember me
-        </Checkbox>
+        <Checkbox.Root mt="2" value="remember me">
+          <Checkbox.HiddenInput />
+          <Checkbox.Control />
+          <Checkbox.Label>Remember me</Checkbox.Label>
+        </Checkbox.Root>
 
         <Button variant="solid" mt="3">
           Submit

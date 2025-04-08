@@ -1,0 +1,94 @@
+---
+title: Charts
+description: Creating beautiful charts with recharts and Chakra UI
+---
+
+Charts are designed to look great out of the box, seamlessly integrating with
+other Chakra UI's theming system. The charts are built on top of
+[recharts](https://recharts.org)
+
+## Installation
+
+Run the following command to install the charts and its peer dependencies.
+
+```bash
+npm i @chakra-ui/charts recharts
+```
+
+## Usage
+
+:::steps
+
+### Import the charts component
+
+In most cases, you need to import the `Chart` and `useChart` hook from the
+`@chakra-ui/charts` package, then combine them with the components `recharts`
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
+```
+
+### Define chart data
+
+Pass the chart data to the `useChart` hook to create a chart instance.
+
+> Learn more about the [`useChart`](/docs/charts/use-chart) hook.
+
+```tsx
+const chart = useChart({
+  data: [
+    { month: "January", value: 100 },
+    { month: "February", value: 200 },
+  ],
+})
+```
+
+### Render the chart
+
+Depending on the chart type you need from the `recharts` library, wrap the chart
+component within the `Chart.Root` component.
+
+```tsx
+<Chart.Root chart={chart}>
+  <BarChart data={chart.data}>
+    {chart.series.map((item) => (
+      <Bar
+        key={item.name}
+        dataKey={chart.key(item.name)}
+        fill={chart.color(item.color)}
+      />
+    ))}
+  </BarChart>
+</Chart.Root>
+```
+
+:::
+
+## Customization
+
+The charts component is built on top of [Recharts](https://recharts.org), so you
+can use all the customization options that Recharts provides.
+
+### Colors
+
+The `useChart` hook provides a `color` function that you can use to query
+semantic colors for the chart component from `recharts`.
+
+```tsx
+<CartesianGrid stroke={chart.color("border.muted")} />
+```
+
+### Formatters
+
+The `useChart` hook provides a `formatDate` and `formatNumber` function that you
+can use to format the date and number respectively. This is useful for
+formatting the x, y axis labels and tooltips.
+
+```tsx
+// format the x-axis labels
+<XAxis tickFormatter={chart.formatDate({ month: "short", day: "2-digit" })} />
+
+// format the y-axis labels
+<YAxis tickFormatter={chart.formatNumber({ maximumFractionDigits: 1 })} />
+```

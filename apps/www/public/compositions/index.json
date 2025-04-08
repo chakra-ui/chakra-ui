@@ -25,9 +25,7 @@
     "file": "alert.tsx",
     "component": "Alert",
     "npmDependencies": [],
-    "fileDependencies": [
-      "compositions/ui/close-button"
-    ]
+    "fileDependencies": []
   },
   {
     "type": "composition",
@@ -50,14 +48,6 @@
     "id": "breadcrumb",
     "file": "breadcrumb.tsx",
     "component": "Breadcrumb",
-    "npmDependencies": [],
-    "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "button",
-    "file": "button.tsx",
-    "component": "Button",
     "npmDependencies": [],
     "fileDependencies": []
   },
@@ -110,6 +100,16 @@
   },
   {
     "type": "composition",
+    "id": "color-picker",
+    "file": "color-picker.tsx",
+    "component": "ColorPicker",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "data-list",
     "file": "data-list.tsx",
     "component": "DataList",
@@ -156,9 +156,9 @@
   },
   {
     "type": "composition",
-    "id": "file-button",
-    "file": "file-button.tsx",
-    "component": "FileButton",
+    "id": "file-upload",
+    "file": "file-upload.tsx",
+    "component": "FileUpload",
     "npmDependencies": [
       "react-icons"
     ],
@@ -234,9 +234,7 @@
     "npmDependencies": [
       "react-icons"
     ],
-    "fileDependencies": [
-      "./input-group"
-    ]
+    "fileDependencies": []
   },
   {
     "type": "composition",
@@ -291,6 +289,14 @@
     "fileDependencies": [
       "compositions/ui/color-mode"
     ]
+  },
+  {
+    "type": "composition",
+    "id": "qr-code",
+    "file": "qr-code.tsx",
+    "component": "QrCode",
+    "npmDependencies": [],
+    "fileDependencies": []
   },
   {
     "type": "composition",

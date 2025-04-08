@@ -1,43 +1,38 @@
 "use client"
 
-import { Button } from "compositions/ui/button"
-import {
-  DialogActionTrigger,
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react"
 import { useState } from "react"
 import Lorem from "react-lorem-ipsum"
 
 export const DialogControlled = () => {
   const [open, setOpen] = useState(false)
   return (
-    <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
-      <DialogTrigger asChild>
+    <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open</Button>
-      </DialogTrigger>
-
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Dialog Title</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <Lorem p={2} />
-        </DialogBody>
-        <DialogFooter>
-          <DialogActionTrigger asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogActionTrigger>
-          <Button>Save</Button>
-        </DialogFooter>
-        <DialogCloseTrigger />
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>Dialog Title</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>
+              <Lorem p={2} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="outline">Cancel</Button>
+              </Dialog.ActionTrigger>
+              <Button>Save</Button>
+            </Dialog.Footer>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

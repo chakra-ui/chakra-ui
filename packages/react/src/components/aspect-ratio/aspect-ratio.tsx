@@ -5,6 +5,7 @@ import {
   type ConditionalValue,
   type HTMLChakraProps,
   chakra,
+  defineStyle,
 } from "../../styled-system"
 import { cx, mapObject } from "../../utils"
 
@@ -18,12 +19,25 @@ export interface AspectRatioProps
   ratio?: ConditionalValue<number>
 }
 
-/**
- * React component used to cropping media (videos, images and maps)
- * to a desired aspect ratio.
- *
- * @see Docs https://chakra-ui.com/aspectratiobox
- */
+const baseStyle = defineStyle({
+  "& > *:not(style)": {
+    overflow: "hidden",
+    position: "absolute",
+    top: "0",
+    right: "0",
+    bottom: "0",
+    left: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  "& > img, & > video": {
+    objectFit: "cover",
+  },
+})
+
 export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
   function AspectRatio(props, ref) {
     const { ratio = 4 / 3, children, className, ...rest } = props
@@ -40,26 +54,8 @@ export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
           display: "block",
           paddingBottom: mapObject(ratio, (r) => `${(1 / r) * 100}%`),
         }}
-        css={{
-          "& > *:not(style)": {
-            overflow: "hidden",
-            position: "absolute",
-            top: "0",
-            right: "0",
-            bottom: "0",
-            left: "0",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-          },
-          "& > img, & > video": {
-            objectFit: "cover",
-          },
-          ...props.css,
-        }}
         {...rest}
+        css={[baseStyle, props.css]}
       >
         {child}
       </chakra.div>

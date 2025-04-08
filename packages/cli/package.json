@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cli",
-  "version": "3.3.1",
+  "version": "3.15.1",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
     "theme",
@@ -46,12 +46,12 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "0.7.0",
+    "@clack/prompts": "0.10.0",
     "@pandacss/is-valid-prop": "0.41.0",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
-    "@visulima/boxen": "^1.0.23",
-    "bundle-n-require": "1.1.1",
+    "@visulima/boxen": "^1.0.30",
+    "bundle-n-require": "1.1.2",
     "globby": "14.0.2",
     "chokidar": "3.6.0",
     "cli-table": "^0.3.11",

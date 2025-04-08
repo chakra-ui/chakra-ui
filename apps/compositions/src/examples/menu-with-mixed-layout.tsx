@@ -1,11 +1,4 @@
-import { Box, Group } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Box, Button, Group, Menu, Portal } from "@chakra-ui/react"
 import {
   LuClipboard,
   LuCopy,
@@ -29,35 +22,39 @@ const verticalMenuItems = [
 
 export const MenuWithMixedLayout = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>
-      </MenuTrigger>
-      <MenuContent>
-        <Group grow gap="0">
-          {horizontalMenuItems.map((item) => (
-            <MenuItem
-              key={item.value}
-              value={item.value}
-              width="14"
-              gap="1"
-              flexDirection="column"
-              justifyContent="center"
-            >
-              {item.icon}
-              {item.label}
-            </MenuItem>
-          ))}
-        </Group>
-        {verticalMenuItems.map((item) => (
-          <MenuItem key={item.value} value={item.value}>
-            <Box flex="1">{item.label}</Box>
-            {item.icon}
-          </MenuItem>
-        ))}
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Group grow gap="0">
+              {horizontalMenuItems.map((item) => (
+                <Menu.Item
+                  key={item.value}
+                  value={item.value}
+                  width="14"
+                  gap="1"
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  {item.icon}
+                  {item.label}
+                </Menu.Item>
+              ))}
+            </Group>
+            {verticalMenuItems.map((item) => (
+              <Menu.Item key={item.value} value={item.value}>
+                <Box flex="1">{item.label}</Box>
+                {item.icon}
+              </Menu.Item>
+            ))}
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

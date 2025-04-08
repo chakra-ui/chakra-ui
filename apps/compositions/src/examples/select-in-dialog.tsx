@@ -1,59 +1,62 @@
 "use client"
 
-import { createListCollection } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
 import {
-  DialogBackdrop,
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "compositions/ui/select"
+  Button,
+  CloseButton,
+  Dialog,
+  Portal,
+  Select,
+  createListCollection,
+} from "@chakra-ui/react"
 import { useRef } from "react"
 
 export const SelectInDialog = () => {
   const contentRef = useRef<HTMLDivElement>(null)
   return (
-    <DialogRoot>
-      <DialogBackdrop />
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent ref={contentRef}>
-        <DialogCloseTrigger />
-        <DialogHeader>
-          <DialogTitle>Select in Dialog</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <SelectRoot collection={frameworks} size="sm">
-            <SelectLabel>Select framework</SelectLabel>
-            <SelectTrigger>
-              <SelectValueText placeholder="Select movie" />
-            </SelectTrigger>
-            <SelectContent portalRef={contentRef}>
-              {frameworks.items.map((item) => (
-                <SelectItem item={item} key={item.value}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </SelectRoot>
-        </DialogBody>
-        <DialogFooter />
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content ref={contentRef}>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton />
+            </Dialog.CloseTrigger>
+            <Dialog.Header>
+              <Dialog.Title>Select in Dialog</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>
+              <Select.Root collection={frameworks} size="sm">
+                <Select.HiddenSelect />
+                <Select.Label>Select framework</Select.Label>
+                <Select.Control>
+                  <Select.Trigger>
+                    <Select.ValueText placeholder="Select framework" />
+                  </Select.Trigger>
+                  <Select.IndicatorGroup>
+                    <Select.Indicator />
+                  </Select.IndicatorGroup>
+                </Select.Control>
+                <Portal container={contentRef}>
+                  <Select.Positioner>
+                    <Select.Content>
+                      {frameworks.items.map((item) => (
+                        <Select.Item item={item} key={item.value}>
+                          {item.label}
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Positioner>
+                </Portal>
+              </Select.Root>
+            </Dialog.Body>
+            <Dialog.Footer />
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }
 

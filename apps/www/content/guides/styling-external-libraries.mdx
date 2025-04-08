@@ -1,0 +1,196 @@
+---
+title: Styling External Libraries
+description:
+  Learn how to style external libraries using Chakra UI's styling system
+publishedAt: "2025-04-01"
+collection: styling
+---
+
+In this guide, we'll learn how to style external libraries using Chakra UI's
+styling system.
+
+With the rise of headless component libraries like Ark UI, Radix UI, etc. it's
+common to want to use them while styling with Chakra UI.
+
+Let's assume we want to style the Carousel component from Ark UI (an headless
+component library).
+
+## Install Ark UI
+
+Start by installing the React version of Ark UI:
+
+```bash
+npm install @ark-ui/react
+```
+
+## Understand the Component Anatomy
+
+Ark UI breaks each headless component into smaller, functional parts. For
+example, some parts of a
+(carousel)[https://ark-ui.com/react/docs/components/carousel#anatomy] would be:
+
+- `Root`: The root component of the carousel
+- `Item`: The item component of the carousel
+- `PrevTrigger`: The previous trigger component of the carousel
+- `NextTrigger`: The next trigger component of the carousel
+
+Each part is flexible and can be styled independently. Once you know what each
+one does, it becomes easier to add custom styles to the parts.
+
+```tsx
+import { Carousel } from "@ark-ui/react/carousel"
+
+const images = Array.from(
+  { length: 5 },
+  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
+)
+
+export const Demo = () => {
+  return (
+    <Carousel.Root defaultPage={0} slideCount={images.length}>
+      <Carousel.Control>
+        <Carousel.PrevTrigger>Previous</Carousel.PrevTrigger>
+        <Carousel.NextTrigger>Next</Carousel.NextTrigger>
+      </Carousel.Control>
+      <Carousel.IndicatorGroup>
+        {images.map((_, index) => (
+          <Carousel.Indicator key={index} index={index} />
+        ))}
+      </Carousel.IndicatorGroup>
+      <Carousel.ItemGroup>
+        {images.map((image, index) => (
+          <Carousel.Item key={index} index={index}>
+            <img src={image} alt={`Slide ${index}`} />
+          </Carousel.Item>
+        ))}
+      </Carousel.ItemGroup>
+    </Carousel.Root>
+  )
+}
+```
+
+## Styling the primitives
+
+One way you can easily style headless primitives is to wrap within the
+[`chakra` factory](https://www.chakra-ui.com/docs/styling/chakra-factory).
+
+With the factory, you can apply a style object or recipe to the component.
+
+```tsx title="components/ui/carousel.tsx"
+import { Carousel as ArkCarousel } from "@ark-ui/react/carousel"
+import { chakra } from "@chakra-ui/react"
+
+const CarouselRoot = chakra(ArkCarousel.Root, {
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+
+  variants: {},
+})
+
+const CarouselItem = chakra(ArkCarousel.Item, {
+  base: {
+    width: "100%",
+    height: "100%",
+  },
+})
+
+const CarouselIndicatorGroup = chakra(ArkCarousel.IndicatorGroup, {
+  base: {
+    display: "flex",
+    gap: 2,
+  },
+})
+
+const CarouselIndicator = chakra(ArkCarousel.Indicator, {
+  base: {
+    borderRadius: "full",
+    bg: "bg.subtle",
+    _selected: {
+      bg: "teal.solid",
+    },
+  },
+  variants: {
+    size: {
+      sm: {
+        width: 3,
+        height: 3,
+      },
+      md: {
+        width: 4,
+        height: 4,
+      },
+    },
+  },
+})
+
+const CarouselItemGroup = chakra(ArkCarousel.ItemGroup, {
+  base: {
+    display: "flex",
+    gap: 2,
+  },
+})
+
+export const Carousel = {
+  Root: CarouselRoot,
+  IndicatorGroup: CarouselIndicatorGroup,
+  Indicator: CarouselIndicator,
+  ItemGroup: CarouselItemGroup,
+  Item: CarouselItem,
+  NextTrigger: ArkCarousel.NextTrigger,
+  PrevTrigger: ArkCarousel.PrevTrigger,
+}
+```
+
+## Using the styled components
+
+Now that we have the styled components, we can use them in our app.
+
+For the `PrevTrigger` and `NextTrigger` components, we can render them as
+`IconButton` components from Chakra UI.
+
+```tsx title="pages/index.tsx"
+import { Carousel } from "@/components/ui/carousel"
+import { IconButton } from "@chakra-ui/react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
+
+const images = Array.from(
+  { length: 5 },
+  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
+)
+
+export const Demo = () => {
+  return (
+    <Carousel.Root defaultPage={0} slideCount={images.length}>
+      <Carousel.Control>
+        <Carousel.PrevTrigger asChild>
+          <IconButton>
+            <LuArrowLeft />
+          </IconButton>
+        </Carousel.PrevTrigger>
+        <Carousel.NextTrigger asChild>
+          <IconButton>
+            <LuArrowRight />
+          </IconButton>
+        </Carousel.NextTrigger>
+      </Carousel.Control>
+      <Carousel.IndicatorGroup>
+        {images.map((_, index) => (
+          <Carousel.Indicator key={index} index={index} />
+        ))}
+      </Carousel.IndicatorGroup>
+      <Carousel.ItemGroup>
+        {images.map((image, index) => (
+          <Carousel.Item key={index} index={index}>
+            <img src={image} alt={`Slide ${index}`} />
+          </Carousel.Item>
+        ))}
+      </Carousel.ItemGroup>
+    </Carousel.Root>
+  )
+}
+```
+
+And that's it! You've now styled a headless component library using Chakra UI.

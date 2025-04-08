@@ -2,12 +2,14 @@
 
 import type { Assign } from "@ark-ui/react"
 import { Clipboard as ArkClipboard } from "@ark-ui/react/clipboard"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { CheckIcon, CopyIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +87,13 @@ export interface ClipboardIndicatorProps
 export const ClipboardIndicator = withContext<
   HTMLDivElement,
   ClipboardIndicatorProps
->(ArkClipboard.Indicator, "indicator", { forwardAsChild: true })
+>(ArkClipboard.Indicator, "indicator", {
+  forwardAsChild: true,
+  defaultProps: {
+    copied: <CheckIcon boxSize="1em" />,
+    children: <CopyIcon boxSize="1em" />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -123,3 +131,16 @@ export const ClipboardValueText = withContext<
   HTMLDivElement,
   ClipboardValueTextProps
 >(ArkClipboard.ValueText, "valueText", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ClipboardCopyText = forwardRef<
+  HTMLDivElement,
+  ClipboardIndicatorProps
+>(function ClipboardCopyText(props, ref) {
+  return (
+    <ClipboardIndicator copied="Copied" {...props} ref={ref}>
+      Copy
+    </ClipboardIndicator>
+  )
+})

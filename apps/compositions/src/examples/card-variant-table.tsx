@@ -1,8 +1,7 @@
 "use client"
 
-import { Card, For, useSlotRecipe } from "@chakra-ui/react"
+import { Button, Card, For, useSlotRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Button } from "compositions/ui/button"
 
 export const CardVariantTable = () => {
   const recipe = useSlotRecipe({ key: "card" })

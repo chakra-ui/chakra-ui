@@ -1,6 +1,12 @@
-import { Card, HStack, Stack, Strong, Text } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
-import { Button } from "compositions/ui/button"
+import {
+  Avatar,
+  Button,
+  Card,
+  HStack,
+  Stack,
+  Strong,
+  Text,
+} from "@chakra-ui/react"
 import { LuCheck, LuX } from "react-icons/lu"
 
 export const CardWithAvatar = () => {
@@ -8,10 +14,10 @@ export const CardWithAvatar = () => {
     <Card.Root width="320px">
       <Card.Body>
         <HStack mb="6" gap="3">
-          <Avatar
-            src="https://images.unsplash.com/photo-1511806754518-53bada35f930"
-            name="Nate Foss"
-          />
+          <Avatar.Root>
+            <Avatar.Image src="https://images.unsplash.com/photo-1511806754518-53bada35f930" />
+            <Avatar.Fallback name="Nate Foss" />
+          </Avatar.Root>
           <Stack gap="0">
             <Text fontWeight="semibold" textStyle="sm">
               Nate Foss

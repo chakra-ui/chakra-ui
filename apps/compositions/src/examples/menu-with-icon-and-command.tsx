@@ -1,37 +1,33 @@
-import { Box } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import {
-  MenuContent,
-  MenuItem,
-  MenuItemCommand,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Box, Button, Menu, Portal } from "@chakra-ui/react"
 import { LuClipboardPaste, LuCopy, LuScissors } from "react-icons/lu"
 
 export const MenuWithIconAndCommand = () => {
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Button variant="outline">Edit</Button>
-      </MenuTrigger>
-      <MenuContent>
-        <MenuItem value="cut" valueText="cut">
-          <LuScissors />
-          <Box flex="1">Cut</Box>
-          <MenuItemCommand>⌘X</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="copy" valueText="copy">
-          <LuCopy />
-          <Box flex="1">Copy</Box>
-          <MenuItemCommand>⌘C</MenuItemCommand>
-        </MenuItem>
-        <MenuItem value="paste" valueText="paste">
-          <LuClipboardPaste />
-          <Box flex="1">Paste</Box>
-          <MenuItemCommand>⌘V</MenuItemCommand>
-        </MenuItem>
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Trigger>
+      <Portal>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item value="cut">
+              <LuScissors />
+              <Box flex="1">Cut</Box>
+              <Menu.ItemCommand>⌘X</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="copy">
+              <LuCopy />
+              <Box flex="1">Copy</Box>
+              <Menu.ItemCommand>⌘C</Menu.ItemCommand>
+            </Menu.Item>
+            <Menu.Item value="paste">
+              <LuClipboardPaste />
+              <Box flex="1">Paste</Box>
+              <Menu.ItemCommand>⌘V</Menu.ItemCommand>
+            </Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Portal>
+    </Menu.Root>
   )
 }

@@ -4,7 +4,6 @@ import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
 import { existsSync, mkdirSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
-import { createRequire } from "node:module"
 import { dirname, join, resolve } from "node:path"
 
 interface ReadResult {
@@ -31,25 +30,9 @@ export const read = async (file: string): Promise<ReadResult> => {
   return { mod: resolvedMod, dependencies }
 }
 
-const req = createRequire(import.meta.url)
-
-const getBasePath = () => {
-  const cwd = process.cwd()
-
-  if (!process.env.LOCAL) {
-    const root = req.resolve("@chakra-ui/react", { paths: [cwd] })
-    return resolve(root, "..", "..", "types", "styled-system", "generated")
-  }
-
-  const root = join(cwd, "packages", "react", "src")
-  return join(root, "styled-system", "generated")
-}
-
-export const basePath = getBasePath()
-
-const outPath = (file: string) => {
+const outPath = (path: string, file: string) => {
   const ext = process.env.LOCAL ? "ts" : "d.ts"
-  return join(basePath, `${file}.${ext}`)
+  return join(path, `${file}.${ext}`)
 }
 
 export function ensureDir(dirPath: string): void {
@@ -58,9 +41,13 @@ export function ensureDir(dirPath: string): void {
   mkdirSync(dirPath)
 }
 
-export const write = async (file: string, content: Promise<string>) => {
+export const write = async (
+  path: string,
+  file: string,
+  content: Promise<string>,
+) => {
   try {
-    await writeFile(outPath(file), await content)
+    await writeFile(outPath(path, file), await content)
   } catch (error) {
     console.log(error)
   }
@@ -78,7 +65,7 @@ export function watch(paths: string[], cb: () => Promise<void>) {
   process.once("SIGTERM", () => watcher.close())
 }
 
-export async function clean() {
+export async function clean(basePath: string) {
   log.info("🧹 Cleaning output directory")
   rm(basePath, { recursive: true }, (err) => {
     if (err) {

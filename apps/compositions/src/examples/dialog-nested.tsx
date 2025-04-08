@@ -1,46 +1,47 @@
-import { Button } from "compositions/ui/button"
-import {
-  DialogBody,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+import { Button, Dialog, Portal } from "@chakra-ui/react"
 import Lorem from "react-lorem-ipsum"
 
 export const DialogNested = () => {
   return (
-    <DialogRoot>
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <Button variant="outline">Open</Button>
-      </DialogTrigger>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>Dialog Title</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>
+              <Lorem p={2} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button variant="outline">Button 2</Button>
 
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Dialog Title</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <Lorem p={2} />
-        </DialogBody>
-        <DialogFooter>
-          <Button variant="outline">Button 2</Button>
-          <DialogRoot>
-            <DialogTrigger asChild>
-              <Button>Open Nested</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Dialog Title</DialogTitle>
-              </DialogHeader>
-              <DialogBody>
-                <Lorem p={1} />
-              </DialogBody>
-            </DialogContent>
-          </DialogRoot>
-        </DialogFooter>
-      </DialogContent>
-    </DialogRoot>
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <Button>Open Nested</Button>
+                </Dialog.Trigger>
+                <Portal>
+                  <Dialog.Backdrop />
+                  <Dialog.Positioner>
+                    <Dialog.Content>
+                      <Dialog.Header>
+                        <Dialog.Title>Dialog Title</Dialog.Title>
+                      </Dialog.Header>
+                      <Dialog.Body>
+                        <Lorem p={1} />
+                      </Dialog.Body>
+                    </Dialog.Content>
+                  </Dialog.Positioner>
+                </Portal>
+              </Dialog.Root>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

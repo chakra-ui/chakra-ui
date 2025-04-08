@@ -19,4 +19,3 @@ export { BreadcrumbWithMenu as Menu } from "compositions/examples/breadcrumb-wit
 export { BreadcrumbWithSeparator as Separator } from "compositions/examples/breadcrumb-with-separator"
 export { BreadcrumbVariantTable as Variants } from "compositions/examples/breadcrumb-variant-table"
 export { BreadcrumbSizeTable as Sizes } from "compositions/examples/breadcrumb-size-table"
-export { BreadcrumbWithoutSnippet as WithoutSnippet } from "compositions/examples/breadcrumb-without-snippet"

@@ -1,11 +1,4 @@
-import { Group } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Avatar, Group, Menu, Portal } from "@chakra-ui/react"
 
 const names = [
   "Naruto Uzumaki",
@@ -14,7 +7,6 @@ const names = [
   "Hinata Hyuga",
   "Shikamaru Nara",
 ]
-
 const maxAvatars = 3
 
 export const AvatarWithOverflow = () => {
@@ -22,26 +14,32 @@ export const AvatarWithOverflow = () => {
   return (
     <Group gap="0" spaceX="2">
       {items.map((item) => (
-        <Avatar key={item} name={item} colorPalette={pickPalette(item)} />
+        <Avatar.Root key={item} colorPalette={pickPalette(item)}>
+          <Avatar.Fallback name={item} />
+        </Avatar.Root>
       ))}
       {overflow.length > 0 && (
-        <MenuRoot positioning={{ placement: "bottom" }}>
-          <MenuTrigger rounded="full" focusRing="outside">
-            <Avatar variant="outline" fallback={`+${overflow.length}`} />
-          </MenuTrigger>
-          <MenuContent>
-            {overflow.map((item) => (
-              <MenuItem value={item} key={item}>
-                <Avatar
-                  size="xs"
-                  name={item}
-                  colorPalette={pickPalette(item)}
-                />
-                {item}
-              </MenuItem>
-            ))}
-          </MenuContent>
-        </MenuRoot>
+        <Menu.Root positioning={{ placement: "bottom" }}>
+          <Menu.Trigger rounded="full" focusRing="outside">
+            <Avatar.Root variant="outline">
+              <Avatar.Fallback>+{overflow.length}</Avatar.Fallback>
+            </Avatar.Root>
+          </Menu.Trigger>
+          <Portal>
+            <Menu.Positioner>
+              <Menu.Content>
+                {overflow.map((item) => (
+                  <Menu.Item value={item} key={item}>
+                    <Avatar.Root size="xs" colorPalette={pickPalette(item)}>
+                      <Avatar.Fallback name={item} />
+                    </Avatar.Root>
+                    {item}
+                  </Menu.Item>
+                ))}
+              </Menu.Content>
+            </Menu.Positioner>
+          </Portal>
+        </Menu.Root>
       )}
     </Group>
   )

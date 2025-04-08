@@ -16,7 +16,12 @@ and extensible styling system:
 - Pass the styling engine to the `ChakraProvider` component
 
 ```tsx
-import { ChakraProvider, createSystem } from "@chakra-ui/react"
+import {
+  ChakraProvider,
+  createSystem,
+  defaultConfig,
+  defineConfig,
+} from "@chakra-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -26,7 +31,7 @@ const config = defineConfig({
   },
 })
 
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 export default function App() {
   return (
@@ -55,7 +60,7 @@ const config = defineConfig({
   cssVarsRoot: ":where(:root, :host)",
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### cssVarsPrefix
@@ -67,7 +72,7 @@ const config = defineConfig({
   cssVarsPrefix: "ck",
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### globalCss
@@ -84,7 +89,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### theme
@@ -130,7 +135,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### conditions
@@ -146,7 +151,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 Sample usage:
@@ -168,7 +173,7 @@ const config = defineConfig({
   strictTokens: true,
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ```tsx
@@ -199,7 +204,7 @@ the styling engine. The returned `system` is framework-agnostic JavaScript
 styling engine that can be used to style components.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 ```
 
 The system includes the following properties:
@@ -209,7 +214,7 @@ The system includes the following properties:
 The token function is used to get a raw token value, or css variable.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 // raw token
 system.token("colors.red.200")
@@ -248,7 +253,7 @@ system.token.var("colors.danger")
 ### tokens
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 system.tokens.getVar("colors.red.200")
 // => "var(--chakra-colors-red-200)"
@@ -270,7 +275,7 @@ that can be passed to `emotion` or `styled-components` or any other styling
 library.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 system.css({
   color: "red.200",
@@ -286,7 +291,7 @@ The `cva` function is used to create component recipes. It returns a function
 that, when called with a set of props, returns a style object.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 const button = system.cva({
   base: {
@@ -313,7 +318,7 @@ function that, when called with a set of props, returns a style object for each
 slot.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 const alert = system.sva({
   slots: ["title", "description", "icon"],
@@ -342,7 +347,7 @@ alert({ status: "info" })
 The `isValidProperty` function is used to check if a property is valid.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 system.isValidProperty("color")
 // => true
@@ -360,7 +365,7 @@ The `splitCssProps` function is used to split the props into css props and
 non-css props.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 system.splitCssProps({
   color: "red.200",
@@ -375,7 +380,7 @@ system.splitCssProps({
 The `breakpoints` property is used to query breakpoints.
 
 ```tsx
-const system = createSystem(config)
+const system = createSystem(defaultConfig, config)
 
 system.breakpoints.up("sm")
 // => "@media (min-width: 320px)"

@@ -1,0 +1,248 @@
+---
+title: Line Chart
+description:
+  Used to display data points connected by straight line segments, showing
+  trends and patterns in continuous data over time or sequences
+links:
+  storybook: charts-line-chart--basic
+  recharts: https://recharts.org/en-US/api/LineChart
+---
+
+<ExampleTabs name="charts/line-chart-basic" />
+
+## Usage
+
+```tsx
+import { Chart, useChart } from "@chakra-ui/charts"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+```
+
+```tsx
+<Chart.Root>
+  <LineChart>
+    <CartesianGrid />
+    <XAxis />
+    <YAxis />
+    <Line />
+  </LineChart>
+</Chart.Root>
+```
+
+## Examples
+
+### Axes Label
+
+To add labels to the x and y axes, use the `Label` component from `recharts`.
+
+```tsx
+<XAxis axisLine={false} label={{ value: "X Axis", position: "bottom" }} />
+<YAxis axisLine={false} label={{ value: "Y Axis", position: "left", angle: -90 }} />
+```
+
+<ExampleTabs name="charts/line-chart-axes-label" />
+
+### No Dots
+
+Set `dot` and `activeDot` to `false` to hide the dots completely.
+
+```tsx
+<Line dot={false} activeDot={false} />
+```
+
+<ExampleTabs name="charts/line-chart-no-dots" />
+
+### Point Labels
+
+Render the `LabelList` component from `recharts` inside the `Line` component to
+show labels at each data point.
+
+```tsx
+<Line>
+  <LabelList position="right" offset={10} />
+</Line>
+```
+
+<ExampleTabs name="charts/line-chart-with-point-label" />
+
+### Gradient
+
+Use the `Chart.Gradient` component to create a gradient. Ensure the `id` is
+unique and used in the `stroke` prop of the `Line` component.
+
+```tsx
+<defs>
+  <Chart.Gradient id="custom-gradient" stops={[]} />
+</defs>
+<Line stroke="url(#custom-gradient)" />
+```
+
+<ExampleTabs name="charts/line-chart-with-gradient" />
+
+### Dashed
+
+Set the `strokeDasharray` prop in the `series` object to create a dashed line.
+
+```ts /strokeDasharray: "5 5"/
+const chart = useChart({
+  data: [
+    { windows: 186, mac: 165, month: "January" },
+    //...
+  ],
+  series: [
+    { name: "windows", color: "teal.solid", strokeDasharray: "5 5" },
+    { name: "mac", color: "purple.solid" },
+  ],
+})
+```
+
+<ExampleTabs name="charts/line-chart-with-dashed" />
+
+### Multiple
+
+Here's an example of a line chart with multiple series.
+
+<ExampleTabs name="charts/line-chart-multiple" />
+
+### Legend Interaction
+
+Adding interactivity to the chart legends make it come to life. To enable this
+feature, set the `interaction` prop to `"hover"` or `"click"` in the
+`Chart.Legend` component.
+
+```tsx
+<Chart.Legend interaction="hover" />
+```
+
+<ExampleTabs name="charts/line-chart-legend-interaction" />
+
+### Start and End Tick
+
+By default, the chart shows the label for each tick. To show just the start and
+end ticks, pass the `ticks` prop to the `XAxis` component from `recharts`.
+
+> You can optionally pass a `label` prop to the `XAxis` component to show a
+> label at the bottom of the axis.
+
+```tsx
+<XAxis
+  ticks={["January", "August"]}
+  label={{ value: "[January - August] Customers", position: "bottom" }}
+/>
+```
+
+<ExampleTabs name="charts/line-chart-start-end-tick" />
+
+### Value Formatter
+
+To format the value axis ticks, pass the `tickFormatter` prop to the `YAxis`
+component from `recharts`.
+
+```tsx
+<YAxis
+  tickFormatter={chart.formatNumber({
+    style: "currency",
+    currency: "USD",
+    notation: "compact",
+  })}
+/>
+```
+
+<ExampleTabs name="charts/line-chart-value-formatter" />
+
+### Biaxial
+
+Use the `yAxisId` prop in the `series` object and `YAxis` component to create a
+chart with two y-axes.
+
+```tsx
+<YAxis yAxisId="left" />
+<YAxis yAxisId="right" orientation="right" />
+```
+
+<ExampleTabs name="charts/line-chart-biaxial" />
+
+### Custom Tooltip
+
+In event you need to customize the tooltip entirely, replace the `Chart.Tooltip`
+component with your own. The basic signature of a custom tooltip looks like:
+
+```tsx
+function CustomTooltip(props: TooltipProps<string, string>) {
+  const { active, payload, label } = props
+  if (!active || !payload || payload.length === 0) return null
+
+  return <Box>{/* Your custom tooltip content */}</Box>
+}
+```
+
+<ExampleTabs name="charts/line-chart-custom-tooltip" />
+
+### Series Label
+
+To add a custom label to the series, set the `label` prop in the `series`
+object.
+
+```tsx /label: "Mac sales"/ /label: "Linux sales"/
+const chart = useChart({
+  data: [
+    { mac: 10, linux: 120, month: "January" },
+    //...
+  ],
+  series: [
+    { name: "mac", label: "Mac sales", color: "purple.solid" },
+    { name: "linux", label: "Linux sales", color: "blue.solid" },
+  ],
+})
+```
+
+<ExampleTabs name="charts/line-chart-with-series-label" />
+
+### Reference Point
+
+Use the reference components from `recharts` to highlight a specific data point.
+
+```tsx
+<ReferenceDot x="August" y={110} r={6} />
+<ReferenceLine y={110} label={{ value: "Target", position: "top" }} />
+```
+
+<ExampleTabs name="charts/line-chart-with-reference-point" />
+
+### Value Domain
+
+Pass the `domain` prop to the `YAxis` component to set the domain (upper and
+lower bounds) of the value axis.
+
+```tsx /domain: [0, 100]/
+<YAxis domain={[0, 100]} />
+```
+
+<ExampleTabs name="charts/line-chart-with-value-domain" />
+
+### Connect Nulls
+
+To connect the null values, set the `connectNulls` prop to `true` in the `Line`
+component.
+
+```tsx
+<Line connectNulls />
+```
+
+<ExampleTabs name="charts/line-chart-with-nulls" />
+
+### Composition
+
+Here's an example of composing the `Card`, `State` and `Chart` components
+together to create a stunning visualization.
+
+<ExampleTabs name="charts/line-chart-composition" />
+
+### Line Types
+
+Recharts provides flexible support for various kinds of line charts.
+
+Below are the different types of line charts you can create:
+
+<Box mt="12" borderWidth="1px" ps="3" pe="10" py="10" rounded="l2">
+  <ExamplePreview name="charts/line-chart-with-types" />
+</Box>

@@ -19,9 +19,15 @@ export async function fetchCompositions() {
 }
 
 export async function fetchComposition(id: string) {
-  const res = await fetch(`${env.REGISTRY_URL}/compositions/${id}.json`, {
-    agent,
-  })
-  const json = await res.json()
-  return compositionFileSchema.parse(json)
+  try {
+    const res = await fetch(`${env.REGISTRY_URL}/compositions/${id}.json`, {
+      agent,
+    })
+    const json = await res.json()
+    return compositionFileSchema.parse(json)
+  } catch (error) {
+    throw new Error(
+      `Failed to fetch snippet "${id}". Make sure the id is correct or run @chakra-ui/cli snippet list to see available snippets.`,
+    )
+  }
 }

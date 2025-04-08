@@ -1,4 +1,4 @@
-import { Switch } from "compositions/ui/switch"
+import { Switch } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
 import { useId } from "react"
 
@@ -6,7 +6,11 @@ export const SwitchWithTooltip = () => {
   const id = useId()
   return (
     <Tooltip ids={{ trigger: id }} content="This is a tooltip">
-      <Switch ids={{ root: id }}>Switch with tooltip </Switch>
+      <Switch.Root ids={{ root: id }}>
+        <Switch.HiddenInput />
+        <Switch.Control />
+        <Switch.Label>Switch with tooltip</Switch.Label>
+      </Switch.Root>
     </Tooltip>
   )
 }

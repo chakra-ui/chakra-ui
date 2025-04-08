@@ -1,8 +1,7 @@
 "use client"
 
 import { useUpdateEffect } from "@/lib/use-update-effect"
-import { Button, Card, Input, Textarea } from "@chakra-ui/react"
-import { Field } from "compositions/ui/field"
+import { Button, Card, Field, Input, Textarea } from "@chakra-ui/react"
 import {
   NativeSelectField,
   NativeSelectRoot,
@@ -32,28 +31,35 @@ export const EnterpriseForm = () => {
   return (
     <form ref={formRef} action={formAction}>
       <Card.Body gap="4" alignItems="flex-start">
-        <Field required label="What's your name?">
+        <Field.Root>
+          <Field.Label>
+            What's your name? <Field.RequiredIndicator />
+          </Field.Label>
           <Input placeholder="John Doe" name="name" required />
-        </Field>
+        </Field.Root>
 
-        <Field required label="What's your email?">
+        <Field.Root required>
+          <Field.Label>
+            What's your email? <Field.RequiredIndicator />
+          </Field.Label>
           <Input
             placeholder="me@example.com"
             name="email"
             type="email"
             required
           />
-        </Field>
+        </Field.Root>
 
-        <Field required label="How can we help?">
+        <Field.Root>
+          <Field.Label>How can we help?</Field.Label>
           <Textarea
             placeholder="Your company, your project, your needs..."
             name="message"
             required
           />
-        </Field>
+        </Field.Root>
 
-        <Field required label="Budget">
+        <Field.Root>
           <NativeSelectRoot>
             <NativeSelectField
               placeholder="Select your budget"
@@ -66,7 +72,7 @@ export const EnterpriseForm = () => {
               ]}
             />
           </NativeSelectRoot>
-        </Field>
+        </Field.Root>
 
         <Button type="submit" colorPalette="teal" mt="4">
           Hire the team

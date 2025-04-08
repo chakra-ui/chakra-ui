@@ -19,7 +19,7 @@ import {
 import * as React from "react"
 import { mergeProps } from "../merge-props"
 import { mergeRefs } from "../merge-refs"
-import { compact, cx, interopDefault } from "../utils"
+import { compact, cx, getElementRef, interopDefault } from "../utils"
 import type { JsxFactory, StyledFactoryFn } from "./factory.types"
 import { useChakraContext } from "./provider"
 import { isHtmlProp, useResolvedProps } from "./use-resolved-props"
@@ -206,7 +206,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       Reflect.deleteProperty(finalProps, "asChild")
 
       finalProps = mergeProps(finalProps, child.props)
-      finalProps.ref = mergeRefs(ref, child.ref)
+      finalProps.ref = mergeRefs(ref, getElementRef(child))
     }
 
     if (finalProps.as && forwardAsChild) {

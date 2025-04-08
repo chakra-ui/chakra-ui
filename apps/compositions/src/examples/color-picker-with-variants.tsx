@@ -1,41 +1,42 @@
 "use client"
 
-import { For, HStack, Stack, parseColor } from "@chakra-ui/react"
 import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerLabel,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
+  ColorPicker,
+  For,
+  HStack,
+  Portal,
+  Stack,
+  parseColor,
+} from "@chakra-ui/react"
 
 export const ColorPickerWithVariants = () => {
   return (
     <Stack gap="8">
       <For each={["outline", "subtle"]}>
         {(variant) => (
-          <ColorPickerRoot
+          <ColorPicker.Root
             defaultValue={parseColor("#eb5e41")}
             maxW="200px"
             variant={variant}
           >
-            <ColorPickerLabel>Color ({variant})</ColorPickerLabel>
-            <ColorPickerControl>
-              <ColorPickerInput />
-              <ColorPickerTrigger />
-            </ColorPickerControl>
-            <ColorPickerContent>
-              <ColorPickerArea />
-              <HStack>
-                <ColorPickerEyeDropper />
-                <ColorPickerSliders />
-              </HStack>
-            </ColorPickerContent>
-          </ColorPickerRoot>
+            <ColorPicker.HiddenInput />
+            <ColorPicker.Label>Color ({variant})</ColorPicker.Label>
+            <ColorPicker.Control>
+              <ColorPicker.Input />
+              <ColorPicker.Trigger />
+            </ColorPicker.Control>
+            <Portal>
+              <ColorPicker.Positioner>
+                <ColorPicker.Content>
+                  <ColorPicker.Area />
+                  <HStack>
+                    <ColorPicker.EyeDropper size="xs" variant="outline" />
+                    <ColorPicker.Sliders />
+                  </HStack>
+                </ColorPicker.Content>
+              </ColorPicker.Positioner>
+            </Portal>
+          </ColorPicker.Root>
         )}
       </For>
     </Stack>

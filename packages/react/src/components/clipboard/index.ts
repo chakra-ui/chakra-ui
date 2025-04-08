@@ -9,6 +9,7 @@ export {
   ClipboardLabel,
   ClipboardValueText,
   ClipboardContext,
+  ClipboardCopyText,
   useClipboardStyles,
 } from "./clipboard"
 

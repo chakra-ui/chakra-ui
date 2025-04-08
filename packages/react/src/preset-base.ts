@@ -298,7 +298,12 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
-    backgroundImage: { values: "gradients", shorthand: ["bgImg", "bgImage"] },
+    backgroundImage: {
+      values(theme) {
+        return { ...theme("gradients"), ...theme("assets") }
+      },
+      shorthand: ["bgImg", "bgImage"],
+    },
     // border
     border: { values: "borders" },
     borderTop: { values: "borders" },
@@ -785,7 +790,7 @@ export const defaultBaseConfig = defineConfig({
     scrollSnapMarginRight: { values: "spacing" },
     // list
     listStylePosition: { shorthand: ["listStylePos"] },
-    listStyleImage: { shorthand: ["listStyleImg"] },
+    listStyleImage: { values: "assets", shorthand: ["listStyleImg"] },
     // position
     position: { shorthand: ["pos"] },
     zIndex: { values: "zIndex" },
@@ -835,7 +840,7 @@ export const defaultBaseConfig = defineConfig({
     // margin
     margin: { values: "spacing", shorthand: ["m"] },
     marginTop: { values: "spacing", shorthand: ["mt"] },
-    marginBlockStart: { values: "spacing", shorthand: ["mt"] },
+    marginBlockStart: { values: "spacing" },
     marginRight: { values: "spacing", shorthand: ["mr"] },
     marginBottom: { values: "spacing", shorthand: ["mb"] },
     marginBlockEnd: { values: "spacing" },

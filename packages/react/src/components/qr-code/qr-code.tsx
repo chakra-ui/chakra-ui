@@ -56,22 +56,25 @@ export const QrCodePropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface QrCodeFrameProps extends HTMLChakraProps<"svg"> {}
-
-export const QrCodeFrame = withContext<SVGSVGElement, QrCodeFrameProps>(
-  ArkQrCode.Frame,
-  "frame",
-  { forwardAsChild: true },
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface QrCodePatternProps extends HTMLChakraProps<"path"> {}
 
 export const QrCodePattern = withContext<SVGPathElement, QrCodePatternProps>(
   ArkQrCode.Pattern,
   "pattern",
   { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface QrCodeFrameProps extends HTMLChakraProps<"svg"> {}
+
+export const QrCodeFrame = withContext<SVGSVGElement, QrCodeFrameProps>(
+  ArkQrCode.Frame,
+  "frame",
+  {
+    forwardAsChild: true,
+    defaultProps: { children: <QrCodePattern /> },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

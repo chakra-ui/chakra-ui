@@ -1,20 +1,16 @@
-import { Button } from "compositions/ui/button"
-import {
-  FileUploadList,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "compositions/ui/file-upload"
+import { Button, FileUpload } from "@chakra-ui/react"
 import { HiUpload } from "react-icons/hi"
 
 export const FileUploadDirectory = () => {
   return (
-    <FileUploadRoot directory>
-      <FileUploadTrigger asChild>
+    <FileUpload.Root directory>
+      <FileUpload.HiddenInput />
+      <FileUpload.Trigger asChild>
         <Button variant="outline" size="sm">
           <HiUpload /> Upload file
         </Button>
-      </FileUploadTrigger>
-      <FileUploadList />
-    </FileUploadRoot>
+      </FileUpload.Trigger>
+      <FileUpload.List />
+    </FileUpload.Root>
   )
 }

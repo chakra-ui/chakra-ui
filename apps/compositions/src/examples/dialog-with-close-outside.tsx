@@ -1,39 +1,42 @@
-import { AspectRatio } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
 import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogDescription,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+  AspectRatio,
+  Button,
+  CloseButton,
+  Dialog,
+  Portal,
+} from "@chakra-ui/react"
 
 export const DialogWithCloseOutside = () => {
   return (
-    <DialogRoot placement="center">
-      <DialogTrigger asChild>
+    <Dialog.Root placement="center">
+      <Dialog.Trigger asChild>
         <Button variant="outline" size="sm">
           Open Dialog
         </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogBody pt="4">
-          <DialogTitle>Dialog Title</DialogTitle>
-          <DialogDescription mb="4">
-            This is a dialog with some content and a video.
-          </DialogDescription>
-          <AspectRatio ratio={4 / 3} rounded="lg" overflow="hidden">
-            <iframe
-              title="naruto"
-              src="https://www.youtube.com/embed/QhBnZ6NPOY0"
-              allowFullScreen
-            />
-          </AspectRatio>
-        </DialogBody>
-        <DialogCloseTrigger top="0" insetEnd="-12" bg="bg" />
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Body pt="4">
+              <Dialog.Title>Dialog Title</Dialog.Title>
+              <Dialog.Description mb="4">
+                This is a dialog with some content and a video.
+              </Dialog.Description>
+              <AspectRatio ratio={4 / 3} rounded="lg" overflow="hidden">
+                <iframe
+                  title="naruto"
+                  src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+                  allowFullScreen
+                />
+              </AspectRatio>
+            </Dialog.Body>
+            <Dialog.CloseTrigger top="0" insetEnd="-12" asChild>
+              <CloseButton bg="bg" size="sm" />
+            </Dialog.CloseTrigger>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

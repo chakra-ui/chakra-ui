@@ -1,50 +1,51 @@
-import { For, HStack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
 import {
-  DrawerActionTrigger,
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerCloseTrigger,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerRoot,
-  DrawerTitle,
-  DrawerTrigger,
-} from "compositions/ui/drawer"
+  Button,
+  CloseButton,
+  Drawer,
+  For,
+  HStack,
+  Portal,
+} from "@chakra-ui/react"
 
 export const DrawerWithPlacement = () => {
   return (
     <HStack wrap="wrap">
       <For each={["bottom", "top", "start", "end"]}>
         {(placement) => (
-          <DrawerRoot key={placement} placement={placement}>
-            <DrawerBackdrop />
-            <DrawerTrigger asChild>
+          <Drawer.Root key={placement} placement={placement}>
+            <Drawer.Trigger asChild>
               <Button variant="outline" size="sm">
                 Open ({placement})
               </Button>
-            </DrawerTrigger>
-            <DrawerContent
-              roundedTop={placement === "bottom" ? "l3" : undefined}
-              roundedBottom={placement === "top" ? "l3" : undefined}
-            >
-              <DrawerHeader>
-                <DrawerTitle>Drawer Title</DrawerTitle>
-              </DrawerHeader>
-              <DrawerBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </DrawerBody>
-              <DrawerFooter>
-                <DrawerActionTrigger asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DrawerActionTrigger>
-                <Button>Save</Button>
-              </DrawerFooter>
-              <DrawerCloseTrigger />
-            </DrawerContent>
-          </DrawerRoot>
+            </Drawer.Trigger>
+            <Portal>
+              <Drawer.Backdrop />
+              <Drawer.Positioner>
+                <Drawer.Content
+                  roundedTop={placement === "bottom" ? "l3" : undefined}
+                  roundedBottom={placement === "top" ? "l3" : undefined}
+                >
+                  <Drawer.Header>
+                    <Drawer.Title>Drawer Title</Drawer.Title>
+                  </Drawer.Header>
+                  <Drawer.Body>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </Drawer.Body>
+                  <Drawer.Footer>
+                    <Drawer.ActionTrigger asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </Drawer.ActionTrigger>
+                    <Button>Save</Button>
+                  </Drawer.Footer>
+                  <Drawer.CloseTrigger asChild>
+                    <CloseButton size="sm" />
+                  </Drawer.CloseTrigger>
+                </Drawer.Content>
+              </Drawer.Positioner>
+            </Portal>
+          </Drawer.Root>
         )}
       </For>
     </HStack>

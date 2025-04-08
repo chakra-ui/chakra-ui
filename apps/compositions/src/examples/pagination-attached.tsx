@@ -1,19 +1,35 @@
-import { Group } from "@chakra-ui/react"
-import {
-  PaginationItems,
-  PaginationNextTrigger,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "compositions/ui/pagination"
+"use client"
+
+import { ButtonGroup, IconButton, Pagination } from "@chakra-ui/react"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 
 export const PaginationAttached = () => {
   return (
-    <PaginationRoot count={10} pageSize={2} defaultPage={1} variant="solid">
-      <Group attached>
-        <PaginationPrevTrigger />
-        <PaginationItems />
-        <PaginationNextTrigger />
-      </Group>
-    </PaginationRoot>
+    <Pagination.Root count={20} pageSize={2} defaultPage={1}>
+      <ButtonGroup attached variant="outline" size="sm">
+        <Pagination.PrevTrigger asChild>
+          <IconButton>
+            <HiChevronLeft />
+          </IconButton>
+        </Pagination.PrevTrigger>
+
+        <Pagination.Items
+          render={(page) => (
+            <IconButton
+              variant={{ base: "outline", _selected: "solid" }}
+              zIndex={{ _selected: "1" }}
+            >
+              {page.value}
+            </IconButton>
+          )}
+        />
+
+        <Pagination.NextTrigger asChild>
+          <IconButton>
+            <HiChevronRight />
+          </IconButton>
+        </Pagination.NextTrigger>
+      </ButtonGroup>
+    </Pagination.Root>
   )
 }

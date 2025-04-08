@@ -1,10 +1,10 @@
-import { StatLabel, StatRoot, StatValueText } from "compositions/ui/stat"
+import { Stat } from "@chakra-ui/react"
 
 export const StatBasic = () => {
   return (
-    <StatRoot>
-      <StatLabel>Unique visitors</StatLabel>
-      <StatValueText>192.1k</StatValueText>
-    </StatRoot>
+    <Stat.Root>
+      <Stat.Label>Unique visitors</Stat.Label>
+      <Stat.ValueText>192.1k</Stat.ValueText>
+    </Stat.Root>
   )
 }

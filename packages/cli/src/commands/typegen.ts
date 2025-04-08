@@ -3,7 +3,8 @@ import * as p from "@clack/prompts"
 import { Command } from "commander"
 import createDebug from "debug"
 import { writeFileSync } from "fs"
-import { resolve } from "path"
+import { createRequire } from "node:module"
+import { join, resolve } from "node:path"
 import { generateCondition } from "../utils/generate-conditions"
 import { generatePropTypes } from "../utils/generate-prop-types"
 import { generateRecipe } from "../utils/generate-recipe"
@@ -14,11 +15,26 @@ import { tasks } from "../utils/tasks"
 
 const debug = createDebug("chakra:typegen")
 
+const req = createRequire(import.meta.url)
+
+const getDefaultBasePath = () => {
+  const cwd = process.cwd()
+
+  if (!process.env.LOCAL) {
+    const root = req.resolve("@chakra-ui/react", { paths: [cwd] })
+    return resolve(root, "..", "..", "types", "styled-system", "generated")
+  }
+
+  const root = join(cwd, "packages", "react", "src")
+  return join(root, "styled-system", "generated")
+}
+
 interface CodegenFlags {
   strict?: boolean
   format?: boolean
   watch?: string
   clean?: boolean
+  outdir: string
 }
 
 export const TypegenCommand = new Command("typegen")
@@ -27,13 +43,18 @@ export const TypegenCommand = new Command("typegen")
   .option("--strict", "Generate strict types for props variant and size")
   .option("--watch [path]", "Watch directory for changes and rebuild")
   .option("--clean", "Clean the output directory")
+  .option(
+    "--outdir <dir>",
+    "Output directory to write the generated types",
+    getDefaultBasePath(),
+  )
   .action(async (source: string, flags: CodegenFlags) => {
     debug("source", source)
     debug("flags", flags)
 
     if (flags.clean) {
-      debug("cleaning output directory")
-      await io.clean()
+      debug("cleaning output directory", flags.outdir)
+      await io.clean(flags.outdir)
     }
 
     let result = await io.read(source)
@@ -67,42 +88,46 @@ export const TypegenCommand = new Command("typegen")
   })
 
 function codegen(sys: SystemContext, flags: CodegenFlags) {
-  io.ensureDir(io.basePath)
-  debug("writing codegen to", io.basePath)
+  io.ensureDir(flags.outdir)
+  debug("writing codegen to", flags.outdir)
 
   return tasks([
     {
       title: "Generating conditions types...",
       task: async () => {
-        await io.write("conditions.gen", generateCondition(sys))
+        await io.write(flags.outdir, "conditions.gen", generateCondition(sys))
         return "✅ Generated conditions typings"
       },
     },
     {
       title: "Generating recipe types...",
       task: async () => {
-        await io.write("recipes.gen", generateRecipe(sys, flags.strict))
+        await io.write(
+          flags.outdir,
+          "recipes.gen",
+          generateRecipe(sys, flags.strict),
+        )
         return "✅ Generated recipe typings"
       },
     },
     {
       title: "Generating utility types...",
       task: async () => {
-        await io.write("prop-types.gen", generatePropTypes(sys))
+        await io.write(flags.outdir, "prop-types.gen", generatePropTypes(sys))
         return "✅ Generated utility typings"
       },
     },
     {
       title: "Generating token types...",
       task: async () => {
-        await io.write("token.gen", generateTokens(sys))
+        await io.write(flags.outdir, "token.gen", generateTokens(sys))
         return "✅ Generated token typings"
       },
     },
     {
       title: "Generating system types...",
       task: async () => {
-        await io.write("system.gen", generateSystemTypes(sys))
+        await io.write(flags.outdir, "system.gen", generateSystemTypes(sys))
         return "✅ Generated system types"
       },
     },

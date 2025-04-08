@@ -1,40 +1,45 @@
-import { Input, Stack, Textarea } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import { Field } from "compositions/ui/field"
 import {
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseTrigger,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "compositions/ui/popover"
+  Button,
+  Field,
+  Input,
+  Popover,
+  Portal,
+  Stack,
+  Textarea,
+} from "@chakra-ui/react"
 
 export const PopoverWithForm = () => {
   return (
-    <PopoverRoot>
-      <PopoverTrigger asChild>
+    <Popover.Root>
+      <Popover.Trigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverBody>
-          <Stack gap="4">
-            <Field label="Width">
-              <Input placeholder="40px" />
-            </Field>
-            <Field label="Height">
-              <Input placeholder="32px" />
-            </Field>
-            <Field label="Comments">
-              <Textarea placeholder="Start typing..." />
-            </Field>
-          </Stack>
-        </PopoverBody>
-        <PopoverCloseTrigger />
-      </PopoverContent>
-    </PopoverRoot>
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Arrow />
+            <Popover.Body>
+              <Stack gap="4">
+                <Field.Root>
+                  <Field.Label>Width</Field.Label>
+                  <Input placeholder="40px" />
+                </Field.Root>
+                <Field.Root>
+                  <Field.Label>Height</Field.Label>
+                  <Input placeholder="32px" />
+                </Field.Root>
+                <Field.Root>
+                  <Field.Label>Comments</Field.Label>
+                  <Textarea placeholder="Start typing..." />
+                </Field.Root>
+              </Stack>
+            </Popover.Body>
+            <Popover.CloseTrigger />
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
   )
 }

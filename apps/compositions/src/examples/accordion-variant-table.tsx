@@ -1,15 +1,9 @@
 "use client"
 
 import type { AccordionRootProps } from "@chakra-ui/react"
-import { For, Span, useSlotRecipe } from "@chakra-ui/react"
+import { Accordion, For, Span, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import {
-  AccordionItem,
-  AccordionItemContent,
-  AccordionItemTrigger,
-  AccordionRoot,
-} from "compositions/ui/accordion"
 
 export const AccordionVariantTable = () => {
   const recipe = useSlotRecipe({ key: "accordion" })
@@ -55,13 +49,18 @@ const items = [
 
 const AccordionDemo = (props: AccordionRootProps) => {
   return (
-    <AccordionRoot collapsible defaultValue={["b"]} {...props}>
+    <Accordion.Root collapsible defaultValue={["b"]} {...props}>
       {items.map((item, index) => (
-        <AccordionItem key={index} value={item.value}>
-          <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
-          <AccordionItemContent>{item.text}</AccordionItemContent>
-        </AccordionItem>
+        <Accordion.Item key={index} value={item.value}>
+          <Accordion.ItemTrigger>
+            <Span flex="1">{item.title}</Span>
+            <Accordion.ItemIndicator />
+          </Accordion.ItemTrigger>
+          <Accordion.ItemContent>
+            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
+          </Accordion.ItemContent>
+        </Accordion.Item>
       ))}
-    </AccordionRoot>
+    </Accordion.Root>
   )
 }

@@ -12,7 +12,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100vw",
       h: "100dvh",
-      zIndex: "modal",
+      zIndex: "calc(var(--z-index) - 1) ",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
@@ -54,6 +54,9 @@ export const drawerSlotRecipe = defineSlotRecipe({
       },
     },
     header: {
+      display: "flex",
+      alignItems: "center",
+      gap: "2",
       flex: 0,
       px: "6",
       pt: "6",
@@ -75,11 +78,17 @@ export const drawerSlotRecipe = defineSlotRecipe({
       pb: "4",
     },
     title: {
+      flex: "1",
       textStyle: "lg",
       fontWeight: "semibold",
     },
     description: {
       color: "fg.muted",
+    },
+    closeTrigger: {
+      pos: "absolute",
+      top: "3",
+      insetEnd: "2",
     },
   },
 

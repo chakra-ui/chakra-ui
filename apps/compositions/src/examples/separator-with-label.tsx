@@ -14,9 +14,9 @@ export const SeparatorWithLabel = () => {
       </HStack>
 
       <HStack>
-        <Separator />
+        <Separator flex="1" />
         <Text flexShrink="0">Label (center)</Text>
-        <Separator />
+        <Separator flex="1" />
       </HStack>
     </Stack>
   )

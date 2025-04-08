@@ -1,10 +1,13 @@
 "use client"
 
+import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
+  useSlotRecipe,
 } from "../../styled-system"
 import { ArrowDownIcon, ArrowUpIcon } from "../icons"
 
@@ -97,3 +100,32 @@ export const StatDownIndicator = withContext<
     children: <ArrowDownIcon />,
   },
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface StatGroupProps
+  extends SlotRecipeProps<"stat">,
+    HTMLChakraProps<"div"> {}
+
+export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
+  function StatGroup(props, ref) {
+    const recipe = useSlotRecipe({ key: "stat" })
+    const [variantProps, localProps] = useMemo(
+      () => recipe.splitVariantProps(props),
+      [props, recipe],
+    )
+    return (
+      <PropsProvider value={variantProps}>
+        <chakra.div
+          ref={ref}
+          role="group"
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="space-around"
+          alignItems="flex-start"
+          {...localProps}
+        />
+      </PropsProvider>
+    )
+  },
+)

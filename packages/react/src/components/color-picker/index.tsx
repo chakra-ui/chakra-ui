@@ -29,7 +29,12 @@ export {
   ColorPickerValueSwatch,
   ColorPickerValueText,
   ColorPickerView,
+  ColorPickerSliders,
+  ColorPickerInput,
+  ColorPickerChannelText,
+  ColorPickerEyeDropper,
   useColorPickerStyles,
+  getColorChannels,
 } from "./color-picker"
 
 export type {
@@ -61,6 +66,8 @@ export type {
   ColorPickerViewProps,
   ColorPickerChannelSliderValueTextProps,
   ColorPickerChannelSliderLabelProps,
+  ColorPickerChannelTextProps,
+  ColorPickerEyeDropperProps,
 } from "./color-picker"
 
 export {

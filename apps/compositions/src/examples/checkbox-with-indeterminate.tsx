@@ -1,15 +1,21 @@
-import { Stack } from "@chakra-ui/react"
-import { Checkbox } from "compositions/ui/checkbox"
+import { Checkbox, For, Stack } from "@chakra-ui/react"
 
 export const CheckboxWithIndeterminate = () => {
   return (
     <Stack>
-      <Checkbox defaultChecked="indeterminate" variant="subtle">
-        Subtle
-      </Checkbox>
-      <Checkbox defaultChecked="indeterminate" variant="outline">
-        Outline
-      </Checkbox>
+      <For each={["subtle", "outline"]}>
+        {(variant) => (
+          <Checkbox.Root
+            defaultChecked="indeterminate"
+            variant={variant}
+            key={variant}
+          >
+            <Checkbox.HiddenInput />
+            <Checkbox.Control />
+            <Checkbox.Label>{variant}</Checkbox.Label>
+          </Checkbox.Root>
+        )}
+      </For>
     </Stack>
   )
 }

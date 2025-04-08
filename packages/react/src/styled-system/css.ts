@@ -28,7 +28,7 @@ export function createCssFn(context: CssFnOptions) {
   const { transform, conditions, normalize } = context
   const mergeFn = mergeCss(context)
 
-  return memo((...styleArgs: SystemStyleObject[]) => {
+  return memo(function cssFn(...styleArgs: SystemStyleObject[]) {
     const styles = mergeFn(...styleArgs)
 
     const normalized = normalize(styles)
@@ -83,7 +83,7 @@ function mergeCss(ctx: CssFnOptions) {
     if (comp.length === 1) return comp
     return comp.map((style) => ctx.normalize(style))
   }
-  return memo((...styles) => {
+  return memo(function mergeFn(...styles: Dict[]) {
     return mergeWith({}, ...resolve(styles))
   })
 }

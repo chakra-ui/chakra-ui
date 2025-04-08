@@ -19,16 +19,18 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       outline: "0",
       appearance: "none",
       borderRadius: "l2",
+      "--error-color": "colors.border.error",
       _disabled: {
         layerStyle: "disabled",
       },
       _invalid: {
-        borderColor: "border.error",
+        focusRingColor: "var(--error-color)",
+        borderColor: "var(--error-color)",
       },
       focusVisibleRing: "inside",
       lineHeight: "normal",
       "& > option, & > optgroup": {
-        bg: "inherit",
+        bg: "bg",
       },
     },
     indicator: {

@@ -1,30 +1,28 @@
-import { Button } from "compositions/ui/button"
-import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "compositions/ui/dialog"
+import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react"
 import Lorem from "react-lorem-ipsum"
 
 export const DialogWithInsideScroll = () => {
   return (
-    <DialogRoot scrollBehavior="inside" size="sm">
-      <DialogTrigger asChild>
+    <Dialog.Root scrollBehavior="inside" size="sm">
+      <Dialog.Trigger asChild>
         <Button variant="outline">Inside Scroll</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>With Inside Scroll</DialogTitle>
-        </DialogHeader>
-        <DialogCloseTrigger />
-        <DialogBody>
-          <Lorem p={8} />
-        </DialogBody>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Trigger>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>With Inside Scroll</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
+            <Dialog.Body>
+              <Lorem p={8} />
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   )
 }

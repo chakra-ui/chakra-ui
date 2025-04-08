@@ -17,13 +17,14 @@ export const selectSlotRecipe = defineSlotRecipe({
       justifyContent: "space-between",
       width: "full",
       minH: "var(--select-trigger-height)",
+      "--input-height": "var(--select-trigger-height)",
       px: "var(--select-trigger-padding-x)",
       borderRadius: "l2",
       userSelect: "none",
       textAlign: "start",
       focusVisibleRing: "inside",
       _placeholderShown: {
-        color: "fg.muted",
+        color: "fg.muted/80",
       },
       _disabled: {
         layerStyle: "disabled",
@@ -80,7 +81,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       borderRadius: "l1",
       _highlighted: {
-        bg: { _light: "bg.muted", _dark: "bg.emphasized" },
+        bg: "bg.emphasized/60",
       },
       _disabled: {
         pointerEvents: "none",
@@ -115,6 +116,13 @@ export const selectSlotRecipe = defineSlotRecipe({
     valueText: {
       lineClamp: "1",
       maxW: "80%",
+    },
+    clearTrigger: {
+      color: "fg.muted",
+      pointerEvents: "auto",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      rounded: "l1",
     },
   },
 

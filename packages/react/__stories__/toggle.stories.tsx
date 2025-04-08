@@ -14,4 +14,5 @@ export default {
 
 export { ToggleBasic as Basic } from "compositions/examples/toggle-basic"
 export { ToggleControlled as Controlled } from "compositions/examples/toggle-controlled"
-export { ToggleWithIndicator as WithIndicator } from "compositions/examples/toggle-with-indicator"
+export { ToggleWithIndicator as Indicator } from "compositions/examples/toggle-with-indicator"
+export { ToggleWithPressedIcon as PressedIcon } from "compositions/examples/toggle-with-pressed-icon"

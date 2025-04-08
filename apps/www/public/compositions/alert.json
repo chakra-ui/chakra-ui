@@ -1,13 +1,11 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": [
-    "compositions/ui/close-button"
-  ],
+  "fileDependencies": [],
   "id": "alert",
   "file": {
     "name": "alert.tsx",
-    "content": "import { Alert as ChakraAlert } from \"@chakra-ui/react\"\nimport { CloseButton } from \"./close-button\"\nimport * as React from \"react\"\n\nexport interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  title?: React.ReactNode\n  icon?: React.ReactElement\n  closable?: boolean\n  onClose?: () => void\n}\n\nexport const Alert = React.forwardRef<HTMLDivElement, AlertProps>(\n  function Alert(props, ref) {\n    const {\n      title,\n      children,\n      icon,\n      closable,\n      onClose,\n      startElement,\n      endElement,\n      ...rest\n    } = props\n    return (\n      <ChakraAlert.Root ref={ref} {...rest}>\n        {startElement || <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>}\n        {children ? (\n          <ChakraAlert.Content>\n            <ChakraAlert.Title>{title}</ChakraAlert.Title>\n            <ChakraAlert.Description>{children}</ChakraAlert.Description>\n          </ChakraAlert.Content>\n        ) : (\n          <ChakraAlert.Title flex=\"1\">{title}</ChakraAlert.Title>\n        )}\n        {endElement}\n        {closable && (\n          <CloseButton\n            size=\"sm\"\n            pos=\"relative\"\n            top=\"-2\"\n            insetEnd=\"-2\"\n            alignSelf=\"flex-start\"\n            onClick={onClose}\n          />\n        )}\n      </ChakraAlert.Root>\n    )\n  },\n)\n"
+    "content": "import { Alert as ChakraAlert } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  title?: React.ReactNode\n  icon?: React.ReactElement\n}\n\nexport const Alert = React.forwardRef<HTMLDivElement, AlertProps>(\n  function Alert(props, ref) {\n    const { title, children, icon, startElement, endElement, ...rest } = props\n    return (\n      <ChakraAlert.Root ref={ref} {...rest}>\n        {startElement || <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>}\n        {children ? (\n          <ChakraAlert.Content>\n            <ChakraAlert.Title>{title}</ChakraAlert.Title>\n            <ChakraAlert.Description>{children}</ChakraAlert.Description>\n          </ChakraAlert.Content>\n        ) : (\n          <ChakraAlert.Title flex=\"1\">{title}</ChakraAlert.Title>\n        )}\n        {endElement}\n      </ChakraAlert.Root>\n    )\n  },\n)\n"
   },
   "component": "Alert"
 }

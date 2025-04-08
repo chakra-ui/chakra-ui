@@ -9,35 +9,35 @@ links:
 
 <ExampleTabs name="alert-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`alert` snippet
-
-```sh
-npx @chakra-ui/cli snippet add alert
-```
-
-The snippet includes a closed component composition for the `Alert` component.
-
 ## Usage
 
 ```jsx
-import { Alert } from "@/components/ui/alert"
+import { Alert } from "@chakra-ui/react"
 ```
 
 ```jsx
-<Alert title="Alert Title" icon={<LuTerminal />}>
-  This is the alert description
-</Alert>
+<Alert.Root>
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title />
+    <Alert.Description />
+  </Alert.Content>
+</Alert.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
 ### Description
 
-Use the `children` prop to provide additional context to the alert. This will be
-displayed below the alert message.
+Render the `Alert.Description` component to provide additional context to the
+alert.
 
 <ExampleTabs name="alert-with-description" />
 
@@ -56,6 +56,18 @@ either `subtle`, `solid`, `outline`
 
 <ExampleTabs name="alert-with-variants" />
 
+### With Close Button
+
+Here's and example of how to compose the `Alert` with a close button.
+
+<ExampleTabs name="alert-with-close-button" />
+
+### With Spinner
+
+Here's and example of how to compose the `Alert` with a spinner.
+
+<ExampleTabs name="alert-with-spinner" />
+
 ### Custom Icon
 
 Use the `icon` prop to pass a custom icon to the alert. This will override the
@@ -63,18 +75,31 @@ default icon for the alert status.
 
 <ExampleTabs name="alert-with-custom-icon" />
 
-### Without Snippet
-
-Here's an example of how to use the `Alert` without the snippet.
-
-<ExampleTabs name="alert-without-snippet" />
-
 ### Color Palette Override
 
 The default colorPalette is inferred from the `status` prop. To override the
 color palette, pass the `colorPalette` prop.
 
 <ExampleTabs name="alert-with-color-palette-override" />
+
+### Customization
+
+You can style the `Alert` component using style props.
+
+<ExampleTabs name="alert-with-customization" />
+
+### Closed Component
+
+Here's how to setup the `Alert` for a closed component composition.
+
+<ExampleCode name="alert-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add alert
+```
 
 ## Props
 

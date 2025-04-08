@@ -1,16 +1,10 @@
-import { Group, IconButton } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
-import { LuChevronDown } from "react-icons/lu"
+import { Button, ButtonGroup } from "@chakra-ui/react"
 
 export const ButtonWithGroup = () => {
   return (
-    <Group attached>
-      <Button variant="outline" size="sm">
-        Button
-      </Button>
-      <IconButton variant="outline" size="sm">
-        <LuChevronDown />
-      </IconButton>
-    </Group>
+    <ButtonGroup size="sm" variant="outline">
+      <Button colorPalette="blue">Save</Button>
+      <Button>Cancel</Button>
+    </ButtonGroup>
   )
 }

@@ -1,22 +1,15 @@
-import { CloseButton } from "compositions/ui/close-button"
-import {
-  FileInput,
-  FileUploadClearTrigger,
-  FileUploadLabel,
-  FileUploadRoot,
-} from "compositions/ui/file-upload"
-import { InputGroup } from "compositions/ui/input-group"
+import { CloseButton, FileUpload, Input, InputGroup } from "@chakra-ui/react"
 import { LuFileUp } from "react-icons/lu"
 
 export const FileUploadWithInputClear = () => {
   return (
-    <FileUploadRoot gap="1" maxWidth="300px">
-      <FileUploadLabel>Upload file</FileUploadLabel>
+    <FileUpload.Root gap="1" maxWidth="300px">
+      <FileUpload.HiddenInput />
+      <FileUpload.Label>Upload file</FileUpload.Label>
       <InputGroup
-        w="full"
         startElement={<LuFileUp />}
         endElement={
-          <FileUploadClearTrigger asChild>
+          <FileUpload.ClearTrigger asChild>
             <CloseButton
               me="-1"
               size="xs"
@@ -24,13 +17,16 @@ export const FileUploadWithInputClear = () => {
               focusVisibleRing="inside"
               focusRingWidth="2px"
               pointerEvents="auto"
-              color="fg.subtle"
             />
-          </FileUploadClearTrigger>
+          </FileUpload.ClearTrigger>
         }
       >
-        <FileInput />
+        <Input asChild>
+          <FileUpload.Trigger>
+            <FileUpload.FileText lineClamp={1} />
+          </FileUpload.Trigger>
+        </Input>
       </InputGroup>
-    </FileUploadRoot>
+    </FileUpload.Root>
   )
 }

@@ -55,6 +55,25 @@ When a tab is clicked, the link will be navigated to.
 
 <ExampleTabs name="tabs-with-links" />
 
+When using custom router links, you need to set the `navigate` prop on the
+`Tabs.Root` component.
+
+```tsx
+"use client"
+
+import { Tabs } from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom"
+
+const Demo = () => {
+  const navigate = useNavigate()
+  return (
+    <Tabs.Root navigate={({ value, node }) => navigate(`/${value}`)}>
+      {/* ... */}
+    </Tabs.Root>
+  )
+}
+```
+
 ### Fitted
 
 Use the `fitted` prop to make the tabs fit the width of the container.

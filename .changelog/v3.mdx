@@ -5,6 +5,371 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.15.1](./#3.15.1) - 2025-04-07
+
+### Fixed
+
+- **General**: Ensure types are consistent with React 19
+- **Dialog, Drawer**: Fix issue where backdrop could overlap positioner when
+  re-opened quickly
+- **CLI**: Improve CLI response when passing an unknown snippet id
+
+### Changed
+
+- **BarList, BarSegment**: Rename `showTooltip` with `tooltip` prop to support
+  custom tooltips.
+
+## [3.15.0](./#3.15.0) - 2025-03-29
+
+### Added
+
+- **Charts**: Initial release of the `@chakra-ui/charts` package.
+
+### Changed
+
+- **useMediaQuery**: Fix type signature to allow skipping the second argument
+
+- **RadioCard**: Fix accessibility issue due to html structure
+
+- **Slider**
+
+  - Add support for `origin: end` to align the thumb to the end of the track
+  - Expose `thumbSize` as CSS variables in the root element. Can be useful for
+    styling the slider
+
+- **Menu**
+  - Added `onSelect` event to the `Menu.Item` component
+  - Ensure menu items have unique IDs to improve accessibility and HTML
+    validation
+
+## [3.14.2](./#3.14.2) - 2025-03-24
+
+### Fixed
+
+Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
+
+## [3.14.1](./#3.14.1) - 2025-03-24
+
+### Fixed
+
+- **System**: Fix issue where output of `<system>.css(...)` from Chakra UI can't
+  be assigned to `Interpolation<Theme>` from `@emotion/react`.
+
+- **General**: Bump `@ark-ui/react` to latest version.
+
+## [3.14.0](./#3.14.0) - 2025-03-14
+
+### Changed
+
+- **General**: Improve render performance by upgrading to the latest Ark UI v5.
+  This brings a **1.5x - 4x** improvements across components. Learn more from
+  the
+  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+
+- **RadioGroup**: Allow passing `null` as a valid value to clear the value. This
+  means the signature of `onValueChange` now supports `string | null` instead of
+  just `string`.
+
+  > This might be a potential breaking TS change but it's a needed change to
+  > allow clearing the value.
+
+## [3.13.0](./#3.13.0) - 2025-03-13
+
+### Added
+
+- **ColorPicker**
+
+  - Add support for `ColorPicker.ChannelText` component
+  - Add `ColorPicker.EyeDropper` component that wraps `IconButton`
+  - Add `ColorPicker.Slider` and `ColorPicker.Input` shortcut components to
+    reduce LOC.
+
+- **InputGroup**
+
+  - Export directly from the `@chakra-ui/react` package
+
+- **Pagination**
+
+  - Add `Pagination.Items` shortcut component to render the number of pages
+    based on the `count` and `pageSize` props.
+  - Add `Pagination.PageText` component to render the current page and total
+    pages.
+
+## [3.12.0](./#3.12.0) - 2025-03-10
+
+### Added
+
+- **FileUpload**
+
+  - Add `FileUpload.FileText` to render the list of uploaded file names.
+  - Add `FileUpload.Items` shorcut component to render the list of uploaded
+    files.
+  - Add `FileUpload.List` shortcut component that combines `FileUpload.Items`
+    and `FileUpload.ItemGroup`.
+
+## [3.11.0](./#3.11.0) - 2025-03-09
+
+### Fixed
+
+- **Accordion**
+
+  - Fix issue where `Accordion.ItemTrigger` doesn't apply `textAlign: start`
+
+### Added
+
+- **SegmentGroup**
+
+  - Add new `SegmentGroup.Items` shortcut component to render multiple
+    `SegmentGroup.Item` components based on the `items` prop
+
+## [3.10.0](./#3.10.0) - 2025-03-08
+
+### Changed
+
+- **Menu**
+
+  - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`, reducing LOC in
+    common use cases.
+
+- **HoverCard**
+
+  - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`,
+    reducing LOC in common use cases.
+
+- **Dialog, Drawer**
+
+  - Update recipe to include absolute positioning styles for close trigger,
+    instead of relying on snippet styles.
+
+## [3.9.0](./#3.9.0) - 2025-03-05
+
+### Added
+
+- **Skeleton** Bring back `SkeletonCircle` and `SkeletonText` components from
+  v2.
+
+- **Switch**
+
+  - Transition background color when checked
+  - Set `Switch.Control` to include `Switch.Thumb` as its default children,
+    reducing LOC in common use cases.
+
+- **Checkbox**
+
+  - Set `Checkbox.Control` to include `Checkbox.Indicator` as its default
+    children, reducing LOC in common use cases.
+
+- **NumberInput**
+
+  - Set `NumberInput.Control` to include `NumberInput.IncrementTrigger` and
+    `NumberInput.DecrementTrigger` as its default children, reducing LOC in
+    common use cases.
+
+- **QrCode**
+
+  - Set `QrCode.Frame` to include `QrCode.Pattern` as its default children,
+    reducing LOC in common use cases.
+
+- **RatingGroup**
+
+  - Set `RatingGroup.Control` to include an array of `RatingGroup.Item`
+    components as its default children, reducing LOC in common use cases.
+
+- **Slider**
+
+  - Add `Slider.Marks` component to render marks on the slider track. This is a
+    closed composition of `Slider.MarkerGroup` and `Slider.Marker` to reduce LOC
+    for common use cases.
+  - Add `Slider.Thumbs` component to render thumbs on the slider track. This is
+    a closed composition of `Slider.Thumb` to reduce LOC for common use cases.
+
+- **PinInput**
+
+  - Add support for `attached` variant prop to render a pin input with attached
+    inputs. This removes the need for the `Group` component to wrap the inputs.
+
+- **Tooltip, Popover**
+
+  - Set `Tooltip.Arrow` and `Popover.Arrow` to include `Tooltip.ArrowTip` and
+    `Popover.ArrowTip` as its default children, reducing LOC in common use
+    cases.
+
+## [3.8.2](./#3.8.2) - 2025-03-04
+
+### Fixed
+
+- **AspectRatio:** Fix issue where `css` prop was not respected
+- **System:** Fix issue where `mt` shorthand resolves to `marginBlockStart`
+  instead of `marginTop`
+
+## [3.8.1](./#3.8.1) - 2025-02-19
+
+### Fixed
+
+- Fix performance regression from `v3.5.x` by reverting memoization logic
+- Add `useMemo` to provider components and styling hooks to avoid unnecessary
+  recomputations
+
+## [3.8.0](./#3.8.0) - 2025-02-09
+
+### Added
+
+- **[New] Hooks:**
+
+  - `useElementRect`: Get the dimensions and position of an element
+  - `useForceUpdate`: Force a component re-render
+  - `useLiveRef`: Create a ref that stays up-to-date with its value
+  - `usePrevious`: Access the previous value of a state or prop
+  - `useSafeLayoutEffect`: A safer version of `useLayoutEffect`
+
+- **[New] Focus Trap:** Add `FocusTrap` component for trapping focus within a
+  container
+
+### Fixed
+
+- **Breadcrumb:** Fix issue where breadcrumb arrow doesn't flip in RTL mode
+- **Group:** Fix issue where `Group` component doesn't skip invalid children
+
+### Added
+
+- **Color Mode:** Add `LightMode` and `DarkMode` components to force light and
+  dark color mode in a subtree
+
+## [3.7.0](./#3.7.0) - 2025-02-04
+
+### Added
+
+- **Avatar:** Add support for passing `name` to the `AvatarFallback` to render
+  the initials. If no `name` or `children` is passed, it'll render either the
+  initials or a fallback icon.
+
+- **[New] Hooks:** Add `useConst` and `useUpdateEffect` hooks from v2.
+
+- **[New] Wrap:** Bring back the `Wrap` component from v2.
+
+## [3.6.0](./#3.6.0) - 2025-02-02
+
+### Fixed
+
+- **CLI:** Fix issue where CLI doesn't properly check for existing files when
+  adding snippets.
+
+### Added
+
+- **[New] Close Button:** Add `CloseButton` component.
+- **Stat:** Bring back `StatGroup` component from v2.
+- **Avatar:** Bring back `AvatarGroup` component from v2.
+
+### Changed
+
+- **Styled System:**
+
+  - Boost performance of style resolution by removing `JSON.stringify` in `memo`
+    function and avoid memoizing non-primitive arguments.
+  - Connect `assets` token to `backgroundImage` and `listStyleImage` css
+    properties.
+
+- **Menu, Tooltip:** Set `lazyMount` and `unmountOnExit` to `true` in the `Root`
+  component to improve initial rendering performance.
+
+- **AbsoluteCenter:** Fix issue where axis doesn't work in RTL mode.
+
+- **Snippets / QRCode:** Remove snippet in favor of compound component pattern.
+
+- **List:** Fix issue where list items don't wrap correctly.
+
+## [3.5.1](./#3.5.1) - 2025-01-24
+
+### Fixed
+
+- **Button:** Fix issue where button is not disabled when loading props is
+  passed
+
+- **ColorPicker, HoverCard, Tooltip:** Fixed intermittent placement shifts
+  caused by updates to the `data-placement` attribute
+
+- **Snippets / Alert:** Deprecate the `Alert` snippet in favor of using the
+  `Alert` component directly from `@chakra-ui/react`.
+
+## [3.5.0](./#3.5.0) - 2025-01-24
+
+### Fixed
+
+- **Native Select**
+
+  - Fix issue where `disabled` and `invalid` props were not being passed to the
+    `NativeSelectField` component.
+  - Persist error focus ring when `invalid` prop is set.
+  - Fix issue where native select isn't readable in dark mode for Windows/Linux
+    devices.
+
+### Added
+
+- **[New] Loader:** Add new `Loader` and `LoaderOverlay` components.
+
+- **[New] Button Group:** Add new `ButtonGroup` component similar to v2 for
+  grouping similar buttons.
+
+- **Button:** Add `loading` and `loadingText` props to the `Button` component.
+
+### Changed
+
+- **Snippets / Menu:** Refactor checkbox item to fix rendering
+
+- **Snippets / Button:** Removed the button snippet in favor of built-in
+  component.
+
+## [3.4.0](./#3.4.0) - 2025-01-17
+
+### Added
+
+- **[NEW] Presence:** Add new presence component to animate the entry and exit
+  of an element while controlling the render behavior.
+
+### Fixed
+
+- **Separator**: Fix issue where `aria-orientation` was missing in the DOM and
+  `orientation` was added instead.
+
+- **Button, Icon** Fix issue where button and icon doesn't export props
+  providers
+
+- **System**: Fix performance issue where initial render time feels slower
+  compared to v2 due to the global style computation in the provider component.
+  [See Discussion](https://github.com/chakra-ui/chakra-ui/discussions/9488#discussioncomment-11868684)
+
+- **FileUpload**
+  - Resolved an issue where form-related components reset despite the reset
+    event being cancelled.
+  - Fixed a brief warning display when a new image file is added to the preview.
+  - Enhanced click detection for the dropzone and added support for the
+    `disableClick` prop.
+
+## [3.3.3](./#3.3.3) - 2025-01-16
+
+### Fixed
+
+- **Icon**: Fix regression where icon sizes doesn't work anymore
+
+## [3.3.2](./#3.3.2) - 2025-01-16
+
+### Fixed
+
+- **Icon**
+
+  - Refactor icon recipe `size=inherit` to allow for composition with button
+  - Fix issue where using `<Icon as={...} />` throws an error, forcing users to
+    use the `asChild` approach
+
+- **Menu, Select:** Use the same semantic token for select `_highlighted` state
+
+- **Snippet, Tooltip:** Set `portalled` to `true` by default
+
+- **Toast:** Fix issue where toast close trigger was not visible
+
+- **Factory:** Fix issue where factory shows a warning React 19 due to accessing
+  `child.ref`
+
 ## [3.3.1](./#3.3.1) - 2025-01-12
 
 ### Fixed

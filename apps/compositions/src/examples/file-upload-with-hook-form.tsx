@@ -1,13 +1,7 @@
 "use client"
 
+import { Button, Field, FileUpload } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "compositions/ui/button"
-import { Field } from "compositions/ui/field"
-import {
-  FileUploadList,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "compositions/ui/file-upload"
 import { Controller, useForm } from "react-hook-form"
 import { HiUpload } from "react-icons/hi"
 import { z } from "zod"
@@ -38,26 +32,25 @@ export const FileUploadWithHookForm = () => {
         control={control}
         name="images"
         render={({ field }) => (
-          <Field
-            label="Images"
-            invalid={!!errors.images}
-            errorText={errors.images?.message}
-          >
-            <FileUploadRoot
+          <Field.Root invalid={!!errors.images}>
+            <Field.Label>Images</Field.Label>
+            <FileUpload.Root
               name={field.name}
               onFileChange={(e) => {
                 field.onChange(e.acceptedFiles)
               }}
             >
-              <FileUploadTrigger asChild onBlur={() => field.onBlur()}>
+              <FileUpload.HiddenInput />
+              <FileUpload.Trigger asChild onBlur={() => field.onBlur()}>
                 <Button variant="outline" size="sm">
                   <HiUpload /> Upload file
                 </Button>
-              </FileUploadTrigger>
+              </FileUpload.Trigger>
 
-              <FileUploadList showSize />
-            </FileUploadRoot>
-          </Field>
+              <FileUpload.List />
+            </FileUpload.Root>
+            <Field.ErrorText>{errors.images?.message}</Field.ErrorText>
+          </Field.Root>
         )}
       />
 

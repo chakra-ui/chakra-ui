@@ -19,5 +19,6 @@ export { ProgressVariantTable as Variants } from "compositions/examples/progress
 export { ProgressWithAnimatedStripes as AnimatedStripes } from "compositions/examples/progress-with-animated-stripes"
 export { ProgressWithColors as Colors } from "compositions/examples/progress-with-colors"
 export { ProgressWithInlineLabel as InlineLabel } from "compositions/examples/progress-with-inline-label"
+export { ProgressWithLabel as Label } from "compositions/examples/progress-with-label"
 export { ProgressWithLabelInfo as LabelInfo } from "compositions/examples/progress-with-label-info"
 export { ProgressWithStripes as Stripes } from "compositions/examples/progress-with-stripes"

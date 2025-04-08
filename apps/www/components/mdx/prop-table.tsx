@@ -1,4 +1,4 @@
-import { deepMerge } from "@/lib/deep-merge"
+import { getComponentProps } from "@/utils/get-component-props"
 import {
   Box,
   Code,
@@ -10,22 +10,12 @@ import {
   Text,
 } from "@chakra-ui/react"
 import NextLink from "next/link"
-import { existsSync, readFileSync } from "node:fs"
-import { join } from "node:path"
 import { LuMinus } from "react-icons/lu"
-import { kebabCase } from "scule"
 
 interface PropTableProps {
   component: string
   part?: string
   omit?: string[]
-}
-
-interface Properties {
-  type: string
-  isRequired: boolean
-  defaultValue?: string | undefined
-  description?: string | undefined
 }
 
 const stringify = (value: any) => {
@@ -34,48 +24,10 @@ const stringify = (value: any) => {
   return JSON.stringify(value)
 }
 
-const sortEntries = (props: Record<string, any>): [string, Properties][] => {
-  return Object.entries(props).sort(([, a], [, b]) => {
-    if (a.isRequired && !b.isRequired) return -1
-    if (!a.isRequired && b.isRequired) return 1
-    if (a.defaultValue && !b.defaultValue) return -1
-    if (!a.defaultValue && b.defaultValue) return 1
-    return 0
-  })
-}
-
-function getType(baseDir: string, componentName?: string): Record<string, any> {
-  const path = join(
-    process.cwd(),
-    "public",
-    "types",
-    baseDir,
-    `${componentName}.json`,
-  )
-  if (!existsSync(path)) return {}
-  return JSON.parse(readFileSync(path, "utf-8"))
-}
-
-async function getComponentTypes(component: string) {
-  const componentName = kebabCase(component)
-  const arkTypes = getType("ark", componentName)
-  const recipeTypes = getType("recipe", componentName)
-  const componentTypes = getType("component", componentName)
-  const staticTypes = getType("static", componentName)
-  return deepMerge({}, arkTypes, recipeTypes, componentTypes, staticTypes)
-}
-
 export const PropTable = async (props: PropTableProps) => {
-  const { component, part, omit } = props
+  const properties = getComponentProps(props)
 
-  const componentTypes = await getComponentTypes(component)
-  const componentType = part ? componentTypes[part] : componentTypes
-
-  if (!componentType?.props) return null
-
-  const properties = sortEntries(componentType.props).filter(
-    ([name]) => !omit?.includes(name),
-  )
+  if (!properties) return null
 
   return (
     <Box
@@ -140,7 +92,9 @@ export const PropTable = async (props: PropTableProps) => {
                     <Text as="span">
                       For more details, read our{" "}
                       <Link asChild>
-                        <NextLink href={`/docs/guides/composition`}>
+                        <NextLink
+                          href={`/docs/components/concepts/composition`}
+                        >
                           Composition
                         </NextLink>
                       </Link>{" "}

@@ -1,7 +1,7 @@
 import { Box } from "../src"
 
 export default {
-  title: "WIP / Bar Segment",
+  title: "Charts / Bar Segment",
   decorators: [
     (Story: any) => (
       <Box p="10">
@@ -11,8 +11,8 @@ export default {
   ],
 }
 
-export { BarSegmentBasic as Basic } from "compositions/chart/examples/bar-segment-basic"
-export { BarSegmentWithReference as Reference } from "compositions/chart/examples/bar-segment-with-reference"
-export { BarSegmentWithLegend as Legend } from "compositions/chart/examples/bar-segment-with-legend"
-export { BarSegmentWithBarSize as BarSize } from "compositions/chart/examples/bar-segment-with-bar-size"
-export { BarSegmentWithTooltip as Tooltip } from "compositions/chart/examples/bar-segment-with-tooltip"
+export { BarSegmentBasic as Basic } from "compositions/examples/charts/bar-segment-basic"
+export { BarSegmentWithReference as Reference } from "compositions/examples/charts/bar-segment-with-reference"
+export { BarSegmentWithLegend as Legend } from "compositions/examples/charts/bar-segment-with-legend"
+export { BarSegmentWithBarSize as BarSize } from "compositions/examples/charts/bar-segment-with-bar-size"
+export { BarSegmentWithTooltip as Tooltip } from "compositions/examples/charts/bar-segment-with-tooltip"

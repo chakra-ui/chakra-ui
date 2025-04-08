@@ -1,16 +1,13 @@
 "use client"
 
-import { Button, HStack, Stack, parseColor } from "@chakra-ui/react"
 import {
-  ColorPickerArea,
-  ColorPickerContent,
-  ColorPickerControl,
-  ColorPickerEyeDropper,
-  ColorPickerInput,
-  ColorPickerRoot,
-  ColorPickerSliders,
-  ColorPickerTrigger,
-} from "compositions/ui/color-picker"
+  Button,
+  ColorPicker,
+  HStack,
+  Portal,
+  Stack,
+  parseColor,
+} from "@chakra-ui/react"
 import { Controller, useForm } from "react-hook-form"
 
 interface FormValues {
@@ -31,23 +28,28 @@ export const ColorPickerWithHookForm = () => {
           name="color"
           control={control}
           render={({ field }) => (
-            <ColorPickerRoot
+            <ColorPicker.Root
               name={field.name}
               defaultValue={parseColor(field.value)}
               onValueChange={(e) => field.onChange(e.valueAsString)}
             >
-              <ColorPickerControl>
-                <ColorPickerInput />
-                <ColorPickerTrigger />
-              </ColorPickerControl>
-              <ColorPickerContent>
-                <ColorPickerArea />
-                <HStack>
-                  <ColorPickerEyeDropper />
-                  <ColorPickerSliders />
-                </HStack>
-              </ColorPickerContent>
-            </ColorPickerRoot>
+              <ColorPicker.HiddenInput />
+              <ColorPicker.Control>
+                <ColorPicker.Input />
+                <ColorPicker.Trigger />
+              </ColorPicker.Control>
+              <Portal>
+                <ColorPicker.Positioner>
+                  <ColorPicker.Content>
+                    <ColorPicker.Area />
+                    <HStack>
+                      <ColorPicker.EyeDropper size="sm" variant="outline" />
+                      <ColorPicker.Sliders />
+                    </HStack>
+                  </ColorPicker.Content>
+                </ColorPicker.Positioner>
+              </Portal>
+            </ColorPicker.Root>
           )}
         />
 

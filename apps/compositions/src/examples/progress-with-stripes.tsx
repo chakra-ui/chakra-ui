@@ -1,9 +1,11 @@
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
+import { Progress } from "@chakra-ui/react"
 
 export const ProgressWithStripes = () => {
   return (
-    <ProgressRoot maxW="240px" striped>
-      <ProgressBar />
-    </ProgressRoot>
+    <Progress.Root maxW="240px" striped>
+      <Progress.Track>
+        <Progress.Range />
+      </Progress.Track>
+    </Progress.Root>
   )
 }

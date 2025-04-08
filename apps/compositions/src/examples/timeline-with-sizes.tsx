@@ -1,12 +1,4 @@
-import { Badge, For, Span, Stack } from "@chakra-ui/react"
-import { Avatar } from "compositions/ui/avatar"
-import {
-  TimelineConnector,
-  TimelineContent,
-  TimelineItem,
-  TimelineRoot,
-  TimelineTitle,
-} from "compositions/ui/timeline"
+import { Avatar, Badge, For, Span, Stack, Timeline } from "@chakra-ui/react"
 import { LuCheck } from "react-icons/lu"
 
 export const TimelineWithSizes = () => {
@@ -14,29 +6,34 @@ export const TimelineWithSizes = () => {
     <Stack gap="8">
       <For each={["sm", "md", "lg", "xl"]}>
         {(size) => (
-          <TimelineRoot key={size} size={size}>
-            <TimelineItem>
-              <TimelineConnector>
-                <Avatar
-                  size="full"
-                  name="Sage"
-                  src="https://bit.ly/sage-adebayo"
-                />
-              </TimelineConnector>
-              <TimelineContent textStyle="xs">
-                <TimelineTitle>
+          <Timeline.Root key={size} size={size}>
+            <Timeline.Item>
+              <Timeline.Connector>
+                <Timeline.Separator />
+                <Timeline.Indicator>
+                  <Avatar.Root size="full">
+                    <Avatar.Image src="https://bit.ly/sage-adebayo" />
+                    <Avatar.Fallback name="Sage" />
+                  </Avatar.Root>
+                </Timeline.Indicator>
+              </Timeline.Connector>
+              <Timeline.Content textStyle="xs">
+                <Timeline.Title>
                   <Span fontWeight="medium">sage</Span>
                   created a new project
-                </TimelineTitle>
-              </TimelineContent>
-            </TimelineItem>
+                </Timeline.Title>
+              </Timeline.Content>
+            </Timeline.Item>
 
-            <TimelineItem>
-              <TimelineConnector>
-                <LuCheck />
-              </TimelineConnector>
-              <TimelineContent textStyle="xs">
-                <TimelineTitle mt={size === "sm" ? "-2px" : undefined}>
+            <Timeline.Item>
+              <Timeline.Connector>
+                <Timeline.Separator />
+                <Timeline.Indicator>
+                  <LuCheck />
+                </Timeline.Indicator>
+              </Timeline.Connector>
+              <Timeline.Content textStyle="xs">
+                <Timeline.Title mt={size === "sm" ? "-2px" : undefined}>
                   <Span fontWeight="medium">sage</Span>
                   changed status from <Badge size="sm">
                     In progress
@@ -44,10 +41,10 @@ export const TimelineWithSizes = () => {
                   <Badge colorPalette="teal" size="sm">
                     Completed
                   </Badge>
-                </TimelineTitle>
-              </TimelineContent>
-            </TimelineItem>
-          </TimelineRoot>
+                </Timeline.Title>
+              </Timeline.Content>
+            </Timeline.Item>
+          </Timeline.Root>
         )}
       </For>
     </Stack>

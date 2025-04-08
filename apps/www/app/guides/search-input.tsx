@@ -2,11 +2,18 @@
 
 import { Guides, guides } from "@/.velite"
 import { Combobox, Portal, createListCollection } from "@ark-ui/react"
-import { Box, For, Icon, Input, Text, chakra } from "@chakra-ui/react"
-import { CloseButton } from "compositions/ui/close-button"
-import { InputGroup } from "compositions/ui/input-group"
+import {
+  Box,
+  CloseButton,
+  For,
+  Icon,
+  Input,
+  InputGroup,
+  Text,
+  chakra,
+} from "@chakra-ui/react"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useMemo } from "react"
 import { LuSearch } from "react-icons/lu"
 
@@ -59,6 +66,7 @@ const createCollection = (items: Guides[]) =>
 
 export const GuideSearchInput = () => {
   const params = useSearchParams()
+  const router = useRouter()
   const query = params.get("query")
 
   const collection = useMemo(() => {
@@ -75,7 +83,13 @@ export const GuideSearchInput = () => {
 
   return (
     <ComboboxRoot
+      //@ts-expect-error fix later
       collection={collection}
+      navigate={({ value }) => {
+        requestAnimationFrame(() => {
+          router.push(`/${value}`)
+        })
+      }}
       inputBehavior="autohighlight"
       openOnClick={!!query}
       openOnChange={(e) => e.inputValue.length > 3}
@@ -92,7 +106,6 @@ export const GuideSearchInput = () => {
     >
       <Combobox.Control asChild>
         <InputGroup
-          width="full"
           startElement={
             <Icon size="lg">
               <LuSearch />

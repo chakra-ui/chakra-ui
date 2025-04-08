@@ -1,9 +1,8 @@
 "use client"
 
-import { For, HStack, Span, useSlotRecipe } from "@chakra-ui/react"
+import { For, HStack, Span, Switch, useSlotRecipe } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
-import { Switch } from "compositions/ui/switch"
 
 export const SwitchSizeTable = () => {
   const recipe = useSlotRecipe({ key: "switch" })
@@ -30,13 +29,17 @@ export const SwitchSizeTable = () => {
                     <HStack>
                       <For each={recipe.variantMap.variant}>
                         {(t) => (
-                          <Switch
+                          <Switch.Root
                             key={t}
                             variant={t}
                             size={v}
                             colorPalette={c}
                             defaultChecked
-                          />
+                          >
+                            <Switch.HiddenInput />
+                            <Switch.Control />
+                            <Switch.Label>Toggle</Switch.Label>
+                          </Switch.Root>
                         )}
                       </For>
                     </HStack>

@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "qr-code",
+  "file": {
+    "name": "qr-code.tsx",
+    "content": "import { QrCode as ChakraQrCode } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface QrCodeProps\n  extends Omit<ChakraQrCode.RootProps, \"fill\" | \"overlay\"> {\n  fill?: string\n  overlay?: React.ReactNode\n}\n\nexport const QrCode = React.forwardRef<HTMLDivElement, QrCodeProps>(\n  function QrCode(props, ref) {\n    const { children, fill, overlay, ...rest } = props\n    return (\n      <ChakraQrCode.Root ref={ref} {...rest}>\n        <ChakraQrCode.Frame style={{ fill }}>\n          <ChakraQrCode.Pattern />\n        </ChakraQrCode.Frame>\n        {overlay}\n        {children && <ChakraQrCode.Overlay>{children}</ChakraQrCode.Overlay>}\n      </ChakraQrCode.Root>\n    )\n  },\n)\n"
+  },
+  "component": "QrCode"
+}

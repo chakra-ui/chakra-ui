@@ -184,3 +184,65 @@ export const CloseIcon = (props: SvgProps) => (
     />
   </chakra.svg>
 )
+
+export const FileIcon = (props: SvgProps) => (
+  <chakra.svg
+    stroke="currentColor"
+    fill="none"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  </chakra.svg>
+)
+
+export const CopyIcon = (props: SvgProps) => (
+  <chakra.svg
+    stroke="currentColor"
+    fill="none"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+  </chakra.svg>
+)
+
+export const PipetteIcon = (props: SvgProps) => (
+  <chakra.svg
+    stroke="currentColor"
+    fill="none"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="m2 22 1-1h3l9-9" />
+    <path d="M3 21v-3l9-9" />
+    <path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z" />
+  </chakra.svg>
+)
+
+export const EllipsisIcon = (props: SvgProps) => (
+  <chakra.svg
+    stroke="currentColor"
+    fill="none"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="1" />
+    <circle cx="19" cy="12" r="1" />
+    <circle cx="5" cy="12" r="1" />
+  </chakra.svg>
+)

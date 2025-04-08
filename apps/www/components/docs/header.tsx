@@ -32,6 +32,7 @@ import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 import { SponsorButton } from "../sponsor-button"
+import { StatusBadge } from "../status-badge"
 import { CommandMenu } from "./command-menu"
 
 const HeaderRoot = chakra("header", {
@@ -69,7 +70,7 @@ const TopNavLink = chakra(Link, {
         borderColor: "transparent",
         transition: "border-color 0.2s",
         _hover: { borderColor: "border" },
-        _currentPage: { borderColor: "fg!" },
+        _currentPage: { borderColor: "teal.solid!" },
       },
     },
   },
@@ -131,7 +132,8 @@ const HeaderSecondaryNavbar = () => {
           href={item.url || "#"}
           aria-current={item.current ? "page" : undefined}
         >
-          {item.title}
+          {item.title}{" "}
+          {item.status && <StatusBadge ms="1">{item.status}</StatusBadge>}
         </TopNavLink>
       ))}
     </HStack>

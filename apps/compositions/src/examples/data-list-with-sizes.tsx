@@ -1,18 +1,26 @@
-import { Stack } from "@chakra-ui/react"
-import { DataListItem, DataListRoot } from "compositions/ui/data-list"
+import { DataList, Stack } from "@chakra-ui/react"
 
 export const DataListWithSizes = () => {
   return (
     <Stack gap="4">
-      <DataListRoot size="sm">
-        <DataListItem label="Name" value="John Doe" />
-      </DataListRoot>
-      <DataListRoot size="md">
-        <DataListItem label="Name" value="John Doe" />
-      </DataListRoot>
-      <DataListRoot size="lg">
-        <DataListItem label="Name" value="John Doe" />
-      </DataListRoot>
+      <DataList.Root size="sm">
+        <DataList.Item>
+          <DataList.ItemLabel>Name</DataList.ItemLabel>
+          <DataList.ItemValue>John Doe</DataList.ItemValue>
+        </DataList.Item>
+      </DataList.Root>
+      <DataList.Root size="md">
+        <DataList.Item>
+          <DataList.ItemLabel>Name</DataList.ItemLabel>
+          <DataList.ItemValue>John Doe</DataList.ItemValue>
+        </DataList.Item>
+      </DataList.Root>
+      <DataList.Root size="lg">
+        <DataList.Item>
+          <DataList.ItemLabel>Name</DataList.ItemLabel>
+          <DataList.ItemValue>John Doe</DataList.ItemValue>
+        </DataList.Item>
+      </DataList.Root>
     </Stack>
   )
 }

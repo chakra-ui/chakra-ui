@@ -1,21 +1,17 @@
-import { Stack } from "@chakra-ui/react"
-import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
+import { For, Progress, Stack } from "@chakra-ui/react"
 
 export const ProgressWithSizes = () => {
   return (
     <Stack gap="4" maxW="240px">
-      <ProgressRoot size="xs">
-        <ProgressBar />
-      </ProgressRoot>
-      <ProgressRoot size="sm">
-        <ProgressBar />
-      </ProgressRoot>
-      <ProgressRoot size="md">
-        <ProgressBar />
-      </ProgressRoot>
-      <ProgressRoot size="lg">
-        <ProgressBar />
-      </ProgressRoot>
+      <For each={["xs", "sm", "md", "lg"]}>
+        {(size) => (
+          <Progress.Root key={size} size={size}>
+            <Progress.Track>
+              <Progress.Range />
+            </Progress.Track>
+          </Progress.Root>
+        )}
+      </For>
     </Stack>
   )
 }

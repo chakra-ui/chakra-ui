@@ -1,6 +1,5 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { Stack, Switch, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { Switch } from "compositions/ui/switch"
 
 export const SwitchWithColors = () => {
   return (
@@ -14,8 +13,18 @@ export const SwitchWithColors = () => {
           px="4"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <Switch colorPalette={colorPalette} />
-          <Switch colorPalette={colorPalette} defaultChecked />
+
+          <Switch.Root colorPalette={colorPalette}>
+            <Switch.HiddenInput />
+            <Switch.Control />
+            <Switch.Label />
+          </Switch.Root>
+
+          <Switch.Root colorPalette={colorPalette} defaultChecked>
+            <Switch.HiddenInput />
+            <Switch.Control />
+            <Switch.Label />
+          </Switch.Root>
         </Stack>
       ))}
     </Stack>

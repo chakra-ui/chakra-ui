@@ -7,20 +7,22 @@ import { ErrorBoundary } from "./error-boundary"
 
 interface Props {
   name: string
+  scope?: "examples" | "ui"
 }
 
 function formatComponentName(name: string) {
   return name
+    .replace("charts/", "")
     .split(/[-\/]/)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("")
 }
 
 export const ExamplePreview = (props: Props) => {
-  const { name } = props
+  const { name, scope = "examples" } = props
   const componentName = formatComponentName(name)
   const Component = dynamic(() =>
-    import(`../../compositions/src/examples/${name}`).then(
+    import(`../../compositions/src/${scope}/${name}`).then(
       (mod) => mod[componentName],
     ),
   )
@@ -33,8 +35,8 @@ interface CodeProps extends Props {
 }
 
 export const ExampleCode = async (props: CodeProps) => {
-  const { name, showCopy = true, ext = "tsx" } = props
-  const content = await readExampleFile(name, ext)
+  const { name, showCopy = true, ext = "tsx", scope = "examples" } = props
+  const content = await readExampleFile(name, scope, ext)
   const html = await highlightCode(content)
   return (
     <>
@@ -51,22 +53,18 @@ export const ExampleCode = async (props: CodeProps) => {
   )
 }
 
-interface CodeWrapperProps {
-  maxHeight?: BoxProps["maxHeight"]
-  bg?: BoxProps["bg"]
-  px?: BoxProps["px"]
-  py?: BoxProps["py"]
-  children: React.ReactNode
-}
+interface CodeWrapperProps extends BoxProps {}
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight, bg, px = 8, py = 6 } = props
+  const { children, maxHeight, bg, px = "8", py = "6", ...rest } = props
   return (
     <Box
       height="100%"
       overflow="auto"
+      colorScheme="dark"
+      pos="relative"
+      {...rest}
       css={{
-        position: "relative",
         "& pre": {
           px,
           py,
@@ -104,7 +102,7 @@ export const Example = (props: Props) => {
 }
 
 export const ExampleTabs = (props: Props) => {
-  const { name } = props
+  const { name, scope = "examples" } = props
   if (!name) return null
   return (
     <Tabs.Root
@@ -122,12 +120,12 @@ export const ExampleTabs = (props: Props) => {
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
         <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>
           <ErrorBoundary>
-            <ExamplePreview name={name} />
+            <ExamplePreview name={name} scope={scope} />
           </ErrorBoundary>
         </Tabs.Content>
         <Tabs.Content value="code" pt="0!">
           <ExampleCodeWrapper maxHeight="480px">
-            <ExampleCode name={name} />
+            <ExampleCode name={name} scope={scope} />
           </ExampleCodeWrapper>
         </Tabs.Content>
       </Tabs.ContentGroup>

@@ -1,14 +1,12 @@
 "use client"
 
 import {
-  ActionBarCloseTrigger,
-  ActionBarContent,
-  ActionBarRoot,
-  ActionBarSelectionTrigger,
-  ActionBarSeparator,
-} from "compositions/ui/action-bar"
-import { Button } from "compositions/ui/button"
-import { Checkbox } from "compositions/ui/checkbox"
+  ActionBar,
+  Button,
+  Checkbox,
+  CloseButton,
+  Portal,
+} from "@chakra-ui/react"
 import { useState } from "react"
 import { LuShare, LuTrash2 } from "react-icons/lu"
 
@@ -16,31 +14,42 @@ export const ActionBarWithCloseTrigger = () => {
   const [checked, setChecked] = useState(false)
   return (
     <>
-      <Checkbox
+      <Checkbox.Root
         checked={checked}
         onCheckedChange={(e) => setChecked(!!e.checked)}
       >
-        Show Action bar
-      </Checkbox>
-      <ActionBarRoot
+        <Checkbox.HiddenInput />
+        <Checkbox.Control />
+        <Checkbox.Label>Show Action bar</Checkbox.Label>
+      </Checkbox.Root>
+
+      <ActionBar.Root
         open={checked}
         onOpenChange={(e) => setChecked(e.open)}
         closeOnInteractOutside={false}
       >
-        <ActionBarContent>
-          <ActionBarSelectionTrigger>2 selected</ActionBarSelectionTrigger>
-          <ActionBarSeparator />
-          <Button variant="outline" size="sm">
-            <LuTrash2 />
-            Delete
-          </Button>
-          <Button variant="outline" size="sm">
-            <LuShare />
-            Share
-          </Button>
-          <ActionBarCloseTrigger />
-        </ActionBarContent>
-      </ActionBarRoot>
+        <Portal>
+          <ActionBar.Positioner>
+            <ActionBar.Content>
+              <ActionBar.SelectionTrigger>
+                2 selected
+              </ActionBar.SelectionTrigger>
+              <ActionBar.Separator />
+              <Button variant="outline" size="sm">
+                <LuTrash2 />
+                Delete
+              </Button>
+              <Button variant="outline" size="sm">
+                <LuShare />
+                Share
+              </Button>
+              <ActionBar.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </ActionBar.CloseTrigger>
+            </ActionBar.Content>
+          </ActionBar.Positioner>
+        </Portal>
+      </ActionBar.Root>
     </>
   )
 }

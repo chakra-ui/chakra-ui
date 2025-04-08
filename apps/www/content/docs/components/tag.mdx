@@ -9,32 +9,31 @@ links:
 
 <ExampleTabs name="tag-basic" />
 
-## Setup
-
-If you don't already have the snippet, run the following command to add the
-`tag` snippet
-
-```sh
-npx @chakra-ui/cli snippet add tag
-```
-
-The snippet includes a closed component composition for the `Tag` component.
-
 ## Usage
 
-```jsx
-import { Tag } from "@/components/ui/tag"
+```tsx
+import { Tag } from "@chakra-ui/react"
 ```
 
-```jsx
-<Tag>Tag here</Tag>
+```tsx
+<Tag.Root>
+  <Tag.Label>Tag here</Tag.Label>
+</Tag.Root>
 ```
+
+:::info
+
+If you prefer a closed component composition, check out the
+[snippet below](#closed-component).
+
+:::
 
 ## Examples
 
 ### Icon
 
-Use the `startElement` prop to add an icon to the tag.
+Use the `Tag.StartElement` and `Tag.EndElement` components to add an icon to the
+start or end of the tag
 
 <ExampleTabs name="tag-with-icon" />
 
@@ -58,7 +57,7 @@ Use the `colorPalette` prop to change the color of the tag.
 
 ### Closable
 
-Use the `closable` prop to make the tag closable.
+Use the `Tag.CloseTrigger` within the `Tag.EndElement` to make the tag closable.
 
 <ExampleTabs name="tag-with-close" />
 
@@ -84,9 +83,20 @@ The tag component has been designed to work well with the `Avatar` component.
 
 Use the `asChild` prop to render the tag as a button.
 
-> Note: Import the Tag from `@chakra-ui/react` to use this prop.
-
 <ExampleTabs name="tag-as-button" />
+
+### Closed Component
+
+Here's how to setup the Tag for a closed component composition.
+
+<ExampleCode name="tag-closed-component" />
+
+If you want to automatically add the closed component to your project, run the
+command:
+
+```bash
+npx @chakra-ui/cli snippet add tag
+```
 
 ## Props
 

@@ -192,9 +192,12 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     return isRecipe(key) || isSlotRecipe(key)
   }
 
+  const _global = [getPreflightCss(), getGlobalCss(), getTokenCss()]
+
   return {
     $$chakra: true,
     _config: config,
+    _global,
     breakpoints,
     tokens,
     conditions,

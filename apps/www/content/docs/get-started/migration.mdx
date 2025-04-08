@@ -3,10 +3,12 @@ title: Migration to v3
 description: How to migrate to Chakra UI v3.x from v2.x
 ---
 
+<FeaturedVideo />
+
 :::warning
 
-This guide is a work in progress and will be updated from time to time. If you
-find any point we missed, feel free to open a PR to update this guide.
+We recommend using the [LLMs.txt](/docs/get-started/llms) files to make the
+Chakra UI v3 documentation available to large language models.
 
 :::
 
@@ -103,10 +105,23 @@ import { Provider } from "@/components/ui/provider"
 import { defaultSystem } from "@chakra-ui/react"
 
 export const App = ({ Component }) => (
-  <Provider value={defaultSystem}>
+  <Provider>
     <Component />
   </Provider>
 )
+```
+
+```tsx {1,3}
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+
+export function Provider(props) {
+  return (
+    <ChakraProvider value={defaultSystem}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}
 ```
 
 > If you have a custom theme, replace `defaultSystem` with the custom `system`
@@ -228,6 +243,29 @@ defineStyle({
 Due to the simplification of the `as` prop, we no longer provide a custom
 `forwardRef`. Prefer to use `forwardRef` from React directly.
 
+Before:
+
+```tsx {3}
+import { Button as ChakraButton, forwardRef } from "@chakra-ui/react"
+
+const Button = forwardRef<ButtonProps, "button">(function Button(props, ref) {
+  return <ChakraButton ref={ref} {...props} />
+})
+```
+
+After:
+
+```tsx {2, 4}
+import { Button as ChakraButton } from "@chakra-ui/react"
+import { forwardRef } from "react"
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(props, ref) {
+    return <ChakraButton ref={ref} {...props} />
+  },
+)
+```
+
 ### Icons
 
 Removed `@chakra-ui/icons` package. Prefer to use `lucide-react` or
@@ -265,12 +303,51 @@ export default preview
 
 ### Removed Components
 
-- **Wrap**: Replace with `HStack` and add `wrap=wrap` to it.
-- **WrapItem**: Replace with `Flex` and add `align=flex-start` to it.
 - **StackItem**: You don't need this anymore. Use `Box` instead.
-- **FocusLock**: We no longer ship a focus lock component. Use
-  `react-focus-lock` instead.
-- **FormControl** and **FormErrorMessage**: Replace with the `Field` component
+- **FocusLock**: We no longer ship a focus lock component. Install and use
+  `react-focus-lock` directly.
+- **FormControl**: Replace with the `Field` component
+- **FormErrorMessage**: Replace with the `Field.ErrorText` component Before:
+
+```tsx
+<FormControl>
+  <Input />
+  <FormErrorMessage>This field is required</FormErrorMessage>
+</FormControl>
+```
+
+After:
+
+```tsx
+<Field.Root>
+  <Input />
+  <Field.ErrorText>This field is required</Field.ErrorText>
+</Field.Root>
+```
+
+- **AlertDialog**
+
+  - Replace with the `Dialog` component and set `role=alertdialog`
+  - Set `leastDestructiveRef` prop to the `initialFocusEl` to the `Dialog.Root`
+    component
+
+- **Collapse**: Replace with the `Collapsible` component.
+
+Before:
+
+```tsx
+<Collapse in={isOpen} animateOpacity>
+  Some content
+</Collapse>
+```
+
+After:
+
+```tsx
+<Collapsible.Root open={isOpen}>
+  <Collapsible.Content>Some content</Collapsible.Content>
+</Collapsible.Root>
+```
 
 ## Prop Changes
 
@@ -562,8 +639,8 @@ After
 
 ### PinInput
 
-- Changed `value`, `defaultValue` and `onChange` to use `string[]` instead of
-  `string`
+- Changed `value`, `defaultValue` to use `string[]` instead of `string`
+- `onChange` prop is now called `onValueChange`
 - Add new `PinInput.Control` and `PinInput.Label` component parts
 - `PinInput.Root` now renders a `div` element by default. Consider combining
   with `Stack` or `Group` for better layout control
@@ -573,6 +650,7 @@ After
 - Rename `NumberInputStepper` to `NumberInput.Control`
 - Rename `NumberInputStepperIncrement` to `NumberInput.IncrementTrigger`
 - Rename `NumberInputStepperDecrement` to `NumberInput.DecrementTrigger`
+- `onChange` prop is now called `onValueChange`
 - Remove `focusBorderColor` and `errorBorderColor`, consider setting the
   `--focus-color` and `--error-color` css variables instead
 
@@ -622,9 +700,11 @@ Before
 After
 
 ```tsx
-<Field invalid label="Email" errorText="This field is required">
+<Field.Root invalid>
+  <Field.Label>Email</Field.Label>
   <Input />
-</Field>
+  <Field.ErrorText>This field is required</Field.ErrorText>
+</Field.Root>
 ```
 
 ### Link
@@ -650,3 +730,20 @@ After
 
 - Removed `icon` prop in favor of rendering the `children` prop directly
 - Removed `isRounded` in favor of using the `borderRadius=full` prop
+
+### Spinner
+
+- Change the `thickness` prop to `borderWidth`
+- Change the `speed` prop to `animationDuration`
+
+Before
+
+```tsx
+<Spinner thickness="2px" speed="0.5s" />
+```
+
+After
+
+```tsx
+<Spinner borderWidth="2px" animationDuration="0.5s" />
+```

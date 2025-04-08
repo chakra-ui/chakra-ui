@@ -1,9 +1,10 @@
-import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
+import { NumberInput } from "@chakra-ui/react"
 
 export const NumberInputWithStep = () => {
   return (
-    <NumberInputRoot maxW="200px" defaultValue="2" step={3}>
-      <NumberInputField />
-    </NumberInputRoot>
+    <NumberInput.Root maxW="200px" defaultValue="2" step={3}>
+      <NumberInput.Control />
+      <NumberInput.Input />
+    </NumberInput.Root>
   )
 }

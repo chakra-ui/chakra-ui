@@ -287,7 +287,7 @@ to `theme.slotRecipes` property.
 > theme.
 
 ```tsx title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 const config = defineConfig({
@@ -298,7 +298,7 @@ const config = defineConfig({
   },
 })
 
-export default createSystem(config)
+export default createSystem(defaultConfig, config)
 ```
 
 ### TypeScript

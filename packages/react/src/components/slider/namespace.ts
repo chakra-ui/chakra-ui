@@ -11,6 +11,8 @@ export {
   SliderLabel as Label,
   SliderTrack as Track,
   SliderMarkerGroup as MarkerGroup,
+  SliderMarks as Marks,
+  SliderThumbs as Thumbs,
   SliderContext as Context,
   SliderHiddenInput as HiddenInput,
   SliderDraggingIndicator as DraggingIndicator,
@@ -30,4 +32,5 @@ export type {
   SliderMarkerGroupProps as MarkerGroupProps,
   SliderDraggingIndicatorProps as DraggingIndicatorProps,
   SliderValueChangeDetails as ValueChangeDetails,
+  SliderMarksProps as MarksProps,
 } from "./slider"

@@ -1,4 +1,4 @@
-import { Kbd } from "@chakra-ui/react"
+import { Box, Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-doc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
@@ -15,7 +15,13 @@ import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
 import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
-import { Example, ExamplePreview, ExampleTabs } from "./example"
+import {
+  Example,
+  ExampleCode,
+  ExampleCodeWrapper,
+  ExamplePreview,
+  ExampleTabs,
+} from "./example"
 import { Anchor } from "./mdx/anchor"
 import { Blockquote } from "./mdx/blockquote"
 import { Callout } from "./mdx/callout"
@@ -33,8 +39,10 @@ import { ResourceCard } from "./mdx/resource-card"
 import { Steps } from "./mdx/steps"
 import { Table } from "./mdx/table"
 import { P, Strong } from "./mdx/text"
+import { FeaturedVideo } from "./mdx/video-card"
 
 const sharedComponents = {
+  Box,
   a: Anchor,
   blockquote: Blockquote,
   img: Img,
@@ -56,6 +64,32 @@ const sharedComponents = {
   callout: Callout,
   "code-group": CodeGroup,
   Example: Example,
+  ExampleCode(props: { name: string }) {
+    return (
+      <ExampleCodeWrapper
+        maxHeight="480px"
+        rounded="lg"
+        height="auto"
+        mb="2"
+        mt="6"
+      >
+        <ExampleCode name={props.name} />
+      </ExampleCodeWrapper>
+    )
+  },
+  SnippetCode(props: { name: string }) {
+    return (
+      <ExampleCodeWrapper
+        maxHeight="480px"
+        rounded="lg"
+        height="auto"
+        mb="2"
+        mt="6"
+      >
+        <ExampleCode name={props.name} scope="ui" />
+      </ExampleCodeWrapper>
+    )
+  },
   ExampleTabs: ExampleTabs,
   ExamplePreview: ExamplePreview,
   card: Card,
@@ -64,6 +98,7 @@ const sharedComponents = {
   hr: Hr,
   PropTable,
   ComponentGrid,
+  FeaturedVideo,
   ResourceCard: ResourceCard,
   "code-block": CodeBlock,
   ColorTokenDoc,

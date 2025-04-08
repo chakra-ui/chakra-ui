@@ -6,6 +6,7 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers"
+import fs from "node:fs"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
 import remarkDirective from "remark-directive"
@@ -18,6 +19,8 @@ import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
 import { transformerMetaWordHighlight } from "./lib/shiki-highlight-word"
+import { propsToMdTable } from "./utils/get-component-props.js"
+import { replaceTokenDoc } from "./utils/get-theming-doc.js"
 
 const cwd = process.cwd()
 
@@ -40,6 +43,10 @@ const docs = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
+      llm: s.custom().transform((_data, { meta }) => {
+        const content = replaceExampleTabs(meta.content ?? "")
+        return replacePropsTable(replaceTokenDoc(content))
+      }),
       hideToc: s.boolean().optional(),
       composition: s.boolean().optional(),
       links: s
@@ -48,6 +55,7 @@ const docs = defineCollection({
           storybook: s.string().optional(),
           recipe: s.string().optional(),
           ark: s.string().optional(),
+          recharts: s.string().optional(),
         })
         .optional(),
     })
@@ -211,3 +219,68 @@ export default defineConfig({
     ],
   },
 })
+
+function replaceExampleTabs(text: string) {
+  const matches = text.matchAll(/<ExampleTabs name="(.*?)" \/>/g)
+
+  if (!matches) return text
+
+  for (const match of matches) {
+    try {
+      const name = match[1]
+
+      let example = fs.readFileSync(
+        `../compositions/src/examples/${name}.tsx`,
+        "utf-8",
+      )
+
+      example = example.replaceAll("compositions/ui", "@/components/ui")
+
+      text = text.replace(
+        `<ExampleTabs name="${name}" \/>`,
+        `\`\`\`tsx\n${example}\n\`\`\``,
+      )
+    } catch {
+      console.log("[velite] no example", match)
+    }
+  }
+
+  return text
+}
+
+function replacePropsTable(text: string) {
+  try {
+    const matches = text.matchAll(
+      /<PropTable\s+component="([^"]+)"\s+part="([^"]+)"(?:\s+omit=\{(\[.*?\])\})?\s*\/>/g,
+    )
+
+    if (!matches) return text
+
+    for (const match of matches) {
+      const component = match[1]
+      const part = match[2]
+      const omit = match[3]
+
+      const omitArray = omit ? JSON.parse(omit) : undefined
+
+      const mdTable = propsToMdTable({ component, part, omit: omitArray })
+
+      if (!mdTable) {
+        console.log("no mdTable", component, part)
+        continue
+      }
+
+      text = text.replace(
+        omit
+          ? `<PropTable component="${component}" part="${part}" omit={${omit}} \/>`
+          : `<PropTable component="${component}" part="${part}" \/>`,
+        mdTable,
+      )
+    }
+
+    return text
+  } catch (error) {
+    console.error(error)
+    return text
+  }
+}

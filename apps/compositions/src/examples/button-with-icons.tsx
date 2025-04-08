@@ -1,5 +1,4 @@
-import { HStack } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { Button, HStack } from "@chakra-ui/react"
 import { RiArrowRightLine, RiMailLine } from "react-icons/ri"
 
 export const ButtonWithIcons = () => {

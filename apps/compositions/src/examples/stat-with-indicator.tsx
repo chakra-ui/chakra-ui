@@ -1,18 +1,14 @@
-import {
-  StatDownTrend,
-  StatLabel,
-  StatRoot,
-  StatValueText,
-} from "compositions/ui/stat"
+import { Badge, Stat } from "@chakra-ui/react"
 
 export const StatWithIndicator = () => {
   return (
-    <StatRoot>
-      <StatLabel>Unique visitors</StatLabel>
-      <StatValueText>192.1k</StatValueText>
-      <StatDownTrend variant="plain" px="0">
+    <Stat.Root>
+      <Stat.Label>Unique visitors</Stat.Label>
+      <Stat.ValueText>192.1k</Stat.ValueText>
+      <Badge colorPalette="red" variant="plain" px="0">
+        <Stat.DownIndicator />
         1.9%
-      </StatDownTrend>
-    </StatRoot>
+      </Badge>
+    </Stat.Root>
   )
 }

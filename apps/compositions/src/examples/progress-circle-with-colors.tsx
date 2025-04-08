@@ -1,9 +1,5 @@
-import { HStack, Stack, Text } from "@chakra-ui/react"
+import { HStack, ProgressCircle, Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import {
-  ProgressCircleRing,
-  ProgressCircleRoot,
-} from "compositions/ui/progress-circle"
 
 export const ProgressCircleWithColors = () => {
   return (
@@ -11,17 +7,27 @@ export const ProgressCircleWithColors = () => {
       {colorPalettes.map((colorPalette) => (
         <HStack key={colorPalette} gap="10" px="4">
           <Text minW="8ch">{colorPalette}</Text>
-          <ProgressCircleRoot size="sm" value={30} colorPalette={colorPalette}>
-            <ProgressCircleRing cap="round" />
-          </ProgressCircleRoot>
 
-          <ProgressCircleRoot size="md" value={30} colorPalette={colorPalette}>
-            <ProgressCircleRing cap="round" />
-          </ProgressCircleRoot>
+          <ProgressCircle.Root size="sm" value={30} colorPalette={colorPalette}>
+            <ProgressCircle.Circle>
+              <ProgressCircle.Track />
+              <ProgressCircle.Range strokeLinecap="round" />
+            </ProgressCircle.Circle>
+          </ProgressCircle.Root>
 
-          <ProgressCircleRoot size="lg" value={30} colorPalette={colorPalette}>
-            <ProgressCircleRing cap="round" />
-          </ProgressCircleRoot>
+          <ProgressCircle.Root size="md" value={30} colorPalette={colorPalette}>
+            <ProgressCircle.Circle>
+              <ProgressCircle.Track />
+              <ProgressCircle.Range strokeLinecap="round" />
+            </ProgressCircle.Circle>
+          </ProgressCircle.Root>
+
+          <ProgressCircle.Root size="lg" value={30} colorPalette={colorPalette}>
+            <ProgressCircle.Circle>
+              <ProgressCircle.Track />
+              <ProgressCircle.Range strokeLinecap="round" />
+            </ProgressCircle.Circle>
+          </ProgressCircle.Root>
         </HStack>
       ))}
     </Stack>

@@ -9,6 +9,7 @@ export {
   ClipboardInput as Input,
   ClipboardContext as Context,
   ClipboardValueText as ValueText,
+  ClipboardCopyText as CopyText,
 } from "./clipboard"
 
 export type {

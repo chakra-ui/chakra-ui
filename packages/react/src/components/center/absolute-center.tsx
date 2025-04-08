@@ -25,16 +25,22 @@ export const AbsoluteCenter = chakra("div", {
     axis: {
       horizontal: {
         insetStart: "50%",
-        transform: "translateX(-50%)",
+        translate: "-50%",
+        _rtl: {
+          translate: "50%",
+        },
       },
       vertical: {
         top: "50%",
-        transform: "translateY(-50%)",
+        translate: "0 -50%",
       },
       both: {
         insetStart: "50%",
         top: "50%",
-        transform: "translate(-50%, -50%)",
+        translate: "-50% -50%",
+        _rtl: {
+          translate: "50% -50%",
+        },
       },
     },
   },
