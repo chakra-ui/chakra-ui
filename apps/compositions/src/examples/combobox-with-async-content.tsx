@@ -88,8 +88,10 @@ export const ComboboxWithAsyncContent = () => {
 
       <Combobox.Control>
         <Combobox.Input />
-        <Combobox.Trigger />
-        <Combobox.ClearTrigger />
+        <Combobox.IndicatorGroup>
+          <Combobox.ClearTrigger />
+          <Combobox.Trigger />
+        </Combobox.IndicatorGroup>
       </Combobox.Control>
 
       <Portal>

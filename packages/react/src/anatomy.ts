@@ -145,7 +145,10 @@ export const ratingGroupAnatomy =
 
 export const selectAnatomy = arkSelectAnatomy.extendWith("indicatorGroup")
 
-export const comboboxAnatomy = arkComboboxAnatomy
+export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
+  "indicatorGroup",
+  "empty",
+)
 
 export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
 

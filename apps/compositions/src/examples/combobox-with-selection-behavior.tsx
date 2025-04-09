@@ -66,8 +66,10 @@ function ComboboxDemo(props: Partial<Combobox.RootProps>) {
 
         <Combobox.Control>
           <Combobox.Input />
-          <Combobox.Trigger />
-          <Combobox.ClearTrigger />
+          <Combobox.IndicatorGroup>
+            <Combobox.ClearTrigger />
+            <Combobox.Trigger />
+          </Combobox.IndicatorGroup>
         </Combobox.Control>
 
         <Combobox.Content>

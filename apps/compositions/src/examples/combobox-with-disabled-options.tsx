@@ -2,10 +2,10 @@
 
 import {
   Combobox,
+  HStack,
   Icon,
   Portal,
-  Stack,
-  Text,
+  Span,
   createListCollection,
 } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
@@ -42,9 +42,12 @@ export const ComboboxWithDisabledOptions = () => {
       <Combobox.Label>Select a Company</Combobox.Label>
       <Combobox.Control>
         <Combobox.Input />
-        <Combobox.Trigger />
-        <Combobox.ClearTrigger />
+        <Combobox.IndicatorGroup>
+          <Combobox.ClearTrigger />
+          <Combobox.Trigger />
+        </Combobox.IndicatorGroup>
       </Combobox.Control>
+
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
@@ -53,10 +56,10 @@ export const ComboboxWithDisabledOptions = () => {
               {collection.items.map((country) => {
                 return (
                   <Combobox.Item item={country} key={country.id}>
-                    <Stack direction="row" gap={3} align="center">
+                    <HStack gap="3">
                       <Icon>{country.logo}</Icon>
-                      <Text fontWeight="medium">{country.name}</Text>
-                    </Stack>
+                      <Span fontWeight="medium">{country.name}</Span>
+                    </HStack>
                     <Combobox.ItemIndicator />
                   </Combobox.Item>
                 )
@@ -82,7 +85,7 @@ const companies: Company[] = [
     name: "Airbnb",
     logo: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-        <g clipPath="url(#a)">
+        <g clipPath="url(#airbnb)">
           <path fill="#EB4C60" d="M0 0h18v18H0V0Z" />
           <path
             fill="#fff"
@@ -90,7 +93,7 @@ const companies: Company[] = [
           />
         </g>
         <defs>
-          <clipPath id="a">
+          <clipPath id="airbnb">
             <path fill="#fff" d="M0 0h18v18H0z" />
           </clipPath>
         </defs>
@@ -102,7 +105,7 @@ const companies: Company[] = [
     disabled: true,
     logo: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-        <g clipPath="url(#a)">
+        <g clipPath="url(#tesla)">
           <path fill="#E31937" d="M0 0h18v18H0V0Z" />
           <path
             fill="#fff"
@@ -114,7 +117,7 @@ const companies: Company[] = [
           />
         </g>
         <defs>
-          <clipPath id="a">
+          <clipPath id="tesla">
             <path fill="#fff" d="M0 0h18v18H0z" />
           </clipPath>
         </defs>
@@ -125,8 +128,8 @@ const companies: Company[] = [
   {
     logo: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-        <g clipPath="url(#a)">
-          <path fill="url(#b)" d="M0 0h18v18H0V0Z" />
+        <g clipPath="url(#nvidia-a)">
+          <path fill="url(#nvidia-b)" d="M0 0h18v18H0V0Z" />
           <path
             fill="#fff"
             d="M7.601 7.57v-.656c.065-.004.13-.008.195-.008 1.797-.057 2.975 1.547 2.975 1.547S9.5 10.218 8.136 10.218c-.183 0-.36-.029-.53-.085V8.14c.7.085.841.393 1.258 1.093l.936-.786s-.685-.894-1.834-.894a2.745 2.745 0 0 0-.365.016Zm0-2.17v.98l.195-.012c2.497-.086 4.13 2.048 4.13 2.048s-1.871 2.275-3.819 2.275c-.17 0-.336-.016-.502-.044v.607c.138.016.28.029.417.029 1.814 0 3.126-.928 4.397-2.02.21.17 1.073.578 1.251.756-1.206 1.012-4.02 1.826-5.615 1.826-.154 0-.3-.008-.446-.024v.854H14.5V5.4H7.601Zm0 4.733v.518c-1.676-.3-2.141-2.045-2.141-2.045s.805-.89 2.141-1.036v.567h-.004c-.7-.085-1.25.57-1.25.57s.31 1.106 1.254 1.426Zm-2.975-1.6s.991-1.465 2.98-1.619V6.38C5.402 6.558 3.5 8.42 3.5 8.42s1.077 3.118 4.101 3.401v-.567c-2.218-.275-2.975-2.72-2.975-2.72Z"
@@ -134,7 +137,7 @@ const companies: Company[] = [
         </g>
         <defs>
           <linearGradient
-            id="b"
+            id="nvidia-b"
             x1="16"
             x2="5.5"
             y1="-.5"
@@ -144,7 +147,7 @@ const companies: Company[] = [
             <stop stopColor="#85B737" />
             <stop offset="1" stopColor="#597B20" />
           </linearGradient>
-          <clipPath id="a">
+          <clipPath id="nvidia-a">
             <path fill="#fff" d="M0 0h18v18H0z" />
           </clipPath>
         </defs>
@@ -158,7 +161,7 @@ const companies: Company[] = [
     name: "Amazon",
     logo: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-        <g clipPath="url(#a)">
+        <g clipPath="url(#amazon)">
           <path d="M0 0h18v18H0V0Z" />
           <path
             fill="#fff"
@@ -170,7 +173,7 @@ const companies: Company[] = [
           />
         </g>
         <defs>
-          <clipPath id="a">
+          <clipPath id="amazon">
             <path fill="#fff" d="M0 0h18v18H0z" />
           </clipPath>
         </defs>

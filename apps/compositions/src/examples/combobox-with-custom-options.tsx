@@ -2,10 +2,10 @@
 
 import {
   Combobox,
+  HStack,
   Icon,
   Portal,
-  Stack,
-  Text,
+  Span,
   createListCollection,
 } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
@@ -42,8 +42,10 @@ export const ComboboxWithCustomOptions = () => {
 
       <Combobox.Control>
         <Combobox.Input />
-        <Combobox.Trigger />
-        <Combobox.ClearTrigger />
+        <Combobox.IndicatorGroup>
+          <Combobox.Trigger />
+          <Combobox.ClearTrigger />
+        </Combobox.IndicatorGroup>
       </Combobox.Control>
 
       <Portal>
@@ -54,10 +56,10 @@ export const ComboboxWithCustomOptions = () => {
               {collection.items.map((country) => {
                 return (
                   <Combobox.Item item={country} key={country.id}>
-                    <Stack direction="row" gap={3} align="center">
+                    <HStack gap="3" align="center">
                       <Icon>{country.logo}</Icon>
-                      <Text fontWeight="medium">{country.name}</Text>
-                    </Stack>
+                      <Span fontWeight="medium">{country.name}</Span>
+                    </HStack>
                     <Combobox.ItemIndicator />
                   </Combobox.Item>
                 )

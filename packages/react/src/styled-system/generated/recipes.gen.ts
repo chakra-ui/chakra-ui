@@ -471,7 +471,7 @@ export type CheckboxCardVariantMap = {
 
 // Collapsible
 
-export type CollapsibleSlot = "root" | "trigger" | "content"
+export type CollapsibleSlot = "root" | "trigger" | "content" | "indicator"
 
 export interface CollapsibleVariant {}
 
@@ -1002,6 +1002,7 @@ export type ComboboxSlot =
   | "list"
   | "positioner"
   | "trigger"
+  | "indicatorGroup"
 
 export interface ComboboxVariant {
   /** @default "outline" */

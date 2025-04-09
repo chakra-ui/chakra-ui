@@ -3,6 +3,7 @@ export {
   ComboboxClearTrigger as ClearTrigger,
   ComboboxContent as Content,
   ComboboxControl as Control,
+  ComboboxIndicatorGroup as IndicatorGroup,
   ComboboxItemIndicator as Indicator,
   ComboboxItem as Item,
   ComboboxItemGroup as ItemGroup,
@@ -17,6 +18,7 @@ export {
   ComboboxContext as Context,
   ComboboxPropsProvider as PropsProvider,
   ComboboxTrigger as Trigger,
+  ComboboxEmpty as Empty,
 } from "./combobox"
 
 export type {
@@ -25,6 +27,7 @@ export type {
   ComboboxContentProps as ContentProps,
   ComboboxControlProps as ControlProps,
   ComboboxItemIndicatorProps as IndicatorProps,
+  ComboboxIndicatorGroupProps as IndicatorGroupProps,
   ComboboxItemGroupProps as ItemGroupProps,
   ComboboxItemProps as ItemProps,
   ComboboxLabelProps as LabelProps,
@@ -35,4 +38,5 @@ export type {
   ComboboxValueChangeDetails as ValueChangeDetails,
   ComboboxInputValueChangeDetails as InputValueChangeDetails,
   ComboboxRootComponent as RootComponent,
+  ComboboxEmptyProps as EmptyProps,
 } from "./combobox"

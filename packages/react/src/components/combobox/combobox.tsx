@@ -1,19 +1,26 @@
 "use client"
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
-import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
+import {
+  Combobox as ArkCombobox,
+  useComboboxContext,
+} from "@ark-ui/react/combobox"
+import { type JSX, forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { CheckIcon, ChevronDownIcon } from "../icons"
+import { cx } from "../../utils"
+import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons"
 
 const {
   withProvider,
   withContext,
   useStyles: useComboboxStyles,
+  useClassNames,
   PropsProvider,
 } = createSlotRecipeContext({ key: "combobox" })
 
@@ -122,7 +129,21 @@ export interface ComboboxClearTriggerProps
 export const ComboboxClearTrigger = withContext<
   HTMLButtonElement,
   ComboboxClearTriggerProps
->(ArkCombobox.ClearTrigger, "clearTrigger", { forwardAsChild: true })
+>(ArkCombobox.ClearTrigger, "clearTrigger", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <CloseIcon />,
+  },
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ComboboxIndicatorGroupProps extends HTMLChakraProps<"div"> {}
+
+export const ComboboxIndicatorGroup = withContext<
+  HTMLDivElement,
+  ComboboxIndicatorGroupProps
+>("div", "indicatorGroup")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -197,6 +218,28 @@ export const ComboboxLabel = withContext<HTMLLabelElement, ComboboxLabelProps>(
   ArkCombobox.Label,
   "label",
   { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ComboboxEmptyProps extends HTMLChakraProps<"div"> {}
+
+export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
+  function ComboboxEmpty(props, ref) {
+    const combobox = useComboboxContext()
+    const styles = useComboboxStyles()
+    const classNames = useClassNames()
+    if (combobox.collection.size !== 0) return null
+    return (
+      <chakra.div
+        ref={ref}
+        {...props}
+        role="presentation"
+        className={cx(classNames.emptyText, props.className)}
+        css={[styles.emptyText, props.css]}
+      />
+    )
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

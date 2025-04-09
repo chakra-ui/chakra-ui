@@ -26,7 +26,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       background: "bg.panel",
       width: "full",
       minH: "var(--chakra-sizes-8)",
-      px: "var(--select-trigger-padding-x)",
+      px: "var(--combobox-input-padding-x)",
       borderRadius: "l2",
       outline: 0,
       userSelect: "none",
@@ -48,21 +48,38 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       },
     },
     trigger: {
-      pos: "absolute",
-      cursor: "pointer",
-      width: "var(--chakra-sizes-5)",
-      height: "var(--chakra-sizes-5)",
-      top: "0.35rem",
-      right: "var(--chakra-sizes-1)",
-      border: "0",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      "--input-height": "var(--combobox-input-height)",
+      _icon: {
+        boxSize: "4",
+      },
     },
     clearTrigger: {
-      pos: "absolute",
-      top: "0",
-      right: "var(--chakra-sizes-4)",
+      color: "fg.muted",
+      pointerEvents: "auto",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      rounded: "l1",
+      _icon: {
+        boxSize: "4",
+      },
     },
     control: {
       pos: "relative",
+    },
+
+    indicatorGroup: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "1",
+      pos: "absolute",
+      right: "0",
+      top: "0",
+      bottom: "0",
+      px: "var(--combobox-input-padding-x)",
     },
 
     content: {
@@ -122,7 +139,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
   variants: {
     variant: {
       outline: {
-        trigger: {
+        input: {
           bg: "transparent",
           borderWidth: "1px",
           borderColor: "border",
@@ -133,7 +150,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       },
 
       subtle: {
-        trigger: {
+        input: {
           borderWidth: "1px",
           borderColor: "transparent",
           bg: "bg.muted",
@@ -144,8 +161,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         root: {
-          "--select-trigger-height": "sizes.8",
-          "--select-trigger-padding-x": "spacing.2",
+          "--combobox-input-height": "sizes.8",
+          "--combobox-input-padding-x": "spacing.2",
         },
         content: {
           p: "1",
@@ -174,8 +191,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
 
       sm: {
         root: {
-          "--select-trigger-height": "sizes.9",
-          "--select-trigger-padding-x": "spacing.2.5",
+          "--combobox-input-height": "sizes.9",
+          "--combobox-input-padding-x": "spacing.2.5",
         },
         content: {
           p: "1",
@@ -206,8 +223,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
 
       md: {
         root: {
-          "--select-trigger-height": "sizes.10",
-          "--select-trigger-padding-x": "spacing.3",
+          "--combobox-input-height": "sizes.10",
+          "--combobox-input-padding-x": "spacing.3",
         },
         content: {
           p: "1",
@@ -243,8 +260,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
 
       lg: {
         root: {
-          "--select-trigger-height": "sizes.12",
-          "--select-trigger-padding-x": "spacing.4",
+          "--combobox-input-height": "sizes.12",
+          "--combobox-input-padding-x": "spacing.4",
         },
         content: {
           p: "1.5",

@@ -4,13 +4,11 @@ import {
   Badge,
   Box,
   Combobox,
-  Icon,
   Portal,
-  Text,
   createListCollection,
 } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
-import { IoAddCircleOutline, IoSearchOutline } from "react-icons/io5"
+import { IoAddCircleOutline } from "react-icons/io5"
 
 const frameworks = ["Todo", "In Progress", "Done", "Blocked", "Review"]
 
@@ -47,11 +45,11 @@ export const ComboboxWithInputInContent = () => {
 
       <Combobox.Control>
         <Combobox.Trigger
-          h={8}
-          px={2}
+          h="8"
+          px="2"
           rounded="md"
           display="flex"
-          borderWidth={1}
+          borderWidth="1px"
           width="fit-content"
           alignItems="center"
           position="relative"
@@ -60,7 +58,7 @@ export const ComboboxWithInputInContent = () => {
           <IoAddCircleOutline /> Status{" "}
           {selectedStatus && (
             <>
-              <Text color="gray.100">|</Text> <Badge>{selectedStatus}</Badge>
+              <Box color="border">|</Box> <Badge>{selectedStatus}</Badge>
             </>
           )}
         </Combobox.Trigger>
@@ -69,28 +67,18 @@ export const ComboboxWithInputInContent = () => {
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content px={0} _closed={{ animationDuration: "0s" }}>
-            <Box position="relative" borderBottomWidth={1}>
-              <Icon
-                top="50%"
-                left="8px"
-                fontSize="20px"
-                color="gray.400"
-                position="absolute"
-                transform="translateY(-50%)"
-              >
-                <IoSearchOutline />
-              </Icon>
-              <Combobox.Input
-                pl={8}
-                border="none"
-                outline="none"
-                placeholder="Status"
-              />
-            </Box>
-            <Combobox.ItemGroup>
+            <Combobox.Input
+              mt="-1"
+              px="2"
+              border="none"
+              outline="none"
+              placeholder="Status"
+            />
+            <Combobox.ItemGroup borderTopWidth="1px">
               {collection.items.map((item) => (
                 <Combobox.Item item={item} key={item}>
                   {item}
+                  <Combobox.ItemIndicator />
                 </Combobox.Item>
               ))}
             </Combobox.ItemGroup>

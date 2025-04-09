@@ -19,7 +19,7 @@ const skills = [
   "PostgreSQL",
 ]
 
-export const ComboboxMultiDefault = () => {
+export const ComboboxWithMultiple = () => {
   const [searchValue, setSearchValue] = useState("")
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
 
@@ -31,9 +31,10 @@ export const ComboboxMultiDefault = () => {
     [searchValue],
   )
 
-  const collection = createListCollection({
-    items: filteredItems,
-  })
+  const collection = useMemo(
+    () => createListCollection({ items: filteredItems }),
+    [filteredItems],
+  )
 
   const handleValueChange = (details: Combobox.ValueChangeDetails) => {
     setSelectedSkills(details.value)
@@ -42,23 +43,26 @@ export const ComboboxMultiDefault = () => {
   return (
     <Combobox.Root
       multiple
+      closeOnSelect
       width="320px"
       value={selectedSkills}
       collection={collection}
       onValueChange={handleValueChange}
       onInputValueChange={(details) => setSearchValue(details.inputValue)}
     >
-      <Combobox.Label>Select Skills</Combobox.Label>
       <Wrap gap="2">
         {selectedSkills.map((skill) => (
           <Badge key={skill}>{skill}</Badge>
         ))}
       </Wrap>
 
+      <Combobox.Label>Select Skills</Combobox.Label>
+
       <Combobox.Control>
         <Combobox.Input />
-        <Combobox.Trigger />
-        <Combobox.ClearTrigger />
+        <Combobox.IndicatorGroup>
+          <Combobox.Trigger />
+        </Combobox.IndicatorGroup>
       </Combobox.Control>
 
       <Portal>
@@ -72,11 +76,11 @@ export const ComboboxMultiDefault = () => {
                   <Combobox.ItemIndicator />
                 </Combobox.Item>
               ))}
-              {filteredItems.length === 0 && (
-                <Text textStyle="sm" p={2} color="gray.500">
+              <Combobox.Empty>
+                <Text textStyle="sm" p="2" color="fg.muted">
                   No skills found
                 </Text>
-              )}
+              </Combobox.Empty>
             </Combobox.ItemGroup>
           </Combobox.Content>
         </Combobox.Positioner>

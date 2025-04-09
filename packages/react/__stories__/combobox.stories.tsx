@@ -13,7 +13,7 @@ export default {
 } satisfies Meta
 
 export { ComboboxBasic as Basic } from "compositions/examples/combobox-basic"
-export { ComboboxMultiDefault as MultiDefault } from "compositions/examples/combobox-multi-default"
+export { ComboboxWithMultiple as Multiple } from "compositions/examples/combobox-with-multiple"
 export { ComboboxMultiWithReplaceSelectionBehavior as MultiWithReplaceSelectionBehaviors } from "compositions/examples/combobox-multi-with-replace-selection-behavior"
 export { ComboboxCustomFilter as CustomFilter } from "compositions/examples/combobox-with-custom-filter"
 export { ComboboxWithAsyncContent as AsyncCombobox } from "compositions/examples/combobox-with-async-content"
