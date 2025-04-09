@@ -5,6 +5,7 @@ import {
   Box,
   Combobox,
   Icon,
+  Portal,
   Text,
   createListCollection,
 } from "@chakra-ui/react"
@@ -43,51 +44,59 @@ export const ComboboxWithInputInContent = () => {
       onInputValueChange={handleInputChange}
     >
       <Combobox.Label>Select status</Combobox.Label>
-      <Combobox.Trigger
-        h={8}
-        px={2}
-        rounded="md"
-        display="flex"
-        borderWidth={1}
-        width="fit-content"
-        alignItems="center"
-        position="relative"
-        borderStyle="dashed"
-      >
-        <IoAddCircleOutline /> Status{" "}
-        {selectedStatus && (
-          <>
-            <Text color="gray.100">|</Text> <Badge>{selectedStatus}</Badge>
-          </>
-        )}
-      </Combobox.Trigger>
-      <Combobox.Content px={0}>
-        <Box position="relative" borderBottomWidth={1}>
-          <Icon
-            top="50%"
-            left="8px"
-            fontSize="20px"
-            color="gray.400"
-            position="absolute"
-            transform="translateY(-50%)"
-          >
-            <IoSearchOutline />
-          </Icon>
-          <Combobox.Input
-            pl={8}
-            border="none"
-            outline="none"
-            placeholder="Status"
-          />
-        </Box>
-        <Combobox.ItemGroup>
-          {collection.items.map((item) => (
-            <Combobox.Item item={item} key={item}>
-              {item}
-            </Combobox.Item>
-          ))}
-        </Combobox.ItemGroup>
-      </Combobox.Content>
+
+      <Combobox.Control>
+        <Combobox.Trigger
+          h={8}
+          px={2}
+          rounded="md"
+          display="flex"
+          borderWidth={1}
+          width="fit-content"
+          alignItems="center"
+          position="relative"
+          borderStyle="dashed"
+        >
+          <IoAddCircleOutline /> Status{" "}
+          {selectedStatus && (
+            <>
+              <Text color="gray.100">|</Text> <Badge>{selectedStatus}</Badge>
+            </>
+          )}
+        </Combobox.Trigger>
+      </Combobox.Control>
+
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content px={0} _closed={{ animationDuration: "0s" }}>
+            <Box position="relative" borderBottomWidth={1}>
+              <Icon
+                top="50%"
+                left="8px"
+                fontSize="20px"
+                color="gray.400"
+                position="absolute"
+                transform="translateY(-50%)"
+              >
+                <IoSearchOutline />
+              </Icon>
+              <Combobox.Input
+                pl={8}
+                border="none"
+                outline="none"
+                placeholder="Status"
+              />
+            </Box>
+            <Combobox.ItemGroup>
+              {collection.items.map((item) => (
+                <Combobox.Item item={item} key={item}>
+                  {item}
+                </Combobox.Item>
+              ))}
+            </Combobox.ItemGroup>
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
     </Combobox.Root>
   )
 }

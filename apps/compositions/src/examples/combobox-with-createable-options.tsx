@@ -2,33 +2,27 @@
 
 import {
   Combobox,
+  HStack,
   Icon,
+  Portal,
   Stack,
   Text,
   createListCollection,
 } from "@chakra-ui/react"
-import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-  ComboboxRoot,
-} from "compositions/ui/combobox"
 import { useMemo, useState } from "react"
 
 interface Tag {
   id: string
   name: string
-  isCustom?: boolean
+  custom?: boolean
 }
 
-const defaultTags = [
+const defaultTags: Tag[] = [
   { id: "react", name: "react" },
   { id: "typescript", name: "typescript" },
   { id: "javascript", name: "javascript" },
   { id: "nextjs", name: "nextjs" },
-] as Tag[]
+]
 
 export const ComboboxWithCreateableOptions = () => {
   const [tags, setTags] = useState<Tag[]>(defaultTags)
@@ -52,7 +46,7 @@ export const ComboboxWithCreateableOptions = () => {
 
     const tempTags = tags.map((tag) => {
       if (tag.id === "custom" && selectedTag) {
-        return { id: selectedTag.name, name: selectedTag.name, isCustom: true }
+        return { id: selectedTag.name, name: selectedTag.name, custom: true }
       }
 
       return tag
@@ -98,7 +92,7 @@ export const ComboboxWithCreateableOptions = () => {
 
   return (
     <Stack gap={4} maxW="320px">
-      <ComboboxRoot
+      <Combobox.Root
         allowCustomValue
         value={value}
         collection={collection}
@@ -108,58 +102,75 @@ export const ComboboxWithCreateableOptions = () => {
         onValueChange={handleValueChange}
         onInputValueChange={handleInputChange}
       >
-        <ComboboxLabel>Add Tags</ComboboxLabel>
-        <ComboboxInput />
-        <ComboboxContent>
-          <ComboboxItemGroup label="Tags">
-            {collection.items.map((tag) => {
-              if (tag.id === "custom") {
-                return (
-                  <ComboboxItem item={tag} key={tag.id}>
-                    <Stack direction="row" align="center" gap={2}>
-                      <Icon asChild fontSize={16} color="blue.500">
-                        <svg
-                          width="24"
-                          height="24"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14" />
-                          <path d="M12 5v14" />
-                        </svg>
-                      </Icon>
-                      <Text>Create &quot;{inputValue}&quot;</Text>
-                    </Stack>
-                  </ComboboxItem>
-                )
-              }
+        <Combobox.Label>Add Tags</Combobox.Label>
 
-              return (
-                <ComboboxItem key={tag.id} item={tag}>
-                  <Stack direction="row" justify="space-between" align="center">
-                    <Stack direction="row" align="center" gap={2}>
-                      <Text fontWeight="medium">{tag.name}</Text>
-                      {tag.isCustom && (
-                        <Text
-                          fontSize="xs"
-                          color="blue.500"
-                          fontWeight="medium"
-                        >
-                          CUSTOM
-                        </Text>
-                      )}
-                    </Stack>
-                  </Stack>
-                </ComboboxItem>
-              )
-            })}
-          </ComboboxItemGroup>
-        </ComboboxContent>
-      </ComboboxRoot>
+        <Combobox.Control>
+          <Combobox.Input />
+          <Combobox.Trigger />
+          <Combobox.ClearTrigger />
+        </Combobox.Control>
+
+        <Portal>
+          <Combobox.Positioner>
+            <Combobox.Content>
+              <Combobox.ItemGroup>
+                <Combobox.ItemGroupLabel>Tags</Combobox.ItemGroupLabel>
+                {collection.items.map((tag) => {
+                  if (tag.id === "custom") {
+                    return (
+                      <Combobox.Item item={tag} key={tag.id}>
+                        <Stack direction="row" align="center" gap={2}>
+                          <Icon asChild fontSize={16} color="blue.500">
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="none"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12h14" />
+                              <path d="M12 5v14" />
+                            </svg>
+                          </Icon>
+                          <Text>Create &quot;{inputValue}&quot;</Text>
+                        </Stack>
+                        <Combobox.ItemIndicator />
+                      </Combobox.Item>
+                    )
+                  }
+
+                  return (
+                    <Combobox.Item key={tag.id} item={tag}>
+                      <HStack
+                        direction="row"
+                        justify="space-between"
+                        align="center"
+                      >
+                        <Stack direction="row" align="center" gap={2}>
+                          <Text fontWeight="medium">{tag.name}</Text>
+                          {tag.custom && (
+                            <Text
+                              fontSize="xs"
+                              color="blue.500"
+                              fontWeight="medium"
+                            >
+                              CUSTOM
+                            </Text>
+                          )}
+                        </Stack>
+                      </HStack>
+                      <Combobox.ItemIndicator />
+                    </Combobox.Item>
+                  )
+                })}
+              </Combobox.ItemGroup>
+            </Combobox.Content>
+          </Combobox.Positioner>
+        </Portal>
+      </Combobox.Root>
 
       <Stack>
         <Text fontWeight="medium">Current Tags:</Text>
@@ -171,7 +182,7 @@ export const ComboboxWithCreateableOptions = () => {
               py={1}
               fontSize="sm"
               borderRadius="md"
-              backgroundColor={tag.isCustom ? "blue.100" : "gray.100"}
+              backgroundColor={tag.custom ? "blue.100" : "gray.100"}
             >
               {tag.name}
             </Text>

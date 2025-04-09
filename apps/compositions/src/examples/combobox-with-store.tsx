@@ -2,17 +2,10 @@
 
 import {
   Combobox,
-  ComboboxRootProvider,
+  Portal,
   createListCollection,
   useCombobox,
 } from "@chakra-ui/react"
-import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-} from "compositions/ui/combobox"
 import { useMemo, useState } from "react"
 
 const frameworks = ["React", "Solid", "Vue"]
@@ -35,21 +28,30 @@ export const ComboboxWithStore = () => {
     onInputValueChange: handleInputChange,
   })
 
-  combobox.multiple = true
-
   return (
-    <ComboboxRootProvider value={combobox}>
-      <ComboboxLabel>Select framework</ComboboxLabel>
-      <ComboboxInput />
-      <ComboboxContent>
-        <ComboboxItemGroup label={"frameworks"}>
-          {collection.items.map((item) => (
-            <ComboboxItem item={item} key={item}>
-              {item}
-            </ComboboxItem>
-          ))}
-        </ComboboxItemGroup>
-      </ComboboxContent>
-    </ComboboxRootProvider>
+    <Combobox.RootProvider value={combobox}>
+      <Combobox.Label>Select framework</Combobox.Label>
+      <Combobox.Control>
+        <Combobox.Input />
+        <Combobox.Trigger />
+        <Combobox.ClearTrigger />
+      </Combobox.Control>
+
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            <Combobox.ItemGroup>
+              <Combobox.ItemGroupLabel>Frameworks</Combobox.ItemGroupLabel>
+              {collection.items.map((item) => (
+                <Combobox.Item item={item} key={item}>
+                  {item}
+                  <Combobox.ItemIndicator />
+                </Combobox.Item>
+              ))}
+            </Combobox.ItemGroup>
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.RootProvider>
   )
 }

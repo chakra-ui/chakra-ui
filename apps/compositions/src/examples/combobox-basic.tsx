@@ -1,17 +1,7 @@
 "use client"
 
-import { Combobox, createListCollection } from "@chakra-ui/react"
-import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-  ComboboxRoot,
-} from "compositions/ui/combobox"
+import { Combobox, Portal, createListCollection } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
-
-const frameworks = ["React", "Solid", "Vue"]
 
 export const ComboboxBasic = () => {
   const [items, setItems] = useState(frameworks)
@@ -21,28 +11,49 @@ export const ComboboxBasic = () => {
   const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
     setItems(
       frameworks.filter((item) =>
-        item.toLowerCase().includes(details.inputValue.toLowerCase()),
+        item.label.toLowerCase().includes(details.inputValue.toLowerCase()),
       ),
     )
   }
 
   return (
-    <ComboboxRoot
+    <Combobox.Root
       collection={collection}
       onInputValueChange={handleInputChange}
       width="320px"
     >
-      <ComboboxLabel>Select framework</ComboboxLabel>
-      <ComboboxInput />
-      <ComboboxContent>
-        <ComboboxItemGroup label={"frameworks"}>
-          {collection.items.map((item) => (
-            <ComboboxItem item={item} key={item}>
-              {item}
-            </ComboboxItem>
-          ))}
-        </ComboboxItemGroup>
-      </ComboboxContent>
-    </ComboboxRoot>
+      <Combobox.Label>Select framework</Combobox.Label>
+      <Combobox.Control>
+        <Combobox.Input />
+        <Combobox.Trigger />
+        <Combobox.ClearTrigger />
+      </Combobox.Control>
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            {collection.items.map((item) => (
+              <Combobox.Item item={item} key={item.value}>
+                {item.label}
+                <Combobox.ItemIndicator />
+              </Combobox.Item>
+            ))}
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.Root>
   )
 }
+
+const frameworks = [
+  { label: "React", value: "react" },
+  { label: "Solid", value: "solid" },
+  { label: "Vue", value: "vue" },
+  { label: "Angular", value: "angular" },
+  { label: "Svelte", value: "svelte" },
+  { label: "Preact", value: "preact" },
+  { label: "Qwik", value: "qwik" },
+  { label: "Lit", value: "lit" },
+  { label: "Alpine.js", value: "alpinejs" },
+  { label: "Ember", value: "ember" },
+  { label: "Next.js", value: "nextjs" },
+]

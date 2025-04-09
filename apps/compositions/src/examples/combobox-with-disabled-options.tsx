@@ -1,24 +1,78 @@
+"use client"
+
 import {
   Combobox,
   Icon,
+  Portal,
   Stack,
   Text,
   createListCollection,
 } from "@chakra-ui/react"
-import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-  ComboboxRoot,
-} from "compositions/ui/combobox"
 import { useMemo, useState } from "react"
+
+export const ComboboxWithDisabledOptions = () => {
+  const [items, setItems] = useState<Company[]>(companies)
+
+  const collection = useMemo(
+    () =>
+      createListCollection({
+        items,
+        itemToValue: (item) => item.id,
+        itemToString: (item) => item.name,
+        isItemDisabled: (item) => !!item.disabled,
+      }),
+    [items],
+  )
+
+  const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
+    setItems(
+      companies.filter((item) =>
+        item.name.toLowerCase().includes(details.inputValue.toLowerCase()),
+      ),
+    )
+  }
+
+  return (
+    <Combobox.Root
+      width="320px"
+      collection={collection}
+      placeholder="Type to search companies"
+      onInputValueChange={handleInputChange}
+    >
+      <Combobox.Label>Select a Company</Combobox.Label>
+      <Combobox.Control>
+        <Combobox.Input />
+        <Combobox.Trigger />
+        <Combobox.ClearTrigger />
+      </Combobox.Control>
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            <Combobox.ItemGroup>
+              <Combobox.ItemGroupLabel>Companies</Combobox.ItemGroupLabel>
+              {collection.items.map((country) => {
+                return (
+                  <Combobox.Item item={country} key={country.id}>
+                    <Stack direction="row" gap={3} align="center">
+                      <Icon>{country.logo}</Icon>
+                      <Text fontWeight="medium">{country.name}</Text>
+                    </Stack>
+                    <Combobox.ItemIndicator />
+                  </Combobox.Item>
+                )
+              })}
+            </Combobox.ItemGroup>
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.Root>
+  )
+}
 
 interface Company {
   id: string
   name: string
-  logo: JSX.Element
+  logo: React.ReactElement
   disabled?: boolean
 }
 
@@ -124,52 +178,3 @@ const companies: Company[] = [
     ),
   },
 ]
-
-export const ComboboxWithDisabledOptions = () => {
-  const [items, setItems] = useState<Company[]>(companies)
-
-  const collection = useMemo(
-    () =>
-      createListCollection({
-        items,
-        itemToValue: (item) => item.id,
-        itemToString: (item) => item.name,
-        isItemDisabled: (item) => !!item.disabled,
-      }),
-    [items],
-  )
-
-  const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
-    setItems(
-      companies.filter((item) =>
-        item.name.toLowerCase().includes(details.inputValue.toLowerCase()),
-      ),
-    )
-  }
-
-  return (
-    <ComboboxRoot
-      width="320px"
-      collection={collection}
-      placeholder="Type to search companies"
-      onInputValueChange={handleInputChange}
-    >
-      <ComboboxLabel>Select a Company</ComboboxLabel>
-      <ComboboxInput />
-      <ComboboxContent>
-        <ComboboxItemGroup label="Companies">
-          {collection.items.map((country) => {
-            return (
-              <ComboboxItem item={country} key={country.id}>
-                <Stack direction="row" gap={3} align="center">
-                  <Icon>{country.logo}</Icon>
-                  <Text fontWeight="medium">{country.name}</Text>
-                </Stack>
-              </ComboboxItem>
-            )
-          })}
-        </ComboboxItemGroup>
-      </ComboboxContent>
-    </ComboboxRoot>
-  )
-}

@@ -1,13 +1,16 @@
-import { Spinner, Stack, Text, createListCollection } from "@chakra-ui/react"
+"use client"
+
 import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-  ComboboxRoot,
-} from "compositions/ui/combobox"
-import { useEffect, useState } from "react"
+  Combobox,
+  HStack,
+  Portal,
+  Span,
+  Spinner,
+  Stack,
+  Text,
+  createListCollection,
+} from "@chakra-ui/react"
+import { useEffect, useMemo, useState } from "react"
 
 interface Character {
   id: number
@@ -19,14 +22,19 @@ interface Character {
 export const ComboboxWithAsyncContent = () => {
   const [inputValue, setInputValue] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+
   const [characters, setCharacters] = useState<Character[]>([])
   const [error, setError] = useState("")
 
-  const collection = createListCollection({
-    items: characters,
-    itemToString: (item) => item.name,
-    itemToValue: (item) => item.id.toString(),
-  })
+  const collection = useMemo(
+    () =>
+      createListCollection({
+        items: characters,
+        itemToString: (item) => item.name,
+        itemToValue: (item) => item.id.toString(),
+      }),
+    [characters],
+  )
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,37 +78,49 @@ export const ComboboxWithAsyncContent = () => {
   }, [inputValue])
 
   return (
-    <ComboboxRoot
+    <Combobox.Root
       width="320px"
       collection={collection}
       placeholder="Example: Rick"
-      onInputValueChange={(details) => setInputValue(details.inputValue)}
+      onInputValueChange={(e) => setInputValue(e.inputValue)}
     >
-      <ComboboxLabel>Search Rick and Morty Characters</ComboboxLabel>
-      <ComboboxInput />
-      <ComboboxContent>
-        <ComboboxItemGroup label="Characters">
-          {isLoading ? (
-            <Stack align="center" p={4}>
-              <Spinner />
-              <Text>Loading characters...</Text>
-            </Stack>
-          ) : error ? (
-            <Text p={2} color="red.500">
-              {error}
-            </Text>
-          ) : (
-            characters.map((character) => (
-              <ComboboxItem key={character.id} item={character}>
-                <Stack direction="row" justify="space-between" textStyle="sm">
-                  <Text fontWeight="medium">{character.name}</Text>
-                  <Text color="gray.500">{character.species}</Text>
+      <Combobox.Label>Search Rick and Morty Characters</Combobox.Label>
+
+      <Combobox.Control>
+        <Combobox.Input />
+        <Combobox.Trigger />
+        <Combobox.ClearTrigger />
+      </Combobox.Control>
+
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            <Combobox.ItemGroup>
+              <Combobox.ItemGroupLabel>Characters</Combobox.ItemGroupLabel>
+              {isLoading ? (
+                <Stack align="center" p={4}>
+                  <Spinner />
+                  <Text>Loading characters...</Text>
                 </Stack>
-              </ComboboxItem>
-            ))
-          )}
-        </ComboboxItemGroup>
-      </ComboboxContent>
-    </ComboboxRoot>
+              ) : error ? (
+                <Text p={2} color="red.500">
+                  {error}
+                </Text>
+              ) : (
+                characters.map((character) => (
+                  <Combobox.Item key={character.id} item={character}>
+                    <HStack justify="space-between" textStyle="sm">
+                      <Span fontWeight="medium">{character.name}</Span>
+                      <Span color="gray.500">{character.species}</Span>
+                    </HStack>
+                    <Combobox.ItemIndicator />
+                  </Combobox.Item>
+                ))
+              )}
+            </Combobox.ItemGroup>
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.Root>
   )
 }

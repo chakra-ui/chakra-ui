@@ -1,31 +1,13 @@
-import { Combobox, Stack, Text, createListCollection } from "@chakra-ui/react"
-import {
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxItemGroup,
-  ComboboxLabel,
-  ComboboxRoot,
-} from "compositions/ui/combobox"
-import { useMemo, useState } from "react"
+"use client"
 
-const people = [
-  { id: 1, name: "John Smith", email: "john@example.com", role: "Developer" },
-  {
-    id: 2,
-    name: "Sarah Johnson",
-    email: "sarah@example.com",
-    role: "Designer",
-  },
-  {
-    id: 3,
-    name: "Michael Brown",
-    email: "michael@example.com",
-    role: "Manager",
-  },
-  { id: 4, name: "Emily Davis", email: "emily@example.com", role: "Developer" },
-  { id: 5, name: "James Wilson", email: "james@example.com", role: "Designer" },
-]
+import {
+  Combobox,
+  Portal,
+  Stack,
+  Text,
+  createListCollection,
+} from "@chakra-ui/react"
+import { useMemo, useState } from "react"
 
 export const ComboboxCustomFilter = () => {
   const [items, setItems] = useState(people)
@@ -35,12 +17,8 @@ export const ComboboxCustomFilter = () => {
     () =>
       createListCollection({
         items,
-        itemToString(item) {
-          return item.name
-        },
-        itemToValue(item) {
-          return item.id.toString()
-        },
+        itemToString: (item) => item.name,
+        itemToValue: (item) => item.id.toString(),
       }),
     [items],
   )
@@ -72,7 +50,7 @@ export const ComboboxCustomFilter = () => {
   }
 
   return (
-    <ComboboxRoot
+    <Combobox.Root
       width="320px"
       value={value}
       collection={collection}
@@ -81,29 +59,58 @@ export const ComboboxCustomFilter = () => {
       onInputValueChange={handleInputChange}
       onValueChange={handleValueChange}
     >
-      <ComboboxLabel>Select Person</ComboboxLabel>
-      <ComboboxInput />
-      <ComboboxContent>
-        <ComboboxItemGroup label="People">
-          {collection.items.map((person) => (
-            <ComboboxItem item={person} key={person.id}>
-              <Stack gap={0}>
-                <Text textStyle="sm" fontWeight="medium">
-                  {person.name}
+      <Combobox.Label>Select Person</Combobox.Label>
+
+      <Combobox.Control>
+        <Combobox.Input />
+        <Combobox.Trigger />
+        <Combobox.ClearTrigger />
+      </Combobox.Control>
+
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            <Combobox.ItemGroup>
+              {collection.items.map((person) => (
+                <Combobox.Item item={person} key={person.id}>
+                  <Stack gap={0}>
+                    <Text textStyle="sm" fontWeight="medium">
+                      {person.name}
+                    </Text>
+                    <Text textStyle="xs" color="gray.500">
+                      {person.email}
+                    </Text>
+                  </Stack>
+                  <Combobox.ItemIndicator />
+                </Combobox.Item>
+              ))}
+              {collection.items.length === 0 && (
+                <Text p={2} textStyle="sm" color="gray.500">
+                  No matches found
                 </Text>
-                <Text textStyle="xs" color="gray.500">
-                  {person.email}
-                </Text>
-              </Stack>
-            </ComboboxItem>
-          ))}
-          {collection.items.length === 0 && (
-            <Text p={2} textStyle="sm" color="gray.500">
-              No matches found
-            </Text>
-          )}
-        </ComboboxItemGroup>
-      </ComboboxContent>
-    </ComboboxRoot>
+              )}
+            </Combobox.ItemGroup>
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.Root>
   )
 }
+
+const people = [
+  { id: 1, name: "John Smith", email: "john@example.com", role: "Developer" },
+  {
+    id: 2,
+    name: "Sarah Johnson",
+    email: "sarah@example.com",
+    role: "Designer",
+  },
+  {
+    id: 3,
+    name: "Michael Brown",
+    email: "michael@example.com",
+    role: "Manager",
+  },
+  { id: 4, name: "Emily Davis", email: "emily@example.com", role: "Developer" },
+  { id: 5, name: "James Wilson", email: "james@example.com", role: "Designer" },
+]
