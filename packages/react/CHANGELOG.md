@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.15.2
+
+### Patch Changes
+
+- [`529244d`](https://github.com/chakra-ui/chakra-ui/commit/529244d008db7049d5b7d12590c41eba8df212d9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Global CSS**:
+  Improve text selection contrast
+
+  - **System**
+
+    - Fix issue where `borderEnd` shorthand was not working despite
+      `borderStart` being present
+    - Fix issue where `system.cva` return type was incorrect
+
+  - **Dialog, Drawer**: Fix issue where `z-index` was not being applied
+    correctly
+
 ## 3.15.1
 
 ### Patch Changes

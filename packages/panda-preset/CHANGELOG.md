@@ -1,5 +1,7 @@
 # @chakra-ui/panda-preset
 
+## 3.15.2
+
 ## 3.15.1
 
 ## 3.15.0
