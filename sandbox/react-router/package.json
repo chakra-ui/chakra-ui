@@ -1,0 +1,33 @@
+{
+  "name": "react-router",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "@react-router/node": "^7.5.0",
+    "@react-router/serve": "^7.5.0",
+    "isbot": "^5.1.17",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router": "^7.5.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "workspace:*",
+    "@react-router/dev": "^7.5.0",
+    "@types/node": "^20",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "react-router-devtools": "^1.1.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
