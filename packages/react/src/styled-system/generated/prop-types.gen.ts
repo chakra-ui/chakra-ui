@@ -46,10 +46,10 @@ export interface UtilityValues {
   borderLeft: Tokens["borders"]
   borderBlockStart: Tokens["borders"]
   borderRight: Tokens["borders"]
-  borderInlineEnd: Tokens["borders"]
   borderBottom: Tokens["borders"]
   borderBlockEnd: Tokens["borders"]
   borderInlineStart: Tokens["borders"]
+  borderInlineEnd: Tokens["borders"]
   borderInline: Tokens["borders"]
   borderBlock: Tokens["borders"]
   borderColor: Tokens["colors"] | "currentBg"

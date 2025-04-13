@@ -531,6 +531,7 @@ export interface SystemProperties {
   bgImg?: ConditionalValue<UtilityValues["backgroundImage"] | CssVars | CssProperties["backgroundImage"] | AnyString>
   bgImage?: ConditionalValue<UtilityValues["backgroundImage"] | CssVars | CssProperties["backgroundImage"] | AnyString>
   borderStart?: ConditionalValue<UtilityValues["borderInlineStart"] | CssVars | CssProperties["borderInlineStart"] | AnyString>
+  borderEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | AnyString>
   borderX?: ConditionalValue<UtilityValues["borderInline"] | CssVars | CssProperties["borderInline"] | AnyString>
   borderY?: ConditionalValue<UtilityValues["borderBlock"] | CssVars | CssProperties["borderBlock"] | AnyString>
   borderStartColor?: ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | AnyString>
