@@ -10,7 +10,9 @@ how to properly customize the styling engine, and get type safety.
 
 :::
 
-## Example
+## Customize
+
+### Add global styles
 
 Here's an example of how to customize the global CSS in Chakra UI.
 
@@ -31,6 +33,20 @@ const customConfig = defineConfig({
 
 export const system = createSystem(defaultConfig, customConfig)
 ```
+
+### Remove global CSS
+
+If you don't need global CSS, you can remove it by destructuring the `globalCss`
+property from the default config.
+
+```tsx title="theme.ts"
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+const { globalCss: _, ...restConfig } = defaultConfig
+export const system = createSystem(restConfig)
+```
+
+## Update provider
 
 After customizing the global CSS, make sure to update your provider component to
 use the new system.
