@@ -3,7 +3,7 @@ import * as React from "react"
 
 export interface SwitchProps extends ChakraSwitch.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  rootRef?: React.Ref<HTMLLabelElement>
+  rootRef?: React.RefObject<HTMLLabelElement | null>
   trackLabel?: { on: React.ReactNode; off: React.ReactNode }
   thumbLabel?: { on: React.ReactNode; off: React.ReactNode }
 }
