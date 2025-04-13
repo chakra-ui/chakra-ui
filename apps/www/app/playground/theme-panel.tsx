@@ -1,5 +1,6 @@
 "use client"
 
+import { ColorModeButton } from "@/components/docs/color-mode-button"
 import {
   Box,
   Card,
@@ -13,7 +14,6 @@ import {
   useChakraContext,
 } from "@chakra-ui/react"
 import { Global } from "@emotion/react"
-import { ColorModeButton } from "compositions/ui/color-mode"
 import { RadioCardItem, RadioCardRoot } from "compositions/ui/radio-card"
 import { useState } from "react"
 
@@ -115,7 +115,7 @@ export function ThemePanel(props: ThemePanelProps) {
         <Card.Header>
           <HStack justify="space-between">
             <Text fontWeight="semibold">Theme Panel</Text>
-            <ColorModeButton colorPalette="gray" />
+            <ColorModeButton />
           </HStack>
         </Card.Header>
         <Card.Body gap="8" alignItems="stretch">
@@ -127,9 +127,9 @@ export function ThemePanel(props: ThemePanelProps) {
               flex="1"
               size="sm"
               defaultValue={accentColor}
-              onValueChange={(details) => {
-                document.cookie = `chakra-accent-color=${details.value}`
-                setAccentColor(details.value)
+              onValueChange={({ value }) => {
+                document.cookie = `chakra-accent-color=${value}`
+                setAccentColor(value as string)
               }}
             >
               <HStack wrap="wrap" maxW="342px" gap="2">
@@ -194,9 +194,9 @@ export function ThemePanel(props: ThemePanelProps) {
               orientation="vertical"
               align="center"
               defaultValue={radius}
-              onValueChange={(details) => {
-                document.cookie = `chakra-radius=${details.value}`
-                setRadius(details.value)
+              onValueChange={({ value }) => {
+                document.cookie = `chakra-radius=${value}`
+                setRadius(value as string)
               }}
             >
               <HStack wrap="wrap" gap="2">
