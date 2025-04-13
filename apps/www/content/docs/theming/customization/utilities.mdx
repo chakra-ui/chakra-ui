@@ -1,0 +1,120 @@
+---
+title: Utilities
+description:
+  The utility API is a way to create your own CSS properties, map existing
+  properties to a set of values or tokens.
+---
+
+Here are the properties you need to define or customize a utility:
+
+- `shorthand`: The shorthand or alias version of the property
+- `values`: The possible values the property can have. Could be a token
+  category, or an enum of values, string, number, or boolean.
+- `transform`: A function that converts the value to a valid css object
+
+## Creating a custom utility
+
+Let's say you want to create new property `br` that applies a border radius to
+an element.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  utilities: {
+    extend: {
+      br: {
+        values: "radii",
+        transform(value) {
+          return { borderRadius: value }
+        },
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, customConfig)
+```
+
+Now, you can use the `br` property in components.
+
+```tsx title="app.tsx"
+import { Box } from "@chakra-ui/react"
+
+function App() {
+  return <Box br="sm" />
+}
+```
+
+### Using enum values
+
+Let's say we want to create a new property `borderX` that applies a limited set
+of inline border to an element and automatically applies the border color.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  utilities: {
+    extend: {
+      borderX: {
+        values: ["1px", "2px", "4px"],
+        shorthand: "bx",
+        transform(value, { token }) {
+          return {
+            borderInlineWidth: value,
+            borderColor: token("colors.red.200"),
+          }
+        },
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, customConfig)
+```
+
+Now, you can use the `borderX` or `bx` property in components.
+
+```tsx title="app.tsx"
+import { Box } from "@chakra-ui/react"
+
+function App() {
+  return <Box borderX="sm" />
+}
+```
+
+### Using mapped values
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  utilities: {
+    extend: {
+      borderX: {
+        values: { small: "2px", medium: "5px" },
+        shorthand: "bx",
+        transform(value, { token }) {
+          return {
+            borderTopWidth: value,
+            borderTopColor: token("colors.gray.400"),
+          }
+        },
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, customConfig)
+```
+
+Now, you can use the `borderX` or `bx` property in components.
+
+```tsx title="app.tsx"
+import { Box } from "@chakra-ui/react"
+
+function App() {
+  return <Box borderX="sm" />
+}
+```

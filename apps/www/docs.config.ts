@@ -307,6 +307,7 @@ const docsLinks: NavItem = {
             { title: "Recipes", url: "recipes" },
             { title: "Sizes", url: "sizes" },
             { title: "Spacing", url: "spacing" },
+            { title: "Utilities", url: "utilities" },
           ],
         },
       ],
