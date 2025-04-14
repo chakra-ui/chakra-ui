@@ -12,3 +12,6 @@
   - Soften the focus ring for all color palettes
 
 - **Dialog, Drawer**: Fix issue where `z-index` was not being applied correctly
+
+- **[Beta] createOverlay**: Add `createOverlay` utility for programmatically
+  controlling overlay components (Dialog, Drawer, etc.)
