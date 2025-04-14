@@ -1,0 +1,130 @@
+---
+title: Overlay Manager
+description: Used for programmatically controlling overlay components
+---
+
+## Usage
+
+The `createOverlay` function creates a new overlay component that can be
+programmatically controlled.
+
+```tsx
+import { createOverlay } from "@chakra-ui/react"
+
+const dialog = createOverlay<DialogProps>((props) => {
+  const { title, description, content, ...rest } = props
+  return (
+    <Dialog.Root {...rest}>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            {title && (
+              <Dialog.Header>
+                <Dialog.Title>{title}</Dialog.Title>
+              </Dialog.Header>
+            )}
+            <Dialog.Body spaceY="4">
+              {description && (
+                <Dialog.Description>{description}</Dialog.Description>
+              )}
+              {content}
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
+  )
+})
+```
+
+Then render the `Viewport` component to see the overlay.
+
+```tsx
+<dialog.Viewport />
+```
+
+## Examples
+
+### Dialog
+
+Here's an example of a dialog component that can be programmatically controlled.
+
+<ExampleTabs name="overlay-basic" />
+
+### Drawer
+
+Here's an example of a drawer component that can be programmatically controlled.
+
+<ExampleTabs name="overlay-with-drawer" />
+
+### Update
+
+Use the `.update` method to update the props of an overlay.
+
+<ExampleTabs name="overlay-with-update" />
+
+### Return Value
+
+Awaiting the result of the `.open()` method returns the value passed to the
+`.close()` method.
+
+:::info
+
+**Bonus:** You can also use the `.waitForExit()` method to wait for the exit
+animation to complete before opening a new overlay.
+
+:::
+
+<ExampleTabs name="overlay-with-return-value" />
+
+## API
+
+### Props
+
+Props that are injected into the overlay component by the `createOverlay`
+function:
+
+- `open`: Whether the overlay is currently open
+- `onOpenChange`: Callback fired when the overlay's open state changes
+- `onExitComplete`: Callback fired when the overlay's exit animation completes
+
+### Methods
+
+### `Viewport`
+
+The root component that renders all active overlays.
+
+### `open(id, props)`
+
+Opens a new overlay with the given id and props. Returns a promise that resolves
+with any value.
+
+### `close(id, value)`
+
+Closes the overlay with the given id and returns a promise that resolves when
+closed.
+
+### `update(id, props)`
+
+Updates the props of the overlay with the given id.
+
+### `remove(id)`
+
+Removes the overlay with the given id.
+
+### `removeAll()`
+
+Removes all overlays.
+
+### `get(id)`
+
+Gets the props of the overlay with the given id.
+
+### `getSnapshot()`
+
+Gets the current snapshot of the overlays.
+
+### `waitForExit(id)`
+
+Waits for the exit animation to complete for the overlay with the given id.
