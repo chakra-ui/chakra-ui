@@ -70,15 +70,15 @@
     "@types/edit-json-file": "1.7.3",
     "@types/fs-extra": "11.0.4",
     "@types/mkdirp": "1.0.2",
-    "@types/node": "22.7.4",
+    "@types/node": "22.14.1",
     "@types/react": "19.1.1",
     "@types/react-dom": "19.1.2",
     "@types/testing-library__jest-dom": "5.14.9",
     "@typescript-eslint/eslint-plugin": "7.14.1",
     "@typescript-eslint/parser": "7.14.1",
-    "consola": "^3.2.3",
+    "consola": "^3.4.2",
     "cross-env": "7.0.3",
-    "dotenv": "16.4.7",
+    "dotenv": "16.5.0",
     "edit-json-file": "1.8.1",
     "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "18.0.0",
@@ -117,7 +117,7 @@
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
   },
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=18.x"
   }
