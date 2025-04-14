@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/charts">
+          <Link href="/docs/components/overlay-manager">
             <LuPartyPopper />
-            [Beta] We just launched Charts
+            [New] Overlay Manager component
             <HiArrowRight />
           </Link>
         </Annoucement>

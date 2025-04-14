@@ -1,0 +1,112 @@
+---
+title: Chakra 3.16
+description: "Introducing Overlay Manager, and new examples"
+type: release
+version: "3.16"
+authors: ["sage"]
+publishedAt: "2025-04-14"
+---
+
+We're excited to announce the release of Chakra UI `v3.16`. This release brings
+new features including the [overlay manager](/docs/components/overlay-manager)
+component, and improvements to enhance your development experience.
+
+## Overlay Manager
+
+When building modern web applications, you'll often need to display temporary UI
+elements that overlay the main content. These elements—typically modals,
+dialogs, drawers, or alerts—are crucial for user interactions but can be
+challenging to manage programmatically.
+
+With Chakra UI's Overlay Manager, you can:
+
+- Open and close overlays from anywhere in your codebase
+- Pass data to overlays and receive return values
+- Update overlay content without re-rendering the entire component
+- Manage multiple overlays with a controlled lifecycle
+
+The foundation of the overlay manager is the `createOverlay` function
+
+```tsx
+import { Button, Dialog, Portal, createOverlay } from "@chakra-ui/react"
+
+interface DialogProps {
+  title: string
+  description?: string
+  content?: React.ReactNode
+}
+
+const dialog = createOverlay<DialogProps>((props) => {
+  const { title, description, content, ...rest } = props
+  return (
+    <Dialog.Root {...rest}>
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            {title && (
+              <Dialog.Header>
+                <Dialog.Title>{title}</Dialog.Title>
+              </Dialog.Header>
+            )}
+            <Dialog.Body spaceY="4">
+              {description && (
+                <Dialog.Description>{description}</Dialog.Description>
+              )}
+              {content}
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
+  )
+})
+```
+
+Once you've created the overlay, you can use it in your component:
+
+```tsx
+export const MyComponent = () => {
+  return (
+    <>
+      <Button
+        onClick={() => {
+          dialog.open("a", {
+            title: "Dialog Title",
+            description: "Dialog Description",
+          })
+        }}
+      >
+        Open Modal
+      </Button>
+      <dialog.Viewport />
+    </>
+  )
+}
+```
+
+The `<dialog.Viewport />` component is crucial—it's where your overlay will be
+rendered. Don't forget to include it in your component tree.
+
+## Other Improvements
+
+- **Global CSS**: We've improved text selection contrast for all color palettes
+
+- **System**: Add support for `borderEnd` shorthand style prop.
+
+```tsx
+<Box borderEnd="2px solid red">
+  <Text>Hello</Text>
+</Box>
+```
+
+- **All components**: Soften the focus ring for all color palettes, making it a
+  bit more subtle.
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
