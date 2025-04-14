@@ -163,11 +163,11 @@ const docsLinks: NavItem = {
             { title: "FormatNumber", url: "format-number" },
             { title: "FormatByte", url: "format-byte" },
             { title: "LocaleProvider", url: "locale-provider" },
-            // {
-            //   title: "Overlay Manager",
-            //   url: "overlay-manager",
-            //   status: "beta",
-            // },
+            {
+              title: "Overlay Manager",
+              url: "overlay-manager",
+              status: "beta",
+            },
             { title: "Presence", url: "presence" },
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
