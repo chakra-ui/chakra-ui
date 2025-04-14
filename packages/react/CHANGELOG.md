@@ -1,5 +1,25 @@
 # @chakra-ui/react
 
+## 3.16.0
+
+### Minor Changes
+
+- [`529244d`](https://github.com/chakra-ui/chakra-ui/commit/529244d008db7049d5b7d12590c41eba8df212d9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Global CSS**:
+  Improve text selection contrast
+
+  - **System**
+
+    - Fix issue where `borderEnd` shorthand was not working despite
+      `borderStart` being present
+    - Fix issue where `system.cva` return type was incorrect
+    - Soften the focus ring for all color palettes
+
+  - **Dialog, Drawer**: Fix issue where `z-index` was not being applied
+    correctly
+  - **[Beta] createOverlay**: Add `createOverlay` utility for programmatically
+    controlling overlay components (Dialog, Drawer, etc.)
+
 ## 3.15.1
 
 ### Patch Changes
