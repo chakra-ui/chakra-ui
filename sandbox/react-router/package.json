@@ -1,6 +1,7 @@
 {
   "name": "react-router",
   "private": true,
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "build": "react-router build",
