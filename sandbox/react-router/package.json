@@ -1,6 +1,7 @@
 {
   "name": "react-router",
   "private": true,
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "build": "react-router build",
@@ -17,7 +18,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-router": "^undefined"
+    "react-router": "^7.5.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
