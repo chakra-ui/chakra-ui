@@ -54,7 +54,13 @@ export interface SegmentGroupRootProps
 export const SegmentGroupRoot = withProvider<
   HTMLDivElement,
   SegmentGroupRootProps
->(ArkSegmentGroup.Root, "root", { forwardAsChild: true })
+>(ArkSegmentGroup.Root, "root", {
+  forwardAsChild: true,
+  forwardProps: ["orientation"],
+  defaultProps: {
+    orientation: "horizontal",
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

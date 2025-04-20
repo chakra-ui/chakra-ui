@@ -33,12 +33,14 @@ export const SegmentedControlWithHookForm = () => {
             <Field.Root invalid={!!errors.fontSize}>
               <Field.Label>Font size</Field.Label>
               <SegmentGroup.Root
+                size="sm"
                 onBlur={field.onBlur}
                 name={field.name}
                 value={field.value}
                 onValueChange={({ value }) => field.onChange(value)}
               >
                 <SegmentGroup.Items items={["sm", "md", "lg"]} />
+                <SegmentGroup.Indicator />
               </SegmentGroup.Root>
               <Field.ErrorText>{errors.fontSize?.message}</Field.ErrorText>
             </Field.Root>

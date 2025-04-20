@@ -15,11 +15,15 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       position: "relative",
       isolation: "isolate",
       bg: "bg.muted",
+      _vertical: {
+        flexDirection: "column",
+      },
     },
 
     item: {
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
       userSelect: "none",
       fontSize: "sm",
       position: "relative",
@@ -31,15 +35,30 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       "&:has(input:focus-visible)": {
         focusRing: "outside",
       },
+
       _before: {
         content: '""',
         position: "absolute",
-        insetInlineStart: 0,
-        insetBlock: "1.5",
         bg: "border",
-        width: "1px",
         transition: "opacity 0.2s",
       },
+
+      _horizontal: {
+        _before: {
+          insetInlineStart: 0,
+          insetBlock: "1.5",
+          width: "1px",
+        },
+      },
+
+      _vertical: {
+        _before: {
+          insetBlockStart: 0,
+          insetInline: "1.5",
+          height: "1px",
+        },
+      },
+
       "& + &[data-state=checked], &[data-state=checked] + &, &:first-of-type": {
         _before: {
           opacity: "0",
@@ -69,43 +88,35 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       xs: {
-        root: {
-          height: "6",
-        },
         item: {
           textStyle: "xs",
           px: "3",
           gap: "1",
+          height: "6",
         },
       },
       sm: {
-        root: {
-          height: "8",
-        },
         item: {
           textStyle: "sm",
           px: "4",
           gap: "2",
+          height: "8",
         },
       },
       md: {
-        root: {
-          height: "10",
-        },
         item: {
           textStyle: "sm",
           px: "4",
           gap: "2",
+          height: "10",
         },
       },
       lg: {
-        root: {
-          height: "10",
-        },
         item: {
           textStyle: "md",
-          px: "5",
+          px: "4.5",
           gap: "3",
+          height: "11",
         },
       },
     },
