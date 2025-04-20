@@ -22,7 +22,7 @@
     "storybook-ts",
     "shadow-dom",
     "sandbox-iframe",
-    "react-router",
+    "react-router-ts",
     "@chakra-ui/www",
     "@chakra-ui/compositions"
   ]
