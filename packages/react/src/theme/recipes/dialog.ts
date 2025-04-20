@@ -12,8 +12,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100vw",
       h: "100dvh",
-      "--dialog-z-index": "zIndex.modal",
-      zIndex: "calc(var(--dialog-z-index) - 1)",
+      zIndex: "overlay",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
