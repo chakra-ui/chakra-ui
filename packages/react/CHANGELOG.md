@@ -1,5 +1,16 @@
 # @chakra-ui/react
 
+## 3.16.1
+
+### Patch Changes
+
+- [`46075ba`](https://github.com/chakra-ui/chakra-ui/commit/46075ba8cb69730378c7aeb1b710d36df0e01355)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Dialog,
+  Drawer**: Use correct z-index for dialog and drawer backdrop
+
+  - **SegmentGroup**: Fix issue where `orientation` prop to `SegmentGroup.Root`
+    doesn't work as expected.
+
 ## 3.16.0
 
 ### Minor Changes
