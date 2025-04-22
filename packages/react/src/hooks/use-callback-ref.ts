@@ -14,10 +14,12 @@ export function useCallbackRef<Args extends unknown[], Return>(
     throw new Error("Cannot call an event handler while rendering.")
   })
 
+  // Use useInsertionEffect to update the ref before React processes effects
   useInsertionEffect(() => {
     callbackRef.current = callback
-  })
+  }, [callback])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useCallback((...args: Args) => callbackRef.current?.(...args), deps)
+  // We're removing the dependency array because we want this callback to be stable
+  // across renders, and only the internal ref.current should change
+  return useCallback((...args: Args) => callbackRef.current?.(...args), [])
 }

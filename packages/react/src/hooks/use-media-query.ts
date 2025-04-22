@@ -35,7 +35,11 @@ export function useMediaQuery(
   const [value, setValue] = useState(() => {
     return queries.map((query, index) => {
       if (!ssr) {
-        const { media, matches } = (getWindow?.() ?? window).matchMedia(query)
+        const win = getWindow?.() ?? window
+        if (!win?.matchMedia) {
+          return { media: query, matches: !!fallback[index] }
+        }
+        const { media, matches } = win.matchMedia(query)
         return { media, matches }
       }
       return { media: query, matches: !!fallback[index] }
@@ -44,19 +48,15 @@ export function useMediaQuery(
 
   useEffect(() => {
     const win = getWin() ?? window
-    setValue((prev) => {
-      const current = queries.map((query) => {
-        const { media, matches } = win.matchMedia(query)
-        return { media, matches }
-      })
+    if (!win?.matchMedia) return undefined
 
-      return prev.every(
-        (v, i) =>
-          v.matches === current[i].matches && v.media === current[i].media,
-      )
-        ? prev
-        : current
+    // Update state when queries change
+    const current = queries.map((query) => {
+      const { media, matches } = win.matchMedia(query)
+      return { media, matches }
     })
+
+    setValue(current)
 
     const mql = queries.map((query) => win.matchMedia(query))
 
@@ -71,9 +71,7 @@ export function useMediaQuery(
 
     const cleanups = mql.map((v) => listen(v, handler))
     return () => cleanups.forEach((fn) => fn())
-
-    // eslint-disable-next-line
-  }, [getWin])
+  }, [getWin, ...queries]) // Include queries in dependencies
 
   return value.map((item) => item.matches)
 }

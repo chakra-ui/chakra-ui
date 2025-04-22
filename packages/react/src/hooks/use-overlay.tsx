@@ -29,6 +29,8 @@ export interface CreateOverlayProps {
   setReturnValue?: ((value: unknown) => void) | undefined
   /** Internal callback used to signal when the exit animation is complete */
   setExitComplete?: (() => void) | undefined
+  /** Internal ID used for overlay tracking */
+  _id?: string
 }
 
 export interface OverlayOptions<T extends CreateOverlayProps> {
@@ -77,7 +79,10 @@ export function createOverlay<T extends Dict>(
   let lastSnapshot: T[] = []
 
   const getSnapshot = () => {
-    const nextSnapshot = Array.from(map.values())
+    const nextSnapshot = Array.from(map.entries()).map(([id, props]) => ({
+      ...props,
+      _id: id,
+    }))
     if (shallowEqual(lastSnapshot, nextSnapshot)) return lastSnapshot
     lastSnapshot = nextSnapshot
     return lastSnapshot
@@ -181,9 +186,8 @@ export function createOverlay<T extends Dict>(
     )
     return (
       <>
-        {overlays.map((props, index) => (
-          // @ts-expect-error - TODO: fix this
-          <Component key={index} {...props} />
+        {overlays.map((props) => (
+          <Component key={props._id} {...(props as T & CreateOverlayProps)} />
         ))}
       </>
     )
