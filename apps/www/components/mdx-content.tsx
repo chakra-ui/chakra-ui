@@ -32,6 +32,7 @@ import { CodeGroup } from "./mdx/code-group"
 import { ComponentGrid } from "./mdx/component-grid"
 import { H1, H2, H3, H4 } from "./mdx/heading"
 import { Hr } from "./mdx/hr"
+import { Iframe } from "./mdx/iframe"
 import { Img } from "./mdx/image"
 import { Li, Ol, Ul } from "./mdx/list"
 import { PropTable } from "./mdx/prop-table"
@@ -99,6 +100,7 @@ const sharedComponents = {
   PropTable,
   ComponentGrid,
   FeaturedVideo,
+  Iframe,
   ResourceCard: ResourceCard,
   "code-block": CodeBlock,
   ColorTokenDoc,
