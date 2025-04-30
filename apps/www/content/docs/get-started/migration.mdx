@@ -726,6 +726,22 @@ After
 </Link>
 ```
 
+### Button
+
+- Removed `isActive` in favor of passing `data-active`
+
+Before
+
+```tsx
+<Button isActive>Click me</Button>
+```
+
+After
+
+```tsx
+<Button data-active>Click me</Button>
+```
+
 ### IconButton
 
 - Removed `icon` prop in favor of rendering the `children` prop directly
