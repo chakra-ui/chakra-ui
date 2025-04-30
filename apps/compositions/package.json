@@ -4,7 +4,8 @@
   "private": "true",
   "description": "Registry for component compositions",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
   },
   "keywords": [
     "chakra",

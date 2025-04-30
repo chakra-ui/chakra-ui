@@ -1,5 +1,5 @@
+import { docs } from "@/.velite"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { default as docs } from ".velite/docs.json"
 
 export function getBaseUrl() {
   return process.env.VERCEL_URL ?? process.env.HOST ?? "http://localhost:3000"
