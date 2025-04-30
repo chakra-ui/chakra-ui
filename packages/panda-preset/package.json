@@ -59,10 +59,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@pandacss/types": "^0.51.1"
+    "@pandacss/types": "^0.53.6"
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
-    "globby": "14.0.2"
+    "globby": "14.1.0"
   }
 }
