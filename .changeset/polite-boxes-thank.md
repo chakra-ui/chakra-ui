@@ -14,3 +14,6 @@
 
 - **RatingGroup**: Fix issue where half-filled icons were not being displayed
   correctly in RTL
+
+- **Collapsible**: Fixed issue in React.js <= v18.x where collapse animation
+  might not work as expected
