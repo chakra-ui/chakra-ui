@@ -11,3 +11,6 @@
 
 - **SegmentGroup**: Fix issue where `disabled` prop was not being applied to
   `SegmentGroup.Items`
+
+- **RatingGroup**: Fix issue where half-filled icons were not being displayed
+  correctly in RTL
