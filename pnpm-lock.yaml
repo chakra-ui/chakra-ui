@@ -458,8 +458,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       chokidar:
-        specifier: 3.6.0
-        version: 3.6.0
+        specifier: 4.0.3
+        version: 4.0.3
       cli-table:
         specifier: ^0.3.11
         version: 0.3.11
