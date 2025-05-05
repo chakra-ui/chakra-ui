@@ -141,7 +141,7 @@ const HeaderSecondaryNavbar = () => {
 }
 
 interface HeaderVersionMenuProps {
-  containerRef?: React.RefObject<HTMLElement>
+  containerRef?: React.RefObject<HTMLElement | null>
 }
 
 const HeaderVersionMenu = ({ containerRef }: HeaderVersionMenuProps) => (
@@ -167,7 +167,7 @@ const HeaderMobileMenuDropdown = () => {
   const primaryNavItems = route.getPrimaryNavItems()
   const secondaryNavItems = route.getSecondaryNavItems()
 
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const pathname = usePathname()
   const pathnameRef = useRef(pathname)
 

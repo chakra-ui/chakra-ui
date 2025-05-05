@@ -11,6 +11,10 @@ pre.shiki code * {
   font-family: var(--font-geist-mono);
 }
 
+pre.shiki code *::selection {
+  background: rgb(255 255 255 / 0.2);
+}
+
 code .diff {
   transition: background-color 0.5s;
   margin: 0 -12px;

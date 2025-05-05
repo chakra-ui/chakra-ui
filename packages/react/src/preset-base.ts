@@ -310,10 +310,10 @@ export const defaultBaseConfig = defineConfig({
     borderLeft: { values: "borders" },
     borderBlockStart: { values: "borders" },
     borderRight: { values: "borders" },
-    borderInlineEnd: { values: "borders" },
     borderBottom: { values: "borders" },
     borderBlockEnd: { values: "borders" },
     borderInlineStart: { values: "borders", shorthand: ["borderStart"] },
+    borderInlineEnd: { values: "borders", shorthand: ["borderEnd"] },
     borderInline: { values: "borders", shorthand: ["borderX"] },
     borderBlock: { values: "borders", shorthand: ["borderY"] },
     // border colors

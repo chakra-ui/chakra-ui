@@ -5,6 +5,56 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.17.0](./#3.17.0) - 2025-05-01
+
+### Added
+
+- **Toast**: Added toast queuing when the max limit is reached:
+
+  - New toasts were queued instead of dropped
+  - Queued toasts were shown when space became available
+  - Queue cleared when all toasts were removed
+
+### Fixed
+
+- **Breadcrumb**: Prevent screen reader from reading the separator
+
+- **SegmentGroup**: Fix issue where `disabled` prop was not being applied to
+  `SegmentGroup.Items`
+
+- **RatingGroup**: Fix issue where half-filled icons were not being displayed
+  correctly in RTL
+
+- **Collapsible**: Fixed issue in React.js `<= v18.x` where collapse animation
+  might not work as expected
+
+## [3.16.1](./#3.16.1) - 2025-04-20
+
+### Fixed
+
+- **Dialog, Drawer**: Use correct z-index for dialog and drawer backdrop
+
+- **SegmentGroup**: Fix issue where `orientation` prop to `SegmentGroup.Root`
+  doesn't work as expected.
+
+## [3.16.0](./#3.16.0) - 2025-04-14
+
+### Added
+
+- **Global CSS**: Improve text selection contrast
+
+- **System**
+
+  - Fix issue where `borderEnd` shorthand was not working despite `borderStart`
+    being present
+  - Fix issue where `system.cva` return type was incorrect
+  - Soften the focus ring for all color palettes
+
+- **Dialog, Drawer**: Fix issue where `z-index` was not being applied correctly
+
+- **[Beta] createOverlay**: Add `createOverlay` utility for programmatically
+  controlling overlay components (Dialog, Drawer, etc.)
+
 ## [3.15.1](./#3.15.1) - 2025-04-07
 
 ### Fixed

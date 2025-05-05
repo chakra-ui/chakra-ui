@@ -54,7 +54,13 @@ export interface SegmentGroupRootProps
 export const SegmentGroupRoot = withProvider<
   HTMLDivElement,
   SegmentGroupRootProps
->(ArkSegmentGroup.Root, "root", { forwardAsChild: true })
+>(ArkSegmentGroup.Root, "root", {
+  forwardAsChild: true,
+  forwardProps: ["orientation"],
+  defaultProps: {
+    orientation: "horizontal",
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,7 +123,12 @@ export const SegmentGroupItems = (props: SegmentGroupItemsProps) => {
   return (
     <For each={data}>
       {(item) => (
-        <SegmentGroupItem key={item.value} value={item.value} {...rest}>
+        <SegmentGroupItem
+          key={item.value}
+          value={item.value}
+          disabled={item.disabled}
+          {...rest}
+        >
           <SegmentGroupItemText>{item.label}</SegmentGroupItemText>
           <SegmentGroupItemHiddenInput />
         </SegmentGroupItem>

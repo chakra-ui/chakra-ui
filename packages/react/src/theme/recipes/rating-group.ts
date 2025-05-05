@@ -28,6 +28,7 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
       width: "1em",
       height: "1em",
       position: "relative",
+      "--clip-path": { base: "inset(0 50% 0 0)", _rtl: "inset(0 0 0 50%)" },
 
       _icon: {
         stroke: "currentColor",
@@ -57,7 +58,7 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
       "&[data-half]": {
         "& [data-fg]": {
           color: "colorPalette.solid",
-          clipPath: "inset(0 50% 0 0)",
+          clipPath: "var(--clip-path)",
         },
       },
     },

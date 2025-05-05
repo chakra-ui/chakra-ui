@@ -1,5 +1,58 @@
 # @chakra-ui/react
 
+## 3.17.0
+
+### Minor Changes
+
+- [#9977](https://github.com/chakra-ui/chakra-ui/pull/9977)
+  [`ad8cc44`](https://github.com/chakra-ui/chakra-ui/commit/ad8cc44d957821deeaee0885bfd1767f7c53b7d1)
+  Thanks [@seongminn](https://github.com/seongminn)! - - **Breadcrumb**: Prevent
+  screen reader from reading the separator
+
+  - **Toast**: Added toast queuing when the max limit is reached:
+
+    - New toasts were queued instead of dropped
+    - Queued toasts were shown when space became available
+    - Queue cleared when all toasts were removed
+
+  - **SegmentGroup**: Fix issue where `disabled` prop was not being applied to
+    `SegmentGroup.Items`
+  - **RatingGroup**: Fix issue where half-filled icons were not being displayed
+    correctly in RTL
+  - **Collapsible**: Fixed issue in React.js <= v18.x where collapse animation
+    might not work as expected
+
+## 3.16.1
+
+### Patch Changes
+
+- [`46075ba`](https://github.com/chakra-ui/chakra-ui/commit/46075ba8cb69730378c7aeb1b710d36df0e01355)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Dialog,
+  Drawer**: Use correct z-index for dialog and drawer backdrop
+
+  - **SegmentGroup**: Fix issue where `orientation` prop to `SegmentGroup.Root`
+    doesn't work as expected
+
+## 3.16.0
+
+### Minor Changes
+
+- [`529244d`](https://github.com/chakra-ui/chakra-ui/commit/529244d008db7049d5b7d12590c41eba8df212d9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Global CSS**:
+  Improve text selection contrast
+
+  - **System**
+
+    - Fix issue where `borderEnd` shorthand was not working despite
+      `borderStart` being present
+    - Fix issue where `system.cva` return type was incorrect
+    - Soften the focus ring for all color palettes
+
+  - **Dialog, Drawer**: Fix issue where `z-index` was not being applied
+    correctly
+  - **[Beta] createOverlay**: Add `createOverlay` utility for programmatically
+    controlling overlay components (Dialog, Drawer, etc.)
+
 ## 3.15.1
 
 ### Patch Changes

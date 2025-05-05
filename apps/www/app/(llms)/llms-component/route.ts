@@ -1,5 +1,5 @@
+import { docs } from "@/.velite"
 import { getBaseUrl } from "../shared"
-import { default as docs } from ".velite/docs.json"
 
 export const dynamic = "force-static"
 

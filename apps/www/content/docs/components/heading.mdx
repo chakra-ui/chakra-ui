@@ -48,6 +48,66 @@ Use the `Heading` component to compose other components.
 
 <ExampleTabs name="heading-with-composition" />
 
+## Customization
+
+To override the `fontSize`, we recommend using the `textStyle` prop since it
+considers the line height and letter spacing as well.
+
+### Base style
+
+Here's an example of customizing the `Heading` component.
+
+```tsx title="provider.tsx"
+import { createSystem, defineRecipe } from "@chakra-ui/react"
+import { defaultConfig } from "@chakra-ui/react"
+
+const headingRecipe = defineRecipe({
+  base: {
+    fontWeight: "normal",
+    textStyle: "4xl",
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { heading: headingRecipe },
+  },
+})
+```
+
+### Custom Size
+
+Update the `variants.size` property to create a custom size.
+
+```tsx title="provider.tsx"
+import { createSystem, defineRecipe } from "@chakra-ui/react"
+import { defaultConfig } from "@chakra-ui/react"
+
+const headingRecipe = defineRecipe({
+  variants: {
+    size: {
+      custom: {
+        fontSize: "100px",
+        lineHeight: "100px",
+        letterSpacing: "-2px",
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { heading: headingRecipe },
+  },
+})
+```
+
+Then, use the `custom` variant to create a custom size.
+
+```tsx
+<Heading size="custom">I'm a custom size</Heading>
+```
+
 ## Props
 
 <PropTable component="Heading" part="Heading" />

@@ -4,7 +4,7 @@ import * as React from "react"
 export interface CheckboxProps extends ChakraCheckbox.RootProps {
   icon?: React.ReactNode
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  rootRef?: React.Ref<HTMLLabelElement>
+  rootRef?: React.RefObject<HTMLLabelElement | null>
 }
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(

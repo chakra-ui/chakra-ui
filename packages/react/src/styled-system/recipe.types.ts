@@ -16,7 +16,7 @@ export type RecipeSelection<
 
 export type RecipeVariantFn<T extends RecipeVariantRecord> = (
   props?: RecipeSelection<T>,
-) => string
+) => SystemStyleObject
 
 export type RecipeVariantProps<
   T extends RecipeDefinition | SlotRecipeDefinition,

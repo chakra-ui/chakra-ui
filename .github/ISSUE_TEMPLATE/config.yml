@@ -3,9 +3,6 @@ contact_links:
   - name: Ask a question
     url: https://github.com/chakra-ui/chakra-ui/discussions
     about: Ask questions and discuss topics with other community members
-  - name: Documentation Request
-    url: https://github.com/chakra-ui/chakra-ui-docs/issues/new/choose
-    about: Request for documentation to be added/altered
-  - name: Chat with other community members
+  - name: Chat with community members
     url: https://discord.gg/dQHfcWF
     about: The official Chakra UI Discord community

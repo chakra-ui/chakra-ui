@@ -27,16 +27,12 @@ export const CheckboxSizeTable = () => {
                 {(v) => (
                   <td>
                     <Stack>
-                      <Checkbox.Root colorPalette={c} size={v}>
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Indicator />
-                        <Checkbox.Label>Checkbox</Checkbox.Label>
-                      </Checkbox.Root>
-                      <Checkbox.Root colorPalette={c} size={v} defaultChecked>
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Indicator />
-                        <Checkbox.Label>Checkbox</Checkbox.Label>
-                      </Checkbox.Root>
+                      <DemoCheckbox colorPalette={c} size={v}>
+                        Checkbox
+                      </DemoCheckbox>
+                      <DemoCheckbox colorPalette={c} size={v} defaultChecked>
+                        Checkbox
+                      </DemoCheckbox>
                     </Stack>
                   </td>
                 )}
@@ -46,5 +42,15 @@ export const CheckboxSizeTable = () => {
         </For>
       </tbody>
     </PlaygroundTable>
+  )
+}
+
+const DemoCheckbox = (props: Checkbox.RootProps) => {
+  return (
+    <Checkbox.Root {...props}>
+      <Checkbox.HiddenInput />
+      <Checkbox.Control />
+      <Checkbox.Label>{props.children}</Checkbox.Label>
+    </Checkbox.Root>
   )
 }

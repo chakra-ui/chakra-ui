@@ -17,7 +17,7 @@ interface VersionItem {
 
 interface Props {
   items: VersionItem[]
-  portalRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement | null>
 }
 
 export const VersionMenu = (props: Props) => {
