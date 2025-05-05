@@ -21,6 +21,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       gap: "3",
       fontWeight: "medium",
       borderRadius: "var(--accordion-radius)",
+      cursor: "button",
       _focusVisible: {
         outline: "2px solid",
         outlineColor: "colorPalette.focusRing",
