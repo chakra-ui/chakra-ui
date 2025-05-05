@@ -36,7 +36,7 @@
     "react-lorem-ipsum": "1.4.10",
     "use-mask-input": "3.4.2",
     "react-payment-inputs": "1.2.0",
-    "zod": "3.24.3"
+    "zod": "3.24.4"
   },
   "devDependencies": {
     "@types/react": "^19",
