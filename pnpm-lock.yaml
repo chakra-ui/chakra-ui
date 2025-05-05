@@ -252,8 +252,8 @@ importers:
         specifier: 3.13.6
         version: 3.13.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       es-toolkit:
-        specifier: 1.36.0
-        version: 1.36.0
+        specifier: 1.37.2
+        version: 1.37.2
       next-themes:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6266,8 +6266,8 @@ packages:
     resolution: {integrity: sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==}
     engines: {node: '>= 0.4'}
 
-  es-toolkit@1.36.0:
-    resolution: {integrity: sha512-5lpkRpDELuTSeAL//Rcg5urg+K/yOD1BobJSiNeCc89snMqgrhckmj8jdljqraDbpREiXTNW311RN518eVHBng==}
+  es-toolkit@1.37.2:
+    resolution: {integrity: sha512-ADDfk+pPFF0ofMpRAIc6on01p8heiuwuuJsYLzTP4UOjxVK9QsE2+0D1Q4J/zX2XBo6ac+27H5++YBIwmGAX/g==}
 
   esast-util-from-estree@2.0.0:
     resolution: {integrity: sha512-4CyanoAudUSBAn5K13H4JhsMH6L9ZP7XbLVe/dKybkxMO7eDyLsT8UHl9TRNrU2Gr9nz+FovfSIjuXWJ81uVwQ==}
@@ -14326,7 +14326,7 @@ snapshots:
       '@storybook/core': 8.6.12(prettier@3.5.3)(storybook@8.6.12(prettier@3.5.3))
       '@types/cross-spawn': 6.0.6
       cross-spawn: 7.0.6
-      es-toolkit: 1.36.0
+      es-toolkit: 1.37.2
       globby: 14.1.0
       jscodeshift: 0.15.2(@babel/preset-env@7.25.4(@babel/core@7.27.1))
       prettier: 3.5.3
@@ -16764,7 +16764,7 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  es-toolkit@1.36.0: {}
+  es-toolkit@1.37.2: {}
 
   esast-util-from-estree@2.0.0:
     dependencies:
