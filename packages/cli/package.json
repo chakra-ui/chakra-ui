@@ -53,7 +53,7 @@
     "@visulima/boxen": "^1.0.30",
     "bundle-n-require": "1.1.2",
     "globby": "14.1.0",
-    "chokidar": "3.6.0",
+    "chokidar": "4.0.3",
     "cli-table": "^0.3.11",
     "commander": "12.1.0",
     "debug": "^4.4.0",
