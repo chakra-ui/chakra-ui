@@ -334,8 +334,8 @@ importers:
         specifier: 9.0.1
         version: 9.0.1
       match-sorter:
-        specifier: 8.0.0
-        version: 8.0.0
+        specifier: 8.0.1
+        version: 8.0.1
       mdast:
         specifier: 3.0.0
         version: 3.0.0
@@ -7869,8 +7869,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  match-sorter@8.0.0:
-    resolution: {integrity: sha512-bGJ6Zb+OhzXe+ptP5d80OLVx7AkqfRbtGEh30vNSfjNwllu+hHI+tcbMIT/fbkx/FKN1PmKuDb65+Oofg+XUxw==}
+  match-sorter@8.0.1:
+    resolution: {integrity: sha512-YwEpnfJy/MhLpVdl0xU27y83oHnnT19IRAVeus9I/9tjOrfoGADeNy1OsLvYHdcJVcwFmBp5DzdZLEiDDXoiIw==}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -18712,7 +18712,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  match-sorter@8.0.0:
+  match-sorter@8.0.1:
     dependencies:
       '@babel/runtime': 7.25.7
       remove-accents: 0.5.0
