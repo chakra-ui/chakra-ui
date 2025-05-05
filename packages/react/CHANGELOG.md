@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.18.0
+
+### Minor Changes
+
+- [`e91ec7e`](https://github.com/chakra-ui/chakra-ui/commit/e91ec7e9a393a791743636e934d28bc75a0e6dc8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add
+  `DownloadTrigger` component to help download file contents
+
 ## 3.17.0
 
 ### Minor Changes
