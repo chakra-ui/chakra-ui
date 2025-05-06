@@ -12,7 +12,7 @@ description: A guide for using Chakra UI with Storybook
 Install the required dependencies for Chakra UI and Storybook.
 
 ```bash
-npm i @storybook/addon-themes @chakra-ui/react @emotion/react
+npm i @storybook/addon-themes @sh3yk0-ui/react @emotion/react
 ```
 
 ### Setup Preview
@@ -20,7 +20,7 @@ npm i @storybook/addon-themes @chakra-ui/react @emotion/react
 Edit the `.storybook/preview.tsx` file to include the Chakra UI provider.
 
 ```tsx
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { ChakraProvider, defaultSystem } from "@sh3yk0-ui/react"
 import type { Preview } from "@storybook/react"
 
 const preview: Preview = {
@@ -70,7 +70,7 @@ npm run storybook
 Use Chakra UI components in your stories.
 
 ```tsx
-import { Button } from "@chakra-ui/react"
+import { Button } from "@sh3yk0-ui/react"
 
 export const SampleStory = {
   render() {

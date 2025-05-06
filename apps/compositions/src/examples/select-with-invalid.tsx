@@ -1,6 +1,6 @@
 "use client"
 
-import { Field, Portal, Select, createListCollection } from "@chakra-ui/react"
+import { Field, Portal, Select, createListCollection } from "@sh3yk0-ui/react"
 
 export const SelectWithInvalid = () => {
   return (

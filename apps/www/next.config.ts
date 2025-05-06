@@ -2,7 +2,7 @@ import { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ["@chakra-ui/react", "@ark-ui/react"],
+    optimizePackageImports: ["@sh3yk0-ui/react", "@ark-ui/react"],
     externalDir: true,
   },
   typescript: {

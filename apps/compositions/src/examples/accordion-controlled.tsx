@@ -1,6 +1,6 @@
 "use client"
 
-import { Accordion, Span, Stack, Text } from "@chakra-ui/react"
+import { Accordion, Span, Stack, Text } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const AccordionControlled = () => {

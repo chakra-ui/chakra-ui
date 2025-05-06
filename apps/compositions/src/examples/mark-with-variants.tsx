@@ -1,4 +1,4 @@
-import { For, Mark, Stack, Text } from "@chakra-ui/react"
+import { For, Mark, Stack, Text } from "@sh3yk0-ui/react"
 
 export const MarkWithVariants = () => {
   return (

@@ -1,4 +1,4 @@
-import { Button, Toggle } from "@chakra-ui/react"
+import { Button, Toggle } from "@sh3yk0-ui/react"
 import { LuX } from "react-icons/lu"
 
 export const ToggleWithPressedIcon = () => {

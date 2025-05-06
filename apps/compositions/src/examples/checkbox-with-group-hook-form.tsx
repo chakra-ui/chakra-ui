@@ -1,13 +1,13 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Button,
   Checkbox,
   CheckboxGroup,
   Code,
   Fieldset,
-} from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@sh3yk0-ui/react"
 import { useController, useForm } from "react-hook-form"
 import { z } from "zod"
 

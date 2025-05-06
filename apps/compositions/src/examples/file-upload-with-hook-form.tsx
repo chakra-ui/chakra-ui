@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Field, FileUpload } from "@chakra-ui/react"
+import { Button, Field, FileUpload } from "@sh3yk0-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { HiUpload } from "react-icons/hi"

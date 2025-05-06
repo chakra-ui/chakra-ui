@@ -10,7 +10,7 @@ import {
   Span,
   Stack,
   Text,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"

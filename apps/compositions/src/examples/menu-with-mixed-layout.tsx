@@ -1,4 +1,4 @@
-import { Box, Button, Group, Menu, Portal } from "@chakra-ui/react"
+import { Box, Button, Group, Menu, Portal } from "@sh3yk0-ui/react"
 import {
   LuClipboard,
   LuCopy,

@@ -1,4 +1,4 @@
-import { Input, InputGroup } from "@chakra-ui/react"
+import { Input, InputGroup } from "@sh3yk0-ui/react"
 
 export const InputWithEndAddon = () => {
   return (

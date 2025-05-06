@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Field, NativeSelect } from "@chakra-ui/react"
+import { Button, Field, NativeSelect } from "@sh3yk0-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"

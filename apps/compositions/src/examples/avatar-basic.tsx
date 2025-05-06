@@ -1,4 +1,4 @@
-import { Avatar } from "@chakra-ui/react"
+import { Avatar } from "@sh3yk0-ui/react"
 
 export const AvatarBasic = () => {
   return (

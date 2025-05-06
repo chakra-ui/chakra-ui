@@ -1,7 +1,7 @@
 import { blogs } from "@/.velite"
 import { BlogCard } from "@/components/blog-card"
 import { HighlightHeading, Subheading } from "@/components/site/typography"
-import { Box, Container, SimpleGrid, Stack } from "@chakra-ui/react"
+import { Box, Container, SimpleGrid, Stack } from "@sh3yk0-ui/react"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

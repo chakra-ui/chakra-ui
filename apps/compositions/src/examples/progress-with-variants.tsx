@@ -1,4 +1,4 @@
-import { Progress, Stack } from "@chakra-ui/react"
+import { Progress, Stack } from "@sh3yk0-ui/react"
 
 export const ProgressWithVariants = () => {
   return (

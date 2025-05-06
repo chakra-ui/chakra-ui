@@ -1,4 +1,4 @@
-import { Box, Circle, Float, HStack, Stack } from "@chakra-ui/react"
+import { Box, Circle, Float, HStack, Stack } from "@sh3yk0-ui/react"
 
 export const FloatWithPlacements = () => (
   <HStack gap="14" wrap="wrap">

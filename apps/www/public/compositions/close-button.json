@@ -1,13 +1,11 @@
 {
   "type": "composition",
-  "npmDependencies": [
-    "react-icons"
-  ],
+  "npmDependencies": ["react-icons"],
   "fileDependencies": [],
   "id": "close-button",
   "file": {
     "name": "close-button.tsx",
-    "content": "import type { ButtonProps } from \"@chakra-ui/react\"\nimport { IconButton as ChakraIconButton } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuX } from \"react-icons/lu\"\n\nexport type CloseButtonProps = ButtonProps\n\nexport const CloseButton = React.forwardRef<\n  HTMLButtonElement,\n  CloseButtonProps\n>(function CloseButton(props, ref) {\n  return (\n    <ChakraIconButton variant=\"ghost\" aria-label=\"Close\" ref={ref} {...props}>\n      {props.children ?? <LuX />}\n    </ChakraIconButton>\n  )\n})\n"
+    "content": "import type { ButtonProps } from \"@sh3yk0-ui/react\"\nimport { IconButton as ChakraIconButton } from \"@sh3yk0-ui/react\"\nimport * as React from \"react\"\nimport { LuX } from \"react-icons/lu\"\n\nexport type CloseButtonProps = ButtonProps\n\nexport const CloseButton = React.forwardRef<\n  HTMLButtonElement,\n  CloseButtonProps\n>(function CloseButton(props, ref) {\n  return (\n    <ChakraIconButton variant=\"ghost\" aria-label=\"Close\" ref={ref} {...props}>\n      {props.children ?? <LuX />}\n    </ChakraIconButton>\n  )\n})\n"
   },
   "component": "CloseButton"
 }

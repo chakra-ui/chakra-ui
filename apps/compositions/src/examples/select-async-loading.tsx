@@ -1,6 +1,6 @@
 "use client"
 
-import { Portal, Select, Spinner, createListCollection } from "@chakra-ui/react"
+import { Portal, Select, Spinner, createListCollection } from "@sh3yk0-ui/react"
 import { useMemo } from "react"
 import { useAsync } from "react-use"
 

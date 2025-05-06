@@ -1,4 +1,4 @@
-import { Slider, Stack } from "@chakra-ui/react"
+import { Slider, Stack } from "@sh3yk0-ui/react"
 
 export const SliderWithThumbAlignment = () => {
   return (

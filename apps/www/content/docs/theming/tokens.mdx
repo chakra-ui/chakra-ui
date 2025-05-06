@@ -22,7 +22,7 @@ A design token consists of the following properties:
 Tokens are defined in the under the `theme` key in your system config.
 
 ```ts title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -54,7 +54,7 @@ After defining tokens, we recommend using the Chakra CLI to generate theme
 typings for your tokens.
 
 ```bash
-npx @chakra-ui/cli typegen ./src/theme.ts
+npx @sh3yk0-ui/cli typegen ./src/theme.ts
 ```
 
 This will provide autocompletion for your tokens in your editor.
@@ -101,7 +101,7 @@ Use the `DEFAULT` key to define the default value of a nested token.
 :::
 
 ```ts title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -138,7 +138,7 @@ like hierarchy of information, and states. It is mostly defined as a string
 value or reference to other tokens.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   colors: {
@@ -159,7 +159,7 @@ Gradient tokens represent a smooth transition between two or more colors. Its
 value can be defined as a string or a composite value.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   gradients: {
@@ -184,7 +184,7 @@ Size tokens represent the width and height of an element. Its value is defined
 as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   sizes: {
@@ -206,7 +206,7 @@ Spacing tokens represent the margin and padding of an element. Its value is
 defined as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   spacing: {
@@ -228,7 +228,7 @@ Font tokens represent the font family of a text element. Its value is defined as
 a string or an array of strings.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   fonts: {
@@ -250,7 +250,7 @@ Font size tokens represent the size of a text element. Its value is defined as a
 string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   fontSizes: {
@@ -271,7 +271,7 @@ Font weight tokens represent the weight of a text element. Its value is defined
 as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   fontWeights: {
@@ -311,7 +311,7 @@ Line height tokens represent the height of a line of text. Its value is defined
 as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   lineHeights: {
@@ -331,7 +331,7 @@ export default createSystem({
 Radii tokens represent the radius of a border. Its value is defined as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   radii: {
@@ -352,7 +352,7 @@ A border is a line surrounding a UI element. You can define them as string
 values or as a composite value
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   borders: {
@@ -379,7 +379,7 @@ Border width tokens represent the width of a border. Its value is defined as a
 string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   borderWidths: {
@@ -400,7 +400,7 @@ Shadow tokens represent the shadow of an element. Its value is defined as single
 or multiple values containing a string or a composite value.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   shadows: {
@@ -440,7 +440,7 @@ value is defined as a string or an array of values representing the cubic
 bezier.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   easings: {
@@ -463,7 +463,7 @@ export default createSystem({
 Opacity tokens help you set the opacity of an element.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   opacity: {
@@ -483,7 +483,7 @@ export default createSystem({
 This token type represents the depth of an element's position on the z-axis.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   zIndex: {
@@ -509,7 +509,7 @@ type Asset = string | CompositeAsset
 ```
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   tokens: {
@@ -537,7 +537,7 @@ Duration tokens represent the length of time in milliseconds an animation or
 animation cycle takes to complete. Its value is defined as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   durations: {
@@ -559,7 +559,7 @@ Animation tokens represent a keyframe animation. Its value is defined as a
 string value.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   animations: {
@@ -582,7 +582,7 @@ Aspect ratio tokens represent the aspect ratio of an element. Its value is
 defined as a string.
 
 ```tsx title="theme.ts"
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 const tokens = defineTokens({
   aspectRatios: {

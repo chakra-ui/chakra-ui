@@ -1,4 +1,4 @@
-import { Checkbox } from "@chakra-ui/react"
+import { Checkbox } from "@sh3yk0-ui/react"
 
 export const CheckboxWithLabelPosition = () => {
   return (

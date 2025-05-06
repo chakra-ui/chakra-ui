@@ -1,4 +1,4 @@
-import { CloseButton, FileUpload, Input, InputGroup } from "@chakra-ui/react"
+import { CloseButton, FileUpload, Input, InputGroup } from "@sh3yk0-ui/react"
 import { LuFileUp } from "react-icons/lu"
 
 export const FileUploadWithInputClear = () => {

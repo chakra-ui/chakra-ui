@@ -1,4 +1,4 @@
-import { Badge, Box, Center, Flex, Icon, Image, Text } from "@chakra-ui/react"
+import { Badge, Box, Center, Flex, Icon, Image, Text } from "@sh3yk0-ui/react"
 import { MdStar } from "react-icons/md"
 
 export const AccessibilityDemo = () => (

@@ -27,11 +27,11 @@ packages are no longer required in Chakra UI.
 npm uninstall @emotion/styled framer-motion
 ```
 
-Install updated versions of the packages: `@chakra-ui/react` and
+Install updated versions of the packages: `@sh3yk0-ui/react` and
 `@emotion/react`.
 
 ```bash
-npm install @chakra-ui/react@latest @emotion/react@latest
+npm install @sh3yk0-ui/react@latest @emotion/react@latest
 ```
 
 Next, install component snippets using the CLI snippets. Snippets provide
@@ -39,7 +39,7 @@ pre-built compositions of Chakra components to save you time and put you in
 charge.
 
 ```bash
-npx @chakra-ui/cli snippet add
+npx @sh3yk0-ui/cli snippet add
 ```
 
 ### Refactor Custom Theme
@@ -50,7 +50,7 @@ Move your custom theme to a dedicated `theme.js` or `theme.ts` file. Use
 **Before**
 
 ```ts
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "@sh3yk0-ui/react"
 
 export const theme = extendTheme({
   fonts: {
@@ -63,7 +63,7 @@ export const theme = extendTheme({
 **After**
 
 ```ts {3}
-import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig } from "@sh3yk0-ui/react"
 
 export const system = createSystem(defaultConfig, {
   theme: {
@@ -82,14 +82,14 @@ export const system = createSystem(defaultConfig, {
 
 ### Update ChakraProvider
 
-Update the ChakraProvider import from `@chakra-ui/react` to the one from the
+Update the ChakraProvider import from `@sh3yk0-ui/react` to the one from the
 snippets. Next, rename the `theme` prop to `value` to match the new system-based
 theming approach.
 
 **Before**
 
 ```tsx
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@sh3yk0-ui/react"
 
 export const App = ({ Component }) => (
   <ChakraProvider theme={theme}>
@@ -102,7 +102,7 @@ export const App = ({ Component }) => (
 
 ```tsx {1,3}
 import { Provider } from "@/components/ui/provider"
-import { defaultSystem } from "@chakra-ui/react"
+import { defaultSystem } from "@sh3yk0-ui/react"
 
 export const App = ({ Component }) => (
   <Provider>
@@ -113,7 +113,7 @@ export const App = ({ Component }) => (
 
 ```tsx {1,3}
 import { ColorModeProvider } from "@/components/ui/color-mode"
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { ChakraProvider, defaultSystem } from "@sh3yk0-ui/react"
 
 export function Provider(props) {
   return (
@@ -140,7 +140,7 @@ The Provider component compose the `ChakraProvider` from Chakra and
   concise imports
 
   ```tsx
-  import { Accordion } from "@chakra-ui/react"
+  import { Accordion } from "@sh3yk0-ui/react"
 
   const Demo = () => {
     return (
@@ -192,7 +192,7 @@ and slot recipes. This pattern was inspired by Panda CSS.
 
 ### Next.js package
 
-We've removed the `@chakra-ui/next-js` package in favor of using the `asChild`
+We've removed the `@sh3yk0-ui/next-js` package in favor of using the `asChild`
 prop for better flexibility.
 
 To style the Next.js image component, use the `asChild` prop on the `Box`
@@ -246,7 +246,7 @@ Due to the simplification of the `as` prop, we no longer provide a custom
 Before:
 
 ```tsx {3}
-import { Button as ChakraButton, forwardRef } from "@chakra-ui/react"
+import { Button as ChakraButton, forwardRef } from "@sh3yk0-ui/react"
 
 const Button = forwardRef<ButtonProps, "button">(function Button(props, ref) {
   return <ChakraButton ref={ref} {...props} />
@@ -256,7 +256,7 @@ const Button = forwardRef<ButtonProps, "button">(function Button(props, ref) {
 After:
 
 ```tsx {2, 4}
-import { Button as ChakraButton } from "@chakra-ui/react"
+import { Button as ChakraButton } from "@sh3yk0-ui/react"
 import { forwardRef } from "react"
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -268,7 +268,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 ### Icons
 
-Removed `@chakra-ui/icons` package. Prefer to use `lucide-react` or
+Removed `@sh3yk0-ui/icons` package. Prefer to use `lucide-react` or
 `react-icons` instead.
 
 ### Storybook Addon
@@ -277,7 +277,7 @@ We're removed the storybook addon in favor of using `@storybook/addon-themes`
 and `withThemeByClassName` helper.
 
 ```tsx
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { ChakraProvider, defaultSystem } from "@sh3yk0-ui/react"
 import { withThemeByClassName } from "@storybook/addon-themes"
 import type { Preview, ReactRenderer } from "@storybook/react"
 
@@ -399,7 +399,7 @@ If you are using custom colors, you must define two things to make
   `emphasized`, and `focusRing` color keys
 
 ```tsx title="theme.ts" /brand: {/ /tokens: {/ /semanticTokens: {/
-import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig } from "@sh3yk0-ui/react"
 
 export const system = createSystem(defaultConfig, {
   theme: {

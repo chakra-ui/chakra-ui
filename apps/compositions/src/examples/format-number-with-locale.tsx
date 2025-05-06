@@ -1,4 +1,4 @@
-import { FormatNumber, HStack, LocaleProvider, Text } from "@chakra-ui/react"
+import { FormatNumber, HStack, LocaleProvider, Text } from "@sh3yk0-ui/react"
 
 export const FormatNumberWithLocale = () => {
   return (

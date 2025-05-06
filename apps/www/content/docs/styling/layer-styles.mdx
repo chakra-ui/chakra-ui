@@ -18,7 +18,7 @@ Layer styles allows you to define visual properties. The common properties are:
 Layer styles are defined using the `defineLayerStyles` function.
 
 ```js title="layer-styles.ts"
-import { defineLayerStyles } from "@chakra-ui/react"
+import { defineLayerStyles } from "@sh3yk0-ui/react"
 
 const layerStyles = defineLayerStyles({
   container: {
@@ -44,7 +44,7 @@ To use the layer styles, update the `theme` object with the `layerStyles`
 property.
 
 ```js title="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@sh3yk0-ui/react"
 import { layerStyles } from "./layer-styles"
 
 const config = defineConfig({
@@ -59,7 +59,7 @@ export default createSystem(defaultConfig, config)
 After updating the theme, run this command to generate the typings.
 
 ```bash
-npx @chakra-ui/cli typegen
+npx @sh3yk0-ui/cli typegen
 ```
 
 ## Using layer styles

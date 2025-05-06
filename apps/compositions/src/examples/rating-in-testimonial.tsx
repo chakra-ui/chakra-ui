@@ -1,4 +1,4 @@
-import { Avatar, HStack, RatingGroup, Stack, Text } from "@chakra-ui/react"
+import { Avatar, HStack, RatingGroup, Stack, Text } from "@sh3yk0-ui/react"
 
 export const RatingInTestimonial = () => {
   return (

@@ -1,4 +1,4 @@
-import { Badge, Stack } from "@chakra-ui/react"
+import { Badge, Stack } from "@sh3yk0-ui/react"
 
 export const BadgeBasic = () => {
   return (

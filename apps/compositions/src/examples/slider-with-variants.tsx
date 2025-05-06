@@ -1,4 +1,4 @@
-import { For, Slider, Stack } from "@chakra-ui/react"
+import { For, Slider, Stack } from "@sh3yk0-ui/react"
 
 export const SliderWithVariants = () => {
   return (

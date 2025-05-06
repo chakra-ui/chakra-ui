@@ -4,7 +4,8 @@ description: Learn how to use Chakra UI with React Server Components.
 ---
 
 React Server Components is a new feature in React that allows you to build
-components that render on the server and return UI to the client without hydration.
+components that render on the server and return UI to the client without
+hydration.
 
 Client components are still server-rendered but hydrated on the client. Learn
 more about
@@ -26,7 +27,7 @@ Here's an example of how to use Chakra UI components with React Server
 Components in Next.js
 
 ```jsx [app/page.tsx]
-import { Heading } from "@chakra-ui/react"
+import { Heading } from "@sh3yk0-ui/react"
 import fs from "node:fs"
 
 export default async function Page() {
@@ -43,7 +44,7 @@ move the component to a dedicated file.
 ```jsx [blog-post.tsx]
 "use client"
 
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 
 export const BlogPost = chakra("div", {
   base: {
@@ -76,7 +77,7 @@ When importing hooks from Chakra UI, use the `use client` directive
 ```jsx
 "use client"
 
-import { useBreakpointValue } from "@chakra-ui/react"
+import { useBreakpointValue } from "@sh3yk0-ui/react"
 
 export function MyComponent() {
   const value = useBreakpointValue({ base: "mobile", md: "desktop" })
@@ -91,7 +92,7 @@ When using render props, use the `use client` directive
 ```jsx
 "use client"
 
-import { ProgressContext } from "@chakra-ui/react"
+import { ProgressContext } from "@sh3yk0-ui/react"
 
 export function MyComponent() {
   return <ProgressContext>{({ value }) => <div>{value}</div>}</ProgressContext>

@@ -1,4 +1,4 @@
-import { Center, Wrap, WrapItem } from "@chakra-ui/react"
+import { Center, Wrap, WrapItem } from "@sh3yk0-ui/react"
 
 export const WrapWithAlign = () => (
   <Wrap gap="30px" align="center">

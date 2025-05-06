@@ -1,4 +1,4 @@
-import { Stack, Text } from "@chakra-ui/react"
+import { Stack, Text } from "@sh3yk0-ui/react"
 
 export const TextWithWeights = () => {
   return (

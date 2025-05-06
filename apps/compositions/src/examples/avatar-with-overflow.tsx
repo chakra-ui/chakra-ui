@@ -1,4 +1,4 @@
-import { Avatar, Group, Menu, Portal } from "@chakra-ui/react"
+import { Avatar, Group, Menu, Portal } from "@sh3yk0-ui/react"
 
 const names = [
   "Naruto Uzumaki",

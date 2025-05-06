@@ -1,4 +1,4 @@
-import { Checkbox, Link } from "@chakra-ui/react"
+import { Checkbox, Link } from "@sh3yk0-ui/react"
 
 export const CheckboxWithLink = () => {
   return (

@@ -1,6 +1,6 @@
 {
-  "name": "@chakra-ui/react",
-  "version": "3.17.0",
+  "name": "@sh3yk0-ui/react",
+  "version": "1.0.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -13,12 +13,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "author": "Sh3yk0",
   "license": "MIT",
-  "homepage": "https://chakra-ui.com/",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chakra-ui/chakra-ui",
+    "url": "https://github.com/SheykoWk/component-library.git",
     "directory": "packages/react"
   },
   "keywords": [
@@ -34,8 +34,8 @@
     "design-system"
   ],
   "storybook": {
-    "title": "Chakra UI",
-    "url": "https://storybook.chakra-ui.com"
+    "title": "Sh3yk0 UI",
+    "url": "https://storybook.sh3yk0.com"
   },
   "dependencies": {
     "@ark-ui/react": "5.8.0",

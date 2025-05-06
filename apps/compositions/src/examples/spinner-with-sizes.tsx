@@ -1,4 +1,4 @@
-import { HStack, Spinner } from "@chakra-ui/react"
+import { HStack, Spinner } from "@sh3yk0-ui/react"
 
 export const SpinnerWithSizes = () => {
   return (

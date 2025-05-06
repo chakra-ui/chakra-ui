@@ -1,4 +1,4 @@
-import { Container, For, Stack } from "@chakra-ui/react"
+import { Container, For, Stack } from "@sh3yk0-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const ContainerWithSizes = () => {

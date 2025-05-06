@@ -1,4 +1,4 @@
-import { DataList } from "@chakra-ui/react"
+import { DataList } from "@sh3yk0-ui/react"
 
 export const DataListWithSeparator = () => {
   return (

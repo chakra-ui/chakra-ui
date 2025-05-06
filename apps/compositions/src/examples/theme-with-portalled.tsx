@@ -1,4 +1,4 @@
-import { Button, Input, Popover, Portal, Text, Theme } from "@chakra-ui/react"
+import { Button, Input, Popover, Portal, Text, Theme } from "@sh3yk0-ui/react"
 
 export const ThemeWithPortalled = () => {
   return (

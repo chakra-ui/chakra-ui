@@ -1,4 +1,4 @@
-import { HStack, Heading, Link, Span, Stack, Text } from "@chakra-ui/react"
+import { HStack, Heading, Link, Span, Stack, Text } from "@sh3yk0-ui/react"
 import { LuArrowUpRight } from "react-icons/lu"
 import { titleCase } from "scule"
 import { ResourceIcon } from "./resource-icon"

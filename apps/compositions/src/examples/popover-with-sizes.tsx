@@ -6,7 +6,7 @@ import {
   Portal,
   Stack,
   Text,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const PopoverWithSizes = () => {
   return (

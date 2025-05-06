@@ -1,4 +1,4 @@
-import { Button, Card, Field, Heading, SegmentGroup } from "@chakra-ui/react"
+import { Button, Card, Field, Heading, SegmentGroup } from "@sh3yk0-ui/react"
 import { LuSearch } from "react-icons/lu"
 
 export const SegmentedControlInCard = () => {

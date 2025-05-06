@@ -1,4 +1,4 @@
-import { For, HStack, RadioCard, Stack } from "@chakra-ui/react"
+import { For, HStack, RadioCard, Stack } from "@sh3yk0-ui/react"
 
 export const RadioCardWithVariants = () => {
   return (

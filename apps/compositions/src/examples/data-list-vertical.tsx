@@ -1,4 +1,4 @@
-import { DataList } from "@chakra-ui/react"
+import { DataList } from "@sh3yk0-ui/react"
 
 const stats = [
   { label: "New Users", value: "234", diff: -12, helpText: "Till date" },

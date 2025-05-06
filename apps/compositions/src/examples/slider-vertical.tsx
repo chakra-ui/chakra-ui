@@ -1,4 +1,4 @@
-import { Slider } from "@chakra-ui/react"
+import { Slider } from "@sh3yk0-ui/react"
 
 export const SliderVertical = () => {
   return (

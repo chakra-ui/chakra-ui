@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   SimpleGridProps,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import Link, { LinkProps } from "next/link"
 import { LuChevronRight, LuInfo, LuTerminal } from "react-icons/lu"
 import {

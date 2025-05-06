@@ -1,4 +1,4 @@
-# @chakra-ui/react
+# @sh3yk0-ui/react
 
 ## 3.17.0
 
@@ -128,7 +128,7 @@
     reduce LOC.
   - **InputGroup**
 
-    - Export directly from the `@chakra-ui/react` package
+    - Export directly from the `@sh3yk0-ui/react` package
 
   - **Pagination**
 
@@ -320,7 +320,7 @@
   - **ColorPicker, HoverCard, Tooltip:** Fixed intermittent placement shifts
     caused by updates to the `data-placement` attribute
   - **Snippets / Alert:** Deprecate the `Alert` snippet in favor of using the
-    `Alert` component directly from `@chakra-ui/react`.
+    `Alert` component directly from `@sh3yk0-ui/react`.
 
 ## 3.5.0
 
@@ -466,7 +466,7 @@
   component for converting text and links to QR codes.
 
   ```tsx
-  import { QrCode } from "@chakra-ui/react"
+  import { QrCode } from "@sh3yk0-ui/react"
 
   export const QrCodeWithoutSnippet = () => {
     return (
@@ -706,7 +706,7 @@
 
 - [#8815](https://github.com/chakra-ui/chakra-ui/pull/8815)
   [`806be96`](https://github.com/chakra-ui/chakra-ui/commit/806be96aa3be56399af7fb697bbbb92b2533fffd)
-  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@chakra-ui/hooks`
+  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@sh3yk0-ui/hooks`
   package in favour of using dedicated, robust libraries like `react-use` and
   `usehooks-ts`
 
@@ -767,7 +767,7 @@
   animation properties.
 
   ```jsx
-  import { defineMotionStyles } from "@chakra-ui/react"
+  import { defineMotionStyles } from "@sh3yk0-ui/react"
 
   export const motionStyles = defineMotionStyles({
     "slide-fade-in": {
@@ -1464,7 +1464,7 @@
 
 - [#8815](https://github.com/chakra-ui/chakra-ui/pull/8815)
   [`806be96`](https://github.com/chakra-ui/chakra-ui/commit/806be96aa3be56399af7fb697bbbb92b2533fffd)
-  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@chakra-ui/hooks`
+  Thanks [@isBatak](https://github.com/isBatak)! - Remove the `@sh3yk0-ui/hooks`
   package in favour of using dedicated, robust libraries like `react-use` and
   `usehooks-ts`
 
@@ -1479,8 +1479,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.23
-  - @chakra-ui/utils@3.0.0-next.23
+  - @sh3yk0-ui/hooks@3.0.0-next.23
+  - @sh3yk0-ui/utils@3.0.0-next.23
 
 ## 3.0.0-next.22
 
@@ -1497,8 +1497,8 @@
   toast on mobile
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.22
-  - @chakra-ui/utils@3.0.0-next.22
+  - @sh3yk0-ui/hooks@3.0.0-next.22
+  - @sh3yk0-ui/utils@3.0.0-next.22
 
 ## 3.0.0-next.21
 
@@ -1521,16 +1521,16 @@
   exposed list of slot anatomy to ensure all anatomy is included for use in
   type-checking extend recipe configs.
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.21
-  - @chakra-ui/utils@3.0.0-next.21
+  - @sh3yk0-ui/hooks@3.0.0-next.21
+  - @sh3yk0-ui/utils@3.0.0-next.21
 
 ## 3.0.0-next.20
 
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.20
-  - @chakra-ui/utils@3.0.0-next.20
+  - @sh3yk0-ui/hooks@3.0.0-next.20
+  - @sh3yk0-ui/utils@3.0.0-next.20
 
 ## 3.0.0-next.19
 
@@ -1562,16 +1562,16 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.19
-  - @chakra-ui/utils@3.0.0-next.19
+  - @sh3yk0-ui/hooks@3.0.0-next.19
+  - @sh3yk0-ui/utils@3.0.0-next.19
 
 ## 3.0.0-next.18
 
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.18
-  - @chakra-ui/utils@3.0.0-next.18
+  - @sh3yk0-ui/hooks@3.0.0-next.18
+  - @sh3yk0-ui/utils@3.0.0-next.18
 
 ## 3.0.0-next.17
 
@@ -1622,8 +1622,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.17
-  - @chakra-ui/utils@3.0.0-next.17
+  - @sh3yk0-ui/hooks@3.0.0-next.17
+  - @sh3yk0-ui/utils@3.0.0-next.17
 
 ## 3.0.0-next.16
 
@@ -1641,8 +1641,8 @@
 
 - Updated dependencies
   [[`d5a225f`](https://github.com/chakra-ui/chakra-ui/commit/d5a225f1bc3eca8be67a69b78429481cf802372b)]:
-  - @chakra-ui/hooks@3.0.0-next.16
-  - @chakra-ui/utils@3.0.0-next.16
+  - @sh3yk0-ui/hooks@3.0.0-next.16
+  - @sh3yk0-ui/utils@3.0.0-next.16
 
 ## 3.0.0-next.15
 
@@ -1659,8 +1659,8 @@
   to prevent color regressions
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.15
-  - @chakra-ui/utils@3.0.0-next.15
+  - @sh3yk0-ui/hooks@3.0.0-next.15
+  - @sh3yk0-ui/utils@3.0.0-next.15
 
 ## 3.0.0-next.14
 
@@ -1685,8 +1685,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.14
-  - @chakra-ui/utils@3.0.0-next.14
+  - @sh3yk0-ui/hooks@3.0.0-next.14
+  - @sh3yk0-ui/utils@3.0.0-next.14
 
 ## 3.0.0-next.13
 
@@ -1703,8 +1703,8 @@
   Fix issue page props were not forwarded correctly.
   - **PinInput:** Fix issue mask props were not forwarded correctly.
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.13
-  - @chakra-ui/utils@3.0.0-next.13
+  - @sh3yk0-ui/hooks@3.0.0-next.13
+  - @sh3yk0-ui/utils@3.0.0-next.13
 
 ## 3.0.0-next.12
 
@@ -1715,8 +1715,8 @@
   `hideFrom` and `hideBelow` doesn't show any autocompletions
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.12
-  - @chakra-ui/utils@3.0.0-next.12
+  - @sh3yk0-ui/hooks@3.0.0-next.12
+  - @sh3yk0-ui/utils@3.0.0-next.12
 
 ## 3.0.0-next.11
 
@@ -1732,16 +1732,16 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.11
-  - @chakra-ui/utils@3.0.0-next.11
+  - @sh3yk0-ui/hooks@3.0.0-next.11
+  - @sh3yk0-ui/utils@3.0.0-next.11
 
 ## 3.0.0-next.10
 
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.10
-  - @chakra-ui/utils@3.0.0-next.10
+  - @sh3yk0-ui/hooks@3.0.0-next.10
+  - @sh3yk0-ui/utils@3.0.0-next.10
 
 ## 3.0.0-next.9
 
@@ -1759,7 +1759,7 @@
   animation properties.
 
   ```jsx
-  import { defineMotionStyles } from "@chakra-ui/react"
+  import { defineMotionStyles } from "@sh3yk0-ui/react"
 
   export const motionStyles = defineMotionStyles({
     "slide-fade-in": {
@@ -1933,8 +1933,8 @@
   conversion to CSS variable.
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.9
-  - @chakra-ui/utils@3.0.0-next.9
+  - @sh3yk0-ui/hooks@3.0.0-next.9
+  - @sh3yk0-ui/utils@3.0.0-next.9
 
 ## 3.0.0-next.8
 
@@ -1945,8 +1945,8 @@
   `use client` directives to several components
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.8
-  - @chakra-ui/utils@3.0.0-next.8
+  - @sh3yk0-ui/hooks@3.0.0-next.8
+  - @sh3yk0-ui/utils@3.0.0-next.8
 
 ## 3.0.0-next.7
 
@@ -1959,8 +1959,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.7
-  - @chakra-ui/utils@3.0.0-next.7
+  - @sh3yk0-ui/hooks@3.0.0-next.7
+  - @sh3yk0-ui/utils@3.0.0-next.7
 
 ## 3.0.0-next.6
 
@@ -1973,8 +1973,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.6
-  - @chakra-ui/utils@3.0.0-next.6
+  - @sh3yk0-ui/hooks@3.0.0-next.6
+  - @sh3yk0-ui/utils@3.0.0-next.6
 
 ## 3.0.0-next.5
 
@@ -2069,8 +2069,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.5
-  - @chakra-ui/utils@3.0.0-next.5
+  - @sh3yk0-ui/hooks@3.0.0-next.5
+  - @sh3yk0-ui/utils@3.0.0-next.5
 
 ## 3.0.0-next.4
 
@@ -2088,8 +2088,8 @@
   attribute to stepper
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.4
-  - @chakra-ui/utils@3.0.0-next.4
+  - @sh3yk0-ui/hooks@3.0.0-next.4
+  - @sh3yk0-ui/utils@3.0.0-next.4
 
 ## 3.0.0-next.3
 
@@ -2110,8 +2110,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.3
-  - @chakra-ui/utils@3.0.0-next.3
+  - @sh3yk0-ui/hooks@3.0.0-next.3
+  - @sh3yk0-ui/utils@3.0.0-next.3
 
 ## 3.0.0-next.2
 
@@ -2124,8 +2124,8 @@
   - Refactor `Avatar` to use Ark UI
   - Refactor `Progress` to use Ark UI
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.2
-  - @chakra-ui/utils@3.0.0-next.2
+  - @sh3yk0-ui/hooks@3.0.0-next.2
+  - @sh3yk0-ui/utils@3.0.0-next.2
 
 ## 3.0.0-next.1
 
@@ -2142,8 +2142,8 @@
   component to use Ark UI
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.1
-  - @chakra-ui/utils@3.0.0-next.1
+  - @sh3yk0-ui/hooks@3.0.0-next.1
+  - @sh3yk0-ui/utils@3.0.0-next.1
 
 ## 3.0.0-next.0
 
@@ -2251,5 +2251,5 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @chakra-ui/hooks@3.0.0-next.0
-  - @chakra-ui/utils@3.0.0-next.0
+  - @sh3yk0-ui/hooks@3.0.0-next.0
+  - @sh3yk0-ui/utils@3.0.0-next.0

@@ -1,4 +1,4 @@
-import { For, HStack, RadioGroup, Stack } from "@chakra-ui/react"
+import { For, HStack, RadioGroup, Stack } from "@sh3yk0-ui/react"
 
 export const RadioWithVariants = () => {
   return (

@@ -1,4 +1,4 @@
-import { Avatar, For, HStack, Tag } from "@chakra-ui/react"
+import { Avatar, For, HStack, Tag } from "@sh3yk0-ui/react"
 
 export const TagWithAvatar = () => {
   return (

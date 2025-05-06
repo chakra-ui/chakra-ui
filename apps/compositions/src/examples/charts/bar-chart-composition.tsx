@@ -1,7 +1,7 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
-import { Card, SegmentGroup } from "@chakra-ui/react"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
+import { Card, SegmentGroup } from "@sh3yk0-ui/react"
 import * as React from "react"
 import { Bar, BarChart, XAxis } from "recharts"
 

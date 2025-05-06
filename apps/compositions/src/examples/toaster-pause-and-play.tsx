@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, HStack } from "@chakra-ui/react"
+import { Button, HStack } from "@sh3yk0-ui/react"
 import { toaster } from "compositions/ui/toaster"
 import { useId, useState } from "react"
 import { HiPause, HiPlay } from "react-icons/hi"

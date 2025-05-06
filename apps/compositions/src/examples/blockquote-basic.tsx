@@ -1,4 +1,4 @@
-import { Blockquote } from "@chakra-ui/react"
+import { Blockquote } from "@sh3yk0-ui/react"
 
 export const BlockquoteBasic = () => {
   return (

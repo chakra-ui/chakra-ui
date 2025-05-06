@@ -1,4 +1,4 @@
-import { Box, Center, HStack } from "@chakra-ui/react"
+import { Box, Center, HStack } from "@sh3yk0-ui/react"
 import { LuPhone } from "react-icons/lu"
 
 export const CenterWithIcons = () => {

@@ -6,7 +6,7 @@ import {
   Heading,
   SimpleGrid,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"

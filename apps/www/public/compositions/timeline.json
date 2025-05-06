@@ -5,7 +5,7 @@
   "id": "timeline",
   "file": {
     "name": "timeline.tsx",
-    "content": "import { Timeline as ChakraTimeline } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport const TimelineConnector = React.forwardRef<\n  HTMLDivElement,\n  ChakraTimeline.IndicatorProps\n>(function TimelineConnector(props, ref) {\n  return (\n    <ChakraTimeline.Connector ref={ref}>\n      <ChakraTimeline.Separator />\n      <ChakraTimeline.Indicator {...props} />\n    </ChakraTimeline.Connector>\n  )\n})\n\nexport const TimelineRoot = ChakraTimeline.Root\nexport const TimelineContent = ChakraTimeline.Content\nexport const TimelineItem = ChakraTimeline.Item\nexport const TimelineIndicator = ChakraTimeline.Indicator\nexport const TimelineTitle = ChakraTimeline.Title\nexport const TimelineDescription = ChakraTimeline.Description\n"
+    "content": "import { Timeline as ChakraTimeline } from \"@sh3yk0-ui/react\"\nimport * as React from \"react\"\n\nexport const TimelineConnector = React.forwardRef<\n  HTMLDivElement,\n  ChakraTimeline.IndicatorProps\n>(function TimelineConnector(props, ref) {\n  return (\n    <ChakraTimeline.Connector ref={ref}>\n      <ChakraTimeline.Separator />\n      <ChakraTimeline.Indicator {...props} />\n    </ChakraTimeline.Connector>\n  )\n})\n\nexport const TimelineRoot = ChakraTimeline.Root\nexport const TimelineContent = ChakraTimeline.Content\nexport const TimelineItem = ChakraTimeline.Item\nexport const TimelineIndicator = ChakraTimeline.Indicator\nexport const TimelineTitle = ChakraTimeline.Title\nexport const TimelineDescription = ChakraTimeline.Description\n"
   },
   "component": "Timeline"
 }

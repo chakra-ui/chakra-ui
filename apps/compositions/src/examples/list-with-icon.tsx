@@ -1,4 +1,4 @@
-import { List } from "@chakra-ui/react"
+import { List } from "@sh3yk0-ui/react"
 import { LuCircleCheck, LuCircleDashed } from "react-icons/lu"
 
 export const ListWithIcon = () => {

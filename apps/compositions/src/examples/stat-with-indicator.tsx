@@ -1,4 +1,4 @@
-import { Badge, Stat } from "@chakra-ui/react"
+import { Badge, Stat } from "@sh3yk0-ui/react"
 
 export const StatWithIndicator = () => {
   return (

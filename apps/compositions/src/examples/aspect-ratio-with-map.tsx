@@ -1,4 +1,4 @@
-import { AspectRatio } from "@chakra-ui/react"
+import { AspectRatio } from "@sh3yk0-ui/react"
 
 export const AspectRatioWithMap = () => {
   return (

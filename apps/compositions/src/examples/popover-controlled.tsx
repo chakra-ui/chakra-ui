@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Popover, Portal } from "@chakra-ui/react"
+import { Button, Popover, Portal } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const PopoverControlled = () => {

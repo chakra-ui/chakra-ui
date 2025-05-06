@@ -1,4 +1,4 @@
-import { Link, Stack } from "@chakra-ui/react"
+import { Link, Stack } from "@sh3yk0-ui/react"
 
 export const LinkWithVariants = () => {
   return (

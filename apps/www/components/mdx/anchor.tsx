@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box } from "@sh3yk0-ui/react"
 import Link, { type LinkProps } from "next/link"
 
 export const Anchor = (props: LinkProps) => {

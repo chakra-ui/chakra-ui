@@ -5,7 +5,7 @@ import {
   Span,
   Square,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { HiFolder, HiLockClosed, HiPencil } from "react-icons/hi"
 
 export const ProgressComposition = () => {

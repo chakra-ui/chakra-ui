@@ -18,7 +18,7 @@ Let's say you want to create new property `br` that applies a border radius to
 an element.
 
 ```tsx title="components/ui/provider.tsx"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const customConfig = defineConfig({
   utilities: {
@@ -39,7 +39,7 @@ const system = createSystem(defaultConfig, customConfig)
 Now, you can use the `br` property in components.
 
 ```tsx title="app.tsx"
-import { Box } from "@chakra-ui/react"
+import { Box } from "@sh3yk0-ui/react"
 
 function App() {
   return <Box br="sm" />
@@ -52,7 +52,7 @@ Let's say we want to create a new property `borderX` that applies a limited set
 of inline border to an element and automatically applies the border color.
 
 ```tsx title="components/ui/provider.tsx"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const customConfig = defineConfig({
   utilities: {
@@ -77,7 +77,7 @@ const system = createSystem(defaultConfig, customConfig)
 Now, you can use the `borderX` or `bx` property in components.
 
 ```tsx title="app.tsx"
-import { Box } from "@chakra-ui/react"
+import { Box } from "@sh3yk0-ui/react"
 
 function App() {
   return <Box borderX="sm" />
@@ -87,7 +87,7 @@ function App() {
 ### Using mapped values
 
 ```tsx title="components/ui/provider.tsx"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const customConfig = defineConfig({
   utilities: {
@@ -112,7 +112,7 @@ const system = createSystem(defaultConfig, customConfig)
 Now, you can use the `borderX` or `bx` property in components.
 
 ```tsx title="app.tsx"
-import { Box } from "@chakra-ui/react"
+import { Box } from "@sh3yk0-ui/react"
 
 function App() {
   return <Box borderX="sm" />

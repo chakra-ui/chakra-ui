@@ -1,4 +1,4 @@
-import { Accordion, Span } from "@chakra-ui/react"
+import { Accordion, Span } from "@sh3yk0-ui/react"
 
 export const AccordionWithMultiple = () => {
   return (

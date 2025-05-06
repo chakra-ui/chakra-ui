@@ -1,6 +1,6 @@
 "use client"
 
-import { RatingGroup, useRatingGroup } from "@chakra-ui/react"
+import { RatingGroup, useRatingGroup } from "@sh3yk0-ui/react"
 
 export const RatingWithStore = () => {
   const store = useRatingGroup({ count: 5, defaultValue: 3 })

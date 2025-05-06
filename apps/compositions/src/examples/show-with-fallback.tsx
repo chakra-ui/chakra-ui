@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Show, Stack, Text } from "@chakra-ui/react"
+import { Button, Show, Stack, Text } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const ShowWithFallback = () => {

@@ -1,4 +1,4 @@
-import { Button, Toggle } from "@chakra-ui/react"
+import { Button, Toggle } from "@sh3yk0-ui/react"
 import { LuVolume2, LuVolumeX } from "react-icons/lu"
 
 export const ToggleWithIndicator = () => {

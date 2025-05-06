@@ -1,9 +1,9 @@
-# @chakra-ui/charts
+# @sh3yk0-ui/charts
 
 Data visualization components for Chakra UI.
 
 ## Installation
 
 ```bash
-npm install @chakra-ui/charts
+npm install @sh3yk0-ui/charts
 ```

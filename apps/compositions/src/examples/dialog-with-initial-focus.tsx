@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Dialog, Field, Input, Portal, Stack } from "@chakra-ui/react"
+import { Button, Dialog, Field, Input, Portal, Stack } from "@sh3yk0-ui/react"
 import { useRef } from "react"
 
 export const DialogWithInitialFocus = () => {

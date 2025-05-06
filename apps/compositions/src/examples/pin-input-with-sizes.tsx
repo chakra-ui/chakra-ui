@@ -1,4 +1,4 @@
-import { For, PinInput, Stack } from "@chakra-ui/react"
+import { For, PinInput, Stack } from "@sh3yk0-ui/react"
 
 export const PinInputWithSizes = () => {
   return (

@@ -1,4 +1,4 @@
-import { Show } from "@chakra-ui/react"
+import { Show } from "@sh3yk0-ui/react"
 
 export const ShowWithRenderProp = () => {
   const value: number | undefined = 10

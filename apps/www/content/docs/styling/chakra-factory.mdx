@@ -9,7 +9,7 @@ Chakra factory serves as a way to create supercharged JSX component from any
 HTML element to enable them receive JSX style props.
 
 ```js
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 ```
 
 The chakra factory can be used in two ways: as a JSX element or as a factory
@@ -22,7 +22,7 @@ With the JSX factory, you can use `chakra.<element>` syntax to create JSX
 elements that support style props.
 
 ```jsx
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 
 const Button = ({ children }) => (
   <chakra.button bg="blue.500" color="white" py="2" px="4" rounded="md">
@@ -126,7 +126,7 @@ To create custom forward props logic, combine the
 package and the `isValidProperty` from Chakra UI.
 
 ```tsx
-import { chakra, defaultSystem } from "@chakra-ui/react"
+import { chakra, defaultSystem } from "@sh3yk0-ui/react"
 import shouldForwardProp from "@emotion/is-prop-valid"
 
 const { isValidProperty } = defaultSystem

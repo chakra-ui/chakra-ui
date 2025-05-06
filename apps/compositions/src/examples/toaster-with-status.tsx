@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, For, HStack } from "@chakra-ui/react"
+import { Button, For, HStack } from "@sh3yk0-ui/react"
 import { toaster } from "compositions/ui/toaster"
 
 export const ToasterWithStatus = () => {

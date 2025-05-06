@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, CloseButton, Drawer, Portal } from "@chakra-ui/react"
+import { Button, CloseButton, Drawer, Portal } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const DrawerControlled = () => {

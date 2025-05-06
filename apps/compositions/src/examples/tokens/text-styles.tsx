@@ -1,4 +1,4 @@
-import { For, Stack, Text } from "@chakra-ui/react"
+import { For, Stack, Text } from "@sh3yk0-ui/react"
 
 export const TokensTextStyles = () => {
   return (

@@ -1,4 +1,4 @@
-import { Stack, StackSeparator } from "@chakra-ui/react"
+import { Stack, StackSeparator } from "@sh3yk0-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const StackWithSeparator = () => {

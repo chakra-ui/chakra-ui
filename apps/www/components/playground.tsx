@@ -1,6 +1,6 @@
 "use client"
 
-import { Flex, Link, Stack, StackProps, Text, chakra } from "@chakra-ui/react"
+import { Flex, Link, Stack, StackProps, Text, chakra } from "@sh3yk0-ui/react"
 import NextLink from "next/link"
 import type { JSX } from "react"
 

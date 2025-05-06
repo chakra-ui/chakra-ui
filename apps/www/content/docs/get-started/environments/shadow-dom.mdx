@@ -29,7 +29,7 @@ Use the following template to get started quickly
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react @emotion/cache react-shadow
+npm i @sh3yk0-ui/react @emotion/react @emotion/cache react-shadow
 ```
 
 The additional packages used are:
@@ -40,10 +40,10 @@ The additional packages used are:
 ### Add snippets
 
 Snippets are pre-built components that you can use to build your UI faster.
-Using the `@chakra-ui/cli` you can add snippets to your project.
+Using the `@sh3yk0-ui/cli` you can add snippets to your project.
 
 ```bash
-npx @chakra-ui/cli snippet add
+npx @sh3yk0-ui/cli snippet add
 ```
 
 ### Update tsconfig
@@ -70,7 +70,7 @@ Create a `system.ts` file in the root of your project and configure the style
 engine.
 
 ```tsx title="components/ui/system.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const varRoot = ":host"
 
@@ -98,7 +98,7 @@ component.
 
 This provider composes the following:
 
-- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ChakraProvider` from `@sh3yk0-ui/react` for the styling system
 - `EnvironmentProvider` from `react-shadow` to ensure Chakra components query
   the DOM correctly
 - `CacheProvider` from `@emotion/react` to provide the custom insertion point
@@ -107,9 +107,9 @@ This provider composes the following:
 ```tsx title="components/ui/provider.tsx"
 "use client"
 
-import { ChakraProvider, EnvironmentProvider } from "@chakra-ui/react"
 import createCache from "@emotion/cache"
 import { CacheProvider } from "@emotion/react"
+import { ChakraProvider, EnvironmentProvider } from "@sh3yk0-ui/react"
 import { ThemeProvider, type ThemeProviderProps } from "next-themes"
 import { useEffect, useState } from "react"
 import root from "react-shadow/emotion"
@@ -172,7 +172,7 @@ With the power of the snippets and the primitive components from Chakra UI, you
 can build your UI faster.
 
 ```tsx
-import { Button, HStack } from "@chakra-ui/react"
+import { Button, HStack } from "@sh3yk0-ui/react"
 
 export default function App() {
   return (

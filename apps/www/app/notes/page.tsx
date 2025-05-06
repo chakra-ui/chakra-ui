@@ -1,5 +1,5 @@
 import { MDXContent } from "@/components/mdx-content"
-import { Container } from "@chakra-ui/react"
+import { Container } from "@sh3yk0-ui/react"
 import { Metadata } from "next"
 import { notes } from ".velite"
 

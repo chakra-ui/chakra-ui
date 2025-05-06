@@ -1,4 +1,4 @@
-import { Badge, BadgeProps, HStack, Stack, StackProps } from "@chakra-ui/react"
+import { Badge, BadgeProps, HStack, Stack, StackProps } from "@sh3yk0-ui/react"
 import Link, { LinkProps } from "next/link"
 import { StatusBadge } from "./status-badge"
 

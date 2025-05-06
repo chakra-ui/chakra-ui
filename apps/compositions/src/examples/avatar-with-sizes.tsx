@@ -1,4 +1,4 @@
-import { Avatar, For, HStack } from "@chakra-ui/react"
+import { Avatar, For, HStack } from "@sh3yk0-ui/react"
 
 export const AvatarWithSizes = () => {
   return (

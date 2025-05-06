@@ -1,4 +1,4 @@
-import { For, Stack, Table } from "@chakra-ui/react"
+import { For, Stack, Table } from "@sh3yk0-ui/react"
 
 export const TableWithVariants = () => {
   return (

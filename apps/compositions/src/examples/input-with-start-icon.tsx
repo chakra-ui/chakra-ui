@@ -1,4 +1,4 @@
-import { Input, InputGroup } from "@chakra-ui/react"
+import { Input, InputGroup } from "@sh3yk0-ui/react"
 import { LuUser } from "react-icons/lu"
 
 export const InputWithStartIcon = () => {

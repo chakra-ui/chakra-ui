@@ -1,4 +1,4 @@
-import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig } from "@sh3yk0-ui/react"
 
 export const system = createSystem(defaultConfig, {
   theme: {

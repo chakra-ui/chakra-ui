@@ -1,4 +1,4 @@
-import { CheckboxCard, CheckboxGroup, Flex, Text } from "@chakra-ui/react"
+import { CheckboxCard, CheckboxGroup, Flex, Text } from "@sh3yk0-ui/react"
 
 export const CheckboxCardWithGroup = () => {
   return (

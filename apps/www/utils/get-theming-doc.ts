@@ -1,4 +1,4 @@
-import { defaultSystem } from "@chakra-ui/react/preset"
+import { defaultSystem } from "@sh3yk0-ui/react/preset"
 import { markdownTable } from "markdown-table"
 
 const { _config: config, tokens } = defaultSystem

@@ -1,13 +1,11 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": [
-    "compositions/ui/toggle-tip"
-  ],
+  "fileDependencies": ["compositions/ui/toggle-tip"],
   "id": "progress",
   "file": {
     "name": "progress.tsx",
-    "content": "import { Progress as ChakraProgress } from \"@chakra-ui/react\"\nimport { InfoTip } from \"./toggle-tip\"\nimport * as React from \"react\"\n\nexport const ProgressBar = React.forwardRef<\n  HTMLDivElement,\n  ChakraProgress.TrackProps\n>(function ProgressBar(props, ref) {\n  return (\n    <ChakraProgress.Track {...props} ref={ref}>\n      <ChakraProgress.Range />\n    </ChakraProgress.Track>\n  )\n})\n\nexport interface ProgressLabelProps extends ChakraProgress.LabelProps {\n  info?: React.ReactNode\n}\n\nexport const ProgressLabel = React.forwardRef<\n  HTMLDivElement,\n  ProgressLabelProps\n>(function ProgressLabel(props, ref) {\n  const { children, info, ...rest } = props\n  return (\n    <ChakraProgress.Label {...rest} ref={ref}>\n      {children}\n      {info && <InfoTip>{info}</InfoTip>}\n    </ChakraProgress.Label>\n  )\n})\n\nexport const ProgressRoot = ChakraProgress.Root\nexport const ProgressValueText = ChakraProgress.ValueText\n"
+    "content": "import { Progress as ChakraProgress } from \"@sh3yk0-ui/react\"\nimport { InfoTip } from \"./toggle-tip\"\nimport * as React from \"react\"\n\nexport const ProgressBar = React.forwardRef<\n  HTMLDivElement,\n  ChakraProgress.TrackProps\n>(function ProgressBar(props, ref) {\n  return (\n    <ChakraProgress.Track {...props} ref={ref}>\n      <ChakraProgress.Range />\n    </ChakraProgress.Track>\n  )\n})\n\nexport interface ProgressLabelProps extends ChakraProgress.LabelProps {\n  info?: React.ReactNode\n}\n\nexport const ProgressLabel = React.forwardRef<\n  HTMLDivElement,\n  ProgressLabelProps\n>(function ProgressLabel(props, ref) {\n  const { children, info, ...rest } = props\n  return (\n    <ChakraProgress.Label {...rest} ref={ref}>\n      {children}\n      {info && <InfoTip>{info}</InfoTip>}\n    </ChakraProgress.Label>\n  )\n})\n\nexport const ProgressRoot = ChakraProgress.Root\nexport const ProgressValueText = ChakraProgress.ValueText\n"
   },
   "component": "Progress"
 }

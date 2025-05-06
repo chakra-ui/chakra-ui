@@ -1,6 +1,6 @@
 "use client"
 
-import { Checkbox, useCheckbox } from "@chakra-ui/react"
+import { Checkbox, useCheckbox } from "@sh3yk0-ui/react"
 
 export const CheckboxWithStore = () => {
   const checkbox = useCheckbox()

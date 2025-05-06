@@ -8,7 +8,7 @@ import {
   Stack,
   Text,
   chakra,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import Image from "next/image"
 import { HighlightHeading } from "./typography"
 

@@ -1,5 +1,5 @@
 import { HeaderSection } from "@/components/site/header.section"
-import { Stack } from "@chakra-ui/react"
+import { Stack } from "@sh3yk0-ui/react"
 
 export default function Layout({
   children,

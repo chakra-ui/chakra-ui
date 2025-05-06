@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Menu, Portal, Text } from "@chakra-ui/react"
+import { Box, Center, Flex, Menu, Portal, Text } from "@sh3yk0-ui/react"
 
 export const MenuWithHideWhenDetached = () => {
   return (

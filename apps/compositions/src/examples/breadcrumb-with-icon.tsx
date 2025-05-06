@@ -1,4 +1,4 @@
-import { Breadcrumb } from "@chakra-ui/react"
+import { Breadcrumb } from "@sh3yk0-ui/react"
 import { LuHouse, LuShirt } from "react-icons/lu"
 
 export const BreadcrumbWithIcon = () => {

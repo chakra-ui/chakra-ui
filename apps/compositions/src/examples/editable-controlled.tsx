@@ -1,6 +1,6 @@
 "use client"
 
-import { Editable } from "@chakra-ui/react"
+import { Editable } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const EditableControlled = () => {

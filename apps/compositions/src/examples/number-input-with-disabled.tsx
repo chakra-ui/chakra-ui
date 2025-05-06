@@ -1,4 +1,4 @@
-import { NumberInput } from "@chakra-ui/react"
+import { NumberInput } from "@sh3yk0-ui/react"
 
 export const NumberInputWithDisabled = () => {
   return (

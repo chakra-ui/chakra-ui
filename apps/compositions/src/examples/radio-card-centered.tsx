@@ -1,4 +1,4 @@
-import { HStack, Icon, RadioCard } from "@chakra-ui/react"
+import { HStack, Icon, RadioCard } from "@sh3yk0-ui/react"
 import { LuClock, LuDollarSign, LuTrendingUp } from "react-icons/lu"
 
 export const RadioCardCentered = () => {

@@ -1,4 +1,4 @@
-import { Button, Center, HStack, Steps } from "@chakra-ui/react"
+import { Button, Center, HStack, Steps } from "@sh3yk0-ui/react"
 
 export const StepsWithLines = () => {
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Checkbox, Field, Input, Stack } from "@chakra-ui/react"
+import { Button, Checkbox, Field, Input, Stack } from "@sh3yk0-ui/react"
 
 export const CheckboxWithForm = () => {
   return (

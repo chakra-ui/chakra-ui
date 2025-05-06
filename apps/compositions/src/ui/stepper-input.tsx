@@ -1,4 +1,4 @@
-import { HStack, IconButton, NumberInput } from "@chakra-ui/react"
+import { HStack, IconButton, NumberInput } from "@sh3yk0-ui/react"
 import * as React from "react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 

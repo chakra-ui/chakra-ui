@@ -5,7 +5,7 @@ import {
   IconButton,
   Kbd,
   Span,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { forwardRef } from "react"
 import { LuSearch } from "react-icons/lu"
 

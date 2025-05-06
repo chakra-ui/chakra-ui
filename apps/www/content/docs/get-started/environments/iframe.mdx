@@ -29,7 +29,7 @@ Use the following template to get started quickly
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react @emotion/cache react-frame-component
+npm i @sh3yk0-ui/react @emotion/react @emotion/cache react-frame-component
 ```
 
 The additional packages used are:
@@ -40,10 +40,10 @@ The additional packages used are:
 ### Add snippets
 
 Snippets are pre-built components that you can use to build your UI faster.
-Using the `@chakra-ui/cli` you can add snippets to your project.
+Using the `@sh3yk0-ui/cli` you can add snippets to your project.
 
 ```bash
-npx @chakra-ui/cli snippet add
+npx @sh3yk0-ui/cli snippet add
 ```
 
 ### Update tsconfig
@@ -70,13 +70,13 @@ Create a `components/ui/iframe-provider.tsx` file to setup the iframe using the
 `react-frame-component` package.
 
 ```tsx title="components/ui/iframe-provider.tsx"
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
 import {
   ChakraProvider,
   EnvironmentProvider,
   defaultSystem,
-} from "@chakra-ui/react"
-import createCache from "@emotion/cache"
-import { CacheProvider } from "@emotion/react"
+} from "@sh3yk0-ui/react"
 import Iframe, { FrameContextConsumer } from "react-frame-component"
 
 function memoize<T extends object, R>(func: (arg: T) => R): (arg: T) => R {
@@ -124,7 +124,7 @@ Wrap your application with the `Provider` component generated in the
 
 This provider composes the following:
 
-- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ChakraProvider` from `@sh3yk0-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
 ```jsx
@@ -148,7 +148,7 @@ At any component in your application, wrap it with the `IframeProvider`
 component to render it inside the iframe.
 
 ```tsx title="src/App.tsx"
-import { Button, Container, Heading, Stack } from "@chakra-ui/react"
+import { Button, Container, Heading, Stack } from "@sh3yk0-ui/react"
 import { IframeProvider } from "./components/ui/iframe-provider"
 
 function App() {

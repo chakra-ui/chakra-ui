@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorPicker, HStack, parseColor } from "@chakra-ui/react"
+import { ColorPicker, HStack, parseColor } from "@sh3yk0-ui/react"
 
 export const ColorPickerInline = () => {
   return (

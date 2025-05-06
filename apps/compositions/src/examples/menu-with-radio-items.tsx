@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Menu, Portal } from "@chakra-ui/react"
+import { Button, Menu, Portal } from "@sh3yk0-ui/react"
 import { useState } from "react"
 import { HiSortAscending } from "react-icons/hi"
 

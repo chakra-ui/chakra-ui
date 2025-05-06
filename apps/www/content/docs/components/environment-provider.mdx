@@ -19,7 +19,7 @@ the appropriate root node or document, ensuring correct DOM queries.
 ## Usage
 
 ```jsx
-import { EnvironmentProvider } from "@chakra-ui/react"
+import { EnvironmentProvider } from "@sh3yk0-ui/react"
 ```
 
 ```jsx
@@ -34,7 +34,7 @@ Here's an example that uses `react-frame-component` to set the
 `EnvironmentProvider`'s value with the iframe environment.
 
 ```jsx
-import { EnvironmentProvider } from "@chakra-ui/react"
+import { EnvironmentProvider } from "@sh3yk0-ui/react"
 import Frame, { FrameContextConsumer } from "react-frame-component"
 
 export const Demo = () => (
@@ -56,7 +56,7 @@ Here's an example that uses `react-shadow` to set the `EnvironmentProvider`'s
 value with Shadow DOM environment.
 
 ```jsx
-import { EnvironmentProvider } from "@chakra-ui/react"
+import { EnvironmentProvider } from "@sh3yk0-ui/react"
 import { useRef } from "react"
 import root from "react-shadow"
 
@@ -80,7 +80,7 @@ Use the `useEnvironmentContext` hook to access the `RootNode`, `Document`, and
 `Window` context.
 
 ```jsx
-import { useEnvironmentContext } from "@chakra-ui/react"
+import { useEnvironmentContext } from "@sh3yk0-ui/react"
 
 export const Demo = () => {
   const { getRootNode } = useEnvironmentContext()

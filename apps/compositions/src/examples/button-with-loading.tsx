@@ -1,4 +1,4 @@
-import { Button, Stack } from "@chakra-ui/react"
+import { Button, Stack } from "@sh3yk0-ui/react"
 
 export const ButtonWithLoading = () => {
   return (

@@ -5,7 +5,7 @@ import {
   FileUpload,
   Float,
   useFileUploadContext,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { LuFileImage, LuX } from "react-icons/lu"
 
 const FileUploadList = () => {

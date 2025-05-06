@@ -1,4 +1,4 @@
-import { Popover as ChakraPopover, IconButton, Portal } from "@chakra-ui/react"
+import { Popover as ChakraPopover, IconButton, Portal } from "@sh3yk0-ui/react"
 import * as React from "react"
 import { HiOutlineInformationCircle } from "react-icons/hi"
 

@@ -9,7 +9,7 @@ import {
   HStack,
   LinkOverlay,
   Text,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import Link from "next/link"
 
 interface Props {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, HStack, Tooltip, useTooltip } from "@chakra-ui/react"
+import { Button, HStack, Tooltip, useTooltip } from "@sh3yk0-ui/react"
 
 export const TooltipWithStore = () => {
   const tooltip = useTooltip()

@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Stack } from "@chakra-ui/react"
+import { Box, Button, Stack } from "@sh3yk0-ui/react"
 import { useColorMode, useColorModeValue } from "compositions/ui/color-mode"
 
 export const ColorModeValue = () => {

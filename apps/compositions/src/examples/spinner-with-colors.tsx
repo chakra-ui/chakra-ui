@@ -1,4 +1,4 @@
-import { Spinner, Stack } from "@chakra-ui/react"
+import { Spinner, Stack } from "@sh3yk0-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 
 export const SpinnerWithColors = () => {

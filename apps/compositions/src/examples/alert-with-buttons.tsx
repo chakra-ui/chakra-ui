@@ -1,4 +1,4 @@
-import { Alert, Button } from "@chakra-ui/react"
+import { Alert, Button } from "@sh3yk0-ui/react"
 
 export const AlertWithButtons = () => {
   return (

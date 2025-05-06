@@ -1,4 +1,4 @@
-import { Table } from "@chakra-ui/react"
+import { Table } from "@sh3yk0-ui/react"
 
 export const TableWithStickyHeader = () => {
   return (

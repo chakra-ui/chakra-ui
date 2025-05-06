@@ -1,4 +1,4 @@
-import { Badge, CheckboxCard, HStack } from "@chakra-ui/react"
+import { Badge, CheckboxCard, HStack } from "@sh3yk0-ui/react"
 
 export const CheckboxCardWithAddon = () => {
   return (

@@ -20,7 +20,7 @@
     "incremental": true,
     "customConditions": ["source"],
     "paths": {
-      "@chakra-ui/react": ["../../packages/react/src"]
+      "@sh3yk0-ui/react": ["../../packages/react/src"]
     }
   },
   "exclude": ["node_modules"],

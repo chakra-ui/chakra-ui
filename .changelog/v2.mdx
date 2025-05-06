@@ -98,23 +98,23 @@ description:
   exports.
 
   ```diff
-  - import theme from "@chakra-ui/theme"
-  + import { theme } from "@chakra-ui/theme"
+  - import theme from "@sh3yk0-ui/theme"
+  + import { theme } from "@sh3yk0-ui/theme"
   ```
 
   ```diff
-  - import Icon from "@chakra-ui/icon"
-  + import { Icon } from "@chakra-ui/icon"
+  - import Icon from "@sh3yk0-ui/icon"
+  + import { Icon } from "@sh3yk0-ui/icon"
   ```
 
   ```diff
-  - import CSSReset from "@chakra-ui/css-reset"
-  + import { CSSReset } from "@chakra-ui/css-reset"
+  - import CSSReset from "@sh3yk0-ui/css-reset"
+  + import { CSSReset } from "@sh3yk0-ui/css-reset"
   ```
 
   ```diff
-  - import VisuallyHidden from "@chakra-ui/visually-hidden"
-  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  - import VisuallyHidden from "@sh3yk0-ui/visually-hidden"
+  + import { VisuallyHidden } from "@sh3yk0-ui/visually-hidden"
   ```
 
 **Anatomy, Theme, Theme Tools**
@@ -145,7 +145,7 @@ description:
 - Fix `InputElement` and `InputAddon` sizing when using a responsive `size`
   value for `InputGroup`.
 
-  _Note: this requires changes in the latest **@chakra-ui/theme** or, for custom
+  _Note: this requires changes in the latest **@sh3yk0-ui/theme** or, for custom
   themes, sizes to be driven with CSS variables. See the
   [default theme](https://github.com/chakra-ui/chakra-ui/blob/main/packages/components/theme/src/components/input.ts)
   for an example._
@@ -230,11 +230,11 @@ description:
 
   ```ts
   import {
-    SkipNavLink,
-    type SkipNavLinkProps,
     SkipNavContent,
     type SkipNavContentProps,
-  } from "@chakra-ui/react"
+    SkipNavLink,
+    type SkipNavLinkProps,
+  } from "@sh3yk0-ui/react"
   ```
 
 ### Added
@@ -341,7 +341,7 @@ description:
   reset to a specific element.
 
   ```jsx live=false
-  import { ChakraProvider } from "@chakra-ui/react"
+  import { ChakraProvider } from "@sh3yk0-ui/react"
 
   function App() {
     return (
@@ -502,7 +502,7 @@ description:
 
 **Next.js**
 
-- Add loading props to the `@chakra-ui/next-js`.
+- Add loading props to the `@sh3yk0-ui/next-js`.
 
 **Styled System**
 
@@ -630,7 +630,7 @@ description:
   css variables for a component theme.
 
   ```jsx live=false
-  import { defineCssVars } from "@chakra-ui/react"
+  import { defineCssVars } from "@sh3yk0-ui/react"
 
   // defines the `--badge-bg`, `--badge-border`, and `--badge-size` (with a 1rem fallback)
   const vars = defineCssVars("badge", ["bg", "border", ["size", "1rem"]])
@@ -727,7 +727,7 @@ const toast = useToast({
   `ChakraBaseProvider` component.
 
   ```jsx live=false
-  import { ChakraProvider } from "@chakra-ui/react"
+  import { ChakraProvider } from "@sh3yk0-ui/react"
 
   function App() {
     return (
@@ -744,7 +744,7 @@ const toast = useToast({
   Chakra style props.
 
 ```jsx live=false
-import { Image } from "@chakra-ui/next-js"
+import { Image } from "@sh3yk0-ui/next-js"
 
 function App() {
   return (
@@ -916,7 +916,10 @@ This package provides 2 main features:
 ```jsx live=false
 // app/page.tsx
 "use client"
+
 import { Link } from "Next-js"
+
+// app/page.tsx
 
 export default function Page() {
   return (
@@ -1186,7 +1189,7 @@ export default function Page() {
 
 **Card**
 
-- Refactor style context to use `createStylesContext` from `@chakra-ui/system`
+- Refactor style context to use `createStylesContext` from `@sh3yk0-ui/system`
 
 ## [2.4.2](./#2.4.2) - 2022-11-29
 
@@ -1230,7 +1233,7 @@ export default function Page() {
 
 **CLI**
 
-- Add the flag `--strict-token-types` for `@chakra-ui/cli tokens` to generate
+- Add the flag `--strict-token-types` for `@sh3yk0-ui/cli tokens` to generate
   strict types for theme tokens (e.g. color, spacing)
 
   ```bash
@@ -1294,8 +1297,8 @@ export default function Page() {
   > Base theme refers to the minimal theme for just the design tokens
 
   ```jsx live=false
-  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
-  import { Button } from "@chakra-ui/theme/components"
+  import { ChakraBaseProvider, extendBaseTheme } from "@sh3yk0-ui/react"
+  import { Button } from "@sh3yk0-ui/theme/components"
 
   const theme = extendBaseTheme({
     components: {
@@ -1349,7 +1352,7 @@ export default function Page() {
 
 **All packages**
 
-- Fixed issue where using `@chakra-ui/react` or any sub-package in a TypeScript
+- Fixed issue where using `@sh3yk0-ui/react` or any sub-package in a TypeScript
   project with `"type": "module"` in `package.json` and
   `"moduleResolution": "Node16"` in `tsconfig.json` cannot find the types.
 
@@ -1524,7 +1527,7 @@ export function Basic() {
 **Theme Utilities**
 
 - Moved `extendTheme` utilities to a dedicated package
-  (`@chakra-ui/theme-utils`)
+  (`@sh3yk0-ui/theme-utils`)
 
 ## [2.3.5](./#2.3.5) - 2022-10-03
 
@@ -1533,7 +1536,7 @@ export function Basic() {
 **All components**
 
 - Declare package exports
-- Fixed unmet `@chakra-ui/styled-system` dependency issue
+- Fixed unmet `@sh3yk0-ui/styled-system` dependency issue
 
 **Accordion**
 
@@ -1826,7 +1829,7 @@ export function Basic() {
   authoring experience of style objects and single part component themes.
 
   ```jsx live=false
-  import { defineStyleConfig, defineStyle } from "@chakra-ui/styled-system"
+  import { defineStyle, defineStyleConfig } from "@sh3yk0-ui/styled-system"
 
   // authoring style objects
   const style = defineStyle({
@@ -1846,7 +1849,7 @@ export function Basic() {
   themes.
 
   ```jsx live=false
-  import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-sytem"
+  import { createMultiStyleConfigHelpers } from "@sh3yk0-ui/styled-sytem"
 
   // create scoped helpers for that defined parts
   const helpers = createMultiStyleConfigHelpers(["button", "label"])
@@ -2152,7 +2155,7 @@ export function Basic() {
 
 **Toast**
 
-- Moved `@chakra-ui/system` to peer dependency
+- Moved `@sh3yk0-ui/system` to peer dependency
 
 ## [2.2.1](./#2.2.1) - 2022-06-07
 
@@ -2161,7 +2164,7 @@ export function Basic() {
 **System**
 
 - Fixed a regression where `useStyles` and `StylesProvider` was removed from
-  `@chakra-ui/system`
+  `@sh3yk0-ui/system`
 
 ### Added
 
@@ -2221,7 +2224,7 @@ export function Basic() {
   Usage: chakra-cli tokens [options] <source>
 
   Options:
-    --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+    --out <path>              output file e.g. node_modules/@sh3yk0-ui/styled-system/dist/declarations/src/theming.types.d.ts
     --strict-component-types  Generate strict types for props variant and size
     --watch [path]            Watch directory for changes and rebuild
     -h, --help                display help for command
@@ -2438,7 +2441,7 @@ export function Basic() {
 - We now provide a way to customize the localStorage / cookie storage key
 
   ```jsx live=false
-  import { createLocalStorageManager } from "@chakra-ui/react"
+  import { createLocalStorageManager } from "@sh3yk0-ui/react"
 
   const manager = createLocalStorageManager("my-key")
 

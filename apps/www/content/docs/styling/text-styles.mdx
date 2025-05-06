@@ -20,7 +20,7 @@ are:
 Text styles are defined using the `defineTextStyles` function.
 
 ```js filename="text-styles.ts"
-import { defineTextStyles } from "@chakra-ui/react"
+import { defineTextStyles } from "@sh3yk0-ui/react"
 
 export const textStyles = defineTextStyles({
   body: {
@@ -50,7 +50,7 @@ To use the text styles, update the `theme` object with the `textStyles`
 property.
 
 ```js filename="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@sh3yk0-ui/react"
 import { textStyles } from "./text-styles"
 
 const config = defineConfig({
@@ -65,7 +65,7 @@ export default createSystem(defaultConfig, config)
 After updating the theme, run this command to generate the typings.
 
 ```bash
-npx @chakra-ui/cli typegen
+npx @sh3yk0-ui/cli typegen
 ```
 
 ## Using text styles

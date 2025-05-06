@@ -1,6 +1,6 @@
 "use client"
 
-import { Heading, Mark, useHighlight } from "@chakra-ui/react"
+import { Heading, Mark, useHighlight } from "@sh3yk0-ui/react"
 import { Fragment } from "react"
 
 export const HighlightWithSquiggle = () => {

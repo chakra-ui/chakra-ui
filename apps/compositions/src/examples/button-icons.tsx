@@ -1,4 +1,4 @@
-import { IconButton, Stack } from "@chakra-ui/react"
+import { IconButton, Stack } from "@sh3yk0-ui/react"
 import { RiPhoneLine, RiSearchLine } from "react-icons/ri"
 
 export const ButtonIcons = () => (

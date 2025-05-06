@@ -6,7 +6,7 @@ import {
   IconButton,
   Pagination,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 export const PaginationWithSizes = () => {

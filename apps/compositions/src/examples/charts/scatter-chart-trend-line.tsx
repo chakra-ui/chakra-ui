@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
 import { Fragment, useMemo } from "react"
 import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
 

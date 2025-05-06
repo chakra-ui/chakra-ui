@@ -1,4 +1,4 @@
-import { Box, Steps as ChakraSteps } from "@chakra-ui/react"
+import { Box, Steps as ChakraSteps } from "@sh3yk0-ui/react"
 import * as React from "react"
 import { LuCheck } from "react-icons/lu"
 

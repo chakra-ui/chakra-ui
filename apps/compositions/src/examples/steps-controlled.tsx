@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, ButtonGroup, Steps } from "@chakra-ui/react"
+import { Button, ButtonGroup, Steps } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const StepsControlled = () => {

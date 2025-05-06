@@ -1,13 +1,11 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": [
-    "compositions/ui/toggle-tip"
-  ],
+  "fileDependencies": ["compositions/ui/toggle-tip"],
   "id": "data-list",
   "file": {
     "name": "data-list.tsx",
-    "content": "import { DataList as ChakraDataList } from \"@chakra-ui/react\"\nimport { InfoTip } from \"./toggle-tip\"\nimport * as React from \"react\"\n\nexport const DataListRoot = ChakraDataList.Root\n\ninterface ItemProps extends ChakraDataList.ItemProps {\n  label: React.ReactNode\n  value: React.ReactNode\n  info?: React.ReactNode\n  grow?: boolean\n}\n\nexport const DataListItem = React.forwardRef<HTMLDivElement, ItemProps>(\n  function DataListItem(props, ref) {\n    const { label, info, value, children, grow, ...rest } = props\n    return (\n      <ChakraDataList.Item ref={ref} {...rest}>\n        <ChakraDataList.ItemLabel flex={grow ? \"1\" : undefined}>\n          {label}\n          {info && <InfoTip>{info}</InfoTip>}\n        </ChakraDataList.ItemLabel>\n        <ChakraDataList.ItemValue flex={grow ? \"1\" : undefined}>\n          {value}\n        </ChakraDataList.ItemValue>\n        {children}\n      </ChakraDataList.Item>\n    )\n  },\n)\n"
+    "content": "import { DataList as ChakraDataList } from \"@sh3yk0-ui/react\"\nimport { InfoTip } from \"./toggle-tip\"\nimport * as React from \"react\"\n\nexport const DataListRoot = ChakraDataList.Root\n\ninterface ItemProps extends ChakraDataList.ItemProps {\n  label: React.ReactNode\n  value: React.ReactNode\n  info?: React.ReactNode\n  grow?: boolean\n}\n\nexport const DataListItem = React.forwardRef<HTMLDivElement, ItemProps>(\n  function DataListItem(props, ref) {\n    const { label, info, value, children, grow, ...rest } = props\n    return (\n      <ChakraDataList.Item ref={ref} {...rest}>\n        <ChakraDataList.ItemLabel flex={grow ? \"1\" : undefined}>\n          {label}\n          {info && <InfoTip>{info}</InfoTip>}\n        </ChakraDataList.ItemLabel>\n        <ChakraDataList.ItemValue flex={grow ? \"1\" : undefined}>\n          {value}\n        </ChakraDataList.ItemValue>\n        {children}\n      </ChakraDataList.Item>\n    )\n  },\n)\n"
   },
   "component": "DataList"
 }

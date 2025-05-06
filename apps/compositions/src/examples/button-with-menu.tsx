@@ -1,4 +1,4 @@
-import { Button, Group, IconButton, Menu, Portal } from "@chakra-ui/react"
+import { Button, Group, IconButton, Menu, Portal } from "@sh3yk0-ui/react"
 import { LuChevronDown } from "react-icons/lu"
 
 export const ButtonWithMenu = () => {

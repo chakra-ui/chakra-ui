@@ -1,4 +1,4 @@
-import { List } from "@chakra-ui/react"
+import { List } from "@sh3yk0-ui/react"
 
 const items = [
   "Your failure to comply with any provision of these Terms of Service;",

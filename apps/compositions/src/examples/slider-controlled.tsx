@@ -1,6 +1,6 @@
 "use client"
 
-import { Slider } from "@chakra-ui/react"
+import { Slider } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const SliderControlled = () => {

@@ -1,4 +1,4 @@
-# @chakra-ui/cli
+# @sh3yk0-ui/cli
 
 ## 3.17.0
 
@@ -400,7 +400,7 @@
   [`623e558`](https://github.com/chakra-ui/chakra-ui/commit/623e558ac22f84e6250387d0971aafe9713667a6),
   [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0),
   [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0)]:
-  - @chakra-ui/react@3.0.0-next.0
+  - @sh3yk0-ui/react@3.0.0-next.0
 
 ## 2.4.1
 
@@ -468,7 +468,7 @@
   [`ffc73f393`](https://github.com/chakra-ui/chakra-ui/commit/ffc73f393b36ca115794caa6e07d98fe95c8ba9c)
   Thanks [@lexanth](https://github.com/lexanth)! - - Added support for
   generating theme typings to use via module augmentation of the
-  `@chakra-ui/styled-system` package.
+  `@sh3yk0-ui/styled-system` package.
 
   To use this feature, run the following command:
 
@@ -492,7 +492,7 @@
 - [#5701](https://github.com/chakra-ui/chakra-ui/pull/5701)
   [`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781)
   Thanks [@lexanth](https://github.com/lexanth)! - Add the flag
-  `--strict-token-types` for `@chakra-ui/cli tokens` to generate strict types
+  `--strict-token-types` for `@sh3yk0-ui/cli tokens` to generate strict types
   for theme tokens (e.g. color, spacing)
 
   ```bash
@@ -515,7 +515,7 @@
 
 - Updated dependencies
   [[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]:
-  - @chakra-ui/utils@2.0.10
+  - @sh3yk0-ui/utils@2.0.10
 
 ## 2.1.7
 
@@ -529,7 +529,7 @@
   - Refactor code for proper prop doc generatation
 - Updated dependencies
   [[`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)]:
-  - @chakra-ui/utils@2.0.9
+  - @sh3yk0-ui/utils@2.0.9
 
 ## 2.1.6
 
@@ -538,7 +538,7 @@
 - Force release
 
 - Updated dependencies []:
-  - @chakra-ui/utils@2.0.8
+  - @sh3yk0-ui/utils@2.0.8
 
 ## 2.1.5
 
@@ -552,7 +552,7 @@
 - Updated dependencies
   [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
   [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
-  - @chakra-ui/utils@2.0.7
+  - @sh3yk0-ui/utils@2.0.7
 
 ## 2.1.4
 
@@ -561,7 +561,7 @@
 - Force new release
 
 - Updated dependencies []:
-  - @chakra-ui/utils@2.0.6
+  - @sh3yk0-ui/utils@2.0.6
 
 ## 2.1.3
 
@@ -574,7 +574,7 @@
   - Update package `main` and `module` entries
 - Updated dependencies
   [[`1839e22eb`](https://github.com/chakra-ui/chakra-ui/commit/1839e22ebad1c2a52795eac5fd0b3eb38ae03f9c)]:
-  - @chakra-ui/utils@2.0.5
+  - @sh3yk0-ui/utils@2.0.5
 
 ## 2.1.2
 
@@ -592,7 +592,7 @@
 * Updated dependencies
   [[`36ef37d58`](https://github.com/chakra-ui/chakra-ui/commit/36ef37d58220dffc4b8e35c31fdcc57042e9a859),
   [`6c15ec2c2`](https://github.com/chakra-ui/chakra-ui/commit/6c15ec2c2a32a36ecc2d169308379a6825619543)]:
-  - @chakra-ui/utils@2.0.3
+  - @sh3yk0-ui/utils@2.0.3
 
 ## 2.1.1
 
@@ -625,7 +625,7 @@
   Usage: chakra-cli tokens [options] <source>
 
   Options:
-    --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+    --out <path>              output file e.g. node_modules/@sh3yk0-ui/styled-system/dist/declarations/src/theming.types.d.ts
     --strict-component-types  Generate strict types for props variant and size
     --watch [path]            Watch directory for changes and rebuild
     -h, --help                display help for command
@@ -644,7 +644,7 @@
   where the tokens command failed with `SyntaxError: Undefined label 'e'`.
 * Updated dependencies
   [[`06f29f8cd`](https://github.com/chakra-ui/chakra-ui/commit/06f29f8cdbb10ff1da523e0d0e958b9990d041e1)]:
-  - @chakra-ui/utils@2.0.2
+  - @sh3yk0-ui/utils@2.0.2
 
 ## 2.0.0
 
@@ -666,7 +666,7 @@
   [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f),
   [`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7),
   [`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
-  - @chakra-ui/utils@2.0.0
+  - @sh3yk0-ui/utils@2.0.0
 
 ## 2.0.0-next.2
 
@@ -681,7 +681,7 @@
 
 - Updated dependencies
   [[`ed692c0ae`](https://github.com/chakra-ui/chakra-ui/commit/ed692c0ae670bcac92b3da50d141afc6e233dee7)]:
-  - @chakra-ui/utils@2.0.0-next.2
+  - @sh3yk0-ui/utils@2.0.0-next.2
 
 ## 2.0.0-next.1
 
@@ -696,7 +696,7 @@
 
 - Updated dependencies
   [[`41b3119f5`](https://github.com/chakra-ui/chakra-ui/commit/41b3119f59226f7c70942d6fd0f46480f9bcf196)]:
-  - @chakra-ui/utils@2.0.0-next.1
+  - @sh3yk0-ui/utils@2.0.0-next.1
 
 ## 1.9.1-next.0
 
@@ -704,7 +704,7 @@
 
 - Updated dependencies
   [[`c390af485`](https://github.com/chakra-ui/chakra-ui/commit/c390af4859bcbcf12c982c677492cd6d4960889f)]:
-  - @chakra-ui/utils@2.0.0-next.0
+  - @sh3yk0-ui/utils@2.0.0-next.0
 
 ## 1.9.0
 
@@ -725,7 +725,7 @@
   CI configuration.
 - Updated dependencies
   [[`e1fe48cbe`](https://github.com/chakra-ui/chakra-ui/commit/e1fe48cbe37324744cfe6184d785c093cda1125e)]:
-  - @chakra-ui/utils@1.10.4
+  - @sh3yk0-ui/utils@1.10.4
 
 ## 1.8.1
 
@@ -738,7 +738,7 @@
 
 - Updated dependencies
   [[`a503acabe`](https://github.com/chakra-ui/chakra-ui/commit/a503acabefcaea86cb7f40a6305830f09d2d6083)]:
-  - @chakra-ui/utils@1.10.2
+  - @sh3yk0-ui/utils@1.10.2
 
 ## 1.8.0
 
@@ -764,7 +764,7 @@
   resolves an issue where failures exited with a success status code.
 * Updated dependencies
   [[`24b4333d0`](https://github.com/chakra-ui/chakra-ui/commit/24b4333d008d149380785f87f4891e28584ff89b)]:
-  - @chakra-ui/utils@1.10.1
+  - @sh3yk0-ui/utils@1.10.1
 
 ## 1.7.1
 
@@ -774,11 +774,11 @@
   [`472612e7a`](https://github.com/chakra-ui/chakra-ui/commit/472612e7aea64de64c6744365f7d5c6a97bcc438)
   Thanks [@selbekk](https://github.com/selbekk)! - Update README to reflect the
   change of the default `--out` path to
-  `node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts`
+  `node_modules/@sh3yk0-ui/styled-system/dist/declarations/src/theming.types.d.ts`
 
 - Updated dependencies
   [[`1537a725f`](https://github.com/chakra-ui/chakra-ui/commit/1537a725fbc7f84979e374f546bda625fc685ac3)]:
-  - @chakra-ui/utils@1.10.0
+  - @sh3yk0-ui/utils@1.10.0
 
 ## 1.7.0
 
@@ -787,7 +787,7 @@
 - [#5243](https://github.com/chakra-ui/chakra-ui/pull/5243)
   [`ae6fd7a25`](https://github.com/chakra-ui/chakra-ui/commit/ae6fd7a25c543d089d500e328596b399d85afe8e)
   Thanks [@TimKolberger](https://github.com/TimKolberger)! - Use the feature
-  flag `--strict-component-types` for `@chakra-ui/cli tokens` to generate strict
+  flag `--strict-component-types` for `@sh3yk0-ui/cli tokens` to generate strict
   component type for the theming props `variant` and `size`.
 
   ```bash
@@ -833,17 +833,17 @@
   **Potential Breaking Change:** The side effect of this is that, if you
   imported any function, component or hook using the **undocumented** approach
   like
-  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  `import { useOutsideClick } from "@sh3yk0-ui/hooks/dist/use-outside-click"`,
   you'll notice that the this doesn't work anymore.
 
   Here's how to resolve it:
 
   ```jsx live=false
   // Won't work 🎇
-  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+  import { useOutsideClick } from "@sh3yk0-ui/hooks/dist/use-outside-click"
 
   // Works ✅
-  import { useOutsideClick } from "@chakra-ui/hooks"
+  import { useOutsideClick } from "@sh3yk0-ui/hooks"
   ```
 
   If this affected your project, we recommend that you import hooks, functions
@@ -854,7 +854,7 @@
 
 - Updated dependencies
   [[`6095eaf9a`](https://github.com/chakra-ui/chakra-ui/commit/6095eaf9ac64a7e4d9f934bcb530bae2a92111a6)]:
-  - @chakra-ui/utils@1.9.0
+  - @sh3yk0-ui/utils@1.9.0
 
 ## 1.5.3
 
@@ -869,7 +869,7 @@
 - Updated dependencies
   [[`c06d242c6`](https://github.com/chakra-ui/chakra-ui/commit/c06d242c672a10f93fab4dc2321143beae2db669),
   [`5b4d8ef24`](https://github.com/chakra-ui/chakra-ui/commit/5b4d8ef24017dab1d69aeb5016b53366bdb3bcfd)]:
-  - @chakra-ui/utils@1.8.3
+  - @sh3yk0-ui/utils@1.8.3
 
 ## 1.5.2
 
@@ -924,7 +924,7 @@
 
 - Updated dependencies
   [[`4a1e4d93b`](https://github.com/chakra-ui/chakra-ui/commit/4a1e4d93b0a07df7266d40bb66039385b158d3d1)]:
-  - @chakra-ui/utils@1.8.1
+  - @sh3yk0-ui/utils@1.8.1
 
 ## 1.4.0
 
@@ -937,7 +937,7 @@
   package:
 
   ```sh
-  npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+  npx @sh3yk0-ui/cli tokens <@your-org/chakra-theme-package>
   ```
 
   A published theme package should export a theme object as either the `default`
@@ -945,7 +945,7 @@
 
   ```jsx
   // chakra-theme-package/src/index.js
-  import { extendTheme } from "@chakra-ui/react"
+  import { extendTheme } from "@sh3yk0-ui/react"
 
   const theme = extendTheme({})
 
@@ -971,7 +971,7 @@
   [[`d0f50a46e`](https://github.com/chakra-ui/chakra-ui/commit/d0f50a46ea6c2bcf06d8cad8b9b3994fd934be01),
   [`b479ff22e`](https://github.com/chakra-ui/chakra-ui/commit/b479ff22ea10c1a1393224c37c36aa6ceabc4aab),
   [`07d15eab4`](https://github.com/chakra-ui/chakra-ui/commit/07d15eab480724f8fee1a09b7cecdf1e968d9ddd)]:
-  - @chakra-ui/utils@1.8.0
+  - @sh3yk0-ui/utils@1.8.0
 
 ## 1.3.0
 
@@ -981,7 +981,7 @@
   [#3529](https://github.com/chakra-ui/chakra-ui/pull/3529) Thanks
   [@callum-mellorreed-privitar](https://github.com/callum-mellorreed-privitar)! -
   Add support for `textStyle` and `layerStyle` theme type generation to
-  `@chakra-ui/cli`
+  `@sh3yk0-ui/cli`
 
 ### Patch Changes
 
@@ -993,7 +993,7 @@
 - Updated dependencies
   [[`e748219f3`](https://github.com/chakra-ui/chakra-ui/commit/e748219f300f0c51b0eb304fce38b014d7bcbc86),
   [`91ef14839`](https://github.com/chakra-ui/chakra-ui/commit/91ef148397187010804eb8f30307d2ec94c32c5b)]:
-  - @chakra-ui/utils@1.4.0
+  - @sh3yk0-ui/utils@1.4.0
 
 ## 1.2.1
 
@@ -1019,7 +1019,7 @@
   [[`ff4a36bca`](https://github.com/chakra-ui/chakra-ui/commit/ff4a36bca11cc177830f6f1da13700acd1e3a087),
   [`483687237`](https://github.com/chakra-ui/chakra-ui/commit/483687237f2c4fed05dc6a79693f307c601c1285),
   [`61962345c`](https://github.com/chakra-ui/chakra-ui/commit/61962345c5b1c862445c16c586e304b28c376c9a)]:
-  - @chakra-ui/utils@1.2.0
+  - @sh3yk0-ui/utils@1.2.0
 
 ## 1.1.0
 
@@ -1028,7 +1028,7 @@
 - [`693528a1b`](https://github.com/chakra-ui/chakra-ui/commit/693528a1b73af2eeb462371a61ff2957c6f65810)
   [#3222](https://github.com/chakra-ui/chakra-ui/pull/3222) Thanks
   [@TimKolberger](https://github.com/TimKolberger)! - - Package
-  `@chakra-ui/cli@1.0.0` did already exist
+  `@sh3yk0-ui/cli@1.0.0` did already exist
 
   - Add minor bump for adding subcommand `tokens` to generate Theme Typings
 

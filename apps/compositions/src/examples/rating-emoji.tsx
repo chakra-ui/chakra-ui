@@ -1,4 +1,4 @@
-import { RatingGroup } from "@chakra-ui/react"
+import { RatingGroup } from "@sh3yk0-ui/react"
 
 const emojiMap: Record<string, string> = {
   1: "😡",

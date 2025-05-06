@@ -2,7 +2,7 @@ import {
   Breadcrumb as ChakraBreadcrumb,
   Show,
   type SystemStyleObject,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import * as React from "react"
 
 export interface BreadcrumbProps extends ChakraBreadcrumb.RootProps {

@@ -1,6 +1,6 @@
 "use client"
 
-import type { BoxProps } from "@chakra-ui/react"
+import type { BoxProps } from "@sh3yk0-ui/react"
 import {
   Box,
   ColorSwatch,
@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
   defineStyle,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { createContext, useContext, useMemo } from "react"
 import type { LegendProps, TooltipProps } from "recharts"
 import { ResponsiveContainer } from "recharts"

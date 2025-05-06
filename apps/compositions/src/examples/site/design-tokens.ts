@@ -1,4 +1,4 @@
-import { defineTokens } from "@chakra-ui/react"
+import { defineTokens } from "@sh3yk0-ui/react"
 
 export const tokens = defineTokens({
   colors: {

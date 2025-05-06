@@ -6,7 +6,7 @@ import {
   Select,
   Stack,
   createListCollection,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const SelectWithNativeForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

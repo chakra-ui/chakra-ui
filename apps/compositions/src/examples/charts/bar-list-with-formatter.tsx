@@ -1,6 +1,6 @@
 "use client"
 
-import { BarList, type BarListData, useChart } from "@chakra-ui/charts"
+import { BarList, type BarListData, useChart } from "@sh3yk0-ui/charts"
 
 export const BarListWithFormatter = () => {
   const chart = useChart<BarListData>({

@@ -1,4 +1,4 @@
-import { Blockquote, Circle, Float } from "@chakra-ui/react"
+import { Blockquote, Circle, Float } from "@sh3yk0-ui/react"
 import { LuQuote } from "react-icons/lu"
 
 export const BlockquoteWithCustomIcon = () => {

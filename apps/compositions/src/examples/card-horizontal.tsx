@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, HStack, Image } from "@chakra-ui/react"
+import { Badge, Box, Button, Card, HStack, Image } from "@sh3yk0-ui/react"
 
 export const CardHorizontal = () => (
   <Card.Root flexDirection="row" overflow="hidden" maxW="xl">

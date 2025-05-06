@@ -1,4 +1,4 @@
-import { Circle } from "@chakra-ui/react"
+import { Circle } from "@sh3yk0-ui/react"
 import { LuPhoneForwarded } from "react-icons/lu"
 
 export const CenterWithCircle = () => {

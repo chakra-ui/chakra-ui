@@ -3,7 +3,7 @@ import {
   HighlightHeading,
   Subheading,
 } from "@/components/site/typography"
-import { Box, Container, List, Span, Stack, Tabs } from "@chakra-ui/react"
+import { Box, Container, List, Span, Stack, Tabs } from "@sh3yk0-ui/react"
 import { LuBox, LuPaintBucket, LuType } from "react-icons/lu"
 import { ExampleCode, ExampleCodeWrapper } from "../example"
 

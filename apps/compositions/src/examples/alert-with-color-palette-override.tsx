@@ -1,4 +1,4 @@
-import { Alert } from "@chakra-ui/react"
+import { Alert } from "@sh3yk0-ui/react"
 
 export const AlertWithColorPaletteOverride = () => {
   return (

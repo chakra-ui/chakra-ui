@@ -268,14 +268,14 @@ description:
 
   > ⚠️ NOTE: your `CustomThemeTypings` _must_ implement/extend
   > `BaseThemeTypings`, otherwise the types will fall back to the default Chakra
-  > types (or custom output from **@chakra-ui/cli**)
+  > types (or custom output from **@sh3yk0-ui/cli**)
 
   ```ts
-  import { BaseThemeTypings } from "@chakra-ui/styled-system";
+  import { BaseThemeTypings } from "@sh3yk0-ui/styled-system";
 
   type DefaultSizes = 'small' | 'medium' | 'large';
 
-  declare module "@chakra-ui/styled-system" {
+  declare module "@sh3yk0-ui/styled-system" {
     export interface CustomThemeTypings extends BaseThemeTypings {
       // Example custom `borders` tokens
       borders: 'none' | 'thin' | 'thick';
@@ -460,7 +460,7 @@ description:
   with a CSS condition.
 
   ```tsx live=false
-  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+  import { ChakraProvider, extendTheme } from "@sh3yk0-ui/react"
 
   const customTheme = extendTheme({
     colors: {
@@ -476,7 +476,7 @@ description:
   ```
 
   ```tsx live=false
-  import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+  import { ChakraProvider, extendTheme } from "@sh3yk0-ui/react"
 
   const customTheme = extendTheme({
     colors: {
@@ -503,7 +503,7 @@ description:
   ```
 
   ```tsx live=false
-  import { extendTheme } from "@chakra-ui/react"
+  import { extendTheme } from "@sh3yk0-ui/react"
 
   const theme = extendTheme({
     colors: {
@@ -559,32 +559,32 @@ description:
 
   ```jsx live=false
   // Now you can use only colors from the theme
-  import colors from "@chakra-ui/theme/foundations/colors"
+  import colors from "@sh3yk0-ui/theme/foundations/colors"
   ```
 
   Here's a table of the theme parts and entrypoints
 
   | Part        | Entrypoint                                  |
   | ----------- | ------------------------------------------- |
-  | components  | `"@chakra-ui/theme/components"`             |
-  | foundations | `"@chakra-ui/theme/foundations"`            |
-  | colors      | `"@chakra-ui/theme/foundations/colors"`     |
-  | sizes       | `"@chakra-ui/theme/foundations/sizes"`      |
-  | spacing     | `"@chakra-ui/theme/foundations/spacing"`    |
-  | typography  | `"@chakra-ui/theme/foundations/typography"` |
-  | radius      | `"@chakra-ui/theme/foundations/radius"`     |
-  | shadows     | `"@chakra-ui/theme/foundations/shadows"`    |
-  | transition  | `"@chakra-ui/theme/foundations/transition"` |
-  | zIndex      | `"@chakra-ui/theme/foundations/z-index"`    |
-  | blur        | `"@chakra-ui/theme/foundations/blur"`       |
-  | borders     | `"@chakra-ui/theme/foundations/borders"`    |
+  | components  | `"@sh3yk0-ui/theme/components"`             |
+  | foundations | `"@sh3yk0-ui/theme/foundations"`            |
+  | colors      | `"@sh3yk0-ui/theme/foundations/colors"`     |
+  | sizes       | `"@sh3yk0-ui/theme/foundations/sizes"`      |
+  | spacing     | `"@sh3yk0-ui/theme/foundations/spacing"`    |
+  | typography  | `"@sh3yk0-ui/theme/foundations/typography"` |
+  | radius      | `"@sh3yk0-ui/theme/foundations/radius"`     |
+  | shadows     | `"@sh3yk0-ui/theme/foundations/shadows"`    |
+  | transition  | `"@sh3yk0-ui/theme/foundations/transition"` |
+  | zIndex      | `"@sh3yk0-ui/theme/foundations/z-index"`    |
+  | blur        | `"@sh3yk0-ui/theme/foundations/blur"`       |
+  | borders     | `"@sh3yk0-ui/theme/foundations/borders"`    |
 
 **Utils**
 
 - Add helper function `flatten`
 
   ```ts
-  import { flatten } from "@chakra-ui/utils"
+  import { flatten } from "@sh3yk0-ui/utils"
 
   flatten({ space: [0, 1, 2, 4, 8, 16, 32] })
   /** =>
@@ -605,7 +605,7 @@ description:
 **CLI**
 
 - Update README to reflect the change of the default `--out` path to
-  `node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts`
+  `node_modules/@sh3yk0-ui/styled-system/dist/declarations/src/theming.types.d.ts`
 
 **Theme**
 
@@ -650,7 +650,7 @@ description:
 
 **Storybook Addon**
 
-- Added dependency to @chakra-ui/icons
+- Added dependency to @sh3yk0-ui/icons
 
 ### Added
 
@@ -722,7 +722,7 @@ description:
 
 **CLI, System**
 
-- Use the feature flag `--strict-component-types` for `@chakra-ui/cli tokens` to
+- Use the feature flag `--strict-component-types` for `@sh3yk0-ui/cli tokens` to
   generate strict component type for the theming props `variant` and `size`.
 
   ```bash
@@ -744,18 +744,18 @@ description:
 - The official Storybook Addon for Chakra UI.
 
   ```sh
-  yarn add -D @chakra-ui/storybook-addon
+  yarn add -D @sh3yk0-ui/storybook-addon
   ```
 
   ```sh
-  npm i -D @chakra-ui/storybook-addon
+  npm i -D @sh3yk0-ui/storybook-addon
   ```
 
   Add the addon to your configuration in `.storybook/main.js`:
 
   ```js live=false
   module.exports = {
-    addons: ["@chakra-ui/storybook-addon"],
+    addons: ["@sh3yk0-ui/storybook-addon"],
   }
   ```
 
@@ -842,7 +842,7 @@ description:
 
 **React**
 
-- Update storybook url configuration for `@chakra-ui/react` to
+- Update storybook url configuration for `@sh3yk0-ui/react` to
   [https://storybook.chakra-ui.com](https://storybook.chakra-ui.com)
 
 **Styled System**
@@ -1062,17 +1062,17 @@ description:
   **Potential Breaking Change:** The side effect of this is that, if you
   imported any function, component or hook using the **undocumented** approach
   like
-  `import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"`,
+  `import { useOutsideClick } from "@sh3yk0-ui/hooks/dist/use-outside-click"`,
   you'll notice that the this doesn't work anymore.
 
   Here's how to resolve it:
 
   ```jsx live=false
   // Won't work 🎇
-  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+  import { useOutsideClick } from "@sh3yk0-ui/hooks/dist/use-outside-click"
 
   // Works ✅
-  import { useOutsideClick } from "@chakra-ui/hooks"
+  import { useOutsideClick } from "@sh3yk0-ui/hooks"
   ```
 
   If this affected your project, we recommend that you import hooks, functions
@@ -1146,7 +1146,7 @@ description:
 
 **Color Mode**
 
-- Use @chakra-ui/react-env to determine the correct body
+- Use @sh3yk0-ui/react-env to determine the correct body
 
 **Gatsby Plugin**
 
@@ -1167,7 +1167,7 @@ description:
 
 **React, Theme Tools, Utils**
 
-- Fix: always use fromEntries polyfill from @chakra-ui/utils
+- Fix: always use fromEntries polyfill from @sh3yk0-ui/utils
 
 **Slider**
 
@@ -1230,7 +1230,7 @@ description:
 
 **Button**
 
-- Added missing `@chakra-ui/react-utils` import
+- Added missing `@sh3yk0-ui/react-utils` import
 
 **CLI**
 
@@ -1441,7 +1441,7 @@ description:
   Creating a CSS variable in the theme
 
   ```jsx
-  import { cssVar, calc } from "@chakra-ui/theme-tools"
+  import { calc, cssVar } from "@sh3yk0-ui/theme-tools"
 
   const $width = cssVar("slider-width")
   const $height = cssVar("slider-height")
@@ -1455,8 +1455,8 @@ description:
   Create a component anatomy
 
   ```jsx
-  import { anatomy }  from "@chakra-ui/theme-tools"
-  import type { PartsStyle } from "@chakra-ui/theme-tools"
+  import { anatomy }  from "@sh3yk0-ui/theme-tools"
+  import type { PartsStyle } from "@sh3yk0-ui/theme-tools"
 
   const btn = anatomy("button").parts("label", "container")
 
@@ -1490,11 +1490,11 @@ description:
 
 **Provider**
 
-- Move ChakraProvider to a separate package `@chakra-ui/provider`
+- Move ChakraProvider to a separate package `@sh3yk0-ui/provider`
 
 **React**
 
-- Move ChakraProvider to a separate package `@chakra-ui/provider`
+- Move ChakraProvider to a separate package `@sh3yk0-ui/provider`
 - Loosen types of `extendTheme` to allow recent TS compiler to work and avoid
   `Type instantiation is excessively deep and possibly infinite` errors.
 
@@ -1613,7 +1613,7 @@ description:
   root `FormControl` element to be themed.
 
   ```jsx
-  import { extendTheme } from "@chakra-ui/react"
+  import { extendTheme } from "@sh3yk0-ui/react"
 
   export const theme = extendTheme({
     components: {
@@ -1717,7 +1717,7 @@ description:
 - The `styled` function allows a functional `baseStyle` property:
 
 ```js
-import { styled } from '@chakra-ui/react'
+import { styled } from '@sh3yk0-ui/react'
 
 const MyComponent = styled('div', {
 baseStyle: (props) => ({
@@ -1736,7 +1736,7 @@ The `tokens` command now supports generating theme token type definitions from a
 Chakra UI theme published as a package:
 
 ```sh
-npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+npx @sh3yk0-ui/cli tokens <@your-org/chakra-theme-package>
 ```
 
 A published theme package should export a theme object as either the `default`
@@ -1744,7 +1744,7 @@ export or an export named `theme`.
 
 ```jsx
 // chakra-theme-package/src/index.js
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "@sh3yk0-ui/react"
 
 const theme = extendTheme({})
 
@@ -2022,10 +2022,10 @@ extensions:
 import {
   extendTheme,
   withDefaultColorScheme,
+  withDefaultProps,
   withDefaultSize,
   withDefaultVariant,
-  withDefaultProps,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 const customTheme = extendTheme(
   {
@@ -2397,12 +2397,12 @@ responsive token values like you would with style props.
 **CLI**
 
 - Add support for `textStyle` and `layerStyle` theme type generation to
-  `@chakra-ui/cli`
+  `@sh3yk0-ui/cli`
 
 **System**
 
 - Add support for `textStyle` and `layerStyle` theme type generation to
-  `@chakra-ui/cli`
+  `@sh3yk0-ui/cli`
 
 **Theme**
 
@@ -2556,7 +2556,7 @@ Resolved an issue where completing character entry in `PinInput` failed to call
   even further
 
 ```ts
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "@sh3yk0-ui/react"
 
 export const customTheme = extendTheme({
   // here you get autocomplete for
@@ -2573,7 +2573,7 @@ export type MyCustomTheme = typeof customTheme
 You can get typesafe access to your custom theme like this:
 
 ```ts
-import { useTheme } from "@chakra-ui/react"
+import { useTheme } from "@sh3yk0-ui/react"
 import { MyCustomTheme } from "./my-custom-theme"
 
 const MyComponent = () => {

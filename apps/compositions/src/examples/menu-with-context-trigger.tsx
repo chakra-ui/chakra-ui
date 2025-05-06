@@ -1,4 +1,4 @@
-import { Center, Menu, Portal } from "@chakra-ui/react"
+import { Center, Menu, Portal } from "@sh3yk0-ui/react"
 
 export const MenuWithContextTrigger = () => {
   return (

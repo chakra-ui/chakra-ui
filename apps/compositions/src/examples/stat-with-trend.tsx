@@ -1,4 +1,4 @@
-import { Badge, FormatNumber, HStack, Stat } from "@chakra-ui/react"
+import { Badge, FormatNumber, HStack, Stat } from "@sh3yk0-ui/react"
 
 export const StatWithTrend = () => {
   return (

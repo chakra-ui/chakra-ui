@@ -1,4 +1,4 @@
-import { Box, Button, Theme } from "@chakra-ui/react"
+import { Box, Button, Theme } from "@sh3yk0-ui/react"
 
 export const ThemeNested = () => {
   return (

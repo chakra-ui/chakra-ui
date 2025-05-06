@@ -1,4 +1,4 @@
-import { ProgressCircle } from "@chakra-ui/react"
+import { ProgressCircle } from "@sh3yk0-ui/react"
 
 export const ProgressCircleWithRangeColor = () => {
   return (

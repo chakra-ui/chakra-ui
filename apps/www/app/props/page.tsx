@@ -1,5 +1,5 @@
 import { PropTable } from "@/components/mdx/prop-table"
-import { Container } from "@chakra-ui/react"
+import { Container } from "@sh3yk0-ui/react"
 
 export default function Page() {
   return (

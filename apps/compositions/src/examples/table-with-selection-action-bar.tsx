@@ -7,7 +7,7 @@ import {
   Kbd,
   Portal,
   Table,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const TableWithSelectionActionBar = () => {

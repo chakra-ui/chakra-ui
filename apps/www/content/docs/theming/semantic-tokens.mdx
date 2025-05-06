@@ -18,7 +18,7 @@ In most cases, the value of a semantic token references to an existing token.
 > To reference a value in a semantic token, use the token reference `{}` syntax.
 
 ```js title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -44,7 +44,7 @@ After defining semantic tokens, we recommend using the Chakra CLI to generate
 theme typings for your tokens.
 
 ```bash
-npx @chakra-ui/cli typegen ./src/theme.ts
+npx @sh3yk0-ui/cli typegen ./src/theme.ts
 ```
 
 This will provide autocompletion for your tokens in your editor.
@@ -62,7 +62,7 @@ For example, if you want a color to change automatically based on light or dark
 mode.
 
 ```js title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const config = defineConfig({
   theme: {
@@ -101,7 +101,7 @@ Use the `DEFAULT` key to define the default value of a nested token.
 :::
 
 ```js title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const config = defineConfig({
   theme: {

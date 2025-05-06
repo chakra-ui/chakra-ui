@@ -8,7 +8,7 @@ import { TypegenCommand } from "./commands/typegen.js"
 process.setMaxListeners(Infinity)
 
 const req = createRequire(import.meta.url)
-const packageJson = req("@chakra-ui/cli/package.json")
+const packageJson = req("@sh3yk0-ui/cli/package.json")
 
 export async function run() {
   p.intro("Chakra CLI ⚡️")

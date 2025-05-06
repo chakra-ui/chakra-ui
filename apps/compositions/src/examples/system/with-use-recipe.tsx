@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, useRecipe } from "@chakra-ui/react"
+import { Box, useRecipe } from "@sh3yk0-ui/react"
 
 export const SystemWithUseRecipe = () => {
   const button = useRecipe({ key: "button" })

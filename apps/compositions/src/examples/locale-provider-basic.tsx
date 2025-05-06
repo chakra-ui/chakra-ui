@@ -1,4 +1,4 @@
-import { Heading, LocaleProvider, Slider, Stack, Text } from "@chakra-ui/react"
+import { Heading, LocaleProvider, Slider, Stack, Text } from "@sh3yk0-ui/react"
 
 export const LocaleProviderBasic = () => {
   return (

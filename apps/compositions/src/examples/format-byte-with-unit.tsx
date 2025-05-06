@@ -1,4 +1,4 @@
-import { FormatByte, Text } from "@chakra-ui/react"
+import { FormatByte, Text } from "@sh3yk0-ui/react"
 
 export const FormatByteWithUnit = () => {
   return (

@@ -1,4 +1,4 @@
-import { For, HStack, Stack, Tag } from "@chakra-ui/react"
+import { For, HStack, Stack, Tag } from "@sh3yk0-ui/react"
 import { HiCheck } from "react-icons/hi"
 
 export const TagWithSizes = () => {

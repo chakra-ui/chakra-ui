@@ -1,4 +1,4 @@
-import { Avatar, HStack, Stack, Text } from "@chakra-ui/react"
+import { Avatar, HStack, Stack, Text } from "@sh3yk0-ui/react"
 
 export const AvatarPersona = () => {
   return (

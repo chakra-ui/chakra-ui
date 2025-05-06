@@ -54,7 +54,7 @@ export function replaceColorPalettes(content: string) {
 const decorativeBoxRegex =
   /import { DecorativeBox } from "compositions\/lib\/decorative-box"\n/g
 const boxImportRegex =
-  /import\s+{\s*(?:.*,\s*)?Box(?:\s*,\s*.*)?}\s+from\s+["']@chakra-ui\/react["']/g
+  /import\s+{\s*(?:.*,\s*)?Box(?:\s*,\s*.*)?}\s+from\s+["']@sh3yk0-ui\/react["']/g
 
 export function replaceDecorativeBox(content: string) {
   const hasDecorativeBoxImport = content.includes("lib/decorative-box")
@@ -62,7 +62,7 @@ export function replaceDecorativeBox(content: string) {
     const isBoxImported = content.match(boxImportRegex)
     content = content.replace(
       decorativeBoxRegex,
-      isBoxImported ? "" : 'import { Box } from "@chakra-ui/react"\n',
+      isBoxImported ? "" : 'import { Box } from "@sh3yk0-ui/react"\n',
     )
     content = content.replace(/DecorativeBox/g, "Box")
   }

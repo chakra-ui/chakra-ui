@@ -1,4 +1,4 @@
-import { Accordion, For, Span, Stack, Text } from "@chakra-ui/react"
+import { Accordion, For, Span, Stack, Text } from "@sh3yk0-ui/react"
 
 export const AccordionSizes = () => {
   return (

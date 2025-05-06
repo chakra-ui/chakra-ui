@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, For, Stack } from "@chakra-ui/react"
+import { Avatar, Button, Card, For, Stack } from "@sh3yk0-ui/react"
 
 export const CardWithVariants = () => {
   return (

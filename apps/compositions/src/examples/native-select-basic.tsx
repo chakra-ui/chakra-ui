@@ -1,4 +1,4 @@
-import { NativeSelect } from "@chakra-ui/react"
+import { NativeSelect } from "@sh3yk0-ui/react"
 
 export const NativeSelectBasic = () => {
   return (

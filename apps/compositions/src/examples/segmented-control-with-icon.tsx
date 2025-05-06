@@ -1,4 +1,4 @@
-import { HStack, SegmentGroup } from "@chakra-ui/react"
+import { HStack, SegmentGroup } from "@sh3yk0-ui/react"
 import { LuGrid2X2, LuList, LuTable } from "react-icons/lu"
 
 export const SegmentedControlWithIcon = () => {

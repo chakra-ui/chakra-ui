@@ -7,7 +7,7 @@ import {
   Stack,
   getColorChannels,
   parseColor,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 const ChannelSliders = (props: { format: ColorPicker.ColorFormat }) => {
   const channels = getColorChannels(props.format)

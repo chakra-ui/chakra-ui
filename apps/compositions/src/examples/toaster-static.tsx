@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Spinner, Stack, useSlotRecipe } from "@chakra-ui/react"
+import { Box, Spinner, Stack, useSlotRecipe } from "@sh3yk0-ui/react"
 import {
   HiCheckCircle,
   HiExclamationCircle,

@@ -1,6 +1,6 @@
 "use client"
 
-import { NumberInput } from "@chakra-ui/react"
+import { NumberInput } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const NumberInputControlled = () => {

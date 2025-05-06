@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, HStack } from "@chakra-ui/react"
+import { Button, HStack } from "@sh3yk0-ui/react"
 import { DarkMode, LightMode, useColorMode } from "compositions/ui/color-mode"
 
 export const ColorModeForced = () => {

@@ -1,4 +1,4 @@
-import { Button, Card, Image, Text } from "@chakra-ui/react"
+import { Button, Card, Image, Text } from "@sh3yk0-ui/react"
 
 export const CardWithImage = () => {
   return (

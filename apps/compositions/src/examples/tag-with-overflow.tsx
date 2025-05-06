@@ -1,4 +1,4 @@
-import { Tag } from "@chakra-ui/react"
+import { Tag } from "@sh3yk0-ui/react"
 
 export const TagWithOverflow = () => {
   return (

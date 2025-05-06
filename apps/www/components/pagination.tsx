@@ -1,4 +1,4 @@
-import { Box, HStack, Stack, StackProps, Text } from "@chakra-ui/react"
+import { Box, HStack, Stack, StackProps, Text } from "@sh3yk0-ui/react"
 import Link, { LinkProps } from "next/link"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 

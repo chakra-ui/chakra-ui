@@ -1,4 +1,4 @@
-import { Field, NumberInput } from "@chakra-ui/react"
+import { Field, NumberInput } from "@sh3yk0-ui/react"
 
 export const NumberInputWithField = () => {
   return (

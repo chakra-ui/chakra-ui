@@ -1,4 +1,4 @@
-import { NumberInput as ChakraNumberInput } from "@chakra-ui/react"
+import { NumberInput as ChakraNumberInput } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 export interface NumberInputProps extends ChakraNumberInput.RootProps {}

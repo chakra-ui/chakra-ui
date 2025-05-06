@@ -1,4 +1,4 @@
-import { Button, Group, Input } from "@chakra-ui/react"
+import { Button, Group, Input } from "@sh3yk0-ui/react"
 
 export const InputWithEndButton = () => {
   return (

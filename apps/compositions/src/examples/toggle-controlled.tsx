@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Code, Stack, Toggle } from "@chakra-ui/react"
+import { Button, Code, Stack, Toggle } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const ToggleControlled = () => {

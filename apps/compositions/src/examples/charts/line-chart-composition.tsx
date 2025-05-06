@@ -1,7 +1,7 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
-import { Card, ColorSwatch, HStack, Stat } from "@chakra-ui/react"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
+import { Card, ColorSwatch, HStack, Stat } from "@sh3yk0-ui/react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 
 export const LineChartComposition = () => {

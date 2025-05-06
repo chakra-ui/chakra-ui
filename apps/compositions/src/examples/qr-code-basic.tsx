@@ -1,4 +1,4 @@
-import { QrCode } from "@chakra-ui/react"
+import { QrCode } from "@sh3yk0-ui/react"
 
 export const QrCodeBasic = () => {
   return (

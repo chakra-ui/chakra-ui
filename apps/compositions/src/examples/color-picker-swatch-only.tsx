@@ -1,4 +1,4 @@
-import { ColorPicker } from "@chakra-ui/react"
+import { ColorPicker } from "@sh3yk0-ui/react"
 
 export const ColorPickerSwatchOnly = () => {
   return (

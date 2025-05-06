@@ -1,4 +1,4 @@
-import { Switch as ChakraSwitch } from "@chakra-ui/react"
+import { Switch as ChakraSwitch } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 export interface SwitchProps extends ChakraSwitch.RootProps {

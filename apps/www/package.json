@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/www",
+  "name": "@sh3yk0-ui/www",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@ark-ui/react": "5.8.0",
-    "@chakra-ui/react": "workspace:*",
-    "@chakra-ui/charts": "workspace:*",
+    "@sh3yk0-ui/react": "workspace:*",
+    "@sh3yk0-ui/charts": "workspace:*",
     "@emotion/react": "11.14.0",
     "@shikijs/rehype": "3.3.0",
     "@shikijs/transformers": "3.3.0",

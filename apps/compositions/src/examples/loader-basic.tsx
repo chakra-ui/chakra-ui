@@ -1,4 +1,4 @@
-import { HStack, Loader } from "@chakra-ui/react"
+import { HStack, Loader } from "@sh3yk0-ui/react"
 
 export const LoaderBasic = () => {
   return (

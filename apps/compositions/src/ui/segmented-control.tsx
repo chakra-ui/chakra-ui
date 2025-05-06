@@ -1,6 +1,6 @@
 "use client"
 
-import { For, SegmentGroup } from "@chakra-ui/react"
+import { For, SegmentGroup } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 interface Item {

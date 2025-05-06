@@ -1,5 +1,5 @@
-import type { SystemContext } from "@chakra-ui/react"
 import { allCssProperties } from "@pandacss/is-valid-prop"
+import type { SystemContext } from "@sh3yk0-ui/react"
 import { pretty } from "./pretty.js"
 
 export async function generateSystemTypes(sys: SystemContext) {

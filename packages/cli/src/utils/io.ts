@@ -1,5 +1,5 @@
-import type { SystemContext } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
+import type { SystemContext } from "@sh3yk0-ui/react"
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
 import { existsSync, mkdirSync, rm } from "node:fs"

@@ -1,15 +1,11 @@
 {
   "type": "composition",
-  "npmDependencies": [
-    "react-icons"
-  ],
-  "fileDependencies": [
-    "compositions/ui/menu"
-  ],
+  "npmDependencies": ["react-icons"],
+  "fileDependencies": ["compositions/ui/menu"],
   "id": "overflow-menu",
   "file": {
     "name": "overflow-menu.tsx",
-    "content": "import type { ButtonProps, MenuRootProps } from \"@chakra-ui/react\"\nimport { IconButton } from \"@chakra-ui/react\"\nimport {\n  MenuContent,\n  MenuItem,\n  MenuRoot,\n  MenuTrigger,\n} from \"./menu\"\nimport {\n  HiMiniEllipsisHorizontal,\n  HiMiniEllipsisVertical,\n} from \"react-icons/hi2\"\n\nexport interface OverflowMenuRootProps extends MenuRootProps {}\n\nexport const OverflowMenuRoot = (props: OverflowMenuRootProps) => {\n  return (\n    <MenuRoot\n      {...props}\n      positioning={{ placement: \"bottom-end\", ...props.positioning }}\n    />\n  )\n}\n\nexport interface OverflowMenuTriggerProps extends ButtonProps {\n  vertical?: boolean\n}\n\nexport const OverflowMenuTrigger = (props: OverflowMenuTriggerProps) => {\n  const { vertical, ...rest } = props\n  return (\n    <MenuTrigger asChild>\n      <IconButton variant=\"plain\" size=\"sm\" {...rest}>\n        {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}\n      </IconButton>\n    </MenuTrigger>\n  )\n}\n\nexport const OverflowMenuItem = MenuItem\nexport const OverflowMenuContent = MenuContent\n"
+    "content": "import type { ButtonProps, MenuRootProps } from \"@sh3yk0-ui/react\"\nimport { IconButton } from \"@sh3yk0-ui/react\"\nimport {\n  MenuContent,\n  MenuItem,\n  MenuRoot,\n  MenuTrigger,\n} from \"./menu\"\nimport {\n  HiMiniEllipsisHorizontal,\n  HiMiniEllipsisVertical,\n} from \"react-icons/hi2\"\n\nexport interface OverflowMenuRootProps extends MenuRootProps {}\n\nexport const OverflowMenuRoot = (props: OverflowMenuRootProps) => {\n  return (\n    <MenuRoot\n      {...props}\n      positioning={{ placement: \"bottom-end\", ...props.positioning }}\n    />\n  )\n}\n\nexport interface OverflowMenuTriggerProps extends ButtonProps {\n  vertical?: boolean\n}\n\nexport const OverflowMenuTrigger = (props: OverflowMenuTriggerProps) => {\n  const { vertical, ...rest } = props\n  return (\n    <MenuTrigger asChild>\n      <IconButton variant=\"plain\" size=\"sm\" {...rest}>\n        {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}\n      </IconButton>\n    </MenuTrigger>\n  )\n}\n\nexport const OverflowMenuItem = MenuItem\nexport const OverflowMenuContent = MenuContent\n"
   },
   "component": "OverflowMenu"
 }

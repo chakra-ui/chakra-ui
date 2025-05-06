@@ -1,6 +1,6 @@
 "use client"
 
-import { NativeSelect as Select } from "@chakra-ui/react"
+import { NativeSelect as Select } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 type FieldProp = "name" | "value" | "onChange" | "defaultValue"

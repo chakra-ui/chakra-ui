@@ -1,4 +1,4 @@
-import { AspectRatio, Image } from "@chakra-ui/react"
+import { AspectRatio, Image } from "@sh3yk0-ui/react"
 
 export const AspectRatioWithImage = () => {
   return (

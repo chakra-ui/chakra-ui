@@ -1,4 +1,4 @@
-import { Table as ChakraTable } from "@chakra-ui/react"
+import { Table as ChakraTable } from "@sh3yk0-ui/react"
 
 export const Table = (props: ChakraTable.RootProps) => {
   return (

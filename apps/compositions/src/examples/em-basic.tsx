@@ -1,4 +1,4 @@
-import { Em, Text } from "@chakra-ui/react"
+import { Em, Text } from "@sh3yk0-ui/react"
 
 export const EmBasic = () => {
   return (

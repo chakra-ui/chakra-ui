@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react"
+import { Button, CloseButton, Dialog, Portal } from "@sh3yk0-ui/react"
 import { useState } from "react"
 import Lorem from "react-lorem-ipsum"
 

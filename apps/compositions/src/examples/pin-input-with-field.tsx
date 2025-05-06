@@ -1,4 +1,4 @@
-import { Field, PinInput } from "@chakra-ui/react"
+import { Field, PinInput } from "@sh3yk0-ui/react"
 
 export const PinInputWithField = () => {
   return (

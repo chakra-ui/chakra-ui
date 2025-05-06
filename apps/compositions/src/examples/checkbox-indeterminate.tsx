@@ -1,6 +1,6 @@
 "use client"
 
-import { Checkbox, Stack } from "@chakra-ui/react"
+import { Checkbox, Stack } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 const initialValues = [

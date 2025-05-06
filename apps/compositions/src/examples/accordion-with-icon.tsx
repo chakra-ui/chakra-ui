@@ -1,4 +1,4 @@
-import { Accordion, Heading, Icon, Stack } from "@chakra-ui/react"
+import { Accordion, Heading, Icon, Stack } from "@sh3yk0-ui/react"
 import { LuChartBarStacked, LuTags } from "react-icons/lu"
 
 export const AccordionWithIcon = () => {

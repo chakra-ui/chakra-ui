@@ -1,26 +1,26 @@
-# @chakra-ui/cli
+# @sh3yk0-ui/cli
 
 Generate TypeScript types to provide autocomplete for your custom theme.
 
 ## Usage
 
 ```sh
-npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
+npx @sh3yk0-ui/cli tokens <path/to/your/theme.(js|ts)>
 ```
 
 or
 
 ```sh
-npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+npx @sh3yk0-ui/cli tokens <@your-org/chakra-theme-package>
 ```
 
 ```sh
-$ npx @chakra-ui/cli tokens --help
+$ npx @sh3yk0-ui/cli tokens --help
 
 Usage: chakra-cli tokens [options] <source>
 
 Options:
-  --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+  --out <path>              output file e.g. node_modules/@sh3yk0-ui/styled-system/dist/declarations/src/theming.types.d.ts
   --strict-component-types  Generate strict types for props variant and size
   --strict-token-types      Generate strict types for theme tokens (e.g. color, spacing)
   --no-format               Disable auto formatting

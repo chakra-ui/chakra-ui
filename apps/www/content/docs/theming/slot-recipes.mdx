@@ -23,7 +23,7 @@ A slot recipe consists of these properties:
 Use the `defineSlotRecipe` identity function to create a slot recipe.
 
 ```tsx title="checkbox.recipe.ts"
-import { defineSlotRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@sh3yk0-ui/react"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
   slots: ["root", "control", "label"],
@@ -70,7 +70,7 @@ recipe with its variant props to get the styles.
 ```tsx title="checkbox.tsx"
 "use client"
 
-import { chakra, useSlotRecipe } from "@chakra-ui/react"
+import { chakra, useSlotRecipe } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 export const Checkbox = (props) => {
@@ -100,7 +100,7 @@ props from the component props.
 ```tsx title="checkbox.tsx" {8}
 "use client"
 
-import { chakra, useSlotRecipe } from "@chakra-ui/react"
+import { chakra, useSlotRecipe } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 export const Checkbox = (props) => {
@@ -118,7 +118,7 @@ To infer the recipe variant prop types, use the `RecipeVariantProps` type
 helper.
 
 ```tsx title="checkbox.tsx"
-import type { RecipeVariantProps } from "@chakra-ui/react"
+import type { RecipeVariantProps } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 type CheckboxVariantProps = RecipeVariantProps<typeof checkboxSlotRecipe>
@@ -147,7 +147,7 @@ the complexity of the types involved.
 ```tsx title="checkbox.tsx"
 "use client"
 
-import { createSlotRecipeContext } from "@chakra-ui/react"
+import { createSlotRecipeContext } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 const { withProvider, withContext } = createSlotRecipeContext({
@@ -210,7 +210,7 @@ To infer the recipe variant prop types, use the `RecipeVariantProps` type
 helper.
 
 ```ts
-import type { RecipeVariantProps, UnstyledProp } from "@chakra-ui/react"
+import type { RecipeVariantProps, UnstyledProp } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 type CheckboxVariantProps = RecipeVariantProps<typeof checkboxSlotRecipe>
@@ -226,7 +226,7 @@ Use the `compoundVariants` property to define a set of variants that are applied
 based on a combination of other variants.
 
 ```tsx title="checkbox.recipe.ts" /compoundVariants/
-import { defineSlotRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@sh3yk0-ui/react"
 
 export const checkboxRecipe = defineSlotRecipe({
   slots: ["root", "control", "label"],
@@ -262,7 +262,7 @@ In some cases, targeting a slot by className might be needed.
 - The naming convention is `${className}__${slot}`
 
 ```tsx title="checkbox.recipe.ts" /& .checkbox__label/
-import { defineSlotRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@sh3yk0-ui/react"
 
 export const checkboxRecipe = defineSlotRecipe({
   className: "checkbox",
@@ -287,7 +287,7 @@ to `theme.slotRecipes` property.
 > theme.
 
 ```tsx title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 const config = defineConfig({
@@ -306,13 +306,13 @@ export default createSystem(defaultConfig, config)
 Use the CLI to generate the types for the recipe.
 
 ```bash
-npx @chakra-ui/cli typegen ./theme.ts
+npx @sh3yk0-ui/cli typegen ./theme.ts
 ```
 
 Then, import the generated types in your component.
 
 ```tsx title="checkbox.tsx"
-import type { SlotRecipeProps, UnstyledProp } from "@chakra-ui/react"
+import type { SlotRecipeProps, UnstyledProp } from "@sh3yk0-ui/react"
 
 export interface CheckboxProps
   extends SlotRecipeProps<"checkbox">,

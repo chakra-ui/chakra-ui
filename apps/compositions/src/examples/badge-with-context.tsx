@@ -1,4 +1,4 @@
-import { Badge, BadgePropsProvider, Group } from "@chakra-ui/react"
+import { Badge, BadgePropsProvider, Group } from "@sh3yk0-ui/react"
 
 export const BadgeWithContext = () => {
   return (

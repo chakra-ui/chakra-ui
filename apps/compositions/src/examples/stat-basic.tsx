@@ -1,4 +1,4 @@
-import { Stat } from "@chakra-ui/react"
+import { Stat } from "@sh3yk0-ui/react"
 
 export const StatBasic = () => {
   return (

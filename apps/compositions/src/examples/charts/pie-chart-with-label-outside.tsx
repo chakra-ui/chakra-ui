@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
 import { Cell, Pie, PieChart } from "recharts"
 
 export const PieChartWithLabelOutside = () => {

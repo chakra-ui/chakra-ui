@@ -1,4 +1,4 @@
-import { Field, Heading, Input, Tabs, Text } from "@chakra-ui/react"
+import { Field, Heading, Input, Tabs, Text } from "@sh3yk0-ui/react"
 
 export const TabsNested = () => {
   return (

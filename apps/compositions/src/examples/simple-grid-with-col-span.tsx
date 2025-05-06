@@ -1,4 +1,4 @@
-import { GridItem, SimpleGrid } from "@chakra-ui/react"
+import { GridItem, SimpleGrid } from "@sh3yk0-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SimpleGridWithColSpan = () => (

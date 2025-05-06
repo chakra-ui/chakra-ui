@@ -1,4 +1,4 @@
-import { Badge, Stack, Text } from "@chakra-ui/react"
+import { Badge, Stack, Text } from "@sh3yk0-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 
 export const BadgeWithColors = () => {

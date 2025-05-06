@@ -1,5 +1,5 @@
-import { defaultConfig } from "@chakra-ui/react"
 import * as p from "@clack/prompts"
+import { defaultConfig } from "@sh3yk0-ui/react"
 import { Command } from "commander"
 import createDebug from "debug"
 import { writeFile } from "node:fs/promises"
@@ -40,7 +40,7 @@ export const EjectCommand = new Command("eject")
 
     const globalCss = defaultConfig.globalCss ?? ""
     const globalCssContent = `
-    import { defineGlobalStyles } from "@chakra-ui/react"
+    import { defineGlobalStyles } from "@sh3yk0-ui/react"
 
     export const globalCss = defineGlobalStyles(${JSON.stringify(globalCss, null, 2)})
     `
@@ -107,7 +107,7 @@ export const EjectCommand = new Command("eject")
 
     const textStyles = defaultConfig.theme?.textStyles ?? {}
     const textStylesContent = `
-    import { defineTextStyles } from "@chakra-ui/react"
+    import { defineTextStyles } from "@sh3yk0-ui/react"
     
     export const textStyles = defineTextStyles(${JSON.stringify(textStyles, null, 2)})
     `
@@ -124,7 +124,7 @@ export const EjectCommand = new Command("eject")
 
     const layerStyles = defaultConfig.theme?.layerStyles ?? {}
     const layerStylesContent = `
-    import { defineLayerStyles } from "@chakra-ui/react"
+    import { defineLayerStyles } from "@sh3yk0-ui/react"
     
     export const layerStyles = defineLayerStyles(${JSON.stringify(layerStyles, null, 2)})
     `
@@ -141,7 +141,7 @@ export const EjectCommand = new Command("eject")
 
     const animationStyles = defaultConfig.theme?.animationStyles ?? {}
     const animationStylesContent = `
-    import { defineAnimationStyles } from "@chakra-ui/react"
+    import { defineAnimationStyles } from "@sh3yk0-ui/react"
 
     export const animationStyles = defineAnimationStyles(${JSON.stringify(animationStyles, null, 2)})
     `
@@ -157,7 +157,7 @@ export const EjectCommand = new Command("eject")
     artifacts.push({
       path: [flags.outdir, "index.ts"],
       content: `
-import { createSystem, defaultBaseConfig, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { createSystem, defaultBaseConfig, defineConfig, mergeConfigs } from "@sh3yk0-ui/react"
 import { animationStyles } from "./animation-styles"
 import { breakpoints } from "./breakpoints"
 import { globalCss } from "./global-css"
@@ -203,7 +203,7 @@ function generateSlotRecipeArtifacts(
 ) {
   for (const [name, recipe] of Object.entries(slotRecipes)) {
     const content = `
-    import { defineSlotRecipe } from "@chakra-ui/react"
+    import { defineSlotRecipe } from "@sh3yk0-ui/react"
 
     export const ${name}SlotRecipe = defineSlotRecipe(${JSON.stringify(recipe, null, 2)})
     `
@@ -239,7 +239,7 @@ function generateRecipeArtifacts(
 ) {
   for (const [name, recipe] of Object.entries(recipes)) {
     const content = `
-    import { defineRecipe } from "@chakra-ui/react"
+    import { defineRecipe } from "@sh3yk0-ui/react"
     
     export const ${name}Recipe = defineRecipe(${JSON.stringify(recipe, null, 2)})
     `
@@ -273,7 +273,7 @@ function generateSemanticTokenArtifacts(
 ) {
   for (const [name, token] of Object.entries(semanticTokens)) {
     const content = `
-    import { defineSemanticTokens } from "@chakra-ui/react"
+    import { defineSemanticTokens } from "@sh3yk0-ui/react"
     
     export const ${name} = defineSemanticTokens.${name}(${JSON.stringify(token, null, 2)})
     `
@@ -306,7 +306,7 @@ function generateTokenArtifacts(
 ) {
   for (const [name, token] of Object.entries(tokens)) {
     const content = `
-    import { defineTokens } from "@chakra-ui/react"
+    import { defineTokens } from "@sh3yk0-ui/react"
     
     export const ${name} = defineTokens.${name}(${JSON.stringify(token, null, 2)})
     `

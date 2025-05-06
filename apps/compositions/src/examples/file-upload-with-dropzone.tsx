@@ -1,4 +1,4 @@
-import { Box, FileUpload, Icon } from "@chakra-ui/react"
+import { Box, FileUpload, Icon } from "@sh3yk0-ui/react"
 import { LuUpload } from "react-icons/lu"
 
 export const FileUploadWithDropzone = () => {

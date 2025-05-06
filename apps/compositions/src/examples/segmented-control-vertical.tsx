@@ -1,4 +1,4 @@
-import { SegmentGroup } from "@chakra-ui/react"
+import { SegmentGroup } from "@sh3yk0-ui/react"
 
 export const SegmentedControlVertical = () => {
   return (

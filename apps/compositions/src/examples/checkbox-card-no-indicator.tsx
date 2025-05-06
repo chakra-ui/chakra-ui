@@ -1,4 +1,4 @@
-import { CheckboxCard, HStack } from "@chakra-ui/react"
+import { CheckboxCard, HStack } from "@sh3yk0-ui/react"
 
 export const CheckboxCardNoIndicator = () => {
   return (

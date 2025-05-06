@@ -1,13 +1,11 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": [
-    "compositions/ui/color-mode"
-  ],
+  "fileDependencies": ["compositions/ui/color-mode"],
   "id": "provider",
   "file": {
     "name": "provider.tsx",
-    "content": "\"use client\"\n\nimport { ChakraProvider, defaultSystem } from \"@chakra-ui/react\"\nimport {\n  ColorModeProvider,\n  type ColorModeProviderProps,\n} from \"./color-mode\"\n\nexport function Provider(props: ColorModeProviderProps) {\n  return (\n    <ChakraProvider value={defaultSystem}>\n      <ColorModeProvider {...props} />\n    </ChakraProvider>\n  )\n}\n"
+    "content": "\"use client\"\n\nimport { ChakraProvider, defaultSystem } from \"@sh3yk0-ui/react\"\nimport {\n  ColorModeProvider,\n  type ColorModeProviderProps,\n} from \"./color-mode\"\n\nexport function Provider(props: ColorModeProviderProps) {\n  return (\n    <ChakraProvider value={defaultSystem}>\n      <ColorModeProvider {...props} />\n    </ChakraProvider>\n  )\n}\n"
   },
   "component": "Provider"
 }

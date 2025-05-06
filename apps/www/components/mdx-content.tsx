@@ -1,4 +1,4 @@
-import { Box, Kbd } from "@chakra-ui/react"
+import { Box, Kbd } from "@sh3yk0-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-doc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"

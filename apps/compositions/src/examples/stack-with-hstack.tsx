@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react"
+import { HStack } from "@sh3yk0-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const StackWithHstack = () => {

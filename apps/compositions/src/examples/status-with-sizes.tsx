@@ -1,4 +1,4 @@
-import { For, HStack, Stack, Status } from "@chakra-ui/react"
+import { For, HStack, Stack, Status } from "@sh3yk0-ui/react"
 
 export const StatusWithSizes = () => {
   return (

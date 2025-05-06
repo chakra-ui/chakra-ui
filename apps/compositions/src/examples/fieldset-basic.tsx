@@ -6,7 +6,7 @@ import {
   Input,
   NativeSelect,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const FieldsetBasic = () => {
   return (

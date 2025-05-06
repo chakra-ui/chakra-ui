@@ -1,4 +1,4 @@
-import { Button, Menu, Portal } from "@chakra-ui/react"
+import { Button, Menu, Portal } from "@sh3yk0-ui/react"
 
 export const MenuWithGroupDynamic = () => {
   return (

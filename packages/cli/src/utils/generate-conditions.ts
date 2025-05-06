@@ -1,4 +1,4 @@
-import type { SystemContext } from "@chakra-ui/react"
+import type { SystemContext } from "@sh3yk0-ui/react"
 import { pretty } from "./pretty.js"
 
 export function generateCondition(sys: SystemContext) {

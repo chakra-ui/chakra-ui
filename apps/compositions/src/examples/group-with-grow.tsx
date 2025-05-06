@@ -1,4 +1,4 @@
-import { Button, Group } from "@chakra-ui/react"
+import { Button, Group } from "@sh3yk0-ui/react"
 
 export const GroupWithGrow = () => {
   return (

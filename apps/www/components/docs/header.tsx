@@ -16,8 +16,8 @@ import {
   Spacer,
   VStack,
   chakra,
-} from "@chakra-ui/react"
-import packageJson from "@chakra-ui/react/package.json"
+} from "@sh3yk0-ui/react"
+import packageJson from "@sh3yk0-ui/react/package.json"
 import {
   DrawerBackdrop,
   DrawerBody,

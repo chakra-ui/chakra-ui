@@ -1,4 +1,4 @@
-import { Field, NativeSelect } from "@chakra-ui/react"
+import { Field, NativeSelect } from "@sh3yk0-ui/react"
 
 export const FieldWithNativeSelect = () => {
   return (

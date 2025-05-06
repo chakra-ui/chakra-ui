@@ -1,6 +1,6 @@
 "use client"
 
-import { Input, InputGroup } from "@chakra-ui/react"
+import { Input, InputGroup } from "@sh3yk0-ui/react"
 import { LuCreditCard } from "react-icons/lu"
 import { usePaymentInputs } from "react-payment-inputs"
 

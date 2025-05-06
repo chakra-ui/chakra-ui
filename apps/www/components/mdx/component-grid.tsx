@@ -1,4 +1,4 @@
-import { Box, Center, SimpleGrid, Stack } from "@chakra-ui/react"
+import { Box, Center, SimpleGrid, Stack } from "@sh3yk0-ui/react"
 import Link from "next/link"
 import { LuCode } from "react-icons/lu"
 import { kebabCase } from "scule"

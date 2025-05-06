@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/cli",
+  "name": "@sh3yk0-ui/cli",
   "version": "3.17.0",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
@@ -34,7 +34,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "bin": {
-    "chakra": "bin/index.js"
+    "sk-bin": "bin/index.js"
   },
   "scripts": {
     "prepack": "tsx ../../scripts/conditions.ts",
@@ -67,10 +67,10 @@
     "zod": "^3.24.3"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=3.0.0-next.0"
+    "@sh3yk0-ui/react": ">=3.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/react": "workspace:*"
+    "@sh3yk0-ui/react": "workspace:*"
   },
   "exports": {
     ".": {

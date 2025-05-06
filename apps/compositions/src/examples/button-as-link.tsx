@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react"
+import { Button } from "@sh3yk0-ui/react"
 
 export const ButtonAsLink = () => {
   return (

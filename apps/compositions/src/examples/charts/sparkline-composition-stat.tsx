@@ -1,7 +1,7 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
-import { Card, Stat } from "@chakra-ui/react"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
+import { Card, Stat } from "@sh3yk0-ui/react"
 import { LuGlobe } from "react-icons/lu"
 import { Area, AreaChart } from "recharts"
 

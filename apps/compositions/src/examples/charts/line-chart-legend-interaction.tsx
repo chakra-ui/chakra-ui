@@ -1,7 +1,7 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
-import { HStack, VStack } from "@chakra-ui/react"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
+import { HStack, VStack } from "@sh3yk0-ui/react"
 import { LuArrowUp } from "react-icons/lu"
 import {
   CartesianGrid,

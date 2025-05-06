@@ -1,5 +1,5 @@
 import { HighlightHeading, Subheading } from "@/components/site/typography"
-import { Box, Card, Container, Flex, Span, Stack } from "@chakra-ui/react"
+import { Box, Card, Container, Flex, Span, Stack } from "@sh3yk0-ui/react"
 import { Metadata } from "next"
 import { LuArrowRightLeft, LuAtom, LuCode, LuLightbulb } from "react-icons/lu"
 import { EnterpriseForm } from "./enterprise-form"

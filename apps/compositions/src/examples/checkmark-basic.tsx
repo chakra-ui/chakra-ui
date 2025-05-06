@@ -1,4 +1,4 @@
-import { Checkmark, Stack } from "@chakra-ui/react"
+import { Checkmark, Stack } from "@sh3yk0-ui/react"
 
 export const CheckmarkBasic = () => {
   return (

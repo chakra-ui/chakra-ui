@@ -1,4 +1,4 @@
-import { Highlight } from "@chakra-ui/react"
+import { Highlight } from "@sh3yk0-ui/react"
 
 export const HighlightWithCustomStyle = () => {
   return (

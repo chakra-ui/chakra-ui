@@ -1,4 +1,4 @@
-import { defineRecipe } from "@chakra-ui/react"
+import { defineRecipe } from "@sh3yk0-ui/react"
 
 export const cardRecipe = defineRecipe({
   base: {

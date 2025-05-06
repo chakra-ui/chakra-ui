@@ -1,10 +1,10 @@
-import type { ButtonProps, InputProps } from "@chakra-ui/react"
+import type { ButtonProps, InputProps } from "@sh3yk0-ui/react"
 import {
   Button,
   Clipboard as ChakraClipboard,
   IconButton,
   Input,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import * as React from "react"
 import { LuCheck, LuClipboard, LuLink } from "react-icons/lu"
 

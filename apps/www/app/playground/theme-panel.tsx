@@ -1,6 +1,7 @@
 "use client"
 
 import { ColorModeButton } from "@/components/docs/color-mode-button"
+import { Global } from "@emotion/react"
 import {
   Box,
   Card,
@@ -12,8 +13,7 @@ import {
   Text,
   VStack,
   useChakraContext,
-} from "@chakra-ui/react"
-import { Global } from "@emotion/react"
+} from "@sh3yk0-ui/react"
 import { RadioCardItem, RadioCardRoot } from "compositions/ui/radio-card"
 import { useState } from "react"
 

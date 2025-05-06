@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, For, Span, useRecipe } from "@chakra-ui/react"
+import { Button, For, Span, useRecipe } from "@sh3yk0-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 import { HiArrowRight } from "react-icons/hi"

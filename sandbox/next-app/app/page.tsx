@@ -9,7 +9,7 @@ import {
   RadioGroup,
   Skeleton,
   VStack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import Image from "next/image"
 import { ColorModeToggle } from "../components/color-mode-toggle"
 
@@ -63,7 +63,7 @@ export default async function Page() {
 
         <HStack>
           <Button>Let's go!</Button>
-          <Button variant="outline">bun install @chakra-ui/react</Button>
+          <Button variant="outline">bun install @sh3yk0-ui/react</Button>
         </HStack>
       </VStack>
 

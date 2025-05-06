@@ -1,4 +1,4 @@
-import { HStack, RadioGroup } from "@chakra-ui/react"
+import { HStack, RadioGroup } from "@sh3yk0-ui/react"
 
 export const RadioDisabled = () => {
   return (

@@ -1,4 +1,4 @@
-import { Avatar, Badge, Box, Float } from "@chakra-ui/react"
+import { Avatar, Badge, Box, Float } from "@sh3yk0-ui/react"
 
 export const FloatWithAvatar = () => {
   return (

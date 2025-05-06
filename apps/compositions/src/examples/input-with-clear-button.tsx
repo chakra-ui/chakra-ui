@@ -1,6 +1,6 @@
 "use client"
 
-import { CloseButton, Input, InputGroup } from "@chakra-ui/react"
+import { CloseButton, Input, InputGroup } from "@sh3yk0-ui/react"
 import { useRef, useState } from "react"
 
 export const InputWithClearButton = () => {

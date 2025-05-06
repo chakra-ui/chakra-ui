@@ -6,7 +6,7 @@ import {
   Presence,
   Stack,
   useDisclosure,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const PresenceSlide = () => {
   const { open, onToggle } = useDisclosure()

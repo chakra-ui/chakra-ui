@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Stack, Steps } from "@chakra-ui/react"
+import { Button, ButtonGroup, Stack, Steps } from "@sh3yk0-ui/react"
 
 export const StepsVertical = () => {
   return (

@@ -1,4 +1,4 @@
-import { Editable } from "@chakra-ui/react"
+import { Editable } from "@sh3yk0-ui/react"
 
 export const EditableDisabled = () => {
   return (

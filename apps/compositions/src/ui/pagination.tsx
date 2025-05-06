@@ -1,6 +1,6 @@
 "use client"
 
-import type { ButtonProps, TextProps } from "@chakra-ui/react"
+import type { ButtonProps, TextProps } from "@sh3yk0-ui/react"
 import {
   Button,
   Pagination as ChakraPagination,
@@ -8,7 +8,7 @@ import {
   Text,
   createContext,
   usePaginationContext,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import * as React from "react"
 import {
   HiChevronLeft,

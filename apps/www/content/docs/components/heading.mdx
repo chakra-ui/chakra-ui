@@ -8,7 +8,7 @@ description: Used to render semantic HTML heading elements.
 ## Usage
 
 ```js
-import { Heading } from "@chakra-ui/react"
+import { Heading } from "@sh3yk0-ui/react"
 ```
 
 ```jsx
@@ -58,8 +58,8 @@ considers the line height and letter spacing as well.
 Here's an example of customizing the `Heading` component.
 
 ```tsx title="provider.tsx"
-import { createSystem, defineRecipe } from "@chakra-ui/react"
-import { defaultConfig } from "@chakra-ui/react"
+import { createSystem, defineRecipe } from "@sh3yk0-ui/react"
+import { defaultConfig } from "@sh3yk0-ui/react"
 
 const headingRecipe = defineRecipe({
   base: {
@@ -80,8 +80,8 @@ const system = createSystem(defaultConfig, {
 Update the `variants.size` property to create a custom size.
 
 ```tsx title="provider.tsx"
-import { createSystem, defineRecipe } from "@chakra-ui/react"
-import { defaultConfig } from "@chakra-ui/react"
+import { createSystem, defineRecipe } from "@sh3yk0-ui/react"
+import { defaultConfig } from "@sh3yk0-ui/react"
 
 const headingRecipe = defineRecipe({
   variants: {

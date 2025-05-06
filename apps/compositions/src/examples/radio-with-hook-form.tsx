@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Fieldset, HStack, RadioGroup } from "@chakra-ui/react"
+import { Button, Fieldset, HStack, RadioGroup } from "@sh3yk0-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"

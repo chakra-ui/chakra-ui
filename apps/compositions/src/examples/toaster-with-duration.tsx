@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
+import { Button } from "@sh3yk0-ui/react"
 import { toaster } from "compositions/ui/toaster"
 
 export const ToasterWithDuration = () => {

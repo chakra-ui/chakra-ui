@@ -1,4 +1,4 @@
-import { Button, Dialog, FileUpload, Icon, Portal } from "@chakra-ui/react"
+import { Button, Dialog, FileUpload, Icon, Portal } from "@sh3yk0-ui/react"
 import { LuUpload } from "react-icons/lu"
 
 export const FileUploadInDialog = () => {

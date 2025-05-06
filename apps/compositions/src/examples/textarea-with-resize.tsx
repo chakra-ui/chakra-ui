@@ -1,4 +1,4 @@
-import { Stack, Textarea } from "@chakra-ui/react"
+import { Stack, Textarea } from "@sh3yk0-ui/react"
 
 export const TextareaWithResize = () => {
   return (

@@ -1,4 +1,4 @@
-import { Center } from "@chakra-ui/react"
+import { Center } from "@sh3yk0-ui/react"
 
 export const SystemColorPalette = () => {
   return (

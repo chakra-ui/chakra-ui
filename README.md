@@ -8,13 +8,13 @@
 <br />
 
 <p align="center">
-  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
+  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@sh3yk0-ui/react"/>
   <img alt="Github Checks" src="https://badgen.net/github/checks/chakra-ui/chakra-ui/main"/>
   <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   </a>
-  <a href="https://www.npmjs.com/package/@chakra-ui/react">
-    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
+  <a href="https://www.npmjs.com/package/@sh3yk0-ui/react">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@sh3yk0-ui/react.svg?style=flat"/>
   </a>
   <a href="https://github.com/chakra-ui/chakra-ui">
     <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
@@ -42,20 +42,20 @@ It's the https://chakra-ui.com website for the latest version of Chakra UI.
 ## Installation
 
 To use Chakra UI components, all you need to do is install the
-`@chakra-ui/react` package and its peer dependencies:
+`@sh3yk0-ui/react` package and its peer dependencies:
 
 ```sh
 # with Yarn
-$ yarn add @chakra-ui/react @emotion/react
+$ yarn add @sh3yk0-ui/react @emotion/react
 
 # with npm
-$ npm i @chakra-ui/react @emotion/react
+$ npm i @sh3yk0-ui/react @emotion/react
 
 # with pnpm
-$ pnpm add @chakra-ui/react @emotion/react
+$ pnpm add @sh3yk0-ui/react @emotion/react
 
 # with Bun
-$ bun add @chakra-ui/react @emotion/react
+$ bun add @sh3yk0-ui/react @emotion/react
 ```
 
 ## Usage

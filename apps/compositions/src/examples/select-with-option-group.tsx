@@ -1,6 +1,6 @@
 "use client"
 
-import { Portal, Select, createListCollection } from "@chakra-ui/react"
+import { Portal, Select, createListCollection } from "@sh3yk0-ui/react"
 import { groupBy } from "es-toolkit"
 
 export const SelectWithOptionGroup = () => {

@@ -1,6 +1,6 @@
 "use client"
 
-import { BarSegment, useChart } from "@chakra-ui/charts"
+import { BarSegment, useChart } from "@sh3yk0-ui/charts"
 
 export const BarSegmentWithLegend = () => {
   const chart = useChart({

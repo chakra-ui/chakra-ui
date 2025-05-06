@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Field, NumberInput } from "@chakra-ui/react"
+import { Button, Field, NumberInput } from "@sh3yk0-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"

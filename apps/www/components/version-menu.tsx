@@ -5,7 +5,7 @@ import {
   MenuItem,
   Portal,
   Span,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import Link from "next/link"
 import { LuChevronDown } from "react-icons/lu"
 

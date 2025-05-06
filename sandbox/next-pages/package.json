@@ -9,7 +9,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/react": "workspace:*",
+    "@sh3yk0-ui/react": "workspace:*",
     "@emotion/react": "^11.14.0",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",

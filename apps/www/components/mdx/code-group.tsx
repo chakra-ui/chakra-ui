@@ -1,4 +1,4 @@
-import { Tabs } from "@chakra-ui/react"
+import { Tabs } from "@sh3yk0-ui/react"
 import { Children } from "react"
 
 interface CodeGroupProps {

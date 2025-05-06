@@ -1,4 +1,4 @@
-import { For, NativeSelect, Stack } from "@chakra-ui/react"
+import { For, NativeSelect, Stack } from "@sh3yk0-ui/react"
 
 export const NativeSelectWithSizes = () => {
   return (

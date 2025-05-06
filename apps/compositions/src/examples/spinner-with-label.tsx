@@ -1,4 +1,4 @@
-import { Spinner, Text, VStack } from "@chakra-ui/react"
+import { Spinner, Text, VStack } from "@sh3yk0-ui/react"
 
 export const SpinnerWithLabel = () => {
   return (

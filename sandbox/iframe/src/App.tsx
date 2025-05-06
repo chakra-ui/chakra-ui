@@ -1,4 +1,4 @@
-import { Button, Container, Heading, Stack } from "@chakra-ui/react"
+import { Button, Container, Heading, Stack } from "@sh3yk0-ui/react"
 import { IframeProvider } from "./components/ui/iframe-provider"
 
 function App() {

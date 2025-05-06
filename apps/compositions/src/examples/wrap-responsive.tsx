@@ -1,4 +1,4 @@
-import { Wrap } from "@chakra-ui/react"
+import { Wrap } from "@sh3yk0-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const WrapResponsive = () => (

@@ -5,7 +5,7 @@
   "id": "link-button",
   "file": {
     "name": "link-button.tsx",
-    "content": "\"use client\"\n\nimport type { HTMLChakraProps, RecipeProps } from \"@chakra-ui/react\"\nimport { createRecipeContext } from \"@chakra-ui/react\"\n\nexport interface LinkButtonProps\n  extends HTMLChakraProps<\"a\", RecipeProps<\"button\">> {}\n\nconst { withContext } = createRecipeContext({ key: \"button\" })\n\n// Replace \"a\" with your framework's link component\nexport const LinkButton = withContext<HTMLAnchorElement, LinkButtonProps>(\"a\")\n"
+    "content": "\"use client\"\n\nimport type { HTMLChakraProps, RecipeProps } from \"@sh3yk0-ui/react\"\nimport { createRecipeContext } from \"@sh3yk0-ui/react\"\n\nexport interface LinkButtonProps\n  extends HTMLChakraProps<\"a\", RecipeProps<\"button\">> {}\n\nconst { withContext } = createRecipeContext({ key: \"button\" })\n\n// Replace \"a\" with your framework's link component\nexport const LinkButton = withContext<HTMLAnchorElement, LinkButtonProps>(\"a\")\n"
   },
   "component": "LinkButton"
 }

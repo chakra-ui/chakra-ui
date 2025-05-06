@@ -1,4 +1,4 @@
-import { For, HStack, Switch } from "@chakra-ui/react"
+import { For, HStack, Switch } from "@sh3yk0-ui/react"
 
 export const SwitchWithVariants = () => {
   return (

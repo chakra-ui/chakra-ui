@@ -1,6 +1,6 @@
 "use client"
 
-import { Input, QrCode, Stack } from "@chakra-ui/react"
+import { Input, QrCode, Stack } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const QrCodeWithInput = () => {

@@ -1,4 +1,4 @@
-import { Checkbox as ChakraCheckbox } from "@chakra-ui/react"
+import { Checkbox as ChakraCheckbox } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 export interface CheckboxProps extends ChakraCheckbox.RootProps {

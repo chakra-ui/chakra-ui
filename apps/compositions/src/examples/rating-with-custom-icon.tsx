@@ -1,4 +1,4 @@
-import { RatingGroup } from "@chakra-ui/react"
+import { RatingGroup } from "@sh3yk0-ui/react"
 import { IoHeart } from "react-icons/io5"
 
 export const RatingWithCustomIcon = () => {

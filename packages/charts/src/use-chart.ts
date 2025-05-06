@@ -1,7 +1,7 @@
 "use client"
 
-import type { Tokens } from "@chakra-ui/react"
-import { useChakraContext, useLocaleContext } from "@chakra-ui/react"
+import type { Tokens } from "@sh3yk0-ui/react"
+import { useChakraContext, useLocaleContext } from "@sh3yk0-ui/react"
 import * as React from "react"
 
 export type ChartColor = Tokens["colors"] | React.CSSProperties["color"]

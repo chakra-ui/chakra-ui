@@ -5,7 +5,7 @@
     { "repo": "chakra-ui/chakra-ui" }
   ],
   "commit": false,
-  "fixed": [["@chakra-ui/**"]],
+  "fixed": [["@sh3yk0-ui/**"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
@@ -23,7 +23,7 @@
     "shadow-dom",
     "sandbox-iframe",
     "react-router-ts",
-    "@chakra-ui/www",
-    "@chakra-ui/compositions"
+    "@sh3yk0-ui/www",
+    "@sh3yk0-ui/compositions"
   ]
 }

@@ -22,7 +22,7 @@ A recipe consists of these properties:
 Use the `defineRecipe` identity function to create a recipe.
 
 ```tsx title="button.recipe.ts"
-import { defineRecipe } from "@chakra-ui/react"
+import { defineRecipe } from "@sh3yk0-ui/react"
 
 export const buttonRecipe = defineRecipe({
   base: {
@@ -63,7 +63,7 @@ recipe with its variant props to get the styles.
 ```tsx title="button.tsx" {9}
 "use client"
 
-import { chakra, useRecipe } from "@chakra-ui/react"
+import { chakra, useRecipe } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 export const Button = (props) => {
@@ -88,7 +88,7 @@ props from the component props.
 ```tsx title="button.tsx" {8}
 "use client"
 
-import { chakra, useRecipe } from "@chakra-ui/react"
+import { chakra, useRecipe } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 export const Button = (props) => {
@@ -106,7 +106,7 @@ To infer the recipe variant prop types, use the `RecipeVariantProps` type
 helper.
 
 ```tsx title="button.tsx"
-import type { RecipeVariantProps } from "@chakra-ui/react"
+import type { RecipeVariantProps } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>
@@ -124,7 +124,7 @@ Use the `chakra` function to create a component from a recipe.
 ```tsx title="button.tsx"
 "use client"
 
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 export const Button = chakra("button", buttonRecipe)
@@ -152,7 +152,7 @@ recipe. This is useful when you want to apply a variant by default.
 ```tsx title="button.tsx" {19-22}
 "use client"
 
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 
 const Button = chakra("button", {
   base: {
@@ -183,7 +183,7 @@ based on a combination of other variants.
 ```tsx title="button.tsx" /compoundVariants/
 "use client"
 
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@sh3yk0-ui/react"
 
 const button = cva({
   base: {
@@ -242,7 +242,7 @@ To use the recipe in a reusable manner, move it to the system theme and add it
 to `theme.recipes` property.
 
 ```tsx title="theme.ts"
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 const config = defineConfig({
@@ -261,13 +261,13 @@ export default createSystem(defaultConfig, config)
 Use the CLI to generate the types for the recipe.
 
 ```bash
-npx @chakra-ui/cli typegen ./theme.ts
+npx @sh3yk0-ui/cli typegen ./theme.ts
 ```
 
 Then, import the generated types in your component.
 
 ```tsx title="button.tsx"
-import type { RecipeVariantProps } from "@chakra-ui/react"
+import type { RecipeVariantProps } from "@sh3yk0-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>

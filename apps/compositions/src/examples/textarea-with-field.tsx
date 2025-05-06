@@ -1,4 +1,4 @@
-import { Field, HStack, Textarea } from "@chakra-ui/react"
+import { Field, HStack, Textarea } from "@sh3yk0-ui/react"
 
 export const TextareaWithField = () => {
   return (

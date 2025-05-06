@@ -1,4 +1,4 @@
-import { Clipboard, IconButton, Input, InputGroup } from "@chakra-ui/react"
+import { Clipboard, IconButton, Input, InputGroup } from "@sh3yk0-ui/react"
 
 export const ClipboardWithInput = () => {
   return (

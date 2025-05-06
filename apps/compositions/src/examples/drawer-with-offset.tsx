@@ -1,4 +1,4 @@
-import { Button, CloseButton, Drawer, Portal } from "@chakra-ui/react"
+import { Button, CloseButton, Drawer, Portal } from "@sh3yk0-ui/react"
 
 export const DrawerWithOffset = () => {
   return (

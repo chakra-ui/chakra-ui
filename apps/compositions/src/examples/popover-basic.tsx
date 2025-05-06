@@ -1,4 +1,4 @@
-import { Button, Input, Popover, Portal, Text } from "@chakra-ui/react"
+import { Button, Input, Popover, Portal, Text } from "@sh3yk0-ui/react"
 
 export const PopoverBasic = () => {
   return (

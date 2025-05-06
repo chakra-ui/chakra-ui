@@ -1,4 +1,4 @@
-import { Link, Text } from "@chakra-ui/react"
+import { Link, Text } from "@sh3yk0-ui/react"
 
 export const LinkWithinText = () => {
   return (

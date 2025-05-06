@@ -1,4 +1,4 @@
-import { Alert, Badge, Box } from "@chakra-ui/react"
+import { Alert, Badge, Box } from "@sh3yk0-ui/react"
 import React, { isValidElement } from "react"
 
 interface CalloutProps {

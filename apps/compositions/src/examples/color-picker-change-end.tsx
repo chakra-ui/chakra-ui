@@ -7,7 +7,7 @@ import {
   Portal,
   Stack,
   parseColor,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const ColorPickerChangeEnd = () => {

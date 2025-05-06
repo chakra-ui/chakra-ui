@@ -1,4 +1,4 @@
-import { For } from "@chakra-ui/react"
+import { For } from "@sh3yk0-ui/react"
 
 export const ForBasic = () => {
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { Box } from "@chakra-ui/react"
+import { Box } from "@sh3yk0-ui/react"
 import { Component, ReactNode } from "react"
 
 interface ErrorBoundaryProps {

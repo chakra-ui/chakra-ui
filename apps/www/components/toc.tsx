@@ -1,7 +1,7 @@
 "use client"
 
 import { scrollIntoView } from "@/app/docs/scroll-into-view"
-import { Box, Stack, Text, chakra } from "@chakra-ui/react"
+import { Box, Stack, Text, chakra } from "@sh3yk0-ui/react"
 import Link from "next/link"
 import { useEffect } from "react"
 import { useScrollSpy } from "../lib/use-scroll-spy"

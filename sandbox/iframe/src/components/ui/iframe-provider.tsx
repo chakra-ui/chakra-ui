@@ -1,10 +1,10 @@
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
 import {
   ChakraProvider,
   EnvironmentProvider,
   defaultSystem,
-} from "@chakra-ui/react"
-import createCache from "@emotion/cache"
-import { CacheProvider } from "@emotion/react"
+} from "@sh3yk0-ui/react"
 import Iframe, { FrameContextConsumer } from "react-frame-component"
 
 export const IframeProvider = (props: React.PropsWithChildren) => {

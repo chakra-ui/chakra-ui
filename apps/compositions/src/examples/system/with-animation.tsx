@@ -1,4 +1,4 @@
-import { Square } from "@chakra-ui/react"
+import { Square } from "@sh3yk0-ui/react"
 
 export const SystemWithAnimation = () => {
   return (

@@ -19,7 +19,7 @@ const App = () => {
 You might be tempted to do something like this:
 
 ```tsx {9-12}
-import { defineRecipe } from "@chakra-ui/react"
+import { defineRecipe } from "@sh3yk0-ui/react"
 
 export const buttonRecipe = defineRecipe({
   base: {
@@ -82,7 +82,7 @@ combinations.
 - Next, create a `compoundVariants` array that contains the style overrides
 
 ```ts {15-17, 20-24}
-import { defineRecipe } from "@chakra-ui/react"
+import { defineRecipe } from "@sh3yk0-ui/react"
 
 export const buttonRecipe = defineRecipe({
   base: {
@@ -123,7 +123,7 @@ Then, you can pass the `isPressed` variant to the component as props.
 
 :::note
 
-If you use TypeScript, don't forget to run the `npx @chakra-ui/cli typegen`
+If you use TypeScript, don't forget to run the `npx @sh3yk0-ui/cli typegen`
 command to generate the types for the recipe.
 
 :::

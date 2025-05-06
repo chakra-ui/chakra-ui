@@ -1,6 +1,6 @@
 "use client"
 
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@sh3yk0-ui/react"
 import { Toaster } from "compositions/ui/toaster"
 import { ThemeProvider } from "next-themes"
 import { system } from "./theme"

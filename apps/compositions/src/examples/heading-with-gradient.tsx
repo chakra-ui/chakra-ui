@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react"
+import { Heading } from "@sh3yk0-ui/react"
 
 export const HeadingWithGradient = () => {
   return (

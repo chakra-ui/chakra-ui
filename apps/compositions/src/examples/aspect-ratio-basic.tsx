@@ -1,4 +1,4 @@
-import { AspectRatio, Center } from "@chakra-ui/react"
+import { AspectRatio, Center } from "@sh3yk0-ui/react"
 
 export const AspectRatioBasic = () => {
   return (

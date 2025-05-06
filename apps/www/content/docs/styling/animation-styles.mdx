@@ -25,7 +25,7 @@ Animation styles are defined using the `defineAnimationStyles` function.
 Here's an example of an animation style:
 
 ```js
-import { defineAnimationStyles } from "@chakra-ui/react"
+import { defineAnimationStyles } from "@sh3yk0-ui/react"
 
 const animationStyles = defineAnimationStyles({
   bounceFadeIn: {
@@ -51,7 +51,7 @@ To use the animation styles, update the `theme` object with the
 `animationStyles` property.
 
 ```js filename="theme.ts"
-import { createSystem, defineConfig } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@sh3yk0-ui/react"
 import { animationStyles } from "./animation-styles"
 
 const config = defineConfig({
@@ -66,7 +66,7 @@ export default createSystem(defaultConfig, config)
 After updating the theme, run this command to generate the animations.
 
 ```bash
-npx @chakra-ui/cli typegen ./theme.ts
+npx @sh3yk0-ui/cli typegen ./theme.ts
 ```
 
 These animation styles can be composed with other styles like `_open` and

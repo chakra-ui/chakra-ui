@@ -1,6 +1,6 @@
 "use client"
 
-import type { ButtonProps, RecipeProps } from "@chakra-ui/react"
+import type { ButtonProps, RecipeProps } from "@sh3yk0-ui/react"
 import {
   Button,
   FileUpload as ChakraFileUpload,
@@ -10,7 +10,7 @@ import {
   Text,
   useFileUploadContext,
   useRecipe,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import * as React from "react"
 import { LuFile, LuUpload, LuX } from "react-icons/lu"
 

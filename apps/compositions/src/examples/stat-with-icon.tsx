@@ -1,4 +1,4 @@
-import { HStack, Icon, Stat } from "@chakra-ui/react"
+import { HStack, Icon, Stat } from "@sh3yk0-ui/react"
 import { LuDollarSign } from "react-icons/lu"
 
 export const StatWithIcon = () => {

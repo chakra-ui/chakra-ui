@@ -1,4 +1,4 @@
-import { Stat, StatGroup } from "@chakra-ui/react"
+import { Stat, StatGroup } from "@sh3yk0-ui/react"
 
 export const StatWithGroup = () => {
   return (

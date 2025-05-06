@@ -24,7 +24,7 @@ These are the key functions needed to customize the Chakra UI theme.
 - `createSystem`: used to create a styling engine from the config
 
 ```tsx title="theme.ts"
-import { createSystem, defaultBaseConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultBaseConfig, defineConfig } from "@sh3yk0-ui/react"
 
 const customConfig = defineConfig({
   theme: {
@@ -42,7 +42,7 @@ export const system = createSystem(defaultBaseConfig, customConfig)
 Next, update the `ChakraProvider` to use the custom system.
 
 ```tsx title="provider.tsx"
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@sh3yk0-ui/react"
 import { ThemeProvider } from "next-themes"
 import { system } from "./theme"
 
@@ -66,7 +66,7 @@ However, if you prefer to start from scratch, scaffold the default tokens and
 recipes using the CLI.
 
 ```bash
-npx @chakra-ui/cli eject --outdir ./theme
+npx @sh3yk0-ui/cli eject --outdir ./theme
 ```
 
 This will generate a file that includes all the tokens and recipes in Chakra.
@@ -76,5 +76,5 @@ This will generate a file that includes all the tokens and recipes in Chakra.
 After customizing the default config, you may need to update the types.
 
 ```bash
-npx @chakra-ui/cli typegen ./theme.ts
+npx @sh3yk0-ui/cli typegen ./theme.ts
 ```

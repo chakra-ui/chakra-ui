@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Stack, Text } from "@chakra-ui/react"
+import { Button, ButtonGroup, Stack, Text } from "@sh3yk0-ui/react"
 
 export const ButtonWithRadius = () => {
   return (

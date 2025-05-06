@@ -1,6 +1,6 @@
 "use client"
 
-import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react"
+import { ClientOnly, IconButton, Skeleton } from "@sh3yk0-ui/react"
 import { useTheme } from "next-themes"
 import { LuMoon, LuSun } from "react-icons/lu"
 

@@ -8,7 +8,7 @@ import {
   VStack,
   getColorChannels,
   parseColor,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 const ChannelInputs = (props: { format: ColorPicker.ColorFormat }) => {
   const channels = getColorChannels(props.format)

@@ -1,4 +1,4 @@
-import { For, Stack, Timeline } from "@chakra-ui/react"
+import { For, Stack, Timeline } from "@sh3yk0-ui/react"
 
 export const TimelineWithContentBefore = () => {
   return (

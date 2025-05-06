@@ -5,7 +5,7 @@ import type {
   FlexProps,
   StackProps,
   Tokens,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import {
   AbsoluteCenter,
   Box,
@@ -14,7 +14,7 @@ import {
   Show,
   Stack,
   Text,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import * as React from "react"
 import { type UseChartReturn } from "../use-chart"
 

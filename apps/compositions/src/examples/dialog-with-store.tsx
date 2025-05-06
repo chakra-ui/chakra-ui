@@ -6,7 +6,7 @@ import {
   Dialog,
   Portal,
   useDialog,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const DialogWithStore = () => {
   const dialog = useDialog()

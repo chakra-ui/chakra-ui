@@ -1,4 +1,4 @@
-import { PinInput } from "@chakra-ui/react"
+import { PinInput } from "@sh3yk0-ui/react"
 
 export const PinInputWithOtp = () => {
   return (

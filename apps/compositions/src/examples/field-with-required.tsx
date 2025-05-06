@@ -1,4 +1,4 @@
-import { Field, Input } from "@chakra-ui/react"
+import { Field, Input } from "@sh3yk0-ui/react"
 
 export const FieldWithRequired = () => {
   return (

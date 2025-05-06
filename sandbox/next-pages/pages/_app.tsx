@@ -1,4 +1,4 @@
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { ChakraProvider, defaultSystem } from "@sh3yk0-ui/react"
 import { ThemeProvider } from "next-themes"
 import { AppProps } from "next/app"
 

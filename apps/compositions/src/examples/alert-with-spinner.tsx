@@ -1,4 +1,4 @@
-import { Alert, Spinner } from "@chakra-ui/react"
+import { Alert, Spinner } from "@sh3yk0-ui/react"
 
 export const AlertWithSpinner = () => {
   return (

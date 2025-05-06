@@ -1,6 +1,6 @@
 "use client"
 
-import { HStack, Span } from "@chakra-ui/react"
+import { HStack, Span } from "@sh3yk0-ui/react"
 import { LuCircleArrowUp } from "react-icons/lu"
 import { useScrollPosition } from "../lib/use-scroll-position"
 

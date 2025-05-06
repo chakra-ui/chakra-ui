@@ -2,7 +2,7 @@ import {
   ChakraProvider,
   cookieStorageManager,
   localStorageManager,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { GetServerSidePropsContext } from "next"
 import { ReactNode } from "react"
 import theme from "./theme"

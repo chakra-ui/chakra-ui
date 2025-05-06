@@ -1,4 +1,4 @@
-import { For, HStack, IconButton, Text, VStack } from "@chakra-ui/react"
+import { For, HStack, IconButton, Text, VStack } from "@sh3yk0-ui/react"
 import { LuPhone } from "react-icons/lu"
 
 export const IconButtonWithSizes = () => {

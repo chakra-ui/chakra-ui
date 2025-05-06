@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, EmptyState, VStack } from "@chakra-ui/react"
+import { Button, ButtonGroup, EmptyState, VStack } from "@sh3yk0-ui/react"
 import { HiColorSwatch } from "react-icons/hi"
 
 export const EmptyStateWithAction = () => {

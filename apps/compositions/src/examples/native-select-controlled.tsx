@@ -1,6 +1,6 @@
 "use client"
 
-import { NativeSelect } from "@chakra-ui/react"
+import { NativeSelect } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 export const NativeSelectControlled = () => {

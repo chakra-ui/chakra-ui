@@ -10,7 +10,7 @@ import {
   Stack,
   Text,
   chakra,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { DialogContent, DialogRoot } from "compositions/ui/dialog"
 import { matchSorter } from "match-sorter"
 import { useRouter } from "next/navigation"

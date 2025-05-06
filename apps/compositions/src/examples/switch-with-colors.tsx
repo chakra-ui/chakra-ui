@@ -1,4 +1,4 @@
-import { Stack, Switch, Text } from "@chakra-ui/react"
+import { Stack, Switch, Text } from "@sh3yk0-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
 
 export const SwitchWithColors = () => {

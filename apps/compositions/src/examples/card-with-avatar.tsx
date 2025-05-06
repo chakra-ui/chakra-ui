@@ -6,7 +6,7 @@ import {
   Stack,
   Strong,
   Text,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { LuCheck, LuX } from "react-icons/lu"
 
 export const CardWithAvatar = () => {

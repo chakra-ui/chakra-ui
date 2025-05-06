@@ -21,14 +21,14 @@ help you decide if its time to migrate your projects.
 The installation process is one of the first noticeable differences. Previously,
 you had to install multiple packages to get Chakra working in your project:
 
-- `@chakra-ui/react`
+- `@sh3yk0-ui/react`
 - `@emotion/react`
 - `@emotion/styled`
 - `framer-motion`
 
 But with **v3**, things are much simpler. You only need:
 
-- `@chakra-ui/react`
+- `@sh3yk0-ui/react`
 - `@emotion/react`
 
 This reduces the number of dependencies and results in a quicker setup.
@@ -36,13 +36,13 @@ This reduces the number of dependencies and results in a quicker setup.
 **version 2:**
 
 ```bash
-npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+npm install @sh3yk0-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
 **version 3:**
 
 ```bash
-npm install @chakra-ui/react @emotion/react
+npm install @sh3yk0-ui/react @emotion/react
 
 ```
 
@@ -54,13 +54,13 @@ the `Provider` component.
 
 `Provider` composes the following:
 
-- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ChakraProvider` from `@sh3yk0-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
 **version 2:**
 
 ```jsx
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@sh3yk0-ui/react"
 
 function App() {
   return <ChakraProvider>{/* the rest of your app */}</ChakraProvider>
@@ -154,7 +154,7 @@ For example, you had to manually import both `List` and `ListItem` separately
 **version 2:**
 
 ```jsx
-import { List, ListItem } from "@chakra-ui/react"
+import { List, ListItem } from "@sh3yk0-ui/react"
 
 function App() {
   return (
@@ -172,7 +172,7 @@ multiple imports and making your codebase easier to maintain.
 **version 3:**
 
 ```jsx
-import { List } from "@chakra-ui/react"
+import { List } from "@sh3yk0-ui/react"
 
 function App() {
   return (
@@ -213,7 +213,7 @@ are defined under the `theme` key in your system config:
 **version 3:**
 
 ```jsx
-import { createSystem } from "@chakra-ui/react"
+import { createSystem } from "@sh3yk0-ui/react"
 
 export const system = createSystem(defaultConfig, {
   theme: {

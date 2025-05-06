@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from "@chakra-ui/react"
+import { Avatar, AvatarGroup } from "@sh3yk0-ui/react"
 
 export const AvatarWithGroup = () => {
   return (

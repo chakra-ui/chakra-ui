@@ -1,4 +1,4 @@
-import { defineTextStyles } from "@chakra-ui/react"
+import { defineTextStyles } from "@sh3yk0-ui/react"
 
 export const textStyles = defineTextStyles({
   headline: {

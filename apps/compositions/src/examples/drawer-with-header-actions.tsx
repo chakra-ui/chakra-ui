@@ -4,7 +4,7 @@ import {
   CloseButton,
   Drawer,
   Portal,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 
 export const DrawerWithHeaderActions = () => {
   return (

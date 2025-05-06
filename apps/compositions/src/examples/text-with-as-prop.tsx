@@ -1,4 +1,4 @@
-import { Code, Stack, Text } from "@chakra-ui/react"
+import { Code, Stack, Text } from "@sh3yk0-ui/react"
 
 export const TextWithAsProp = () => {
   return (

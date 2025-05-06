@@ -1,6 +1,6 @@
 "use client"
 
-import { Input, InputGroup, Span } from "@chakra-ui/react"
+import { Input, InputGroup, Span } from "@sh3yk0-ui/react"
 import { useState } from "react"
 
 const MAX_CHARACTERS = 20

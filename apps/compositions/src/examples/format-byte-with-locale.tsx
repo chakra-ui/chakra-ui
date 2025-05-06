@@ -1,4 +1,4 @@
-import { FormatByte, HStack, LocaleProvider, Text } from "@chakra-ui/react"
+import { FormatByte, HStack, LocaleProvider, Text } from "@sh3yk0-ui/react"
 
 export const FormatByteWithLocale = () => {
   return (

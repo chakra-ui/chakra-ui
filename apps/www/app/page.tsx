@@ -10,7 +10,7 @@ import { PartnersSection } from "@/components/site/partners.section"
 import { SponsorSection } from "@/components/site/sponsor.section"
 import { StatSection } from "@/components/site/stat.section"
 import { TestimonialSection } from "@/components/site/testimonial.section"
-import { Icon, Stack } from "@chakra-ui/react"
+import { Icon, Stack } from "@sh3yk0-ui/react"
 
 const BlitzIconSection = () => (
   <Icon

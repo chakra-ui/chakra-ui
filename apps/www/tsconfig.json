@@ -23,8 +23,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@chakra-ui/react": ["../../packages/react/src"],
-      "@chakra-ui/charts": ["../../packages/charts/src"],
+      "@sh3yk0-ui/react": ["../../packages/react/src"],
+      "@sh3yk0-ui/charts": ["../../packages/charts/src"],
       "compositions/*": ["../compositions/src/*"]
     }
   },

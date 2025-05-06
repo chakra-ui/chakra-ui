@@ -1,4 +1,4 @@
-import { AbsoluteCenter, For, HStack, ProgressCircle } from "@chakra-ui/react"
+import { AbsoluteCenter, For, HStack, ProgressCircle } from "@sh3yk0-ui/react"
 
 export const ProgressCircleWithValueText = () => {
   return (

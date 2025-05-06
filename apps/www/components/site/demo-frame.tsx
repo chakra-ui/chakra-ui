@@ -1,6 +1,6 @@
 "use client"
 
-import { Center, CenterProps, chakra } from "@chakra-ui/react"
+import { Center, CenterProps, chakra } from "@sh3yk0-ui/react"
 
 export const DemoFrame = chakra(
   "div",

@@ -12,7 +12,7 @@ import {
   Image,
   Span,
   Stack,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { HiArrowRight } from "react-icons/hi"
 
 const Logo = () => (

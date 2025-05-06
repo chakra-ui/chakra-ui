@@ -8,7 +8,7 @@ import {
   Steps,
   type StepsRootProps,
   useSlotRecipe,
-} from "@chakra-ui/react"
+} from "@sh3yk0-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const StepsSizeTable = () => {

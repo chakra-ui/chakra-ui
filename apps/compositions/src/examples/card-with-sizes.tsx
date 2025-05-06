@@ -1,4 +1,4 @@
-import { Card, Heading, Stack } from "@chakra-ui/react"
+import { Card, Heading, Stack } from "@sh3yk0-ui/react"
 
 export const CardWithSizes = () => {
   return (

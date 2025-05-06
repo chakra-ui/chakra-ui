@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorPicker, InputGroup, parseColor } from "@chakra-ui/react"
+import { ColorPicker, InputGroup, parseColor } from "@sh3yk0-ui/react"
 
 export const ColorPickerInputOnly = () => {
   return (

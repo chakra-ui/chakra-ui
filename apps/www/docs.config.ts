@@ -328,7 +328,7 @@ export const docsConfig: DocsConfig = {
   description:
     "Simple, Modular & Accessible UI Components for your React Applications",
   url: "https://chakra-ui.com",
-  xHandle: "@chakra-ui",
+  xHandle: "@sh3yk0-ui",
   repoUrl: "https://github.com/chakra-ui/chakra-ui",
   repoBranch: "main",
   get editUrl() {

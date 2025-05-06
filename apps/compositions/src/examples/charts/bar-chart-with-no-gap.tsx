@@ -1,6 +1,6 @@
 "use client"
 
-import { Chart, useChart } from "@chakra-ui/charts"
+import { Chart, useChart } from "@sh3yk0-ui/charts"
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from "recharts"
 
 export const BarChartWithNoGap = () => {
