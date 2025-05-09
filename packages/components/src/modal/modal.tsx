@@ -155,7 +155,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap: true,
     motionPreset: "scale",
     ...props,
-    lockFocusAcrossFrames: props.lockFocusAcrossFrames || true,
+    lockFocusAcrossFrames: props.lockFocusAcrossFrames ?? true,
   }
 
   const {

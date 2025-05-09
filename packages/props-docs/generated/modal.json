@@ -338,7 +338,7 @@
     },
     "lockFocusAcrossFrames": {
       "type": "boolean",
-      "defaultValue": false,
+      "defaultValue": true,
       "required": false,
       "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
     },
