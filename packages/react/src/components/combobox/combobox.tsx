@@ -85,6 +85,7 @@ export const ComboboxTrigger = withContext<
   ComboboxTriggerProps
 >(ArkCombobox.Trigger, "trigger", {
   forwardAsChild: true,
+  forwardProps: ["focusable"],
   defaultProps: {
     children: <ChevronDownIcon />,
   },
@@ -235,8 +236,10 @@ export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
         ref={ref}
         {...props}
         role="presentation"
-        className={cx(classNames.emptyText, props.className)}
-        css={[styles.emptyText, props.css]}
+        data-scope="combobox"
+        data-part="empty"
+        className={cx(classNames.empty, props.className)}
+        css={[styles.empty, props.css]}
       />
     )
   },

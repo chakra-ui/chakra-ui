@@ -76,11 +76,7 @@ export const ComboboxWithMultiple = () => {
                   <Combobox.ItemIndicator />
                 </Combobox.Item>
               ))}
-              <Combobox.Empty>
-                <Text textStyle="sm" p="2" color="fg.muted">
-                  No skills found
-                </Text>
-              </Combobox.Empty>
+              <Combobox.Empty>No skills found</Combobox.Empty>
             </Combobox.ItemGroup>
           </Combobox.Content>
         </Combobox.Positioner>

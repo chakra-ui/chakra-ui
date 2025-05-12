@@ -1,28 +1,27 @@
 "use client"
 
 import {
-  Box,
   ColorSwatch,
   Combobox,
+  HStack,
   Stack,
   Text,
-  createListCollection,
+  useFilter,
+  useListCollection,
 } from "@chakra-ui/react"
-import { useMemo, useState } from "react"
+import { useState } from "react"
 
 export const ComboboxColorPicker = () => {
-  const [items, setItems] = useState(colors)
   const [selectedColor, setSelectedColor] = useState<ColorItem | null>(null)
 
-  const collection = useMemo(
-    () =>
-      createListCollection({
-        items,
-        itemToValue: (item) => item.id,
-        itemToString: (item) => item.name,
-      }),
-    [items],
-  )
+  const { contains } = useFilter({ sensitivity: "base" })
+
+  const { collection, filter } = useListCollection({
+    initialItems: colors,
+    filter: contains,
+    itemToValue: (item) => item.id,
+    itemToString: (item) => item.name,
+  })
 
   const handleValueChange = (details: Combobox.ValueChangeDetails) => {
     setSelectedColor(details.items[0] || null)
@@ -31,11 +30,7 @@ export const ComboboxColorPicker = () => {
   const handleInputValueChange = (
     details: Combobox.InputValueChangeDetails,
   ) => {
-    setItems(
-      colors.filter((item) =>
-        item.name.toLowerCase().includes(details.inputValue.toLowerCase()),
-      ),
-    )
+    filter(details.inputValue)
   }
 
   return (
@@ -46,7 +41,7 @@ export const ComboboxColorPicker = () => {
       onValueChange={handleValueChange}
       onInputValueChange={handleInputValueChange}
     >
-      <Combobox.Label>Select Color</Combobox.Label>
+      <Combobox.Label srOnly>Select Color</Combobox.Label>
       <Stack direction="row" align="center" gap={3}>
         <Combobox.Control>
           <Combobox.Input />
@@ -63,21 +58,15 @@ export const ComboboxColorPicker = () => {
           <Combobox.ItemGroupLabel>Color</Combobox.ItemGroupLabel>
           {collection.items.map((color) => (
             <Combobox.Item item={color} key={color.id}>
-              <Stack direction="row" gap={3} align="center">
-                <Box
-                  boxSize={6}
-                  shadow="sm"
-                  rounded="md"
-                  borderWidth={1}
-                  backgroundColor={color.value}
-                />
-                <Stack gap={1} flex={1} direction="row">
+              <HStack direction="row" gap={3} align="center">
+                <ColorSwatch value={color.value} boxSize="6" />
+                <HStack gap="1" flex="1">
                   <Text fontWeight="medium">{color.name}</Text>
-                  <Text color="gray.500" fontSize="sm">
+                  <Text color="fg.muted" textStyle="sm">
                     {color.value}
                   </Text>
-                </Stack>
-              </Stack>
+                </HStack>
+              </HStack>
               <Combobox.ItemIndicator />
             </Combobox.Item>
           ))}

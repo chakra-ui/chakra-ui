@@ -3,12 +3,23 @@
 import {
   Combobox,
   Portal,
-  useCombobox,
+  Stack,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxWithStore = () => {
+export const ComboboxWithSizes = () => {
+  return (
+    <Stack gap="8">
+      <ComboboxDemo size="xs" />
+      <ComboboxDemo size="sm" />
+      <ComboboxDemo size="md" />
+      <ComboboxDemo size="lg" />
+    </Stack>
+  )
+}
+
+const ComboboxDemo = (props: Omit<Combobox.RootProps, "collection">) => {
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -16,17 +27,13 @@ export const ComboboxWithStore = () => {
     filter: contains,
   })
 
-  const combobox = useCombobox({
-    collection,
-    onInputValueChange(e) {
-      filter(e.inputValue)
-    },
-  })
-
   return (
-    <Combobox.RootProvider value={combobox} width="320px">
+    <Combobox.Root
+      {...props}
+      onInputValueChange={(e) => filter(e.inputValue)}
+      collection={collection}
+    >
       <Combobox.Label>Select framework</Combobox.Label>
-
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
         <Combobox.IndicatorGroup>
@@ -34,10 +41,10 @@ export const ComboboxWithStore = () => {
           <Combobox.Trigger />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
-
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
+            <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
               <Combobox.Item item={item} key={item.value}>
                 {item.label}
@@ -47,7 +54,7 @@ export const ComboboxWithStore = () => {
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
-    </Combobox.RootProvider>
+    </Combobox.Root>
   )
 }
 

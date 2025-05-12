@@ -45,6 +45,7 @@ export const ComboboxWithInputInContent = () => {
 
       <Combobox.Control>
         <Combobox.Trigger
+          focusable
           h="8"
           px="2"
           rounded="md"
@@ -66,9 +67,10 @@ export const ComboboxWithInputInContent = () => {
 
       <Portal>
         <Combobox.Positioner>
-          <Combobox.Content px={0} _closed={{ animationDuration: "0s" }}>
+          <Combobox.Content px={0}>
             <Combobox.Input
               mt="-1"
+              minH="8"
               px="2"
               border="none"
               outline="none"

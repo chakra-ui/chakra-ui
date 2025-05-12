@@ -1,14 +1,19 @@
 "use client"
 
 import {
+  Badge,
   Combobox,
+  For,
+  HStack,
   Portal,
-  useCombobox,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
+import { useState } from "react"
 
-export const ComboboxWithStore = () => {
+export const ComboboxControlled = () => {
+  const [value, setValue] = useState<string[]>([])
+
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -16,17 +21,23 @@ export const ComboboxWithStore = () => {
     filter: contains,
   })
 
-  const combobox = useCombobox({
-    collection,
-    onInputValueChange(e) {
-      filter(e.inputValue)
-    },
-  })
-
   return (
-    <Combobox.RootProvider value={combobox} width="320px">
+    <Combobox.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+      value={value}
+      onValueChange={(e) => setValue(e.value)}
+      width="320px"
+    >
+      <HStack textStyle="sm" mb="6">
+        Selected:
+        <HStack>
+          <For each={value} fallback="N/A">
+            {(v) => <Badge key={v}>{v}</Badge>}
+          </For>
+        </HStack>
+      </HStack>
       <Combobox.Label>Select framework</Combobox.Label>
-
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
         <Combobox.IndicatorGroup>
@@ -34,10 +45,10 @@ export const ComboboxWithStore = () => {
           <Combobox.Trigger />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
-
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
+            <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
               <Combobox.Item item={item} key={item.value}>
                 {item.label}
@@ -47,7 +58,7 @@ export const ComboboxWithStore = () => {
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
-    </Combobox.RootProvider>
+    </Combobox.Root>
   )
 }
 

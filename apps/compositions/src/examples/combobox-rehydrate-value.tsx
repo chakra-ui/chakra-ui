@@ -6,9 +6,10 @@ import {
   Portal,
   Span,
   Spinner,
+  useCombobox,
   useListCollection,
 } from "@chakra-ui/react"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useAsync } from "react-use"
 
 interface Character {
@@ -18,7 +19,7 @@ interface Character {
   status: string
 }
 
-export const ComboboxWithAsyncContent = () => {
+export const ComboboxWithRehydrateValue = () => {
   const [inputValue, setInputValue] = useState("")
 
   const { collection, set } = useListCollection<Character>({
@@ -27,29 +28,49 @@ export const ComboboxWithAsyncContent = () => {
     itemToValue: (item) => item.id.toString(),
   })
 
-  const state = useAsync(async () => {
+  const combobox = useCombobox({
+    collection: collection,
+    // ["1"] stands of Rick Sanchez
+    defaultValue: ["1"],
+    placeholder: "Example: Rick",
+    inputValue,
+    onInputValueChange: (e) => setInputValue(e.inputValue),
+  })
+
+  const fetchCharacters = async (inputValue = "") => {
     const response = await fetch(
       `https://rickandmortyapi.com/api/character/?name=${inputValue}`,
     )
-    const data = await response.json()
-    set(data.results)
-    return data.results
+    const data = (await response.json()) as { results: Character[] }
+    // ensure we have unique characters
+    const result = data.results.filter(
+      (item, index, self) =>
+        index === self.findIndex((t) => t.name === item.name),
+    )
+    set(result)
+  }
+
+  const state = useAsync(async () => {
+    await fetchCharacters(inputValue)
   }, [inputValue, set])
 
+  // Rehydrate the value
+  const hydrated = useRef(false)
+  if (combobox.value.length && collection.size && !hydrated.current) {
+    const inputValue = collection.stringify(combobox.value[0])
+    combobox.setInputValue(inputValue || "")
+    hydrated.current = true
+  }
+
   return (
-    <Combobox.Root
-      width="320px"
-      collection={collection}
-      placeholder="Example: Rick"
-      onInputValueChange={(e) => setInputValue(e.inputValue)}
-    >
+    <Combobox.RootProvider value={combobox} width="320px">
       <Combobox.Label>Search Rick and Morty Characters</Combobox.Label>
 
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
         <Combobox.IndicatorGroup>
           <Combobox.ClearTrigger />
-          <Combobox.Trigger />
+          <Combobox.Trigger onClick={() => fetchCharacters()} />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
 
@@ -58,7 +79,7 @@ export const ComboboxWithAsyncContent = () => {
           <Combobox.Content>
             {state.loading ? (
               <HStack p="2">
-                <Spinner size="xs" borderWidth="1px" />
+                <Spinner size="xs" />
                 <Span>Loading...</Span>
               </HStack>
             ) : state.error ? (
@@ -79,6 +100,6 @@ export const ComboboxWithAsyncContent = () => {
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
-    </Combobox.Root>
+    </Combobox.RootProvider>
   )
 }

@@ -115,60 +115,57 @@ export const ComboboxWithCreateableOptions = () => {
         <Portal>
           <Combobox.Positioner>
             <Combobox.Content>
-              <Combobox.ItemGroup>
-                <Combobox.ItemGroupLabel>Tags</Combobox.ItemGroupLabel>
-                {collection.items.map((tag) => {
-                  if (tag.id === "custom") {
-                    return (
-                      <Combobox.Item item={tag} key={tag.id}>
-                        <Stack direction="row" align="center" gap={2}>
-                          <Icon asChild fontSize={16} color="blue.500">
-                            <svg
-                              width="24"
-                              height="24"
-                              fill="none"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M5 12h14" />
-                              <path d="M12 5v14" />
-                            </svg>
-                          </Icon>
-                          <Text>Create &quot;{inputValue}&quot;</Text>
-                        </Stack>
-                        <Combobox.ItemIndicator />
-                      </Combobox.Item>
-                    )
-                  }
-
+              {collection.items.map((tag) => {
+                if (tag.id === "custom") {
                   return (
-                    <Combobox.Item key={tag.id} item={tag}>
-                      <HStack
-                        direction="row"
-                        justify="space-between"
-                        align="center"
-                      >
-                        <Stack direction="row" align="center" gap={2}>
-                          <Text fontWeight="medium">{tag.name}</Text>
-                          {tag.custom && (
-                            <Text
-                              fontSize="xs"
-                              color="blue.500"
-                              fontWeight="medium"
-                            >
-                              CUSTOM
-                            </Text>
-                          )}
-                        </Stack>
-                      </HStack>
+                    <Combobox.Item item={tag} key={tag.id}>
+                      <Stack direction="row" align="center" gap={2}>
+                        <Icon asChild fontSize={16} color="blue.500">
+                          <svg
+                            width="24"
+                            height="24"
+                            fill="none"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                          </svg>
+                        </Icon>
+                        <Text>Create &quot;{inputValue}&quot;</Text>
+                      </Stack>
                       <Combobox.ItemIndicator />
                     </Combobox.Item>
                   )
-                })}
-              </Combobox.ItemGroup>
+                }
+
+                return (
+                  <Combobox.Item key={tag.id} item={tag}>
+                    <HStack
+                      direction="row"
+                      justify="space-between"
+                      align="center"
+                    >
+                      <Stack direction="row" align="center" gap={2}>
+                        <Text fontWeight="medium">{tag.name}</Text>
+                        {tag.custom && (
+                          <Text
+                            fontSize="xs"
+                            color="blue.500"
+                            fontWeight="medium"
+                          >
+                            CUSTOM
+                          </Text>
+                        )}
+                      </Stack>
+                    </HStack>
+                    <Combobox.ItemIndicator />
+                  </Combobox.Item>
+                )
+              })}
             </Combobox.Content>
           </Combobox.Positioner>
         </Portal>

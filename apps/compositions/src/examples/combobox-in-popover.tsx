@@ -1,13 +1,37 @@
 "use client"
 
 import {
+  Button,
   Combobox,
+  Popover,
   Portal,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxBasic = () => {
+export const ComboboxInPopover = () => {
+  return (
+    <Popover.Root size="xs">
+      <Popover.Trigger asChild>
+        <Button variant="outline" size="sm">
+          Toggle popover
+        </Button>
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Header>Select framework</Popover.Header>
+            <Popover.Body>
+              <ComboboxDemo />
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
+  )
+}
+
+const ComboboxDemo = () => {
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -19,9 +43,7 @@ export const ComboboxBasic = () => {
     <Combobox.Root
       collection={collection}
       onInputValueChange={(e) => filter(e.inputValue)}
-      width="320px"
     >
-      <Combobox.Label>Select framework</Combobox.Label>
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
         <Combobox.IndicatorGroup>
@@ -29,19 +51,17 @@ export const ComboboxBasic = () => {
           <Combobox.Trigger />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
-      <Portal>
-        <Combobox.Positioner>
-          <Combobox.Content>
-            <Combobox.Empty>No items found</Combobox.Empty>
-            {collection.items.map((item) => (
-              <Combobox.Item item={item} key={item.value}>
-                {item.label}
-                <Combobox.ItemIndicator />
-              </Combobox.Item>
-            ))}
-          </Combobox.Content>
-        </Combobox.Positioner>
-      </Portal>
+      <Combobox.Positioner>
+        <Combobox.Content>
+          <Combobox.Empty>No items found</Combobox.Empty>
+          {collection.items.map((item) => (
+            <Combobox.Item item={item} key={item.value}>
+              {item.label}
+              <Combobox.ItemIndicator />
+            </Combobox.Item>
+          ))}
+        </Combobox.Content>
+      </Combobox.Positioner>
     </Combobox.Root>
   )
 }

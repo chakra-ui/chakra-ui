@@ -2,13 +2,14 @@
 
 import {
   Combobox,
+  Highlight,
   Portal,
-  useCombobox,
+  useComboboxContext,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxWithStore = () => {
+export const ComboboxWithHighlight = () => {
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -16,17 +17,13 @@ export const ComboboxWithStore = () => {
     filter: contains,
   })
 
-  const combobox = useCombobox({
-    collection,
-    onInputValueChange(e) {
-      filter(e.inputValue)
-    },
-  })
-
   return (
-    <Combobox.RootProvider value={combobox} width="320px">
+    <Combobox.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+      width="320px"
+    >
       <Combobox.Label>Select framework</Combobox.Label>
-
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
         <Combobox.IndicatorGroup>
@@ -34,20 +31,35 @@ export const ComboboxWithStore = () => {
           <Combobox.Trigger />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
-
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
+            <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
-              <Combobox.Item item={item} key={item.value}>
-                {item.label}
-                <Combobox.ItemIndicator />
-              </Combobox.Item>
+              <ComboboxItem item={item} key={item.value} />
             ))}
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
-    </Combobox.RootProvider>
+    </Combobox.Root>
+  )
+}
+
+function ComboboxItem(props: { item: { label: string; value: string } }) {
+  const { item } = props
+  const combobox = useComboboxContext()
+  return (
+    <Combobox.Item item={item} key={item.value}>
+      <Combobox.ItemText>
+        <Highlight
+          ignoreCase
+          query={combobox.inputValue}
+          styles={{ bg: "yellow.emphasized", fontWeight: "medium" }}
+        >
+          {item.label}
+        </Highlight>
+      </Combobox.ItemText>
+    </Combobox.Item>
   )
 }
 

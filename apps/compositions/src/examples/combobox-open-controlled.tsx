@@ -3,12 +3,14 @@
 import {
   Combobox,
   Portal,
-  useCombobox,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
+import { useState } from "react"
 
-export const ComboboxWithStore = () => {
+export const ComboboxOpenControlled = () => {
+  const [open, setOpen] = useState(false)
+
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -16,16 +18,15 @@ export const ComboboxWithStore = () => {
     filter: contains,
   })
 
-  const combobox = useCombobox({
-    collection,
-    onInputValueChange(e) {
-      filter(e.inputValue)
-    },
-  })
-
   return (
-    <Combobox.RootProvider value={combobox} width="320px">
-      <Combobox.Label>Select framework</Combobox.Label>
+    <Combobox.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+      width="320px"
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
+    >
+      <Combobox.Label>Combobox is {open ? "open" : "closed"}</Combobox.Label>
 
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
@@ -38,6 +39,7 @@ export const ComboboxWithStore = () => {
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
+            <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
               <Combobox.Item item={item} key={item.value}>
                 {item.label}
@@ -47,7 +49,7 @@ export const ComboboxWithStore = () => {
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
-    </Combobox.RootProvider>
+    </Combobox.Root>
   )
 }
 

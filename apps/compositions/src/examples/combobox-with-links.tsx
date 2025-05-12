@@ -7,7 +7,7 @@ import {
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxBasic = () => {
+export const ComboboxWithLinks = () => {
   const { contains } = useFilter({ sensitivity: "base" })
 
   const { collection, filter } = useListCollection({
@@ -34,9 +34,8 @@ export const ComboboxBasic = () => {
           <Combobox.Content>
             <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
-              <Combobox.Item item={item} key={item.value}>
-                {item.label}
-                <Combobox.ItemIndicator />
+              <Combobox.Item asChild item={item} key={item.value}>
+                <a href={item.docs}>{item.label}</a>
               </Combobox.Item>
             ))}
           </Combobox.Content>
@@ -47,15 +46,15 @@ export const ComboboxBasic = () => {
 }
 
 const frameworks = [
-  { label: "React", value: "react" },
-  { label: "Solid", value: "solid" },
-  { label: "Vue", value: "vue" },
-  { label: "Angular", value: "angular" },
-  { label: "Svelte", value: "svelte" },
-  { label: "Preact", value: "preact" },
-  { label: "Qwik", value: "qwik" },
-  { label: "Lit", value: "lit" },
-  { label: "Alpine.js", value: "alpinejs" },
-  { label: "Ember", value: "ember" },
-  { label: "Next.js", value: "nextjs" },
+  { label: "React", value: "react", docs: "https://react.dev" },
+  { label: "Solid", value: "solid", docs: "https://solidjs.com" },
+  { label: "Vue", value: "vue", docs: "https://vuejs.org" },
+  { label: "Angular", value: "angular", docs: "https://angular.io" },
+  { label: "Svelte", value: "svelte", docs: "https://svelte.dev" },
+  { label: "Preact", value: "preact", docs: "https://preactjs.com" },
+  { label: "Qwik", value: "qwik", docs: "https://qwik.builder.io" },
+  { label: "Lit", value: "lit", docs: "https://lit.dev" },
+  { label: "Alpine.js", value: "alpinejs", docs: "https://alpinejs.dev" },
+  { label: "Ember", value: "ember", docs: "https://emberjs.com" },
+  { label: "Next.js", value: "nextjs", docs: "https://nextjs.org" },
 ]

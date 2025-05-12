@@ -3,25 +3,17 @@
 import {
   Combobox,
   Portal,
+  Span,
   Stack,
-  Text,
-  createListCollection,
+  useListCollection,
 } from "@chakra-ui/react"
-import { useMemo, useState } from "react"
 
 export const ComboboxCustomFilter = () => {
-  const [items, setItems] = useState(people)
-  const [value, setValue] = useState<string[]>([])
-
-  const collection = useMemo(
-    () =>
-      createListCollection({
-        items,
-        itemToString: (item) => item.name,
-        itemToValue: (item) => item.id.toString(),
-      }),
-    [items],
-  )
+  const { collection, set } = useListCollection({
+    initialItems: people,
+    itemToString: (item) => item.name,
+    itemToValue: (item) => item.id.toString(),
+  })
 
   const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
     const filteredItems = people.filter((item) => {
@@ -36,28 +28,16 @@ export const ComboboxCustomFilter = () => {
         item.role.toLowerCase().includes(searchLower)
       )
     })
-    setItems(filteredItems)
-  }
-
-  const handleValueChange = (details: Combobox.ValueChangeDetails) => {
-    const value = details.value
-
-    setValue(value)
-
-    setTimeout(() => {
-      setItems(people.filter((p) => p.id.toString() !== value[0]))
-    }, 100)
+    set(filteredItems)
   }
 
   return (
     <Combobox.Root
       width="320px"
-      value={value}
       collection={collection}
       inputBehavior="autocomplete"
       placeholder="Search by name, email, or role..."
       onInputValueChange={handleInputChange}
-      onValueChange={handleValueChange}
     >
       <Combobox.Label>Select Person</Combobox.Label>
 
@@ -72,26 +52,20 @@ export const ComboboxCustomFilter = () => {
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content>
-            <Combobox.ItemGroup>
-              {collection.items.map((person) => (
-                <Combobox.Item item={person} key={person.id}>
-                  <Stack gap={0}>
-                    <Text textStyle="sm" fontWeight="medium">
-                      {person.name}
-                    </Text>
-                    <Text textStyle="xs" color="gray.500">
-                      {person.email}
-                    </Text>
-                  </Stack>
-                  <Combobox.ItemIndicator />
-                </Combobox.Item>
-              ))}
-              {collection.items.length === 0 && (
-                <Text p={2} textStyle="sm" color="gray.500">
-                  No matches found
-                </Text>
-              )}
-            </Combobox.ItemGroup>
+            <Combobox.Empty>No matches found</Combobox.Empty>
+            {collection.items.map((person) => (
+              <Combobox.Item item={person} key={person.id}>
+                <Stack gap={0}>
+                  <Span textStyle="sm" fontWeight="medium">
+                    {person.name}
+                  </Span>
+                  <Span textStyle="xs" color="fg.muted">
+                    {person.email}
+                  </Span>
+                </Stack>
+                <Combobox.ItemIndicator />
+              </Combobox.Item>
+            ))}
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
