@@ -29,6 +29,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       width: "full",
       minH: "var(--combobox-input-height)",
       px: "var(--combobox-input-padding-x)",
+      "--input-height": "var(--combobox-input-height)",
       borderRadius: "l2",
       outline: 0,
       userSelect: "none",
@@ -42,8 +43,11 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       _disabled: {
         layerStyle: "disabled",
       },
+      "--focus-color": "colors.colorPalette.focusRing",
+      "--error-color": "colors.border.error",
       _invalid: {
-        borderColor: "border.error",
+        focusRingColor: "var(--error-color)",
+        borderColor: "var(--error-color)",
       },
     },
 
@@ -99,7 +103,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
         animationDuration: "fast",
       },
       _closed: {
-        display: "none",
+        animationStyle: "slide-fade-out",
+        animationDuration: "0s",
       },
       "&[data-empty]:not(:has([data-scope=combobox][data-part=empty]))": {
         opacity: 0,

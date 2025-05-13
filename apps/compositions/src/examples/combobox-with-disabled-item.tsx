@@ -6,30 +6,23 @@ import {
   Icon,
   Portal,
   Span,
-  createListCollection,
+  useFilter,
+  useListCollection,
 } from "@chakra-ui/react"
-import { useMemo, useState } from "react"
 
-export const ComboboxWithDisabledOptions = () => {
-  const [items, setItems] = useState<Company[]>(companies)
+export const ComboboxWithDisabledItem = () => {
+  const { contains } = useFilter({ sensitivity: "base" })
 
-  const collection = useMemo(
-    () =>
-      createListCollection({
-        items,
-        itemToValue: (item) => item.id,
-        itemToString: (item) => item.name,
-        isItemDisabled: (item) => !!item.disabled,
-      }),
-    [items],
-  )
+  const { collection, filter } = useListCollection({
+    initialItems: companies,
+    filter: contains,
+    itemToValue: (item) => item.id,
+    itemToString: (item) => item.name,
+    isItemDisabled: (item) => !!item.disabled,
+  })
 
   const handleInputChange = (details: Combobox.InputValueChangeDetails) => {
-    setItems(
-      companies.filter((item) =>
-        item.name.toLowerCase().includes(details.inputValue.toLowerCase()),
-      ),
-    )
+    filter(details.inputValue)
   }
 
   return (
