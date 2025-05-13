@@ -6,6 +6,7 @@ import {
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
+import { LuExternalLink } from "react-icons/lu"
 
 export const ComboboxWithLinks = () => {
   const { contains } = useFilter({ sensitivity: "base" })
@@ -20,6 +21,7 @@ export const ComboboxWithLinks = () => {
       collection={collection}
       onInputValueChange={(e) => filter(e.inputValue)}
       width="320px"
+      selectionBehavior="clear"
     >
       <Combobox.Label>Select framework</Combobox.Label>
       <Combobox.Control>
@@ -35,7 +37,9 @@ export const ComboboxWithLinks = () => {
             <Combobox.Empty>No items found</Combobox.Empty>
             {collection.items.map((item) => (
               <Combobox.Item asChild item={item} key={item.value}>
-                <a href={item.docs}>{item.label}</a>
+                <a href={item.docs}>
+                  {item.label} <LuExternalLink size={10} />
+                </a>
               </Combobox.Item>
             ))}
           </Combobox.Content>

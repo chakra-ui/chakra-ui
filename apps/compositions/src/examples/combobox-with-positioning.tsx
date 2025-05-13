@@ -19,8 +19,8 @@ export const ComboboxWithPositioning = () => {
     <Combobox.Root
       collection={collection}
       onInputValueChange={(e) => filter(e.inputValue)}
-      width="320px"
-      positioning={{ flip: false, gutter: 2 }}
+      width="160px"
+      positioning={{ flip: false, gutter: 2, placement: "right-start" }}
     >
       <Combobox.Label>Select framework</Combobox.Label>
       <Combobox.Control>

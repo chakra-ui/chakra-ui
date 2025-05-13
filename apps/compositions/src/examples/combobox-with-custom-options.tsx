@@ -38,7 +38,7 @@ export const ComboboxWithCustomOptions = () => {
       placeholder="Type to search companies"
       onInputValueChange={handleInputChange}
     >
-      <Combobox.Label>Select a Country</Combobox.Label>
+      <Combobox.Label>Select company</Combobox.Label>
 
       <Combobox.Control>
         <Combobox.Input />
