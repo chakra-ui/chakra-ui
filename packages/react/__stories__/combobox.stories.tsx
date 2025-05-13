@@ -29,8 +29,9 @@ export { ComboboxWithHighlight as Highlight } from "compositions/examples/combob
 export { ComboboxWithSizes as Sizes } from "compositions/examples/combobox-with-sizes"
 export { ComboboxWithLinks as Links } from "compositions/examples/combobox-with-links"
 export { ComboboxOpenOnClick as OpenOnClick } from "compositions/examples/combobox-open-on-click"
-export { ComboboxVirtualized as Virtualized } from "compositions/examples/combobox-virtualized"
 export { ComboboxWithStore as Store } from "compositions/examples/combobox-with-store"
+export { ComboboxVirtualized as Virtualized } from "compositions/examples/combobox-virtualized"
+export { ComboboxWithLimit as Limit } from "compositions/examples/combobox-with-limit"
 
 export { ComboboxMultiWithReplaceSelectionBehavior as MultiWithReplaceSelectionBehaviors } from "compositions/examples/combobox-multi-with-replace-selection-behavior"
 export { ComboboxCustomFilter as CustomFilter } from "compositions/examples/combobox-with-custom-filter"

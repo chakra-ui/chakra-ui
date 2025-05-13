@@ -1,33 +1,56 @@
 "use client"
 
 import { useState } from "react"
-import { createListCollection } from "../collection"
+import { type ListCollection, createListCollection } from "../collection"
 import { useCallbackRef } from "./use-callback-ref"
 
 type ListCollectionOptions<T> = Partial<
   Parameters<typeof createListCollection<T>>[0]
 >
 
-interface UseListCollectionProps<T> extends ListCollectionOptions<T> {
+export interface UseListCollectionProps<T> extends ListCollectionOptions<T> {
+  /**
+   * The initial items to display in the collection.
+   */
   initialItems: T[]
+  /**
+   * The filter function to use to filter the items.
+   */
   filter?: (itemText: string, filterText: string) => boolean
+  /**
+   * The maximum number of items to display in the collection.
+   * Useful for performance when you have a large number of items.
+   */
+  limit?: number
 }
 
 export function useListCollection<T>(props: UseListCollectionProps<T>) {
-  const { initialItems = [], filter, ...collectionOptions } = props
+  const { initialItems = [], filter, limit, ...collectionOptions } = props
 
-  const create = (items: T[] = initialItems) =>
-    createListCollection({ ...collectionOptions, items })
+  const create = (items: T[]) => {
+    return createListCollection({ ...collectionOptions, items })
+  }
 
-  const [collection, setCollection] = useState(create)
+  const [collection, setCollectionImpl] = useState(() =>
+    create(limit != null ? initialItems.slice(0, limit) : initialItems),
+  )
+
+  const setCollection = useCallbackRef((collection: ListCollection<T>) => {
+    setCollectionImpl(
+      limit == null
+        ? collection
+        : collection.copy(collection.items.slice(0, limit)),
+    )
+  })
 
   return {
     collection,
     filter: (inputValue: string) => {
       if (!filter) return
-      setCollection(
-        create().filter((itemString) => filter(itemString, inputValue)),
+      let filtered = create(initialItems).filter((itemString) =>
+        filter(itemString, inputValue),
       )
+      setCollection(filtered)
     },
     set: useCallbackRef((items: T[]) => {
       setCollection(create(items))
@@ -52,6 +75,12 @@ export function useListCollection<T>(props: UseListCollectionProps<T>) {
     }),
     move: useCallbackRef((value: string, to: number) => {
       setCollection(collection.move(value, to))
+    }),
+    moveBefore: useCallbackRef((value: string, ...values: string[]) => {
+      setCollection(collection.moveBefore(value, ...values))
+    }),
+    moveAfter: useCallbackRef((value: string, ...values: string[]) => {
+      setCollection(collection.moveAfter(value, ...values))
     }),
     reorder: useCallbackRef((from: number, to: number) => {
       setCollection(collection.reorder(from, to))
