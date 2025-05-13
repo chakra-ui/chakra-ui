@@ -4,7 +4,6 @@ import {
   Badge,
   Combobox,
   Portal,
-  Text,
   Wrap,
   createListCollection,
 } from "@chakra-ui/react"
