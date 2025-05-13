@@ -8,7 +8,7 @@ import {
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxCustomFilter = () => {
+export const ComboboxWithCustomFilter = () => {
   const { collection, set } = useListCollection({
     initialItems: people,
     itemToString: (item) => item.name,

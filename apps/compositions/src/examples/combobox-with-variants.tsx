@@ -8,13 +8,11 @@ import {
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxWithSizes = () => {
+export const ComboboxWithVariants = () => {
   return (
     <Stack gap="8">
-      <ComboboxDemo size="xs" />
-      <ComboboxDemo size="sm" />
-      <ComboboxDemo size="md" />
-      <ComboboxDemo size="lg" />
+      <ComboboxDemo variant="subtle" />
+      <ComboboxDemo variant="outline" />
     </Stack>
   )
 }
@@ -34,7 +32,7 @@ const ComboboxDemo = (props: Omit<Combobox.RootProps, "collection">) => {
       collection={collection}
     >
       <Combobox.Label>
-        Select framework ({props.size?.toString()})
+        Select framework ({props.variant?.toString()})
       </Combobox.Label>
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />

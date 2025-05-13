@@ -1,0 +1,264 @@
+---
+title: Combobox
+description:
+  A versatile input component that combines a text input with a listbox,
+  allowing users to filter a list of options and select single or multiple
+  values.
+links:
+  source: components/combobox
+  storybook: components-combobox--basic
+  recipe: combobox
+  ark: https://ark-ui.com/react/docs/components/combobox
+---
+
+<ExampleTabs name="combobox-basic" />
+
+## Usage
+
+```jsx
+import { Combobox } from "@chakra-ui/react"
+```
+
+```jsx
+<Combobox.Root>
+  <Combobox.Label />
+
+  <Combobox.Control>
+    <Combobox.Input />
+    <Combobox.IndicatorGroup>
+      <Combobox.ClearTrigger />
+      <Combobox.Trigger />
+    </Combobox.IndicatorGroup>
+  </Combobox.Control>
+
+  <Combobox.Positioner>
+    <Combobox.Content>
+      <Combobox.Empty />
+      <Combobox.Item />
+
+      <Combobox.ItemGroup>
+        <Combobox.ItemGroupLabel />
+        <Combobox.Item />
+      </Combobox.ItemGroup>
+    </Combobox.Content>
+  </Combobox.Positioner>
+</Combobox.Root>
+```
+
+## Examples
+
+### Basic
+
+The basic combobox provides a searchable dropdown with single selection.
+
+<ExampleTabs name="combobox-basic" />
+
+### Sizes
+
+Use the `size` prop to change the size of the combobox.
+
+<ExampleTabs name="combobox-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the combobox.
+
+<ExampleTabs name="combobox-with-variants" />
+
+### Multiple
+
+Enable multiple selection by setting the `multiple` prop. This allows users to
+select multiple items from the list.
+
+> When this is set, the combobox will always clear the input value when an item
+> is selected.
+
+<ExampleTabs name="combobox-with-multiple" />
+
+### Async Loading
+
+Load the `collection` asynchronously as users type, perfect for API-driven
+search interfaces.
+
+<ExampleTabs name="combobox-with-async-content" />
+
+### Highlight Matching Text
+
+Compose the `Combobox.Item` component with the `Highlight` component to
+highlight matching text in search results.
+
+<ExampleTabs name="combobox-with-highlight" />
+
+### Open on Click
+
+Use the `openOnClick` prop to open the combobox when the user clicks on the
+input.
+
+<ExampleTabs name="combobox-open-on-click" />
+
+### Custom Objects
+
+When dealing with custom objects, use the `itemToString` and `itemToValue` props
+to configure the required interface for the collection.
+
+```jsx
+const { collection } = useListCollection({
+  initialItems: items,
+  itemToString: (item) => item.label,
+  itemToValue: (item) => item.value,
+})
+```
+
+### Custom Filter
+
+Here's an example of a custom filter that matches multiple properties of an
+item.
+
+<ExampleTabs name="combobox-with-custom-filter" />
+
+### Minimum Characters
+
+Use the `openOnChange` prop to set a minimum number of characters before showing
+suggestions.
+
+<ExampleTabs name="combobox-min-character" />
+
+### Field
+
+Compose the `Combobox` component with the `Field` component to wrap the combobox
+in a form field. Useful for form layouts.
+
+<ExampleTabs name="combobox-with-field" />
+
+### Disabled State
+
+Disable the entire combobox or specific items.
+
+<ExampleTabs name="combobox-with-disabled" />
+
+### Disabled Item
+
+Disable specific items in the dropdown, specify the `disabled` prop on the
+collection item.
+
+<ExampleTabs name="combobox-with-disabled-item" />
+
+### Custom Item
+
+Customize the appearance of items in the dropdown with your own components.
+
+<ExampleTabs name="combobox-with-custom-item" />
+
+### Input Group
+
+Combine with InputGroup to add icons or other elements.
+
+<ExampleTabs name="combobox-with-input-group" />
+
+### Invalid
+
+Set the `invalid` prop to `true` to show a error validation state.
+
+<ExampleTabs name="combobox-with-invalid" />
+
+### Controlled Value
+
+Use the `value` and `onValueChange` props to control the combobox's value
+programmatically.
+
+<ExampleTabs name="combobox-controlled" />
+
+### Store
+
+An alternative way to control the combobox is to use the `Combobox.RootProvider`
+component and the `useCombobox` store hook.
+
+This way you can access the combobox state and methods from outside the
+combobox.
+
+<ExampleTabs name="combobox-with-store" />
+
+### Controlled Open
+
+Use the `open` and `onOpenChange` props to control the combobox's open state
+programmatically.
+
+<ExampleTabs name="combobox-open-controlled" />
+
+### Limit Large Datasets
+
+The recommended way of managing large lists is to use the `limit` property on
+the `useListCollection` hook. This will limit the number of rendered items in
+the DOM to improve performance.
+
+<ExampleTabs name="combobox-with-limit" />
+
+### Virtualization
+
+Alternatively, you can leverage virtualization from the
+`@tanstack/react-virtual` package to handle large datasets efficiently with
+virtualized rendering.
+
+<ExampleTabs name="combobox-virtualized" />
+
+### Links
+
+Use the `asChild` prop to render the combobox items as links.
+
+<ExampleTabs name="combobox-with-links" />
+
+For custom router links, you can customize the `navigate` prop on the
+`Combobox.Root` component.
+
+Here's an example of using the Tanstack Router.
+
+```tsx
+import { Combobox } from "@chakra-ui/react"
+import { useNavigate } from "@tanstack/react-router"
+
+function Demo() {
+  const navigate = useNavigate()
+  return (
+    <Combobox.Root
+      navigate={({ href }) => {
+        navigate({ to: href })
+      }}
+    >
+      {/* ... */}
+    </Combobox.Root>
+  )
+}
+```
+
+### Rehydrate Value
+
+In some cases, where a combobox has a `defaultValue` but the corresponding value
+is not loaded yet, here's an example of how to rehydrate the value and populate
+the input value.
+
+<ExampleTabs name="combobox-rehydrate-value" />
+
+### Custom Animation
+
+Here's an example of using a custom open and close animation. We pass the
+`_open` and `_closed` prop to the `Combobox.Content` component to animate the
+content element.
+
+<ExampleTabs name="combobox-with-custom-animation" />
+
+### Popover
+
+To use the combobox within a popover component, avoid wrapping the
+`Combobox.Positioner` within the `Portal`.
+
+<ExampleTabs name="combobox-in-popover" />
+
+## Props
+
+### Root
+
+<PropTable component="Combobox" part="Root" />
+
+### Item
+
+<PropTable component="Combobox" part="Item" />

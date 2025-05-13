@@ -11,39 +11,32 @@ import {
 import { useState } from "react"
 import { useAsync } from "react-use"
 
-interface Character {
-  id: number
-  name: string
-  species: string
-  status: string
-}
-
 export const ComboboxWithAsyncContent = () => {
   const [inputValue, setInputValue] = useState("")
 
   const { collection, set } = useListCollection<Character>({
     initialItems: [],
     itemToString: (item) => item.name,
-    itemToValue: (item) => item.id.toString(),
+    itemToValue: (item) => item.name,
   })
 
   const state = useAsync(async () => {
     const response = await fetch(
-      `https://rickandmortyapi.com/api/character/?name=${inputValue}`,
+      `https://swapi.py4e.com/api/people/?search=${inputValue}`,
     )
     const data = await response.json()
     set(data.results)
-    return data.results
   }, [inputValue, set])
 
   return (
     <Combobox.Root
       width="320px"
       collection={collection}
-      placeholder="Example: Rick"
+      placeholder="Example: C-3PO"
       onInputValueChange={(e) => setInputValue(e.inputValue)}
+      positioning={{ sameWidth: false, placement: "bottom-start" }}
     >
-      <Combobox.Label>Search Rick and Morty Characters</Combobox.Label>
+      <Combobox.Label>Search Star Wars Characters</Combobox.Label>
 
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
@@ -55,7 +48,7 @@ export const ComboboxWithAsyncContent = () => {
 
       <Portal>
         <Combobox.Positioner>
-          <Combobox.Content>
+          <Combobox.Content minW="sm">
             {state.loading ? (
               <HStack p="2">
                 <Spinner size="xs" borderWidth="1px" />
@@ -63,14 +56,18 @@ export const ComboboxWithAsyncContent = () => {
               </HStack>
             ) : state.error ? (
               <Span p="2" color="fg.error">
-                {state.error.message}
+                Error fetching
               </Span>
             ) : (
-              collection.items.map((character) => (
-                <Combobox.Item key={character.id} item={character}>
+              collection.items?.map((character) => (
+                <Combobox.Item key={character.name} item={character}>
                   <HStack justify="space-between" textStyle="sm">
-                    <Span fontWeight="medium">{character.name}</Span>
-                    <Span color="fg.muted">{character.species}</Span>
+                    <Span fontWeight="medium" truncate>
+                      {character.name}
+                    </Span>
+                    <Span color="fg.muted" truncate>
+                      {character.height}cm / {character.mass}kg
+                    </Span>
                   </HStack>
                   <Combobox.ItemIndicator />
                 </Combobox.Item>
@@ -81,4 +78,13 @@ export const ComboboxWithAsyncContent = () => {
       </Portal>
     </Combobox.Root>
   )
+}
+
+interface Character {
+  name: string
+  height: string
+  mass: string
+  created: string
+  edited: string
+  url: string
 }

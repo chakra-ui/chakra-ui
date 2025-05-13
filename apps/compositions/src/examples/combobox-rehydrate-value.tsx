@@ -12,46 +12,29 @@ import {
 import { useRef, useState } from "react"
 import { useAsync } from "react-use"
 
-interface Character {
-  id: number
-  name: string
-  species: string
-  status: string
-}
-
-export const ComboboxWithRehydrateValue = () => {
+export const ComboboxRehydrateValue = () => {
   const [inputValue, setInputValue] = useState("")
 
   const { collection, set } = useListCollection<Character>({
     initialItems: [],
     itemToString: (item) => item.name,
-    itemToValue: (item) => item.id.toString(),
+    itemToValue: (item) => item.name,
   })
 
   const combobox = useCombobox({
-    collection: collection,
-    // ["1"] stands of Rick Sanchez
-    defaultValue: ["1"],
-    placeholder: "Example: Rick",
+    collection,
+    defaultValue: ["C-3PO"],
+    placeholder: "Example: Dexter",
     inputValue,
     onInputValueChange: (e) => setInputValue(e.inputValue),
   })
 
-  const fetchCharacters = async (inputValue = "") => {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character/?name=${inputValue}`,
-    )
-    const data = (await response.json()) as { results: Character[] }
-    // ensure we have unique characters
-    const result = data.results.filter(
-      (item, index, self) =>
-        index === self.findIndex((t) => t.name === item.name),
-    )
-    set(result)
-  }
-
   const state = useAsync(async () => {
-    await fetchCharacters(inputValue)
+    const response = await fetch(
+      `https://swapi.py4e.com/api/people/?search=${inputValue}`,
+    )
+    const data = await response.json()
+    set(data.results)
   }, [inputValue, set])
 
   // Rehydrate the value
@@ -64,14 +47,10 @@ export const ComboboxWithRehydrateValue = () => {
 
   return (
     <Combobox.RootProvider value={combobox} width="320px">
-      <Combobox.Label>Search Rick and Morty Characters</Combobox.Label>
+      <Combobox.Label>Search Star Wars Characters</Combobox.Label>
 
       <Combobox.Control>
         <Combobox.Input placeholder="Type to search" />
-        <Combobox.IndicatorGroup>
-          <Combobox.ClearTrigger />
-          <Combobox.Trigger onClick={() => fetchCharacters()} />
-        </Combobox.IndicatorGroup>
       </Combobox.Control>
 
       <Portal>
@@ -87,11 +66,13 @@ export const ComboboxWithRehydrateValue = () => {
                 {state.error.message}
               </Span>
             ) : (
-              collection.items.map((character) => (
-                <Combobox.Item key={character.id} item={character}>
+              collection.items.map((item) => (
+                <Combobox.Item key={item.name} item={item}>
                   <HStack justify="space-between" textStyle="sm">
-                    <Span fontWeight="medium">{character.name}</Span>
-                    <Span color="fg.muted">{character.species}</Span>
+                    <Span fontWeight="medium">{item.name}</Span>
+                    <Span color="fg.muted">
+                      {item.height}cm / {item.mass}kg
+                    </Span>
                   </HStack>
                   <Combobox.ItemIndicator />
                 </Combobox.Item>
@@ -102,4 +83,13 @@ export const ComboboxWithRehydrateValue = () => {
       </Portal>
     </Combobox.RootProvider>
   )
+}
+
+interface Character {
+  name: string
+  height: string
+  mass: string
+  created: string
+  edited: string
+  url: string
 }
