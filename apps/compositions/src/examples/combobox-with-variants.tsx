@@ -13,6 +13,7 @@ export const ComboboxWithVariants = () => {
     <Stack gap="8">
       <ComboboxDemo variant="subtle" />
       <ComboboxDemo variant="outline" />
+      <ComboboxDemo variant="flushed" />
     </Stack>
   )
 }

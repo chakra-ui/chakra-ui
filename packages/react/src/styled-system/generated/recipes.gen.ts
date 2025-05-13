@@ -1003,10 +1003,11 @@ export type ComboboxSlot =
   | "positioner"
   | "trigger"
   | "indicatorGroup"
+  | "empty"
 
 export interface ComboboxVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | "flushed"
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
 }

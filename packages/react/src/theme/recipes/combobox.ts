@@ -34,9 +34,6 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       outline: 0,
       userSelect: "none",
       textAlign: "start",
-      textStyle: "sm",
-      focusVisibleRing: "inside",
-      borderWidth: "1px",
       _placeholderShown: {
         color: "fg.muted",
       },
@@ -166,6 +163,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
           bg: "transparent",
           borderWidth: "1px",
           borderColor: "border",
+          focusVisibleRing: "inside",
         },
       },
 
@@ -174,6 +172,24 @@ export const comboboxSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "transparent",
           bg: "bg.muted",
+          focusVisibleRing: "inside",
+        },
+      },
+
+      flushed: {
+        input: {
+          bg: "transparent",
+          borderBottomWidth: "1px",
+          borderBottomColor: "border",
+          borderRadius: "0",
+          px: "0",
+          _focusVisible: {
+            borderColor: "var(--focus-color)",
+            boxShadow: "0px 1px 0px 0px var(--focus-color)",
+          },
+        },
+        indicatorGroup: {
+          px: "0",
         },
       },
     },
