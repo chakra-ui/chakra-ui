@@ -40,11 +40,12 @@ export function getStyles(options: {
         orientation,
         vertical: {
           bottom: `${thumbPercents[i]}%`,
-          transform: "translate(-50%, 50%)",
+          transform: "translate(-50%, 50%) scale(var(--slider-thumb-scale, 1))",
         },
         horizontal: {
           left: `${thumbPercents[i]}%`,
-          transform: "translate(-50%, -50%)",
+          transform:
+            "translate(-50%, -50%) scale(var(--slider-thumb-scale, 1))",
         },
       }),
     }

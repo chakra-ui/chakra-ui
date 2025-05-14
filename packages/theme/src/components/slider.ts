@@ -69,20 +69,8 @@ const baseStyleThumb = defineStyle((props) => {
   const { orientation } = props
   const orientationStyle = orient({
     orientation,
-    vertical: {
-      left: "50%",
-      transform: `translateX(-50%)`,
-      _active: {
-        transform: `translateX(-50%) scale(1.15)`,
-      },
-    },
-    horizontal: {
-      top: "50%",
-      transform: `translateY(-50%)`,
-      _active: {
-        transform: `translateY(-50%) scale(1.15)`,
-      },
-    },
+    vertical: { left: "50%" },
+    horizontal: { top: "50%" },
   })
 
   return {
@@ -104,6 +92,9 @@ const baseStyleThumb = defineStyle((props) => {
     transitionDuration: "normal",
     _focusVisible: {
       boxShadow: "outline",
+    },
+    _active: {
+      "--slider-thumb-scale": `1.15`,
     },
     _disabled: {
       bg: "gray.300",
