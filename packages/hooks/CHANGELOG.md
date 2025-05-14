@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.4.5
+
+### Patch Changes
+
+- [#9707](https://github.com/chakra-ui/chakra-ui/pull/9707)
+  [`568e698`](https://github.com/chakra-ui/chakra-ui/commit/568e6985d5f6d3b7313e4b73b989a64a50164bd4)
+  Thanks [@andrey-mitko](https://github.com/andrey-mitko)! - - **Slider**: Fix
+  the incorrect offset of the custom size `SliderThumb` component relative to
+  the `SliderTrack`
+
+  - **Modal**: Fix issue where `lockFocusAcrossFrames` could not be overridden
+
+- Updated dependencies
+  [[`568e698`](https://github.com/chakra-ui/chakra-ui/commit/568e6985d5f6d3b7313e4b73b989a64a50164bd4)]:
+  - @chakra-ui/utils@2.2.5
+
 ## 2.4.4
 
 ### Patch Changes
