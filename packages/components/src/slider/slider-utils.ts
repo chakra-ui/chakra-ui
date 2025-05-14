@@ -39,7 +39,7 @@ export function getStyles(options: {
       ...orient({
         orientation,
         vertical: {
-          bottom: `calc(${thumbPercents[i]}%`,
+          bottom: `${thumbPercents[i]}%`,
           transform: "translate(-50%, 50%)",
         },
         horizontal: {
