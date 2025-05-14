@@ -10,3 +10,6 @@
   - Fix issue where passing `d` prop to `chakra.path` adds it to styles not as a
     direct attribute.
   - Fix issue where responsive semantic tokens did not get applied.
+
+- **Select**: Fix issue where indicator group doesn't align correctly in RTL
+  layouts.
