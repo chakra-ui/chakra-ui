@@ -1,5 +1,4 @@
 ---
-"@chakra-ui/react": patch
 "@chakra-ui/styled-system": patch
 "@chakra-ui/react": patch
 "@chakra-ui/hooks": patch
