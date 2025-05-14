@@ -1,5 +1,10 @@
 ---
 "@chakra-ui/react": patch
+"@chakra-ui/styled-system": patch
+"@chakra-ui/react": patch
+"@chakra-ui/hooks": patch
+"@chakra-ui/theme": patch
+"@chakra-ui/utils": patch
 ---
 
 - **Slider**: Fix the incorrect offset of the custom size `SliderThumb`
