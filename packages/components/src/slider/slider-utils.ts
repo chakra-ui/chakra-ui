@@ -43,7 +43,7 @@ export function getStyles(options: {
           transform: "translate(-50%, 50%)",
         },
         horizontal: {
-          left: `calc(${thumbPercents[i]}%`,
+          left: `${thumbPercents[i]}%`,
           transform: "translate(-50%, -50%)",
         },
       }),
