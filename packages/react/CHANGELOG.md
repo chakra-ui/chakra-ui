@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.18.0
+
+### Minor Changes
+
+- [`e91ec7e`](https://github.com/chakra-ui/chakra-ui/commit/e91ec7e9a393a791743636e934d28bc75a0e6dc8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **DownloadTrigger
+  [New]** Add `DownloadTrigger` component to help download file contents.
+
+  - **System**
+
+    - Fix issue where passing `d` prop to `chakra.path` adds it to styles not as
+      a direct attribute.
+    - Fix issue where responsive semantic tokens did not get applied.
+
+  - **Select**: Fix issue where indicator group doesn't align correctly in RTL
+    layouts.
+
 ## 3.17.0
 
 ### Minor Changes
