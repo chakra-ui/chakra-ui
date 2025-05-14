@@ -73,7 +73,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       justifyContent: "center",
       gap: "1",
       pos: "absolute",
-      right: "0",
+      insetEnd: "0",
       top: "0",
       bottom: "0",
       px: "var(--combobox-input-padding-x)",

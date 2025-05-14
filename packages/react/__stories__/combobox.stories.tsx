@@ -41,8 +41,6 @@ export { ComboboxWithField as Field } from "compositions/examples/combobox-with-
 export { ComboboxWithCustomFilter as CustomFilter } from "compositions/examples/combobox-with-custom-filter"
 export { ComboboxWithInputInContent as InputInContent } from "compositions/examples/combobox-with-input-in-content"
 
-export { ComboboxMultiWithReplaceSelectionBehavior as MultiWithReplaceSelectionBehaviors } from "compositions/examples/combobox-multi-with-replace-selection-behavior"
-export { ComboboxWithCustomOptions as CustomOptions } from "compositions/examples/combobox-with-custom-options"
 export { ComboboxSelectionBehavior as SelectionBehavior } from "compositions/examples/combobox-with-selection-behavior"
 export { ComboboxWithCreateableOptions as CreateableOptions } from "compositions/examples/combobox-with-createable-options"
 export { ComboboxColorPicker as ColorPicker } from "compositions/examples/combobox-color-picker"
