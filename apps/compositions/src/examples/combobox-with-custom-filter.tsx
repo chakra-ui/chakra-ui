@@ -74,19 +74,34 @@ export const ComboboxWithCustomFilter = () => {
 }
 
 const people = [
-  { id: 1, name: "John Smith", email: "john@example.com", role: "Developer" },
+  {
+    id: 1,
+    name: "John Smith",
+    email: "john@example.com",
+    role: "Sales Manager",
+  },
   {
     id: 2,
     name: "Sarah Johnson",
     email: "sarah@example.com",
-    role: "Designer",
+    role: "UI Designer",
   },
   {
     id: 3,
     name: "Michael Brown",
     email: "michael@example.com",
-    role: "Manager",
+    role: "Software Engineer",
   },
-  { id: 4, name: "Emily Davis", email: "emily@example.com", role: "Developer" },
-  { id: 5, name: "James Wilson", email: "james@example.com", role: "Designer" },
+  {
+    id: 4,
+    name: "Emily Davis",
+    email: "emily@example.com",
+    role: "AI Engineer",
+  },
+  {
+    id: 5,
+    name: "James Wilson",
+    email: "james@example.com",
+    role: "Chief Executive Officer",
+  },
 ]

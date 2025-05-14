@@ -15,11 +15,11 @@ links:
 
 ## Usage
 
-```jsx
+```tsx
 import { Combobox } from "@chakra-ui/react"
 ```
 
-```jsx
+```tsx
 <Combobox.Root>
   <Combobox.Label />
 
@@ -45,6 +45,15 @@ import { Combobox } from "@chakra-ui/react"
 </Combobox.Root>
 ```
 
+To setup combobox, you might need to import the following hooks:
+
+- `useListCollection`: Used to manage the list of items in the combobox,
+  providing helpful methods for filtering and mutating the list.
+
+- `useFilter`: Used to provide the filtering logic for the combobox based on
+  [`Intl.Collator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator)
+  APIs.
+
 ## Examples
 
 ### Basic
@@ -55,20 +64,21 @@ The basic combobox provides a searchable dropdown with single selection.
 
 ### Sizes
 
-Use the `size` prop to change the size of the combobox.
+Pass the `size` prop to the `Combobox.Root` to change the size of the combobox.
 
 <ExampleTabs name="combobox-with-sizes" />
 
 ### Variants
 
-Use the `variant` prop to change the appearance of the combobox.
+Pass the `variant` prop to the `Combobox.Root` to change the appearance of the
+combobox.
 
 <ExampleTabs name="combobox-with-variants" />
 
 ### Multiple
 
-Enable multiple selection by setting the `multiple` prop. This allows users to
-select multiple items from the list.
+Pass the `multiple` prop to the `Combobox.Root` to enable multiple selection.
+This allows users to select multiple items from the list.
 
 > When this is set, the combobox will always clear the input value when an item
 > is selected.
@@ -77,14 +87,14 @@ select multiple items from the list.
 
 ### Async Loading
 
-Load the `collection` asynchronously as users type, perfect for API-driven
-search interfaces.
+Here's an example of loading the `collection` asynchronously as users type,
+perfect for API-driven search interfaces.
 
 <ExampleTabs name="combobox-with-async-content" />
 
 ### Highlight Matching Text
 
-Compose the `Combobox.Item` component with the `Highlight` component to
+Here's an example of composing the `Combobox.Item` and `Highlight` components to
 highlight matching text in search results.
 
 <ExampleTabs name="combobox-with-highlight" />
@@ -98,28 +108,35 @@ input.
 
 ### Custom Objects
 
-When dealing with custom objects, use the `itemToString` and `itemToValue` props
-to configure the required interface for the collection.
+By default, the combobox collection expects an array of objects with `label` and
+`value` properties. In some cases, you may need to deal with custom objects.
 
-```jsx
+Use the `itemToString` and `itemToValue` props to map the custom object to the
+required interface.
+
+```tsx
+const items = [
+  { country: "United States", code: "US", flag: "🇺🇸" },
+  { country: "Canada", code: "CA", flag: "🇨🇦" },
+  { country: "Australia", code: "AU", flag: "🇦🇺" },
+  // ...
+]
+
 const { collection } = useListCollection({
   initialItems: items,
-  itemToString: (item) => item.label,
-  itemToValue: (item) => item.value,
+  itemToString: (item) => item.country,
+  itemToValue: (item) => item.code,
 })
 ```
 
-### Custom Filter
-
-Here's an example of a custom filter that matches multiple properties of an
-item.
-
-<ExampleTabs name="combobox-with-custom-filter" />
-
 ### Minimum Characters
 
-Use the `openOnChange` prop to set a minimum number of characters before showing
-suggestions.
+Use the `openOnChange` prop to set a minimum number of characters before
+filtering the list.
+
+```tsx
+<Combobox.Root openOnChange={(e) => e.inputValue.length > 2} />
+```
 
 <ExampleTabs name="combobox-min-character" />
 
@@ -132,22 +149,28 @@ in a form field. Useful for form layouts.
 
 ### Disabled State
 
-Disable the entire combobox or specific items.
+Pass the `disabled` prop to the `Combobox.Root` to disable the entire combobox.
 
 <ExampleTabs name="combobox-with-disabled" />
 
 ### Disabled Item
 
-Disable specific items in the dropdown, specify the `disabled` prop on the
+Disable specific items in the dropdown, add the `disabled` prop to the
 collection item.
 
+```tsx {2}
+const items = [
+  { label: "Item 1", value: "item-1", disabled: true },
+  { label: "Item 2", value: "item-2" },
+]
+
+const { collection } = useListCollection({
+  initialItems: items,
+  // ...
+})
+```
+
 <ExampleTabs name="combobox-with-disabled-item" />
-
-### Custom Item
-
-Customize the appearance of items in the dropdown with your own components.
-
-<ExampleTabs name="combobox-with-custom-item" />
 
 ### Input Group
 
@@ -157,7 +180,7 @@ Combine with InputGroup to add icons or other elements.
 
 ### Invalid
 
-Set the `invalid` prop to `true` to show a error validation state.
+Pass the `invalid` prop to the `Combobox.Root` to show the error state.
 
 <ExampleTabs name="combobox-with-invalid" />
 
@@ -172,6 +195,18 @@ programmatically.
 
 An alternative way to control the combobox is to use the `Combobox.RootProvider`
 component and the `useCombobox` store hook.
+
+```tsx
+import { Combobox, useCombobox } from "@chakra-ui/react"
+
+function Demo() {
+  const combobox = useCombobox()
+
+  return (
+    <Combobox.RootProvider value={combobox}>{/* ... */}</Combobox.RootProvider>
+  )
+}
+```
 
 This way you can access the combobox state and methods from outside the
 combobox.
@@ -196,8 +231,7 @@ the DOM to improve performance.
 ### Virtualization
 
 Alternatively, you can leverage virtualization from the
-`@tanstack/react-virtual` package to handle large datasets efficiently with
-virtualized rendering.
+`@tanstack/react-virtual` package to render large datasets efficiently.
 
 <ExampleTabs name="combobox-virtualized" />
 
@@ -212,7 +246,7 @@ For custom router links, you can customize the `navigate` prop on the
 
 Here's an example of using the Tanstack Router.
 
-```tsx
+```tsx {8-10}
 import { Combobox } from "@chakra-ui/react"
 import { useNavigate } from "@tanstack/react-router"
 
@@ -232,17 +266,29 @@ function Demo() {
 
 ### Rehydrate Value
 
-In some cases, where a combobox has a `defaultValue` but the corresponding value
-is not loaded yet, here's an example of how to rehydrate the value and populate
-the input value.
+In some cases, where a combobox has a `defaultValue` but the collection is not
+loaded yet, here's an example of how to rehydrate the value and populate the
+input value.
 
 <ExampleTabs name="combobox-rehydrate-value" />
 
+### Custom Item
+
+Customize the appearance of items in the dropdown with your own components.
+
+<ExampleTabs name="combobox-with-custom-item" />
+
+### Custom Filter
+
+Here's an example of a custom filter that matches multiple properties of an
+item.
+
+<ExampleTabs name="combobox-with-custom-filter" />
+
 ### Custom Animation
 
-Here's an example of using a custom open and close animation. We pass the
-`_open` and `_closed` prop to the `Combobox.Content` component to animate the
-content element.
+To customize the animation of the combobox, pass the `_open` and `_closed` prop
+to the `Combobox.Content` component.
 
 <ExampleTabs name="combobox-with-custom-animation" />
 
@@ -250,6 +296,16 @@ content element.
 
 To use the combobox within a popover component, avoid wrapping the
 `Combobox.Positioner` within the `Portal`.
+
+```diff
+-<Portal>
+  <Combobox.Positioner>
+    <Combobox.Content>
+      {/* ... */}
+    </Combobox.Content>
+  </Combobox.Positioner>
+-</Portal>
+```
 
 <ExampleTabs name="combobox-in-popover" />
 
