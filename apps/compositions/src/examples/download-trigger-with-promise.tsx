@@ -1,3 +1,5 @@
+"use client"
+
 import { Button, DownloadTrigger } from "@chakra-ui/react"
 import { LuImageDown } from "react-icons/lu"
 

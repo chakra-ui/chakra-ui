@@ -158,16 +158,17 @@ const docsLinks: NavItem = {
           title: "Utilities",
           items: [
             { title: "ClientOnly", url: "client-only" },
+            {
+              title: "Download Trigger",
+              url: "download-trigger",
+              status: "new",
+            },
             { title: "EnvironmentProvider", url: "environment-provider" },
             { title: "For", url: "for" },
             { title: "FormatNumber", url: "format-number" },
             { title: "FormatByte", url: "format-byte" },
             { title: "LocaleProvider", url: "locale-provider" },
-            {
-              title: "Overlay Manager",
-              url: "overlay-manager",
-              status: "beta",
-            },
+            { title: "Overlay Manager", url: "overlay-manager" },
             { title: "Presence", url: "presence" },
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
