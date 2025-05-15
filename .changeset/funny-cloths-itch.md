@@ -2,4 +2,6 @@
 "@chakra-ui/react": minor
 ---
 
-Add combobox component for autocomplete text entry.
+- **[New] Combobox** Add combobox component for autocomplete text entry.
+
+- **Progress Circle**: Make progress circle transition smoother.
