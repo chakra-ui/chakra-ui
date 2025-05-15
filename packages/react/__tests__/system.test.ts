@@ -204,10 +204,14 @@ describe("system", () => {
             "--chakra-spacing-container": "var(--chakra-spacing-4)",
           },
           "@media screen and (min-width: 48rem)": {
-            "--chakra-spacing-container": "var(--chakra-spacing-6)",
+            "&:where(:root, :host)": {
+              "--chakra-spacing-container": "var(--chakra-spacing-6)",
+            },
           },
           "@media screen and (min-width: 64rem)": {
-            "--chakra-spacing-container": "var(--chakra-spacing-8)",
+            "&:where(:root, :host)": {
+              "--chakra-spacing-container": "var(--chakra-spacing-8)",
+            },
           },
         },
       }

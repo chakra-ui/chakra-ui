@@ -135,7 +135,12 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
       const varsObj = Object.fromEntries(values) as any
       if (Object.keys(varsObj).length === 0) continue
       const selector = key === "base" ? cssVarsRoot : conditions.resolve(key)
-      const cssObject = css(serialize({ [selector]: varsObj }))
+      const isAtRule = selector.startsWith("@")
+      const cssObject = css(
+        serialize({
+          [selector]: isAtRule ? { [cssVarsRoot]: varsObj } : varsObj,
+        }),
+      )
       mergeWith(result, cssObject)
     }
 

@@ -159,6 +159,11 @@ const docsLinks: NavItem = {
           title: "Utilities",
           items: [
             { title: "ClientOnly", url: "client-only" },
+            {
+              title: "Download Trigger",
+              url: "download-trigger",
+              status: "new",
+            },
             { title: "EnvironmentProvider", url: "environment-provider" },
             { title: "For", url: "for" },
             { title: "FormatNumber", url: "format-number" },

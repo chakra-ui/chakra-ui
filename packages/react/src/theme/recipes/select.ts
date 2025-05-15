@@ -38,7 +38,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "1",
       pos: "absolute",
-      right: "0",
+      insetEnd: "0",
       top: "0",
       bottom: "0",
       px: "var(--select-trigger-padding-x)",
