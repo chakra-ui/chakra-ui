@@ -39,12 +39,15 @@ export interface SystemProperties {
   WebkitTextStrokeWidth?: ConditionalValue<CssProperties["WebkitTextStrokeWidth"] | AnyString>
   WebkitTouchCallout?: ConditionalValue<CssProperties["WebkitTouchCallout"] | AnyString>
   WebkitUserModify?: ConditionalValue<CssProperties["WebkitUserModify"] | AnyString>
+  WebkitUserSelect?: ConditionalValue<CssProperties["WebkitUserSelect"] | AnyString>
   accentColor?: ConditionalValue<UtilityValues["accentColor"] | CssVars | CssProperties["accentColor"] | AnyString>
   alignContent?: ConditionalValue<CssProperties["alignContent"] | AnyString>
   alignItems?: ConditionalValue<CssProperties["alignItems"] | AnyString>
   alignSelf?: ConditionalValue<CssProperties["alignSelf"] | AnyString>
   alignTracks?: ConditionalValue<CssProperties["alignTracks"] | AnyString>
   all?: ConditionalValue<CssProperties["all"] | AnyString>
+  anchorName?: ConditionalValue<CssProperties["anchorName"] | AnyString>
+  anchorScope?: ConditionalValue<CssProperties["anchorScope"] | AnyString>
   animation?: ConditionalValue<UtilityValues["animation"] | CssVars | CssProperties["animation"] | AnyString>
   animationComposition?: ConditionalValue<CssProperties["animationComposition"] | AnyString>
   animationDelay?: ConditionalValue<UtilityValues["animationDelay"] | CssVars | CssProperties["animationDelay"] | AnyString>
@@ -57,11 +60,10 @@ export interface SystemProperties {
   animationRange?: ConditionalValue<CssProperties["animationRange"] | AnyString>
   animationRangeEnd?: ConditionalValue<CssProperties["animationRangeEnd"] | AnyString>
   animationRangeStart?: ConditionalValue<CssProperties["animationRangeStart"] | AnyString>
-  animationTimingFunction?: ConditionalValue<UtilityValues["animationTimingFunction"] | CssVars | CssProperties["animationTimingFunction"] | AnyString>
   animationTimeline?: ConditionalValue<CssProperties["animationTimeline"] | AnyString>
+  animationTimingFunction?: ConditionalValue<UtilityValues["animationTimingFunction"] | CssVars | CssProperties["animationTimingFunction"] | AnyString>
   appearance?: ConditionalValue<CssProperties["appearance"] | AnyString>
   aspectRatio?: ConditionalValue<UtilityValues["aspectRatio"] | CssVars | CssProperties["aspectRatio"] | AnyString>
-  azimuth?: ConditionalValue<CssProperties["azimuth"] | AnyString>
   backdropFilter?: ConditionalValue<CssProperties["backdropFilter"] | AnyString>
   backfaceVisibility?: ConditionalValue<CssProperties["backfaceVisibility"] | AnyString>
   background?: ConditionalValue<UtilityValues["background"] | CssVars | CssProperties["background"] | AnyString>
@@ -80,8 +82,6 @@ export interface SystemProperties {
   border?: ConditionalValue<UtilityValues["border"] | CssVars | CssProperties["border"] | AnyString>
   borderBlock?: ConditionalValue<UtilityValues["borderBlock"] | CssVars | CssProperties["borderBlock"] | AnyString>
   borderBlockColor?: ConditionalValue<CssProperties["borderBlockColor"] | AnyString>
-  borderBlockStyle?: ConditionalValue<CssProperties["borderBlockStyle"] | AnyString>
-  borderBlockWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | AnyString>
   borderBlockEnd?: ConditionalValue<UtilityValues["borderBlockEnd"] | CssVars | CssProperties["borderBlockEnd"] | AnyString>
   borderBlockEndColor?: ConditionalValue<UtilityValues["borderBlockEndColor"] | CssVars | CssProperties["borderBlockEndColor"] | AnyString>
   borderBlockEndStyle?: ConditionalValue<UtilityValues["borderBlockEndStyle"] | CssVars | CssProperties["borderBlockEndStyle"] | AnyString>
@@ -90,6 +90,8 @@ export interface SystemProperties {
   borderBlockStartColor?: ConditionalValue<UtilityValues["borderBlockStartColor"] | CssVars | CssProperties["borderBlockStartColor"] | AnyString>
   borderBlockStartStyle?: ConditionalValue<UtilityValues["borderBlockStartStyle"] | CssVars | CssProperties["borderBlockStartStyle"] | AnyString>
   borderBlockStartWidth?: ConditionalValue<UtilityValues["borderBlockStartWidth"] | CssVars | CssProperties["borderBlockStartWidth"] | AnyString>
+  borderBlockStyle?: ConditionalValue<CssProperties["borderBlockStyle"] | AnyString>
+  borderBlockWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | AnyString>
   borderBottom?: ConditionalValue<UtilityValues["borderBottom"] | CssVars | CssProperties["borderBottom"] | AnyString>
   borderBottomColor?: ConditionalValue<UtilityValues["borderBottomColor"] | CssVars | CssProperties["borderBottomColor"] | AnyString>
   borderBottomLeftRadius?: ConditionalValue<UtilityValues["borderBottomLeftRadius"] | CssVars | CssProperties["borderBottomLeftRadius"] | AnyString>
@@ -107,10 +109,8 @@ export interface SystemProperties {
   borderImageSource?: ConditionalValue<CssProperties["borderImageSource"] | AnyString>
   borderImageWidth?: ConditionalValue<CssProperties["borderImageWidth"] | AnyString>
   borderInline?: ConditionalValue<UtilityValues["borderInline"] | CssVars | CssProperties["borderInline"] | AnyString>
-  borderInlineEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | AnyString>
   borderInlineColor?: ConditionalValue<CssProperties["borderInlineColor"] | AnyString>
-  borderInlineStyle?: ConditionalValue<CssProperties["borderInlineStyle"] | AnyString>
-  borderInlineWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | AnyString>
+  borderInlineEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | AnyString>
   borderInlineEndColor?: ConditionalValue<UtilityValues["borderInlineEndColor"] | CssVars | CssProperties["borderInlineEndColor"] | AnyString>
   borderInlineEndStyle?: ConditionalValue<UtilityValues["borderInlineEndStyle"] | CssVars | CssProperties["borderInlineEndStyle"] | AnyString>
   borderInlineEndWidth?: ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | AnyString>
@@ -118,6 +118,8 @@ export interface SystemProperties {
   borderInlineStartColor?: ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | AnyString>
   borderInlineStartStyle?: ConditionalValue<UtilityValues["borderInlineStartStyle"] | CssVars | CssProperties["borderInlineStartStyle"] | AnyString>
   borderInlineStartWidth?: ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | AnyString>
+  borderInlineStyle?: ConditionalValue<CssProperties["borderInlineStyle"] | AnyString>
+  borderInlineWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | AnyString>
   borderLeft?: ConditionalValue<UtilityValues["borderLeft"] | CssVars | CssProperties["borderLeft"] | AnyString>
   borderLeftColor?: ConditionalValue<UtilityValues["borderLeftColor"] | CssVars | CssProperties["borderLeftColor"] | AnyString>
   borderLeftStyle?: ConditionalValue<UtilityValues["borderLeftStyle"] | CssVars | CssProperties["borderLeftStyle"] | AnyString>
@@ -160,7 +162,9 @@ export interface SystemProperties {
   clear?: ConditionalValue<CssProperties["clear"] | AnyString>
   clip?: ConditionalValue<CssProperties["clip"] | AnyString>
   clipPath?: ConditionalValue<CssProperties["clipPath"] | AnyString>
+  clipRule?: ConditionalValue<CssProperties["clipRule"] | AnyString>
   color?: ConditionalValue<UtilityValues["color"] | CssVars | CssProperties["color"] | AnyString>
+  colorInterpolationFilters?: ConditionalValue<CssProperties["colorInterpolationFilters"] | AnyString>
   colorScheme?: ConditionalValue<CssProperties["colorScheme"] | AnyString>
   columnCount?: ConditionalValue<CssProperties["columnCount"] | AnyString>
   columnFill?: ConditionalValue<CssProperties["columnFill"] | AnyString>
@@ -173,10 +177,10 @@ export interface SystemProperties {
   columnWidth?: ConditionalValue<CssProperties["columnWidth"] | AnyString>
   columns?: ConditionalValue<CssProperties["columns"] | AnyString>
   contain?: ConditionalValue<CssProperties["contain"] | AnyString>
-  containIntrinsicSize?: ConditionalValue<CssProperties["containIntrinsicSize"] | AnyString>
   containIntrinsicBlockSize?: ConditionalValue<CssProperties["containIntrinsicBlockSize"] | AnyString>
   containIntrinsicHeight?: ConditionalValue<CssProperties["containIntrinsicHeight"] | AnyString>
   containIntrinsicInlineSize?: ConditionalValue<CssProperties["containIntrinsicInlineSize"] | AnyString>
+  containIntrinsicSize?: ConditionalValue<CssProperties["containIntrinsicSize"] | AnyString>
   containIntrinsicWidth?: ConditionalValue<CssProperties["containIntrinsicWidth"] | AnyString>
   container?: ConditionalValue<CssProperties["container"] | AnyString>
   containerName?: ConditionalValue<CssProperties["containerName"] | AnyString>
@@ -187,9 +191,17 @@ export interface SystemProperties {
   counterReset?: ConditionalValue<CssProperties["counterReset"] | AnyString>
   counterSet?: ConditionalValue<CssProperties["counterSet"] | AnyString>
   cursor?: ConditionalValue<UtilityValues["cursor"] | CssVars | CssProperties["cursor"] | AnyString>
+  cx?: ConditionalValue<CssProperties["cx"] | AnyString>
+  cy?: ConditionalValue<CssProperties["cy"] | AnyString>
+  d?: ConditionalValue<CssProperties["d"] | AnyString>
   direction?: ConditionalValue<CssProperties["direction"] | AnyString>
   display?: ConditionalValue<CssProperties["display"] | AnyString>
+  dominantBaseline?: ConditionalValue<CssProperties["dominantBaseline"] | AnyString>
   emptyCells?: ConditionalValue<CssProperties["emptyCells"] | AnyString>
+  fieldSizing?: ConditionalValue<CssProperties["fieldSizing"] | AnyString>
+  fill?: ConditionalValue<UtilityValues["fill"] | CssVars | CssProperties["fill"] | AnyString>
+  fillOpacity?: ConditionalValue<CssProperties["fillOpacity"] | AnyString>
+  fillRule?: ConditionalValue<CssProperties["fillRule"] | AnyString>
   filter?: ConditionalValue<CssProperties["filter"] | AnyString>
   flex?: ConditionalValue<CssProperties["flex"] | AnyString>
   flexBasis?: ConditionalValue<UtilityValues["flexBasis"] | CssVars | CssProperties["flexBasis"] | AnyString>
@@ -199,6 +211,8 @@ export interface SystemProperties {
   flexShrink?: ConditionalValue<CssProperties["flexShrink"] | AnyString>
   flexWrap?: ConditionalValue<CssProperties["flexWrap"] | AnyString>
   float?: ConditionalValue<CssProperties["float"] | AnyString>
+  floodColor?: ConditionalValue<CssProperties["floodColor"] | AnyString>
+  floodOpacity?: ConditionalValue<CssProperties["floodOpacity"] | AnyString>
   font?: ConditionalValue<CssProperties["font"] | AnyString>
   fontFamily?: ConditionalValue<UtilityValues["fontFamily"] | CssVars | CssProperties["fontFamily"] | AnyString>
   fontFeatureSettings?: ConditionalValue<CssProperties["fontFeatureSettings"] | AnyString>
@@ -206,7 +220,6 @@ export interface SystemProperties {
   fontLanguageOverride?: ConditionalValue<CssProperties["fontLanguageOverride"] | AnyString>
   fontOpticalSizing?: ConditionalValue<CssProperties["fontOpticalSizing"] | AnyString>
   fontPalette?: ConditionalValue<CssProperties["fontPalette"] | AnyString>
-  fontVariationSettings?: ConditionalValue<CssProperties["fontVariationSettings"] | AnyString>
   fontSize?: ConditionalValue<UtilityValues["fontSize"] | CssVars | CssProperties["fontSize"] | AnyString>
   fontSizeAdjust?: ConditionalValue<CssProperties["fontSizeAdjust"] | AnyString>
   fontSmooth?: ConditionalValue<CssProperties["fontSmooth"] | AnyString>
@@ -225,6 +238,7 @@ export interface SystemProperties {
   fontVariantLigatures?: ConditionalValue<CssProperties["fontVariantLigatures"] | AnyString>
   fontVariantNumeric?: ConditionalValue<CssProperties["fontVariantNumeric"] | AnyString>
   fontVariantPosition?: ConditionalValue<CssProperties["fontVariantPosition"] | AnyString>
+  fontVariationSettings?: ConditionalValue<CssProperties["fontVariationSettings"] | AnyString>
   fontWeight?: ConditionalValue<UtilityValues["fontWeight"] | CssVars | CssProperties["fontWeight"] | AnyString>
   forcedColorAdjust?: ConditionalValue<CssProperties["forcedColorAdjust"] | AnyString>
   gap?: ConditionalValue<UtilityValues["gap"] | CssVars | CssProperties["gap"] | AnyString>
@@ -258,7 +272,6 @@ export interface SystemProperties {
   initialLetter?: ConditionalValue<CssProperties["initialLetter"] | AnyString>
   initialLetterAlign?: ConditionalValue<CssProperties["initialLetterAlign"] | AnyString>
   inlineSize?: ConditionalValue<UtilityValues["inlineSize"] | CssVars | CssProperties["inlineSize"] | AnyString>
-  inputSecurity?: ConditionalValue<CssProperties["inputSecurity"] | AnyString>
   inset?: ConditionalValue<UtilityValues["inset"] | CssVars | CssProperties["inset"] | AnyString>
   insetBlock?: ConditionalValue<UtilityValues["insetBlock"] | CssVars | CssProperties["insetBlock"] | AnyString>
   insetBlockEnd?: ConditionalValue<UtilityValues["insetBlockEnd"] | CssVars | CssProperties["insetBlockEnd"] | AnyString>
@@ -266,6 +279,7 @@ export interface SystemProperties {
   insetInline?: ConditionalValue<UtilityValues["insetInline"] | CssVars | CssProperties["insetInline"] | AnyString>
   insetInlineEnd?: ConditionalValue<UtilityValues["insetInlineEnd"] | CssVars | CssProperties["insetInlineEnd"] | AnyString>
   insetInlineStart?: ConditionalValue<UtilityValues["insetInlineStart"] | CssVars | CssProperties["insetInlineStart"] | AnyString>
+  interpolateSize?: ConditionalValue<CssProperties["interpolateSize"] | AnyString>
   isolation?: ConditionalValue<CssProperties["isolation"] | AnyString>
   justifyContent?: ConditionalValue<CssProperties["justifyContent"] | AnyString>
   justifyItems?: ConditionalValue<CssProperties["justifyItems"] | AnyString>
@@ -273,6 +287,7 @@ export interface SystemProperties {
   justifyTracks?: ConditionalValue<CssProperties["justifyTracks"] | AnyString>
   left?: ConditionalValue<UtilityValues["left"] | CssVars | CssProperties["left"] | AnyString>
   letterSpacing?: ConditionalValue<UtilityValues["letterSpacing"] | CssVars | CssProperties["letterSpacing"] | AnyString>
+  lightingColor?: ConditionalValue<CssProperties["lightingColor"] | AnyString>
   lineBreak?: ConditionalValue<CssProperties["lineBreak"] | AnyString>
   lineClamp?: ConditionalValue<CssProperties["lineClamp"] | AnyString>
   lineHeight?: ConditionalValue<UtilityValues["lineHeight"] | CssVars | CssProperties["lineHeight"] | AnyString>
@@ -293,6 +308,10 @@ export interface SystemProperties {
   marginRight?: ConditionalValue<UtilityValues["marginRight"] | CssVars | CssProperties["marginRight"] | AnyString>
   marginTop?: ConditionalValue<UtilityValues["marginTop"] | CssVars | CssProperties["marginTop"] | AnyString>
   marginTrim?: ConditionalValue<CssProperties["marginTrim"] | AnyString>
+  marker?: ConditionalValue<CssProperties["marker"] | AnyString>
+  markerEnd?: ConditionalValue<CssProperties["markerEnd"] | AnyString>
+  markerMid?: ConditionalValue<CssProperties["markerMid"] | AnyString>
+  markerStart?: ConditionalValue<CssProperties["markerStart"] | AnyString>
   mask?: ConditionalValue<CssProperties["mask"] | AnyString>
   maskBorder?: ConditionalValue<CssProperties["maskBorder"] | AnyString>
   maskBorderMode?: ConditionalValue<CssProperties["maskBorderMode"] | AnyString>
@@ -378,8 +397,15 @@ export interface SystemProperties {
   placeSelf?: ConditionalValue<CssProperties["placeSelf"] | AnyString>
   pointerEvents?: ConditionalValue<CssProperties["pointerEvents"] | AnyString>
   position?: ConditionalValue<CssProperties["position"] | AnyString>
+  positionAnchor?: ConditionalValue<CssProperties["positionAnchor"] | AnyString>
+  positionArea?: ConditionalValue<CssProperties["positionArea"] | AnyString>
+  positionTry?: ConditionalValue<CssProperties["positionTry"] | AnyString>
+  positionTryFallbacks?: ConditionalValue<CssProperties["positionTryFallbacks"] | AnyString>
+  positionTryOrder?: ConditionalValue<CssProperties["positionTryOrder"] | AnyString>
+  positionVisibility?: ConditionalValue<CssProperties["positionVisibility"] | AnyString>
   printColorAdjust?: ConditionalValue<CssProperties["printColorAdjust"] | AnyString>
   quotes?: ConditionalValue<CssProperties["quotes"] | AnyString>
+  r?: ConditionalValue<CssProperties["r"] | AnyString>
   resize?: ConditionalValue<CssProperties["resize"] | AnyString>
   right?: ConditionalValue<UtilityValues["right"] | CssVars | CssProperties["right"] | AnyString>
   rotate?: ConditionalValue<CssProperties["rotate"] | AnyString>
@@ -387,30 +413,29 @@ export interface SystemProperties {
   rubyAlign?: ConditionalValue<CssProperties["rubyAlign"] | AnyString>
   rubyMerge?: ConditionalValue<CssProperties["rubyMerge"] | AnyString>
   rubyPosition?: ConditionalValue<CssProperties["rubyPosition"] | AnyString>
+  rx?: ConditionalValue<CssProperties["rx"] | AnyString>
+  ry?: ConditionalValue<CssProperties["ry"] | AnyString>
   scale?: ConditionalValue<CssProperties["scale"] | AnyString>
-  scrollbarColor?: ConditionalValue<UtilityValues["scrollbarColor"] | CssVars | CssProperties["scrollbarColor"] | AnyString>
-  scrollbarGutter?: ConditionalValue<UtilityValues["scrollbarGutter"] | CssVars | CssProperties["scrollbarGutter"] | AnyString>
-  scrollbarWidth?: ConditionalValue<UtilityValues["scrollbarWidth"] | CssVars | CssProperties["scrollbarWidth"] | AnyString>
   scrollBehavior?: ConditionalValue<CssProperties["scrollBehavior"] | AnyString>
   scrollMargin?: ConditionalValue<UtilityValues["scrollMargin"] | CssVars | CssProperties["scrollMargin"] | AnyString>
   scrollMarginBlock?: ConditionalValue<CssProperties["scrollMarginBlock"] | AnyString>
-  scrollMarginBlockStart?: ConditionalValue<CssProperties["scrollMarginBlockStart"] | AnyString>
   scrollMarginBlockEnd?: ConditionalValue<CssProperties["scrollMarginBlockEnd"] | AnyString>
+  scrollMarginBlockStart?: ConditionalValue<CssProperties["scrollMarginBlockStart"] | AnyString>
   scrollMarginBottom?: ConditionalValue<UtilityValues["scrollMarginBottom"] | CssVars | CssProperties["scrollMarginBottom"] | AnyString>
   scrollMarginInline?: ConditionalValue<CssProperties["scrollMarginInline"] | AnyString>
-  scrollMarginInlineStart?: ConditionalValue<CssProperties["scrollMarginInlineStart"] | AnyString>
   scrollMarginInlineEnd?: ConditionalValue<CssProperties["scrollMarginInlineEnd"] | AnyString>
+  scrollMarginInlineStart?: ConditionalValue<CssProperties["scrollMarginInlineStart"] | AnyString>
   scrollMarginLeft?: ConditionalValue<UtilityValues["scrollMarginLeft"] | CssVars | CssProperties["scrollMarginLeft"] | AnyString>
   scrollMarginRight?: ConditionalValue<UtilityValues["scrollMarginRight"] | CssVars | CssProperties["scrollMarginRight"] | AnyString>
   scrollMarginTop?: ConditionalValue<UtilityValues["scrollMarginTop"] | CssVars | CssProperties["scrollMarginTop"] | AnyString>
   scrollPadding?: ConditionalValue<UtilityValues["scrollPadding"] | CssVars | CssProperties["scrollPadding"] | AnyString>
   scrollPaddingBlock?: ConditionalValue<UtilityValues["scrollPaddingBlock"] | CssVars | CssProperties["scrollPaddingBlock"] | AnyString>
-  scrollPaddingBlockStart?: ConditionalValue<CssProperties["scrollPaddingBlockStart"] | AnyString>
   scrollPaddingBlockEnd?: ConditionalValue<CssProperties["scrollPaddingBlockEnd"] | AnyString>
+  scrollPaddingBlockStart?: ConditionalValue<CssProperties["scrollPaddingBlockStart"] | AnyString>
   scrollPaddingBottom?: ConditionalValue<UtilityValues["scrollPaddingBottom"] | CssVars | CssProperties["scrollPaddingBottom"] | AnyString>
   scrollPaddingInline?: ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | AnyString>
-  scrollPaddingInlineStart?: ConditionalValue<CssProperties["scrollPaddingInlineStart"] | AnyString>
   scrollPaddingInlineEnd?: ConditionalValue<CssProperties["scrollPaddingInlineEnd"] | AnyString>
+  scrollPaddingInlineStart?: ConditionalValue<CssProperties["scrollPaddingInlineStart"] | AnyString>
   scrollPaddingLeft?: ConditionalValue<UtilityValues["scrollPaddingLeft"] | CssVars | CssProperties["scrollPaddingLeft"] | AnyString>
   scrollPaddingRight?: ConditionalValue<UtilityValues["scrollPaddingRight"] | CssVars | CssProperties["scrollPaddingRight"] | AnyString>
   scrollPaddingTop?: ConditionalValue<UtilityValues["scrollPaddingTop"] | CssVars | CssProperties["scrollPaddingTop"] | AnyString>
@@ -426,13 +451,31 @@ export interface SystemProperties {
   scrollTimeline?: ConditionalValue<CssProperties["scrollTimeline"] | AnyString>
   scrollTimelineAxis?: ConditionalValue<CssProperties["scrollTimelineAxis"] | AnyString>
   scrollTimelineName?: ConditionalValue<CssProperties["scrollTimelineName"] | AnyString>
+  scrollbarColor?: ConditionalValue<UtilityValues["scrollbarColor"] | CssVars | CssProperties["scrollbarColor"] | AnyString>
+  scrollbarGutter?: ConditionalValue<UtilityValues["scrollbarGutter"] | CssVars | CssProperties["scrollbarGutter"] | AnyString>
+  scrollbarWidth?: ConditionalValue<UtilityValues["scrollbarWidth"] | CssVars | CssProperties["scrollbarWidth"] | AnyString>
   shapeImageThreshold?: ConditionalValue<CssProperties["shapeImageThreshold"] | AnyString>
   shapeMargin?: ConditionalValue<CssProperties["shapeMargin"] | AnyString>
   shapeOutside?: ConditionalValue<CssProperties["shapeOutside"] | AnyString>
+  shapeRendering?: ConditionalValue<CssProperties["shapeRendering"] | AnyString>
+  stopColor?: ConditionalValue<CssProperties["stopColor"] | AnyString>
+  stopOpacity?: ConditionalValue<CssProperties["stopOpacity"] | AnyString>
+  stroke?: ConditionalValue<UtilityValues["stroke"] | CssVars | CssProperties["stroke"] | AnyString>
+  strokeDasharray?: ConditionalValue<CssProperties["strokeDasharray"] | AnyString>
+  strokeDashoffset?: ConditionalValue<CssProperties["strokeDashoffset"] | AnyString>
+  strokeLinecap?: ConditionalValue<CssProperties["strokeLinecap"] | AnyString>
+  strokeLinejoin?: ConditionalValue<CssProperties["strokeLinejoin"] | AnyString>
+  strokeMiterlimit?: ConditionalValue<CssProperties["strokeMiterlimit"] | AnyString>
+  strokeOpacity?: ConditionalValue<CssProperties["strokeOpacity"] | AnyString>
+  strokeWidth?: ConditionalValue<CssProperties["strokeWidth"] | AnyString>
   tabSize?: ConditionalValue<CssProperties["tabSize"] | AnyString>
   tableLayout?: ConditionalValue<CssProperties["tableLayout"] | AnyString>
   textAlign?: ConditionalValue<CssProperties["textAlign"] | AnyString>
   textAlignLast?: ConditionalValue<CssProperties["textAlignLast"] | AnyString>
+  textAnchor?: ConditionalValue<CssProperties["textAnchor"] | AnyString>
+  textBox?: ConditionalValue<CssProperties["textBox"] | AnyString>
+  textBoxEdge?: ConditionalValue<CssProperties["textBoxEdge"] | AnyString>
+  textBoxTrim?: ConditionalValue<CssProperties["textBoxTrim"] | AnyString>
   textCombineUpright?: ConditionalValue<CssProperties["textCombineUpright"] | AnyString>
   textDecoration?: ConditionalValue<CssProperties["textDecoration"] | AnyString>
   textDecorationColor?: ConditionalValue<UtilityValues["textDecorationColor"] | CssVars | CssProperties["textDecorationColor"] | AnyString>
@@ -452,10 +495,13 @@ export interface SystemProperties {
   textRendering?: ConditionalValue<CssProperties["textRendering"] | AnyString>
   textShadow?: ConditionalValue<UtilityValues["textShadow"] | CssVars | CssProperties["textShadow"] | AnyString>
   textSizeAdjust?: ConditionalValue<CssProperties["textSizeAdjust"] | AnyString>
+  textSpacingTrim?: ConditionalValue<CssProperties["textSpacingTrim"] | AnyString>
   textTransform?: ConditionalValue<CssProperties["textTransform"] | AnyString>
   textUnderlineOffset?: ConditionalValue<CssProperties["textUnderlineOffset"] | AnyString>
   textUnderlinePosition?: ConditionalValue<CssProperties["textUnderlinePosition"] | AnyString>
   textWrap?: ConditionalValue<CssProperties["textWrap"] | AnyString>
+  textWrapMode?: ConditionalValue<CssProperties["textWrapMode"] | AnyString>
+  textWrapStyle?: ConditionalValue<CssProperties["textWrapStyle"] | AnyString>
   timelineScope?: ConditionalValue<CssProperties["timelineScope"] | AnyString>
   top?: ConditionalValue<UtilityValues["top"] | CssVars | CssProperties["top"] | AnyString>
   touchAction?: ConditionalValue<CssProperties["touchAction"] | AnyString>
@@ -472,6 +518,7 @@ export interface SystemProperties {
   translate?: ConditionalValue<CssProperties["translate"] | AnyString>
   unicodeBidi?: ConditionalValue<CssProperties["unicodeBidi"] | AnyString>
   userSelect?: ConditionalValue<CssProperties["userSelect"] | AnyString>
+  vectorEffect?: ConditionalValue<CssProperties["vectorEffect"] | AnyString>
   verticalAlign?: ConditionalValue<CssProperties["verticalAlign"] | AnyString>
   viewTimeline?: ConditionalValue<CssProperties["viewTimeline"] | AnyString>
   viewTimelineAxis?: ConditionalValue<CssProperties["viewTimelineAxis"] | AnyString>
@@ -488,38 +535,15 @@ export interface SystemProperties {
   wordSpacing?: ConditionalValue<CssProperties["wordSpacing"] | AnyString>
   wordWrap?: ConditionalValue<CssProperties["wordWrap"] | AnyString>
   writingMode?: ConditionalValue<CssProperties["writingMode"] | AnyString>
+  x?: ConditionalValue<CssProperties["x"] | AnyString>
+  y?: ConditionalValue<CssProperties["y"] | AnyString>
   zIndex?: ConditionalValue<UtilityValues["zIndex"] | CssVars | CssProperties["zIndex"] | AnyString>
   zoom?: ConditionalValue<CssProperties["zoom"] | AnyString>
   alignmentBaseline?: ConditionalValue<CssProperties["alignmentBaseline"] | AnyString>
   baselineShift?: ConditionalValue<CssProperties["baselineShift"] | AnyString>
-  clipRule?: ConditionalValue<CssProperties["clipRule"] | AnyString>
   colorInterpolation?: ConditionalValue<CssProperties["colorInterpolation"] | AnyString>
   colorRendering?: ConditionalValue<CssProperties["colorRendering"] | AnyString>
-  dominantBaseline?: ConditionalValue<CssProperties["dominantBaseline"] | AnyString>
-  fill?: ConditionalValue<UtilityValues["fill"] | CssVars | CssProperties["fill"] | AnyString>
-  fillOpacity?: ConditionalValue<CssProperties["fillOpacity"] | AnyString>
-  fillRule?: ConditionalValue<CssProperties["fillRule"] | AnyString>
-  floodColor?: ConditionalValue<CssProperties["floodColor"] | AnyString>
-  floodOpacity?: ConditionalValue<CssProperties["floodOpacity"] | AnyString>
   glyphOrientationVertical?: ConditionalValue<CssProperties["glyphOrientationVertical"] | AnyString>
-  lightingColor?: ConditionalValue<CssProperties["lightingColor"] | AnyString>
-  marker?: ConditionalValue<CssProperties["marker"] | AnyString>
-  markerEnd?: ConditionalValue<CssProperties["markerEnd"] | AnyString>
-  markerMid?: ConditionalValue<CssProperties["markerMid"] | AnyString>
-  markerStart?: ConditionalValue<CssProperties["markerStart"] | AnyString>
-  shapeRendering?: ConditionalValue<CssProperties["shapeRendering"] | AnyString>
-  stopColor?: ConditionalValue<CssProperties["stopColor"] | AnyString>
-  stopOpacity?: ConditionalValue<CssProperties["stopOpacity"] | AnyString>
-  stroke?: ConditionalValue<UtilityValues["stroke"] | CssVars | CssProperties["stroke"] | AnyString>
-  strokeDasharray?: ConditionalValue<CssProperties["strokeDasharray"] | AnyString>
-  strokeDashoffset?: ConditionalValue<CssProperties["strokeDashoffset"] | AnyString>
-  strokeLinecap?: ConditionalValue<CssProperties["strokeLinecap"] | AnyString>
-  strokeLinejoin?: ConditionalValue<CssProperties["strokeLinejoin"] | AnyString>
-  strokeMiterlimit?: ConditionalValue<CssProperties["strokeMiterlimit"] | AnyString>
-  strokeOpacity?: ConditionalValue<CssProperties["strokeOpacity"] | AnyString>
-  strokeWidth?: ConditionalValue<CssProperties["strokeWidth"] | AnyString>
-  textAnchor?: ConditionalValue<CssProperties["textAnchor"] | AnyString>
-  vectorEffect?: ConditionalValue<CssProperties["vectorEffect"] | AnyString>
   bg?: ConditionalValue<UtilityValues["background"] | CssVars | CssProperties["background"] | AnyString>
   bgColor?: ConditionalValue<UtilityValues["backgroundColor"] | CssVars | CssProperties["backgroundColor"] | AnyString>
   bgSize?: ConditionalValue<CssProperties["backgroundSize"] | AnyString>
