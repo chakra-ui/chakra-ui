@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/download-trigger">
+          <Link href="/docs/components/combobox">
             <LuPartyPopper />
-            [New] Download Trigger component
+            [New] Combobox component
             <HiArrowRight />
           </Link>
         </Annoucement>
