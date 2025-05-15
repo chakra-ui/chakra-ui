@@ -1,0 +1,77 @@
+---
+title: Chakra 3.19 - Combobox Is Here
+description: "Introducing the Combobox and new features"
+type: release
+version: "3.19"
+authors: ["esther"]
+publishedAt: "2025-05-15"
+---
+
+We’ve just shipped Chakra UI v3.19! This release introduces two new components -
+the **[Combobox](/docs/components/combobox)** and the
+**[Download Trigger](/docs/components/download-trigger)**, along with quality
+improvements to make building with Chakra even smoother.
+
+## Combobox
+
+The Combobox is a versatile input component that combines a text input with a
+listbox, allowing users to filter a list of options and select single or
+multiple values.
+
+Comboboxes are deceptively tricky, you want keyboard support, screen reader
+accessibility, filtering, controlled/uncontrolled behavior, and easy
+customization. We built this so you don't have to wire all that up yourself.
+
+### Basic Usage
+
+The basic combobox provides a searchable dropdown with single selection.
+
+<ExampleTabs name="combobox-basic" />
+
+### Multi-Items Select
+
+Pass the `multiple` prop to the `Combobox.Root` to enable multiple selection.
+This allows users to select multiple items from the list.
+
+<ExampleTabs name="combobox-with-multiple" />
+
+## Download Trigger
+
+The DownloadTrigger component makes it simple to trigger file downloads directly
+from your UI. It comes in handy when you're offering downloadable reports,
+exporting images, or triggering async-generated files.
+
+### Basic Usage
+
+Pass the data you want to download to the `data` prop, and specify the
+`fileName` and `mimeType` of the file.
+
+<ExampleTabs name="download-trigger-basic" />
+
+### Promise
+
+You can trigger downloads from a promise that returns a `Blob`, `File`, or
+`string`.
+
+<ExampleTabs name="download-trigger-with-promise" />
+
+## Other Improvements
+
+### System
+
+- Fix issue where passing `d` prop to `chakra.path` adds it to styles not as a
+  direct attribute.
+
+- Fix issue where responsive semantic tokens did not get applied.
+
+### Select
+
+- Fix issue where indicator group doesn't align correctly in RTL layouts.
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
