@@ -1,5 +1,16 @@
 # @chakra-ui/react
 
+## 3.19.0
+
+### Minor Changes
+
+- [#9464](https://github.com/chakra-ui/chakra-ui/pull/9464)
+  [`d860d48`](https://github.com/chakra-ui/chakra-ui/commit/d860d48cf7d547bfe3970e10ec49b9c7aa5d98b8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **[New]
+  Combobox** Add combobox component for autocomplete text entry.
+
+  - **Progress Circle**: Make progress circle transition smoother.
+
 ## 3.18.0
 
 ### Minor Changes
