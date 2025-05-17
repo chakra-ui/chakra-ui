@@ -1,5 +1,15 @@
 # @chakra-ui/react
 
+## 3.19.1
+
+### Patch Changes
+
+- [`aa9c2b0`](https://github.com/chakra-ui/chakra-ui/commit/aa9c2b02e455697221b691aca54a82dcf5604fb8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Fix
+  issue where some svg element props tend to be treated as style props
+
+  - **Checkbox**: Use consistent cursor for checkbox and radio group
+
 ## 3.19.0
 
 ### Minor Changes
