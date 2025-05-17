@@ -79,6 +79,12 @@ const Insertion = ({ cache, serialized, isStringTag }: any) => {
 
 const exceptionPropMap = {
   path: ["d"],
+  text: ["x", "y"],
+  circle: ["cx", "cy", "r"],
+  rect: ["width", "height", "x", "y", "rx", "ry"],
+  ellipse: ["cx", "cy", "rx", "ry"],
+  g: ["transform"],
+  stop: ["offset", "stopOpacity"],
 }
 
 const hasProp = (obj: any, prop: string) => {
