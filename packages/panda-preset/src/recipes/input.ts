@@ -66,12 +66,14 @@ export const inputRecipe = defineRecipe({
         borderWidth: "1px",
         borderColor: "border",
         focusVisibleRing: "inside",
+        focusRingColor: "var(--focus-color)",
       },
       subtle: {
         borderWidth: "1px",
         borderColor: "transparent",
         bg: "bg.muted",
         focusVisibleRing: "inside",
+        focusRingColor: "var(--focus-color)",
       },
       flushed: {
         bg: "transparent",

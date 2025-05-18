@@ -30,7 +30,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
     },
     circleRange: {
       stroke: "colorPalette.solid",
-      transitionProperty: "stroke-dasharray",
+      transitionProperty: "stroke-dashoffset, stroke-dasharray",
       transitionDuration: "0.6s",
       _indeterminate: {
         animation: "circular-progress 1.5s linear infinite",

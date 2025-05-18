@@ -9,6 +9,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
+    "build-storybook": "storybook build",
     "prepare": "husky install",
     "local:sync": "tsx scripts/symlink.ts",
     "local:revert": "tsx scripts/symlink.ts --revert",
@@ -38,7 +39,8 @@
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
-    "release:dev": "changeset publish --tag dev"
+    "release:dev": "changeset publish --tag dev",
+    "chromatic": "npx chromatic --project-token=chpt_356a200252691de"
   },
   "version": "2.0.0",
   "dependencies": {
@@ -121,5 +123,9 @@
   "packageManager": "pnpm@10.10.0",
   "engines": {
     "node": ">=20.x"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
+    "chromatic": "^11.28.2"
   }
 }

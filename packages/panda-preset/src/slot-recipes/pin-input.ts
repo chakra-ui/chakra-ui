@@ -89,6 +89,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
         },
       },
       subtle: {
@@ -97,6 +98,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           borderColor: "transparent",
           bg: "bg.muted",
           focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
         },
       },
       flushed: {

@@ -80,4 +80,11 @@ export const textStyles = defineTextStyles({
   none: {
     value: {},
   },
+  label: {
+    value: {
+      fontSize: "sm",
+      lineHeight: "1.25rem",
+      fontWeight: "medium",
+    },
+  },
 })

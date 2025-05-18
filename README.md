@@ -140,6 +140,40 @@ for all the innovation and reach Chakra UI brings to the JavaScript ecosystem.
   </tr>
 </table>
 
+## logs
+
+<p>
+Storybook published
+We found 110 components with 906 stories.
+ℹ View your Storybook at https://67e7e1197f323121e1f57e31-rrlrqckiru.chromatic.com/
+
+ℹ Speed up Continuous Integration Your project is linked to GitHub so Chromatic
+will report results there. This means you can add the option
+`with: exitOnceUploaded: true` to your workflow to skip waiting for build
+results. Read more here:
+https://www.chromatic.com/docs/github-actions#available-options
+
+✖ Found 906 visual changes
+
+Review the changes at
+https://www.chromatic.com/build?appId=67e7e1197f323121e1f57e31&number=4
+
+ℹ For CI/CD use cases, this command failed with exit code 1 Pass
+--exit-zero-on-changes to succeed this command regardless of changes. Pass
+--auto-accept-changes to succeed and automatically accept any changes.
+
+⚠ No 'chromatic' script found in your package.json Would you like me to add it
+for you? [y/N]y
+
+✔ Added script 'chromatic' to package.json You can now run it here or in CI
+with 'npm run chromatic' or 'yarn chromatic'.
+
+ℹ Your project token was added to the script via the --project-token flag. If
+you're running Chromatic via continuous integration, we recommend setting the
+CHROMATIC_PROJECT_TOKEN environment variable in your CI environment. You can
+then remove the --project-token from your package.json script.
+
+</p>
 ## License
 
 MIT © [Segun Adebayo](https://github.com/segunadebayo)

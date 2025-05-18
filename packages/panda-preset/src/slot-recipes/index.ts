@@ -9,6 +9,7 @@ import { checkboxSlotRecipe } from "./checkbox"
 import { checkboxCardSlotRecipe } from "./checkbox-card"
 import { collapsibleSlotRecipe } from "./collapsible"
 import { colorPickerSlotRecipe } from "./color-picker"
+import { comboboxSlotRecipe } from "./combobox"
 import { dataListSlotRecipe } from "./data-list"
 import { dialogSlotRecipe } from "./dialog"
 import { drawerSlotRecipe } from "./drawer"
@@ -77,6 +78,7 @@ export const slotRecipes = {
   ratingGroup: ratingGroupSlotRecipe,
   segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
+  combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,

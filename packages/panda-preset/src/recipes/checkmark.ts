@@ -11,6 +11,7 @@ export const checkmarkRecipe = defineRecipe({
     borderWidth: "1px",
     borderColor: "transparent",
     borderRadius: "l1",
+    cursor: "checkbox",
     focusVisibleRing: "outside",
     _icon: {
       boxSize: "full",
@@ -21,6 +22,7 @@ export const checkmarkRecipe = defineRecipe({
     },
     _disabled: {
       opacity: "0.5",
+      cursor: "disabled",
     },
   },
   variants: {
