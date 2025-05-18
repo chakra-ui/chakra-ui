@@ -14,9 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.12.0
-      - name: Install dependencies
+      - name: finding current working path
         # ⚠️ See your package manager's documentation for the correct command to install dependencies in a CI environment.
-        run: npm ci
+        run: pwd
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
