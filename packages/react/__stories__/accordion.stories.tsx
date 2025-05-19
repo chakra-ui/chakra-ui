@@ -5,7 +5,7 @@ export default {
   title: "Components / Accordion",
   decorators: [
     (Story) => (
-      <Box p="10">
+      <Box p="9">
         <Story />
       </Box>
     ),
