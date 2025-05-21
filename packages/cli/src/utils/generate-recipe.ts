@@ -4,7 +4,7 @@ import { capitalize, isBooleanValue, unionType } from "./shared.js"
 
 export function generateRecipeImports(isDefaultOutdir: boolean) {
   return isDefaultOutdir
-    ? `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types" 
+    ? `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
        import type { ConditionalValue } from "../css.types"`
     : `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn, ConditionalValue } from "@chakra-ui/react"`
 }
@@ -83,9 +83,9 @@ export function generateSlotRecipeResult(sys: SystemContext, strict = true) {
 
     const str = `
         // ${upperName}
-        
+
         export type ${upperName}Slot = ${unionType(recipe.slots ?? [])}
-        
+
         export interface ${upperName}Variant {
           ${Object.keys(variantKeyMap)
             .map((key) => {
@@ -152,11 +152,11 @@ export function generateRecipeHelperTypes() {
       export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
         ? Record<ConfigRecipeSlots[T], K>
         : Record<string, K>
-      
+
       export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
         ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
         : { recipe?: SlotRecipeDefinition | undefined }
-      
+
       export type RecipeProps<T> = T extends keyof ConfigRecipes
         ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
         : { recipe?: RecipeDefinition | undefined }

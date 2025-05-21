@@ -54,7 +54,7 @@ export function generateSystemTypesResult(sys: SystemContext) {
   export type CssVarProperties = {
       [key in CssVarKey]?: CssVarValue | undefined
   }
-  
+
   export interface SystemProperties {
     ${Array.from(props)
       .map((key) => {
