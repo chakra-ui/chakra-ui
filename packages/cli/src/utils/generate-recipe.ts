@@ -2,7 +2,11 @@ import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 import { capitalize, isBooleanValue, unionType } from "./shared.js"
 
-export async function generateRecipe(sys: SystemContext, strict = true) {
+export async function generateRecipe(
+  sys: SystemContext,
+  strict = true,
+  isDefaultOutdir: boolean,
+) {
   const theme = sys._config.theme ?? {}
 
   const sysRecipes = theme.recipes ?? {}
@@ -59,6 +63,11 @@ export async function generateRecipe(sys: SystemContext, strict = true) {
       }
      }
     `
+
+  const imports = isDefaultOutdir
+    ? `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types" 
+       import type { ConditionalValue } from "../css.types"`
+    : `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn, ConditionalValue } from "@chakra-ui/react"`
 
   const recipeResult = [recipes.join("\n"), recipeRecord].join("\n")
 
@@ -132,8 +141,7 @@ export async function generateRecipe(sys: SystemContext, strict = true) {
 
   return pretty(
     [
-      'import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"',
-      'import type { ConditionalValue } from "../css.types"',
+      imports,
       recipeResult,
       slotRecipeResult,
       `
