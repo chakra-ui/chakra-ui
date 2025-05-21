@@ -13,6 +13,7 @@ const docsLinks: NavItem = {
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "LLMs.txt", url: "llms" },
+            { title: "Figma", url: "figma", status: "new" },
             { title: "Contributing", url: "contributing" },
             { title: "Showcase", url: "/showcase", external: true },
           ],
