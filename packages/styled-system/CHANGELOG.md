@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.12.4
+
+### Patch Changes
+
+- [`333cc88`](https://github.com/chakra-ui/chakra-ui/commit/333cc88c2c5e820d94fc6d1d809bcd383cc33ec3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue in React
+  19 where SSR rendered components freeze in dev mode when non-memoized react
+  components are passed to `useStyleConfig`
+
 ## 2.12.3
 
 ### Patch Changes
