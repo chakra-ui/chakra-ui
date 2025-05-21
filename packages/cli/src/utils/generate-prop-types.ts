@@ -1,12 +1,15 @@
 import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 
-export async function generatePropTypes(sys: SystemContext) {
+export async function generatePropTypes(
+  sys: SystemContext,
+  isDefaultOutdir: boolean,
+) {
   const { utility } = sys
 
   const result = [
     `
-  import type { CssProperties } from "../css.types"
+  import type { CssProperties } from "${isDefaultOutdir ? "../css.types" : "@chakra-ui/react"}"
   import type { Tokens } from "./token.gen"
   `,
   ]
