@@ -17,7 +17,7 @@ export function useCallbackRef<Args extends unknown[], Return>(
   // Use useInsertionEffect to update the ref before React processes effects
   useInsertionEffect(() => {
     callbackRef.current = callback
-  }, [callback])
+  })
 
   // We're removing the dependency array because we want this callback to be stable
   // across renders, and only the internal ref.current should change
