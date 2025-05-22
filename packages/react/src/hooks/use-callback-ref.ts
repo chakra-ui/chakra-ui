@@ -21,5 +21,5 @@ export function useCallbackRef<Args extends unknown[], Return>(
 
   // We're removing the dependency array because we want this callback to be stable
   // across renders, and only the internal ref.current should change
-  return useCallback((...args: Args) => callbackRef.current?.(...args), [])
+  return useCallback((...args: Args) => callbackRef.current?.(...args), deps)
 }
