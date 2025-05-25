@@ -93,7 +93,6 @@ export function generateSystemTypesResult(sys: SystemContext) {
         if (!filtered.length) {
           filtered.push("string | number")
         }
-        // support for exactOptionalPropertyTypes TS setting
         filtered.push("undefined")
         const value = filtered.filter(Boolean).join(" | ")
         return `${key}?: ${restrict(prop, value, sys)} | undefined`

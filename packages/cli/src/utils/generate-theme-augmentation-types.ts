@@ -8,6 +8,7 @@ import {
   generateSlotRecipeResult,
 } from "./generate-recipe.js"
 import { generateSystemTypesResult } from "./generate-system-types.js"
+import { generateTokensResult } from "./generate-tokens.js"
 import { pretty } from "./pretty.js"
 
 export function generateThemeAugmentationImports() {
@@ -26,6 +27,7 @@ export function generateThemeAugmentationTypes(
         ${generateRecipeResult(sys)}
         ${generateSlotRecipeResult(sys, flags.strict)}
         ${generateRecipeHelperTypes()}
+        ${generateTokensResult(sys)}
         ${generatePropTypesResult(sys)}
         ${generateSystemTypesResult(sys)}
       }
