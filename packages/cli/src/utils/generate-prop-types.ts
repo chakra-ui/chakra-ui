@@ -8,7 +8,7 @@ export function generatePropTypesImports(isDefaultOutdir: boolean) {
     `import type { CssProperties } from "${isDefaultOutdir ? "../css.types" : "@chakra-ui/react"}"`,
   )
   if (isDefaultOutdir) {
-    result.push(`import type { UtilityValues } from "./prop-types.gen"`)
+    result.push(`import type { Tokens } from "./token.gen"`)
   }
 
   return result.join("\n")
