@@ -1,7 +1,7 @@
 import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 
-export function generateCondition(sys: SystemContext) {
+export function generateConditionResult(sys: SystemContext) {
   const keys = sys.conditions.keys().concat("base")
   const result = `
       export interface Conditions {
@@ -16,5 +16,10 @@ export function generateCondition(sys: SystemContext) {
           .join("\n")}
       }
       `
-  return pretty(result)
+
+  return result
+}
+
+export function generateCondition(sys: SystemContext) {
+  return pretty(generateConditionResult(sys))
 }
