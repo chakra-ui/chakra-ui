@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@ark-ui/react": "5.9.1",
-    "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
+    "@chakra-ui/react": "workspace:*",
     "@emotion/react": "11.14.0",
     "@shikijs/rehype": "3.3.0",
     "@shikijs/transformers": "3.3.0",
@@ -35,10 +35,10 @@
     "next": "15.3.1",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
-    "recharts": "2.15.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "5.5.0",
+    "recharts": "2.15.3",
     "rehype-autolink-headings": "7.1.0",
     "rehype-slug": "6.0.0",
     "remark-directive": "4.0.0",
@@ -49,6 +49,7 @@
     "velite": "0.2.2"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "workspace:*",
     "@svgr/core": "8.1.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22",
@@ -57,9 +58,9 @@
     "color2k": "2.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "typescript": "^5",
-    "ts-morph": "25.0.1",
+    "markdown-table": "^3.0.4",
     "npm-run-all": "^4.1.5",
-    "markdown-table": "^3.0.4"
+    "ts-morph": "25.0.1",
+    "typescript": "^5"
   }
 }
