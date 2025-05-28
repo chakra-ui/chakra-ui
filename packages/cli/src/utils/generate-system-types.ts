@@ -24,7 +24,7 @@ export async function generateSystemTypes(sys: SystemContext) {
   type CssVarValue = ConditionalValue<Token | CssVars | AnyString | AnyNumber>
   type CssVarKey = \`--\${string}\`
   export type CssVarProperties = {
-      [key in CssVarKey]?: CssVarValue
+      [key in CssVarKey]?: CssVarValue | undefined
   }
   
   export interface SystemProperties {
@@ -68,7 +68,7 @@ export async function generateSystemTypes(sys: SystemContext) {
         // support for exactOptionalPropertyTypes TS setting
         filtered.push("undefined")
         const value = filtered.filter(Boolean).join(" | ")
-        return `${key}?: ${restrict(prop, value, sys)}`
+        return `${key}?: ${restrict(prop, value, sys)} | undefined`
       })
       .join("\n")}
   }
