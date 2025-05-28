@@ -59,7 +59,7 @@ export type TokenCategory =
 
 export interface TokenSchema<T = any> {
   value: T
-  description?: string
+  description?: string | undefined
 }
 
 type PrimitiveTokenValue = string | number
@@ -124,20 +124,20 @@ export interface TokenExtensions {
   originalPath: string[]
   category: string
   prop: string
-  default?: boolean
-  condition?: string
-  virtual?: boolean
-  negative?: boolean
-  conditions?: Dict
-  cssVar?: TokenCssVar
-  colorPalette?: ColorPaletteExtension
-  references?: Dict<Token>
-  pixelValue?: string
+  default?: boolean | undefined
+  condition?: string | undefined
+  virtual?: boolean | undefined
+  negative?: boolean | undefined
+  conditions?: Dict | undefined
+  cssVar?: TokenCssVar | undefined
+  colorPalette?: ColorPaletteExtension | undefined
+  references?: Dict<Token> | undefined
+  pixelValue?: string | undefined
 }
 
 export interface Token<T = any> {
   value: T
-  description?: string
+  description?: string | undefined
   originalValue: any
   name: string
   path: string[]
@@ -158,7 +158,7 @@ interface UtilityTokenFn {
 export interface ColorMixResult {
   invalid: boolean
   value: string
-  color?: string
+  color?: string | undefined
 }
 
 export interface TransformUtils {
@@ -187,19 +187,19 @@ export interface UtilityPropertyConfig {
   /**
    * The css style object this property will generate.
    */
-  transform?: PropertyTransform
+  transform?: PropertyTransform | undefined
   /**
    * The possible values this property can have.
    */
-  values?: PropertyValues
+  values?: PropertyValues | undefined
   /**
    * The css property this utility maps to.
    */
-  property?: CssProperty
+  property?: CssProperty | undefined
   /**
    * The shorthand of the property.
    */
-  shorthand?: string | string[]
+  shorthand?: string | string[] | undefined
 }
 
 export type UtilityConfig = {
@@ -225,8 +225,8 @@ export interface Utility {
 
 export interface BreakpointEntry {
   name: string
-  min?: string | null
-  max?: string | null
+  min?: string | null | undefined
+  max?: string | null | undefined
 }
 
 export interface Breakpoint {
@@ -308,31 +308,34 @@ export interface SystemContext {
 }
 
 export interface ThemingConfig {
-  breakpoints?: Record<string, string>
-  keyframes?: CssKeyframes
-  tokens?: TokenDefinition
-  semanticTokens?: SemanticTokenDefinition
-  textStyles?: Record<string, Dict>
-  layerStyles?: Record<string, Dict>
-  animationStyles?: Record<string, Dict>
-  recipes?: Record<string, RecipeDefinition>
-  slotRecipes?: Record<string, SlotRecipeConfig>
+  breakpoints?: Record<string, string> | undefined
+  keyframes?: CssKeyframes | undefined
+  tokens?: TokenDefinition | undefined
+  semanticTokens?: SemanticTokenDefinition | undefined
+  textStyles?: Record<string, Dict> | undefined
+  layerStyles?: Record<string, Dict> | undefined
+  animationStyles?: Record<string, Dict> | undefined
+  recipes?: Record<string, RecipeDefinition> | undefined
+  slotRecipes?: Record<string, SlotRecipeConfig> | undefined
 }
 
 export interface PreflightConfig {
-  preflight?: boolean | { scope?: string; level?: "parent" | "element" }
+  preflight?:
+    | boolean
+    | { scope?: string | undefined; level?: "parent" | "element" | undefined }
+    | undefined
 }
 
 export type CascadeLayer = "reset" | "base" | "tokens" | "recipes"
 
 export interface SystemConfig extends PreflightConfig {
-  cssVarsRoot?: string
-  cssVarsPrefix?: string
-  globalCss?: Record<string, SystemStyleObject>
-  disableLayers?: boolean
-  layers?: Record<CascadeLayer, string>
-  theme?: ThemingConfig
-  utilities?: UtilityConfig
-  conditions?: Dict
-  strictTokens?: boolean
+  cssVarsRoot?: string | undefined
+  cssVarsPrefix?: string | undefined
+  globalCss?: Record<string, SystemStyleObject> | undefined
+  disableLayers?: boolean | undefined
+  layers?: Record<CascadeLayer, string> | undefined
+  theme?: ThemingConfig | undefined
+  utilities?: UtilityConfig | undefined
+  conditions?: Dict | undefined
+  strictTokens?: boolean | undefined
 }

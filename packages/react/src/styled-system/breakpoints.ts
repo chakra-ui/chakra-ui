@@ -129,7 +129,13 @@ function getPermutations(values: string[]) {
   return result
 }
 
-function build({ min, max }: { min?: string | null; max?: string | null }) {
+function build({
+  min,
+  max,
+}: {
+  min?: string | null | undefined
+  max?: string | null | undefined
+}) {
   if (min == null && max == null) return ""
   return [
     "@media screen",

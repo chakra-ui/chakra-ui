@@ -6,7 +6,7 @@ type ImportantMark = "!" | "!important"
 type WhitespaceImportant = ` ${ImportantMark}`
 type Important = ImportantMark | WhitespaceImportant
 
-type WithImportant<T> = T extends string ? `${T}${Important}` & { __important?: true } : T
+type WithImportant<T> = T extends string ? `${T}${Important}` & { __important?: true | undefined } : T
 
 export type WithEscapeHatch<T> = T | `[${string}]` | WithColorOpacityModifier<T> | WithImportant<T>
 // eslint-disable-next-line
