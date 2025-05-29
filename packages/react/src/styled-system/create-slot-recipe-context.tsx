@@ -20,7 +20,7 @@ interface WrapElementProps<P> {
 }
 
 export interface WithRootProviderOptions<P> extends WrapElementProps<P> {
-  defaultProps?: Partial<P>
+  defaultProps?: Partial<P> | undefined
 }
 
 export interface WithProviderOptions<P>

@@ -24,20 +24,20 @@ export interface UnstyledProp {
   /**
    * If `true`, the element will opt out of the theme styles.
    */
-  unstyled?: boolean
+  unstyled?: boolean | undefined
 }
 
 export interface PolymorphicProps {
-  as?: ElementType
-  asChild?: boolean
+  as?: ElementType | undefined
+  asChild?: boolean | undefined
 }
 
 export interface HtmlProps {
-  htmlSize?: number
-  htmlWidth?: string | number
-  htmlHeight?: string | number
+  htmlSize?: number | undefined
+  htmlWidth?: string | number | undefined
+  htmlHeight?: string | number | undefined
   htmlTranslate?: "yes" | "no" | undefined
-  htmlContent?: string
+  htmlContent?: string | undefined
 }
 
 export type HtmlProp =
@@ -59,7 +59,7 @@ export type JsxHtmlProps<T extends Dict, P extends Dict = {}> = Assign<
 export type ChakraComponent<
   T extends ElementType,
   P extends Dict = {},
-> = FunctionComponent<HTMLChakraProps<T, P> & { ref?: any }>
+> = FunctionComponent<HTMLChakraProps<T, P> & { ref?: any | undefined }>
 
 export type HTMLChakraProps<
   T extends ElementType,
@@ -95,9 +95,9 @@ export type DataAttr = Record<
 >
 
 export interface JsxFactoryOptions<TProps> {
-  forwardProps?: string[]
-  defaultProps?: Partial<TProps> & DataAttr
-  forwardAsChild?: boolean
+  forwardProps?: string[] | undefined
+  defaultProps?: (Partial<TProps> & DataAttr) | undefined
+  forwardAsChild?: boolean | undefined
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }
 

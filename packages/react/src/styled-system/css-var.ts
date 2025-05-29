@@ -14,8 +14,8 @@ export interface CssVar {
 }
 
 export interface CssVarOptions {
-  fallback?: string
-  prefix?: string
+  fallback?: string | undefined
+  prefix?: string | undefined
 }
 
 export function cssVar(name: string, options: CssVarOptions = {}): CssVar {
