@@ -15,6 +15,19 @@ export const InputWithFocusErrorColor = () => {
         <Field.Label>errorColor=blue</Field.Label>
         <Input placeholder="Password" css={{ "--error-color": "blue" }} />
       </Field.Root>
+
+      <Field.Root invalid>
+        <Field.Label>variant=outline,focusColor=error</Field.Label>
+        <Input placeholder="Focus me" variant="outline" />
+      </Field.Root>
+      <Field.Root invalid>
+        <Field.Label>variant=subtle,focusColor=error</Field.Label>
+        <Input placeholder="Focus me" variant="subtle" />
+      </Field.Root>
+      <Field.Root invalid>
+        <Field.Label>variant=flushed,focusColor=error</Field.Label>
+        <Input placeholder="Focus me" variant="flushed" />
+      </Field.Root>
     </Stack>
   )
 }
