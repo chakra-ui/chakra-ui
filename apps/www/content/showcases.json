@@ -6,6 +6,12 @@
     "image": "showcases/Chakra-UI-Pro.jpg"
   },
   {
+    "title": "Vimeo",
+    "description": "Video platform",
+    "url": "https://vimeo.com/",
+    "image": "showcases/vimeo.png"
+  },
+  {
     "title": "Udacity",
     "description": "EdTech platform",
     "url": "https://www.udacity.com/",
