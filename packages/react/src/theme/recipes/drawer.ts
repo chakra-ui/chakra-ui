@@ -162,7 +162,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
           _closed: {
             animationName: {
               base: "slide-to-right-full, fade-out",
-              _rtl: "slide-to-right-full, fade-out",
+              _rtl: "slide-to-left-full, fade-out",
             },
           },
         },
