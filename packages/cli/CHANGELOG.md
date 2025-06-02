@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.19.2
+
+### Patch Changes
+
+- [#10059](https://github.com/chakra-ui/chakra-ui/pull/10059)
+  [`a289c3c`](https://github.com/chakra-ui/chakra-ui/commit/a289c3c928bc83f2550e374af17068afaed69858)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **System**: add explicit
+  `undefined` to generated types to support TS `exactOptionalPropertyTypes`
+
 ## 3.19.1
 
 ## 3.19.0

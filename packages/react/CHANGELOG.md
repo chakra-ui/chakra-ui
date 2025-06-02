@@ -1,5 +1,25 @@
 # @chakra-ui/react
 
+## 3.19.2
+
+### Patch Changes
+
+- [#10059](https://github.com/chakra-ui/chakra-ui/pull/10059)
+  [`a289c3c`](https://github.com/chakra-ui/chakra-ui/commit/a289c3c928bc83f2550e374af17068afaed69858)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **System**: add explicit
+  `undefined` to generated types to support TS `exactOptionalPropertyTypes`
+
+- [#10064](https://github.com/chakra-ui/chakra-ui/pull/10064)
+  [`10d0a8e`](https://github.com/chakra-ui/chakra-ui/commit/10d0a8ed2be50c52786f7c9ba4d0edbbbc87c0e0)
+  Thanks [@mhsattarian](https://github.com/mhsattarian)! - - **Drawer**: Fix
+  drawer close animation in RTL
+
+  - **Button**
+    - Fix layout issue when in loading state with icons by using
+      `display: contents` and `visibility: hidden`
+    - Add `data-loading` attribute when `loading` is `true` so allow styling
+      loading state with `_loading` pseudo prop
+
 ## 3.19.1
 
 ### Patch Changes

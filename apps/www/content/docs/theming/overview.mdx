@@ -92,6 +92,32 @@ const config = defineConfig({
 export default createSystem(defaultConfig, config)
 ```
 
+### preflight
+
+`preflight` is used to apply css reset styles to the system.
+
+```tsx title="theme.ts"
+const config = defineConfig({
+  preflight: false,
+})
+
+export default createSystem(defaultConfig, config)
+```
+
+Alternatively, you can use the `preflight` config property to apply css reset
+styles to the system. This is useful if you want to apply css reset styles to a
+specific element.
+
+```tsx title="theme.ts"
+const config = defineConfig({
+  preflight: {
+    scope: ".chakra-reset",
+  },
+})
+
+export default createSystem(defaultConfig, config)
+```
+
 ### theme
 
 Use the `theme` config property to define the system theme. This property
