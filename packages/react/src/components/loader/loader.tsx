@@ -54,7 +54,9 @@ export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
       return (
         <Span ref={ref} display="contents" {...rest}>
           <AbsoluteCenter display="inline-flex">{spinner}</AbsoluteCenter>
-          <Span opacity={0}>{children}</Span>
+          <Span visibility="hidden" display="contents">
+            {children}
+          </Span>
         </Span>
       )
     }
