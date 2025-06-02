@@ -3,4 +3,5 @@
 "@chakra-ui/react": patch
 ---
 
-System: add `undefined` to support TS `exactOptionalPropertyTypes`
+- **System**: add explicit `undefined` to generated types to support TS
+  `exactOptionalPropertyTypes`
