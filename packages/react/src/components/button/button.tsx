@@ -9,7 +9,7 @@ import {
   chakra,
   createRecipeContext,
 } from "../../styled-system"
-import { cx } from "../../utils"
+import { cx, dataAttr } from "../../utils"
 import { Loader } from "../loader"
 
 const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
@@ -66,6 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type="button"
         ref={ref}
         {...rest}
+        data-loading={dataAttr(loading)}
         disabled={loading || rest.disabled}
         className={cx(result.className, props.className)}
         css={[result.styles, props.css]}
