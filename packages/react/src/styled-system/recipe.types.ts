@@ -65,23 +65,27 @@ export interface RecipeDefinition<
   /**
    * The class name of the recipe.
    */
-  className?: string
+  className?: string | undefined
   /**
    * The base styles of the recipe.
    */
-  base?: SystemStyleObject
+  base?: SystemStyleObject | undefined
   /**
    * The multi-variant styles of the recipe.
    */
-  variants?: T
+  variants?: T | undefined
   /**
    * The default variants of the recipe.
    */
-  defaultVariants?: RecipeSelection<T> & { colorPalette?: ColorPalette }
+  defaultVariants?:
+    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | undefined
   /**
    * The styles to apply when a combination of variants is selected.
    */
-  compoundVariants?: Pretty<RecipeCompoundVariant<RecipeCompoundSelection<T>>>[]
+  compoundVariants?:
+    | Pretty<RecipeCompoundVariant<RecipeCompoundSelection<T>>>[]
+    | undefined
 }
 
 export type RecipeCreatorFn = <T extends RecipeVariantRecord>(
@@ -134,7 +138,7 @@ export interface SlotRecipeDefinition<
    * Say the recipe has slots like `root`, `control` and the class name is 'checkbox'
    * Each slot will have a class name like `checkbox__root`, `checkbox__control`
    */
-  className?: string
+  className?: string | undefined
   /**
    * The parts/slots of the recipe.
    */
@@ -142,21 +146,23 @@ export interface SlotRecipeDefinition<
   /**
    * The base styles of the recipe.
    */
-  base?: SlotRecord<S, SystemStyleObject>
+  base?: SlotRecord<S, SystemStyleObject> | undefined
   /**
    * The multi-variant styles of the recipe.
    */
-  variants?: T
+  variants?: T | undefined
   /**
    * The default variants of the recipe.
    */
-  defaultVariants?: RecipeSelection<T> & { colorPalette?: ColorPalette }
+  defaultVariants?:
+    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | undefined
   /**
    * The styles to apply when a combination of variants is selected.
    */
-  compoundVariants?: Pretty<
-    SlotRecipeCompoundVariant<S, RecipeCompoundSelection<T>>
-  >[]
+  compoundVariants?:
+    | Pretty<SlotRecipeCompoundVariant<S, RecipeCompoundSelection<T>>>[]
+    | undefined
 }
 
 export type SlotRecipeCreatorFn = <
@@ -199,7 +205,7 @@ export interface SystemSlotRecipeFn<S extends string, VP, VM> {
   classNameMap: Record<S, string>
   variantMap: VM
   variantKeys: Array<keyof VP>
-  splitVariantProps<P extends VP & { recipe?: any }>(
+  splitVariantProps<P extends VP & { recipe?: any | undefined }>(
     props: P,
   ): [VP, Pretty<DistributiveOmit<P, keyof VP | "recipe">>]
 }
