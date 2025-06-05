@@ -199,7 +199,7 @@ export interface ChartTooltipProps extends TooltipProps<string, string> {
   indicator?: "line" | "dot" | "dashed"
   formatter?: (
     value: any,
-    name: string,
+    name: any,
   ) => React.ReactNode | [React.ReactNode, React.ReactNode]
   render?: (item: Payload<string, string>) => React.ReactNode
 }
@@ -255,7 +255,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
 
           const formatted = formatter
             ? formatter(item.value, config?.label || item.name)
-            : item.value.toLocaleString()
+            : item.value?.toLocaleString()
 
           const [formattedValue, formattedName] = Array.isArray(formatted)
             ? formatted
