@@ -21,7 +21,10 @@ export const pinInputSlotRecipe = defineSlotRecipe({
     },
   },
   variants: {
-    size: mapEntries(variants!.size, (key, value) => [key, { input: value }]),
+    size: mapEntries(variants!.size, (key, value) => [
+      key,
+      { input: { ...value, px: "1" } },
+    ]),
     variant: mapEntries(variants!.variant, (key, value) => [
       key,
       { input: value },

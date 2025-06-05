@@ -2,6 +2,8 @@
 "@chakra-ui/react": minor
 ---
 
+- **System**: Allow `undefined` for optional properties in CSS and recipe types
+
 - **Color Picker**: Fixed issue where value change end event is invoked when
   committing via an input.
 
@@ -27,3 +29,6 @@
 
 - **Combobox**: Fixed issue where `onInputValueChange` doesn't get called when
   `autoFocus` is set to `true`
+
+- **Pin Input**: Fixed issue where input padding could cause clipping of the
+  text when `fontSize` is increased.
