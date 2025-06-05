@@ -37,13 +37,18 @@ const preview: Preview = {
         dark: "dark",
       },
     }),
-    (Story) => (
-      <ColorModeProvider>
-        <ChakraProvider value={system}>
-          <Story />
-        </ChakraProvider>
-      </ColorModeProvider>
-    ),
+    (Story, context) => {
+      return (
+        <ColorModeProvider
+          forcedTheme={context.globals.theme}
+          enableSystem={false}
+        >
+          <ChakraProvider value={system}>
+            <Story />
+          </ChakraProvider>
+        </ColorModeProvider>
+      )
+    },
   ],
 }
 
