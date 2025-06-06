@@ -1,5 +1,49 @@
 # @chakra-ui/react
 
+## 3.20.0
+
+### Minor Changes
+
+- [`65020dd`](https://github.com/chakra-ui/chakra-ui/commit/65020dd159a8cfa0eebafd60afb98e971a7ee377)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Allow
+  `undefined` for optional properties in CSS and recipe types
+
+  - **Color Picker**: Fixed issue where value change end event is invoked when
+    committing via an input.
+  - **Toast**: Fixed issue where calling `toast.remove()` without an id shows a
+    TypeScript error.
+  - **Field**: Fixed issue where helper text and error text could not be
+    detected in shadow DOM environments.
+  - **Slider**
+
+    - Fixed issue where `minStepsBetweenThumbs` isn't computed correctly when
+      interacting with pointer or keyboard.
+    - Fixed issue where `Shift` + `ArrowRight` set value to `0` instead of `max`
+      when step is too large (e.g. `20`).
+    - Fixed issue where `onValueChangeEnd` doesn't return the latest value when
+      dragging very fast.
+    - Fixed issue where slider could throw a error when rendered in an popover
+      or dialog.
+
+  - **File Upload**: Added support for transforming uploaded files via
+    `transformFiles` context property.
+  - **Combobox**: Fixed issue where `onInputValueChange` doesn't get called when
+    `autoFocus` is set to `true`
+  - **Pin Input**: Fixed issue where input padding could cause clipping of the
+    text when `fontSize` is increased.
+
+### Patch Changes
+
+- [#10081](https://github.com/chakra-ui/chakra-ui/pull/10081)
+  [`c2f650b`](https://github.com/chakra-ui/chakra-ui/commit/c2f650bd0c3e4a137fa3622a94aace398e69f483)
+  Thanks [@isBatak](https://github.com/isBatak)! - - export
+  `CheckboxRootProviderProps` type
+
+- [#10075](https://github.com/chakra-ui/chakra-ui/pull/10075)
+  [`63c267f`](https://github.com/chakra-ui/chakra-ui/commit/63c267fe2ef8aa0db707b5932dddbf4db2d54e40)
+  Thanks [@isBatak](https://github.com/isBatak)! - - export `Quote` typography
+  component and its types
+
 ## 3.19.2
 
 ### Patch Changes

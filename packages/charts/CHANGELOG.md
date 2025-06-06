@@ -1,5 +1,14 @@
 # @chakra-ui/charts
 
+## 3.20.0
+
+### Patch Changes
+
+- [#10071](https://github.com/chakra-ui/chakra-ui/pull/10071)
+  [`77d9bec`](https://github.com/chakra-ui/chakra-ui/commit/77d9bec3b955c59efffa5526b0267072473a7ff5)
+  Thanks [@gaurav-132](https://github.com/gaurav-132)! - Fix issue where
+  `formatter` prop doesn't take effect in the tooltip
+
 ## 3.19.2
 
 ## 3.19.1
