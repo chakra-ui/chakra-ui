@@ -135,6 +135,17 @@
         "default": "./dist/cjs/collection.cjs"
       }
     },
+    "./theme": {
+      "source": "./src/theme/index.ts",
+      "import": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/esm/theme/index.js"
+      },
+      "require": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/cjs/theme/index.cjs"
+      }
+    },
     "./*": {
       "source": "./src/components/*/index.ts",
       "import": {

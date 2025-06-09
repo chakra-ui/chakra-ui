@@ -67,3 +67,6 @@ export const defaultThemeConfig = defineConfig({
     animationStyles: animationStyles,
   },
 })
+
+export * from "./recipes.export"
+export * from "./slot-recipes.export"
