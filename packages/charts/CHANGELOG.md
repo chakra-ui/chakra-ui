@@ -1,5 +1,7 @@
 # @chakra-ui/charts
 
+## 3.21.0
+
 ## 3.20.0
 
 ### Patch Changes
