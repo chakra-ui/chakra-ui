@@ -12,8 +12,8 @@ importers:
         specifier: 7.27.4
         version: 7.27.4
       '@babel/eslint-parser':
-        specifier: 7.27.1
-        version: 7.27.1(@babel/core@7.27.4)(eslint@9.25.1(jiti@2.4.2))
+        specifier: 7.27.5
+        version: 7.27.5(@babel/core@7.27.4)(eslint@9.25.1(jiti@2.4.2))
       '@chakra-ui/cli':
         specifier: workspace:*
         version: link:packages/cli
@@ -1138,8 +1138,8 @@ packages:
     resolution: {integrity: sha512-bXYxrXFubeYdvB0NhD/NBB3Qi6aZeV20GOWVI47t2dkecCEoneR4NPVcb7abpXDEvejgrUfFtG6vG/zxAKmg+g==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/eslint-parser@7.27.1':
-    resolution: {integrity: sha512-q8rjOuadH0V6Zo4XLMkJ3RMQ9MSBqwaDByyYB0izsYdaIWGNLmEblbCOf1vyFHICcg16CD7Fsi51vcQnYxmt6Q==}
+  '@babel/eslint-parser@7.27.5':
+    resolution: {integrity: sha512-HLkYQfRICudzcOtjGwkPvGc5nF1b4ljLZh1IRDj50lRZ718NAKVgQpIAUX8bfg6u/yuSKY3L7E0YzIV+OxrB8Q==}
     engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
     peerDependencies:
       '@babel/core': ^7.11.0
@@ -11003,7 +11003,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/eslint-parser@7.27.1(@babel/core@7.27.4)(eslint@9.25.1(jiti@2.4.2))':
+  '@babel/eslint-parser@7.27.5(@babel/core@7.27.4)(eslint@9.25.1(jiti@2.4.2))':
     dependencies:
       '@babel/core': 7.27.4
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
