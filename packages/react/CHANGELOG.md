@@ -1,5 +1,45 @@
 # @chakra-ui/react
 
+## 3.21.0
+
+### Minor Changes
+
+- [`3df43ba`](https://github.com/chakra-ui/chakra-ui/commit/3df43bab4e98af6cabc4f7e199e38c4b8ec11bbe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support new
+  entrypoint for `/theme` which allows for incremental loading of component
+  recipes to avoid bloating the theme with unused components.
+
+  > This is mostly for bundle size optimization.
+
+  For example, if you want just the `button` recipe to be included in your
+  bundle, you can cherry-pick the recipe you need like this:
+
+  ```tsx
+  import { createSystem, defaultBaseConfig } from "@chakra-ui/react"
+  import { buttonRecipe } from "@chakra-ui/react/theme"
+
+  export const system = createSystem(defaultBaseConfig, {
+    theme: {
+      recipes: {
+        button: buttonRecipe,
+      },
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [`010f256`](https://github.com/chakra-ui/chakra-ui/commit/010f256d74de2e48283d1f714c6094a4045bcbdd)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **File Upload**:
+  Prevented `undefined` in `acceptedFiles` when no files accepted
+
+  - **Select**: Fixed issue where highlighted item could be cleared when
+    navigating up/down the list with keyboard
+  - **Tabs**: Fixed issue where tabs with links should not trigger tab change
+    upon cmd/middle click
+  - **Menu**: Fixed issue where `Menu.ItemText` could not be used with
+    `Menu.Item`
+
 ## 3.20.0
 
 ### Minor Changes
