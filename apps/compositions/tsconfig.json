@@ -4,7 +4,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "strict": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "paths": {
       "compositions/*": ["./src/*"]
     }

@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
-  slots: ["root", "trigger", "content"],
+  slots: ["root", "trigger", "content", "indicator"],
   className: "collapsible",
   base: {
     content: {

@@ -46,7 +46,7 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
+      "dev": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.js"

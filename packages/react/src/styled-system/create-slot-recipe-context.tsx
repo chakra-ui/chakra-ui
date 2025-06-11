@@ -9,6 +9,7 @@ import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
 import type { ConfigRecipeSlots } from "./generated/recipes.gen"
+import type { SystemSlotRecipeFn } from "./recipe.types"
 import {
   type SlotRecipeKey,
   type UseSlotRecipeOptions,
@@ -68,7 +69,7 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     const slotRecipe = useSlotRecipe({
       key: recipeKey,
       recipe: restProps.recipe || recipeConfig,
-    })
+    }) as SystemSlotRecipeFn<string, {}, {}>
 
     // @ts-ignore
     const [variantProps, otherProps] = useMemo(

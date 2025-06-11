@@ -14,7 +14,7 @@
     "jsx": "preserve",
     "jsxImportSource": "react",
     "incremental": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "baseUrl": ".",
     "plugins": [
       {
