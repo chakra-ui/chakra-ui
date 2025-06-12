@@ -137,14 +137,20 @@ Here's an example of how to use the `Select` within a `Popover` component.
 
 ### Within Dialog
 
-Here's an example of how to use the `Select` within a `Dialog` component.
+To use the `Select` within a `Dialog`, you need to avoid portalling the
+`Select.Positioner` to the document's body.
 
-> Due to the focus trap within the dialog, it's important to change the portal
-> target from the document's body to the dialog's content.
+```diff
+-<Portal>
+  <Select.Positioner>
+    <Select.Content>
+      {/* ... */}
+    </Select.Content>
+  </Select.Positioner>
+-</Portal>
+```
 
 <ExampleTabs name="select-in-dialog" />
-
-Alternatively, you can avoid portalling the `Select.Positioner`
 
 ### Avatar Select
 

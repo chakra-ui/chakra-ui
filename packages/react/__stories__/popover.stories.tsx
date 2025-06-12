@@ -14,6 +14,7 @@ export default {
 
 export { PopoverBasic as Basic } from "compositions/examples/popover-basic"
 export { PopoverControlled as Controlled } from "compositions/examples/popover-controlled"
+export { PopoverInDialog as InDialog } from "compositions/examples/popover-in-dialog"
 export { PopoverLazyMounted as LazyMounted } from "compositions/examples/popover-lazy-mounted"
 export { PopoverNested as Nested } from "compositions/examples/popover-nested"
 export { PopoverSizeTable as Sizes } from "compositions/examples/popover-size-table"

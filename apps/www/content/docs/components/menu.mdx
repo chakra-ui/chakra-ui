@@ -152,13 +152,18 @@ scrolled out of view.
 
 ### Within Dialog
 
-Here's an example of how to use the menu within a `Dialog` or `Drawer`
-component.
+To use the `Menu` within a `Dialog`, you need to avoid portalling the
+`Menu.Positioner` to the document's body.
 
-> Due to the focus trap within the dialog, it's important to change the portal
-> target from the document's body to the dialog's content.
-
-Alternatively, you can avoid portalling the `Menu.Positioner`
+```diff
+-<Portal>
+  <Menu.Positioner>
+    <Menu.Content>
+      {/* ... */}
+    </Menu.Content>
+  </Menu.Positioner>
+-</Portal>
+```
 
 <ExampleTabs name="menu-within-dialog" />
 
