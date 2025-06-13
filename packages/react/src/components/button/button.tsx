@@ -21,20 +21,20 @@ export interface ButtonLoadingProps {
    * If `true`, the button will show a loading spinner.
    * @default false
    */
-  loading?: boolean
+  loading?: boolean | undefined
   /**
    * The text to show while loading.
    */
-  loadingText?: React.ReactNode
+  loadingText?: React.ReactNode | undefined
   /**
    * The spinner to show while loading.
    */
-  spinner?: React.ReactNode
+  spinner?: React.ReactNode | undefined
   /**
    * The placement of the spinner
    * @default "start"
    */
-  spinnerPlacement?: "start" | "end"
+  spinnerPlacement?: "start" | "end" | undefined
 }
 
 export interface ButtonBaseProps

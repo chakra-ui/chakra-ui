@@ -87,7 +87,7 @@ export const RatingGroupItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupItemIndicatorProps extends HTMLChakraProps<"span"> {
-  icon?: React.ReactElement
+  icon?: React.ReactElement | undefined
 }
 
 function cloneIcon(icon: React.ReactElement | undefined, type: "bg" | "fg") {

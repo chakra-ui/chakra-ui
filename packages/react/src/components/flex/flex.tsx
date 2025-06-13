@@ -8,14 +8,14 @@ import {
 } from "../../styled-system"
 
 export interface FlexOptions {
-  align?: SystemStyleObject["alignItems"]
-  justify?: SystemStyleObject["justifyContent"]
-  wrap?: SystemStyleObject["flexWrap"]
-  direction?: SystemStyleObject["flexDirection"]
-  basis?: SystemStyleObject["flexBasis"]
-  grow?: SystemStyleObject["flexGrow"]
-  shrink?: SystemStyleObject["flexShrink"]
-  inline?: boolean
+  align?: SystemStyleObject["alignItems"] | undefined
+  justify?: SystemStyleObject["justifyContent"] | undefined
+  wrap?: SystemStyleObject["flexWrap"] | undefined
+  direction?: SystemStyleObject["flexDirection"] | undefined
+  basis?: SystemStyleObject["flexBasis"] | undefined
+  grow?: SystemStyleObject["flexGrow"] | undefined
+  shrink?: SystemStyleObject["flexShrink"] | undefined
+  inline?: boolean | undefined
 }
 
 export interface FlexProps extends HTMLChakraProps<"div", FlexOptions> {}

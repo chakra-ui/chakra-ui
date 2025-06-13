@@ -7,7 +7,7 @@ export interface SquareProps extends BoxProps {
   /**
    * The size (width and height) of the square
    */
-  size?: BoxProps["boxSize"]
+  size?: BoxProps["boxSize"] | undefined
 }
 
 export const Square = forwardRef<HTMLDivElement, SquareProps>(

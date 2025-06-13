@@ -16,7 +16,7 @@ export interface AspectRatioProps
    *
    * `21/9`, `16/9`, `9/16`, `4/3`, `1.85/1`
    */
-  ratio?: ConditionalValue<number>
+  ratio?: ConditionalValue<number> | undefined
 }
 
 const baseStyle = defineStyle({

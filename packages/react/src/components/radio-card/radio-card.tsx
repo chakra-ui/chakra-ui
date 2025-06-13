@@ -155,7 +155,7 @@ export const RadioCardItemAddon = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemIndicatorProps extends HTMLChakraProps<"span"> {
-  checked?: React.ReactElement
+  checked?: React.ReactElement | undefined
 }
 
 export const RadioCardItemIndicator = forwardRef<

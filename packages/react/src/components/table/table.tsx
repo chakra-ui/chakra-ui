@@ -35,7 +35,7 @@ export interface TableRootProps
   /**
    * If `true`, the table will style its descendants with nested selectors
    */
-  native?: boolean
+  native?: boolean | undefined
 }
 
 export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(

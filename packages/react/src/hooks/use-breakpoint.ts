@@ -9,10 +9,10 @@ import { useMediaQuery } from "./use-media-query"
  * -----------------------------------------------------------------------------*/
 
 export interface UseBreakpointOptions {
-  fallback?: string
-  ssr?: boolean
-  getWindow?: () => typeof window
-  breakpoints?: string[]
+  fallback?: string | undefined
+  ssr?: boolean | undefined
+  getWindow?: () => typeof window | undefined
+  breakpoints?: string[] | undefined
 }
 
 export function useBreakpoint(options: UseBreakpointOptions = {}) {

@@ -4,8 +4,8 @@ import { useCallback, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseDisclosureProps {
-  open?: boolean
-  defaultOpen?: boolean
+  open?: boolean | undefined
+  defaultOpen?: boolean | undefined
   onClose?(): void
   onOpen?(): void
 }

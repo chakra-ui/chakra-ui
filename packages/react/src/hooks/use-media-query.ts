@@ -16,8 +16,8 @@ function listen(query: MediaQueryList, callback: MediaQueryCallback) {
 }
 
 export interface UseMediaQueryOptions {
-  fallback?: boolean[]
-  ssr?: boolean
+  fallback?: boolean[] | undefined
+  ssr?: boolean | undefined
   getWindow?(): typeof window
 }
 

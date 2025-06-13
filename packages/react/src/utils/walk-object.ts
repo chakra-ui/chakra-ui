@@ -13,7 +13,7 @@ export type MappedObject<T, K> = {
 export type WalkObjectStopFn = (value: any, path: string[]) => boolean
 
 export interface WalkObjectOptions {
-  stop?: WalkObjectStopFn
+  stop?: WalkObjectStopFn | undefined
   getKey?(prop: string, value: any): string
 }
 

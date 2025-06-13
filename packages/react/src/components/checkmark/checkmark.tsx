@@ -17,15 +17,15 @@ export interface CheckmarkProps
   /**
    * Whether the checkmark is checked
    */
-  checked?: boolean
+  checked?: boolean | undefined
   /**
    * Whether the checkmark is indeterminate
    */
-  indeterminate?: boolean
+  indeterminate?: boolean | undefined
   /**
    * Whether the checkmark is disabled
    */
-  disabled?: boolean
+  disabled?: boolean | undefined
 }
 
 export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(

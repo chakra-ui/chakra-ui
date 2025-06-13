@@ -7,17 +7,17 @@ import { InputAddon, type InputAddonProps } from "./input-addon"
 import { InputElement, type InputElementProps } from "./input-element"
 
 export interface InputGroupProps extends BoxProps {
-  startElementProps?: InputElementProps
-  endElementProps?: InputElementProps
-  startElement?: React.ReactNode
-  endElement?: React.ReactNode
-  startAddon?: React.ReactNode
-  startAddonProps?: InputAddonProps
-  endAddon?: React.ReactNode
-  endAddonProps?: InputAddonProps
+  startElementProps?: InputElementProps | undefined
+  endElementProps?: InputElementProps | undefined
+  startElement?: React.ReactNode | undefined
+  endElement?: React.ReactNode | undefined
+  startAddon?: React.ReactNode | undefined
+  startAddonProps?: InputAddonProps | undefined
+  endAddon?: React.ReactNode | undefined
+  endAddonProps?: InputAddonProps | undefined
   children: React.ReactElement<InputElementProps>
-  startOffset?: InputElementProps["paddingStart"]
-  endOffset?: InputElementProps["paddingEnd"]
+  startOffset?: InputElementProps["paddingStart"] | undefined
+  endOffset?: InputElementProps["paddingEnd"] | undefined
 }
 
 export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(

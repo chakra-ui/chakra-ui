@@ -15,30 +15,32 @@ export interface FloatOptions {
   /**
    * The x offset of the indicator
    */
-  offsetX?: SystemStyleObject["left"]
+  offsetX?: SystemStyleObject["left"] | undefined
   /**
    * The y offset of the indicator
    */
-  offsetY?: SystemStyleObject["top"]
+  offsetY?: SystemStyleObject["top"] | undefined
   /**
    * The x and y offset of the indicator
    */
-  offset?: SystemStyleObject["top"]
+  offset?: SystemStyleObject["top"] | undefined
   /**
    * The placement of the indicator
    * @default "top-end"
    */
-  placement?: ConditionalValue<
-    | "bottom-end"
-    | "bottom-start"
-    | "top-end"
-    | "top-start"
-    | "bottom-center"
-    | "top-center"
-    | "middle-center"
-    | "middle-end"
-    | "middle-start"
-  >
+  placement?:
+    | ConditionalValue<
+        | "bottom-end"
+        | "bottom-start"
+        | "top-end"
+        | "top-start"
+        | "bottom-center"
+        | "top-center"
+        | "middle-center"
+        | "middle-end"
+        | "middle-start"
+      >
+    | undefined
 }
 
 export interface FloatProps

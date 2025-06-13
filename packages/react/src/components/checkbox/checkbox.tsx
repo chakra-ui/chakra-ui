@@ -75,8 +75,8 @@ export const CheckboxLabel = withContext<HTMLElement, CheckboxLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxIndicatorProps extends HTMLChakraProps<"svg"> {
-  checked?: React.ReactElement
-  indeterminate?: React.ReactElement
+  checked?: React.ReactElement | undefined
+  indeterminate?: React.ReactElement | undefined
 }
 
 export const CheckboxIndicator = forwardRef<

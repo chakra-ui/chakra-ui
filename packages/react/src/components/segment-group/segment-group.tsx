@@ -102,7 +102,7 @@ export const SegmentGroupIndicator = withContext<
 interface Item {
   value: string
   label: React.ReactNode
-  disabled?: boolean
+  disabled?: boolean | undefined
 }
 
 export interface SegmentGroupItemsProps

@@ -9,9 +9,9 @@ import { Mark } from "../typography/mark"
 export interface HighlightProps {
   query: string | string[]
   children: string | ((props: HighlightChunk[]) => React.ReactNode)
-  styles?: SystemStyleObject
-  ignoreCase?: boolean
-  matchAll?: boolean
+  styles?: SystemStyleObject | undefined
+  ignoreCase?: boolean | undefined
+  matchAll?: boolean | undefined
 }
 
 /**

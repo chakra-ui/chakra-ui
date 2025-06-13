@@ -14,8 +14,8 @@ import { cx, dataAttr } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
 interface NativeSelectBaseProps {
-  disabled?: boolean
-  invalid?: boolean
+  disabled?: boolean | undefined
+  invalid?: boolean | undefined
 }
 
 const [NativeSelectBasePropsProvider, useNativeSelectBaseProps] =
@@ -77,7 +77,7 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface NativeSelectFieldProps
   extends Omit<HTMLChakraProps<"select">, Omitted> {
-  placeholder?: string
+  placeholder?: string | undefined
 }
 
 const StyledSelect = chakra(ArkField.Select, {}, { forwardAsChild: true })

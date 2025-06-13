@@ -29,7 +29,7 @@ export const SkeletonPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SkeletonCircleProps extends SkeletonProps {
-  size?: CircleProps["size"]
+  size?: CircleProps["size"] | undefined
 }
 
 export const SkeletonCircle = React.forwardRef<
@@ -47,8 +47,8 @@ export const SkeletonCircle = React.forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SkeletonTextProps extends SkeletonProps {
-  noOfLines?: number
-  rootProps?: StackProps
+  noOfLines?: number | undefined
+  rootProps?: StackProps | undefined
 }
 
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
