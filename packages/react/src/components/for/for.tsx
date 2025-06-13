@@ -8,7 +8,7 @@ export interface ForProps<T> {
   /**
    * The fallback content to render when the array is empty
    */
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
   /**
    * The render function to render each item in the array
    */

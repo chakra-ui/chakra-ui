@@ -160,7 +160,7 @@ export const StepsSeparator = withContext<HTMLDivElement, StepsSeparatorProps>(
 export interface StepsStatusProps {
   complete: React.ReactNode
   incomplete: React.ReactNode
-  current?: React.ReactNode
+  current?: React.ReactNode | undefined
 }
 
 export const StepsStatus = (props: StepsStatusProps) => {

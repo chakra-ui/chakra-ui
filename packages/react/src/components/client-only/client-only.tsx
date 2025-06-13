@@ -5,7 +5,7 @@ import { Show } from "../show"
 
 export interface ClientOnlyProps {
   children: React.ReactNode
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
 }
 
 export const ClientOnly = (props: ClientOnlyProps) => {

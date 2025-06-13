@@ -121,7 +121,7 @@ export interface PaginationPageSizeChangeDetails
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationPageTextProps extends BoxProps {
-  format?: "short" | "compact" | "long"
+  format?: "short" | "compact" | "long" | undefined
 }
 
 export const PaginationPageText = forwardRef<
@@ -148,7 +148,7 @@ export const PaginationPageText = forwardRef<
 export interface PaginationItemsProps
   extends React.HTMLAttributes<HTMLElement> {
   render: (page: { type: "page"; value: number }) => React.ReactNode
-  ellipsis?: React.ReactElement
+  ellipsis?: React.ReactElement | undefined
 }
 
 export const PaginationItems = (props: PaginationItemsProps) => {
