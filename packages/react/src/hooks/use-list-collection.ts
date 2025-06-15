@@ -16,12 +16,12 @@ export interface UseListCollectionProps<T> extends ListCollectionOptions<T> {
   /**
    * The filter function to use to filter the items.
    */
-  filter?: (itemText: string, filterText: string) => boolean
+  filter?: ((itemText: string, filterText: string) => boolean) | undefined
   /**
    * The maximum number of items to display in the collection.
    * Useful for performance when you have a large number of items.
    */
-  limit?: number
+  limit?: number | undefined
 }
 
 export function useListCollection<T>(props: UseListCollectionProps<T>) {

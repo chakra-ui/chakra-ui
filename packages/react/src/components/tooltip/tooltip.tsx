@@ -27,7 +27,7 @@ export interface TooltipRootProviderBaseProps
     UnstyledProp {}
 
 export interface TooltipRootProviderProps extends TooltipRootProviderBaseProps {
-  children?: React.ReactNode
+  children?: React.ReactNode | undefined
 }
 
 export const TooltipRootProvider = withRootProvider<TooltipRootProviderProps>(
@@ -41,7 +41,7 @@ export interface TooltipRootBaseProps
     UnstyledProp {}
 
 export interface TooltipRootProps extends TooltipRootBaseProps {
-  children?: React.ReactNode
+  children?: React.ReactNode | undefined
 }
 
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root, {

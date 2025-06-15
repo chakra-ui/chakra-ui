@@ -100,7 +100,7 @@ export type RecipeIdentityFn = <T extends RecipeVariantRecord>(
  * Recipe / Slot
  * -----------------------------------------------------------------------------*/
 
-type SlotRecord<S extends string, T> = Partial<Record<S, T>>
+type SlotRecord<S extends string, T> = Partial<Record<S, T | undefined>>
 
 export type SlotRecipeVariantRecord<S extends string> = Record<
   any,
