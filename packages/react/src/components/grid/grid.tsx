@@ -8,15 +8,15 @@ import {
 } from "../../styled-system"
 
 export interface GridOptions {
-  templateColumns?: SystemStyleObject["gridTemplateColumns"]
-  autoFlow?: SystemStyleObject["gridAutoFlow"]
-  autoRows?: SystemStyleObject["gridAutoRows"]
-  autoColumns?: SystemStyleObject["gridAutoColumns"]
-  templateRows?: SystemStyleObject["gridTemplateRows"]
-  templateAreas?: SystemStyleObject["gridTemplateAreas"]
-  column?: SystemStyleObject["gridColumn"]
-  row?: SystemStyleObject["gridRow"]
-  inline?: boolean
+  templateColumns?: SystemStyleObject["gridTemplateColumns"] | undefined
+  autoFlow?: SystemStyleObject["gridAutoFlow"] | undefined
+  autoRows?: SystemStyleObject["gridAutoRows"] | undefined
+  autoColumns?: SystemStyleObject["gridAutoColumns"] | undefined
+  templateRows?: SystemStyleObject["gridTemplateRows"] | undefined
+  templateAreas?: SystemStyleObject["gridTemplateAreas"] | undefined
+  column?: SystemStyleObject["gridColumn"] | undefined
+  row?: SystemStyleObject["gridRow"] | undefined
+  inline?: boolean | undefined
 }
 
 export interface GridProps

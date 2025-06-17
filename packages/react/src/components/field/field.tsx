@@ -88,7 +88,7 @@ export const FieldErrorIcon = createIcon({
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldRequiredIndicatorProps extends HTMLChakraProps<"span"> {
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
 }
 
 export const FieldRequiredIndicator = forwardRef<
