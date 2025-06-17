@@ -2,11 +2,14 @@ export {
   TreeViewBranch,
   TreeViewBranchContent,
   TreeViewBranchControl,
+  TreeViewBranchIndentGuide,
   TreeViewBranchIndicator,
   TreeViewBranchText,
   TreeViewItem,
+  TreeViewItemIndicator,
   TreeViewItemText,
   TreeViewLabel,
+  TreeViewNodeRenderer,
   TreeViewRoot,
   TreeViewRootProvider,
   TreeViewTree,
@@ -15,15 +18,18 @@ export {
 export type {
   TreeViewBranchContentProps,
   TreeViewBranchControlProps,
+  TreeViewBranchIndentGuideProps,
   TreeViewBranchIndicatorProps,
   TreeViewBranchProps,
   TreeViewBranchTextProps,
+  TreeViewItemIndicatorProps,
   TreeViewItemProps,
   TreeViewItemTextProps,
   TreeViewLabelProps,
   TreeViewRootProps,
   TreeViewRootProviderProps,
   TreeViewTreeProps,
+  TreeViewNodeRendererProps,
 } from "./tree-view"
 
 export * as TreeView from "./namespace"

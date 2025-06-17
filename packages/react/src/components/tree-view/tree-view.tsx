@@ -4,6 +4,7 @@ import {
   TreeView as ArkTreeView,
   type Assign,
   type TreeNode,
+  useTreeViewContext,
 } from "@ark-ui/react"
 import {
   type HTMLChakraProps,
@@ -126,6 +127,18 @@ export const TreeViewBranchText = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export type TreeViewBranchIndentGuideProps = HTMLChakraProps<
+  "div",
+  ArkTreeView.BranchIndentGuideBaseProps
+>
+
+export const TreeViewBranchIndentGuide = withContext<
+  HTMLDivElement,
+  TreeViewBranchIndentGuideProps
+>(ArkTreeView.BranchIndentGuide, "branchIndentGuide", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export type TreeViewItemProps = HTMLChakraProps<
   "div",
   ArkTreeView.ItemBaseProps
@@ -136,6 +149,18 @@ export const TreeViewItem = withContext<HTMLDivElement, TreeViewItemProps>(
   "item",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export type TreeViewItemIndicatorProps = HTMLChakraProps<
+  "div",
+  ArkTreeView.ItemIndicatorBaseProps
+>
+
+export const TreeViewItemIndicator = withContext<
+  HTMLDivElement,
+  TreeViewItemIndicatorProps
+>(ArkTreeView.ItemIndicator, "itemIndicator", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -174,3 +199,50 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
   "tree",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TreeViewNodeRenderProps {
+  node: TreeNode
+  indexPath: number[]
+  nodeState: any
+}
+
+export interface TreeViewNodeRendererProps {
+  node: TreeNode
+  indexPath: number[]
+  renderBranchNode: (props: TreeViewNodeRenderProps) => React.ReactNode
+  renderLeafNode: (props: TreeViewNodeRenderProps) => React.ReactNode
+}
+
+export const TreeViewNodeRenderer = (props: TreeViewNodeRendererProps) => {
+  const { node, indexPath, renderBranchNode, renderLeafNode } = props
+  const { collection } = useTreeViewContext()
+  return (
+    <ArkTreeView.NodeProvider key={node.id} node={node} indexPath={indexPath}>
+      {node.children ? (
+        <TreeViewBranch>
+          <ArkTreeView.NodeContext>
+            {(nodeState) => renderBranchNode({ node, indexPath, nodeState })}
+          </ArkTreeView.NodeContext>
+          <TreeViewBranchContent>
+            <TreeViewBranchIndentGuide />
+            {collection.getNodeChildren(node).map((child, index) => (
+              <TreeViewNodeRenderer
+                renderBranchNode={renderBranchNode}
+                renderLeafNode={renderLeafNode}
+                key={child.id}
+                node={child}
+                indexPath={[...indexPath, index]}
+              />
+            ))}
+          </TreeViewBranchContent>
+        </TreeViewBranch>
+      ) : (
+        <ArkTreeView.NodeContext>
+          {(nodeState) => renderLeafNode({ node, indexPath, nodeState })}
+        </ArkTreeView.NodeContext>
+      )}
+    </ArkTreeView.NodeProvider>
+  )
+}
