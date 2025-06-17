@@ -24,3 +24,16 @@ export type {
   TreeViewRootProviderProps as RootProviderProps,
   TreeViewTreeProps as TreeProps,
 } from "./tree-view"
+export {
+  TreeViewContext as Context,
+  TreeViewNodeContext as NodeContext,
+  TreeViewNodeProvider as NodeProvider,
+} from "@ark-ui/react/tree-view"
+export type {
+  TreeViewExpandedChangeDetails as ExpandedChangeDetails,
+  TreeViewFocusChangeDetails as FocusChangeDetails,
+  TreeViewLoadChildrenCompleteDetails as LoadChildrenCompleteDetails,
+  TreeViewLoadChildrenDetails as LoadChildrenDetails,
+  TreeViewNodeProviderProps as NodeProviderProps,
+  TreeViewSelectionChangeDetails as SelectionChangeDetails,
+} from "@ark-ui/react/tree-view"
