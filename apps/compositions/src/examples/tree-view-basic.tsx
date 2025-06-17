@@ -3,7 +3,7 @@
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { LuChevronRight, LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
 
-export const Basic = () => {
+export const TreeViewBasic = () => {
   return (
     <TreeView.Root collection={collection}>
       <TreeView.Label>Tree</TreeView.Label>
