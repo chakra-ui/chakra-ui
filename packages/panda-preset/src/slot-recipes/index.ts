@@ -44,7 +44,6 @@ import { tagSlotRecipe } from "./tag"
 import { timelineSlotRecipe } from "./timeline"
 import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
-import { treeViewSlotRecipe } from "./tree-view"
 
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
@@ -93,5 +92,4 @@ export const slotRecipes = {
   timeline: timelineSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
-  treeView: treeViewSlotRecipe,
 }

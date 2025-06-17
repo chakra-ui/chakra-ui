@@ -1,8 +1,8 @@
-import { treeViewAnatomy } from "@ark-ui/anatomy"
+import { treeViewAnatomy } from "@ark-ui/react/tree-view"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const treeViewSlotRecipe = defineSlotRecipe({
-  slots: [...treeViewAnatomy.keys(), "branchIndentGuide"],
+  slots: treeViewAnatomy.keys(),
   className: "chakra-tree-view",
   base: {
     root: {
