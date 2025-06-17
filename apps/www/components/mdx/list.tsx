@@ -12,7 +12,7 @@ export const Ol = (props: BoxProps) => {
           paddingInlineStart: "0.4em",
           listStyleType: "decimal",
           "&::marker": {
-            color: "fg.subtle/50",
+            color: "fg.subtle",
           },
         },
         "& ol, & ul": {
@@ -37,7 +37,7 @@ export const Ul = (props: BoxProps) => {
           paddingInlineStart: "0.4em",
           listStyleType: "disc",
           "&::marker": {
-            color: "fg.subtle/50",
+            color: "fg.subtle",
           },
         },
         "& ol, & ul": {
