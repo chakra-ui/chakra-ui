@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 3.21.1
+
+### Patch Changes
+
+- [#10101](https://github.com/chakra-ui/chakra-ui/pull/10101)
+  [`2b4fa6d`](https://github.com/chakra-ui/chakra-ui/commit/2b4fa6d1847ae8ae26535a81a90842fd4369b97f)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **Select**: Export missing
+  SelectRootComponent type export
+
 ## 3.21.0
 
 ### Minor Changes

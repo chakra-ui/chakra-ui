@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/charts",
-  "version": "3.21.0",
+  "version": "3.21.1",
   "description": "Data visualization components for Chakra UI",
   "type": "module",
   "main": "dist/cjs/index.cjs",
