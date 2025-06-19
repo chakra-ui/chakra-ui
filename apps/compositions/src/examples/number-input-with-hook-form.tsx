@@ -38,7 +38,7 @@ export const NumberInputWithHookForm = () => {
                 field.onChange(value)
               }}
             >
-              <NumberInput.Control />
+              <NumberInput.TriggerGroup />
               <NumberInput.Input onBlur={field.onBlur} />
             </NumberInput.Root>
           )}

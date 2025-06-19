@@ -10,7 +10,7 @@ export const NumberInputWithFormatOptions = () => {
           style: "percent",
         }}
       >
-        <NumberInput.Control />
+        <NumberInput.TriggerGroup />
         <NumberInput.Input />
       </NumberInput.Root>
 
@@ -23,7 +23,7 @@ export const NumberInputWithFormatOptions = () => {
           currencySign: "accounting",
         }}
       >
-        <NumberInput.Control />
+        <NumberInput.TriggerGroup />
         <NumberInput.Input />
       </NumberInput.Root>
 
@@ -35,7 +35,7 @@ export const NumberInputWithFormatOptions = () => {
           unitDisplay: "long",
         }}
       >
-        <NumberInput.Control />
+        <NumberInput.TriggerGroup />
         <NumberInput.Input />
       </NumberInput.Root>
     </Stack>
