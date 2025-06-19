@@ -2,8 +2,8 @@
 "@chakra-ui/react": minor
 ---
 
-- Added `InputNumber.TriggerGroup` component for better control over
+- Added `NumberInput.TriggerGroup` component for better control over
   increment/decrement buttons
-- Updated InputNumber recipe with the new component
-- Fix InputNumber right padding issue
-- Added documentation for `InputNumber.TextValue` use case
+- Updated NumberInput recipe with the new component
+- Fix NumberInput right padding issue
+- Added documentation for `NumberInput.TextValue` use case
