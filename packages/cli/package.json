@@ -46,7 +46,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "0.10.1",
+    "@clack/prompts": "0.11.0",
     "@pandacss/is-valid-prop": "0.54.0",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
@@ -60,7 +60,7 @@
     "https-proxy-agent": "^7.0.6",
     "look-it-up": "2.1.0",
     "node-fetch": "3.3.2",
-    "package-manager-detector": "1.2.0",
+    "package-manager-detector": "1.3.0",
     "prettier": "3.5.3",
     "scule": "1.3.0",
     "sucrase": "^3.35.0",
