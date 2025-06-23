@@ -202,47 +202,71 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TreeViewNodeRenderProps {
-  node: TreeNode
+export interface TreeViewNodeState {
+  value: string
   indexPath: number[]
-  nodeState: any
+  valuePath: string[]
+  disabled: boolean
+  selected: boolean
+  focused: boolean
+  depth: number
+  expanded: boolean
+  isBranch: boolean
+  loading: boolean
 }
 
-export interface TreeViewNodeRendererProps {
-  node: TreeNode
+export interface TreeViewNodeRenderProps<T = TreeNode> {
+  node: T
   indexPath: number[]
-  renderBranchNode: (props: TreeViewNodeRenderProps) => React.ReactNode
-  renderLeafNode: (props: TreeViewNodeRenderProps) => React.ReactNode
+  nodeState: TreeViewNodeState
 }
 
-export const TreeViewNodeRenderer = (props: TreeViewNodeRendererProps) => {
-  const { node, indexPath, renderBranchNode, renderLeafNode } = props
+export interface TreeViewNodeProps<T = TreeNode> {
+  showIndentGuide?: boolean
+  render: (props: TreeViewNodeRenderProps<T>) => React.ReactNode
+}
+
+export function TreeViewNode<T extends TreeNode = TreeNode>(
+  props: TreeViewNodeProps<T>,
+): React.ReactNode {
+  const { render, showIndentGuide } = props
   const { collection } = useTreeViewContext()
-  return (
-    <ArkTreeView.NodeProvider key={node.id} node={node} indexPath={indexPath}>
-      {node.children ? (
-        <TreeViewBranch>
-          <ArkTreeView.NodeContext>
-            {(nodeState) => renderBranchNode({ node, indexPath, nodeState })}
-          </ArkTreeView.NodeContext>
-          <TreeViewBranchContent>
-            <TreeViewBranchIndentGuide />
-            {collection.getNodeChildren(node).map((child, index) => (
-              <TreeViewNodeRenderer
-                renderBranchNode={renderBranchNode}
-                renderLeafNode={renderLeafNode}
-                key={child.id}
-                node={child}
-                indexPath={[...indexPath, index]}
-              />
-            ))}
-          </TreeViewBranchContent>
-        </TreeViewBranch>
-      ) : (
-        <ArkTreeView.NodeContext>
-          {(nodeState) => renderLeafNode({ node, indexPath, nodeState })}
-        </ArkTreeView.NodeContext>
-      )}
+
+  const renderNode = (node: T, indexPath: number[]) => (
+    <ArkTreeView.NodeProvider
+      key={indexPath.join(".")}
+      node={node}
+      indexPath={indexPath}
+    >
+      <ArkTreeView.NodeContext>
+        {(nodeState) => {
+          if (nodeState.isBranch) {
+            return (
+              <TreeViewBranch>
+                {render({ node, indexPath, nodeState })}
+                <TreeViewBranchContent>
+                  {showIndentGuide && <TreeViewBranchIndentGuide />}
+                  {collection
+                    .getNodeChildren(node)
+                    .map((child, index) =>
+                      renderNode(child as T, [...indexPath, index]),
+                    )}
+                </TreeViewBranchContent>
+              </TreeViewBranch>
+            )
+          } else {
+            return render({ node, indexPath, nodeState })
+          }
+        }}
+      </ArkTreeView.NodeContext>
     </ArkTreeView.NodeProvider>
+  )
+
+  return (
+    <>
+      {collection
+        .getNodeChildren(collection.rootNode)
+        .map((node, index) => renderNode(node as T, [index]))}
+    </>
   )
 }

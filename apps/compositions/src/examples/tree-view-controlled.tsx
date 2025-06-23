@@ -1,17 +1,23 @@
 "use client"
 
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
+import { useState } from "react"
 import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
 
-export const TreeViewBasic = () => {
+export const TreeViewControlled = () => {
+  const [expandedValue, setExpandedValue] = useState<string[]>(["node_modules"])
   return (
-    <TreeView.Root collection={collection}>
+    <TreeView.Root
+      collection={collection}
+      expandedValue={expandedValue}
+      onExpandedChange={(e) => setExpandedValue(e.expandedValue)}
+    >
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
-        <TreeView.Node
+        <TreeView.Node<Node>
           showIndentGuide
-          render={({ node, nodeState }) =>
-            nodeState.isBranch ? (
+          render={({ node }) =>
+            node.children ? (
               <TreeView.BranchControl>
                 <TreeView.BranchText>
                   <LuFolder /> {node.name}

@@ -7,113 +7,101 @@ export const treeViewSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: "full",
-    },
-    branch: {
-      "&[data-depth='1'] > [data-part='branch-content']": {
-        _before: {
-          bg: "border.default",
-          content: '""',
-          height: "full",
-          left: "3",
-          position: "absolute",
-          width: "1px",
-          zIndex: "1",
-        },
-      },
+      color: "fg.default",
     },
     branchContent: {
       position: "relative",
+      overflow: "hidden",
+      transitionProperty: "padding-bottom",
+      transitionDuration: "normal",
+      transitionTimingFunction: "default",
     },
-    branchIndentGuide: {},
+    branchIndentGuide: {
+      height: "100%",
+      width: "1px",
+      bg: "border.default",
+      position: "absolute",
+      left: "calc((var(--depth) - 1) * 29px)",
+      "&[data-depth='1']": {
+        left: "3",
+      },
+    },
     branchControl: {
       alignItems: "center",
       borderRadius: "l2",
-      color: "fg.muted",
       display: "flex",
-      fontWeight: "medium",
       gap: "1.5",
       ps: "calc((var(--depth) - 1) * 22px)",
       py: "1.5",
-      textStyle: "sm",
-      transitionDuration: "normal",
-      transitionProperty: "background, color",
-      transitionTimingFunction: "default",
+      cursor: "pointer",
+      userSelect: "none",
       "&[data-depth='1']": {
         ps: "1",
       },
-      "&[data-depth='1'] > [data-part='branch-text'] ": {
-        fontWeight: "semibold",
+      _hover: {
+        background: "gray.a2",
         color: "fg.default",
       },
-      _hover: {
-        background: "bg.muted",
-        color: "fg.default",
+      _selected: {
+        color: "colorPalette.default!",
       },
     },
     branchIndicator: {
-      color: "accent.default",
+      color: "colorPalette.default",
       transformOrigin: "center",
       transitionDuration: "normal",
       transitionProperty: "transform",
       transitionTimingFunction: "default",
-      "& svg": {
-        fontSize: "md",
-        width: "4",
-        height: "4",
-      },
+
       _open: {
         transform: "rotate(90deg)",
       },
     },
     item: {
+      display: "flex",
+      alignItems: "center",
+      gap: "2",
       borderRadius: "l2",
-      color: "fg.muted",
       cursor: "pointer",
-      fontWeight: "medium",
       position: "relative",
       ps: "calc(((var(--depth) - 1) * 22px) + 22px)",
       py: "1.5",
-      textStyle: "sm",
-      transitionDuration: "normal",
-      transitionProperty: "background, color",
-      transitionTimingFunction: "default",
       "&[data-depth='1']": {
         ps: "6",
-        fontWeight: "semibold",
         color: "fg.default",
-        _selected: {
-          _before: {
-            bg: "transparent",
-          },
-        },
       },
       _hover: {
-        background: "bg.muted",
+        background: "gray.a2",
         color: "fg.default",
       },
       _selected: {
-        background: "accent.subtle",
-        color: "accent.fg",
-        _hover: {
-          background: "accent.subtle",
-          color: "accent.fg",
-        },
-        _before: {
-          content: '""',
-          position: "absolute",
-          left: "3",
-          top: "0",
-          width: "2px",
-          height: "full",
-          bg: "accent.solid",
-          zIndex: "1",
-        },
+        color: "colorPalette.default!",
+      },
+    },
+    itemText: {
+      display: "flex",
+      alignItems: "center",
+      gap: "2",
+    },
+    branchText: {
+      display: "flex",
+      alignItems: "center",
+      gap: "2",
+    },
+    itemIndicator: {
+      _icon: {
+        width: "3",
+        height: "3",
       },
     },
     tree: {
       display: "flex",
       flexDirection: "column",
-      gap: "3",
+      textStyle: "sm",
+      _icon: {
+        width: "4",
+        height: "4",
+      },
     },
   },
 })

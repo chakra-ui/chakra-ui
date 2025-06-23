@@ -9,7 +9,7 @@ export {
   TreeViewItemIndicator,
   TreeViewItemText,
   TreeViewLabel,
-  TreeViewNodeRenderer,
+  TreeViewNode,
   TreeViewRoot,
   TreeViewRootProvider,
   TreeViewTree,
@@ -26,10 +26,11 @@ export type {
   TreeViewItemProps,
   TreeViewItemTextProps,
   TreeViewLabelProps,
+  TreeViewNodeProps,
+  TreeViewNodeRenderProps,
   TreeViewRootProps,
   TreeViewRootProviderProps,
   TreeViewTreeProps,
-  TreeViewNodeRendererProps,
 } from "./tree-view"
 
 export * as TreeView from "./namespace"
