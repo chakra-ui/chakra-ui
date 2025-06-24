@@ -1,23 +1,55 @@
 "use client"
 
-import { TreeView, createTreeCollection, useTreeView } from "@chakra-ui/react"
+import {
+  Button,
+  ButtonGroup,
+  HStack,
+  TreeView,
+  createTreeCollection,
+  useTreeViewContext,
+} from "@chakra-ui/react"
+import { isEqual } from "es-toolkit"
+import { useMemo } from "react"
 import { LuFile, LuFolder } from "react-icons/lu"
 
-export const TreeViewWithStore = () => {
-  const store = useTreeView({
-    collection,
-    defaultExpandedValue: [],
-  })
-
+const ExpandCollapseAll = () => {
+  const tree = useTreeViewContext()
+  const isAllExpanded = useMemo(
+    () => isEqual(tree.expandedValue, tree.collection.getBranchValues()),
+    [tree.expandedValue, tree.collection],
+  )
   return (
-    <TreeView.RootProvider value={store}>
-      <TreeView.Label>Tree</TreeView.Label>
-      <pre>{JSON.stringify(store.expandedValue)}</pre>
+    <ButtonGroup size="2xs" variant="outline">
+      <Button
+        aria-label="Expand all"
+        onClick={() => tree.expand()}
+        hidden={isAllExpanded}
+      >
+        Expand all
+      </Button>
+      <Button
+        aria-label="Collapse all"
+        onClick={() => tree.collapse()}
+        hidden={!isAllExpanded}
+      >
+        Collapse all
+      </Button>
+    </ButtonGroup>
+  )
+}
+
+export const TreeViewExpandCollapseAll = () => {
+  return (
+    <TreeView.Root collection={collection} maxW="sm">
+      <HStack justify="space-between">
+        <TreeView.Label>Tree</TreeView.Label>
+        <ExpandCollapseAll />
+      </HStack>
       <TreeView.Tree>
-        <TreeView.Node<Node>
+        <TreeView.Node
           showIndentGuide
-          render={({ node }) =>
-            node.children ? (
+          render={({ node, nodeState }) =>
+            nodeState.isBranch ? (
               <TreeView.BranchControl>
                 <LuFolder />
                 <TreeView.BranchText>{node.name}</TreeView.BranchText>
@@ -31,7 +63,7 @@ export const TreeViewWithStore = () => {
           }
         />
       </TreeView.Tree>
-    </TreeView.RootProvider>
+    </TreeView.Root>
   )
 }
 

@@ -1,5 +1,33 @@
 import { treeViewAnatomy } from "@ark-ui/react/tree-view"
-import { defineSlotRecipe } from "../../styled-system"
+import { defineSlotRecipe, defineStyle } from "../../styled-system"
+
+const itemStyle = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  gap: "var(--tree-item-gap)",
+  userSelect: "none",
+  position: "relative",
+  "--tree-depth": "calc(var(--depth) - 1)",
+  "--tree-inset":
+    "calc(var(--tree-padding-inline) + var(--tree-indentation) * var(--tree-depth))",
+  ps: "var(--tree-inset)",
+  pe: "var(--tree-padding-inline)",
+  py: "var(--tree-padding-block)",
+  focusVisibleRing: "inside",
+  focusRingColor: "border.emphasized",
+  focusRingWidth: "2px",
+  "&:hover, &:focus-visible": {
+    layerStyle: "fill.subtle",
+  },
+  _selected: {
+    "--indicator-thickness": "spacing.0.5",
+    layerStyle: "indicator.start",
+    fontWeight: "medium",
+  },
+  _disabled: {
+    layerStyle: "disabled",
+  },
+})
 
 export const treeViewSlotRecipe = defineSlotRecipe({
   slots: treeViewAnatomy.keys(),
@@ -7,7 +35,21 @@ export const treeViewSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: "full",
-      color: "fg.default",
+      display: "flex",
+      flexDirection: "column",
+      gap: "2",
+    },
+    tree: {
+      display: "flex",
+      flexDirection: "column",
+      "--tree-item-gap": "spacing.2",
+      _icon: {
+        boxSize: "var(--tree-icon-size)",
+      },
+    },
+    label: {
+      fontWeight: "medium",
+      textStyle: "sm",
     },
     branchContent: {
       position: "relative",
@@ -15,93 +57,82 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       transitionProperty: "padding-bottom",
       transitionDuration: "normal",
       transitionTimingFunction: "default",
+      p: "2px",
     },
     branchIndentGuide: {
       height: "100%",
       width: "1px",
-      bg: "border.default",
+      bg: "border",
       position: "absolute",
-      left: "calc((var(--depth) - 1) * 29px)",
-      "&[data-depth='1']": {
-        left: "3",
-      },
+      "--tree-depth": "calc(var(--depth) - 1)",
+      "--tree-inset":
+        "calc(var(--tree-padding-inline) + var(--tree-indentation) * var(--tree-depth))",
+      insetInlineStart:
+        "calc(var(--tree-inset) + calc(var(--tree-icon-size) * 0.5))",
+      zIndex: "1",
     },
     branchControl: {
-      alignItems: "center",
-      borderRadius: "l2",
-      display: "flex",
-      gap: "1.5",
-      ps: "calc((var(--depth) - 1) * 22px)",
-      py: "1.5",
-      cursor: "pointer",
-      userSelect: "none",
-      "&[data-depth='1']": {
-        ps: "1",
-      },
-      _hover: {
-        background: "gray.a2",
-        color: "fg.default",
-      },
-      _selected: {
-        color: "colorPalette.default!",
-      },
+      ...itemStyle,
     },
     branchIndicator: {
-      color: "colorPalette.default",
+      color: "fg.muted",
       transformOrigin: "center",
       transitionDuration: "normal",
       transitionProperty: "transform",
       transitionTimingFunction: "default",
-
       _open: {
         transform: "rotate(90deg)",
       },
     },
-    item: {
-      display: "flex",
+    branchTrigger: {
+      display: "inline-flex",
       alignItems: "center",
-      gap: "2",
-      borderRadius: "l2",
-      cursor: "pointer",
-      position: "relative",
-      ps: "calc(((var(--depth) - 1) * 22px) + 22px)",
-      py: "1.5",
-      "&[data-depth='1']": {
-        ps: "6",
-        color: "fg.default",
-      },
-      _hover: {
-        background: "gray.a2",
-        color: "fg.default",
-      },
-      _selected: {
-        color: "colorPalette.default!",
-      },
+      justifyContent: "center",
+    },
+    item: {
+      ...itemStyle,
     },
     itemText: {
-      display: "flex",
-      alignItems: "center",
-      gap: "2",
+      flex: "1",
     },
     branchText: {
-      display: "flex",
-      alignItems: "center",
-      gap: "2",
+      flex: "1",
     },
-    itemIndicator: {
-      _icon: {
-        width: "3",
-        height: "3",
+  },
+
+  variants: {
+    size: {
+      md: {
+        tree: {
+          textStyle: "sm",
+          "--tree-indentation": "spacing.4",
+          "--tree-padding-inline": "spacing.3",
+          "--tree-padding-block": "spacing.1.5",
+          "--tree-icon-size": "spacing.4",
+        },
+      },
+      sm: {
+        tree: {
+          textStyle: "sm",
+          "--tree-indentation": "spacing.4",
+          "--tree-padding-inline": "spacing.3",
+          "--tree-padding-block": "spacing.1",
+          "--tree-icon-size": "spacing.3",
+        },
+      },
+      xs: {
+        tree: {
+          textStyle: "xs",
+          "--tree-indentation": "spacing.4",
+          "--tree-padding-inline": "spacing.2",
+          "--tree-padding-block": "spacing.1",
+          "--tree-icon-size": "spacing.3",
+        },
       },
     },
-    tree: {
-      display: "flex",
-      flexDirection: "column",
-      textStyle: "sm",
-      _icon: {
-        width: "4",
-        height: "4",
-      },
-    },
+  },
+
+  defaultVariants: {
+    size: "md",
   },
 })

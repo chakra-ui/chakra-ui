@@ -1,23 +1,17 @@
 "use client"
 
-import { TreeView, createTreeCollection, useTreeView } from "@chakra-ui/react"
+import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { LuFile, LuFolder } from "react-icons/lu"
 
-export const TreeViewWithStore = () => {
-  const store = useTreeView({
-    collection,
-    defaultExpandedValue: [],
-  })
-
+export const TreeViewDisabledNode = () => {
   return (
-    <TreeView.RootProvider value={store}>
+    <TreeView.Root collection={collection} maxW="sm">
       <TreeView.Label>Tree</TreeView.Label>
-      <pre>{JSON.stringify(store.expandedValue)}</pre>
       <TreeView.Tree>
-        <TreeView.Node<Node>
+        <TreeView.Node
           showIndentGuide
-          render={({ node }) =>
-            node.children ? (
+          render={({ node, nodeState }) =>
+            nodeState.isBranch ? (
               <TreeView.BranchControl>
                 <LuFolder />
                 <TreeView.BranchText>{node.name}</TreeView.BranchText>
@@ -31,13 +25,14 @@ export const TreeViewWithStore = () => {
           }
         />
       </TreeView.Tree>
-    </TreeView.RootProvider>
+    </TreeView.Root>
   )
 }
 
 interface Node {
   id: string
   name: string
+  disabled?: boolean
   children?: Node[]
 }
 
@@ -74,7 +69,7 @@ const collection = createTreeCollection<Node>({
       },
       { id: "panda.config", name: "panda.config.ts" },
       { id: "package.json", name: "package.json" },
-      { id: "renovate.json", name: "renovate.json" },
+      { id: "renovate.json", name: "renovate.json", disabled: true },
       { id: "readme.md", name: "README.md" },
     ],
   },

@@ -4,7 +4,7 @@ import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
 
-export const TreeViewControlled = () => {
+export const TreeViewControlledExpansion = () => {
   const [expandedValue, setExpandedValue] = useState<string[]>(["node_modules"])
   return (
     <TreeView.Root
@@ -19,18 +19,16 @@ export const TreeViewControlled = () => {
           render={({ node }) =>
             node.children ? (
               <TreeView.BranchControl>
-                <TreeView.BranchText>
-                  <LuFolder /> {node.name}
-                </TreeView.BranchText>
+                <LuFolder />
+                <TreeView.BranchText>{node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
                 <TreeView.ItemIndicator>
                   <LuSquareCheck />
                 </TreeView.ItemIndicator>
-                <TreeView.ItemText>
-                  <LuFile /> {node.name}
-                </TreeView.ItemText>
+                <LuFile />
+                <TreeView.ItemText>{node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }

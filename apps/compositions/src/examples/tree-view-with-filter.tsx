@@ -23,28 +23,30 @@ export const TreeViewWithFilter = () => {
 
   return (
     <Stack gap="3">
-      <Input onChange={(e) => search(e.target.value)} />
+      <Input
+        size="sm"
+        placeholder="Filter tree..."
+        onChange={(e) => search(e.target.value)}
+      />
 
       <TreeView.Root collection={collection}>
-        <TreeView.Label>Tree</TreeView.Label>
+        <TreeView.Label srOnly>Tree</TreeView.Label>
         <TreeView.Tree>
           <TreeView.Node
             showIndentGuide
             render={({ node, nodeState }) =>
               nodeState.isBranch ? (
                 <TreeView.BranchControl>
-                  <TreeView.BranchText>
-                    <LuFolder /> {node.name}
-                  </TreeView.BranchText>
+                  <LuFolder />
+                  <TreeView.BranchText>{node.name}</TreeView.BranchText>
                 </TreeView.BranchControl>
               ) : (
                 <TreeView.Item>
                   <TreeView.ItemIndicator>
                     <LuSquareCheck />
                   </TreeView.ItemIndicator>
-                  <TreeView.ItemText>
-                    <LuFile /> {node.name}
-                  </TreeView.ItemText>
+                  <LuFile />
+                  <TreeView.ItemText>{node.name}</TreeView.ItemText>
                 </TreeView.Item>
               )
             }

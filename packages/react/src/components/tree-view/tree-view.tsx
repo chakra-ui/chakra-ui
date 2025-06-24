@@ -103,6 +103,18 @@ export const TreeViewBranchControl = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export type TreeViewBranchTriggerProps = HTMLChakraProps<
+  "button",
+  ArkTreeView.BranchTriggerBaseProps
+>
+
+export const TreeViewBranchTrigger = withContext<
+  HTMLDivElement,
+  TreeViewBranchTriggerProps
+>(ArkTreeView.BranchTrigger, "branchTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export type TreeViewBranchIndicatorProps = HTMLChakraProps<
   "div",
   ArkTreeView.BranchIndicatorBaseProps

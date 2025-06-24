@@ -14,6 +14,10 @@ export default {
 
 export { TreeViewAsync as Async } from "compositions/examples/tree-view-async"
 export { TreeViewBasic as Basic } from "compositions/examples/tree-view-basic"
-export { TreeViewControlled as Controlled } from "compositions/examples/tree-view-controlled"
-export { TreeViewWithFilter as WithFilter } from "compositions/examples/tree-view-with-filter"
+export { TreeViewControlledExpansion as ControlledExpansion } from "compositions/examples/tree-view-controlled-expansion"
+export { TreeViewDisabledNode as DisabledNode } from "compositions/examples/tree-view-disabled-node"
+export { TreeViewExpandCollapseAll as ExpandCollapseAll } from "compositions/examples/tree-view-expand-collapse-all"
+export { TreeViewExplicitExpand as ExplicitExpand } from "compositions/examples/tree-view-explicit-expand"
+export { TreeViewWithFilter as Filter } from "compositions/examples/tree-view-with-filter"
+export { TreeViewWithSizes as Sizes } from "compositions/examples/tree-view-with-sizes"
 export { TreeViewWithStore as Store } from "compositions/examples/tree-view-with-store"

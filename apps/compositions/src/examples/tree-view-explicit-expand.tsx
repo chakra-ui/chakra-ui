@@ -1,24 +1,23 @@
 "use client"
 
-import { TreeView, createTreeCollection, useTreeView } from "@chakra-ui/react"
-import { LuFile, LuFolder } from "react-icons/lu"
+import { TreeView, createTreeCollection } from "@chakra-ui/react"
+import { LuChevronRight, LuFile, LuFolder } from "react-icons/lu"
 
-export const TreeViewWithStore = () => {
-  const store = useTreeView({
-    collection,
-    defaultExpandedValue: [],
-  })
-
+export const TreeViewExplicitExpand = () => {
   return (
-    <TreeView.RootProvider value={store}>
+    <TreeView.Root collection={collection} maxW="sm" expandOnClick={false}>
       <TreeView.Label>Tree</TreeView.Label>
-      <pre>{JSON.stringify(store.expandedValue)}</pre>
       <TreeView.Tree>
-        <TreeView.Node<Node>
+        <TreeView.Node
           showIndentGuide
-          render={({ node }) =>
-            node.children ? (
+          render={({ node, nodeState }) =>
+            nodeState.isBranch ? (
               <TreeView.BranchControl>
+                <TreeView.BranchTrigger>
+                  <TreeView.BranchIndicator asChild>
+                    <LuChevronRight />
+                  </TreeView.BranchIndicator>
+                </TreeView.BranchTrigger>
                 <LuFolder />
                 <TreeView.BranchText>{node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
@@ -31,7 +30,7 @@ export const TreeViewWithStore = () => {
           }
         />
       </TreeView.Tree>
-    </TreeView.RootProvider>
+    </TreeView.Root>
   )
 }
 

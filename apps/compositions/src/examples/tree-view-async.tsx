@@ -2,7 +2,7 @@
 
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { useState } from "react"
-import { LuFile, LuFolder, LuLoaderCircle, LuSquareCheck } from "react-icons/lu"
+import { LuFile, LuFolder, LuLoaderCircle } from "react-icons/lu"
 
 // mock api result
 const response: Record<string, Node[]> = {
@@ -57,12 +57,8 @@ export const TreeViewAsync = () => {
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
-                <TreeView.ItemIndicator>
-                  <LuSquareCheck />
-                </TreeView.ItemIndicator>
-                <TreeView.ItemText>
-                  <LuFile /> {node.name}
-                </TreeView.ItemText>
+                <LuFile />
+                <TreeView.ItemText>{node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }

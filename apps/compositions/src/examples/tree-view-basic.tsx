@@ -1,11 +1,11 @@
 "use client"
 
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
-import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
+import { LuFile, LuFolder } from "react-icons/lu"
 
 export const TreeViewBasic = () => {
   return (
-    <TreeView.Root collection={collection}>
+    <TreeView.Root collection={collection} maxW="sm">
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node
@@ -13,18 +13,13 @@ export const TreeViewBasic = () => {
           render={({ node, nodeState }) =>
             nodeState.isBranch ? (
               <TreeView.BranchControl>
-                <TreeView.BranchText>
-                  <LuFolder /> {node.name}
-                </TreeView.BranchText>
+                <LuFolder />
+                <TreeView.BranchText>{node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
-                <TreeView.ItemIndicator>
-                  <LuSquareCheck />
-                </TreeView.ItemIndicator>
-                <TreeView.ItemText>
-                  <LuFile /> {node.name}
-                </TreeView.ItemText>
+                <LuFile />
+                <TreeView.ItemText>{node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }
