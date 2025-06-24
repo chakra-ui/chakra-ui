@@ -14,6 +14,7 @@ export default {
 
 export { TreeViewAsync as Async } from "compositions/examples/tree-view-async"
 export { TreeViewBasic as Basic } from "compositions/examples/tree-view-basic"
+export { TreeViewCheckbox as CheckboxTree } from "compositions/examples/tree-view-checkbox"
 export { TreeViewControlledExpansion as ControlledExpansion } from "compositions/examples/tree-view-controlled-expansion"
 export { TreeViewDisabledNode as DisabledNode } from "compositions/examples/tree-view-disabled-node"
 export { TreeViewExpandCollapseAll as ExpandCollapseAll } from "compositions/examples/tree-view-expand-collapse-all"

@@ -214,6 +214,18 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export type TreeViewNodeCheckboxProps = HTMLChakraProps<
+  "div",
+  ArkTreeView.NodeCheckboxBaseProps
+>
+
+export const TreeViewNodeCheckbox = withContext<
+  HTMLDivElement,
+  TreeViewNodeCheckboxProps
+>(ArkTreeView.NodeCheckbox, "nodeCheckbox", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface TreeViewNodeState {
   value: string
   indexPath: number[]

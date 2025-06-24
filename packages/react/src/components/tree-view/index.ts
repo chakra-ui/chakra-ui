@@ -11,6 +11,7 @@ export {
   TreeViewItemText,
   TreeViewLabel,
   TreeViewNode,
+  TreeViewNodeCheckbox,
   TreeViewRoot,
   TreeViewRootProvider,
   TreeViewTree,
@@ -28,6 +29,7 @@ export type {
   TreeViewItemProps,
   TreeViewItemTextProps,
   TreeViewLabelProps,
+  TreeViewNodeCheckboxProps,
   TreeViewNodeProps,
   TreeViewNodeRenderProps,
   TreeViewRootProps,
@@ -39,6 +41,7 @@ export * as TreeView from "./namespace"
 
 export {
   TreeViewContext,
+  TreeViewNodeCheckboxIndicator,
   TreeViewNodeContext,
   TreeViewNodeProvider,
   useTreeView,
@@ -51,6 +54,7 @@ export type {
   TreeViewFocusChangeDetails,
   TreeViewLoadChildrenCompleteDetails,
   TreeViewLoadChildrenDetails,
+  TreeViewNodeCheckboxIndicatorProps,
   TreeViewNodeProviderProps,
   TreeViewSelectionChangeDetails,
   UseTreeViewProps,

@@ -5,6 +5,7 @@ const itemStyle = defineStyle({
   display: "flex",
   alignItems: "center",
   gap: "var(--tree-item-gap)",
+  rounded: "l1",
   userSelect: "none",
   position: "relative",
   "--tree-depth": "calc(var(--depth) - 1)",
@@ -97,6 +98,9 @@ export const treeViewSlotRecipe = defineSlotRecipe({
     },
     branchText: {
       flex: "1",
+    },
+    nodeCheckbox: {
+      display: "inline-flex",
     },
   },
 

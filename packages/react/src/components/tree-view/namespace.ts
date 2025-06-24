@@ -11,6 +11,7 @@ export {
   TreeViewItemText as ItemText,
   TreeViewLabel as Label,
   TreeViewNode as Node,
+  TreeViewNodeCheckbox as NodeCheckbox,
   TreeViewRoot as Root,
   TreeViewRootProvider as RootProvider,
   TreeViewTree as Tree,
@@ -29,6 +30,7 @@ export type {
   TreeViewLabelProps as LabelProps,
   TreeViewNodeProps as NodeProps,
   TreeViewNodeRenderProps as NodeRenderProps,
+  TreeViewNodeCheckboxProps as NodeCheckboxProps,
   TreeViewRootProps as RootProps,
   TreeViewRootProviderProps as RootProviderProps,
   TreeViewTreeProps as TreeProps,
@@ -38,12 +40,14 @@ export {
   TreeViewContext as Context,
   TreeViewNodeContext as NodeContext,
   TreeViewNodeProvider as NodeProvider,
+  TreeViewNodeCheckboxIndicator as NodeCheckboxIndicator,
 } from "@ark-ui/react/tree-view"
 export type {
   TreeViewExpandedChangeDetails as ExpandedChangeDetails,
   TreeViewFocusChangeDetails as FocusChangeDetails,
   TreeViewLoadChildrenCompleteDetails as LoadChildrenCompleteDetails,
   TreeViewLoadChildrenDetails as LoadChildrenDetails,
+  TreeViewNodeCheckboxIndicatorProps as NodeCheckboxIndicatorProps,
   TreeViewNodeProviderProps as NodeProviderProps,
   TreeViewSelectionChangeDetails as SelectionChangeDetails,
 } from "@ark-ui/react/tree-view"

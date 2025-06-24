@@ -1313,19 +1313,20 @@ export type QrCodeVariantMap = {
 // TreeView
 
 export type TreeViewSlot =
-  | "root"
-  | "label"
-  | "tree"
+  | "branch"
+  | "branchContent"
+  | "branchControl"
+  | "branchIndentGuide"
+  | "branchIndicator"
+  | "branchText"
+  | "branchTrigger"
   | "item"
   | "itemIndicator"
   | "itemText"
-  | "branch"
-  | "branchControl"
-  | "branchTrigger"
-  | "branchContent"
-  | "branchText"
-  | "branchIndicator"
-  | "branchIndentGuide"
+  | "label"
+  | "nodeCheckbox"
+  | "root"
+  | "tree"
 
 export interface TreeViewVariant {
   /** @default "md" */
