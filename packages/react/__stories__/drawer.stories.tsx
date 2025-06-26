@@ -19,4 +19,5 @@ export { DrawerWithHeaderActions as HeaderActions } from "compositions/examples/
 export { DrawerWithInitialFocus as InitialFocus } from "compositions/examples/drawer-with-initial-focus"
 export { DrawerWithOffset as Offset } from "compositions/examples/drawer-with-offset"
 export { DrawerWithPlacement as Placement } from "compositions/examples/drawer-with-placement"
+export { DrawerWithConditionalVariants as ConditionalVariants } from "compositions/examples/drawer-with-conditional-variants"
 export { DrawerWithSizes as Sizes } from "compositions/examples/drawer-with-sizes"
