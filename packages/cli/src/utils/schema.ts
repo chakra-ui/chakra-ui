@@ -1,4 +1,4 @@
-import { type infer, z } from "zod"
+import { z } from "zod"
 
 export const compositionFileSchema = z.object({
   type: z.string(),
@@ -12,7 +12,8 @@ export const compositionFileSchema = z.object({
   fileDependencies: z.array(z.string()),
 })
 
-export interface CompositionFile extends infer<typeof compositionFileSchema> {}
+export interface CompositionFile
+  extends z.infer<typeof compositionFileSchema> {}
 
 export const compositionIndexSchema = z.array(
   z.object({
@@ -25,7 +26,7 @@ export const compositionIndexSchema = z.array(
   }),
 )
 
-export interface Compositions extends infer<typeof compositionIndexSchema> {}
+export interface Compositions extends z.infer<typeof compositionIndexSchema> {}
 
 export const processEnvSchema = z.object({
   // REGISTRY_URL: z.string().default("http://localhost:3000"),
@@ -41,4 +42,5 @@ export const addCommandFlagsSchema = z.object({
   tsx: z.boolean().optional(),
 })
 
-export interface AddCommandFlags extends infer<typeof addCommandFlagsSchema> {}
+export interface AddCommandFlags
+  extends z.infer<typeof addCommandFlagsSchema> {}
