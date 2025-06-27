@@ -26,13 +26,13 @@ interface NativeSelectItem {
   disabled?: boolean
 }
 
-interface NativeSelectField extends Select.FieldProps {
+interface NativeSelectFieldProps extends Select.FieldProps {
   items?: Array<string | NativeSelectItem>
 }
 
 export const NativeSelectField = React.forwardRef<
   HTMLSelectElement,
-  NativeSelectField
+  NativeSelectFieldProps
 >(function NativeSelectField(props, ref) {
   const { items: itemsProp, children, ...rest } = props
 

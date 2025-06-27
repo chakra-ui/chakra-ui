@@ -52,10 +52,14 @@ export function walkObject<T, K>(
 }
 
 export function mapObject(obj: any, fn: (value: any) => any) {
-  if (Array.isArray(obj)) return obj.map((value) => fn(value))
+  if (Array.isArray(obj))
+    return obj.map((value) => {
+      return isNotNullish(value) ? fn(value) : value
+    })
+
   if (!isObject(obj)) {
-    if (obj !== null && obj !== undefined) return fn(obj)
-    else return obj
+    return isNotNullish(obj) ? fn(obj) : obj
   }
+
   return walkObject(obj, (value) => fn(value))
 }
