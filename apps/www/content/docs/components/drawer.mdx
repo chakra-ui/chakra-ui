@@ -89,6 +89,21 @@ Here's an example of rendering actions in the header of the drawer component.
 
 <ExampleTabs name="drawer-with-header-actions" />
 
+### Drawer with conditional variants
+
+Here is an example of how to change variants based on the different breakpoints.
+
+This example uses the `mdDown` breakpoint to change the drawer's placement on
+smaller screens. This approach is recommended because both conditions are
+translated into CSS media queries, which helps avoid base style merging issues.
+
+If you really want to use the base condition instead, you’ll also need to define
+corresponding sizes.  
+For example:
+`<Drawer.Root placement={{ base: "bottom", md: "end" }} size={{ base: "xs", md: "md" }}>`
+
+<ExampleTabs name="drawer-with-conditional-variants" />
+
 ## Props
 
 ### Root
