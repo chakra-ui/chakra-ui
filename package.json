@@ -9,7 +9,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "local:sync": "tsx scripts/symlink.ts",
     "local:revert": "tsx scripts/symlink.ts --revert",
     "build:tokens": "chakra typegen packages/react/src/preset.ts",
