@@ -2,6 +2,7 @@
 
 import {
   Combobox,
+  For,
   HStack,
   Portal,
   Span,
@@ -40,8 +41,7 @@ export const ComboboxRehydrateValue = () => {
   // Rehydrate the value
   const hydrated = useRef(false)
   if (combobox.value.length && collection.size && !hydrated.current) {
-    const inputValue = collection.stringify(combobox.value[0])
-    combobox.setInputValue(inputValue || "")
+    combobox.syncSelectedItems()
     hydrated.current = true
   }
 
@@ -66,17 +66,22 @@ export const ComboboxRehydrateValue = () => {
                 {state.error.message}
               </Span>
             ) : (
-              collection.items.map((item) => (
-                <Combobox.Item key={item.name} item={item}>
-                  <HStack justify="space-between" textStyle="sm">
-                    <Span fontWeight="medium">{item.name}</Span>
-                    <Span color="fg.muted">
-                      {item.height}cm / {item.mass}kg
-                    </Span>
-                  </HStack>
-                  <Combobox.ItemIndicator />
-                </Combobox.Item>
-              ))
+              <For
+                each={collection.items}
+                fallback={<Combobox.Empty>No items</Combobox.Empty>}
+              >
+                {(item) => (
+                  <Combobox.Item key={item.name} item={item}>
+                    <HStack justify="space-between" textStyle="sm">
+                      <Span fontWeight="medium">{item.name}</Span>
+                      <Span color="fg.muted">
+                        {item.height}cm / {item.mass}kg
+                      </Span>
+                    </HStack>
+                    <Combobox.ItemIndicator />
+                  </Combobox.Item>
+                )}
+              </For>
             )}
           </Combobox.Content>
         </Combobox.Positioner>
