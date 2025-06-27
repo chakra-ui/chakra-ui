@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.21.1
+
+### Patch Changes
+
+- [`517ba37`](https://github.com/chakra-ui/chakra-ui/commit/517ba37c49eb1bec4774c7835b5853ca1761bb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `typegen` command fails silently with misleading console output when prettier
+  exits with a formatting error
+
 ## 3.21.0
 
 ## 3.20.0
