@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react-vite"
 import { Box, Center, For, SimpleGrid, Text } from "../src"
 
 export default {
