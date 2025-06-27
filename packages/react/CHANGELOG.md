@@ -32,7 +32,6 @@
 - [`010f256`](https://github.com/chakra-ui/chakra-ui/commit/010f256d74de2e48283d1f714c6094a4045bcbdd)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **File Upload**:
   Prevented `undefined` in `acceptedFiles` when no files accepted
-
   - **Select**: Fixed issue where highlighted item could be cleared when
     navigating up/down the list with keyboard
   - **Tabs**: Fixed issue where tabs with links should not trigger tab change
@@ -47,7 +46,6 @@
 - [`65020dd`](https://github.com/chakra-ui/chakra-ui/commit/65020dd159a8cfa0eebafd60afb98e971a7ee377)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Allow
   `undefined` for optional properties in CSS and recipe types
-
   - **Color Picker**: Fixed issue where value change end event is invoked when
     committing via an input.
   - **Toast**: Fixed issue where calling `toast.remove()` without an id shows a
@@ -55,7 +53,6 @@
   - **Field**: Fixed issue where helper text and error text could not be
     detected in shadow DOM environments.
   - **Slider**
-
     - Fixed issue where `minStepsBetweenThumbs` isn't computed correctly when
       interacting with pointer or keyboard.
     - Fixed issue where `Shift` + `ArrowRight` set value to `0` instead of `max`
@@ -97,7 +94,6 @@
   [`10d0a8e`](https://github.com/chakra-ui/chakra-ui/commit/10d0a8ed2be50c52786f7c9ba4d0edbbbc87c0e0)
   Thanks [@mhsattarian](https://github.com/mhsattarian)! - - **Drawer**: Fix
   drawer close animation in RTL
-
   - **Button**
     - Fix layout issue when in loading state with icons by using
       `display: contents` and `visibility: hidden`
@@ -111,7 +107,6 @@
 - [`aa9c2b0`](https://github.com/chakra-ui/chakra-ui/commit/aa9c2b02e455697221b691aca54a82dcf5604fb8)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Fix
   issue where some svg element props tend to be treated as style props
-
   - **Checkbox**: Use consistent cursor for checkbox and radio group
 
 ## 3.19.0
@@ -122,7 +117,6 @@
   [`d860d48`](https://github.com/chakra-ui/chakra-ui/commit/d860d48cf7d547bfe3970e10ec49b9c7aa5d98b8)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **[New]
   Combobox** Add combobox component for autocomplete text entry.
-
   - **Progress Circle**: Make progress circle transition smoother.
 
 ## 3.18.0
@@ -132,9 +126,7 @@
 - [`e91ec7e`](https://github.com/chakra-ui/chakra-ui/commit/e91ec7e9a393a791743636e934d28bc75a0e6dc8)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **DownloadTrigger
   [New]** Add `DownloadTrigger` component to help download file contents.
-
   - **System**
-
     - Fix issue where passing `d` prop to `chakra.path` adds it to styles not as
       a direct attribute.
     - Fix issue where responsive semantic tokens did not get applied.
@@ -150,9 +142,7 @@
   [`ad8cc44`](https://github.com/chakra-ui/chakra-ui/commit/ad8cc44d957821deeaee0885bfd1767f7c53b7d1)
   Thanks [@seongminn](https://github.com/seongminn)! - - **Breadcrumb**: Prevent
   screen reader from reading the separator
-
   - **Toast**: Added toast queuing when the max limit is reached:
-
     - New toasts were queued instead of dropped
     - Queued toasts were shown when space became available
     - Queue cleared when all toasts were removed
@@ -171,7 +161,6 @@
 - [`46075ba`](https://github.com/chakra-ui/chakra-ui/commit/46075ba8cb69730378c7aeb1b710d36df0e01355)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Dialog,
   Drawer**: Use correct z-index for dialog and drawer backdrop
-
   - **SegmentGroup**: Fix issue where `orientation` prop to `SegmentGroup.Root`
     doesn't work as expected
 
@@ -182,9 +171,7 @@
 - [`529244d`](https://github.com/chakra-ui/chakra-ui/commit/529244d008db7049d5b7d12590c41eba8df212d9)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Global CSS**:
   Improve text selection contrast
-
   - **System**
-
     - Fix issue where `borderEnd` shorthand was not working despite
       `borderStart` being present
     - Fix issue where `system.cva` return type was incorrect
@@ -211,16 +198,13 @@
 - [`2f4ea3b`](https://github.com/chakra-ui/chakra-ui/commit/2f4ea3b31792b6df212798c5f00e174276acc274)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - -
   **useMediaQuery**: Fix type signature to allow skipping the second argument
-
   - **RadioCard**: Fix accessibility issue due to html structure
   - **Slider**
-
     - Add support for `origin: end` to align the thumb to the end of the track.
     - Expose `thumbSize` as CSS variables in the root element. Can be useful for
       styling the slider.
 
   - **Menu**
-
     - Added `onSelect` event to the `Menu.Item` component.
     - Ensure menu items have unique IDs to improve accessibility and HTML
       validation.
@@ -241,7 +225,6 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Fix
   issue where output of `<system>.css(...)` from Chakra UI can't be assigned to
   `Interpolation<Theme>` from `@emotion/react`.
-
   - **General**: Bump `@ark-ui/react` to latest version.
 
 ## 3.14.0
@@ -263,17 +246,14 @@
 - [#9797](https://github.com/chakra-ui/chakra-ui/pull/9797)
   [`eba44a3`](https://github.com/chakra-ui/chakra-ui/commit/eba44a33fd51af10cb85eb9a8778325affbee4bd)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **ColorPicker**
-
   - Add support for `ColorPicker.ChannelText` component
   - Add `ColorPicker.EyeDropper` component that wraps `IconButton`
   - Add `ColorPicker.Slider` and `ColorPicker.Input` shortcut components to
     reduce LOC.
   - **InputGroup**
-
     - Export directly from the `@chakra-ui/react` package
 
   - **Pagination**
-
     - Add `Pagination.Items` shortcut component to render the number of pages
       based on the `count` and `pageSize` props.
     - Add `Pagination.PageText` component to render the current page and total
@@ -285,7 +265,6 @@
 
 - [`7abe7e3`](https://github.com/chakra-ui/chakra-ui/commit/7abe7e3ccc589c7088f32d5e8f76d471747bd4eb)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **FileUpload:**
-
   - Add `FileUpload.FileText` to render the list of uploaded file names.
   - Add `FileUpload.Items` shorcut component to render the list of uploaded
     files.
@@ -298,10 +277,8 @@
 
 - [`8789401`](https://github.com/chakra-ui/chakra-ui/commit/87894014191052a24a8cb3716ed068be9a744fbc)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Accordion**
-
   - Fix issue where `Accordion.ItemTrigger` doesn't apply `textAlign: start`
   - **SegmentGroup**
-
     - Add new `SegmentGroup.Items` shortcut component to render multiple
       `SegmentGroup.Item` components based on the `items` prop
 
@@ -311,14 +288,11 @@
 
 - [`11bdf77`](https://github.com/chakra-ui/chakra-ui/commit/11bdf77f897ecf36da0ee45f0f52b9edb974da5e)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Menu**
-
   - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`
   - **HoverCard**
-
     - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`
 
   - **Dialog, Drawer**
-
     - Update recipe to include absolute positioning styles for close trigger,
       instead of relying on snippet styles.
 
@@ -329,36 +303,29 @@
 - [`52a97d0`](https://github.com/chakra-ui/chakra-ui/commit/52a97d0f0baaa06f257b2af2d17d909993cbb30d)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Skeleton**
   Bring back `SkeletonCircle` and `SkeletonText` components.
-
   - **Switch**
-
     - Transition background color when checked
     - Set the default `children` for `Switch.Control` to `Switch.Thumb` to
       reduce LOC for common use cases.
 
   - **Checkbox**
-
     - Set the default `children` for `Checkbox.Control` to `Checkbox.Indicator`
       to reduce LOC for common use cases.
 
   - **NumberInput**
-
     - Set the default `children` for `NumberInput.Control` to
       `NumberInput.IncrementTrigger` and `NumberInput.DecrementTrigger` to
       reduce LOC for common use cases.
 
   - **QrCode**
-
     - Set the `QrCode.Frame` component to `QrCode.Pattern` to reduce LOC for
       common use cases.
 
   - **RatingGroup**
-
     - Set the default `children` for `RatingGroup.Control` to the array of
       `RatingGroup.Item` components to reduce LOC for common use cases.
 
   - **Slider**
-
     - Add `Slider.Marks` component to render marks on the slider track. This is
       a closed composition of `Slider.MarkerGroup` and `Slider.Marker` to reduce
       LOC for common use cases.
@@ -367,7 +334,6 @@
       cases.
 
   - **PinInput**
-
     - Add support for `attached` variant prop to render a pin input with
       attached inputs. This removes the need for the `Group` component to wrap
       the inputs.
@@ -403,7 +369,6 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new hooks
   `useElementRect`, `useForceUpdate`, `useLiveRef`,`usePrevious` and
   `useSafeLayoutEffect`
-
   - Add new `FocusTrap` component for trapping focus within a container
 
 ### Patch Changes
@@ -426,7 +391,6 @@
   support for passing `name` to the `AvatarFallback` to render the initials. If
   no `name` or `children` is passed, it'll render either the initials or a
   fallback icon.
-
   - **Hooks**: Add `useConst` and `useUpdateEffect` hooks from v2.
   - **Wrap:** Bring back the `Wrap` component from v2.
 
@@ -437,7 +401,6 @@
 - [`04a1a07`](https://github.com/chakra-ui/chakra-ui/commit/04a1a07f1eb8924648b7d1a0de005777330cf5f3)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
   System:**
-
   - Boost performance of style resolution by removing `JSON.stringify` in `memo`
     function and avoid memoizing non-primitive arguments.
   - Connect `assets` token to `backgroundImage` and `listStyleImage` css
@@ -458,7 +421,6 @@
 - [`34d46e3`](https://github.com/chakra-ui/chakra-ui/commit/34d46e38eb16bb5adda70f5445d9e406b4da415b)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Button:** Fix
   issue where button is not disabled when loading props is passed
-
   - **ColorPicker, HoverCard, Tooltip:** Fixed intermittent placement shifts
     caused by updates to the `data-placement` attribute
   - **Snippets / Alert:** Deprecate the `Alert` snippet in favor of using the
@@ -470,7 +432,6 @@
 
 - [`30a12d0`](https://github.com/chakra-ui/chakra-ui/commit/30a12d01af9672ebf36ea872f3d9bdfcc2b212d2)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Native Select**
-
   - Fix issue where `disabled` and `invalid` props were not being passed to the
     `NativeSelectField` component.
   - Persist error focus ring when `invalid` prop is set.
@@ -499,7 +460,6 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Separator**:
   Fix issue where `aria-orientation` was missing in the DOM and `orientation`
   was added instead.
-
   - **FileUpload**
     - Resolved an issue where form-related components reset despite the reset
       event being cancelled.
@@ -533,14 +493,12 @@
 - [`855bb29`](https://github.com/chakra-ui/chakra-ui/commit/855bb290d3e89533e43833abfa21a6863d367953)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Icon:**
   Refactor icon recipe `size=inherit` to allow for composition with button
-
   - **Snippet / Tooltip:** Set `portalled` to `true` by default
 
 - [#9470](https://github.com/chakra-ui/chakra-ui/pull/9470)
   [`4bd9f8d`](https://github.com/chakra-ui/chakra-ui/commit/4bd9f8d6db8a7f2174ce184e4a921f6b0a6b86f6)
   Thanks [@lcswillems](https://github.com/lcswillems)! - - **Menu, Select:** Use
   the same semantic token for select `_highlighted` state
-
   - **Toast:** Fix issue where toast close trigger was not visible
 
 - [`e4fe984`](https://github.com/chakra-ui/chakra-ui/commit/e4fe984a14d2538a7913db85eb486491b5d8a9c9)
@@ -573,7 +531,6 @@
 - [#9437](https://github.com/chakra-ui/chakra-ui/pull/9437)
   [`791bcec`](https://github.com/chakra-ui/chakra-ui/commit/791bcec921913cedfe2316b21ed3edfd5d86d07b)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
-
   - **Clipboard**: Introduced `Clipboard.ValueText` to display clipboard
     content.
   - **FileUpload**:
@@ -589,7 +546,6 @@
     - Added `QrCode.DownloadTrigger` to enable QR code image downloads.
 
   ### Fixed
-
   - **Collapsible**: Fixed a bug where the opening animation replayed when an
     open collapsible was re-rendered.
   - **Dialog, Popover**: Resolved an issue causing dialogs or popovers to close
@@ -644,7 +600,6 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Snippets /
   Pagination**: Fix issue where pagination page text renders incorrectly when
   the `pageSize` is greater than the `count` value with `format=long`
-
   - **Snippets / InputGroup**: Improve typings for `children` prop to prevent TS
     errors
 
@@ -672,7 +627,6 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **FileUpload**:
   Resolved an issue where the `accept` attribute wasn’t applied to the hidden
   input.
-
   - **NumberInput**: Fixed issue where the input event wasn’t triggered on the
     first click of the increment/decrement controls.
 
@@ -703,7 +657,6 @@
 
 - [`7234d75`](https://github.com/chakra-ui/chakra-ui/commit/7234d756315ed4ccce127229e0687eef060266c4)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Slider**
-
   - Add `DraggingIndicator` component to show an element only while dragging
   - Fix issue where slider marks were not styled correctly in vertical
     orientation
@@ -712,7 +665,6 @@
   - **System**: Fixed issue where exporting `withRootProvider` would result in
     type error
   - **Snippets / Slider**
-
     - Move `MarkerGroup` into the `Control` component
     - Remove hardcoded margin values in favor of recipes and
       `data-has-mark-label` attribute
@@ -725,7 +677,6 @@
   [`561ccc0`](https://github.com/chakra-ui/chakra-ui/commit/561ccc015561203f53cc12d7c5e6606283bb41ab)
   Thanks [@Pagebakers](https://github.com/Pagebakers)! - - **System**: Fix issue
   where exporting `withProvider` and `withContext` would result in type error
-
   - **Timeline**: Fix issue where `TimelineTitle` was missing from the export
   - **Tabs**: Fix issue where `useTabs` and `useTabsContext` were not exported
   - **Snippets / ColorPicker**: Fix flex direction of `ColorPickerChannelInputs`
@@ -739,7 +690,6 @@
   [`e5880fb`](https://github.com/chakra-ui/chakra-ui/commit/e5880fb7eafe9044604ffb893589792b35961eaf)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - [Preview] Add new
   `ColorPicker` component to allow users pick a color in hsl, rgb, hsb formats.
-
   - Add new `ColorSwatch` component to preview a color.
   - Fix issue where `mergeConfigs` mutates the underlying configs passed to it.
 
@@ -750,7 +700,6 @@
 - [`65952d7`](https://github.com/chakra-ui/chakra-ui/commit/65952d7a796ae491ea6a0d57661a25a404a11452)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **General:** Fix
   issue where value change types were not re-exported from Ark UI
-
   - **Layer Style:** Fix issue where `fill.surface` layer style doesn't render
     the correct styles
   - **Pagination:** Fix issue where `PaginationPageText` did not render the
@@ -769,7 +718,6 @@
   [`1254769`](https://github.com/chakra-ui/chakra-ui/commit/12547692bdfe2ebe7be9c16ea381a5c42f553e1c)
   Thanks [@Newbie012](https://github.com/Newbie012)! - - **Checkbox**: Fix issue
   where checkmark doesn't show on Safari
-
   - **Alert**: Fix issue where indicator icon is not visible on Safari
   - **ClientOnly**: Fix issue where returned the incorrect type leading to TS
     error like `ClientOnly cannot be used as a JSX component.`
@@ -784,11 +732,9 @@
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System:** Fix
   issue where using `as` prop with logic based components doesn't work as
   expected.
-
   - **DataList:** Add support for `bold` variant.
   - **Button:** Tweak the horizontal padding when size is `sm`.
   - **Snippets**
-
     - Slider: Add `showValue` prop to render the text value of the slider.
     - Select
       - Add `HiddenSelect` to ensure it works in form submissions.
@@ -835,13 +781,11 @@
   for the next version Chakra that leverages Ark UI.
 
   **User Facing**
-
   - Consolidate all component packages into a single package
   - Remove all deprecated components and APIs
   - Simplify the Changelogs for all v2 releases
 
   **Infrastructure**
-
   - Simplify the repo infrastructure and release process
   - Migrate from `jest` to `vitest`
   - Migrate from `tsup` to custom `rollup` setup for better bundling strategy
@@ -857,14 +801,12 @@
 - [#8121](https://github.com/chakra-ui/chakra-ui/pull/8121)
   [`170198f`](https://github.com/chakra-ui/chakra-ui/commit/170198fc3936ad34f8136a2da173c12d9dc3dc36)
   Thanks [@kkieninger](https://github.com/kkieninger)! - ### Fixed
-
   - Fix hard-coded z-index for Menu in favor of one defined from the theme
   - Fix problem with leading and trailing spaces when getting initials for the
     Avatar component
   - Suppress unnecessary re-renders of Checkbox and Radio component
 
   ### Added
-
   - Add CSS `accentColor` property to style props
   - Add support for `asChild` in chakra factory
   - Export `toastStore` from `toast` component
@@ -883,7 +825,6 @@
 - [`07b04b1`](https://github.com/chakra-ui/chakra-ui/commit/07b04b1c506995f6f276f5f80a93d09d89b92fce)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **[NEW]:** Add
   `RatingGroup`, `SegmentControl`
-
   - **[NEW]:** Add `EmptyState` component for empty states
   - **[NEW]:** Add `RadioCard` and `CheckboxCard` components for card-based
     selection
@@ -1016,14 +957,12 @@
 - [`e77a9b8`](https://github.com/chakra-ui/chakra-ui/commit/e77a9b81ecd765d0b0963e5f847a867dfd506363)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new Timeline
   component to presenting chronological information or activities.
-
   - Trim generated `className` in the DOM.
   - Add `neutral` status to `Alert` component
 
 - [`763329e`](https://github.com/chakra-ui/chakra-ui/commit/763329ebdca2a9d4b7295d94fff3d2265a793c99)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add preset and
   preset-base entrypoints.
-
   - The `preset` entrypoint exposes the default theme and recipes for Chakra.
   - The `preset-base` entrypoint exposes the base utilities and conditions used
     internally.
@@ -1085,14 +1024,12 @@
 - [`4c6838c`](https://github.com/chakra-ui/chakra-ui/commit/4c6838c5e6c262da6b573c8576595bb8cedc5452)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Rename `onLabel`
   and `offLabel` to `trackLabel`
-
   - Add support for `thumbLabel` prop for rendering an icon within thumb
 
 - [#8393](https://github.com/chakra-ui/chakra-ui/pull/8393)
   [`623e558`](https://github.com/chakra-ui/chakra-ui/commit/623e558ac22f84e6250387d0971aafe9713667a6)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Integrate Ark UI
   components to reduce maintenance surface.
-
   - Add `FileUpload` component
   - Remove `trigger=hover` in favor of `HoverCard`
   - Replace `Tooltip`, `Popover` and `HoverCard` with those from Ark UI
@@ -1168,9 +1105,7 @@
 - [`1738b90`](https://github.com/chakra-ui/chakra-ui/commit/1738b901122932b664f6a4c06701cfab4c00afd2)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Icon: Set
   `asChild` to `true` by default to reduce repetition
-
   - All components
-
     - Ensure consistent sizing convention (units of 4px). Smaller elements start
       at 20px, larger elements start at 40px
     - Ensure focus ring matches the colorPalette
@@ -1232,7 +1167,6 @@
 - [`05793a2`](https://github.com/chakra-ui/chakra-ui/commit/05793a2d15f22b7caa3fb19f93c2a6e1482e5bd0)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Make `gray` the
   default color palette.
-
   - Change avatar sm size to `36px` for consistency.
   - Move `bg` for outline component variants.
 
@@ -1328,13 +1262,11 @@
 - [`47a8a9e`](https://github.com/chakra-ui/chakra-ui/commit/47a8a9ebb3fe89d168850b501414da5e8648f5c2)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `inherit` to
   Spinner recipe size
-
   - Refactor button and link button snippets
 
 - [`b6d1d0d`](https://github.com/chakra-ui/chakra-ui/commit/b6d1d0db60644fc43d04e6d40e86b6dba659457a)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Simplify spinner
   component to use less custom props.
-
   - Removed `emptyColor`, prefer to use `--spinner-track-color`
   - Removed `speed`, prefer to use `animationDuration`
   - Removed `thickness`, prefer to use `borderWidth`
@@ -1343,14 +1275,12 @@
   [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
   `_open` and `_closed` pseudo props for styling their respective selectors.
-
   - `_open`: `&[data-state=open], &[open]`
   - `_closed`: `&[data-state=closed]`
   - `_groupOpen`: `[data-group][data-state=open] &`
   - `_groupClosed`: `[data-group][data-state=closed] &`
 
   Extend the existing pseudo props to support new selectors`
-
   - `_placeholder` now supports `&[data-placeholder]`
   - `_placeholderShow` now supports `&[data-placeholder-shown]`
   - `_fullscreen` now supports `&[data-fullscreen]`
@@ -1387,7 +1317,6 @@
 - [`c941971`](https://github.com/chakra-ui/chakra-ui/commit/c9419714db8b50b2cad3f478d90d4be4268da48f)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Convert `Tabs`
   component to use Ark UI
-
   - Convert `NumberInput` to use Ark UI
 
 - [#8795](https://github.com/chakra-ui/chakra-ui/pull/8795)
@@ -1398,10 +1327,8 @@
 - [`83366c4`](https://github.com/chakra-ui/chakra-ui/commit/83366c43e42d7d4d385bbb3d85051768b0e03be7)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix regression in
   `mergeConfigs`
-
   - Decompose `Field` components into smaller components, which can be
     optionally used with `Field`
-
     - `Label` which is a generic label component
     - `ErrorMessage` which is a generic error message component
     - `HelpText` which is a generic help text component
@@ -1416,7 +1343,6 @@
 - [`0a03bcc`](https://github.com/chakra-ui/chakra-ui/commit/0a03bcc602f36b2901f53e4e03e6498d28bd8fa6)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix circular
   progress element types
-
   - Ensure consistent exports in components
 
 - [#8617](https://github.com/chakra-ui/chakra-ui/pull/8617)
@@ -1465,7 +1391,6 @@
 - [`bffb68f`](https://github.com/chakra-ui/chakra-ui/commit/bffb68f4fdedf4a438a0e56406315b44b98c6011)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Pagination:**
   Fix issue page props were not forwarded correctly.
-
   - **PinInput:** Fix issue mask props were not forwarded correctly.
 
 - [#8601](https://github.com/chakra-ui/chakra-ui/pull/8601)
@@ -1494,7 +1419,6 @@
 - [`05793a2`](https://github.com/chakra-ui/chakra-ui/commit/05793a2d15f22b7caa3fb19f93c2a6e1482e5bd0)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Make `gray` the
   default color palette.
-
   - Change avatar sm size to `36px` for consistency.
   - Move `bg` for outline component variants.
 
@@ -1520,9 +1444,7 @@
 - [`1738b90`](https://github.com/chakra-ui/chakra-ui/commit/1738b901122932b664f6a4c06701cfab4c00afd2)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Icon: Set
   `asChild` to `true` by default to reduce repetition
-
   - All components
-
     - Ensure consistent sizing convention (units of 4px). Smaller elements start
       at 20px, larger elements start at 40px
     - Ensure focus ring matches the colorPalette
@@ -1681,7 +1603,6 @@
 - [`4c6838c`](https://github.com/chakra-ui/chakra-ui/commit/4c6838c5e6c262da6b573c8576595bb8cedc5452)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Rename `onLabel`
   and `offLabel` to `trackLabel`
-
   - Add support for `thumbLabel` prop for rendering an icon within thumb
 
 - [`f4762bf`](https://github.com/chakra-ui/chakra-ui/commit/f4762bf087a8aac240c83093adde0f84e37a0456)
@@ -1819,7 +1740,6 @@
 - [`b6d1d0d`](https://github.com/chakra-ui/chakra-ui/commit/b6d1d0db60644fc43d04e6d40e86b6dba659457a)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Simplify spinner
   component to use less custom props.
-
   - Removed `emptyColor`, prefer to use `--spinner-track-color`
   - Removed `speed`, prefer to use `animationDuration`
   - Removed `thickness`, prefer to use `borderWidth`
@@ -1867,7 +1787,6 @@
 - [`e77a9b8`](https://github.com/chakra-ui/chakra-ui/commit/e77a9b81ecd765d0b0963e5f847a867dfd506363)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new Timeline
   component to presenting chronological information or activities.
-
   - Trim generated `className` in the DOM.
   - Add `neutral` status to `Alert` component
 
@@ -2061,7 +1980,6 @@
 - [`0a03bcc`](https://github.com/chakra-ui/chakra-ui/commit/0a03bcc602f36b2901f53e4e03e6498d28bd8fa6)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix circular
   progress element types
-
   - Ensure consistent exports in components
 
 - [#8617](https://github.com/chakra-ui/chakra-ui/pull/8617)
@@ -2125,7 +2043,6 @@
 - [`07b04b1`](https://github.com/chakra-ui/chakra-ui/commit/07b04b1c506995f6f276f5f80a93d09d89b92fce)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **[NEW]:** Add
   `RatingGroup`, `SegmentControl`
-
   - **[NEW]:** Add `EmptyState` component for empty states
   - **[NEW]:** Add `RadioCard` and `CheckboxCard` components for card-based
     selection
@@ -2244,7 +2161,6 @@
 - [`763329e`](https://github.com/chakra-ui/chakra-ui/commit/763329ebdca2a9d4b7295d94fff3d2265a793c99)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add preset and
   preset-base entrypoints.
-
   - The `preset` entrypoint exposes the default theme and recipes for Chakra.
   - The `preset-base` entrypoint exposes the base utilities and conditions used
     internally.
@@ -2297,13 +2213,11 @@
   for the next version Chakra that leverages Ark UI.
 
   **User Facing**
-
   - Consolidate all component packages into a single package
   - Remove all deprecated components and APIs
   - Simplify the Changelogs for all v2 releases
 
   **Infrastructure**
-
   - Simplify the repo infrastructure and release process
   - Migrate from `jest` to `vitest`
   - Migrate from `tsup` to custom `rollup` setup for better bundling strategy
@@ -2313,14 +2227,12 @@
 - [#8121](https://github.com/chakra-ui/chakra-ui/pull/8121)
   [`170198f`](https://github.com/chakra-ui/chakra-ui/commit/170198fc3936ad34f8136a2da173c12d9dc3dc36)
   Thanks [@kkieninger](https://github.com/kkieninger)! - ### Fixed
-
   - Fix hard-coded z-index for Menu in favor of one defined from the theme
   - Fix problem with leading and trailing spaces when getting initials for the
     Avatar component
   - Suppress unnecessary re-renders of Checkbox and Radio component
 
   ### Added
-
   - Add CSS `accentColor` property to style props
   - Add support for `asChild` in chakra factory
   - Export `toastStore` from `toast` component
@@ -2336,7 +2248,6 @@
   [`623e558`](https://github.com/chakra-ui/chakra-ui/commit/623e558ac22f84e6250387d0971aafe9713667a6)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Integrate Ark UI
   components to reduce maintenance surface.
-
   - Add `FileUpload` component
   - Remove `trigger=hover` in favor of `HoverCard`
   - Replace `Tooltip`, `Popover` and `HoverCard` with those from Ark UI
@@ -2375,14 +2286,12 @@
   [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
   `_open` and `_closed` pseudo props for styling their respective selectors.
-
   - `_open`: `&[data-state=open], &[open]`
   - `_closed`: `&[data-state=closed]`
   - `_groupOpen`: `[data-group][data-state=open] &`
   - `_groupClosed`: `[data-group][data-state=closed] &`
 
   Extend the existing pseudo props to support new selectors`
-
   - `_placeholder` now supports `&[data-placeholder]`
   - `_placeholderShow` now supports `&[data-placeholder-shown]`
   - `_fullscreen` now supports `&[data-fullscreen]`

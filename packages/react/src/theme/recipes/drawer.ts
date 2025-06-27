@@ -131,6 +131,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       start: {
         positioner: {
           justifyContent: "flex-start",
+          alignItems: "stretch",
         },
         content: {
           _open: {
@@ -151,6 +152,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       end: {
         positioner: {
           justifyContent: "flex-end",
+          alignItems: "stretch",
         },
         content: {
           _open: {
@@ -170,6 +172,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
 
       top: {
         positioner: {
+          justifyContent: "stretch",
           alignItems: "flex-start",
         },
         content: {
@@ -181,6 +184,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
 
       bottom: {
         positioner: {
+          justifyContent: "stretch",
           alignItems: "flex-end",
         },
         content: {
