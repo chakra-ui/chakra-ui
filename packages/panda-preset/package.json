@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/panda-preset",
-  "version": "3.21.0",
+  "version": "3.21.1",
   "description": "Panda preset for Chakra UI",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -59,7 +59,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@pandacss/types": "^0.53.6"
+    "@pandacss/types": "^0.54.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",

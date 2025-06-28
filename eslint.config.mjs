@@ -81,6 +81,7 @@ export default defineConfig([
       "react/forbid-prop-types": "off",
       "import/prefer-default-export": "off",
       "import/export": "off",
+      "import/namespace": "off",
       "no-underscore-dangle": "off",
       "no-shadow": "off",
       "no-plusplus": "off",
