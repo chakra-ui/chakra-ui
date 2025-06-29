@@ -27,6 +27,7 @@ export { TreeViewExpandedStyling as ExpandedStyling } from "compositions/example
 export { TreeViewExplicitExpand as ExplicitExpand } from "compositions/examples/tree-view-explicit-expand"
 export { TreeViewMultiSelect as MultiSelect } from "compositions/examples/tree-view-multi-select"
 export { TreeViewMutation as Mutation } from "compositions/examples/tree-view-mutation"
+export { TreeViewRemoveIndentation as RemoveIndentation } from "compositions/examples/tree-view-remove-indentation"
 export { TreeViewWithFilter as Filter } from "compositions/examples/tree-view-with-filter"
 export { TreeViewWithSizes as Sizes } from "compositions/examples/tree-view-with-sizes"
 export { TreeViewWithStore as Store } from "compositions/examples/tree-view-with-store"
