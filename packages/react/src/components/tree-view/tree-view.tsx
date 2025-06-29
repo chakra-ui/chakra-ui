@@ -12,6 +12,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { Box } from "../box"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -214,6 +215,15 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface TreeViewBranchBodyProps extends HTMLChakraProps<"div"> {}
+
+export const TreeViewBranchBody = withContext<
+  HTMLDivElement,
+  TreeViewBranchBodyProps
+>("div", "branchBody")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export type TreeViewNodeCheckboxProps = HTMLChakraProps<
   "div",
   ArkTreeView.NodeCheckboxBaseProps
@@ -226,35 +236,25 @@ export const TreeViewNodeCheckbox = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TreeViewNodeState {
-  value: string
-  indexPath: number[]
-  valuePath: string[]
-  disabled: boolean
-  selected: boolean
-  focused: boolean
-  depth: number
-  expanded: boolean
-  isBranch: boolean
-  loading: boolean
-}
-
 export interface TreeViewNodeRenderProps<T = TreeNode> {
   node: T
   indexPath: number[]
-  nodeState: TreeViewNodeState
+  nodeState: ArkTreeView.NodeState
 }
 
 export interface TreeViewNodeProps<T = TreeNode> {
   showIndentGuide?: boolean
   render: (props: TreeViewNodeRenderProps<T>) => React.ReactNode
+  renderBranch?: (props: TreeViewNodeRenderProps<T>) => React.ReactNode
+  branchProps?: TreeViewBranchProps
+  branchContentProps?: TreeViewBranchContentProps
 }
 
 export function TreeViewNode<T extends TreeNode = TreeNode>(
   props: TreeViewNodeProps<T>,
 ): React.ReactNode {
-  const { render, showIndentGuide } = props
-  const { collection } = useTreeViewContext()
+  const { render, showIndentGuide, branchProps, branchContentProps } = props
+  const tree = useTreeViewContext()
 
   const renderNode = (node: T, indexPath: number[]) => (
     <ArkTreeView.NodeProvider
@@ -266,15 +266,17 @@ export function TreeViewNode<T extends TreeNode = TreeNode>(
         {(nodeState) => {
           if (nodeState.isBranch) {
             return (
-              <TreeViewBranch>
+              <TreeViewBranch {...branchProps}>
                 {render({ node, indexPath, nodeState })}
-                <TreeViewBranchContent>
-                  {showIndentGuide && <TreeViewBranchIndentGuide />}
-                  {collection
-                    .getNodeChildren(node)
-                    .map((child, index) =>
-                      renderNode(child as T, [...indexPath, index]),
-                    )}
+                <TreeViewBranchContent {...branchContentProps}>
+                  <TreeViewBranchBody>
+                    {showIndentGuide && <TreeViewBranchIndentGuide />}
+                    {tree.collection
+                      .getNodeChildren(node)
+                      .map((child, index) =>
+                        renderNode(child as T, [...indexPath, index]),
+                      )}
+                  </TreeViewBranchBody>
                 </TreeViewBranchContent>
               </TreeViewBranch>
             )
@@ -288,8 +290,8 @@ export function TreeViewNode<T extends TreeNode = TreeNode>(
 
   return (
     <>
-      {collection
-        .getNodeChildren(collection.rootNode)
+      {tree.collection
+        .getNodeChildren(tree.collection.rootNode)
         .map((node, index) => renderNode(node as T, [index]))}
     </>
   )

@@ -9,7 +9,7 @@ type Important = ImportantMark | WhitespaceImportant
 type WithImportant<T> = T extends string ? `${T}${Important}` & { __important?: true } : T
 
 export type WithEscapeHatch<T> = T | `[${string}]` | WithColorOpacityModifier<T> | WithImportant<T>
-
+// eslint-disable-next-line
 export type OnlyKnown<Value> = Value extends boolean ? Value : Value extends `${infer _}` ? Value : never
 
 export interface UtilityValues {

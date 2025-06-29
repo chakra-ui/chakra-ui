@@ -1,4 +1,4 @@
-import { treeViewAnatomy } from "@ark-ui/react/tree-view"
+import { treeViewAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
 const itemStyle = defineStyle({
@@ -23,7 +23,7 @@ const itemStyle = defineStyle({
   _selected: {
     "--indicator-thickness": "spacing.0.5",
     layerStyle: "indicator.start",
-    fontWeight: "medium",
+    bg: "colorPalette.subtle",
   },
   _disabled: {
     layerStyle: "disabled",
@@ -52,12 +52,17 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
       textStyle: "sm",
     },
+    branch: {
+      position: "relative",
+    },
     branchContent: {
       position: "relative",
       overflow: "hidden",
       transitionProperty: "padding-bottom",
       transitionDuration: "normal",
       transitionTimingFunction: "default",
+    },
+    branchBody: {
       p: "2px",
     },
     branchIndentGuide: {
@@ -131,6 +136,21 @@ export const treeViewSlotRecipe = defineSlotRecipe({
           "--tree-padding-inline": "spacing.2",
           "--tree-padding-block": "spacing.1",
           "--tree-icon-size": "spacing.3",
+        },
+      },
+    },
+
+    animateContent: {
+      true: {
+        branchContent: {
+          _open: {
+            animationName: "expand-height, fade-in",
+            animationDuration: "moderate",
+          },
+          _closed: {
+            animationName: "collapse-height, fade-out",
+            animationDuration: "moderate",
+          },
         },
       },
     },

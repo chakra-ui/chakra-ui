@@ -1327,10 +1327,12 @@ export type TreeViewSlot =
   | "nodeCheckbox"
   | "root"
   | "tree"
+  | "branchBody"
 
 export interface TreeViewVariant {
   /** @default "md" */
   size?: "md" | "sm" | "xs" | undefined
+  animateContent?: boolean | undefined
 }
 
 export type TreeViewVariantProps = {

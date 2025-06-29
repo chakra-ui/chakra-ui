@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Highlight,
   Input,
   Stack,
   TreeView,
@@ -8,28 +9,41 @@ import {
   useFilter,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
+import { LuFile, LuFolder } from "react-icons/lu"
 
 export const TreeViewWithFilter = () => {
   const [collection, setCollection] = useState(initialCollection)
+  const [expanded, setExpanded] = useState<string[]>([])
+  const [query, setQuery] = useState("")
 
   const { contains } = useFilter({ sensitivity: "base" })
 
   const search = (search: string) => {
-    setCollection(
-      initialCollection.filter((node) => contains(node.name, search)),
+    setQuery(search)
+    const nextCollection = initialCollection.filter((node) =>
+      contains(node.name, search),
     )
+
+    // update collection
+    setCollection(nextCollection)
+
+    // expand all branches
+    setExpanded(nextCollection.getBranchValues())
   }
 
   return (
     <Stack gap="3">
       <Input
         size="sm"
-        placeholder="Filter tree..."
+        placeholder="Search for files: 'react'"
         onChange={(e) => search(e.target.value)}
       />
 
-      <TreeView.Root collection={collection}>
+      <TreeView.Root
+        collection={collection}
+        expandedValue={expanded}
+        onExpandedChange={(details) => setExpanded(details.expandedValue)}
+      >
         <TreeView.Label srOnly>Tree</TreeView.Label>
         <TreeView.Tree>
           <TreeView.Node
@@ -38,15 +52,26 @@ export const TreeViewWithFilter = () => {
               nodeState.isBranch ? (
                 <TreeView.BranchControl>
                   <LuFolder />
-                  <TreeView.BranchText>{node.name}</TreeView.BranchText>
+                  <TreeView.BranchText>
+                    <Highlight
+                      query={[query]}
+                      styles={{ bg: "gray.emphasized" }}
+                    >
+                      {node.name}
+                    </Highlight>
+                  </TreeView.BranchText>
                 </TreeView.BranchControl>
               ) : (
                 <TreeView.Item>
-                  <TreeView.ItemIndicator>
-                    <LuSquareCheck />
-                  </TreeView.ItemIndicator>
                   <LuFile />
-                  <TreeView.ItemText>{node.name}</TreeView.ItemText>
+                  <TreeView.ItemText>
+                    <Highlight
+                      query={[query]}
+                      styles={{ bg: "gray.emphasized" }}
+                    >
+                      {node.name}
+                    </Highlight>
+                  </TreeView.ItemText>
                 </TreeView.Item>
               )
             }
