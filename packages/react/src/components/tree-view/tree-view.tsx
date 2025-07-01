@@ -12,7 +12,6 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { Box } from "../box"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
