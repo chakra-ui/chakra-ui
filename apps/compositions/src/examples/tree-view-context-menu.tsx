@@ -1,20 +1,40 @@
 "use client"
 
-import { Menu, Portal, TreeView, createTreeCollection } from "@chakra-ui/react"
+import {
+  Menu,
+  Portal,
+  TreeView,
+  createTreeCollection,
+  useTreeViewContext,
+  useTreeViewNodeContext,
+  useTreeViewStyles,
+} from "@chakra-ui/react"
 import { useId } from "react"
 import { LuFile, LuFolder } from "react-icons/lu"
 
-interface NodeContextMenuProps extends Menu.RootProps {
-  triggerId: string
+interface TreeNodeContextMenuProps extends Menu.RootProps {
+  uid: string
+  node: Node
   children: React.ReactNode
 }
 
-const NodeContextMenu = (props: NodeContextMenuProps) => {
-  const { children, triggerId, ...rest } = props
+const TreeNodeContextMenu = (props: TreeNodeContextMenuProps) => {
+  const { children, uid, node, ...rest } = props
+
+  const treeView = useTreeViewContext()
+  const treeStyles = useTreeViewStyles()
+  const nodeState = useTreeViewNodeContext()
+
+  const attrs = nodeState.isBranch
+    ? treeView.getBranchControlProps({ node, indexPath: nodeState.indexPath })
+    : treeView.getItemProps({ node, indexPath: nodeState.indexPath })
+
+  const styles = nodeState.isBranch ? treeStyles.branchControl : treeStyles.item
+
   return (
-    <Menu.Root {...rest} ids={{ contextTrigger: triggerId }}>
-      <Menu.ContextTrigger asChild>
-        <span style={{ display: "contents" }}>{children}</span>
+    <Menu.Root {...rest} ids={{ contextTrigger: getNodeId(uid, node.id) }}>
+      <Menu.ContextTrigger as="div" {...attrs} css={styles}>
+        {children}
       </Menu.ContextTrigger>
       <Portal>
         <Menu.Positioner>
@@ -44,19 +64,15 @@ export const TreeViewContextMenu = () => {
           showIndentGuide
           render={({ node, nodeState }) =>
             nodeState.isBranch ? (
-              <TreeView.BranchControl>
-                <NodeContextMenu triggerId={getNodeId(uid, node)}>
-                  <LuFolder />
-                  <TreeView.BranchText>{node.name}</TreeView.BranchText>
-                </NodeContextMenu>
-              </TreeView.BranchControl>
+              <TreeNodeContextMenu uid={uid} node={node}>
+                <LuFolder />
+                <TreeView.BranchText>{node.name}</TreeView.BranchText>
+              </TreeNodeContextMenu>
             ) : (
-              <TreeView.Item>
-                <NodeContextMenu triggerId={getNodeId(uid, node)}>
-                  <LuFile />
-                  <TreeView.ItemText>{node.name}</TreeView.ItemText>
-                </NodeContextMenu>
-              </TreeView.Item>
+              <TreeNodeContextMenu uid={uid} node={node}>
+                <LuFile />
+                <TreeView.ItemText>{node.name}</TreeView.ItemText>
+              </TreeNodeContextMenu>
             )
           }
         />

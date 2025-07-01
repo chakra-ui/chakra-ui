@@ -22,7 +22,7 @@
     "prebuild": "pnpm generate:composition && pnpm build:react"
   },
   "dependencies": {
-    "@ark-ui/react": "5.15.4",
+    "@ark-ui/react": "5.16.0",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
     "@emotion/react": "11.14.0",
