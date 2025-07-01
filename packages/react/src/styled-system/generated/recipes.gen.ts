@@ -1332,6 +1332,8 @@ export type TreeViewSlot =
 export interface TreeViewVariant {
   /** @default "md" */
   size?: "md" | "sm" | "xs" | undefined
+  /** @default "subtle" */
+  variant?: "subtle" | "solid" | undefined
   animateContent?: boolean | undefined
 }
 

@@ -12,7 +12,6 @@ export default {
   ],
 } satisfies Meta
 
-export { TreeViewAsync as LazyLoad } from "compositions/examples/tree-view-async"
 export { TreeViewBasic as Basic } from "compositions/examples/tree-view-basic"
 export { TreeViewCheckbox as CheckboxTree } from "compositions/examples/tree-view-checkbox"
 export { TreeViewCollapseAnimation as CollapseAnimation } from "compositions/examples/tree-view-collapse-animation"
@@ -27,7 +26,9 @@ export { TreeViewExpandedStyling as ExpandedStyling } from "compositions/example
 export { TreeViewExplicitExpand as ExplicitExpand } from "compositions/examples/tree-view-explicit-expand"
 export { TreeViewMultiSelect as MultiSelect } from "compositions/examples/tree-view-multi-select"
 export { TreeViewMutation as Mutation } from "compositions/examples/tree-view-mutation"
+export { TreeViewAsync as LazyLoad } from "compositions/examples/tree-view-async"
 export { TreeViewRemoveIndentation as RemoveIndentation } from "compositions/examples/tree-view-remove-indentation"
 export { TreeViewWithFilter as Filter } from "compositions/examples/tree-view-with-filter"
+export { TreeViewWithVariants as Variants } from "compositions/examples/tree-view-with-variants"
 export { TreeViewWithSizes as Sizes } from "compositions/examples/tree-view-with-sizes"
 export { TreeViewWithStore as Store } from "compositions/examples/tree-view-with-store"

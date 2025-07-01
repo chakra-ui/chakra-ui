@@ -14,10 +14,10 @@ export const TreeViewWithSizes = () => {
             size={size}
             key={size}
           >
-            <TreeView.Label>Tree ({size})</TreeView.Label>
+            <TreeView.Label>Tree (size={size})</TreeView.Label>
             <TreeView.Tree>
               <TreeView.Node
-                showIndentGuide
+                indentGuide={<TreeView.BranchIndentGuide />}
                 render={({ node, nodeState }) =>
                   nodeState.isBranch ? (
                     <TreeView.BranchControl>

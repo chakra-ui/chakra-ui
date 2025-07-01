@@ -1,31 +1,41 @@
 "use client"
 
-import { TreeView, createTreeCollection } from "@chakra-ui/react"
+import { For, Stack, TreeView, createTreeCollection } from "@chakra-ui/react"
 import { LuFile, LuFolder } from "react-icons/lu"
 
-export const TreeViewBasic = () => {
+export const TreeViewWithVariants = () => {
   return (
-    <TreeView.Root collection={collection} maxW="sm">
-      <TreeView.Label>Tree</TreeView.Label>
-      <TreeView.Tree>
-        <TreeView.Node
-          indentGuide={<TreeView.BranchIndentGuide />}
-          render={({ node, nodeState }) =>
-            nodeState.isBranch ? (
-              <TreeView.BranchControl>
-                <LuFolder />
-                <TreeView.BranchText>{node.name}</TreeView.BranchText>
-              </TreeView.BranchControl>
-            ) : (
-              <TreeView.Item>
-                <LuFile />
-                <TreeView.ItemText>{node.name}</TreeView.ItemText>
-              </TreeView.Item>
-            )
-          }
-        />
-      </TreeView.Tree>
-    </TreeView.Root>
+    <Stack gap="8">
+      <For each={["subtle", "solid"]}>
+        {(variant) => (
+          <TreeView.Root
+            collection={collection}
+            maxW="sm"
+            variant={variant}
+            defaultSelectedValue={["node_modules"]}
+          >
+            <TreeView.Label>Tree (variant={variant})</TreeView.Label>
+            <TreeView.Tree>
+              <TreeView.Node
+                render={({ node, nodeState }) =>
+                  nodeState.isBranch ? (
+                    <TreeView.BranchControl>
+                      <LuFolder />
+                      <TreeView.BranchText>{node.name}</TreeView.BranchText>
+                    </TreeView.BranchControl>
+                  ) : (
+                    <TreeView.Item>
+                      <LuFile />
+                      <TreeView.ItemText>{node.name}</TreeView.ItemText>
+                    </TreeView.Item>
+                  )
+                }
+              />
+            </TreeView.Tree>
+          </TreeView.Root>
+        )}
+      </For>
+    </Stack>
   )
 }
 

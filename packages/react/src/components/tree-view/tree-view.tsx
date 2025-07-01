@@ -6,6 +6,7 @@ import {
   type TreeNode,
   useTreeViewContext,
 } from "@ark-ui/react"
+import type React from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -242,7 +243,7 @@ export interface TreeViewNodeRenderProps<T = TreeNode> {
 }
 
 export interface TreeViewNodeProps<T = TreeNode> {
-  showIndentGuide?: boolean
+  indentGuide?: React.ReactElement
   render: (props: TreeViewNodeRenderProps<T>) => React.ReactNode
   renderBranch?: (props: TreeViewNodeRenderProps<T>) => React.ReactNode
   branchProps?: TreeViewBranchProps
@@ -252,7 +253,7 @@ export interface TreeViewNodeProps<T = TreeNode> {
 export function TreeViewNode<T extends TreeNode = TreeNode>(
   props: TreeViewNodeProps<T>,
 ): React.ReactNode {
-  const { render, showIndentGuide, branchProps, branchContentProps } = props
+  const { render, indentGuide, branchProps, branchContentProps } = props
   const tree = useTreeViewContext()
 
   const renderNode = (node: T, indexPath: number[]) => (
@@ -269,7 +270,7 @@ export function TreeViewNode<T extends TreeNode = TreeNode>(
                 {render({ node, indexPath, nodeState })}
                 <TreeViewBranchContent {...branchContentProps}>
                   <TreeViewBranchBody>
-                    {showIndentGuide && <TreeViewBranchIndentGuide />}
+                    {indentGuide}
                     {tree.collection
                       .getNodeChildren(node)
                       .map((child, index) =>

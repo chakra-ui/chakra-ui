@@ -47,7 +47,7 @@ export const TreeViewExpandCollapseAll = () => {
       </HStack>
       <TreeView.Tree>
         <TreeView.Node
-          showIndentGuide
+          indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node, nodeState }) =>
             nodeState.isBranch ? (
               <TreeView.BranchControl>

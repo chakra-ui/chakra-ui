@@ -1,11 +1,11 @@
 import { treeViewAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
-const itemStyle = defineStyle({
+const baseItemStyle = defineStyle({
   display: "flex",
   alignItems: "center",
   gap: "var(--tree-item-gap)",
-  rounded: "l1",
+  rounded: "l2",
   userSelect: "none",
   position: "relative",
   "--tree-depth": "calc(var(--depth) - 1)",
@@ -20,13 +20,26 @@ const itemStyle = defineStyle({
   "&:hover, &:focus-visible": {
     layerStyle: "fill.subtle",
   },
+  _disabled: {
+    layerStyle: "disabled",
+  },
+})
+
+const baseTextStyle = defineStyle({
+  flex: "1",
+})
+
+const subtleVariantStyle = defineStyle({
   _selected: {
     "--indicator-thickness": "spacing.0.5",
     layerStyle: "indicator.start",
     bg: "colorPalette.subtle",
   },
-  _disabled: {
-    layerStyle: "disabled",
+})
+
+const solidVariantStyle = defineStyle({
+  _selected: {
+    layerStyle: "fill.solid",
   },
 })
 
@@ -77,9 +90,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
         "calc(var(--tree-inset) + calc(var(--tree-icon-size) * 0.5))",
       zIndex: "1",
     },
-    branchControl: {
-      ...itemStyle,
-    },
     branchIndicator: {
       color: "fg.muted",
       transformOrigin: "center",
@@ -95,15 +105,10 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
     },
-    item: {
-      ...itemStyle,
-    },
-    itemText: {
-      flex: "1",
-    },
-    branchText: {
-      flex: "1",
-    },
+    branchControl: baseItemStyle,
+    item: baseItemStyle,
+    itemText: baseTextStyle,
+    branchText: baseTextStyle,
     nodeCheckbox: {
       display: "inline-flex",
     },
@@ -140,6 +145,17 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       },
     },
 
+    variant: {
+      subtle: {
+        branchControl: subtleVariantStyle,
+        item: subtleVariantStyle,
+      },
+      solid: {
+        branchControl: solidVariantStyle,
+        item: solidVariantStyle,
+      },
+    },
+
     animateContent: {
       true: {
         branchContent: {
@@ -158,5 +174,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
+    variant: "subtle",
   },
 })

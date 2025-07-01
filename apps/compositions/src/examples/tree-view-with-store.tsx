@@ -15,7 +15,7 @@ export const TreeViewWithStore = () => {
       <pre>{JSON.stringify(store.expandedValue)}</pre>
       <TreeView.Tree>
         <TreeView.Node<Node>
-          showIndentGuide
+          indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node }) =>
             node.children ? (
               <TreeView.BranchControl>

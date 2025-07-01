@@ -9,7 +9,7 @@ export const TreeViewMultiSelect = () => {
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node<Node>
-          showIndentGuide
+          indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node }) =>
             node.children ? (
               <TreeView.BranchControl>

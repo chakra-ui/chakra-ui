@@ -35,7 +35,7 @@ export const TreeViewMutation = () => {
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node
-          showIndentGuide
+          indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node, nodeState, indexPath }) =>
             nodeState.isBranch ? (
               <TreeView.BranchControl role="">
