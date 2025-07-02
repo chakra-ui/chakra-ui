@@ -1,6 +1,7 @@
 import { comboboxAnatomy as arkComboboxAnatomy } from "@ark-ui/react"
 import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion"
 import { createAnatomy } from "@ark-ui/react/anatomy"
+import { clipboardAnatomy as arkClipboardAnatomy } from "@ark-ui/react/clipboard"
 import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
@@ -241,3 +242,5 @@ export { progressAnatomy } from "@ark-ui/react/progress"
 export { qrCodeAnatomy } from "@ark-ui/react/qr-code"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
+
+export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
