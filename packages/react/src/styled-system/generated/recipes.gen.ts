@@ -1333,7 +1333,7 @@ export interface TreeViewVariant {
   /** @default "md" */
   size?: "md" | "sm" | "xs" | undefined
   /** @default "subtle" */
-  variant?: "subtle" | "solid" | undefined
+  variant?: "subtle" | "solid" | "surface" | undefined
   animateContent?: boolean | undefined
 }
 

@@ -31,9 +31,13 @@ const baseTextStyle = defineStyle({
 
 const subtleVariantStyle = defineStyle({
   _selected: {
-    "--indicator-thickness": "spacing.0.5",
-    layerStyle: "indicator.start",
     bg: "colorPalette.subtle",
+  },
+})
+
+const surfaceVariantStyle = defineStyle({
+  _selected: {
+    layerStyle: "fill.surface",
   },
 })
 
@@ -153,6 +157,10 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       solid: {
         branchControl: solidVariantStyle,
         item: solidVariantStyle,
+      },
+      surface: {
+        branchControl: surfaceVariantStyle,
+        item: surfaceVariantStyle,
       },
     },
 
