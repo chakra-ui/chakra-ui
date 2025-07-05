@@ -12,8 +12,61 @@ import { ClientOnly, Skeleton } from "@chakra-ui/react"
 ```
 
 ```jsx
-<ClientOnly fallback={<Skeleton />}>
+<ClientOnly>
   <ColorModeButton />
+</ClientOnly>
+```
+
+## Examples
+
+### Fallback
+
+Use the `fallback` prop to render a loading state while the client-side content
+is being prepared.
+
+```jsx
+<ClientOnly fallback={<Skeleton boxSize="8" />}>
+  <ColorModeButton />
+</ClientOnly>
+```
+
+### Render Prop (Recommended)
+
+When your component accesses browser-only APIs (like `window`, `document`, or
+`localStorage`), use the render prop pattern to prevent server-side rendering
+issues:
+
+```jsx
+<ClientOnly fallback={<Skeleton />}>
+  {() => (
+    <div>
+      Current URL: {window.location.href}
+      Screen width: {window.innerWidth}px
+    </div>
+  )}
+</ClientOnly>
+```
+
+This pattern ensures that components accessing browser APIs are only evaluated
+on the client side, preventing hydration mismatches and server-side errors.
+
+> It can also be used for rendering heavy components that are not needed on the
+> server side.
+
+### Direct Children (Use with Caution)
+
+While you can pass components directly as children, be careful with components
+that access browser APIs:
+
+```tsx
+/* ❌ This may cause server-side errors */
+<ClientOnly fallback={<Skeleton />}>
+  <ComponentThatUsesWindow />
+</ClientOnly>
+
+/* ✅ This is safe */
+<ClientOnly fallback={<Skeleton />}>
+  {() => <ComponentThatUsesWindow />}
 </ClientOnly>
 ```
 
