@@ -5,7 +5,11 @@ import { LuSquareMinus, LuSquarePlus } from "react-icons/lu"
 
 export const TreeViewExpandedStyling = () => {
   return (
-    <TreeView.Root collection={collection} maxW="sm">
+    <TreeView.Root
+      collection={collection}
+      maxW="sm"
+      defaultExpandedValue={["node_modules"]}
+    >
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node
