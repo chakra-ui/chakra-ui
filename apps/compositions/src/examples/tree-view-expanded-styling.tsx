@@ -8,6 +8,8 @@ export const TreeViewExpandedStyling = () => {
     <TreeView.Root
       collection={collection}
       maxW="sm"
+      variant="solid"
+      colorPalette="teal"
       defaultExpandedValue={["node_modules"]}
     >
       <TreeView.Label>Tree</TreeView.Label>

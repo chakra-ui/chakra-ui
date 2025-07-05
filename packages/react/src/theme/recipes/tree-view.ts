@@ -18,7 +18,7 @@ const baseItemStyle = defineStyle({
   focusRingColor: "border.emphasized",
   focusRingWidth: "2px",
   "&:hover, &:focus-visible": {
-    layerStyle: "fill.subtle",
+    bg: "colorPalette.subtle",
   },
   _disabled: {
     layerStyle: "disabled",
