@@ -44,7 +44,7 @@ export const TreeViewAsync = () => {
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node<Node>
-          showIndentGuide
+          indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node, nodeState }) =>
             nodeState.isBranch ? (
               <TreeView.BranchControl>
