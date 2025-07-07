@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
 /* eslint-disable jsx-a11y/alt-text */
 import { SVGProps } from "react"
 
@@ -100,12 +99,14 @@ export interface OpenGraphImageProps {
   backgroundSrc: ArrayBuffer
   title?: string
   category?: string
+  description?: string | null
 }
 
 export function OpenGraphImage({
   title,
   category,
   backgroundSrc,
+  description,
 }: OpenGraphImageProps) {
   return (
     <div
@@ -172,6 +173,27 @@ export function OpenGraphImage({
         >
           {title}
         </div>
+        {description ? (
+          <div
+            style={{
+              color: "rgba(240, 240, 240, 0.8)",
+              fontFamily: "Satoshi",
+              fontSize: "28px",
+              fontWeight: 400,
+              lineHeight: "37.8px",
+              letterSpacing: "-0.03em",
+              textAlign: "left",
+              textWrap: "wrap",
+              maxWidth: "719px",
+              marginTop: "26px",
+              wordBreak: "break-all",
+            }}
+          >
+            {description.length > 120
+              ? `${description.slice(0, 120)}...`
+              : description}
+          </div>
+        ) : null}
       </div>
 
       <div

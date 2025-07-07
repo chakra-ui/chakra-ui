@@ -83,7 +83,7 @@ export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
     title: page?.title,
     description: page?.description,
     openGraph: {
-      images: `/og?title=${page?.title}&category=${category}`,
+      images: `/og?title=${page?.title}&category=${category}&description=${page?.description}`,
     },
   }
 }
