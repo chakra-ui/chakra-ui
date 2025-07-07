@@ -33,7 +33,7 @@ export default function ShowcasePage() {
           </Stack>
         </Stack>
 
-        <SimpleGrid minChildWidth="420px" gap="6">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="6">
           {showcases.map(({ title, description, url, image }) => (
             <Card.Root
               size="sm"
@@ -42,6 +42,7 @@ export default function ShowcasePage() {
               cursor="pointer"
               overflow="hidden"
               focusVisibleRing="inside"
+              width="100%"
             >
               <Link href={url}>
                 <Image
