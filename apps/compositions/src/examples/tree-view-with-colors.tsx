@@ -1,23 +1,23 @@
 "use client"
 
-import { For, Stack, TreeView, createTreeCollection } from "@chakra-ui/react"
+import { For, TreeView, Wrap, createTreeCollection } from "@chakra-ui/react"
+import { colorPalettes } from "compositions/lib/color-palettes"
 import { LuFile, LuFolder } from "react-icons/lu"
 
-export const TreeViewWithVariants = () => {
+export const TreeViewWithColors = () => {
   return (
-    <Stack gap="8">
-      <For each={["subtle", "solid"]}>
-        {(variant) => (
+    <Wrap gap="8">
+      <For each={colorPalettes}>
+        {(colorPalette) => (
           <TreeView.Root
-            key={variant}
+            key={colorPalette}
             collection={collection}
-            maxW="sm"
+            maxW="xs"
             size="sm"
-            variant={variant}
-            colorPalette="teal"
+            colorPalette={colorPalette}
             defaultSelectedValue={["node_modules"]}
           >
-            <TreeView.Label>Tree (variant={variant})</TreeView.Label>
+            <TreeView.Label>Tree (colorPalette={colorPalette})</TreeView.Label>
             <TreeView.Tree>
               <TreeView.Node
                 render={({ node, nodeState }) =>
@@ -38,7 +38,7 @@ export const TreeViewWithVariants = () => {
           </TreeView.Root>
         )}
       </For>
-    </Stack>
+    </Wrap>
   )
 }
 

@@ -15,10 +15,8 @@ export {
   TreeViewRoot as Root,
   TreeViewRootProvider as RootProvider,
   TreeViewTree as Tree,
-  TreeViewBranchBody as BranchBody,
 } from "./tree-view"
 export type {
-  TreeViewBranchBodyProps as BranchBodyProps,
   TreeViewBranchContentProps as BranchContentProps,
   TreeViewBranchControlProps as BranchControlProps,
   TreeViewBranchIndentGuideProps as BranchIndentGuideProps,

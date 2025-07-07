@@ -18,7 +18,7 @@ const baseItemStyle = defineStyle({
   focusRingColor: "border.emphasized",
   focusRingWidth: "2px",
   "&:hover, &:focus-visible": {
-    bg: "colorPalette.subtle",
+    bg: "bg.muted",
   },
   _disabled: {
     layerStyle: "disabled",
@@ -32,12 +32,7 @@ const baseTextStyle = defineStyle({
 const subtleVariantStyle = defineStyle({
   _selected: {
     bg: "colorPalette.subtle",
-  },
-})
-
-const surfaceVariantStyle = defineStyle({
-  _selected: {
-    layerStyle: "fill.surface",
+    color: "colorPalette.fg",
   },
 })
 
@@ -74,13 +69,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
     },
     branchContent: {
       position: "relative",
-      overflow: "hidden",
-      transitionProperty: "padding-bottom",
-      transitionDuration: "normal",
-      transitionTimingFunction: "default",
-    },
-    branchBody: {
-      p: "2px",
     },
     branchIndentGuide: {
       height: "100%",
@@ -157,10 +145,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       solid: {
         branchControl: solidVariantStyle,
         item: solidVariantStyle,
-      },
-      surface: {
-        branchControl: surfaceVariantStyle,
-        item: surfaceVariantStyle,
       },
     },
 

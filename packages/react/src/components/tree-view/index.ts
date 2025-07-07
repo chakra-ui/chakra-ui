@@ -1,7 +1,6 @@
 export {
   TreeViewBranch,
   TreeViewBranchContent,
-  TreeViewBranchBody,
   TreeViewBranchControl,
   TreeViewBranchIndentGuide,
   TreeViewBranchIndicator,
@@ -19,7 +18,6 @@ export {
   useTreeViewStyles,
 } from "./tree-view"
 export type {
-  TreeViewBranchBodyProps,
   TreeViewBranchContentProps,
   TreeViewBranchControlProps,
   TreeViewBranchIndentGuideProps,

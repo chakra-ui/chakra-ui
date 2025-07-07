@@ -5,7 +5,7 @@ import { LuFile, LuFolder } from "react-icons/lu"
 
 export const TreeViewBasic = () => {
   return (
-    <TreeView.Root collection={collection} maxW="sm">
+    <TreeView.Root collection={collection} maxW="sm" colorPalette="red">
       <TreeView.Label>Tree</TreeView.Label>
       <TreeView.Tree>
         <TreeView.Node
