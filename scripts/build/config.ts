@@ -17,7 +17,8 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
 
   const packageJson = await import(resolve(dir, "package.json"))
 
-  const isCli = packageJson.bin !== undefined
+  const isCli =
+    packageJson.bin !== undefined || packageJson.name.includes("docgen")
 
   const plugins: Plugin[] = [
     nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),

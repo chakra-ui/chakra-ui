@@ -20,5 +20,11 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
     "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@chakra-ui/docgen": "workspace:*",
+    "typescript": "5.8.3",
+    "@tsconfig/node22": "^22.0.1",
+    "tsx": "^4.20.3"
   }
 }

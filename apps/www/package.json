@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "5.16.1",
+    "@chakra-ui/docgen": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
     "@emotion/react": "11.14.0",

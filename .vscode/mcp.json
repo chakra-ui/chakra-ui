@@ -5,7 +5,7 @@
       "command": "/bin/bash",
       "args": [
         "-c",
-        "source ~/.nvm/nvm.sh && node /Users/tioluwanikolawole/Documents/chakra-ui/mcp/dist/server.js"
+        "source ~/.nvm/nvm.sh && node /Users/tioluwanikolawole/Documents/chakra-ui/apps/mcp/dist/server.js"
       ]
     }
   }
