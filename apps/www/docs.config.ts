@@ -153,6 +153,7 @@ const docsLinks: NavItem = {
             { title: "Toast", url: "toast" },
             { title: "Toggle Tip", url: "toggle-tip" },
             { title: "Tooltip", url: "tooltip" },
+            { title: "Tree View", url: "tree-view", status: "beta" },
           ],
         },
         {
