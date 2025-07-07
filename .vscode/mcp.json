@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "chakra-mcp": {
+      "type": "stdio",
+      "command": "/bin/bash",
+      "args": [
+        "-c",
+        "source ~/.nvm/nvm.sh && node /Users/tioluwanikolawole/Documents/chakra-ui/mcp/dist/server.js"
+      ]
+    }
+  }
+}

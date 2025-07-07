@@ -1,0 +1,24 @@
+{
+  "name": "chakra-mcp",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc && chmod 755 dist/server.js",
+    "dev": "tsc --watch"
+  },
+  "bin": {
+    "chakra-mcp": "./dist/server.js"
+  },
+  "keywords": [
+    "chakra",
+    "mcp",
+    "boilerplate"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "description": "Chakra MCP (Model Context Protocol) server for Chakra UI",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "zod": "^3.24.4"
+  }
+}
