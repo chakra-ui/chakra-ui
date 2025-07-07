@@ -1,5 +1,31 @@
 # @chakra-ui/react
 
+## 3.22.0
+
+### Minor Changes
+
+- [#10111](https://github.com/chakra-ui/chakra-ui/pull/10111)
+  [`32967aa`](https://github.com/chakra-ui/chakra-ui/commit/32967aa8499cd05966c8d3274adf01bc96411516)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new TreeView
+  component that is used to represent hierarchical data in a tree structure.
+
+### Patch Changes
+
+- [#10126](https://github.com/chakra-ui/chakra-ui/pull/10126)
+  [`ca40993`](https://github.com/chakra-ui/chakra-ui/commit/ca40993f78cd4de092a38c2e00158b8d686a0f27)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **Clipboard**: Fix issue
+  where `clipboardAnatomy` was not exported from `@chakra-ui/react/anatomy`
+  - **Combobox**
+    - Expose `reason` to `onOpenChange` and `onInputValueChange` callbacks
+    - Expose `api.clearHighlightedValue` function to clear highlighted value
+  - **Toast**: Fix issue where toast `title` or `description` could not accept
+    React element
+  - **Progress**: Improve `valueAsString` formatting
+  - **Select**
+    - Select highlighted item only if it exists in the collection
+    - Expose `api.clearHighlightedValue` function to clear highlighted value
+  - **ClientOnly**: Support `children` as a function
+
 ## 3.21.1
 
 ### Patch Changes
