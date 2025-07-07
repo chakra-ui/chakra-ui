@@ -1,9 +1,11 @@
+"use client"
+
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { LuChevronRight, LuExternalLink, LuFile } from "react-icons/lu"
 
 export const TreeViewWithLinks = () => {
   return (
-    <TreeView.Root collection={collection} maxW="2xs" colorPalette="teal">
+    <TreeView.Root collection={collection} maxW="2xs">
       <TreeView.Tree>
         <TreeView.Node
           render={({ node, nodeState }) =>

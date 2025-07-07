@@ -1,7 +1,7 @@
 "use client"
 
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
-import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
+import { LuFile, LuFolder } from "react-icons/lu"
 
 export const TreeViewMultiSelect = () => {
   return (
@@ -18,9 +18,6 @@ export const TreeViewMultiSelect = () => {
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
-                <TreeView.ItemIndicator>
-                  <LuSquareCheck />
-                </TreeView.ItemIndicator>
                 <LuFile />
                 <TreeView.ItemText>{node.name}</TreeView.ItemText>
               </TreeView.Item>
