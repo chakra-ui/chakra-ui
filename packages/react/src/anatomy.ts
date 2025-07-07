@@ -15,7 +15,6 @@ import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/ratin
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
-import { treeViewAnatomy as arkTreeViewAnatomy } from "@ark-ui/react/tree-view"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
 
