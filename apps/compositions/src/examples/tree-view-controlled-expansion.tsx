@@ -2,7 +2,7 @@
 
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { useState } from "react"
-import { LuFile, LuFolder, LuSquareCheck } from "react-icons/lu"
+import { LuFile, LuFolder } from "react-icons/lu"
 
 export const TreeViewControlledExpansion = () => {
   const [expandedValue, setExpandedValue] = useState<string[]>(["node_modules"])
@@ -24,9 +24,6 @@ export const TreeViewControlledExpansion = () => {
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
-                <TreeView.ItemIndicator>
-                  <LuSquareCheck />
-                </TreeView.ItemIndicator>
                 <LuFile />
                 <TreeView.ItemText>{node.name}</TreeView.ItemText>
               </TreeView.Item>
