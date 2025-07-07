@@ -29,7 +29,6 @@ import { TreeView } from "@chakra-ui/react"
       <TreeView.BranchContent>
         <TreeView.BranchIndentGuide />
         <TreeView.Item />
-        <TreeView.Item />
       </TreeView.BranchContent>
     </TreeView.Branch>
     <TreeView.Item />
@@ -71,12 +70,7 @@ const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
       {node.children ? (
         <TreeView.Branch>
           <TreeView.BranchControl>
-            <TreeView.BranchText>
-              <FolderIcon /> {node.name}
-            </TreeView.BranchText>
-            <TreeView.BranchIndicator>
-              <ChevronRightIcon />
-            </TreeView.BranchIndicator>
+            <TreeView.BranchText>{node.name}</TreeView.BranchText>
           </TreeView.BranchControl>
           <TreeView.BranchContent>
             <TreeView.BranchIndentGuide />
@@ -91,13 +85,7 @@ const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
         </TreeView.Branch>
       ) : (
         <TreeView.Item>
-          <TreeView.ItemIndicator>
-            <CheckSquareIcon />
-          </TreeView.ItemIndicator>
-          <TreeView.ItemText>
-            <FileIcon />
-            {node.name}
-          </TreeView.ItemText>
+          <TreeView.ItemText>{node.name}</TreeView.ItemText>
         </TreeView.Item>
       )}
     </TreeView.NodeProvider>
