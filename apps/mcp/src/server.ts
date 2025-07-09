@@ -11,8 +11,6 @@ const getSemanticTokens = () => {
     .map(([key]) => key)
 }
 
-const ARK_BASE_URL = "https://ark-ui.com/api/types/react"
-
 const COMPONENTS_LIST = [
   "accordion",
   "avatar",
@@ -36,16 +34,21 @@ export const server = new McpServer({
 
 server.tool(
   "get_component_props",
-  "Get detailed properties of a specific Chakra UI component. You can filter by category and choose output format.",
+  "Get detailed properties of a specific Chakra UI component. This tool retrieves the properties, attributes, design related props for a component, like size, variant, etc. and configuration options available for a given Chakra UI component.",
   {
     component: z
       .enum(COMPONENTS_LIST)
       .describe("The name of the Chakra UI component to get properties for"),
   },
   async ({ component }) => {
-    const componentPropsResp = await fetch(`${ARK_BASE_URL}/${component}`)
+    const arkPropsResp = await fetch(
+      `https://ark-ui.com/api/types/react/${component}`,
+    )
+    const recipeResp = await fetch(
+      `https://chakra-ui.com/types/recipe/${component}.json`,
+    )
 
-    if (!componentPropsResp.ok) {
+    if (!arkPropsResp.ok || !recipeResp.ok) {
       return {
         content: [
           {
@@ -56,50 +59,23 @@ server.tool(
       }
     }
 
-    const componentProps = await componentPropsResp.json()
+    const recipeProps = await recipeResp.json()
+    const componentProps = await arkPropsResp.json()
+
+    const props = {
+      ...(typeof recipeProps === "object" && recipeProps !== null
+        ? recipeProps
+        : {}),
+      ...(typeof componentProps === "object" && componentProps !== null
+        ? componentProps
+        : {}),
+    }
 
     return {
       content: [
         {
           type: "text",
-          text: JSON.stringify(componentProps),
-        },
-      ],
-    }
-  },
-)
-
-server.tool(
-  "get_component_recipe",
-  "Use this tool to get design related props for a component, like size, variant, etc.",
-  {
-    component: z
-      .enum(COMPONENTS_LIST)
-      .describe("The name of the Chakra UI component to get properties for"),
-  },
-  async ({ component }) => {
-    const recipeResp = await fetch(
-      `https://chakra-ui.com/types/recipe/${component}.json`,
-    )
-
-    if (!recipeResp.ok) {
-      return {
-        content: [
-          {
-            type: "text",
-            text: `Failed to fetch recipe for component ${component}`,
-          },
-        ],
-      }
-    }
-
-    const recipe = await recipeResp.json()
-
-    return {
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify(recipe),
+          text: JSON.stringify(props),
         },
       ],
     }
