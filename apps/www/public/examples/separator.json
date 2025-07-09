@@ -1,0 +1,61 @@
+{
+  "name": "separator",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "separator-basic",
+      "content": "export const SeparatorBasic = () => {\n  return (\n    <Stack>\n      <Text>First</Text>\n      <Separator />\n      <Text>Second</Text>\n      <Separator />\n      <Text>Third</Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Separator, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "separator-vertical",
+      "content": "export const SeparatorVertical = () => {\n  return (\n    <HStack gap=\"4\">\n      <Text>First</Text>\n      <Separator orientation=\"vertical\" height=\"4\" />\n      <Text>Second</Text>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Separator, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "separator-with-label",
+      "content": "export const SeparatorWithLabel = () => {\n  return (\n    <Stack>\n      <HStack>\n        <Text flexShrink=\"0\">Label (start)</Text>\n        <Separator flex=\"1\" />\n      </HStack>\n\n      <HStack>\n        <Separator flex=\"1\" />\n        <Text flexShrink=\"0\">Label (end)</Text>\n      </HStack>\n\n      <HStack>\n        <Separator flex=\"1\" />\n        <Text flexShrink=\"0\">Label (center)</Text>\n        <Separator flex=\"1\" />\n      </HStack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Separator, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "separator-with-responsive-orientation",
+      "content": "export const SeparatorWithResponsiveOrientation = () => {\n  return (\n    <Stack direction={{ base: \"row\", md: \"column\" }} align=\"stretch\">\n      <Box>First</Box>\n      <Separator orientation={{ base: \"vertical\", sm: \"horizontal\" }} />\n      <Box>Second</Box>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Separator, Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "separator-with-sizes",
+      "content": "export const SeparatorWithSizes = () => {\n  return (\n    <Stack gap=\"4\">\n      <Separator size=\"xs\" />\n      <Separator size=\"sm\" />\n      <Separator size=\"md\" />\n      <Separator size=\"lg\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Separator, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "separator-with-variants",
+      "content": "export const SeparatorWithVariants = () => {\n  return (\n    <Stack>\n      <Separator variant=\"solid\" />\n      <Separator variant=\"dashed\" />\n      <Separator variant=\"dotted\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Separator, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Separator } from \"@chakra-ui/react\""
+    }
+  ]
+}

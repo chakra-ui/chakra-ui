@@ -16,10 +16,11 @@
     "types:recipe": "pnpm tsx scripts/types/recipe.ts",
     "types:component": "pnpm tsx scripts/types/component.ts",
     "generate:composition": "pnpm tsx scripts/composition.ts",
+    "generate:examples": "pnpm tsx scripts/examples.ts",
     "generate:types": "pnpm types:ark && pnpm types:recipe && pnpm types:component",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
-    "prebuild": "pnpm generate:composition && pnpm build:react"
+    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react"
   },
   "dependencies": {
     "@ark-ui/react": "5.16.1",

@@ -1,0 +1,303 @@
+{
+  "name": "input",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "input-basic",
+      "content": "export const InputBasic = () => {\n  return <Input placeholder=\"Enter your email\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-card-details",
+      "content": "\"use client\"\nconst images = cardImages as unknown as CardImages\n\nconst CardImage = (props: ReturnType<typeof usePaymentInputs>) => {\n  const { meta, getCardImageProps } = props\n  return (\n    <Show\n      when={meta.cardType}\n      fallback={<LuCreditCard size={16} aria-hidden=\"true\" />}\n    >\n      <svg {...getCardImageProps({ images })} />\n    </Show>\n  )\n}\n\nexport const InputWithCardDetails = () => {\n  const payment = usePaymentInputs()\n  return (\n    <Box spaceY=\"-1px\">\n      <InputGroup\n        zIndex={{ _focusWithin: \"1\" }}\n        endElement={<CardImage {...payment} />}\n      >\n        <Input roundedBottom=\"0\" {...payment.getCardNumberProps()} />\n      </InputGroup>\n      <Group w=\"full\" attached>\n        <Input roundedTopLeft=\"0\" {...payment.getExpiryDateProps()} />\n        <Input roundedTopRight=\"0\" {...payment.getCVCProps()} />\n      </Group>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Group, Input, InputGroup, Show } from \"@chakra-ui/react\"",
+        "import { LuCreditCard } from \"react-icons/lu\"",
+        "import { usePaymentInputs } from \"react-payment-inputs\"",
+        "import cardImages, { type CardImages } from \"react-payment-inputs/images\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-payment-inputs",
+        "react-payment-inputs"
+      ]
+    },
+    {
+      "name": "input-with-card-number",
+      "content": "\"use client\"\nexport const InputWithCardNumber = () => {\n  const { wrapperProps, getCardNumberProps } = usePaymentInputs()\n  return (\n    <InputGroup {...wrapperProps} endElement={<LuCreditCard />}>\n      <Input {...getCardNumberProps()} />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\"",
+        "import { LuCreditCard } from \"react-icons/lu\"",
+        "import { usePaymentInputs } from \"react-payment-inputs\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-payment-inputs"
+      ]
+    },
+    {
+      "name": "input-with-character-counter",
+      "content": "\"use client\"\nconst MAX_CHARACTERS = 20\n\nexport const InputWithCharacterCounter = () => {\n  const [value, setValue] = useState(\"\")\n  return (\n    <InputGroup\n      endElement={\n        <Span color=\"fg.muted\" textStyle=\"xs\">\n          {value.length} / {MAX_CHARACTERS}\n        </Span>\n      }\n    >\n      <Input\n        placeholder=\"Enter your message\"\n        value={value}\n        maxLength={MAX_CHARACTERS}\n        onChange={(e) => {\n          setValue(e.currentTarget.value.slice(0, MAX_CHARACTERS))\n        }}\n      />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup, Span } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-clear-button",
+      "content": "\"use client\"\nexport const InputWithClearButton = () => {\n  const [value, setValue] = useState(\"Initial value\")\n  const inputRef = useRef<HTMLInputElement | null>(null)\n\n  const endElement = value ? (\n    <CloseButton\n      size=\"xs\"\n      onClick={() => {\n        setValue(\"\")\n        inputRef.current?.focus()\n      }}\n      me=\"-2\"\n    />\n  ) : undefined\n\n  return (\n    <InputGroup endElement={endElement}>\n      <Input\n        ref={inputRef}\n        placeholder=\"Email\"\n        value={value}\n        onChange={(e) => {\n          setValue(e.currentTarget.value)\n        }}\n      />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton, Input, InputGroup } from \"@chakra-ui/react\"",
+        "import { useRef, useState } from \"react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-disabled",
+      "content": "export const InputWithDisabled = () => {\n  return <Input disabled placeholder=\"disabled\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-end-addon",
+      "content": "export const InputWithEndAddon = () => {\n  return (\n    <InputGroup endAddon=\".com\">\n      <Input placeholder=\"yoursite\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-end-button",
+      "content": "export const InputWithEndButton = () => {\n  return (\n    <Group attached w=\"full\" maxW=\"sm\">\n      <Input flex=\"1\" placeholder=\"Enter your email\" />\n      <Button bg=\"bg.subtle\" variant=\"outline\">\n        Submit\n      </Button>\n    </Group>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Group, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-end-icon",
+      "content": "export const InputWithEndIcon = () => {\n  return (\n    <InputGroup endElement={<LuMail />}>\n      <Input placeholder=\"Email\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\"",
+        "import { LuMail } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "input-with-end-text",
+      "content": "export const InputWithEndText = () => {\n  return (\n    <InputGroup endElement=\".com\">\n      <Input placeholder=\"yoursite\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-error-text",
+      "content": "export const InputWithErrorText = () => {\n  return (\n    <Field.Root invalid>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"Enter your email\" />\n      <Field.ErrorText>This field is required</Field.ErrorText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-field",
+      "content": "export const InputWithField = () => {\n  return (\n    <HStack gap=\"10\" width=\"full\">\n      <Field.Root required>\n        <Field.Label>\n          Email <Field.RequiredIndicator />\n        </Field.Label>\n        <Input placeholder=\"me@example.com\" variant=\"subtle\" />\n      </Field.Root>\n      <Field.Root required>\n        <Field.Label>\n          Email <Field.RequiredIndicator />\n        </Field.Label>\n        <Input placeholder=\"me@example.com\" variant=\"outline\" />\n      </Field.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, HStack, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-floating-label",
+      "content": "export const InputWithFloatingLabel = () => {\n  return (\n    <Field.Root>\n      <Box pos=\"relative\" w=\"full\">\n        <Input className=\"peer\" placeholder=\"\" />\n        <Field.Label css={floatingStyles}>Email</Field.Label>\n      </Box>\n    </Field.Root>\n  )\n}\n\nconst floatingStyles = defineStyle({\n  pos: \"absolute\",\n  bg: \"bg\",\n  px: \"0.5\",\n  top: \"-3\",\n  insetStart: \"2\",\n  fontWeight: \"normal\",\n  pointerEvents: \"none\",\n  transition: \"position\",\n  _peerPlaceholderShown: {\n    color: \"fg.muted\",\n    top: \"2.5\",\n    insetStart: \"3\",\n  },\n  _peerFocusVisible: {\n    color: \"fg\",\n    top: \"-3\",\n    insetStart: \"2\",\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Field, Input, defineStyle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-focus-error-color",
+      "content": "export const InputWithFocusErrorColor = () => {\n  return (\n    <Stack gap=\"4\">\n      <Field.Root>\n        <Field.Label>focusColor=lime</Field.Label>\n        <Input placeholder=\"Focus me\" css={{ \"--focus-color\": \"lime\" }} />\n      </Field.Root>\n      <Field.Root invalid>\n        <Field.Label>errorColor=green</Field.Label>\n        <Input placeholder=\"Email\" css={{ \"--error-color\": \"green\" }} />\n      </Field.Root>\n      <Field.Root invalid>\n        <Field.Label>errorColor=blue</Field.Label>\n        <Input placeholder=\"Password\" css={{ \"--error-color\": \"blue\" }} />\n      </Field.Root>\n\n      <Field.Root invalid>\n        <Field.Label>variant=outline,focusColor=error</Field.Label>\n        <Input placeholder=\"Focus me\" variant=\"outline\" />\n      </Field.Root>\n      <Field.Root invalid>\n        <Field.Label>variant=subtle,focusColor=error</Field.Label>\n        <Input placeholder=\"Focus me\" variant=\"subtle\" />\n      </Field.Root>\n      <Field.Root invalid>\n        <Field.Label>variant=flushed,focusColor=error</Field.Label>\n        <Input placeholder=\"Focus me\" variant=\"flushed\" />\n      </Field.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-helper-text",
+      "content": "export const InputWithHelperText = () => {\n  return (\n    <Field.Root required>\n      <Field.Label>\n        Email <Field.RequiredIndicator />\n      </Field.Label>\n      <Input placeholder=\"Enter your email\" />\n      <Field.HelperText>We'll never share your email.</Field.HelperText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-hook-form",
+      "content": "\"use client\"\n\ninterface FormValues {\n  firstName: string\n  lastName: string\n}\n\nexport const InputWithHookForm = () => {\n  const {\n    register,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>()\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n        <Field.Root invalid={!!errors.firstName}>\n          <Field.Label>First name</Field.Label>\n          <Input {...register(\"firstName\")} />\n          <Field.ErrorText>{errors.firstName?.message}</Field.ErrorText>\n        </Field.Root>\n\n        <Field.Root invalid={!!errors.lastName}>\n          <Field.Label>Last name</Field.Label>\n          <Input {...register(\"lastName\")} />\n          <Field.ErrorText>{errors.lastName?.message}</Field.ErrorText>\n        </Field.Root>\n\n        <Button type=\"submit\">Submit</Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, Input, Stack } from \"@chakra-ui/react\"",
+        "import { useForm } from \"react-hook-form\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-hook-form"
+      ]
+    },
+    {
+      "name": "input-with-invalid",
+      "content": "export const InputWithInvalid = () => (\n  <Field.Root id=\"first-name\" invalid>\n    <Field.Label>First name</Field.Label>\n    <Input placeholder=\"Enter first name\" />\n    <Field.ErrorText>First name is required</Field.ErrorText>\n  </Field.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-kbd",
+      "content": "export const InputWithKbd = () => (\n  <InputGroup flex=\"1\" startElement={<LuSearch />} endElement={<Kbd>⌘K</Kbd>}>\n    <Input placeholder=\"Search contacts\" />\n  </InputGroup>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup, Kbd } from \"@chakra-ui/react\"",
+        "import { LuSearch } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "input-with-mask",
+      "content": "\"use client\"\nexport const InputWithMask = () => {\n  return (\n    <Input placeholder=\"(99) 99999-9999\" ref={withMask(\"(99) 99999-9999\")} />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input } from \"@chakra-ui/react\"",
+        "import { withMask } from \"use-mask-input\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "use-mask-input"
+      ]
+    },
+    {
+      "name": "input-with-placeholder-style",
+      "content": "export const InputWithPlaceholderStyle = () => {\n  return (\n    <Input\n      color=\"teal\"\n      placeholder=\"custom placeholder\"\n      _placeholder={{ color: \"inherit\" }}\n    />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-select",
+      "content": "const DomainSelect = () => (\n  <NativeSelect.Root size=\"xs\" variant=\"plain\" width=\"auto\" me=\"-1\">\n    <NativeSelect.Field defaultValue=\".com\" fontSize=\"sm\">\n      <option value=\".com\">.com</option>\n      <option value=\".org\">.org</option>\n      <option value=\".net\">.net</option>\n    </NativeSelect.Field>\n    <NativeSelect.Indicator />\n  </NativeSelect.Root>\n)\n\nexport const InputWithSelect = () => {\n  return (\n    <InputGroup flex=\"1\" startElement=\"https://\" endElement={<DomainSelect />}>\n      <Input ps=\"4.75em\" pe=\"0\" placeholder=\"yoursite.com\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup, NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-sizes",
+      "content": "export const InputWithSizes = () => {\n  return (\n    <Stack gap=\"4\">\n      <Input placeholder=\"size (xs)\" size=\"xs\" />\n      <Input placeholder=\"size (sm)\" size=\"sm\" />\n      <Input placeholder=\"size (md)\" size=\"md\" />\n      <Input placeholder=\"size (lg)\" size=\"lg\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-start-addon",
+      "content": "export const InputWithStartAddon = () => {\n  return (\n    <InputGroup startAddon=\"https://\">\n      <Input placeholder=\"yoursite.com\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-start-and-end-addon",
+      "content": "export const InputWithStartAndEndAddon = () => {\n  return (\n    <InputGroup startAddon=\"$\" endAddon=\"USD\">\n      <Input placeholder=\"0.00\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-start-and-end-text",
+      "content": "export const InputWithStartAndEndText = () => {\n  return (\n    <InputGroup startElement=\"$\" endElement=\"USD\">\n      <Input placeholder=\"0.00\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-start-element-end-addon",
+      "content": "export const InputWithStartElementEndAddon = () => {\n  return (\n    <InputGroup startElement=\"$\" endAddon=\"USD\">\n      <Input placeholder=\"0.00\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-start-icon",
+      "content": "export const InputWithStartIcon = () => {\n  return (\n    <InputGroup startElement={<LuUser />}>\n      <Input placeholder=\"Username\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\"",
+        "import { LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "input-with-start-text",
+      "content": "export const InputWithStartText = () => {\n  return (\n    <InputGroup\n      startElement=\"https://\"\n      startElementProps={{ color: \"fg.muted\" }}\n    >\n      <Input ps=\"7ch\" placeholder=\"yoursite.com\" />\n    </InputGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "input-with-variants",
+      "content": "export const InputWithVariants = () => {\n  return (\n    <Stack gap=\"4\">\n      <Input placeholder=\"Subtle\" variant=\"subtle\" />\n      <Input placeholder=\"Outline\" variant=\"outline\" />\n      <Input placeholder=\"Flushed\" variant=\"flushed\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Input } from \"@chakra-ui/react\""
+    }
+  ]
+}

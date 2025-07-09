@@ -1,0 +1,110 @@
+{
+  "name": "stat",
+  "file": "compositions/ui/stat",
+  "snippet": "import {\n  Badge,\n  type BadgeProps,\n  Stat as ChakraStat,\n  FormatNumber,\n} from \"@chakra-ui/react\"\nimport { InfoTip } from \"@/components/ui/toggle-tip\"\nimport * as React from \"react\"\n\ninterface StatLabelProps extends ChakraStat.LabelProps {\n  info?: React.ReactNode\n}\n\nexport const StatLabel = React.forwardRef<HTMLDivElement, StatLabelProps>(\n  function StatLabel(props, ref) {\n    const { info, children, ...rest } = props\n    return (\n      <ChakraStat.Label {...rest} ref={ref}>\n        {children}\n        {info && <InfoTip>{info}</InfoTip>}\n      </ChakraStat.Label>\n    )\n  },\n)\n\ninterface StatValueTextProps extends ChakraStat.ValueTextProps {\n  value?: number\n  formatOptions?: Intl.NumberFormatOptions\n}\n\nexport const StatValueText = React.forwardRef<\n  HTMLDivElement,\n  StatValueTextProps\n>(function StatValueText(props, ref) {\n  const { value, formatOptions, children, ...rest } = props\n  return (\n    <ChakraStat.ValueText {...rest} ref={ref}>\n      {children ||\n        (value != null && <FormatNumber value={value} {...formatOptions} />)}\n    </ChakraStat.ValueText>\n  )\n})\n\nexport const StatUpTrend = React.forwardRef<HTMLDivElement, BadgeProps>(\n  function StatUpTrend(props, ref) {\n    return (\n      <Badge colorPalette=\"green\" gap=\"0\" {...props} ref={ref}>\n        <ChakraStat.UpIndicator />\n        {props.children}\n      </Badge>\n    )\n  },\n)\n\nexport const StatDownTrend = React.forwardRef<HTMLDivElement, BadgeProps>(\n  function StatDownTrend(props, ref) {\n    return (\n      <Badge colorPalette=\"red\" gap=\"0\" {...props} ref={ref}>\n        <ChakraStat.DownIndicator />\n        {props.children}\n      </Badge>\n    )\n  },\n)\n\nexport const StatRoot = ChakraStat.Root\nexport const StatHelpText = ChakraStat.HelpText\nexport const StatValueUnit = ChakraStat.ValueUnit\n",
+  "examples": [
+    {
+      "name": "stat-basic",
+      "content": "export const StatBasic = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>Unique visitors</Stat.Label>\n      <Stat.ValueText>192.1k</Stat.ValueText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-closed-component",
+      "content": "interface StatProps extends ChakraStat.RootProps {\n  label?: React.ReactNode\n  value?: number\n  info?: React.ReactNode\n  valueText?: React.ReactNode\n  formatOptions?: Intl.NumberFormatOptions\n  change?: number\n}\n\nexport const Stat = React.forwardRef<HTMLDivElement, StatProps>(\n  function Stat(props, ref) {\n    const { label, value, valueText, change, info, formatOptions, ...rest } =\n      props\n    return (\n      <ChakraStat.Root {...rest}>\n        {label && (\n          <ChakraStat.Label>\n            {label}\n            {info && <InfoTip>{info}</InfoTip>}\n          </ChakraStat.Label>\n        )}\n        <ChakraStat.ValueText {...rest} ref={ref}>\n          {valueText ||\n            (value != null && formatOptions && (\n              <FormatNumber value={value} {...formatOptions} />\n            ))}\n        </ChakraStat.ValueText>\n        {change != null && (\n          <Badge colorPalette={change > 0 ? \"green\" : \"red\"} gap=\"0\">\n            <Show when={change > 0} fallback={<ChakraStat.DownIndicator />}>\n              <ChakraStat.UpIndicator />\n            </Show>\n            <FormatNumber\n              value={Math.abs(change)}\n              style=\"percent\"\n              maximumFractionDigits={2}\n            />\n          </Badge>\n        )}\n      </ChakraStat.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stat as ChakraStat, FormatNumber, Show } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "stat-with-format-options",
+      "content": "export const StatWithFormatOptions = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>Revenue</Stat.Label>\n      <Stat.ValueText>\n        <FormatNumber value={935.4} style=\"currency\" currency=\"USD\" />\n      </Stat.ValueText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-with-group",
+      "content": "export const StatWithGroup = () => {\n  return (\n    <StatGroup>\n      <Stat.Root>\n        <Stat.Label>Sent</Stat.Label>\n        <Stat.ValueText>345,670</Stat.ValueText>\n        <Stat.HelpText>\n          <Stat.UpIndicator />\n          23.36%\n        </Stat.HelpText>\n      </Stat.Root>\n\n      <Stat.Root>\n        <Stat.Label>Clicked</Stat.Label>\n        <Stat.ValueText>45</Stat.ValueText>\n        <Stat.HelpText>\n          <Stat.DownIndicator />\n          9.05%\n        </Stat.HelpText>\n      </Stat.Root>\n    </StatGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stat, StatGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-with-icon",
+      "content": "export const StatWithIcon = () => {\n  return (\n    <Stat.Root maxW=\"240px\" borderWidth=\"1px\" p=\"4\" rounded=\"md\">\n      <HStack justify=\"space-between\">\n        <Stat.Label>Sales</Stat.Label>\n        <Icon color=\"fg.muted\">\n          <LuDollarSign />\n        </Icon>\n      </HStack>\n      <Stat.ValueText>$4.24k</Stat.ValueText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Icon, Stat } from \"@chakra-ui/react\"",
+        "import { LuDollarSign } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "stat-with-indicator",
+      "content": "export const StatWithIndicator = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>Unique visitors</Stat.Label>\n      <Stat.ValueText>192.1k</Stat.ValueText>\n      <Badge colorPalette=\"red\" variant=\"plain\" px=\"0\">\n        <Stat.DownIndicator />\n        1.9%\n      </Badge>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-with-info-tip",
+      "content": "export const StatWithInfoTip = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>\n        Unique\n        <InfoTip>Some info</InfoTip>\n      </Stat.Label>\n      <Stat.ValueText>192.1k</Stat.ValueText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stat } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "stat-with-progress-bar",
+      "content": "export const StatWithProgressBar = () => {\n  return (\n    <Stat.Root maxW=\"240px\">\n      <Stat.Label>This week</Stat.Label>\n      <Stat.ValueText>\n        <FormatNumber\n          value={1340}\n          style=\"currency\"\n          currency=\"USD\"\n          maximumFractionDigits={0}\n        />\n      </Stat.ValueText>\n      <Stat.HelpText mb=\"2\">+12% from last week</Stat.HelpText>\n      <Progress.Root>\n        <Progress.Track>\n          <Progress.Range />\n        </Progress.Track>\n      </Progress.Root>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Progress, Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-with-trend",
+      "content": "export const StatWithTrend = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>Unique </Stat.Label>\n      <HStack>\n        <Stat.ValueText>\n          <FormatNumber value={8456.4} style=\"currency\" currency=\"USD\" />\n        </Stat.ValueText>\n        <Badge colorPalette=\"green\" gap=\"0\">\n          <Stat.UpIndicator />\n          12%\n        </Badge>\n      </HStack>\n      <Stat.HelpText>since last month</Stat.HelpText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, FormatNumber, HStack, Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stat-with-value-unit",
+      "content": "export const StatWithValueUnit = () => {\n  return (\n    <Stat.Root>\n      <Stat.Label>Time to complete</Stat.Label>\n      <Stat.ValueText alignItems=\"baseline\">\n        3 <Stat.ValueUnit>hr</Stat.ValueUnit>\n        20 <Stat.ValueUnit>min</Stat.ValueUnit>\n      </Stat.ValueText>\n    </Stat.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stat } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stat } from \"@chakra-ui/react\""
+    }
+  ]
+}

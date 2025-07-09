@@ -1,0 +1,139 @@
+{
+  "name": "switch",
+  "file": "compositions/ui/switch",
+  "snippet": "import { Switch as ChakraSwitch } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface SwitchProps extends ChakraSwitch.RootProps {\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.RefObject<HTMLLabelElement | null>\n  trackLabel?: { on: React.ReactNode; off: React.ReactNode }\n  thumbLabel?: { on: React.ReactNode; off: React.ReactNode }\n}\n\nexport const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(\n  function Switch(props, ref) {\n    const { inputProps, children, rootRef, trackLabel, thumbLabel, ...rest } =\n      props\n\n    return (\n      <ChakraSwitch.Root ref={rootRef} {...rest}>\n        <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />\n        <ChakraSwitch.Control>\n          <ChakraSwitch.Thumb>\n            {thumbLabel && (\n              <ChakraSwitch.ThumbIndicator fallback={thumbLabel?.off}>\n                {thumbLabel?.on}\n              </ChakraSwitch.ThumbIndicator>\n            )}\n          </ChakraSwitch.Thumb>\n          {trackLabel && (\n            <ChakraSwitch.Indicator fallback={trackLabel.off}>\n              {trackLabel.on}\n            </ChakraSwitch.Indicator>\n          )}\n        </ChakraSwitch.Control>\n        {children != null && (\n          <ChakraSwitch.Label>{children}</ChakraSwitch.Label>\n        )}\n      </ChakraSwitch.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "switch-basic",
+      "content": "export const SwitchBasic = () => {\n  return (\n    <Switch.Root>\n      <Switch.HiddenInput />\n      <Switch.Control />\n      <Switch.Label>Activate Chakra</Switch.Label>\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-closed-component",
+      "content": "export interface SwitchProps extends ChakraSwitch.RootProps {\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.RefObject<HTMLLabelElement | null>\n  trackLabel?: { on: React.ReactNode; off: React.ReactNode }\n  thumbLabel?: { on: React.ReactNode; off: React.ReactNode }\n}\n\nexport const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(\n  function Switch(props, ref) {\n    const { inputProps, children, rootRef, trackLabel, thumbLabel, ...rest } =\n      props\n\n    return (\n      <ChakraSwitch.Root ref={rootRef} {...rest}>\n        <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />\n        <ChakraSwitch.Control>\n          <ChakraSwitch.Thumb>\n            {thumbLabel && (\n              <ChakraSwitch.ThumbIndicator fallback={thumbLabel?.off}>\n                {thumbLabel?.on}\n              </ChakraSwitch.ThumbIndicator>\n            )}\n          </ChakraSwitch.Thumb>\n          {trackLabel && (\n            <ChakraSwitch.Indicator fallback={trackLabel.off}>\n              {trackLabel.on}\n            </ChakraSwitch.Indicator>\n          )}\n        </ChakraSwitch.Control>\n        {children != null && (\n          <ChakraSwitch.Label>{children}</ChakraSwitch.Label>\n        )}\n      </ChakraSwitch.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch as ChakraSwitch } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-controlled",
+      "content": "\"use client\"\nexport const SwitchControlled = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <Switch.Root\n      checked={checked}\n      onCheckedChange={(e) => setChecked(e.checked)}\n    >\n      <Switch.HiddenInput />\n      <Switch.Control>\n        <Switch.Thumb />\n      </Switch.Control>\n      <Switch.Label />\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-with-colors",
+      "content": "export const SwitchWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <Switch.Root colorPalette={colorPalette}>\n            <Switch.HiddenInput />\n            <Switch.Control />\n            <Switch.Label />\n          </Switch.Root>\n\n          <Switch.Root colorPalette={colorPalette} defaultChecked>\n            <Switch.HiddenInput />\n            <Switch.Control />\n            <Switch.Label />\n          </Switch.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, Switch, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-with-disabled",
+      "content": "export const SwitchWithDisabled = () => {\n  return (\n    <Switch.Root disabled>\n      <Switch.HiddenInput />\n      <Switch.Control />\n      <Switch.Label>Activate Chakra</Switch.Label>\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  active: z.boolean({ message: \"Active is required\" }),\n})\n\ntype FormData = z.infer<typeof formSchema>\n\nexport const SwitchWithHookForm = () => {\n  const {\n    handleSubmit,\n    control,\n    formState: { errors },\n  } = useForm<FormData>({\n    resolver: zodResolver(formSchema),\n  })\n\n  return (\n    <form onSubmit={handleSubmit((data) => console.log(data))}>\n      <Stack align=\"flex-start\">\n        <Controller\n          name=\"active\"\n          control={control}\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.active}>\n              <Switch.Root\n                name={field.name}\n                checked={field.value}\n                onCheckedChange={({ checked }) => field.onChange(checked)}\n              >\n                <Switch.HiddenInput onBlur={field.onBlur} />\n                <Switch.Control />\n                <Switch.Label>Activate Chakra</Switch.Label>\n              </Switch.Root>\n              <Field.ErrorText>{errors.active?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n        <Button size=\"sm\" type=\"submit\" mt=\"4\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, Stack, Switch } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "switch-with-invalid",
+      "content": "export const SwitchWithInvalid = () => {\n  return (\n    <Switch.Root invalid>\n      <Switch.HiddenInput />\n      <Switch.Control />\n      <Switch.Label>Activate Chakra</Switch.Label>\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-with-sizes",
+      "content": "export const SwitchWithSizes = () => {\n  return (\n    <HStack gap=\"8\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Switch.Root key={size} size={size}>\n            <Switch.HiddenInput />\n            <Switch.Control />\n            <Switch.Label />\n          </Switch.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "switch-with-thumb-indicator",
+      "content": "export const SwitchWithThumbIndicator = () => {\n  return (\n    <Switch.Root size=\"lg\">\n      <Switch.HiddenInput />\n      <Switch.Control>\n        <Switch.Thumb>\n          <Switch.ThumbIndicator fallback={<HiX color=\"black\" />}>\n            <HiCheck />\n          </Switch.ThumbIndicator>\n        </Switch.Thumb>\n      </Switch.Control>\n      <Switch.Label>Switch me</Switch.Label>\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\"",
+        "import { HiCheck, HiX } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "switch-with-tooltip",
+      "content": "export const SwitchWithTooltip = () => {\n  const id = useId()\n  return (\n    <Tooltip ids={{ trigger: id }} content=\"This is a tooltip\">\n      <Switch.Root ids={{ root: id }}>\n        <Switch.HiddenInput />\n        <Switch.Control />\n        <Switch.Label>Switch with tooltip</Switch.Label>\n      </Switch.Root>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useId } from \"react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "switch-with-track-indicator",
+      "content": "\"use client\"\nexport const SwitchWithTrackIndicator = () => {\n  return (\n    <Switch.Root colorPalette=\"blue\" size=\"lg\">\n      <Switch.HiddenInput />\n      <Switch.Control>\n        <Switch.Thumb />\n        <Switch.Indicator fallback={<Icon as={FaMoon} color=\"gray.400\" />}>\n          <Icon as={FaSun} color=\"yellow.400\" />\n        </Switch.Indicator>\n      </Switch.Control>\n      <Switch.Label>Switch me</Switch.Label>\n    </Switch.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Icon, Switch } from \"@chakra-ui/react\"",
+        "import { FaMoon, FaSun } from \"react-icons/fa\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "switch-with-variants",
+      "content": "export const SwitchWithVariants = () => {\n  return (\n    <HStack gap=\"8\">\n      <For each={[\"raised\", \"solid\"]}>\n        {(variant) => (\n          <Switch.Root key={variant} variant={variant}>\n            <Switch.HiddenInput />\n            <Switch.Control />\n            <Switch.Label />\n          </Switch.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Switch } from \"@chakra-ui/react\""
+    }
+  ]
+}

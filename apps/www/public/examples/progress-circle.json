@@ -1,0 +1,91 @@
+{
+  "name": "progress-circle",
+  "file": "compositions/ui/progress-circle",
+  "snippet": "import type { SystemStyleObject } from \"@chakra-ui/react\"\nimport {\n  AbsoluteCenter,\n  ProgressCircle as ChakraProgressCircle,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface ProgressCircleRingProps extends ChakraProgressCircle.CircleProps {\n  trackColor?: SystemStyleObject[\"stroke\"]\n  cap?: SystemStyleObject[\"strokeLinecap\"]\n}\n\nexport const ProgressCircleRing = React.forwardRef<\n  SVGSVGElement,\n  ProgressCircleRingProps\n>(function ProgressCircleRing(props, ref) {\n  const { trackColor, cap, color, ...rest } = props\n  return (\n    <ChakraProgressCircle.Circle {...rest} ref={ref}>\n      <ChakraProgressCircle.Track stroke={trackColor} />\n      <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />\n    </ChakraProgressCircle.Circle>\n  )\n})\n\nexport const ProgressCircleValueText = React.forwardRef<\n  HTMLDivElement,\n  ChakraProgressCircle.ValueTextProps\n>(function ProgressCircleValueText(props, ref) {\n  return (\n    <AbsoluteCenter>\n      <ChakraProgressCircle.ValueText {...props} ref={ref} />\n    </AbsoluteCenter>\n  )\n})\n\nexport const ProgressCircleRoot = ChakraProgressCircle.Root\n",
+  "examples": [
+    {
+      "name": "progress-circle-basic",
+      "content": "export const ProgressCircleBasic = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-closed-component",
+      "content": "interface ProgressCircleProps extends ChakraProgressCircle.RootProps {\n  showValueText?: boolean\n  valueText?: React.ReactNode\n  trackColor?: SystemStyleObject[\"stroke\"]\n  cap?: SystemStyleObject[\"strokeLinecap\"]\n  thickness?: SystemStyleObject[\"strokeWidth\"]\n}\n\nexport const ProgressCircle = React.forwardRef<\n  HTMLDivElement,\n  ProgressCircleProps\n>(function ProgressCircle(props, ref) {\n  const {\n    showValueText,\n    valueText,\n    trackColor,\n    color,\n    cap,\n    thickness,\n    ...rest\n  } = props\n\n  return (\n    <ChakraProgressCircle.Root {...rest} ref={ref}>\n      <ChakraProgressCircle.Circle css={{ \"--thickness\": thickness }}>\n        <ChakraProgressCircle.Track stroke={trackColor} />\n        <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />\n      </ChakraProgressCircle.Circle>\n      {showValueText && (\n        <AbsoluteCenter>\n          <ChakraProgressCircle.ValueText>\n            {valueText}\n          </ChakraProgressCircle.ValueText>\n        </AbsoluteCenter>\n      )}\n    </ChakraProgressCircle.Root>\n  )\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import type { SystemStyleObject } from \"@chakra-ui/react\"",
+        "import {\n  AbsoluteCenter,\n  ProgressCircle as ChakraProgressCircle,\n} from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-indeterminate",
+      "content": "export const ProgressCircleIndeterminate = () => {\n  return (\n    <ProgressCircle.Root value={null} size=\"sm\">\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-colors",
+      "content": "export const ProgressCircleWithColors = () => {\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <HStack key={colorPalette} gap=\"10\" px=\"4\">\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <ProgressCircle.Root size=\"sm\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n\n          <ProgressCircle.Root size=\"md\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n\n          <ProgressCircle.Root size=\"lg\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n        </HStack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, ProgressCircle, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-range-color",
+      "content": "export const ProgressCircleWithRangeColor = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range stroke=\"orange\" />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-round-cap",
+      "content": "export const ProgressCircleWithRoundCap = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range strokeLinecap=\"round\" />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-sizes",
+      "content": "export const ProgressCircleWithSizes = () => {\n  return (\n    <HStack gap=\"10\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <ProgressCircle.Root key={size} size={size} value={30}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-thickness",
+      "content": "export const ProgressCircleWithThickness = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle css={{ \"--thickness\": \"2px\" }}>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-value-text",
+      "content": "export const ProgressCircleWithValueText = () => {\n  return (\n    <HStack gap=\"8\">\n      <For each={[\"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <ProgressCircle.Root size={size} key={size} value={5}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range />\n            </ProgressCircle.Circle>\n            <AbsoluteCenter>\n              <ProgressCircle.ValueText />\n            </AbsoluteCenter>\n          </ProgressCircle.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, For, HStack, ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ProgressCircle } from \"@chakra-ui/react\""
+    }
+  ]
+}

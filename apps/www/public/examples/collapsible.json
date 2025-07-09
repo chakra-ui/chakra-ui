@@ -1,0 +1,24 @@
+{
+  "name": "collapsible",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "collapsible-basic",
+      "content": "export const CollapsibleBasic = () => (\n  <Collapsible.Root>\n    <Collapsible.Trigger paddingY=\"3\">Toggle Collapsible</Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        Lorem Ipsum is simply dummy text of the printing and typesetting\n        industry. Lorem Ipsum has been the industry's standard dummy text ever\n        since the 1500s, when an unknown printer took a galley of type and\n        scrambled it to make a type specimen book.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "collapsible-lazy-mounted",
+      "content": "export const CollapsibleLazyMounted = () => (\n  <Collapsible.Root unmountOnExit>\n    <Collapsible.Trigger paddingY=\"3\">\n      Toggle Collapse (Unmount on exit)\n    </Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        If you inspect the DOM, you'll notice that the content is unmounted when\n        collapsed. This is useful for performance reasons when you have a lot of\n        collapsible content.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    }
+  ]
+}

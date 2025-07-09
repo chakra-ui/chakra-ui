@@ -1,0 +1,146 @@
+{
+  "name": "radio-card",
+  "file": "compositions/ui/radio-card",
+  "snippet": "import { RadioCard } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface RadioCardItemProps extends RadioCard.ItemProps {\n  icon?: React.ReactElement\n  label?: React.ReactNode\n  description?: React.ReactNode\n  addon?: React.ReactNode\n  indicator?: React.ReactNode | null\n  indicatorPlacement?: \"start\" | \"end\" | \"inside\"\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const RadioCardItem = React.forwardRef<\n  HTMLInputElement,\n  RadioCardItemProps\n>(function RadioCardItem(props, ref) {\n  const {\n    inputProps,\n    label,\n    description,\n    addon,\n    icon,\n    indicator = <RadioCard.ItemIndicator />,\n    indicatorPlacement = \"end\",\n    ...rest\n  } = props\n\n  const hasContent = label || description || icon\n  const ContentWrapper = indicator ? RadioCard.ItemContent : React.Fragment\n\n  return (\n    <RadioCard.Item {...rest}>\n      <RadioCard.ItemHiddenInput ref={ref} {...inputProps} />\n      <RadioCard.ItemControl>\n        {indicatorPlacement === \"start\" && indicator}\n        {hasContent && (\n          <ContentWrapper>\n            {icon}\n            {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}\n            {description && (\n              <RadioCard.ItemDescription>\n                {description}\n              </RadioCard.ItemDescription>\n            )}\n            {indicatorPlacement === \"inside\" && indicator}\n          </ContentWrapper>\n        )}\n        {indicatorPlacement === \"end\" && indicator}\n      </RadioCard.ItemControl>\n      {addon && <RadioCard.ItemAddon>{addon}</RadioCard.ItemAddon>}\n    </RadioCard.Item>\n  )\n})\n\nexport const RadioCardRoot = RadioCard.Root\nexport const RadioCardLabel = RadioCard.Label\nexport const RadioCardItemIndicator = RadioCard.ItemIndicator\n",
+  "examples": [
+    {
+      "name": "radio-card-basic",
+      "content": "export const RadioCardBasic = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\">\n      <RadioCard.Label>Select framework</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n              <RadioCard.ItemIndicator />\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\" },\n  { value: \"vite\", title: \"Vite\" },\n  { value: \"astro\", title: \"Astro\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-centered",
+      "content": "export const RadioCardCentered = () => {\n  return (\n    <RadioCard.Root orientation=\"vertical\" align=\"center\" defaultValue=\"next\">\n      <RadioCard.Label>Select contract type</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <Icon fontSize=\"2xl\" color=\"fg.muted\" mb=\"2\">\n                {item.icon}\n              </Icon>\n              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n              <RadioCard.ItemIndicator />\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { icon: <LuDollarSign />, value: \"fixed\", title: \"Fixed Rate\" },\n  { icon: <LuTrendingUp />, value: \"milestone\", title: \"Milestone\" },\n  { icon: <LuClock />, value: \"hourly\", title: \"Hourly\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Icon, RadioCard } from \"@chakra-ui/react\"",
+        "import { LuClock, LuDollarSign, LuTrendingUp } from \"react-icons/lu\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "radio-card-closed-component",
+      "content": "interface RadioCardItemProps extends RadioCard.ItemProps {\n  icon?: React.ReactElement\n  label?: React.ReactNode\n  description?: React.ReactNode\n  addon?: React.ReactNode\n  indicator?: React.ReactNode | null\n  indicatorPlacement?: \"start\" | \"end\" | \"inside\"\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const RadioCardItem = React.forwardRef<\n  HTMLInputElement,\n  RadioCardItemProps\n>(function RadioCardItem(props, ref) {\n  const {\n    inputProps,\n    label,\n    description,\n    addon,\n    icon,\n    indicator = <RadioCard.ItemIndicator />,\n    indicatorPlacement = \"end\",\n    ...rest\n  } = props\n\n  const hasContent = label || description || icon\n  const ContentWrapper = indicator ? RadioCard.ItemContent : React.Fragment\n\n  return (\n    <RadioCard.Item {...rest}>\n      <RadioCard.ItemHiddenInput ref={ref} {...inputProps} />\n      <RadioCard.ItemControl>\n        {indicatorPlacement === \"start\" && indicator}\n        {hasContent && (\n          <ContentWrapper>\n            {icon}\n            {label && <RadioCard.ItemText>{label}</RadioCard.ItemText>}\n            {description && (\n              <RadioCard.ItemDescription>\n                {description}\n              </RadioCard.ItemDescription>\n            )}\n            {indicatorPlacement === \"inside\" && indicator}\n          </ContentWrapper>\n        )}\n        {indicatorPlacement === \"end\" && indicator}\n      </RadioCard.ItemControl>\n      {addon && <RadioCard.ItemAddon>{addon}</RadioCard.ItemAddon>}\n    </RadioCard.Item>\n  )\n})\n\nexport const RadioCardRoot = RadioCard.Root\nexport const RadioCardLabel = RadioCard.Label\nexport const RadioCardItemIndicator = RadioCard.ItemIndicator\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RadioCard } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-composition",
+      "content": "export const RadioCardComposition = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\" gap=\"4\" maxW=\"sm\">\n      <RadioCard.Label>How well do you know React?</RadioCard.Label>\n      <Group attached orientation=\"vertical\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value} width=\"full\">\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemIndicator />\n              <RadioCard.ItemContent>\n                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                <RadioCard.ItemDescription>\n                  {item.description}\n                </RadioCard.ItemDescription>\n              </RadioCard.ItemContent>\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </Group>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  {\n    value: \"advanced\",\n    title: \"Advanced\",\n    description: \"I love complex things\",\n  },\n  {\n    value: \"professional\",\n    title: \"Professional\",\n    description: \"I can hack simple things\",\n  },\n  {\n    value: \"beginner\",\n    title: \"Beginner\",\n    description: \"I don't write code\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Group, RadioCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-with-addon",
+      "content": "export const RadioCardWithAddon = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\">\n      <RadioCard.Label>Select framework</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemContent>\n                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                <RadioCard.ItemDescription>\n                  {item.description}\n                </RadioCard.ItemDescription>\n              </RadioCard.ItemContent>\n              <RadioCard.ItemIndicator />\n            </RadioCard.ItemControl>\n            <RadioCard.ItemAddon>Some addon text</RadioCard.ItemAddon>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\", description: \"Best for apps\" },\n  { value: \"vite\", title: \"Vite\", description: \"Best for SPAs\" },\n  { value: \"astro\", title: \"Astro\", description: \"Best for static sites\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-with-colors",
+      "content": "export const RadioCardWithColors = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={colorPalettes}>\n        {(colorPalette) => (\n          <RadioCard.Root\n            key={colorPalette}\n            colorPalette={colorPalette}\n            defaultValue=\"next\"\n          >\n            <RadioCard.Label>Select Framework</RadioCard.Label>\n            <HStack align=\"stretch\">\n              {items.map((item) => (\n                <RadioCard.Item key={item.value} value={item.value}>\n                  <RadioCard.ItemHiddenInput />\n                  <RadioCard.ItemControl>\n                    <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                    <RadioCard.ItemIndicator />\n                  </RadioCard.ItemControl>\n                </RadioCard.Item>\n              ))}\n            </HStack>\n          </RadioCard.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\" },\n  { value: \"vite\", title: \"Vite\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, RadioCard, Stack } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-with-custom-indicator",
+      "content": "export const RadioCardWithCustomIndicator = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\">\n      <RadioCard.Label>Select framework</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n              <RadioCard.ItemIndicator\n                color=\"fg\"\n                borderWidth=\"0\"\n                checked={<LuCheck />}\n              />\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\", description: \"Best for apps\" },\n  { value: \"vite\", title: \"Vite\", description: \"Best for SPAs\" },\n  { value: \"astro\", title: \"Astro\", description: \"Best for static sites\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioCard } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "radio-card-with-description",
+      "content": "export const RadioCardWithDescription = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\">\n      <RadioCard.Label>Select framework</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemContent>\n                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                <RadioCard.ItemDescription>\n                  {item.description}\n                </RadioCard.ItemDescription>\n              </RadioCard.ItemContent>\n              <RadioCard.ItemIndicator />\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\", description: \"Best for apps\" },\n  { value: \"vite\", title: \"Vite\", description: \"Best for SPAs\" },\n  { value: \"astro\", title: \"Astro\", description: \"Best for static sites\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-with-icon",
+      "content": "export const RadioCardWithIcon = () => {\n  return (\n    <RadioCard.Root defaultValue=\"next\">\n      <RadioCard.Label>Select permission</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <RadioCard.ItemContent>\n                <Icon fontSize=\"2xl\" color=\"fg.muted\" mb=\"2\">\n                  {item.icon}\n                </Icon>\n                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                <RadioCard.ItemDescription>\n                  {item.description}\n                </RadioCard.ItemDescription>\n              </RadioCard.ItemContent>\n              <RadioCard.ItemIndicator />\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  {\n    icon: <LuArrowRight />,\n    value: \"allow\",\n    title: \"Allow\",\n    description: \"This user can access the system\",\n  },\n  {\n    icon: <LuCircleOff />,\n    value: \"deny\",\n    title: \"Deny\",\n    description: \"This user will be denied access to the system\",\n  },\n  {\n    icon: <LuLock />,\n    value: \"lock\",\n    title: \"Lock\",\n    description: \"This user will be locked out of the system\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Icon, RadioCard } from \"@chakra-ui/react\"",
+        "import { LuArrowRight, LuCircleOff, LuLock } from \"react-icons/lu\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "radio-card-with-sizes",
+      "content": "export const RadioCardWithSizes = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <RadioCard.Root key={size} size={size} defaultValue=\"next\">\n            <RadioCard.Label>size = ({size})</RadioCard.Label>\n            <HStack align=\"stretch\">\n              {items.map((item) => (\n                <RadioCard.Item key={item.value} value={item.value}>\n                  <RadioCard.ItemHiddenInput />\n                  <RadioCard.ItemControl>\n                    <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                    <RadioCard.ItemIndicator />\n                  </RadioCard.ItemControl>\n                </RadioCard.Item>\n              ))}\n            </HStack>\n          </RadioCard.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\" },\n  { value: \"vite\", title: \"Vite\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, RadioCard, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-with-variants",
+      "content": "export const RadioCardWithVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"surface\", \"subtle\", \"outline\", \"solid\"]}>\n        {(variant) => (\n          <RadioCard.Root\n            colorPalette=\"teal\"\n            key={variant}\n            variant={variant}\n            defaultValue=\"next\"\n          >\n            <RadioCard.Label>variant = ({variant})</RadioCard.Label>\n            <HStack align=\"stretch\">\n              {items.map((item) => (\n                <RadioCard.Item key={item.value} value={item.value}>\n                  <RadioCard.ItemHiddenInput />\n                  <RadioCard.ItemControl>\n                    <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n                    <RadioCard.ItemIndicator />\n                  </RadioCard.ItemControl>\n                </RadioCard.Item>\n              ))}\n            </HStack>\n          </RadioCard.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\" },\n  { value: \"vite\", title: \"Vite\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, RadioCard, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-card-without-indicator-vertical",
+      "content": "export const RadioCardWithoutIndicatorVertical = () => {\n  return (\n    <RadioCard.Root\n      orientation=\"vertical\"\n      align=\"center\"\n      maxW=\"400px\"\n      defaultValue=\"paypal\"\n    >\n      <RadioCard.Label>Payment method</RadioCard.Label>\n      <HStack>\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <Icon fontSize=\"2xl\" color=\"fg.muted\">\n                {item.icon}\n              </Icon>\n              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"paypal\", title: \"Paypal\", icon: <RiPaypalFill /> },\n  { value: \"apple-pay\", title: \"Apple Pay\", icon: <RiAppleFill /> },\n  { value: \"card\", title: \"Card\", icon: <RiBankCardFill /> },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Icon, RadioCard } from \"@chakra-ui/react\"",
+        "import { RiAppleFill, RiBankCardFill, RiPaypalFill } from \"react-icons/ri\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "radio-card-without-indicator",
+      "content": "export const RadioCardWithoutIndicator = () => {\n  return (\n    <RadioCard.Root\n      orientation=\"horizontal\"\n      align=\"center\"\n      justify=\"center\"\n      maxW=\"lg\"\n      defaultValue=\"paypal\"\n    >\n      <RadioCard.Label>Payment method</RadioCard.Label>\n      <HStack align=\"stretch\">\n        {items.map((item) => (\n          <RadioCard.Item key={item.value} value={item.value}>\n            <RadioCard.ItemHiddenInput />\n            <RadioCard.ItemControl>\n              <Icon fontSize=\"2xl\" color=\"fg.subtle\">\n                {item.icon}\n              </Icon>\n              <RadioCard.ItemText ms=\"-4\">{item.title}</RadioCard.ItemText>\n            </RadioCard.ItemControl>\n          </RadioCard.Item>\n        ))}\n      </HStack>\n    </RadioCard.Root>\n  )\n}\n\nconst items = [\n  { value: \"paypal\", title: \"Paypal\", icon: <RiPaypalFill /> },\n  { value: \"apple-pay\", title: \"Apple Pay\", icon: <RiAppleFill /> },\n  { value: \"card\", title: \"Card\", icon: <RiBankCardFill /> },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Icon, RadioCard } from \"@chakra-ui/react\"",
+        "import { RiAppleFill, RiBankCardFill, RiPaypalFill } from \"react-icons/ri\""
+      ],
+      "importPath": "import { RadioCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

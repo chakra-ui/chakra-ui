@@ -1,0 +1,38 @@
+{
+  "name": "portal",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "portal-basic",
+      "content": "export default {\n  title: \"Components / Portal\",\n}\n\nexport const PortalBasic = () => (\n  <>\n    <p>Welcome</p>\n    <Portal>This text has been portaled</Portal>\n  </>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Portal } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "portal-with-container",
+      "content": "\"use client\"\nexport const PortalWithContainer = () => {\n  const ref = useRef<HTMLDivElement>(null)\n\n  return (\n    <>\n      <Portal container={ref}>\n        <span>This text has been portaled</span>\n      </Portal>\n      <div ref={ref} />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Portal } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Portal } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "portal-with-iframe",
+      "content": "export const PortalWithIframe = () => (\n  <Frame>\n    <h1>Welcome</h1>\n    <Portal>Welcome</Portal>\n  </Frame>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Portal } from \"@chakra-ui/react\"",
+        "import Frame from \"react-frame-component\""
+      ],
+      "importPath": "import { Portal } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-frame-component"
+      ]
+    }
+  ]
+}

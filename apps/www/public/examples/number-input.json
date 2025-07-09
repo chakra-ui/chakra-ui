@@ -1,0 +1,164 @@
+{
+  "name": "number-input",
+  "file": "compositions/ui/number-input",
+  "snippet": "import { NumberInput as ChakraNumberInput } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface NumberInputProps extends ChakraNumberInput.RootProps {}\n\nexport const NumberInputRoot = React.forwardRef<\n  HTMLDivElement,\n  NumberInputProps\n>(function NumberInput(props, ref) {\n  const { children, ...rest } = props\n  return (\n    <ChakraNumberInput.Root ref={ref} variant=\"outline\" {...rest}>\n      {children}\n      <ChakraNumberInput.Control>\n        <ChakraNumberInput.IncrementTrigger />\n        <ChakraNumberInput.DecrementTrigger />\n      </ChakraNumberInput.Control>\n    </ChakraNumberInput.Root>\n  )\n})\n\nexport const NumberInputField = ChakraNumberInput.Input\nexport const NumberInputScrubber = ChakraNumberInput.Scrubber\nexport const NumberInputLabel = ChakraNumberInput.Label\n",
+  "examples": [
+    {
+      "name": "number-input-basic",
+      "content": "export const NumberInputBasic = () => {\n  return (\n    <NumberInput.Root defaultValue=\"10\" width=\"200px\">\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-closed-component",
+      "content": "export interface NumberInputProps extends ChakraNumberInput.RootProps {}\n\nexport const NumberInputRoot = React.forwardRef<\n  HTMLDivElement,\n  NumberInputProps\n>(function NumberInput(props, ref) {\n  const { children, ...rest } = props\n  return (\n    <ChakraNumberInput.Root ref={ref} variant=\"outline\" {...rest}>\n      {children}\n      <ChakraNumberInput.Control>\n        <ChakraNumberInput.IncrementTrigger />\n        <ChakraNumberInput.DecrementTrigger />\n      </ChakraNumberInput.Control>\n    </ChakraNumberInput.Root>\n  )\n})\n\nexport const NumberInputField = ChakraNumberInput.Input\nexport const NumberInputScrubber = ChakraNumberInput.Scrubber\nexport const NumberInputLabel = ChakraNumberInput.Label\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput as ChakraNumberInput } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-controlled",
+      "content": "\"use client\"\nexport const NumberInputControlled = () => {\n  const [value, setValue] = useState(\"10\")\n  return (\n    <NumberInput.Root\n      maxW=\"200px\"\n      value={value}\n      onValueChange={(e) => setValue(e.value)}\n    >\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-disabled",
+      "content": "export const NumberInputWithDisabled = () => {\n  return (\n    <NumberInput.Root defaultValue=\"10\" width=\"200px\" disabled>\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-element",
+      "content": "export const NumberInputWithElement = () => {\n  return (\n    <NumberInput.Root defaultValue=\"10\" width=\"200px\">\n      <NumberInput.Control />\n      <InputGroup startElement={<LuDollarSign />}>\n        <NumberInput.Input />\n      </InputGroup>\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { InputGroup, NumberInput } from \"@chakra-ui/react\"",
+        "import { LuDollarSign } from \"react-icons/lu\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "number-input-with-field",
+      "content": "export const NumberInputWithField = () => {\n  return (\n    <Field.Root>\n      <Field.Label>Enter Number</Field.Label>\n      <NumberInput.Root width=\"200px\">\n        <NumberInput.Control />\n        <NumberInput.Input />\n      </NumberInput.Root>\n      <Field.HelperText>Enter a number between 1 and 10</Field.HelperText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-format-options",
+      "content": "export const NumberInputWithFormatOptions = () => {\n  return (\n    <Stack gap=\"5\" maxW=\"200px\">\n      <NumberInput.Root\n        defaultValue=\"5\"\n        step={0.01}\n        formatOptions={{\n          style: \"percent\",\n        }}\n      >\n        <NumberInput.Control />\n        <NumberInput.Input />\n      </NumberInput.Root>\n\n      <NumberInput.Root\n        defaultValue=\"45\"\n        formatOptions={{\n          style: \"currency\",\n          currency: \"EUR\",\n          currencyDisplay: \"code\",\n          currencySign: \"accounting\",\n        }}\n      >\n        <NumberInput.Control />\n        <NumberInput.Input />\n      </NumberInput.Root>\n\n      <NumberInput.Root\n        defaultValue=\"4\"\n        formatOptions={{\n          style: \"unit\",\n          unit: \"inch\",\n          unitDisplay: \"long\",\n        }}\n      >\n        <NumberInput.Control />\n        <NumberInput.Input />\n      </NumberInput.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  number: z.string({ message: \"Number is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const NumberInputWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Field.Root invalid={!!errors.number}>\n        <Field.Label>Number</Field.Label>\n        <Controller\n          name=\"number\"\n          control={control}\n          render={({ field }) => (\n            <NumberInput.Root\n              disabled={field.disabled}\n              name={field.name}\n              value={field.value}\n              onValueChange={({ value }) => {\n                field.onChange(value)\n              }}\n            >\n              <NumberInput.Control />\n              <NumberInput.Input onBlur={field.onBlur} />\n            </NumberInput.Root>\n          )}\n        />\n        <Field.ErrorText>{errors.number?.message}</Field.ErrorText>\n      </Field.Root>\n      <Button size=\"sm\" type=\"submit\" mt=\"4\">\n        Submit\n      </Button>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, NumberInput } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "number-input-with-invalid",
+      "content": "export const NumberInputWithInvalid = () => {\n  return (\n    <Field.Root invalid>\n      <Field.Label>Enter Number</Field.Label>\n      <NumberInput.Root defaultValue=\"10\" width=\"200px\">\n        <NumberInput.Control />\n        <NumberInput.Input />\n      </NumberInput.Root>\n      <Field.ErrorText>The entry is invalid</Field.ErrorText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-min-max",
+      "content": "export const NumberInputWithMinMax = () => {\n  return (\n    <NumberInput.Root width=\"200px\" defaultValue=\"10\" min={5} max={50}>\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-mouse-wheel",
+      "content": "export const NumberInputWithMouseWheel = () => {\n  return (\n    <NumberInput.Root defaultValue=\"10\" width=\"200px\" allowMouseWheel>\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-scrubber",
+      "content": "export const NumberInputWithScrubber = () => {\n  return (\n    <NumberInput.Root defaultValue=\"10\" width=\"200px\">\n      <NumberInput.Control />\n      <InputGroup\n        startElementProps={{ pointerEvents: \"auto\" }}\n        startElement={\n          <NumberInput.Scrubber>\n            <LuArrowRightLeft />\n          </NumberInput.Scrubber>\n        }\n      >\n        <NumberInput.Input />\n      </InputGroup>\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { InputGroup, NumberInput } from \"@chakra-ui/react\"",
+        "import { LuArrowRightLeft } from \"react-icons/lu\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "number-input-with-sizes",
+      "content": "export const NumberInputWithSizes = () => {\n  return (\n    <Stack gap=\"5\" width=\"200px\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <NumberInput.Root size={size} key={size} defaultValue=\"10\">\n            <NumberInput.Control />\n            <NumberInput.Input />\n          </NumberInput.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, NumberInput, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-step",
+      "content": "export const NumberInputWithStep = () => {\n  return (\n    <NumberInput.Root maxW=\"200px\" defaultValue=\"2\" step={3}>\n      <NumberInput.Control />\n      <NumberInput.Input />\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NumberInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "number-input-with-stepper",
+      "content": "export const NumberInputWithStepper = () => {\n  return (\n    <NumberInput.Root defaultValue=\"3\" unstyled spinOnPress={false}>\n      <HStack gap=\"2\">\n        <NumberInput.DecrementTrigger asChild>\n          <IconButton variant=\"outline\" size=\"sm\">\n            <LuMinus />\n          </IconButton>\n        </NumberInput.DecrementTrigger>\n        <NumberInput.ValueText textAlign=\"center\" fontSize=\"lg\" minW=\"3ch\" />\n        <NumberInput.IncrementTrigger asChild>\n          <IconButton variant=\"outline\" size=\"sm\">\n            <LuPlus />\n          </IconButton>\n        </NumberInput.IncrementTrigger>\n      </HStack>\n    </NumberInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, IconButton, NumberInput } from \"@chakra-ui/react\"",
+        "import { LuMinus, LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { NumberInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

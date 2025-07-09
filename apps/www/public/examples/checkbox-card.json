@@ -1,0 +1,111 @@
+{
+  "name": "checkbox-card",
+  "file": "compositions/ui/checkbox-card",
+  "snippet": "import { CheckboxCard as ChakraCheckboxCard } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface CheckboxCardProps extends ChakraCheckboxCard.RootProps {\n  icon?: React.ReactElement\n  label?: React.ReactNode\n  description?: React.ReactNode\n  addon?: React.ReactNode\n  indicator?: React.ReactNode | null\n  indicatorPlacement?: \"start\" | \"end\" | \"inside\"\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const CheckboxCard = React.forwardRef<\n  HTMLInputElement,\n  CheckboxCardProps\n>(function CheckboxCard(props, ref) {\n  const {\n    inputProps,\n    label,\n    description,\n    icon,\n    addon,\n    indicator = <ChakraCheckboxCard.Indicator />,\n    indicatorPlacement = \"end\",\n    ...rest\n  } = props\n\n  const hasContent = label || description || icon\n  const ContentWrapper = indicator ? ChakraCheckboxCard.Content : React.Fragment\n\n  return (\n    <ChakraCheckboxCard.Root {...rest}>\n      <ChakraCheckboxCard.HiddenInput ref={ref} {...inputProps} />\n      <ChakraCheckboxCard.Control>\n        {indicatorPlacement === \"start\" && indicator}\n        {hasContent && (\n          <ContentWrapper>\n            {icon}\n            {label && (\n              <ChakraCheckboxCard.Label>{label}</ChakraCheckboxCard.Label>\n            )}\n            {description && (\n              <ChakraCheckboxCard.Description>\n                {description}\n              </ChakraCheckboxCard.Description>\n            )}\n            {indicatorPlacement === \"inside\" && indicator}\n          </ContentWrapper>\n        )}\n        {indicatorPlacement === \"end\" && indicator}\n      </ChakraCheckboxCard.Control>\n      {addon && <ChakraCheckboxCard.Addon>{addon}</ChakraCheckboxCard.Addon>}\n    </ChakraCheckboxCard.Root>\n  )\n})\n\nexport const CheckboxCardIndicator = ChakraCheckboxCard.Indicator\n",
+  "examples": [
+    {
+      "name": "checkbox-card-basic",
+      "content": "export const CheckboxCardBasic = () => {\n  return (\n    <CheckboxCard.Root maxW=\"240px\">\n      <CheckboxCard.HiddenInput />\n      <CheckboxCard.Control>\n        <CheckboxCard.Label>Next.js</CheckboxCard.Label>\n        <CheckboxCard.Indicator />\n      </CheckboxCard.Control>\n    </CheckboxCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-closed-component",
+      "content": "export interface CheckboxCardProps extends ChakraCheckboxCard.RootProps {\n  icon?: React.ReactElement\n  label?: React.ReactNode\n  description?: React.ReactNode\n  addon?: React.ReactNode\n  indicator?: React.ReactNode | null\n  indicatorPlacement?: \"start\" | \"end\" | \"inside\"\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const CheckboxCard = React.forwardRef<\n  HTMLInputElement,\n  CheckboxCardProps\n>(function CheckboxCard(props, ref) {\n  const {\n    inputProps,\n    label,\n    description,\n    icon,\n    addon,\n    indicator = <ChakraCheckboxCard.Indicator />,\n    indicatorPlacement = \"end\",\n    ...rest\n  } = props\n\n  const hasContent = label || description || icon\n  const ContentWrapper = indicator ? ChakraCheckboxCard.Content : React.Fragment\n\n  return (\n    <ChakraCheckboxCard.Root {...rest}>\n      <ChakraCheckboxCard.HiddenInput ref={ref} {...inputProps} />\n      <ChakraCheckboxCard.Control>\n        {indicatorPlacement === \"start\" && indicator}\n        {hasContent && (\n          <ContentWrapper>\n            {icon}\n            {label && (\n              <ChakraCheckboxCard.Label>{label}</ChakraCheckboxCard.Label>\n            )}\n            {description && (\n              <ChakraCheckboxCard.Description>\n                {description}\n              </ChakraCheckboxCard.Description>\n            )}\n            {indicatorPlacement === \"inside\" && indicator}\n          </ContentWrapper>\n        )}\n        {indicatorPlacement === \"end\" && indicator}\n      </ChakraCheckboxCard.Control>\n      {addon && <ChakraCheckboxCard.Addon>{addon}</ChakraCheckboxCard.Addon>}\n    </ChakraCheckboxCard.Root>\n  )\n})\n\nexport const CheckboxCardIndicator = ChakraCheckboxCard.Indicator\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard as ChakraCheckboxCard } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-disabled",
+      "content": "export const CheckboxCardDisabled = () => {\n  return (\n    <CheckboxCard.Root disabled maxW=\"320px\">\n      <CheckboxCard.HiddenInput />\n      <CheckboxCard.Control>\n        <CheckboxCard.Content>\n          <CheckboxCard.Label>Disabled</CheckboxCard.Label>\n          <CheckboxCard.Description>\n            This is a disabled checkbox\n          </CheckboxCard.Description>\n        </CheckboxCard.Content>\n        <CheckboxCard.Indicator />\n      </CheckboxCard.Control>\n    </CheckboxCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-no-indicator",
+      "content": "export const CheckboxCardNoIndicator = () => {\n  return (\n    <HStack>\n      <CheckboxCard.Root>\n        <CheckboxCard.HiddenInput />\n        <CheckboxCard.Control>\n          <CheckboxCard.Label>Chakra UI</CheckboxCard.Label>\n        </CheckboxCard.Control>\n      </CheckboxCard.Root>\n\n      <CheckboxCard.Root>\n        <CheckboxCard.HiddenInput />\n        <CheckboxCard.Control>\n          <CheckboxCard.Label>Next.js</CheckboxCard.Label>\n        </CheckboxCard.Control>\n      </CheckboxCard.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-addon",
+      "content": "export const CheckboxCardWithAddon = () => {\n  return (\n    <CheckboxCard.Root maxW=\"300px\">\n      <CheckboxCard.HiddenInput />\n      <CheckboxCard.Control>\n        <CheckboxCard.Content>\n          <CheckboxCard.Label>With Addon</CheckboxCard.Label>\n          <CheckboxCard.Description>Some description</CheckboxCard.Description>\n        </CheckboxCard.Content>\n        <CheckboxCard.Indicator />\n      </CheckboxCard.Control>\n      <CheckboxCard.Addon>\n        <HStack>\n          Some supporting text\n          <Badge variant=\"solid\">New</Badge>\n        </HStack>\n      </CheckboxCard.Addon>\n    </CheckboxCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, CheckboxCard, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-description",
+      "content": "export const CheckboxCardWithDescription = () => {\n  return (\n    <CheckboxCard.Root maxW=\"240px\">\n      <CheckboxCard.HiddenInput />\n      <CheckboxCard.Control>\n        <CheckboxCard.Content>\n          <CheckboxCard.Label>Next.js</CheckboxCard.Label>\n          <CheckboxCard.Description>Best for apps</CheckboxCard.Description>\n        </CheckboxCard.Content>\n        <CheckboxCard.Indicator />\n      </CheckboxCard.Control>\n    </CheckboxCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-group",
+      "content": "export const CheckboxCardWithGroup = () => {\n  return (\n    <CheckboxGroup defaultValue={[\"next\"]}>\n      <Text textStyle=\"sm\" fontWeight=\"medium\">\n        Select framework(s)\n      </Text>\n      <Flex gap=\"2\">\n        {items.map((item) => (\n          <CheckboxCard.Root key={item.value} value={item.value}>\n            <CheckboxCard.HiddenInput />\n            <CheckboxCard.Control>\n              <CheckboxCard.Content>\n                <CheckboxCard.Label>{item.title}</CheckboxCard.Label>\n                <CheckboxCard.Description>\n                  {item.description}\n                </CheckboxCard.Description>\n              </CheckboxCard.Content>\n              <CheckboxCard.Indicator />\n            </CheckboxCard.Control>\n          </CheckboxCard.Root>\n        ))}\n      </Flex>\n    </CheckboxGroup>\n  )\n}\n\nconst items = [\n  { value: \"next\", title: \"Next.js\", description: \"Best for apps\" },\n  { value: \"vite\", title: \"Vite\", description: \"Best for SPAs\" },\n  { value: \"astro\", title: \"Astro\", description: \"Best for static sites\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard, CheckboxGroup, Flex, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-icon",
+      "content": "export const CheckboxCardWithIcon = () => {\n  return (\n    <CheckboxGroup defaultValue={[\"Guest\"]}>\n      <SimpleGrid minChildWidth=\"200px\" gap=\"2\">\n        {items.map((item) => (\n          <CheckboxCard.Root align=\"center\" key={item.label}>\n            <CheckboxCard.HiddenInput />\n            <CheckboxCard.Control>\n              <CheckboxCard.Content>\n                <Icon fontSize=\"2xl\" mb=\"2\">\n                  {item.icon}\n                </Icon>\n                <CheckboxCard.Label>{item.label}</CheckboxCard.Label>\n                <CheckboxCard.Description>\n                  {item.description}\n                </CheckboxCard.Description>\n              </CheckboxCard.Content>\n              <Float placement=\"top-end\" offset=\"6\">\n                <CheckboxCard.Indicator />\n              </Float>\n            </CheckboxCard.Control>\n          </CheckboxCard.Root>\n        ))}\n      </SimpleGrid>\n    </CheckboxGroup>\n  )\n}\n\nconst items = [\n  { icon: <HiShieldCheck />, label: \"Admin\", description: \"Give full access\" },\n  { icon: <HiUser />, label: \"User\", description: \"Give limited access\" },\n  {\n    icon: <HiGlobeAlt />,\n    label: \"Guest\",\n    description: \"Give read-only access\",\n  },\n  { icon: <HiLockClosed />, label: \"Blocked\", description: \"No access\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  CheckboxCard,\n  CheckboxGroup,\n  Float,\n  Icon,\n  SimpleGrid,\n} from \"@chakra-ui/react\"",
+        "import { HiGlobeAlt, HiLockClosed, HiShieldCheck, HiUser } from \"react-icons/hi\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "checkbox-card-with-sizes",
+      "content": "export const CheckboxCardWithSizes = () => {\n  return (\n    <Stack maxW=\"320px\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <CheckboxCard.Root size={size} key={size}>\n            <CheckboxCard.HiddenInput />\n            <CheckboxCard.Control>\n              <CheckboxCard.Content>\n                <CheckboxCard.Label>Checkbox {size}</CheckboxCard.Label>\n              </CheckboxCard.Content>\n              <CheckboxCard.Indicator />\n            </CheckboxCard.Control>\n          </CheckboxCard.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-states",
+      "content": "export const CheckboxCardWithStates = () => {\n  return (\n    <Stack>\n      <DemoCheckboxCard />\n      <DemoCheckboxCard defaultChecked />\n      <DemoCheckboxCard disabled />\n      <DemoCheckboxCard defaultChecked disabled />\n      <DemoCheckboxCard invalid />\n    </Stack>\n  )\n}\n\nconst DemoCheckboxCard = (props: CheckboxCard.RootProps) => {\n  return (\n    <CheckboxCard.Root maxW=\"240px\" {...props}>\n      <CheckboxCard.HiddenInput />\n      <CheckboxCard.Control>\n        <CheckboxCard.Content>\n          <CheckboxCard.Label>Next.js</CheckboxCard.Label>\n          <CheckboxCard.Description>Best for apps</CheckboxCard.Description>\n        </CheckboxCard.Content>\n        <CheckboxCard.Indicator />\n      </CheckboxCard.Control>\n    </CheckboxCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-card-with-variants",
+      "content": "export const CheckboxCardWithVariants = () => {\n  return (\n    <Stack maxW=\"320px\">\n      <For each={[\"subtle\", \"surface\", \"outline\"]}>\n        {(variant) => (\n          <CheckboxCard.Root\n            defaultChecked\n            key={variant}\n            variant={variant}\n            colorPalette=\"teal\"\n          >\n            <CheckboxCard.HiddenInput />\n            <CheckboxCard.Control>\n              <CheckboxCard.Label>Checkbox {variant}</CheckboxCard.Label>\n              <CheckboxCard.Indicator />\n            </CheckboxCard.Control>\n          </CheckboxCard.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CheckboxCard, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CheckboxCard } from \"@chakra-ui/react\""
+    }
+  ]
+}

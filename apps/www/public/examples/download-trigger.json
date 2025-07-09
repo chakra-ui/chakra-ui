@@ -1,0 +1,50 @@
+{
+  "name": "download-trigger",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "download-trigger-basic",
+      "content": "const data = \"The quick brown fox jumps over the lazy dog\"\n\nexport const DownloadTriggerBasic = () => {\n  return (\n    <DownloadTrigger\n      data={data}\n      fileName=\"sample.txt\"\n      mimeType=\"text/plain\"\n      asChild\n    >\n      <Button variant=\"outline\">Download txt</Button>\n    </DownloadTrigger>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, DownloadTrigger } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DownloadTrigger } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "download-trigger-svg",
+      "content": "const data = String.raw`\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\"/>\n</svg>\n`\n\nexport const DownloadTriggerSvg = () => {\n  return (\n    <DownloadTrigger\n      data={data}\n      fileName=\"sample.svg\"\n      mimeType=\"image/svg+xml\"\n      asChild\n    >\n      <Button variant=\"outline\">Download svg</Button>\n    </DownloadTrigger>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, DownloadTrigger } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DownloadTrigger } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "download-trigger-with-file-size",
+      "content": "const data = \"The quick brown fox jumps over the lazy dog\"\n\nexport const DownloadTriggerWithFileSize = () => {\n  return (\n    <DownloadTrigger\n      data={data}\n      fileName=\"sample.txt\"\n      mimeType=\"text/plain\"\n      asChild\n    >\n      <Button variant=\"outline\">\n        <LuDownload /> Download (\n        <FormatByte value={data.length} unitDisplay=\"narrow\" />)\n      </Button>\n    </DownloadTrigger>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, DownloadTrigger, FormatByte } from \"@chakra-ui/react\"",
+        "import { LuDownload } from \"react-icons/lu\""
+      ],
+      "importPath": "import { DownloadTrigger } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "download-trigger-with-promise",
+      "content": "\"use client\"\nconst data = async () => {\n  const res = await fetch(\"https://picsum.photos/200/300\")\n  return res.blob()\n}\n\nexport const DownloadTriggerWithPromise = () => {\n  return (\n    <DownloadTrigger\n      data={data}\n      fileName=\"sample.jpg\"\n      mimeType=\"image/jpeg\"\n      asChild\n    >\n      <Button variant=\"outline\">\n        <LuImageDown /> Download\n      </Button>\n    </DownloadTrigger>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, DownloadTrigger } from \"@chakra-ui/react\"",
+        "import { LuImageDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { DownloadTrigger } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

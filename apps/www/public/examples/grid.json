@@ -1,0 +1,46 @@
+{
+  "name": "grid",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "grid-basic",
+      "content": "export const GridBasic = () => {\n  return (\n    <Grid templateColumns=\"repeat(3, 1fr)\" gap=\"6\">\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n    </Grid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Grid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Grid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "grid-spanning-columns",
+      "content": "export const GridSpanningColumns = () => {\n  return (\n    <Grid\n      h=\"200px\"\n      templateRows=\"repeat(2, 1fr)\"\n      templateColumns=\"repeat(5, 1fr)\"\n      gap={4}\n    >\n      <GridItem rowSpan={2} colSpan={1}>\n        <Box>rowSpan=2</Box>\n      </GridItem>\n      <GridItem colSpan={2}>\n        <Box>colSpan=2</Box>\n      </GridItem>\n      <GridItem colSpan={2}>\n        <Box>colSpan=2</Box>\n      </GridItem>\n      <GridItem colSpan={4}>\n        <Box>colSpan=4</Box>\n      </GridItem>\n    </Grid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Grid, GridItem } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Grid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "grid-with-col-span",
+      "content": "export const GridWithColSpan = () => {\n  return (\n    <Grid templateColumns=\"repeat(4, 1fr)\" gap=\"6\">\n      <GridItem colSpan={2}>\n        <Box h=\"20\" />\n      </GridItem>\n      <GridItem colSpan={1}>\n        <Box h=\"20\" />\n      </GridItem>\n      <GridItem colSpan={1}>\n        <Box h=\"20\" />\n      </GridItem>\n    </Grid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Grid, GridItem } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Grid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "grid-with-template-areas",
+      "content": "export const GridWithTemplateAreas = () => {\n  return (\n    <Grid\n      gap=\"4\"\n      templateAreas={`\n      \"one one two three\"\n      \"four five five three\"\n    `}\n    >\n      <GridItem bg=\"green.500\" area=\"one\">\n        <Box minH=\"20\">one</Box>\n      </GridItem>\n      <GridItem bg=\"pink.500\" area=\"two\">\n        <Box minH=\"20\">two</Box>\n      </GridItem>\n      <GridItem bg=\"red.500\" area=\"three\">\n        <Box minH=\"20\">three</Box>\n      </GridItem>\n      <GridItem bg=\"teal.500\" area=\"four\">\n        <Box minH=\"20\">four</Box>\n      </GridItem>\n      <GridItem bg=\"yellow.500\" area=\"five\">\n        <Box minH=\"20\">five</Box>\n      </GridItem>\n    </Grid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Grid, GridItem } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Grid } from \"@chakra-ui/react\""
+    }
+  ]
+}

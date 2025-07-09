@@ -1,0 +1,216 @@
+{
+  "name": "button",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "button-as-link",
+      "content": "export const ButtonAsLink = () => {\n  return (\n    <Button asChild>\n      <a href=\"#\">Button</a>\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-basic",
+      "content": "export const ButtonBasic = () => {\n  return <Button>Button</Button>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-icons",
+      "content": "export const ButtonIcons = () => (\n  <Stack direction=\"row\">\n    <IconButton aria-label=\"Search database\">\n      <RiSearchLine />\n    </IconButton>\n\n    <IconButton colorPalette=\"blue\" aria-label=\"Search database\">\n      <RiSearchLine />\n    </IconButton>\n\n    <IconButton colorPalette=\"teal\" aria-label=\"Call Segun\" size=\"lg\">\n      <RiPhoneLine />\n    </IconButton>\n  </Stack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { IconButton, Stack } from \"@chakra-ui/react\"",
+        "import { RiPhoneLine, RiSearchLine } from \"react-icons/ri\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-colors",
+      "content": "export const ButtonWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack align=\"center\" key={colorPalette} direction=\"row\" gap=\"10\">\n          <Text minW=\"8ch\">{colorPalette}</Text>\n          <Button colorPalette={colorPalette}>Button</Button>\n          <Button colorPalette={colorPalette} variant=\"outline\">\n            Button\n          </Button>\n          <Button colorPalette={colorPalette} variant=\"surface\">\n            Button\n          </Button>\n          <Button colorPalette={colorPalette} variant=\"subtle\">\n            Button\n          </Button>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-custom-spinner",
+      "content": "export const ButtonWithCustomSpinner = () => {\n  return (\n    <Button\n      loading\n      colorPalette=\"blue\"\n      spinner={<BeatLoader size={8} color=\"white\" />}\n    >\n      Click me\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { BeatLoader } from \"react-spinners\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-spinners"
+      ]
+    },
+    {
+      "name": "button-with-disabled-link",
+      "content": "\"use client\"\nexport const ButtonWithDisabledLink = () => {\n  return (\n    <Button asChild>\n      <a href=\"#\" data-disabled=\"\" onClick={(e) => e.preventDefault()}>\n        Button\n      </a>\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-disabled",
+      "content": "export const ButtonWithDisabled = () => {\n  return <Button disabled>Button</Button>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-group-flushed",
+      "content": "export const ButtonWithGroupFlushed = () => {\n  return (\n    <ButtonGroup size=\"sm\" variant=\"outline\" attached>\n      <Button variant=\"outline\">Button</Button>\n      <IconButton variant=\"outline\">\n        <LuChevronDown />\n      </IconButton>\n    </ButtonGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, IconButton } from \"@chakra-ui/react\"",
+        "import { LuChevronDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-group",
+      "content": "export const ButtonWithGroup = () => {\n  return (\n    <ButtonGroup size=\"sm\" variant=\"outline\">\n      <Button colorPalette=\"blue\">Save</Button>\n      <Button>Cancel</Button>\n    </ButtonGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-icon-composition",
+      "content": "export const ButtonWithIconComposition = () => {\n  return (\n    <Button>\n      <Icon color=\"yellow\" size=\"inherit\">\n        <LuPlus />\n      </Icon>\n      Button\n      <Icon color=\"pink\" size=\"inherit\">\n        <LuPlus />\n      </Icon>\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Icon } from \"@chakra-ui/react\"",
+        "import { LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-icons",
+      "content": "export const ButtonWithIcons = () => {\n  return (\n    <HStack>\n      <Button colorPalette=\"teal\" variant=\"solid\">\n        <RiMailLine /> Email\n      </Button>\n      <Button colorPalette=\"teal\" variant=\"outline\">\n        Call us <RiArrowRightLine />\n      </Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\"",
+        "import { RiArrowRightLine, RiMailLine } from \"react-icons/ri\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-loading-toggle",
+      "content": "\"use client\"\nexport const ButtonWithLoadingToggle = () => {\n  const [loading, setLoading] = useState(false)\n  return (\n    <VStack gap=\"4\">\n      <Button loading={loading} onClick={() => setLoading(!loading)}>\n        <MdAdsClick /> Click me\n      </Button>\n      <Checkbox.Root\n        size=\"sm\"\n        checked={loading}\n        onCheckedChange={() => setLoading(!loading)}\n      >\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Loading</Checkbox.Label>\n      </Checkbox.Root>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Checkbox, VStack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { MdAdsClick } from \"react-icons/md\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-loading",
+      "content": "export const ButtonWithLoading = () => {\n  return (\n    <Stack direction=\"row\" gap=\"4\" align=\"center\">\n      <Button loading>Click me</Button>\n      <Button loading loadingText=\"Saving...\">\n        Click me\n      </Button>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-menu",
+      "content": "export const ButtonWithMenu = () => {\n  return (\n    <Menu.Root positioning={{ placement: \"bottom-end\" }}>\n      <Group attached>\n        <Button size=\"sm\" variant=\"outline\">\n          Accept\n        </Button>\n        <Menu.Trigger asChild>\n          <IconButton size=\"sm\" variant=\"outline\">\n            <LuChevronDown />\n          </IconButton>\n        </Menu.Trigger>\n      </Group>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"all\">Accept All</Menu.Item>\n            <Menu.Item value=\"selected\">Accept Selected</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Group, IconButton, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuChevronDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "button-with-radius",
+      "content": "export const ButtonWithRadius = () => {\n  return (\n    <Stack gap=\"8\">\n      <Stack>\n        <Text textStyle=\"sm\">Semantic Radius</Text>\n        <ButtonGroup variant=\"subtle\">\n          <Button rounded=\"l1\">Rounded l1</Button>\n          <Button rounded=\"l2\">Rounded l2</Button>\n          <Button rounded=\"l3\">Rounded l3</Button>\n        </ButtonGroup>\n      </Stack>\n\n      <Stack>\n        <Text textStyle=\"sm\">Core Radius</Text>\n        <ButtonGroup variant=\"subtle\">\n          <Button rounded=\"sm\">Rounded sm</Button>\n          <Button rounded=\"md\">Rounded md</Button>\n          <Button rounded=\"lg\">Rounded lg</Button>\n          <Button rounded=\"xl\">Rounded xl</Button>\n          <Button rounded=\"2xl\">Rounded 2xl</Button>\n          <Button rounded=\"full\">Rounded full</Button>\n        </ButtonGroup>\n      </Stack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-responsive-size",
+      "content": "export const ButtonWithResponsiveSize = () => {\n  return (\n    <Button rounded=\"3xl\" size={{ base: \"md\", md: \"lg\" }}>\n      Button\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-sizes",
+      "content": "export const ButtonWithSizes = () => {\n  return (\n    <HStack wrap=\"wrap\" gap=\"6\">\n      <Button size=\"xs\">Button (xs)</Button>\n      <Button size=\"sm\">Button (sm)</Button>\n      <Button size=\"md\">Button (md)</Button>\n      <Button size=\"lg\">Button (lg)</Button>\n      <Button size=\"xl\">Button (xl)</Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-spinner-placement",
+      "content": "export const ButtonWithSpinnerPlacement = () => {\n  return (\n    <ButtonGroup colorPalette=\"teal\">\n      <Button loading loadingText=\"Loading\" spinnerPlacement=\"start\">\n        Submit\n      </Button>\n      <Button loading loadingText=\"Loading\" spinnerPlacement=\"end\">\n        Continue\n      </Button>\n    </ButtonGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-style-override",
+      "content": "export const ButtonWithStyleOverride = () => {\n  return (\n    <Button\n      size=\"md\"\n      height=\"48px\"\n      width=\"200px\"\n      border=\"2px solid\"\n      borderColor=\"green.500\"\n    >\n      Button\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-variants",
+      "content": "export const ButtonWithVariants = () => {\n  return (\n    <HStack wrap=\"wrap\" gap=\"6\">\n      <Button variant=\"solid\">Solid</Button>\n      <Button variant=\"subtle\">Subtle</Button>\n      <Button variant=\"surface\">Surface</Button>\n      <Button variant=\"outline\">Outline</Button>\n      <Button variant=\"ghost\">Ghost</Button>\n      <Button variant=\"plain\">Plain</Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\""
+    }
+  ]
+}

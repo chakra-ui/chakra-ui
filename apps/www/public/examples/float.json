@@ -1,0 +1,60 @@
+{
+  "name": "float",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "float-basic",
+      "content": "export const FloatBasic = () => (\n  <Box position=\"relative\" w=\"80px\" h=\"80px\" bg=\"bg.emphasized\">\n    <Float>\n      <Circle size=\"5\" bg=\"red\" color=\"white\">\n        3\n      </Circle>\n    </Float>\n  </Box>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "float-with-avatar",
+      "content": "export const FloatWithAvatar = () => {\n  return (\n    <Box display=\"inline-block\" pos=\"relative\">\n      <Avatar.Root size=\"lg\" shape=\"rounded\">\n        <Avatar.Image src=\"https://bit.ly/dan-abramov\" />\n        <Avatar.Fallback />\n      </Avatar.Root>\n      <Float placement=\"bottom-end\">\n        <Badge size=\"sm\" variant=\"solid\" colorPalette=\"teal\">\n          New\n        </Badge>\n      </Float>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Badge, Box, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "float-with-offset-x",
+      "content": "export const FloatWithOffsetX = () => (\n  <Box position=\"relative\" w=\"80px\" h=\"80px\" bg=\"bg.emphasized\">\n    <Float offsetX=\"-4\">\n      <Circle size=\"5\" bg=\"red\" color=\"white\">\n        3\n      </Circle>\n    </Float>\n  </Box>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "float-with-offset-y",
+      "content": "export const FloatWithOffsetY = () => (\n  <Box position=\"relative\" w=\"80px\" h=\"80px\" bg=\"bg.emphasized\">\n    <Float offsetY=\"-4\">\n      <Circle size=\"5\" bg=\"red\" color=\"white\">\n        3\n      </Circle>\n    </Float>\n  </Box>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "float-with-offset",
+      "content": "export const FloatWithOffset = () => (\n  <Box position=\"relative\" w=\"80px\" h=\"80px\" bg=\"bg.emphasized\">\n    <Float offset=\"4\">\n      <Circle size=\"5\" bg=\"red\" color=\"white\">\n        3\n      </Circle>\n    </Float>\n  </Box>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "float-with-placements",
+      "content": "export const FloatWithPlacements = () => (\n  <HStack gap=\"14\" wrap=\"wrap\">\n    {placements.map((placement) => (\n      <Stack key={placement} gap=\"3\">\n        <p>{placement}</p>\n        <Box position=\"relative\" width=\"80px\" height=\"80px\" bg=\"bg.emphasized\">\n          <Float placement={placement}>\n            <Circle size=\"5\" bg=\"red\" color=\"white\">\n              3\n            </Circle>\n          </Float>\n        </Box>\n      </Stack>\n    ))}\n  </HStack>\n)\n\nconst placements = [\n  \"bottom-end\",\n  \"bottom-start\",\n  \"top-end\",\n  \"top-start\",\n  \"bottom-center\",\n  \"top-center\",\n  \"middle-center\",\n  \"middle-end\",\n  \"middle-start\",\n] as const\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Float, HStack, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Float } from \"@chakra-ui/react\""
+    }
+  ]
+}

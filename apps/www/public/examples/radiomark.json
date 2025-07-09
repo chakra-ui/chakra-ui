@@ -1,0 +1,24 @@
+{
+  "name": "radiomark",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "radiomark-basic",
+      "content": "export const RadiomarkBasic = () => {\n  return (\n    <Stack>\n      <Radiomark />\n      <Radiomark checked />\n      <Radiomark disabled />\n      <Radiomark checked disabled />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Radiomark, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radiomark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radiomark-variants",
+      "content": "export const RadiomarkVariants = () => {\n  return (\n    <Stack>\n      <For each={[\"outline\", \"subtle\", \"solid\", \"inverted\"]}>\n        {(variant) => <Radiomark checked key={variant} variant={variant} />}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Radiomark, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radiomark } from \"@chakra-ui/react\""
+    }
+  ]
+}

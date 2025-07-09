@@ -1,0 +1,60 @@
+{
+  "name": "kbd",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "kbd-basic",
+      "content": "export const KbdBasic = () => {\n  return <Kbd>Shift + Tab</Kbd>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Kbd } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "kbd-function-keys",
+      "content": "export const KbdFunctionKeys = () => {\n  return (\n    <HStack>\n      <Kbd>⌘</Kbd>\n      <Kbd>⌥</Kbd>\n      <Kbd>⇧</Kbd>\n      <Kbd>⌃</Kbd>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Kbd } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "kbd-with-combinations",
+      "content": "export const KbdWithCombinations = () => {\n  return (\n    <HStack gap=\"1\">\n      <Kbd>ctrl</Kbd>+<Kbd>shift</Kbd>+<Kbd>del</Kbd>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Kbd } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "kbd-with-sizes",
+      "content": "export const KbdWithSizes = () => {\n  return (\n    <HStack gap=\"4\">\n      <Kbd size=\"sm\">Shift + Tab</Kbd>\n      <Kbd size=\"md\">Shift + Tab</Kbd>\n      <Kbd size=\"lg\">Shift + Tab</Kbd>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Kbd } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "kbd-with-variants",
+      "content": "export const KbdWithVariants = () => {\n  return (\n    <HStack gap=\"4\">\n      <Kbd variant=\"raised\">Shift + Tab</Kbd>\n      <Kbd variant=\"outline\">Shift + Tab</Kbd>\n      <Kbd variant=\"subtle\">Shift + Tab</Kbd>\n      <Kbd variant=\"plain\">Shift + Tab</Kbd>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Kbd } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "kbd-within-text",
+      "content": "export const KbdWithinText = () => {\n  return (\n    <Text>\n      Press <Kbd>F12</Kbd> to open DevTools\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Kbd, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Kbd } from \"@chakra-ui/react\""
+    }
+  ]
+}

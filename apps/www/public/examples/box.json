@@ -1,0 +1,93 @@
+{
+  "name": "box",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "box-basic",
+      "content": "export const BoxBasic = () => {\n  return (\n    <Box background=\"tomato\" width=\"100%\" padding=\"4\" color=\"white\">\n      This is the Box\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-property-card",
+      "content": "export const BoxPropertyCard = () => {\n  return (\n    <Box maxW=\"sm\" borderWidth=\"1px\">\n      <Image src={data.imageUrl} alt={data.imageAlt} />\n\n      <Box p=\"4\" spaceY=\"2\">\n        <HStack>\n          <Badge colorPalette=\"teal\" variant=\"solid\">\n            Superhost\n          </Badge>\n          <HStack gap=\"1\" fontWeight=\"medium\">\n            <Icon color=\"orange.400\">\n              <HiStar />\n            </Icon>\n            <Text>\n              {data.rating} ({data.reviewCount})\n            </Text>\n          </HStack>\n        </HStack>\n        <Text fontWeight=\"medium\" color=\"fg\">\n          {data.title}\n        </Text>\n        <HStack color=\"fg.muted\">\n          {data.formattedPrice} • {data.beds} beds\n        </HStack>\n      </Box>\n    </Box>\n  )\n}\n\nconst data = {\n  imageUrl: \"https://bit.ly/2Z4KKcF\",\n  imageAlt: \"Rear view of modern home with pool\",\n  beds: 3,\n  title: \"Modern home in city center in the heart of historic Los Angeles\",\n  formattedPrice: \"$435\",\n  reviewCount: 34,\n  rating: 4.5,\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Box, HStack, Icon, Image, Text } from \"@chakra-ui/react\"",
+        "import { HiStar } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "box-with-as-prop",
+      "content": "export const BoxWithAsProp = () => {\n  return (\n    <Box as=\"section\" color=\"fg.muted\">\n      This is a Box rendered as a section\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-border",
+      "content": "export const BoxWithBorder = () => {\n  return (\n    <Box\n      p=\"4\"\n      borderWidth=\"1px\"\n      borderColor=\"border.disabled\"\n      color=\"fg.disabled\"\n    >\n      Somewhat disabled box\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-hide-below",
+      "content": "export const BoxWithHideBelow = () => (\n  <HStack>\n    <Box bg=\"green.300\" hideBelow=\"md\" height=\"40px\" flex=\"1\" />\n    <Box height=\"40px\" flex=\"1\" />\n  </HStack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-hide-from",
+      "content": "export const BoxWithHideFrom = () => (\n  <HStack>\n    <Box bg=\"green.300\" hideFrom=\"md\" height=\"40px\" flex=\"1\" />\n    <Box height=\"40px\" flex=\"1\" />\n  </HStack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-pseudo-props",
+      "content": "export const BoxWithPseudoProps = () => {\n  return (\n    <Box bg=\"tomato\" w=\"100%\" p=\"4\" color=\"white\" _hover={{ bg: \"green\" }}>\n      This is the Box\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-shadow",
+      "content": "export const BoxWithShadow = () => {\n  return (\n    <Box bg=\"bg\" shadow=\"md\" borderRadius=\"md\">\n      Box with shadow\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "box-with-shorthand",
+      "content": "export const BoxWithShorthand = () => {\n  return (\n    <Box bg=\"tomato\" w=\"100%\" p=\"4\" color=\"white\">\n      This is the Box\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Box } from \"@chakra-ui/react\""
+    }
+  ]
+}
