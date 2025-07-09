@@ -2,11 +2,11 @@
   "Indicator": {
     "props": {
       "checked": {
-        "type": "React.ReactElement",
+        "type": "React.ReactElement | undefined",
         "isRequired": false
       },
       "indeterminate": {
-        "type": "React.ReactElement",
+        "type": "React.ReactElement | undefined",
         "isRequired": false
       }
     }

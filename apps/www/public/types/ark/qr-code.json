@@ -64,7 +64,7 @@
       "defaultValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The initial value of the qr code when it is first rendered.\nUse when you do not need to control the state of the qr code."
+        "description": "The initial value to encode when rendered.\nUse when you don't need to control the value of the qr code."
       },
       "encoding": {
         "type": "QrCodeGenerateOptions",
@@ -86,10 +86,15 @@
         "isRequired": false,
         "description": "Callback fired when the value changes."
       },
+      "pixelSize": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The pixel size of the qr code."
+      },
       "value": {
         "type": "string",
         "isRequired": false,
-        "description": "The value to encode."
+        "description": "The controlled value to encode."
       }
     },
     "element": "HTMLDivElement"

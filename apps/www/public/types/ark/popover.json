@@ -102,7 +102,7 @@
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the popover when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover."
       },
       "id": {
         "type": "string",
@@ -142,7 +142,7 @@
         "description": "Function called when the escape key is pressed"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -169,7 +169,7 @@
       "open": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the popover is open"
+        "description": "The controlled open state of the popover"
       },
       "persistentElements": {
         "type": "(() => Element | null)[]",
@@ -191,6 +191,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -218,7 +224,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -226,6 +232,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",

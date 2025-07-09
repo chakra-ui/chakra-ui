@@ -2,7 +2,7 @@
   "Square": {
     "props": {
       "size": {
-        "type": "BoxProps[\"boxSize\"]",
+        "type": "BoxProps[\"boxSize\"] | undefined",
         "isRequired": false,
         "description": "The size (width and height) of the square"
       }
@@ -11,7 +11,7 @@
   "Circle": {
     "props": {
       "size": {
-        "type": "BoxProps[\"boxSize\"]",
+        "type": "BoxProps[\"boxSize\"] | undefined",
         "isRequired": false,
         "description": "The size (width and height) of the square"
       }

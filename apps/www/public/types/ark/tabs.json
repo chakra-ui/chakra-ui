@@ -75,7 +75,7 @@
       "defaultValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The initial value of the tabs when it is first rendered.\nUse when you do not need to control the state of the tabs."
+        "description": "The initial selected tab value when rendered.\nUse when you don't need to control the selected tab value."
       },
       "deselectable": {
         "type": "boolean",
@@ -88,7 +88,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  trigger: string\n  list: string\n  content: string\n  indicator: string\n}>",
+        "type": "Partial<{ root: string; trigger: string; list: string; content: string; indicator: string }>",
         "isRequired": false,
         "description": "The ids of the elements in the tabs. Useful for composition."
       },
@@ -139,7 +139,7 @@
       "value": {
         "type": "string",
         "isRequired": false,
-        "description": "The selected tab id"
+        "description": "The controlled selected tab value"
       }
     },
     "element": "HTMLDivElement"

@@ -21,7 +21,7 @@
   "RequiredIndicator": {
     "props": {
       "fallback": {
-        "type": "React.ReactNode",
+        "type": "React.ReactNode | undefined",
         "isRequired": false
       }
     }

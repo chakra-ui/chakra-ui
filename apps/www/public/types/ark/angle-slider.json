@@ -1,0 +1,158 @@
+{
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "HiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement"
+  },
+  "MarkerGroup": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Marker": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The value of the marker"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Root": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultValue": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The initial value of the slider.\nUse when you don't need to control the value of the slider."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is disabled."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; thumb: string; hiddenInput: string; control: string; valueText: string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the machine.\nUseful for composition."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is invalid."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the slider. Useful for form submission."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback function for when the value changes."
+      },
+      "onValueChangeEnd": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback function for when the value changes ends."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the slider is read-only."
+      },
+      "step": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The step value for the slider."
+      },
+      "value": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The value of the slider."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseAngleSliderReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Thumb": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ValueText": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

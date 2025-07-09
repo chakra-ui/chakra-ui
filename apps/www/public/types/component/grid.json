@@ -2,39 +2,39 @@
   "Grid": {
     "props": {
       "templateColumns": {
-        "type": "SystemStyleObject[\"gridTemplateColumns\"]",
+        "type": "SystemStyleObject[\"gridTemplateColumns\"] | undefined",
         "isRequired": false
       },
       "autoFlow": {
-        "type": "SystemStyleObject[\"gridAutoFlow\"]",
+        "type": "SystemStyleObject[\"gridAutoFlow\"] | undefined",
         "isRequired": false
       },
       "autoRows": {
-        "type": "SystemStyleObject[\"gridAutoRows\"]",
+        "type": "SystemStyleObject[\"gridAutoRows\"] | undefined",
         "isRequired": false
       },
       "autoColumns": {
-        "type": "SystemStyleObject[\"gridAutoColumns\"]",
+        "type": "SystemStyleObject[\"gridAutoColumns\"] | undefined",
         "isRequired": false
       },
       "templateRows": {
-        "type": "SystemStyleObject[\"gridTemplateRows\"]",
+        "type": "SystemStyleObject[\"gridTemplateRows\"] | undefined",
         "isRequired": false
       },
       "templateAreas": {
-        "type": "SystemStyleObject[\"gridTemplateAreas\"]",
+        "type": "SystemStyleObject[\"gridTemplateAreas\"] | undefined",
         "isRequired": false
       },
       "column": {
-        "type": "SystemStyleObject[\"gridColumn\"]",
+        "type": "SystemStyleObject[\"gridColumn\"] | undefined",
         "isRequired": false
       },
       "row": {
-        "type": "SystemStyleObject[\"gridRow\"]",
+        "type": "SystemStyleObject[\"gridRow\"] | undefined",
         "isRequired": false
       },
       "inline": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false
       }
     }
@@ -42,31 +42,31 @@
   "GridItem": {
     "props": {
       "area": {
-        "type": "SystemStyleObject[\"gridArea\"]",
+        "type": "SystemStyleObject[\"gridArea\"] | undefined",
         "isRequired": false
       },
       "colSpan": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       },
       "colStart": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       },
       "colEnd": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       },
       "rowStart": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       },
       "rowEnd": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       },
       "rowSpan": {
-        "type": "ConditionalValue<number | \"auto\">",
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
         "isRequired": false
       }
     }
@@ -101,12 +101,12 @@
         "isRequired": false
       },
       "minChildWidth": {
-        "type": "GridProps[\"minWidth\"]",
+        "type": "GridProps[\"minWidth\"] | undefined",
         "isRequired": false,
         "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length."
       },
       "columns": {
-        "type": "ConditionalValue<number>",
+        "type": "ConditionalValue<number> | undefined",
         "isRequired": false,
         "description": "The number of columns"
       }

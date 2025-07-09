@@ -93,7 +93,7 @@
       "defaultValue": {
         "type": "number[]",
         "isRequired": false,
-        "description": "The initial value of the slider when it is first rendered.\nUse when you do not need to control the state of the slider picker."
+        "description": "The initial value of the slider when rendered.\nUse when you don't need to control the value of the slider."
       },
       "disabled": {
         "type": "boolean",
@@ -118,7 +118,7 @@
       "ids": {
         "type": "Partial<{\n  root: string\n  thumb(index: number): string\n  hiddenInput(index: number): string\n  control: string\n  track: string\n  range: string\n  label: string\n  valueText: string\n  marker(index: number): string\n}>",
         "isRequired": false,
-        "description": "The ids of the elements in the range slider. Useful for composition."
+        "description": "The ids of the elements in the slider. Useful for composition."
       },
       "invalid": {
         "type": "boolean",
@@ -141,7 +141,7 @@
         "type": "number",
         "isRequired": false,
         "defaultValue": "0",
-        "description": "The minimum permitted steps between multiple thumbs."
+        "description": "The minimum permitted steps between multiple thumbs.\n\n`minStepsBetweenThumbs` * `step` should reflect the gap between the thumbs.\n\n- `step: 1` and `minStepsBetweenThumbs: 10` => gap is `10`\n- `step: 10` and `minStepsBetweenThumbs: 2` => gap is `20`"
       },
       "name": {
         "type": "string",
@@ -170,10 +170,10 @@
         "description": "The orientation of the slider"
       },
       "origin": {
-        "type": "'center' | 'start'",
+        "type": "'center' | 'end' | 'start'",
         "isRequired": false,
         "defaultValue": "\"start\"",
-        "description": "The origin of the slider range\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)"
+        "description": "The origin of the slider range. The track is filled from the origin\nto the thumb for single values.\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)\n- \"end\": Useful when the value represents an offset from the end"
       },
       "readOnly": {
         "type": "boolean",
@@ -200,7 +200,7 @@
       "value": {
         "type": "number[]",
         "isRequired": false,
-        "description": "The value of the range slider"
+        "description": "The controlled value of the slider"
       }
     },
     "element": "HTMLDivElement"

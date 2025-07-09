@@ -50,6 +50,16 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value to be copied to the clipboard when rendered.\nUse when you don't need to control the value of the clipboard."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
       "ids": {
         "type": "Partial<{ root: string; input: string; label: string }>",
         "isRequired": false,
@@ -60,6 +70,11 @@
         "isRequired": false,
         "description": "The function to be called when the value is copied to the clipboard"
       },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The function to be called when the value changes"
+      },
       "timeout": {
         "type": "number",
         "isRequired": false,
@@ -69,7 +84,7 @@
       "value": {
         "type": "string",
         "isRequired": false,
-        "description": "The value to be copied to the clipboard"
+        "description": "The controlled value of the clipboard"
       }
     },
     "element": "HTMLDivElement"

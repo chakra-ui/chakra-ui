@@ -163,15 +163,20 @@
         "defaultValue": "true",
         "description": "Whether the select is a composed with other composite widgets like tabs or combobox"
       },
+      "defaultHighlightedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the highlighted item when opened.\nUse when you don't need to control the highlighted value of the select."
+      },
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the select when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "Whether the select's open state is controlled by the user"
       },
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial value of the select when it is first rendered.\nUse when you do not need to control the state of the select."
+        "description": "The initial default value of the select when rendered.\nUse when you don't need to control the value of the select."
       },
       "deselectable": {
         "type": "boolean",
@@ -191,7 +196,7 @@
       "highlightedValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The key of the highlighted item"
+        "description": "The controlled key of the highlighted item"
       },
       "id": {
         "type": "string",
@@ -236,7 +241,7 @@
         "description": "The `name` attribute of the underlying select."
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -264,6 +269,11 @@
         "type": "(event: PointerDownOutsideEvent) => void",
         "isRequired": false,
         "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onSelect": {
+        "type": "(details: SelectionDetails) => void",
+        "isRequired": false,
+        "description": "Function called when an item is selected"
       },
       "onValueChange": {
         "type": "(details: ValueChangeDetails<T>) => void",
@@ -300,6 +310,12 @@
         "isRequired": false,
         "description": "Function to scroll to a specific index"
       },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
+      },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
@@ -309,7 +325,7 @@
       "value": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The keys of the selected items"
+        "description": "The controlled keys of the selected items"
       }
     }
   },
@@ -336,7 +352,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -344,6 +360,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",

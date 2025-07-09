@@ -103,6 +103,11 @@
   },
   "Root": {
     "props": {
+      "slideCount": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The total number of slides.\nUseful for SSR to render the initial ating the snap points."
+      },
       "allowMouseDrag": {
         "type": "boolean",
         "isRequired": false,
@@ -123,7 +128,8 @@
       "defaultPage": {
         "type": "number",
         "isRequired": false,
-        "description": "The initial page of the carousel when it is first rendered.\nUse this when you do not need to control the state of the carousel."
+        "defaultValue": "0",
+        "description": "The initial page to scroll to when rendered.\nUse when you don't need to control the page of the carousel."
       },
       "ids": {
         "type": "Partial<{\n  root: string\n  item(index: number): string\n  itemGroup: string\n  nextTrigger: string\n  prevTrigger: string\n  indicatorGroup: string\n  indicator(index: number): string\n}>",
@@ -158,7 +164,7 @@
         "description": "Function called when the page changes."
       },
       "orientation": {
-        "type": "Orientation",
+        "type": "'horizontal' | 'vertical'",
         "isRequired": false,
         "defaultValue": "\"horizontal\"",
         "description": "The orientation of the element."
@@ -171,12 +177,7 @@
       "page": {
         "type": "number",
         "isRequired": false,
-        "description": "The index of the active page."
-      },
-      "slideCount": {
-        "type": "number",
-        "isRequired": false,
-        "description": "The total number of slides.\nUseful for SSR to render the initial ating the snap points."
+        "description": "The controlled page of the carousel."
       },
       "slidesPerMove": {
         "type": "number | 'auto'",

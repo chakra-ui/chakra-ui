@@ -76,7 +76,7 @@
       "defaultValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The initial value of the number input when it is first rendered.\nUse when you do not need to control the state of the number input."
+        "description": "The initial value of the input when rendered.\nUse when you don't need to control the value of the input."
       },
       "disabled": {
         "type": "boolean",
@@ -194,7 +194,7 @@
       "value": {
         "type": "string",
         "isRequired": false,
-        "description": "The value of the input"
+        "description": "The controlled value of the input"
       }
     },
     "element": "HTMLDivElement"

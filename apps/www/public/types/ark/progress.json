@@ -59,7 +59,14 @@
       "defaultValue": {
         "type": "number",
         "isRequired": false,
-        "description": "The initial value of the progress when it is first rendered.\nUse when you do not need to control the state of the progress."
+        "defaultValue": "50",
+        "description": "The initial value of the progress bar when rendered.\nUse when you don't need to control the value of the progress bar."
+      },
+      "formatOptions": {
+        "type": "NumberFormatOptions",
+        "isRequired": false,
+        "defaultValue": "{ style: \"percent\" }",
+        "description": "The options to use for formatting the value."
       },
       "id": {
         "type": "string",
@@ -70,6 +77,12 @@
         "type": "Partial<{ root: string; track: string; label: string; circle: string }>",
         "isRequired": false,
         "description": "The ids of the elements in the progress bar. Useful for composition."
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"en-US\"",
+        "description": "The locale to use for formatting the value."
       },
       "max": {
         "type": "number",
@@ -89,7 +102,7 @@
         "description": "Callback fired when the value changes."
       },
       "orientation": {
-        "type": "Orientation",
+        "type": "'horizontal' | 'vertical'",
         "isRequired": false,
         "defaultValue": "\"horizontal\"",
         "description": "The orientation of the element."
@@ -102,8 +115,7 @@
       "value": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "50",
-        "description": "The current value of the progress bar."
+        "description": "The controlled value of the progress bar."
       }
     },
     "element": "HTMLDivElement"

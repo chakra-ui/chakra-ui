@@ -69,7 +69,7 @@
       "defaultValue": {
         "type": "number",
         "isRequired": false,
-        "description": "The initial value of the rating group when it is first rendered.\nUse when you do not need to control the state of the rating group."
+        "description": "The initial value of the rating when rendered.\nUse when you don't need to control the value of the rating."
       },
       "disabled": {
         "type": "boolean",
@@ -124,7 +124,7 @@
       "value": {
         "type": "number",
         "isRequired": false,
-        "description": "The current rating value."
+        "description": "The controlled value of the rating"
       }
     },
     "element": "HTMLDivElement"

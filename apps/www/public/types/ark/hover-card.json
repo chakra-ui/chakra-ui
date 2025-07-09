@@ -50,7 +50,7 @@
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the hover card when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "The initial open state of the hover card when rendered.\nUse when you don't need to control the open state of the hover card."
       },
       "id": {
         "type": "string",
@@ -58,7 +58,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  trigger: string\n  content: string\n  positioner: string\n  arrow: string\n}>",
+        "type": "Partial<{ trigger: string; content: string; positioner: string; arrow: string }>",
         "isRequired": false,
         "description": "The ids of the elements in the popover. Useful for composition."
       },
@@ -74,19 +74,34 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
+      },
+      "onFocusOutside": {
+        "type": "(event: FocusOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the focus is moved outside the component"
+      },
+      "onInteractOutside": {
+        "type": "(event: InteractOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when an interaction happens outside the component"
       },
       "onOpenChange": {
         "type": "(details: OpenChangeDetails) => void",
         "isRequired": false,
         "description": "Function called when the hover card opens or closes."
       },
+      "onPointerDownOutside": {
+        "type": "(event: PointerDownOutsideEvent) => void",
+        "isRequired": false,
+        "description": "Function called when the pointer is pressed down outside the component"
+      },
       "open": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the hover card is open"
+        "description": "The controlled open state of the hover card"
       },
       "openDelay": {
         "type": "number",
@@ -103,6 +118,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -130,7 +151,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -138,6 +159,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",

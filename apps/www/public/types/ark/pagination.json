@@ -53,20 +53,27 @@
   },
   "Root": {
     "props": {
-      "count": {
-        "type": "number",
-        "isRequired": true,
-        "description": "Total number of data items"
-      },
       "asChild": {
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "count": {
+        "type": "number",
+        "isRequired": false,
+        "description": "Total number of data items"
+      },
       "defaultPage": {
         "type": "number",
         "isRequired": false,
-        "description": "The initial page of the pagination when it is first rendered.\nUse when you do not need to control the state of the pagination."
+        "defaultValue": "1",
+        "description": "The initial active page when rendered.\nUse when you don't need to control the active page of the pagination."
+      },
+      "defaultPageSize": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "10",
+        "description": "The initial number of data items per page when rendered.\nUse when you don't need to control the page size of the pagination."
       },
       "ids": {
         "type": "Partial<{\n  root: string\n  ellipsis(index: number): string\n  prevTrigger: string\n  nextTrigger: string\n  item(page: number): string\n}>",
@@ -86,14 +93,12 @@
       "page": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
-        "description": "The active page"
+        "description": "The controlled active page"
       },
       "pageSize": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "10",
-        "description": "Number of data items per page"
+        "description": "The controlled number of data items per page"
       },
       "siblingCount": {
         "type": "number",

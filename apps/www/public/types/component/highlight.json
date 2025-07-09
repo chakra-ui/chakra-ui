@@ -6,15 +6,15 @@
         "isRequired": true
       },
       "styles": {
-        "type": "SystemStyleObject",
+        "type": "SystemStyleObject | undefined",
         "isRequired": false
       },
       "ignoreCase": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false
       },
       "matchAll": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false
       }
     }

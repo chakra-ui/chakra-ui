@@ -21,11 +21,44 @@
   "Fallback": {
     "props": {
       "name": {
-        "type": "string",
+        "type": "string | undefined",
+        "isRequired": false,
+        "description": "The name to derive the initials from.\nIf not provided, the fallback will display a generic icon."
+      }
+    }
+  },
+  "Group": {
+    "props": {
+      "align": {
+        "type": "JsxStyleProps[\"alignItems\"] | undefined",
+        "isRequired": false,
+        "description": "The `alignItems` style property"
+      },
+      "justify": {
+        "type": "JsxStyleProps[\"justifyContent\"] | undefined",
+        "isRequired": false,
+        "description": "The `justifyContent` style property"
+      },
+      "wrap": {
+        "type": "JsxStyleProps[\"flexWrap\"] | undefined",
+        "isRequired": false,
+        "description": "The `flexWrap` style property"
+      },
+      "skip": {
+        "type": "(child",
+        "isRequired": false,
+        "description": "A function that determines if a child should be skipped"
+      },
+      "orientation": {
         "isRequired": false
       },
-      "icon": {
-        "type": "React.ReactElement",
+      "attached": {
+        "isRequired": false
+      },
+      "grow": {
+        "isRequired": false
+      },
+      "stacking": {
         "isRequired": false
       }
     }

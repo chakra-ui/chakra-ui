@@ -2,28 +2,28 @@
   "Stack": {
     "props": {
       "align": {
-        "type": "SystemStyleObject[\"alignItems\"]",
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
         "isRequired": false,
         "description": "Shorthand for `alignItems` style prop"
       },
       "justify": {
-        "type": "SystemStyleObject[\"justifyContent\"]",
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
         "isRequired": false,
         "description": "Shorthand for `justifyContent` style prop"
       },
       "wrap": {
-        "type": "SystemStyleObject[\"flexWrap\"]",
+        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
         "isRequired": false,
         "description": "Shorthand for `flexWrap` style prop"
       },
       "direction": {
-        "type": "StackDirection",
+        "type": "StackDirection | undefined",
         "defaultValue": "column",
         "isRequired": false,
         "description": "The direction to stack the items."
       },
       "separator": {
-        "type": "React.ReactElement",
+        "type": "React.ReactElement<any> | undefined",
         "isRequired": false,
         "description": "If `true`, each stack item will show a separator"
       }

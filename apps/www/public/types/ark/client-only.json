@@ -1,0 +1,10 @@
+{
+  "ClientOnly": {
+    "props": {
+      "fallback": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      }
+    }
+  }
+}

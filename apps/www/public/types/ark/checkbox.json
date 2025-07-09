@@ -98,12 +98,12 @@
       "checked": {
         "type": "CheckedState",
         "isRequired": false,
-        "description": "The checked state of the checkbox"
+        "description": "The controlled checked state of the checkbox"
       },
       "defaultChecked": {
         "type": "CheckedState",
         "isRequired": false,
-        "description": "The checked state of the checkbox when it is first rendered.\nUse this when you do not need to control the state of the checkbox."
+        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox."
       },
       "disabled": {
         "type": "boolean",
@@ -121,7 +121,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  hiddenInput: string\n  control: string\n  label: string\n}>",
+        "type": "Partial<{ root: string; hiddenInput: string; control: string; label: string }>",
         "isRequired": false,
         "description": "The ids of the elements in the checkbox. Useful for composition."
       },

@@ -5,8 +5,8 @@
         "type": "boolean",
         "isRequired": false
       },
-      "containerRef": {
-        "type": "React.RefObject<HTMLElement>",
+      "portalRef": {
+        "type": "React.RefObject<HTMLElement | null>",
         "isRequired": false
       },
       "offset": {

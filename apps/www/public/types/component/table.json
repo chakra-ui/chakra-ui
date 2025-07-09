@@ -2,7 +2,7 @@
   "Root": {
     "props": {
       "native": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false,
         "description": "If `true`, the table will style its descendants with nested selectors"
       },

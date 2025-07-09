@@ -1,24 +1,40 @@
 {
-  "FileUploadItem": {
+  "FileUploadFileText": {
     "props": {
-      "file": {
-        "type": "File",
-        "isRequired": true
-      },
-      "showSize": {
-        "type": "boolean",
-        "isRequired": false
-      },
-      "showDelete": {
-        "type": "boolean",
+      "fallback": {
+        "type": "string | undefined",
         "isRequired": false
       }
     }
   },
-  "FileUploadRoot": {
+  "FileUploadItems": {
     "props": {
-      "inputProps": {
-        "type": "React.InputHTMLAttributes<HTMLInputElement>",
+      "showSize": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "clearable": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "files": {
+        "type": "File[] | undefined",
+        "isRequired": false
+      }
+    }
+  },
+  "FileUploadList": {
+    "props": {
+      "showSize": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "clearable": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "files": {
+        "type": "File[] | undefined",
         "isRequired": false
       }
     }

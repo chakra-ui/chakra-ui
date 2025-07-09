@@ -36,9 +36,16 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "fixOnBlur": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to fix the input value on blur."
+      },
       "index": {
         "type": "number",
-        "isRequired": false
+        "isRequired": false,
+        "description": "The index of the input to focus."
       }
     },
     "element": "HTMLInputElement"
@@ -130,15 +137,26 @@
         "defaultValue": "true",
         "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`."
       },
+      "defaultFocusedValue": {
+        "type": "DateValue",
+        "isRequired": false,
+        "description": "The initial focused date when rendered.\nUse when you don't need to control the focused date of the date picker."
+      },
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the date picker when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "The initial open state of the date picker when rendered.\nUse when you don't need to control the open state of the date picker."
       },
       "defaultValue": {
         "type": "DateValue[]",
         "isRequired": false,
-        "description": "The initial value of the date picker when it is first rendered.\nUse when you do not need to control the state of the date picker."
+        "description": "The initial selected date(s) when rendered.\nUse when you don't need to control the selected date(s) of the date picker."
+      },
+      "defaultView": {
+        "type": "DateView",
+        "isRequired": false,
+        "defaultValue": "\"day\"",
+        "description": "The default view of the calendar"
       },
       "disabled": {
         "type": "boolean",
@@ -153,10 +171,10 @@
       "focusedValue": {
         "type": "DateValue",
         "isRequired": false,
-        "description": "The focused date."
+        "description": "The controlled focused date."
       },
       "format": {
-        "type": "(date: DateValue) => string",
+        "type": "(date: DateValue, details: LocaleDetails) => string",
         "isRequired": false,
         "description": "The format of the date to display in the input."
       },
@@ -197,10 +215,22 @@
         "isRequired": false,
         "description": "The maximum date that can be selected."
       },
+      "maxView": {
+        "type": "DateView",
+        "isRequired": false,
+        "defaultValue": "\"year\"",
+        "description": "The maximum view of the calendar"
+      },
       "min": {
         "type": "DateValue",
         "isRequired": false,
         "description": "The minimum date that can be selected."
+      },
+      "minView": {
+        "type": "DateView",
+        "isRequired": false,
+        "defaultValue": "\"day\"",
+        "description": "The minimum view of the calendar"
       },
       "name": {
         "type": "string",
@@ -213,7 +243,7 @@
         "description": "The number of months to display."
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -240,7 +270,23 @@
       "open": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the datepicker is open"
+        "description": "The controlled open state of the date picker"
+      },
+      "outsideDaySelectable": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether day outside the visible range can be selected."
+      },
+      "parse": {
+        "type": "(value: string, details: LocaleDetails) => DateValue | undefined",
+        "isRequired": false,
+        "description": "Function to parse the date from the input back to a DateValue."
+      },
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The placeholder text to display in the input."
       },
       "positioning": {
         "type": "PositioningOptions",
@@ -262,6 +308,12 @@
         "isRequired": false,
         "defaultValue": "\"single\"",
         "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "startOfWeek": {
         "type": "number",
@@ -288,12 +340,11 @@
       "value": {
         "type": "DateValue[]",
         "isRequired": false,
-        "description": "The selected date(s)."
+        "description": "The controlled selected date(s)."
       },
       "view": {
         "type": "DateView",
         "isRequired": false,
-        "defaultValue": "\"day\"",
         "description": "The view of the calendar"
       }
     },
@@ -322,7 +373,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -330,6 +381,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",

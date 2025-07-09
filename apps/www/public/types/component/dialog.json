@@ -5,7 +5,7 @@
         "type": "boolean",
         "isRequired": false
       },
-      "containerRef": {
+      "portalRef": {
         "type": "React.RefObject<HTMLElement>",
         "isRequired": false
       },

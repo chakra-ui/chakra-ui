@@ -107,7 +107,29 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLHeadingElement"
+  },
+  "NodeCheckboxIndicator": {
+    "props": {
+      "fallback": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      },
+      "indeterminate": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      }
+    }
+  },
+  "NodeCheckbox": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
   },
   "NodeProvider": {
     "props": {
@@ -135,20 +157,35 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "checkedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled checked node value"
+      },
+      "defaultCheckedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial checked node value when rendered.\nUse when you don't need to control the checked node value."
+      },
       "defaultExpandedValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial expanded items of the tree view.\nUse this when you do not need to control the state of the tree view."
+        "description": "The initial expanded node ids when rendered.\nUse when you don't need to control the expanded node value."
+      },
+      "defaultFocusedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial focused node value when rendered.\nUse when you don't need to control the focused node value."
       },
       "defaultSelectedValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial selected items of the tree view.\nUse this when you do not need to control the state of the tree view."
+        "description": "The initial selected node value when rendered.\nUse when you don't need to control the selected node value."
       },
       "expandedValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The id of the expanded nodes"
+        "description": "The controlled expanded node ids"
       },
       "expandOnClick": {
         "type": "boolean",
@@ -159,10 +196,10 @@
       "focusedValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The id of the focused node"
+        "description": "The value of the focused node"
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  tree: string\n  label: string\n  node(value: string): string\n}>",
+        "type": "Partial<{ root: string; tree: string; label: string; node(value: string): string }>",
         "isRequired": false,
         "description": "The ids of the tree elements. Useful for composition."
       },
@@ -172,25 +209,45 @@
         "defaultValue": "false",
         "description": "Whether to enable lazy mounting"
       },
+      "loadChildren": {
+        "type": "(details: LoadChildrenDetails<any>) => Promise<any[]>",
+        "isRequired": false,
+        "description": "Function to load children for a node asynchronously.\nWhen provided, branches will wait for this promise to resolve before expanding."
+      },
+      "onCheckedChange": {
+        "type": "(details: CheckedChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the checked value changes"
+      },
       "onExpandedChange": {
-        "type": "(details: ExpandedChangeDetails) => void",
+        "type": "(details: ExpandedChangeDetails<any>) => void",
         "isRequired": false,
         "description": "Called when the tree is opened or closed"
       },
       "onFocusChange": {
-        "type": "(details: FocusChangeDetails) => void",
+        "type": "(details: FocusChangeDetails<any>) => void",
         "isRequired": false,
         "description": "Called when the focused node changes"
       },
+      "onLoadChildrenComplete": {
+        "type": "(details: LoadChildrenCompleteDetails<any>) => void",
+        "isRequired": false,
+        "description": "Called when a node finishes loading children"
+      },
+      "onLoadChildrenError": {
+        "type": "(details: LoadChildrenErrorDetails<any>) => void",
+        "isRequired": false,
+        "description": "Called when loading children fails for one or more nodes"
+      },
       "onSelectionChange": {
-        "type": "(details: SelectionChangeDetails) => void",
+        "type": "(details: SelectionChangeDetails<any>) => void",
         "isRequired": false,
         "description": "Called when the selection changes"
       },
       "selectedValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The id of the selected nodes"
+        "description": "The controlled selected node value"
       },
       "selectionMode": {
         "type": "'multiple' | 'single'",

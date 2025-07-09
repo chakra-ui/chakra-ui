@@ -1,0 +1,347 @@
+{
+  "Body": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "CloseTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Content": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Control": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "DragTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Header": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Positioner": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ResizeTrigger": {
+    "props": {
+      "axis": {
+        "type": "ResizeTriggerAxis",
+        "isRequired": true,
+        "description": "The axis of the resize handle"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Root": {
+    "props": {
+      "allowOverflow": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the panel should be strictly contained within the boundary when dragging"
+      },
+      "closeOnEscape": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the panel should close when the escape key is pressed"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "The initial open state of the panel when rendered.\nUse when you don't need to control the open state of the panel."
+      },
+      "defaultPosition": {
+        "type": "Point",
+        "isRequired": false,
+        "description": "The initial position of the panel when rendered.\nUse when you don't need to control the position of the panel."
+      },
+      "defaultSize": {
+        "type": "Size",
+        "isRequired": false,
+        "description": "The default size of the panel"
+      },
+      "dir": {
+        "type": "'ltr' | 'rtl'",
+        "isRequired": false,
+        "defaultValue": "\"ltr\"",
+        "description": "The document's text/writing direction."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the panel is disabled"
+      },
+      "draggable": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the panel is draggable"
+      },
+      "getAnchorPosition": {
+        "type": "(details: AnchorPositionDetails) => Point",
+        "isRequired": false,
+        "description": "Function that returns the initial position of the panel when it is opened.\nIf provided, will be used instead of the default position."
+      },
+      "getBoundaryEl": {
+        "type": "() => HTMLElement | null",
+        "isRequired": false,
+        "description": "The boundary of the panel. Useful for recalculating the boundary rect when\nthe it is resized."
+      },
+      "gridSize": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The snap grid for the panel"
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{ trigger: string; positioner: string; content: string; title: string; header: string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the floating panel. Useful for composition."
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "lockAspectRatio": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the panel is locked to its aspect ratio"
+      },
+      "maxSize": {
+        "type": "Size",
+        "isRequired": false,
+        "description": "The maximum size of the panel"
+      },
+      "minSize": {
+        "type": "Size",
+        "isRequired": false,
+        "description": "The minimum size of the panel"
+      },
+      "onExitComplete": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the panel is opened or closed"
+      },
+      "onPositionChange": {
+        "type": "(details: PositionChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the position of the panel changes via dragging"
+      },
+      "onPositionChangeEnd": {
+        "type": "(details: PositionChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the position of the panel changes via dragging ends"
+      },
+      "onSizeChange": {
+        "type": "(details: SizeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the size of the panel changes via resizing"
+      },
+      "onSizeChangeEnd": {
+        "type": "(details: SizeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the size of the panel changes via resizing ends"
+      },
+      "onStageChange": {
+        "type": "(details: StageChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the stage of the panel changes"
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The controlled open state of the panel"
+      },
+      "persistRect": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the panel size and position should be preserved when it is closed"
+      },
+      "position": {
+        "type": "Point",
+        "isRequired": false,
+        "description": "The controlled position of the panel"
+      },
+      "present": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the node is present (controlled by the user)"
+      },
+      "resizable": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the panel is resizable"
+      },
+      "size": {
+        "type": "Size",
+        "isRequired": false,
+        "description": "The size of the panel"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
+      },
+      "strategy": {
+        "type": "'absolute' | 'fixed'",
+        "isRequired": false,
+        "defaultValue": "\"fixed\"",
+        "description": "The strategy to use for positioning"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The translations for the floating panel."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseFloatingPanelReturn",
+        "isRequired": true
+      },
+      "immediate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "Function called when the animation ends in the closed state"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "StageTrigger": {
+    "props": {
+      "stage": {
+        "type": "Stage",
+        "isRequired": true,
+        "description": "The stage of the panel"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Title": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  }
+}

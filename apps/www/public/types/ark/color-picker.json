@@ -206,15 +206,22 @@
         "defaultValue": "false",
         "description": "Whether to close the color picker when a swatch is selected"
       },
+      "defaultFormat": {
+        "type": "ColorFormat",
+        "isRequired": false,
+        "defaultValue": "\"rgba\"",
+        "description": "The initial color format when rendered.\nUse when you don't need to control the color format of the color picker."
+      },
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the color picker when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "The initial open state of the color picker when rendered.\nUse when you don't need to control the open state of the color picker."
       },
       "defaultValue": {
         "type": "Color",
         "isRequired": false,
-        "description": "The initial value of the color picker when it is first rendered.\nUse when you do not need to control the state of the color picker."
+        "defaultValue": "#000000",
+        "description": "The initial color value when rendered.\nUse when you don't need to control the color value of the color picker."
       },
       "disabled": {
         "type": "boolean",
@@ -224,8 +231,7 @@
       "format": {
         "type": "ColorFormat",
         "isRequired": false,
-        "defaultValue": "\"rgba\"",
-        "description": "The color format to use"
+        "description": "The controlled color format to use"
       },
       "id": {
         "type": "string",
@@ -264,7 +270,7 @@
         "description": "The name for the form input"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -306,7 +312,7 @@
       "open": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the color picker is open"
+        "description": "The controlled open state of the color picker"
       },
       "openAutoFocus": {
         "type": "boolean",
@@ -334,6 +340,12 @@
         "isRequired": false,
         "description": "Whether the color picker is required"
       },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
+      },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
@@ -343,8 +355,7 @@
       "value": {
         "type": "Color",
         "isRequired": false,
-        "defaultValue": "#000000",
-        "description": "The current color value"
+        "description": "The controlled color value of the color picker"
       }
     },
     "element": "HTMLDivElement"
@@ -372,7 +383,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -380,6 +391,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -495,6 +512,10 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "format": {
+        "type": "ColorStringFormat",
+        "isRequired": false
       }
     },
     "element": "HTMLDivElement"

@@ -2,17 +2,17 @@
   "Checkmark": {
     "props": {
       "checked": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false,
         "description": "Whether the checkmark is checked"
       },
       "indeterminate": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false,
         "description": "Whether the checkmark is indeterminate"
       },
       "disabled": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false,
         "description": "Whether the checkmark is disabled"
       }

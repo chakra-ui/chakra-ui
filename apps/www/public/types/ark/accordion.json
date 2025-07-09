@@ -65,7 +65,7 @@
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial value of the accordion when it is first rendered.\nUse when you do not need to control the state of the accordion."
+        "description": "The initial value of the expanded accordion items.\nUse when you don't need to control the value of the accordion."
       },
       "disabled": {
         "type": "boolean",
@@ -119,7 +119,7 @@
       "value": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The `value` of the accordion items that are currently being expanded."
+        "description": "The controlled value of the expanded accordion items."
       }
     },
     "element": "HTMLDivElement"

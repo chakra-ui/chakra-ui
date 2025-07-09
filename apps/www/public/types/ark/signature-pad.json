@@ -72,7 +72,7 @@
         "description": "The drawing options."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  control: string\n  hiddenInput: string\n  label: string\n}>",
+        "type": "Partial<{ root: string; control: string; hiddenInput: string; label: string }>",
         "isRequired": false,
         "description": "The ids of the signature pad elements. Useful for composition."
       },

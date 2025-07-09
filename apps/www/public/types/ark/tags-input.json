@@ -139,10 +139,15 @@
         "isRequired": false,
         "description": "The behavior of the tags input when the input is blurred\n- `\"add\"`: add the input value as a new tag\n- `\"clear\"`: clear the input value"
       },
+      "defaultInputValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial tag input value when rendered.\nUse when you don't need to control the tag input value."
+      },
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial value of the tags input when it is first rendered.\nUse when you do not need to control the state of the tags input."
+        "description": "The initial tag value when rendered.\nUse when you don't need to control the tag value."
       },
       "delimiter": {
         "type": "string | RegExp",
@@ -179,7 +184,7 @@
       "inputValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The tag input's value"
+        "description": "The controlled tag input's value"
       },
       "invalid": {
         "type": "boolean",
@@ -260,7 +265,7 @@
       "value": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The tag values"
+        "description": "The controlled tag value"
       }
     },
     "element": "HTMLDivElement"

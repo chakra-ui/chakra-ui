@@ -7,7 +7,7 @@
         "description": "The array to iterate over"
       },
       "fallback": {
-        "type": "React.ReactNode",
+        "type": "React.ReactNode | undefined",
         "isRequired": false,
         "description": "The fallback content to render when the array is empty"
       }

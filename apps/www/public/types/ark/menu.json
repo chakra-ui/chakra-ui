@@ -141,6 +141,11 @@
         "isRequired": false,
         "description": "Whether the menu item is disabled"
       },
+      "onSelect": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "The function to call when the item is selected"
+      },
       "valueText": {
         "type": "string",
         "isRequired": false,
@@ -241,15 +246,20 @@
         "defaultValue": "true",
         "description": "Whether the menu is a composed with other composite widgets like a combobox or tabs"
       },
+      "defaultHighlightedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial highlighted value of the menu item when rendered.\nUse when you don't need to control the highlighted value of the menu item."
+      },
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial open state of the menu when it is first rendered.\nUse when you do not need to control its open state."
+        "description": "The initial open state of the menu when rendered.\nUse when you don't need to control the open state of the menu."
       },
       "highlightedValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The value of the highlighted menu item."
+        "description": "The controlled highlighted value of the menu item."
       },
       "id": {
         "type": "string",
@@ -269,7 +279,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": "false",
         "description": "Whether to enable lazy mounting"
       },
       "loopFocus": {
@@ -289,7 +299,7 @@
         "description": "Function called when the escape key is pressed"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -326,7 +336,7 @@
       "open": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the menu is open"
+        "description": "The controlled open state of the menu"
       },
       "positioning": {
         "type": "PositioningOptions",
@@ -338,6 +348,12 @@
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
       },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
+      },
       "typeahead": {
         "type": "boolean",
         "isRequired": false,
@@ -347,7 +363,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": "false",
         "description": "Whether to unmount on exit."
       }
     }
@@ -370,7 +386,7 @@
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
-        "type": "() => void",
+        "type": "VoidFunction",
         "isRequired": false,
         "description": "Function called when the animation ends in the closed state"
       },
@@ -378,6 +394,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
+      },
+      "skipAnimationOnMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",

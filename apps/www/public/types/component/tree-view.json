@@ -1,0 +1,61 @@
+{
+  "TreeViewNode": {
+    "props": {
+      "indentGuide": {
+        "type": "React.ReactElement",
+        "isRequired": false
+      },
+      "render": {
+        "type": "(props",
+        "isRequired": true
+      },
+      "renderBranch": {
+        "type": "(props",
+        "isRequired": false
+      },
+      "branchProps": {
+        "type": "TreeViewBranchProps",
+        "isRequired": false
+      },
+      "branchContentProps": {
+        "type": "TreeViewBranchContentProps",
+        "isRequired": false
+      }
+    }
+  },
+  "TreeViewNodeRender": {
+    "props": {
+      "node": {
+        "type": "T",
+        "isRequired": false
+      },
+      "indexPath": {
+        "type": "number[]",
+        "isRequired": true
+      },
+      "nodeState": {
+        "type": "ArkTreeView.NodeState",
+        "isRequired": true
+      }
+    }
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      }
+    }
+  }
+}

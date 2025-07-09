@@ -60,10 +60,15 @@
         "isRequired": false,
         "description": "Whether to blur the input when the value is complete"
       },
+      "count": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The number of inputs to render to improve SSR aria attributes.\nThis will be required in next major version."
+      },
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial value of the pin input when it is first rendered.\nUse when you do not need to control the state of the pin input"
+        "description": "The initial value of the the pin input when rendered.\nUse when you don't need to control the value of the pin input."
       },
       "disabled": {
         "type": "boolean",
@@ -160,7 +165,7 @@
       "value": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The value of the the pin input."
+        "description": "The controlled value of the the pin input."
       }
     },
     "element": "HTMLDivElement"

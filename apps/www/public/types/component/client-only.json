@@ -1,15 +1,10 @@
 {
   "ClientOnly": {
     "props": {
-      "children": {
-        "type": "React.ReactNode | (() => React.ReactNode)",
-        "isRequired": true,
-        "description": "The content to render on the client side. Can be a React node or a function that returns a React node. Use the function pattern when accessing browser-only APIs."
-      },
       "fallback": {
-        "type": "React.ReactNode",
+        "type": "React.ReactNode | undefined",
         "isRequired": false,
-        "description": "The fallback content to render while the component is mounting on the client side."
+        "description": "The fallback content to render while the component is mounting on the client\nside."
       }
     }
   }

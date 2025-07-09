@@ -2,35 +2,35 @@
   "Flex": {
     "props": {
       "align": {
-        "type": "SystemStyleObject[\"alignItems\"]",
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
         "isRequired": false
       },
       "justify": {
-        "type": "SystemStyleObject[\"justifyContent\"]",
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
         "isRequired": false
       },
       "wrap": {
-        "type": "SystemStyleObject[\"flexWrap\"]",
+        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
         "isRequired": false
       },
       "direction": {
-        "type": "SystemStyleObject[\"flexDirection\"]",
+        "type": "SystemStyleObject[\"flexDirection\"] | undefined",
         "isRequired": false
       },
       "basis": {
-        "type": "SystemStyleObject[\"flexBasis\"]",
+        "type": "SystemStyleObject[\"flexBasis\"] | undefined",
         "isRequired": false
       },
       "grow": {
-        "type": "SystemStyleObject[\"flexGrow\"]",
+        "type": "SystemStyleObject[\"flexGrow\"] | undefined",
         "isRequired": false
       },
       "shrink": {
-        "type": "SystemStyleObject[\"flexShrink\"]",
+        "type": "SystemStyleObject[\"flexShrink\"] | undefined",
         "isRequired": false
       },
       "inline": {
-        "type": "boolean",
+        "type": "boolean | undefined",
         "isRequired": false
       }
     }

@@ -26,5 +26,14 @@
         "description": "The number to format"
       }
     }
+  },
+  "RelativeTime": {
+    "props": {
+      "value": {
+        "type": "Date",
+        "isRequired": true,
+        "description": "The date to format"
+      }
+    }
   }
 }

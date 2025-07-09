@@ -2,32 +2,32 @@
   "Bleed": {
     "props": {
       "inline": {
-        "type": "SystemStyleObject[\"marginInline\"]",
+        "type": "SystemStyleObject[\"marginInline\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the x-axis"
       },
       "block": {
-        "type": "SystemStyleObject[\"marginBlock\"]",
+        "type": "SystemStyleObject[\"marginBlock\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the y-axis"
       },
       "inlineStart": {
-        "type": "SystemStyleObject[\"marginInlineStart\"]",
+        "type": "SystemStyleObject[\"marginInlineStart\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the inline-start axis"
       },
       "inlineEnd": {
-        "type": "SystemStyleObject[\"marginInlineEnd\"]",
+        "type": "SystemStyleObject[\"marginInlineEnd\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the inline-end axis"
       },
       "blockStart": {
-        "type": "SystemStyleObject[\"marginBlockStart\"]",
+        "type": "SystemStyleObject[\"marginBlockStart\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the block-start axis"
       },
       "blockEnd": {
-        "type": "SystemStyleObject[\"marginBlockEnd\"]",
+        "type": "SystemStyleObject[\"marginBlockEnd\"] | undefined",
         "isRequired": false,
         "description": "The negative margin on the block-end axis"
       }

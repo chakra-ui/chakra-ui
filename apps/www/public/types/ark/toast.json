@@ -59,6 +59,17 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "dir": {
+        "type": "'ltr' | 'rtl'",
+        "isRequired": false,
+        "defaultValue": "\"ltr\"",
+        "description": "The document's text/writing direction."
+      },
+      "getRootNode": {
+        "type": "() => Node | ShadowRoot | Document",
+        "isRequired": false,
+        "description": "A root node to correctly resolve document in custom environments. E.x.: Iframes, Electron."
       }
     }
   }

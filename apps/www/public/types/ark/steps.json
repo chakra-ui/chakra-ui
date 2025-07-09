@@ -45,7 +45,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLIElement"
+    "element": "HTMLDivElement"
   },
   "List": {
     "props": {
@@ -55,7 +55,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLOListElement"
+    "element": "HTMLDivElement"
   },
   "NextTrigger": {
     "props": {
@@ -102,7 +102,7 @@
       "defaultStep": {
         "type": "number",
         "isRequired": false,
-        "description": "The initial value of the step"
+        "description": "The initial value of the stepper when rendered.\nUse when you don't need to control the value of the stepper."
       },
       "ids": {
         "type": "ElementIds",
@@ -127,12 +127,13 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
+        "defaultValue": "\"horizontal\"",
         "description": "The orientation of the stepper"
       },
       "step": {
         "type": "number",
         "isRequired": false,
-        "description": "The current value of the stepper"
+        "description": "The controlled value of the stepper"
       }
     },
     "element": "HTMLDivElement"

@@ -75,7 +75,7 @@
         "type": "ActivationMode",
         "isRequired": false,
         "defaultValue": "\"focus\"",
-        "description": "The activation mode for the preview element.\n\n- \"focus\" - Enter edit mode when the preview is focused\n- \"dblclick\" - Enter edit mode when the preview is double-clicked\n- \"click\" - Enter edit mode when the preview is clicked"
+        "description": "The activation mode for the preview element.\n\n- \"focus\" - Enter edit mode when the preview is focused\n- \"dblclick\" - Enter edit mode when the preview is double-clicked\n- \"click\" - Enter edit mode when the preview is clicked\n- \"none\" - Edit can be triggered programmatically only"
       },
       "asChild": {
         "type": "boolean",
@@ -90,17 +90,17 @@
       "defaultEdit": {
         "type": "boolean",
         "isRequired": false,
-        "description": "The initial edit state of the editable when it is first rendered.\nUse when you do not need to control its edit state."
+        "description": "Whether the editable is in edit mode by default."
       },
       "defaultValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The initial value of the editable when it is first rendered.\nUse when you do not need to control the state of the editable."
+        "description": "The initial value of the editable when rendered.\nUse when you don't need to control the value of the editable."
       },
       "disabled": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the editable is disabled"
+        "description": "Whether the editable is disabled."
       },
       "edit": {
         "type": "boolean",
@@ -110,7 +110,7 @@
       "finalFocusEl": {
         "type": "() => HTMLElement | null",
         "isRequired": false,
-        "description": "The element that should receive focus when the editable is closed.\nBy default, it will focus on the trigger element."
+        "description": "The element to receive focus when the editable is closed."
       },
       "form": {
         "type": "string",
@@ -145,7 +145,7 @@
       "onEditChange": {
         "type": "(details: EditChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback that is called when the edit mode is changed"
+        "description": "Function to call when the edit mode changes."
       },
       "onFocusOutside": {
         "type": "(event: FocusOutsideEvent) => void",
@@ -165,32 +165,32 @@
       "onValueChange": {
         "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback that is called when the editable's value is changed"
+        "description": "Function to call when the value changes."
       },
       "onValueCommit": {
         "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback that is called when the editable's value is submitted."
+        "description": "Function to call when the value is committed."
       },
       "onValueRevert": {
         "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback that is called when the esc key is pressed or the cancel button is clicked"
+        "description": "Function to call when the value is reverted."
       },
       "placeholder": {
         "type": "string | { edit: string; preview: string }",
         "isRequired": false,
-        "description": "The placeholder value to show when the `value` is empty"
+        "description": "The placeholder text for the editable."
       },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the editable is readonly"
+        "description": "Whether the editable is read-only."
       },
       "required": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the editable is required"
+        "description": "Whether the editable is required."
       },
       "selectOnFocus": {
         "type": "boolean",
@@ -207,12 +207,12 @@
       "translations": {
         "type": "IntlTranslations",
         "isRequired": false,
-        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+        "description": "The translations for the editable."
       },
       "value": {
         "type": "string",
         "isRequired": false,
-        "description": "The value of the editable in both edit and preview mode"
+        "description": "The controlled value of the editable."
       }
     },
     "element": "HTMLDivElement"

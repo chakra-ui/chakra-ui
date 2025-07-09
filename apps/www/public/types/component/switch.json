@@ -21,7 +21,7 @@
   "Indicator": {
     "props": {
       "fallback": {
-        "type": "React.ReactNode",
+        "type": "React.ReactNode | undefined",
         "isRequired": false
       }
     }
@@ -29,7 +29,7 @@
   "ThumbIndicator": {
     "props": {
       "fallback": {
-        "type": "React.ReactNode",
+        "type": "React.ReactNode | undefined",
         "isRequired": false
       }
     }

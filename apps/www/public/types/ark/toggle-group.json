@@ -27,7 +27,13 @@
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The initial value of the toggle group when it is first rendered.\nUse when you do not need to control the state of the toggle group."
+        "description": "The initial selected value of the toggle group when rendered.\nUse when you don't need to control the selected value of the toggle group."
+      },
+      "deselectable": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the toggle group allows empty selection.\n**Note:** This is ignored if `multiple` is `true`."
       },
       "disabled": {
         "type": "boolean",
@@ -75,7 +81,7 @@
       "value": {
         "type": "string[]",
         "isRequired": false,
-        "description": "The values of the toggles in the group."
+        "description": "The controlled selected value of the toggle group."
       }
     },
     "element": "HTMLDivElement"

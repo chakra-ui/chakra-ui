@@ -2,7 +2,7 @@
   "RatingGroupItemIndicator": {
     "props": {
       "icon": {
-        "type": "React.ReactElement",
+        "type": "React.ReactElement | undefined",
         "isRequired": false
       }
     }

@@ -6,15 +6,23 @@
         "isRequired": false
       },
       "disabled": {
-        "type": "boolean",
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "invalid": {
+        "type": "boolean | undefined",
         "isRequired": false
       }
     }
   },
   "NativeSelectField": {
     "props": {
+      "items": {
+        "type": "Array<string | NativeSelectItem>",
+        "isRequired": false
+      },
       "placeholder": {
-        "type": "string",
+        "type": "string | undefined",
         "isRequired": false
       }
     }
