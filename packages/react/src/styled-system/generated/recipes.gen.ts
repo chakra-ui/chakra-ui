@@ -3,9 +3,9 @@ import type { ConditionalValue } from "../css.types"
 
 export interface BadgeVariant {
   /** @default "subtle" */
-  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain" | undefined
   /** @default "sm" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type BadgeVariantProps = {
@@ -18,9 +18,9 @@ export type BadgeVariantMap = {
 
 export interface ButtonVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "solid" */
-  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain"
+  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain" | undefined
 }
 
 export type ButtonVariantProps = {
@@ -33,9 +33,9 @@ export type ButtonVariantMap = {
 
 export interface CodeVariant {
   /** @default "subtle" */
-  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain" | undefined
   /** @default "sm" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type CodeVariantProps = {
@@ -47,8 +47,8 @@ export type CodeVariantMap = {
 }
 
 export interface ContainerVariant {
-  centerContent?: boolean
-  fluid?: boolean
+  centerContent?: boolean | undefined
+  fluid?: boolean | undefined
 }
 
 export type ContainerVariantProps = {
@@ -61,7 +61,7 @@ export type ContainerVariantMap = {
 
 export interface HeadingVariant {
   /** @default "xl" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | undefined
 }
 
 export type HeadingVariantProps = {
@@ -74,9 +74,9 @@ export type HeadingVariantMap = {
 
 export interface InputVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
+  variant?: "outline" | "subtle" | "flushed" | undefined
 }
 
 export type InputVariantProps = {
@@ -89,9 +89,9 @@ export type InputVariantMap = {
 
 export interface InputAddonVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
+  variant?: "outline" | "subtle" | "flushed" | undefined
 }
 
 export type InputAddonVariantProps = {
@@ -104,9 +104,9 @@ export type InputAddonVariantMap = {
 
 export interface KbdVariant {
   /** @default "raised" */
-  variant?: "raised" | "outline" | "subtle" | "plain"
+  variant?: "raised" | "outline" | "subtle" | "plain" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type KbdVariantProps = {
@@ -119,7 +119,7 @@ export type KbdVariantMap = {
 
 export interface LinkVariant {
   /** @default "plain" */
-  variant?: "underline" | "plain"
+  variant?: "underline" | "plain" | undefined
 }
 
 export type LinkVariantProps = {
@@ -131,7 +131,7 @@ export type LinkVariantMap = {
 }
 
 export interface MarkVariant {
-  variant?: "subtle" | "solid" | "text" | "plain"
+  variant?: "subtle" | "solid" | "text" | "plain" | undefined
 }
 
 export type MarkVariantProps = {
@@ -144,11 +144,11 @@ export type MarkVariantMap = {
 
 export interface SeparatorVariant {
   /** @default "solid" */
-  variant?: "solid" | "dashed" | "dotted"
+  variant?: "solid" | "dashed" | "dotted" | undefined
   /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
   /** @default "sm" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type SeparatorVariantProps = {
@@ -161,9 +161,9 @@ export type SeparatorVariantMap = {
 
 export interface SkeletonVariant {
   /** @default true */
-  loading?: boolean
+  loading?: boolean | undefined
   /** @default "pulse" */
-  variant?: "pulse" | "shine" | "none"
+  variant?: "pulse" | "shine" | "none" | undefined
 }
 
 export type SkeletonVariantProps = {
@@ -186,7 +186,7 @@ export type SkipNavLinkVariantMap = {
 
 export interface SpinnerVariant {
   /** @default "md" */
-  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
 
 export type SpinnerVariantProps = {
@@ -199,9 +199,9 @@ export type SpinnerVariantMap = {
 
 export interface TextareaVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
+  variant?: "outline" | "subtle" | "flushed" | undefined
 }
 
 export type TextareaVariantProps = {
@@ -214,7 +214,7 @@ export type TextareaVariantMap = {
 
 export interface IconVariant {
   /** @default "inherit" */
-  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "inherit" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
 }
 
 export type IconVariantProps = {
@@ -227,9 +227,9 @@ export type IconVariantMap = {
 
 export interface CheckmarkVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
   /** @default "solid" */
-  variant?: "solid" | "outline" | "subtle" | "plain" | "inverted"
+  variant?: "solid" | "outline" | "subtle" | "plain" | "inverted" | undefined
 }
 
 export type CheckmarkVariantProps = {
@@ -242,9 +242,9 @@ export type CheckmarkVariantMap = {
 
 export interface RadiomarkVariant {
   /** @default "solid" */
-  variant?: "solid" | "subtle" | "outline" | "inverted"
+  variant?: "solid" | "subtle" | "outline" | "inverted" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type RadiomarkVariantProps = {
@@ -257,9 +257,9 @@ export type RadiomarkVariantMap = {
 
 export interface ColorSwatchVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inherit" | "full"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inherit" | "full" | undefined
   /** @default "rounded" */
-  shape?: "square" | "circle" | "rounded"
+  shape?: "square" | "circle" | "rounded" | undefined
 }
 
 export type ColorSwatchVariantProps = {
@@ -298,9 +298,9 @@ export type AccordionSlot = "root" | "item" | "itemTrigger" | "itemContent" | "i
 
 export interface AccordionVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "enclosed" | "plain"
+  variant?: "outline" | "subtle" | "enclosed" | "plain" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type AccordionVariantProps = {
@@ -331,12 +331,12 @@ export type AlertSlot = "title" | "description" | "root" | "indicator" | "conten
 
 export interface AlertVariant {
   /** @default "info" */
-  status?: "info" | "warning" | "success" | "error" | "neutral"
-  inline?: boolean
+  status?: "info" | "warning" | "success" | "error" | "neutral" | undefined
+  inline?: boolean | undefined
   /** @default "subtle" */
-  variant?: "subtle" | "surface" | "outline" | "solid"
+  variant?: "subtle" | "surface" | "outline" | "solid" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type AlertVariantProps = {
@@ -353,12 +353,12 @@ export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariant {
   /** @default "md" */
-  size?: "full" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "full" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "subtle" */
-  variant?: "solid" | "subtle" | "outline"
+  variant?: "solid" | "subtle" | "outline" | undefined
   /** @default "full" */
-  shape?: "square" | "rounded" | "full"
-  borderless?: boolean
+  shape?: "square" | "rounded" | "full" | undefined
+  borderless?: boolean | undefined
 }
 
 export type AvatarVariantProps = {
@@ -375,9 +375,9 @@ export type BlockquoteSlot = "root" | "icon" | "content" | "caption"
 
 export interface BlockquoteVariant {
   /** @default "start" */
-  justify?: "start" | "center" | "end"
+  justify?: "start" | "center" | "end" | undefined
   /** @default "subtle" */
-  variant?: "subtle" | "solid" | "plain"
+  variant?: "subtle" | "solid" | "plain" | undefined
 }
 
 export type BlockquoteVariantProps = {
@@ -394,9 +394,9 @@ export type BreadcrumbSlot = "link" | "currentLink" | "item" | "list" | "root" |
 
 export interface BreadcrumbVariant {
   /** @default "plain" */
-  variant?: "underline" | "plain"
+  variant?: "underline" | "plain" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type BreadcrumbVariantProps = {
@@ -413,9 +413,9 @@ export type CardSlot = "root" | "header" | "body" | "footer" | "title" | "descri
 
 export interface CardVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "outline" */
-  variant?: "elevated" | "outline" | "subtle"
+  variant?: "elevated" | "outline" | "subtle" | undefined
 }
 
 export type CardVariantProps = {
@@ -432,9 +432,9 @@ export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
 
 export interface CheckboxVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
   /** @default "solid" */
-  variant?: "outline" | "solid" | "subtle"
+  variant?: "outline" | "solid" | "subtle" | undefined
 }
 
 export type CheckboxVariantProps = {
@@ -451,14 +451,14 @@ export type CheckboxCardSlot = "root" | "control" | "label" | "description" | "a
 
 export interface CheckboxCardVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "outline" */
-  variant?: "surface" | "subtle" | "outline" | "solid"
-  justify?: "start" | "end" | "center"
+  variant?: "surface" | "subtle" | "outline" | "solid" | undefined
+  justify?: "start" | "end" | "center" | undefined
   /** @default "start" */
-  align?: "start" | "end" | "center"
+  align?: "start" | "end" | "center" | undefined
   /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
 }
 
 export type CheckboxCardVariantProps = {
@@ -489,11 +489,11 @@ export type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
 
 export interface DataListVariant {
   /** @default "vertical" */
-  orientation?: "horizontal" | "vertical"
+  orientation?: "horizontal" | "vertical" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "subtle" */
-  variant?: "subtle" | "bold"
+  variant?: "subtle" | "bold" | undefined
 }
 
 export type DataListVariantProps = {
@@ -521,13 +521,13 @@ export type DialogSlot =
 
 export interface DialogVariant {
   /** @default "top" */
-  placement?: "center" | "top" | "bottom"
+  placement?: "center" | "top" | "bottom" | undefined
   /** @default "outside" */
-  scrollBehavior?: "inside" | "outside"
+  scrollBehavior?: "inside" | "outside" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "cover" | "full"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "cover" | "full" | undefined
   /** @default "scale" */
-  motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none"
+  motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none" | undefined
 }
 
 export type DialogVariantProps = {
@@ -555,10 +555,10 @@ export type DrawerSlot =
 
 export interface DrawerVariant {
   /** @default "xs" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full" | undefined
   /** @default "end" */
-  placement?: "start" | "end" | "top" | "bottom"
-  contained?: boolean
+  placement?: "start" | "end" | "top" | "bottom" | undefined
+  contained?: boolean | undefined
 }
 
 export type DrawerVariantProps = {
@@ -575,7 +575,7 @@ export type EditableSlot = "root" | "area" | "label" | "preview" | "input" | "ed
 
 export interface EditableVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type EditableVariantProps = {
@@ -592,7 +592,7 @@ export type EmptyStateSlot = "root" | "content" | "indicator" | "title" | "descr
 
 export interface EmptyStateVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type EmptyStateVariantProps = {
@@ -609,7 +609,7 @@ export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" 
 
 export interface FieldVariant {
   /** @default "vertical" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
 }
 
 export type FieldVariantProps = {
@@ -626,7 +626,7 @@ export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "con
 
 export interface FieldsetVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type FieldsetVariantProps = {
@@ -672,7 +672,7 @@ export type HoverCardSlot = "arrow" | "arrowTip" | "trigger" | "positioner" | "c
 
 export interface HoverCardVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type HoverCardVariantProps = {
@@ -689,8 +689,8 @@ export type ListSlot = "root" | "item" | "indicator"
 
 export interface ListVariant {
   /** @default "marker" */
-  variant?: "marker" | "plain"
-  align?: "center" | "start" | "end"
+  variant?: "marker" | "plain" | undefined
+  align?: "center" | "start" | "end" | undefined
 }
 
 export type ListVariantProps = {
@@ -722,9 +722,9 @@ export type MenuSlot =
 
 export interface MenuVariant {
   /** @default "subtle" */
-  variant?: "subtle" | "solid"
+  variant?: "subtle" | "solid" | undefined
   /** @default "md" */
-  size?: "sm" | "md"
+  size?: "sm" | "md" | undefined
 }
 
 export type MenuVariantProps = {
@@ -741,9 +741,9 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain"
+  variant?: "outline" | "subtle" | "plain" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
 
 export type NativeSelectVariantProps = {
@@ -760,9 +760,9 @@ export type NumberInputSlot = "root" | "label" | "input" | "control" | "valueTex
 
 export interface NumberInputVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
+  variant?: "outline" | "subtle" | "flushed" | undefined
 }
 
 export type NumberInputVariantProps = {
@@ -779,10 +779,10 @@ export type PinInputSlot = "root" | "label" | "input" | "control"
 
 export interface PinInputVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
-  attached?: boolean
+  variant?: "outline" | "subtle" | "flushed" | undefined
+  attached?: boolean | undefined
 }
 
 export type PinInputVariantProps = {
@@ -812,7 +812,7 @@ export type PopoverSlot =
 
 export interface PopoverVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type PopoverVariantProps = {
@@ -829,13 +829,13 @@ export type ProgressSlot = "root" | "label" | "track" | "range" | "valueText" | 
 
 export interface ProgressVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | undefined
   /** @default "rounded" */
-  shape?: "square" | "rounded" | "full"
-  striped?: boolean
-  animated?: boolean
+  shape?: "square" | "rounded" | "full" | undefined
+  striped?: boolean | undefined
+  animated?: boolean | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
 
 export type ProgressVariantProps = {
@@ -852,7 +852,7 @@ export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueTe
 
 export interface ProgressCircleVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
 
 export type ProgressCircleVariantProps = {
@@ -879,14 +879,14 @@ export type RadioCardSlot =
 
 export interface RadioCardVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "outline" */
-  variant?: "surface" | "subtle" | "outline" | "solid"
-  justify?: "start" | "end" | "center"
+  variant?: "surface" | "subtle" | "outline" | "solid" | undefined
+  justify?: "start" | "end" | "center" | undefined
   /** @default "start" */
-  align?: "start" | "end" | "center"
+  align?: "start" | "end" | "center" | undefined
   /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
 }
 
 export type RadioCardVariantProps = {
@@ -903,9 +903,9 @@ export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemContr
 
 export interface RadioGroupVariant {
   /** @default "solid" */
-  variant?: "outline" | "subtle" | "solid"
+  variant?: "outline" | "subtle" | "solid" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type RadioGroupVariantProps = {
@@ -922,7 +922,7 @@ export type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndic
 
 export interface RatingGroupVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type RatingGroupVariantProps = {
@@ -939,7 +939,7 @@ export type SegmentGroupSlot = "root" | "label" | "item" | "itemText" | "itemCon
 
 export interface SegmentGroupVariant {
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type SegmentGroupVariantProps = {
@@ -972,9 +972,9 @@ export type SelectSlot =
 
 export interface SelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type SelectVariantProps = {
@@ -1007,9 +1007,9 @@ export type ComboboxSlot =
 
 export interface ComboboxVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "flushed"
+  variant?: "outline" | "subtle" | "flushed" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type ComboboxVariantProps = {
@@ -1037,11 +1037,11 @@ export type SliderSlot =
 
 export interface SliderVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "outline" */
-  variant?: "outline" | "solid"
+  variant?: "outline" | "solid" | undefined
   /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
 }
 
 export type SliderVariantProps = {
@@ -1058,7 +1058,7 @@ export type StatSlot = "root" | "label" | "helpText" | "valueText" | "valueUnit"
 
 export interface StatVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type StatVariantProps = {
@@ -1087,11 +1087,11 @@ export type StepsSlot =
 
 export interface StepsVariant {
   /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
+  orientation?: "vertical" | "horizontal" | undefined
   /** @default "solid" */
-  variant?: "solid" | "subtle"
+  variant?: "solid" | "subtle" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type StepsVariantProps = {
@@ -1108,9 +1108,9 @@ export type SwitchSlot = "root" | "label" | "control" | "thumb" | "indicator"
 
 export interface SwitchVariant {
   /** @default "solid" */
-  variant?: "solid" | "raised"
+  variant?: "solid" | "raised" | undefined
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg" | undefined
 }
 
 export type SwitchVariantProps = {
@@ -1126,14 +1126,14 @@ export type SwitchVariantMap = {
 export type TableSlot = "root" | "header" | "body" | "row" | "columnHeader" | "cell" | "footer" | "caption"
 
 export interface TableVariant {
-  interactive?: boolean
-  stickyHeader?: boolean
-  striped?: boolean
-  showColumnBorder?: boolean
+  interactive?: boolean | undefined
+  stickyHeader?: boolean | undefined
+  striped?: boolean | undefined
+  showColumnBorder?: boolean | undefined
   /** @default "line" */
-  variant?: "line" | "outline"
+  variant?: "line" | "outline" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type TableVariantProps = {
@@ -1149,12 +1149,12 @@ export type TableVariantMap = {
 export type TabsSlot = "root" | "trigger" | "list" | "content" | "contentGroup" | "indicator"
 
 export interface TabsVariant {
-  fitted?: boolean
-  justify?: "start" | "center" | "end"
+  fitted?: boolean | undefined
+  justify?: "start" | "center" | "end" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
   /** @default "line" */
-  variant?: "line" | "subtle" | "enclosed" | "outline" | "plain"
+  variant?: "line" | "subtle" | "enclosed" | "outline" | "plain" | undefined
 }
 
 export type TabsVariantProps = {
@@ -1171,9 +1171,9 @@ export type TagSlot = "root" | "label" | "closeTrigger" | "startElement" | "endE
 
 export interface TagVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "sm" | "md" | "lg" | "xl" | undefined
   /** @default "surface" */
-  variant?: "subtle" | "solid" | "outline" | "surface"
+  variant?: "subtle" | "solid" | "outline" | "surface" | undefined
 }
 
 export type TagVariantProps = {
@@ -1218,7 +1218,7 @@ export type StatusSlot = "root" | "indicator"
 
 export interface StatusVariant {
   /** @default "md" */
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | undefined
 }
 
 export type StatusVariantProps = {
@@ -1235,9 +1235,9 @@ export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicato
 
 export interface TimelineVariant {
   /** @default "solid" */
-  variant?: "subtle" | "solid" | "outline" | "plain"
+  variant?: "subtle" | "solid" | "outline" | "plain" | undefined
   /** @default "md" */
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "sm" | "md" | "lg" | "xl" | undefined
 }
 
 export type TimelineVariantProps = {
@@ -1280,9 +1280,9 @@ export type ColorPickerSlot =
 
 export interface ColorPickerVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | undefined
 }
 
 export type ColorPickerVariantProps = {
@@ -1299,7 +1299,7 @@ export type QrCodeSlot = "root" | "frame" | "pattern" | "overlay" | "downloadTri
 
 export interface QrCodeVariant {
   /** @default "md" */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full" | undefined
 }
 
 export type QrCodeVariantProps = {
@@ -1308,6 +1308,41 @@ export type QrCodeVariantProps = {
 
 export type QrCodeVariantMap = {
   [K in keyof QrCodeVariant]: Array<QrCodeVariant[K]>
+}
+
+// TreeView
+
+export type TreeViewSlot =
+  | "branch"
+  | "branchContent"
+  | "branchControl"
+  | "branchIndentGuide"
+  | "branchIndicator"
+  | "branchText"
+  | "branchTrigger"
+  | "item"
+  | "itemIndicator"
+  | "itemText"
+  | "label"
+  | "nodeCheckbox"
+  | "root"
+  | "tree"
+  | "branchBody"
+
+export interface TreeViewVariant {
+  /** @default "md" */
+  size?: "md" | "sm" | "xs" | undefined
+  /** @default "subtle" */
+  variant?: "subtle" | "solid" | "surface" | undefined
+  animateContent?: boolean | undefined
+}
+
+export type TreeViewVariantProps = {
+  [K in keyof TreeViewVariant]?: ConditionalValue<TreeViewVariant[K]> | undefined
+}
+
+export type TreeViewVariantMap = {
+  [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
 }
 
 export interface ConfigSlotRecipes {
@@ -1357,6 +1392,7 @@ export interface ConfigSlotRecipes {
   timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps, TimelineVariantMap>
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
+  treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1406,12 +1442,15 @@ export interface ConfigRecipeSlots {
   timeline: TimelineSlot
   colorPicker: ColorPickerSlot
   qrCode: QrCodeSlot
+  treeView: TreeViewSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
 
 export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
-  ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
-  : { recipe?: SlotRecipeDefinition }
+  ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
+  : { recipe?: SlotRecipeDefinition | undefined }
 
-export type RecipeProps<T> = T extends keyof ConfigRecipes ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition } : { recipe?: RecipeDefinition }
+export type RecipeProps<T> = T extends keyof ConfigRecipes
+  ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
+  : { recipe?: RecipeDefinition | undefined }

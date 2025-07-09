@@ -37,7 +37,9 @@ export const BarChartHorizontal = () => {
           dataKey={chart.key("month")}
           orientation="left"
           stroke={chart.color("border")}
-          tickFormatter={(value) => value.slice(0, 3)}
+          tickFormatter={(value) =>
+            typeof value === "string" ? value.slice(0, 3) : value
+          }
         />
         <Tooltip
           cursor={{ fill: chart.color("bg.muted") }}

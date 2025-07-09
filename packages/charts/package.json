@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/charts",
-  "version": "3.19.1",
+  "version": "3.22.0",
   "description": "Data visualization components for Chakra UI",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -40,7 +40,7 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
+      "dev": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.js"

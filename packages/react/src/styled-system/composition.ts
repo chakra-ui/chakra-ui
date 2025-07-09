@@ -2,7 +2,7 @@ import type { CompositionStyleObject } from "./css.types"
 
 interface Token<T> {
   value: T
-  description?: string
+  description?: string | undefined
 }
 
 interface Recursive<T> {

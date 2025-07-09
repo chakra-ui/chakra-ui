@@ -28,27 +28,27 @@ interface StackOptions {
    * Shorthand for `alignItems` style prop
    * @type SystemStyleObject["alignItems"]
    */
-  align?: SystemStyleObject["alignItems"]
+  align?: SystemStyleObject["alignItems"] | undefined
   /**
    * Shorthand for `justifyContent` style prop
    * @type SystemStyleObject["justifyContent"]
    */
-  justify?: SystemStyleObject["justifyContent"]
+  justify?: SystemStyleObject["justifyContent"] | undefined
   /**
    * Shorthand for `flexWrap` style prop
    * @type SystemStyleObject["flexWrap"]
    */
-  wrap?: SystemStyleObject["flexWrap"]
+  wrap?: SystemStyleObject["flexWrap"] | undefined
   /**
    * The direction to stack the items.
    * @default "column"
    */
-  direction?: StackDirection
+  direction?: StackDirection | undefined
   /**
    * If `true`, each stack item will show a separator
    * @type React.ReactElement
    */
-  separator?: React.ReactElement<any>
+  separator?: React.ReactElement<any> | undefined
 }
 
 export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}

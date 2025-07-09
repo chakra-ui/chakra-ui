@@ -33,6 +33,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       justifyContent: "space-between",
       width: "full",
       minH: "var(--select-trigger-height)",
+      "--input-height": "var(--select-trigger-height)",
       px: "var(--select-trigger-padding-x)",
       borderRadius: "l2",
       userSelect: "none",
@@ -53,7 +54,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "1",
       pos: "absolute",
-      right: "0",
+      insetEnd: "0",
       top: "0",
       bottom: "0",
       px: "var(--select-trigger-padding-x)",
@@ -137,6 +138,13 @@ export const selectSlotRecipe = defineSlotRecipe({
     valueText: {
       lineClamp: "1",
       maxW: "80%",
+    },
+    clearTrigger: {
+      color: "fg.muted",
+      pointerEvents: "auto",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      rounded: "l1",
     },
   },
   variants: {

@@ -45,7 +45,7 @@ export interface CssProperties
   extends PropertiesFallback<String | Number>,
     ModernCssProperties,
     CssVarProperties {
-  initialLetterAlign?: String
+  initialLetterAlign?: String | undefined
 }
 
 export interface CssKeyframes {
@@ -114,7 +114,7 @@ export type CompositionStyleObject<Property extends string> = Nested<
  * -----------------------------------------------------------------------------*/
 
 interface WithCss {
-  css?: SystemStyleObject
+  css?: SystemStyleObject | undefined
 }
 
 type StyleProps = SystemProperties & MinimalNested<SystemStyleObject>

@@ -68,7 +68,7 @@ export interface AvatarFallbackProps
    * The name to derive the initials from.
    * If not provided, the fallback will display a generic icon.
    */
-  name?: string
+  name?: string | undefined
 }
 
 const StyledFallback = chakra(ArkAvatar.Fallback, {}, { forwardAsChild: true })

@@ -455,4 +455,26 @@ describe("css", () => {
       }
     `)
   })
+
+  test("skip breakpoints with grid properties", () => {
+    const result = css({
+      gridColumn: ["span 1/span 1", null, "span 2/span 2"],
+      gridRow: [null, "span 3/span 3", null, "span 4/span 4"],
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "@media screen and (min-width: 30rem)": {
+          "gridRow": "span 3/span 3",
+        },
+        "@media screen and (min-width: 48rem)": {
+          "gridColumn": "span 2/span 2",
+        },
+        "@media screen and (min-width: 64rem)": {
+          "gridRow": "span 4/span 4",
+        },
+        "gridColumn": "span 1/span 1",
+      }
+    `)
+  })
 })

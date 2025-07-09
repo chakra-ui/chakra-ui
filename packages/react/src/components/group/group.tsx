@@ -110,19 +110,19 @@ export interface GroupProps extends HTMLChakraProps<"div", VariantProps> {
   /**
    * The `alignItems` style property
    */
-  align?: JsxStyleProps["alignItems"]
+  align?: JsxStyleProps["alignItems"] | undefined
   /**
    * The `justifyContent` style property
    */
-  justify?: JsxStyleProps["justifyContent"]
+  justify?: JsxStyleProps["justifyContent"] | undefined
   /**
    * The `flexWrap` style property
    */
-  wrap?: JsxStyleProps["flexWrap"]
+  wrap?: JsxStyleProps["flexWrap"] | undefined
   /**
    * A function that determines if a child should be skipped
    */
-  skip?: (child: React.ReactElement) => boolean
+  skip?: (child: React.ReactElement) => boolean | undefined
 }
 
 export const Group = memo(

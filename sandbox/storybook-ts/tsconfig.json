@@ -17,7 +17,7 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "incremental": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "paths": {
       "@chakra-ui/react": ["../../packages/react/src"]
     }

@@ -49,7 +49,9 @@ export const write = async (
   try {
     await writeFile(outPath(path, file), await content)
   } catch (error) {
-    console.log(error)
+    throw new Error(
+      `Failed to write file ${outPath(path, file)}: ${error instanceof Error ? error.message : String(error)}`,
+    )
   }
 }
 

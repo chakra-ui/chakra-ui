@@ -6,6 +6,12 @@
     "image": "showcases/Chakra-UI-Pro.jpg"
   },
   {
+    "title": "Vimeo",
+    "description": "Video platform",
+    "url": "https://vimeo.com/",
+    "image": "showcases/vimeo.png"
+  },
+  {
     "title": "Udacity",
     "description": "EdTech platform",
     "url": "https://www.udacity.com/",
@@ -22,6 +28,30 @@
     "description": "Music platform SaaS",
     "url": "https://suno.com/",
     "image": "showcases/suno.png"
+  },
+  {
+    "title": "Socket",
+    "description": "Developer-first security platform",
+    "url": "https://socket.dev",
+    "image": "showcases/socketdev.png"
+  },
+  {
+    "title": "Stately.ai",
+    "description": "Statechart builder SaaS",
+    "url": "https://stately.ai/registry/new",
+    "image": "showcases/Stately.jpg"
+  },
+   {
+    "title": "Vemetric",
+    "description": "Product Analytics",
+    "url": "https://vemetric.com/",
+    "image": "showcases/vemetric.png"
+  },
+  {
+    "title": "HelloBonnie",
+    "description": "HR Benefits SaaS",
+    "url": "https://www.hellobonnie.de/en",
+    "image": "showcases/hello-bonnie.png"
   },
   {
     "title": "Planet.com",
@@ -114,12 +144,6 @@
     "image": "showcases/Apollo-Odyssey.jpg"
   },
   {
-    "title": "Stately.ai",
-    "description": "Statechart builder SaaS",
-    "url": "https://stately.ai/registry/new",
-    "image": "showcases/Stately.jpg"
-  },
-  {
     "title": "UI Foundations",
     "description": "Education website",
     "url": "https://www.uifoundations.com/",
@@ -130,11 +154,5 @@
     "description": "Screenshot SaaS",
     "url": "https://tweetpik.com",
     "image": "showcases/Tweetpik.jpg"
-  },
-  {
-    "title": "Bitwarden",
-    "description": "Password manager",
-    "url": "https://bitwarden.com",
-    "image": "showcases/Bitwarden.jpg"
   }
 ]

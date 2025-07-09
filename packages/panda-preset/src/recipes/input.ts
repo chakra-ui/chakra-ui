@@ -66,12 +66,14 @@ export const inputRecipe = defineRecipe({
         borderWidth: "1px",
         borderColor: "border",
         focusVisibleRing: "inside",
+        focusRingColor: "var(--focus-color)",
       },
       subtle: {
         borderWidth: "1px",
         borderColor: "transparent",
         bg: "bg.muted",
         focusVisibleRing: "inside",
+        focusRingColor: "var(--focus-color)",
       },
       flushed: {
         bg: "transparent",
@@ -82,6 +84,10 @@ export const inputRecipe = defineRecipe({
         _focusVisible: {
           borderColor: "var(--focus-color)",
           boxShadow: "0px 1px 0px 0px var(--focus-color)",
+          _invalid: {
+            borderColor: "var(--error-color)",
+            boxShadow: "0px 1px 0px 0px var(--error-color)",
+          },
         },
       },
     },

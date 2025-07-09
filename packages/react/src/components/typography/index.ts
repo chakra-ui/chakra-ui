@@ -12,3 +12,6 @@ export type { StrongProps } from "./strong"
 
 export { Mark, MarkPropsProvider } from "./mark"
 export type { MarkProps } from "./mark"
+
+export { Quote } from "./quote"
+export type { QuoteProps } from "./quote"

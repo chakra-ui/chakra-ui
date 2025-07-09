@@ -30,10 +30,10 @@ export function generateRecipeResult(sys: SystemContext) {
               const values = variantKeyMap[key]
 
               if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: boolean`
+                return `${jsDoc}${key}?: boolean | undefined`
               }
 
-              return `${jsDoc}${key}?: ${unionType(values)}`
+              return `${jsDoc}${key}?: ${unionType(values)} | undefined`
             })
             .join("\n")}
         }
@@ -96,10 +96,10 @@ export function generateSlotRecipeResult(sys: SystemContext, strict = true) {
               const values = variantKeyMap[key]
 
               if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: boolean`
+                return `${jsDoc}${key}?: boolean | undefined`
               }
 
-              return `${jsDoc}${key}?: ${unionType(values, !strict)}`
+              return `${jsDoc}${key}?: ${unionType(values, !strict)} | undefined`
             })
             .join("\n")}
         }
@@ -152,12 +152,12 @@ export function generateRecipeHelperTypes() {
         : Record<string, K>
       
       export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
-        ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
-        : { recipe?: SlotRecipeDefinition }
+        ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
+        : { recipe?: SlotRecipeDefinition | undefined }
       
       export type RecipeProps<T> = T extends keyof ConfigRecipes
-        ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition }
-        : { recipe?: RecipeDefinition }
+        ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
+        : { recipe?: RecipeDefinition | undefined }
       `
 }
 

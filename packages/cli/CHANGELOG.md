@@ -1,5 +1,29 @@
 # @chakra-ui/cli
 
+## 3.22.0
+
+## 3.21.1
+
+### Patch Changes
+
+- [`517ba37`](https://github.com/chakra-ui/chakra-ui/commit/517ba37c49eb1bec4774c7835b5853ca1761bb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `typegen` command fails silently with misleading console output when prettier
+  exits with a formatting error
+
+## 3.21.0
+
+## 3.20.0
+
+## 3.19.2
+
+### Patch Changes
+
+- [#10059](https://github.com/chakra-ui/chakra-ui/pull/10059)
+  [`a289c3c`](https://github.com/chakra-ui/chakra-ui/commit/a289c3c928bc83f2550e374af17068afaed69858)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **System**: add explicit
+  `undefined` to generated types to support TS `exactOptionalPropertyTypes`
+
 ## 3.19.1
 
 ## 3.19.0
@@ -181,7 +205,6 @@
 - [`77fe01d`](https://github.com/chakra-ui/chakra-ui/commit/77fe01d3de6e07936998acce37d6f2e7d34c25ed)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Change CLI name and
   command structure.
-
   - Change the CLI name from `chakra-cli` to `chakra`.
   - Change `tokens` command to `typegen` to better reflect its purpose since its
     generates types for more than just the tokens.
@@ -192,7 +215,6 @@
 - [`8fc7b49`](https://github.com/chakra-ui/chakra-ui/commit/8fc7b4979739acb347ca9c662d8d242833438b51)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add support for
   conditional value in variant props.
-
   - Add `@default` JSDoc comment for `defaultVariants` in generated types.
 
 - [`4ff153f`](https://github.com/chakra-ui/chakra-ui/commit/4ff153fd9b449d3e43561b7daceaadfe3c925b08)
@@ -359,7 +381,6 @@
 - [`77fe01d`](https://github.com/chakra-ui/chakra-ui/commit/77fe01d3de6e07936998acce37d6f2e7d34c25ed)
   Thanks [@segunadebayo](https://github.com/segunadebayo)! - Change CLI name and
   command structure.
-
   - Change the CLI name from `chakra-cli` to `chakra`.
   - Change `tokens` command to `typegen` to better reflect its purpose since its
     generates types for more than just the tokens.
@@ -1035,7 +1056,6 @@
   [#3222](https://github.com/chakra-ui/chakra-ui/pull/3222) Thanks
   [@TimKolberger](https://github.com/TimKolberger)! - - Package
   `@chakra-ui/cli@1.0.0` did already exist
-
   - Add minor bump for adding subcommand `tokens` to generate Theme Typings
 
     See https://chakra-ui.com/docs/theming/advanced for more info

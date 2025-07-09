@@ -8,7 +8,7 @@ export interface ShowProps<T> {
   /**
    * The fallback content to render if `when` is `false`
    */
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
   /**
    * The children to render if `when` is `true`
    */

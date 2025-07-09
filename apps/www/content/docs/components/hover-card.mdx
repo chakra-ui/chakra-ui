@@ -75,14 +75,18 @@ positioning logic.
 
 ### Within Dialog
 
-Here's an example of how to use the `HoverCard` within a `Dialog` component.
+To use the `HoverCard` within a `Dialog`, you need to avoid portalling the
+`HoverCard.Positioner` to the document's body.
 
-> Due to the focus trap within the dialog, it's important to change the portal
-> target from the document's body to the dialog's content.
-
-<ExampleTabs name="hover-card-in-dialog" />
-
-Alternatively, you can avoid portalling the `HoverCard.Positioner`
+```diff
+-<Portal>
+  <HoverCard.Positioner>
+    <HoverCard.Content>
+      {/* ... */}
+    </HoverCard.Content>
+  </HoverCard.Positioner>
+-</Portal>
+```
 
 ## Accessibility
 

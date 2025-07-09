@@ -52,7 +52,7 @@ export function generateSystemTypesResult(sys: SystemContext) {
   type CssVarValue = ConditionalValue<Token | CssVars | AnyString | AnyNumber>
   type CssVarKey = \`--\${string}\`
   export type CssVarProperties = {
-      [key in CssVarKey]?: CssVarValue
+      [key in CssVarKey]?: CssVarValue | undefined
   }
   
   export interface SystemProperties {

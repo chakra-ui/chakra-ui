@@ -18,12 +18,12 @@ export type SlotRecipeFn<K extends SlotRecipeKey> =
     : SystemSlotRecipeFn<string, {}, {}>
 
 export interface UseSlotRecipeOptions<K extends SlotRecipeKey> {
-  key?: K
-  recipe?: SlotRecipeConfig
+  key?: K | undefined
+  recipe?: SlotRecipeConfig | undefined
 }
 
 export function useSlotRecipe<
-  Options extends { key: SlotRecipeKey; recipe?: SlotRecipeConfig },
+  Options extends { key: SlotRecipeKey; recipe?: SlotRecipeConfig | undefined },
 >(
   options: Options,
 ): Options["key"] extends keyof ConfigSlotRecipes

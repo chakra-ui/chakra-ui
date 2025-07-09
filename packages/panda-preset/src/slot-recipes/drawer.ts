@@ -23,7 +23,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100vw",
       h: "100dvh",
-      zIndex: "modal",
+      zIndex: "overlay",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
@@ -170,7 +170,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
           _closed: {
             animationName: {
               base: "slide-to-right-full, fade-out",
-              _rtl: "slide-to-right-full, fade-out",
+              _rtl: "slide-to-left-full, fade-out",
             },
           },
         },

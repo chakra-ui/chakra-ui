@@ -9,20 +9,20 @@ export interface LoaderProps extends HTMLChakraProps<"span"> {
    * Whether the loader is visible
    * @default true
    */
-  visible?: boolean
+  visible?: boolean | undefined
   /**
    * The spinner to display when loading
    */
-  spinner?: React.ReactNode
+  spinner?: React.ReactNode | undefined
   /**
    * The placement of the spinner
    * @default "start"
    */
-  spinnerPlacement?: "start" | "end"
+  spinnerPlacement?: "start" | "end" | undefined
   /**
    * The text to display when loading
    */
-  text?: React.ReactNode
+  text?: React.ReactNode | undefined
 }
 
 export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
@@ -54,7 +54,9 @@ export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
       return (
         <Span ref={ref} display="contents" {...rest}>
           <AbsoluteCenter display="inline-flex">{spinner}</AbsoluteCenter>
-          <Span opacity={0}>{children}</Span>
+          <Span visibility="hidden" display="contents">
+            {children}
+          </Span>
         </Span>
       )
     }

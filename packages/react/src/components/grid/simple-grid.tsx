@@ -13,11 +13,11 @@ interface SimpleGridOptions {
   /**
    * The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.
    */
-  minChildWidth?: GridProps["minWidth"]
+  minChildWidth?: GridProps["minWidth"] | undefined
   /**
    * The number of columns
    */
-  columns?: ConditionalValue<number>
+  columns?: ConditionalValue<number> | undefined
 }
 
 export interface SimpleGridProps

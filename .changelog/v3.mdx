@@ -5,6 +5,167 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.22.0](./#3.22.0) - 2025-07-07
+
+### Added
+
+- **TreeView**: Add new `TreeView` component that is used to represent
+  hierarchical data in a tree structure.
+
+### Fixed
+
+- **Clipboard**: Fix issue where `clipboardAnatomy` was not exported from
+  `@chakra-ui/react/anatomy`
+
+- **Combobox**
+  - Expose `reason` to `onOpenChange` and `onInputValueChange` callbacks
+  - Expose `api.clearHighlightedValue` function to clear highlighted value
+
+- **Toast**: Fix issue where toast `title` or `description` could not accept
+  React element
+
+- **Progress**: Improve `valueAsString` formatting
+
+- **Select**
+  - Select highlighted item only if it exists in the collection
+  - Expose `api.clearHighlightedValue` function to clear highlighted value
+
+- **ClientOnly**: Support `children` as a function
+
+## [3.21.1](./#3.21.1) - 2025-06-28
+
+### Fixed
+
+- **CLI**: Fix issue where `typegen` command fails silently with misleading
+  console output when prettier exits with a formatting error
+
+- **Select**: Export missing SelectRootComponent type export
+
+- **System**: Fix inconsistent handling of `null` and `undefined` for skipping
+  breakpoints using array syntax
+
+- **Popover**: Fixed issue where `onOpenChange` could be called twice when
+  controlled
+
+- **Combobox**
+  - Fixed issue where `onInputValueChange` could be called twice when selecting
+    an item
+  - Fixed issue where combobox with `allowCustomValue: true` used within in a
+    form requires two enter keypress to submit
+
+- **Progress**
+  - Fix issue where setting orientation to `vertical` don't work
+  - Fix issue where setting `defaultValue` to `null` doesn't show indeterminate
+    state
+
+- **Toast**: Fix issue where app crashes when `toaster.promise` is called
+  without loading option. The `loading` option is now required. A warning will
+  be logged if it is not provided
+
+- **Combobox, Select, Listbox**: Fix issue where rehydrating `defaultValue` or
+  `value` after fetching items doesn't update the `valueAsString`
+
+- **Drawer**: Improve `Drawer` recipe to better support conditional variants and
+  add conditional variants example to the docs and storybook
+
+## [3.21.0](./#3.21.0) - 2025-06-11
+
+### Added
+
+- Add support new entrypoint for `/theme` which allows for incremental loading
+  of component recipes to avoid bloating the theme with unused components.
+
+  > This is mostly for bundle size optimization.
+
+  For example, if you want just the `button` recipe to be included in your
+  bundle, you can cherry-pick the recipe you need like this:
+
+  ```tsx
+  import { createSystem, defaultBaseConfig } from "@chakra-ui/react"
+  import { buttonRecipe } from "@chakra-ui/react/theme"
+
+  export const system = createSystem(defaultBaseConfig, {
+    theme: {
+      recipes: {
+        button: buttonRecipe,
+      },
+    },
+  })
+  ```
+
+### Fixed
+
+- **File Upload**: Prevented `undefined` in `acceptedFiles` when no files
+  accepted
+
+- **Select**: Fixed issue where highlighted item could be cleared when
+  navigating up/down the list with keyboard
+
+- **Tabs**: Fixed issue where tabs with links should not trigger tab change upon
+  cmd/middle click
+
+- **Menu**: Fixed issue where `Menu.ItemText` could not be used with `Menu.Item`
+
+## [3.20.0](./#3.20.0) - 2025-06-06
+
+### Added
+
+- **File Upload**: Added support for transforming uploaded files via
+  `transformFiles` context property.
+
+- **Quote**: Export `Quote` typography component and its types
+
+### Fixed
+
+- **System**: Allow `undefined` for optional properties in CSS and recipe types
+
+- **Color Picker**: Fixed issue where value change end event is invoked when
+  committing via an input.
+
+- **Toast**: Fixed issue where calling `toast.remove()` without an id shows a
+  TypeScript error.
+
+- **Field**: Fixed issue where helper text and error text could not be detected
+  in shadow DOM environments.
+
+- **Slider**
+  - Fixed issue where `minStepsBetweenThumbs` isn't computed correctly when
+    interacting with pointer or keyboard.
+  - Fixed issue where `Shift` + `ArrowRight` set value to `0` instead of `max`
+    when step is too large (e.g. `20`).
+  - Fixed issue where `onValueChangeEnd` doesn't return the latest value when
+    dragging very fast.
+  - Fixed issue where slider could throw a error when rendered in an popover or
+    dialog.
+
+- **Combobox**: Fixed issue where `onInputValueChange` doesn't get called when
+  `autoFocus` is set to `true`
+
+- **Pin Input**: Fixed issue where input padding could cause clipping of the
+  text when `fontSize` is increased.
+
+- **Checkbox**: Export `CheckboxRootProviderProps` type
+
+- **Charts**: Fixed issue where `formatter` prop doesn't take effect in the
+  tooltip
+
+## [3.19.2](./#3.19.2) - 2025-06-02
+
+### Fixed
+
+- **System**: add explicit `undefined` to generated types to support TS
+  `exactOptionalPropertyTypes`
+
+- **Drawer**: Fix drawer close animation in RTL
+
+- **Button**
+  - Fix layout issue when in loading state with icons by using
+    `display: contents` and `visibility: hidden`
+  - Add `data-loading` attribute when `loading` is `true` so allow styling
+    loading state with `_loading` pseudo prop
+
+- **Input**: Fix issue where invalid styles don't persist for `variant=flushed`
+
 ## [3.19.1](./#3.19.1) - 2025-05-17
 
 ### Fixed
@@ -55,7 +216,6 @@ description:
 ### Fixed
 
 - **System**
-
   - Fix issue where passing `d` prop to `chakra.path` adds it to styles not as a
     direct attribute.
   - Fix issue where responsive semantic tokens did not get applied.
@@ -68,7 +228,6 @@ description:
 ### Added
 
 - **Toast**: Added toast queuing when the max limit is reached:
-
   - New toasts were queued instead of dropped
   - Queued toasts were shown when space became available
   - Queue cleared when all toasts were removed
@@ -102,7 +261,6 @@ description:
 - **Global CSS**: Improve text selection contrast
 
 - **System**
-
   - Fix issue where `borderEnd` shorthand was not working despite `borderStart`
     being present
   - Fix issue where `system.cva` return type was incorrect
@@ -140,7 +298,6 @@ description:
 - **RadioCard**: Fix accessibility issue due to html structure
 
 - **Slider**
-
   - Add support for `origin: end` to align the thumb to the end of the track
   - Expose `thumbSize` as CSS variables in the root element. Can be useful for
     styling the slider
@@ -186,18 +343,15 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Added
 
 - **ColorPicker**
-
   - Add support for `ColorPicker.ChannelText` component
   - Add `ColorPicker.EyeDropper` component that wraps `IconButton`
   - Add `ColorPicker.Slider` and `ColorPicker.Input` shortcut components to
     reduce LOC.
 
 - **InputGroup**
-
   - Export directly from the `@chakra-ui/react` package
 
 - **Pagination**
-
   - Add `Pagination.Items` shortcut component to render the number of pages
     based on the `count` and `pageSize` props.
   - Add `Pagination.PageText` component to render the current page and total
@@ -208,7 +362,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Added
 
 - **FileUpload**
-
   - Add `FileUpload.FileText` to render the list of uploaded file names.
   - Add `FileUpload.Items` shorcut component to render the list of uploaded
     files.
@@ -220,13 +373,11 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Fixed
 
 - **Accordion**
-
   - Fix issue where `Accordion.ItemTrigger` doesn't apply `textAlign: start`
 
 ### Added
 
 - **SegmentGroup**
-
   - Add new `SegmentGroup.Items` shortcut component to render multiple
     `SegmentGroup.Item` components based on the `items` prop
 
@@ -235,17 +386,14 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Changed
 
 - **Menu**
-
   - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`, reducing LOC in
     common use cases.
 
 - **HoverCard**
-
   - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`,
     reducing LOC in common use cases.
 
 - **Dialog, Drawer**
-
   - Update recipe to include absolute positioning styles for close trigger,
     instead of relying on snippet styles.
 
@@ -257,34 +405,28 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
   v2.
 
 - **Switch**
-
   - Transition background color when checked
   - Set `Switch.Control` to include `Switch.Thumb` as its default children,
     reducing LOC in common use cases.
 
 - **Checkbox**
-
   - Set `Checkbox.Control` to include `Checkbox.Indicator` as its default
     children, reducing LOC in common use cases.
 
 - **NumberInput**
-
   - Set `NumberInput.Control` to include `NumberInput.IncrementTrigger` and
     `NumberInput.DecrementTrigger` as its default children, reducing LOC in
     common use cases.
 
 - **QrCode**
-
   - Set `QrCode.Frame` to include `QrCode.Pattern` as its default children,
     reducing LOC in common use cases.
 
 - **RatingGroup**
-
   - Set `RatingGroup.Control` to include an array of `RatingGroup.Item`
     components as its default children, reducing LOC in common use cases.
 
 - **Slider**
-
   - Add `Slider.Marks` component to render marks on the slider track. This is a
     closed composition of `Slider.MarkerGroup` and `Slider.Marker` to reduce LOC
     for common use cases.
@@ -292,12 +434,10 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
     a closed composition of `Slider.Thumb` to reduce LOC for common use cases.
 
 - **PinInput**
-
   - Add support for `attached` variant prop to render a pin input with attached
     inputs. This removes the need for the `Group` component to wrap the inputs.
 
 - **Tooltip, Popover**
-
   - Set `Tooltip.Arrow` and `Popover.Arrow` to include `Tooltip.ArrowTip` and
     `Popover.ArrowTip` as its default children, reducing LOC in common use
     cases.
@@ -323,7 +463,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Added
 
 - **[New] Hooks:**
-
   - `useElementRect`: Get the dimensions and position of an element
   - `useForceUpdate`: Force a component re-render
   - `useLiveRef`: Create a ref that stays up-to-date with its value
@@ -371,7 +510,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Changed
 
 - **Styled System:**
-
   - Boost performance of style resolution by removing `JSON.stringify` in `memo`
     function and avoid memoizing non-primitive arguments.
   - Connect `assets` token to `backgroundImage` and `listStyleImage` css
@@ -404,7 +542,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Fixed
 
 - **Native Select**
-
   - Fix issue where `disabled` and `invalid` props were not being passed to the
     `NativeSelectField` component.
   - Persist error focus ring when `invalid` prop is set.
@@ -464,7 +601,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Fixed
 
 - **Icon**
-
   - Refactor icon recipe `size=inherit` to allow for composition with button
   - Fix issue where using `<Icon as={...} />` throws an error, forcing users to
     use the `asChild` approach
@@ -505,7 +641,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 - **Clipboard**: Introduced `Clipboard.ValueText` to display clipboard content.
 
 - **FileUpload**
-
   - Added `preventDropOnDocument` to block file drops on the document when the
     file upload component is active.
 
@@ -547,7 +682,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   `Image` or `chakra.image` elements.
 
 - **System**
-
   - Improve typesafety for layer styles to support common shorthands like `bg`,
     `bgColor`, `bgImage`.
   - Fix compound variant matching not working with `colorPalette` prop.
@@ -563,7 +697,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   > `aspect-ratio < 1 / 1` in the browser.
 
 - **System**
-
   - Improve type-safety in `useRecipe` and `useSlotRecipe` hooks
   - Fix issue where composing `Input` component throws `asChild` React HTML prop
     warning.
@@ -604,7 +737,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
 ### Fixed
 
 - **Slider**
-
   - Add `DraggingIndicator` component to show an element only while dragging
   - Fix issue where slider marks were not styled correctly in vertical
     orientation
@@ -616,7 +748,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   type error
 
 - **Snippets / Slider**
-
   - Move `MarkerGroup` into the `Control` component
   - Remove hardcoded margin values in favor of recipes and `data-has-mark-label`
     attribute
@@ -638,7 +769,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   and `ColorPickerChannelSliders`
 
 - **CLI**
-
   - Fix issue where npmDependencies for snippets were not auto-installed
   - Support React Router 7 framework detection
 
@@ -721,11 +851,9 @@ npx @chakra-ui/cli snippet add [...components] --tsx
 - **Button:** Tweak the horizontal padding when size is `sm`.
 
 - **Snippets**
-
   - Slider: Add `showValue` prop to render the text value of the slider.
 
   - Select
-
     - Add `HiddenSelect` to ensure it works in form submissions.
     - Fix type inference is lost when using `SelectRoot` component from snippet
     - Fix issue where form data is not populated when using native form element
@@ -747,7 +875,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
 - **InputAddon**: Fix issue with input addon not stretched correctly.
 
 - **CLI**
-
   - Fix issue with vite setup where `.mjs` and `mts` files were not considered.
   - Fix issue where style props types show as `any` when using `strictTokens`.
 

@@ -17,7 +17,7 @@
     "paths": {
       "~/*": ["./app/*"]
     },
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,

@@ -67,6 +67,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       borderWidth: "1px",
       borderColor: "transparent",
       borderRadius: "l1",
+      cursor: "checkbox",
       focusVisibleRing: "outside",
       _icon: {
         boxSize: "full",
@@ -77,6 +78,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         opacity: "0.5",
+        cursor: "disabled",
       },
     },
     content: {

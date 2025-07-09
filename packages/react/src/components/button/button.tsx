@@ -9,7 +9,7 @@ import {
   chakra,
   createRecipeContext,
 } from "../../styled-system"
-import { cx } from "../../utils"
+import { cx, dataAttr } from "../../utils"
 import { Loader } from "../loader"
 
 const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
@@ -21,20 +21,20 @@ export interface ButtonLoadingProps {
    * If `true`, the button will show a loading spinner.
    * @default false
    */
-  loading?: boolean
+  loading?: boolean | undefined
   /**
    * The text to show while loading.
    */
-  loadingText?: React.ReactNode
+  loadingText?: React.ReactNode | undefined
   /**
    * The spinner to show while loading.
    */
-  spinner?: React.ReactNode
+  spinner?: React.ReactNode | undefined
   /**
    * The placement of the spinner
    * @default "start"
    */
-  spinnerPlacement?: "start" | "end"
+  spinnerPlacement?: "start" | "end" | undefined
 }
 
 export interface ButtonBaseProps
@@ -66,6 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type="button"
         ref={ref}
         {...rest}
+        data-loading={dataAttr(loading)}
         disabled={loading || rest.disabled}
         className={cx(result.className, props.className)}
         css={[result.styles, props.css]}

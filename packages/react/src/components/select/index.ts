@@ -38,6 +38,7 @@ export type {
   SelectOpenChangeDetails,
   SelectPositionerProps,
   SelectRootProps,
+  SelectRootComponent,
   SelectRootProviderProps,
   SelectTriggerProps,
   SelectValueChangeDetails,

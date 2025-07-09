@@ -204,7 +204,8 @@ component.
 </Box>
 ```
 
-To style the Next.js link component, use the `asChild` prop on the
+To style the Next.js link component, use the `asChild` prop on the `Link`
+component
 
 ```jsx
 <Link isExternal asChild>
@@ -306,8 +307,10 @@ export default preview
 - **StackItem**: You don't need this anymore. Use `Box` instead.
 - **FocusLock**: We no longer ship a focus lock component. Install and use
   `react-focus-lock` directly.
-- **FormControl**: Replace with the `Field` component
-- **FormErrorMessage**: Replace with the `Field.ErrorText` component Before:
+- **FormControl**: Replace with the `Field` component.
+- **FormErrorMessage**: Replace with the `Field.ErrorText` component.
+
+Before:
 
 ```tsx
 <FormControl>
@@ -326,7 +329,6 @@ After:
 ```
 
 - **AlertDialog**
-
   - Replace with the `Dialog` component and set `role=alertdialog`
   - Set `leastDestructiveRef` prop to the `initialFocusEl` to the `Dialog.Root`
     component

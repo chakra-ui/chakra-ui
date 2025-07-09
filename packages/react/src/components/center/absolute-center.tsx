@@ -3,7 +3,7 @@
 import { type HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
-  axis?: "horizontal" | "vertical" | "both"
+  axis?: "horizontal" | "vertical" | "both" | undefined
 }
 
 /**

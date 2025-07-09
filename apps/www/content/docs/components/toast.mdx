@@ -44,11 +44,20 @@ toaster.create({
 
 ## Examples
 
-### Persistent Toast
+### Closable Toast
 
-Set the `type` prop to `"loading"` to create a persistent toast.
+Set the `closable` prop to `true` to create a closable toast.
 
-<ExampleTabs name="toaster-persistent" />
+<ExampleTabs name="toaster-closable" />
+
+### External Close
+
+Use the `toaster.dismiss` method to close a toast.
+
+- `toaster.dismiss(id)`: Dismiss a toast by its id.
+- `toaster.dismiss()`: Dismiss all toasts.
+
+<ExampleTabs name="toaster-with-external-close" />
 
 ### Types
 
@@ -63,6 +72,12 @@ Use the `action` and `actionLabel` prop to add an action to the toast.
 > When the action trigger is clicked, the toast will be closed.
 
 <ExampleTabs name="toaster-with-action" />
+
+### Persistent Toast
+
+Set the `type` prop to `"loading"` to create a persistent toast.
+
+<ExampleTabs name="toaster-persistent" />
 
 ### Promise
 

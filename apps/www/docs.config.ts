@@ -70,7 +70,6 @@ const docsLinks: NavItem = {
             { title: "Group", url: "group" },
             { title: "SimpleGrid", url: "simple-grid" },
             { title: "Stack", url: "stack" },
-            { title: "Theme", url: "theme" },
             { title: "Wrap", url: "wrap" },
           ],
         },
@@ -154,6 +153,7 @@ const docsLinks: NavItem = {
             { title: "Toast", url: "toast" },
             { title: "Toggle Tip", url: "toggle-tip" },
             { title: "Tooltip", url: "tooltip" },
+            { title: "Tree View", url: "tree-view", status: "beta" },
           ],
         },
         {
@@ -175,6 +175,7 @@ const docsLinks: NavItem = {
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
             { title: "Visually Hidden", url: "visually-hidden" },
+            { title: "Theme", url: "theme" },
           ],
         },
       ],
@@ -183,7 +184,6 @@ const docsLinks: NavItem = {
     {
       title: "Charts",
       url: "charts",
-      status: "beta",
       items: [
         {
           title: "Overview",

@@ -17,11 +17,11 @@ export interface RadiomarkProps
   /**
    * Whether the checkmark is checked
    */
-  checked?: boolean
+  checked?: boolean | undefined
   /**
    * Whether the checkmark is disabled
    */
-  disabled?: boolean
+  disabled?: boolean | undefined
 }
 
 export const Radiomark = forwardRef<HTMLSpanElement, RadiomarkProps>(

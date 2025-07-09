@@ -168,7 +168,7 @@ export const SliderThumbs = (props: Omit<SliderThumbProps, "index">) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderMarksProps extends SliderMarkerGroupProps {
-  marks?: Array<number | { value: number; label: React.ReactNode }>
+  marks?: Array<number | { value: number; label: React.ReactNode }> | undefined
 }
 
 export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(

@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react-vite"
 import { Toaster } from "compositions/ui/toaster"
 import { Box } from "../src"
 
@@ -15,6 +15,7 @@ export default {
 } satisfies Meta
 
 export { ToasterBasic as Basic } from "compositions/examples/toaster-basic"
+export { ToasterClosable as Closable } from "compositions/examples/toaster-closable"
 export { ToasterLifecycle as Lifecycle } from "compositions/examples/toaster-lifecycle"
 export { ToasterPersistent as Persistent } from "compositions/examples/toaster-persistent"
 export { ToasterStatic as Static } from "compositions/examples/toaster-static"
