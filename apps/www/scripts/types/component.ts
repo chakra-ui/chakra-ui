@@ -1,5 +1,6 @@
 import consola from "consola"
 import { ensureDirSync } from "fs-extra"
+import { existsSync } from "node:fs"
 import { unlink, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import { camelCase, kebabCase, titleCase } from "scule"
@@ -31,7 +32,11 @@ export const main = async () => {
   const proms = dirs.map(async (dir) => {
     const recipeKey = camelCase(dir)
 
-    const inPath = join(componentDir, dir, "index.ts")
+    let inPath = join(componentDir, dir, "index.ts")
+    if (!existsSync(inPath)) {
+      inPath = join(componentDir, dir, "index.tsx")
+    }
+
     const outPath = `public/types/component/${kebabCase(dir)}.json`
 
     const props = await extractTypes(inPath)

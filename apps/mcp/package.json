@@ -18,13 +18,13 @@
   "license": "MIT",
   "description": "Chakra MCP (Model Context Protocol) server for Chakra UI",
   "dependencies": {
+    "zod": "^3.24.4",
     "@modelcontextprotocol/sdk": "^1.15.0",
-    "zod": "^3.24.4"
+    "@chakra-ui/react": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/docgen": "workspace:*",
-    "typescript": "5.8.3",
     "@tsconfig/node22": "^22.0.1",
-    "tsx": "^4.20.3"
+    "tsx": "^4.20.3",
+    "typescript": "5.8.3"
   }
 }
