@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.22.1
+
+### Patch Changes
+
+- [`4da48e3`](https://github.com/chakra-ui/chakra-ui/commit/4da48e327a8213b8ef8822ccdc6accd51f36779d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tabs**: Export
+  missing types
+
 ## 3.22.0
 
 ### Minor Changes
