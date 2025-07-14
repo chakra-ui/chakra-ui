@@ -1,8 +1,13 @@
 {
   "EnvironmentProvider": {
-    "props": {}
+    "props": {
+      "value": {
+        "type": "RootNode | (() => RootNode)",
+        "isRequired": false
+      }
+    }
   },
-  "Env": {
+  "Environment": {
     "props": {
       "as": {
         "type": "React.ElementType",

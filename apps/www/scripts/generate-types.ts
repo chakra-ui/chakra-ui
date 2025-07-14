@@ -103,9 +103,7 @@ export async function main() {
 
   writeStaticProps(outDir)
 
-  const indexContent = `
-  ${JSON.stringify(dirs.concat("password-input"), null, 2)}
-  `
+  const indexContent = JSON.stringify(dirs.concat("password-input"), null, 2)
   writeFileSync(`${outDir}/index.json`, indexContent)
 }
 
