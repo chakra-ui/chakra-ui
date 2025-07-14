@@ -1,8 +1,9 @@
-import { defaultSystem } from "@chakra-ui/react"
+import { defaultSystem } from "@chakra-ui/react/preset"
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod"
 import { componentList } from "./components.js"
+import { walkObject } from "./walk-object.js"
 
 const getSemanticTokens = () => {
   return Array.from(
@@ -10,6 +11,24 @@ const getSemanticTokens = () => {
   )
     .filter(([, value]) => !!value.extensions.conditions)
     .map(([key]) => key)
+}
+
+const getTextStyles = () => {
+  const textStyles = defaultSystem._config.theme?.textStyles ?? {}
+  const keys = new Set<string>([])
+  walkObject(
+    textStyles,
+    (value, path) => {
+      keys.add(path.join("."))
+      return value
+    },
+    {
+      stop(value) {
+        return typeof value === "object" && "value" in value
+      },
+    },
+  )
+  return Array.from(keys)
 }
 
 export const server = new McpServer({
@@ -142,6 +161,23 @@ server.tool(
         {
           type: "text",
           text: JSON.stringify(tokens),
+        },
+      ],
+    }
+  },
+)
+
+server.tool(
+  "get_text_styles",
+  "Retrieve text styles defined in the Chakra UI theme. This tool provides a list of all text styles available in the Chakra UI theme, which can be used for consistent typography across the application.",
+  async () => {
+    const styles = getTextStyles()
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(styles),
         },
       ],
     }

@@ -88,7 +88,6 @@ export const componentList = [
   "toggle",
   "tooltip",
   "tree-view",
-  "typography",
   "visually-hidden",
   "wrap",
 ] as [string, ...string[]]

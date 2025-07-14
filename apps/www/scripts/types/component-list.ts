@@ -20,7 +20,9 @@ export const main = async () => {
   const componentList = await getComponentList()
 
   const rootPath = getRootPath()
-  const dirs = Array.from(new Set([...componentList, ...staticComponentList]))
+  const dirs = Array.from(
+    new Set([...componentList, ...staticComponentList]),
+  ).filter((dir) => dir !== "typography")
 
   ensureDirSync("public/types/component")
 
