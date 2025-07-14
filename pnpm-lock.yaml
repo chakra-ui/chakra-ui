@@ -297,16 +297,28 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.15.0
         version: 1.15.0
+      consola:
+        specifier: ^3.2.3
+        version: 3.4.2
+      find-up:
+        specifier: ^7.0.0
+        version: 7.0.0
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.3.0
+      scule:
+        specifier: ^1.3.0
+        version: 1.3.0
       zod:
         specifier: ^3.24.4
         version: 3.25.67
     devDependencies:
-      '@chakra-ui/docgen':
-        specifier: workspace:*
-        version: link:../../packages/docgen
       '@tsconfig/node22':
         specifier: ^22.0.1
         version: 22.0.2
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
       tsx:
         specifier: ^4.20.3
         version: 4.20.3
@@ -322,9 +334,6 @@ importers:
       '@chakra-ui/charts':
         specifier: workspace:*
         version: link:../../packages/charts
-      '@chakra-ui/docgen':
-        specifier: workspace:*
-        version: link:../../packages/docgen
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -510,24 +519,6 @@ importers:
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../react
-
-  packages/docgen:
-    dependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../react
-      consola:
-        specifier: ^3.4.2
-        version: 3.4.2
-      fs-extra:
-        specifier: 11.3.0
-        version: 11.3.0
-      node-fetch:
-        specifier: 3.3.2
-        version: 3.3.2
-      scule:
-        specifier: 1.3.0
-        version: 1.3.0
 
   packages/panda-preset:
     dependencies:

@@ -2,6 +2,7 @@ import { defaultSystem } from "@chakra-ui/react"
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod"
+import { componentList } from "./components.js"
 
 const getSemanticTokens = () => {
   return Array.from(
@@ -11,20 +12,8 @@ const getSemanticTokens = () => {
     .map(([key]) => key)
 }
 
-const COMPONENTS_LIST = [
-  "accordion",
-  "avatar",
-  "button",
-  "carousel",
-  "checkbox",
-  "card",
-  "input",
-  "link",
-] as const
-
-// Create server instance
 export const server = new McpServer({
-  name: "chakra-ui-mcp-test",
+  name: "chakra-ui-mcp",
   version: "1.0.0",
   capabilities: {
     resources: {},
@@ -33,11 +22,27 @@ export const server = new McpServer({
 })
 
 server.tool(
+  "get_components",
+  "Get a list of Chakra UI components. This tool retrieves the names of all available Chakra UI components.",
+  {},
+  async () => {
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(componentList),
+        },
+      ],
+    }
+  },
+)
+
+server.tool(
   "get_component_props",
   "Get detailed properties of a specific Chakra UI component. This tool retrieves the properties, attributes, design related props for a component, like size, variant, etc. and configuration options available for a given Chakra UI component.",
   {
     component: z
-      .enum(COMPONENTS_LIST)
+      .enum(componentList as [string, ...string[]])
       .describe("The name of the Chakra UI component to get properties for"),
   },
   async ({ component }) => {
@@ -48,27 +53,34 @@ server.tool(
       `https://chakra-ui.com/types/recipe/${component}.json`,
     )
 
-    if (!arkPropsResp.ok || !recipeResp.ok) {
+    if (!arkPropsResp.ok) {
       return {
         content: [
           {
             type: "text",
-            text: "Failed to get component props",
+            text: "Failed to get component Ark UI props",
           },
         ],
       }
     }
 
-    const recipeProps = await recipeResp.json()
-    const componentProps = await arkPropsResp.json()
+    if (!recipeResp.ok) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Failed to get component recipe props",
+          },
+        ],
+      }
+    }
+
+    const recipeProps = (await recipeResp.json()) as Record<string, any>
+    const componentProps = (await arkPropsResp.json()) as Record<string, any>
 
     const props = {
-      ...(typeof recipeProps === "object" && recipeProps !== null
-        ? recipeProps
-        : {}),
-      ...(typeof componentProps === "object" && componentProps !== null
-        ? componentProps
-        : {}),
+      ...recipeProps,
+      ...componentProps,
     }
 
     return {
@@ -87,7 +99,7 @@ server.tool(
   "Retrieve comprehensive example code and usage patterns for a specific Chakra UI component. This tool provides practical implementation examples including basic usage, advanced configurations, and common use cases with complete code snippets.",
   {
     component: z
-      .enum(COMPONENTS_LIST)
+      .enum(componentList as [string, ...string[]])
       .describe("The name of the Chakra UI component to get example code for"),
   },
   async ({ component }) => {

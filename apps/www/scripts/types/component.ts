@@ -1,9 +1,10 @@
 import consola from "consola"
+import { findUpSync } from "find-up"
 import { ensureDirSync } from "fs-extra"
 import { existsSync } from "node:fs"
 import { unlink, writeFile } from "node:fs/promises"
-import { join } from "node:path"
-import { camelCase, kebabCase, titleCase } from "scule"
+import { join, resolve } from "node:path"
+import { camelCase, kebabCase, pascalCase, titleCase } from "scule"
 import { defaultSystem } from "../../../../packages/react/src/preset"
 import { extractTypes } from "../../utils/extract-types"
 import {
@@ -19,10 +20,17 @@ import {
   uniq,
 } from "../../utils/shared"
 
+export const getRootPath = () => {
+  const rootPath = findUpSync("pnpm-workspace.yaml")
+  if (!rootPath) throw new Error("Not found")
+  return rootPath
+}
+
 export const main = async () => {
   const componentDir = getComponentDir()
   const componentList = await getComponentList()
 
+  const rootPath = getRootPath()
   const dirs = uniq([...componentList, ...staticComponentList]).flat()
 
   ensureDirSync("public/types/component")
@@ -52,7 +60,24 @@ export const main = async () => {
     return writeFile(outPath, stringify(wrapInProps(props, recipeKey)))
   })
 
-  await Promise.all(proms)
+  const indexContent = dirs.map((dir: string) => pascalCase(dir))
+
+  const mcpIndexPath = resolve(
+    rootPath,
+    "apps",
+    "mcp",
+    "src",
+    "components.json",
+  )
+
+  await Promise.all([
+    ...proms,
+    await writeFile(
+      "public/types/component/index.json",
+      JSON.stringify(indexContent, null, 2),
+    ),
+    await writeFile(mcpIndexPath, JSON.stringify(indexContent, null, 2)),
+  ])
 
   consola.success("Done ✅")
 }

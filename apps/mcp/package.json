@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
+    "@types/fs-extra": "^11.0.4",
     "tsx": "^4.20.3",
     "typescript": "5.8.3"
   }

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "skipLibCheck": true,
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true
   },
   "include": ["src"]
 }

@@ -15,6 +15,7 @@
     "types:ark": "pnpm tsx scripts/types/ark.ts",
     "types:recipe": "pnpm tsx scripts/types/recipe.ts",
     "types:component": "pnpm tsx scripts/types/component.ts",
+    "types:component-list": "pnpm tsx scripts/types/component-list.ts",
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:examples": "pnpm tsx scripts/examples.ts",
     "generate:types": "pnpm types:ark && pnpm types:recipe && pnpm types:component",
