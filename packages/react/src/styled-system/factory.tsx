@@ -186,7 +186,10 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       cache.registered,
       mergedProps,
     )
-    className = cx(className, `${cache.key}-${serialized.name}`)
+
+    if (serialized.styles) {
+      className = cx(className, `${cache.key}-${serialized.name}`)
+    }
 
     if (targetClassName !== undefined) {
       className = cx(className, targetClassName)
@@ -211,7 +214,13 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       }
     }
 
-    finalProps.className = className.trim()
+    let classNameToUse = className.trim()
+    if (classNameToUse) {
+      finalProps.className = classNameToUse
+    } else {
+      Reflect.deleteProperty(finalProps, "className")
+    }
+
     finalProps.ref = ref
 
     const forwardAsChild =
