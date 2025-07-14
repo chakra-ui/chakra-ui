@@ -1,0 +1,45 @@
+{
+  "Stack": {
+    "props": {
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `alignItems` style prop"
+      },
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `justifyContent` style prop"
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `flexWrap` style prop"
+      },
+      "direction": {
+        "type": "StackDirection | undefined",
+        "defaultValue": "column",
+        "isRequired": false,
+        "description": "The direction to stack the items."
+      },
+      "separator": {
+        "type": "React.ReactElement<any> | undefined",
+        "isRequired": false,
+        "description": "If `true`, each stack item will show a separator"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "StackSeparator": {
+    "props": {}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "Portal": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "container": {
+        "type": "RefObject<HTMLElement | null>",
+        "isRequired": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    }
+  }
+}

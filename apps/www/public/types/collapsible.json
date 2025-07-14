@@ -1,0 +1,123 @@
+{
+  "Content": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The initial open state of the collapsible when rendered.\nUse when you don't need to control the open state of the collapsible."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the collapsible is disabled."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; content: string; trigger: string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the collapsible. Useful for composition."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "onExitComplete": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "The callback invoked when the exit animation completes."
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback invoked when the open state changes."
+      },
+      "open": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "The controlled open state of the collapsible."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseCollapsibleReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Trigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Indicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

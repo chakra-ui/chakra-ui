@@ -1,0 +1,31 @@
+{
+  "WrapItem": {
+    "props": {}
+  },
+  "Wrap": {
+    "props": {
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
+        "isRequired": false
+      },
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
+        "isRequired": false
+      },
+      "direction": {
+        "type": "SystemStyleObject[\"flexDirection\"] | undefined",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

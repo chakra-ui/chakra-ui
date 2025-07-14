@@ -12,9 +12,9 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { Span } from "../box"
 import { For } from "../for"
 import { CloseIcon, FileIcon } from "../icons"
+import { Span } from "../span"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

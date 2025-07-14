@@ -1,0 +1,66 @@
+{
+  "InputGroup": {
+    "props": {
+      "startElementProps": {
+        "type": "InputElementProps | undefined",
+        "isRequired": false,
+        "description": "The props to pass to the start element"
+      },
+      "endElementProps": {
+        "type": "InputElementProps | undefined",
+        "isRequired": false,
+        "description": "The props to pass to the end element"
+      },
+      "startElement": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The start element to render the inner left of the group"
+      },
+      "endElement": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The end element to render the inner right of the group"
+      },
+      "startAddon": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The start addon to render the left of the group"
+      },
+      "startAddonProps": {
+        "type": "InputAddonProps | undefined",
+        "isRequired": false,
+        "description": "The props to pass to the start addon"
+      },
+      "endAddon": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The end addon to render the right of the group"
+      },
+      "endAddonProps": {
+        "type": "InputAddonProps | undefined",
+        "isRequired": false,
+        "description": "The props to pass to the end addon"
+      },
+      "startOffset": {
+        "type": "InputElementProps[\"paddingStart\"] | undefined",
+        "isRequired": false,
+        "description": "The offset to apply to the start element"
+      },
+      "endOffset": {
+        "type": "InputElementProps[\"paddingEnd\"] | undefined",
+        "isRequired": false,
+        "description": "The offset to apply to the end element"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

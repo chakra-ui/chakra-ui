@@ -1,0 +1,53 @@
+{
+  "Format": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Byte": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The byte size to format"
+      },
+      "unit": {
+        "type": "'bit' | 'byte'",
+        "isRequired": false,
+        "description": "The unit granularity to display"
+      },
+      "unitDisplay": {
+        "type": "'long' | 'short' | 'narrow'",
+        "isRequired": false,
+        "description": "The unit display"
+      }
+    }
+  },
+  "Number": {
+    "props": {
+      "value": {
+        "type": "number",
+        "isRequired": true,
+        "description": "The number to format"
+      }
+    }
+  },
+  "RelativeTime": {
+    "props": {
+      "value": {
+        "type": "Date",
+        "isRequired": true,
+        "description": "The date to format"
+      }
+    }
+  }
+}

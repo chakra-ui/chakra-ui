@@ -1,0 +1,48 @@
+{
+  "Flex": {
+    "props": {
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
+        "isRequired": false
+      },
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
+        "isRequired": false
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
+        "isRequired": false
+      },
+      "direction": {
+        "type": "SystemStyleObject[\"flexDirection\"] | undefined",
+        "isRequired": false
+      },
+      "basis": {
+        "type": "SystemStyleObject[\"flexBasis\"] | undefined",
+        "isRequired": false
+      },
+      "grow": {
+        "type": "SystemStyleObject[\"flexGrow\"] | undefined",
+        "isRequired": false
+      },
+      "shrink": {
+        "type": "SystemStyleObject[\"flexShrink\"] | undefined",
+        "isRequired": false
+      },
+      "inline": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

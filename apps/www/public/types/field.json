@@ -1,0 +1,187 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the field is disabled."
+      },
+      "ids": {
+        "type": "ElementIds",
+        "isRequired": false,
+        "description": "The ids of the field parts."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the field is invalid."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the field is read-only."
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the field is required."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "orientation": {
+        "type": "\"vertical\" | \"horizontal\"",
+        "defaultValue": "vertical",
+        "isRequired": false,
+        "description": "The orientation of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Label": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement"
+  },
+  "HelperText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "ErrorText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "ErrorIcon": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "RequiredIndicator": {
+    "props": {
+      "fallback": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "{ ariaDescribedby: string | undefined; ids: { root: string; control: string; label: string; errorText: string; helperText: string; }; refs: { rootRef: RefObject<HTMLDivElement | null>; }; ... 11 more ...; getRequiredIndicatorProps: () => Omit<...>; }",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Select": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSelectElement"
+  },
+  "Textarea": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "autoresize": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether the textarea should autoresize"
+      }
+    },
+    "element": "HTMLTextAreaElement"
+  }
+}
