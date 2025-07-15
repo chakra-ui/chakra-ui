@@ -122,12 +122,17 @@ const items = [
   // ...
 ]
 
+const { contains } = useFilter({ sensitivity: "base" })
+
 const { collection } = useListCollection({
   initialItems: items,
   itemToString: (item) => item.country,
   itemToValue: (item) => item.code,
+  filter: contains,
 })
 ```
+
+<ExampleTabs name="combobox-with-custom-object" />
 
 ### Minimum Characters
 
