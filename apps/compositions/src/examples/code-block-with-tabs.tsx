@@ -1,36 +1,73 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter, IconButton } from "@chakra-ui/react"
+import {
+  CodeBlock,
+  type CodeBlockAdapter,
+  IconButton,
+  Tabs,
+  useTabs,
+} from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
-const file = {
-  code: `
-<div class="container">
-  <h1>Hello, world!</h1>
-</div>
-`,
-  language: "html",
-  title: "index.html",
-}
+const files = [
+  { title: "Python", language: "python", code: "print('Hello, World!')" },
+  {
+    title: "TypeScript",
+    language: "typescript",
+    code: "console.log('Hello, World!')",
+  },
+  {
+    title: "Java",
+    language: "java",
+    code: "System.out.println('Hello, World!');",
+  },
+]
 
 export const CodeBlockWithTabs = () => {
+  const tabs = useTabs({
+    defaultValue: "python",
+  })
+
+  const activeTab =
+    files.find((file) => file.language === tabs.value) || files[0]
+
+  const otherTabs = files.filter((file) => file.language !== tabs.value)
+
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root code={file.code} language={file.language}>
-        <CodeBlock.Header>
-          <CodeBlock.Title>{file.title}</CodeBlock.Title>
-          <CodeBlock.CopyTrigger asChild>
-            <IconButton variant="ghost" size="2xs">
-              <CodeBlock.CopyIndicator />
-            </IconButton>
-          </CodeBlock.CopyTrigger>
-        </CodeBlock.Header>
-        <CodeBlock.Content>
-          <CodeBlock.Code>
-            <CodeBlock.CodeText />
-          </CodeBlock.Code>
-        </CodeBlock.Content>
-      </CodeBlock.Root>
+      <Tabs.RootProvider value={tabs} size="sm" variant="line">
+        <CodeBlock.Root code={activeTab.code} language={activeTab.language}>
+          <CodeBlock.Header borderBottomWidth="1px">
+            <Tabs.List w="full" border="0" ms="-1">
+              {files.map((file) => (
+                <Tabs.Trigger
+                  colorPalette="teal"
+                  key={file.language}
+                  value={file.language}
+                  textStyle="xs"
+                >
+                  {file.title}
+                </Tabs.Trigger>
+              ))}
+            </Tabs.List>
+            <CodeBlock.CopyTrigger asChild>
+              <IconButton variant="ghost" size="2xs">
+                <CodeBlock.CopyIndicator />
+              </IconButton>
+            </CodeBlock.CopyTrigger>
+          </CodeBlock.Header>
+          <CodeBlock.Content>
+            {otherTabs.map((file) => (
+              <Tabs.Content key={file.language} value={file.language} />
+            ))}
+            <Tabs.Content pt="1" value={activeTab.language}>
+              <CodeBlock.Code>
+                <CodeBlock.CodeText />
+              </CodeBlock.Code>
+            </Tabs.Content>
+          </CodeBlock.Content>
+        </CodeBlock.Root>
+      </Tabs.RootProvider>
     </CodeBlock.AdapterProvider>
   )
 }
@@ -39,7 +76,7 @@ const shikiAdapter: CodeBlockAdapter = {
   async loadContext() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
-      langs: ["tsx", "scss", "html", "bash", "json"],
+      langs: ["python", "typescript", "java"],
       themes: ["github-dark"],
     })
   },

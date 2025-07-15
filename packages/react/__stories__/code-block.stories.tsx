@@ -26,4 +26,8 @@ export { CodeBlockWithLanguageSwitcher as LanguageSwitcher } from "compositions/
 export { CodeBlockWithSizes as Sizes } from "compositions/examples/code-block-with-sizes"
 export { CodeBlockWithFloatingAction as FloatingAction } from "compositions/examples/code-block-with-floating-action"
 export { CodeBlockWithThemes as Themes } from "compositions/examples/code-block-with-themes"
+
 export { CodeBlockWithHighlightJs as HighlightJs } from "compositions/examples/code-block-with-highlight-js"
+
+export { CodeBlockWithTabs as Tabs } from "compositions/examples/code-block-with-tabs"
+export { CodeBlockWithTabsSync as TabsSync } from "compositions/examples/code-block-with-tabs-sync"
