@@ -65,48 +65,28 @@ server.tool(
       .describe("The name of the Chakra UI component to get properties for"),
   },
   async ({ component }) => {
-    const arkPropsResp = await fetch(
-      `https://ark-ui.com/api/types/react/${component}`,
-    )
-    const recipeResp = await fetch(
-      `https://chakra-ui.com/types/recipe/${component}.json`,
+    const propsResp = await fetch(
+      `https://chakra-ui.com/types/${component}.json`,
     )
 
-    if (!arkPropsResp.ok) {
+    if (!propsResp.ok) {
       return {
         content: [
           {
             type: "text",
-            text: "Failed to get component Ark UI props",
+            text: "Failed to get component props",
           },
         ],
       }
     }
 
-    if (!recipeResp.ok) {
-      return {
-        content: [
-          {
-            type: "text",
-            text: "Failed to get component recipe props",
-          },
-        ],
-      }
-    }
-
-    const recipeProps = (await recipeResp.json()) as Record<string, any>
-    const componentProps = (await arkPropsResp.json()) as Record<string, any>
-
-    const props = {
-      ...recipeProps,
-      ...componentProps,
-    }
+    const componentProps = await propsResp.json()
 
     return {
       content: [
         {
           type: "text",
-          text: JSON.stringify(props),
+          text: JSON.stringify(componentProps),
         },
       ],
     }
