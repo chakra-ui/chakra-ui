@@ -23,3 +23,4 @@ export { CodeBlockShikiWithMaxLines as MaxLines } from "compositions/examples/co
 export { CodeBlockHighlightJs as HighlightJs } from "compositions/examples/code-block-highlight-js"
 export { CodeBlockShikiWithWordWrap as WordWrap } from "compositions/examples/code-block-shiki-with-word-wrap"
 export { CodeBlockShikiWithLanguageSwitcher as LanguageSwitcher } from "compositions/examples/code-block-shiki-with-language-switcher"
+export { CodeBlockShikiWithThemes as Themes } from "compositions/examples/code-block-shiki-with-themes"

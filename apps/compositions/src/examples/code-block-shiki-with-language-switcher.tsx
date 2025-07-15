@@ -105,6 +105,7 @@ export const CodeBlockShikiWithLanguageSwitcher = () => {
         code={selectedItem.code}
         language={selectedItem.language}
         size="lg"
+        maxW="lg"
       >
         <CodeBlock.Header mb="1">
           <HStack flex="1">

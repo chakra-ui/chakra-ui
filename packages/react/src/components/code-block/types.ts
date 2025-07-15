@@ -5,6 +5,7 @@ export interface CodeBlockHighlightMeta {
   removedLineNumbers?: number[]
   addedLineNumbers?: number[]
   focusedLineNumbers?: number[]
+  colorScheme?: "light" | "dark" | (string & {})
 }
 
 export interface CodeBlockHighlighterProps {

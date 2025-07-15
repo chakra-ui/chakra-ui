@@ -17,7 +17,14 @@ export function useCodeHighlight(props: UseCodeHighlightProps) {
   )
 
   useEffect(() => {
-    loadContext?.().then(setContext)
+    let ctx: any = null
+    loadContext?.().then((c) => {
+      ctx = c
+      setContext(c)
+    })
+    return () => {
+      ctx?.dispose?.()
+    }
   }, [loadContext])
 
   return {
