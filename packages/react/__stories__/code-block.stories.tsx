@@ -13,7 +13,8 @@ export default {
 } satisfies Meta
 
 export { CodeBlockShiki as Shiki } from "compositions/examples/code-block-shiki"
-export { CodeBlockShikiWithCopy as ShikiWithCopy } from "compositions/examples/code-block-shiki-with-copy"
+export { CodeBlockShikiWithCopyButton as CopyButton } from "compositions/examples/code-block-shiki-with-copy-button"
+export { CodeBlockShikiWithCustomAction as CustomAction } from "compositions/examples/code-block-shiki-with-custom-action"
 export { CodeBlockShikiWithLineFocusing as LineFocusing } from "compositions/examples/code-block-shiki-with-line-focusing"
 export { CodeBlockShikiWithLineHighlighting as LineHighlighting } from "compositions/examples/code-block-shiki-with-line-highlighting"
 export { CodeBlockShikiWithTitle as Title } from "compositions/examples/code-block-shiki-with-title"
@@ -24,3 +25,4 @@ export { CodeBlockHighlightJs as HighlightJs } from "compositions/examples/code-
 export { CodeBlockShikiWithWordWrap as WordWrap } from "compositions/examples/code-block-shiki-with-word-wrap"
 export { CodeBlockShikiWithLanguageSwitcher as LanguageSwitcher } from "compositions/examples/code-block-shiki-with-language-switcher"
 export { CodeBlockShikiWithThemes as Themes } from "compositions/examples/code-block-shiki-with-themes"
+export { CodeBlockShikiWithSizes as Sizes } from "compositions/examples/code-block-shiki-with-sizes"

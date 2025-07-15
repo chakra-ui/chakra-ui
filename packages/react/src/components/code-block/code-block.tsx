@@ -12,7 +12,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
+import { cx, dataAttr } from "../../utils"
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon, CopyIcon } from "../icons"
 import { useCodeBlockAdapterContext } from "./code-block-adapter-context"
 import {
@@ -21,7 +21,7 @@ import {
   useCodeBlockContext,
 } from "./code-block-context"
 import { codeBlockSlotRecipe } from "./code-block-recipe"
-import type { CodeBlockHighlighterProps } from "./types"
+import type { CodeBlockColorScheme, CodeBlockHighlighterProps } from "./types"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -40,10 +40,13 @@ export { useCodeBlockStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 interface SharedRootProps extends CodeBlockHighlighterProps {
-  maxLines?: number
+  maxLines?: number | undefined
+  defaultColorScheme?: CodeBlockColorScheme | undefined
+  copyTimeout?: number | undefined
+  onCopy?: VoidFunction | undefined
 }
 
-interface RootBaseProps extends HTMLArkProps<"div">, SharedRootProps {}
+interface RootBaseProps extends Assign<HTMLArkProps<"div">, SharedRootProps> {}
 
 const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
   function RootBase(props, ref) {
@@ -51,15 +54,30 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
       children,
       code: codeProp,
       language,
-      meta,
+      meta: metaProp,
       maxLines,
+      defaultColorScheme = "dark",
+      copyTimeout,
+      onCopy,
       ...rest
     } = props
+
+    const meta = {
+      ...metaProp,
+      colorScheme: metaProp?.colorScheme ?? defaultColorScheme,
+    }
 
     const code = codeProp.trim()
     const codeLines = code.split("\n").length
 
-    const clipboard = useClipboard({ value: code })
+    const clipboard = useClipboard({
+      value: code,
+      timeout: copyTimeout,
+      onStatusChange(details) {
+        if (details.copied) onCopy?.()
+      },
+    })
+
     const [collapsed, setCollapsed] = useControllableState({
       defaultValue: maxLines != null ? codeLines > maxLines : false,
     })
@@ -98,6 +116,7 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
           )}
           data-has-line-numbers={dataAttr(Boolean(meta?.showLineNumbers))}
           {...rest}
+          className={cx("chakra-theme", meta.colorScheme, rest.className)}
           style={{
             ...rest.style,
             ["--code-block-line-length" as string]: `${String(codeLines).length}ch`,

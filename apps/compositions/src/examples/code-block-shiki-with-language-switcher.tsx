@@ -7,7 +7,6 @@ import {
   HStack,
   Icon,
   IconButton,
-  Portal,
   Select,
   Span,
   createListCollection,
@@ -87,14 +86,17 @@ issues.forEach((issue) => {
   },
 ]
 
+const collection = createListCollection({
+  items: files,
+  itemToString: (item) => item.value,
+  itemToValue: (item) => item.value,
+})
+
 export const CodeBlockShikiWithLanguageSwitcher = () => {
   const select = useSelect({
+    positioning: { strategy: "fixed" },
     defaultValue: [files[0].value],
-    collection: createListCollection({
-      items: files,
-      itemToString: (item) => item.value,
-      itemToValue: (item) => item.value,
-    }),
+    collection,
   })
 
   const selectedItem = select.selectedItems[0]
@@ -105,15 +107,16 @@ export const CodeBlockShikiWithLanguageSwitcher = () => {
         code={selectedItem.code}
         language={selectedItem.language}
         size="lg"
-        maxW="lg"
       >
-        <CodeBlock.Header mb="1">
+        <CodeBlock.Header>
           <HStack flex="1">
-            <Badge colorPalette="teal">POST</Badge>
+            <Badge colorPalette="teal" fontWeight="bold">
+              POST
+            </Badge>
             <Span textStyle="xs">/v1/search</Span>
           </HStack>
           <CodeBlock.Control>
-            <FileSelector value={select} />
+            <LanguageSwitcher value={select} />
             <CodeBlock.CopyTrigger asChild>
               <IconButton variant="ghost" size="2xs">
                 <CodeBlock.CopyIndicator />
@@ -131,7 +134,7 @@ export const CodeBlockShikiWithLanguageSwitcher = () => {
   )
 }
 
-function FileSelector(props: Select.RootProviderProps) {
+function LanguageSwitcher(props: Select.RootProviderProps) {
   const { value: select } = props
   return (
     <Select.RootProvider size="xs" variant="subtle" {...props}>
@@ -141,18 +144,16 @@ function FileSelector(props: Select.RootProviderProps) {
           <Select.Indicator />
         </Select.Trigger>
       </Select.Control>
-      <Portal>
-        <Select.Positioner>
-          <Select.Content>
-            {select.collection.items.map((item) => (
-              <Select.Item item={item} key={item.value}>
-                {item.icon}
-                <Select.ItemText>{item.value}</Select.ItemText>
-              </Select.Item>
-            ))}
-          </Select.Content>
-        </Select.Positioner>
-      </Portal>
+      <Select.Positioner>
+        <Select.Content>
+          {select.collection.items.map((item) => (
+            <Select.Item item={item} key={item.value}>
+              {item.icon}
+              <Select.ItemText>{item.value}</Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select.Positioner>
     </Select.RootProvider>
   )
 }

@@ -32,7 +32,7 @@ const shikiAdapter: CodeBlockAdapter = {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["tsx", "scss", "html", "bash", "json"],
-      themes: ["github-dark"],
+      themes: ["github-dark", "github-light"],
     })
   },
   getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
@@ -46,7 +46,8 @@ const shikiAdapter: CodeBlockAdapter = {
         code: removeWrapperTags(
           ctx.codeToHtml(code, {
             lang: language,
-            theme: "github-dark",
+            theme:
+              meta?.colorScheme === "dark" ? "github-dark" : "github-light",
             transformers: [
               {
                 line(hast, line) {

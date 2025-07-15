@@ -26,14 +26,7 @@ export const CodeBlockHighlightJs = () => {
         </CodeBlock.Header>
         <CodeBlock.Content>
           <CodeBlock.Code>
-            <CodeBlock.CodeText
-              rounded="sm"
-              fontSize="xs"
-              bg="bg.inverted"
-              color="fg.inverted"
-              p="2.5"
-              display="block"
-            />
+            <CodeBlock.CodeText />
           </CodeBlock.Code>
         </CodeBlock.Content>
       </CodeBlock.Root>
@@ -47,8 +40,10 @@ const highlightJsAdapter: CodeBlockAdapter = {
       const hasDiff =
         (meta?.addedLineNumbers?.length ?? 0) > 0 ||
         (meta?.removedLineNumbers?.length ?? 0) > 0
+
       const result = hljs.highlight(code.trim(), { language })
       const lines = result.value.split("\n")
+
       return {
         highlighted: true,
         code: lines
@@ -61,7 +56,7 @@ const highlightJsAdapter: CodeBlockAdapter = {
               hasDiff &&
                 `data-diff="${meta?.addedLineNumbers?.includes(lineNumber) ? "added" : meta?.removedLineNumbers?.includes(lineNumber) ? "removed" : undefined}"`,
             ]
-            return `<span class="line" ${attrs.filter(Boolean).join(" ")}>${line || " "}</span>`
+            return `<span ${attrs.filter(Boolean).join(" ")}>${line || " "}</span>`
           })
           .join("\n"),
       }
