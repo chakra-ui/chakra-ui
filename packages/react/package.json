@@ -146,6 +146,17 @@
         "default": "./dist/cjs/theme/index.cjs"
       }
     },
+    "./hooks": {
+      "dev": "./src/hooks/index.ts",
+      "import": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/esm/hooks/index.js"
+      },
+      "require": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/cjs/hooks/index.cjs"
+      }
+    },
     "./*": {
       "dev": "./src/components/*/index.ts",
       "import": {
