@@ -1,7 +1,6 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter, Icon } from "@chakra-ui/react"
-import { FaHtml5 } from "react-icons/fa"
+import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
@@ -14,16 +13,14 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockShikiWithTitle = () => {
+export const CodeBlockWithLineHighlight = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root code={file.code} language={file.language}>
-        <CodeBlock.Header>
-          <CodeBlock.Title>
-            <Icon as={FaHtml5} color="orange.300" />
-            {file.title}
-          </CodeBlock.Title>
-        </CodeBlock.Header>
+      <CodeBlock.Root
+        code={file.code}
+        language={file.language}
+        meta={{ highlightLines: [2, 1] }}
+      >
         <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />

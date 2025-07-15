@@ -1,7 +1,6 @@
 "use client"
 
 import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
-import { useColorMode } from "compositions/ui/color-mode"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
@@ -14,16 +13,15 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockShikiWithThemes = () => {
-  const { colorMode } = useColorMode()
+export const CodeBlockWithLineNumbers = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
       <CodeBlock.Root
         code={file.code}
         language={file.language}
-        meta={{ colorScheme: colorMode }}
+        meta={{ showLineNumbers: true }}
       >
-        <CodeBlock.Content bg="bg">
+        <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
           </CodeBlock.Code>
@@ -38,7 +36,7 @@ const shikiAdapter: CodeBlockAdapter = {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["tsx", "scss", "html", "bash", "json"],
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     })
   },
   getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
@@ -52,8 +50,7 @@ const shikiAdapter: CodeBlockAdapter = {
         code: removeWrapperTags(
           ctx.codeToHtml(code, {
             lang: language,
-            theme:
-              meta?.colorScheme === "dark" ? "github-dark" : "github-light",
+            theme: "github-dark",
             transformers: [
               {
                 line(hast, line) {

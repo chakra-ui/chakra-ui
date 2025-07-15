@@ -1,22 +1,39 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
+import { CodeBlock, type CodeBlockAdapter, IconButton } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
   code: `
-<div class="container">
-  <h1>Hello, world!</h1>
-</div>
-`,
-  language: "html",
-  title: "index.html",
+const greeting = "Hello, World! I am a long line of text that will wrap to the next line."
+
+function sayHello() {
+  console.log(greeting)
 }
 
-export const CodeBlockShiki = () => {
+sayHello()
+`,
+  language: "tsx",
+  title: "index.tsx",
+}
+
+export const CodeBlockWithWordWrap = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root code={file.code} language={file.language}>
+      <CodeBlock.Root
+        maxW="md"
+        code={file.code}
+        language={file.language}
+        meta={{ wordWrap: true }}
+      >
+        <CodeBlock.Header>
+          <CodeBlock.Title>{file.title}</CodeBlock.Title>
+          <CodeBlock.CopyTrigger asChild>
+            <IconButton variant="ghost" size="2xs">
+              <CodeBlock.CopyIndicator />
+            </IconButton>
+          </CodeBlock.CopyTrigger>
+        </CodeBlock.Header>
         <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
@@ -32,7 +49,7 @@ const shikiAdapter: CodeBlockAdapter = {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["tsx", "scss", "html", "bash", "json"],
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     })
   },
   getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
@@ -46,8 +63,7 @@ const shikiAdapter: CodeBlockAdapter = {
         code: removeWrapperTags(
           ctx.codeToHtml(code, {
             lang: language,
-            theme:
-              meta?.colorScheme === "dark" ? "github-dark" : "github-light",
+            theme: "github-dark",
             transformers: [
               {
                 line(hast, line) {
@@ -58,14 +74,6 @@ const shikiAdapter: CodeBlockAdapter = {
                       ? ""
                       : undefined,
                     "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                    "data-diff": meta?.addedLineNumbers?.includes(line)
-                      ? "added"
-                      : meta?.removedLineNumbers?.includes(line)
-                        ? "removed"
-                        : undefined,
-                    "data-focused": meta?.focusedLineNumbers?.includes(line)
-                      ? ""
-                      : undefined,
                   })
                 },
               },

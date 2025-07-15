@@ -40,9 +40,24 @@ export { useCodeBlockStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 interface SharedRootProps extends CodeBlockHighlighterProps {
+  /**
+   * The maximum number of lines to show.
+   * @default undefined
+   */
   maxLines?: number | undefined
+  /**
+   * The fallback color scheme for the code block.
+   * @default "dark"
+   */
   defaultColorScheme?: CodeBlockColorScheme | undefined
+  /**
+   * The timeout for the copy action.
+   * @default 1000
+   */
   copyTimeout?: number | undefined
+  /**
+   * The callback function that is called when the copy action is completed.
+   */
   onCopy?: VoidFunction | undefined
 }
 
@@ -57,7 +72,7 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
       meta: metaProp,
       maxLines,
       defaultColorScheme = "dark",
-      copyTimeout,
+      copyTimeout = 1000,
       onCopy,
       ...rest
     } = props
@@ -207,6 +222,11 @@ export interface CodeBlockCodeProps extends HTMLChakraProps<"pre"> {}
 export const CodeBlockCode = withContext<HTMLPreElement, CodeBlockCodeProps>(
   "pre",
   "code",
+  {
+    defaultProps: {
+      tabIndex: 0,
+    },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

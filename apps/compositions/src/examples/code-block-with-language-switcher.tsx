@@ -92,7 +92,7 @@ const collection = createListCollection({
   itemToValue: (item) => item.value,
 })
 
-export const CodeBlockShikiWithLanguageSwitcher = () => {
+export const CodeBlockWithLanguageSwitcher = () => {
   const select = useSelect({
     positioning: { strategy: "fixed" },
     defaultValue: [files[0].value],

@@ -1,30 +1,30 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
+import { CodeBlock, type CodeBlockAdapter, IconButton } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
   code: `
-const greeting = "Hello, World!"
-
-function sayHello() {
-  console.log(greeting);
-}
-
-sayHello()
+<div class="container">
+  <h1>Hello, world!</h1>
+</div>
 `,
-  language: "tsx",
-  title: "index.tsx",
+  language: "html",
+  title: "index.html",
 }
 
-export const CodeBlockShikiWithLineFocusing = () => {
+export const CodeBlockWithTabs = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root
-        code={file.code}
-        language={file.language}
-        meta={{ focusedLineNumbers: [3, 7] }}
-      >
+      <CodeBlock.Root code={file.code} language={file.language}>
+        <CodeBlock.Header>
+          <CodeBlock.Title>{file.title}</CodeBlock.Title>
+          <CodeBlock.CopyTrigger asChild>
+            <IconButton variant="ghost" size="2xs">
+              <CodeBlock.CopyIndicator />
+            </IconButton>
+          </CodeBlock.CopyTrigger>
+        </CodeBlock.Header>
         <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
@@ -65,14 +65,6 @@ const shikiAdapter: CodeBlockAdapter = {
                       ? ""
                       : undefined,
                     "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                    "data-diff": meta?.addedLineNumbers?.includes(line)
-                      ? "added"
-                      : meta?.removedLineNumbers?.includes(line)
-                        ? "removed"
-                        : undefined,
-                    "data-focused": meta?.focusedLineNumbers?.includes(line)
-                      ? ""
-                      : undefined,
                   })
                 },
               },

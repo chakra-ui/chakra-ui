@@ -5,21 +5,25 @@ import type { HighlighterGeneric } from "shiki"
 
 const file = {
   code: `
-<div class="container">
-  <h1>Hello, world!</h1>
-</div>
-`,
-  language: "html",
-  title: "index.html",
+const greeting = "Hello, World!"
+
+function sayHello() {
+  console.log(greeting);
 }
 
-export const CodeBlockShikiWithLineNumbers = () => {
+sayHello()
+`,
+  language: "tsx",
+  title: "index.tsx",
+}
+
+export const CodeBlockWithLineFocus = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
       <CodeBlock.Root
         code={file.code}
         language={file.language}
-        meta={{ showLineNumbers: true }}
+        meta={{ focusedLineNumbers: [3, 7] }}
       >
         <CodeBlock.Content>
           <CodeBlock.Code>

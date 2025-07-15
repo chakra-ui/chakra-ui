@@ -13,7 +13,7 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockHighlightJs = () => {
+export const CodeBlockWithHighlightJs = () => {
   return (
     <CodeBlock.AdapterProvider value={highlightJsAdapter}>
       <link

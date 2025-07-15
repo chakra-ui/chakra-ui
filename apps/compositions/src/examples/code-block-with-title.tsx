@@ -1,33 +1,29 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
+import { CodeBlock, type CodeBlockAdapter, Icon } from "@chakra-ui/react"
+import { FaHtml5 } from "react-icons/fa"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
   code: `
-const greeting = "Hello, World!"; 
-function sayHello() {
-  console.log("Hello, World!"); 
-  console.log(greeting); 
-}
-sayHello();
+<div class="container">
+  <h1>Hello, world!</h1>
+</div>
 `,
-  language: "tsx",
-  title: "index.tsx",
+  language: "html",
+  title: "index.html",
 }
 
-export const CodeBlockShikiWithDiff = () => {
+export const CodeBlockWithTitle = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root
-        code={file.code}
-        language={file.language}
-        meta={{
-          showLineNumbers: true,
-          addedLineNumbers: [1, 4],
-          removedLineNumbers: [3],
-        }}
-      >
+      <CodeBlock.Root code={file.code} language={file.language}>
+        <CodeBlock.Header>
+          <CodeBlock.Title>
+            <Icon as={FaHtml5} color="orange.300" />
+            {file.title}
+          </CodeBlock.Title>
+        </CodeBlock.Header>
         <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
@@ -68,14 +64,6 @@ const shikiAdapter: CodeBlockAdapter = {
                       ? ""
                       : undefined,
                     "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                    "data-diff": meta?.addedLineNumbers?.includes(line)
-                      ? "added"
-                      : meta?.removedLineNumbers?.includes(line)
-                        ? "removed"
-                        : undefined,
-                    "data-focused": meta?.focusedLineNumbers?.includes(line)
-                      ? ""
-                      : undefined,
                   })
                 },
               },

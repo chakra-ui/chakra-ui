@@ -1,6 +1,6 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
+import { CodeBlock, type CodeBlockAdapter, IconButton } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
@@ -13,14 +13,18 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockShikiWithLineHighlighting = () => {
+export const CodeBlockWithCopyButton = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root
-        code={file.code}
-        language={file.language}
-        meta={{ highlightLines: [2, 1] }}
-      >
+      <CodeBlock.Root code={file.code} language={file.language}>
+        <CodeBlock.Header>
+          <CodeBlock.Title>{file.title}</CodeBlock.Title>
+          <CodeBlock.CopyTrigger asChild>
+            <IconButton variant="ghost" size="2xs">
+              <CodeBlock.CopyIndicator />
+            </IconButton>
+          </CodeBlock.CopyTrigger>
+        </CodeBlock.Header>
         <CodeBlock.Content>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
@@ -61,6 +65,11 @@ const shikiAdapter: CodeBlockAdapter = {
                       ? ""
                       : undefined,
                     "data-word-wrap": meta?.wordWrap ? "" : undefined,
+                    "data-diff": meta?.addedLineNumbers?.includes(line)
+                      ? "added"
+                      : meta?.removedLineNumbers?.includes(line)
+                        ? "removed"
+                        : undefined,
                   })
                 },
               },

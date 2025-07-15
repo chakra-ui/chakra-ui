@@ -1,6 +1,11 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter, For, Stack } from "@chakra-ui/react"
+import {
+  CodeBlock,
+  type CodeBlockAdapter,
+  Float,
+  IconButton,
+} from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
@@ -13,30 +18,23 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockShikiWithSizes = () => {
+export const CodeBlockWithFloatingAction = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <Stack gap="8">
-        <For each={["sm", "md", "lg"]}>
-          {(size) => (
-            <CodeBlock.Root
-              key={size}
-              code={file.code}
-              language={file.language}
-              size={size}
-            >
-              <CodeBlock.Header>
-                <CodeBlock.Title>(size={size})</CodeBlock.Title>
-              </CodeBlock.Header>
-              <CodeBlock.Content>
-                <CodeBlock.Code>
-                  <CodeBlock.CodeText />
-                </CodeBlock.Code>
-              </CodeBlock.Content>
-            </CodeBlock.Root>
-          )}
-        </For>
-      </Stack>
+      <CodeBlock.Root code={file.code} language={file.language}>
+        <CodeBlock.Content>
+          <Float placement="top-end" offset="5" zIndex="1">
+            <CodeBlock.CopyTrigger asChild>
+              <IconButton variant="ghost" size="2xs">
+                <CodeBlock.CopyIndicator />
+              </IconButton>
+            </CodeBlock.CopyTrigger>
+          </Float>
+          <CodeBlock.Code>
+            <CodeBlock.CodeText />
+          </CodeBlock.Code>
+        </CodeBlock.Content>
+      </CodeBlock.Root>
     </CodeBlock.AdapterProvider>
   )
 }
@@ -46,7 +44,7 @@ const shikiAdapter: CodeBlockAdapter = {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["tsx", "scss", "html", "bash", "json"],
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     })
   },
   getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
@@ -60,8 +58,7 @@ const shikiAdapter: CodeBlockAdapter = {
         code: removeWrapperTags(
           ctx.codeToHtml(code, {
             lang: language,
-            theme:
-              meta?.colorScheme === "dark" ? "github-dark" : "github-light",
+            theme: "github-dark",
             transformers: [
               {
                 line(hast, line) {
@@ -77,9 +74,6 @@ const shikiAdapter: CodeBlockAdapter = {
                       : meta?.removedLineNumbers?.includes(line)
                         ? "removed"
                         : undefined,
-                    "data-focused": meta?.focusedLineNumbers?.includes(line)
-                      ? ""
-                      : undefined,
                   })
                 },
               },
