@@ -8,7 +8,7 @@ import { useControllableState } from "../../hooks"
 import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,
-  type SlotRecipeProps,
+  type RecipeVariantProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
@@ -106,10 +106,13 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
   },
 )
 
+type CodeBlockRecipeProps = RecipeVariantProps<typeof codeBlockSlotRecipe>
+
 export interface CodeBlockRootBaseProps
   extends Assign<
       Omit<HTMLChakraProps<"div">, "lang" | keyof SharedRootProps>,
-      SlotRecipeProps<"codeBlock">
+      // SlotRecipeProps<"codeBlock">
+      CodeBlockRecipeProps
     >,
     UnstyledProp,
     SharedRootProps {}

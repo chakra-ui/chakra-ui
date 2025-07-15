@@ -90,6 +90,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
     },
     code: {
       fontFamily: "mono",
+      lineHeight: "tall",
       whiteSpace: "pre",
       counterReset: "line 0",
     },
@@ -192,7 +193,6 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
         },
         code: {
           fontSize: "xs",
-          lineHeight: "1.8",
         },
       },
 
@@ -203,11 +203,24 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
           "--code-block-header-height": "sizes.8",
         },
         title: {
-          textStyle: "xs",
+          textStyle: "sm",
+        },
+        code: {
+          fontSize: "xs",
+        },
+      },
+
+      lg: {
+        root: {
+          "--code-block-padding": "spacing.3",
+          "--code-block-radius": "radii.xl",
+          "--code-block-header-height": "sizes.10",
+        },
+        title: {
+          textStyle: "sm",
         },
         code: {
           fontSize: "sm",
-          lineHeight: "1.8",
         },
       },
     },
