@@ -1,4 +1,3 @@
-import { deepMerge } from "@/lib/deep-merge"
 import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { kebabCase } from "scule"
@@ -20,25 +19,14 @@ const sortEntries = (props: Record<string, any>): [string, Properties][] => {
   })
 }
 
-function getType(baseDir: string, componentName?: string): Record<string, any> {
-  const path = join(
-    process.cwd(),
-    "public",
-    "types",
-    baseDir,
-    `${componentName}.json`,
-  )
+function getType(componentName?: string): Record<string, any> {
+  const path = join(process.cwd(), "public", "types", `${componentName}.json`)
   if (!existsSync(path)) return {}
   return JSON.parse(readFileSync(path, "utf-8"))
 }
 
 export function getComponentTypes(component: string) {
-  const componentName = kebabCase(component)
-  const arkTypes = getType("ark", componentName)
-  const recipeTypes = getType("recipe", componentName)
-  const componentTypes = getType("component", componentName)
-  const staticTypes = getType("static", componentName)
-  return deepMerge({}, arkTypes, recipeTypes, componentTypes, staticTypes)
+  return getType(kebabCase(component))
 }
 
 export function getComponentProps(options: {

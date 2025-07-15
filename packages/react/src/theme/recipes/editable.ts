@@ -27,7 +27,7 @@ export const editableSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       transitionProperty: "common",
-      transitionDuration: "normal",
+      transitionDuration: "moderate",
       cursor: "text",
       _hover: {
         bg: "bg.muted",

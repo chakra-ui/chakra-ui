@@ -1,0 +1,43 @@
+{
+  "Highlight": {
+    "props": {
+      "query": {
+        "type": "string | string[]",
+        "isRequired": true,
+        "description": "The query to highlight in the text"
+      },
+      "styles": {
+        "type": "SystemStyleObject | undefined",
+        "isRequired": false
+      },
+      "ignoreCase": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to ignore case while matching"
+      },
+      "matchAll": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to match multiple instances of the query"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "text": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The text to highlight"
+      }
+    }
+  },
+  "UseHighlight": {
+    "props": {}
+  }
+}

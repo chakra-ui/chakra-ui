@@ -140,6 +140,19 @@ To use the `Popover` within a `Dialog`, you need to avoid portalling the
 -</Portal>
 ```
 
+If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
+
+- Set the popover positioning to `fixed` to avoid the popover from being clipped
+  by the dialog.
+- Set `hideWhenDetached` to `true` to hide the popover when the trigger is
+  scrolled out of view.
+
+```tsx
+<Popover.Root positioning={{ strategy: "fixed", hideWhenDetached: true }}>
+  {/* ... */}
+</Popover.Root>
+```
+
 <ExampleTabs name="popover-in-dialog" />
 
 ## Props
