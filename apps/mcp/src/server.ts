@@ -164,6 +164,37 @@ server.tool(
   },
 )
 
+server.tool(
+  "list_blocks",
+  "List all available blocks in the Chakra UI pro. This tool retrieves the names of all available blocks in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
+  {},
+  async () => {
+    const blocksResp = await fetch("https://pro.chakra-ui.com/api/blocks")
+
+    if (!blocksResp.ok) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Failed to fetch blocks",
+          },
+        ],
+      }
+    }
+
+    const blocks = await blocksResp.json()
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(blocks),
+        },
+      ],
+    }
+  },
+)
+
 async function main() {
   const transport = new StdioServerTransport()
   await server.connect(transport)
