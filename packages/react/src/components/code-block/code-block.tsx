@@ -98,6 +98,10 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
           )}
           data-has-line-numbers={dataAttr(Boolean(meta?.showLineNumbers))}
           {...rest}
+          style={{
+            ...rest.style,
+            ["--code-block-line-length" as string]: `${String(codeLines).length}ch`,
+          }}
         >
           {children}
         </ark.div>
