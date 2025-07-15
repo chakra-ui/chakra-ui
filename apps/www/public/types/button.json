@@ -1,0 +1,144 @@
+{
+  "Button": {
+    "props": {
+      "loading": {
+        "type": "boolean | undefined",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, the button will show a loading spinner."
+      },
+      "loadingText": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The text to show while loading."
+      },
+      "spinner": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The spinner to show while loading."
+      },
+      "spinnerPlacement": {
+        "type": "\"start\" | \"end\" | undefined",
+        "defaultValue": "start",
+        "isRequired": false,
+        "description": "The placement of the spinner"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"solid\" | \"subtle\" | \"surface\" | \"outline\" | \"ghost\" | \"plain\"",
+        "defaultValue": "solid",
+        "isRequired": false,
+        "description": "The variant of the component"
+      }
+    }
+  },
+  "IconButton": {
+    "props": {
+      "loading": {
+        "type": "boolean | undefined",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, the button will show a loading spinner."
+      },
+      "loadingText": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The text to show while loading."
+      },
+      "spinner": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The spinner to show while loading."
+      },
+      "spinnerPlacement": {
+        "type": "\"start\" | \"end\" | undefined",
+        "defaultValue": "start",
+        "isRequired": false,
+        "description": "The placement of the spinner"
+      }
+    }
+  },
+  "ButtonGroup": {
+    "props": {
+      "align": {
+        "type": "JsxStyleProps[\"alignItems\"] | undefined",
+        "isRequired": false,
+        "description": "The `alignItems` style property"
+      },
+      "justify": {
+        "type": "JsxStyleProps[\"justifyContent\"] | undefined",
+        "isRequired": false,
+        "description": "The `justifyContent` style property"
+      },
+      "wrap": {
+        "type": "JsxStyleProps[\"flexWrap\"] | undefined",
+        "isRequired": false,
+        "description": "The `flexWrap` style property"
+      },
+      "skip": {
+        "type": "(child",
+        "isRequired": false,
+        "description": "A function that determines if a child should be skipped"
+      },
+      "orientation": {
+        "isRequired": false
+      },
+      "attached": {
+        "isRequired": false
+      },
+      "grow": {
+        "isRequired": false
+      },
+      "stacking": {
+        "isRequired": false
+      }
+    }
+  },
+  "CloseButton": {
+    "props": {
+      "loading": {
+        "type": "boolean | undefined",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, the button will show a loading spinner."
+      },
+      "loadingText": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The text to show while loading."
+      },
+      "spinner": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The spinner to show while loading."
+      },
+      "spinnerPlacement": {
+        "type": "\"start\" | \"end\" | undefined",
+        "defaultValue": "start",
+        "isRequired": false,
+        "description": "The placement of the spinner"
+      }
+    }
+  }
+}

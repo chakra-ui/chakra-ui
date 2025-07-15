@@ -12,12 +12,9 @@
     "build": "run-s build:*",
     "start": "next start",
     "lint": "next lint",
-    "types:ark": "pnpm tsx scripts/types/ark.ts",
-    "types:recipe": "pnpm tsx scripts/types/recipe.ts",
-    "types:component": "pnpm tsx scripts/types/component.ts",
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:examples": "pnpm tsx scripts/examples.ts",
-    "generate:types": "pnpm types:ark && pnpm types:recipe && pnpm types:component",
+    "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
     "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react"

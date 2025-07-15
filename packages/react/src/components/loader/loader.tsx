@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { HTMLChakraProps } from "../../styled-system"
-import { Span } from "../box"
 import { AbsoluteCenter } from "../center"
+import { Span } from "../span"
 import { Spinner } from "../spinner"
 
 export interface LoaderProps extends HTMLChakraProps<"span"> {
