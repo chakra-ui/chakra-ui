@@ -59,6 +59,7 @@ Then, create the shiki adapter that dynamically loads the shiki highlighter for
 the selected languages.
 
 ```tsx
+import type { HighlighterGeneric } from "shiki"
 import { createShikiAdapter } from "@chakra-ui/react"
 
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
