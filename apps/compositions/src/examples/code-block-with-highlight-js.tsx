@@ -1,7 +1,7 @@
 "use client"
 
-import { CodeBlock, type CodeBlockAdapter } from "@chakra-ui/react"
-import hljs from "highlight.js"
+import { CodeBlock, createHighlightJsAdapter } from "@chakra-ui/react"
+import hljs, { type HLJSApi } from "highlight.js"
 
 const file = {
   code: `
@@ -34,32 +34,6 @@ export const CodeBlockWithHighlightJs = () => {
   )
 }
 
-const highlightJsAdapter: CodeBlockAdapter = {
-  getHighlighter() {
-    return ({ code, language = "plaintext", meta }) => {
-      const hasDiff =
-        (meta?.addedLineNumbers?.length ?? 0) > 0 ||
-        (meta?.removedLineNumbers?.length ?? 0) > 0
-
-      const result = hljs.highlight(code.trim(), { language })
-      const lines = result.value.split("\n")
-
-      return {
-        highlighted: true,
-        code: lines
-          .map((line, index) => {
-            const lineNumber = index + 1
-            const attrs = [
-              `data-line="${lineNumber}"`,
-              meta?.highlightLines?.includes(lineNumber) && "data-highlight",
-              meta?.wordWrap && "data-word-wrap",
-              hasDiff &&
-                `data-diff="${meta?.addedLineNumbers?.includes(lineNumber) ? "added" : meta?.removedLineNumbers?.includes(lineNumber) ? "removed" : undefined}"`,
-            ]
-            return `<span ${attrs.filter(Boolean).join(" ")}>${line || " "}</span>`
-          })
-          .join("\n"),
-      }
-    }
-  },
-}
+const highlightJsAdapter = createHighlightJsAdapter<HLJSApi>({
+  hljs,
+})

@@ -3,17 +3,93 @@
 import {
   Badge,
   CodeBlock,
-  type CodeBlockAdapter,
   HStack,
   Icon,
   IconButton,
   Select,
   Span,
   createListCollection,
+  createShikiAdapter,
   useSelect,
 } from "@chakra-ui/react"
 import { IoLogoJavascript, IoLogoPython } from "react-icons/io5"
 import type { HighlighterGeneric } from "shiki"
+
+export const CodeBlockWithLanguageSwitcher = () => {
+  const select = useSelect({
+    positioning: { strategy: "fixed" },
+    defaultValue: [files[0].value],
+    collection,
+  })
+
+  const selectedFile = select.selectedItems[0]
+
+  return (
+    <CodeBlock.AdapterProvider value={shikiAdapter}>
+      <CodeBlock.Root
+        code={selectedFile.code}
+        language={selectedFile.language}
+        size="lg"
+      >
+        <CodeBlock.Header>
+          <HStack flex="1">
+            <Badge colorPalette="teal" fontWeight="bold">
+              POST
+            </Badge>
+            <Span textStyle="xs">/v1/search</Span>
+          </HStack>
+          <CodeBlock.Control>
+            <LanguageSwitcher value={select} />
+            <CodeBlock.CopyTrigger asChild>
+              <IconButton variant="ghost" size="2xs">
+                <CodeBlock.CopyIndicator />
+              </IconButton>
+            </CodeBlock.CopyTrigger>
+          </CodeBlock.Control>
+        </CodeBlock.Header>
+        <CodeBlock.Content>
+          <CodeBlock.Code fontSize="xs">
+            <CodeBlock.CodeText />
+          </CodeBlock.Code>
+        </CodeBlock.Content>
+      </CodeBlock.Root>
+    </CodeBlock.AdapterProvider>
+  )
+}
+
+function LanguageSwitcher(props: Select.RootProviderProps) {
+  const { value: select } = props
+  return (
+    <Select.RootProvider size="xs" variant="subtle" {...props}>
+      <Select.Control>
+        <Select.Trigger>
+          <Select.ValueText />
+          <Select.Indicator />
+        </Select.Trigger>
+      </Select.Control>
+      <Select.Positioner>
+        <Select.Content>
+          {select.collection.items.map((item) => (
+            <Select.Item item={item} key={item.value}>
+              {item.icon}
+              <Select.ItemText>{item.value}</Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select.Positioner>
+    </Select.RootProvider>
+  )
+}
+
+const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
+  async loadShiki() {
+    const { createHighlighter } = await import("shiki")
+    return createHighlighter({
+      langs: ["python", "typescript"],
+      themes: ["github-dark", "github-light"],
+    })
+  },
+})
 
 interface CodeFile {
   value: string
@@ -91,123 +167,3 @@ const collection = createListCollection({
   itemToString: (item) => item.value,
   itemToValue: (item) => item.value,
 })
-
-export const CodeBlockWithLanguageSwitcher = () => {
-  const select = useSelect({
-    positioning: { strategy: "fixed" },
-    defaultValue: [files[0].value],
-    collection,
-  })
-
-  const selectedItem = select.selectedItems[0]
-
-  return (
-    <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root
-        code={selectedItem.code}
-        language={selectedItem.language}
-        size="lg"
-      >
-        <CodeBlock.Header>
-          <HStack flex="1">
-            <Badge colorPalette="teal" fontWeight="bold">
-              POST
-            </Badge>
-            <Span textStyle="xs">/v1/search</Span>
-          </HStack>
-          <CodeBlock.Control>
-            <LanguageSwitcher value={select} />
-            <CodeBlock.CopyTrigger asChild>
-              <IconButton variant="ghost" size="2xs">
-                <CodeBlock.CopyIndicator />
-              </IconButton>
-            </CodeBlock.CopyTrigger>
-          </CodeBlock.Control>
-        </CodeBlock.Header>
-        <CodeBlock.Content>
-          <CodeBlock.Code fontSize="xs">
-            <CodeBlock.CodeText />
-          </CodeBlock.Code>
-        </CodeBlock.Content>
-      </CodeBlock.Root>
-    </CodeBlock.AdapterProvider>
-  )
-}
-
-function LanguageSwitcher(props: Select.RootProviderProps) {
-  const { value: select } = props
-  return (
-    <Select.RootProvider size="xs" variant="subtle" {...props}>
-      <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText />
-          <Select.Indicator />
-        </Select.Trigger>
-      </Select.Control>
-      <Select.Positioner>
-        <Select.Content>
-          {select.collection.items.map((item) => (
-            <Select.Item item={item} key={item.value}>
-              {item.icon}
-              <Select.ItemText>{item.value}</Select.ItemText>
-            </Select.Item>
-          ))}
-        </Select.Content>
-      </Select.Positioner>
-    </Select.RootProvider>
-  )
-}
-
-const shikiAdapter: CodeBlockAdapter = {
-  async loadContext() {
-    const { createHighlighter } = await import("shiki")
-    return createHighlighter({
-      langs: ["typescript", "python"],
-      themes: ["github-dark"],
-    })
-  },
-  getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
-    return ({ code, language, meta }) => {
-      if (!ctx) {
-        return { code, highlighted: false }
-      }
-
-      return {
-        highlighted: true,
-        code: removeWrapperTags(
-          ctx.codeToHtml(code, {
-            lang: language,
-            theme: "github-dark",
-            transformers: [
-              {
-                line(hast, line) {
-                  hast.properties ||= {}
-                  Object.assign(hast.properties, {
-                    "data-line": line,
-                    "data-highlight": meta?.highlightLines?.includes(line)
-                      ? ""
-                      : undefined,
-                    "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                    "data-diff": meta?.addedLineNumbers?.includes(line)
-                      ? "added"
-                      : meta?.removedLineNumbers?.includes(line)
-                        ? "removed"
-                        : undefined,
-                  })
-                },
-              },
-            ],
-          }),
-        ),
-      }
-    }
-  },
-}
-
-const removeWrapperTags = (html: string): string => {
-  return html
-    .replace(/<pre[^>]*>/, "")
-    .replace(/<\/pre>$/, "")
-    .replace(/<code[^>]*>/, "")
-    .replace(/<\/code>$/, "")
-}

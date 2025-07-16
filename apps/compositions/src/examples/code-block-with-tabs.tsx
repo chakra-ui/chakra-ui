@@ -2,26 +2,12 @@
 
 import {
   CodeBlock,
-  type CodeBlockAdapter,
   IconButton,
   Tabs,
+  createShikiAdapter,
   useTabs,
 } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
-
-const files = [
-  { title: "Python", language: "python", code: "print('Hello, World!')" },
-  {
-    title: "TypeScript",
-    language: "typescript",
-    code: "console.log('Hello, World!')",
-  },
-  {
-    title: "Java",
-    language: "java",
-    code: "System.out.println('Hello, World!');",
-  },
-]
 
 export const CodeBlockWithTabs = () => {
   const tabs = useTabs({
@@ -72,51 +58,26 @@ export const CodeBlockWithTabs = () => {
   )
 }
 
-const shikiAdapter: CodeBlockAdapter = {
-  async loadContext() {
+const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
+  async loadShiki() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["python", "typescript", "java"],
-      themes: ["github-dark"],
+      themes: ["github-dark", "github-light"],
     })
   },
-  getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
-    return ({ code, language, meta }) => {
-      if (!ctx) {
-        return { code, highlighted: false }
-      }
+})
 
-      return {
-        highlighted: true,
-        code: removeWrapperTags(
-          ctx.codeToHtml(code, {
-            lang: language,
-            theme: "github-dark",
-            transformers: [
-              {
-                line(hast, line) {
-                  hast.properties ||= {}
-                  Object.assign(hast.properties, {
-                    "data-line": line,
-                    "data-highlight": meta?.highlightLines?.includes(line)
-                      ? ""
-                      : undefined,
-                    "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                  })
-                },
-              },
-            ],
-          }),
-        ),
-      }
-    }
+const files = [
+  { title: "Python", language: "python", code: "print('Hello, World!')" },
+  {
+    title: "TypeScript",
+    language: "typescript",
+    code: "console.log('Hello, World!')",
   },
-}
-
-const removeWrapperTags = (html: string): string => {
-  return html
-    .replace(/<pre[^>]*>/, "")
-    .replace(/<\/pre>$/, "")
-    .replace(/<code[^>]*>/, "")
-    .replace(/<\/code>$/, "")
-}
+  {
+    title: "Java",
+    language: "java",
+    code: "System.out.println('Hello, World!');",
+  },
+]

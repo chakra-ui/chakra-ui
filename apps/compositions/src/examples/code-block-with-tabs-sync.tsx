@@ -2,10 +2,10 @@
 
 import {
   CodeBlock,
-  type CodeBlockAdapter,
   IconButton,
   Stack,
   Tabs,
+  createShikiAdapter,
   useTabs,
 } from "@chakra-ui/react"
 import { useEffect } from "react"
@@ -115,51 +115,12 @@ export const CodeBlockWithTabsSync = () => {
   )
 }
 
-const shikiAdapter: CodeBlockAdapter = {
-  async loadContext() {
+const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
+  async loadShiki() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["bash"],
-      themes: ["github-dark"],
+      themes: ["github-dark", "github-light"],
     })
   },
-  getHighlighter: (ctx: HighlighterGeneric<any, any> | null) => {
-    return ({ code, language, meta }) => {
-      if (!ctx) {
-        return { code, highlighted: false }
-      }
-
-      return {
-        highlighted: true,
-        code: removeWrapperTags(
-          ctx.codeToHtml(code, {
-            lang: language,
-            theme: "github-dark",
-            transformers: [
-              {
-                line(hast, line) {
-                  hast.properties ||= {}
-                  Object.assign(hast.properties, {
-                    "data-line": line,
-                    "data-highlight": meta?.highlightLines?.includes(line)
-                      ? ""
-                      : undefined,
-                    "data-word-wrap": meta?.wordWrap ? "" : undefined,
-                  })
-                },
-              },
-            ],
-          }),
-        ),
-      }
-    }
-  },
-}
-
-const removeWrapperTags = (html: string): string => {
-  return html
-    .replace(/<pre[^>]*>/, "")
-    .replace(/<\/pre>$/, "")
-    .replace(/<code[^>]*>/, "")
-    .replace(/<\/code>$/, "")
-}
+})

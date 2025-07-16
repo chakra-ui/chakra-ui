@@ -1,7 +1,11 @@
 "use client"
 
-import { CodeBlock, createShikiAdapter } from "@chakra-ui/react"
-import { useColorMode } from "compositions/ui/color-mode"
+import {
+  CodeBlock,
+  Float,
+  IconButton,
+  createShikiAdapter,
+} from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
 const file = {
@@ -14,16 +18,18 @@ const file = {
   title: "index.html",
 }
 
-export const CodeBlockWithThemes = () => {
-  const { colorMode } = useColorMode()
+export const CodeBlockWithFloatingCopyButton = () => {
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <CodeBlock.Root
-        code={file.code}
-        language={file.language}
-        meta={{ colorScheme: colorMode }}
-      >
-        <CodeBlock.Content bg="bg">
+      <CodeBlock.Root code={file.code} language={file.language}>
+        <CodeBlock.Content>
+          <Float placement="top-end" offset="5" zIndex="1">
+            <CodeBlock.CopyTrigger asChild>
+              <IconButton variant="ghost" size="2xs">
+                <CodeBlock.CopyIndicator />
+              </IconButton>
+            </CodeBlock.CopyTrigger>
+          </Float>
           <CodeBlock.Code>
             <CodeBlock.CodeText />
           </CodeBlock.Code>

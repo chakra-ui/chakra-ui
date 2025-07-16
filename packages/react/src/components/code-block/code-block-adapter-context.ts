@@ -1,5 +1,5 @@
 import { createContext } from "../../create-context"
-import { fallbackHighlighter } from "./fallback-highlighter"
+import { plainTextAdapter } from "./adapters"
 import type { UseCodeHighlightReturn } from "./use-code-highlight"
 
 export interface UseCodeBlockAdapterContext extends UseCodeHighlightReturn {}
@@ -8,8 +8,8 @@ export const [CodeBlockAdapterContextProvider, useCodeBlockAdapterContext] =
   createContext<UseCodeBlockAdapterContext>({
     strict: false,
     defaultValue: {
-      highlight: fallbackHighlighter.getHighlighter(null),
+      highlight: plainTextAdapter.getHighlighter(null),
       loadContext: () => Promise.resolve(null),
-      getHighlighter: fallbackHighlighter.getHighlighter,
+      getHighlighter: plainTextAdapter.getHighlighter,
     },
   })

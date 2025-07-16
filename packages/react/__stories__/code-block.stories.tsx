@@ -24,7 +24,7 @@ export { CodeBlockWithMaxLines as MaxLines } from "compositions/examples/code-bl
 export { CodeBlockWithWordWrap as WordWrap } from "compositions/examples/code-block-with-word-wrap"
 export { CodeBlockWithLanguageSwitcher as LanguageSwitcher } from "compositions/examples/code-block-with-language-switcher"
 export { CodeBlockWithSizes as Sizes } from "compositions/examples/code-block-with-sizes"
-export { CodeBlockWithFloatingAction as FloatingAction } from "compositions/examples/code-block-with-floating-action"
+export { CodeBlockWithFloatingCopyButton as FloatingCopyButton } from "compositions/examples/code-block-with-floating-copy-button"
 export { CodeBlockWithThemes as Themes } from "compositions/examples/code-block-with-themes"
 
 export { CodeBlockWithHighlightJs as HighlightJs } from "compositions/examples/code-block-with-highlight-js"
