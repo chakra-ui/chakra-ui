@@ -8,7 +8,7 @@ import { useControllableState } from "../../hooks"
 import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,
-  type RecipeVariantProps,
+  type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
@@ -20,7 +20,6 @@ import {
   type UseCodeBlockContext,
   useCodeBlockContext,
 } from "./code-block-context"
-import { codeBlockSlotRecipe } from "./code-block-recipe"
 import type { CodeBlockColorScheme, CodeBlockHighlighterProps } from "./types"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +31,6 @@ const {
   PropsProvider,
 } = createSlotRecipeContext({
   key: "codeBlock",
-  recipe: codeBlockSlotRecipe,
 })
 
 export { useCodeBlockStyles }
@@ -147,13 +145,10 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
   },
 )
 
-type CodeBlockRecipeProps = RecipeVariantProps<typeof codeBlockSlotRecipe>
-
 export interface CodeBlockRootBaseProps
   extends Assign<
       Omit<HTMLChakraProps<"div">, "lang" | keyof SharedRootProps>,
-      // SlotRecipeProps<"codeBlock">
-      CodeBlockRecipeProps
+      SlotRecipeProps<"codeBlock">
     >,
     UnstyledProp,
     SharedRootProps {}
@@ -323,7 +318,7 @@ export interface CodeBlockCopyIndicatorProps
 export const CodeBlockCopyIndicator = withContext<
   HTMLDivElement,
   CodeBlockCopyIndicatorProps
->(BaseCopyIndicator, "indicator", {
+>(BaseCopyIndicator, "copyIndicator", {
   forwardAsChild: true,
   defaultProps: {
     copied: <CheckIcon boxSize="1em" />,

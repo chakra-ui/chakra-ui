@@ -1,19 +1,25 @@
-"use client"
-
+import { createAnatomy } from "@ark-ui/react/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
+export const codeBlockAnatomy = createAnatomy("codeBlock", [
+  "root",
+  "content",
+  "title",
+  "header",
+  "footer",
+  "control",
+  "overlay",
+  "code",
+  "codeText",
+  "copyTrigger",
+  "copyIndicator",
+  "collapseTrigger",
+  "collapseIndicator",
+  "collapseText",
+])
+
 export const codeBlockSlotRecipe = defineSlotRecipe({
-  slots: [
-    "root",
-    "content",
-    "title",
-    "header",
-    "footer",
-    "control",
-    "overlay",
-    "code",
-    "codeText",
-  ],
+  slots: codeBlockAnatomy.keys(),
   base: {
     root: {
       colorPalette: "gray",
