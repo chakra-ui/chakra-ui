@@ -77,10 +77,13 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
       ...rest
     } = props
 
-    const meta = {
-      ...metaProp,
-      colorScheme: metaProp?.colorScheme ?? defaultColorScheme,
-    }
+    const meta = useMemo(
+      () => ({
+        ...metaProp,
+        colorScheme: metaProp?.colorScheme ?? defaultColorScheme,
+      }),
+      [metaProp, defaultColorScheme],
+    )
 
     const code = codeProp.trim()
     const codeLines = code.split("\n").length
@@ -106,7 +109,7 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
         setCollapsed,
         toggleCollapsed: () => setCollapsed((prev) => !prev),
       }),
-      [collapsed, setCollapsed],
+      [collapsed, setCollapsed, uid],
     )
 
     const context = useMemo(
