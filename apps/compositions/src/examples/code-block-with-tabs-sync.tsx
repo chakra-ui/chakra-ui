@@ -25,38 +25,26 @@ const files = [
   },
 ]
 
-function useTabsSync(props: { defaultValue: string; storageKey: string }) {
-  const { defaultValue, storageKey } = props
-
-  const tabs = useTabs({
-    defaultValue,
-    onValueChange(details) {
-      if (details.value) {
-        localStorage.setItem(storageKey, details.value)
-        dispatchEvent(
-          new StorageEvent("storage", {
-            key: storageKey,
-            newValue: details.value,
-          }),
-        )
-      }
-    },
-  })
-
-  useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      requestAnimationFrame(() => {
-        if (e.key === storageKey && e.newValue) {
-          tabs.setValue(e.newValue)
-        }
-      })
-    }
-    window.addEventListener("storage", handleStorageChange)
-    return () => window.removeEventListener("storage", handleStorageChange)
-  }, [storageKey, tabs])
-
-  return tabs
+export const CodeBlockWithTabsSync = () => {
+  return (
+    <CodeBlock.AdapterProvider value={shikiAdapter}>
+      <Stack gap="8">
+        <CodeTabs />
+        <CodeTabs />
+      </Stack>
+    </CodeBlock.AdapterProvider>
+  )
 }
+
+const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
+  async load() {
+    const { createHighlighter } = await import("shiki")
+    return createHighlighter({
+      langs: ["bash"],
+      themes: ["github-dark", "github-light"],
+    })
+  },
+})
 
 const CodeTabs = () => {
   const tabs = useTabsSync({
@@ -104,23 +92,35 @@ const CodeTabs = () => {
   )
 }
 
-export const CodeBlockWithTabsSync = () => {
-  return (
-    <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <Stack gap="8">
-        <CodeTabs />
-        <CodeTabs />
-      </Stack>
-    </CodeBlock.AdapterProvider>
-  )
-}
+function useTabsSync(props: { defaultValue: string; storageKey: string }) {
+  const { defaultValue, storageKey } = props
 
-const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
-  async load() {
-    const { createHighlighter } = await import("shiki")
-    return createHighlighter({
-      langs: ["bash"],
-      themes: ["github-dark", "github-light"],
-    })
-  },
-})
+  const tabs = useTabs({
+    defaultValue,
+    onValueChange(details) {
+      if (details.value) {
+        localStorage.setItem(storageKey, details.value)
+        dispatchEvent(
+          new StorageEvent("storage", {
+            key: storageKey,
+            newValue: details.value,
+          }),
+        )
+      }
+    },
+  })
+
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      requestAnimationFrame(() => {
+        if (e.key === storageKey && e.newValue) {
+          tabs.setValue(e.newValue)
+        }
+      })
+    }
+    window.addEventListener("storage", handleStorageChange)
+    return () => window.removeEventListener("storage", handleStorageChange)
+  }, [storageKey, tabs])
+
+  return tabs
+}
