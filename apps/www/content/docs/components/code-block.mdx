@@ -1,6 +1,6 @@
 ---
 title: Code Block
-description: Used to display code blocks
+description: Used to display and highlight dynamic code blocks
 links:
   source: components/code-block
   storybook: code-block--basic
@@ -11,25 +11,41 @@ links:
 
 ## Usage
 
-The CodeBlock component is used to display formatted code with syntax
-highlighting, line numbers, copy functionality, and other advanced features. It
-supports various adapters for different highlighting engines like Shiki.
-
 ```js
 import { CodeBlock } from "@chakra-ui/react"
 ```
 
 ```jsx
-<CodeBlock>Hello world</CodeBlock>
+<CodeBlock.AdapterProvider>
+  <CodeBlock.Root>
+    <CodeBlock.Header>
+      <CodeBlock.Title />
+      <CodeBlock.Control>
+        <CodeBlock.CopyTrigger />
+        <CodeBlock.CollapseTrigger />
+      </CodeBlock.Control>
+    </CodeBlock.Header>
+    <CodeBlock.Content>
+      <CodeBlock.Code>
+        <CodeBlock.CodeText />
+      </CodeBlock.Code>
+    </CodeBlock.Content>
+  </CodeBlock.Root>
+</CodeBlock.AdapterProvider>
 ```
 
 ## Adapters
 
-The CodeBlock component supports various adapters for different highlighting
-engines like Shiki and Highlight.js.
+The CodeBlock component works for [Shiki](https://shiki.style/) and
+[Highlight.js](https://highlightjs.org/) highlighting engines.
 
-- Load the adapter you want to use (once) at a top level
-- Provide the adapter to the `CodeBlock.AdapterProvider`
+> The docs assumes **Shiki** by default.
+
+To setup the code block component, you need to:
+
+- Configure your preferred adapter (**Shiki** or **Highlight.js**).
+- Provide the adapter to the `CodeBlock.AdapterProvider` at the top level.
+- Render the `CodeBlock.Root` component within the `CodeBlock.AdapterProvider`.
 
 ### Shiki
 
@@ -39,7 +55,7 @@ Install the `shiki` package.
 npm install shiki
 ```
 
-Then create the shiki adapter that dynamically loads the shiki highlighter for
+Then, create the shiki adapter that dynamically loads the shiki highlighter for
 the selected languages.
 
 ```tsx
@@ -68,7 +84,7 @@ Install the `highlight.js` package.
 npm install highlight.js
 ```
 
-Then create the highlight.js adapter that dynamically loads the highlight.js
+Then, create the highlight.js adapter that dynamically loads the highlight.js
 highlighter for the selected languages.
 
 ```tsx
@@ -96,21 +112,109 @@ const highlightJsAdapter = createHighlightJsAdapter<typeof hljs>({
 
 ### Sizes
 
-Use the `size` prop to change the size of the code component.
+Use the `size` prop to change the size of the code block component.
 
-<ExampleTabs name="code-with-sizes" />
+<ExampleTabs name="code-block-with-sizes" />
 
-### Variants
+### Title
 
-Use the `variant` prop to change the appearance of the code component.
+Render the `CodeBlock.Title` component within the `CodeBlock.Header` component
+to add a title to the code block component.
 
-<ExampleTabs name="code-with-variants" />
+<ExampleTabs name="code-block-with-title" />
 
-### Colors
+### Copy button
 
-Use the `colorPalette` prop to change the color scheme of the component.
+Use the `copyButton` prop to add a copy button to the code block component.
 
-<ExampleTabs name="code-with-colors" />
+<ExampleTabs name="code-block-with-copy-button" />
+
+### Line numbers
+
+Line numbers make it easier to reference specific lines of code. Pass the
+`meta.showLineNumbers` prop to show line numbers in the code block component.
+
+<ExampleTabs name="code-block-with-line-numbers" />
+
+### Line highlighting
+
+Pass the `meta.highlightLines` prop to the `CodeBlock.Root` component to
+highlight specific lines of code. The prop accepts an array of line numbers.
+
+<ExampleTabs name="code-block-with-line-highlight" />
+
+### Line focus
+
+Pass the `meta.highlightLines` prop to the `CodeBlock.Root` component to
+highlight specific lines of code. The prop accepts an array of line numbers. The
+line numbers are 1-based.
+
+<ExampleTabs name="code-block-with-line-focus" />
+
+### Diff
+
+Diffs are useful for highlighting source code changes. Use the
+`meta.addedLineNumbers` and `meta.removedLineNumbers` props to add line numbers
+to the code block component.
+
+> The prop accepts an array of line numbers. The line numbers are 1-based.
+
+<ExampleTabs name="code-block-with-diff" />
+
+### Max lines
+
+Use the `meta.maxLines` prop to limit the number of lines in the code block
+component. By default, the code block component will expand to fit the content.
+
+<ExampleTabs name="code-block-with-max-lines" />
+
+### Language switcher
+
+Use the `meta.languageSwitcher` prop to add a language switcher to the code
+block component.
+
+<ExampleTabs name="code-block-with-language-switcher" />
+
+### Floating copy button
+
+Use the `meta.floatingCopyButton` prop to add a floating copy button to the code
+block component.
+
+<ExampleTabs name="code-block-with-floating-copy-button" />
+
+### Tabs
+
+Here's an example that composes the `CodeBlock` component with the `Tabs`
+component to create a code block with tabs.
+
+<ExampleTabs name="code-block-with-tabs" />
+
+### Tabs sync
+
+Here's an example that automatically syncs all code blocks that share the same
+storage key. Useful for package manager or framework specific code blocks in a
+documentation site.
+
+<ExampleTabs name="code-block-with-tabs-sync" />
+
+### Themes
+
+Use the `meta.colorScheme` prop to add a theme to the code block component. In
+this example, the colorScheme is set to color mode from the `useColorMode` hook.
+
+<ExampleTabs name="code-block-with-themes" />
+
+### Wrap overflow
+
+Use the `meta.wordWrap` prop to wrap the code block component.
+
+<ExampleTabs name="code-block-with-word-wrap" />
+
+### Highlight.js
+
+Here's an example that uses highlight.js to highlight the code block.
+
+<ExampleTabs name="code-block-with-highlight-js" />
 
 ## Props
 
