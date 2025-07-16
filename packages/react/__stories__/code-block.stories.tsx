@@ -26,6 +26,7 @@ export { CodeBlockWithLanguageSwitcher as LanguageSwitcher } from "compositions/
 export { CodeBlockWithSizes as Sizes } from "compositions/examples/code-block-with-sizes"
 export { CodeBlockWithFloatingCopyButton as FloatingCopyButton } from "compositions/examples/code-block-with-floating-copy-button"
 export { CodeBlockWithThemes as Themes } from "compositions/examples/code-block-with-themes"
+export { CodeBlockPlainText as PlainText } from "compositions/examples/code-block-plain-text"
 
 export { CodeBlockWithHighlightJs as HighlightJs } from "compositions/examples/code-block-with-highlight-js"
 
