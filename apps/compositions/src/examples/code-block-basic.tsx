@@ -28,7 +28,7 @@ export const CodeBlockBasic = () => {
 }
 
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
-  async loadShiki() {
+  async load() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["tsx", "scss", "html", "bash", "json"],

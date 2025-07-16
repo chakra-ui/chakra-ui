@@ -1,7 +1,7 @@
 "use client"
 
 import { CodeBlock, createHighlightJsAdapter } from "@chakra-ui/react"
-import hljs, { type HLJSApi } from "highlight.js"
+import hljs from "highlight.js/lib/core"
 
 const file = {
   code: `
@@ -34,6 +34,18 @@ export const CodeBlockWithHighlightJs = () => {
   )
 }
 
-const highlightJsAdapter = createHighlightJsAdapter<HLJSApi>({
-  hljs,
+const highlightJsAdapter = createHighlightJsAdapter<typeof hljs>({
+  async load() {
+    const languages = {
+      tsx: () => import("highlight.js/lib/languages/typescript"),
+      html: () => import("highlight.js/lib/languages/xml"),
+    }
+    await Promise.all(
+      Object.entries(languages).map(async ([language, file]) => {
+        const { default: langModule } = await file()
+        hljs.registerLanguage(language, langModule)
+      }),
+    )
+    return hljs
+  },
 })

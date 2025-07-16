@@ -116,7 +116,7 @@ export const CodeBlockWithTabsSync = () => {
 }
 
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
-  async loadShiki() {
+  async load() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["bash"],

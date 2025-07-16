@@ -82,7 +82,7 @@ function LanguageSwitcher(props: Select.RootProviderProps) {
 }
 
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
-  async loadShiki() {
+  async load() {
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["python", "typescript"],

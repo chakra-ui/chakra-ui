@@ -60,4 +60,8 @@ export interface CodeBlockAdapter {
    * Get the highlighter for the code block.
    */
   getHighlighter: (ctx: any) => CodeBlockHighlighter
+  /**
+   * Unload the context for the code block.
+   */
+  unloadContext?: ((ctx: any) => void) | undefined
 }

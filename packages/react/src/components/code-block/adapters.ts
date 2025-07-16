@@ -10,6 +10,7 @@ export const plainTextAdapter: CodeBlockAdapter = {
 
 interface ShikiHighlighterBase {
   codeToHtml: (code: string, options: any) => string
+  dispose?: () => void
 }
 
 type ShikiHighlighterBaseOptions<T extends ShikiHighlighterBase> = Parameters<
@@ -17,16 +18,19 @@ type ShikiHighlighterBaseOptions<T extends ShikiHighlighterBase> = Parameters<
 >[1]
 
 export interface ShikiAdapterOptions<T extends ShikiHighlighterBase> {
-  loadShiki: () => Promise<T>
+  load: () => Promise<T>
   highlightOptions?: ShikiHighlighterBaseOptions<T>
 }
 
 export function createShikiAdapter<T extends ShikiHighlighterBase>(
   opts: ShikiAdapterOptions<T>,
 ): CodeBlockAdapter {
-  const { loadShiki, highlightOptions } = opts
+  const { load, highlightOptions } = opts
   return {
-    loadContext: loadShiki,
+    loadContext: load,
+    unloadContext(ctx) {
+      ctx?.dispose?.()
+    },
     getHighlighter: (ctx) => {
       return ({ code, language, meta }) => {
         if (!ctx) {
@@ -88,6 +92,8 @@ interface HighlightJsHighlightResult {
 
 interface HighlightJsHighlighterBase {
   highlight: (...args: any[]) => HighlightJsHighlightResult
+  listLanguages: () => string[]
+  unregisterLanguage: (language: string) => void
 }
 
 interface HighlightJsHighlighterBaseOptions {
@@ -98,22 +104,33 @@ interface HighlightJsHighlighterBaseOptions {
 export interface HighlightJsAdapterOptions<
   T extends HighlightJsHighlighterBase,
 > {
-  hljs: T
+  load: () => Promise<T>
   highlightOptions?: HighlightJsHighlighterBaseOptions
 }
 
 export function createHighlightJsAdapter<T extends HighlightJsHighlighterBase>(
   opts: HighlightJsAdapterOptions<T>,
 ): CodeBlockAdapter {
-  const { hljs, highlightOptions } = opts
+  const { load, highlightOptions } = opts
   return {
-    getHighlighter() {
+    loadContext: load,
+    unloadContext(ctx) {
+      const langs = ctx?.listLanguages?.()
+      langs?.forEach((lang: string) => {
+        ctx?.unregisterLanguage?.(lang)
+      })
+    },
+    getHighlighter: (ctx) => {
       return ({ code, language = "plaintext", meta }) => {
+        if (!ctx) {
+          return { code, highlighted: false }
+        }
+
         const hasDiff =
           (meta?.addedLineNumbers?.length ?? 0) > 0 ||
           (meta?.removedLineNumbers?.length ?? 0) > 0
 
-        const result = hljs.highlight(code.trim(), {
+        const result = ctx.highlight(code.trim(), {
           language,
           ...highlightOptions,
         })

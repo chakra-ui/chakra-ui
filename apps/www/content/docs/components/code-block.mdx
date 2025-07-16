@@ -1,0 +1,117 @@
+---
+title: Code Block
+description: Used to display code blocks
+links:
+  source: components/code-block
+  storybook: code-block--basic
+  recipe: code-block
+---
+
+<ExampleTabs name="code-block-basic" />
+
+## Usage
+
+The CodeBlock component is used to display formatted code with syntax
+highlighting, line numbers, copy functionality, and other advanced features. It
+supports various adapters for different highlighting engines like Shiki.
+
+```js
+import { CodeBlock } from "@chakra-ui/react"
+```
+
+```jsx
+<CodeBlock>Hello world</CodeBlock>
+```
+
+## Adapters
+
+The CodeBlock component supports various adapters for different highlighting
+engines like Shiki and Highlight.js.
+
+- Load the adapter you want to use (once) at a top level
+- Provide the adapter to the `CodeBlock.AdapterProvider`
+
+### Shiki
+
+Install the `shiki` package.
+
+```bash
+npm install shiki
+```
+
+Then create the shiki adapter that dynamically loads the shiki highlighter for
+the selected languages.
+
+```tsx
+import { createShikiAdapter } from "@chakra-ui/react"
+
+const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
+  async load() {
+    const { createHighlighter } = await import("shiki")
+    return createHighlighter({
+      langs: ["tsx", "json"],
+      themes: ["github-dark", "github-light"],
+    })
+  },
+})
+
+<CodeBlock.AdapterProvider value={shikiAdapter}>
+  {/* ... */}
+</CodeBlock.AdapterProvider>
+```
+
+### Highlight.js
+
+Install the `highlight.js` package.
+
+```bash
+npm install highlight.js
+```
+
+Then create the highlight.js adapter that dynamically loads the highlight.js
+highlighter for the selected languages.
+
+```tsx
+import { createHighlightJsAdapter } from "@chakra-ui/react"
+import hljs from "highlight.js/lib/core"
+
+const highlightJsAdapter = createHighlightJsAdapter<typeof hljs>({
+  async load() {
+    const languages = {
+      tsx: () => import("highlight.js/lib/languages/typescript"),
+      html: () => import("highlight.js/lib/languages/xml"),
+    }
+    await Promise.all(
+      Object.entries(languages).map(async ([language, file]) => {
+        const { default: langModule } = await file()
+        hljs.registerLanguage(language, langModule)
+      }),
+    )
+    return hljs
+  },
+})
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the code component.
+
+<ExampleTabs name="code-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the code component.
+
+<ExampleTabs name="code-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color scheme of the component.
+
+<ExampleTabs name="code-with-colors" />
+
+## Props
+
+<PropTable component="Code" part="Code" />

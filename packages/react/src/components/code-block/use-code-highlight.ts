@@ -8,7 +8,7 @@ export interface UseCodeHighlightReturn extends CodeBlockAdapter {
 }
 
 export function useCodeHighlight(props: UseCodeHighlightProps) {
-  const { loadContext, getHighlighter } = props
+  const { loadContext, getHighlighter, unloadContext } = props
 
   const [context, setContext] = useState<any>(null)
   const highlight = useMemo(
@@ -23,9 +23,9 @@ export function useCodeHighlight(props: UseCodeHighlightProps) {
       setContext(c)
     })
     return () => {
-      ctx?.dispose?.()
+      unloadContext?.(ctx)
     }
-  }, [loadContext])
+  }, [loadContext, unloadContext])
 
   return {
     highlight,
