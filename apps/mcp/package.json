@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc && chmod 755 dist/server.js",
-    "dev": "tsc --watch"
+    "build": "tsup src/server.ts --format esm && chmod 755 dist/server.js",
+    "dev": "tsup src/server.ts --format esm --watch"
   },
   "bin": {
     "chakra-mcp": "./dist/server.js"
@@ -26,6 +26,7 @@
     "@tsconfig/node22": "^22.0.1",
     "@types/fs-extra": "^11.0.4",
     "tsx": "^4.20.3",
+    "tsup": "^8.5.0",
     "typescript": "5.8.3"
   }
 }

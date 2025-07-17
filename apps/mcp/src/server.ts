@@ -3,6 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod"
 import { componentList } from "./components.js"
+import { createV2ToV3MigrationTool } from "./tools/v2-to-v3-migration.js"
 import { walkObject } from "./walk-object.js"
 
 interface ChakraProBlockVariant {
@@ -296,6 +297,8 @@ async function main() {
   setupGetComponentTemplatesTool().catch((error) => {
     console.error("Error setting up get_component_templates tool:", error)
   })
+
+  createV2ToV3MigrationTool(server)
 
   const transport = new StdioServerTransport()
   await server.connect(transport)
