@@ -22,27 +22,23 @@ const MIGRATION_SCENARIOS: Record<string, MigrationScenario> = {
 </Stack>`,
   },
 
-  button_leftIcon_to_children: {
-    name: "Button Left Icon to Children",
+  button_icon_to_children: {
+    name: "Button Icon Props to Children",
     description:
-      "Replace 'leftIcon' prop with icon as first child in Button component",
+      "Replace 'leftIcon' and 'rightIcon' props with icons as children in Button component",
     before: `<Button leftIcon={<Icon />}>
+  Click me
+</Button>
+
+<Button rightIcon={<Icon />}>
   Click me
 </Button>`,
     after: `<Button>
   <Icon />
   Click me
-</Button>`,
-  },
+</Button>
 
-  button_rightIcon_to_children: {
-    name: "Button Right Icon to Children",
-    description:
-      "Replace 'rightIcon' prop with icon as last child in Button component",
-    before: `<Button rightIcon={<Icon />}>
-  Click me
-</Button>`,
-    after: `<Button>
+<Button>
   Click me
   <Icon />
 </Button>`,
@@ -83,12 +79,12 @@ export const App = ({ Component }) => (
     <Component />
   </ChakraProvider>
 )`,
-    after: `import { Provider } from "@/components/ui/provider"
+    after: `import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 
 export const App = ({ Component }) => (
-  <Provider>
+  <ChakraProvider value={defaultSystem}>
     <Component />
-  </Provider>
+  </ChakraProvider>
 )`,
   },
 
@@ -118,14 +114,6 @@ export const App = ({ Component }) => (
   <Input />
   <Field.ErrorText>Required</Field.ErrorText>
 </Field.Root>`,
-  },
-
-  package_updates: {
-    name: "Package Updates",
-    description: "Remove unused packages and update dependencies",
-    before: `npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion`,
-    after: `npm uninstall @emotion/styled framer-motion
-npm install @chakra-ui/react@latest @emotion/react@latest`,
   },
 
   spinner_props: {
@@ -222,25 +210,6 @@ npm install @chakra-ui/react@latest @emotion/react@latest`,
 </Box>`,
   },
 
-  style_props_text_truncation: {
-    name: "Text Truncation Props",
-    description: "Update text truncation prop names from v2 to v3",
-    before: `<Text noOfLines={2}>
-  Long text content that will be clamped to 2 lines
-</Text>
-
-<Text truncated>
-  Text that will be truncated with ellipsis
-</Text>`,
-    after: `<Text lineClamp={2}>
-  Long text content that will be clamped to 2 lines
-</Text>
-
-<Text truncate>
-  Text that will be truncated with ellipsis
-</Text>`,
-  },
-
   style_props_apply_removal: {
     name: "Apply Prop Removal",
     description: "Replace the removed apply prop with textStyle or layerStyle",
@@ -298,19 +267,6 @@ npm install @chakra-ui/react@latest @emotion/react@latest`,
 <Badge colorPalette="green">New</Badge>`,
   },
 
-  colorPalette_usage: {
-    name: "ColorPalette Usage in Any Component",
-    description:
-      "Use colorPalette prop in any component to create color-aware designs",
-    before: `<Box bg="red.400">
-  <Text color="red.600">Some text</Text>
-</Box>`,
-    after: `<Box colorPalette="red">
-  <Box bg="colorPalette.400">Some box</Box>
-  <Text color="colorPalette.600">Some text</Text>
-</Box>`,
-  },
-
   modal_to_dialog: {
     name: "Modal to Dialog",
     description: "Replace Modal with Dialog component and update props",
@@ -355,104 +311,6 @@ npm install @chakra-ui/react@latest @emotion/react@latest`,
     description: "Update boolean prop naming from 'is<X>' to '<x>' convention",
     before: `[isOpen, isDisabled, isRequired, isInvalid, defaultIsOpen, defaultOpen]`,
     after: `[open, disabled, required, invalid, defaultOpen]`,
-  },
-
-  checkbox_indeterminate_prop: {
-    name: "Checkbox Indeterminate Prop",
-    description: "Replace indeterminate prop with checked prop",
-    before: `<Checkbox indeterminate />`,
-    after: `<Checkbox.Root checked="indeterminate" />`,
-  },
-
-  breadcrumb_migration: {
-    name: "Prefer to use the namespace component for Breadcrumb",
-    description:
-      "Migrate from flat Breadcrumb structure to namespace components",
-    before: `<Breadcrumb>
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Docs</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href='#'>Breadcrumb</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>`,
-    after: `<Breadcrumb.Root>
-  <Breadcrumb.List>
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="#">Home</Breadcrumb.Link>
-    </Breadcrumb.Item>
-    <Breadcrumb.Separator />
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
-    </Breadcrumb.Item>
-    <Breadcrumb.Separator />
-    <Breadcrumb.Item>
-      <Breadcrumb.CurrentLink>Breadcrumb</Breadcrumb.CurrentLink>
-    </Breadcrumb.Item>
-  </Breadcrumb.List>
-</Breadcrumb.Root>`,
-  },
-
-  tabs_migration: {
-    name: "Tabs Migration",
-    description: "Migrate from flat Tabs structure to namespace components",
-    before: `<Tabs>
-  <TabList>
-    <Tab>One</Tab>
-    <Tab>Two</Tab>
-    <Tab>Three</Tab>
-  </TabList>
-
-  <TabPanels>
-    <TabPanel>
-      <p>one!</p>
-    </TabPanel>
-    <TabPanel>
-      <p>two!</p>
-    </TabPanel>
-    <TabPanel>
-      <p>three!</p>
-    </TabPanel>
-  </TabPanels>
-</Tabs>`,
-    after: `<Tabs.Root defaultValue="one">
-  <Tabs.List>
-    <Tabs.Trigger value="one">One</Tabs.Trigger>
-    <Tabs.Trigger value="two">Two</Tabs.Trigger>
-    <Tabs.Trigger value="three">Three</Tabs.Trigger>
-  </Tabs.List>
-  <Tabs.Content value="one">
-    <p>one!</p>
-  </Tabs.Content>
-  <Tabs.Content value="two">
-    <p>two!</p>
-  </Tabs.Content>
-  <Tabs.Content value="three">
-    <p>three!</p>
-  </Tabs.Content>
-</Tabs.Root>`,
-  },
-
-  number_input_migration: {
-    name: "NumberInput Migration",
-    description:
-      "Migrate from NumberInput with stepper components to simplified namespace structure",
-    before: `<NumberInput>
-  <NumberInputField />
-  <NumberInputStepper>
-    <NumberIncrementStepper />
-    <NumberDecrementStepper />
-  </NumberInputStepper>
-</NumberInput>`,
-    after: `<NumberInput.Root>
-      <NumberInput.Control />
-      <NumberInput.Input />
-    </NumberInput.Root>`,
   },
 }
 
