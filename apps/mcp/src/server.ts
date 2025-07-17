@@ -5,6 +5,21 @@ import { z } from "zod"
 import { componentList } from "./components.js"
 import { walkObject } from "./walk-object.js"
 
+interface ChakraProBlockVariant {
+  id: string
+  name: string
+  categoryId: string
+  accessLevel: "free" | "pro"
+}
+interface ChakraProBlock {
+  id: string
+  name: string
+  group: string
+  description: string
+  figmaNodeId: string
+  variants: ChakraProBlockVariant[]
+}
+
 const getSemanticTokens = () => {
   return Array.from(
     defaultSystem.tokens.categoryMap.get("colors")!.entries() as [string, any],
@@ -29,6 +44,10 @@ const getTextStyles = () => {
     },
   )
   return Array.from(keys)
+}
+
+const getChakraProBlocks = async () => {
+  return await fetch("https://pro.chakra-ui.com/api/blocks")
 }
 
 export const server = new McpServer({
@@ -169,7 +188,7 @@ server.tool(
   "List all available blocks in the Chakra UI pro. This tool retrieves the names of all available blocks in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
   {},
   async () => {
-    const blocksResp = await fetch("https://pro.chakra-ui.com/api/blocks")
+    const blocksResp = await getChakraProBlocks()
 
     if (!blocksResp.ok) {
       return {
@@ -195,70 +214,89 @@ server.tool(
   },
 )
 
-server.tool(
-  "get_component_templates",
-  "Retrieve well designed, fully responsive, and accessible component templates.",
-  {
-    category: z
-      .enum(["banners"])
-      .describe(
-        "The name of the block category to retrieve from Chakra UI pro",
-      ),
-    id: z
-      .enum(["banner-centered"])
-      .describe("The ID of the block variant to retrieve from Chakra UI pro"),
-  },
-  async ({ category, id }) => {
-    if (!process.env.CHAKRA_PRO_API_KEY) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify({
-              error: "Authentication required",
-              message: "This tool requires a valid Chakra UI Pro key.",
-              code: "UNAUTHORIZED",
-            }),
-          },
-        ],
+const setupGetComponentTemplatesTool = async () => {
+  const blocks = await getChakraProBlocks()
+
+  if (!blocks.ok) {
+    throw new Error("Failed to fetch blocks")
+  }
+
+  const blocksData = (await blocks.json()) as { data: ChakraProBlock[] }
+
+  const blockCategories = blocksData.data.map((block) => block.id)
+  const blockCategoryVariants = blocksData.data.flatMap((block) =>
+    block.variants.map((v) => v.id),
+  )
+
+  server.tool(
+    "get_component_templates",
+    "Retrieve well designed, fully responsive, and accessible component templates.",
+    {
+      category: z
+        .enum(blockCategories as [string, ...string[]])
+        .describe(
+          "The name of the block category to retrieve from Chakra UI pro",
+        ),
+      id: z
+        .enum(blockCategoryVariants as [string, ...string[]])
+        .describe("The ID of the block variant to retrieve from Chakra UI pro"),
+    },
+    async ({ category, id }) => {
+      if (!process.env.CHAKRA_PRO_API_KEY) {
+        return {
+          isError: true,
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                error: "Authentication required",
+                message: "This tool requires a valid Chakra UI Pro key.",
+                code: "UNAUTHORIZED",
+              }),
+            },
+          ],
+        }
       }
-    }
 
-    const blockResp = await fetch(
-      `https://pro.chakra-ui.com/api/blocks/${category}/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CHAKRA_PRO_KEY}`,
-        },
-      },
-    )
-
-    if (!blockResp.ok) {
-      return {
-        content: [
-          {
-            type: "text",
-            text: "Failed to fetch block",
-          },
-        ],
-      }
-    }
-
-    const blockData = await blockResp.json()
-
-    return {
-      content: [
+      const blockResp = await fetch(
+        `https://pro.chakra-ui.com/api/blocks/${category}/${id}`,
         {
-          type: "text",
-          text: JSON.stringify(blockData),
+          headers: {
+            Authorization: `Bearer ${process.env.CHAKRA_PRO_API_KEY}`,
+          },
         },
-      ],
-    }
-  },
-)
+      )
+
+      if (!blockResp.ok) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "Failed to fetch block",
+            },
+          ],
+        }
+      }
+
+      const blockData = await blockResp.json()
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(blockData),
+          },
+        ],
+      }
+    },
+  )
+}
 
 async function main() {
+  setupGetComponentTemplatesTool().catch((error) => {
+    console.error("Error setting up get_component_templates tool:", error)
+  })
+
   const transport = new StdioServerTransport()
   await server.connect(transport)
   console.error("Chakra UI MCP Server running on stdio")
