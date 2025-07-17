@@ -312,6 +312,23 @@ export const App = ({ Component }) => (
     before: `[isOpen, isDisabled, isRequired, isInvalid, defaultIsOpen, defaultOpen]`,
     after: `[open, disabled, required, invalid, defaultOpen]`,
   },
+
+  select_to_native_select: {
+    name: "Select to Native Select",
+    description:
+      "Replace Select with NativeSelect component using the new compound component pattern",
+    before: `<Select placeholder='Select option'>
+  <option value='option1'>Option 1</option>
+  <option value='option2'>Option 2</option>
+</Select>`,
+    after: `<NativeSelect.Root>
+  <NativeSelect.Field placeholder="Select option">
+    <option value='option1'>Option 1</option>
+    <option value='option2'>Option 2</option>
+  </NativeSelect.Field>
+  <NativeSelect.Indicator />
+</NativeSelect.Root>`,
+  },
 }
 
 export const v2ToV3MigrationTool: Tool = {
