@@ -4,7 +4,8 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsup src/server.ts --format esm && chmod 755 dist/server.js",
-    "dev": "tsup src/server.ts --format esm --watch"
+    "dev": "tsup src/server.ts --format esm --watch",
+    "inspect": "node scripts/inspect.js"
   },
   "bin": {
     "chakra-mcp": "./dist/server.js"
