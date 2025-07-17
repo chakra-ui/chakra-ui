@@ -1,5 +1,5 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { z } from "zod"
+import type { Tool } from "../lib/types.js"
 
 interface MigrationScenario {
   name: string
@@ -365,30 +365,35 @@ npm install @chakra-ui/react@latest @emotion/react@latest`,
   },
 }
 
-export const createV2ToV3MigrationTool = (server: McpServer) => {
-  server.tool(
-    "v2_to_v3_code_review",
+export const v2ToV3MigrationTool: Tool = {
+  name: "v2_to_v3_code_review",
+  description:
     "ALWAYS use this tool to review any generated code. This tool helps you get familiar with the new Chakra UI v3 API before/after code snippets for common migration scenarios to help avoid AI hallucination.",
-    {
-      scenario: z
-        .enum(Object.keys(MIGRATION_SCENARIOS) as [string, ...string[]])
-        .describe("The migration scenario to get guidance for"),
-    },
-    async ({ scenario }) => {
-      const migrationInfo = Reflect.get(MIGRATION_SCENARIOS, scenario)
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify({
-              name: migrationInfo.name,
-              description: migrationInfo.description,
-              before: migrationInfo.before,
-              after: migrationInfo.after,
-            }),
-          },
-        ],
-      }
-    },
-  )
+  exec(server, { name, description }) {
+    server.tool(
+      name,
+      description,
+      {
+        scenario: z
+          .enum(Object.keys(MIGRATION_SCENARIOS) as [string, ...string[]])
+          .describe("The migration scenario to get guidance for"),
+      },
+      async ({ scenario }) => {
+        const migrationInfo = Reflect.get(MIGRATION_SCENARIOS, scenario)
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                name: migrationInfo.name,
+                description: migrationInfo.description,
+                before: migrationInfo.before,
+                after: migrationInfo.after,
+              }),
+            },
+          ],
+        }
+      },
+    )
+  },
 }
