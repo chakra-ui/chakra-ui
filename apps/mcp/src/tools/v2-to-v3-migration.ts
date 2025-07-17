@@ -363,6 +363,97 @@ npm install @chakra-ui/react@latest @emotion/react@latest`,
     before: `<Checkbox indeterminate />`,
     after: `<Checkbox.Root checked="indeterminate" />`,
   },
+
+  breadcrumb_migration: {
+    name: "Prefer to use the namespace component for Breadcrumb",
+    description:
+      "Migrate from flat Breadcrumb structure to namespace components",
+    before: `<Breadcrumb>
+  <BreadcrumbItem>
+    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <BreadcrumbLink href='#'>Docs</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink href='#'>Breadcrumb</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>`,
+    after: `<Breadcrumb.Root>
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="#">Home</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.CurrentLink>Breadcrumb</Breadcrumb.CurrentLink>
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>`,
+  },
+
+  tabs_migration: {
+    name: "Tabs Migration",
+    description: "Migrate from flat Tabs structure to namespace components",
+    before: `<Tabs>
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabList>
+
+  <TabPanels>
+    <TabPanel>
+      <p>one!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>two!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>three!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>`,
+    after: `<Tabs.Root defaultValue="one">
+  <Tabs.List>
+    <Tabs.Trigger value="one">One</Tabs.Trigger>
+    <Tabs.Trigger value="two">Two</Tabs.Trigger>
+    <Tabs.Trigger value="three">Three</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="one">
+    <p>one!</p>
+  </Tabs.Content>
+  <Tabs.Content value="two">
+    <p>two!</p>
+  </Tabs.Content>
+  <Tabs.Content value="three">
+    <p>three!</p>
+  </Tabs.Content>
+</Tabs.Root>`,
+  },
+
+  number_input_migration: {
+    name: "NumberInput Migration",
+    description:
+      "Migrate from NumberInput with stepper components to simplified namespace structure",
+    before: `<NumberInput>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>`,
+    after: `<NumberInput.Root>
+      <NumberInput.Control />
+      <NumberInput.Input />
+    </NumberInput.Root>`,
+  },
 }
 
 export const v2ToV3MigrationTool: Tool = {
