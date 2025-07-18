@@ -5,7 +5,7 @@ export const NumberInputWithInvalid = () => {
     <Field.Root invalid>
       <Field.Label>Enter Number</Field.Label>
       <NumberInput.Root defaultValue="10" width="200px">
-        <NumberInput.Control />
+        <NumberInput.TriggerGroup />
         <NumberInput.Input />
       </NumberInput.Root>
       <Field.ErrorText>The entry is invalid</Field.ErrorText>
