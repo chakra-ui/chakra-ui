@@ -14,3 +14,6 @@
 
 - **Dialog**: Use `dvh` and `dvw` units instead of `vh` and `vw` to dynamically
   adjust to viewport size changes.
+
+- **Native Select**: Ensure height is consistent with input and select across
+  sizes.
