@@ -1,5 +1,24 @@
 # @chakra-ui/react
 
+## 3.22.1
+
+### Patch Changes
+
+- [`4da48e3`](https://github.com/chakra-ui/chakra-ui/commit/4da48e327a8213b8ef8822ccdc6accd51f36779d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tabs**: Export
+  missing types
+  - **Hooks**: Export entrypoint for better tree-shaking
+    `@chakra-ui/react/hooks`
+  - **Theme**: Expose smaller bits of the theme in the entrypoint for better
+    tree-shaking `@chakra-ui/react/theme`. We now expose `recipes`,
+    `slotRecipes`, `breakpoints`, `keyframes`, `textStyles`, `layerStyles`,
+    `animationStyles`, `globalCss`, `cssVarsPrefix`, `cssVarsRoot`,
+    `semanticTokens`, `tokens` as dedicated modules.
+  - **Dialog**: Use `dvh` and `dvw` units instead of `vh` and `vw` to
+    dynamically adjust to viewport size changes.
+  - **Native Select**: Ensure height is consistent with input and select across
+    sizes.
+
 ## 3.22.0
 
 ### Minor Changes
