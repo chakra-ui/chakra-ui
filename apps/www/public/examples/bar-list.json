@@ -1,0 +1,90 @@
+{
+  "name": "bar-list",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "bar-list-ascending",
+      "content": "\"use client\"\nexport const BarListAscending = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"asc\" },\n    data: [\n      { name: \"Google\", value: 1200000 },\n      { name: \"Direct\", value: 100000 },\n      { name: \"Bing\", value: 200000 },\n      { name: \"Yahoo\", value: 20000 },\n      { name: \"ChatGPT\", value: 1345000 },\n      { name: \"Github\", value: 100000 },\n      { name: \"Yandex\", value: 100000 },\n    ],\n    series: [{ name: \"name\", color: \"teal.subtle\" }],\n  })\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Bar />\n        <BarList.Value />\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-basic",
+      "content": "\"use client\"\nexport const BarListBasic = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 1200000 },\n      { name: \"Direct\", value: 100000 },\n      { name: \"Bing\", value: 200000 },\n      { name: \"Yahoo\", value: 20000 },\n      { name: \"ChatGPT\", value: 1345000 },\n      { name: \"Github\", value: 100000 },\n      { name: \"Yandex\", value: 100000 },\n    ],\n    series: [{ name: \"name\", color: \"teal.subtle\" }],\n  })\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Bar />\n        <BarList.Value />\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-with-formatter",
+      "content": "\"use client\"\nexport const BarListWithFormatter = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Created\", value: 120 },\n      { name: \"Initial Contact\", value: 90 },\n      { name: \"Booked Demo\", value: 45 },\n      { name: \"Closed\", value: 10 },\n    ],\n    series: [{ name: \"name\", color: \"pink.subtle\" }],\n  })\n\n  const getPercent = (value: number) =>\n    chart.getValuePercent(\"value\", value).toFixed(0)\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Bar />\n        <BarList.Value\n          valueFormatter={(value) => `${value} (${getPercent(value)}%)`}\n        />\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-with-label",
+      "content": "\"use client\"\nexport const BarListWithLabel = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 1200000 },\n      { name: \"Direct\", value: 100000 },\n      { name: \"Bing\", value: 200000 },\n      { name: \"Yahoo\", value: 20000 },\n      { name: \"ChatGPT\", value: 1345000 },\n      { name: \"Github\", value: 100000 },\n      { name: \"Yandex\", value: 100000 },\n    ],\n    series: [{ name: \"name\", color: \"teal.subtle\" }],\n  })\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Label title=\"Search Engine\" flex=\"1\">\n          <BarList.Bar />\n        </BarList.Label>\n        <BarList.Label title=\"Downloads\" titleAlignment=\"end\">\n          <BarList.Value />\n        </BarList.Label>\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-with-link",
+      "content": "\"use client\"\nexport const BarListWithLink = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Created\", value: 120, href: \"#\" },\n      { name: \"Initial Contact\", value: 90, href: \"#\" },\n      { name: \"Booked Demo\", value: 45, href: \"#\" },\n      { name: \"Closed\", value: 10, href: \"#\" },\n    ],\n    series: [{ name: \"name\", color: \"pink.subtle\" }],\n  })\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Bar\n          label={({ payload }) => <a href={payload.href}>{payload.name}</a>}\n        />\n        <BarList.Value />\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-with-multi-value",
+      "content": "\"use client\"\nexport const BarListWithMultiValue = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 1200000 },\n      { name: \"Direct\", value: 100000 },\n      { name: \"Bing\", value: 200000 },\n      { name: \"Yahoo\", value: 20000 },\n      { name: \"ChatGPT\", value: 1345000 },\n      { name: \"Github\", value: 100000 },\n      { name: \"Yandex\", value: 100000 },\n    ],\n    series: [{ name: \"name\", color: \"teal.subtle\" }],\n  })\n\n  const getPercent = (value: number) =>\n    chart.getValuePercent(\"value\", value).toFixed(2)\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Label title=\"Search Engine\" flex=\"1\">\n          <BarList.Bar />\n        </BarList.Label>\n        <BarList.Label title=\"Downloads\" minW=\"16\" titleAlignment=\"end\">\n          <BarList.Value />\n        </BarList.Label>\n        <BarList.Label title=\"%\" minW=\"16\" titleAlignment=\"end\">\n          <BarList.Value valueFormatter={(value) => `${getPercent(value)}%`} />\n        </BarList.Label>\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-list-with-tooltip",
+      "content": "\"use client\"\nexport const BarListWithTooltip = () => {\n  const chart = useChart<BarListData>({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 1200000 },\n      { name: \"Direct\", value: 100000 },\n      { name: \"Bing\", value: 200000 },\n      { name: \"Yahoo\", value: 20000 },\n      { name: \"ChatGPT\", value: 1345000 },\n      { name: \"Github\", value: 100000 },\n      { name: \"Yandex\", value: 100000 },\n    ],\n    series: [{ name: \"name\", color: \"teal.subtle\", label: \"Search Engine\" }],\n  })\n\n  return (\n    <BarList.Root chart={chart}>\n      <BarList.Content>\n        <BarList.Label title=\"Search Engine\" flex=\"1\">\n          <BarList.Bar tooltip />\n        </BarList.Label>\n        <BarList.Label title=\"Downloads\" titleAlignment=\"end\">\n          <BarList.Value />\n        </BarList.Label>\n      </BarList.Content>\n    </BarList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarList, type BarListData, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarList } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    }
+  ]
+}

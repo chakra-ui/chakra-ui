@@ -7,6 +7,7 @@ import {
 } from "@/utils/get-component-list"
 import { getRecipeTypes } from "@/utils/get-recipe-types"
 import {
+  chartComponents,
   filterEmpty,
   isEmptyObject,
   mapEntries,
@@ -72,12 +73,12 @@ async function writeStaticProps(outDir: string) {
 }
 
 export async function main() {
+  const outDir = "public/types"
   const componentDir = getComponentDir()
   const dirs = await getComponentDirectories()
   const arkProps = await getArkComponentProps()
   const recipeProps = await getRecipeProps()
 
-  const outDir = "public/types"
   ensureDirSync(outDir)
 
   for await (const dir of dirs) {
@@ -103,7 +104,11 @@ export async function main() {
 
   writeStaticProps(outDir)
 
-  const indexContent = JSON.stringify(dirs.concat("password-input"), null, 2)
+  const indexContent = JSON.stringify(
+    dirs.concat("password-input", ...chartComponents),
+    null,
+    2,
+  )
   writeFileSync(`${outDir}/index.json`, indexContent)
 }
 

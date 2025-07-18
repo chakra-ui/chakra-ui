@@ -1,0 +1,60 @@
+{
+  "name": "text",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "text-basic",
+      "content": "export const TextBasic = () => {\n  return <Text>Sphinx of black quartz, judge my vow.</Text>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "text-with-as-prop",
+      "content": "export const TextWithAsProp = () => {\n  return (\n    <Stack>\n      <Text as=\"p\">\n        Text rendered as <Code>p</Code> element.\n      </Text>\n      <Text as=\"label\">\n        Text rendered as <Code>label</Code> element.\n      </Text>\n      <Text as=\"div\">\n        Text rendered as <Code>div</Code> element.\n      </Text>\n      <Text as=\"span\">\n        Text rendered as <Code>span</Code> element.\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "text-with-line-clamp",
+      "content": "export const TextWithLineClamp = () => {\n  return (\n    <Flex maxW=\"300px\">\n      <Text lineClamp=\"2\">\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod\n        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\n        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\n        commodo consequat.\n      </Text>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "text-with-sizes",
+      "content": "export const TextWithSizes = () => {\n  return (\n    <Stack>\n      <Text textStyle=\"xs\">Chakra</Text>\n      <Text textStyle=\"sm\">Chakra</Text>\n      <Text textStyle=\"md\">Chakra</Text>\n      <Text textStyle=\"lg\">Chakra</Text>\n      <Text textStyle=\"xl\">Chakra</Text>\n      <Text textStyle=\"2xl\">Chakra</Text>\n      <Text textStyle=\"3xl\">Chakra</Text>\n      <Text textStyle=\"4xl\">Chakra</Text>\n      <Text textStyle=\"5xl\">Chakra</Text>\n      <Text textStyle=\"6xl\">Chakra</Text>\n      <Text textStyle=\"7xl\">Chakra</Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "text-with-truncate",
+      "content": "export const TextWithTruncate = () => {\n  return (\n    <Flex maxW=\"300px\">\n      <Text truncate>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n      </Text>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "text-with-weights",
+      "content": "export const TextWithWeights = () => {\n  return (\n    <Stack>\n      <Text fontWeight=\"light\">Sphinx of black quartz, judge my vow.</Text>\n      <Text fontWeight=\"normal\">Sphinx of black quartz, judge my vow.</Text>\n      <Text fontWeight=\"medium\">Sphinx of black quartz, judge my vow.</Text>\n      <Text fontWeight=\"semibold\">Sphinx of black quartz, judge my vow.</Text>\n      <Text fontWeight=\"bold\">Sphinx of black quartz, judge my vow.</Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Text } from \"@chakra-ui/react\""
+    }
+  ]
+}

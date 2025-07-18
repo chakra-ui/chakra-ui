@@ -14,13 +14,15 @@ async function main() {
   })
   const result = await Promise.all(promises)
 
-  const writePromises = result.map((json) => {
-    ensureDirSync(join(project.publicPath, "examples"))
-    return writeFile(
-      join(project.publicPath, "examples", `${json.name}.json`),
-      JSON.stringify(json, null, 2),
-    )
-  })
+  const writePromises = result
+    .filter((json) => json.examples.length > 0)
+    .map((json) => {
+      ensureDirSync(join(project.publicPath, "examples"))
+      return writeFile(
+        join(project.publicPath, "examples", `${json.name}.json`),
+        JSON.stringify(json, null, 2),
+      )
+    })
 
   const indexContent = result.flatMap((json) =>
     json.examples.map((ex) => ex.name),

@@ -103,5 +103,16 @@
   "tree-view",
   "visually-hidden",
   "wrap",
-  "password-input"
+  "password-input",
+  "area-chart",
+  "bar-chart",
+  "bar-list",
+  "bar-segment",
+  "donut-chart",
+  "line-chart",
+  "pie-chart",
+  "radar-chart",
+  "radial-chart",
+  "scatter-chart",
+  "sparkline"
 ]

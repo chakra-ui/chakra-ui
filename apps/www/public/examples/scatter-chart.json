@@ -1,0 +1,77 @@
+{
+  "name": "scatter-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "scatter-chart-basic",
+      "content": "\"use client\"\nexport const ScatterChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { temperature: 14.2, sales: 215 },\n      { temperature: 16.4, sales: 325 },\n      { temperature: 11.9, sales: 185 },\n      { temperature: 15.2, sales: 332 },\n      { temperature: 18.5, sales: 406 },\n      { temperature: 22.1, sales: 522 },\n      { temperature: 19.4, sales: 412 },\n      { temperature: 25.1, sales: 614 },\n      { temperature: 23.4, sales: 544 },\n      { temperature: 18.1, sales: 421 },\n      { temperature: 22.6, sales: 445 },\n      { temperature: 17.2, sales: 408 },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <ScatterChart>\n        <XAxis\n          type=\"number\"\n          dataKey={chart.key(\"temperature\")}\n          stroke={chart.color(\"border\")}\n          tickFormatter={(value) => `${value}°C`}\n          domain={[10, \"dataMax + 3\"]}\n        />\n        <YAxis\n          type=\"number\"\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n        />\n        {chart.series.map((series, index) => (\n          <Scatter\n            name={series.name?.toString()}\n            key={index}\n            data={chart.data}\n            fill={chart.color(series.color)}\n            isAnimationActive={false}\n          />\n        ))}\n      </ScatterChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Scatter, ScatterChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { ScatterChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "scatter-chart-connect-dots",
+      "content": "\"use client\"\nexport const ScatterChartConnectDots = () => {\n  const chart = useChart({\n    data: [\n      { x: 40, y: 200 },\n      { x: 120, y: 100 },\n      { x: 170, y: 300 },\n      { x: 140, y: 250 },\n      { x: 150, y: 400 },\n      { x: 110, y: 280 },\n    ],\n    series: [{ label: \"Group 1\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <ScatterChart margin={{ top: 20, right: 30, bottom: 5, left: 0 }}>\n        <XAxis\n          type=\"number\"\n          dataKey={chart.key(\"x\")}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          type=\"number\"\n          dataKey={chart.key(\"y\")}\n          stroke={chart.color(\"border\")}\n        />\n\n        {chart.series.map((series, index) => (\n          <Scatter\n            line={{ stroke: chart.color(\"border\"), strokeWidth: 2 }}\n            name={series.label?.toString()}\n            key={index}\n            data={chart.data}\n            fill={chart.color(series.color)}\n            isAnimationActive={false}\n          />\n        ))}\n      </ScatterChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Scatter, ScatterChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { ScatterChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "scatter-chart-legend",
+      "content": "\"use client\"\nexport const ScatterChartLegend = () => {\n  const chart = useChart({\n    data: [\n      { x: 100, y: 200 },\n      { x: 120, y: 100 },\n      { x: 170, y: 300 },\n      { x: 140, y: 250 },\n      { x: 150, y: 400 },\n      { x: 110, y: 280 },\n    ],\n    series: [{ label: \"Group 1\", color: \"blue.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <ScatterChart margin={{ top: 20, right: 30, bottom: 5, left: 0 }}>\n        <XAxis\n          type=\"number\"\n          dataKey={chart.key(\"x\")}\n          stroke={chart.color(\"border\")}\n        />\n        <Legend content={<Chart.Legend />} />\n        <YAxis\n          type=\"number\"\n          dataKey={chart.key(\"y\")}\n          stroke={chart.color(\"border\")}\n        />\n\n        {chart.series.map((series, index) => (\n          <Scatter\n            name={series.label?.toString()}\n            key={index}\n            data={chart.data}\n            fill={chart.color(series.color)}\n            isAnimationActive={false}\n          />\n        ))}\n      </ScatterChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Legend, Scatter, ScatterChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { ScatterChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "scatter-chart-multiple",
+      "content": "\"use client\"\nexport const ScatterChartMultiple = () => {\n  const chart = useChart({\n    data: [\n      { x: 100, y: 200, id: \"group1\" },\n      { x: 120, y: 100, id: \"group1\" },\n      { x: 170, y: 300, id: \"group1\" },\n      { x: 140, y: 250, id: \"group1\" },\n      { x: 150, y: 400, id: \"group1\" },\n      { x: 110, y: 280, id: \"group1\" },\n      { x: 200, y: 260, id: \"group2\" },\n      { x: 240, y: 290, id: \"group2\" },\n      { x: 190, y: 290, id: \"group2\" },\n      { x: 198, y: 250, id: \"group2\" },\n      { x: 180, y: 280, id: \"group2\" },\n      { x: 210, y: 220, id: \"group2\" },\n    ],\n    series: [\n      { label: \"Group 1\", color: \"blue.solid\" },\n      { label: \"Group 2\", color: \"green.solid\" },\n    ],\n  })\n\n  const groupedData = chart.groupBy(\"id\")\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <ScatterChart margin={{ top: 20, right: 30, bottom: 5, left: 0 }}>\n        <XAxis\n          type=\"number\"\n          dataKey={chart.key(\"x\")}\n          stroke={chart.color(\"border\")}\n          domain={[\"dataMin - 10\", \"dataMax + 10\"]}\n        />\n        <YAxis\n          type=\"number\"\n          dataKey={chart.key(\"y\")}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          cursor={{ strokeDasharray: \"3 3\" }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        {chart.series.map((series, index) => (\n          <Scatter\n            name={series.label?.toString()}\n            key={index}\n            data={groupedData[index]}\n            fill={chart.color(series.color)}\n            isAnimationActive={false}\n          />\n        ))}\n      </ScatterChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Scatter, ScatterChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { ScatterChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "scatter-chart-trend-line",
+      "content": "\"use client\"\nexport const ScatterChartTrendLine = () => {\n  const chart = useChart({\n    data: [\n      { temperature: 14.2, sales: 215 },\n      { temperature: 16.4, sales: 325 },\n      { temperature: 11.9, sales: 185 },\n      { temperature: 15.2, sales: 332 },\n      { temperature: 18.5, sales: 406 },\n      { temperature: 22.1, sales: 522 },\n      { temperature: 19.4, sales: 412 },\n      { temperature: 25.1, sales: 614 },\n      { temperature: 23.4, sales: 544 },\n      { temperature: 18.1, sales: 421 },\n      { temperature: 22.6, sales: 445 },\n      { temperature: 17.2, sales: 408 },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  const trendLine = useMemo(() => getTrendLine(chart.data), [chart.data])\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <ScatterChart margin={{ top: 20, right: 30, bottom: 5, left: 0 }}>\n        <XAxis\n          type=\"number\"\n          dataKey={chart.key(\"temperature\")}\n          stroke={chart.color(\"border\")}\n          domain={[10, \"dataMax + 3\"]}\n        />\n        <YAxis\n          type=\"number\"\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n        />\n        <Scatter\n          isAnimationActive={false}\n          line={{ stroke: chart.color(\"red.solid\") }}\n          data={trendLine}\n          stroke=\"none\"\n          strokeWidth={2}\n          shape={() => <Fragment />}\n        />\n        {chart.series.map((series, index) => (\n          <Scatter\n            name={series.label?.toString()}\n            key={index}\n            data={chart.data}\n            fill={chart.color(series.color)}\n            isAnimationActive={false}\n          />\n        ))}\n      </ScatterChart>\n    </Chart.Root>\n  )\n}\n\ninterface Item {\n  temperature: number\n  sales: number\n}\n\nfunction getTrendLine(data: Item[]): [Item, Item] {\n  // Calculate means\n  const meanX =\n    data.reduce((sum, item) => sum + item.temperature, 0) / data.length\n  const meanY = data.reduce((sum, item) => sum + item.sales, 0) / data.length\n\n  // Calculate slope using least squares method\n  const numerator = data.reduce((sum, item) => {\n    return sum + (item.temperature - meanX) * (item.sales - meanY)\n  }, 0)\n\n  const denominator = data.reduce((sum, item) => {\n    return sum + Math.pow(item.temperature - meanX, 2)\n  }, 0)\n\n  const slope = numerator / denominator\n  const intercept = meanY - slope * meanX\n\n  // Get min and max x values to draw line endpoints\n  const minX = Math.min(...data.map((item) => item.temperature))\n  const maxX = Math.max(...data.map((item) => item.temperature))\n\n  // Return two points that define the trend line\n  return [\n    { temperature: minX, sales: slope * minX + intercept },\n    { temperature: maxX, sales: slope * maxX + intercept },\n  ]\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Fragment, useMemo } from \"react\"",
+        "import { Scatter, ScatterChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { ScatterChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

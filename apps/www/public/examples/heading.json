@@ -1,0 +1,73 @@
+{
+  "name": "heading",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "heading-basic",
+      "content": "export const HeadingBasic = () => {\n  return <Heading>The quick brown fox jumps over the lazy dog</Heading>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "heading-with-as-prop",
+      "content": "export const HeadingWithAsProp = () => {\n  return (\n    <Stack>\n      <Heading as=\"h1\">Level 1</Heading>\n      <Heading as=\"h2\">Level 2</Heading>\n      <Heading as=\"h3\">Level 3</Heading>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "heading-with-composition",
+      "content": "export const HeadingWithComposition = () => {\n  return (\n    <Stack align=\"flex-start\">\n      <Heading size=\"2xl\">Modern payments for Stores</Heading>\n      <Text mb=\"3\" fontSize=\"md\" color=\"fg.muted\">\n        PayMe helps startups get paid by anyone, anywhere in the world\n      </Text>\n      <Button>\n        Create account <LuArrowRight />\n      </Button>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Heading, Stack, Text } from \"@chakra-ui/react\"",
+        "import { LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "heading-with-gradient",
+      "content": "export const HeadingWithGradient = () => {\n  return (\n    <Heading\n      bgGradient=\"to-l\"\n      gradientFrom=\"red.500\"\n      gradientTo=\"blue.500\"\n      bgClip=\"text\"\n    >\n      The quick brown fox jumps over the lazy dog\n    </Heading>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "heading-with-highlight",
+      "content": "export const HeadingWithHighlight = () => {\n  return (\n    <Stack>\n      <Heading size=\"3xl\" letterSpacing=\"tight\">\n        <Highlight query=\"with speed\" styles={{ color: \"teal.600\" }}>\n          Create accessible React apps with speed\n        </Highlight>\n      </Heading>\n      <Text fontSize=\"md\" color=\"fg.muted\">\n        Chakra UI is a simple, modular and accessible component library that\n        gives you the building blocks you need.\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Highlight, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "heading-with-sizes",
+      "content": "export const HeadingWithSizes = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <Heading size=\"sm\">Heading (sm)</Heading>\n      <Heading size=\"md\">Heading (md)</Heading>\n      <Heading size=\"lg\">Heading (lg)</Heading>\n      <Heading size=\"xl\">Heading (xl)</Heading>\n      <Heading size=\"2xl\">Heading (2xl)</Heading>\n      <Heading size=\"3xl\">Heading (3xl)</Heading>\n      <Heading size=\"4xl\">Heading (4xl)</Heading>\n      <Heading size=\"5xl\">Heading (5xl)</Heading>\n      <Heading size=\"6xl\">Heading (6xl)</Heading>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "heading-with-weights",
+      "content": "export const HeadingWithWeights = () => {\n  return (\n    <Stack>\n      <Heading fontWeight=\"normal\">Normal</Heading>\n      <Heading fontWeight=\"medium\">Medium</Heading>\n      <Heading fontWeight=\"semibold\">Semibold</Heading>\n      <Heading fontWeight=\"bold\">Bold</Heading>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Heading } from \"@chakra-ui/react\""
+    }
+  ]
+}

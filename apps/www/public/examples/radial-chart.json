@@ -1,0 +1,48 @@
+{
+  "name": "radial-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "radial-chart-basic",
+      "content": "\"use client\"\nexport const RadialChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { value: 165, month: \"January\", color: \"teal.solid\" },\n      { value: 190, month: \"February\", color: \"purple.solid\" },\n      { value: 195, month: \"March\", color: \"blue.solid\" },\n      { value: 182, month: \"May\", color: \"teal.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadialBarChart data={chart.data} barSize={20}>\n        <Tooltip cursor={false} content={<Chart.Tooltip nameKey=\"month\" />} />\n        <RadialBar\n          isAnimationActive={false}\n          dataKey={chart.key(\"value\")}\n          background\n          startAngle={90}\n          endAngle={-270}\n        >\n          {chart.data.map(({ color }) => (\n            <Cell key={color} fill={chart.color(color)} stroke=\"none\" />\n          ))}\n        </RadialBar>\n      </RadialBarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, RadialBar, RadialBarChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { RadialChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radial-chart-with-label",
+      "content": "\"use client\"\nexport const RadialChartWithLabel = () => {\n  const chart = useChart({\n    data: [\n      { value: 165, month: \"January\", color: \"teal.solid\" },\n      { value: 190, month: \"February\", color: \"purple.solid\" },\n      { value: 195, month: \"March\", color: \"blue.solid\" },\n      { value: 182, month: \"May\", color: \"teal.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadialBarChart data={chart.data} innerRadius={30} outerRadius={100}>\n        <RadialBar\n          isAnimationActive={false}\n          dataKey={chart.key(\"value\")}\n          background\n          startAngle={90}\n          endAngle={-270}\n          label={{\n            position: \"insideStart\",\n            fill: \"white\",\n            fontSize: \"12px\",\n          }}\n        >\n          {chart.data.map(({ color }) => (\n            <Cell key={color} fill={chart.color(color)} stroke=\"none\" />\n          ))}\n        </RadialBar>\n      </RadialBarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, RadialBar, RadialBarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadialChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radial-chart-with-legend",
+      "content": "\"use client\"\nexport const RadialChartWithLegend = () => {\n  const chart = useChart({\n    data: [\n      { value: 165, month: \"January\", color: \"teal.solid\" },\n      { value: 190, month: \"February\", color: \"purple.solid\" },\n      { value: 195, month: \"March\", color: \"blue.solid\" },\n      { value: 182, month: \"May\", color: \"teal.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadialBarChart data={chart.data} barSize={20}>\n        <Tooltip cursor={false} content={<Chart.Tooltip nameKey=\"month\" />} />\n        <Legend content={<Chart.Legend nameKey=\"month\" />} />\n        <RadialBar\n          isAnimationActive={false}\n          dataKey={chart.key(\"value\")}\n          background\n          startAngle={90}\n          endAngle={-270}\n        >\n          {chart.data.map(({ color }) => (\n            <Cell key={color} fill={chart.color(color)} stroke=\"none\" />\n          ))}\n        </RadialBar>\n      </RadialBarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Legend, RadialBar, RadialBarChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { RadialChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}
