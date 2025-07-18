@@ -2,7 +2,7 @@ import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 import { capitalize, unionType } from "./shared.js"
 
-export async function generateTokens(sys: SystemContext) {
+export function generateTokensResult(sys: SystemContext) {
   const { allTokens, tokenMap, colorPaletteMap, categoryMap } = sys.tokens
 
   const isTokenEmpty = allTokens.length === 0
@@ -37,5 +37,9 @@ export async function generateTokens(sys: SystemContext) {
 
   set.add(Array.from(result).join("\n"))
 
-  return pretty(Array.from(set).join("\n\n"))
+  return Array.from(set).join("\n\n")
+}
+
+export async function generateTokens(sys: SystemContext) {
+  return pretty(generateTokensResult(sys))
 }
