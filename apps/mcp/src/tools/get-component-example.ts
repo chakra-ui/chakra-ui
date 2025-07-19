@@ -1,18 +1,28 @@
 import { z } from "zod"
-import { componentList } from "../components.js"
 import type { Tool } from "../lib/types.js"
 
-export const getComponentExampleTool: Tool = {
+export const getComponentExampleTool: Tool<{ componentList: string[] }> = {
   name: "get_component_example",
   description:
     "Retrieve comprehensive example code and usage patterns for a specific Chakra UI component. This tool provides practical implementation examples including basic usage, advanced configurations, and common use cases with complete code snippets.",
-  exec(server, { name, description }) {
+  async ctx() {
+    const componentsData = await fetch("https://chakra-ui.com/types/index.json")
+
+    if (!componentsData.ok) {
+      throw new Error("Failed to fetch components")
+    }
+
+    const componentList = (await componentsData.json()) as string[]
+
+    return { componentList }
+  },
+  exec(server, { ctx, name, description }) {
     server.tool(
       name,
       description,
       {
         component: z
-          .enum(componentList as [string, ...string[]])
+          .enum(ctx.componentList as [string, ...string[]])
           .describe(
             "The name of the Chakra UI component to get example code for",
           ),
