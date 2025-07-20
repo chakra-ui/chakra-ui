@@ -9,20 +9,28 @@ import { getTextStylesTool } from "./get-text-styles.js"
 import { listBlocksTool } from "./list-blocks.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
-const tools: Tool[] = [
+const baseTool: Tool[] = [
   getComponentsTool,
   getComponentPropsTool,
   getComponentExampleTool,
   getSemanticTokensTool,
   getTextStylesTool,
-  listBlocksTool,
-  getComponentTemplatesTool,
   v2ToV3MigrationTool,
 ]
 
+const proTools: Tool[] = [listBlocksTool, getComponentTemplatesTool]
+
+const getAvailableTools = (): Tool[] => {
+  const hasProApiKey = !!process.env.CHAKRA_PRO_API_KEY
+  return hasProApiKey ? [...baseTool, ...proTools] : baseTool
+}
+
+export const tools = getAvailableTools()
+
 export const initializeTools = async (server: McpServer) => {
+  const availableTools = getAvailableTools()
   await Promise.all(
-    tools.map(async (tool) => {
+    availableTools.map(async (tool) => {
       const toolCtx = await tool.ctx?.()
       tool.exec(server, {
         name: tool.name,
@@ -32,5 +40,3 @@ export const initializeTools = async (server: McpServer) => {
     }),
   )
 }
-
-export { tools }
