@@ -1,13 +1,5 @@
-import { defaultSystem } from "@chakra-ui/react/preset"
+import { getSemanticTokens } from "../lib/system.js"
 import type { Tool } from "../lib/types.js"
-
-const getSemanticTokens = () => {
-  return Array.from(
-    defaultSystem.tokens.categoryMap.get("colors")!.entries() as [string, any],
-  )
-    .filter(([, value]) => !!value.extensions.conditions)
-    .map(([key]) => key)
-}
 
 export const getSemanticTokensTool: Tool = {
   name: "get_semantic_tokens",

@@ -1,5 +1,5 @@
-import { defaultSystem } from "@chakra-ui/react/preset"
 import { z } from "zod"
+import { tokenCategories } from "../lib/system.js"
 import type { Tool } from "../lib/types.js"
 
 interface CustomizationScenario {
@@ -117,6 +117,40 @@ const CUSTOMIZATION_SCENARIOS: Record<string, CustomizationScenario> = {
     })
     `,
   },
+  layerStyles: {
+    description: `
+    const config = defineConfig({
+      theme: {
+        layerStyles: {
+          CUSTOM: {
+            value: {
+              bg: "gray.200",
+              borderRadius: "md",
+              padding: "4",
+            },
+          },
+        },
+      },
+    })
+    `,
+  },
+  textStyles: {
+    description: `
+    const config = defineConfig({
+      theme: {
+        textStyles: {
+          CUSTOM: {
+            value: {
+              fontSize: "16px",
+              fontWeight: "bold",
+              lineHeight: "1.5",
+            },
+          },
+        },
+      },
+    })
+    `,
+  },
 }
 
 const generateTemplate = (content: string) => {
@@ -143,13 +177,14 @@ const fallbackTemplate = (category: string) => {
     `)
 }
 
-const tokenCategories = [
-  ...Array.from(defaultSystem.tokens.categoryMap.keys()),
-  "textStyles",
-  "layerStyles",
-  "conditions",
-  "globalCss",
-]
+const themeCustomizationCategory = Array.from(
+  new Set([
+    ...tokenCategories,
+    ...Object.keys(CUSTOMIZATION_SCENARIOS),
+    "conditions",
+    "globalCss",
+  ]),
+)
 
 export const themeCustomizationTool: Tool = {
   name: "theme_customization",
@@ -161,7 +196,7 @@ export const themeCustomizationTool: Tool = {
       description,
       {
         category: z
-          .enum(tokenCategories as [string, ...string[]])
+          .enum(themeCustomizationCategory as [string, ...string[]])
           .describe("The category of the token to customize"),
       },
       async ({ category }) => {
@@ -211,7 +246,7 @@ export const themeCustomizationTool: Tool = {
                     })
                   `,
                 }
-              : ({} as any),
+              : { type: "text", text: "" },
             {
               type: "text",
               text: `

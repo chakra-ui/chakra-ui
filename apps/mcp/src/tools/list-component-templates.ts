@@ -1,9 +1,9 @@
 import type { Tool } from "../lib/types.js"
 
-export const listBlocksTool: Tool = {
-  name: "list_blocks",
+export const listComponentTemplatesTool: Tool = {
+  name: "list_component_templates",
   description:
-    "List all available blocks in the Chakra UI pro. This tool retrieves the names of all available blocks in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
+    "List all available component templates in the Chakra UI pro. This tool retrieves the names of all available component templates in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
   exec(server, { name, description }) {
     server.tool(name, description, {}, async () => {
       const res = await fetch("https://pro.chakra-ui.com/api/blocks")

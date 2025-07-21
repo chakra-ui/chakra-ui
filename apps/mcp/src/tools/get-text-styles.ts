@@ -1,24 +1,5 @@
-import { defaultSystem } from "@chakra-ui/react/preset"
+import { getTextStyles } from "../lib/system.js"
 import type { Tool } from "../lib/types.js"
-import { walkObject } from "../lib/walk-object.js"
-
-const getTextStyles = () => {
-  const textStyles = defaultSystem._config.theme?.textStyles ?? {}
-  const keys = new Set<string>([])
-  walkObject(
-    textStyles,
-    (value, path) => {
-      keys.add(path.join("."))
-      return value
-    },
-    {
-      stop(value) {
-        return typeof value === "object" && "value" in value
-      },
-    },
-  )
-  return Array.from(keys)
-}
 
 export const getTextStylesTool: Tool = {
   name: "get_text_styles",
@@ -27,7 +8,6 @@ export const getTextStylesTool: Tool = {
   exec(server, { name, description }) {
     server.tool(name, description, async () => {
       const styles = getTextStyles()
-
       return {
         content: [
           {

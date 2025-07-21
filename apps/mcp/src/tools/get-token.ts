@@ -1,16 +1,6 @@
-import { defaultSystem } from "@chakra-ui/react/preset"
 import { z } from "zod"
+import { getCategoryTokens, tokenCategories } from "../lib/system.js"
 import { Tool } from "../lib/types.js"
-
-const tokenCategories = Array.from(defaultSystem.tokens.categoryMap.keys())
-
-const getCategoryTokens = (category: string) => {
-  return Array.from(
-    defaultSystem.tokens.categoryMap.get(category)!.entries() as [string, any],
-  )
-    .filter(([, value]) => !value.extensions.conditions)
-    .map(([key]) => key)
-}
 
 export const getTokenTool: Tool = {
   name: "get_token",
@@ -27,7 +17,6 @@ export const getTokenTool: Tool = {
       },
       async ({ category }) => {
         const tokens = getCategoryTokens(category)
-
         return {
           content: [
             {
