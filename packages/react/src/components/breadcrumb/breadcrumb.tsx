@@ -100,7 +100,7 @@ export interface BreadcrumbEllipsisProps extends HTMLChakraProps<"span"> {}
 export const BreadcrumbEllipsis = withContext<
   HTMLElement,
   BreadcrumbEllipsisProps
->("span", "ellipsis", {
+>("li", "ellipsis", {
   defaultProps: {
     role: "presentation",
     "aria-hidden": true,
