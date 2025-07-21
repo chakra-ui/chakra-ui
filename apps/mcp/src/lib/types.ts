@@ -9,3 +9,17 @@ export interface Tool<T = unknown> {
     opts: { ctx: T; name: string; description: string },
   ): Promise<void> | void
 }
+
+export const CHART_COMPONENTS = [
+  "area-chart",
+  "bar-chart",
+  "bar-list",
+  "bar-segment",
+  "donut-chart",
+  "line-chart",
+  "pie-chart",
+  "radar-chart",
+  "radial-chart",
+  "scatter-chart",
+  "sparkline",
+]

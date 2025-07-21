@@ -1,5 +1,5 @@
 import { z } from "zod"
-import type { Tool } from "../lib/types.js"
+import { CHART_COMPONENTS, type Tool } from "../lib/types.js"
 
 export const getComponentPropsTool: Tool<{ componentList: string[] }> = {
   name: "get_component_props",
@@ -14,7 +14,11 @@ export const getComponentPropsTool: Tool<{ componentList: string[] }> = {
 
     const componentList = (await componentsData.json()) as string[]
 
-    return { componentList }
+    const filteredComponents = componentList.filter(
+      (c) => !CHART_COMPONENTS.includes(c),
+    )
+
+    return { componentList: filteredComponents }
   },
   exec(server, { ctx, name, description }) {
     server.tool(
