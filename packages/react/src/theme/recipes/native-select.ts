@@ -20,6 +20,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       appearance: "none",
       borderRadius: "l2",
       "--error-color": "colors.border.error",
+      "--input-height": "var(--select-field-height)",
+      height: "var(--select-field-height)",
       _disabled: {
         layerStyle: "disabled",
       },
@@ -75,11 +77,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
 
     size: {
       xs: {
+        root: {
+          "--select-field-height": "sizes.8",
+        },
         field: {
           textStyle: "xs",
           ps: "2",
           pe: "6",
-          height: "6",
         },
         indicator: {
           textStyle: "sm",
@@ -87,11 +91,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
         },
       },
       sm: {
+        root: {
+          "--select-field-height": "sizes.9",
+        },
         field: {
           textStyle: "sm",
           ps: "2.5",
           pe: "8",
-          height: "8",
         },
         indicator: {
           textStyle: "md",
@@ -99,11 +105,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
         },
       },
       md: {
+        root: {
+          "--select-field-height": "sizes.10",
+        },
         field: {
           textStyle: "sm",
           ps: "3",
           pe: "8",
-          height: "10",
         },
         indicator: {
           textStyle: "lg",
@@ -111,11 +119,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
         },
       },
       lg: {
+        root: {
+          "--select-field-height": "sizes.11",
+        },
         field: {
           textStyle: "md",
           ps: "4",
           pe: "8",
-          height: "11",
         },
         indicator: {
           textStyle: "xl",
@@ -123,11 +133,13 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
         },
       },
       xl: {
+        root: {
+          "--select-field-height": "sizes.12",
+        },
         field: {
           textStyle: "md",
           ps: "4.5",
           pe: "10",
-          height: "12",
         },
         indicator: {
           textStyle: "xl",

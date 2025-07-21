@@ -15,17 +15,17 @@
   },
   "devDependencies": {
     "@chakra-ui/panda-preset": "workspace:*",
-    "@eslint/js": "^9.17.0",
-    "@pandacss/dev": "^0.51.1",
-    "@types/react": "^19.1.1",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "globals": "^15.14.0",
+    "@eslint/js": "^9.29.0",
+    "@pandacss/dev": "^0.54.0",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.29.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.2.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.18.2",
-    "vite": "^6.2.6"
+    "typescript-eslint": "^8.35.0",
+    "vite": "^7.0.0"
   }
 }

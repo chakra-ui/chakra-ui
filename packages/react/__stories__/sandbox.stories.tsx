@@ -1,5 +1,5 @@
 import { keyframes } from "@emotion/react"
-import type { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react-vite"
 import { useState } from "react"
 import { Badge, Box, Button, Center, For, Link, Stack, Text } from "../src"
 

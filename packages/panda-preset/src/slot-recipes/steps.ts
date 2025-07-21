@@ -56,6 +56,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
     item: {
       position: "relative",
       display: "flex",
+      gap: "3",
       flex: "1 0 0",
       "&:last-of-type": {
         flex: "initial",

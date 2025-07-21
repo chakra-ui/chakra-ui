@@ -20,7 +20,7 @@
     "strict": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {

@@ -2,7 +2,7 @@ import { existsSync } from "node:fs"
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { join } from "node:path/posix"
-import prettier from "prettier"
+import { format } from "prettier"
 import ts from "typescript"
 import { defaultSystem } from "../src"
 import { extractRecipeProps } from "./extract-recipe-props"
@@ -241,7 +241,7 @@ const main = async () => {
 
       const outPath = join("..", "props-docs", "generated", `${dir}.json`)
 
-      const formatted = await prettier.format(JSON.stringify(propMap), {
+      const formatted = await format(JSON.stringify(propMap), {
         parser: "json",
       })
 

@@ -1,0 +1,37 @@
+{
+  "Float": {
+    "props": {
+      "offsetX": {
+        "type": "SystemStyleObject[\"left\"] | undefined",
+        "isRequired": false,
+        "description": "The x offset of the indicator"
+      },
+      "offsetY": {
+        "type": "SystemStyleObject[\"top\"] | undefined",
+        "isRequired": false,
+        "description": "The y offset of the indicator"
+      },
+      "offset": {
+        "type": "SystemStyleObject[\"top\"] | undefined",
+        "isRequired": false,
+        "description": "The x and y offset of the indicator"
+      },
+      "placement": {
+        "type": "| ConditionalValue<\n        | \"bottom-end\"\n        | \"bottom-start\"\n        | \"top-end\"\n        | \"top-start\"\n        | \"bottom-center\"\n        | \"top-center\"\n        | \"middle-center\"\n        | \"middle-end\"\n        | \"middle-start\"\n      >\n    | undefined",
+        "defaultValue": "top-end",
+        "isRequired": false,
+        "description": "The placement of the indicator"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

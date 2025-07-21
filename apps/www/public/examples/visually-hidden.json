@@ -1,0 +1,28 @@
+{
+  "name": "visually-hidden",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "visually-hidden-basic",
+      "content": "export const VisuallyHiddenBasic = () => {\n  return (\n    <Button>\n      <LuBell /> 3 <VisuallyHidden>Notifications</VisuallyHidden>\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, VisuallyHidden } from \"@chakra-ui/react\"",
+        "import { LuBell } from \"react-icons/lu\""
+      ],
+      "importPath": "import { VisuallyHidden } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "visually-hidden-with-input",
+      "content": "export const VisuallyHiddenWithInput = () => {\n  return (\n    <HStack>\n      The input is hidden\n      <VisuallyHidden asChild>\n        <input type=\"text\" placeholder=\"Search...\" />\n      </VisuallyHidden>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, VisuallyHidden } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { VisuallyHidden } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "eslint.config.mjs"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "strict": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
     "paths": {
       "compositions/*": ["./src/*"]
     }

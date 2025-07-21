@@ -1,0 +1,46 @@
+{
+  "Bleed": {
+    "props": {
+      "inline": {
+        "type": "SystemStyleObject[\"marginInline\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the x-axis"
+      },
+      "block": {
+        "type": "SystemStyleObject[\"marginBlock\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the y-axis"
+      },
+      "inlineStart": {
+        "type": "SystemStyleObject[\"marginInlineStart\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the inline-start axis"
+      },
+      "inlineEnd": {
+        "type": "SystemStyleObject[\"marginInlineEnd\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the inline-end axis"
+      },
+      "blockStart": {
+        "type": "SystemStyleObject[\"marginBlockStart\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the block-start axis"
+      },
+      "blockEnd": {
+        "type": "SystemStyleObject[\"marginBlockEnd\"] | undefined",
+        "isRequired": false,
+        "description": "The negative margin on the block-end axis"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

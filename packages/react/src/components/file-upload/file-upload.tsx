@@ -12,9 +12,9 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { Span } from "../box"
 import { For } from "../for"
 import { CloseIcon, FileIcon } from "../icons"
+import { Span } from "../span"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -207,9 +207,9 @@ export const FileUploadTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemsBaseProps {
-  showSize?: boolean
-  clearable?: boolean
-  files?: File[]
+  showSize?: boolean | undefined
+  clearable?: boolean | undefined
+  files?: File[] | undefined
 }
 
 export interface FileUploadItemsProps
@@ -262,7 +262,7 @@ export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadFileTextProps extends HTMLChakraProps<"span"> {
-  fallback?: string
+  fallback?: string | undefined
 }
 
 export const FileUploadFileText = forwardRef<

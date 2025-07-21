@@ -1,0 +1,66 @@
+{
+  "name": "bar-segment",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "bar-segment-basic",
+      "content": "\"use client\"\nexport const BarSegmentBasic = () => {\n  const chart = useChart({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 500000, color: \"teal.solid\" },\n      { name: \"Direct\", value: 100000, color: \"blue.solid\" },\n      { name: \"Bing\", value: 200000, color: \"orange.solid\" },\n      { name: \"Yandex\", value: 100000, color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <BarSegment.Root chart={chart}>\n      <BarSegment.Content>\n        <BarSegment.Value />\n        <BarSegment.Bar />\n        <BarSegment.Label />\n      </BarSegment.Content>\n    </BarSegment.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarSegment, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarSegment } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-segment-with-bar-size",
+      "content": "\"use client\"\nexport const BarSegmentWithBarSize = () => {\n  const chart = useChart({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Ruby\", value: 450000, color: \"green.solid\" },\n      { name: \"CSS\", value: 150000, color: \"yellow.solid\" },\n      { name: \"JavaScript\", value: 300000, color: \"orange.solid\" },\n      { name: \"HTML\", value: 175000, color: \"purple.solid\" },\n      { name: \"React\", value: 225000, color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <BarSegment.Root chart={chart} barSize=\"3\">\n      <BarSegment.Content>\n        <BarSegment.Bar gap=\"0.5\" />\n      </BarSegment.Content>\n      <BarSegment.Legend gap=\"2\" textStyle=\"xs\" showPercent />\n    </BarSegment.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarSegment, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarSegment } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-segment-with-legend",
+      "content": "\"use client\"\nexport const BarSegmentWithLegend = () => {\n  const chart = useChart({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 500000, color: \"teal.solid\" },\n      { name: \"Direct\", value: 100000, color: \"blue.solid\" },\n      { name: \"Bing\", value: 200000, color: \"orange.solid\" },\n      { name: \"Yandex\", value: 100000, color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <BarSegment.Root chart={chart}>\n      <BarSegment.Content>\n        <BarSegment.Value />\n        <BarSegment.Bar />\n      </BarSegment.Content>\n      <BarSegment.Legend showPercent />\n    </BarSegment.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarSegment, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarSegment } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-segment-with-reference",
+      "content": "\"use client\"\nexport const BarSegmentWithReference = () => {\n  const chart = useChart({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 500000, color: \"teal.solid\" },\n      { name: \"Direct\", value: 100000, color: \"blue.solid\" },\n      { name: \"Bing\", value: 200000, color: \"orange.solid\" },\n      { name: \"Yandex\", value: 80000, color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <BarSegment.Root chart={chart}>\n      <BarSegment.Content>\n        <BarSegment.Value />\n        <BarSegment.Bar>\n          <BarSegment.Reference label=\"Target\" value={200000} />\n        </BarSegment.Bar>\n        <BarSegment.Label />\n      </BarSegment.Content>\n    </BarSegment.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarSegment, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarSegment } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    },
+    {
+      "name": "bar-segment-with-tooltip",
+      "content": "\"use client\"\nexport const BarSegmentWithTooltip = () => {\n  const chart = useChart({\n    sort: { by: \"value\", direction: \"desc\" },\n    data: [\n      { name: \"Google\", value: 500000, color: \"teal.solid\" },\n      { name: \"Direct\", value: 100000, color: \"blue.solid\" },\n      { name: \"Bing\", value: 200000, color: \"orange.solid\" },\n      { name: \"Yandex\", value: 100000, color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <BarSegment.Root chart={chart}>\n      <BarSegment.Content>\n        <BarSegment.Bar tooltip />\n      </BarSegment.Content>\n      <BarSegment.Legend showPercent />\n    </BarSegment.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { BarSegment, useChart } from \"@chakra-ui/charts\""
+      ],
+      "importPath": "import { BarSegment } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts"
+      ]
+    }
+  ]
+}

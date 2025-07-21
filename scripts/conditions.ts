@@ -28,8 +28,8 @@ async function clean(options: { sourcePath: string; backupPath: string }) {
   let changed = false
 
   for (const key in packageJson.exports) {
-    if (packageJson.exports[key]["source"]) {
-      delete packageJson.exports[key]["source"]
+    if (packageJson.exports[key]["dev"]) {
+      delete packageJson.exports[key]["dev"]
       changed = true
     }
   }

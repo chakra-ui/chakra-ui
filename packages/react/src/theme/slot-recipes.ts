@@ -9,6 +9,7 @@ import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { collapsibleSlotRecipe } from "./recipes/collapsible"
 import { colorPickerSlotRecipe } from "./recipes/color-picker"
+import { comboboxSlotRecipe } from "./recipes/combobox"
 import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
@@ -43,6 +44,7 @@ import { tagSlotRecipe } from "./recipes/tag"
 import { timelineSlotRecipe } from "./recipes/timeline"
 import { toastSlotRecipe } from "./recipes/toast"
 import { tooltipSlotRecipe } from "./recipes/tooltip"
+import { treeViewSlotRecipe } from "./recipes/tree-view"
 
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
@@ -77,6 +79,7 @@ export const slotRecipes = {
   ratingGroup: ratingGroupSlotRecipe,
   segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
+  combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
@@ -90,4 +93,5 @@ export const slotRecipes = {
   timeline: timelineSlotRecipe,
   colorPicker: colorPickerSlotRecipe,
   qrCode: qrCodeSlotRecipe,
+  treeView: treeViewSlotRecipe,
 }

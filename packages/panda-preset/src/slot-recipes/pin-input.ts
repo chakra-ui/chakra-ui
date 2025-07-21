@@ -35,49 +35,49 @@ export const pinInputSlotRecipe = defineSlotRecipe({
       "2xs": {
         input: {
           textStyle: "xs",
-          px: "2",
+          px: "1",
           "--input-height": "sizes.7",
         },
       },
       xs: {
         input: {
           textStyle: "xs",
-          px: "2",
+          px: "1",
           "--input-height": "sizes.8",
         },
       },
       sm: {
         input: {
           textStyle: "sm",
-          px: "2.5",
+          px: "1",
           "--input-height": "sizes.9",
         },
       },
       md: {
         input: {
           textStyle: "sm",
-          px: "3",
+          px: "1",
           "--input-height": "sizes.10",
         },
       },
       lg: {
         input: {
           textStyle: "md",
-          px: "4",
+          px: "1",
           "--input-height": "sizes.11",
         },
       },
       xl: {
         input: {
           textStyle: "md",
-          px: "4.5",
+          px: "1",
           "--input-height": "sizes.12",
         },
       },
       "2xl": {
         input: {
           textStyle: "lg",
-          px: "5",
+          px: "1",
           "--input-height": "sizes.16",
         },
       },
@@ -89,6 +89,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
         },
       },
       subtle: {
@@ -97,6 +98,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           borderColor: "transparent",
           bg: "bg.muted",
           focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
         },
       },
       flushed: {
@@ -109,6 +111,10 @@ export const pinInputSlotRecipe = defineSlotRecipe({
           _focusVisible: {
             borderColor: "var(--focus-color)",
             boxShadow: "0px 1px 0px 0px var(--focus-color)",
+            _invalid: {
+              borderColor: "var(--error-color)",
+              boxShadow: "0px 1px 0px 0px var(--error-color)",
+            },
           },
         },
       },

@@ -89,6 +89,7 @@ export const BreadcrumbSeparator = withContext<
   BreadcrumbSeparatorProps
 >("li", "separator", {
   defaultProps: {
+    "aria-hidden": true,
     children: <ChevronRightIcon />,
   },
 })

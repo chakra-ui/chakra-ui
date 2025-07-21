@@ -7,6 +7,7 @@ import { cx } from "../utils"
 import { EMPTY_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
+import type { SystemRecipeFn } from "./recipe.types"
 import { type RecipeKey, type UseRecipeOptions, useRecipe } from "./use-recipe"
 
 const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -32,7 +33,7 @@ export function createRecipeContext<K extends RecipeKey>(
     const recipe = useRecipe({
       key: recipeKey,
       recipe: restProps.recipe || recipeConfig,
-    })
+    }) as SystemRecipeFn<{}, {}>
 
     // @ts-ignore
     const [variantProps, otherProps] = useMemo(

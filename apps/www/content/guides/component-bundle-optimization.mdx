@@ -1,0 +1,117 @@
+---
+title: Bundle Optimization
+description: To optimize the bundle size of a Chakra UI application...
+publishedAt: "2025-06-17"
+collection: components
+---
+
+Optimizing bundle size is crucial for performance in production applications.
+Chakra UI provides several strategies to help you reduce your bundle size by
+importing only the components and styles you need.
+
+## Focus Areas
+
+There are two key sources of large bundle sizes in Chakra UI applications:
+
+- **Bundler tree shaking errors**: This is when the underlying bundler cannot
+  remove unused code from the bundle.
+
+- **Large theme object**: The recipes for every component in Chakra UI are
+  imported by default which can be a large bundle size.
+
+By importing only the components and recipes you need, you can significantly
+reduce the bundle size of your application.
+
+## Modular Component Imports
+
+Instead of importing all Chakra UI components from the main package, you can
+import only the specific components you need. This approach ensures that unused
+components are not included in your final bundle.
+
+**Before (import from main package)**
+
+```tsx
+// ❌ This imports the entire Chakra UI library
+import { Button, Input, Modal } from "@chakra-ui/react"
+```
+
+**After (modular imports)**
+
+```tsx
+// ✅ Import only the components you need
+import { Button } from "@chakra-ui/react/button"
+import { Input } from "@chakra-ui/react/input"
+import { Modal } from "@chakra-ui/react/modal"
+```
+
+## Modular Recipe Imports
+
+Instead of using the default theme in Chakra UI via `defaultSystem`, consider
+creating your own slice of the theme that imports only the recipes you need.
+This can significantly reduce the JS payload in your application.
+
+**Before (all recipes are imported)**
+
+```tsx
+// ❌ This imports all recipes and their variants
+import { defaultSystem } from "@chakra-ui/react"
+```
+
+**After (modular recipe imports)**
+
+```tsx
+// ✅ Import only the recipes you need
+import { createSystem, defaultBaseConfig } from "@chakra-ui/react"
+import { buttonRecipe, inputRecipe } from "@chakra-ui/react/theme"
+
+const system = createSystem(defaultBaseConfig, {
+  theme: {
+    recipes: {
+      button: buttonRecipe,
+      input: inputRecipe,
+    },
+  },
+})
+```
+
+> Alternatively, you can consider
+> [ejecting the theme](/docs/get-started/cli#chakra-eject) using the CLI. This
+> gives you full control over the theme tokens and recipes.
+
+## Dynamic Component Imports
+
+If you notice that a component is not immediately needed (like modals or complex
+forms), consider dynamic imports:
+
+```tsx
+import { Suspense, lazy } from "react"
+
+const Modal = lazy(() =>
+  import("@chakra-ui/react/modal").then((mod) => ({
+    default: mod.Modal,
+  })),
+)
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Modal.Root>...</Modal.Root>
+    </Suspense>
+  )
+}
+```
+
+## Conclusion
+
+With these optimizations, be sure to measure the impact of your optimizations
+rather than just blindly applying them.
+
+1. **Before optimization**: Run `npm run build` and note the bundle size
+2. **Apply optimizations**: Implement modular imports
+3. **After optimization**: Run `npm run build` again and compare
+
+<br />
+
+By implementing both modular component imports and modular recipe imports, you
+can significantly improve your application's performance while maintaining all
+the benefits of Chakra UI's design system.

@@ -1,0 +1,57 @@
+{
+  "name": "hover-card",
+  "file": "compositions/ui/hover-card",
+  "snippet": "import { HoverCard, Portal } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface HoverCardContentProps extends HoverCard.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n}\n\nexport const HoverCardContent = React.forwardRef<\n  HTMLDivElement,\n  HoverCardContentProps\n>(function HoverCardContent(props, ref) {\n  const { portalled = true, portalRef, ...rest } = props\n\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      <HoverCard.Positioner>\n        <HoverCard.Content ref={ref} {...rest} />\n      </HoverCard.Positioner>\n    </Portal>\n  )\n})\n\nexport const HoverCardArrow = React.forwardRef<\n  HTMLDivElement,\n  HoverCard.ArrowProps\n>(function HoverCardArrow(props, ref) {\n  return (\n    <HoverCard.Arrow ref={ref} {...props}>\n      <HoverCard.ArrowTip />\n    </HoverCard.Arrow>\n  )\n})\n\nexport const HoverCardRoot = HoverCard.Root\nexport const HoverCardTrigger = HoverCard.Trigger\n",
+  "examples": [
+    {
+      "name": "hover-card-basic",
+      "content": "export const HoverCardBasic = () => {\n  return (\n    <HoverCard.Root size=\"sm\">\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content>\n            <HoverCard.Arrow />\n            <Stack gap=\"4\" direction=\"row\">\n              <Avatar.Root>\n                <Avatar.Image src=\"https://pbs.twimg.com/profile_images/1244925541448286208/rzylUjaf_400x400.jpg\" />\n                <Avatar.Fallback name=\"Chakra UI\" />\n              </Avatar.Root>\n              <Stack gap=\"3\">\n                <Stack gap=\"1\">\n                  <Text textStyle=\"sm\" fontWeight=\"semibold\">\n                    Chakra UI\n                  </Text>\n                  <Text textStyle=\"sm\" color=\"fg.muted\">\n                    The most powerful toolkit for building modern web\n                    applications.\n                  </Text>\n                </Stack>\n                <HStack color=\"fg.subtle\">\n                  <Icon size=\"sm\">\n                    <LuChartLine />\n                  </Icon>\n                  <Text textStyle=\"xs\">2.5M Downloads</Text>\n                </HStack>\n              </Stack>\n            </Stack>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Avatar,\n  HStack,\n  HoverCard,\n  Icon,\n  Link,\n  Portal,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuChartLine } from \"react-icons/lu\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "hover-card-controlled",
+      "content": "\"use client\"\nexport const HoverCardControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <HoverCard.Root size=\"sm\" open={open} onOpenChange={(e) => setOpen(e.open)}>\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content maxWidth=\"240px\">\n            <HoverCard.Arrow />\n            <Box>\n              <Strong>Chakra</Strong> is a Sanskrit word that means disk or\n              wheel, referring to energy centers in the body\n            </Box>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, HoverCard, Link, Portal, Strong } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "hover-card-in-dialog",
+      "content": "\"use client\"\nexport const HoverCardInDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n            <Dialog.Header>\n              <Dialog.Title>Select in Dialog</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <DialogHoverCard />\n            </Dialog.Body>\n            <Dialog.Footer />\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst DialogHoverCard = () => {\n  return (\n    <HoverCard.Root size=\"sm\">\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <HoverCard.Positioner>\n        <HoverCard.Content>\n          <HoverCard.Arrow />\n          <Stack gap=\"1\">\n            <Text textStyle=\"sm\" fontWeight=\"semibold\">\n              Chakra UI\n            </Text>\n            <Text textStyle=\"sm\" color=\"fg.muted\">\n              The most powerful toolkit for building modern web applications.\n            </Text>\n          </Stack>\n        </HoverCard.Content>\n      </HoverCard.Positioner>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  HoverCard,\n  Link,\n  Portal,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "hover-card-with-delay",
+      "content": "export const HoverCardWithDelay = () => {\n  return (\n    <HoverCard.Root size=\"sm\" openDelay={1000} closeDelay={100}>\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content maxWidth=\"240px\">\n            <HoverCard.Arrow />\n            <Box>\n              <Strong>Chakra</Strong> is a Sanskrit word that means disk or\n              wheel, referring to energy centers in the body\n            </Box>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, HoverCard, Link, Portal, Strong } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "hover-card-with-placement",
+      "content": "export const HoverCardWithPlacement = () => {\n  return (\n    <HoverCard.Root size=\"sm\" positioning={{ placement: \"top\" }}>\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content maxWidth=\"240px\">\n            <HoverCard.Arrow />\n            <Box>\n              <Strong>Chakra</Strong> is a Sanskrit word that means disk or\n              wheel, referring to energy centers in the body\n            </Box>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, HoverCard, Link, Portal, Strong } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "name": "accordion",
+  "file": "compositions/ui/accordion",
+  "snippet": "import { Accordion, HStack } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuChevronDown } from \"react-icons/lu\"\n\ninterface AccordionItemTriggerProps extends Accordion.ItemTriggerProps {\n  indicatorPlacement?: \"start\" | \"end\"\n}\n\nexport const AccordionItemTrigger = React.forwardRef<\n  HTMLButtonElement,\n  AccordionItemTriggerProps\n>(function AccordionItemTrigger(props, ref) {\n  const { children, indicatorPlacement = \"end\", ...rest } = props\n  return (\n    <Accordion.ItemTrigger {...rest} ref={ref}>\n      {indicatorPlacement === \"start\" && (\n        <Accordion.ItemIndicator rotate={{ base: \"-90deg\", _open: \"0deg\" }}>\n          <LuChevronDown />\n        </Accordion.ItemIndicator>\n      )}\n      <HStack gap=\"4\" flex=\"1\" textAlign=\"start\" width=\"full\">\n        {children}\n      </HStack>\n      {indicatorPlacement === \"end\" && (\n        <Accordion.ItemIndicator>\n          <LuChevronDown />\n        </Accordion.ItemIndicator>\n      )}\n    </Accordion.ItemTrigger>\n  )\n})\n\ninterface AccordionItemContentProps extends Accordion.ItemContentProps {}\n\nexport const AccordionItemContent = React.forwardRef<\n  HTMLDivElement,\n  AccordionItemContentProps\n>(function AccordionItemContent(props, ref) {\n  return (\n    <Accordion.ItemContent>\n      <Accordion.ItemBody {...props} ref={ref} />\n    </Accordion.ItemContent>\n  )\n})\n\nexport const AccordionRoot = Accordion.Root\nexport const AccordionItem = Accordion.Item\n",
+  "examples": [
+    {
+      "name": "accordion-basic",
+      "content": "export const AccordionBasic = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value}>\n          <Accordion.ItemTrigger>\n            <Span flex=\"1\">{item.title}</Span>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-controlled",
+      "content": "\"use client\"\nexport const AccordionControlled = () => {\n  const [value, setValue] = useState([\"second-item\"])\n  return (\n    <Stack gap=\"4\">\n      <Text fontWeight=\"medium\">Expanded: {value.join(\", \")}</Text>\n      <Accordion.Root value={value} onValueChange={(e) => setValue(e.value)}>\n        {items.map((item, index) => (\n          <Accordion.Item key={index} value={item.value}>\n            <Accordion.ItemTrigger>\n              <Span flex=\"1\">{item.title}</Span>\n              <Accordion.ItemIndicator />\n            </Accordion.ItemTrigger>\n            <Accordion.ItemContent>\n              <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n            </Accordion.ItemContent>\n          </Accordion.Item>\n        ))}\n      </Accordion.Root>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"first-item\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"second-item\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"third-item\", title: \"Third Item\", text: \"Some value 3...\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Span, Stack, Text } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-sizes",
+      "content": "export const AccordionSizes = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Stack gap=\"2\" key={size}>\n            <Text fontWeight=\"semibold\">{size}</Text>\n            <Accordion.Root size={size} collapsible defaultValue={[\"b\"]}>\n              {items.map((item, index) => (\n                <Accordion.Item key={index} value={item.value}>\n                  <Accordion.ItemTrigger>\n                    <Span flex=\"1\">{item.title}</Span>\n                    <Accordion.ItemIndicator />\n                  </Accordion.ItemTrigger>\n                  <Accordion.ItemContent>\n                    <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n                  </Accordion.ItemContent>\n                </Accordion.Item>\n              ))}\n            </Accordion.Root>\n          </Stack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, For, Span, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-variants",
+      "content": "export const AccordionVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"outline\", \"subtle\", \"enclosed\", \"plain\"]}>\n        {(variant) => (\n          <Stack gap=\"2\" key={variant}>\n            <Text fontWeight=\"semibold\">{variant}</Text>\n            <Accordion.Root variant={variant} collapsible defaultValue={[\"b\"]}>\n              {items.map((item, index) => (\n                <Accordion.Item key={index} value={item.value}>\n                  <Accordion.ItemTrigger>\n                    <Span flex=\"1\">{item.title}</Span>\n                    <Accordion.ItemIndicator />\n                  </Accordion.ItemTrigger>\n                  <Accordion.ItemContent>\n                    <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n                  </Accordion.ItemContent>\n                </Accordion.Item>\n              ))}\n            </Accordion.Root>\n          </Stack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, For, Span, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-with-actions",
+      "content": "export const AccordionWithActions = () => {\n  return (\n    <Accordion.Root spaceY=\"4\" variant=\"plain\" collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value}>\n          <Box position=\"relative\">\n            <Accordion.ItemTrigger>\n              <Span flex=\"1\">{item.title}</Span>\n              <Accordion.ItemIndicator />\n            </Accordion.ItemTrigger>\n            <AbsoluteCenter axis=\"vertical\" insetEnd=\"0\">\n              <Button variant=\"subtle\" colorPalette=\"blue\">\n                Action\n              </Button>\n            </AbsoluteCenter>\n          </Box>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: <LoremIpsum /> },\n  { value: \"b\", title: \"Second Item\", text: <LoremIpsum /> },\n  { value: \"c\", title: \"Third Item\", text: <LoremIpsum /> },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Accordion, Box, Button, Span } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "accordion-with-avatar",
+      "content": "export const AccordionWithAvatar = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.name}>\n          <Accordion.ItemTrigger>\n            <Avatar.Root shape=\"rounded\">\n              <Avatar.Image src={item.image} />\n              <Avatar.Fallback name={item.name} />\n            </Avatar.Root>\n            <HStack flex=\"1\">\n              {item.name}{\" \"}\n              {item.topRated && (\n                <Badge colorPalette=\"green\">\n                  <LuTrophy />\n                  Top Rated\n                </Badge>\n              )}\n            </HStack>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.bio}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  {\n    name: \"Alex\",\n    bio: <LoremIpsum />,\n    image: \"https://i.pravatar.cc/150?u=a\",\n    topRated: false,\n  },\n  {\n    name: \"Benji\",\n    bio: <LoremIpsum />,\n    image: \"https://i.pravatar.cc/150?u=b\",\n    topRated: true,\n  },\n  {\n    name: \"Charlie\",\n    bio: <LoremIpsum />,\n    image: \"https://i.pravatar.cc/150?u=c\",\n    topRated: false,\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Avatar, Badge, HStack } from \"@chakra-ui/react\"",
+        "import { LuTrophy } from \"react-icons/lu\"",
+        "import { LoremIpsum } from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "accordion-with-disabled-item",
+      "content": "export const AccordionWithDisabledItem = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value} disabled={item.disabled}>\n          <Accordion.ItemTrigger>\n            <Span flex=\"1\">{item.title}</Span>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\", disabled: true },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-with-icon",
+      "content": "export const AccordionWithIcon = () => {\n  return (\n    <Stack width=\"full\" maxW=\"400px\">\n      <Heading size=\"md\">Product details</Heading>\n      <Accordion.Root collapsible defaultValue={[\"info\"]}>\n        {items.map((item) => (\n          <Accordion.Item key={item.value} value={item.value}>\n            <Accordion.ItemTrigger>\n              <Icon fontSize=\"lg\" color=\"fg.subtle\">\n                {item.icon}\n              </Icon>\n              {item.title}\n            </Accordion.ItemTrigger>\n            <Accordion.ItemContent>\n              <Accordion.ItemBody>{item.content}</Accordion.ItemBody>\n            </Accordion.ItemContent>\n          </Accordion.Item>\n        ))}\n      </Accordion.Root>\n    </Stack>\n  )\n}\n\nconst items = [\n  {\n    value: \"info\",\n    icon: <LuTags />,\n    title: \"Product Info\",\n    content:\n      \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.\",\n  },\n  {\n    value: \"stats\",\n    icon: <LuChartBarStacked />,\n    title: \"Stats\",\n    content:\n      \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Heading, Icon, Stack } from \"@chakra-ui/react\"",
+        "import { LuChartBarStacked, LuTags } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "accordion-with-multiple",
+      "content": "export const AccordionWithMultiple = () => {\n  return (\n    <Accordion.Root multiple defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value}>\n          <Accordion.ItemTrigger>\n            <Span flex=\"1\">{item.title}</Span>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "accordion-with-subtext",
+      "content": "const items = [\n  { value: \"a\", title: \"First Item\", text: <LoremIpsum p={1} /> },\n  { value: \"b\", title: \"Second Item\", text: <LoremIpsum p={1} /> },\n  { value: \"c\", title: \"Third Item\", text: <LoremIpsum p={1} /> },\n]\n\nexport const AccordionWithSubtext = () => {\n  return (\n    <Accordion.Root collapsible>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value}>\n          <Accordion.ItemTrigger>\n            <Stack gap=\"1\">\n              <Text>{item.title}</Text>\n              <Text fontSize=\"sm\" color=\"fg.muted\">\n                Click to expand\n              </Text>\n            </Stack>\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Stack, Text } from \"@chakra-ui/react\"",
+        "import { LoremIpsum } from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    }
+  ]
+}

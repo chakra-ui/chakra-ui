@@ -1,4 +1,3 @@
-/* eslint-disable no-control-regex */
 const rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|^-|[^\x80-\uFFFF\w-]/g
 const fcssescape = function (ch: string, asCodePoint: string) {
   if (!asCodePoint) return "\\" + ch

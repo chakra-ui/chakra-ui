@@ -106,9 +106,3 @@ export const TabsIndicator = withContext<HTMLDivElement, TabsIndicatorProps>(
   "indicator",
   { forwardAsChild: true },
 )
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const TabsContext = ArkTabs.Context
-
-export interface TabsValueChangeDetails extends ArkTabs.ValueChangeDetails {}

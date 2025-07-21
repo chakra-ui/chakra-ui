@@ -197,6 +197,10 @@ export interface ChartTooltipProps extends TooltipProps<string, string> {
   fitContent?: boolean
   nameKey?: string
   indicator?: "line" | "dot" | "dashed"
+  formatter?: (
+    value: any,
+    name: any,
+  ) => React.ReactNode | [React.ReactNode, React.ReactNode]
   render?: (item: Payload<string, string>) => React.ReactNode
 }
 
@@ -211,6 +215,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
     showTotal,
     fitContent,
     nameKey,
+    formatter,
     render,
   } = props
 
@@ -247,6 +252,14 @@ export function ChartTooltip(props: ChartTooltipProps) {
         {payload.map((item, index) => {
           const config = chart.getSeries(item)
           if (render) return render(item.payload)
+
+          const formatted = formatter
+            ? formatter(item.value, config?.label || item.name)
+            : item.value?.toLocaleString()
+
+          const [formattedValue, formattedName] = Array.isArray(formatted)
+            ? formatted
+            : [formatted, config?.label || item.name]
           return (
             <Flex
               gap="1.5"
@@ -265,7 +278,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
               )}
               <HStack justify="space-between" flex="1">
                 {!hideSeriesLabel && (
-                  <Span color="fg.muted">{`${config?.label || item.name}`}</Span>
+                  <Span color="fg.muted">{formattedName}</Span>
                 )}
                 {item.value && (
                   <Text
@@ -273,7 +286,7 @@ export function ChartTooltip(props: ChartTooltipProps) {
                     fontWeight="medium"
                     fontVariantNumeric="tabular-nums"
                   >
-                    {item.value.toLocaleString()}
+                    {formattedValue}
                   </Text>
                 )}
               </HStack>
@@ -292,7 +305,11 @@ export function ChartTooltip(props: ChartTooltipProps) {
               fontWeight="medium"
               fontVariantNumeric="tabular-nums"
             >
-              {total.toLocaleString()}
+              {(() => {
+                if (!formatter) return total.toLocaleString()
+                const formatted = formatter(total, "")
+                return Array.isArray(formatted) ? formatted[0] : formatted
+              })()}
             </Text>
           </HStack>
         </>

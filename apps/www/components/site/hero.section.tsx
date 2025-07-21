@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/overlay-manager">
+          <Link href="/docs/components/tree-view">
             <LuPartyPopper />
-            [New] Overlay Manager component
+            [New] Tree View component
             <HiArrowRight />
           </Link>
         </Annoucement>

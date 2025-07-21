@@ -56,9 +56,18 @@ export const menuSlotRecipe = defineSlotRecipe({
       _disabled: {
         layerStyle: "disabled",
       },
+      "&[data-type]": {
+        ps: "8",
+      },
     },
     itemText: {
       flex: "1",
+    },
+    itemIndicator: {
+      position: "absolute",
+      insetStart: "2",
+      transform: "translateY(-50%)",
+      top: "50%",
     },
     itemGroupLabel: {
       px: "2",
@@ -78,6 +87,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       ms: "auto",
       ps: "4",
       letterSpacing: "widest",
+      fontFamily: "inherit",
     },
     separator: {
       height: "1px",

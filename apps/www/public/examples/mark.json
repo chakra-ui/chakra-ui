@@ -1,0 +1,24 @@
+{
+  "name": "mark",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "mark-basic",
+      "content": "export const MarkBasic = () => {\n  return (\n    <Text>\n      The <Mark variant=\"subtle\">design system</Mark> is a collection of UI\n      elements\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Mark, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Mark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "mark-with-variants",
+      "content": "export const MarkWithVariants = () => {\n  return (\n    <Stack gap=\"6\">\n      <For each={[\"subtle\", \"solid\", \"text\", \"plain\"]}>\n        {(variant) => (\n          <Text key={variant}>\n            The <Mark variant={variant}>design system</Mark> is a collection of\n            UI elements\n          </Text>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Mark, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Mark } from \"@chakra-ui/react\""
+    }
+  ]
+}

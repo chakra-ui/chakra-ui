@@ -1,0 +1,24 @@
+{
+  "name": "checkmark",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "checkmark-basic",
+      "content": "export const CheckmarkBasic = () => {\n  return (\n    <Stack>\n      <Checkmark />\n      <Checkmark checked />\n      <Checkmark indeterminate />\n      <Checkmark disabled />\n      <Checkmark checked disabled />\n      <Checkmark indeterminate disabled />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkmark, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-states",
+      "content": "export const CheckmarkStates = () => {\n  return (\n    <HStack gap={3}>\n      <Checkmark />\n      <Checkmark checked />\n      <Checkmark indeterminate />\n      <Checkmark disabled />\n      <Checkmark checked disabled />\n      <Checkmark indeterminate disabled />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkmark, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    }
+  ]
+}

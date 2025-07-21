@@ -102,7 +102,7 @@ export const SegmentGroupIndicator = withContext<
 interface Item {
   value: string
   label: React.ReactNode
-  disabled?: boolean
+  disabled?: boolean | undefined
 }
 
 export interface SegmentGroupItemsProps
@@ -123,7 +123,12 @@ export const SegmentGroupItems = (props: SegmentGroupItemsProps) => {
   return (
     <For each={data}>
       {(item) => (
-        <SegmentGroupItem key={item.value} value={item.value} {...rest}>
+        <SegmentGroupItem
+          key={item.value}
+          value={item.value}
+          disabled={item.disabled}
+          {...rest}
+        >
           <SegmentGroupItemText>{item.label}</SegmentGroupItemText>
           <SegmentGroupItemHiddenInput />
         </SegmentGroupItem>

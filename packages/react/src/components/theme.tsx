@@ -8,11 +8,11 @@ export interface ThemeProps extends HTMLChakraProps<"div"> {
   /**
    * The appearance of the theme.
    */
-  appearance?: "light" | "dark"
+  appearance?: "light" | "dark" | undefined
   /**
    * Whether to apply the theme background and color.
    */
-  hasBackground?: boolean
+  hasBackground?: boolean | undefined
 }
 
 export const Theme = forwardRef<HTMLDivElement, ThemeProps>(

@@ -16,6 +16,7 @@ export type {
   CheckboxIndicatorProps,
   CheckboxLabelProps,
   CheckboxRootProps,
+  CheckboxRootProviderProps,
   CheckboxGroupProps,
   CheckboxCheckedChangeDetails,
 } from "./checkbox"

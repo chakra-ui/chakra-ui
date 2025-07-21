@@ -19,7 +19,7 @@ import {
 import * as React from "react"
 import { mergeProps } from "../merge-props"
 import { mergeRefs } from "../merge-refs"
-import { compact, cx, getElementRef, interopDefault } from "../utils"
+import { compact, cx, getElementRef, interopDefault, uniq } from "../utils"
 import type { JsxFactory, StyledFactoryFn } from "./factory.types"
 import { useChakraContext } from "./provider"
 import { isHtmlProp, useResolvedProps } from "./use-resolved-props"
@@ -77,6 +77,20 @@ const Insertion = ({ cache, serialized, isStringTag }: any) => {
   return null
 }
 
+const exceptionPropMap = {
+  path: ["d"],
+  text: ["x", "y"],
+  circle: ["cx", "cy", "r"],
+  rect: ["width", "height", "x", "y", "rx", "ry"],
+  ellipse: ["cx", "cy", "rx", "ry"],
+  g: ["transform"],
+  stop: ["offset", "stopOpacity"],
+}
+
+const hasProp = (obj: any, prop: string) => {
+  return Object.prototype.hasOwnProperty.call(obj, prop)
+}
+
 const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
   if (process.env.NODE_ENV !== "production") {
     if (tag === undefined) {
@@ -84,6 +98,12 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
         "You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.",
       )
     }
+  }
+
+  if (hasProp(exceptionPropMap, tag)) {
+    options.forwardProps ||= []
+    const props = exceptionPropMap[tag as keyof typeof exceptionPropMap]
+    options.forwardProps = uniq([...options.forwardProps, ...props])
   }
 
   const isReal = tag.__emotion_real === tag

@@ -10,9 +10,9 @@ export interface WrapProps
   extends Assign<
     HTMLChakraProps<"div">,
     {
-      justify?: SystemStyleObject["justifyContent"]
-      align?: SystemStyleObject["alignItems"]
-      direction?: SystemStyleObject["flexDirection"]
+      justify?: SystemStyleObject["justifyContent"] | undefined
+      align?: SystemStyleObject["alignItems"] | undefined
+      direction?: SystemStyleObject["flexDirection"] | undefined
     }
   > {}
 

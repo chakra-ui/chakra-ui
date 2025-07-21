@@ -61,7 +61,6 @@ export function transformerMetaWordHighlight(
 function findAllSubstringIndexes(str: string, substr: string): number[] {
   const indexes = []
   let i = -1
-  // eslint-disable-next-line no-cond-assign
   while ((i = str.indexOf(substr, i + 1)) !== -1) indexes.push(i)
   return indexes
 }

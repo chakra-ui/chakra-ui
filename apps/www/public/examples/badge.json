@@ -1,0 +1,74 @@
+{
+  "name": "badge",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "badge-basic",
+      "content": "export const BadgeBasic = () => {\n  return (\n    <Stack direction=\"row\">\n      <Badge>Default</Badge>\n      <Badge colorPalette=\"green\">Success</Badge>\n      <Badge colorPalette=\"red\">Removed</Badge>\n      <Badge colorPalette=\"purple\">New</Badge>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "badge-with-colors",
+      "content": "export const BadgeWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n          width=\"full\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n          <Badge colorPalette={colorPalette} variant=\"solid\">\n            New\n          </Badge>\n          <Badge colorPalette={colorPalette} variant=\"outline\">\n            New\n          </Badge>\n          <Badge colorPalette={colorPalette} variant=\"subtle\">\n            New\n          </Badge>\n          <Badge colorPalette={colorPalette} variant=\"surface\">\n            New\n          </Badge>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "badge-with-context",
+      "content": "export const BadgeWithContext = () => {\n  return (\n    <BadgePropsProvider value={{ size: \"sm\", variant: \"outline\" }}>\n      <Group>\n        <Badge>Badge</Badge>\n        <Badge variant=\"solid\">Badge</Badge>\n      </Group>\n    </BadgePropsProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, BadgePropsProvider, Group } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "badge-with-group",
+      "content": "export const BadgeWithGroup = () => {\n  return (\n    <Group attached>\n      <Badge variant=\"solid\" colorPalette=\"blue\">\n        Commit status\n      </Badge>\n      <Badge variant=\"solid\" colorPalette=\"green\">\n        90+\n      </Badge>\n    </Group>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Group } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "badge-with-icon",
+      "content": "export const BadgeWithIcon = () => {\n  return (\n    <Stack align=\"flex-start\">\n      <Badge variant=\"solid\" colorPalette=\"blue\">\n        <HiStar />\n        New\n      </Badge>\n      <Badge variant=\"solid\" colorPalette=\"green\">\n        New\n        <HiAtSymbol />\n      </Badge>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stack } from \"@chakra-ui/react\"",
+        "import { HiAtSymbol, HiStar } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "badge-with-sizes",
+      "content": "export const BadgeWithSizes = () => {\n  return (\n    <HStack>\n      <Badge size=\"xs\">New</Badge>\n      <Badge size=\"sm\">New</Badge>\n      <Badge size=\"md\">New</Badge>\n      <Badge size=\"lg\">New</Badge>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "badge-with-variants",
+      "content": "export const BadgeWithVariants = () => {\n  return (\n    <Stack direction=\"row\">\n      <Badge variant=\"outline\">Outline</Badge>\n      <Badge variant=\"solid\">Solid</Badge>\n      <Badge variant=\"subtle\">Subtle</Badge>\n      <Badge variant=\"surface\">Surface</Badge>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Badge } from \"@chakra-ui/react\""
+    }
+  ]
+}

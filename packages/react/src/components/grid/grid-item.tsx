@@ -7,16 +7,16 @@ import {
   chakra,
 } from "../../styled-system"
 import { compact, mapObject } from "../../utils"
-import type { BoxProps } from "../box/box"
+import type { BoxProps } from "../box"
 
 export interface GridItemProps extends BoxProps {
-  area?: SystemStyleObject["gridArea"]
-  colSpan?: ConditionalValue<number | "auto">
-  colStart?: ConditionalValue<number | "auto">
-  colEnd?: ConditionalValue<number | "auto">
-  rowStart?: ConditionalValue<number | "auto">
-  rowEnd?: ConditionalValue<number | "auto">
-  rowSpan?: ConditionalValue<number | "auto">
+  area?: SystemStyleObject["gridArea"] | undefined
+  colSpan?: ConditionalValue<number | "auto"> | undefined
+  colStart?: ConditionalValue<number | "auto"> | undefined
+  colEnd?: ConditionalValue<number | "auto"> | undefined
+  rowStart?: ConditionalValue<number | "auto"> | undefined
+  rowEnd?: ConditionalValue<number | "auto"> | undefined
+  rowSpan?: ConditionalValue<number | "auto"> | undefined
 }
 
 function spanFn(span?: ConditionalValue<number | "auto">) {

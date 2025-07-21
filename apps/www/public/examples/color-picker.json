@@ -1,0 +1,241 @@
+{
+  "name": "color-picker",
+  "file": "compositions/ui/color-picker",
+  "snippet": "import type { IconButtonProps, StackProps } from \"@chakra-ui/react\"\nimport {\n  ColorPicker as ChakraColorPicker,\n  For,\n  IconButton,\n  Portal,\n  Span,\n  Stack,\n  Text,\n  VStack,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuCheck, LuPipette } from \"react-icons/lu\"\n\nexport const ColorPickerTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraColorPicker.TriggerProps & { fitContent?: boolean }\n>(function ColorPickerTrigger(props, ref) {\n  const { fitContent, ...rest } = props\n  return (\n    <ChakraColorPicker.Trigger\n      data-fit-content={fitContent || undefined}\n      ref={ref}\n      {...rest}\n    >\n      {props.children || <ChakraColorPicker.ValueSwatch />}\n    </ChakraColorPicker.Trigger>\n  )\n})\n\nexport const ColorPickerInput = React.forwardRef<\n  HTMLInputElement,\n  Omit<ChakraColorPicker.ChannelInputProps, \"channel\">\n>(function ColorHexInput(props, ref) {\n  return <ChakraColorPicker.ChannelInput channel=\"hex\" ref={ref} {...props} />\n})\n\ninterface ColorPickerContentProps extends ChakraColorPicker.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n}\n\nexport const ColorPickerContent = React.forwardRef<\n  HTMLDivElement,\n  ColorPickerContentProps\n>(function ColorPickerContent(props, ref) {\n  const { portalled = true, portalRef, ...rest } = props\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      <ChakraColorPicker.Positioner>\n        <ChakraColorPicker.Content ref={ref} {...rest} />\n      </ChakraColorPicker.Positioner>\n    </Portal>\n  )\n})\n\nexport const ColorPickerInlineContent = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.ContentProps\n>(function ColorPickerInlineContent(props, ref) {\n  return (\n    <ChakraColorPicker.Content\n      animation=\"none\"\n      shadow=\"none\"\n      padding=\"0\"\n      ref={ref}\n      {...props}\n    />\n  )\n})\n\nexport const ColorPickerSliders = React.forwardRef<HTMLDivElement, StackProps>(\n  function ColorPickerSliders(props, ref) {\n    return (\n      <Stack gap=\"1\" flex=\"1\" px=\"1\" ref={ref} {...props}>\n        <ColorPickerChannelSlider channel=\"hue\" />\n        <ColorPickerChannelSlider channel=\"alpha\" />\n      </Stack>\n    )\n  },\n)\n\nexport const ColorPickerArea = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.AreaProps\n>(function ColorPickerArea(props, ref) {\n  return (\n    <ChakraColorPicker.Area ref={ref} {...props}>\n      <ChakraColorPicker.AreaBackground />\n      <ChakraColorPicker.AreaThumb />\n    </ChakraColorPicker.Area>\n  )\n})\n\nexport const ColorPickerEyeDropper = React.forwardRef<\n  HTMLButtonElement,\n  IconButtonProps\n>(function ColorPickerEyeDropper(props, ref) {\n  return (\n    <ChakraColorPicker.EyeDropperTrigger asChild>\n      <IconButton size=\"xs\" variant=\"outline\" ref={ref} {...props}>\n        <LuPipette />\n      </IconButton>\n    </ChakraColorPicker.EyeDropperTrigger>\n  )\n})\n\nexport const ColorPickerChannelSlider = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.ChannelSliderProps\n>(function ColorPickerSlider(props, ref) {\n  return (\n    <ChakraColorPicker.ChannelSlider ref={ref} {...props}>\n      <ChakraColorPicker.TransparencyGrid size=\"0.6rem\" />\n      <ChakraColorPicker.ChannelSliderTrack />\n      <ChakraColorPicker.ChannelSliderThumb />\n    </ChakraColorPicker.ChannelSlider>\n  )\n})\n\nexport const ColorPickerSwatchTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraColorPicker.SwatchTriggerProps & {\n    swatchSize?: ChakraColorPicker.SwatchTriggerProps[\"boxSize\"]\n  }\n>(function ColorPickerSwatchTrigger(props, ref) {\n  const { swatchSize, children, ...rest } = props\n  return (\n    <ChakraColorPicker.SwatchTrigger\n      ref={ref}\n      style={{ [\"--color\" as string]: props.value }}\n      {...rest}\n    >\n      {children || (\n        <ChakraColorPicker.Swatch boxSize={swatchSize} value={props.value}>\n          <ChakraColorPicker.SwatchIndicator>\n            <LuCheck />\n          </ChakraColorPicker.SwatchIndicator>\n        </ChakraColorPicker.Swatch>\n      )}\n    </ChakraColorPicker.SwatchTrigger>\n  )\n})\n\nexport const ColorPickerRoot = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.RootProps\n>(function ColorPickerRoot(props, ref) {\n  return (\n    <ChakraColorPicker.Root ref={ref} {...props}>\n      {props.children}\n      <ChakraColorPicker.HiddenInput tabIndex={-1} />\n    </ChakraColorPicker.Root>\n  )\n})\n\nconst formatMap = {\n  rgba: [\"red\", \"green\", \"blue\", \"alpha\"],\n  hsla: [\"hue\", \"saturation\", \"lightness\", \"alpha\"],\n  hsba: [\"hue\", \"saturation\", \"brightness\", \"alpha\"],\n  hexa: [\"hex\", \"alpha\"],\n} as const\n\nexport const ColorPickerChannelInputs = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.ViewProps\n>(function ColorPickerChannelInputs(props, ref) {\n  const channels = formatMap[props.format]\n  return (\n    <ChakraColorPicker.View flexDirection=\"row\" ref={ref} {...props}>\n      {channels.map((channel) => (\n        <VStack gap=\"1\" key={channel} flex=\"1\">\n          <ColorPickerChannelInput\n            channel={channel}\n            px=\"0\"\n            height=\"7\"\n            textStyle=\"xs\"\n            textAlign=\"center\"\n          />\n          <Text textStyle=\"xs\" color=\"fg.muted\" fontWeight=\"medium\">\n            {channel.charAt(0).toUpperCase()}\n          </Text>\n        </VStack>\n      ))}\n    </ChakraColorPicker.View>\n  )\n})\n\nexport const ColorPickerChannelSliders = React.forwardRef<\n  HTMLDivElement,\n  ChakraColorPicker.ViewProps\n>(function ColorPickerChannelSliders(props, ref) {\n  const channels = formatMap[props.format]\n  return (\n    <ChakraColorPicker.View {...props} ref={ref}>\n      <For each={channels}>\n        {(channel) => (\n          <Stack gap=\"1\" key={channel}>\n            <Span\n              textStyle=\"xs\"\n              minW=\"5ch\"\n              textTransform=\"capitalize\"\n              fontWeight=\"medium\"\n            >\n              {channel}\n            </Span>\n            <ColorPickerChannelSlider channel={channel} />\n          </Stack>\n        )}\n      </For>\n    </ChakraColorPicker.View>\n  )\n})\n\nexport const ColorPickerLabel = ChakraColorPicker.Label\nexport const ColorPickerControl = ChakraColorPicker.Control\nexport const ColorPickerValueText = ChakraColorPicker.ValueText\nexport const ColorPickerValueSwatch = ChakraColorPicker.ValueSwatch\nexport const ColorPickerChannelInput = ChakraColorPicker.ChannelInput\nexport const ColorPickerSwatchGroup = ChakraColorPicker.SwatchGroup\n",
+  "examples": [
+    {
+      "name": "color-picker-basic",
+      "content": "\"use client\"\nexport const ColorPickerBasic = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-change-end",
+      "content": "\"use client\"\nexport const ColorPickerChangeEnd = () => {\n  const [value, setValue] = useState(parseColor(\"#eb5e41\"))\n\n  return (\n    <Stack gap=\"8\" align=\"flex-start\">\n      <Code>\n        onChangeEnd: <b>{value.toString(\"hex\")}</b>\n      </Code>\n      <ColorPicker.Root\n        defaultValue={value}\n        onValueChangeEnd={(e) => setValue(e.value)}\n      >\n        <ColorPicker.HiddenInput />\n        <ColorPicker.Label>Color</ColorPicker.Label>\n        <ColorPicker.Control>\n          <ColorPicker.Input />\n          <ColorPicker.Trigger />\n        </ColorPicker.Control>\n        <Portal>\n          <ColorPicker.Positioner>\n            <ColorPicker.Content>\n              <ColorPicker.Area />\n              <HStack>\n                <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n                <ColorPicker.Sliders />\n              </HStack>\n            </ColorPicker.Content>\n          </ColorPicker.Positioner>\n        </Portal>\n      </ColorPicker.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Code,\n  ColorPicker,\n  HStack,\n  Portal,\n  Stack,\n  parseColor,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-channel-slider-only",
+      "content": "\"use client\"\nconst ChannelSliders = (props: { format: ColorPicker.ColorFormat }) => {\n  const channels = getColorChannels(props.format)\n  return (\n    <ColorPicker.View format={props.format}>\n      <For each={channels}>\n        {(channel) => (\n          <Stack gap=\"1\" key={channel}>\n            <ColorPicker.ChannelText minW=\"5ch\">\n              {channel}\n            </ColorPicker.ChannelText>\n            <ColorPicker.ChannelSlider channel={channel} />\n          </Stack>\n        )}\n      </For>\n    </ColorPicker.View>\n  )\n}\n\nexport const ColorPickerChannelSliderOnly = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.Control>\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.FormatSelect />\n            <ChannelSliders format=\"hsla\" />\n            <ChannelSliders format=\"hsba\" />\n            <ChannelSliders format=\"rgba\" />\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  For,\n  Portal,\n  Stack,\n  getColorChannels,\n  parseColor,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-close-on-swatch-click",
+      "content": "\"use client\"\nexport const ColorPickerCloseOnSwatchClick = () => {\n  return (\n    <ColorPicker.Root\n      closeOnSelect\n      defaultValue={parseColor(\"#eb5e41\")}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n            <ColorPicker.SwatchGroup>\n              {swatches.map((item) => (\n                <ColorPicker.SwatchTrigger key={item} value={item} />\n              ))}\n            </ColorPicker.SwatchGroup>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n\nconst swatches = [\"#ff0000\", \"#0000ff\", \"#00ff00\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-controlled",
+      "content": "\"use client\"\nexport const ColorPickerControlled = () => {\n  const [color, setColor] = useState(parseColor(\"#eb5e41\"))\n\n  return (\n    <ColorPicker.Root\n      value={color}\n      format=\"hsla\"\n      onValueChange={(e) => setColor(e.value)}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-inline",
+      "content": "\"use client\"\nexport const ColorPickerInline = () => {\n  return (\n    <ColorPicker.Root open defaultValue={parseColor(\"#000\")}>\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Content animation=\"none\" shadow=\"none\" padding=\"0\">\n        <ColorPicker.Area />\n        <HStack>\n          <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n          <ColorPicker.Sliders />\n          <ColorPicker.ValueSwatch />\n        </HStack>\n      </ColorPicker.Content>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-input-only",
+      "content": "\"use client\"\nexport const ColorPickerInputOnly = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <InputGroup\n          startElement={<ColorPicker.ValueSwatch boxSize=\"4.5\" />}\n          endElementProps={{ px: \"1\" }}\n          endElement={<ColorPicker.EyeDropper size=\"xs\" variant=\"ghost\" />}\n        >\n          <ColorPicker.Input />\n        </InputGroup>\n      </ColorPicker.Control>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, InputGroup, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-swatch-only",
+      "content": "export const ColorPickerSwatchOnly = () => {\n  return (\n    <ColorPicker.Root alignItems=\"flex-start\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>\n        Color: <ColorPicker.ValueText />\n      </ColorPicker.Label>\n      <ColorPicker.SwatchGroup>\n        {swatches.map((item) => (\n          <ColorPicker.SwatchTrigger key={item} value={item}>\n            <ColorPicker.Swatch value={item}>\n              <ColorPicker.SwatchIndicator boxSize=\"3\" bg=\"white\" />\n            </ColorPicker.Swatch>\n          </ColorPicker.SwatchTrigger>\n        ))}\n      </ColorPicker.SwatchGroup>\n    </ColorPicker.Root>\n  )\n}\n\nconst swatches = [\"red\", \"green\", \"blue\", \"purple\", \"orange\", \"pink\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-trigger-only",
+      "content": "\"use client\"\nexport const ColorPickerTriggerOnly = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Trigger px=\"2\">\n          <ColorPicker.ValueSwatch boxSize=\"6\" />\n          <ColorPicker.ValueText minW=\"160px\" />\n        </ColorPicker.Trigger>\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n              <ColorPicker.ValueSwatch />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-channel-input",
+      "content": "\"use client\"\nconst ChannelInputs = (props: { format: ColorPicker.ColorFormat }) => {\n  const channels = getColorChannels(props.format)\n  return (\n    <ColorPicker.View format={props.format}>\n      <For each={channels}>\n        {(channel) => (\n          <VStack gap=\"1\" key={channel} flex=\"1\">\n            <ColorPicker.ChannelInput\n              channel={channel}\n              px=\"0\"\n              height=\"7\"\n              textStyle=\"xs\"\n              textAlign=\"center\"\n            />\n            <ColorPicker.ChannelText>\n              {channel.charAt(0).toUpperCase()}\n            </ColorPicker.ChannelText>\n          </VStack>\n        )}\n      </For>\n    </ColorPicker.View>\n  )\n}\n\nexport const ColorPickerWithChannelInput = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n            <ChannelInputs format=\"rgba\" />\n            <ChannelInputs format=\"hsla\" />\n            <ChannelInputs format=\"hsba\" />\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  For,\n  HStack,\n  Portal,\n  VStack,\n  getColorChannels,\n  parseColor,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-disabled",
+      "content": "\"use client\"\nexport const ColorPickerWithDisabled = () => {\n  return (\n    <ColorPicker.Root\n      disabled\n      defaultValue={parseColor(\"#eb5e41\")}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-fit-content",
+      "content": "\"use client\"\nexport const ColorPickerWithFitContent = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger data-fit-content rounded=\"full\">\n          <ColorPicker.ValueSwatch rounded=\"inherit\" />\n        </ColorPicker.Trigger>\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-format",
+      "content": "\"use client\"\nexport const ColorPickerWithFormat = () => {\n  return (\n    <ColorPicker.Root\n      defaultValue={parseColor(\"#eb5e41\")}\n      maxW=\"200px\"\n      format=\"hsla\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-hook-form",
+      "content": "\"use client\"\n\ninterface FormValues {\n  color: string\n}\n\nexport const ColorPickerWithHookForm = () => {\n  const { control, handleSubmit } = useForm<FormValues>({\n    defaultValues: { color: \"#000000\" },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n        <Controller\n          name=\"color\"\n          control={control}\n          render={({ field }) => (\n            <ColorPicker.Root\n              name={field.name}\n              defaultValue={parseColor(field.value)}\n              onValueChange={(e) => field.onChange(e.valueAsString)}\n            >\n              <ColorPicker.HiddenInput />\n              <ColorPicker.Control>\n                <ColorPicker.Input />\n                <ColorPicker.Trigger />\n              </ColorPicker.Control>\n              <Portal>\n                <ColorPicker.Positioner>\n                  <ColorPicker.Content>\n                    <ColorPicker.Area />\n                    <HStack>\n                      <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n                      <ColorPicker.Sliders />\n                    </HStack>\n                  </ColorPicker.Content>\n                </ColorPicker.Positioner>\n              </Portal>\n            </ColorPicker.Root>\n          )}\n        />\n\n        <Button type=\"submit\">Submit</Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ColorPicker,\n  HStack,\n  Portal,\n  Stack,\n  parseColor,\n} from \"@chakra-ui/react\"",
+        "import { Controller, useForm } from \"react-hook-form\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-hook-form"
+      ]
+    },
+    {
+      "name": "color-picker-with-readonly",
+      "content": "\"use client\"\nexport const ColorPickerWithReadonly = () => {\n  return (\n    <ColorPicker.Root\n      readOnly\n      defaultValue={parseColor(\"#eb5e41\")}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-save-swatch",
+      "content": "\"use client\"\nexport const ColorPickerWithSaveSwatch = () => {\n  const [color, setColor] = useState(parseColor(\"#000\"))\n  const [view, setView] = useState<\"picker\" | \"swatch\">(\"swatch\")\n  const [swatches, setSwatches] = useState<string[]>([\n    \"#FF0000\",\n    \"#00FF00\",\n    \"#0000FF\",\n    \"#FFFF00\",\n  ])\n\n  return (\n    <ColorPicker.Root\n      defaultValue={color}\n      onValueChange={(e) => setColor(e.value)}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Control>\n        <ColorPicker.Trigger data-fit-content>\n          <VStack gap=\"1\">\n            <LuType />\n            <ColorPicker.ValueSwatch h=\"2\" />\n          </VStack>\n        </ColorPicker.Trigger>\n      </ColorPicker.Control>\n\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <Show when={view === \"picker\"}>\n              <ColorPicker.Area />\n              <HStack>\n                <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n                <ColorPicker.Sliders />\n              </HStack>\n              <Button\n                onClick={() => {\n                  setSwatches((prev) => [...prev, color.toString(\"css\")])\n                  setView(\"swatch\")\n                }}\n              >\n                Save Swatch\n              </Button>\n            </Show>\n            <Show when={view === \"swatch\"}>\n              <ColorPicker.SwatchGroup>\n                {swatches.map((swatch) => (\n                  <ColorPicker.SwatchTrigger key={swatch} value={swatch}>\n                    <ColorPicker.Swatch value={swatch}>\n                      <ColorPicker.SwatchIndicator>\n                        <LuCheck />\n                      </ColorPicker.SwatchIndicator>\n                    </ColorPicker.Swatch>\n                  </ColorPicker.SwatchTrigger>\n                ))}\n                <IconButton\n                  variant=\"outline\"\n                  size=\"xs\"\n                  onClick={() => setView(\"picker\")}\n                >\n                  <LuPlus />\n                </IconButton>\n              </ColorPicker.SwatchGroup>\n            </Show>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ColorPicker,\n  HStack,\n  IconButton,\n  Portal,\n  Show,\n  VStack,\n  parseColor,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuCheck, LuPlus, LuType } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "color-picker-with-sizes",
+      "content": "\"use client\"\nexport const ColorPickerWithSizes = () => {\n  return (\n    <Stack gap=\"8\" maxW=\"sm\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <ColorPicker.Root\n            key={size}\n            defaultValue={parseColor(\"#eb5e41\")}\n            size={size}\n          >\n            <ColorPicker.HiddenInput />\n            <ColorPicker.Label>Color ({size})</ColorPicker.Label>\n            <ColorPicker.Control>\n              <ColorPicker.Input />\n              <ColorPicker.Trigger />\n            </ColorPicker.Control>\n            <Portal>\n              <ColorPicker.Positioner>\n                <ColorPicker.Content>\n                  <ColorPicker.Area />\n                  <HStack>\n                    <ColorPicker.EyeDropper size=\"sm\" variant=\"outline\" />\n                    <ColorPicker.Sliders />\n                  </HStack>\n                  <ColorPicker.SwatchGroup>\n                    {swatches.map((item) => (\n                      <ColorPicker.SwatchTrigger key={item} value={item}>\n                        <ColorPicker.Swatch value={item} boxSize=\"4.5\">\n                          <ColorPicker.SwatchIndicator>\n                            <LuCheck />\n                          </ColorPicker.SwatchIndicator>\n                        </ColorPicker.Swatch>\n                      </ColorPicker.SwatchTrigger>\n                    ))}\n                  </ColorPicker.SwatchGroup>\n                </ColorPicker.Content>\n              </ColorPicker.Positioner>\n            </Portal>\n          </ColorPicker.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst swatches = [\"red\", \"blue\", \"green\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  For,\n  HStack,\n  Portal,\n  Stack,\n  parseColor,\n} from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "color-picker-with-store",
+      "content": "\"use client\"\nexport const ColorPickerWithStore = () => {\n  const colorPicker = useColorPicker({\n    defaultValue: parseColor(\"#eb5e41\"),\n  })\n\n  return (\n    <ColorPicker.RootProvider value={colorPicker} maxW=\"200px\">\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  HStack,\n  Portal,\n  parseColor,\n  useColorPicker,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-swatch-and-input",
+      "content": "\"use client\"\nexport const ColorPickerWithSwatchAndInput = () => {\n  return (\n    <ColorPicker.Root\n      size=\"xs\"\n      defaultValue={parseColor(\"#eb5e41\")}\n      maxW=\"200px\"\n    >\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Control>\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.SwatchGroup>\n              {swatches.map((item) => (\n                <ColorPicker.SwatchTrigger key={item} value={item}>\n                  <ColorPicker.Swatch value={item}>\n                    <ColorPicker.SwatchIndicator>\n                      <LuCheck />\n                    </ColorPicker.SwatchIndicator>\n                  </ColorPicker.Swatch>\n                </ColorPicker.SwatchTrigger>\n              ))}\n            </ColorPicker.SwatchGroup>\n            <ColorPicker.ChannelInput channel=\"hex\" />\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n\nconst swatches = [\"red\", \"blue\", \"green\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, Portal, parseColor } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "color-picker-with-swatches-and-trigger",
+      "content": "\"use client\"\nexport const ColorPickerWithSwatchesAndTrigger = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>\n        Color: <ColorPicker.ValueText />\n      </ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.SwatchGroup>\n          {swatches.map((item) => (\n            <ColorPicker.SwatchTrigger key={item} value={item}>\n              <ColorPicker.Swatch value={item}>\n                <ColorPicker.SwatchIndicator>\n                  <LuCheck />\n                </ColorPicker.SwatchIndicator>\n              </ColorPicker.Swatch>\n            </ColorPicker.SwatchTrigger>\n          ))}\n          <ColorPicker.Trigger textStyle=\"lg\">\n            <Square\n              size=\"7\"\n              bgSize=\"cover\"\n              overflow=\"hidden\"\n              border=\"4px solid\"\n              borderImage=\"conic-gradient(from 90deg, red, yellow, lime, aqua, blue, magenta, red) 1\"\n            >\n              <LuPlus />\n            </Square>\n          </ColorPicker.Trigger>\n        </ColorPicker.SwatchGroup>\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n\nconst swatches = [\"red\", \"blue\", \"green\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  HStack,\n  Portal,\n  Square,\n  parseColor,\n} from \"@chakra-ui/react\"",
+        "import { LuCheck, LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "color-picker-with-swatches",
+      "content": "\"use client\"\nexport const ColorPickerWithSwatches = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Color</ColorPicker.Label>\n      <ColorPicker.Control>\n        <ColorPicker.Input />\n        <ColorPicker.Trigger />\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <HStack>\n              <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n              <ColorPicker.Sliders />\n            </HStack>\n            <ColorPicker.SwatchGroup>\n              {swatches.map((item) => (\n                <ColorPicker.SwatchTrigger key={item} value={item}>\n                  <ColorPicker.Swatch boxSize=\"4.5\" value={item}>\n                    <ColorPicker.SwatchIndicator>\n                      <LuCheck />\n                    </ColorPicker.SwatchIndicator>\n                  </ColorPicker.Swatch>\n                </ColorPicker.SwatchTrigger>\n              ))}\n            </ColorPicker.SwatchGroup>\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n\n// prettier-ignore\nconst swatches = [\"#000000\", \"#4A5568\", \"#F56565\", \"#ED64A6\", \"#9F7AEA\", \"#6B46C1\", \"#4299E1\", \"#0BC5EA\", \"#00B5D8\", \"#38B2AC\", \"#48BB78\", \"#68D391\", \"#ECC94B\", \"#DD6B20\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, HStack, Portal, parseColor } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "color-picker-with-trigger-in-input",
+      "content": "\"use client\"\nexport const ColorPickerWithTriggerInInput = () => {\n  return (\n    <ColorPicker.Root defaultValue={parseColor(\"#eb5e41\")} maxW=\"200px\">\n      <ColorPicker.HiddenInput />\n      <ColorPicker.Label>Trigger on swatch</ColorPicker.Label>\n      <ColorPicker.Control>\n        <InputGroup\n          startElementProps={{ pointerEvents: \"all\" }}\n          startElement={\n            <ColorPicker.Trigger data-fit-content>\n              <ColorPicker.ValueSwatch boxSize=\"4.5\" />\n            </ColorPicker.Trigger>\n          }\n          endElementProps={{ px: \"1\" }}\n          endElement={\n            <ColorPicker.EyeDropperTrigger size=\"xs\" variant=\"ghost\" />\n          }\n        >\n          <ColorPicker.Input />\n        </InputGroup>\n      </ColorPicker.Control>\n      <Portal>\n        <ColorPicker.Positioner>\n          <ColorPicker.Content>\n            <ColorPicker.Area />\n            <ColorPicker.Sliders />\n          </ColorPicker.Content>\n        </ColorPicker.Positioner>\n      </Portal>\n    </ColorPicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorPicker, InputGroup, Portal, parseColor } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-picker-with-variants",
+      "content": "\"use client\"\nexport const ColorPickerWithVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"outline\", \"subtle\"]}>\n        {(variant) => (\n          <ColorPicker.Root\n            defaultValue={parseColor(\"#eb5e41\")}\n            maxW=\"200px\"\n            variant={variant}\n          >\n            <ColorPicker.HiddenInput />\n            <ColorPicker.Label>Color ({variant})</ColorPicker.Label>\n            <ColorPicker.Control>\n              <ColorPicker.Input />\n              <ColorPicker.Trigger />\n            </ColorPicker.Control>\n            <Portal>\n              <ColorPicker.Positioner>\n                <ColorPicker.Content>\n                  <ColorPicker.Area />\n                  <HStack>\n                    <ColorPicker.EyeDropper size=\"xs\" variant=\"outline\" />\n                    <ColorPicker.Sliders />\n                  </HStack>\n                </ColorPicker.Content>\n              </ColorPicker.Positioner>\n            </Portal>\n          </ColorPicker.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ColorPicker,\n  For,\n  HStack,\n  Portal,\n  Stack,\n  parseColor,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorPicker } from \"@chakra-ui/react\""
+    }
+  ]
+}

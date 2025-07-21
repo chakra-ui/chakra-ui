@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "3.16.1",
+  "version": "3.22.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -38,12 +38,12 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@ark-ui/react": "5.5.0",
+    "@ark-ui/react": "5.16.1",
     "@emotion/is-prop-valid": "1.3.1",
     "@emotion/serialize": "1.3.3",
     "@emotion/use-insertion-effect-with-fallbacks": "1.2.0",
     "@emotion/utils": "1.4.2",
-    "@pandacss/is-valid-prop": "0.41.0",
+    "@pandacss/is-valid-prop": "0.54.0",
     "fast-safe-stringify": "2.1.1",
     "csstype": "3.1.3"
   },
@@ -70,7 +70,7 @@
   },
   "exports": {
     ".": {
-      "source": "./src/index.ts",
+      "dev": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
         "default": "./dist/esm/index.js"
@@ -81,7 +81,7 @@
       }
     },
     "./anatomy": {
-      "source": "./src/anatomy.ts",
+      "dev": "./src/anatomy.ts",
       "import": {
         "types": "./dist/types/anatomy.d.ts",
         "default": "./dist/esm/anatomy.js"
@@ -92,7 +92,7 @@
       }
     },
     "./preset": {
-      "source": "./src/preset.ts",
+      "dev": "./src/preset.ts",
       "import": {
         "types": "./dist/types/preset.d.ts",
         "default": "./dist/esm/preset.js"
@@ -103,7 +103,7 @@
       }
     },
     "./preset-base": {
-      "source": "./src/preset-base.ts",
+      "dev": "./src/preset-base.ts",
       "import": {
         "types": "./dist/types/preset-base.d.ts",
         "default": "./dist/esm/preset-base.js"
@@ -114,7 +114,7 @@
       }
     },
     "./styled-system": {
-      "source": "./src/styled-system/index.ts",
+      "dev": "./src/styled-system/index.ts",
       "import": {
         "types": "./dist/types/styled-system/index.d.ts",
         "default": "./dist/esm/styled-system/index.js"
@@ -125,7 +125,7 @@
       }
     },
     "./collection": {
-      "source": "./src/collection.ts",
+      "dev": "./src/collection.ts",
       "import": {
         "types": "./dist/types/collection.d.ts",
         "default": "./dist/esm/collection.js"
@@ -135,8 +135,30 @@
         "default": "./dist/cjs/collection.cjs"
       }
     },
+    "./theme": {
+      "dev": "./src/theme/index.ts",
+      "import": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/esm/theme/index.js"
+      },
+      "require": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/cjs/theme/index.cjs"
+      }
+    },
+    "./hooks": {
+      "dev": "./src/hooks/index.ts",
+      "import": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/esm/hooks/index.js"
+      },
+      "require": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/cjs/hooks/index.cjs"
+      }
+    },
     "./*": {
-      "source": "./src/components/*/index.ts",
+      "dev": "./src/components/*/index.ts",
       "import": {
         "types": "./dist/types/components/*/index.d.ts",
         "default": "./dist/esm/components/*/index.js"

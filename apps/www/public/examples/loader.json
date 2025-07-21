@@ -1,0 +1,34 @@
+{
+  "name": "loader",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "loader-basic",
+      "content": "export const LoaderBasic = () => {\n  return (\n    <HStack textStyle=\"sm\" fontWeight=\"medium\">\n      <Loader text=\"Loading...\">Click me</Loader>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Loader } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Loader } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "loader-with-badge",
+      "content": "export const LoaderWithBadge = () => {\n  return (\n    <Badge>\n      <Loader text=\"Loading...\">Click me</Loader>\n    </Badge>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Loader } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Loader } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "loader-with-overlay",
+      "content": "\"use client\"\nexport const LoaderWithOverlay = () => {\n  const [loading, setLoading] = useState(false)\n  return (\n    <Stack maxW=\"xl\" gap=\"4\">\n      <Box position=\"relative\" p=\"6\" bg=\"bg.panel\" shadow=\"sm\" rounded=\"l3\">\n        <Stack gap=\"4\">\n          <Field.Root>\n            <Field.Label>First name</Field.Label>\n            <Input />\n          </Field.Root>\n          <Field.Root>\n            <Field.Label>Last name</Field.Label>\n            <Input />\n          </Field.Root>\n          <Button>Click me</Button>\n        </Stack>\n        {loading && (\n          <LoaderOverlay bg=\"bg/80\" rounded=\"l3\">\n            <Loader textStyle=\"sm\" fontWeight=\"medium\" text=\"Loading...\" />\n          </LoaderOverlay>\n        )}\n      </Box>\n      <Button\n        alignSelf=\"flex-start\"\n        variant=\"outline\"\n        onClick={() => setLoading((c) => !c)}\n      >\n        Toggle loading\n      </Button>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Button,\n  Field,\n  Input,\n  Loader,\n  LoaderOverlay,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Loader } from \"@chakra-ui/react\""
+    }
+  ]
+}

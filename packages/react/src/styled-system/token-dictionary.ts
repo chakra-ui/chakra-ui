@@ -33,10 +33,10 @@ import type {
 } from "./types"
 
 interface Options {
-  prefix?: string
-  breakpoints?: Record<string, string>
-  tokens?: TokenDefinition
-  semanticTokens?: SemanticTokenDefinition
+  prefix?: string | undefined
+  breakpoints?: Record<string, string> | undefined
+  tokens?: TokenDefinition | undefined
+  semanticTokens?: SemanticTokenDefinition | undefined
 }
 
 const isToken = (value: any) => {

@@ -14,7 +14,6 @@ async function main() {
   const files = await globby("src/**/*.{ts,tsx}", { ignore: ["src/index.ts"] })
   const defFile = join("src", "def.ts")
 
-  // eslint-disable-next-line import/extensions
   const configPath = resolve("../../.prettierrc")
   const prettierConfig = JSON.parse(await readFile(configPath, "utf8"))
 

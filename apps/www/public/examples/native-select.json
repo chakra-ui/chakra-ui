@@ -1,0 +1,98 @@
+{
+  "name": "native-select",
+  "file": "compositions/ui/native-select",
+  "snippet": "\"use client\"\n\nimport { NativeSelect as Select } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface NativeSelectRootProps extends Select.RootProps {\n  icon?: React.ReactNode\n}\n\nexport const NativeSelectRoot = React.forwardRef<\n  HTMLDivElement,\n  NativeSelectRootProps\n>(function NativeSelect(props, ref) {\n  const { icon, children, ...rest } = props\n  return (\n    <Select.Root ref={ref} {...rest}>\n      {children}\n      <Select.Indicator>{icon}</Select.Indicator>\n    </Select.Root>\n  )\n})\n\ninterface NativeSelectItem {\n  value: string\n  label: string\n  disabled?: boolean\n}\n\ninterface NativeSelectFieldProps extends Select.FieldProps {\n  items?: Array<string | NativeSelectItem>\n}\n\nexport const NativeSelectField = React.forwardRef<\n  HTMLSelectElement,\n  NativeSelectFieldProps\n>(function NativeSelectField(props, ref) {\n  const { items: itemsProp, children, ...rest } = props\n\n  const items = React.useMemo(\n    () =>\n      itemsProp?.map((item) =>\n        typeof item === \"string\" ? { label: item, value: item } : item,\n      ),\n    [itemsProp],\n  )\n\n  return (\n    <Select.Field ref={ref} {...rest}>\n      {children}\n      {items?.map((item) => (\n        <option key={item.value} value={item.value} disabled={item.disabled}>\n          {item.label}\n        </option>\n      ))}\n    </Select.Field>\n  )\n})\n",
+  "examples": [
+    {
+      "name": "native-select-basic",
+      "content": "export const NativeSelectBasic = () => {\n  return (\n    <NativeSelect.Root size=\"sm\" width=\"240px\">\n      <NativeSelect.Field placeholder=\"Select option\">\n        <option value=\"react\">React</option>\n        <option value=\"vue\">Vue</option>\n        <option value=\"angular\">Angular</option>\n        <option value=\"svelte\">Svelte</option>\n      </NativeSelect.Field>\n      <NativeSelect.Indicator />\n    </NativeSelect.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-closed-component",
+      "content": "\"use client\"\ntype FieldProp = \"name\" | \"value\" | \"onChange\" | \"defaultValue\"\n\ninterface NativeSelectProps\n  extends Omit<Select.RootProps, FieldProp>,\n    Pick<Select.FieldProps, FieldProp> {\n  icon?: React.ReactNode\n  items: Array<{ label: string; value: string; disabled?: boolean }>\n}\n\nexport const NativeSelect = React.forwardRef<\n  HTMLSelectElement,\n  NativeSelectProps\n>(function NativeSelect(props, ref) {\n  const {\n    icon,\n    children,\n    name,\n    items,\n    value,\n    defaultValue,\n    onChange,\n    ...rest\n  } = props\n  return (\n    <Select.Root {...rest}>\n      <Select.Field\n        ref={ref}\n        name={name}\n        value={value}\n        defaultValue={defaultValue}\n        onChange={onChange}\n      >\n        {children}\n        {items?.map((item) => (\n          <option key={item.value} value={item.value} disabled={item.disabled}>\n            {item.label}\n          </option>\n        ))}\n      </Select.Field>\n      <Select.Indicator>{icon}</Select.Indicator>\n    </Select.Root>\n  )\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NativeSelect as Select } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-controlled",
+      "content": "\"use client\"\nexport const NativeSelectControlled = () => {\n  const [value, setValue] = useState(\"\")\n  return (\n    <NativeSelect.Root size=\"sm\" width=\"240px\">\n      <NativeSelect.Field\n        placeholder=\"Select option\"\n        value={value}\n        onChange={(e) => setValue(e.currentTarget.value)}\n      >\n        <option value=\"react\">React</option>\n        <option value=\"vue\">Vue</option>\n        <option value=\"angular\">Angular</option>\n        <option value=\"svelte\">Svelte</option>\n      </NativeSelect.Field>\n      <NativeSelect.Indicator />\n    </NativeSelect.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NativeSelect } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-with-disabled",
+      "content": "export const NativeSelectWithDisabled = () => (\n  <NativeSelect.Root disabled>\n    <NativeSelect.Field placeholder=\"Select option\">\n      <option value=\"react\">React</option>\n      <option value=\"vue\">Vue</option>\n      <option value=\"angular\">Angular</option>\n      <option value=\"svelte\">Svelte</option>\n    </NativeSelect.Field>\n    <NativeSelect.Indicator />\n  </NativeSelect.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  framework: z.string().min(1, { message: \"Framework is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const NativeSelectWithHookForm = () => {\n  const {\n    register,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Field.Root invalid={!!errors.framework}>\n        <Field.Label>Framework</Field.Label>\n        <NativeSelect.Root size=\"sm\" width=\"240px\">\n          <NativeSelect.Field\n            placeholder=\"Select option\"\n            {...register(\"framework\")}\n          >\n            <option value=\"react\">React</option>\n            <option value=\"vue\">Vue</option>\n            <option value=\"angular\">Angular</option>\n            <option value=\"svelte\">Svelte</option>\n          </NativeSelect.Field>\n          <NativeSelect.Indicator />\n        </NativeSelect.Root>\n        <Field.ErrorText>{errors.framework?.message}</Field.ErrorText>\n      </Field.Root>\n\n      <Button size=\"sm\" type=\"submit\" mt=\"4\">\n        Submit\n      </Button>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, NativeSelect } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "native-select-with-invalid-root",
+      "content": "export const NativeSelectWithInvalidRoot = () => (\n  <NativeSelect.Root invalid width=\"240px\">\n    <NativeSelect.Field placeholder=\"Select option\">\n      <option value=\"Option 1\">Option 1</option>\n      <option value=\"Option 2\">Option 2</option>\n      <option value=\"Option 3\">Option 3</option>\n    </NativeSelect.Field>\n    <NativeSelect.Indicator />\n  </NativeSelect.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-with-invalid",
+      "content": "export const NativeSelectWithInvalid = () => (\n  <Field.Root invalid width=\"240px\">\n    <NativeSelect.Root>\n      <NativeSelect.Field placeholder=\"Select option\">\n        <option value=\"Option 1\">Option 1</option>\n        <option value=\"Option 2\">Option 2</option>\n        <option value=\"Option 3\">Option 3</option>\n      </NativeSelect.Field>\n      <NativeSelect.Indicator />\n    </NativeSelect.Root>\n    <Field.ErrorText>This is an error</Field.ErrorText>\n  </Field.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-with-sizes",
+      "content": "export const NativeSelectWithSizes = () => {\n  return (\n    <Stack gap=\"4\" width=\"240px\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <NativeSelect.Root key={size} size={size}>\n            <NativeSelect.Field placeholder=\"Select option\">\n              <option value=\"react\">React</option>\n              <option value=\"vue\">Vue</option>\n              <option value=\"angular\">Angular</option>\n              <option value=\"svelte\">Svelte</option>\n            </NativeSelect.Field>\n            <NativeSelect.Indicator />\n          </NativeSelect.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, NativeSelect, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "native-select-with-variants",
+      "content": "export const NativeSelectWithVariants = () => {\n  return (\n    <Stack gap=\"4\" width=\"240px\">\n      <For each={[\"outline\", \"subtle\", \"plain\"]}>\n        {(variant) => (\n          <NativeSelect.Root key={variant} variant={variant}>\n            <NativeSelect.Field placeholder={`variant (${variant})`}>\n              <option value=\"react\">React</option>\n              <option value=\"vue\">Vue</option>\n              <option value=\"angular\">Angular</option>\n              <option value=\"svelte\">Svelte</option>\n            </NativeSelect.Field>\n            <NativeSelect.Indicator />\n          </NativeSelect.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, NativeSelect, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\""
+    }
+  ]
+}

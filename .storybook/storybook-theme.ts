@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming"
+import { create } from "storybook/theming"
 // @ts-expect-error
 import brandImage from "./storybook-logo.svg"
 

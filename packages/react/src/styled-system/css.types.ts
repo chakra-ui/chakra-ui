@@ -12,10 +12,40 @@ type Number = number & {}
 
 export type CssProperty = keyof PropertiesFallback
 
+export interface ModernCssProperties {
+  anchorName?: String | undefined
+  anchorScope?: String | undefined
+  fieldSizing?: String | undefined
+  interpolateSize?: String | undefined
+  positionAnchor?: String | undefined
+  positionArea?: String | undefined
+  positionTry?: String | undefined
+  positionTryFallbacks?: String | undefined
+  positionTryOrder?: String | undefined
+  positionVisibility?: String | undefined
+  textWrapMode?: String | undefined
+  textSpacingTrim?: String | undefined
+  textWrapStyle?: String | undefined
+  colorInterpolationFilters?: String | undefined
+  x?: String | undefined
+  y?: String | undefined
+  z?: String | undefined
+  textBox?: String | undefined
+  textBoxEdge?: String | undefined
+  textBoxTrim?: String | undefined
+  r?: String | undefined
+  ry?: String | undefined
+  rx?: String | undefined
+  cx?: String | undefined
+  cy?: String | undefined
+  d?: String | undefined
+}
+
 export interface CssProperties
   extends PropertiesFallback<String | Number>,
+    ModernCssProperties,
     CssVarProperties {
-  initialLetterAlign?: String
+  initialLetterAlign?: String | undefined
 }
 
 export interface CssKeyframes {
@@ -84,7 +114,7 @@ export type CompositionStyleObject<Property extends string> = Nested<
  * -----------------------------------------------------------------------------*/
 
 interface WithCss {
-  css?: SystemStyleObject
+  css?: SystemStyleObject | undefined
 }
 
 type StyleProps = SystemProperties & MinimalNested<SystemStyleObject>

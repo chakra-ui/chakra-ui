@@ -1,0 +1,49 @@
+{
+  "name": "action-bar",
+  "file": "compositions/ui/action-bar",
+  "snippet": "import { ActionBar, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"@/components/ui/close-button\"\nimport * as React from \"react\"\n\ninterface ActionBarContentProps extends ActionBar.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n}\n\nexport const ActionBarContent = React.forwardRef<\n  HTMLDivElement,\n  ActionBarContentProps\n>(function ActionBarContent(props, ref) {\n  const { children, portalled = true, portalRef, ...rest } = props\n\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      <ActionBar.Positioner>\n        <ActionBar.Content ref={ref} {...rest} asChild={false}>\n          {children}\n        </ActionBar.Content>\n      </ActionBar.Positioner>\n    </Portal>\n  )\n})\n\nexport const ActionBarCloseTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ActionBar.CloseTriggerProps\n>(function ActionBarCloseTrigger(props, ref) {\n  return (\n    <ActionBar.CloseTrigger {...props} asChild ref={ref}>\n      <CloseButton size=\"sm\" />\n    </ActionBar.CloseTrigger>\n  )\n})\n\nexport const ActionBarRoot = ActionBar.Root\nexport const ActionBarSelectionTrigger = ActionBar.SelectionTrigger\nexport const ActionBarSeparator = ActionBar.Separator\n",
+  "examples": [
+    {
+      "name": "action-bar-basic",
+      "content": "\"use client\"\nexport const ActionBarBasic = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <>\n      <Checkbox.Root onCheckedChange={(e) => setChecked(!!e.checked)}>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Show Action bar</Checkbox.Label>\n      </Checkbox.Root>\n      <ActionBar.Root open={checked}>\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                2 selected\n              </ActionBar.SelectionTrigger>\n              <ActionBar.Separator />\n              <Button variant=\"outline\" size=\"sm\">\n                <LuTrash2 />\n                Delete\n              </Button>\n              <Button variant=\"outline\" size=\"sm\">\n                <LuShare />\n                Share\n              </Button>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ActionBar, Button, Checkbox, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuShare, LuTrash2 } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ActionBar } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "action-bar-with-close-trigger",
+      "content": "\"use client\"\nexport const ActionBarWithCloseTrigger = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <>\n      <Checkbox.Root\n        checked={checked}\n        onCheckedChange={(e) => setChecked(!!e.checked)}\n      >\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Show Action bar</Checkbox.Label>\n      </Checkbox.Root>\n\n      <ActionBar.Root\n        open={checked}\n        onOpenChange={(e) => setChecked(e.open)}\n        closeOnInteractOutside={false}\n      >\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                2 selected\n              </ActionBar.SelectionTrigger>\n              <ActionBar.Separator />\n              <Button variant=\"outline\" size=\"sm\">\n                <LuTrash2 />\n                Delete\n              </Button>\n              <Button variant=\"outline\" size=\"sm\">\n                <LuShare />\n                Share\n              </Button>\n              <ActionBar.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </ActionBar.CloseTrigger>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ActionBar,\n  Button,\n  Checkbox,\n  CloseButton,\n  Portal,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuShare, LuTrash2 } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ActionBar } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "action-bar-with-dialog",
+      "content": "\"use client\"\nexport const ActionBarWithDialog = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <>\n      <Checkbox.Root onCheckedChange={(e) => setChecked(!!e.checked)}>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Check to select projects</Checkbox.Label>\n      </Checkbox.Root>\n      <ActionBar.Root open={checked}>\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                4 selected\n              </ActionBar.SelectionTrigger>\n\n              <ActionBar.Separator />\n\n              <Button variant=\"outline\" size=\"sm\">\n                <LuSquarePlus />\n                Add to collection\n              </Button>\n\n              <Dialog.Root placement=\"center\">\n                <Dialog.Trigger asChild>\n                  <Button variant=\"surface\" colorPalette=\"red\" size=\"sm\">\n                    <LuTrash2 />\n                    Delete projects\n                  </Button>\n                </Dialog.Trigger>\n                <Portal>\n                  <Dialog.Backdrop />\n                  <Dialog.Positioner>\n                    <Dialog.Content>\n                      <Dialog.Header>\n                        <Dialog.Title>Delete projects</Dialog.Title>\n                      </Dialog.Header>\n                      <Dialog.Body>\n                        <Dialog.Description>\n                          Are you sure you want to delete 4 projects?\n                        </Dialog.Description>\n                      </Dialog.Body>\n                      <Dialog.Footer>\n                        <Button variant=\"outline\">Cancel</Button>\n                        <Button colorPalette=\"red\">Delete</Button>\n                      </Dialog.Footer>\n                    </Dialog.Content>\n                  </Dialog.Positioner>\n                </Portal>\n              </Dialog.Root>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ActionBar, Button, Checkbox, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuSquarePlus, LuTrash2 } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ActionBar } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

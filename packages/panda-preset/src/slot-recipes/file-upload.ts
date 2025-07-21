@@ -17,6 +17,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     "clearTrigger",
     "itemContent",
     "dropzoneContent",
+    "fileText",
   ],
   base: {
     root: {
@@ -63,6 +64,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       textStyle: "sm",
     },
     item: {
+      pos: "relative",
       textStyle: "sm",
       animationName: "fade-in",
       animationDuration: "moderate",
@@ -80,6 +82,9 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "3",
+      _empty: {
+        display: "none",
+      },
     },
     itemName: {
       color: "fg",
@@ -97,12 +102,20 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       textStyle: "xs",
     },
     itemDeleteTrigger: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       alignSelf: "flex-start",
+      boxSize: "5",
+      p: "2px",
+      color: "fg.muted",
+      cursor: "button",
     },
-    itemPreviewImage: {
-      width: "10",
-      height: "10",
-      objectFit: "scale-down",
+    itemPreview: {
+      color: "fg.muted",
+      _icon: {
+        boxSize: "4.5",
+      },
     },
   },
   defaultVariants: {},

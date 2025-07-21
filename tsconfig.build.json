@@ -12,7 +12,7 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
-    "customConditions": ["source"],
+    "customConditions": ["dev"],
 
     // JSX
     "jsx": "react-jsx",

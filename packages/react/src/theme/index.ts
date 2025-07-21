@@ -28,42 +28,63 @@ import { sizes } from "./tokens/sizes"
 import { spacing } from "./tokens/spacing"
 import { zIndices } from "./tokens/z-indices"
 
+export const tokens = {
+  aspectRatios,
+  animations,
+  blurs,
+  borders,
+  colors,
+  durations,
+  easings,
+  fonts,
+  fontSizes,
+  fontWeights,
+  letterSpacings,
+  lineHeights,
+  radii,
+  spacing,
+  sizes,
+  zIndex: zIndices,
+  cursor,
+}
+
+export const semanticTokens = {
+  colors: semanticColors,
+  shadows: semanticShadows,
+  radii: semanticRadii,
+}
+
+export const cssVarsPrefix = "chakra"
+export const cssVarsRoot = ":where(html, .chakra-theme)"
+
 export const defaultThemeConfig = defineConfig({
   preflight: true,
-  cssVarsPrefix: "chakra",
-  cssVarsRoot: ":where(html, .chakra-theme)",
-  globalCss: globalCss,
+  cssVarsPrefix,
+  cssVarsRoot,
+  globalCss,
   theme: {
-    breakpoints: breakpoints,
-    keyframes: keyframes,
-    tokens: {
-      aspectRatios,
-      animations,
-      blurs,
-      borders,
-      colors,
-      durations,
-      easings,
-      fonts,
-      fontSizes,
-      fontWeights,
-      letterSpacings,
-      lineHeights,
-      radii,
-      spacing,
-      sizes,
-      zIndex: zIndices,
-      cursor,
-    },
-    semanticTokens: {
-      colors: semanticColors,
-      shadows: semanticShadows,
-      radii: semanticRadii,
-    },
-    recipes: recipes,
-    slotRecipes: slotRecipes,
-    textStyles: textStyles,
-    layerStyles: layerStyles,
-    animationStyles: animationStyles,
+    breakpoints,
+    keyframes,
+    tokens,
+    semanticTokens,
+    recipes,
+    slotRecipes,
+    textStyles,
+    layerStyles,
+    animationStyles,
   },
 })
+
+export {
+  recipes,
+  slotRecipes,
+  breakpoints,
+  keyframes,
+  textStyles,
+  layerStyles,
+  animationStyles,
+  globalCss,
+}
+
+export * from "./recipes.export"
+export * from "./slot-recipes.export"

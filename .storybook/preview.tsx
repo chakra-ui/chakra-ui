@@ -1,5 +1,5 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
-import type { Preview, ReactRenderer } from "@storybook/react"
+import type { Preview, ReactRenderer } from "@storybook/react-vite"
 import React from "react"
 import { ColorModeProvider } from "../apps/compositions/src/ui/color-mode"
 import {
@@ -28,6 +28,8 @@ const preview: Preview = {
         order: ["Layout", "Typography", "Components"],
       },
     },
+    actions: { disable: true },
+    controls: { disable: true },
   },
   decorators: [
     withThemeByClassName<ReactRenderer>({
@@ -37,13 +39,18 @@ const preview: Preview = {
         dark: "dark",
       },
     }),
-    (Story) => (
-      <ColorModeProvider>
-        <ChakraProvider value={system}>
-          <Story />
-        </ChakraProvider>
-      </ColorModeProvider>
-    ),
+    (Story, context) => {
+      return (
+        <ColorModeProvider
+          forcedTheme={context.globals.theme}
+          enableSystem={false}
+        >
+          <ChakraProvider value={system}>
+            <Story />
+          </ChakraProvider>
+        </ColorModeProvider>
+      )
+    },
   ],
 }
 

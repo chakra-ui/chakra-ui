@@ -40,3 +40,20 @@ export const uniq = <T>(...items: T[]) => {
   const _items = items.filter(Boolean)
   return Array.from(new Set(_items))
 }
+
+export const chartComponents = [
+  "area-chart",
+  "bar-chart",
+  "bar-list",
+  "bar-segment",
+  "donut-chart",
+  "line-chart",
+  "pie-chart",
+  "radar-chart",
+  "radial-chart",
+  "scatter-chart",
+  "sparkline",
+]
+
+export const isChartComponent = (component: string) =>
+  chartComponents.includes(component)

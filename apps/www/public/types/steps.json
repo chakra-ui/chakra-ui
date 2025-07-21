@@ -1,0 +1,321 @@
+{
+  "CompletedContent": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Content": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Description": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Indicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "List": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "NextTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Number": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "PrevTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "count": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The total number of steps"
+      },
+      "defaultStep": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The initial value of the stepper when rendered.\nUse when you don't need to control the value of the stepper."
+      },
+      "ids": {
+        "type": "ElementIds",
+        "isRequired": false,
+        "description": "The custom ids for the stepper elements"
+      },
+      "linear": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the stepper requires the user to complete the steps in order"
+      },
+      "onStepChange": {
+        "type": "(details: StepChangeDetails) => void",
+        "isRequired": false,
+        "description": "Callback to be called when the value changes"
+      },
+      "onStepComplete": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "Callback to be called when a step is completed"
+      },
+      "orientation": {
+        "type": "\"vertical\" | \"horizontal\"",
+        "isRequired": false,
+        "defaultValue": "horizontal",
+        "description": "The orientation of the component"
+      },
+      "step": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The controlled value of the stepper"
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "variant": {
+        "type": "\"solid\" | \"subtle\"",
+        "defaultValue": "solid",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseStepsReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Separator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Status": {
+    "props": {
+      "complete": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "incomplete": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "current": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Title": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Trigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Progress": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

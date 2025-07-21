@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react-vite"
 import { Box } from "../src"
 
 export default {
@@ -20,3 +20,4 @@ export { NativeSelectWithInvalid as Invalid } from "compositions/examples/native
 export { NativeSelectWithInvalidRoot as InvalidRoot } from "compositions/examples/native-select-with-invalid-root"
 export { NativeSelectWithSizes as Sizes } from "compositions/examples/native-select-with-sizes"
 export { NativeSelectWithVariants as Variants } from "compositions/examples/native-select-with-variants"
+export { NativeSelectWithInputGroup as InputGroup } from "compositions/examples/native-select-with-input-group"

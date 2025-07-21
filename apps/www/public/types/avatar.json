@@ -1,0 +1,170 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; image: string; fallback: string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the avatar. Useful for composition."
+      },
+      "onStatusChange": {
+        "type": "(details: StatusChangeDetails) => void",
+        "isRequired": false,
+        "description": "Functional called when the image loading status changes."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"full\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"solid\" | \"subtle\" | \"outline\"",
+        "defaultValue": "subtle",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "shape": {
+        "type": "\"square\" | \"rounded\" | \"full\"",
+        "defaultValue": "full",
+        "isRequired": false,
+        "description": "The shape of the component"
+      },
+      "borderless": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The borderless of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Image": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLImageElement"
+  },
+  "Fallback": {
+    "props": {
+      "name": {
+        "type": "string | undefined",
+        "isRequired": false,
+        "description": "The name to derive the initials from.\nIf not provided, the fallback will display a generic icon."
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Icon": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Group": {
+    "props": {
+      "align": {
+        "type": "JsxStyleProps[\"alignItems\"] | undefined",
+        "isRequired": false,
+        "description": "The `alignItems` style property"
+      },
+      "justify": {
+        "type": "JsxStyleProps[\"justifyContent\"] | undefined",
+        "isRequired": false,
+        "description": "The `justifyContent` style property"
+      },
+      "wrap": {
+        "type": "JsxStyleProps[\"flexWrap\"] | undefined",
+        "isRequired": false,
+        "description": "The `flexWrap` style property"
+      },
+      "skip": {
+        "type": "(child",
+        "isRequired": false,
+        "description": "A function that determines if a child should be skipped"
+      },
+      "orientation": {
+        "isRequired": false
+      },
+      "attached": {
+        "isRequired": false
+      },
+      "grow": {
+        "isRequired": false
+      },
+      "stacking": {
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseAvatarReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

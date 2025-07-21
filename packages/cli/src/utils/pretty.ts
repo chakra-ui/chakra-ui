@@ -1,7 +1,7 @@
-import * as prettier from "prettier"
+import { type Options, format } from "prettier"
 
-export function pretty(value: any, options: prettier.Options = {}) {
-  return prettier.format(value, {
+export function pretty(value: any, options: Options = {}) {
+  return format(value, {
     parser: "typescript",
     bracketSpacing: true,
     jsxSingleQuote: false,

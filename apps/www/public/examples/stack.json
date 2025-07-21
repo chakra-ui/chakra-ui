@@ -1,0 +1,86 @@
+{
+  "name": "stack",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "stack-basic",
+      "content": "export const StackBasic = () => {\n  return (\n    <Stack>\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-horizontal",
+      "content": "export const StackHorizontal = () => {\n  return (\n    <Stack direction=\"row\" h=\"20\">\n      <Box />\n      <Box />\n      <Box />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-custom-separator",
+      "content": "export const StackWithCustomSeparator = () => (\n  <Stack separator={<Separator borderColor=\"red.500\" />}>\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n  </Stack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Separator, Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-hstack",
+      "content": "export const StackWithHstack = () => {\n  return (\n    <HStack>\n      <Box h=\"10\" />\n      <Box h=\"5\" />\n      <Box h=\"20\" />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-responsive-direction",
+      "content": "export const StackWithResponsiveDirection = () => {\n  return (\n    <Stack direction={{ base: \"column\", md: \"row\" }} gap=\"10\">\n      <Box boxSize=\"20\" />\n      <Box boxSize=\"20\" />\n      <Box boxSize=\"20\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-responsive-separator",
+      "content": "export const StackWithResponsiveSeparator = () => (\n  <Stack\n    mt={10}\n    direction={[\"column\", \"row\"]}\n    separator={\n      <StackSeparator borderColor={{ base: \"green.500\", md: \"red.200\" }} />\n    }\n    gap={4}\n  >\n    <Box flex=\"1\" w={[\"100%\", \"40px\"]} h=\"40px\">\n      1\n    </Box>\n    <Box flex=\"1\" w={[\"100%\", \"40px\"]} h=\"40px\">\n      2\n    </Box>\n    <Box flex=\"1\" w={[\"100%\", \"40px\"]} h=\"40px\">\n      3\n    </Box>\n  </Stack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, StackSeparator } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-separator",
+      "content": "export const StackWithSeparator = () => {\n  return (\n    <Stack separator={<StackSeparator />}>\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n      <Box h=\"20\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, StackSeparator } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "stack-with-vstack",
+      "content": "export const StackWithVstack = () => {\n  return (\n    <VStack>\n      <Box w=\"50%\" h=\"20\" />\n      <Box w=\"25%\" h=\"20\" />\n      <Box w=\"100%\" h=\"20\" />\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { VStack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Stack } from \"@chakra-ui/react\""
+    }
+  ]
+}

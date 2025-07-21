@@ -36,7 +36,7 @@ const commandMap: Record<string, PackageManager> = {
 
 export async function installCommand(args: string[], cwd?: string) {
   const res = await detect({ cwd })
-  const agent = res.agent?.split("@")[0] || "npm"
+  const agent = res?.agent?.split("@")[0] || "npm"
   try {
     const command = Reflect.get(commandMap, agent)
     const str = command.add(args)

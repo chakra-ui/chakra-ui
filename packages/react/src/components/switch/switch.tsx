@@ -96,7 +96,7 @@ export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchIndicatorProps extends HTMLChakraProps<"span"> {
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
 }
 
 export const SwitchIndicator = forwardRef<
@@ -121,7 +121,7 @@ export const SwitchIndicator = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchThumbIndicatorProps extends HTMLChakraProps<"span"> {
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode | undefined
 }
 
 export const SwitchThumbIndicator = forwardRef<

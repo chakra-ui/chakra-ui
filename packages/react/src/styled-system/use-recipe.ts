@@ -13,12 +13,12 @@ import type {
 export type RecipeKey = keyof ConfigRecipes | (string & {})
 
 export interface UseRecipeOptions<K extends RecipeKey> {
-  key?: K
-  recipe?: RecipeDefinition
+  key?: K | undefined
+  recipe?: RecipeDefinition | undefined
 }
 
 export function useRecipe<
-  Options extends { key: RecipeKey; recipe?: RecipeDefinition },
+  Options extends { key: RecipeKey; recipe?: RecipeDefinition | undefined },
 >(
   options: Options,
 ): Options["key"] extends keyof ConfigRecipes

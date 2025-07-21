@@ -1,0 +1,192 @@
+{
+  "name": "dialog",
+  "file": "compositions/ui/dialog",
+  "snippet": "import { Dialog as ChakraDialog, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"@/components/ui/close-button\"\nimport * as React from \"react\"\n\ninterface DialogContentProps extends ChakraDialog.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n  backdrop?: boolean\n}\n\nexport const DialogContent = React.forwardRef<\n  HTMLDivElement,\n  DialogContentProps\n>(function DialogContent(props, ref) {\n  const {\n    children,\n    portalled = true,\n    portalRef,\n    backdrop = true,\n    ...rest\n  } = props\n\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      {backdrop && <ChakraDialog.Backdrop />}\n      <ChakraDialog.Positioner>\n        <ChakraDialog.Content ref={ref} {...rest} asChild={false}>\n          {children}\n        </ChakraDialog.Content>\n      </ChakraDialog.Positioner>\n    </Portal>\n  )\n})\n\nexport const DialogCloseTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraDialog.CloseTriggerProps\n>(function DialogCloseTrigger(props, ref) {\n  return (\n    <ChakraDialog.CloseTrigger\n      position=\"absolute\"\n      top=\"2\"\n      insetEnd=\"2\"\n      {...props}\n      asChild\n    >\n      <CloseButton size=\"sm\" ref={ref}>\n        {props.children}\n      </CloseButton>\n    </ChakraDialog.CloseTrigger>\n  )\n})\n\nexport const DialogRoot = ChakraDialog.Root\nexport const DialogFooter = ChakraDialog.Footer\nexport const DialogHeader = ChakraDialog.Header\nexport const DialogBody = ChakraDialog.Body\nexport const DialogBackdrop = ChakraDialog.Backdrop\nexport const DialogTitle = ChakraDialog.Title\nexport const DialogDescription = ChakraDialog.Description\nexport const DialogTrigger = ChakraDialog.Trigger\nexport const DialogActionTrigger = ChakraDialog.ActionTrigger\n",
+  "examples": [
+    {
+      "name": "dialog-basic",
+      "content": "export const DialogBasic = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-controlled",
+      "content": "\"use client\"\nexport const DialogControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <Lorem p={2} />\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "dialog-nested",
+      "content": "export const DialogNested = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <Lorem p={2} />\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Button variant=\"outline\">Button 2</Button>\n\n              <Dialog.Root>\n                <Dialog.Trigger asChild>\n                  <Button>Open Nested</Button>\n                </Dialog.Trigger>\n                <Portal>\n                  <Dialog.Backdrop />\n                  <Dialog.Positioner>\n                    <Dialog.Content>\n                      <Dialog.Header>\n                        <Dialog.Title>Dialog Title</Dialog.Title>\n                      </Dialog.Header>\n                      <Dialog.Body>\n                        <Lorem p={1} />\n                      </Dialog.Body>\n                    </Dialog.Content>\n                  </Dialog.Positioner>\n                </Portal>\n              </Dialog.Root>\n            </Dialog.Footer>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "dialog-non-modal",
+      "content": "export const DialogNonModal = () => {\n  return (\n    <Dialog.Root closeOnInteractOutside={false} modal={false}>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Positioner pointerEvents=\"none\">\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-close-outside",
+      "content": "export const DialogWithCloseOutside = () => {\n  return (\n    <Dialog.Root placement=\"center\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Body pt=\"4\">\n              <Dialog.Title>Dialog Title</Dialog.Title>\n              <Dialog.Description mb=\"4\">\n                This is a dialog with some content and a video.\n              </Dialog.Description>\n              <AspectRatio ratio={4 / 3} rounded=\"lg\" overflow=\"hidden\">\n                <iframe\n                  title=\"naruto\"\n                  src=\"https://www.youtube.com/embed/QhBnZ6NPOY0\"\n                  allowFullScreen\n                />\n              </AspectRatio>\n            </Dialog.Body>\n            <Dialog.CloseTrigger top=\"0\" insetEnd=\"-12\" asChild>\n              <CloseButton bg=\"bg\" size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  AspectRatio,\n  Button,\n  CloseButton,\n  Dialog,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-context",
+      "content": "\"use client\"\nexport const DialogWithContext = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Context>\n              {(store) => (\n                <Dialog.Body pt=\"6\" spaceY=\"3\">\n                  <p>Dialog is open: {store.open ? \"true\" : \"false\"}</p>\n                  <p>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua.\n                  </p>\n                  <button onClick={() => store.setOpen(false)}>Close</button>\n                </Dialog.Body>\n              )}\n            </Dialog.Context>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-cover",
+      "content": "export const DialogWithCover = () => {\n  return (\n    <Dialog.Root size=\"cover\" placement=\"center\" motionPreset=\"slide-in-bottom\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n              <Dialog.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </Dialog.CloseTrigger>\n            </Dialog.Header>\n            <Dialog.Body>\n              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n              eiusmod tempor incididunt ut labore et dolore magna aliqua.\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-datalist",
+      "content": "export const DialogWithDatalist = () => {\n  return (\n    <VStack alignItems=\"start\">\n      <Dialog.Root>\n        <Dialog.Trigger asChild>\n          <Button variant=\"outline\">Open Dialog</Button>\n        </Dialog.Trigger>\n        <Portal>\n          <Dialog.Backdrop />\n          <Dialog.Positioner>\n            <Dialog.Content>\n              <Dialog.Header>\n                <Dialog.Title>Prepare Chakra V3</Dialog.Title>\n              </Dialog.Header>\n              <Dialog.Body pb=\"8\">\n                <DataList.Root orientation=\"horizontal\">\n                  <DataList.Item>\n                    <DataList.ItemLabel>Status</DataList.ItemLabel>\n                    <DataList.ItemValue>\n                      <Badge colorPalette=\"green\">Completed</Badge>\n                    </DataList.ItemValue>\n                  </DataList.Item>\n                  <DataList.Item>\n                    <DataList.ItemLabel>Assigned to</DataList.ItemLabel>\n                    <DataList.ItemValue>\n                      <HStack>\n                        <Avatar.Root size=\"xs\">\n                          <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n                          <Avatar.Fallback name=\"Segun Adebayo\" />\n                        </Avatar.Root>\n                        Segun Adebayo\n                      </HStack>\n                    </DataList.ItemValue>\n                  </DataList.Item>\n                  <DataList.Item>\n                    <DataList.ItemLabel>Due date</DataList.ItemLabel>\n                    <DataList.ItemValue>12th August 2024</DataList.ItemValue>\n                  </DataList.Item>\n                </DataList.Root>\n\n                <Textarea placeholder=\"Add a note\" mt=\"8\" />\n              </Dialog.Body>\n              <Dialog.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </Dialog.CloseTrigger>\n            </Dialog.Content>\n          </Dialog.Positioner>\n        </Portal>\n      </Dialog.Root>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Avatar,\n  Badge,\n  Button,\n  CloseButton,\n  DataList,\n  Dialog,\n  HStack,\n  Portal,\n  Textarea,\n  VStack,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-final-focus",
+      "content": "\"use client\"\nexport const DialogWithFinalFocus = () => {\n  const finalRef = useRef<HTMLDivElement>(null)\n  return (\n    <Stack align=\"start\">\n      <Dialog.Root finalFocusEl={() => finalRef.current}>\n        <Dialog.Trigger asChild>\n          <Button variant=\"outline\">Open</Button>\n        </Dialog.Trigger>\n        <Portal>\n          <Dialog.Backdrop />\n          <Dialog.Positioner>\n            <Dialog.Content>\n              <Dialog.Header>\n                <Dialog.Title>Dialog Title</Dialog.Title>\n              </Dialog.Header>\n              <Dialog.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </Dialog.CloseTrigger>\n              <Dialog.Body>\n                <Lorem p={1} />\n              </Dialog.Body>\n            </Dialog.Content>\n          </Dialog.Positioner>\n        </Portal>\n      </Dialog.Root>\n      <Box\n        padding=\"4\"\n        borderWidth=\"2px\"\n        borderStyle=\"dashed\"\n        ref={finalRef}\n        tabIndex={-1}\n        aria-label=\"Focus moved to this box\"\n        _focus={{ outline: \"2px solid red\" }}\n      >\n        Some other content that will receive focus on close.\n      </Box>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Button,\n  CloseButton,\n  Dialog,\n  Portal,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "dialog-with-fullscreen",
+      "content": "export const DialogWithFullscreen = () => {\n  return (\n    <Dialog.Root size=\"full\" motionPreset=\"slide-in-bottom\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-initial-focus",
+      "content": "\"use client\"\nexport const DialogWithInitialFocus = () => {\n  const ref = useRef<HTMLInputElement>(null)\n  return (\n    <Dialog.Root initialFocusEl={() => ref.current}>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Header</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body pb=\"4\">\n              <Stack gap=\"4\">\n                <Field.Root>\n                  <Field.Label>First Name</Field.Label>\n                  <Input placeholder=\"First Name\" />\n                </Field.Root>\n                <Field.Root>\n                  <Field.Label>Last Name</Field.Label>\n                  <Input ref={ref} placeholder=\"Focus First\" />\n                </Field.Root>\n              </Stack>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Field, Input, Portal, Stack } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-inside-scroll",
+      "content": "export const DialogWithInsideScroll = () => {\n  return (\n    <Dialog.Root scrollBehavior=\"inside\" size=\"sm\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Inside Scroll</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>With Inside Scroll</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n            <Dialog.Body>\n              <Lorem p={8} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "dialog-with-motion-preset",
+      "content": "export const DialogWithMotionPreset = () => {\n  return (\n    <Dialog.Root motionPreset=\"slide-in-bottom\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Slide in Bottom</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-outside-scroll",
+      "content": "export const DialogWithOutsideScroll = () => {\n  return (\n    <Dialog.Root size=\"sm\" scrollBehavior=\"outside\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Outside Scroll</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>With Outside Scroll</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n            <Dialog.Body>\n              <Lorem p={8} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "dialog-with-placement",
+      "content": "export const DialogWithPlacement = () => {\n  return (\n    <HStack wrap=\"wrap\" gap=\"4\">\n      <For each={[\"top\", \"center\", \"bottom\"]}>\n        {(placement) => (\n          <Dialog.Root\n            key={placement}\n            placement={placement}\n            motionPreset=\"slide-in-bottom\"\n          >\n            <Dialog.Trigger asChild>\n              <Button variant=\"outline\">Open Dialog ({placement}) </Button>\n            </Dialog.Trigger>\n            <Portal>\n              <Dialog.Backdrop />\n              <Dialog.Positioner>\n                <Dialog.Content>\n                  <Dialog.Header>\n                    <Dialog.Title>Dialog Title</Dialog.Title>\n                  </Dialog.Header>\n                  <Dialog.Body>\n                    <p>\n                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                      Sed do eiusmod tempor incididunt ut labore et dolore magna\n                      aliqua.\n                    </p>\n                  </Dialog.Body>\n                  <Dialog.Footer>\n                    <Dialog.ActionTrigger asChild>\n                      <Button variant=\"outline\">Cancel</Button>\n                    </Dialog.ActionTrigger>\n                    <Button>Save</Button>\n                  </Dialog.Footer>\n                  <Dialog.CloseTrigger asChild>\n                    <CloseButton size=\"sm\" />\n                  </Dialog.CloseTrigger>\n                </Dialog.Content>\n              </Dialog.Positioner>\n            </Portal>\n          </Dialog.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  For,\n  HStack,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-role",
+      "content": "export const DialogWithRole = () => {\n  return (\n    <Dialog.Root role=\"alertdialog\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Are you sure?</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                This action cannot be undone. This will permanently delete your\n                account and remove your data from our systems.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button colorPalette=\"red\">Delete</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-sizes",
+      "content": "export const DialogWithSizes = () => {\n  return (\n    <HStack>\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Dialog.Root key={size} size={size}>\n            <Dialog.Trigger asChild>\n              <Button variant=\"outline\" size={size}>\n                Open ({size})\n              </Button>\n            </Dialog.Trigger>\n            <Portal>\n              <Dialog.Backdrop />\n              <Dialog.Positioner>\n                <Dialog.Content>\n                  <Dialog.Header>\n                    <Dialog.Title>Dialog Title</Dialog.Title>\n                  </Dialog.Header>\n                  <Dialog.Body>\n                    <p>\n                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                      Sed do eiusmod tempor incididunt ut labore et dolore magna\n                      aliqua.\n                    </p>\n                  </Dialog.Body>\n                  <Dialog.Footer>\n                    <Dialog.ActionTrigger asChild>\n                      <Button variant=\"outline\">Cancel</Button>\n                    </Dialog.ActionTrigger>\n                    <Button>Save</Button>\n                  </Dialog.Footer>\n                  <Dialog.CloseTrigger asChild>\n                    <CloseButton size=\"sm\" />\n                  </Dialog.CloseTrigger>\n                </Dialog.Content>\n              </Dialog.Positioner>\n            </Portal>\n          </Dialog.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  For,\n  HStack,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-with-store",
+      "content": "\"use client\"\nexport const DialogWithStore = () => {\n  const dialog = useDialog()\n  return (\n    <Dialog.RootProvider value={dialog}>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          {dialog.open ? \"Close\" : \"Open\"} Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Portal,\n  useDialog,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -4,14 +4,14 @@ import { type HighlightChunk, useHighlight } from "@ark-ui/react/highlight"
 import { Fragment, type JSX } from "react"
 import { type SystemStyleObject } from "../../styled-system"
 import { For } from "../for"
-import { Mark } from "../typography/mark"
+import { Mark } from "../mark"
 
 export interface HighlightProps {
   query: string | string[]
   children: string | ((props: HighlightChunk[]) => React.ReactNode)
-  styles?: SystemStyleObject
-  ignoreCase?: boolean
-  matchAll?: boolean
+  styles?: SystemStyleObject | undefined
+  ignoreCase?: boolean | undefined
+  matchAll?: boolean | undefined
 }
 
 /**

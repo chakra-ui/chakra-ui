@@ -1,0 +1,33 @@
+{
+  "name": "fieldset",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "fieldset-basic",
+      "content": "export const FieldsetBasic = () => {\n  return (\n    <Fieldset.Root size=\"lg\" maxW=\"md\">\n      <Stack>\n        <Fieldset.Legend>Contact details</Fieldset.Legend>\n        <Fieldset.HelperText>\n          Please provide your contact details below.\n        </Fieldset.HelperText>\n      </Stack>\n\n      <Fieldset.Content>\n        <Field.Root>\n          <Field.Label>Name</Field.Label>\n          <Input name=\"name\" />\n        </Field.Root>\n\n        <Field.Root>\n          <Field.Label>Email address</Field.Label>\n          <Input name=\"email\" type=\"email\" />\n        </Field.Root>\n\n        <Field.Root>\n          <Field.Label>Country</Field.Label>\n          <NativeSelect.Root>\n            <NativeSelect.Field name=\"country\">\n              <For each={[\"United Kingdom\", \"Canada\", \"United States\"]}>\n                {(item) => (\n                  <option key={item} value={item}>\n                    {item}\n                  </option>\n                )}\n              </For>\n            </NativeSelect.Field>\n            <NativeSelect.Indicator />\n          </NativeSelect.Root>\n        </Field.Root>\n      </Fieldset.Content>\n\n      <Button type=\"submit\" alignSelf=\"flex-start\">\n        Submit\n      </Button>\n    </Fieldset.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Field,\n  Fieldset,\n  For,\n  Input,\n  NativeSelect,\n  Stack,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Fieldset } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "fieldset-with-disabled",
+      "content": "export const FieldsetWithDisabled = () => {\n  return (\n    <Fieldset.Root size=\"lg\" disabled>\n      <Fieldset.Legend>Shipping details</Fieldset.Legend>\n      <Field.Root>\n        <Field.Label>Street address</Field.Label>\n        <Input name=\"address\" />\n      </Field.Root>\n      <Field.Root>\n        <Field.Label>Country</Field.Label>\n        <NativeSelect.Root>\n          <NativeSelect.Field name=\"country\">\n            <For each={[\"United Kingdom\", \"Canada\", \"United States\"]}>\n              {(item) => (\n                <option key={item} value={item}>\n                  {item}\n                </option>\n              )}\n            </For>\n          </NativeSelect.Field>\n          <NativeSelect.Indicator />\n        </NativeSelect.Root>\n      </Field.Root>\n      <Field.Root>\n        <Field.Label>Delivery notes</Field.Label>\n        <Textarea name=\"notes\" />\n      </Field.Root>\n    </Fieldset.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Field,\n  Fieldset,\n  For,\n  Input,\n  NativeSelect,\n  Textarea,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Fieldset } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "fieldset-with-invalid",
+      "content": "export const FieldsetWithInvalid = () => {\n  return (\n    <Fieldset.Root size=\"lg\" invalid>\n      <Fieldset.Legend>Shipping details</Fieldset.Legend>\n      <Fieldset.Content>\n        <Field.Root>\n          <Field.Label>Street address</Field.Label>\n          <Input name=\"address\" />\n        </Field.Root>\n        <Field.Root invalid>\n          <Field.Label>Country</Field.Label>\n          <NativeSelect.Root>\n            <NativeSelect.Field name=\"country\">\n              <For each={[\"United Kingdom\", \"Canada\", \"United States\"]}>\n                {(item) => (\n                  <option key={item} value={item}>\n                    {item}\n                  </option>\n                )}\n              </For>\n            </NativeSelect.Field>\n            <NativeSelect.Indicator />\n          </NativeSelect.Root>\n        </Field.Root>\n        <Field.Root invalid>\n          <Field.Label>Notes</Field.Label>\n          <Textarea name=\"notes\" />\n        </Field.Root>\n      </Fieldset.Content>\n      <Fieldset.ErrorText>\n        Some fields are invalid. Please check them.\n      </Fieldset.ErrorText>\n    </Fieldset.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Field,\n  Fieldset,\n  For,\n  Input,\n  NativeSelect,\n  Textarea,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Fieldset } from \"@chakra-ui/react\""
+    }
+  ]
+}

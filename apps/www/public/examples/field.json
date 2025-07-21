@@ -1,0 +1,98 @@
+{
+  "name": "field",
+  "file": "compositions/ui/field",
+  "snippet": "import { Field as ChakraField } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface FieldProps extends Omit<ChakraField.RootProps, \"label\"> {\n  label?: React.ReactNode\n  helperText?: React.ReactNode\n  errorText?: React.ReactNode\n  optionalText?: React.ReactNode\n}\n\nexport const Field = React.forwardRef<HTMLDivElement, FieldProps>(\n  function Field(props, ref) {\n    const { label, children, helperText, errorText, optionalText, ...rest } =\n      props\n    return (\n      <ChakraField.Root ref={ref} {...rest}>\n        {label && (\n          <ChakraField.Label>\n            {label}\n            <ChakraField.RequiredIndicator fallback={optionalText} />\n          </ChakraField.Label>\n        )}\n        {children}\n        {helperText && (\n          <ChakraField.HelperText>{helperText}</ChakraField.HelperText>\n        )}\n        {errorText && (\n          <ChakraField.ErrorText>{errorText}</ChakraField.ErrorText>\n        )}\n      </ChakraField.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "field-basic",
+      "content": "export const FieldBasic = () => {\n  return (\n    <Field.Root>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-closed-component",
+      "content": "export interface FieldProps extends Omit<ChakraField.RootProps, \"label\"> {\n  label?: React.ReactNode\n  helperText?: React.ReactNode\n  errorText?: React.ReactNode\n  optionalText?: React.ReactNode\n}\n\nexport const Field = React.forwardRef<HTMLDivElement, FieldProps>(\n  function Field(props, ref) {\n    const { label, children, helperText, errorText, optionalText, ...rest } =\n      props\n    return (\n      <ChakraField.Root ref={ref} {...rest}>\n        {label && (\n          <ChakraField.Label>\n            {label}\n            <ChakraField.RequiredIndicator fallback={optionalText} />\n          </ChakraField.Label>\n        )}\n        {children}\n        {helperText && (\n          <ChakraField.HelperText>{helperText}</ChakraField.HelperText>\n        )}\n        {errorText && (\n          <ChakraField.ErrorText>{errorText}</ChakraField.ErrorText>\n        )}\n      </ChakraField.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field as ChakraField } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-horizontal",
+      "content": "export const FieldHorizontal = () => {\n  return (\n    <Stack gap=\"8\" maxW=\"sm\" css={{ \"--field-label-width\": \"96px\" }}>\n      <Field.Root orientation=\"horizontal\">\n        <Field.Label>Name</Field.Label>\n        <Input placeholder=\"John Doe\" flex=\"1\" />\n      </Field.Root>\n\n      <Field.Root orientation=\"horizontal\">\n        <Field.Label>Email</Field.Label>\n        <Input placeholder=\"me@example.com\" flex=\"1\" />\n      </Field.Root>\n\n      <Field.Root orientation=\"horizontal\">\n        <Field.Label>Hide email</Field.Label>\n        <Switch.Root>\n          <Switch.HiddenInput />\n          <Switch.Control />\n        </Switch.Root>\n      </Field.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input, Stack, Switch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-disabled",
+      "content": "export const FieldWithDisabled = () => {\n  return (\n    <Field.Root disabled>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-error-text",
+      "content": "export const FieldWithErrorText = () => {\n  return (\n    <Field.Root invalid>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n      <Field.ErrorText>This is an error text</Field.ErrorText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-helper-text",
+      "content": "export const FieldWithHelperText = () => {\n  return (\n    <Field.Root>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n      <Field.HelperText>This is a helper text</Field.HelperText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-native-select",
+      "content": "export const FieldWithNativeSelect = () => {\n  return (\n    <Field.Root>\n      <Field.Label>Email</Field.Label>\n      <NativeSelect.Root>\n        <NativeSelect.Field>\n          <option value=\"1\">Option 1</option>\n          <option value=\"2\">Option 2</option>\n          <option value=\"3\">Option 3</option>\n        </NativeSelect.Field>\n        <NativeSelect.Indicator />\n      </NativeSelect.Root>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, NativeSelect } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-optional",
+      "content": "export const FieldWithOptional = () => {\n  return (\n    <Field.Root>\n      <Field.Label>\n        Email\n        <Field.RequiredIndicator\n          fallback={\n            <Badge size=\"xs\" variant=\"surface\">\n              Optional\n            </Badge>\n          }\n        />\n      </Field.Label>\n      <Input placeholder=\"me@example.com\" />\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-required",
+      "content": "export const FieldWithRequired = () => {\n  return (\n    <Field.Root required>\n      <Field.Label>\n        Email\n        <Field.RequiredIndicator />\n      </Field.Label>\n      <Input placeholder=\"me@example.com\" />\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "field-with-textarea",
+      "content": "export const FieldWithTextarea = () => {\n  return (\n    <Field.Root>\n      <Field.Label>Email</Field.Label>\n      <Textarea placeholder=\"Email\" />\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Textarea } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    }
+  ]
+}

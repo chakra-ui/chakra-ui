@@ -1,0 +1,63 @@
+{
+  "name": "wrap",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "wrap-basic",
+      "content": "export const WrapBasic = () => (\n  <Wrap>\n    <Badge>Badge 1</Badge>\n    <Badge>Badge 2</Badge>\n    <Badge>Badge 3</Badge>\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Wrap } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "wrap-responsive",
+      "content": "export const WrapResponsive = () => (\n  <Wrap gap={[\"12px\", \"24px\"]} justify={[\"center\", \"flex-start\"]}>\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n    <Box h=\"12\" w=\"12\" />\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Wrap } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "wrap-with-align",
+      "content": "export const WrapWithAlign = () => (\n  <Wrap gap=\"30px\" align=\"center\">\n    {Array.from({ length: 5 }).map((_, index) => (\n      <WrapItem key={index}>\n        <Center w=\"180px\" h=\"80px\" bg=\"red.muted\">\n          Box {index + 1}\n        </Center>\n      </WrapItem>\n    ))}\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Wrap, WrapItem } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "wrap-with-gap",
+      "content": "export const WrapWithGap = () => (\n  <Wrap gap=\"5\">\n    {Array.from({ length: 10 }).map((_, index) => (\n      <Box key={index} h=\"12\" w=\"12\" />\n    ))}\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Wrap } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "wrap-with-justify",
+      "content": "export const WrapWithJustify = () => (\n  <Wrap gap=\"30px\" justify=\"center\">\n    {Array.from({ length: 5 }).map((_, index) => (\n      <WrapItem key={index}>\n        <Center w=\"180px\" h=\"80px\" bg=\"red.muted\">\n          Box {index + 1}\n        </Center>\n      </WrapItem>\n    ))}\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Wrap, WrapItem } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "wrap-with-row-column-gap",
+      "content": "export const WrapWithRowColumnGap = () => (\n  <Wrap rowGap={[\"0px\", \"24px\"]} columnGap={[\"4px\", \"12px\"]}>\n    {Array.from({ length: 10 }).map((_, index) => (\n      <Box key={index} w=\"12\" h=\"12\" />\n    ))}\n  </Wrap>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Wrap } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Wrap } from \"@chakra-ui/react\""
+    }
+  ]
+}

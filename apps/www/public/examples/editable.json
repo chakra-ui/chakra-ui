@@ -1,0 +1,93 @@
+{
+  "name": "editable",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "editable-basic",
+      "content": "export const EditableBasic = () => (\n  <Editable.Root textAlign=\"start\" defaultValue=\"Click to edit\">\n    <Editable.Preview />\n    <Editable.Input />\n  </Editable.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-controlled",
+      "content": "\"use client\"\nexport const EditableControlled = () => {\n  const [name, setName] = useState(\"\")\n  return (\n    <Editable.Root\n      value={name}\n      onValueChange={(e) => setName(e.value)}\n      placeholder=\"Click to edit\"\n    >\n      <Editable.Preview />\n      <Editable.Input />\n    </Editable.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-disabled",
+      "content": "export const EditableDisabled = () => {\n  return (\n    <Editable.Root disabled defaultValue=\"Click to edit\">\n      <Editable.Preview opacity={0.5} cursor=\"not-allowed\" />\n      <Editable.Input />\n    </Editable.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-with-controls",
+      "content": "export const EditableWithControls = () => {\n  return (\n    <Editable.Root defaultValue=\"Click to edit\">\n      <Editable.Preview />\n      <Editable.Input />\n      <Editable.Control>\n        <Editable.EditTrigger asChild>\n          <IconButton variant=\"ghost\" size=\"xs\">\n            <LuPencilLine />\n          </IconButton>\n        </Editable.EditTrigger>\n        <Editable.CancelTrigger asChild>\n          <IconButton variant=\"outline\" size=\"xs\">\n            <LuX />\n          </IconButton>\n        </Editable.CancelTrigger>\n        <Editable.SubmitTrigger asChild>\n          <IconButton variant=\"outline\" size=\"xs\">\n            <LuCheck />\n          </IconButton>\n        </Editable.SubmitTrigger>\n      </Editable.Control>\n    </Editable.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable, IconButton } from \"@chakra-ui/react\"",
+        "import { LuCheck, LuPencilLine, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "editable-with-custom-component",
+      "content": "export const EditableWithCustomComponent = () => {\n  return (\n    <Editable.Root defaultValue=\"Click to edit\">\n      <Editable.Preview>\n        <Input />\n      </Editable.Preview>\n    </Editable.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-with-double-click",
+      "content": "export const EditableWithDoubleClick = () => (\n  <Editable.Root defaultValue=\"Double click to edit\" activationMode=\"dblclick\">\n    <Editable.Preview />\n    <Editable.Input />\n  </Editable.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-with-final-focus",
+      "content": "\"use client\"\nexport const EditableWithFinalFocus = () => {\n  const ref = useRef<HTMLInputElement>(null)\n\n  return (\n    <Stack>\n      <Editable.Root\n        finalFocusEl={() => ref.current}\n        defaultValue=\"Final fantasy\"\n      >\n        <Editable.Preview />\n        <Editable.Input />\n        <Editable.Control>\n          <Editable.EditTrigger>Edit</Editable.EditTrigger>\n          <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>\n          <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>\n        </Editable.Control>\n      </Editable.Root>\n\n      <Input placeholder=\"Placeholder\" ref={ref} />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable, Input, Stack } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-with-store",
+      "content": "\"use client\"\nexport const EditableWithStore = () => {\n  const editable = useEditable({\n    defaultValue: \"Click to edit\",\n  })\n\n  return (\n    <Stack align=\"flex-start\">\n      <Editable.RootProvider value={editable}>\n        <Editable.Preview />\n        <Editable.Input />\n      </Editable.RootProvider>\n      <Code>{editable.editing ? \"editing\" : \"not editing\"}</Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Editable, Stack, useEditable } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "editable-with-textarea",
+      "content": "export const EditableWithTextarea = () => {\n  return (\n    <Editable.Root defaultValue=\"Click to edit\">\n      <Editable.Preview minH=\"48px\" alignItems=\"flex-start\" width=\"full\" />\n      <Editable.Textarea />\n    </Editable.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Editable } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Editable } from \"@chakra-ui/react\""
+    }
+  ]
+}

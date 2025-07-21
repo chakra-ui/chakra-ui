@@ -1,0 +1,53 @@
+---
+title: Download Trigger
+description: Used to trigger a download of a file.
+links:
+  source: components/download-trigger
+  storybook: components-download-trigger--basic
+  ark: https://ark-ui.com/docs/utilities/download-trigger
+---
+
+<ExampleTabs name="download-trigger-basic" />
+
+## Usage
+
+```jsx
+import { DownloadTrigger } from "@chakra-ui/react"
+```
+
+```jsx
+<DownloadTrigger data="..." fileName="x.png" mimeType="image/png" />
+```
+
+## Examples
+
+### Basic
+
+Pass the data you want to download to the `data` prop, and specify the
+`fileName` and `mimeType` of the file.
+
+<ExampleTabs name="download-trigger-basic" />
+
+### Download SVG
+
+Here's an example of how to download an SVG file.
+
+<ExampleTabs name="download-trigger-svg" />
+
+### Promise
+
+You can also trigger downloads from a promise that returns a `Blob`, `File`, or
+`string`.
+
+<ExampleTabs name="download-trigger-with-promise" />
+
+### File Size
+
+Compose the `DownloadTrigger` with the `FormatByte` component to display the
+size of the file in a human-readable format.
+
+<ExampleTabs name="download-trigger-with-file-size" />
+
+## Props
+
+<PropTable component="DownloadTrigger" />
