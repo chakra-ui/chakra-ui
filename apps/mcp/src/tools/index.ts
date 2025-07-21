@@ -6,7 +6,9 @@ import { getComponentTemplatesTool } from "./get-component-templates.js"
 import { getComponentsTool } from "./get-components.js"
 import { getSemanticTokensTool } from "./get-semantic-tokens.js"
 import { getTextStylesTool } from "./get-text-styles.js"
+import { getTokenTool } from "./get-token.js"
 import { listBlocksTool } from "./list-blocks.js"
+import { themeCustomizationTool } from "./token-customization.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
 const baseTool: Tool[] = [
@@ -16,6 +18,8 @@ const baseTool: Tool[] = [
   getSemanticTokensTool,
   getTextStylesTool,
   v2ToV3MigrationTool,
+  getTokenTool,
+  themeCustomizationTool,
 ]
 
 const proTools: Tool[] = [listBlocksTool, getComponentTemplatesTool]
