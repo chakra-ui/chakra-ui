@@ -229,10 +229,10 @@ export const App = ({ Component }) => (
 </Box>`,
   },
 
-  gradient_props: {
+  bg_gradient_props: {
     name: "Gradient Props",
     description:
-      "Gradient style prop simplified to gradient and gradientFrom and gradientTo props",
+      "Gradient style prop split into `bgGradient`, `gradientFrom`, and `gradientTo` props",
     before: `<Box bgGradient="linear(to-r, red.200, pink.500)" />
 
 <Box bgGradient="linear(to-b, blue.100, blue.500)" />
