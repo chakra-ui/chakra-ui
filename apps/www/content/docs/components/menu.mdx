@@ -172,6 +172,19 @@ To use the `Menu` within a `Dialog`, you need to avoid portalling the
 -</Portal>
 ```
 
+If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
+
+- Set the menu positioning to `fixed` to avoid the menu from being clipped by
+  the dialog.
+- Set `hideWhenDetached` to `true` to hide the menu when the trigger is scrolled
+  out of view.
+
+```tsx
+<Menu.Root positioning={{ strategy: "fixed", hideWhenDetached: true }}>
+  {/* ... */}
+</Menu.Root>
+```
+
 <ExampleTabs name="menu-within-dialog" />
 
 ## Props

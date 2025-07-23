@@ -1,0 +1,490 @@
+{
+  "BranchContent": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "BranchControl": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "BranchIndentGuide": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "BranchIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Branch": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "BranchText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "BranchTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Label": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLHeadingElement"
+  },
+  "NodeCheckbox": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Node": {
+    "props": {
+      "indentGuide": {
+        "type": "React.ReactElement",
+        "isRequired": false
+      },
+      "render": {
+        "type": "(props",
+        "isRequired": true
+      },
+      "renderBranch": {
+        "type": "(props",
+        "isRequired": false
+      },
+      "branchProps": {
+        "type": "TreeViewBranchProps",
+        "isRequired": false
+      },
+      "branchContentProps": {
+        "type": "TreeViewBranchContentProps",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "NodeRender": {
+    "props": {
+      "node": {
+        "type": "T",
+        "isRequired": false
+      },
+      "indexPath": {
+        "type": "number[]",
+        "isRequired": true
+      },
+      "nodeState": {
+        "type": "ArkTreeView.NodeState",
+        "isRequired": true
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "collection": {
+        "type": "TreeCollection<T>",
+        "isRequired": true,
+        "description": "The collection of tree nodes"
+      },
+      "checkedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled checked node value"
+      },
+      "defaultCheckedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial checked node value when rendered.\nUse when you don't need to control the checked node value."
+      },
+      "defaultExpandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial expanded node ids when rendered.\nUse when you don't need to control the expanded node value."
+      },
+      "defaultFocusedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial focused node value when rendered.\nUse when you don't need to control the focused node value."
+      },
+      "defaultSelectedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial selected node value when rendered.\nUse when you don't need to control the selected node value."
+      },
+      "expandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled expanded node ids"
+      },
+      "expandOnClick": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether clicking on a branch should open it or not"
+      },
+      "focusedValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value of the focused node"
+      },
+      "ids": {
+        "type": "Partial<{ root: string; tree: string; label: string; node: (value: string) => string }>",
+        "isRequired": false,
+        "description": "The ids of the tree elements. Useful for composition."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "loadChildren": {
+        "type": "(details: LoadChildrenDetails<T>) => Promise<T[]>",
+        "isRequired": false,
+        "description": "Function to load children for a node asynchronously.\nWhen provided, branches will wait for this promise to resolve before expanding."
+      },
+      "onCheckedChange": {
+        "type": "(details: CheckedChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the checked value changes"
+      },
+      "onExpandedChange": {
+        "type": "(details: ExpandedChangeDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when the tree is opened or closed"
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when the focused node changes"
+      },
+      "onLoadChildrenComplete": {
+        "type": "(details: LoadChildrenCompleteDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when a node finishes loading children"
+      },
+      "onLoadChildrenError": {
+        "type": "(details: LoadChildrenErrorDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when loading children fails for one or more nodes"
+      },
+      "onSelectionChange": {
+        "type": "(details: SelectionChangeDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when the selection changes"
+      },
+      "selectedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled selected node value"
+      },
+      "selectionMode": {
+        "type": "'multiple' | 'single'",
+        "isRequired": false,
+        "defaultValue": "\"single\"",
+        "description": "Whether the tree supports multiple selection\n- \"single\": only one node can be selected\n- \"multiple\": multiple nodes can be selected"
+      },
+      "typeahead": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether the tree supports typeahead search"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"md\" | \"sm\" | \"xs\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"subtle\" | \"solid\"",
+        "defaultValue": "subtle",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "animateContent": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The animateContent of the component"
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseTreeViewReturn<T>",
+        "isRequired": true
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  },
+  "Tree": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "NodeCheckboxIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "fallback": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      },
+      "indeterminate": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      }
+    }
+  },
+  "NodeProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "indexPath": {
+        "type": "number[]",
+        "isRequired": true,
+        "description": "The index path of the tree node"
+      },
+      "node": {
+        "type": "NonNullable<T>",
+        "isRequired": false,
+        "description": "The tree node"
+      }
+    }
+  }
+}

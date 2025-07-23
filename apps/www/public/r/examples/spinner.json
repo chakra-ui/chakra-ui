@@ -1,0 +1,88 @@
+{
+  "name": "spinner",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "spinner-basic",
+      "content": "export const SpinnerBasic = () => {\n  return <Spinner size=\"sm\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-custom-color",
+      "content": "export const SpinnerCustomColor = () => {\n  return <Spinner color=\"teal.500\" size=\"lg\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-colors",
+      "content": "export const SpinnerWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n        >\n          <Spinner\n            size=\"sm\"\n            color=\"colorPalette.600\"\n            colorPalette={colorPalette}\n          />\n          <Spinner\n            size=\"md\"\n            color=\"colorPalette.600\"\n            colorPalette={colorPalette}\n          />\n          <Spinner\n            size=\"lg\"\n            color=\"colorPalette.600\"\n            colorPalette={colorPalette}\n          />\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner, Stack } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-custom-speed",
+      "content": "export const SpinnerWithCustomSpeed = () => (\n  <Spinner color=\"blue.500\" animationDuration=\"0.8s\" />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-custom-thickness",
+      "content": "export const SpinnerWithCustomThickness = () => (\n  <Spinner color=\"blue.500\" borderWidth=\"4px\" />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-label",
+      "content": "export const SpinnerWithLabel = () => {\n  return (\n    <VStack colorPalette=\"teal\">\n      <Spinner color=\"colorPalette.600\" />\n      <Text color=\"colorPalette.600\">Loading...</Text>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner, Text, VStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-overlay",
+      "content": "export const SpinnerWithOverlay = () => {\n  return (\n    <Box position=\"relative\" aria-busy=\"true\" userSelect=\"none\">\n      <Heading>Some heading text</Heading>\n      <Text>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac\n        consectetur libero, id ultricies urna. Sed ac consectetur libero, id\n        fames ac ante ipsum primis in faucibus.\n      </Text>\n      <Box pos=\"absolute\" inset=\"0\" bg=\"bg/80\">\n        <Center h=\"full\">\n          <Spinner color=\"teal.500\" />\n        </Center>\n      </Box>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, Heading, Spinner, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-sizes",
+      "content": "export const SpinnerWithSizes = () => {\n  return (\n    <HStack gap=\"5\">\n      <Spinner size=\"xs\" />\n      <Spinner size=\"sm\" />\n      <Spinner size=\"md\" />\n      <Spinner size=\"lg\" />\n      <Spinner size=\"xl\" />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "spinner-with-track-color",
+      "content": "export const SpinnerWithTrackColor = () => (\n  <Spinner\n    color=\"red.500\"\n    css={{ \"--spinner-track-color\": \"colors.gray.200\" }}\n  />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Spinner } from \"@chakra-ui/react\""
+    }
+  ]
+}

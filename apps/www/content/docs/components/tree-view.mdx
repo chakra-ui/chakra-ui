@@ -4,7 +4,7 @@ description:
   Used to display hierarchical data structures in an expandable tree format
 links:
   source: components/tree-view
-  storybook: components-tree-view--basic
+  storybook: components-treeview--basic
   recipe: tree-view
   ark: https://ark-ui.com/react/docs/components/tree-view
 ---
@@ -28,7 +28,6 @@ import { TreeView } from "@chakra-ui/react"
       </TreeView.BranchControl>
       <TreeView.BranchContent>
         <TreeView.BranchIndentGuide />
-        <TreeView.Item />
         <TreeView.Item />
       </TreeView.BranchContent>
     </TreeView.Branch>
@@ -71,12 +70,7 @@ const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
       {node.children ? (
         <TreeView.Branch>
           <TreeView.BranchControl>
-            <TreeView.BranchText>
-              <FolderIcon /> {node.name}
-            </TreeView.BranchText>
-            <TreeView.BranchIndicator>
-              <ChevronRightIcon />
-            </TreeView.BranchIndicator>
+            <TreeView.BranchText>{node.name}</TreeView.BranchText>
           </TreeView.BranchControl>
           <TreeView.BranchContent>
             <TreeView.BranchIndentGuide />
@@ -91,13 +85,7 @@ const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
         </TreeView.Branch>
       ) : (
         <TreeView.Item>
-          <TreeView.ItemIndicator>
-            <CheckSquareIcon />
-          </TreeView.ItemIndicator>
-          <TreeView.ItemText>
-            <FileIcon />
-            {node.name}
-          </TreeView.ItemText>
+          <TreeView.ItemText>{node.name}</TreeView.ItemText>
         </TreeView.Item>
       )}
     </TreeView.NodeProvider>
@@ -112,6 +100,18 @@ const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
 Use the `size` prop to change the size of the tree view.
 
 <ExampleTabs name="tree-view-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the variant of the tree view.
+
+<ExampleTabs name="tree-view-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color palette of the tree view.
+
+<ExampleTabs name="tree-view-with-colors" />
 
 ### Disabled Node
 
@@ -135,6 +135,20 @@ Render the `TreeView.BranchTrigger` to manually control node expansion behavior.
 > accessibility issues.
 
 <ExampleTabs name="tree-view-explicit-expand" />
+
+### Expand Icon
+
+Use the `nodeState.expanded` prop to swap the rendered icon on the branch when
+it's expanded or collapsed.
+
+<ExampleTabs name="tree-view-expand-icon" />
+
+### Remove Indentation
+
+Set the css variable `--tree-indentation` to `0px` to remove the indentation of
+the tree view.
+
+<ExampleTabs name="tree-view-remove-indentation" />
 
 ### Async Loading
 
@@ -162,6 +176,13 @@ and `useFilter` hook to filter the nodes.
 
 <ExampleTabs name="tree-view-with-filter" />
 
+### Collapse Animation
+
+Use the `animateContent` prop to animate the tree view content expand/collapse
+state.
+
+<ExampleTabs name="tree-view-collapse-animation" />
+
 ### Expand/Collapse All
 
 Provide controls to expand or collapse all nodes at once.
@@ -176,11 +197,47 @@ the tree view programmatically.
 
 <ExampleTabs name="tree-view-with-store" />
 
+### Links
+
+Render the tree items as links by leveraging the `asChild` prop on the
+`TreeView.Item` component.
+
+<ExampleTabs name="tree-view-with-links" />
+
+### Multi Select
+
+Add the `selectionMode="multiple"` prop to the `TreeView.Root` component to
+enable multi-select functionality.
+
+:::info
+
+This mode requires a modifier key to be pressed to select multiple items.
+
+- Hold `Ctrl` or `⌘` on macOS and click the items.
+- Click an item, then hold `Shift` while clicking on another item.
+
+:::
+
+<ExampleTabs name="tree-view-multi-select" />
+
 ### Checkbox Tree
 
 Add checkboxes to tree nodes for selection functionality.
 
 <ExampleTabs name="tree-view-checkbox" />
+
+### Mutation
+
+Here's an example of how to design add/remove nodes in the tree view.
+
+<ExampleTabs name="tree-view-mutation" />
+
+### Custom Icon
+
+Here's an example of how to render a custom icon for the tree view based on its
+data.
+
+<ExampleTabs name="tree-view-custom-icon" />
 
 ## Props
 

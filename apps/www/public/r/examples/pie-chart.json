@@ -1,0 +1,118 @@
+{
+  "name": "pie-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "pie-chart-basic",
+      "content": "\"use client\"\nexport const PieChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-no-stroke",
+      "content": "\"use client\"\nexport const PieChartNoStroke = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n          stroke=\"none\"\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-label-inside",
+      "content": "\"use client\"\nexport const PieChartWithLabelInside = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"320px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n        >\n          <LabelList position=\"inside\" fill=\"white\" stroke=\"none\" />\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, LabelList, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-label-outside",
+      "content": "\"use client\"\nexport const PieChartWithLabelOutside = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          outerRadius={100}\n          innerRadius={0}\n          labelLine={false}\n          label={({ name, index }) => {\n            const { value } = chart.data[index ?? -1]\n            const percent = value / chart.getTotal(\"value\")\n            return `${name}: ${(percent * 100).toFixed(1)}%`\n          }}\n        >\n          {chart.data.map((item) => {\n            return <Cell key={item.name} fill={chart.color(item.color)} />\n          })}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-legend",
+      "content": "\"use client\"\nexport const PieChartWithLegend = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"teal.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Legend content={<Chart.Legend />} />\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Legend, Pie, PieChart } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-point-label",
+      "content": "\"use client\"\nexport const PieChartWithPointLabel = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"320px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          labelLine={{ stroke: chart.color(\"border.emphasized\") }}\n          label={{\n            fill: chart.color(\"fg.muted\"),\n            style: { fontWeight: \"600\" },\n          }}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-start-angle",
+      "content": "\"use client\"\nexport const PieChartWithStartAngle = () => {\n  const chart = useChart({\n    data: [\n      { name: \"typescript\", value: 400, color: \"blue.solid\" },\n      { name: \"javascript\", value: 120, color: \"orange.solid\" },\n      { name: \"python\", value: 300, color: \"pink.solid\" },\n      { name: \"rust\", value: 278, color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"320px\" mx=\"auto\" chart={chart}>\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n          startAngle={180}\n          endAngle={0}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "pie-chart-with-tooltip",
+      "content": "\"use client\"\nexport const PieChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart}>\n      <PieChart>\n        <Pie\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { PieChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

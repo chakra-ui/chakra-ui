@@ -1,0 +1,43 @@
+{
+  "name": "code",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "code-basic",
+      "content": "export const CodeBasic = () => {\n  return <Code>{`console.log(\"Hello, world!\")`}</Code>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Code } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "code-with-colors",
+      "content": "export const CodeWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n          width=\"full\"\n        >\n          <Text minW=\"8ch\" textStyle=\"sm\">\n            {colorPalette}\n          </Text>\n          <Code colorPalette={colorPalette} variant=\"solid\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"outline\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"subtle\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"surface\">\n            {`console.log()`}\n          </Code>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Code } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "code-with-sizes",
+      "content": "export const CodeWithSizes = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <Code size=\"xs\">console.log()</Code>\n      <Code size=\"sm\">console.log()</Code>\n      <Code size=\"md\">console.log()</Code>\n      <Code size=\"lg\">console.log()</Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Code } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "code-with-variants",
+      "content": "export const CodeWithVariants = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <Code variant=\"solid\">console.log()</Code>\n      <Code variant=\"outline\">console.log()</Code>\n      <Code variant=\"subtle\">console.log()</Code>\n      <Code variant=\"surface\">console.log()</Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Code } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const category = searchParams.get("category") || "Documentation"
   const title = searchParams.get("title") || "Chakra UI"
+  const description = searchParams.get("description")
 
   const satoshiBold = fetch(
     new URL("../../public/fonts/Satoshi-Bold.otf", import.meta.url),
@@ -27,6 +28,7 @@ export async function GET(request: NextRequest) {
         category={category}
         title={title}
         backgroundSrc={backgroundArrayBuffer}
+        description={description}
       />
     ),
     {

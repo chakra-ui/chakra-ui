@@ -7,7 +7,7 @@ import {
   chakra,
 } from "../../styled-system"
 import { compact, mapObject } from "../../utils"
-import type { BoxProps } from "../box/box"
+import type { BoxProps } from "../box"
 
 export interface GridItemProps extends BoxProps {
   area?: SystemStyleObject["gridArea"] | undefined

@@ -1,0 +1,80 @@
+{
+  "name": "center",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "center-basic",
+      "content": "export const CenterBasic = () => {\n  return (\n    <Center bg=\"bg.emphasized\" h=\"100px\" maxW=\"320px\">\n      <Box>This will be centered</Box>\n    </Center>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "center-with-absolute",
+      "content": "export const CenterWithAbsolute = () => {\n  return (\n    <Box position=\"relative\" h=\"100px\">\n      <AbsoluteCenter bg=\"tomato\" p=\"4\" color=\"white\" axis=\"both\">\n        <LuPhone />\n      </AbsoluteCenter>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box } from \"@chakra-ui/react\"",
+        "import { LuPhone } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "center-with-circle",
+      "content": "export const CenterWithCircle = () => {\n  return (\n    <Circle size=\"10\" bg=\"blue.700\" color=\"white\">\n      <LuPhoneForwarded />\n    </Circle>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Circle } from \"@chakra-ui/react\"",
+        "import { LuPhoneForwarded } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "center-with-icons",
+      "content": "export const CenterWithIcons = () => {\n  return (\n    <HStack>\n      <Center w=\"40px\" h=\"40px\" bg=\"tomato\" color=\"white\">\n        <LuPhone />\n      </Center>\n\n      <Center w=\"40px\" h=\"40px\" bg=\"tomato\" color=\"white\">\n        <Box as=\"span\" fontWeight=\"bold\" fontSize=\"lg\">\n          1\n        </Box>\n      </Center>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, HStack } from \"@chakra-ui/react\"",
+        "import { LuPhone } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "center-with-inline",
+      "content": "export const CenterWithInline = () => {\n  return (\n    <Link href=\"#\">\n      <Center inline gap=\"4\">\n        <Box>Visit Chakra UI</Box>\n        <LuArrowRight />\n      </Center>\n    </Link>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, Link } from \"@chakra-ui/react\"",
+        "import { LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "center-with-square",
+      "content": "export const CenterWithSquare = () => {\n  return (\n    <Square size=\"10\" bg=\"purple.700\" color=\"white\">\n      <LuPhoneForwarded />\n    </Square>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Square } from \"@chakra-ui/react\"",
+        "import { LuPhoneForwarded } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Center } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

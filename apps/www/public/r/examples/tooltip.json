@@ -1,0 +1,264 @@
+{
+  "name": "tooltip",
+  "file": "compositions/ui/tooltip",
+  "snippet": "import { Tooltip as ChakraTooltip, Portal } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface TooltipProps extends ChakraTooltip.RootProps {\n  showArrow?: boolean\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n  content: React.ReactNode\n  contentProps?: ChakraTooltip.ContentProps\n  disabled?: boolean\n}\n\nexport const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(\n  function Tooltip(props, ref) {\n    const {\n      showArrow,\n      children,\n      disabled,\n      portalled = true,\n      content,\n      contentProps,\n      portalRef,\n      ...rest\n    } = props\n\n    if (disabled) return children\n\n    return (\n      <ChakraTooltip.Root {...rest}>\n        <ChakraTooltip.Trigger asChild>{children}</ChakraTooltip.Trigger>\n        <Portal disabled={!portalled} container={portalRef}>\n          <ChakraTooltip.Positioner>\n            <ChakraTooltip.Content ref={ref} {...contentProps}>\n              {showArrow && (\n                <ChakraTooltip.Arrow>\n                  <ChakraTooltip.ArrowTip />\n                </ChakraTooltip.Arrow>\n              )}\n              {content}\n            </ChakraTooltip.Content>\n          </ChakraTooltip.Positioner>\n        </Portal>\n      </ChakraTooltip.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "tooltip-basic",
+      "content": "export const TooltipBasic = () => {\n  return (\n    <Tooltip content=\"This is the tooltip content\">\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-controlled-multiple",
+      "content": "\"use client\"\n\nfunction DemoTooltip() {\n  const [open, setOpen] = useState(false)\n  return (\n    <Tooltip\n      open={open}\n      positioning={{ placement: \"left\" }}\n      content=\"Tooltip content\"\n      onOpenChange={({ open }) => setOpen(open)}\n    >\n      <Box px=\"2\" py=\"1\" layerStyle=\"fill.surface\" textStyle=\"sm\">\n        Hover me\n      </Box>\n    </Tooltip>\n  )\n}\n\nexport const TooltipControlledMultiple = () => {\n  return (\n    <Box spaceY=\"2\">\n      {[...Array.from({ length: 10 })].map((_, index) => (\n        <Flex key={index}>\n          <DemoTooltip />\n        </Flex>\n      ))}\n    </Box>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Box, Flex } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-controlled",
+      "content": "\"use client\"\nexport const TooltipControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <Tooltip\n      content=\"Tooltip Content\"\n      open={open}\n      onOpenChange={(e) => setOpen(e.open)}\n    >\n      <Button size=\"sm\">{open ? \"Hide\" : \"Show\"} tooltip</Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-multiple",
+      "content": "export const TooltipMultiple = () => {\n  return (\n    <HStack>\n      <Tooltip content=\"Tooltip Content - 1\">\n        <Button variant=\"outline\" size=\"sm\">\n          Button 1\n        </Button>\n      </Tooltip>\n      <Tooltip content=\"Tooltip Content - 2\">\n        <Button variant=\"outline\" size=\"sm\">\n          Button 2\n        </Button>\n      </Tooltip>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-arrow",
+      "content": "export const TooltipWithArrow = () => {\n  return (\n    <Tooltip showArrow content=\"This is the tooltip content\">\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-avatar",
+      "content": "export const TooltipWithAvatar = () => {\n  const id = useId()\n  return (\n    <Tooltip ids={{ trigger: id }} content=\"Segun Adebayo is online\">\n      <Avatar.Root ids={{ root: id }}>\n        <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n        <Avatar.Fallback name=\"Segun Adebayo\" />\n      </Avatar.Root>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Avatar } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useId } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-checkbox",
+      "content": "export const TooltipWithCheckbox = () => {\n  const id = useId()\n  return (\n    <Tooltip ids={{ trigger: id }} content=\"This is the tooltip content\">\n      <Checkbox.Root ids={{ root: id }}>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Welcome</Checkbox.Label>\n      </Checkbox.Root>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Checkbox } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useId } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-custom-bg",
+      "content": "export const TooltipWithCustomBg = () => (\n  <Tooltip\n    showArrow\n    content=\"This is the tooltip content\"\n    contentProps={{ css: { \"--tooltip-bg\": \"tomato\" } }}\n  >\n    <Button variant=\"outline\" size=\"sm\">\n      <FaBell /> 3\n    </Button>\n  </Tooltip>\n)\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { FaBell } from \"react-icons/fa\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "npmDependencies": [
+        "react-icons"
+      ],
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-delay",
+      "content": "export const TooltipWithDelay = () => {\n  return (\n    <Tooltip\n      content=\"This is the tooltip content\"\n      openDelay={500}\n      closeDelay={100}\n    >\n      <Button variant=\"outline\" size=\"sm\">\n        Delay (open: 500ms, close: 100ms)\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-dialog",
+      "content": "export const TooltipWithDialog = () => {\n  return (\n    <Dialog.Root ids={{ trigger: \"d-1\" }}>\n      <Tooltip content=\"This is the tooltip content\" ids={{ trigger: \"t-1\" }}>\n        <Dialog.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open Dialog\n          </Button>\n        </Dialog.Trigger>\n      </Tooltip>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-disabled",
+      "content": "export const TooltipWithDisabled = () => {\n  return (\n    <Tooltip content=\"This is the tooltip content\" disabled>\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-interactive",
+      "content": "export const TooltipWithInteractive = () => {\n  return (\n    <Tooltip content=\"This is the tooltip content\" interactive>\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-menu-item",
+      "content": "export const TooltipWithMenuItem = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <MenuItem value=\"new-txt\" title=\"This is the tooltip content\">\n              Open tooltip\n            </MenuItem>\n            <MenuItem value=\"new-file\">New File...</MenuItem>\n            <MenuItem value=\"new-win\">New Window</MenuItem>\n            <MenuItem value=\"export\">Export</MenuItem>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nconst MenuItem = (props: Menu.ItemProps) => {\n  const { value, title, ...rest } = props\n  return (\n    <Show when={title} fallback={<Menu.Item value={value} {...rest} />}>\n      <Tooltip\n        ids={{ trigger: value }}\n        openDelay={200}\n        closeDelay={0}\n        positioning={{ placement: \"right\" }}\n        content={title}\n      >\n        <Menu.Item value={value} {...rest} />\n      </Tooltip>\n    </Show>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, Menu, Portal, Show } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-menu-trigger",
+      "content": "\"use client\"\nexport const TooltipWithMenuTrigger = () => {\n  const triggerId = useId()\n  return (\n    <Menu.Root ids={{ trigger: triggerId }}>\n      <Tooltip\n        ids={{ trigger: triggerId }}\n        positioning={{ placement: \"top\" }}\n        content=\"Tooltip content\"\n      >\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </Menu.Trigger>\n      </Tooltip>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">Open tooltip</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useId } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-offset",
+      "content": "export const TooltipWithOffset = () => {\n  return (\n    <Tooltip\n      content=\"This is the tooltip content\"\n      positioning={{ offset: { mainAxis: 4, crossAxis: 4 } }}\n    >\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-placement",
+      "content": "export const TooltipWithPlacement = () => {\n  return (\n    <Tooltip\n      content=\"This is the tooltip content\"\n      positioning={{ placement: \"right-end\" }}\n    >\n      <Button variant=\"outline\" size=\"sm\">\n        Hover me\n      </Button>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-store",
+      "content": "\"use client\"\nexport const TooltipWithStore = () => {\n  const tooltip = useTooltip()\n  const toggleOpen = () => tooltip.setOpen(!tooltip.open)\n  return (\n    <HStack>\n      <Button size=\"sm\" variant=\"subtle\" onClick={toggleOpen}>\n        Toggle\n      </Button>\n      <Tooltip.RootProvider value={tooltip}>\n        <Tooltip.Trigger asChild>\n          <Button variant=\"outline\">Tooltip Target</Button>\n        </Tooltip.Trigger>\n        <Tooltip.Positioner>\n          <Tooltip.Content>This is the tooltip content</Tooltip.Content>\n        </Tooltip.Positioner>\n      </Tooltip.RootProvider>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, HStack, Tooltip, useTooltip } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tooltip } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tooltip-with-switch",
+      "content": "export const TooltipWithSwitch = () => {\n  const id = useId()\n  return (\n    <Tooltip ids={{ trigger: id }} content=\"This is the tooltip content\">\n      <Switch.Root ids={{ root: id }}>\n        <Switch.HiddenInput />\n        <Switch.Control />\n        <Switch.Label>Toggle</Switch.Label>\n      </Switch.Root>\n    </Tooltip>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Switch } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { useId } from \"react\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    },
+    {
+      "name": "tooltip-with-tab",
+      "content": "export const TooltipWithTab = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\">\n      <Tabs.List>\n        <Tooltip\n          positioning={{ placement: \"top\" }}\n          ids={{ trigger: \"members\" }}\n          content=\"This is the tooltip content\"\n        >\n          {/* TODO: Remove this once Zag.js is fixed */}\n          <span>\n            <Tabs.Trigger value=\"members\">\n              <LuUser />\n              Members\n            </Tabs.Trigger>\n          </span>\n        </Tooltip>\n        <Tabs.Trigger value=\"projects\">\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n      </Tabs.List>\n      <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n      <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n      <Tabs.Content value=\"tasks\">\n        Manage your tasks for freelancers\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { Tooltip } from \"@/components/ui/tooltip\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tooltip } from \"@/components/ui/tooltip\"",
+      "npmDependencies": [
+        "react-icons"
+      ],
+      "fileDependencies": [
+        "compositions/ui/tooltip"
+      ]
+    }
+  ]
+}

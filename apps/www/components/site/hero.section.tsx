@@ -24,7 +24,7 @@ import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
 import Link from "next/link"
 import { HiArrowRight } from "react-icons/hi"
-import { LuFigma, LuTerminal } from "react-icons/lu"
+import { LuPartyPopper, LuTerminal } from "react-icons/lu"
 
 const tabsData = [
   {
@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="https://www.figma.com/community/file/1506648876941130701">
-            <LuFigma />
-            [New] Official Figma Kit v3 is Here
+          <Link href="/docs/components/tree-view">
+            <LuPartyPopper />
+            [New] Tree View component
             <HiArrowRight />
           </Link>
         </Annoucement>

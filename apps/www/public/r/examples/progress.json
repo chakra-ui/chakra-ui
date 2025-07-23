@@ -1,0 +1,213 @@
+{
+  "name": "progress",
+  "file": "compositions/ui/progress",
+  "snippet": "import { Progress as ChakraProgress } from \"@chakra-ui/react\"\nimport { InfoTip } from \"@/components/ui/toggle-tip\"\nimport * as React from \"react\"\n\nexport const ProgressBar = React.forwardRef<\n  HTMLDivElement,\n  ChakraProgress.TrackProps\n>(function ProgressBar(props, ref) {\n  return (\n    <ChakraProgress.Track {...props} ref={ref}>\n      <ChakraProgress.Range />\n    </ChakraProgress.Track>\n  )\n})\n\nexport interface ProgressLabelProps extends ChakraProgress.LabelProps {\n  info?: React.ReactNode\n}\n\nexport const ProgressLabel = React.forwardRef<\n  HTMLDivElement,\n  ProgressLabelProps\n>(function ProgressLabel(props, ref) {\n  const { children, info, ...rest } = props\n  return (\n    <ChakraProgress.Label {...rest} ref={ref}>\n      {children}\n      {info && <InfoTip>{info}</InfoTip>}\n    </ChakraProgress.Label>\n  )\n})\n\nexport const ProgressRoot = ChakraProgress.Root\nexport const ProgressValueText = ChakraProgress.ValueText\n",
+  "examples": [
+    {
+      "name": "progress-basic",
+      "content": "export const ProgressBasic = () => {\n  return (\n    <Progress.Root maxW=\"240px\">\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-basic",
+      "content": "export const ProgressCircleBasic = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-closed-component",
+      "content": "interface ProgressCircleProps extends ChakraProgressCircle.RootProps {\n  showValueText?: boolean\n  valueText?: React.ReactNode\n  trackColor?: SystemStyleObject[\"stroke\"]\n  cap?: SystemStyleObject[\"strokeLinecap\"]\n  thickness?: SystemStyleObject[\"strokeWidth\"]\n}\n\nexport const ProgressCircle = React.forwardRef<\n  HTMLDivElement,\n  ProgressCircleProps\n>(function ProgressCircle(props, ref) {\n  const {\n    showValueText,\n    valueText,\n    trackColor,\n    color,\n    cap,\n    thickness,\n    ...rest\n  } = props\n\n  return (\n    <ChakraProgressCircle.Root {...rest} ref={ref}>\n      <ChakraProgressCircle.Circle css={{ \"--thickness\": thickness }}>\n        <ChakraProgressCircle.Track stroke={trackColor} />\n        <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />\n      </ChakraProgressCircle.Circle>\n      {showValueText && (\n        <AbsoluteCenter>\n          <ChakraProgressCircle.ValueText>\n            {valueText}\n          </ChakraProgressCircle.ValueText>\n        </AbsoluteCenter>\n      )}\n    </ChakraProgressCircle.Root>\n  )\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import type { SystemStyleObject } from \"@chakra-ui/react\"",
+        "import {\n  AbsoluteCenter,\n  ProgressCircle as ChakraProgressCircle,\n} from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-indeterminate",
+      "content": "export const ProgressCircleIndeterminate = () => {\n  return (\n    <ProgressCircle.Root value={null} size=\"sm\">\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-colors",
+      "content": "export const ProgressCircleWithColors = () => {\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <HStack key={colorPalette} gap=\"10\" px=\"4\">\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <ProgressCircle.Root size=\"sm\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n\n          <ProgressCircle.Root size=\"md\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n\n          <ProgressCircle.Root size=\"lg\" value={30} colorPalette={colorPalette}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n        </HStack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, ProgressCircle, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-range-color",
+      "content": "export const ProgressCircleWithRangeColor = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range stroke=\"orange\" />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-round-cap",
+      "content": "export const ProgressCircleWithRoundCap = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range strokeLinecap=\"round\" />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-sizes",
+      "content": "export const ProgressCircleWithSizes = () => {\n  return (\n    <HStack gap=\"10\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <ProgressCircle.Root key={size} size={size} value={30}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range strokeLinecap=\"round\" />\n            </ProgressCircle.Circle>\n          </ProgressCircle.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-thickness",
+      "content": "export const ProgressCircleWithThickness = () => {\n  return (\n    <ProgressCircle.Root value={75}>\n      <ProgressCircle.Circle css={{ \"--thickness\": \"2px\" }}>\n        <ProgressCircle.Track />\n        <ProgressCircle.Range />\n      </ProgressCircle.Circle>\n    </ProgressCircle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-circle-with-value-text",
+      "content": "export const ProgressCircleWithValueText = () => {\n  return (\n    <HStack gap=\"8\">\n      <For each={[\"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <ProgressCircle.Root size={size} key={size} value={5}>\n            <ProgressCircle.Circle>\n              <ProgressCircle.Track />\n              <ProgressCircle.Range />\n            </ProgressCircle.Circle>\n            <AbsoluteCenter>\n              <ProgressCircle.ValueText />\n            </AbsoluteCenter>\n          </ProgressCircle.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, For, HStack, ProgressCircle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-closed-component",
+      "content": "interface ProgressProps extends ChakraProgress.RootProps {\n  showValueText?: boolean\n  valueText?: React.ReactNode\n  label?: React.ReactNode\n  info?: React.ReactNode\n}\n\nexport const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(\n  function Progress(props, ref) {\n    const { showValueText, valueText, label, info, ...rest } = props\n    return (\n      <ChakraProgress.Root {...rest} ref={ref}>\n        {label && (\n          <ChakraProgress.Label>\n            {label} {info && <InfoTip>{info}</InfoTip>}\n          </ChakraProgress.Label>\n        )}\n        <ChakraProgress.Track>\n          <ChakraProgress.Range />\n        </ChakraProgress.Track>\n        {showValueText && (\n          <ChakraProgress.ValueText>{valueText}</ChakraProgress.ValueText>\n        )}\n      </ChakraProgress.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress as ChakraProgress } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "progress-composition",
+      "content": "export const ProgressComposition = () => {\n  return (\n    <Stack gap=\"8\" maxW=\"300px\">\n      <Heading size=\"sm\">Features</Heading>\n      <FeatureUsage\n        data={{ max: 100, value: 65, label: \"Private Users\" }}\n        icon={<HiLockClosed />}\n      />\n      <FeatureUsage\n        data={{ max: 100, value: 50, label: \"Editors\" }}\n        icon={<HiPencil />}\n      />\n      <FeatureUsage\n        data={{ max: 5, value: 1, label: \"Projects\" }}\n        icon={<HiFolder />}\n      />\n    </Stack>\n  )\n}\n\ninterface FeatureData {\n  min?: number\n  max: number\n  value: number\n  label: string\n}\n\ninterface FeatureUsageProps {\n  icon: React.ReactNode\n  data: FeatureData\n}\n\nconst FeatureUsage = (props: FeatureUsageProps) => {\n  const { data, icon } = props\n  return (\n    <HStack gap=\"4\">\n      <Square borderRadius=\"sm\" bg=\"bg.muted\" size=\"10\">\n        {icon}\n      </Square>\n      <Progress.Root\n        size=\"sm\"\n        min={data.min}\n        max={data.max}\n        value={data.value}\n        flex=\"1\"\n      >\n        <HStack justify=\"space-between\">\n          <Progress.Label>{data.label}</Progress.Label>\n          <Progress.ValueText color=\"inherit\">\n            {data.value} <Span color=\"fg.muted\">/ {data.max}</Span>\n          </Progress.ValueText>\n        </HStack>\n        <Progress.Track mt=\"2\">\n          <Progress.Range />\n        </Progress.Track>\n      </Progress.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  HStack,\n  Heading,\n  Progress,\n  Span,\n  Square,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { HiFolder, HiLockClosed, HiPencil } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "progress-indeterminate",
+      "content": "export const ProgressIndeterminate = () => {\n  return (\n    <Progress.Root maxW=\"240px\" value={null}>\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-animated-stripes",
+      "content": "export const ProgressWithAnimatedStripes = () => {\n  return (\n    <Progress.Root maxW=\"240px\" striped animated>\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-colors",
+      "content": "export const ProgressWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <Progress.Root\n            width=\"120px\"\n            defaultValue={40}\n            colorPalette={colorPalette}\n            variant=\"outline\"\n          >\n            <Progress.Track>\n              <Progress.Range />\n            </Progress.Track>\n          </Progress.Root>\n          <Progress.Root\n            width=\"120px\"\n            defaultValue={40}\n            colorPalette={colorPalette}\n            variant=\"subtle\"\n          >\n            <Progress.Track>\n              <Progress.Range />\n            </Progress.Track>\n          </Progress.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-inline-label",
+      "content": "export const ProgressWithInlineLabel = () => {\n  return (\n    <Progress.Root defaultValue={40} maxW=\"sm\">\n      <HStack gap=\"5\">\n        <Progress.Label>Usage</Progress.Label>\n        <Progress.Track flex=\"1\">\n          <Progress.Range />\n        </Progress.Track>\n        <Progress.ValueText>40%</Progress.ValueText>\n      </HStack>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-label-info",
+      "content": "export const ProgressWithLabelInfo = () => {\n  return (\n    <Progress.Root maxW=\"240px\">\n      <Progress.Label mb=\"2\">\n        Uploading\n        <InfoTip>Uploading document to the server</InfoTip>\n      </Progress.Label>\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "progress-with-label",
+      "content": "export const ProgressWithLabel = () => {\n  return (\n    <Progress.Root defaultValue={40} maxW=\"240px\">\n      <HStack justify=\"space-between\" mb=\"1\">\n        <Progress.Label>Token usage</Progress.Label>\n        <Progress.ValueText />\n      </HStack>\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-sizes",
+      "content": "export const ProgressWithSizes = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"240px\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Progress.Root key={size} size={size}>\n            <Progress.Track>\n              <Progress.Range />\n            </Progress.Track>\n          </Progress.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Progress, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-stripes",
+      "content": "export const ProgressWithStripes = () => {\n  return (\n    <Progress.Root maxW=\"240px\" striped>\n      <Progress.Track>\n        <Progress.Range />\n      </Progress.Track>\n    </Progress.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "progress-with-variants",
+      "content": "export const ProgressWithVariants = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"240px\">\n      <Progress.Root variant=\"subtle\">\n        <Progress.Track>\n          <Progress.Range />\n        </Progress.Track>\n      </Progress.Root>\n      <Progress.Root variant=\"outline\">\n        <Progress.Track>\n          <Progress.Range />\n        </Progress.Track>\n      </Progress.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Progress, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Progress } from \"@chakra-ui/react\""
+    }
+  ]
+}

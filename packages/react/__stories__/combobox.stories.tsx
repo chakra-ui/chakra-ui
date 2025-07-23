@@ -39,6 +39,7 @@ export { ComboboxWithInvalid as Invalid } from "compositions/examples/combobox-w
 export { ComboboxWithInputGroup as InputGroup } from "compositions/examples/combobox-with-input-group"
 export { ComboboxWithField as Field } from "compositions/examples/combobox-with-field"
 export { ComboboxWithCustomFilter as CustomFilter } from "compositions/examples/combobox-with-custom-filter"
+export { ComboboxWithCustomObject as CustomObject } from "compositions/examples/combobox-with-custom-object"
 export { ComboboxWithInputInContent as InputInContent } from "compositions/examples/combobox-with-input-in-content"
 
 export { ComboboxWithSelectionBehavior as SelectionBehavior } from "compositions/examples/combobox-with-selection-behavior"

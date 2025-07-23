@@ -1,0 +1,76 @@
+{
+  "name": "flex",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "flex-basic",
+      "content": "export const FlexBasic = () => {\n  return (\n    <Flex gap=\"4\">\n      <Box height=\"10\" />\n      <Box height=\"10\" />\n      <Box height=\"10\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-align",
+      "content": "export const FlexWithAlign = () => {\n  return (\n    <Flex gap=\"4\" align=\"center\">\n      <Box height=\"4\" />\n      <Box height=\"8\" />\n      <Box height=\"10\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-auto-margin",
+      "content": "export const FlexWithAutoMargin = () => {\n  return (\n    <Flex gap=\"4\" justify=\"space-between\">\n      <Box height=\"10\" width=\"40\" />\n      <Box height=\"10\" width=\"40\" marginEnd=\"auto\" />\n      <Box height=\"10\" width=\"40\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-direction",
+      "content": "export const FlexWithDirection = () => {\n  return (\n    <Flex gap=\"4\" direction=\"column\">\n      <Box height=\"10\" />\n      <Box height=\"10\" />\n      <Box height=\"10\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-justify",
+      "content": "export const FlexWithJustify = () => {\n  return (\n    <Flex direction=\"column\" gap=\"8\">\n      <Flex gap=\"4\" justify=\"flex-start\">\n        <Box height=\"10\" width=\"120px\" />\n        <Box height=\"10\" width=\"120px\">\n          flex-start\n        </Box>\n        <Box height=\"10\" width=\"120px\" />\n      </Flex>\n\n      <Flex gap=\"4\" justify=\"center\">\n        <Box height=\"10\" width=\"120px\" />\n        <Box height=\"10\" width=\"120px\">\n          center\n        </Box>\n        <Box height=\"10\" width=\"120px\" />\n      </Flex>\n\n      <Flex gap=\"4\" justify=\"flex-end\">\n        <Box height=\"10\" width=\"120px\" />\n        <Box height=\"10\" width=\"120px\">\n          flex-end\n        </Box>\n        <Box height=\"10\" width=\"120px\" />\n      </Flex>\n\n      <Flex gap=\"4\" justify=\"space-between\">\n        <Box height=\"10\" width=\"120px\" />\n        <Box height=\"10\" width=\"120px\">\n          space-between\n        </Box>\n        <Box height=\"10\" width=\"120px\" />\n      </Flex>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-order",
+      "content": "export const FlexWithOrder = () => {\n  return (\n    <Flex gap=\"4\">\n      <Box height=\"10\" order=\"1\">\n        1\n      </Box>\n      <Box height=\"10\" order=\"3\">\n        2\n      </Box>\n      <Box height=\"10\" order=\"2\">\n        3\n      </Box>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "flex-with-wrap",
+      "content": "export const FlexWithWrap = () => {\n  return (\n    <Flex gap=\"4\" wrap=\"wrap\" maxW=\"500px\">\n      <Box height=\"10\" width=\"200px\" />\n      <Box height=\"10\" width=\"200px\" />\n      <Box height=\"10\" width=\"200px\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    }
+  ]
+}

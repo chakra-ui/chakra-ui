@@ -1,0 +1,199 @@
+{
+  "name": "menu",
+  "file": "compositions/ui/menu",
+  "snippet": "\"use client\"\n\nimport { AbsoluteCenter, Menu as ChakraMenu, Portal } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuCheck, LuChevronRight } from \"react-icons/lu\"\n\ninterface MenuContentProps extends ChakraMenu.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n}\n\nexport const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(\n  function MenuContent(props, ref) {\n    const { portalled = true, portalRef, ...rest } = props\n    return (\n      <Portal disabled={!portalled} container={portalRef}>\n        <ChakraMenu.Positioner>\n          <ChakraMenu.Content ref={ref} {...rest} />\n        </ChakraMenu.Positioner>\n      </Portal>\n    )\n  },\n)\n\nexport const MenuArrow = React.forwardRef<\n  HTMLDivElement,\n  ChakraMenu.ArrowProps\n>(function MenuArrow(props, ref) {\n  return (\n    <ChakraMenu.Arrow ref={ref} {...props}>\n      <ChakraMenu.ArrowTip />\n    </ChakraMenu.Arrow>\n  )\n})\n\nexport const MenuCheckboxItem = React.forwardRef<\n  HTMLDivElement,\n  ChakraMenu.CheckboxItemProps\n>(function MenuCheckboxItem(props, ref) {\n  return (\n    <ChakraMenu.CheckboxItem ps=\"8\" ref={ref} {...props}>\n      <AbsoluteCenter axis=\"horizontal\" insetStart=\"4\" asChild>\n        <ChakraMenu.ItemIndicator>\n          <LuCheck />\n        </ChakraMenu.ItemIndicator>\n      </AbsoluteCenter>\n      {props.children}\n    </ChakraMenu.CheckboxItem>\n  )\n})\n\nexport const MenuRadioItem = React.forwardRef<\n  HTMLDivElement,\n  ChakraMenu.RadioItemProps\n>(function MenuRadioItem(props, ref) {\n  const { children, ...rest } = props\n  return (\n    <ChakraMenu.RadioItem ps=\"8\" ref={ref} {...rest}>\n      <AbsoluteCenter axis=\"horizontal\" insetStart=\"4\" asChild>\n        <ChakraMenu.ItemIndicator>\n          <LuCheck />\n        </ChakraMenu.ItemIndicator>\n      </AbsoluteCenter>\n      <ChakraMenu.ItemText>{children}</ChakraMenu.ItemText>\n    </ChakraMenu.RadioItem>\n  )\n})\n\nexport const MenuItemGroup = React.forwardRef<\n  HTMLDivElement,\n  ChakraMenu.ItemGroupProps\n>(function MenuItemGroup(props, ref) {\n  const { title, children, ...rest } = props\n  return (\n    <ChakraMenu.ItemGroup ref={ref} {...rest}>\n      {title && (\n        <ChakraMenu.ItemGroupLabel userSelect=\"none\">\n          {title}\n        </ChakraMenu.ItemGroupLabel>\n      )}\n      {children}\n    </ChakraMenu.ItemGroup>\n  )\n})\n\nexport interface MenuTriggerItemProps extends ChakraMenu.ItemProps {\n  startIcon?: React.ReactNode\n}\n\nexport const MenuTriggerItem = React.forwardRef<\n  HTMLDivElement,\n  MenuTriggerItemProps\n>(function MenuTriggerItem(props, ref) {\n  const { startIcon, children, ...rest } = props\n  return (\n    <ChakraMenu.TriggerItem ref={ref} {...rest}>\n      {startIcon}\n      {children}\n      <LuChevronRight />\n    </ChakraMenu.TriggerItem>\n  )\n})\n\nexport const MenuRadioItemGroup = ChakraMenu.RadioItemGroup\nexport const MenuContextTrigger = ChakraMenu.ContextTrigger\nexport const MenuRoot = ChakraMenu.Root\nexport const MenuSeparator = ChakraMenu.Separator\n\nexport const MenuItem = ChakraMenu.Item\nexport const MenuItemText = ChakraMenu.ItemText\nexport const MenuItemCommand = ChakraMenu.ItemCommand\nexport const MenuTrigger = ChakraMenu.Trigger\n",
+  "examples": [
+    {
+      "name": "menu-basic",
+      "content": "export const MenuBasic = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-anchor-rect",
+      "content": "\"use client\"\nexport const MenuWithAnchorRect = () => {\n  const ref = useRef<HTMLDivElement | null>(null)\n  const getAnchorRect = () => ref.current!.getBoundingClientRect()\n\n  return (\n    <Menu.Root positioning={{ getAnchorRect }}>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Box layerStyle=\"fill.subtle\" p=\"4\" ref={ref} mt=\"4\">\n        Anchor\n      </Box>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-avatar",
+      "content": "export const MenuWithAvatar = () => {\n  return (\n    <Menu.Root positioning={{ placement: \"right-end\" }}>\n      <Menu.Trigger rounded=\"full\" focusRing=\"outside\">\n        <Avatar.Root size=\"sm\">\n          <Avatar.Fallback name=\"Segun Adebayo\" />\n          <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n        </Avatar.Root>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"account\">Account</Menu.Item>\n            <Menu.Item value=\"settings\">Settings</Menu.Item>\n            <Menu.Item value=\"logout\">Logout</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-checkbox-items",
+      "content": "\"use client\"\nexport const MenuWithCheckboxItems = () => {\n  const group = useCheckboxGroup({ defaultValue: [\"autosave\"] })\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiCog /> Features\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.ItemGroup>\n              <Menu.ItemGroupLabel>Features</Menu.ItemGroupLabel>\n              {items.map(({ title, value }) => (\n                <Menu.CheckboxItem\n                  key={value}\n                  value={value}\n                  checked={group.isChecked(value)}\n                  onCheckedChange={() => group.toggleValue(value)}\n                >\n                  {title}\n                  <Menu.ItemIndicator />\n                </Menu.CheckboxItem>\n              ))}\n            </Menu.ItemGroup>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nconst items = [\n  { title: \"Autosave\", value: \"autosave\" },\n  { title: \"Detect Language\", value: \"detect-language\" },\n  { title: \"Spellcheck\", value: \"spellcheck\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal, useCheckboxGroup } from \"@chakra-ui/react\"",
+        "import { HiCog } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-with-command",
+      "content": "export const MenuWithCommand = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt-a\">\n              New Text File <Menu.ItemCommand>⌘E</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"new-file-a\">\n              New File... <Menu.ItemCommand>⌘N</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"new-win-a\">\n              New Window <Menu.ItemCommand>⌘W</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"open-file-a\">\n              Open File... <Menu.ItemCommand>⌘O</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"export-a\">\n              Export <Menu.ItemCommand>⌘S</Menu.ItemCommand>\n            </Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-context-trigger",
+      "content": "export const MenuWithContextTrigger = () => {\n  return (\n    <Menu.Root>\n      <Menu.ContextTrigger width=\"full\">\n        <Center\n          height=\"40\"\n          userSelect=\"none\"\n          borderWidth=\"2px\"\n          borderStyle=\"dashed\"\n          rounded=\"lg\"\n          padding=\"4\"\n        >\n          Right click here\n        </Center>\n      </Menu.ContextTrigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-danger-item",
+      "content": "export const MenuWithDangerItem = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Menu\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"rename\">Rename</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n            <Menu.Item\n              value=\"delete\"\n              color=\"fg.error\"\n              _hover={{ bg: \"bg.error\", color: \"fg.error\" }}\n            >\n              Delete...\n            </Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-group-dynamic",
+      "content": "export const MenuWithGroupDynamic = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\">Window</Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {items.map((group) => (\n              <Menu.ItemGroup key={group.name}>\n                <Menu.ItemGroupLabel>{group.name}</Menu.ItemGroupLabel>\n                {group.children.map((item) => (\n                  <Menu.Item key={item.value} value={item.value}>\n                    {item.name}\n                  </Menu.Item>\n                ))}\n              </Menu.ItemGroup>\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nconst items = [\n  {\n    name: \"Top Panel\",\n    value: \"top\",\n    children: [\n      { value: \"5\", name: \"index.html\" },\n      { value: \"6\", name: \"styles.css\" },\n    ],\n  },\n  {\n    name: \"Bottom Panel\",\n    value: \"bottom\",\n    children: [\n      { value: \"7\", name: \"script.js\" },\n      { value: \"8\", name: \"assets\" },\n    ],\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-group",
+      "content": "export const MenuWithGroup = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\">Edit</Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.ItemGroup>\n              <Menu.ItemGroupLabel>Styles</Menu.ItemGroupLabel>\n              <Menu.Item value=\"bold\">Bold</Menu.Item>\n              <Menu.Item value=\"underline\">Underline</Menu.Item>\n            </Menu.ItemGroup>\n            <Menu.Separator />\n            <Menu.ItemGroup>\n              <Menu.ItemGroupLabel>Align</Menu.ItemGroupLabel>\n              <Menu.Item value=\"left\">Left</Menu.Item>\n              <Menu.Item value=\"middle\">Middle</Menu.Item>\n              <Menu.Item value=\"right\">Right</Menu.Item>\n            </Menu.ItemGroup>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-hide-when-detached",
+      "content": "export const MenuWithHideWhenDetached = () => {\n  return (\n    <Center minH=\"sm\">\n      <Flex\n        w=\"300px\"\n        h=\"full\"\n        overflowX=\"auto\"\n        gapX=\"6\"\n        p=\"4\"\n        borderWidth=\"1px\"\n        bg=\"bg.subtle\"\n      >\n        {[...Array(6).keys()].map((x) => (\n          <Box layerStyle=\"fill.surface\" p=\"4\" borderRadius=\"md\" key={x}>\n            <Text>Item{x}</Text>\n          </Box>\n        ))}\n        <Box>\n          <Menu.Root positioning={{ hideWhenDetached: true }}>\n            <Menu.Trigger asChild>\n              <Box as=\"button\" bg=\"green.100\" p=\"4\" borderRadius=\"md\">\n                Menu\n              </Box>\n            </Menu.Trigger>\n            <Portal>\n              <Menu.Positioner>\n                <Menu.Content>\n                  <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n                  <Menu.Item value=\"new-file\">New File...</Menu.Item>\n                  <Menu.Item value=\"new-win\">New Window</Menu.Item>\n                  <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n                  <Menu.Item value=\"export\">Export</Menu.Item>\n                </Menu.Content>\n              </Menu.Positioner>\n            </Portal>\n          </Menu.Root>\n        </Box>\n      </Flex>\n    </Center>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, Flex, Menu, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-icon-and-command",
+      "content": "export const MenuWithIconAndCommand = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\">Edit</Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"cut\">\n              <LuScissors />\n              <Box flex=\"1\">Cut</Box>\n              <Menu.ItemCommand>⌘X</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"copy\">\n              <LuCopy />\n              <Box flex=\"1\">Copy</Box>\n              <Menu.ItemCommand>⌘C</Menu.ItemCommand>\n            </Menu.Item>\n            <Menu.Item value=\"paste\">\n              <LuClipboardPaste />\n              <Box flex=\"1\">Paste</Box>\n              <Menu.ItemCommand>⌘V</Menu.ItemCommand>\n            </Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuClipboardPaste, LuCopy, LuScissors } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-with-links",
+      "content": "export const MenuWithLinks = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Select Anime\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {links.map((link) => (\n              <Menu.Item key={link.href} asChild value={link.title}>\n                <a href={link.href} target=\"_blank\" rel=\"noreferrer\">\n                  {link.title}\n                </a>\n              </Menu.Item>\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nconst links = [\n  {\n    title: \"Naruto\",\n    href: \"https://www.crunchyroll.com/naruto\",\n  },\n  {\n    title: \"One Piece\",\n    href: \"https://www.crunchyroll.com/one-piece\",\n  },\n  {\n    title: \"Attack on Titan\",\n    href: \"https://www.crunchyroll.com/attack-on-titan\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-mixed-layout",
+      "content": "const horizontalMenuItems = [\n  { label: \"Cut\", value: \"cut\", icon: <LuScissors /> },\n  { label: \"Copy\", value: \"copy\", icon: <LuCopy /> },\n  { label: \"Paste\", value: \"paste\", icon: <LuClipboard /> },\n]\n\nconst verticalMenuItems = [\n  { label: \"Look Up\", value: \"look-up\", icon: <LuFileSearch /> },\n  { label: \"Translate\", value: \"translate\", icon: <LuMessageSquare /> },\n  { label: \"Share\", value: \"share\", icon: <LuShare /> },\n]\n\nexport const MenuWithMixedLayout = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Group grow gap=\"0\">\n              {horizontalMenuItems.map((item) => (\n                <Menu.Item\n                  key={item.value}\n                  value={item.value}\n                  width=\"14\"\n                  gap=\"1\"\n                  flexDirection=\"column\"\n                  justifyContent=\"center\"\n                >\n                  {item.icon}\n                  {item.label}\n                </Menu.Item>\n              ))}\n            </Group>\n            {verticalMenuItems.map((item) => (\n              <Menu.Item key={item.value} value={item.value}>\n                <Box flex=\"1\">{item.label}</Box>\n                {item.icon}\n              </Menu.Item>\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Group, Menu, Portal } from \"@chakra-ui/react\"",
+        "import {\n  LuClipboard,\n  LuCopy,\n  LuFileSearch,\n  LuMessageSquare,\n  LuScissors,\n  LuShare,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-with-placement",
+      "content": "export const MenuWithPlacement = () => {\n  return (\n    <Menu.Root positioning={{ placement: \"right-start\" }}>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-with-radio-items",
+      "content": "\"use client\"\nexport const MenuWithRadioItems = () => {\n  const [value, setValue] = useState(\"asc\")\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiSortAscending /> Sort\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content minW=\"10rem\">\n            <Menu.RadioItemGroup\n              value={value}\n              onValueChange={(e) => setValue(e.value)}\n            >\n              {items.map((item) => (\n                <Menu.RadioItem key={item.value} value={item.value}>\n                  {item.label}\n                  <Menu.ItemIndicator />\n                </Menu.RadioItem>\n              ))}\n            </Menu.RadioItemGroup>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nconst items = [\n  { label: \"Ascending\", value: \"asc\" },\n  { label: \"Descending\", value: \"desc\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { HiSortAscending } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-with-submenu-dynamic",
+      "content": "\"use client\"\n\ninterface Item {\n  value: string\n  label: string\n  children?: Item[]\n}\n\nconst items: Item[] = [\n  { value: \"new-txt\", label: \"New Text File\" },\n  { value: \"new-file\", label: \"New File...\" },\n  {\n    value: \"open-recent\",\n    label: \"Open Recent\",\n    children: [\n      { value: \"panda\", label: \"Panda\" },\n      { value: \"ark\", label: \"Ark UI\" },\n      {\n        value: \"chakra\",\n        label: \"Chakra v3\",\n        children: [\n          { value: \"chakra-1\", label: \"Chakra v3.1\" },\n          { value: \"chakra-2\", label: \"Chakra v3.2\" },\n        ],\n      },\n    ],\n  },\n  { value: \"open-file\", label: \"Open File...\" },\n  { value: \"export\", label: \"Export\" },\n]\n\nconst MenuItem = ({ item }: { item: Item }) => {\n  if (!item.children) {\n    return <Menu.Item value={item.value}>{item.label}</Menu.Item>\n  }\n\n  return (\n    <Menu.Root positioning={{ placement: \"right-start\", gutter: 2 }}>\n      <Menu.TriggerItem>\n        {item.label} <LuChevronRight />\n      </Menu.TriggerItem>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {item.children.map((child) => (\n              <MenuItem key={child.value} item={child} />\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nexport const MenuWithSubmenuDynamic = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\">Nested</Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {items.map((item) => (\n              <MenuItem key={item.value} item={item} />\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-with-submenu",
+      "content": "export const MenuWithSubmenu = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Root positioning={{ placement: \"right-start\", gutter: 2 }}>\n              <Menu.TriggerItem>\n                Open Recent <LuChevronRight />\n              </Menu.TriggerItem>\n              <Portal>\n                <Menu.Positioner>\n                  <Menu.Content>\n                    <Menu.Item value=\"panda\">Panda</Menu.Item>\n                    <Menu.Item value=\"ark\">Ark UI</Menu.Item>\n                    <Menu.Item value=\"chakra\">Chakra v3</Menu.Item>\n                  </Menu.Content>\n                </Menu.Positioner>\n              </Portal>\n            </Menu.Root>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "menu-within-dialog",
+      "content": "\"use client\"\nexport const MenuWithinDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Welcome to the menu</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body spaceY=\"4\">\n              <DialogMenu />\n              <Lorem p={1} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst DialogMenu = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Menu\n        </Button>\n      </Menu.Trigger>\n      <Menu.Positioner>\n        <Menu.Content>\n          <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n          <Menu.Item value=\"new-file\">New File...</Menu.Item>\n          <Menu.Item value=\"new-win\">New Window</Menu.Item>\n          <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n          <Menu.Item value=\"export\">Export</Menu.Item>\n        </Menu.Content>\n      </Menu.Positioner>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Menu, Portal } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    }
+  ]
+}

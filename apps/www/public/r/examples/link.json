@@ -1,0 +1,64 @@
+{
+  "name": "link",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "link-basic",
+      "content": "export const LinkBasic = () => {\n  return <Link href=\"#\">Visit Chakra UI</Link>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Link } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "link-overlay-article",
+      "content": "export const LinkOverlayArticle = () => {\n  return (\n    <LinkBox as=\"article\" maxW=\"sm\" p=\"5\" borderWidth=\"1px\" rounded=\"md\">\n      <Span asChild color=\"fg.muted\" textStyle=\"sm\">\n        <time dateTime=\"2021-01-15 15:30:00 +0000 UTC\">13 days ago</time>\n      </Span>\n      <Heading size=\"lg\" my=\"2\">\n        <LinkOverlay href=\"#\">Chakra V3 Workshop</LinkOverlay>\n      </Heading>\n      <Text mb=\"3\" color=\"fg.muted\">\n        Catch up on whats been cooking at Chakra UI and explore some of the\n        popular community resources.\n      </Text>\n      <Link href=\"#inner-link\" variant=\"underline\" colorPalette=\"teal\">\n        Inner Link\n      </Link>\n    </LinkBox>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Heading,\n  Link,\n  LinkBox,\n  LinkOverlay,\n  Span,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "link-overlay-basic",
+      "content": "export const LinkOverlayBasic = () => {\n  return (\n    <Stack position=\"relative\">\n      <Heading as=\"h4\">Wanna try it out?</Heading>\n      <Text color=\"fg.muted\">\n        This entire area is a link. Click it to see the effect.\n      </Text>\n      <LinkOverlay asChild href=\"#\">\n        <Link variant=\"underline\">Click me</Link>\n      </LinkOverlay>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Link, LinkOverlay, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "link-with-external",
+      "content": "export const LinkWithExternal = () => {\n  return (\n    <Link href=\"#\">\n      Visit Chakra UI <LuExternalLink />\n    </Link>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Link } from \"@chakra-ui/react\"",
+        "import { LuExternalLink } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "link-with-variants",
+      "content": "export const LinkWithVariants = () => {\n  return (\n    <Stack>\n      <Link variant=\"underline\" href=\"#\">\n        Link (Underline)\n      </Link>\n      <Link variant=\"plain\" href=\"#\">\n        Link (Plain)\n      </Link>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Link, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "link-within-text",
+      "content": "export const LinkWithinText = () => {\n  return (\n    <Text>\n      Visit the{\" \"}\n      <Link\n        variant=\"underline\"\n        href=\"https://chakra-ui.com\"\n        colorPalette=\"teal\"\n      >\n        Chakra UI\n      </Link>{\" \"}\n      website\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Link, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Link } from \"@chakra-ui/react\""
+    }
+  ]
+}

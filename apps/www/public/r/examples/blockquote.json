@@ -1,0 +1,94 @@
+{
+  "name": "blockquote",
+  "file": "compositions/ui/blockquote",
+  "snippet": "import { Blockquote as ChakraBlockquote } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface BlockquoteProps extends ChakraBlockquote.RootProps {\n  cite?: React.ReactNode\n  citeUrl?: string\n  icon?: React.ReactNode\n  showDash?: boolean\n}\n\nexport const Blockquote = React.forwardRef<HTMLDivElement, BlockquoteProps>(\n  function Blockquote(props, ref) {\n    const { children, cite, citeUrl, showDash, icon, ...rest } = props\n\n    return (\n      <ChakraBlockquote.Root ref={ref} {...rest}>\n        {icon}\n        <ChakraBlockquote.Content cite={citeUrl}>\n          {children}\n        </ChakraBlockquote.Content>\n        {cite && (\n          <ChakraBlockquote.Caption>\n            {showDash ? <>&mdash;</> : null} <cite>{cite}</cite>\n          </ChakraBlockquote.Caption>\n        )}\n      </ChakraBlockquote.Root>\n    )\n  },\n)\n\nexport const BlockquoteIcon = ChakraBlockquote.Icon\n",
+  "examples": [
+    {
+      "name": "blockquote-basic",
+      "content": "export const BlockquoteBasic = () => {\n  return (\n    <Blockquote.Root>\n      <Blockquote.Content>\n        If anyone thinks he is something when he is nothing, he deceives\n        himself. Each one should test his own actions. Then he can take pride in\n        himself, without comparing himself to anyone else.\n      </Blockquote.Content>\n    </Blockquote.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-closed-component",
+      "content": "export interface BlockquoteProps extends ChakraBlockquote.RootProps {\n  cite?: React.ReactNode\n  citeUrl?: string\n  icon?: React.ReactNode\n  showDash?: boolean\n}\n\nexport const Blockquote = React.forwardRef<HTMLDivElement, BlockquoteProps>(\n  function Blockquote(props, ref) {\n    const { children, cite, citeUrl, showDash, icon, ...rest } = props\n\n    return (\n      <ChakraBlockquote.Root ref={ref} {...rest}>\n        {icon}\n        <ChakraBlockquote.Content cite={citeUrl}>\n          {children}\n        </ChakraBlockquote.Content>\n        {cite && (\n          <ChakraBlockquote.Caption>\n            {showDash ? <>&mdash;</> : null} <cite>{cite}</cite>\n          </ChakraBlockquote.Caption>\n        )}\n      </ChakraBlockquote.Root>\n    )\n  },\n)\n\nexport const BlockquoteIcon = ChakraBlockquote.Icon\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote as ChakraBlockquote } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-avatar",
+      "content": "export const BlockquoteWithAvatar = () => {\n  return (\n    <Blockquote.Root bg=\"bg.subtle\" padding=\"8\">\n      <Float placement=\"bottom-end\" offset=\"10\">\n        <Blockquote.Icon opacity=\"0.4\" boxSize=\"10\" rotate=\"180deg\" />\n      </Float>\n      <Blockquote.Content cite=\"Uzumaki Naruto\">\n        If anyone thinks he is something when he is nothing, he deceives\n        himself. Each one should test his own actions. Then he can take pride in\n        himself, without comparing himself to anyone else.\n      </Blockquote.Content>\n      <Blockquote.Caption>\n        <cite>\n          <HStack mt=\"2\" gap=\"3\">\n            <Avatar.Root size=\"sm\">\n              <Avatar.Fallback name=\"Emily Jones\" />\n              <Avatar.Image src=\"https://i.pravatar.cc/150?u=re\" />\n            </Avatar.Root>\n            <Span fontWeight=\"medium\">Emily Jones</Span>\n          </HStack>\n        </cite>\n      </Blockquote.Caption>\n    </Blockquote.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Blockquote, Float, HStack, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-cite",
+      "content": "export const BlockquoteWithCite = () => {\n  return (\n    <Blockquote.Root>\n      <Blockquote.Content cite=\"Uzumaki Naruto\">\n        If anyone thinks he is something when he is nothing, he deceives\n        himself. Each one should test his own actions. Then he can take pride in\n        himself, without comparing himself to anyone else.\n      </Blockquote.Content>\n      <Blockquote.Caption>\n        — <cite>Uzumaki Naruto</cite>\n      </Blockquote.Caption>\n    </Blockquote.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-colors",
+      "content": "export const BlockquoteWithColors = () => {\n  return (\n    <Stack gap=\"5\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n          width=\"full\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n          <Blockquote.Root colorPalette={colorPalette}>\n            <Blockquote.Content cite=\"Uzumaki Naruto\">\n              If anyone thinks he is something when he is nothing, he deceives\n              himself. Each one should test his own actions. Then he can take\n              pride in himself, without comparing himself to anyone else.\n            </Blockquote.Content>\n            <Blockquote.Caption>\n              — <cite>Uzumaki Naruto</cite>\n            </Blockquote.Caption>\n          </Blockquote.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-custom-icon",
+      "content": "export const BlockquoteWithCustomIcon = () => {\n  return (\n    <Blockquote.Root colorPalette=\"blue\" ps=\"8\">\n      <Float placement=\"middle-start\">\n        <Circle bg=\"blue.600\" size=\"8\" color=\"white\">\n          <LuQuote />\n        </Circle>\n      </Float>\n      <Blockquote.Content cite=\"Uzumaki Naruto\">\n        If anyone thinks he is something when he is nothing, he deceives\n        himself. Each one should test his own actions. Then he can take pride in\n        himself, without comparing himself to anyone else.\n      </Blockquote.Content>\n      <Blockquote.Caption>\n        — <cite>Uzumaki Naruto</cite>\n      </Blockquote.Caption>\n    </Blockquote.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote, Circle, Float } from \"@chakra-ui/react\"",
+        "import { LuQuote } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "blockquote-with-icon",
+      "content": "export const BlockquoteWithIcon = () => {\n  return (\n    <Blockquote.Root variant=\"plain\" colorPalette=\"teal\">\n      <Float placement=\"top-start\" offsetY=\"2\">\n        <Blockquote.Icon />\n      </Float>\n      <Blockquote.Content cite=\"Uzumaki Naruto\">\n        If anyone thinks he is something when he is nothing, he deceives\n        himself. Each one should test his own actions. Then he can take pride in\n        himself, without comparing himself to anyone else.\n      </Blockquote.Content>\n      <Blockquote.Caption>\n        — <cite>Uzumaki Naruto</cite>\n      </Blockquote.Caption>\n    </Blockquote.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-justify",
+      "content": "export const BlockquoteWithJustify = () => {\n  return (\n    <Stack gap=\"20\">\n      <For each={[\"start\", \"center\", \"end\"]}>\n        {(justify) => (\n          <HStack key={justify} maxW=\"xl\">\n            <Text color=\"fg.muted\" minW=\"6rem\">\n              {justify}\n            </Text>\n            <Blockquote.Root variant=\"plain\" justify={justify}>\n              <Blockquote.Content cite=\"Uzumaki Naruto\">\n                If anyone thinks he is something when he is nothing, he deceives\n                himself. Each one should test his own actions. Then he can take\n                pride in himself, without comparing himself to anyone else.\n              </Blockquote.Content>\n              <Blockquote.Caption>\n                — <cite>Uzumaki Naruto</cite>\n              </Blockquote.Caption>\n            </Blockquote.Root>\n          </HStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote, For, HStack, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "blockquote-with-variants",
+      "content": "export const BlockquoteWithVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <Blockquote.Root variant=\"subtle\">\n        <Blockquote.Content>\n          If anyone thinks he is something when he is nothing, he deceives\n          himself. Each one should test his own actions. Then he can take pride\n          in himself, without comparing himself to anyone else.\n        </Blockquote.Content>\n      </Blockquote.Root>\n      <Blockquote.Root variant=\"solid\">\n        <Blockquote.Content>\n          If anyone thinks he is something when he is nothing, he deceives\n          himself. Each one should test his own actions. Then he can take pride\n          in himself, without comparing himself to anyone else.\n        </Blockquote.Content>\n      </Blockquote.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Blockquote, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Blockquote } from \"@chakra-ui/react\""
+    }
+  ]
+}

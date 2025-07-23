@@ -1,0 +1,79 @@
+{
+  "name": "timeline",
+  "file": "compositions/ui/timeline",
+  "snippet": "import { Timeline as ChakraTimeline } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport const TimelineConnector = React.forwardRef<\n  HTMLDivElement,\n  ChakraTimeline.IndicatorProps\n>(function TimelineConnector(props, ref) {\n  return (\n    <ChakraTimeline.Connector ref={ref}>\n      <ChakraTimeline.Separator />\n      <ChakraTimeline.Indicator {...props} />\n    </ChakraTimeline.Connector>\n  )\n})\n\nexport const TimelineRoot = ChakraTimeline.Root\nexport const TimelineContent = ChakraTimeline.Content\nexport const TimelineItem = ChakraTimeline.Item\nexport const TimelineIndicator = ChakraTimeline.Indicator\nexport const TimelineTitle = ChakraTimeline.Title\nexport const TimelineDescription = ChakraTimeline.Description\n",
+  "examples": [
+    {
+      "name": "timeline-alternating",
+      "content": "export const TimelineAlternating = () => {\n  return (\n    <Timeline.Root size=\"sm\" variant=\"outline\">\n      <Timeline.Item>\n        <Timeline.Content flex=\"1\" />\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator />\n        </Timeline.Connector>\n        <Timeline.Content flex=\"1\">\n          <Timeline.Title>Placed Order</Timeline.Title>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Content flex=\"1\" alignItems=\"flex-end\">\n          <Timeline.Title>Prepared Order</Timeline.Title>\n        </Timeline.Content>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator />\n        </Timeline.Connector>\n        <Timeline.Content flex=\"1\" />\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Content flex=\"1\" />\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator />\n        </Timeline.Connector>\n        <Timeline.Content flex=\"1\">\n          <Timeline.Title>Order Delivered</Timeline.Title>\n        </Timeline.Content>\n      </Timeline.Item>\n    </Timeline.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Timeline } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "timeline-basic",
+      "content": "export const TimelineBasic = () => {\n  return (\n    <Timeline.Root maxW=\"400px\">\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <LuShip />\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content>\n          <Timeline.Title>Product Shipped</Timeline.Title>\n          <Timeline.Description>13th May 2021</Timeline.Description>\n          <Text textStyle=\"sm\">\n            We shipped your product via <strong>FedEx</strong> and it should\n            arrive within 3-5 business days.\n          </Text>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <LuCheck />\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content>\n          <Timeline.Title textStyle=\"sm\">Order Confirmed</Timeline.Title>\n          <Timeline.Description>18th May 2021</Timeline.Description>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <LuPackage />\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content>\n          <Timeline.Title textStyle=\"sm\">Order Delivered</Timeline.Title>\n          <Timeline.Description>20th May 2021, 10:30am</Timeline.Description>\n        </Timeline.Content>\n      </Timeline.Item>\n    </Timeline.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Text, Timeline } from \"@chakra-ui/react\"",
+        "import { LuCheck, LuPackage, LuShip } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "timeline-composition",
+      "content": "export const TimelineComposition = () => {\n  return (\n    <Timeline.Root size=\"lg\" variant=\"subtle\" maxW=\"md\">\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <Icon fontSize=\"xs\">\n              <LuPen />\n            </Icon>\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content>\n          <Timeline.Title>\n            <Avatar.Root size=\"2xs\">\n              <Avatar.Image src=\"https://i.pravatar.cc/150?u=a\" />\n              <Avatar.Fallback />\n            </Avatar.Root>\n            Lucas Moras <Span color=\"fg.muted\">has changed</Span>\n            <Span fontWeight=\"medium\">3 labels</Span> on\n            <Span color=\"fg.muted\">Jan 1, 2024</Span>\n          </Timeline.Title>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <Icon fontSize=\"xs\">\n              <LuX />\n            </Icon>\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content>\n          <Timeline.Title>\n            <Avatar.Root size=\"2xs\">\n              <Avatar.Image src=\"https://i.pravatar.cc/150?u=x\" />\n              <Avatar.Fallback />\n            </Avatar.Root>\n            Jenna Smith <Span color=\"fg.muted\">removed</Span>\n            <Span fontWeight=\"medium\">Enas</Span>\n            <Span color=\"fg.muted\">on Jan 12, 2024</Span>\n          </Timeline.Title>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator bg=\"teal.solid\" color=\"teal.contrast\">\n            <Icon fontSize=\"xs\">\n              <LuX />\n            </Icon>\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content gap=\"4\">\n          <Timeline.Title>\n            <Avatar.Root size=\"2xs\">\n              <Avatar.Image src=\"https://i.pravatar.cc/150?u=y\" />\n              <Avatar.Fallback />\n            </Avatar.Root>\n            Erica <Span color=\"fg.muted\">commented</Span>\n            <Span color=\"fg.muted\">on Jan 12, 2024</Span>\n          </Timeline.Title>\n          <Card.Root size=\"sm\">\n            <Card.Body textStyle=\"sm\" lineHeight=\"tall\">\n              <LoremIpsum p={1} avgWordsPerSentence={2} />\n            </Card.Body>\n            <Card.Footer>\n              <Button size=\"xs\" variant=\"surface\" rounded=\"md\">\n                👏 2\n              </Button>\n            </Card.Footer>\n          </Card.Root>\n        </Timeline.Content>\n      </Timeline.Item>\n\n      <Timeline.Item>\n        <Timeline.Connector>\n          <Timeline.Separator />\n          <Timeline.Indicator>\n            <Avatar.Root size=\"full\">\n              <Avatar.Image src=\"https://i.pravatar.cc/150?u=o\" />\n              <Avatar.Fallback />\n            </Avatar.Root>\n          </Timeline.Indicator>\n        </Timeline.Connector>\n        <Timeline.Content gap=\"4\" mt=\"-1\" w=\"full\">\n          <Input size=\"sm\" placeholder=\"Add comment...\" />\n        </Timeline.Content>\n      </Timeline.Item>\n    </Timeline.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Avatar,\n  Button,\n  Card,\n  Icon,\n  Input,\n  Span,\n  Timeline,\n} from \"@chakra-ui/react\"",
+        "import { LuPen, LuX } from \"react-icons/lu\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "timeline-with-content-before",
+      "content": "export const TimelineWithContentBefore = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Timeline.Root size={size} key={size}>\n            <Timeline.Item>\n              <Timeline.Content width=\"auto\">\n                <Timeline.Title whiteSpace=\"nowrap\">Nov 1994</Timeline.Title>\n              </Timeline.Content>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>1</Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content>\n                <Timeline.Title>\n                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n\n            <Timeline.Item>\n              <Timeline.Content width=\"auto\">\n                <Timeline.Title whiteSpace=\"nowrap\">Nov 2010</Timeline.Title>\n              </Timeline.Content>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>2</Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content>\n                <Timeline.Title>\n                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n          </Timeline.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Stack, Timeline } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "timeline-with-sizes",
+      "content": "export const TimelineWithSizes = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <Timeline.Root key={size} size={size}>\n            <Timeline.Item>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>\n                  <Avatar.Root size=\"full\">\n                    <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n                    <Avatar.Fallback name=\"Sage\" />\n                  </Avatar.Root>\n                </Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content textStyle=\"xs\">\n                <Timeline.Title>\n                  <Span fontWeight=\"medium\">sage</Span>\n                  created a new project\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n\n            <Timeline.Item>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>\n                  <LuCheck />\n                </Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content textStyle=\"xs\">\n                <Timeline.Title mt={size === \"sm\" ? \"-2px\" : undefined}>\n                  <Span fontWeight=\"medium\">sage</Span>\n                  changed status from <Badge size=\"sm\">\n                    In progress\n                  </Badge> to{\" \"}\n                  <Badge colorPalette=\"teal\" size=\"sm\">\n                    Completed\n                  </Badge>\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n          </Timeline.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Badge, For, Span, Stack, Timeline } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "timeline-with-variants",
+      "content": "export const TimelineWithVariants = () => {\n  return (\n    <Stack gap=\"16\">\n      <For each={[\"subtle\", \"solid\", \"outline\", \"plain\"]}>\n        {(variant) => (\n          <Timeline.Root variant={variant} key={variant}>\n            <Timeline.Item>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>\n                  <Avatar.Root size=\"full\">\n                    <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n                    <Avatar.Fallback name=\"Sage\" />\n                  </Avatar.Root>\n                </Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content>\n                <Timeline.Title>\n                  <Span fontWeight=\"medium\">sage</Span>\n                  created a new project\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n\n            <Timeline.Item>\n              <Timeline.Connector>\n                <Timeline.Separator />\n                <Timeline.Indicator>\n                  <LuCheck />\n                </Timeline.Indicator>\n              </Timeline.Connector>\n              <Timeline.Content>\n                <Timeline.Title>\n                  <Span fontWeight=\"medium\">sage</Span>\n                  changed status from <Badge>In progress</Badge> to{\" \"}\n                  <Badge colorPalette=\"teal\">Completed</Badge>\n                </Timeline.Title>\n              </Timeline.Content>\n            </Timeline.Item>\n          </Timeline.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Badge, For, Span, Stack, Timeline } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Timeline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

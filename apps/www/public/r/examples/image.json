@@ -1,0 +1,60 @@
+{
+  "name": "image",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "image-basic",
+      "content": "export const ImageBasic = () => (\n  <Image rounded=\"md\" src=\"https://bit.ly/dan-abramov\" alt=\"Dan Abramov\" />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "image-circular",
+      "content": "export const ImageCircular = () => (\n  <Image\n    src=\"https://bit.ly/naruto-sage\"\n    boxSize=\"150px\"\n    borderRadius=\"full\"\n    fit=\"cover\"\n    alt=\"Naruto Uzumaki\"\n  />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "image-with-aspect-ratio",
+      "content": "export const ImageWithAspectRatio = () => {\n  return (\n    <Image\n      src=\"https://wallpapercave.com/uwp/uwp4261619.png\"\n      alt=\"Naruto vs Sasuke\"\n      aspectRatio={4 / 3}\n      width=\"300px\"\n    />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "image-with-fit",
+      "content": "export const ImageWithFit = () => (\n  <Image\n    border=\"1px solid red\"\n    rounded=\"md\"\n    h=\"200px\"\n    w=\"300px\"\n    fit=\"contain\"\n    src=\"https://bit.ly/dan-abramov\"\n  />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "image-with-height",
+      "content": "export const ImageWithHeight = () => {\n  return (\n    <Image\n      height=\"200px\"\n      src=\"https://images.unsplash.com/flagged/photo-1572491259205-506c425b45c3\"\n    />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "image-with-html-height",
+      "content": "export const ImageWithHtmlHeight = () => {\n  return (\n    <Image\n      htmlWidth=\"400px\"\n      htmlHeight=\"400px\"\n      src=\"https://i.pravatar.cc/400?u=1\"\n    />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Image } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "name": "area-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "area-chart-basic",
+      "content": "\"use client\"\nexport const AreaChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-fill-with-value",
+      "content": "\"use client\"\nconst data = [\n  { name: \"Product A\", uv: 4000, pv: 2400, amt: 2400 },\n  { name: \"Product B\", uv: 3000, pv: 1398, amt: 2210 },\n  { name: \"Product C\", uv: -1000, pv: 9800, amt: 2290 },\n  { name: \"Product D\", uv: 500, pv: 3908, amt: 2000 },\n  { name: \"Product E\", uv: -2000, pv: 4800, amt: 2181 },\n  { name: \"Product F\", uv: -250, pv: 3800, amt: 2500 },\n  { name: \"Product G\", uv: 3490, pv: 4300, amt: 2100 },\n]\n\nconst gradientOffset = () => {\n  const max = Math.max(...data.map((i) => i.uv))\n  const min = Math.min(...data.map((i) => i.uv))\n  if (max <= 0) return 0\n  if (min >= 0) return 1\n  return max / (max - min)\n}\n\nconst offset = gradientOffset()\n\nexport const AreaChartFillWithValue = () => {\n  const chart = useChart({\n    data,\n    series: [\n      { name: \"uv\", color: \"teal.solid\" },\n      { name: \"pv\", color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid strokeDasharray=\"3 3\" stroke={chart.color(\"border\")} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"name\")}\n          tickFormatter={(value) => value.replace(\"Product \", \"\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickFormatter={chart.formatNumber({\n            style: \"currency\",\n            currency: \"USD\",\n            currencyDisplay: \"narrowSymbol\",\n            notation: \"compact\",\n          })}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <defs>\n          <Chart.Gradient\n            id=\"uv-gradient\"\n            stops={[\n              { offset, color: \"teal.solid\", opacity: 1 },\n              { offset, color: \"red.solid\", opacity: 1 },\n            ]}\n          />\n        </defs>\n        <Area\n          type=\"monotone\"\n          isAnimationActive={false}\n          dataKey={chart.key(\"uv\")}\n          fill=\"url(#uv-gradient)\"\n          fillOpacity={0.2}\n          stroke={chart.color(\"gray.solid\")}\n        />\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-percent",
+      "content": "\"use client\"\nexport const AreaChartPercent = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart accessibilityLayer stackOffset=\"expand\" data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickLine={false}\n          axisLine={false}\n          tickMargin={8}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <YAxis\n          tickLine={false}\n          axisLine={false}\n          tickFormatter={chart.formatNumber({ style: \"percent\" })}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-signed",
+      "content": "\"use client\"\nexport const AreaChartSigned = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: -165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 175, mac: 90, linux: -115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: -91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart accessibilityLayer stackOffset=\"sign\" data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickLine={false}\n          axisLine={false}\n          tickMargin={8}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <YAxis\n          tickLine={false}\n          axisLine={false}\n          tickFormatter={chart.formatNumber({ style: \"percent\" })}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Area\n            type=\"natural\"\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-axis-label",
+      "content": "\"use client\"\nexport const AreaChartWithAxisLabel = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart\n        accessibilityLayer\n        data={chart.data}\n        margin={{ bottom: 24, left: 24 }}\n      >\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickLine={false}\n          tickMargin={8}\n          tickFormatter={(value) => value.slice(0, 3)}\n        >\n          <Label position=\"insideBottom\" offset={-20}>\n            Month\n          </Label>\n        </XAxis>\n        <YAxis tickLine={false} axisLine={false}>\n          <Label position=\"insideLeft\" angle={-90}>\n            Count\n          </Label>\n        </YAxis>\n        <Tooltip />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Area, AreaChart, Label, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-dashed-area",
+      "content": "\"use client\"\nexport const AreaChartWithDashedArea = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", strokeDasharray: \"5 3\" },\n      { name: \"mac\", color: \"orange.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            strokeDasharray={item.strokeDasharray}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-dots",
+      "content": "\"use client\"\nexport const AreaChartWithDots = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 349, month: \"August\" },\n      { windows: 180, mac: 86, linux: 400, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data} margin={{ right: 20 }}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <YAxis stroke={chart.color(\"border\")} axisLine={false} />\n        <XAxis\n          axisLine={false}\n          tick={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n\n        {chart.series.map((item) => (\n          <Area\n            isAnimationActive={false}\n            stackId=\"b\"\n            legendType=\"none\"\n            tooltipType=\"none\"\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            dot={{ fill: chart.color(item.color), fillOpacity: 1 }}\n            activeDot={false}\n            fill=\"none\"\n            stroke=\"none\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-gradient",
+      "content": "\"use client\"\nexport const AreaChartWithGradient = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          vertical={false}\n          strokeDasharray=\"3 3\"\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickLine={false}\n          axisLine={false}\n          tickMargin={8}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <YAxis tickLine={false} axisLine={false} />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n\n        {chart.series.map((item) => (\n          <defs key={item.name}>\n            <Chart.Gradient\n              id={`${item.name}-gradient`}\n              stops={[\n                { offset: \"0%\", color: item.color, opacity: 0.3 },\n                { offset: \"100%\", color: item.color, opacity: 0.05 },\n              ]}\n            />\n          </defs>\n        ))}\n\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            type=\"natural\"\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={`url(#${item.name}-gradient)`}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-nulls",
+      "content": "\"use client\"\nexport const AreaChartWithNulls = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: null, month: \"February\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: null, month: \"June\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n      { sales: 185, month: \"November\" },\n      { sales: 300, month: \"December\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <SimpleGrid gap=\"10\" minChildWidth=\"400px\">\n      <For each={[\"false\", \"true\"]}>\n        {(connectNulls) => (\n          <Box key={connectNulls.toString()}>\n            <Heading size=\"md\" mb=\"4\">\n              {`<Area connectNulls={${connectNulls.toString()}} />`}\n            </Heading>\n            <Chart.Root maxH=\"sm\" chart={chart}>\n              <AreaChart data={chart.data}>\n                <CartesianGrid\n                  stroke={chart.color(\"border.muted\")}\n                  vertical={false}\n                />\n                <XAxis\n                  axisLine={false}\n                  tickLine={false}\n                  dataKey={chart.key(\"month\")}\n                  tickFormatter={(value) => value.slice(0, 3)}\n                />\n                <Tooltip\n                  cursor={false}\n                  animationDuration={100}\n                  content={<Chart.Tooltip />}\n                />\n                {chart.series.map((item) => (\n                  <Area\n                    key={item.name}\n                    isAnimationActive={false}\n                    dataKey={chart.key(item.name)}\n                    fill={chart.color(item.color)}\n                    fillOpacity={0.2}\n                    connectNulls={connectNulls === \"true\"}\n                    stroke={chart.color(item.color)}\n                    stackId=\"a\"\n                  />\n                ))}\n              </AreaChart>\n            </Chart.Root>\n          </Box>\n        )}\n      </For>\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Box, For, Heading, SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Area, AreaChart, CartesianGrid, Tooltip, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-point-label",
+      "content": "\"use client\"\nexport const AreaChartWithPointLabel = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: 40, month: \"February\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: 240, month: \"June\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n      { sales: 185, month: \"November\" },\n      { sales: 300, month: \"December\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n        {chart.series.map((item) => (\n          <Area\n            isAnimationActive={false}\n            stackId=\"b\"\n            legendType=\"none\"\n            tooltipType=\"none\"\n            label={{\n              position: \"top\",\n              fill: \"currentColor\",\n              style: { fontWeight: \"600\" },\n            }}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            dot={{ fill: chart.color(item.color), fillOpacity: 1 }}\n            activeDot={false}\n            fill=\"none\"\n            stroke=\"none\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-reference-area",
+      "content": "\"use client\"\nexport const AreaChartWithReferenceArea = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <YAxis stroke={chart.color(\"border\")} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          ticks={[\"February\", \"June\"]}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        <ReferenceLine x=\"February\" stroke={chart.color(\"red.solid\")} />\n        <ReferenceLine x=\"June\" stroke={chart.color(\"red.solid\")} />\n        <ReferenceArea\n          x1=\"February\"\n          x2=\"June\"\n          fill={chart.color(\"red.solid\")}\n          label={{\n            position: \"insideTop\",\n            value: \"Feb - June '24\",\n            style: { fill: chart.color(\"red.fg\") },\n          }}\n          fillOpacity={0.2}\n        />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  ReferenceArea,\n  ReferenceLine,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-reference-lines",
+      "content": "\"use client\"\nexport const AreaChartWithReferenceLines = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <YAxis stroke={chart.color(\"border\")} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        <ReferenceLine\n          x=\"August\"\n          label={{\n            value: \"Black Friday\",\n            position: \"insideTopRight\",\n            style: { fill: chart.color(\"red.fg\"), fontWeight: \"500\" },\n          }}\n          stroke={chart.color(\"red.solid\")}\n        />\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Area,\n  AreaChart,\n  CartesianGrid,\n  Legend,\n  ReferenceLine,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-types",
+      "content": "\"use client\"\nconst curveTypes = [\n  \"linear\",\n  \"bump\",\n  \"basis\",\n  \"step\",\n  \"stepBefore\",\n  \"stepAfter\",\n  \"natural\",\n  \"monotone\",\n] as const\n\nexport const AreaChartWithTypes = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"orange.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <SimpleGrid gap=\"10\" minChildWidth=\"400px\">\n      <For each={curveTypes}>\n        {(type) => (\n          <Stack key={type.toString()} gap=\"4\">\n            <Text textStyle=\"sm\" fontWeight=\"semibold\" ms=\"8\">\n              {`<Area type=\"${type}\" />`}\n            </Text>\n            <Chart.Root maxH=\"sm\" chart={chart}>\n              <AreaChart accessibilityLayer data={chart.data}>\n                <CartesianGrid\n                  stroke={chart.color(\"border\")}\n                  vertical={false}\n                />\n                <XAxis\n                  dataKey={chart.key(\"month\")}\n                  tickLine={false}\n                  axisLine={false}\n                  tickMargin={8}\n                  tickFormatter={(value) => value.slice(0, 3)}\n                />\n                <YAxis tickLine={false} axisLine={false} />\n                {chart.series.map((item) => (\n                  <Area\n                    type={type}\n                    key={item.name}\n                    isAnimationActive={false}\n                    dataKey={chart.key(item.name)}\n                    fill={chart.color(item.color)}\n                    fillOpacity={0.8}\n                    activeDot={{ fill: chart.color(item.color) }}\n                    stroke={chart.color(\"white\")}\n                    strokeWidth={3}\n                    stackId=\"a\"\n                  />\n                ))}\n              </AreaChart>\n            </Chart.Root>\n          </Stack>\n        )}\n      </For>\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { For, SimpleGrid, Stack, Text } from \"@chakra-ui/react\"",
+        "import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "area-chart-with-value-axis",
+      "content": "\"use client\"\nexport const AreaChartWithValueAxis = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"orange.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <AreaChart\n        accessibilityLayer\n        data={chart.data}\n        margin={{ bottom: 24, left: 24 }}\n      >\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickMargin={8}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis stroke={chart.color(\"border\")} />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Area\n            type=\"natural\"\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            stackId=\"a\"\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Area, AreaChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { AreaChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

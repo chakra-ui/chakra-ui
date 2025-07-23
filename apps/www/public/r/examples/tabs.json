@@ -1,0 +1,167 @@
+{
+  "name": "tabs",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "tabs-basic",
+      "content": "export const TabsBasic = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">\n          <LuUser />\n          Members\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\">\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n      </Tabs.List>\n      <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n      <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n      <Tabs.Content value=\"tasks\">\n        Manage your tasks for freelancers\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-controlled",
+      "content": "\"use client\"\nexport const TabsControlled = () => {\n  const [value, setValue] = useState<string | null>(\"first\")\n\n  return (\n    <Tabs.Root value={value} onValueChange={(e) => setValue(e.value)}>\n      <Tabs.List>\n        <Tabs.Trigger value=\"first\">First tab</Tabs.Trigger>\n        <Tabs.Trigger value=\"second\">Second tab</Tabs.Trigger>\n      </Tabs.List>\n\n      <Tabs.Content value=\"first\">First panel</Tabs.Content>\n      <Tabs.Content value=\"second\">Second panel</Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-lazy-mounted",
+      "content": "\"use client\"\nexport const TabsLazyMounted = () => {\n  return (\n    <Tabs.Root lazyMount unmountOnExit defaultValue=\"tab-1\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"tab-1\">Tab 1</Tabs.Trigger>\n        <Tabs.Trigger value=\"tab-2\">Tab 2</Tabs.Trigger>\n        <Tabs.Trigger value=\"tab-3\">Tab 3</Tabs.Trigger>\n      </Tabs.List>\n      <Tabs.Content value=\"tab-1\">\n        Tab 1: Content <TickValue />\n      </Tabs.Content>\n      <Tabs.Content value=\"tab-2\">\n        Tab 2: Content <TickValue />\n      </Tabs.Content>\n      <Tabs.Content value=\"tab-3\">\n        Tab 3: Content <TickValue />\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n\nconst TickValue = () => {\n  const [value, setValue] = useState(0)\n\n  useEffect(() => {\n    const intervalId = window.setInterval(() => {\n      setValue((v) => v + 1)\n    }, 1000)\n    return () => {\n      window.clearInterval(intervalId)\n    }\n  }, [])\n\n  return (\n    <span style={{ fontWeight: \"bold\", color: \"tomato\", padding: 4 }}>\n      {value}\n    </span>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { useEffect, useState } from \"react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-nested",
+      "content": "export const TabsNested = () => {\n  return (\n    <Tabs.Root defaultValue=\"one\" aria-label=\"Custom tabs\" maxW=\"xl\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"one\">Tab 1</Tabs.Trigger>\n        <Tabs.Trigger value=\"two\">Tab 2</Tabs.Trigger>\n      </Tabs.List>\n      <Tabs.Content value=\"one\">\n        <Text textStyle=\"md\" mb=\"6\" mt=\"4\">\n          This is a nested tab\n        </Text>\n        <Tabs.Root variant=\"subtle\" defaultValue=\"one\">\n          <Tabs.List>\n            <Tabs.Trigger value=\"one\">Tab 1.1</Tabs.Trigger>\n            <Tabs.Trigger value=\"two\">Tab 1.2</Tabs.Trigger>\n          </Tabs.List>\n          <Tabs.Content value=\"one\" py=\"4\">\n            <Field.Root>\n              <Field.Label>Tab 1.1</Field.Label>\n              <Input />\n            </Field.Root>\n          </Tabs.Content>\n          <Tabs.Content value=\"two\" py=\"4\">\n            <Field.Root>\n              <Field.Label>Tab 1.2</Field.Label>\n              <Input />\n            </Field.Root>\n          </Tabs.Content>\n        </Tabs.Root>\n      </Tabs.Content>\n      <Tabs.Content value=\"two\">\n        <Heading mb=\"6\" mt=\"4\">\n          This is a normal tab\n        </Heading>\n        <Text>Some content to keep you busy.</Text>\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Heading, Input, Tabs, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-with-animation",
+      "content": "const items = [\n  {\n    title: \"1\",\n    content: \"Dolore ex esse laboris elit magna esse sunt\",\n  },\n  {\n    title: \"2\",\n    content:\n      \"Pariatur in veniam Lorem est occaecat do magna nisi mollit ipsum sit adipisicing fugiat ex.\",\n  },\n]\n\nexport const TabsWithAnimation = () => {\n  return (\n    <Flex minH=\"dvh\">\n      <Tabs.Root defaultValue=\"1\" width=\"full\">\n        <Tabs.List>\n          {items.map((item, index) => (\n            <Tabs.Trigger key={index} value={item.title}>\n              Tab {item.title}\n            </Tabs.Trigger>\n          ))}\n        </Tabs.List>\n        <Box pos=\"relative\" minH=\"200px\" width=\"full\">\n          {items.map((item, index) => (\n            <Tabs.Content\n              key={index}\n              value={item.title}\n              position=\"absolute\"\n              inset=\"0\"\n              _open={{\n                animationName: \"fade-in, scale-in\",\n                animationDuration: \"300ms\",\n              }}\n              _closed={{\n                animationName: \"fade-out, scale-out\",\n                animationDuration: \"120ms\",\n              }}\n            >\n              {item.content}\n            </Tabs.Content>\n          ))}\n        </Box>\n      </Tabs.Root>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Flex, Tabs } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-with-disabled-tab",
+      "content": "export const TabsWithDisabledTab = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">\n          <LuUser />\n          Members\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\" disabled>\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n      </Tabs.List>\n      {/* content */}\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-dynamic-add",
+      "content": "\"use client\"\n\ninterface Item {\n  id: string\n  title: string\n  content: React.ReactNode\n}\n\nconst items: Item[] = [\n  { id: \"1\", title: \"Tab\", content: \"Tab Content\" },\n  { id: \"2\", title: \"Tab\", content: \"Tab Content\" },\n  { id: \"3\", title: \"Tab\", content: \"Tab Content\" },\n  { id: \"4\", title: \"Tab\", content: \"Tab Content\" },\n]\n\nconst uuid = () => {\n  return Math.random().toString(36).substring(2, 15)\n}\n\nexport const TabsWithDynamicAdd = () => {\n  const [tabs, setTabs] = useState<Item[]>(items)\n  const [selectedTab, setSelectedTab] = useState<string | null>(items[0].id)\n\n  const addTab = () => {\n    const newTabs = [...tabs]\n\n    const uid = uuid()\n\n    newTabs.push({\n      id: uid,\n      title: `Tab`,\n      content: `Tab Body`,\n    })\n\n    setTabs(newTabs)\n    setSelectedTab(newTabs[newTabs.length - 1].id)\n  }\n\n  const removeTab = (id: string) => {\n    if (tabs.length > 1) {\n      const newTabs = [...tabs].filter((tab) => tab.id !== id)\n      setTabs(newTabs)\n    }\n  }\n\n  return (\n    <Tabs.Root\n      value={selectedTab}\n      variant=\"outline\"\n      size=\"sm\"\n      onValueChange={(e) => setSelectedTab(e.value)}\n    >\n      <Tabs.List flex=\"1 1 auto\">\n        {tabs.map((item) => (\n          <Tabs.Trigger value={item.id} key={item.id}>\n            {item.title}{\" \"}\n            <CloseButton\n              as=\"span\"\n              role=\"button\"\n              size=\"2xs\"\n              me=\"-2\"\n              onClick={(e) => {\n                e.stopPropagation()\n                removeTab(item.id)\n              }}\n            />\n          </Tabs.Trigger>\n        ))}\n        <Button\n          alignSelf=\"center\"\n          ms=\"2\"\n          size=\"2xs\"\n          variant=\"ghost\"\n          onClick={addTab}\n        >\n          <LuPlus /> Add Tab\n        </Button>\n      </Tabs.List>\n\n      <Tabs.ContentGroup>\n        {tabs.map((item) => (\n          <Tabs.Content value={item.id} key={item.id}>\n            <Heading size=\"xl\" my=\"6\">\n              {item.content} {item.id}\n            </Heading>\n            <Text>\n              Dolore ex esse laboris elit magna esse sunt. Pariatur in veniam\n              Lorem est occaecat do magna nisi mollit ipsum sit adipisicing\n              fugiat ex. Pariatur ullamco exercitation ea qui adipisicing. Id\n              cupidatat aute id ut excepteur exercitation magna pariatur. Mollit\n              irure irure reprehenderit pariatur eiusmod proident Lorem deserunt\n              duis cillum mollit.\n            </Text>\n          </Tabs.Content>\n        ))}\n      </Tabs.ContentGroup>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Heading, Tabs, Text } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-fitted",
+      "content": "export const TabsWithFitted = () => {\n  return (\n    <Tabs.Root variant=\"enclosed\" maxW=\"md\" fitted defaultValue={\"tab-1\"}>\n      <Tabs.List>\n        <Tabs.Trigger value=\"tab-1\">Tab 1</Tabs.Trigger>\n        <Tabs.Trigger value=\"tab-2\">Tab 2</Tabs.Trigger>\n        <Tabs.Trigger value=\"tab-3\">Tab 3</Tabs.Trigger>\n      </Tabs.List>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-with-indicator",
+      "content": "export const TabsWithIndicator = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\" variant=\"plain\">\n      <Tabs.List bg=\"bg.muted\" rounded=\"l3\" p=\"1\">\n        <Tabs.Trigger value=\"members\">\n          <LuUser />\n          Members\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\">\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n        <Tabs.Indicator rounded=\"l2\" />\n      </Tabs.List>\n      <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n      <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n      <Tabs.Content value=\"tasks\">\n        Manage your tasks for freelancers\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-links",
+      "content": "export const TabsWithLinks = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\" asChild>\n          <Link unstyled href=\"#members\">\n            Members\n          </Link>\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\" asChild>\n          <Link unstyled href=\"#projects\">\n            Projects\n          </Link>\n        </Tabs.Trigger>\n      </Tabs.List>\n      <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n      <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Link, Tabs } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tabs-with-manual-activation",
+      "content": "export const TabsWithManualActivation = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\" activationMode=\"manual\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">\n          <LuUser />\n          Members\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\" disabled>\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n      </Tabs.List>\n      {/* content */}\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-store",
+      "content": "\"use client\"\nexport const TabsWithStore = () => {\n  const tabs = useTabs({\n    defaultValue: \"members\",\n  })\n\n  return (\n    <Stack align=\"flex-start\">\n      <Code>selected: {tabs.value}</Code>\n      <Tabs.RootProvider value={tabs}>\n        <Tabs.List>\n          <Tabs.Trigger value=\"members\">\n            <LuUser />\n            Members\n          </Tabs.Trigger>\n          <Tabs.Trigger value=\"projects\">\n            <LuFolder />\n            Projects\n          </Tabs.Trigger>\n          <Tabs.Trigger value=\"tasks\">\n            <LuSquareCheck />\n            Tasks\n          </Tabs.Trigger>\n        </Tabs.List>\n        <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n        <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n        <Tabs.Content value=\"tasks\">\n          Manage your tasks for freelancers\n        </Tabs.Content>\n      </Tabs.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Stack, Tabs, useTabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-variants",
+      "content": "export const TabsWithVariants = () => {\n  return (\n    <SimpleGrid columns={2} gap=\"14\" width=\"full\">\n      <For each={[\"line\", \"subtle\", \"enclosed\", \"outline\", \"plain\"]}>\n        {(variant) => (\n          <Tabs.Root key={variant} defaultValue=\"members\" variant={variant}>\n            <Tabs.List>\n              <Tabs.Trigger value=\"members\">\n                <LuUser />\n                Members\n              </Tabs.Trigger>\n              <Tabs.Trigger value=\"projects\">\n                <LuFolder />\n                Projects\n              </Tabs.Trigger>\n              <Tabs.Trigger value=\"tasks\">\n                <LuSquareCheck />\n                Settings\n              </Tabs.Trigger>\n            </Tabs.List>\n            <Tabs.Content value=\"members\">\n              Manage your team members\n            </Tabs.Content>\n            <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n            <Tabs.Content value=\"tasks\">\n              Manage your tasks for freelancers\n            </Tabs.Content>\n          </Tabs.Root>\n        )}\n      </For>\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, SimpleGrid, Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tabs-with-vertical",
+      "content": "export const TabsWithVertical = () => {\n  return (\n    <SimpleGrid columns={2} gap=\"14\" width=\"full\">\n      <For each={[\"line\", \"enclosed\", \"outline\", \"plain\"]}>\n        {(variant) => (\n          <Tabs.Root\n            key={variant}\n            defaultValue=\"members\"\n            orientation=\"vertical\"\n            variant={variant}\n            colorPalette=\"teal\"\n          >\n            <Tabs.List>\n              <Tabs.Trigger value=\"members\">\n                <LuUser />\n                Members\n              </Tabs.Trigger>\n              <Tabs.Trigger value=\"projects\">\n                <LuFolder />\n                Projects\n              </Tabs.Trigger>\n              <Tabs.Trigger value=\"tasks\">\n                <LuSquareCheck />\n                Settings\n              </Tabs.Trigger>\n            </Tabs.List>\n            <Tabs.Content value=\"members\">\n              Manage your team members\n            </Tabs.Content>\n            <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n            <Tabs.Content value=\"tasks\">\n              Manage your tasks for freelancers\n            </Tabs.Content>\n          </Tabs.Root>\n        )}\n      </For>\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, SimpleGrid, Tabs } from \"@chakra-ui/react\"",
+        "import { LuFolder, LuSquareCheck, LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

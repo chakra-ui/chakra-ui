@@ -1,0 +1,144 @@
+{
+  "name": "avatar",
+  "file": "compositions/ui/avatar",
+  "snippet": "import {\n  Avatar as ChakraAvatar,\n  AvatarGroup as ChakraAvatarGroup,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ntype ImageProps = React.ImgHTMLAttributes<HTMLImageElement>\n\nexport interface AvatarProps extends ChakraAvatar.RootProps {\n  name?: string\n  src?: string\n  srcSet?: string\n  loading?: ImageProps[\"loading\"]\n  icon?: React.ReactElement\n  fallback?: React.ReactNode\n}\n\nexport const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(\n  function Avatar(props, ref) {\n    const { name, src, srcSet, loading, icon, fallback, children, ...rest } =\n      props\n    return (\n      <ChakraAvatar.Root ref={ref} {...rest}>\n        <ChakraAvatar.Fallback name={name}>\n          {icon || fallback}\n        </ChakraAvatar.Fallback>\n        <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />\n        {children}\n      </ChakraAvatar.Root>\n    )\n  },\n)\n\nexport const AvatarGroup = ChakraAvatarGroup\n",
+  "examples": [
+    {
+      "name": "avatar-basic",
+      "content": "export const AvatarBasic = () => {\n  return (\n    <Avatar.Root>\n      <Avatar.Fallback name=\"Segun Adebayo\" />\n      <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n    </Avatar.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-closed-component",
+      "content": "type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>\n\nexport interface AvatarProps extends ChakraAvatar.RootProps {\n  name?: string\n  src?: string\n  srcSet?: string\n  loading?: ImageProps[\"loading\"]\n  icon?: React.ReactElement\n  fallback?: React.ReactNode\n}\n\nexport const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(\n  function Avatar(props, ref) {\n    const { name, src, srcSet, loading, icon, fallback, children, ...rest } =\n      props\n    return (\n      <ChakraAvatar.Root ref={ref} {...rest}>\n        <ChakraAvatar.Fallback name={name}>\n          {fallback || icon}\n        </ChakraAvatar.Fallback>\n        <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />\n        {children}\n      </ChakraAvatar.Root>\n    )\n  },\n)\n\nexport const AvatarGroup = ChakraAvatarGroup\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Avatar as ChakraAvatar,\n  AvatarGroup as ChakraAvatarGroup,\n} from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-group-with-stacking",
+      "content": "export const AvatarGroupWithStacking = () => {\n  return (\n    <Stack>\n      <AvatarGroup size=\"lg\" stacking=\"last-on-top\">\n        {items.map((item) => (\n          <Avatar.Root key={item.name}>\n            <Avatar.Fallback name={item.name} />\n            <Avatar.Image src={item.src} />\n          </Avatar.Root>\n        ))}\n        <Avatar.Root>\n          <Avatar.Fallback>+3</Avatar.Fallback>\n        </Avatar.Root>\n      </AvatarGroup>\n\n      <AvatarGroup size=\"lg\" stacking=\"first-on-top\">\n        {items.map((item) => (\n          <Avatar.Root key={item.name}>\n            <Avatar.Fallback name={item.name} />\n            <Avatar.Image src={item.src} />\n          </Avatar.Root>\n        ))}\n        <Avatar.Root>\n          <Avatar.Fallback>+3</Avatar.Fallback>\n        </Avatar.Root>\n      </AvatarGroup>\n\n      <AvatarGroup size=\"lg\" spaceX=\"1\" borderless>\n        {items.map((item) => (\n          <Avatar.Root key={item.name}>\n            <Avatar.Fallback name={item.name} />\n            <Avatar.Image src={item.src} />\n          </Avatar.Root>\n        ))}\n        <Avatar.Root>\n          <Avatar.Fallback>+3</Avatar.Fallback>\n        </Avatar.Root>\n      </AvatarGroup>\n    </Stack>\n  )\n}\n\nconst items = [\n  {\n    src: \"https://cdn.myanimelist.net/r/84x124/images/characters/9/131317.webp?s=d4b03c7291407bde303bc0758047f6bd\",\n    name: \"Uchiha Sasuke\",\n  },\n  {\n    src: \"https://cdn.myanimelist.net/r/84x124/images/characters/7/284129.webp?s=a8998bf668767de58b33740886ca571c\",\n    name: \"Baki Ani\",\n  },\n  {\n    src: \"https://cdn.myanimelist.net/r/84x124/images/characters/9/105421.webp?s=269ff1b2bb9abe3ac1bc443d3a76e863\",\n    name: \"Uchiha Chan\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, AvatarGroup, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-persona",
+      "content": "export const AvatarPersona = () => {\n  return (\n    <Stack gap=\"8\">\n      {users.map((user) => (\n        <HStack key={user.email} gap=\"4\">\n          <Avatar.Root>\n            <Avatar.Fallback name={user.name} />\n            <Avatar.Image src={user.avatar} />\n          </Avatar.Root>\n          <Stack gap=\"0\">\n            <Text fontWeight=\"medium\">{user.name}</Text>\n            <Text color=\"fg.muted\" textStyle=\"sm\">\n              {user.email}\n            </Text>\n          </Stack>\n        </HStack>\n      ))}\n    </Stack>\n  )\n}\n\nconst users = [\n  {\n    id: \"1\",\n    name: \"John Mason\",\n    email: \"john.mason@example.com\",\n    avatar: \"https://i.pravatar.cc/300?u=iu\",\n  },\n  {\n    id: \"2\",\n    name: \"Melissa Jones\",\n    email: \"melissa.jones@example.com\",\n    avatar: \"https://i.pravatar.cc/300?u=po\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-badge",
+      "content": "export const AvatarWithBadge = () => {\n  return (\n    <Avatar.Root colorPalette=\"green\" variant=\"subtle\">\n      <Avatar.Fallback name=\"Dari Ann\" />\n      <Float placement=\"bottom-end\" offsetX=\"1\" offsetY=\"1\">\n        <Circle\n          bg=\"green.500\"\n          size=\"8px\"\n          outline=\"0.2em solid\"\n          outlineColor=\"bg\"\n        />\n      </Float>\n    </Avatar.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Circle, Float } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-colors",
+      "content": "export const AvatarWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack key={colorPalette} align=\"center\" direction=\"row\" gap=\"10\">\n          <Text minW=\"8ch\">{colorPalette}</Text>\n          <Avatar.Root colorPalette={colorPalette}>\n            <Avatar.Fallback name=\"Segun Adebayo\" />\n            <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n          </Avatar.Root>\n          <Avatar.Root colorPalette={colorPalette}>\n            <Avatar.Fallback name=\"Segun Adebayo\" />\n          </Avatar.Root>\n          <Avatar.Root colorPalette={colorPalette}>\n            <Avatar.Fallback />\n          </Avatar.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-fallback",
+      "content": "export const AvatarWithFallback = () => {\n  return (\n    <HStack>\n      <Avatar.Root>\n        <Avatar.Fallback name=\"Oshigaki Kisame\" />\n        <Avatar.Image src=\"https://bit.ly/broken-link\" />\n      </Avatar.Root>\n      <Avatar.Root colorPalette=\"teal\">\n        <Avatar.Fallback name=\"Sasuke Uchiha\" />\n        <Avatar.Image src=\"https://bit.ly/broken-link\" />\n      </Avatar.Root>\n      <Avatar.Root colorPalette=\"red\">\n        <Avatar.Fallback />\n        <Avatar.Image src=\"https://bit.ly/broken-link\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-group",
+      "content": "export const AvatarWithGroup = () => {\n  return (\n    <AvatarGroup gap=\"0\" spaceX=\"-3\" size=\"lg\">\n      <Avatar.Root>\n        <Avatar.Fallback name=\"Uchiha Sasuke\" />\n        <Avatar.Image src=\"https://cdn.myanimelist.net/r/84x124/images/characters/9/131317.webp?s=d4b03c7291407bde303bc0758047f6bd\" />\n      </Avatar.Root>\n\n      <Avatar.Root>\n        <Avatar.Fallback name=\"Baki Ani\" />\n        <Avatar.Image src=\"https://cdn.myanimelist.net/r/84x124/images/characters/7/284129.webp?s=a8998bf668767de58b33740886ca571c\" />\n      </Avatar.Root>\n\n      <Avatar.Root>\n        <Avatar.Fallback name=\"Uchiha Chan\" />\n        <Avatar.Image src=\"https://cdn.myanimelist.net/r/84x124/images/characters/9/105421.webp?s=269ff1b2bb9abe3ac1bc443d3a76e863\" />\n      </Avatar.Root>\n      <Avatar.Root variant=\"solid\">\n        <Avatar.Fallback>+3</Avatar.Fallback>\n      </Avatar.Root>\n    </AvatarGroup>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, AvatarGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-overflow",
+      "content": "const names = [\n  \"Naruto Uzumaki\",\n  \"Sakura Haruno\",\n  \"Kakashi Hatake\",\n  \"Hinata Hyuga\",\n  \"Shikamaru Nara\",\n]\nconst maxAvatars = 3\n\nexport const AvatarWithOverflow = () => {\n  const { items, overflow } = partition(names, maxAvatars)\n  return (\n    <Group gap=\"0\" spaceX=\"2\">\n      {items.map((item) => (\n        <Avatar.Root key={item} colorPalette={pickPalette(item)}>\n          <Avatar.Fallback name={item} />\n        </Avatar.Root>\n      ))}\n      {overflow.length > 0 && (\n        <Menu.Root positioning={{ placement: \"bottom\" }}>\n          <Menu.Trigger rounded=\"full\" focusRing=\"outside\">\n            <Avatar.Root variant=\"outline\">\n              <Avatar.Fallback>+{overflow.length}</Avatar.Fallback>\n            </Avatar.Root>\n          </Menu.Trigger>\n          <Portal>\n            <Menu.Positioner>\n              <Menu.Content>\n                {overflow.map((item) => (\n                  <Menu.Item value={item} key={item}>\n                    <Avatar.Root size=\"xs\" colorPalette={pickPalette(item)}>\n                      <Avatar.Fallback name={item} />\n                    </Avatar.Root>\n                    {item}\n                  </Menu.Item>\n                ))}\n              </Menu.Content>\n            </Menu.Positioner>\n          </Portal>\n        </Menu.Root>\n      )}\n    </Group>\n  )\n}\n\nconst colorPalette = [\"red\", \"blue\", \"green\", \"yellow\", \"purple\", \"orange\"]\n\nconst pickPalette = (name: string) => {\n  const index = name.charCodeAt(0) % colorPalette.length\n  return colorPalette[index]\n}\n\nconst partition = (arr: string[], max: number) => {\n  const items = []\n  const overflow = []\n  for (const item of arr) {\n    if (items.length < max) items.push(item)\n    else overflow.push(item)\n  }\n  return { items, overflow }\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Group, Menu, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-random-color",
+      "content": "const colorPalette = [\"red\", \"blue\", \"green\", \"yellow\", \"purple\", \"orange\"]\n\nconst pickPalette = (name: string) => {\n  const index = name.charCodeAt(0) % colorPalette.length\n  return colorPalette[index]\n}\n\nexport const AvatarWithRandomColor = () => {\n  return (\n    <HStack>\n      <Avatar.Root colorPalette={pickPalette(\"Shane Nelson\")}>\n        <Avatar.Fallback name=\"Shane Nelson\" />\n      </Avatar.Root>\n      <Avatar.Root colorPalette={pickPalette(\"Brook Lesnar\")}>\n        <Avatar.Fallback name=\"Brook Lesnar\" />\n      </Avatar.Root>\n      <Avatar.Root colorPalette={pickPalette(\"John Lennon\")}>\n        <Avatar.Fallback name=\"John Lennon\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-ring",
+      "content": "const ringCss = defineStyle({\n  outlineWidth: \"2px\",\n  outlineColor: \"colorPalette.500\",\n  outlineOffset: \"2px\",\n  outlineStyle: \"solid\",\n})\n\nexport const AvatarWithRing = () => {\n  return (\n    <HStack gap=\"4\">\n      <Avatar.Root css={ringCss} colorPalette=\"pink\">\n        <Avatar.Fallback name=\"Random\" />\n        <Avatar.Image src=\"https://randomuser.me/api/portraits/men/70.jpg\" />\n      </Avatar.Root>\n      <Avatar.Root css={ringCss} colorPalette=\"green\">\n        <Avatar.Fallback name=\"Random\" />\n        <Avatar.Image src=\"https://randomuser.me/api/portraits/men/54.jpg\" />\n      </Avatar.Root>\n      <Avatar.Root css={ringCss} colorPalette=\"blue\">\n        <Avatar.Fallback name=\"Random\" />\n        <Avatar.Image src=\"https://randomuser.me/api/portraits/men/42.jpg\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack, defineStyle } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-shape",
+      "content": "export const AvatarWithShape = () => {\n  return (\n    <HStack gap=\"4\">\n      <Avatar.Root shape=\"square\" size=\"lg\">\n        <Avatar.Fallback name=\"Dan Abramov\" />\n        <Avatar.Image src=\"https://bit.ly/dan-abramov\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"rounded\" size=\"lg\">\n        <Avatar.Fallback name=\"Segun Adebayo\" />\n        <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"full\" size=\"lg\">\n        <Avatar.Fallback name=\"Random User\" />\n        <Avatar.Image src=\"https://images.unsplash.com/photo-1531746020798-e6953c6e8e04\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-sizes",
+      "content": "export const AvatarWithSizes = () => {\n  return (\n    <HStack gap=\"3\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <Avatar.Root size={size} key={size}>\n            <Avatar.Fallback name=\"Segun Adebayo\" />\n            <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n          </Avatar.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-store",
+      "content": "\"use client\"\nexport const AvatarWithStore = () => {\n  const avatar = useAvatar()\n  return (\n    <Stack align=\"flex-start\">\n      <Avatar.RootProvider value={avatar}>\n        <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n        <Avatar.Fallback name=\"Segun Adebayo\" />\n      </Avatar.RootProvider>\n      <Code>{avatar.loaded ? \"loaded\" : \"not loaded\"}</Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Code, Stack, useAvatar } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "avatar-with-variants",
+      "content": "export const AvatarWithVariants = () => {\n  return (\n    <HStack gap=\"3\">\n      <For each={[\"solid\", \"outline\", \"subtle\"]}>\n        {(variant) => (\n          <Avatar.Root key={variant} variant={variant}>\n            <Avatar.Fallback name=\"Segun Adebayo\" />\n          </Avatar.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Avatar } from \"@chakra-ui/react\""
+    }
+  ]
+}

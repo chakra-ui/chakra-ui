@@ -1,0 +1,60 @@
+---
+title: Chakra 3.22 - TreeView Is Here
+description: "Introducing the Tree View component"
+type: release
+version: "3.22"
+authors: ["sage"]
+publishedAt: "2025-07-07"
+---
+
+We've just shipped Chakra UI v3.22! This release introduces the
+**[Tree View](/docs/components/tree-view)** component, along with quality
+improvements to make building with Chakra even smoother.
+
+## Tree View
+
+The Tree View component is a versatile component that allows users to display
+hierarchical data in a tree structure.
+
+### Basic Usage
+
+The basic tree view provides a tree structure with nested items.
+
+<ExampleTabs name="tree-view-basic" />
+
+### Async Loading
+
+Lazy loading is a feature that allows the tree view to load children of a node
+on demand (or async). This helps to improve the initial load time and memory
+usage.
+
+<ExampleTabs name="tree-view-async" />
+
+## Other Improvements
+
+### Clipboard
+
+- Fix issue where `clipboardAnatomy` was not exported from
+  `@chakra-ui/react/anatomy`
+
+### Combobox
+
+- Expose `reason` to `onOpenChange` and `onInputValueChange` callbacks
+- Expose `api.clearHighlightedValue` function to clear highlighted value
+
+### Toast
+
+- Fix issue where toast `title` or `description` could not accept React element
+
+### Select
+
+- Select highlighted item only if it exists in the collection
+- Expose `api.clearHighlightedValue` function to clear highlighted value
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```

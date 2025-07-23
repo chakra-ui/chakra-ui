@@ -1,0 +1,129 @@
+{
+  "name": "table",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "table-basic",
+      "content": "export const TableBasic = () => {\n  return (\n    <Table.Root size=\"sm\">\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-column-border",
+      "content": "export const TableWithColumnBorder = () => {\n  return (\n    <Table.Root size=\"sm\" showColumnBorder>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-column-group",
+      "content": "export const TableWithColumnGroup = () => {\n  return (\n    <Table.Root size=\"sm\" variant=\"outline\">\n      <Table.ColumnGroup>\n        <Table.Column htmlWidth=\"50%\" />\n        <Table.Column htmlWidth=\"40%\" />\n        <Table.Column />\n      </Table.ColumnGroup>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-interactive",
+      "content": "export const TableWithInteractive = () => {\n  return (\n    <Table.Root size=\"sm\" interactive>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-overflow",
+      "content": "export const TableWithOverflow = () => {\n  return (\n    <Table.ScrollArea borderWidth=\"1px\" maxW=\"xl\">\n      <Table.Root size=\"sm\" variant=\"outline\">\n        <Table.Header>\n          <Table.Row>\n            <Table.ColumnHeader minW=\"400px\">Product</Table.ColumnHeader>\n            <Table.ColumnHeader minW=\"400px\">Category</Table.ColumnHeader>\n            <Table.ColumnHeader minW=\"200px\" textAlign=\"end\">\n              Price\n            </Table.ColumnHeader>\n          </Table.Row>\n        </Table.Header>\n        <Table.Body>\n          {items.map((item) => (\n            <Table.Row key={item.id}>\n              <Table.Cell>{item.name}</Table.Cell>\n              <Table.Cell>{item.category}</Table.Cell>\n              <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n            </Table.Row>\n          ))}\n        </Table.Body>\n      </Table.Root>\n    </Table.ScrollArea>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-pagination",
+      "content": "\"use client\"\nexport const TableWithPagination = () => {\n  return (\n    <Stack width=\"full\" gap=\"5\">\n      <Heading size=\"xl\">Products</Heading>\n      <Table.Root size=\"sm\" variant=\"outline\" striped>\n        <Table.Header>\n          <Table.Row>\n            <Table.ColumnHeader>Product</Table.ColumnHeader>\n            <Table.ColumnHeader>Category</Table.ColumnHeader>\n            <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n          </Table.Row>\n        </Table.Header>\n        <Table.Body>\n          {items.map((item) => (\n            <Table.Row key={item.id}>\n              <Table.Cell>{item.name}</Table.Cell>\n              <Table.Cell>{item.category}</Table.Cell>\n              <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n            </Table.Row>\n          ))}\n        </Table.Body>\n      </Table.Root>\n\n      <Pagination.Root count={items.length * 5} pageSize={5} page={1}>\n        <ButtonGroup variant=\"ghost\" size=\"sm\" wrap=\"wrap\">\n          <Pagination.PrevTrigger asChild>\n            <IconButton>\n              <LuChevronLeft />\n            </IconButton>\n          </Pagination.PrevTrigger>\n\n          <Pagination.Items\n            render={(page) => (\n              <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n                {page.value}\n              </IconButton>\n            )}\n          />\n\n          <Pagination.NextTrigger asChild>\n            <IconButton>\n              <LuChevronRight />\n            </IconButton>\n          </Pagination.NextTrigger>\n        </ButtonGroup>\n      </Pagination.Root>\n    </Stack>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ButtonGroup,\n  Heading,\n  IconButton,\n  Pagination,\n  Stack,\n  Table,\n} from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "table-with-selection-action-bar",
+      "content": "\"use client\"\nexport const TableWithSelectionActionBar = () => {\n  const [selection, setSelection] = useState<string[]>([])\n\n  const hasSelection = selection.length > 0\n  const indeterminate = hasSelection && selection.length < items.length\n\n  const rows = items.map((item) => (\n    <Table.Row\n      key={item.name}\n      data-selected={selection.includes(item.name) ? \"\" : undefined}\n    >\n      <Table.Cell>\n        <Checkbox.Root\n          size=\"sm\"\n          top=\"0.5\"\n          aria-label=\"Select row\"\n          checked={selection.includes(item.name)}\n          onCheckedChange={(changes) => {\n            setSelection((prev) =>\n              changes.checked\n                ? [...prev, item.name]\n                : selection.filter((name) => name !== item.name),\n            )\n          }}\n        >\n          <Checkbox.HiddenInput />\n          <Checkbox.Control />\n        </Checkbox.Root>\n      </Table.Cell>\n      <Table.Cell>{item.name}</Table.Cell>\n      <Table.Cell>{item.category}</Table.Cell>\n      <Table.Cell>${item.price}</Table.Cell>\n    </Table.Row>\n  ))\n\n  return (\n    <>\n      <Table.Root>\n        <Table.Header>\n          <Table.Row>\n            <Table.ColumnHeader w=\"6\">\n              <Checkbox.Root\n                size=\"sm\"\n                top=\"0.5\"\n                aria-label=\"Select all rows\"\n                checked={indeterminate ? \"indeterminate\" : selection.length > 0}\n                onCheckedChange={(changes) => {\n                  setSelection(\n                    changes.checked ? items.map((item) => item.name) : [],\n                  )\n                }}\n              >\n                <Checkbox.HiddenInput />\n                <Checkbox.Control />\n              </Checkbox.Root>\n            </Table.ColumnHeader>\n            <Table.ColumnHeader>Product</Table.ColumnHeader>\n            <Table.ColumnHeader>Category</Table.ColumnHeader>\n            <Table.ColumnHeader>Price</Table.ColumnHeader>\n          </Table.Row>\n        </Table.Header>\n        <Table.Body>{rows}</Table.Body>\n      </Table.Root>\n\n      <ActionBar.Root open={hasSelection}>\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                {selection.length} selected\n              </ActionBar.SelectionTrigger>\n              <ActionBar.Separator />\n              <Button variant=\"outline\" size=\"sm\">\n                Delete <Kbd>⌫</Kbd>\n              </Button>\n              <Button variant=\"outline\" size=\"sm\">\n                Share <Kbd>T</Kbd>\n              </Button>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ActionBar,\n  Button,\n  Checkbox,\n  Kbd,\n  Portal,\n  Table,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-selection",
+      "content": "\"use client\"\nexport const TableWithSelection = () => {\n  const [selection, setSelection] = useState<string[]>([])\n\n  const indeterminate = selection.length > 0 && selection.length < items.length\n\n  const rows = items.map((item) => (\n    <Table.Row\n      key={item.name}\n      data-selected={selection.includes(item.name) ? \"\" : undefined}\n    >\n      <Table.Cell>\n        <Checkbox.Root\n          size=\"sm\"\n          mt=\"0.5\"\n          aria-label=\"Select row\"\n          checked={selection.includes(item.name)}\n          onCheckedChange={(changes) => {\n            setSelection((prev) =>\n              changes.checked\n                ? [...prev, item.name]\n                : selection.filter((name) => name !== item.name),\n            )\n          }}\n        >\n          <Checkbox.HiddenInput />\n          <Checkbox.Control />\n        </Checkbox.Root>\n      </Table.Cell>\n      <Table.Cell>{item.name}</Table.Cell>\n      <Table.Cell>{item.category}</Table.Cell>\n      <Table.Cell>${item.price}</Table.Cell>\n    </Table.Row>\n  ))\n\n  return (\n    <Table.Root>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader w=\"6\">\n            <Checkbox.Root\n              size=\"sm\"\n              mt=\"0.5\"\n              aria-label=\"Select all rows\"\n              checked={indeterminate ? \"indeterminate\" : selection.length > 0}\n              onCheckedChange={(changes) => {\n                setSelection(\n                  changes.checked ? items.map((item) => item.name) : [],\n                )\n              }}\n            >\n              <Checkbox.HiddenInput />\n              <Checkbox.Control />\n            </Checkbox.Root>\n          </Table.ColumnHeader>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader>Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>{rows}</Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, Table } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-sizes",
+      "content": "export const TableWithSizes = () => {\n  return (\n    <Stack gap=\"10\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Table.Root key={size} size={size}>\n            <Table.Header>\n              <Table.Row>\n                <Table.ColumnHeader>Product</Table.ColumnHeader>\n                <Table.ColumnHeader>Category</Table.ColumnHeader>\n                <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n              </Table.Row>\n            </Table.Header>\n            <Table.Body>\n              {items.map((item) => (\n                <Table.Row key={item.id}>\n                  <Table.Cell>{item.name}</Table.Cell>\n                  <Table.Cell>{item.category}</Table.Cell>\n                  <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n                </Table.Row>\n              ))}\n            </Table.Body>\n          </Table.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Stack, Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-sticky-column",
+      "content": "export const TableWithStickyColumn = () => {\n  return (\n    <Table.ScrollArea borderWidth=\"1px\" rounded=\"md\" maxW=\"2xl\">\n      <Table.Root\n        size=\"sm\"\n        css={{\n          \"& [data-sticky]\": {\n            position: \"sticky\",\n            zIndex: 1,\n            bg: \"bg\",\n\n            _after: {\n              content: '\"\"',\n              position: \"absolute\",\n              pointerEvents: \"none\",\n              top: \"0\",\n              bottom: \"-1px\",\n              width: \"32px\",\n            },\n          },\n\n          \"& [data-sticky=end]\": {\n            _after: {\n              insetInlineEnd: \"0\",\n              translate: \"100% 0\",\n              shadow: \"inset 8px 0px 8px -8px rgba(0, 0, 0, 0.16)\",\n            },\n          },\n\n          \"& [data-sticky=start]\": {\n            _after: {\n              insetInlineStart: \"0\",\n              translate: \"-100% 0\",\n              shadow: \"inset -8px 0px 8px -8px rgba(0, 0, 0, 0.16)\",\n            },\n          },\n        }}\n      >\n        <Table.Header>\n          <Table.Row>\n            <Table.ColumnHeader data-sticky=\"end\" minW=\"160px\" left=\"0\">\n              Product\n            </Table.ColumnHeader>\n            <Table.ColumnHeader minW=\"400px\">Category</Table.ColumnHeader>\n            <Table.ColumnHeader minW=\"200px\" textAlign=\"end\">\n              Price\n            </Table.ColumnHeader>\n          </Table.Row>\n        </Table.Header>\n\n        <Table.Body>\n          {items.map((item) => (\n            <Table.Row key={item.id}>\n              <Table.Cell data-sticky=\"end\" left=\"0\">\n                {item.name}\n              </Table.Cell>\n              <Table.Cell>{item.category}</Table.Cell>\n              <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n            </Table.Row>\n          ))}\n        </Table.Body>\n      </Table.Root>\n    </Table.ScrollArea>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-sticky-header",
+      "content": "export const TableWithStickyHeader = () => {\n  return (\n    <Table.ScrollArea borderWidth=\"1px\" rounded=\"md\" height=\"160px\">\n      <Table.Root size=\"sm\" stickyHeader>\n        <Table.Header>\n          <Table.Row bg=\"bg.subtle\">\n            <Table.ColumnHeader>Product</Table.ColumnHeader>\n            <Table.ColumnHeader>Category</Table.ColumnHeader>\n            <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n          </Table.Row>\n        </Table.Header>\n\n        <Table.Body>\n          {items.map((item) => (\n            <Table.Row key={item.id}>\n              <Table.Cell>{item.name}</Table.Cell>\n              <Table.Cell>{item.category}</Table.Cell>\n              <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n            </Table.Row>\n          ))}\n        </Table.Body>\n      </Table.Root>\n    </Table.ScrollArea>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-striped",
+      "content": "export const TableWithStriped = () => {\n  return (\n    <Table.Root size=\"sm\" striped>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-variants",
+      "content": "export const TableWithVariants = () => {\n  return (\n    <Stack gap=\"10\">\n      <For each={[\"line\", \"outline\"]}>\n        {(variant) => (\n          <Table.Root key={variant} size=\"sm\" variant={variant}>\n            <Table.Header>\n              <Table.Row>\n                <Table.ColumnHeader>Product</Table.ColumnHeader>\n                <Table.ColumnHeader>Category</Table.ColumnHeader>\n                <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n              </Table.Row>\n            </Table.Header>\n            <Table.Body>\n              {items.map((item) => (\n                <Table.Row key={item.id}>\n                  <Table.Cell>{item.name}</Table.Cell>\n                  <Table.Cell>{item.category}</Table.Cell>\n                  <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n                </Table.Row>\n              ))}\n            </Table.Body>\n          </Table.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Stack, Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    }
+  ]
+}

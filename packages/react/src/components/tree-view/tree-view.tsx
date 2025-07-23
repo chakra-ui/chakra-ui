@@ -215,15 +215,6 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TreeViewBranchBodyProps extends HTMLChakraProps<"div"> {}
-
-export const TreeViewBranchBody = withContext<
-  HTMLDivElement,
-  TreeViewBranchBodyProps
->("div", "branchBody")
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export type TreeViewNodeCheckboxProps = HTMLChakraProps<
   "div",
   ArkTreeView.NodeCheckboxBaseProps
@@ -269,14 +260,12 @@ export function TreeViewNode<T extends TreeNode = TreeNode>(
               <TreeViewBranch {...branchProps}>
                 {render({ node, indexPath, nodeState })}
                 <TreeViewBranchContent {...branchContentProps}>
-                  <TreeViewBranchBody>
-                    {indentGuide}
-                    {tree.collection
-                      .getNodeChildren(node)
-                      .map((child, index) =>
-                        renderNode(child as T, [...indexPath, index]),
-                      )}
-                  </TreeViewBranchBody>
+                  {indentGuide}
+                  {tree.collection
+                    .getNodeChildren(node)
+                    .map((child, index) =>
+                      renderNode(child as T, [...indexPath, index]),
+                    )}
                 </TreeViewBranchContent>
               </TreeViewBranch>
             )

@@ -9,16 +9,19 @@ const baseItemStyle = defineStyle({
   userSelect: "none",
   position: "relative",
   "--tree-depth": "calc(var(--depth) - 1)",
-  "--tree-inset":
-    "calc(var(--tree-padding-inline) + var(--tree-indentation) * var(--tree-depth))",
-  ps: "var(--tree-inset)",
+  "--tree-indentation-offset":
+    "calc(var(--tree-indentation) * var(--tree-depth))",
+  "--tree-icon-offset": "calc(var(--tree-icon-size) * var(--tree-depth) * 0.5)",
+  "--tree-offset":
+    "calc(var(--tree-padding-inline) + var(--tree-indentation-offset) + var(--tree-icon-offset))",
+  ps: "var(--tree-offset)",
   pe: "var(--tree-padding-inline)",
   py: "var(--tree-padding-block)",
   focusVisibleRing: "inside",
   focusRingColor: "border.emphasized",
   focusRingWidth: "2px",
   "&:hover, &:focus-visible": {
-    bg: "colorPalette.subtle",
+    bg: "bg.muted",
   },
   _disabled: {
     layerStyle: "disabled",
@@ -32,12 +35,7 @@ const baseTextStyle = defineStyle({
 const subtleVariantStyle = defineStyle({
   _selected: {
     bg: "colorPalette.subtle",
-  },
-})
-
-const surfaceVariantStyle = defineStyle({
-  _selected: {
-    layerStyle: "fill.surface",
+    color: "colorPalette.fg",
   },
 })
 
@@ -74,13 +72,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
     },
     branchContent: {
       position: "relative",
-      overflow: "hidden",
-      transitionProperty: "padding-bottom",
-      transitionDuration: "normal",
-      transitionTimingFunction: "default",
-    },
-    branchBody: {
-      p: "2px",
     },
     branchIndentGuide: {
       height: "100%",
@@ -88,10 +79,12 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       bg: "border",
       position: "absolute",
       "--tree-depth": "calc(var(--depth) - 1)",
-      "--tree-inset":
-        "calc(var(--tree-padding-inline) + var(--tree-indentation) * var(--tree-depth))",
-      insetInlineStart:
-        "calc(var(--tree-inset) + calc(var(--tree-icon-size) * 0.5))",
+      "--tree-indentation-offset":
+        "calc(var(--tree-indentation) * var(--tree-depth))",
+      "--tree-offset":
+        "calc(var(--tree-padding-inline) + var(--tree-indentation-offset))",
+      "--tree-icon-offset": "calc(var(--tree-icon-size) * 0.5 * var(--depth))",
+      insetInlineStart: "calc(var(--tree-offset) + var(--tree-icon-offset))",
       zIndex: "1",
     },
     branchIndicator: {
@@ -157,10 +150,6 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       solid: {
         branchControl: solidVariantStyle,
         item: solidVariantStyle,
-      },
-      surface: {
-        branchControl: surfaceVariantStyle,
-        item: surfaceVariantStyle,
       },
     },
 

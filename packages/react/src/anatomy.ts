@@ -15,7 +15,6 @@ import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/ratin
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
-import { treeViewAnatomy as arkTreeViewAnatomy } from "@ark-ui/react/tree-view"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
 
@@ -233,8 +232,7 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 export const colorPickerAnatomy =
   arkColorPickerAnatomy.extendWith("channelText")
 
-export const treeViewAnatomy = arkTreeViewAnatomy.extendWith("branchBody")
-
+export { treeViewAnatomy } from "@ark-ui/react/tree-view"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"

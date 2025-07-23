@@ -1,0 +1,274 @@
+{
+  "name": "bar-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "bar-chart-bar-color",
+      "content": "\"use client\"\nexport const BarChartBarColor = () => {\n  const chart = useChart({\n    data: [\n      { allocation: 60, type: \"Stock\", color: \"red.solid\" },\n      { allocation: 45, type: \"Crypto\", color: \"blue.solid\" },\n      { allocation: 12, type: \"ETF\", color: \"green.solid\" },\n      { allocation: 4, type: \"Cash\", color: \"yellow.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis axisLine={false} tickLine={false} dataKey={chart.key(\"type\")} />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          domain={[0, 100]}\n          tickFormatter={(value) => `${value}%`}\n        />\n        <Bar isAnimationActive={false} dataKey={chart.key(\"allocation\")}>\n          {chart.data.map((item) => (\n            <Cell key={item.type} fill={chart.color(item.color)} />\n          ))}\n        </Bar>\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-basic",
+      "content": "\"use client\"\nexport const BarChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { allocation: 60, type: \"Stock\" },\n      { allocation: 45, type: \"Crypto\" },\n      { allocation: 12, type: \"ETF\" },\n      { allocation: 4, type: \"Cash\" },\n    ],\n    series: [{ name: \"allocation\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis axisLine={false} tickLine={false} dataKey={chart.key(\"type\")} />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          domain={[0, 100]}\n          tickFormatter={(value) => `${value}%`}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-candlestick",
+      "content": "\"use client\"\nexport const BarChartCandlestick = () => {\n  const chart = useChart({\n    data,\n    series: [{ name: \"open_close\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"date\")}\n          tickFormatter={chart.formatDate({ month: \"short\", day: \"2-digit\" })}\n        />\n        <YAxis\n          orientation=\"right\"\n          axisLine={false}\n          tickLine={false}\n          domain={[\"dataMin - 0.5\", \"dataMax + 0.5\"]}\n          tickFormatter={chart.formatNumber({ maximumFractionDigits: 1 })}\n        />\n        <Bar\n          isAnimationActive={false}\n          barSize={40}\n          dataKey={chart.key(\"open_close\")}\n          fill={chart.color(\"teal.solid\")}\n        >\n          {data.map((item) => (\n            <Cell\n              key={item.date}\n              fill={\n                item.open_close[0] > item.open_close[1]\n                  ? chart.color(\"red.solid\")\n                  : chart.color(\"green.solid\")\n              }\n            />\n          ))}\n          <ErrorBar\n            dataKey={(obj) => [\n              obj.open_close[0] - obj.high_low[0],\n              obj.high_low[1] - obj.open_close[1],\n            ]}\n            width={2}\n            stroke={chart.color(\"fg\")}\n          />\n        </Bar>\n      </BarChart>\n    </Chart.Root>\n  )\n}\n\nconst data = [\n  {\n    date: \"2024-01-01\",\n    open_close: [185.96, 185.64],\n    high_low: [186.74, 185.19],\n  },\n  {\n    date: \"2024-01-02\",\n    open_close: [184.22, 185.14],\n    high_low: [185.15, 182.73],\n  },\n  {\n    date: \"2024-01-03\",\n    open_close: [184.22, 181.42],\n    high_low: [184.26, 181.12],\n  },\n  {\n    date: \"2024-01-04\",\n    open_close: [181.99, 182.68],\n    high_low: [183.0872, 181.59],\n  },\n  {\n    date: \"2024-01-05\",\n    open_close: [182.15, 185.56],\n    high_low: [185.66, 181.5],\n  },\n  {\n    date: \"2024-01-08\",\n    open_close: [184.51, 185.8],\n    high_low: [186.01, 183.98],\n  },\n  {\n    date: \"2024-01-09\",\n    open_close: [186.19, 185.64],\n    high_low: [187.05, 184.74],\n  },\n  {\n    date: \"2024-01-10\",\n    open_close: [186.09, 186.19],\n    high_low: [187.3499, 185.36],\n  },\n  {\n    date: \"2024-01-11\",\n    open_close: [186.54, 185.59],\n    high_low: [187.05, 185.08],\n  },\n  {\n    date: \"2024-01-12\",\n    open_close: [185.34, 185.92],\n    high_low: [186.565, 184.455],\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  Cell,\n  ErrorBar,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-composition",
+      "content": "\"use client\"\ntype CurrentKey = \"windows\" | \"mac\" | \"linux\"\n\nexport const BarChartComposition = () => {\n  const [currentKey, setCurrentKey] = React.useState<CurrentKey>(\"windows\")\n\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  const totals = chart.data.reduce(\n    (acc, item) => {\n      return {\n        windows: acc.windows + item.windows,\n        mac: acc.mac + item.mac,\n        linux: acc.linux + item.linux,\n      }\n    },\n    { windows: 0, mac: 0, linux: 0 },\n  )\n\n  const series = chart.getSeries({ name: currentKey })\n\n  const formatNumber = chart.formatNumber({\n    style: \"decimal\",\n    minimumFractionDigits: 0,\n    maximumFractionDigits: 2,\n  })\n\n  return (\n    <Card.Root maxW=\"md\">\n      <Card.Header alignItems=\"flex-start\">\n        <Card.Title>OS Downloads</Card.Title>\n        <SegmentGroup.Root\n          size=\"xs\"\n          value={currentKey}\n          onValueChange={(e) => setCurrentKey(e.value as CurrentKey)}\n        >\n          <SegmentGroup.Indicator />\n          <SegmentGroup.Items\n            items={[\n              {\n                value: \"windows\",\n                label: `Windows (${formatNumber(totals.windows)})`,\n              },\n              { value: \"mac\", label: `Mac (${formatNumber(totals.mac)})` },\n              {\n                value: \"linux\",\n                label: `Linux (${formatNumber(totals.linux)})`,\n              },\n            ]}\n          />\n        </SegmentGroup.Root>\n      </Card.Header>\n      <Card.Body>\n        <Chart.Root height=\"10rem\" chart={chart}>\n          <BarChart data={chart.data}>\n            <XAxis\n              axisLine={false}\n              tickLine={false}\n              dataKey={chart.key(\"month\")}\n              tickFormatter={(value) => value.slice(0, 3)}\n            />\n            <Bar\n              dataKey={chart.key(currentKey)}\n              fill={chart.color(series?.color)}\n            />\n          </BarChart>\n        </Chart.Root>\n      </Card.Body>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Card, SegmentGroup } from \"@chakra-ui/react\"",
+        "import * as React from \"react\"",
+        "import { Bar, BarChart, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-fill-with-value",
+      "content": "\"use client\"\nexport const BarChartFillWithValue = () => {\n  const chart = useChart({\n    data: [\n      { name: \"Page A\", views: 400 },\n      { name: \"Page B\", views: -300 },\n      { name: \"Page C\", views: -200 },\n      { name: \"Page D\", views: 278 },\n      { name: \"Page E\", views: -189 },\n      { name: \"Page F\", views: 239 },\n      { name: \"Page G\", views: 349 },\n    ],\n    series: [{ name: \"views\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data} margin={{ top: 30 }}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            radius={4}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          >\n            <LabelList\n              position=\"top\"\n              dataKey={chart.key(\"views\")}\n              offset={10}\n              style={{ fontWeight: \"500\" }}\n            />\n            {chart.data.map((item) => (\n              <Cell\n                key={item.name}\n                fill={chart.color(item.views > 0 ? \"green.solid\" : \"red.solid\")}\n              />\n            ))}\n          </Bar>\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Cell, LabelList } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-histogram",
+      "content": "\"use client\"\nexport const BarChartHistogram = () => {\n  const chart = useChart({ data })\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart\n        data={chart.data}\n        margin={{ top: 20, right: 20, bottom: 20, left: 40 }}\n      >\n        <CartesianGrid strokeDasharray=\"3 3\" stroke={chart.color(\"border\")} />\n        <XAxis\n          dataKey=\"from\"\n          ticks={ticks}\n          label={{ value: \"Value Range\", position: \"insideBottom\", offset: -5 }}\n        />\n        <YAxis\n          label={{ value: \"Frequency\", angle: -90, position: \"insideLeft\" }}\n        />\n        <Tooltip\n          formatter={(value) => [`${value}`, \"Frequency\"]}\n          labelFormatter={(label) => {\n            const bin = data.find((item) => item.from === Number(label))\n            return bin ? `Range: ${bin.from}-${bin.to}` : \"\"\n          }}\n        />\n        <Bar\n          dataKey=\"value\"\n          fill={chart.color(\"teal.solid\")}\n          name=\"Frequency\"\n        />\n      </BarChart>\n    </Chart.Root>\n  )\n}\n\nconst data = [\n  { from: 0, to: 10, value: 0 },\n  { from: 10, to: 20, value: 10 },\n  { from: 20, to: 30, value: 30 },\n  { from: 30, to: 40, value: 50 },\n  { from: 40, to: 50, value: 100 },\n  { from: 50, to: 60, value: 200 },\n  { from: 60, to: 70, value: 120 },\n  { from: 70, to: 80, value: 220 },\n  { from: 80, to: 90, value: 300 },\n  { from: 90, to: 100, value: 320 },\n  { from: 100, to: 110, value: 400 },\n  { from: 110, to: 120, value: 470 },\n  { from: 120, to: 130, value: 570 },\n  { from: 130, to: 140, value: 810 },\n  { from: 140, to: 150, value: 720 },\n  { from: 150, to: 160, value: 810 },\n  { from: 160, to: 170, value: 750 },\n  { from: 170, to: 180, value: 810 },\n  { from: 180, to: 190, value: 700 },\n  { from: 190, to: 200, value: 530 },\n  { from: 200, to: 210, value: 380 },\n  { from: 210, to: 220, value: 410 },\n  { from: 220, to: 230, value: 250 },\n  { from: 230, to: 240, value: 170 },\n  { from: 240, to: 250, value: 120 },\n  { from: 250, to: 260, value: 100 },\n  { from: 260, to: 270, value: 90 },\n  { from: 270, to: 280, value: 120 },\n  { from: 280, to: 290, value: 70 },\n  { from: 290, to: 300, value: 55 },\n  { from: 300, to: 310, value: 40 },\n  { from: 310, to: 320, value: 20 },\n  { from: 320, to: 330, value: 0 },\n]\n\nconst ticks = Array.from({ length: 12 }, (_, i) => i * 30)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-horizontal",
+      "content": "\"use client\"\nexport const BarChartHorizontal = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", stackId: \"a\" },\n      { name: \"mac\", color: \"purple.solid\", stackId: \"a\" },\n      { name: \"linux\", color: \"blue.solid\", stackId: \"a\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart layout=\"vertical\" data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis type=\"number\" axisLine={false} tickLine={false} />\n        <YAxis\n          type=\"category\"\n          dataKey={chart.key(\"month\")}\n          orientation=\"left\"\n          stroke={chart.color(\"border\")}\n          tickFormatter={(value) =>\n            typeof value === \"string\" ? value.slice(0, 3) : value\n          }\n        />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Bar\n            barSize={30}\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(item.color)}\n            stackId={item.stackId}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-legend-position",
+      "content": "\"use client\"\nexport const BarChartLegendPosition = () => {\n  const chart = useChart({\n    data: [\n      { category: \"Web Server\", value: 200, maxValue: 450 },\n      { category: \"Credit Card\", value: 700, maxValue: 900 },\n      { category: \"Payment\", value: 439, maxValue: 500 },\n      { category: \"API\", value: 147, maxValue: 200 },\n      { category: \"AddToCart\", value: 84, maxValue: 100 },\n    ],\n    series: [\n      { name: \"value\", color: \"blue.solid\" },\n      { name: \"maxValue\", color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root chart={chart} maxH=\"sm\">\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          tickLine={false}\n          dataKey={chart.key(\"category\")}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis tickLine={false} stroke={chart.color(\"border\")} />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend\n          layout=\"vertical\"\n          align=\"right\"\n          verticalAlign=\"top\"\n          wrapperStyle={{ paddingLeft: 30 }}\n          content={<Chart.Legend orientation=\"vertical\" />}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-multiple",
+      "content": "\"use client\"\nexport const BarChartMultiple = () => {\n  const chart = useChart({\n    data: [\n      { type: \"mobile\", poor: 40, fair: 100, good: 200, excellent: 70 },\n      { type: \"marketing\", poor: 15, fair: 40, good: 120, excellent: 90 },\n      { type: \"social\", poor: 70, fair: 135, good: 220, excellent: 180 },\n      { type: \"ecommerce\", poor: 175, fair: 155, good: 75, excellent: 95 },\n    ],\n    series: [\n      { name: \"poor\", color: \"blue.solid\" },\n      { name: \"fair\", color: \"orange.solid\" },\n      { name: \"good\", color: \"yellow.solid\" },\n      { name: \"excellent\", color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          tickLine={false}\n          dataKey={chart.key(\"type\")}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis tickLine={false} stroke={chart.color(\"border\")} />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend\n          layout=\"vertical\"\n          align=\"right\"\n          verticalAlign=\"top\"\n          wrapperStyle={{ paddingLeft: 30 }}\n          content={<Chart.Legend orientation=\"vertical\" />}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-percent",
+      "content": "\"use client\"\nexport const BarChartPercent = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", stackId: \"a\" },\n      { name: \"mac\", color: \"purple.solid\", stackId: \"a\" },\n      { name: \"linux\", color: \"blue.solid\", stackId: \"a\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart stackOffset=\"expand\" data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <YAxis\n          stroke={chart.color(\"border.emphasized\")}\n          tickFormatter={chart.formatNumber({ style: \"percent\" })}\n        />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(item.color)}\n            stackId={item.stackId}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  Legend,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-range",
+      "content": "\"use client\"\nexport const BarChartRange = () => {\n  const chart = useChart({\n    data: [\n      { name: \"UK\", value: [10, 20] },\n      { name: \"US\", value: [15, 25] },\n      { name: \"EU\", value: [5, 18] },\n      { name: \"JP\", value: [12, 30] },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart\n        barSize={100}\n        data={chart.data}\n        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}\n      >\n        <CartesianGrid vertical={false} strokeDasharray=\"3 3\" />\n        <XAxis dataKey={chart.key(\"name\")} axisLine={false} tickLine={false} />\n        <YAxis domain={[0, \"dataMax + 5\"]} axisLine={false} tickLine={false} />\n        <Bar\n          tooltipType=\"none\"\n          dataKey={chart.key(\"value\")}\n          fill={chart.color(\"teal.solid\")}\n        />\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-rounded",
+      "content": "\"use client\"\nexport const BarChartRounded = () => {\n  const chart = useChart({\n    data: [\n      { allocation: 60, type: \"Stock\" },\n      { allocation: 45, type: \"Crypto\" },\n      { allocation: 12, type: \"ETF\" },\n      { allocation: 4, type: \"Cash\" },\n    ],\n    series: [{ name: \"allocation\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data} barSize={40}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis axisLine={false} tickLine={false} dataKey={chart.key(\"type\")} />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          domain={[0, 100]}\n          tickFormatter={(value) => `${value}%`}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            radius={10}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-stacked-mix",
+      "content": "\"use client\"\nexport const BarChartStackedMix = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", stackId: \"a\" },\n      { name: \"mac\", color: \"purple.solid\", stackId: \"b\" },\n      { name: \"linux\", color: \"blue.solid\", stackId: \"b\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stackId={item.stackId}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-stacked",
+      "content": "\"use client\"\nexport const BarChartStacked = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", stackId: \"a\" },\n      { name: \"mac\", color: \"purple.solid\", stackId: \"a\" },\n      { name: \"linux\", color: \"blue.solid\", stackId: \"a\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stackId={item.stackId}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-with-avatar-ticks",
+      "content": "\"use client\"\nconst data = [\n  { name: \"Alice\", value: 400, avatar: \"https://i.pravatar.cc/50?img=1\" },\n  { name: \"Bob\", value: 300, avatar: \"https://i.pravatar.cc/50?img=2\" },\n  { name: \"Charlie\", value: 200, avatar: \"https://i.pravatar.cc/50?img=5\" },\n  { name: \"David\", value: 278, avatar: \"https://i.pravatar.cc/50?img=4\" },\n]\n\ninterface AvatarTickProps {\n  x: number\n  y: number\n  index: number\n}\n\nconst AvatarTicks = (props: Partial<AvatarTickProps>) => {\n  const { x, y, index } = props as AvatarTickProps\n  const avatarUrl = data[index].avatar\n  return (\n    <foreignObject x={x - 15} y={y} width={50} height={50}>\n      <img\n        src={avatarUrl}\n        alt=\"avatar\"\n        style={{ width: 30, height: 30, borderRadius: \"50%\" }}\n      />\n    </foreignObject>\n  )\n}\n\nexport const BarChartWithAvatarTicks = () => {\n  const chart = useChart({\n    data,\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data} margin={{ bottom: 20 }}>\n        <XAxis\n          dataKey=\"name\"\n          tick={<AvatarTicks />}\n          stroke={chart.color(\"border.emphasized\")}\n        />\n        <YAxis stroke={chart.color(\"border.emphasized\")} />\n        {chart.series.map((item) => (\n          <Bar\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-with-bar-label",
+      "content": "\"use client\"\nexport const BarChartWithBarLabel = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(item.color)}\n            stackId={item.stackId}\n          >\n            <LabelList\n              dataKey={chart.key(item.name)}\n              position=\"top\"\n              style={{ fontWeight: \"600\", fill: chart.color(\"fg\") }}\n            />\n          </Bar>\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  LabelList,\n  Legend,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-with-formatter",
+      "content": "\"use client\"\nexport const BarChartWithFormatter = () => {\n  const chart = useChart({\n    data: [\n      { sales: 63000, month: \"June\" },\n      { sales: 72000, month: \"July\" },\n      { sales: 85000, month: \"August\" },\n      { sales: 79000, month: \"September\" },\n      { sales: 90000, month: \"October\" },\n      { sales: 95000, month: \"November\" },\n      { sales: 88000, month: \"December\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickFormatter={chart.formatNumber({\n            style: \"currency\",\n            currency: \"USD\",\n            notation: \"compact\",\n          })}\n        />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={0}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-with-no-gap",
+      "content": "\"use client\"\nexport const BarChartWithNoGap = () => {\n  const chart = useChart({\n    data: [\n      { sales: 63000, month: \"June\" },\n      { sales: 72000, month: \"July\" },\n      { sales: 85000, month: \"August\" },\n      { sales: 79000, month: \"September\" },\n      { sales: 90000, month: \"October\" },\n      { sales: 95000, month: \"November\" },\n      { sales: 88000, month: \"December\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <BarChart barCategoryGap=\"0\" data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={{ fill: chart.color(\"bg.muted\") }}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(\"bg\")}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, CartesianGrid, Tooltip, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "bar-chart-with-reference-lines",
+      "content": "\"use client\"\nexport const BarChartWithReferenceLines = () => {\n  const chart = useChart({\n    data: [\n      { sales: 63000, month: \"June\" },\n      { sales: 72000, month: \"July\" },\n      { sales: 85000, month: \"August\" },\n      { sales: 79000, month: \"September\" },\n      { sales: 90000, month: \"October\" },\n      { sales: 95000, month: \"November\" },\n      { sales: 88000, month: \"December\" },\n    ],\n    series: [{ name: \"sales\", color: \"blue.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <BarChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border.muted\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          tickLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n        />\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip />}\n        />\n        <ReferenceArea\n          y1={76000}\n          y2={90000}\n          fill={chart.color(\"red.muted\")}\n          fillOpacity={0.4}\n          label={{\n            value: \"top line\",\n            position: \"insideTopLeft\",\n            fill: chart.color(\"red.fg\"),\n          }}\n        />\n        <ReferenceLine\n          y={80000}\n          stroke={chart.color(\"red.fg\")}\n          strokeDasharray=\"3 3\"\n        />\n        {chart.series.map((item) => (\n          <Bar\n            isAnimationActive={false}\n            key={item.name}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.64}\n          />\n        ))}\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Bar,\n  BarChart,\n  CartesianGrid,\n  ReferenceArea,\n  ReferenceLine,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { BarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

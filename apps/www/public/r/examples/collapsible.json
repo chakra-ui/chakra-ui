@@ -1,0 +1,24 @@
+{
+  "name": "collapsible",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "collapsible-basic",
+      "content": "export const CollapsibleBasic = () => (\n  <Collapsible.Root>\n    <Collapsible.Trigger paddingY=\"3\">Toggle Collapsible</Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        <strong>Chakra UI</strong> embraces this philosophy in the world of\n        design and development. Just like chakras align energy in the body,\n        Chakra UI aligns your design system — bringing flow, consistency, and\n        peace of mind to your codebase. It helps developers focus on creating\n        beautiful, accessible UIs without friction.\n        <br />\n        <br />\n        Think of each component as a wheel in your app’s UI — smooth, connected,\n        and full of potential. Build with harmony. Build with\n        <strong>Chakra UI</strong>.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "collapsible-lazy-mounted",
+      "content": "export const CollapsibleLazyMounted = () => (\n  <Collapsible.Root unmountOnExit>\n    <Collapsible.Trigger paddingY=\"3\">\n      Toggle Collapse (Unmount on exit)\n    </Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        If you inspect the DOM, you'll notice that the content is unmounted when\n        collapsed. This is useful for performance reasons when you have a lot of\n        collapsible content.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    }
+  ]
+}

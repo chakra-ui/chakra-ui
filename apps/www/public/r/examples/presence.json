@@ -1,0 +1,60 @@
+{
+  "name": "presence",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "presence-fade",
+      "content": "\"use client\"\nexport const PresenceFade = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        present={open}\n        animationName={{ _open: \"fade-in\", _closed: \"fade-out\" }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" layerStyle=\"fill.muted\">\n          Fade\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "presence-lazy-mount",
+      "content": "\"use client\"\nexport const PresenceLazyMount = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root>\n        <Alert.Indicator />\n        <Alert.Title>\n          Check the DOM to see that the element not mounted initially\n        </Alert.Title>\n      </Alert.Root>\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        lazyMount\n        present={open}\n        animationName={{ _open: \"fade-in\", _closed: \"fade-out\" }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" layerStyle=\"fill.muted\">\n          Fade\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Alert,\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "presence-scale-fade",
+      "content": "\"use client\"\nexport const PresenceScaleFade = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        present={open}\n        animationStyle={{ _open: \"scale-fade-in\", _closed: \"scale-fade-out\" }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" layerStyle=\"fill.muted\">\n          Scale Fade\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "presence-slide-fade",
+      "content": "\"use client\"\nexport const PresenceSlideFade = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        present={open}\n        animationName={{\n          _open: \"slide-from-bottom, fade-in\",\n          _closed: \"slide-to-bottom, fade-out\",\n        }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" layerStyle=\"fill.muted\">\n          Slide Fade\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "presence-slide",
+      "content": "\"use client\"\nexport const PresenceSlide = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        position=\"fixed\"\n        bottom=\"0\"\n        insetX=\"0\"\n        present={open}\n        animationName={{\n          _open: \"slide-from-bottom-full\",\n          _closed: \"slide-to-bottom-full\",\n        }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" roundedTop=\"md\" layerStyle=\"fill.muted\">\n          Slide\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "presence-unmount-on-exit",
+      "content": "\"use client\"\nexport const PresenceUnmountOnExit = () => {\n  const { open, onToggle } = useDisclosure()\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root>\n        <Alert.Indicator />\n        <Alert.Title>\n          Check the DOM to see that the element is removed when not present.\n        </Alert.Title>\n      </Alert.Root>\n      <Button alignSelf=\"flex-start\" onClick={onToggle}>\n        Click Me\n      </Button>\n      <Presence\n        unmountOnExit\n        present={open}\n        animationName={{ _open: \"fade-in\", _closed: \"fade-out\" }}\n        animationDuration=\"moderate\"\n      >\n        <Center p=\"10\" layerStyle=\"fill.muted\">\n          Fade\n        </Center>\n      </Presence>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Alert,\n  Button,\n  Center,\n  Presence,\n  Stack,\n  useDisclosure,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Presence } from \"@chakra-ui/react\""
+    }
+  ]
+}

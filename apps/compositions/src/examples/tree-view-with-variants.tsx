@@ -6,13 +6,15 @@ import { LuFile, LuFolder } from "react-icons/lu"
 export const TreeViewWithVariants = () => {
   return (
     <Stack gap="8">
-      <For each={["subtle", "surface", "solid"]}>
+      <For each={["subtle", "solid"]}>
         {(variant) => (
           <TreeView.Root
+            key={variant}
             collection={collection}
             maxW="sm"
             size="sm"
             variant={variant}
+            colorPalette="teal"
             defaultSelectedValue={["node_modules"]}
           >
             <TreeView.Label>Tree (variant={variant})</TreeView.Label>

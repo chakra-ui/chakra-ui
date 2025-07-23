@@ -1,0 +1,45 @@
+{
+  "name": "status",
+  "file": "compositions/ui/status",
+  "snippet": "import type { ColorPalette } from \"@chakra-ui/react\"\nimport { Status as ChakraStatus } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ntype StatusValue = \"success\" | \"error\" | \"warning\" | \"info\"\n\nexport interface StatusProps extends ChakraStatus.RootProps {\n  value?: StatusValue\n}\n\nconst statusMap: Record<StatusValue, ColorPalette> = {\n  success: \"green\",\n  error: \"red\",\n  warning: \"orange\",\n  info: \"blue\",\n}\n\nexport const Status = React.forwardRef<HTMLDivElement, StatusProps>(\n  function Status(props, ref) {\n    const { children, value = \"info\", ...rest } = props\n    const colorPalette = rest.colorPalette ?? statusMap[value]\n    return (\n      <ChakraStatus.Root ref={ref} {...rest} colorPalette={colorPalette}>\n        <ChakraStatus.Indicator />\n        {children}\n      </ChakraStatus.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "status-basic",
+      "content": "export const StatusBasic = () => {\n  return (\n    <HStack gap=\"6\">\n      <Status.Root colorPalette=\"red\">\n        <Status.Indicator />\n      </Status.Root>\n      <Status.Root colorPalette=\"blue\">\n        <Status.Indicator />\n      </Status.Root>\n      <Status.Root colorPalette=\"orange\">\n        <Status.Indicator />\n      </Status.Root>\n      <Status.Root colorPalette=\"green\">\n        <Status.Indicator />\n      </Status.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Status } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Status } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "status-closed-component",
+      "content": "type StatusValue = \"success\" | \"error\" | \"warning\" | \"info\"\n\nexport interface StatusProps extends ChakraStatus.RootProps {\n  value?: StatusValue\n}\n\nconst statusMap: Record<StatusValue, ColorPalette> = {\n  success: \"green\",\n  error: \"red\",\n  warning: \"orange\",\n  info: \"blue\",\n}\n\nexport const Status = React.forwardRef<HTMLDivElement, StatusProps>(\n  function Status(props, ref) {\n    const { children, value = \"info\", ...rest } = props\n    const colorPalette = rest.colorPalette ?? statusMap[value]\n    return (\n      <ChakraStatus.Root ref={ref} {...rest} colorPalette={colorPalette}>\n        <ChakraStatus.Indicator />\n        {children}\n      </ChakraStatus.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import type { ColorPalette } from \"@chakra-ui/react\"",
+        "import { Status as ChakraStatus } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Status } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "status-with-label",
+      "content": "export const StatusWithLabel = () => {\n  return (\n    <HStack gap=\"6\">\n      <Status.Root colorPalette=\"red\">\n        <Status.Indicator />\n        Error\n      </Status.Root>\n      <Status.Root colorPalette=\"blue\">\n        <Status.Indicator />\n        Info\n      </Status.Root>\n      <Status.Root colorPalette=\"orange\">\n        <Status.Indicator />\n        Warning\n      </Status.Root>\n      <Status.Root colorPalette=\"green\">\n        <Status.Indicator />\n        Success\n      </Status.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Status } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Status } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "status-with-sizes",
+      "content": "export const StatusWithSizes = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <HStack key={size} gap=\"10\" px=\"4\">\n            <Status.Root size={size} width=\"100px\" colorPalette=\"orange\">\n              <Status.Indicator />\n              In Review\n            </Status.Root>\n            <Status.Root size={size} width=\"100px\" colorPalette=\"red\">\n              <Status.Indicator />\n              Error\n            </Status.Root>\n            <Status.Root size={size} width=\"100px\" colorPalette=\"green\">\n              <Status.Indicator />\n              Approved\n            </Status.Root>\n          </HStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Stack, Status } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Status } from \"@chakra-ui/react\""
+    }
+  ]
+}

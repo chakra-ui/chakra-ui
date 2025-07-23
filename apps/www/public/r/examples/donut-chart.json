@@ -1,0 +1,104 @@
+{
+  "name": "donut-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "donut-chart-basic",
+      "content": "\"use client\"\nexport const DonutChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={80}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n        >\n          {chart.data.map((item) => {\n            return <Cell key={item.name} fill={chart.color(item.color)} />\n          })}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-angle-padding",
+      "content": "\"use client\"\nexport const DonutChartWithAnglePadding = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={80}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          paddingAngle={8}\n          cornerRadius={4}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-centered-text",
+      "content": "\"use client\"\nexport const DonutChartWithCenteredText = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={80}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n        >\n          <Label\n            content={({ viewBox }) => (\n              <Chart.RadialText\n                viewBox={viewBox}\n                title={chart.getTotal(\"value\").toLocaleString()}\n                description=\"users\"\n              />\n            )}\n          />\n          {chart.data.map((item) => (\n            <Cell key={item.color} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Label, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-detached-segment",
+      "content": "\"use client\"\nexport const DonutChartWithDetachedSegment = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={60}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey={chart.key(\"name\")}\n          activeIndex={0}\n          activeShape={<Sector outerRadius={120} />}\n          strokeWidth={5}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Sector, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-other-label",
+      "content": "\"use client\"\n\ninterface DataItem {\n  name: string\n  value: number\n  color: string\n}\n\nconst rawData: DataItem[] = [\n  { name: \"windows\", value: 400, color: \"blue.solid\" },\n  { name: \"mac\", value: 300, color: \"orange.solid\" },\n  { name: \"linux\", value: 150, color: \"pink.solid\" },\n  { name: \"chrome\", value: 80, color: \"purple.solid\" },\n  { name: \"firefox\", value: 60, color: \"red.solid\" },\n  { name: \"safari\", value: 40, color: \"yellow.solid\" },\n  { name: \"edge\", value: 30, color: \"cyan.solid\" },\n  { name: \"opera\", value: 20, color: \"teal.solid\" },\n]\n\nconst threshold = 100\n\n// Group items with value < 100 into \"Other\"\nconst data = rawData.reduce<DataItem[]>((acc, item) => {\n  if (item.value >= threshold) {\n    acc.push(item)\n  } else {\n    const otherIndex = acc.findIndex((i) => i.name === \"Other\")\n    if (otherIndex === -1) {\n      acc.push({ name: \"Other\", value: item.value, color: \"gray.emphasized\" })\n    } else {\n      acc[otherIndex].value += item.value\n    }\n  }\n  return acc\n}, [])\n\nexport const DonutChartWithOtherLabel = () => {\n  const chart = useChart({ data: data })\n\n  const label = (entry: DataItem) => {\n    const percent = chart.getValuePercent(\"value\", entry.value)\n    return `${entry.name} (${percent.toFixed(1)}%)`\n  }\n\n  return (\n    <Chart.Root aspectRatio=\"square\" maxW=\"sm\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={60}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey={chart.key(\"name\")}\n          label={label}\n          labelLine={{ strokeWidth: 1 }}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-point-label",
+      "content": "\"use client\"\nexport const DonutChartWithPointLabel = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart margin={{ left: 40 }}>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={80}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n          labelLine={{ strokeWidth: 1 }}\n          label={{\n            fill: chart.color(\"fg.muted\"),\n          }}\n        >\n          {chart.data.map((item) => (\n            <Cell\n              key={item.name}\n              strokeWidth={2}\n              fill={chart.color(item.color)}\n            />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "donut-chart-with-start-and-end-angle",
+      "content": "\"use client\"\nexport const DonutChartWithStartAndEndAngle = () => {\n  const chart = useChart({\n    data: [\n      { name: \"windows\", value: 400, color: \"blue.solid\" },\n      { name: \"mac\", value: 300, color: \"orange.solid\" },\n      { name: \"linux\", value: 300, color: \"pink.solid\" },\n      { name: \"other\", value: 200, color: \"green.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root boxSize=\"200px\" chart={chart} mx=\"auto\">\n      <PieChart>\n        <Tooltip\n          cursor={false}\n          animationDuration={100}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Pie\n          innerRadius={60}\n          outerRadius={100}\n          isAnimationActive={false}\n          data={chart.data}\n          dataKey={chart.key(\"value\")}\n          nameKey=\"name\"\n          startAngle={180}\n          endAngle={0}\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.name} fill={chart.color(item.color)} />\n          ))}\n        </Pie>\n      </PieChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Cell, Pie, PieChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { DonutChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "list",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "list-basic",
+      "content": "export const ListBasic = () => (\n  <List.Root>\n    <List.Item>\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit\n    </List.Item>\n    <List.Item>\n      Assumenda, quia temporibus eveniet a libero incidunt suscipit\n    </List.Item>\n    <List.Item>\n      Quidem, ipsam illum quis sed voluptatum quae eum fugit earum\n    </List.Item>\n  </List.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { List } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { List } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "list-nested",
+      "content": "export const ListNested = () => {\n  return (\n    <List.Root>\n      <List.Item>First order item</List.Item>\n      <List.Item>First order item</List.Item>\n      <List.Item>\n        First order item with list\n        <List.Root ps=\"5\">\n          <List.Item>Nested item</List.Item>\n          <List.Item>Nested item</List.Item>\n          <List.Item>Nested item</List.Item>\n        </List.Root>\n      </List.Item>\n      <List.Item>First order item</List.Item>\n    </List.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { List } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { List } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "list-ordered",
+      "content": "export const ListOrdered = () => {\n  return (\n    <List.Root as=\"ol\">\n      <List.Item>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit\n      </List.Item>\n      <List.Item>\n        Assumenda, quia temporibus eveniet a libero incidunt suscipit\n      </List.Item>\n      <List.Item>\n        Quidem, ipsam illum quis sed voluptatum quae eum fugit earum\n      </List.Item>\n    </List.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { List } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { List } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "list-with-icon",
+      "content": "export const ListWithIcon = () => {\n  return (\n    <List.Root gap=\"2\" variant=\"plain\" align=\"center\">\n      <List.Item>\n        <List.Indicator asChild color=\"green.500\">\n          <LuCircleCheck />\n        </List.Indicator>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit\n      </List.Item>\n      <List.Item>\n        <List.Indicator asChild color=\"green.500\">\n          <LuCircleCheck />\n        </List.Indicator>\n        Assumenda, quia temporibus eveniet a libero incidunt suscipit\n      </List.Item>\n      <List.Item>\n        <List.Indicator asChild color=\"green.500\">\n          <LuCircleDashed />\n        </List.Indicator>\n        Quidem, ipsam illum quis sed voluptatum quae eum fugit earum\n      </List.Item>\n    </List.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { List } from \"@chakra-ui/react\"",
+        "import { LuCircleCheck, LuCircleDashed } from \"react-icons/lu\""
+      ],
+      "importPath": "import { List } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "list-with-marker-style",
+      "content": "const items = [\n  \"Your failure to comply with any provision of these Terms of Service;\",\n  \"Your use of the Services, including but not limited to economic, physical, emotional, psychological or privacy related considerations; and\",\n  \"Your actions to knowingly affect the Services via any bloatware, malware, computer virus, worm, Trojan horse, spyware, adware, crimeware, scareware, rootkit or any other program installed in a way that executable code of any program is scheduled to utilize or utilizes processor cycles during periods of time when such program is not directly or indirectly being used.\",\n]\n\nexport const ListWithMarkerStyle = () => {\n  return (\n    <List.Root as=\"ol\" listStyle=\"decimal\">\n      {items.map((item, index) => (\n        <List.Item key={index} _marker={{ color: \"inherit\" }}>\n          {item}\n        </List.Item>\n      ))}\n    </List.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { List } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { List } from \"@chakra-ui/react\""
+    }
+  ]
+}

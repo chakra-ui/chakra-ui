@@ -1,0 +1,128 @@
+{
+  "name": "sparkline",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "sparkline-bar-chart",
+      "content": "\"use client\"\nexport const SparklineBarChart = () => {\n  const chart = useChart({\n    data: [\n      { value: 10, fill: \"teal.solid\" },\n      { value: 16, fill: \"green.solid\" },\n      { value: 19, fill: \"teal.solid\" },\n      { value: 15, fill: \"green.solid\" },\n      { value: 12, fill: \"teal.solid\" },\n      { value: 15, fill: \"teal.solid\" },\n      { value: 10, fill: \"teal.solid\" },\n      { value: 18, fill: \"teal.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root width=\"28\" height=\"12\" chart={chart}>\n      <BarChart data={chart.data} barSize={8}>\n        <Bar\n          isAnimationActive={false}\n          dataKey={chart.key(\"value\")}\n          fill={chart.color(\"teal.solid\")}\n          stroke=\"\"\n        >\n          {chart.data.map((item) => (\n            <Cell key={item.value} fill={chart.color(item.fill)} />\n          ))}\n        </Bar>\n      </BarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Bar, BarChart, Cell } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-basic",
+      "content": "\"use client\"\nexport const SparklineBasic = () => {\n  const chart = useChart({\n    data: [\n      { value: 10 },\n      { value: 16 },\n      { value: 19 },\n      { value: 15 },\n      { value: 12 },\n      { value: 15 },\n      { value: 10 },\n      { value: 18 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root width=\"28\" height=\"12\" chart={chart}>\n      <AreaChart data={chart.data}>\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Area, AreaChart } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-composition-stat",
+      "content": "\"use client\"\nexport const SparklineCompositionStat = () => {\n  return (\n    <Card.Root maxW=\"sm\" size=\"sm\" overflow=\"hidden\">\n      <Card.Body>\n        <Stat.Root>\n          <Stat.Label>\n            <LuGlobe /> Unique visitors\n          </Stat.Label>\n          <Stat.ValueText>192.1k</Stat.ValueText>\n        </Stat.Root>\n      </Card.Body>\n      <SparkLine />\n    </Card.Root>\n  )\n}\n\nconst SparkLine = () => {\n  const chart = useChart({\n    data: [\n      { value: 10 },\n      { value: 16 },\n      { value: 19 },\n      { value: 15 },\n      { value: 12 },\n      { value: 15 },\n    ],\n    series: [{ color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root height=\"10\" chart={chart}>\n      <AreaChart\n        data={chart.data}\n        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}\n      >\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Card, Stat } from \"@chakra-ui/react\"",
+        "import { LuGlobe } from \"react-icons/lu\"",
+        "import { Area, AreaChart } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "react-icons",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-composition-stock",
+      "content": "\"use client\"\nexport const SparklineCompositionStock = () => {\n  const chart = useChart({\n    data: [\n      { date: \"2023-01\", value: 145.43 },\n      { date: \"2023-02\", value: 151.73 },\n      { date: \"2023-03\", value: 157.65 },\n      { date: \"2023-04\", value: 169.68 },\n      { date: \"2023-05\", value: 173.75 },\n      { date: \"2023-06\", value: 186.68 },\n      { date: \"2023-07\", value: 181.99 },\n      { date: \"2023-08\", value: 189.46 },\n    ],\n    series: [{ name: \"value\", color: \"green.solid\" }],\n  })\n\n  const closing = chart.data[chart.data.length - 1]\n  const opening = chart.data[0]\n  const trend = (closing.value - opening.value) / opening.value\n\n  return (\n    <Card.Root maxW=\"sm\" size=\"sm\">\n      <Card.Body flexDirection=\"row\" alignItems=\"center\">\n        <Stack gap=\"0\" flex=\"1\">\n          <Box fontWeight=\"semibold\" textStyle=\"sm\">\n            AMZN\n          </Box>\n          <Box textStyle=\"xs\" color=\"fg.muted\">\n            Amazon Inc.\n          </Box>\n        </Stack>\n\n        <Chart.Root width=\"28\" height=\"12\" chart={chart}>\n          <AreaChart data={chart.data}>\n            <defs>\n              <Chart.Gradient\n                id=\"sp-gradient\"\n                stops={[\n                  { offset: 0, color: \"green.solid\", opacity: 0.8 },\n                  { offset: 1, color: \"green.solid\", opacity: 0.2 },\n                ]}\n              />\n            </defs>\n            {chart.series.map((item) => (\n              <Area\n                key={item.name}\n                isAnimationActive={false}\n                dataKey={chart.key(item.name)}\n                fill={`url(#sp-gradient)`}\n                fillOpacity={0.2}\n                stroke={chart.color(item.color)}\n                strokeWidth={2}\n              />\n            ))}\n          </AreaChart>\n        </Chart.Root>\n\n        <Stat.Root size=\"sm\" alignItems=\"flex-end\">\n          <Span fontWeight=\"medium\">\n            <FormatNumber\n              value={closing.value}\n              style=\"currency\"\n              currency=\"USD\"\n            />\n          </Span>\n          <Badge colorPalette={trend > 0 ? \"green\" : \"red\"} gap=\"0\">\n            <Stat.UpIndicator />\n            <FormatNumber\n              value={trend}\n              style=\"percent\"\n              maximumFractionDigits={2}\n            />\n          </Badge>\n        </Stat.Root>\n      </Card.Body>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  Badge,\n  Box,\n  Card,\n  FormatNumber,\n  Span,\n  Stack,\n  Stat,\n} from \"@chakra-ui/react\"",
+        "import { Area, AreaChart } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-line-chart",
+      "content": "\"use client\"\nexport const SparklineLineChart = () => {\n  const chart = useChart({\n    data: [\n      { value: 10 },\n      { value: 16 },\n      { value: 19 },\n      { value: 15 },\n      { value: 12 },\n      { value: 15 },\n      { value: 10 },\n      { value: 18 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root width=\"28\" height=\"12\" chart={chart}>\n      <LineChart data={chart.data}>\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Line, LineChart } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-with-gradient",
+      "content": "\"use client\"\nexport const SparklineWithGradient = () => {\n  const chart = useChart({\n    data: [\n      { value: 10 },\n      { value: 16 },\n      { value: 19 },\n      { value: 15 },\n      { value: 12 },\n      { value: 15 },\n      { value: 10 },\n      { value: 18 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root width=\"28\" height=\"12\" chart={chart}>\n      <AreaChart accessibilityLayer data={chart.data}>\n        {chart.series.map((item) => (\n          <defs key={item.name}>\n            <Chart.Gradient\n              id={`${item.name}-gradient`}\n              stops={[\n                { offset: \"0%\", color: item.color, opacity: 1 },\n                { offset: \"100%\", color: item.color, opacity: 0.01 },\n              ]}\n            />\n          </defs>\n        ))}\n\n        {chart.series.map((item) => (\n          <Area\n            key={item.name}\n            type=\"natural\"\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={`url(#${item.name}-gradient)`}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </AreaChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Area, AreaChart } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-with-interaction",
+      "content": "\"use client\"\nexport const SparklineWithInteraction = () => {\n  const chart = useChart({\n    data: [\n      { value: 125000 },\n      { value: 158000 },\n      { value: 189000 },\n      { value: 210000 },\n      { value: 105000 },\n      { value: 278000 },\n      { value: 310000 },\n      { value: 345000 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  const lastIndex = chart.data.length - 1\n  const lastValue = chart.data[lastIndex].value\n  const [value, setValue] = useState(lastValue)\n\n  const onMouseMove = (state: CategoricalChartState) => {\n    const index = state.activeTooltipIndex ?? lastIndex\n    const { value = lastValue } = chart.data[index]\n    setValue(value)\n  }\n\n  const onMouseLeave = () => {\n    setValue(lastValue)\n  }\n\n  return (\n    <Flex align=\"flex-end\" maxW=\"sm\">\n      <Box flex=\"1\" fontWeight=\"medium\">\n        <HStack textStyle=\"sm\" color=\"fg.muted\">\n          <LuDownload /> Weekly Downloads\n        </HStack>\n        <Text textStyle=\"xl\" mt=\"2\">\n          <FormatNumber value={value} />\n        </Text>\n      </Box>\n      <Chart.Root width=\"full\" height=\"12\" flex=\"1\" chart={chart}>\n        <AreaChart\n          data={chart.data}\n          onMouseMove={onMouseMove}\n          onMouseLeave={onMouseLeave}\n        >\n          <Tooltip\n            cursor={{ stroke: chart.color(\"teal.solid\"), strokeWidth: 2 }}\n            content={() => null}\n          />\n          {chart.series.map((item) => (\n            <Area\n              activeDot={{ stroke: chart.color(\"bg\") }}\n              key={item.name}\n              isAnimationActive={false}\n              dataKey={chart.key(item.name)}\n              fill={chart.color(item.color)}\n              fillOpacity={0.2}\n              stroke={chart.color(item.color)}\n              strokeWidth={2}\n            />\n          ))}\n        </AreaChart>\n      </Chart.Root>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Box, Flex, FormatNumber, HStack, Text } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuDownload } from \"react-icons/lu\"",
+        "import { Area, AreaChart, Tooltip } from \"recharts\"",
+        "import type { CategoricalChartState } from \"recharts/types/chart/types\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "react-icons",
+        "recharts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "sparkline-with-reference",
+      "content": "\"use client\"\nexport const SparklineWithReference = () => {\n  const chart = useChart({\n    data: [\n      { value: 10 },\n      { value: 16 },\n      { value: 19 },\n      { value: 15 },\n      { value: 12 },\n      { value: 15 },\n      { value: 10 },\n      { value: 18 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"200px\" chart={chart}>\n      <LineChart data={chart.data}>\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            dot={false}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n        <ReferenceLine\n          y={chart.getMin(\"value\")}\n          stroke={chart.color(\"border.emphasized\")}\n          strokeDasharray=\"4 4\"\n          label={{\n            value: chart.getMin(\"value\"),\n            position: \"left\",\n            fill: chart.color(\"fg.muted\"),\n          }}\n        />\n        <ReferenceLine\n          y={chart.getMax(\"value\")}\n          stroke={chart.color(\"border.emphasized\")}\n          strokeDasharray=\"4 4\"\n          label={{\n            value: chart.getMax(\"value\"),\n            position: \"right\",\n            fill: chart.color(\"fg.muted\"),\n          }}\n        />\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Line, LineChart, ReferenceLine } from \"recharts\""
+      ],
+      "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

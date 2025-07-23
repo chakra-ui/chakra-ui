@@ -1,0 +1,118 @@
+{
+  "name": "radar-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "radar-chart-basic",
+      "content": "\"use client\"\nexport const RadarChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { windows: 110, month: \"January\" },\n      { windows: 130, month: \"February\" },\n      { windows: 110, month: \"March\" },\n      { windows: 90, month: \"May\" },\n      { windows: 75, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} />\n        <PolarRadiusAxis />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  PolarAngleAxis,\n  PolarGrid,\n  PolarRadiusAxis,\n  Radar,\n  RadarChart,\n} from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-lines-only",
+      "content": "\"use client\"\nexport const RadarChartLinesOnly = () => {\n  const chart = useChart({\n    data: [\n      { windows: 30, mac: 100, month: \"January\" },\n      { windows: 120, mac: 20, month: \"February\" },\n      { windows: 45, mac: 130, month: \"March\" },\n      { windows: 140, mac: 40, month: \"May\" },\n      { windows: 60, mac: 50, month: \"June\" },\n      { windows: 20, mac: 160, month: \"July\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"orange.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            strokeWidth={2}\n            stroke={chart.color(item.color)}\n            fill=\"none\"\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Legend, PolarGrid, Radar, RadarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-multiple",
+      "content": "\"use client\"\nexport const RadarChartMultiple = () => {\n  const chart = useChart({\n    data: [\n      { windows: 30, mac: 100, month: \"January\" },\n      { windows: 120, mac: 20, month: \"February\" },\n      { windows: 45, mac: 130, month: \"March\" },\n      { windows: 140, mac: 40, month: \"May\" },\n      { windows: 60, mac: 50, month: \"June\" },\n      { windows: 20, mac: 160, month: \"July\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"orange.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            strokeWidth={2}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Legend, PolarGrid, Radar, RadarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-with-circle-grid",
+      "content": "\"use client\"\nexport const RadarChartWithCircleGrid = () => {\n  const chart = useChart({\n    data: [\n      { windows: 120, month: \"January\" },\n      { windows: 120, month: \"February\" },\n      { windows: 80, month: \"March\" },\n      { windows: 140, month: \"May\" },\n      { windows: 60, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} gridType=\"circle\" />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} />\n        <PolarRadiusAxis />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  PolarAngleAxis,\n  PolarGrid,\n  PolarRadiusAxis,\n  Radar,\n  RadarChart,\n} from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-with-dots",
+      "content": "\"use client\"\nexport const RadarChartWithDots = () => {\n  const chart = useChart({\n    data: [\n      { windows: 110, month: \"January\" },\n      { windows: 130, month: \"February\" },\n      { windows: 110, month: \"March\" },\n      { windows: 90, month: \"May\" },\n      { windows: 75, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} />\n        {chart.series.map((item) => (\n          <Radar\n            dot={{ fillOpacity: 1 }}\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-with-filled-grid",
+      "content": "\"use client\"\nexport const RadarChartWithFilledGrid = () => {\n  const chart = useChart({\n    data: [\n      { windows: 110, month: \"January\" },\n      { windows: 130, month: \"February\" },\n      { windows: 110, month: \"March\" },\n      { windows: 90, month: \"May\" },\n      { windows: 75, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid\n          stroke=\"none\"\n          style={{ fill: chart.color(\"teal.solid\"), fillOpacity: 0.1 }}\n        />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} />\n        {chart.series.map((item) => (\n          <Radar\n            dot={{ fillOpacity: 1 }}\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-with-point-label",
+      "content": "\"use client\"\nexport const RadarChartWithPointLabel = () => {\n  const chart = useChart({\n    data: [\n      { windows: 110, month: \"January\" },\n      { windows: 130, month: \"February\" },\n      { windows: 110, month: \"March\" },\n      { windows: 90, month: \"May\" },\n      { windows: 75, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} tickLine={false} />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            label={{ fill: chart.color(\"fg\") }}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "radar-chart-with-tooltip",
+      "content": "\"use client\"\nexport const RadarChartWithTooltip = () => {\n  const chart = useChart({\n    data: [\n      { windows: 110, month: \"January\" },\n      { windows: 130, month: \"February\" },\n      { windows: 110, month: \"March\" },\n      { windows: 90, month: \"May\" },\n      { windows: 75, month: \"June\" },\n    ],\n    series: [{ name: \"windows\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxW=\"sm\" chart={chart} mx=\"auto\">\n      <RadarChart data={chart.data}>\n        <PolarGrid stroke={chart.color(\"border\")} />\n        <PolarAngleAxis dataKey={chart.key(\"month\")} />\n        <Tooltip content={<Chart.Tooltip />} />\n        {chart.series.map((item) => (\n          <Radar\n            isAnimationActive={false}\n            key={item.name}\n            name={item.name}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            fillOpacity={0.2}\n          />\n        ))}\n      </RadarChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from \"recharts\""
+      ],
+      "importPath": "import { RadarChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

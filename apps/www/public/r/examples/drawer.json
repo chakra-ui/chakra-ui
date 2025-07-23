@@ -1,0 +1,100 @@
+{
+  "name": "drawer",
+  "file": "compositions/ui/drawer",
+  "snippet": "import { Drawer as ChakraDrawer, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"@/components/ui/close-button\"\nimport * as React from \"react\"\n\ninterface DrawerContentProps extends ChakraDrawer.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement | null>\n  offset?: ChakraDrawer.ContentProps[\"padding\"]\n}\n\nexport const DrawerContent = React.forwardRef<\n  HTMLDivElement,\n  DrawerContentProps\n>(function DrawerContent(props, ref) {\n  const { children, portalled = true, portalRef, offset, ...rest } = props\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      <ChakraDrawer.Positioner padding={offset}>\n        <ChakraDrawer.Content ref={ref} {...rest} asChild={false}>\n          {children}\n        </ChakraDrawer.Content>\n      </ChakraDrawer.Positioner>\n    </Portal>\n  )\n})\n\nexport const DrawerCloseTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraDrawer.CloseTriggerProps\n>(function DrawerCloseTrigger(props, ref) {\n  return (\n    <ChakraDrawer.CloseTrigger\n      position=\"absolute\"\n      top=\"2\"\n      insetEnd=\"2\"\n      {...props}\n      asChild\n    >\n      <CloseButton size=\"sm\" ref={ref} />\n    </ChakraDrawer.CloseTrigger>\n  )\n})\n\nexport const DrawerTrigger = ChakraDrawer.Trigger\nexport const DrawerRoot = ChakraDrawer.Root\nexport const DrawerFooter = ChakraDrawer.Footer\nexport const DrawerHeader = ChakraDrawer.Header\nexport const DrawerBody = ChakraDrawer.Body\nexport const DrawerBackdrop = ChakraDrawer.Backdrop\nexport const DrawerDescription = ChakraDrawer.Description\nexport const DrawerTitle = ChakraDrawer.Title\nexport const DrawerActionTrigger = ChakraDrawer.ActionTrigger\n",
+  "examples": [
+    {
+      "name": "drawer-basic",
+      "content": "export const DrawerBasic = () => {\n  return (\n    <Drawer.Root>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Drawer.Footer>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Drawer, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-controlled",
+      "content": "\"use client\"\nexport const DrawerControlled = () => {\n  const [open, setOpen] = useState(false)\n\n  return (\n    <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)}>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Drawer.Footer>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Drawer, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-conditional-variants",
+      "content": "export const DrawerWithConditionalVariants = () => {\n  return (\n    <>\n      <Text mb=\"4\">Open drawer and resize screen to mobile size</Text>\n      <Drawer.Root placement={{ mdDown: \"bottom\", md: \"end\" }}>\n        <Drawer.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open Drawer\n          </Button>\n        </Drawer.Trigger>\n        <Portal>\n          <Drawer.Backdrop />\n          <Drawer.Positioner>\n            <Drawer.Content>\n              <Drawer.Header>\n                <Drawer.Title>Drawer Title</Drawer.Title>\n              </Drawer.Header>\n              <Drawer.Body>\n                Press the <Kbd>esc</Kbd> key to close the drawer.\n              </Drawer.Body>\n              <Drawer.Footer>\n                <Drawer.ActionTrigger asChild>\n                  <Button variant=\"outline\">Cancel</Button>\n                </Drawer.ActionTrigger>\n                <Button>Save</Button>\n              </Drawer.Footer>\n              <Drawer.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </Drawer.CloseTrigger>\n            </Drawer.Content>\n          </Drawer.Positioner>\n        </Portal>\n      </Drawer.Root>\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Drawer,\n  Kbd,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-context",
+      "content": "\"use client\"\nexport const DrawerWithContext = () => {\n  return (\n    <Drawer.Root>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            <Drawer.Context>\n              {(store) => (\n                <Drawer.Body pt=\"6\" spaceY=\"3\">\n                  <p>Drawer is open: {store.open ? \"true\" : \"false\"}</p>\n                  <p>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua.\n                  </p>\n                  <button onClick={() => store.setOpen(false)}>Close</button>\n                </Drawer.Body>\n              )}\n            </Drawer.Context>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Drawer, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-custom-container",
+      "content": "\"use client\"\nconst DrawerContainer = forwardRef<HTMLDivElement, StackProps>(\n  function DrawerContainer(props, ref) {\n    return (\n      <Stack\n        pos=\"relative\"\n        overflow=\"hidden\"\n        align=\"flex-start\"\n        p=\"8\"\n        minH=\"400px\"\n        layerStyle=\"fill.subtle\"\n        outline=\"2px solid gray\"\n        ref={ref}\n        {...props}\n      />\n    )\n  },\n)\n\nexport const DrawerWithCustomContainer = () => {\n  const portalRef = useRef<HTMLDivElement | null>(null)\n  return (\n    <Drawer.Root closeOnInteractOutside={false}>\n      <DrawerContainer ref={portalRef}>\n        <Text>Render drawer here</Text>\n        <Drawer.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\" bg=\"bg\">\n            Open Drawer\n          </Button>\n        </Drawer.Trigger>\n      </DrawerContainer>\n      <Portal container={portalRef}>\n        <Drawer.Backdrop pos=\"absolute\" boxSize=\"full\" />\n        <Drawer.Positioner pos=\"absolute\" boxSize=\"full\">\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n              <Drawer.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </Drawer.CloseTrigger>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Drawer.Footer>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Drawer,\n  Portal,\n  Stack,\n  type StackProps,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { forwardRef, useRef } from \"react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-header-actions",
+      "content": "export const DrawerWithHeaderActions = () => {\n  return (\n    <Drawer.Root size=\"md\">\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.CloseTrigger asChild pos=\"initial\">\n                <CloseButton />\n              </Drawer.CloseTrigger>\n              <Drawer.Title flex=\"1\">Drawer Title</Drawer.Title>\n              <ButtonGroup>\n                <Button variant=\"outline\">Cancel</Button>\n                <Button>Save</Button>\n              </ButtonGroup>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ButtonGroup,\n  CloseButton,\n  Drawer,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-initial-focus",
+      "content": "\"use client\"\nexport const DrawerWithInitialFocus = () => {\n  const ref = useRef<HTMLInputElement>(null)\n  return (\n    <Drawer.Root initialFocusEl={() => ref.current}>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n              <Stack mt=\"5\">\n                <Input defaultValue=\"Naruto\" placeholder=\"First name\" />\n                <Input ref={ref} placeholder=\"Email\" />\n              </Stack>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Drawer.Footer>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Drawer,\n  Input,\n  Portal,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-offset",
+      "content": "export const DrawerWithOffset = () => {\n  return (\n    <Drawer.Root>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner padding=\"4\">\n          <Drawer.Content rounded=\"md\">\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Button variant=\"outline\">Cancel</Button>\n              <Button>Save</Button>\n            </Drawer.Footer>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Drawer, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-placement",
+      "content": "export const DrawerWithPlacement = () => {\n  return (\n    <HStack wrap=\"wrap\">\n      <For each={[\"bottom\", \"top\", \"start\", \"end\"]}>\n        {(placement) => (\n          <Drawer.Root key={placement} placement={placement}>\n            <Drawer.Trigger asChild>\n              <Button variant=\"outline\" size=\"sm\">\n                Open ({placement})\n              </Button>\n            </Drawer.Trigger>\n            <Portal>\n              <Drawer.Backdrop />\n              <Drawer.Positioner>\n                <Drawer.Content\n                  roundedTop={placement === \"bottom\" ? \"l3\" : undefined}\n                  roundedBottom={placement === \"top\" ? \"l3\" : undefined}\n                >\n                  <Drawer.Header>\n                    <Drawer.Title>Drawer Title</Drawer.Title>\n                  </Drawer.Header>\n                  <Drawer.Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua.\n                  </Drawer.Body>\n                  <Drawer.Footer>\n                    <Drawer.ActionTrigger asChild>\n                      <Button variant=\"outline\">Cancel</Button>\n                    </Drawer.ActionTrigger>\n                    <Button>Save</Button>\n                  </Drawer.Footer>\n                  <Drawer.CloseTrigger asChild>\n                    <CloseButton size=\"sm\" />\n                  </Drawer.CloseTrigger>\n                </Drawer.Content>\n              </Drawer.Positioner>\n            </Portal>\n          </Drawer.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Drawer,\n  For,\n  HStack,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-with-sizes",
+      "content": "export const DrawerWithSizes = () => {\n  return (\n    <HStack wrap=\"wrap\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"full\"]}>\n        {(size) => (\n          <Drawer.Root key={size} size={size}>\n            <Drawer.Trigger asChild>\n              <Button variant=\"outline\" size=\"sm\">\n                Open ({size})\n              </Button>\n            </Drawer.Trigger>\n            <Portal>\n              <Drawer.Backdrop />\n              <Drawer.Positioner>\n                <Drawer.Content>\n                  <Drawer.Header>\n                    <Drawer.Title>Drawer Title</Drawer.Title>\n                  </Drawer.Header>\n                  <Drawer.Body>\n                    Press the <Kbd>esc</Kbd> key to close the drawer.\n                  </Drawer.Body>\n                  <Drawer.Footer>\n                    <Drawer.ActionTrigger asChild>\n                      <Button variant=\"outline\">Cancel</Button>\n                    </Drawer.ActionTrigger>\n                    <Button>Save</Button>\n                  </Drawer.Footer>\n                  <Drawer.CloseTrigger asChild>\n                    <CloseButton size=\"sm\" />\n                  </Drawer.CloseTrigger>\n                </Drawer.Content>\n              </Drawer.Positioner>\n            </Portal>\n          </Drawer.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Drawer,\n  For,\n  HStack,\n  Kbd,\n  Portal,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    }
+  ]
+}

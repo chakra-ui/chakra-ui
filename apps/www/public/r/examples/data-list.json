@@ -1,0 +1,79 @@
+{
+  "name": "data-list",
+  "file": "compositions/ui/data-list",
+  "snippet": "import { DataList as ChakraDataList } from \"@chakra-ui/react\"\nimport { InfoTip } from \"@/components/ui/toggle-tip\"\nimport * as React from \"react\"\n\nexport const DataListRoot = ChakraDataList.Root\n\ninterface ItemProps extends ChakraDataList.ItemProps {\n  label: React.ReactNode\n  value: React.ReactNode\n  info?: React.ReactNode\n  grow?: boolean\n}\n\nexport const DataListItem = React.forwardRef<HTMLDivElement, ItemProps>(\n  function DataListItem(props, ref) {\n    const { label, info, value, children, grow, ...rest } = props\n    return (\n      <ChakraDataList.Item ref={ref} {...rest}>\n        <ChakraDataList.ItemLabel flex={grow ? \"1\" : undefined}>\n          {label}\n          {info && <InfoTip>{info}</InfoTip>}\n        </ChakraDataList.ItemLabel>\n        <ChakraDataList.ItemValue flex={grow ? \"1\" : undefined}>\n          {value}\n        </ChakraDataList.ItemValue>\n        {children}\n      </ChakraDataList.Item>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "data-list-basic",
+      "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListBasic = () => {\n  return (\n    <DataList.Root orientation=\"horizontal\">\n      {stats.map((item) => (\n        <DataList.Item key={item.label}>\n          <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "data-list-closed-component",
+      "content": "export const DataListRoot = ChakraDataList.Root\n\ninterface ItemProps extends ChakraDataList.ItemProps {\n  label: React.ReactNode\n  value: React.ReactNode\n  info?: React.ReactNode\n  grow?: boolean\n}\n\nexport const DataListItem = React.forwardRef<HTMLDivElement, ItemProps>(\n  function DataListItem(props, ref) {\n    const { label, info, value, children, grow, ...rest } = props\n    return (\n      <ChakraDataList.Item ref={ref} {...rest}>\n        <ChakraDataList.ItemLabel flex={grow ? \"1\" : undefined}>\n          {label}\n          {info && <InfoTip>{info}</InfoTip>}\n        </ChakraDataList.ItemLabel>\n        <ChakraDataList.ItemValue flex={grow ? \"1\" : undefined}>\n          {value}\n        </ChakraDataList.ItemValue>\n        {children}\n      </ChakraDataList.Item>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList as ChakraDataList } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "data-list-vertical",
+      "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListVertical = () => {\n  return (\n    <DataList.Root>\n      {stats.map((item) => (\n        <DataList.Item key={item.label}>\n          <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "data-list-with-info",
+      "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListWithInfo = () => {\n  return (\n    <DataList.Root orientation=\"horizontal\">\n      {stats.map((item) => (\n        <DataList.Item key={item.label}>\n          <DataList.ItemLabel>\n            {item.label}\n            <InfoTip>This is some info</InfoTip>\n          </DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "data-list-with-separator",
+      "content": "export const DataListWithSeparator = () => {\n  return (\n    <DataList.Root orientation=\"horizontal\" divideY=\"1px\" maxW=\"md\">\n      {items.map((item) => (\n        <DataList.Item key={item.label} pt=\"4\">\n          <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n\nconst items = [\n  { label: \"First Name\", value: \"Jassie\" },\n  { label: \"Last Name\", value: \"Bhatia\" },\n  { label: \"Email\", value: \"jassie@jassie.dev\" },\n  { label: \"Phone\", value: \"1234567890\" },\n  { label: \"Address\", value: \"1234 Main St, Anytown, USA\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "data-list-with-sizes",
+      "content": "export const DataListWithSizes = () => {\n  return (\n    <Stack gap=\"4\">\n      <DataList.Root size=\"sm\">\n        <DataList.Item>\n          <DataList.ItemLabel>Name</DataList.ItemLabel>\n          <DataList.ItemValue>John Doe</DataList.ItemValue>\n        </DataList.Item>\n      </DataList.Root>\n      <DataList.Root size=\"md\">\n        <DataList.Item>\n          <DataList.ItemLabel>Name</DataList.ItemLabel>\n          <DataList.ItemValue>John Doe</DataList.ItemValue>\n        </DataList.Item>\n      </DataList.Root>\n      <DataList.Root size=\"lg\">\n        <DataList.Item>\n          <DataList.ItemLabel>Name</DataList.ItemLabel>\n          <DataList.ItemValue>John Doe</DataList.ItemValue>\n        </DataList.Item>\n      </DataList.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "data-list-with-variants",
+      "content": "export const DataListWithVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"subtle\", \"bold\"]}>\n        {(variant) => (\n          <DataList.Root variant={variant} key={variant}>\n            {stats.map((item) => (\n              <DataList.Item key={item.label}>\n                <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n                <DataList.ItemValue>{item.value}</DataList.ItemValue>\n              </DataList.Item>\n            ))}\n          </DataList.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
+    }
+  ]
+}
