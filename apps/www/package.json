@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
-    "generate:examples": "pnpm tsx scripts/examples.ts",
+    "generate:examples": "pnpm tsx scripts/generate-examples.ts",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "build:react": "cd ../../ && pnpm react build:fast",

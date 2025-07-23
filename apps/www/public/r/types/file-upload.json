@@ -75,6 +75,11 @@
         "isRequired": false,
         "description": "The accept file types"
       },
+      "acceptedFiles": {
+        "type": "File[]",
+        "isRequired": false,
+        "description": "The controlled accepted files"
+      },
       "allowDrop": {
         "type": "boolean",
         "isRequired": false,
@@ -85,6 +90,11 @@
         "type": "'user' | 'environment'",
         "isRequired": false,
         "description": "The default camera to use when capturing media"
+      },
+      "defaultAcceptedFiles": {
+        "type": "File[]",
+        "isRequired": false,
+        "description": "The default accepted files when rendered.\nUse when you don't need to control the accepted files of the input."
       },
       "directory": {
         "type": "boolean",
@@ -97,7 +107,7 @@
         "description": "Whether the file input is disabled"
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  dropzone: string\n  hiddenInput: string\n  trigger: string\n  label: string\n  item(id: string): string\n  itemName(id: string): string\n  itemSizeText(id: string): string\n  itemPreview(id: string): string\n}>",
+        "type": "Partial<{\n  root: string\n  dropzone: string\n  hiddenInput: string\n  trigger: string\n  label: string\n  item: (id: string) => string\n  itemName: (id: string) => string\n  itemSizeText: (id: string) => string\n  itemPreview: (id: string) => string\n}>",
         "isRequired": false,
         "description": "The ids of the elements. Useful for composition."
       },

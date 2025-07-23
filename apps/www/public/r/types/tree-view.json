@@ -1,5 +1,5 @@
 {
-  "Arrow": {
+  "BranchContent": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -14,7 +14,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "ArrowTip": {
+  "BranchControl": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -29,52 +29,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "CheckboxItem": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "checked": {
-        "type": "boolean",
-        "isRequired": true,
-        "description": "Whether the option is checked"
-      },
-      "value": {
-        "type": "string",
-        "isRequired": true,
-        "description": "The value of the option"
-      },
-      "closeOnSelect": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu should be closed when the option is selected."
-      },
-      "disabled": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu item is disabled"
-      },
-      "onCheckedChange": {
-        "type": "(checked: boolean) => void",
-        "isRequired": false,
-        "description": "Function called when the option state is changed"
-      },
-      "valueText": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "Content": {
+  "BranchIndentGuide": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -89,22 +44,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "ContextTrigger": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLButtonElement"
-  },
-  "Indicator": {
+  "BranchIndicator": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -119,21 +59,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "ItemCommand": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
-  "ItemGroupLabel": {
+  "Branch": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -148,7 +74,22 @@
     },
     "element": "HTMLDivElement"
   },
-  "ItemGroup": {
+  "BranchText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "BranchTrigger": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -189,31 +130,6 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "value": {
-        "type": "string",
-        "isRequired": true,
-        "description": "The unique value of the menu item option."
-      },
-      "closeOnSelect": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu should be closed when the option is selected."
-      },
-      "disabled": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu item is disabled"
-      },
-      "onSelect": {
-        "type": "VoidFunction",
-        "isRequired": false,
-        "description": "The function to call when the item is selected"
-      },
-      "valueText": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
       }
     },
     "element": "HTMLDivElement"
@@ -231,9 +147,9 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLSpanElement"
   },
-  "Positioner": {
+  "Label": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -246,9 +162,9 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLHeadingElement"
   },
-  "RadioItemGroup": {
+  "NodeCheckbox": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -259,20 +175,32 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "onValueChange": {
-        "type": "(e: ValueChangeDetails) => void",
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Node": {
+    "props": {
+      "indentGuide": {
+        "type": "React.ReactElement",
         "isRequired": false
       },
-      "value": {
-        "type": "string",
+      "render": {
+        "type": "(props",
+        "isRequired": true
+      },
+      "renderBranch": {
+        "type": "(props",
         "isRequired": false
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "RadioItem": {
-    "props": {
+      },
+      "branchProps": {
+        "type": "TreeViewBranchProps",
+        "isRequired": false
+      },
+      "branchContentProps": {
+        "type": "TreeViewBranchContentProps",
+        "isRequired": false
+      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -282,29 +210,34 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "value": {
-        "type": "string",
-        "isRequired": true,
-        "description": "The value of the option"
-      },
-      "closeOnSelect": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu should be closed when the option is selected."
-      },
-      "disabled": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the menu item is disabled"
-      },
-      "valueText": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The textual value of the option. Used in typeahead navigation of the menu.\nIf not provided, the text content of the menu item will be used."
       }
-    },
-    "element": "HTMLDivElement"
+    }
+  },
+  "NodeRender": {
+    "props": {
+      "node": {
+        "type": "T",
+        "isRequired": false
+      },
+      "indexPath": {
+        "type": "number[]",
+        "isRequired": true
+      },
+      "nodeState": {
+        "type": "ArkTreeView.NodeState",
+        "isRequired": true
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
   },
   "Root": {
     "props": {
@@ -323,57 +256,56 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "anchorPoint": {
-        "type": "Point",
-        "isRequired": false,
-        "description": "The positioning point for the menu. Can be set by the context menu trigger or the button trigger."
+      "collection": {
+        "type": "TreeCollection<T>",
+        "isRequired": true,
+        "description": "The collection of tree nodes"
       },
-      "aria-label": {
+      "checkedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled checked node value"
+      },
+      "defaultCheckedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial checked node value when rendered.\nUse when you don't need to control the checked node value."
+      },
+      "defaultExpandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial expanded node ids when rendered.\nUse when you don't need to control the expanded node value."
+      },
+      "defaultFocusedValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The accessibility label for the menu"
+        "description": "The initial focused node value when rendered.\nUse when you don't need to control the focused node value."
       },
-      "closeOnSelect": {
+      "defaultSelectedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial selected node value when rendered.\nUse when you don't need to control the selected node value."
+      },
+      "expandedValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled expanded node ids"
+      },
+      "expandOnClick": {
         "type": "boolean",
         "isRequired": false,
         "defaultValue": "true",
-        "description": "Whether to close the menu when an option is selected"
+        "description": "Whether clicking on a branch should open it or not"
       },
-      "composite": {
-        "type": "boolean",
-        "isRequired": false,
-        "defaultValue": "true",
-        "description": "Whether the menu is a composed with other composite widgets like a combobox or tabs"
-      },
-      "defaultHighlightedValue": {
+      "focusedValue": {
         "type": "string",
         "isRequired": false,
-        "description": "The initial highlighted value of the menu item when rendered.\nUse when you don't need to control the highlighted value of the menu item."
-      },
-      "defaultOpen": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "The initial open state of the menu when rendered.\nUse when you don't need to control the open state of the menu."
-      },
-      "highlightedValue": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The controlled highlighted value of the menu item."
-      },
-      "id": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The unique identifier of the machine."
+        "description": "The value of the focused node"
       },
       "ids": {
-        "type": "Partial<{\n  trigger: string\n  contextTrigger: string\n  content: string\n  groupLabel(id: string): string\n  group(id: string): string\n  positioner: string\n  arrow: string\n}>",
+        "type": "Partial<{ root: string; tree: string; label: string; node: (value: string) => string }>",
         "isRequired": false,
-        "description": "The ids of the elements in the menu. Useful for composition."
-      },
-      "immediate": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
+        "description": "The ids of the tree elements. Useful for composition."
       },
       "lazyMount": {
         "type": "boolean",
@@ -381,83 +313,57 @@
         "defaultValue": "false",
         "description": "Whether to enable lazy mounting"
       },
-      "loopFocus": {
-        "type": "boolean",
+      "loadChildren": {
+        "type": "(details: LoadChildrenDetails<T>) => Promise<T[]>",
         "isRequired": false,
-        "defaultValue": "false",
-        "description": "Whether to loop the keyboard navigation."
+        "description": "Function to load children for a node asynchronously.\nWhen provided, branches will wait for this promise to resolve before expanding."
       },
-      "navigate": {
-        "type": "(details: NavigateDetails) => void",
+      "onCheckedChange": {
+        "type": "(details: CheckedChangeDetails) => void",
         "isRequired": false,
-        "description": "Function to navigate to the selected item if it's an anchor element"
+        "description": "Called when the checked value changes"
       },
-      "onEscapeKeyDown": {
-        "type": "(event: KeyboardEvent) => void",
+      "onExpandedChange": {
+        "type": "(details: ExpandedChangeDetails<T>) => void",
         "isRequired": false,
-        "description": "Function called when the escape key is pressed"
+        "description": "Called when the tree is opened or closed"
       },
-      "onExitComplete": {
-        "type": "VoidFunction",
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails<T>) => void",
         "isRequired": false,
-        "description": "Function called when the animation ends in the closed state"
+        "description": "Called when the focused node changes"
       },
-      "onFocusOutside": {
-        "type": "(event: FocusOutsideEvent) => void",
+      "onLoadChildrenComplete": {
+        "type": "(details: LoadChildrenCompleteDetails<T>) => void",
         "isRequired": false,
-        "description": "Function called when the focus is moved outside the component"
+        "description": "Called when a node finishes loading children"
       },
-      "onHighlightChange": {
-        "type": "(details: HighlightChangeDetails) => void",
+      "onLoadChildrenError": {
+        "type": "(details: LoadChildrenErrorDetails<T>) => void",
         "isRequired": false,
-        "description": "Function called when the highlighted menu item changes."
+        "description": "Called when loading children fails for one or more nodes"
       },
-      "onInteractOutside": {
-        "type": "(event: InteractOutsideEvent) => void",
+      "onSelectionChange": {
+        "type": "(details: SelectionChangeDetails<T>) => void",
         "isRequired": false,
-        "description": "Function called when an interaction happens outside the component"
+        "description": "Called when the selection changes"
       },
-      "onOpenChange": {
-        "type": "(details: OpenChangeDetails) => void",
+      "selectedValue": {
+        "type": "string[]",
         "isRequired": false,
-        "description": "Function called when the menu opens or closes"
+        "description": "The controlled selected node value"
       },
-      "onPointerDownOutside": {
-        "type": "(event: PointerDownOutsideEvent) => void",
+      "selectionMode": {
+        "type": "'multiple' | 'single'",
         "isRequired": false,
-        "description": "Function called when the pointer is pressed down outside the component"
-      },
-      "onSelect": {
-        "type": "(details: SelectionDetails) => void",
-        "isRequired": false,
-        "description": "Function called when a menu item is selected."
-      },
-      "open": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "The controlled open state of the menu"
-      },
-      "positioning": {
-        "type": "PositioningOptions",
-        "isRequired": false,
-        "description": "The options used to dynamically position the menu"
-      },
-      "present": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the node is present (controlled by the user)"
-      },
-      "skipAnimationOnMount": {
-        "type": "boolean",
-        "isRequired": false,
-        "defaultValue": "false",
-        "description": "Whether to allow the initial presence animation."
+        "defaultValue": "\"single\"",
+        "description": "Whether the tree supports multiple selection\n- \"single\": only one node can be selected\n- \"multiple\": multiple nodes can be selected"
       },
       "typeahead": {
         "type": "boolean",
         "isRequired": false,
         "defaultValue": "true",
-        "description": "Whether the pressing printable characters should trigger typeahead navigation"
+        "description": "Whether the tree supports typeahead search"
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -471,17 +377,22 @@
         "isRequired": false,
         "description": "The color palette of the component"
       },
+      "size": {
+        "type": "\"md\" | \"sm\" | \"xs\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
       "variant": {
         "type": "\"subtle\" | \"solid\"",
         "defaultValue": "subtle",
         "isRequired": false,
         "description": "The variant of the component"
       },
-      "size": {
-        "type": "\"sm\" | \"md\"",
-        "defaultValue": "md",
+      "animateContent": {
+        "type": "\"true\" | \"false\"",
         "isRequired": false,
-        "description": "The size of the component"
+        "description": "The animateContent of the component"
       }
     }
   },
@@ -498,35 +409,14 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "value": {
-        "type": "UseMenuReturn",
+        "type": "UseTreeViewReturn<T>",
         "isRequired": true
-      },
-      "immediate": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether to synchronize the present change immediately or defer it to the next frame"
       },
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
         "defaultValue": "false",
         "description": "Whether to enable lazy mounting"
-      },
-      "onExitComplete": {
-        "type": "VoidFunction",
-        "isRequired": false,
-        "description": "Function called when the animation ends in the closed state"
-      },
-      "present": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the node is present (controlled by the user)"
-      },
-      "skipAnimationOnMount": {
-        "type": "boolean",
-        "isRequired": false,
-        "defaultValue": "false",
-        "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -536,22 +426,7 @@
       }
     }
   },
-  "Separator": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLHRElement"
-  },
-  "TriggerItem": {
+  "Tree": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -566,7 +441,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "Trigger": {
+  "NodeCheckboxIndicator": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -577,8 +452,39 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "fallback": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
+      },
+      "indeterminate": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false
       }
-    },
-    "element": "HTMLButtonElement"
+    }
+  },
+  "NodeProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "indexPath": {
+        "type": "number[]",
+        "isRequired": true,
+        "description": "The index path of the tree node"
+      },
+      "node": {
+        "type": "NonNullable<T>",
+        "isRequired": false,
+        "description": "The tree node"
+      }
+    }
   }
 }

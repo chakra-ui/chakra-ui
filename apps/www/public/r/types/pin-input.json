@@ -14,16 +14,8 @@
     },
     "element": "HTMLDivElement"
   },
-  "Indicator": {
+  "Input": {
     "props": {
-      "checked": {
-        "type": "React.ReactElement | undefined",
-        "isRequired": false
-      },
-      "indeterminate": {
-        "type": "boolean",
-        "isRequired": false
-      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -33,9 +25,13 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLInputElement"
   },
   "Label": {
     "props": {
@@ -50,7 +46,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -69,25 +65,35 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "checked": {
-        "type": "CheckedState",
+      "autoFocus": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The controlled checked state of the checkbox"
+        "description": "Whether to auto-focus the first input."
       },
-      "defaultChecked": {
-        "type": "CheckedState",
+      "blurOnComplete": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox."
+        "description": "Whether to blur the input when the value is complete"
+      },
+      "count": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The number of inputs to render to improve SSR aria attributes.\nThis will be required in next major version."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the the pin input when rendered.\nUse when you don't need to control the value of the pin input."
       },
       "disabled": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is disabled"
+        "description": "Whether the inputs are disabled"
       },
       "form": {
         "type": "string",
         "isRequired": false,
-        "description": "The id of the form that the checkbox belongs to."
+        "description": "The associate form of the underlying input element."
       },
       "id": {
         "type": "string",
@@ -95,40 +101,86 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{ root: string; hiddenInput: string; control: string; label: string }>",
+        "type": "Partial<{\n  root: string\n  hiddenInput: string\n  label: string\n  control: string\n  input: (id: string) => string\n}>",
         "isRequired": false,
-        "description": "The ids of the elements in the checkbox. Useful for composition."
+        "description": "The ids of the elements in the pin input. Useful for composition."
       },
       "invalid": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is invalid"
+        "description": "Whether the pin input is in the invalid state"
+      },
+      "mask": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the input's value will be masked just like `type=password`"
       },
       "name": {
         "type": "string",
         "isRequired": false,
-        "description": "The name of the input field in a checkbox.\nUseful for form submission."
+        "description": "The name of the input element. Useful for form submission."
       },
-      "onCheckedChange": {
-        "type": "(details: CheckedChangeDetails) => void",
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback invoked when the checked state changes."
+        "description": "Function called on input change"
+      },
+      "onValueComplete": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when all inputs have valid values"
+      },
+      "onValueInvalid": {
+        "type": "(details: ValueInvalidDetails) => void",
+        "isRequired": false,
+        "description": "Function called when an invalid value is entered"
+      },
+      "otp": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the pin input component signals to its fields that they should\nuse `autocomplete=\"one-time-code\"`."
+      },
+      "pattern": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The regular expression that the user-entered input value is checked against."
+      },
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"○\"",
+        "description": "The placeholder text for the input"
       },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is read-only"
+        "description": "Whether the pin input is in the valid state"
       },
       "required": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is required"
+        "description": "Whether the pin input is required"
+      },
+      "selectOnFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to select input value when input is focused"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "type": {
+        "type": "'numeric' | 'alphabetic' | 'alphanumeric'",
+        "isRequired": false,
+        "defaultValue": "\"numeric\"",
+        "description": "The type of value the pin-input should allow"
       },
       "value": {
-        "type": "string",
+        "type": "string[]",
         "isRequired": false,
-        "defaultValue": "\"on\"",
-        "description": "The value of checkbox input. Useful for form submission."
+        "description": "The controlled value of the the pin input."
       },
       "colorPalette": {
         "defaultValue": "gray",
@@ -137,19 +189,24 @@
         "description": "The color palette of the component"
       },
       "size": {
-        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"
       },
       "variant": {
-        "type": "\"outline\" | \"solid\" | \"subtle\"",
-        "defaultValue": "solid",
+        "type": "\"outline\" | \"subtle\" | \"flushed\"",
+        "defaultValue": "outline",
         "isRequired": false,
         "description": "The variant of the component"
+      },
+      "attached": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The attached of the component"
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -164,58 +221,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "value": {
-        "type": "UseCheckboxReturn",
+        "type": "UsePinInputReturn",
         "isRequired": true
-      }
-    },
-    "element": "HTMLLabelElement"
-  },
-  "Group": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "defaultValue": {
-        "type": "string[]",
-        "isRequired": false,
-        "description": "The initial value of `value` when uncontrolled"
-      },
-      "disabled": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is disabled"
-      },
-      "invalid": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is invalid"
-      },
-      "name": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The name of the input fields in the checkbox group\n(Useful for form submission)."
-      },
-      "onValueChange": {
-        "type": "(value: string[]) => void",
-        "isRequired": false,
-        "description": "The callback to call when the value changes"
-      },
-      "readOnly": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is read-only"
-      },
-      "value": {
-        "type": "string[]",
-        "isRequired": false,
-        "description": "The controlled value of the checkbox group"
       }
     },
     "element": "HTMLDivElement"

@@ -311,7 +311,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{ root: string; control: string; trigger: string; label: string; input: string; hiddenInput: string; content: string; area: string; areaGradient: string; positioner: string; formatSelect: string; areaThumb: string; channelInput(id: string): string; channelSliderTrack(id: ColorChannel): string; channelSliderT...",
+        "type": "Partial<{ root: string; control: string; trigger: string; label: string; input: string; hiddenInput: string; content: string; area: string; areaGradient: string; positioner: string; formatSelect: string; areaThumb: string; channelInput: (id: string) => string; channelSliderTrack: (id: ColorChannel) => string; channe...",
         "isRequired": false,
         "description": "The ids of the elements in the color picker. Useful for composition."
       },
@@ -324,6 +324,11 @@
         "type": "() => HTMLElement | null",
         "isRequired": false,
         "description": "The initial focus element when the color picker is opened."
+      },
+      "inline": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to render the color picker inline"
       },
       "invalid": {
         "type": "boolean",

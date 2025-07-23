@@ -73,7 +73,8 @@ async function writeStaticProps(outDir: string) {
 }
 
 export async function main() {
-  const outDir = "public/types"
+  const outDir = join("public", "r", "types")
+
   const componentDir = getComponentDir()
   const dirs = await getComponentDirectories()
   const arkProps = await getArkComponentProps()
@@ -105,7 +106,10 @@ export async function main() {
   writeStaticProps(outDir)
 
   const indexContent = JSON.stringify(
-    dirs.concat("password-input", ...chartComponents),
+    {
+      components: dirs.concat("password-input"),
+      charts: chartComponents,
+    },
     null,
     2,
   )

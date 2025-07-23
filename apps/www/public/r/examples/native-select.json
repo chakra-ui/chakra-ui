@@ -59,6 +59,19 @@
       ]
     },
     {
+      "name": "native-select-with-input-group",
+      "content": "export const NativeSelectWithInputGroup = () => {\n  return (\n    <NativeSelect.Root size=\"sm\">\n      <InputGroup startElement={<LuUser />}>\n        <NativeSelect.Field placeholder=\"Select user\">\n          <option value=\"admin\">Admin</option>\n          <option value=\"user\">User</option>\n          <option value=\"guest\">Guest</option>\n        </NativeSelect.Field>\n      </InputGroup>\n      <NativeSelect.Indicator />\n    </NativeSelect.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { InputGroup, NativeSelect } from \"@chakra-ui/react\"",
+        "import { LuUser } from \"react-icons/lu\""
+      ],
+      "importPath": "import { NativeSelect } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
       "name": "native-select-with-invalid-root",
       "content": "export const NativeSelectWithInvalidRoot = () => (\n  <NativeSelect.Root invalid width=\"240px\">\n    <NativeSelect.Field placeholder=\"Select option\">\n      <option value=\"Option 1\">Option 1</option>\n      <option value=\"Option 2\">Option 2</option>\n      <option value=\"Option 3\">Option 3</option>\n    </NativeSelect.Field>\n    <NativeSelect.Indicator />\n  </NativeSelect.Root>\n)\n",
       "hasSnippet": false,

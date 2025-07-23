@@ -17,9 +17,9 @@ async function main() {
   const writePromises = result
     .filter((json) => json.examples.length > 0)
     .map((json) => {
-      ensureDirSync(join(project.publicPath, "examples"))
+      ensureDirSync(join(project.publicPath, "r", "examples"))
       return writeFile(
-        join(project.publicPath, "examples", `${json.name}.json`),
+        join(project.publicPath, "r", "examples", `${json.name}.json`),
         JSON.stringify(json, null, 2),
       )
     })
@@ -30,7 +30,7 @@ async function main() {
   await Promise.all([
     ...writePromises,
     writeFile(
-      join(project.publicPath, "examples", "index.json"),
+      join(project.publicPath, "r", "examples", "index.json"),
       JSON.stringify(indexContent, null, 2),
     ),
   ])

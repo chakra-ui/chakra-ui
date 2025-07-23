@@ -20,7 +20,13 @@ const sortEntries = (props: Record<string, any>): [string, Properties][] => {
 }
 
 function getType(componentName?: string): Record<string, any> {
-  const path = join(process.cwd(), "public", "types", `${componentName}.json`)
+  const path = join(
+    process.cwd(),
+    "public",
+    "r",
+    "types",
+    `${componentName}.json`,
+  )
   if (!existsSync(path)) return {}
   return JSON.parse(readFileSync(path, "utf-8"))
 }

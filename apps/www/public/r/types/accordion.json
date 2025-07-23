@@ -1,5 +1,34 @@
 {
-  "ItemControl": {
+  "ItemBody": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ItemContent": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemIndicator": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -28,20 +57,18 @@
       },
       "value": {
         "type": "string",
-        "isRequired": true
+        "isRequired": true,
+        "description": "The value of the accordion item."
       },
       "disabled": {
         "type": "boolean",
-        "isRequired": false
-      },
-      "invalid": {
-        "type": "boolean",
-        "isRequired": false
+        "isRequired": false,
+        "description": "Whether the accordion item is disabled."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLDivElement"
   },
-  "ItemText": {
+  "ItemTrigger": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -54,22 +81,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
-  },
-  "Label": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLLabelElement"
+    "element": "HTMLButtonElement"
   },
   "Root": {
     "props": {
@@ -88,20 +100,21 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "defaultValue": {
-        "type": "string",
+      "collapsible": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group."
+        "defaultValue": "false",
+        "description": "Whether an accordion item can be closed after it has been expanded."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the expanded accordion items.\nUse when you don't need to control the value of the accordion."
       },
       "disabled": {
         "type": "boolean",
         "isRequired": false,
-        "description": "If `true`, the radio group will be disabled"
-      },
-      "form": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The associate form of the underlying input."
+        "description": "Whether the accordion items are disabled"
       },
       "id": {
         "type": "string",
@@ -109,34 +122,48 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  label: string\n  indicator: string\n  item(value: string): string\n  itemLabel(value: string): string\n  itemControl(value: string): string\n  itemHiddenInput(value: string): string\n}>",
+        "type": "Partial<{\n  root: string\n  item: (value: string) => string\n  itemContent: (value: string) => string\n  itemTrigger: (value: string) => string\n}>",
         "isRequired": false,
-        "description": "The ids of the elements in the radio. Useful for composition."
+        "description": "The ids of the elements in the accordion. Useful for composition."
       },
-      "name": {
-        "type": "string",
+      "lazyMount": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The name of the input fields in the radio\n(Useful for form submission)."
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "multiple": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether multiple accordion items can be expanded at the same time."
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback fired when the focused accordion item changes."
       },
       "onValueChange": {
         "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "Function called once a radio is checked"
+        "description": "The callback fired when the state of expanded/collapsed accordion items changes."
       },
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "description": "Orientation of the radio group"
+        "defaultValue": "\"vertical\"",
+        "description": "The orientation of the accordion items."
       },
-      "readOnly": {
+      "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is read-only"
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
       },
       "value": {
-        "type": "string",
+        "type": "string[]",
         "isRequired": false,
-        "description": "The controlled value of the radio group"
+        "description": "The controlled value of the expanded accordion items."
       },
       "colorPalette": {
         "defaultValue": "gray",
@@ -145,13 +172,13 @@
         "description": "The color palette of the component"
       },
       "variant": {
-        "type": "\"outline\" | \"subtle\" | \"solid\"",
-        "defaultValue": "solid",
+        "type": "\"outline\" | \"subtle\" | \"enclosed\" | \"plain\"",
+        "defaultValue": "outline",
         "isRequired": false,
         "description": "The variant of the component"
       },
       "size": {
-        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "type": "\"sm\" | \"md\" | \"lg\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"
@@ -172,30 +199,22 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "value": {
-        "type": "UseRadioGroupReturn",
+        "type": "UseAccordionReturn",
         "isRequired": true
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
       }
     },
     "element": "HTMLDivElement"
-  },
-  "Indicator": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "ItemHiddenInput": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLInputElement"
   }
 }

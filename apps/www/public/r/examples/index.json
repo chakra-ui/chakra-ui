@@ -444,6 +444,7 @@
   "native-select-controlled",
   "native-select-with-disabled",
   "native-select-with-hook-form",
+  "native-select-with-input-group",
   "native-select-with-invalid-root",
   "native-select-with-invalid",
   "native-select-with-sizes",

@@ -14,6 +14,51 @@
     },
     "element": "HTMLDivElement"
   },
+  "DecrementTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "IncrementTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Input": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
+  },
   "Label": {
     "props": {
       "as": {
@@ -28,54 +73,6 @@
       }
     },
     "element": "HTMLLabelElement"
-  },
-  "Marker": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "value": {
-        "type": "number",
-        "isRequired": true
-      }
-    },
-    "element": "HTMLSpanElement"
-  },
-  "MarkerIndicator": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
-  "Range": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
@@ -94,35 +91,48 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "aria-label": {
-        "type": "string[]",
+      "allowMouseWheel": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The aria-label of each slider thumb. Useful for providing an accessible name to the slider"
+        "description": "Whether to allow mouse wheel to change the value"
       },
-      "aria-labelledby": {
-        "type": "string[]",
+      "allowOverflow": {
+        "type": "boolean",
         "isRequired": false,
-        "description": "The `id` of the elements that labels each slider thumb. Useful for providing an accessible name to the slider"
+        "defaultValue": "true",
+        "description": "Whether to allow the value overflow the min/max range"
+      },
+      "clampValueOnBlur": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to clamp the value when the input loses focus (blur)"
       },
       "defaultValue": {
-        "type": "number[]",
+        "type": "string",
         "isRequired": false,
-        "description": "The initial value of the slider when rendered.\nUse when you don't need to control the value of the slider."
+        "description": "The initial value of the input when rendered.\nUse when you don't need to control the value of the input."
       },
       "disabled": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the slider is disabled"
+        "description": "Whether the number input is disabled."
+      },
+      "focusInputOnChange": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to focus input when the value changes"
       },
       "form": {
         "type": "string",
         "isRequired": false,
-        "description": "The associate form of the underlying input element."
+        "description": "The associate form of the input element."
       },
-      "getAriaValueText": {
-        "type": "(details: ValueTextDetails) => string",
+      "formatOptions": {
+        "type": "NumberFormatOptions",
         "isRequired": false,
-        "description": "Function that returns a human readable value for the slider thumb"
+        "description": "The options to pass to the `Intl.NumberFormat` constructor"
       },
       "id": {
         "type": "string",
@@ -130,91 +140,96 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  thumb(index: number): string\n  hiddenInput(index: number): string\n  control: string\n  track: string\n  range: string\n  label: string\n  valueText: string\n  marker(index: number): string\n}>",
+        "type": "Partial<{\n  root: string\n  label: string\n  input: string\n  incrementTrigger: string\n  decrementTrigger: string\n  scrubber: string\n}>",
         "isRequired": false,
-        "description": "The ids of the elements in the slider. Useful for composition."
+        "description": "The ids of the elements in the number input. Useful for composition."
+      },
+      "inputMode": {
+        "type": "InputMode",
+        "isRequired": false,
+        "defaultValue": "\"decimal\"",
+        "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
       },
       "invalid": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the slider is invalid"
+        "description": "Whether the number input value is invalid."
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"en-US\"",
+        "description": "The current locale. Based on the BCP 47 definition."
       },
       "max": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "100",
-        "description": "The maximum value of the slider"
+        "defaultValue": "Number.MAX_SAFE_INTEGER",
+        "description": "The maximum value of the number input"
       },
       "min": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
-        "description": "The minimum value of the slider"
-      },
-      "minStepsBetweenThumbs": {
-        "type": "number",
-        "isRequired": false,
-        "defaultValue": "0",
-        "description": "The minimum permitted steps between multiple thumbs.\n\n`minStepsBetweenThumbs` * `step` should reflect the gap between the thumbs.\n\n- `step: 1` and `minStepsBetweenThumbs: 10` => gap is `10`\n- `step: 10` and `minStepsBetweenThumbs: 2` => gap is `20`"
+        "defaultValue": "Number.MIN_SAFE_INTEGER",
+        "description": "The minimum value of the number input"
       },
       "name": {
         "type": "string",
         "isRequired": false,
-        "description": "The name associated with each slider thumb (when used in a form)"
+        "description": "The name attribute of the number input. Useful for form submission."
       },
       "onFocusChange": {
         "type": "(details: FocusChangeDetails) => void",
         "isRequired": false,
-        "description": "Function invoked when the slider's focused index changes"
+        "description": "Function invoked when the number input is focused"
       },
       "onValueChange": {
         "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "Function invoked when the value of the slider changes"
+        "description": "Function invoked when the value changes"
       },
-      "onValueChangeEnd": {
-        "type": "(details: ValueChangeDetails) => void",
+      "onValueInvalid": {
+        "type": "(details: ValueInvalidDetails) => void",
         "isRequired": false,
-        "description": "Function invoked when the slider value change is done"
+        "description": "Function invoked when the value overflows or underflows the min/max range"
       },
-      "orientation": {
-        "type": "\"vertical\" | \"horizontal\"",
+      "pattern": {
+        "type": "string",
         "isRequired": false,
-        "defaultValue": "horizontal",
-        "description": "The orientation of the component"
-      },
-      "origin": {
-        "type": "'center' | 'end' | 'start'",
-        "isRequired": false,
-        "defaultValue": "\"start\"",
-        "description": "The origin of the slider range. The track is filled from the origin\nto the thumb for single values.\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)\n- \"end\": Useful when the value represents an offset from the end"
+        "defaultValue": "\"-?[0-9]*(.[0-9]+)?\"",
+        "description": "The pattern used to check the <input> element's value against"
       },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the slider is read-only"
+        "description": "Whether the number input is readonly"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the number input is required"
+      },
+      "spinOnPress": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to spin the value when the increment/decrement button is pressed"
       },
       "step": {
         "type": "number",
         "isRequired": false,
         "defaultValue": "1",
-        "description": "The step value of the slider"
+        "description": "The amount to increment or decrement the value by"
       },
-      "thumbAlignment": {
-        "type": "'center' | 'contain'",
+      "translations": {
+        "type": "IntlTranslations",
         "isRequired": false,
-        "defaultValue": "\"contain\"",
-        "description": "The alignment of the slider thumb relative to the track\n- `center`: the thumb will extend beyond the bounds of the slider track.\n- `contain`: the thumb will be contained within the bounds of the track."
-      },
-      "thumbSize": {
-        "type": "{ width: number; height: number }",
-        "isRequired": false,
-        "description": "The slider thumbs dimensions"
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
       },
       "value": {
-        "type": "number[]",
+        "type": "string",
         "isRequired": false,
-        "description": "The controlled value of the slider"
+        "description": "The controlled value of the input"
       },
       "colorPalette": {
         "defaultValue": "gray",
@@ -223,13 +238,13 @@
         "description": "The color palette of the component"
       },
       "size": {
-        "type": "\"sm\" | \"md\" | \"lg\"",
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"
       },
       "variant": {
-        "type": "\"outline\" | \"solid\"",
+        "type": "\"outline\" | \"subtle\" | \"flushed\"",
         "defaultValue": "outline",
         "isRequired": false,
         "description": "The variant of the component"
@@ -250,36 +265,13 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "value": {
-        "type": "UseSliderReturn",
+        "type": "UseNumberInputReturn",
         "isRequired": true
       }
     },
     "element": "HTMLDivElement"
   },
-  "Thumb": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "index": {
-        "type": "number",
-        "isRequired": true
-      },
-      "name": {
-        "type": "string",
-        "isRequired": false
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "Track": {
+  "Scrubber": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -307,46 +299,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
-  },
-  "MarkerGroup": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "DraggingIndicator": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
     "element": "HTMLSpanElement"
-  },
-  "HiddenInput": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLInputElement"
   }
 }
