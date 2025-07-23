@@ -1,9 +1,5 @@
-import { docs } from "@/.velite"
+import { Docs, docs } from "@/.velite"
 import { colorPalettes } from "compositions/lib/color-palettes"
-
-export function getBaseUrl() {
-  return process.env.VERCEL_URL ?? process.env.HOST ?? "http://localhost:3000"
-}
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -95,4 +91,33 @@ export function minifyContent(content: string) {
   content = content.replace(/\n:::.+?[\r\n]+([\s\S]*?)[\r\n]+:::\n/g, "")
 
   return content
+}
+
+///////////////////////////////////////////////////////////////////////
+
+export function getLlmContent(doc: Docs) {
+  // Create the header with page information
+  const pageUrl = doc.slug
+  const sourceUrl = `https://raw.githubusercontent.com/chakra-ui/chakra-ui/refs/heads/main/apps/www/content/${doc.slug}.mdx`
+
+  const category = doc.slug.split("/").slice(1, -1).join(" > ")
+  const header = `# ${category} > ${doc.title}
+  
+  URL: ${doc.slug}
+  Source: ${sourceUrl}
+  
+  ${doc.description}
+          
+  ***
+  
+  title: ${doc.title}
+  description: ${doc.description}
+  links: \n${Object.entries(doc.links)
+    .map(([key, value]) => ` - ${key}: ${value}`)
+    .join("\n")}
+  ------------------------------------------------------------------------------------------------
+  
+  `
+
+  return `${header}${doc.llm}`
 }
