@@ -41,6 +41,7 @@
     "rehype-slug": "6.0.0",
     "remark-directive": "4.0.0",
     "remark-gfm": "4.0.1",
+    "@stackblitz/sdk": "1.11.0",
     "scule": "1.3.0",
     "shiki": "3.7.0",
     "unist-util-visit": "5.0.0",

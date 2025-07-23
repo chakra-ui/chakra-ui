@@ -171,6 +171,23 @@ export class ProjectSdk {
     return result
   }
 
+  getComponentFromExample(exampleId: string): string | null {
+    // Remove .tsx extension if present
+    const cleanId = exampleId.replace(/\.tsx$/, "")
+
+    // Split by "-" and progressively remove segments from the end until we find a valid component
+    const segments = cleanId.split("-")
+
+    for (let i = segments.length; i > 0; i--) {
+      const potentialComponent = segments.slice(0, i).join("-")
+      if (this.components.includes(potentialComponent)) {
+        return potentialComponent
+      }
+    }
+
+    return null
+  }
+
   getExamples(component: string): Promise<string[]> {
     const ignore = excludeSet.get(component) ?? []
     const chartDir = isChartComponent(component) ? "charts/" : ""
