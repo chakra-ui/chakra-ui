@@ -51,7 +51,7 @@ const ActionMenu = (props: IconButtonProps & { data: Docs }) => {
   const { data, ...rest } = props
 
   const readUrl = encodeURIComponent(
-    `Read ${BASE_URL}/${data.slug}.mdx. I want to ask questions about it.`,
+    `Read ${BASE_URL}/${data.slug}.mdx I want to ask questions about it.`,
   )
 
   const items = [
