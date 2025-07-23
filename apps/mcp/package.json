@@ -1,5 +1,6 @@
 {
-  "name": "chakra-mcp",
+  "name": "@chakra-ui/react-mcp",
+  "description": "The official MCP server for Chakra UI",
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
@@ -11,22 +12,22 @@
     "chakra-mcp": "./dist/server.js"
   },
   "keywords": [
-    "chakra",
-    "mcp",
-    "boilerplate"
+    "chakra-ui",
+    "mcp-server",
+    "chat",
+    "chatgpt",
+    "mcp"
   ],
   "type": "module",
   "license": "MIT",
-  "description": "Chakra MCP (Model Context Protocol) server for Chakra UI",
   "dependencies": {
-    "zod": "^3.24.4",
+    "@chakra-ui/react": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.15.0",
-    "@chakra-ui/react": "workspace:*"
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
     "@types/fs-extra": "^11.0.4",
-    "tsx": "^4.20.3",
     "tsup": "^8.5.0",
     "typescript": "5.8.3"
   }

@@ -8,7 +8,6 @@ export const getLayerStylesTool: Tool = {
   exec(server, { name, description }) {
     server.tool(name, description, async () => {
       const styles = getLayerStyles()
-
       return {
         content: [
           {

@@ -124,7 +124,7 @@ const CUSTOMIZATION_SCENARIOS: Record<string, CustomizationScenario> = {
         layerStyles: {
           CUSTOM: {
             value: {
-              bg: "gray.200",
+              background: "gray.200",
               borderRadius: "md",
               padding: "4",
             },

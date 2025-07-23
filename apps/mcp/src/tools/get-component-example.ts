@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { fetchComponentExample, getAllComponentNames } from "../lib/fetch.js"
 import type { Tool } from "../lib/types.js"
 
 export const getComponentExampleTool: Tool<{ componentList: string[] }> = {
@@ -6,15 +7,14 @@ export const getComponentExampleTool: Tool<{ componentList: string[] }> = {
   description:
     "Retrieve comprehensive example code and usage patterns for a specific Chakra UI component. This tool provides practical implementation examples including basic usage, advanced configurations, and common use cases with complete code snippets.",
   async ctx() {
-    const componentsData = await fetch("https://chakra-ui.com/types/index.json")
-
-    if (!componentsData.ok) {
-      throw new Error("Failed to fetch components")
+    try {
+      const componentList = await getAllComponentNames()
+      return { componentList }
+    } catch (error) {
+      throw new Error(
+        `Failed to initialize component example tool: ${error instanceof Error ? error.message : "Unknown error"}`,
+      )
     }
-
-    const componentList = (await componentsData.json()) as string[]
-
-    return { componentList }
   },
   exec(server, { ctx, name, description }) {
     server.tool(
@@ -28,30 +28,26 @@ export const getComponentExampleTool: Tool<{ componentList: string[] }> = {
           ),
       },
       async ({ component }) => {
-        const res = await fetch(
-          `https://chakra-ui.com/examples/${component}.json`,
-        )
+        try {
+          const json = await fetchComponentExample(component)
 
-        if (!res.ok) {
           return {
             content: [
               {
                 type: "text",
-                text: `Failed to fetch example for component ${component}`,
+                text: JSON.stringify(json),
               },
             ],
           }
-        }
-
-        const json = await res.json()
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(json),
-            },
-          ],
+        } catch (error) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Failed to fetch example for component ${component}: ${error instanceof Error ? error.message : "Unknown error"}`,
+              },
+            ],
+          }
         }
       },
     )
