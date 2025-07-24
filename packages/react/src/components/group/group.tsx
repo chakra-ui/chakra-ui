@@ -19,7 +19,7 @@ import { cx, dataAttr } from "../../utils"
 const StyledGroup = chakra("div", {
   base: {
     display: "inline-flex",
-    gap: "0.5rem",
+    gap: "var(--group-gap, 0.5rem)",
     isolation: "isolate",
     position: "relative",
     "& [data-group-item]": {
