@@ -113,7 +113,7 @@ export interface BreadcrumbEllipsisProps
 export const BreadcrumbEllipsis = withContext<
   HTMLElement,
   BreadcrumbEllipsisProps
->("span", "ellipsis", {
+>("li", "ellipsis", {
   defaultProps: {
     role: "presentation",
     "aria-hidden": true,
