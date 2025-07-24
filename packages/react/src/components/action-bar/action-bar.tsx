@@ -69,7 +69,9 @@ export const ActionBarPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ActionBarPositionerProps extends HTMLChakraProps<"div"> {}
+export interface ActionBarPositionerProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const ActionBarPositioner = withContext<
   HTMLDivElement,
@@ -79,7 +81,8 @@ export const ActionBarPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarContentProps
-  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps>,
+    UnstyledProp {}
 
 export const ActionBarContent = withContext<
   HTMLDivElement,
@@ -88,7 +91,9 @@ export const ActionBarContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ActionBarSeparatorProps extends HTMLChakraProps<"div"> {}
+export interface ActionBarSeparatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const ActionBarSeparator = withContext<
   HTMLDivElement,
@@ -98,7 +103,8 @@ export const ActionBarSeparator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarSelectionTriggerProps
-  extends HTMLChakraProps<"button"> {}
+  extends HTMLChakraProps<"button">,
+    UnstyledProp {}
 
 export const ActionBarSelectionTrigger = withContext<
   HTMLButtonElement,
@@ -108,7 +114,8 @@ export const ActionBarSelectionTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerProps>,
+    UnstyledProp {}
 
 export const ActionBarCloseTrigger = withContext<
   HTMLButtonElement,

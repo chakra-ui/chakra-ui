@@ -59,7 +59,8 @@ export const SliderPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderTrackProps
-  extends HTMLChakraProps<"div", ArkSlider.TrackBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.TrackBaseProps>,
+    UnstyledProp {}
 
 export const SliderTrack = withContext<HTMLDivElement, SliderTrackProps>(
   ArkSlider.Track,
@@ -70,7 +71,8 @@ export const SliderTrack = withContext<HTMLDivElement, SliderTrackProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderRangeProps
-  extends HTMLChakraProps<"div", ArkSlider.RangeBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.RangeBaseProps>,
+    UnstyledProp {}
 
 export const SliderRange = withContext<HTMLDivElement, SliderRangeProps>(
   ArkSlider.Range,
@@ -81,7 +83,8 @@ export const SliderRange = withContext<HTMLDivElement, SliderRangeProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderThumbProps
-  extends HTMLChakraProps<"div", ArkSlider.ThumbBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ThumbBaseProps>,
+    UnstyledProp {}
 
 export const SliderThumb = withContext<HTMLDivElement, SliderThumbProps>(
   ArkSlider.Thumb,
@@ -92,7 +95,8 @@ export const SliderThumb = withContext<HTMLDivElement, SliderThumbProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderValueTextProps
-  extends HTMLChakraProps<"div", ArkSlider.ValueTextBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ValueTextBaseProps>,
+    UnstyledProp {}
 
 export const SliderValueText = withContext<
   HTMLDivElement,
@@ -102,7 +106,8 @@ export const SliderValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderLabelProps
-  extends HTMLChakraProps<"label", ArkSlider.LabelBaseProps> {}
+  extends HTMLChakraProps<"label", ArkSlider.LabelBaseProps>,
+    UnstyledProp {}
 
 export const SliderLabel = withContext<HTMLLabelElement, SliderLabelProps>(
   ArkSlider.Label,
@@ -113,7 +118,8 @@ export const SliderLabel = withContext<HTMLLabelElement, SliderLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderMarkerGroupProps
-  extends HTMLChakraProps<"div", ArkSlider.MarkerGroupBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.MarkerGroupBaseProps>,
+    UnstyledProp {}
 
 export const SliderMarkerGroup = withContext<
   HTMLDivElement,
@@ -123,7 +129,8 @@ export const SliderMarkerGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderMarkerProps
-  extends HTMLChakraProps<"div", ArkSlider.MarkerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.MarkerBaseProps>,
+    UnstyledProp {}
 
 export const SliderMarker = withContext<HTMLDivElement, SliderMarkerProps>(
   ArkSlider.Marker,
@@ -133,7 +140,9 @@ export const SliderMarker = withContext<HTMLDivElement, SliderMarkerProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SliderMarkerIndicatorProps extends HTMLChakraProps<"div"> {}
+export interface SliderMarkerIndicatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const SliderMarkerIndicator = withContext<
   HTMLDivElement,
@@ -143,7 +152,8 @@ export const SliderMarkerIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderDraggingIndicatorProps
-  extends HTMLChakraProps<"div", ArkSlider.DraggingIndicatorBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.DraggingIndicatorBaseProps>,
+    UnstyledProp {}
 
 export const SliderDraggingIndicator = withContext<
   HTMLDivElement,
@@ -198,7 +208,8 @@ export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderControlProps
-  extends HTMLChakraProps<"div", ArkSlider.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ControlBaseProps>,
+    UnstyledProp {}
 
 export const SliderControl = withContext<HTMLDivElement, SliderControlProps>(
   ArkSlider.Control,

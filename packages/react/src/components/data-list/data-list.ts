@@ -37,7 +37,9 @@ export const DataListPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DataListItemProps extends HTMLChakraProps<"div"> {}
+export interface DataListItemProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const DataListItem = withContext<HTMLDivElement, DataListItemProps>(
   "div",
@@ -46,7 +48,9 @@ export const DataListItem = withContext<HTMLDivElement, DataListItemProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DataListItemLabelProps extends HTMLChakraProps<"dt"> {}
+export interface DataListItemLabelProps
+  extends HTMLChakraProps<"dt">,
+    UnstyledProp {}
 
 export const DataListItemLabel = withContext<
   HTMLDivElement,
@@ -55,7 +59,9 @@ export const DataListItemLabel = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DataListItemValueProps extends HTMLChakraProps<"dd"> {}
+export interface DataListItemValueProps
+  extends HTMLChakraProps<"dd">,
+    UnstyledProp {}
 
 export const DataListItemValue = withContext<
   HTMLDivElement,

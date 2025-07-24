@@ -4,6 +4,7 @@ import type { Assign } from "@ark-ui/react"
 import {
   type HTMLChakraProps,
   type RecipeProps,
+  type UnstyledProp,
   createRecipeContext,
 } from "../../styled-system"
 
@@ -12,7 +13,8 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface MarkProps
-  extends Assign<HTMLChakraProps<"mark">, RecipeProps<"mark">> {}
+  extends Assign<HTMLChakraProps<"mark">, RecipeProps<"mark">>,
+    UnstyledProp {}
 
 export const Mark = withContext<HTMLElement, MarkProps>("mark")
 

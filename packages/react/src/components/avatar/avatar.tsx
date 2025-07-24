@@ -108,7 +108,8 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarImageProps
-  extends HTMLChakraProps<"img", ArkAvatar.ImageProps> {}
+  extends HTMLChakraProps<"img", ArkAvatar.ImageProps>,
+    UnstyledProp {}
 
 export const AvatarImage = withContext<HTMLImageElement, AvatarImageProps>(
   ArkAvatar.Image,

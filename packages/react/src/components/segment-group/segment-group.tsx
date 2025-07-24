@@ -70,7 +70,8 @@ export const SegmentGroupPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemProps
-  extends HTMLChakraProps<"label", ArkSegmentGroup.ItemBaseProps> {}
+  extends HTMLChakraProps<"label", ArkSegmentGroup.ItemBaseProps>,
+    UnstyledProp {}
 
 export const SegmentGroupItem = withContext<
   HTMLLabelElement,
@@ -80,7 +81,8 @@ export const SegmentGroupItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemTextProps
-  extends HTMLChakraProps<"span", ArkSegmentGroup.ItemTextBaseProps> {}
+  extends HTMLChakraProps<"span", ArkSegmentGroup.ItemTextBaseProps>,
+    UnstyledProp {}
 
 export const SegmentGroupItemText = withContext<
   HTMLSpanElement,
@@ -90,7 +92,8 @@ export const SegmentGroupItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupIndicatorProps
-  extends HTMLChakraProps<"div", ArkSegmentGroup.IndicatorBaseProps> {}
+  extends HTMLChakraProps<"div", ArkSegmentGroup.IndicatorBaseProps>,
+    UnstyledProp {}
 
 export const SegmentGroupIndicator = withContext<
   HTMLSpanElement,

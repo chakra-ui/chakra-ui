@@ -40,7 +40,9 @@ export const BlockquotePropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BlockquoteContentProps extends HTMLChakraProps<"blockquote"> {}
+export interface BlockquoteContentProps
+  extends HTMLChakraProps<"blockquote">,
+    UnstyledProp {}
 
 export const BlockquoteContent = withContext<
   HTMLElement,
@@ -49,7 +51,9 @@ export const BlockquoteContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BlockquoteCaptionProps extends HTMLChakraProps<"figcaption"> {}
+export interface BlockquoteCaptionProps
+  extends HTMLChakraProps<"figcaption">,
+    UnstyledProp {}
 
 export const BlockquoteCaption = withContext<
   HTMLElement,
@@ -58,7 +62,9 @@ export const BlockquoteCaption = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BlockquoteIconProps extends HTMLChakraProps<"svg"> {}
+export interface BlockquoteIconProps
+  extends HTMLChakraProps<"svg">,
+    UnstyledProp {}
 
 export const BlockquoteIcon = withContext<SVGElement, BlockquoteIconProps>(
   QuoteIcon,
