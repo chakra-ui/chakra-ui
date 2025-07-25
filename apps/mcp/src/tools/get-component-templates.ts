@@ -18,7 +18,7 @@ export const getComponentTemplatesTool: Tool<{
       )
     }
   },
-  exec(server, { ctx, name, description }) {
+  exec(server, { ctx, name, description, config }) {
     server.tool(
       name,
       description,
@@ -35,9 +35,7 @@ export const getComponentTemplatesTool: Tool<{
           ),
       },
       async ({ category, id }) => {
-        const apiKey = process.env.CHAKRA_PRO_API_KEY
-
-        if (!apiKey) {
+        if (!config.apiKey) {
           return {
             isError: true,
             content: [
@@ -54,7 +52,7 @@ export const getComponentTemplatesTool: Tool<{
         }
 
         try {
-          const json = await fetchProBlock(category, id, apiKey)
+          const json = await fetchProBlock(category, id, config.apiKey)
 
           return {
             content: [

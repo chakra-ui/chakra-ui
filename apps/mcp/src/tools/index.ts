@@ -26,22 +26,20 @@ const baseTool: Tool[] = [
 
 const proTools: Tool[] = [listComponentTemplatesTool, getComponentTemplatesTool]
 
-const getAvailableTools = (): Tool[] => {
-  const hasProApiKey = !!process.env.CHAKRA_PRO_API_KEY
-  return hasProApiKey ? [...baseTool, ...proTools] : baseTool
-}
+export const initializeTools = async (
+  server: McpServer,
+  config: { apiKey?: string },
+) => {
+  const tools = config.apiKey ? [...baseTool, ...proTools] : baseTool
 
-export const tools = getAvailableTools()
-
-export const initializeTools = async (server: McpServer) => {
-  const availableTools = getAvailableTools()
   await Promise.all(
-    availableTools.map(async (tool) => {
+    tools.map(async (tool) => {
       const toolCtx = await tool.ctx?.()
       tool.exec(server, {
         name: tool.name,
         description: tool.description,
         ctx: toolCtx,
+        config,
       })
     }),
   )

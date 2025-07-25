@@ -2,14 +2,14 @@
   "name": "@chakra-ui/react-mcp",
   "description": "The official MCP server for Chakra UI",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  "main": "dist/stdio.js",
   "scripts": {
-    "build": "tsup src/server.ts --format esm && chmod 755 dist/server.js",
-    "dev": "tsup src/server.ts --format esm --watch",
+    "build": "tsup && chmod 755 dist/stdio.js",
+    "dev": "tsup --watch",
     "inspect": "node scripts/inspect.js"
   },
   "bin": {
-    "chakra-mcp": "./dist/server.js"
+    "chakra-mcp": "./dist/stdio.js"
   },
   "keywords": [
     "chakra-ui",
@@ -23,12 +23,15 @@
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.15.0",
+    "express": "^5.1.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
+    "@types/express": "^5.0.3",
     "@types/fs-extra": "^11.0.4",
     "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
     "typescript": "5.8.3"
   }
 }
