@@ -40,7 +40,13 @@ export interface ButtonLoadingProps {
 export interface ButtonBaseProps
   extends RecipeProps<"button">,
     UnstyledProp,
-    ButtonLoadingProps {}
+    ButtonLoadingProps {
+  /**
+   * If true, renders a compact button with reduced padding and font size.
+   * @default false
+   */
+  isCompact?: boolean
+}
 
 export interface ButtonProps
   extends HTMLChakraProps<"button", ButtonBaseProps> {}
@@ -59,6 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       spinner,
       spinnerPlacement,
+      isCompact,
       ...rest
     } = result.props
     return (
@@ -69,7 +76,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-loading={dataAttr(loading)}
         disabled={loading || rest.disabled}
         className={cx(result.className, props.className)}
-        css={[result.styles, props.css]}
+        css={[
+          result.styles,
+          isCompact && {
+            paddingInline: "0.5rem",
+            paddingBlock: "0.25rem",
+            fontSize: "0.875rem",
+            height: "auto",
+          },
+          props.css,
+        ]}
       >
         {!props.asChild && loading ? (
           <Loader
