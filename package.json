@@ -44,7 +44,6 @@
   "dependencies": {
     "@babel/core": "7.28.0",
     "@babel/eslint-parser": "7.28.0",
-    "@chakra-ui/cli": "workspace:*",
     "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.29.5",
     "@changesets/get-release-plan": "4.0.13",
@@ -114,5 +113,8 @@
   "packageManager": "pnpm@10.13.1",
   "engines": {
     "node": ">=20.x"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "3.0.0"
   }
 }

@@ -29,4 +29,12 @@ export { ButtonWithMenu as Menu } from "compositions/examples/button-with-menu"
 export { ButtonWithRadius as Radius } from "compositions/examples/button-with-radius"
 export { ButtonWithResponsiveSize as ResponsiveSize } from "compositions/examples/button-with-responsive-size"
 export { ButtonWithStyleOverride as StyleOverrides } from "compositions/examples/button-with-style-override"
+/**
+ * Compact variant demonstration using boolean prop `compact`.
+ * This is not part of the Chakra Core button.
+ * It's an example of how you can extend the Button recipe in user-land.
+ *
+ * To use:
+ * <Button compact size="sm" colorScheme="green">Compact Button</Button>
+ */
 export { ButtonWithCompact as Compact } from "compositions/examples/button-with-compact"

@@ -111,6 +111,14 @@ export const buttonRecipe = defineRecipe({
         },
       },
     },
+    compact: {
+      true: {
+        paddingInline: "0.5rem",
+        paddingBlock: "0.25rem",
+        fontSize: "0.875rem",
+        height: "auto",
+      },
+    },
 
     variant: {
       solid: {

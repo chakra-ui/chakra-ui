@@ -40,13 +40,7 @@ export interface ButtonLoadingProps {
 export interface ButtonBaseProps
   extends RecipeProps<"button">,
     UnstyledProp,
-    ButtonLoadingProps {
-  /**
-   * If true, renders a compact button with reduced padding and font size.
-   * @default false
-   */
-  isCompact?: boolean
-}
+    ButtonLoadingProps {}
 
 export interface ButtonProps
   extends HTMLChakraProps<"button", ButtonBaseProps> {}
