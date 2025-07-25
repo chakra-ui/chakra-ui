@@ -9,6 +9,9 @@ export const getComponentTemplatesTool: Tool<{
   name: "get_component_templates",
   description:
     "Retrieve well designed, fully responsive, and accessible component templates.",
+  disabled(config) {
+    return !config.apiKey
+  },
   async ctx() {
     try {
       return await getProBlockContext()

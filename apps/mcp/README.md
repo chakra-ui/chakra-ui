@@ -42,6 +42,21 @@ examples, migration patterns, and premium templates.
 }
 ```
 
+To use the remote mcp server, you can use the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "url": "https://mcp.chakra-ui.com/sse",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
 ### Environment Variables
 
 - `CHAKRA_PRO_API_KEY` (optional) - For accessing premium templates and blocks

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsup && chmod 755 dist/stdio.js",
     "dev": "tsup --watch",
-    "inspect": "node scripts/inspect.js"
+    "inspect": "node scripts/inspect.js",
+    "serve": "tsx --watch src/http.ts"
   },
   "bin": {
     "chakra-mcp": "./dist/stdio.js"

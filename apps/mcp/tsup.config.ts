@@ -5,4 +5,5 @@ export default defineConfig({
   format: ["esm"],
   treeshake: false,
   splitting: false,
+  clean: true,
 })

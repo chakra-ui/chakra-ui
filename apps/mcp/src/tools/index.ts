@@ -12,7 +12,7 @@ import { listComponentsTool } from "./list-components.js"
 import { themeCustomizationTool } from "./theme-customization.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
-const baseTool: Tool[] = [
+const allTools: Tool[] = [
   getComponentExampleTool,
   getComponentPropsTool,
   getLayerStylesTool,
@@ -22,19 +22,25 @@ const baseTool: Tool[] = [
   listComponentsTool,
   themeCustomizationTool,
   v2ToV3MigrationTool,
+  listComponentTemplatesTool,
+  getComponentTemplatesTool,
 ]
 
-const proTools: Tool[] = [listComponentTemplatesTool, getComponentTemplatesTool]
+const registeredToolCache = new Map<string, Tool>()
 
 export const initializeTools = async (
   server: McpServer,
   config: { apiKey?: string },
 ) => {
-  const tools = config.apiKey ? [...baseTool, ...proTools] : baseTool
+  const enabledTools = allTools.filter((tool) => !tool.disabled?.(config))
 
   await Promise.all(
-    tools.map(async (tool) => {
+    enabledTools.map(async (tool) => {
       const toolCtx = await tool.ctx?.()
+      if (registeredToolCache.has(tool.name)) {
+        return
+      }
+      registeredToolCache.set(tool.name, tool)
       tool.exec(server, {
         name: tool.name,
         description: tool.description,
