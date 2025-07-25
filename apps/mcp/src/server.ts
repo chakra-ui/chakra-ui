@@ -4,6 +4,7 @@ export const server = new McpServer({
   name: "chakra-ui",
   version: "1.0.0",
   capabilities: {
+    prompts: {},
     resources: {},
     tools: {},
   },
