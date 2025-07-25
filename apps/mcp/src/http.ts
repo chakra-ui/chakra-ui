@@ -119,18 +119,11 @@ export async function main() {
     }
   })
 
-  app.listen(3000, () => {
-    console.info("Chakra MCP SSE Server running on http://localhost:3000")
+  const port = process.env.PORT ? Number(process.env.PORT) : 3000
+
+  app.listen(port, () => {
+    console.info(`Chakra MCP SSE Server running on http://localhost:${port}`)
   })
 }
 
-if (typeof require !== "undefined" && require.main === module) {
-  main().catch(console.error)
-}
-
-if (
-  import.meta.url === process.argv[1] ||
-  import.meta.url === `file://${process.argv[1]}`
-) {
-  main().catch(console.error)
-}
+main().catch(console.error)
