@@ -1,0 +1,250 @@
+---
+title: TreeView
+description:
+  Used to display hierarchical data structures in an expandable tree format
+links:
+  source: components/tree-view
+  storybook: components-treeview--basic
+  recipe: tree-view
+  ark: https://ark-ui.com/react/docs/components/tree-view
+---
+
+<ExampleTabs name="tree-view-basic" />
+
+## Usage
+
+```tsx
+import { TreeView } from "@chakra-ui/react"
+```
+
+```tsx
+<TreeView.Root>
+  <TreeView.Label />
+  <TreeView.Tree>
+    <TreeView.Branch>
+      <TreeView.BranchControl>
+        <TreeView.BranchIndicator />
+        <TreeView.BranchText />
+      </TreeView.BranchControl>
+      <TreeView.BranchContent>
+        <TreeView.BranchIndentGuide />
+        <TreeView.Item />
+      </TreeView.BranchContent>
+    </TreeView.Branch>
+    <TreeView.Item />
+  </TreeView.Tree>
+</TreeView.Root>
+```
+
+## Shortcuts
+
+### `TreeView.Node`
+
+This component is a helper to manage the recursive rendering of the branch and
+leaf nodes.
+
+```tsx
+<TreeView.Node
+  showIndentGuide
+  render={({ node, nodeState }) =>
+    nodeState.isBranch ? (
+      <TreeView.BranchControl>
+        <TreeView.BranchText>{node.name}</TreeView.BranchText>
+      </TreeView.BranchControl>
+    ) : (
+      <TreeView.Item>
+        <TreeView.ItemText>{node.name}</TreeView.ItemText>
+      </TreeView.Item>
+    )
+  }
+/>
+```
+
+is equivalent to:
+
+```tsx
+const TreeNode = (props: TreeView.NodeProviderProps<Node>) => {
+  const { node, indexPath } = props
+  return (
+    <TreeView.NodeProvider key={node.id} node={node} indexPath={indexPath}>
+      {node.children ? (
+        <TreeView.Branch>
+          <TreeView.BranchControl>
+            <TreeView.BranchText>{node.name}</TreeView.BranchText>
+          </TreeView.BranchControl>
+          <TreeView.BranchContent>
+            <TreeView.BranchIndentGuide />
+            {node.children.map((child, index) => (
+              <TreeNode
+                key={child.id}
+                node={child}
+                indexPath={[...indexPath, index]}
+              />
+            ))}
+          </TreeView.BranchContent>
+        </TreeView.Branch>
+      ) : (
+        <TreeView.Item>
+          <TreeView.ItemText>{node.name}</TreeView.ItemText>
+        </TreeView.Item>
+      )}
+    </TreeView.NodeProvider>
+  )
+}
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the tree view.
+
+<ExampleTabs name="tree-view-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the variant of the tree view.
+
+<ExampleTabs name="tree-view-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color palette of the tree view.
+
+<ExampleTabs name="tree-view-with-colors" />
+
+### Disabled Node
+
+Adding the `disabled` prop to a node's property will disable the node and
+prevent interaction.
+
+<ExampleTabs name="tree-view-disabled-node" />
+
+### Controlled Expansion
+
+Use the `expandedValue` and `onExpandedChange` props to programmatically control
+node expansion behavior.
+
+<ExampleTabs name="tree-view-controlled-expansion" />
+
+### Explicit Expand
+
+Render the `TreeView.BranchTrigger` to manually control node expansion behavior.
+
+> You might need to set `role="none"` on the `TreeView.BranchControl` to avoid
+> accessibility issues.
+
+<ExampleTabs name="tree-view-explicit-expand" />
+
+### Expand Icon
+
+Use the `nodeState.expanded` prop to swap the rendered icon on the branch when
+it's expanded or collapsed.
+
+<ExampleTabs name="tree-view-expand-icon" />
+
+### Remove Indentation
+
+Set the css variable `--tree-indentation` to `0px` to remove the indentation of
+the tree view.
+
+<ExampleTabs name="tree-view-remove-indentation" />
+
+### Async Loading
+
+Lazy loading is a feature that allows the tree view to load children of a node
+on demand (or async). This helps to improve the initial load time and memory
+usage.
+
+To use this, you need to provide the following:
+
+- `loadChildren` — A function that is used to load the children of a node.
+- `onLoadChildrenComplete` — A callback that is called when the children of a
+  node are loaded. Used to update the tree collection.
+- `childrenCount` — A number that indicates the number of children of a branch
+  node.
+
+<ExampleTabs name="tree-view-async" />
+
+### Filtering
+
+Filtering is useful when you have a large tree and you want to filter the nodes
+to only show the ones that match the search query.
+
+Here's an example that composes the `filter` method from the `TreeCollection`
+and `useFilter` hook to filter the nodes.
+
+<ExampleTabs name="tree-view-with-filter" />
+
+### Collapse Animation
+
+Use the `animateContent` prop to animate the tree view content expand/collapse
+state.
+
+<ExampleTabs name="tree-view-collapse-animation" />
+
+### Expand/Collapse All
+
+Provide controls to expand or collapse all nodes at once.
+
+<ExampleTabs name="tree-view-expand-collapse-all" />
+
+### Store
+
+Use the `useTreeView` hook to create the tree view store and pass it to the
+`TreeView.RootProvider` component. This allows you to have maximum control over
+the tree view programmatically.
+
+<ExampleTabs name="tree-view-with-store" />
+
+### Links
+
+Render the tree items as links by leveraging the `asChild` prop on the
+`TreeView.Item` component.
+
+<ExampleTabs name="tree-view-with-links" />
+
+### Multi Select
+
+Add the `selectionMode="multiple"` prop to the `TreeView.Root` component to
+enable multi-select functionality.
+
+:::info
+
+This mode requires a modifier key to be pressed to select multiple items.
+
+- Hold `Ctrl` or `⌘` on macOS and click the items.
+- Click an item, then hold `Shift` while clicking on another item.
+
+:::
+
+<ExampleTabs name="tree-view-multi-select" />
+
+### Checkbox Tree
+
+Add checkboxes to tree nodes for selection functionality.
+
+<ExampleTabs name="tree-view-checkbox" />
+
+### Mutation
+
+Here's an example of how to design add/remove nodes in the tree view.
+
+<ExampleTabs name="tree-view-mutation" />
+
+### Custom Icon
+
+Here's an example of how to render a custom icon for the tree view based on its
+data.
+
+<ExampleTabs name="tree-view-custom-icon" />
+
+## Props
+
+### Root
+
+<PropTable component="TreeView" part="Root" />
+
+### Node
+
+<PropTable component="TreeView" part="Node" />

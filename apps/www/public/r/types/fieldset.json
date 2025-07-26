@@ -1,0 +1,112 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Indicates whether the fieldset is invalid."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    },
+    "element": "HTMLFieldSetElement"
+  },
+  "ErrorText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "HelperText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Legend": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLegendElement"
+  },
+  "Content": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "{ refs: { rootRef: RefObject<HTMLFieldSetElement | null>; }; disabled: boolean; invalid: boolean; getRootProps: () => Omit<DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement>, \"ref\">; getLegendProps: () => Omit<...>; getHelperTextProps: () => Omit<...>; getErrorTextProps: () => Omit<....",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLFieldSetElement"
+  }
+}

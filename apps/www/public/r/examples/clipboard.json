@@ -1,0 +1,61 @@
+{
+  "name": "clipboard",
+  "file": "compositions/ui/clipboard",
+  "snippet": "import type { ButtonProps, InputProps } from \"@chakra-ui/react\"\nimport {\n  Button,\n  Clipboard as ChakraClipboard,\n  IconButton,\n  Input,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuCheck, LuClipboard, LuLink } from \"react-icons/lu\"\n\nconst ClipboardIcon = React.forwardRef<\n  HTMLDivElement,\n  ChakraClipboard.IndicatorProps\n>(function ClipboardIcon(props, ref) {\n  return (\n    <ChakraClipboard.Indicator copied={<LuCheck />} {...props} ref={ref}>\n      <LuClipboard />\n    </ChakraClipboard.Indicator>\n  )\n})\n\nconst ClipboardCopyText = React.forwardRef<\n  HTMLDivElement,\n  ChakraClipboard.IndicatorProps\n>(function ClipboardCopyText(props, ref) {\n  return (\n    <ChakraClipboard.Indicator copied=\"Copied\" {...props} ref={ref}>\n      Copy\n    </ChakraClipboard.Indicator>\n  )\n})\n\nexport const ClipboardLabel = React.forwardRef<\n  HTMLLabelElement,\n  ChakraClipboard.LabelProps\n>(function ClipboardLabel(props, ref) {\n  return (\n    <ChakraClipboard.Label\n      textStyle=\"sm\"\n      fontWeight=\"medium\"\n      display=\"inline-block\"\n      mb=\"1\"\n      {...props}\n      ref={ref}\n    />\n  )\n})\n\nexport const ClipboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  function ClipboardButton(props, ref) {\n    return (\n      <ChakraClipboard.Trigger asChild>\n        <Button ref={ref} size=\"sm\" variant=\"surface\" {...props}>\n          <ClipboardIcon />\n          <ClipboardCopyText />\n        </Button>\n      </ChakraClipboard.Trigger>\n    )\n  },\n)\n\nexport const ClipboardLink = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  function ClipboardLink(props, ref) {\n    return (\n      <ChakraClipboard.Trigger asChild>\n        <Button\n          unstyled\n          variant=\"plain\"\n          size=\"xs\"\n          display=\"inline-flex\"\n          alignItems=\"center\"\n          gap=\"2\"\n          ref={ref}\n          {...props}\n        >\n          <LuLink />\n          <ClipboardCopyText />\n        </Button>\n      </ChakraClipboard.Trigger>\n    )\n  },\n)\n\nexport const ClipboardIconButton = React.forwardRef<\n  HTMLButtonElement,\n  ButtonProps\n>(function ClipboardIconButton(props, ref) {\n  return (\n    <ChakraClipboard.Trigger asChild>\n      <IconButton ref={ref} size=\"xs\" variant=\"subtle\" {...props}>\n        <ClipboardIcon />\n        <ClipboardCopyText srOnly />\n      </IconButton>\n    </ChakraClipboard.Trigger>\n  )\n})\n\nexport const ClipboardInput = React.forwardRef<HTMLInputElement, InputProps>(\n  function ClipboardInputElement(props, ref) {\n    return (\n      <ChakraClipboard.Input asChild>\n        <Input ref={ref} {...props} />\n      </ChakraClipboard.Input>\n    )\n  },\n)\n\nexport const ClipboardRoot = ChakraClipboard.Root\n",
+  "examples": [
+    {
+      "name": "clipboard-basic",
+      "content": "export const ClipboardBasic = () => {\n  return (\n    <Clipboard.Root value=\"https://chakra-ui.com\">\n      <Clipboard.Trigger asChild>\n        <IconButton variant=\"surface\" size=\"xs\">\n          <Clipboard.Indicator />\n        </IconButton>\n      </Clipboard.Trigger>\n    </Clipboard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Clipboard, IconButton } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "clipboard-with-button",
+      "content": "export const ClipboardWithButton = () => {\n  return (\n    <Clipboard.Root value=\"https://chakra-ui.com\">\n      <Clipboard.Trigger asChild>\n        <Button variant=\"surface\" size=\"sm\">\n          <Clipboard.Indicator />\n          <Clipboard.CopyText />\n        </Button>\n      </Clipboard.Trigger>\n    </Clipboard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Clipboard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "clipboard-with-input",
+      "content": "export const ClipboardWithInput = () => {\n  return (\n    <Clipboard.Root maxW=\"300px\" value=\"https://chakra-ui.com\">\n      <Clipboard.Label textStyle=\"label\">Document Link</Clipboard.Label>\n      <InputGroup endElement={<ClipboardIconButton />}>\n        <Clipboard.Input asChild>\n          <Input />\n        </Clipboard.Input>\n      </InputGroup>\n    </Clipboard.Root>\n  )\n}\n\nconst ClipboardIconButton = () => {\n  return (\n    <Clipboard.Trigger asChild>\n      <IconButton variant=\"surface\" size=\"xs\" me=\"-2\">\n        <Clipboard.Indicator />\n      </IconButton>\n    </Clipboard.Trigger>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Clipboard, IconButton, Input, InputGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "clipboard-with-link",
+      "content": "export const ClipboardWithLink = () => {\n  return (\n    <Clipboard.Root value=\"https://chakra-ui.com\">\n      <Clipboard.Trigger asChild>\n        <Link as=\"span\" color=\"blue.fg\" textStyle=\"sm\">\n          <Clipboard.Indicator />\n          <Clipboard.ValueText />\n        </Link>\n      </Clipboard.Trigger>\n    </Clipboard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Clipboard, Link } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "clipboard-with-store",
+      "content": "\"use client\"\nexport const ClipboardWithStore = () => {\n  const clipboard = useClipboard({ value: \"https://chakra-ui.com\" })\n  return (\n    <Button variant=\"surface\" size=\"sm\" onClick={clipboard.copy}>\n      {clipboard.copied ? \"Copied\" : \"Copy\"}\n    </Button>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, useClipboard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "clipboard-with-timeout",
+      "content": "export const ClipboardWithTimeout = () => {\n  return (\n    <Clipboard.Root value=\"https://chakra-ui.com\" timeout={1000}>\n      <Clipboard.Trigger asChild>\n        <Button variant=\"surface\" size=\"sm\">\n          <Clipboard.Indicator />\n          <Clipboard.CopyText />\n        </Button>\n      </Clipboard.Trigger>\n    </Clipboard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Clipboard } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Clipboard } from \"@chakra-ui/react\""
+    }
+  ]
+}

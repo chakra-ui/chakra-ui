@@ -1,10 +1,10 @@
 import { docs } from "@/.velite"
-import { getBaseUrl } from "../shared"
+import { BASE_URL } from "@/lib/constants"
 
 export const dynamic = "force-static"
 
 export async function GET() {
-  const baseUrl = `${getBaseUrl()}/llms-component`
+  const baseUrl = `${BASE_URL}/llms-component`
   const components = new Set<{ id: string; path: string; fullPath: string }>()
 
   docs

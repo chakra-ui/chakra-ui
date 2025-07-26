@@ -1,0 +1,294 @@
+{
+  "name": "line-chart",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "line-chart-axes-label",
+      "content": "\"use client\"\nexport const LineChartAxesLabel = () => {\n  const chart = useChart({\n    data: [\n      { Customers: 10, month: \"January\" },\n      { Customers: 95, month: \"February\" },\n      { Customers: 87, month: \"March\" },\n      { Customers: 88, month: \"May\" },\n      { Customers: 65, month: \"June\" },\n      { Customers: 90, month: \"August\" },\n    ],\n    series: [{ name: \"Customers\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n          label={{ value: \"Month\", position: \"bottom\" }}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n          label={{ value: \"Customers\", position: \"left\", angle: -90 }}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-basic",
+      "content": "\"use client\"\nexport const LineChartBasic = () => {\n  const chart = useChart({\n    data: [\n      { sale: 10, month: \"January\" },\n      { sale: 95, month: \"February\" },\n      { sale: 87, month: \"March\" },\n      { sale: 88, month: \"May\" },\n      { sale: 65, month: \"June\" },\n      { sale: 90, month: \"August\" },\n    ],\n    series: [{ name: \"sale\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-biaxial",
+      "content": "\"use client\"\nexport const LineChartBiaxial = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 20, month: \"January\" },\n      { windows: 165, mac: 45, month: \"February\" },\n      { windows: 190, mac: 37, month: \"March\" },\n      { windows: 195, mac: 28, month: \"May\" },\n      { windows: 182, mac: 48, month: \"June\" },\n      { windows: 175, mac: 30, month: \"August\" },\n      { windows: 180, mac: 26, month: \"October\" },\n      { windows: 185, mac: 41, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", yAxisId: \"left\" },\n      { name: \"mac\", color: \"purple.solid\", yAxisId: \"right\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart\n        data={chart.data}\n        margin={{ left: 20, bottom: 20, right: 20, top: 20 }}\n      >\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        >\n          <Label value=\"Month\" position=\"bottom\" />\n        </XAxis>\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          yAxisId=\"left\"\n          dataKey={chart.key(\"windows\")}\n          stroke={chart.color(\"border\")}\n        >\n          <Label value=\"Windows\" position=\"left\" angle={-90} offset={-10} />\n        </YAxis>\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          yAxisId=\"right\"\n          orientation=\"right\"\n          dataKey={chart.key(\"mac\")}\n          stroke={chart.color(\"border\")}\n        >\n          <Label value=\"Mac\" position=\"right\" angle={90} offset={-10} />\n        </YAxis>\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip />}\n        />\n        <Legend\n          verticalAlign=\"top\"\n          align=\"right\"\n          wrapperStyle={{ marginTop: -20, marginRight: 20 }}\n          content={<Chart.Legend />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            yAxisId={item.yAxisId}\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  Label,\n  Legend,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-composition",
+      "content": "\"use client\"\nexport const LineChartComposition = () => {\n  const chart = useChart({\n    data: [\n      { facebookAds: 20, organic: 20, googleAds: 45, month: \"January\" },\n      { facebookAds: 35, organic: 92, googleAds: 52, month: \"February\" },\n      { facebookAds: 48, organic: 78, googleAds: 20, month: \"March\" },\n      { facebookAds: 65, organic: 82, googleAds: 75, month: \"May\" },\n      { facebookAds: 72, organic: 95, googleAds: 40, month: \"June\" },\n      { facebookAds: 85, organic: 20, googleAds: 95, month: \"August\" },\n    ],\n    series: [\n      { name: \"facebookAds\", color: \"blue.solid\", label: \"Facebook Ads\" },\n      { name: \"organic\", color: \"green.solid\", label: \"Organic\" },\n      { name: \"googleAds\", color: \"pink.solid\", label: \"Google Ads\" },\n    ],\n  })\n\n  return (\n    <Card.Root maxW=\"lg\">\n      <Card.Header>\n        <Card.Title>Customers by channel</Card.Title>\n      </Card.Header>\n      <Card.Body>\n        <Chart.Root maxH=\"8rem\" chart={chart}>\n          <LineChart data={chart.data}>\n            <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n            <XAxis\n              axisLine={false}\n              dataKey={chart.key(\"month\")}\n              tickFormatter={(value) => value.slice(0, 3)}\n              ticks={[\n                chart.data[0].month,\n                chart.data[chart.data.length - 1].month,\n              ]}\n              stroke={chart.color(\"border\")}\n            />\n            {chart.series.map((item) => (\n              <Line\n                key={item.name}\n                isAnimationActive={false}\n                dataKey={chart.key(item.name)}\n                stroke={chart.color(item.color)}\n                strokeWidth={2}\n                dot={false}\n              />\n            ))}\n          </LineChart>\n        </Chart.Root>\n\n        <HStack wrap=\"wrap\" gap=\"2\">\n          {chart.series.map((item) => (\n            <Stat.Root key={item.name} size=\"sm\">\n              <Stat.Label textStyle=\"xs\">\n                <ColorSwatch boxSize=\"2\" value={chart.color(item.color)} />\n                {item.label}\n              </Stat.Label>\n              <Stat.ValueText fontWeight=\"medium\">\n                {item.name ? chart.getTotal(item.name) : \"-\"}\n              </Stat.ValueText>\n            </Stat.Root>\n          ))}\n        </HStack>\n      </Card.Body>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Card, ColorSwatch, HStack, Stat } from \"@chakra-ui/react\"",
+        "import { CartesianGrid, Line, LineChart, XAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-custom-tooltip",
+      "content": "\"use client\"\n\nfunction CustomTooltip(props: TooltipProps<string, string>) {\n  const { active, payload, label } = props\n  if (!active || !payload || payload.length === 0) return null\n  return (\n    <Box w=\"40\" rounded=\"sm\" bg=\"teal.subtle\" p=\"3\">\n      <HStack>\n        <span>{label} Customers</span>\n      </HStack>\n      <Stack>\n        {payload.map((item) => (\n          <HStack key={item.name}>\n            <Box boxSize=\"2\" bg={item.color} />\n            <Text textStyle=\"xl\">{item.value}</Text>\n          </HStack>\n        ))}\n      </Stack>\n    </Box>\n  )\n}\n\nexport const LineChartCustomTooltip = () => {\n  const chart = useChart({\n    data: [\n      { Customers: 10, month: \"January\" },\n      { Customers: 95, month: \"February\" },\n      { Customers: 87, month: \"March\" },\n      { Customers: 88, month: \"May\" },\n      { Customers: 65, month: \"June\" },\n      { Customers: 90, month: \"August\" },\n    ],\n    series: [{ name: \"Customers\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n          label={{ value: \"Month\", position: \"bottom\" }}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n          label={{ value: \"Customers\", position: \"left\", angle: -90 }}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<CustomTooltip />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { Box, HStack, Stack, Text } from \"@chakra-ui/react\"",
+        "import type { TooltipProps } from \"recharts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-legend-interaction",
+      "content": "\"use client\"\nexport const LineChartLegendInteraction = () => {\n  const chart = useChart({\n    data: [\n      { mac: 10, linux: 120, month: \"January\" },\n      { mac: 95, linux: 110, month: \"February\" },\n      { mac: 87, linux: 125, month: \"March\" },\n      { mac: 88, linux: 30, month: \"May\" },\n      { mac: 98, linux: 122, month: \"June\" },\n      { mac: 90, linux: 15, month: \"August\" },\n    ],\n    series: [\n      { name: \"mac\", color: \"teal.solid\" },\n      { name: \"linux\", color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <Container>\n      <Chart.Root maxH=\"sm\" chart={chart}>\n        <LineChart data={chart.data}>\n          <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n          <XAxis\n            axisLine={false}\n            dataKey={chart.key(\"month\")}\n            tickFormatter={(value) => value.slice(0, 3)}\n            stroke={chart.color(\"border\")}\n          />\n          <YAxis\n            axisLine={false}\n            tickLine={false}\n            tickMargin={10}\n            stroke={chart.color(\"border\")}\n          />\n          <Tooltip\n            animationDuration={100}\n            cursor={false}\n            content={<Chart.Tooltip />}\n          />\n          <Legend content={<Chart.Legend interaction=\"hover\" />} />\n          {chart.series.map((item) => (\n            <Line\n              key={item.name}\n              isAnimationActive={false}\n              dataKey={chart.key(item.name)}\n              stroke={chart.color(item.color)}\n              strokeWidth={2}\n              fill={chart.color(\"bg\")}\n              opacity={chart.getSeriesOpacity(item.name)}\n            />\n          ))}\n        </LineChart>\n      </Chart.Root>\n    </Container>\n  )\n}\n\nconst Container = (props: React.PropsWithChildren) => {\n  const { children } = props\n  return (\n    <VStack pos=\"relative\" gap=\"4\">\n      {children}\n      <HStack\n        textStyle=\"xs\"\n        bottom=\"1\"\n        color=\"teal.fg\"\n        animation=\"slide-to-top 1s infinite\"\n      >\n        Hover on \"mac\" <LuArrowUp />\n      </HStack>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { HStack, VStack } from \"@chakra-ui/react\"",
+        "import { LuArrowUp } from \"react-icons/lu\"",
+        "import {\n  CartesianGrid,\n  Legend,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "react-icons",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-multiple",
+      "content": "\"use client\"\nexport const LineChartMultiple = () => {\n  const chart = useChart({\n    data: [\n      { mac: 10, linux: 120, month: \"January\" },\n      { mac: 95, linux: 110, month: \"February\" },\n      { mac: 87, linux: 125, month: \"March\" },\n      { mac: 88, linux: 30, month: \"May\" },\n      { mac: 98, linux: 122, month: \"June\" },\n      { mac: 90, linux: 15, month: \"August\" },\n    ],\n    series: [\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            fill={chart.color(item.color)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  Legend,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-no-dots",
+      "content": "\"use client\"\nexport const LineChartNoDots = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"purple.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          dataKey={chart.key(\"windows\")}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip />}\n        />\n        <Legend verticalAlign=\"top\" align=\"right\" content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            strokeWidth={2}\n            stroke={chart.color(item.color)}\n            dot={false}\n            activeDot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  Legend,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-start-end-tick",
+      "content": "\"use client\"\nexport const LineChartStartEndTick = () => {\n  const chart = useChart({\n    data: [\n      { sale: 10, month: \"January\" },\n      { sale: 95, month: \"February\" },\n      { sale: 87, month: \"March\" },\n      { sale: 88, month: \"May\" },\n      { sale: 65, month: \"June\" },\n      { sale: 90, month: \"August\" },\n    ],\n    series: [{ name: \"sale\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n          ticks={[chart.data[0].month, chart.data[chart.data.length - 1].month]}\n          label={{\n            value: \"[January - August] Customers\",\n            position: \"bottom\",\n          }}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n        />\n        {chart.series.map((item) => (\n          <Line\n            type=\"natural\"\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-value-formatter",
+      "content": "\"use client\"\nexport const LineChartValueFormatter = () => {\n  const chart = useChart({\n    data: [\n      { revenue: 10000, month: \"January\" },\n      { revenue: 95000, month: \"February\" },\n      { revenue: 87000, month: \"March\" },\n      { revenue: 88000, month: \"May\" },\n      { revenue: 65000, month: \"June\" },\n      { revenue: 90000, month: \"August\" },\n    ],\n    series: [{ name: \"revenue\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n          tickFormatter={chart.formatNumber({\n            style: \"currency\",\n            currency: \"USD\",\n            notation: \"compact\",\n          })}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-custom-dot",
+      "content": "\"use client\"\nexport const LineChartWithCustomDot = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n          domain={[160, \"dataMax + 10\"]}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            connectNulls\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            dot={{ strokeDasharray: \"0\", r: 5, stroke: \"white\" }}\n            activeDot={{ r: 6, stroke: chart.color(\"teal.solid\") }}\n            strokeWidth={4}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-dashed",
+      "content": "\"use client\"\nexport const LineChartWithDashed = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 165, month: \"January\" },\n      { windows: 165, mac: 155, month: \"February\" },\n      { windows: 190, mac: 175, month: \"March\" },\n      { windows: 195, mac: 180, month: \"May\" },\n      { windows: 182, mac: 170, month: \"June\" },\n      { windows: 175, mac: 160, month: \"August\" },\n      { windows: 180, mac: 165, month: \"October\" },\n      { windows: 185, mac: 170, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\", strokeDasharray: \"5 5\" },\n      { name: \"mac\", color: \"purple.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          dataKey={chart.key(\"windows\")}\n          stroke={chart.color(\"border\")}\n          domain={[140, \"dataMax\"]}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            dot={{ strokeDasharray: \"0\" }}\n            strokeWidth={2}\n            strokeDasharray={item.strokeDasharray}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-gradient",
+      "content": "\"use client\"\nexport const LineChartWithGradient = () => {\n  const chart = useChart({\n    data: [\n      { temp: -20, month: \"January\" },\n      { temp: -10, month: \"February\" },\n      { temp: 0, month: \"March\" },\n      { temp: 10, month: \"May\" },\n      { temp: 20, month: \"June\" },\n      { temp: 4, month: \"August\" },\n      { temp: 40, month: \"October\" },\n      { temp: -10, month: \"November\" },\n    ],\n    series: [{ name: \"temp\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          dataKey={chart.key(\"temp\")}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideIndicator />}\n        />\n        <defs>\n          <Chart.Gradient\n            id=\"lc-gradient\"\n            stops={[\n              { offset: \"0%\", color: \"teal.solid\" },\n              { offset: \"20%\", color: \"purple.solid\" },\n              { offset: \"40%\", color: \"orange.solid\" },\n              { offset: \"75%\", color: \"green.solid\" },\n              { offset: \"100%\", color: \"red.solid\" },\n            ]}\n          />\n        </defs>\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            type=\"natural\"\n            dataKey={chart.key(item.name)}\n            fill=\"none\"\n            stroke=\"url(#lc-gradient)\"\n            r={2}\n            dot={{\n              stroke: chart.color(\"bg\"),\n              fill: chart.color(\"fg\"),\n              strokeWidth: 1,\n            }}\n            activeDot={{\n              stroke: chart.color(\"bg\"),\n              fill: chart.color(\"fg\"),\n              strokeWidth: 1,\n              r: 4,\n            }}\n            strokeWidth={4}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-nulls",
+      "content": "\"use client\"\nexport const LineChartWithNulls = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: null, month: \"February\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: null, month: \"June\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n          domain={[140, \"dataMax\"]}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            connectNulls\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            dot={{ strokeDasharray: \"0\" }}\n            strokeWidth={2}\n            strokeDasharray={item.strokeDasharray}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-point-label",
+      "content": "\"use client\"\nexport const LineChartWithPointLabel = () => {\n  const chart = useChart({\n    data: [\n      { name: \"Jan\", uv: 400 },\n      { name: \"Feb\", uv: 300 },\n      { name: \"Mar\", uv: 200 },\n      { name: \"Apr\", uv: 278 },\n      { name: \"May\", uv: 189 },\n      { name: \"Jun\", uv: 239 },\n      { name: \"Jul\", uv: 349 },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"md\" chart={chart}>\n      <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"name\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        <Line\n          isAnimationActive={false}\n          dataKey={chart.key(\"uv\")}\n          fill={chart.color(\"teal.solid\")}\n          stroke={chart.color(\"teal.solid\")}\n          strokeWidth={2}\n        >\n          <LabelList\n            dataKey={chart.key(\"uv\")}\n            position=\"right\"\n            offset={10}\n            style={{\n              fontWeight: \"600\",\n              fill: chart.color(\"fg\"),\n            }}\n          />\n        </Line>\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  LabelList,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-reference-point",
+      "content": "\"use client\"\nexport const LineChartWithReferencePoint = () => {\n  const chart = useChart({\n    data: [\n      { thisYear: 10, lastYear: 4, month: \"January\" },\n      { thisYear: 95, lastYear: 50, month: \"February\" },\n      { thisYear: 87, lastYear: 59, month: \"March\" },\n      { thisYear: 88, lastYear: 60, month: \"May\" },\n      { thisYear: 65, lastYear: 50, month: \"June\" },\n      { thisYear: 90, lastYear: 50, month: \"August\" },\n      { thisYear: null, lastYear: 89, month: \"October\" },\n      { thisYear: null, lastYear: 120, month: \"November\" },\n      { thisYear: null, lastYear: 80, month: \"December\" },\n    ],\n    series: [\n      { name: \"thisYear\", color: \"teal.solid\", label: \"This Year\" },\n      { name: \"lastYear\", color: \"gray.emphasized\", label: \"Last Year\" },\n    ],\n  })\n\n  const latest = chart.data.findLast((item) => item.thisYear !== null)\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        <ReferenceDot\n          x={latest?.month}\n          y={latest?.thisYear}\n          r={6}\n          fill={chart.color(\"teal.solid\")}\n          stroke={chart.color(\"bg\")}\n        />\n        <ReferenceLine\n          y={110}\n          stroke={chart.color(\"purple.fg\")}\n          strokeDasharray=\"5 5\"\n          label={{\n            value: \"Target\",\n            position: \"top\",\n            fill: chart.color(\"purple.fg\"),\n            offset: 10,\n          }}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n            dot={false}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  Legend,\n  Line,\n  LineChart,\n  ReferenceDot,\n  ReferenceLine,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-series-label",
+      "content": "\"use client\"\nexport const LineChartWithSeriesLabel = () => {\n  const chart = useChart({\n    data: [\n      { mac: 10, linux: 120, month: \"January\" },\n      { mac: 95, linux: 110, month: \"February\" },\n      { mac: 87, linux: 125, month: \"March\" },\n      { mac: 88, linux: 30, month: \"May\" },\n      { mac: 98, linux: 122, month: \"June\" },\n      { mac: 90, linux: 15, month: \"August\" },\n    ],\n    series: [\n      { name: \"mac\", label: \"Mac sales\", color: \"purple.solid\" },\n      { name: \"linux\", label: \"Linux sales\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid stroke={chart.color(\"border\")} vertical={false} />\n        <XAxis\n          axisLine={false}\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          axisLine={false}\n          tickLine={false}\n          tickMargin={10}\n          stroke={chart.color(\"border\")}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={false}\n          content={<Chart.Tooltip />}\n        />\n        <Legend content={<Chart.Legend />} />\n        {chart.series.map((item) => (\n          <Line\n            key={item.name}\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            strokeWidth={2}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import {\n  CartesianGrid,\n  Legend,\n  Line,\n  LineChart,\n  Tooltip,\n  XAxis,\n  YAxis,\n} from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-stroke-width",
+      "content": "\"use client\"\nexport const LineChartWithStrokeWidth = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n          domain={[140, \"dataMax\"]}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            type=\"natural\"\n            key={item.name}\n            connectNulls\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            dot={{ strokeDasharray: \"0\" }}\n            strokeWidth={4}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-types",
+      "content": "\"use client\"\nconst curveTypes = [\n  \"linear\",\n  \"bump\",\n  \"basis\",\n  \"step\",\n  \"stepBefore\",\n  \"stepAfter\",\n  \"natural\",\n  \"monotone\",\n] as const\n\nexport const LineChartWithTypes = () => {\n  const chart = useChart({\n    data: [\n      { windows: 186, mac: 80, linux: 120, month: \"January\" },\n      { windows: 165, mac: 95, linux: 110, month: \"February\" },\n      { windows: 190, mac: 87, linux: 125, month: \"March\" },\n      { windows: 195, mac: 88, linux: 130, month: \"May\" },\n      { windows: 182, mac: 98, linux: 122, month: \"June\" },\n      { windows: 175, mac: 90, linux: 115, month: \"August\" },\n      { windows: 180, mac: 86, linux: 124, month: \"October\" },\n      { windows: 185, mac: 91, linux: 126, month: \"November\" },\n    ],\n    series: [\n      { name: \"windows\", color: \"teal.solid\" },\n      { name: \"mac\", color: \"orange.solid\" },\n      { name: \"linux\", color: \"blue.solid\" },\n    ],\n  })\n\n  return (\n    <SimpleGrid gap=\"10\" minChildWidth=\"400px\">\n      <For each={curveTypes}>\n        {(type) => (\n          <Stack key={type.toString()} gap=\"4\">\n            <Text textStyle=\"sm\" fontWeight=\"semibold\" ms=\"8\">\n              {`<Line type=\"${type}\" />`}\n            </Text>\n            <Chart.Root maxH=\"sm\" chart={chart}>\n              <LineChart accessibilityLayer data={chart.data}>\n                <CartesianGrid\n                  stroke={chart.color(\"border\")}\n                  vertical={false}\n                />\n                <XAxis\n                  dataKey={chart.key(\"month\")}\n                  tickLine={false}\n                  axisLine={false}\n                  tickMargin={8}\n                  tickFormatter={(value) => value.slice(0, 3)}\n                />\n                <YAxis tickLine={false} axisLine={false} />\n                {chart.series.map((item) => (\n                  <Line\n                    type={type}\n                    key={item.name}\n                    isAnimationActive={false}\n                    dataKey={chart.key(item.name)}\n                    stroke={chart.color(item.color)}\n                    strokeWidth={2}\n                    dot={false}\n                  />\n                ))}\n              </LineChart>\n            </Chart.Root>\n          </Stack>\n        )}\n      </For>\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { For, SimpleGrid, Stack, Text } from \"@chakra-ui/react\"",
+        "import { CartesianGrid, Line, LineChart, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    },
+    {
+      "name": "line-chart-with-value-domain",
+      "content": "\"use client\"\nexport const LineChartWithValueDomain = () => {\n  const chart = useChart({\n    data: [\n      { sales: 186, month: \"January\" },\n      { sales: 190, month: \"March\" },\n      { sales: 195, month: \"May\" },\n      { sales: 175, month: \"August\" },\n      { sales: 180, month: \"October\" },\n    ],\n    series: [{ name: \"sales\", color: \"teal.solid\" }],\n  })\n\n  return (\n    <Chart.Root maxH=\"sm\" chart={chart}>\n      <LineChart data={chart.data}>\n        <CartesianGrid\n          stroke={chart.color(\"border\")}\n          strokeDasharray=\"3 3\"\n          horizontal={false}\n        />\n        <XAxis\n          dataKey={chart.key(\"month\")}\n          tickFormatter={(value) => value.slice(0, 3)}\n          stroke={chart.color(\"border\")}\n        />\n        <YAxis\n          dataKey={chart.key(\"sales\")}\n          stroke={chart.color(\"border\")}\n          domain={[160, \"dataMax + 10\"]}\n        />\n        <Tooltip\n          animationDuration={100}\n          cursor={{ stroke: chart.color(\"border\") }}\n          content={<Chart.Tooltip hideLabel />}\n        />\n        {chart.series.map((item) => (\n          <Line\n            type=\"natural\"\n            key={item.name}\n            connectNulls\n            isAnimationActive={false}\n            dataKey={chart.key(item.name)}\n            stroke={chart.color(item.color)}\n            fill={chart.color(item.color)}\n            dot={{ strokeDasharray: \"0\" }}\n            strokeWidth={4}\n          />\n        ))}\n      </LineChart>\n    </Chart.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Chart, useChart } from \"@chakra-ui/charts\"",
+        "import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from \"recharts\""
+      ],
+      "importPath": "import { LineChart } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@chakra-ui/charts",
+        "recharts"
+      ]
+    }
+  ]
+}

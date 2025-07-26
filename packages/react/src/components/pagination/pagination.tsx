@@ -71,7 +71,8 @@ export const PaginationPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationEllipsisProps
-  extends HTMLChakraProps<"div", ArkPagination.EllipsisBaseProps> {}
+  extends HTMLChakraProps<"div", ArkPagination.EllipsisBaseProps>,
+    UnstyledProp {}
 
 export const PaginationEllipsis = withContext<
   HTMLDivElement,
@@ -81,7 +82,8 @@ export const PaginationEllipsis = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationItemProps
-  extends HTMLChakraProps<"button", ArkPagination.ItemBaseProps> {}
+  extends HTMLChakraProps<"button", ArkPagination.ItemBaseProps>,
+    UnstyledProp {}
 
 export const PaginationItem = withContext<
   HTMLButtonElement,
@@ -91,7 +93,8 @@ export const PaginationItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationNextTriggerProps
-  extends HTMLChakraProps<"button", ArkPagination.NextTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkPagination.NextTriggerBaseProps>,
+    UnstyledProp {}
 
 export const PaginationNextTrigger = withContext<
   HTMLButtonElement,
@@ -101,7 +104,8 @@ export const PaginationNextTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationPrevTriggerProps
-  extends HTMLChakraProps<"button", ArkPagination.PrevTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkPagination.PrevTriggerBaseProps>,
+    UnstyledProp {}
 
 export const PaginationPrevTrigger = withContext<
   HTMLButtonElement,

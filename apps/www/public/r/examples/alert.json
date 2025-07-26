@@ -1,0 +1,115 @@
+{
+  "name": "alert",
+  "file": "compositions/ui/alert",
+  "snippet": "import { Alert as ChakraAlert } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  title?: React.ReactNode\n  icon?: React.ReactElement\n}\n\nexport const Alert = React.forwardRef<HTMLDivElement, AlertProps>(\n  function Alert(props, ref) {\n    const { title, children, icon, startElement, endElement, ...rest } = props\n    return (\n      <ChakraAlert.Root ref={ref} {...rest}>\n        {startElement || <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>}\n        {children ? (\n          <ChakraAlert.Content>\n            <ChakraAlert.Title>{title}</ChakraAlert.Title>\n            <ChakraAlert.Description>{children}</ChakraAlert.Description>\n          </ChakraAlert.Content>\n        ) : (\n          <ChakraAlert.Title flex=\"1\">{title}</ChakraAlert.Title>\n        )}\n        {endElement}\n      </ChakraAlert.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "alert-basic",
+      "content": "export const AlertBasic = () => {\n  return (\n    <Alert.Root status=\"info\" title=\"This is the alert title\">\n      <Alert.Indicator />\n      <Alert.Title>This is the alert title</Alert.Title>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-closed-component",
+      "content": "export interface AlertProps extends Omit<ChakraAlert.RootProps, \"title\"> {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  title?: React.ReactNode\n  icon?: React.ReactElement\n}\n\nexport const AlertClosedComponent = React.forwardRef<\n  HTMLDivElement,\n  AlertProps\n>(function Alert(props, ref) {\n  const { title, children, icon, startElement, endElement, ...rest } = props\n  return (\n    <ChakraAlert.Root ref={ref} {...rest}>\n      {startElement || <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>}\n      {children ? (\n        <ChakraAlert.Content>\n          <ChakraAlert.Title>{title}</ChakraAlert.Title>\n          <ChakraAlert.Description>{children}</ChakraAlert.Description>\n        </ChakraAlert.Content>\n      ) : (\n        <ChakraAlert.Title flex=\"1\">{title}</ChakraAlert.Title>\n      )}\n      {endElement}\n    </ChakraAlert.Root>\n  )\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert as ChakraAlert } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-buttons",
+      "content": "export const AlertWithButtons = () => {\n  return (\n    <Alert.Root>\n      <Alert.Indicator />\n      <Alert.Content>\n        <Alert.Title>This is the alert title</Alert.Title>\n        <Alert.Description>This is the alert description</Alert.Description>\n      </Alert.Content>\n      <Button size=\"sm\" alignSelf=\"center\">\n        Action\n      </Button>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, Button } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-close-button",
+      "content": "export const AlertWithCloseButton = () => {\n  return (\n    <Alert.Root>\n      <Alert.Indicator />\n      <Alert.Content>\n        <Alert.Title>Success!</Alert.Title>\n        <Alert.Description>\n          Your application has been received. We will review your application\n          and respond within the next 48 hours.\n        </Alert.Description>\n      </Alert.Content>\n      <CloseButton pos=\"relative\" top=\"-2\" insetEnd=\"-2\" />\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, CloseButton } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-color-palette-override",
+      "content": "export const AlertWithColorPaletteOverride = () => {\n  return (\n    <Alert.Root status=\"info\" colorPalette=\"teal\">\n      <Alert.Indicator />\n      <Alert.Title>This is an info alert but shown as teal</Alert.Title>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-custom-icon",
+      "content": "export const AlertWithCustomIcon = () => {\n  return (\n    <Alert.Root status=\"warning\">\n      <Alert.Indicator>\n        <LuAlarmClockPlus />\n      </Alert.Indicator>\n      <Alert.Title>Submitting this form will delete your account</Alert.Title>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert } from \"@chakra-ui/react\"",
+        "import { LuAlarmClockPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "alert-with-customization",
+      "content": "export const AlertWithCustomization = () => {\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root title=\"Success\" status=\"success\">\n        <Alert.Indicator>\n          <LuPercent />\n        </Alert.Indicator>\n        <Alert.Content color=\"fg\">\n          <Alert.Title>Black Friday Sale (20% off)</Alert.Title>\n          <Alert.Description>\n            Upgrade your plan to get access to the sale.\n          </Alert.Description>\n        </Alert.Content>\n        <Link alignSelf=\"center\" fontWeight=\"medium\">\n          Upgrade\n        </Link>\n      </Alert.Root>\n\n      <Alert.Root\n        size=\"sm\"\n        borderStartWidth=\"3px\"\n        borderStartColor=\"colorPalette.solid\"\n        alignItems=\"center\"\n        title=\"Success\"\n        status=\"success\"\n      >\n        <LuPercent />\n        <Alert.Title textStyle=\"sm\">\n          Heads up: Black Friday Sale (20% off)\n        </Alert.Title>\n      </Alert.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, Link, Stack } from \"@chakra-ui/react\"",
+        "import { LuPercent } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "alert-with-description",
+      "content": "export const AlertWithDescription = () => {\n  return (\n    <Alert.Root status=\"error\">\n      <Alert.Indicator />\n      <Alert.Content>\n        <Alert.Title>Invalid Fields</Alert.Title>\n        <Alert.Description>\n          Your form has some errors. Please fix them and try again.\n        </Alert.Description>\n      </Alert.Content>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-spinner",
+      "content": "export const AlertWithSpinner = () => {\n  return (\n    <Alert.Root\n      borderStartWidth=\"3px\"\n      borderStartColor=\"colorPalette.600\"\n      title=\"We are loading something\"\n    >\n      <Alert.Indicator>\n        <Spinner size=\"sm\" />\n      </Alert.Indicator>\n      <Alert.Title>We are loading something</Alert.Title>\n    </Alert.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-status",
+      "content": "export const AlertWithStatus = () => {\n  return (\n    <Stack gap=\"4\" width=\"full\">\n      <Alert.Root status=\"error\">\n        <Alert.Indicator />\n        <Alert.Title>There was an error processing your request</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"info\">\n        <Alert.Indicator />\n        <Alert.Title>\n          Chakra is going live on August 30th. Get ready!\n        </Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"warning\">\n        <Alert.Indicator />\n        <Alert.Title>\n          Seems your account is about expire, upgrade now\n        </Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "alert-with-variants",
+      "content": "export const AlertWithVariants = () => {\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root status=\"success\" variant=\"subtle\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"solid\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"surface\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Alert, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Alert } from \"@chakra-ui/react\""
+    }
+  ]
+}

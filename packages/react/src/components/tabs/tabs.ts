@@ -57,7 +57,8 @@ export const TabsPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TabsTriggerProps
-  extends HTMLChakraProps<"button", ArkTabs.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkTabs.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const TabsTrigger = withContext<HTMLButtonElement, TabsTriggerProps>(
   ArkTabs.Trigger,
@@ -68,7 +69,8 @@ export const TabsTrigger = withContext<HTMLButtonElement, TabsTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TabsContentProps
-  extends HTMLChakraProps<"div", ArkTabs.ContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkTabs.ContentBaseProps>,
+    UnstyledProp {}
 
 export const TabsContent = withContext<HTMLDivElement, TabsContentProps>(
   ArkTabs.Content,
@@ -78,7 +80,9 @@ export const TabsContent = withContext<HTMLDivElement, TabsContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TabsContentGroupProps extends HTMLChakraProps<"div"> {}
+export interface TabsContentGroupProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const TabsContentGroup = withContext<
   HTMLDivElement,
@@ -88,7 +92,8 @@ export const TabsContentGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TabsListProps
-  extends HTMLChakraProps<"div", ArkTabs.ListBaseProps> {}
+  extends HTMLChakraProps<"div", ArkTabs.ListBaseProps>,
+    UnstyledProp {}
 
 export const TabsList = withContext<HTMLDivElement, TabsListProps>(
   ArkTabs.List,
@@ -99,16 +104,11 @@ export const TabsList = withContext<HTMLDivElement, TabsListProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TabsIndicatorProps
-  extends HTMLChakraProps<"div", ArkTabs.ListBaseProps> {}
+  extends HTMLChakraProps<"div", ArkTabs.ListBaseProps>,
+    UnstyledProp {}
 
 export const TabsIndicator = withContext<HTMLDivElement, TabsIndicatorProps>(
   ArkTabs.Indicator,
   "indicator",
   { forwardAsChild: true },
 )
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const TabsContext = ArkTabs.Context
-
-export interface TabsValueChangeDetails extends ArkTabs.ValueChangeDetails {}

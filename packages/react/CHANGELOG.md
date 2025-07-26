@@ -1,5 +1,68 @@
 # @chakra-ui/react
 
+## 3.22.0
+
+### Minor Changes
+
+- [#10111](https://github.com/chakra-ui/chakra-ui/pull/10111)
+  [`32967aa`](https://github.com/chakra-ui/chakra-ui/commit/32967aa8499cd05966c8d3274adf01bc96411516)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new TreeView
+  component that is used to represent hierarchical data in a tree structure.
+
+### Patch Changes
+
+- [#10126](https://github.com/chakra-ui/chakra-ui/pull/10126)
+  [`ca40993`](https://github.com/chakra-ui/chakra-ui/commit/ca40993f78cd4de092a38c2e00158b8d686a0f27)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **Clipboard**: Fix issue
+  where `clipboardAnatomy` was not exported from `@chakra-ui/react/anatomy`
+  - **Combobox**
+    - Expose `reason` to `onOpenChange` and `onInputValueChange` callbacks
+    - Expose `api.clearHighlightedValue` function to clear highlighted value
+  - **Toast**: Fix issue where toast `title` or `description` could not accept
+    React element
+  - **Progress**: Improve `valueAsString` formatting
+  - **Select**
+    - Select highlighted item only if it exists in the collection
+    - Expose `api.clearHighlightedValue` function to clear highlighted value
+  - **ClientOnly**: Support `children` as a function
+
+## 3.21.1
+
+### Patch Changes
+
+- [`8ddeb0b`](https://github.com/chakra-ui/chakra-ui/commit/8ddeb0b0f2d24c17d5cbad563553fff5e8a826d0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Popover**:
+  Fixed issue where `onOpenChange` could be called twice when controlled
+  - **Combobox**
+    - Fixed issue where `onInputValueChange` could be called twice when
+      selecting an item
+    - Fixed issue where combobox with `allowCustomValue: true` used within in a
+      form requires two enter keypress to submit
+  - **Progress**
+    - Fix issue where setting orientation to `vertical` don't work
+    - Fix issue where setting `defaultValue` to `null` doesn't show
+      indeterminate state
+  - **Toast**: Fix issue where app crashes when `toaster.promise` is called
+    without loading option. The `loading` option is now required. A warning will
+    be logged if it is not provided
+  - **Combobox, Select, Listbox**: Fix issue where rehydrating `defaultValue` or
+    `value` after fetching items doesn't update the `valueAsString`
+
+- [#10119](https://github.com/chakra-ui/chakra-ui/pull/10119)
+  [`6cf8cc6`](https://github.com/chakra-ui/chakra-ui/commit/6cf8cc6c066c95d894ad2104c979fb95f74da2e7)
+  Thanks [@isBatak](https://github.com/isBatak)! - - improve `Drawer` recipe to
+  better support conditional variants.
+  - add `Drawer` conditional variants example to the docs and storybook.
+
+- [#10101](https://github.com/chakra-ui/chakra-ui/pull/10101)
+  [`2b4fa6d`](https://github.com/chakra-ui/chakra-ui/commit/2b4fa6d1847ae8ae26535a81a90842fd4369b97f)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **Select**: Export missing
+  SelectRootComponent type export
+
+- [`d7914ad`](https://github.com/chakra-ui/chakra-ui/commit/d7914ad43a382f30ea221e5fcbb151c658bee440)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix inconsistent
+  handling of `null` and `undefined` for skipping breakpoints using array syntax
+
 ## 3.21.0
 
 ### Minor Changes

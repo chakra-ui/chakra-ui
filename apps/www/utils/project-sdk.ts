@@ -4,6 +4,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs"
 import { dirname, extname, join, parse, resolve } from "node:path"
 import { trainCase } from "scule"
 import { Project } from "ts-morph"
+import { chartComponents, isChartComponent } from "./shared"
 
 const excludeSet = new Map([
   ["checkbox", ["checkbox-card-*.tsx"]],
@@ -65,7 +66,11 @@ export class ProjectSdk {
   get components(): string[] {
     const componentDir = this.componentDir
     const dirs = readdirSync(componentDir)
-    return dirs.filter((v) => !extname(v).startsWith(".ts"))
+    return [
+      ...dirs.filter((v) => !extname(v).startsWith(".ts")),
+      ...chartComponents,
+      "password-input",
+    ]
   }
 
   getSnippetPath(component: string): string {
@@ -166,9 +171,27 @@ export class ProjectSdk {
     return result
   }
 
+  getComponentFromExample(exampleId: string): string | null {
+    // Remove .tsx extension if present
+    const cleanId = exampleId.replace(/\.tsx$/, "")
+
+    // Split by "-" and progressively remove segments from the end until we find a valid component
+    const segments = cleanId.split("-")
+
+    for (let i = segments.length; i > 0; i--) {
+      const potentialComponent = segments.slice(0, i).join("-")
+      if (this.components.includes(potentialComponent)) {
+        return potentialComponent
+      }
+    }
+
+    return null
+  }
+
   getExamples(component: string): Promise<string[]> {
     const ignore = excludeSet.get(component) ?? []
-    return glob(`${component}-*.tsx`, {
+    const chartDir = isChartComponent(component) ? "charts/" : ""
+    return glob(`${chartDir}${component}-*.tsx`, {
       cwd: this.examplesDir,
       ignore: ignore.concat("*-table.tsx"),
     })

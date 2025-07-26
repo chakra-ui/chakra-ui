@@ -1,0 +1,15 @@
+{
+  "name": "locale",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "locale-provider-basic",
+      "content": "export const LocaleProviderBasic = () => {\n  return (\n    <LocaleProvider locale=\"ar-AE\">\n      <Stack gap=\"4\" maxW=\"sm\" dir=\"rtl\">\n        <Heading>مرحباً بكم في تشاكرا يو آي</Heading>\n        <Text textStyle=\"body-sm\">\n          هذا مثال على كيفية استخدام موفر اللغة في تطبيقك. يمكنك تغيير اللغة\n          بسهولة.\n        </Text>\n        <Slider.Root defaultValue={[50]}>\n          <Slider.Control>\n            <Slider.Track>\n              <Slider.Range />\n            </Slider.Track>\n            <Slider.Thumbs />\n          </Slider.Control>\n        </Slider.Root>\n      </Stack>\n    </LocaleProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, LocaleProvider, Slider, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Locale } from \"@chakra-ui/react\""
+    }
+  ]
+}

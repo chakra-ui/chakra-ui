@@ -1,0 +1,121 @@
+{
+  "name": "steps",
+  "file": "compositions/ui/steps",
+  "snippet": "import { Box, Steps as ChakraSteps } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuCheck } from \"react-icons/lu\"\n\ninterface StepInfoProps {\n  title?: React.ReactNode\n  description?: React.ReactNode\n}\n\nexport interface StepsItemProps\n  extends Omit<ChakraSteps.ItemProps, \"title\">,\n    StepInfoProps {\n  completedIcon?: React.ReactNode\n  icon?: React.ReactNode\n}\n\nexport const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(\n  function StepsItem(props, ref) {\n    const { title, description, completedIcon, icon, ...rest } = props\n    return (\n      <ChakraSteps.Item {...rest} ref={ref}>\n        <ChakraSteps.Trigger>\n          <ChakraSteps.Indicator>\n            <ChakraSteps.Status\n              complete={completedIcon || <LuCheck />}\n              incomplete={icon || <ChakraSteps.Number />}\n            />\n          </ChakraSteps.Indicator>\n          <StepInfo title={title} description={description} />\n        </ChakraSteps.Trigger>\n        <ChakraSteps.Separator />\n      </ChakraSteps.Item>\n    )\n  },\n)\n\nconst StepInfo = (props: StepInfoProps) => {\n  const { title, description } = props\n\n  if (title && description) {\n    return (\n      <Box>\n        <ChakraSteps.Title>{title}</ChakraSteps.Title>\n        <ChakraSteps.Description>{description}</ChakraSteps.Description>\n      </Box>\n    )\n  }\n\n  return (\n    <>\n      {title && <ChakraSteps.Title>{title}</ChakraSteps.Title>}\n      {description && (\n        <ChakraSteps.Description>{description}</ChakraSteps.Description>\n      )}\n    </>\n  )\n}\n\ninterface StepsIndicatorProps {\n  completedIcon: React.ReactNode\n  icon?: React.ReactNode\n}\n\nexport const StepsIndicator = React.forwardRef<\n  HTMLDivElement,\n  StepsIndicatorProps\n>(function StepsIndicator(props, ref) {\n  const { icon = <ChakraSteps.Number />, completedIcon } = props\n  return (\n    <ChakraSteps.Indicator ref={ref}>\n      <ChakraSteps.Status complete={completedIcon} incomplete={icon} />\n    </ChakraSteps.Indicator>\n  )\n})\n\nexport const StepsList = ChakraSteps.List\nexport const StepsRoot = ChakraSteps.Root\nexport const StepsContent = ChakraSteps.Content\nexport const StepsCompletedContent = ChakraSteps.CompletedContent\n\nexport const StepsNextTrigger = ChakraSteps.NextTrigger\nexport const StepsPrevTrigger = ChakraSteps.PrevTrigger\n",
+  "examples": [
+    {
+      "name": "steps-basic",
+      "content": "export const StepsBasic = () => {\n  return (\n    <Steps.Root defaultStep={1} count={steps.length}>\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Indicator />\n            <Steps.Title>{step.title}</Steps.Title>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.description}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-controlled",
+      "content": "\"use client\"\nexport const StepsControlled = () => {\n  const [step, setStep] = useState(1)\n\n  return (\n    <Steps.Root\n      step={step}\n      onStepChange={(e) => setStep(e.step)}\n      count={steps.length}\n    >\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Indicator />\n            <Steps.Title>{step.title}</Steps.Title>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.description}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Steps } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-vertical",
+      "content": "export const StepsVertical = () => {\n  return (\n    <Steps.Root\n      orientation=\"vertical\"\n      height=\"400px\"\n      defaultStep={1}\n      count={steps.length}\n    >\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Indicator />\n            <Steps.Title>{step.title}</Steps.Title>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      <Stack>\n        {steps.map((step, index) => (\n          <Steps.Content key={index} index={index}>\n            {step.description}\n          </Steps.Content>\n        ))}\n        <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n        <ButtonGroup size=\"sm\" variant=\"outline\">\n          <Steps.PrevTrigger asChild>\n            <Button>Prev</Button>\n          </Steps.PrevTrigger>\n          <Steps.NextTrigger asChild>\n            <Button>Next</Button>\n          </Steps.NextTrigger>\n        </ButtonGroup>\n      </Stack>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Stack, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-colors",
+      "content": "export const StepsWithColors = () => {\n  return (\n    <Stack gap=\"10\" width=\"full\">\n      <For each={colorPalettes}>\n        {(colorPalette) => (\n          <Steps.Root\n            key={colorPalette}\n            defaultStep={1}\n            count={steps.length}\n            colorPalette={colorPalette}\n          >\n            <Steps.List>\n              {steps.map((step, index) => (\n                <Steps.Item key={index} index={index} title={step.title}>\n                  <Steps.Indicator />\n                  <Steps.Title>{step.title}</Steps.Title>\n                  <Steps.Separator />\n                </Steps.Item>\n              ))}\n            </Steps.List>\n\n            {steps.map((step, index) => (\n              <Steps.Content key={index} index={index}>\n                {step.description}\n              </Steps.Content>\n            ))}\n            <Steps.CompletedContent>\n              All steps are complete!\n            </Steps.CompletedContent>\n\n            <ButtonGroup size=\"sm\" variant=\"outline\">\n              <Steps.PrevTrigger asChild>\n                <Button>Prev</Button>\n              </Steps.PrevTrigger>\n              <Steps.NextTrigger asChild>\n                <Button>Next</Button>\n              </Steps.NextTrigger>\n            </ButtonGroup>\n          </Steps.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, For, Stack, Steps } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-description",
+      "content": "export const StepsWithDescription = () => {\n  return (\n    <Steps.Root defaultStep={1} count={steps.length}>\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Indicator />\n            <Box>\n              <Steps.Title>{step.title}</Steps.Title>\n              <Steps.Description>{step.description}</Steps.Description>\n            </Box>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.content}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    content: \"Step 1 content\",\n    description: \"This step\",\n  },\n  {\n    title: \"Step 2\",\n    content: \"Step 2 content\",\n    description: \"That step\",\n  },\n  {\n    title: \"Step 3\",\n    content: \"Step 3 content\",\n    description: \"Final step\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, ButtonGroup, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-icon",
+      "content": "export const StepsWithIcon = () => {\n  return (\n    <Steps.Root defaultStep={1} count={steps.length} size=\"sm\">\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index}>\n            <Steps.Indicator>\n              <Steps.Status incomplete={step.icon} complete={<LuCheck />} />\n            </Steps.Indicator>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.description}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    icon: <LuUser />,\n    description: \"Contact Details\",\n  },\n  {\n    icon: <LuWallet />,\n    description: \"Payment\",\n  },\n  {\n    icon: <LuCalendar />,\n    description: \"Book an Appointment\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Steps } from \"@chakra-ui/react\"",
+        "import { LuCalendar, LuCheck, LuUser, LuWallet } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "steps-with-lines",
+      "content": "export const StepsWithLines = () => {\n  return (\n    <Steps.Root defaultStep={1} count={steps.length}>\n      <Steps.List gap=\"4\">\n        {steps.map((item, index) => (\n          <Steps.Item\n            flex=\"1!\"\n            flexDir=\"column\"\n            alignItems=\"flex-start\"\n            index={index}\n            key={index}\n            gap=\"2\"\n          >\n            <Steps.Separator h=\"3px\" flex=\"unset\" display=\"initial!\" mx=\"0!\" />\n            <Steps.Trigger>\n              <Steps.Title>{item.title}</Steps.Title>\n            </Steps.Trigger>\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((item, index) => (\n        <Steps.Content index={index} key={index}>\n          <Center minHeight=\"20\" borderWidth=\"1px\">\n            {item.title} - {item.description}\n          </Center>\n        </Steps.Content>\n      ))}\n\n      <Steps.Content index={steps.length}>\n        <Center minHeight=\"20\" borderWidth=\"1px\">\n          Complete - Thank you!\n        </Center>\n      </Steps.Content>\n\n      <HStack mt=\"5\">\n        <Steps.PrevTrigger asChild>\n          <Button size=\"sm\" variant=\"outline\">\n            Prev\n          </Button>\n        </Steps.PrevTrigger>\n\n        <Steps.NextTrigger asChild>\n          <Button size=\"sm\" variant=\"outline\">\n            Next\n          </Button>\n        </Steps.NextTrigger>\n      </HStack>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  { title: \"Step One\", description: \"Contact Info\" },\n  { title: \"Step Two\", description: \"Date & Time\" },\n  { title: \"Step Three\", description: \"Select Rooms\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Center, HStack, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-number-only",
+      "content": "export const StepsWithNumberOnly = () => {\n  return (\n    <Steps.Root size=\"sm\" defaultStep={1} count={steps.length}>\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Indicator />\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.description}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-sizes",
+      "content": "export const StepsWithSizes = () => {\n  return (\n    <Stack gap=\"16\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Steps.Root key={size} size={size} count={steps.length}>\n            <Steps.List>\n              {steps.map((step, index) => (\n                <Steps.Item key={index} index={index} title={step.title}>\n                  <Steps.Indicator />\n                  <Steps.Title>{step.title}</Steps.Title>\n                  <Steps.Separator />\n                </Steps.Item>\n              ))}\n            </Steps.List>\n            {steps.map((step, index) => (\n              <Steps.Content key={index} index={index}>\n                {step.description}\n              </Steps.Content>\n            ))}\n            <Steps.CompletedContent>\n              All steps are complete!\n            </Steps.CompletedContent>\n\n            <ButtonGroup size=\"sm\" variant=\"outline\">\n              <Steps.PrevTrigger asChild>\n                <Button>Prev</Button>\n              </Steps.PrevTrigger>\n              <Steps.NextTrigger asChild>\n                <Button>Next</Button>\n              </Steps.NextTrigger>\n            </ButtonGroup>\n          </Steps.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, For, Stack, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-store",
+      "content": "\"use client\"\nexport const StepsWithStore = () => {\n  const steps = useSteps({\n    defaultStep: 1,\n    count: items.length,\n  })\n\n  return (\n    <Stack align=\"flex-start\">\n      <Code>current step: {steps.value}</Code>\n      <Steps.RootProvider value={steps}>\n        <Steps.List>\n          {items.map((step, index) => (\n            <Steps.Item key={index} index={index} title={step.title}>\n              <Steps.Indicator />\n              <Steps.Title>{step.title}</Steps.Title>\n              <Steps.Separator />\n            </Steps.Item>\n          ))}\n        </Steps.List>\n        {items.map((step, index) => (\n          <Steps.Content key={index} index={index}>\n            {step.description}\n          </Steps.Content>\n        ))}\n        <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n        <ButtonGroup size=\"sm\" variant=\"outline\">\n          <Steps.PrevTrigger asChild>\n            <Button>Prev</Button>\n          </Steps.PrevTrigger>\n          <Steps.NextTrigger asChild>\n            <Button>Next</Button>\n          </Steps.NextTrigger>\n        </ButtonGroup>\n      </Steps.RootProvider>\n    </Stack>\n  )\n}\n\nconst items = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ButtonGroup,\n  Code,\n  Stack,\n  Steps,\n  useSteps,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-trigger",
+      "content": "export const StepsWithTrigger = () => {\n  return (\n    <Steps.Root defaultStep={1} count={steps.length}>\n      <Steps.List>\n        {steps.map((step, index) => (\n          <Steps.Item key={index} index={index} title={step.title}>\n            <Steps.Trigger>\n              <Steps.Indicator />\n              <Steps.Title>{step.title}</Steps.Title>\n            </Steps.Trigger>\n            <Steps.Separator />\n          </Steps.Item>\n        ))}\n      </Steps.List>\n\n      {steps.map((step, index) => (\n        <Steps.Content key={index} index={index}>\n          {step.description}\n        </Steps.Content>\n      ))}\n      <Steps.CompletedContent>All steps are complete!</Steps.CompletedContent>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Steps.PrevTrigger asChild>\n          <Button>Prev</Button>\n        </Steps.PrevTrigger>\n        <Steps.NextTrigger asChild>\n          <Button>Next</Button>\n        </Steps.NextTrigger>\n      </ButtonGroup>\n    </Steps.Root>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "steps-with-variants",
+      "content": "export const StepsWithVariants = () => {\n  return (\n    <Stack gap=\"16\">\n      <For each={[\"subtle\", \"solid\"]}>\n        {(variant) => (\n          <Steps.Root key={variant} variant={variant} count={steps.length}>\n            <Steps.List>\n              {steps.map((step, index) => (\n                <Steps.Item key={index} index={index} title={step.title}>\n                  <Steps.Indicator />\n                  <Steps.Title>{step.title}</Steps.Title>\n                  <Steps.Separator />\n                </Steps.Item>\n              ))}\n            </Steps.List>\n\n            {steps.map((step, index) => (\n              <Steps.Content key={index} index={index}>\n                {step.description}\n              </Steps.Content>\n            ))}\n            <Steps.CompletedContent>\n              All steps are complete!\n            </Steps.CompletedContent>\n\n            <ButtonGroup size=\"sm\" variant=\"outline\">\n              <Steps.PrevTrigger asChild>\n                <Button>Prev</Button>\n              </Steps.PrevTrigger>\n              <Steps.NextTrigger asChild>\n                <Button>Next</Button>\n              </Steps.NextTrigger>\n            </ButtonGroup>\n          </Steps.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n\nconst steps = [\n  {\n    title: \"Step 1\",\n    description: \"Step 1 description\",\n  },\n  {\n    title: \"Step 2\",\n    description: \"Step 2 description\",\n  },\n  {\n    title: \"Step 3\",\n    description: \"Step 3 description\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, For, Stack, Steps } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Steps } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "container",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "container-basic",
+      "content": "export const ContainerBasic = () => {\n  return (\n    <Container>\n      <Box px=\"2\">\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam\n        consectetur, tortor in lacinia eleifend, dui nisl tristique nunc.\n      </Box>\n    </Container>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Container } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Container } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "container-with-fluid",
+      "content": "export const ContainerWithFluid = () => {\n  return (\n    <Container fluid>\n      <Box px=\"2\">\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam\n        consectetur, tortor in lacinia eleifend, dui nisl tristique nunc.\n      </Box>\n    </Container>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Container } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Container } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "container-with-sizes",
+      "content": "export const ContainerWithSizes = () => {\n  return (\n    <Stack>\n      <For each={[\"sm\", \"md\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <Container key={size} maxW={size} px=\"2\">\n            <Box>\n              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam\n              consectetur, tortor in lacinia eleifend, dui nisl tristique nunc.\n            </Box>\n          </Container>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Container, For, Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Container } from \"@chakra-ui/react\""
+    }
+  ]
+}

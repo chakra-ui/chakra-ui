@@ -17,8 +17,6 @@ export const getComponentList = async () => {
 }
 
 export const staticComponentList = [
-  "aspect-ratio",
-  "bleed",
   "box",
   "center",
   "container",
@@ -33,4 +31,5 @@ export const staticComponentList = [
   "show",
   "checkmark",
   "radiomark",
+  "heading",
 ]

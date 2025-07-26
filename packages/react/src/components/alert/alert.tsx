@@ -66,7 +66,7 @@ export const AlertPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AlertTitleProps extends HTMLChakraProps<"div"> {}
+export interface AlertTitleProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const AlertTitle = withContext<HTMLDivElement, AlertTitleProps>(
   "div",
@@ -75,7 +75,9 @@ export const AlertTitle = withContext<HTMLDivElement, AlertTitleProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
+export interface AlertDescriptionProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const AlertDescription = withContext<
   HTMLDivElement,
@@ -84,7 +86,9 @@ export const AlertDescription = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AlertContentProps extends HTMLChakraProps<"div"> {}
+export interface AlertContentProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const AlertContent = withContext<HTMLDivElement, AlertContentProps>(
   "div",

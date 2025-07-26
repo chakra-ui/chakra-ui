@@ -68,7 +68,8 @@ export const ColorPickerPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerLabelProps
-  extends HTMLChakraProps<"label", ArkColorPicker.LabelBaseProps> {}
+  extends HTMLChakraProps<"label", ArkColorPicker.LabelBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerLabel = withContext<
   HTMLLabelElement,
@@ -78,7 +79,8 @@ export const ColorPickerLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerControlProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ControlBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerControl = withContext<
   HTMLDivElement,
@@ -88,7 +90,8 @@ export const ColorPickerControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerValueSwatchProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ValueSwatchBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ValueSwatchBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerValueSwatch = withContext<
   HTMLDivElement,
@@ -98,7 +101,8 @@ export const ColorPickerValueSwatch = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerTriggerProps
-  extends HTMLChakraProps<"button", ArkColorPicker.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkColorPicker.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerTrigger = withContext<
   HTMLButtonElement,
@@ -113,7 +117,8 @@ export const ColorPickerTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerPositionerProps
-  extends HTMLChakraProps<"div", ArkColorPicker.PositionerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.PositionerBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerPositioner = withContext<
   HTMLDivElement,
@@ -123,7 +128,8 @@ export const ColorPickerPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerContentProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ContentBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerContent = withContext<
   HTMLDivElement,
@@ -133,7 +139,8 @@ export const ColorPickerContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerAreaBackgroundProps
-  extends HTMLChakraProps<"div", ArkColorPicker.AreaBackgroundBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.AreaBackgroundBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerAreaBackground = withContext<
   HTMLDivElement,
@@ -143,7 +150,8 @@ export const ColorPickerAreaBackground = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerAreaThumbProps
-  extends HTMLChakraProps<"div", ArkColorPicker.AreaThumbBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.AreaThumbBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerAreaThumb = withContext<
   HTMLDivElement,
@@ -153,7 +161,8 @@ export const ColorPickerAreaThumb = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerAreaProps
-  extends HTMLChakraProps<"div", ArkColorPicker.AreaBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.AreaBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerArea = withContext<
   HTMLDivElement,
@@ -173,7 +182,8 @@ export const ColorPickerArea = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerChannelSliderTrackProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderTrackBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderTrackBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerChannelSliderTrack = withContext<
   HTMLDivElement,
@@ -185,7 +195,8 @@ export const ColorPickerChannelSliderTrack = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerChannelSliderThumbProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderThumbBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderThumbBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerChannelSliderThumb = withContext<
   HTMLDivElement,
@@ -197,7 +208,8 @@ export const ColorPickerChannelSliderThumb = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerTransparencyGridProps
-  extends HTMLChakraProps<"div", ArkColorPicker.TransparencyGridBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.TransparencyGridBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerTransparencyGrid = withContext<
   HTMLDivElement,
@@ -207,7 +219,8 @@ export const ColorPickerTransparencyGrid = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerChannelSliderProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerChannelSlider = withContext<
   HTMLDivElement,
@@ -241,7 +254,8 @@ export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerChannelInputProps
-  extends HTMLChakraProps<"input", ArkColorPicker.ChannelInputBaseProps> {}
+  extends HTMLChakraProps<"input", ArkColorPicker.ChannelInputBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerChannelInput = withContext<
   HTMLInputElement,
@@ -260,7 +274,8 @@ export const ColorPickerInput = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerSwatchGroupProps
-  extends HTMLChakraProps<"div", ArkColorPicker.SwatchGroupBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.SwatchGroupBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerSwatchGroup = withContext<
   HTMLDivElement,
@@ -270,7 +285,8 @@ export const ColorPickerSwatchGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerSwatchTriggerProps
-  extends HTMLChakraProps<"button", ArkColorPicker.SwatchTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkColorPicker.SwatchTriggerBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerSwatchTrigger = withContext<
   HTMLButtonElement,
@@ -280,7 +296,8 @@ export const ColorPickerSwatchTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerSwatchProps
-  extends HTMLChakraProps<"div", ArkColorPicker.SwatchBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.SwatchBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerSwatch = withContext<
   HTMLDivElement,
@@ -290,7 +307,8 @@ export const ColorPickerSwatch = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerSwatchIndicatorProps
-  extends HTMLChakraProps<"div", ArkColorPicker.SwatchIndicatorBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.SwatchIndicatorBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerSwatchIndicator = withContext<
   HTMLDivElement,
@@ -300,7 +318,8 @@ export const ColorPickerSwatchIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerValueTextProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ValueTextBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ValueTextBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerValueText = withContext<
   HTMLDivElement,
@@ -310,7 +329,8 @@ export const ColorPickerValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerViewProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ViewBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ViewBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerView = withContext<
   HTMLDivElement,
@@ -320,7 +340,8 @@ export const ColorPickerView = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerFormatTriggerProps
-  extends HTMLChakraProps<"button", ArkColorPicker.FormatTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkColorPicker.FormatTriggerBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerFormatTrigger = withContext<
   HTMLButtonElement,
@@ -330,7 +351,8 @@ export const ColorPickerFormatTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerFormatSelectProps
-  extends HTMLChakraProps<"select", ArkColorPicker.FormatSelectBaseProps> {}
+  extends HTMLChakraProps<"select", ArkColorPicker.FormatSelectBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerFormatSelect = withContext<
   HTMLSelectElement,
@@ -339,7 +361,9 @@ export const ColorPickerFormatSelect = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ColorPickerEyeDropperTriggerProps extends IconButtonProps {}
+export interface ColorPickerEyeDropperTriggerProps
+  extends IconButtonProps,
+    UnstyledProp {}
 
 export const ColorPickerEyeDropperTrigger = withContext<
   HTMLButtonElement,
@@ -370,9 +394,10 @@ export const ColorPickerEyeDropper = forwardRef<
 
 export interface ColorPickerChannelSliderValueTextProps
   extends HTMLChakraProps<
-    "div",
-    ArkColorPicker.ChannelSliderValueTextBaseProps
-  > {}
+      "div",
+      ArkColorPicker.ChannelSliderValueTextBaseProps
+    >,
+    UnstyledProp {}
 
 export const ColorPickerChannelSliderValueText = withContext<
   HTMLDivElement,
@@ -384,7 +409,8 @@ export const ColorPickerChannelSliderValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ColorPickerChannelSliderLabelProps
-  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderLabelBaseProps> {}
+  extends HTMLChakraProps<"div", ArkColorPicker.ChannelSliderLabelBaseProps>,
+    UnstyledProp {}
 
 export const ColorPickerChannelSliderLabel = withContext<
   HTMLDivElement,
@@ -409,7 +435,9 @@ export interface ColorPickerValueChangeDetails
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ColorPickerChannelTextProps extends HTMLChakraProps<"span"> {}
+export interface ColorPickerChannelTextProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const ColorPickerChannelText = withContext<
   HTMLSpanElement,

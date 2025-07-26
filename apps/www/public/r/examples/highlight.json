@@ -1,0 +1,52 @@
+{
+  "name": "highlight",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "highlight-basic",
+      "content": "export const HighlightBasic = () => {\n  return (\n    <Highlight\n      query=\"spotlight\"\n      styles={{ px: \"0.5\", bg: \"orange.subtle\", color: \"orange.fg\" }}\n    >\n      With the Highlight component, you can spotlight words.\n    </Highlight>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Highlight } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Highlight } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "highlight-multiple",
+      "content": "export const HighlightMultiple = () => {\n  return (\n    <Heading lineHeight=\"tall\">\n      <Highlight\n        query={[\"spotlight\", \"emphasize\", \"accentuate\"]}\n        styles={{ px: \"0.5\", bg: \"teal.muted\" }}\n      >\n        With the Highlight component, you can spotlight, emphasize and\n        accentuate words.\n      </Highlight>\n    </Heading>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Highlight } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Highlight } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "highlight-search-query",
+      "content": "const query = \"spot\"\nconst results = [\"Spotlight bulb\", \"Spot cleaner\", \"Spot ceiling\"]\n\nexport const HighlightSearchQuery = () => {\n  return (\n    <Stack gap=\"6\">\n      <Text>Search result for: spot</Text>\n      <Stack gap=\"1\">\n        {results.map((item) => (\n          <p key={item}>\n            <Highlight\n              ignoreCase\n              query={query}\n              styles={{ fontWeight: \"semibold\" }}\n            >\n              {item}\n            </Highlight>\n          </p>\n        ))}\n      </Stack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Highlight, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Highlight } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "highlight-with-custom-style",
+      "content": "export const HighlightWithCustomStyle = () => {\n  return (\n    <Highlight query=\"component\" styles={{ fontWeight: \"semibold\" }}>\n      With the Highlight component, you can spotlight words.\n    </Highlight>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Highlight } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Highlight } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "highlight-with-squiggle",
+      "content": "\"use client\"\nexport const HighlightWithSquiggle = () => {\n  const chunks = useHighlight({\n    text: \"Endless scale, powered by real humans.\",\n    query: [\"endless\", \"real humans.\"],\n  })\n\n  return (\n    <Heading size=\"2xl\" maxW=\"20ch\">\n      {chunks.map((chunk, index) => {\n        return chunk.match ? (\n          <Mark\n            key={index}\n            css={{\n              fontStyle: \"italic\",\n              color: \"red.500\",\n              position: \"relative\",\n            }}\n          >\n            {chunk.text}\n            <img\n              style={{ position: \"absolute\", left: 0 }}\n              src=\"https://uploads-ssl.webflow.com/5fac11c3554384e2baf6481c/61c4dc7572d22f05ba26fd34_hero-underline.svg\"\n              loading=\"lazy\"\n              alt=\"\"\n            />\n          </Mark>\n        ) : (\n          <Fragment key={index}>{chunk.text}</Fragment>\n        )\n      })}\n    </Heading>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Heading, Mark, useHighlight } from \"@chakra-ui/react\"",
+        "import { Fragment } from \"react\""
+      ],
+      "importPath": "import { Highlight } from \"@chakra-ui/react\""
+    }
+  ]
+}

@@ -38,13 +38,15 @@ export const ListRootPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ListItemProps extends HTMLChakraProps<"li"> {}
+export interface ListItemProps extends HTMLChakraProps<"li">, UnstyledProp {}
 
 export const ListItem = withContext<HTMLLIElement, ListItemProps>("li", "item")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ListIndicatorProps extends HTMLChakraProps<"span"> {}
+export interface ListIndicatorProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const ListIndicator = withContext<HTMLSpanElement, ListIndicatorProps>(
   "span",

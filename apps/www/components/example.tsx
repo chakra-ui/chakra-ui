@@ -1,9 +1,10 @@
 import { readExampleFile } from "@/lib/composition"
 import { highlightCode } from "@/lib/highlight-code"
-import { Box, BoxProps, Tabs } from "@chakra-ui/react"
+import { Box, BoxProps, HStack, Tabs } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
 import { CopyButton } from "./copy-button"
 import { ErrorBoundary } from "./error-boundary"
+import { StackblitzButton } from "./stackblitz-button"
 
 interface Props {
   name: string
@@ -113,9 +114,14 @@ export const ExampleTabs = (props: Props) => {
       size="sm"
       unmountOnExit
     >
-      <Tabs.List mb="4">
+      <Tabs.List mb="4" width="full">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
         <Tabs.Trigger value="code">Code</Tabs.Trigger>
+        {scope === "examples" && (
+          <HStack flex="1" justifyContent="flex-end">
+            <StackblitzButton exampleId={name} />
+          </HStack>
+        )}
       </Tabs.List>
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
         <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>

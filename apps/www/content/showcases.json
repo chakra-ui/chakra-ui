@@ -41,8 +41,14 @@
     "url": "https://stately.ai/registry/new",
     "image": "showcases/Stately.jpg"
   },
+   {
+    "title": "Vemetric",
+    "description": "Product Analytics",
+    "url": "https://vemetric.com/",
+    "image": "showcases/vemetric.png"
+  },
   {
-    "title": "Hello Bonnie",
+    "title": "HelloBonnie",
     "description": "HR Benefits SaaS",
     "url": "https://www.hellobonnie.de/en",
     "image": "showcases/hello-bonnie.png"

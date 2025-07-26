@@ -122,12 +122,17 @@ const items = [
   // ...
 ]
 
+const { contains } = useFilter({ sensitivity: "base" })
+
 const { collection } = useListCollection({
   initialItems: items,
   itemToString: (item) => item.country,
   itemToValue: (item) => item.code,
+  filter: contains,
 })
 ```
+
+<ExampleTabs name="combobox-with-custom-object" />
 
 ### Minimum Characters
 
@@ -292,9 +297,9 @@ to the `Combobox.Content` component.
 
 <ExampleTabs name="combobox-with-custom-animation" />
 
-### Popover
+### Within Dialog
 
-To use the combobox within a popover component, avoid wrapping the
+To use the combobox within a dialog or popover component, avoid wrapping the
 `Combobox.Positioner` within the `Portal`.
 
 ```diff
@@ -305,6 +310,19 @@ To use the combobox within a popover component, avoid wrapping the
     </Combobox.Content>
   </Combobox.Positioner>
 -</Portal>
+```
+
+If you use a `Dialog` and have set `scrollBehavior="inside"`, you need to:
+
+- Set the combobox positioning to `fixed` to avoid the combobox from being
+  clipped by the dialog.
+- Set `hideWhenDetached` to `true` to hide the combobox when the trigger is
+  scrolled out of view.
+
+```tsx
+<Combobox.Root positioning={{ strategy: "fixed", hideWhenDetached: true }}>
+  {/* ... */}
+</Combobox.Root>
 ```
 
 <ExampleTabs name="combobox-in-popover" />

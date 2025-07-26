@@ -1,23 +1,19 @@
-import { HStack, Heading, Link, Span, Stack, Text } from "@chakra-ui/react"
+import { Box, HStack, Heading, Link, Span, Stack, Text } from "@chakra-ui/react"
 import { LuArrowUpRight } from "react-icons/lu"
 import { titleCase } from "scule"
+import { LLMSCopyWidget } from "./llms-copy-widget"
 import { ResourceIcon } from "./resource-icon"
+import { Docs } from ".velite"
 
 interface PageHeaderProps {
-  title: string
-  description: string
-  links?: {
-    source?: string
-    storybook?: string
-    recipe?: string
-    ark?: string
-  }
+  data: Docs
 }
 
 export const PageHeader = (props: PageHeaderProps) => {
-  const { title, description, links } = props
+  const { data } = props
+  const { title, description, links } = data
   return (
-    <Stack gap="4" pb="4">
+    <Stack gap="4" pb="4" position="relative">
       <Heading as="h1" size="3xl" letterSpacing="tight">
         {title}
       </Heading>
@@ -44,6 +40,10 @@ export const PageHeader = (props: PageHeaderProps) => {
           ))}
         </HStack>
       )}
+
+      <Box pos="absolute" top="0" right="0" hideBelow="sm">
+        <LLMSCopyWidget data={data} />
+      </Box>
     </Stack>
   )
 }

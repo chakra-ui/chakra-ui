@@ -1,0 +1,71 @@
+{
+  "name": "skeleton",
+  "file": "compositions/ui/skeleton",
+  "snippet": "import type {\n  SkeletonProps as ChakraSkeletonProps,\n  CircleProps,\n} from \"@chakra-ui/react\"\nimport { Skeleton as ChakraSkeleton, Circle, Stack } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface SkeletonCircleProps extends ChakraSkeletonProps {\n  size?: CircleProps[\"size\"]\n}\n\nexport const SkeletonCircle = React.forwardRef<\n  HTMLDivElement,\n  SkeletonCircleProps\n>(function SkeletonCircle(props, ref) {\n  const { size, ...rest } = props\n  return (\n    <Circle size={size} asChild ref={ref}>\n      <ChakraSkeleton {...rest} />\n    </Circle>\n  )\n})\n\nexport interface SkeletonTextProps extends ChakraSkeletonProps {\n  noOfLines?: number\n}\n\nexport const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(\n  function SkeletonText(props, ref) {\n    const { noOfLines = 3, gap, ...rest } = props\n    return (\n      <Stack gap={gap} width=\"full\" ref={ref}>\n        {Array.from({ length: noOfLines }).map((_, index) => (\n          <ChakraSkeleton\n            height=\"4\"\n            key={index}\n            {...props}\n            _last={{ maxW: \"80%\" }}\n            {...rest}\n          />\n        ))}\n      </Stack>\n    )\n  },\n)\n\nexport const Skeleton = ChakraSkeleton\n",
+  "examples": [
+    {
+      "name": "skeleton-basic",
+      "content": "export const SkeletonBasic = () => {\n  return (\n    <HStack gap=\"5\">\n      <SkeletonCircle size=\"12\" />\n      <Stack flex=\"1\">\n        <Skeleton height=\"5\" />\n        <Skeleton height=\"5\" width=\"80%\" />\n      </Stack>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Skeleton, SkeletonCircle, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-for-feed",
+      "content": "export const SkeletonForFeed = () => {\n  return (\n    <Stack gap=\"6\" maxW=\"xs\">\n      <HStack width=\"full\">\n        <SkeletonCircle size=\"10\" />\n        <SkeletonText noOfLines={2} />\n      </HStack>\n      <Skeleton height=\"200px\" />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  HStack,\n  Skeleton,\n  SkeletonCircle,\n  SkeletonText,\n  Stack,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-for-text",
+      "content": "export const SkeletonForText = () => {\n  return <SkeletonText noOfLines={3} gap=\"4\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SkeletonText } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-with-children",
+      "content": "export const SkeletonWithChildren = () => {\n  return (\n    <HStack gap=\"4\">\n      <Skeleton asChild loading={true}>\n        <Badge>Select</Badge>\n      </Skeleton>\n\n      <Skeleton loading={false}>\n        <Badge>Select</Badge>\n      </Skeleton>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, HStack, Skeleton } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-with-loaded",
+      "content": "\"use client\"\nexport const SkeletonWithLoaded = () => {\n  const [loading, setLoading] = useState(true)\n\n  return (\n    <Stack align=\"flex-start\" gap=\"4\">\n      <Skeleton height=\"6\" loading={loading}>\n        <Text>Chakra UI is cool</Text>\n      </Skeleton>\n      <Button size=\"sm\" onClick={() => setLoading((c) => !c)}>\n        Toggle\n      </Button>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Skeleton, Stack, Text } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-with-start-end-color",
+      "content": "export const SkeletonWithStartEndColor = () => {\n  return (\n    <Skeleton\n      variant=\"shine\"\n      width=\"full\"\n      height=\"5\"\n      css={{\n        \"--start-color\": \"colors.pink.500\",\n        \"--end-color\": \"colors.orange.500\",\n      }}\n    />\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Skeleton } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skeleton-with-variants",
+      "content": "export const SkeletonWithVariants = () => {\n  return (\n    <Stack gap=\"5\">\n      <HStack gap=\"5\">\n        <Text width=\"8ch\">pulse</Text>\n        <Skeleton flex=\"1\" height=\"5\" variant=\"pulse\" />\n      </HStack>\n      <HStack gap=\"5\">\n        <Text width=\"8ch\">shine</Text>\n        <Skeleton flex=\"1\" height=\"5\" variant=\"shine\" />\n      </HStack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Skeleton, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    }
+  ]
+}

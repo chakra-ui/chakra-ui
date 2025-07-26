@@ -1,0 +1,73 @@
+{
+  "name": "card",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "card-basic",
+      "content": "export const CardBasic = () => {\n  return (\n    <Card.Root width=\"320px\">\n      <Card.Body gap=\"2\">\n        <Avatar.Root size=\"lg\" shape=\"rounded\">\n          <Avatar.Image src=\"https://picsum.photos/200/300\" />\n          <Avatar.Fallback name=\"Nue Camp\" />\n        </Avatar.Root>\n        <Card.Title mt=\"2\">Nue Camp</Card.Title>\n        <Card.Description>\n          This is the card body. Lorem ipsum dolor sit amet, consectetur\n          adipiscing elit. Curabitur nec odio vel dui euismod fermentum.\n          Curabitur nec odio vel dui euismod fermentum.\n        </Card.Description>\n      </Card.Body>\n      <Card.Footer justifyContent=\"flex-end\">\n        <Button variant=\"outline\">View</Button>\n        <Button>Join</Button>\n      </Card.Footer>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Button, Card } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "card-horizontal",
+      "content": "export const CardHorizontal = () => (\n  <Card.Root flexDirection=\"row\" overflow=\"hidden\" maxW=\"xl\">\n    <Image\n      objectFit=\"cover\"\n      maxW=\"200px\"\n      src=\"https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60\"\n      alt=\"Caffe Latte\"\n    />\n    <Box>\n      <Card.Body>\n        <Card.Title mb=\"2\">The perfect latte</Card.Title>\n        <Card.Description>\n          Caffè latte is a coffee beverage of Italian origin made with espresso\n          and steamed milk.\n        </Card.Description>\n        <HStack mt=\"4\">\n          <Badge>Hot</Badge>\n          <Badge>Caffeine</Badge>\n        </HStack>\n      </Card.Body>\n      <Card.Footer>\n        <Button>Buy Latte</Button>\n      </Card.Footer>\n    </Box>\n  </Card.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Box, Button, Card, HStack, Image } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "card-with-avatar",
+      "content": "export const CardWithAvatar = () => {\n  return (\n    <Card.Root width=\"320px\">\n      <Card.Body>\n        <HStack mb=\"6\" gap=\"3\">\n          <Avatar.Root>\n            <Avatar.Image src=\"https://images.unsplash.com/photo-1511806754518-53bada35f930\" />\n            <Avatar.Fallback name=\"Nate Foss\" />\n          </Avatar.Root>\n          <Stack gap=\"0\">\n            <Text fontWeight=\"semibold\" textStyle=\"sm\">\n              Nate Foss\n            </Text>\n            <Text color=\"fg.muted\" textStyle=\"sm\">\n              @natefoss\n            </Text>\n          </Stack>\n        </HStack>\n        <Card.Description>\n          <Strong color=\"fg\">Nate Foss </Strong>\n          has requested to join your team. You can approve or decline their\n          request.\n        </Card.Description>\n      </Card.Body>\n      <Card.Footer>\n        <Button variant=\"subtle\" colorPalette=\"red\" flex=\"1\">\n          <LuX />\n          Decline\n        </Button>\n        <Button variant=\"subtle\" colorPalette=\"blue\" flex=\"1\">\n          <LuCheck />\n          Approve\n        </Button>\n      </Card.Footer>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Avatar,\n  Button,\n  Card,\n  HStack,\n  Stack,\n  Strong,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuCheck, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "card-with-form",
+      "content": "export const CardWithForm = () => (\n  <Card.Root maxW=\"sm\">\n    <Card.Header>\n      <Card.Title>Sign up</Card.Title>\n      <Card.Description>\n        Fill in the form below to create an account\n      </Card.Description>\n    </Card.Header>\n    <Card.Body>\n      <Stack gap=\"4\" w=\"full\">\n        <Field.Root>\n          <Field.Label>First Name</Field.Label>\n          <Input />\n        </Field.Root>\n        <Field.Root>\n          <Field.Label>Last Name</Field.Label>\n          <Input />\n        </Field.Root>\n      </Stack>\n    </Card.Body>\n    <Card.Footer justifyContent=\"flex-end\">\n      <Button variant=\"outline\">Cancel</Button>\n      <Button variant=\"solid\">Sign in</Button>\n    </Card.Footer>\n  </Card.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Card, Field, Input, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "card-with-image",
+      "content": "export const CardWithImage = () => {\n  return (\n    <Card.Root maxW=\"sm\" overflow=\"hidden\">\n      <Image\n        src=\"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80\"\n        alt=\"Green double couch with wooden legs\"\n      />\n      <Card.Body gap=\"2\">\n        <Card.Title>Living room Sofa</Card.Title>\n        <Card.Description>\n          This sofa is perfect for modern tropical spaces, baroque inspired\n          spaces.\n        </Card.Description>\n        <Text textStyle=\"2xl\" fontWeight=\"medium\" letterSpacing=\"tight\" mt=\"2\">\n          $450\n        </Text>\n      </Card.Body>\n      <Card.Footer gap=\"2\">\n        <Button variant=\"solid\">Buy now</Button>\n        <Button variant=\"ghost\">Add to cart</Button>\n      </Card.Footer>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Card, Image, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "card-with-sizes",
+      "content": "export const CardWithSizes = () => {\n  return (\n    <Stack>\n      <Card.Root size=\"sm\">\n        <Card.Header>\n          <Heading size=\"md\"> Card - sm</Heading>\n        </Card.Header>\n        <Card.Body color=\"fg.muted\">\n          This is the card body. Lorem ipsum dolor sit amet, consectetur\n          adipiscing elit.\n        </Card.Body>\n      </Card.Root>\n\n      <Card.Root size=\"md\">\n        <Card.Header>\n          <Heading size=\"md\"> Card - md</Heading>\n        </Card.Header>\n        <Card.Body color=\"fg.muted\">\n          This is the card body. Lorem ipsum dolor sit amet, consectetur\n          adipiscing elit.\n        </Card.Body>\n      </Card.Root>\n\n      <Card.Root size=\"lg\">\n        <Card.Header>\n          <Heading size=\"md\"> Card - lg</Heading>\n        </Card.Header>\n        <Card.Body color=\"fg.muted\">\n          This is the card body. Lorem ipsum dolor sit amet, consectetur\n          adipiscing elit.\n        </Card.Body>\n      </Card.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Card, Heading, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "card-with-variants",
+      "content": "export const CardWithVariants = () => {\n  return (\n    <Stack gap=\"4\" direction=\"row\" wrap=\"wrap\">\n      <For each={[\"subtle\", \"outline\", \"elevated\"]}>\n        {(variant) => (\n          <Card.Root width=\"320px\" variant={variant} key={variant}>\n            <Card.Body gap=\"2\">\n              <Avatar.Root size=\"lg\" shape=\"rounded\">\n                <Avatar.Image src=\"https://picsum.photos/200/300\" />\n                <Avatar.Fallback name=\"Nue Camp\" />\n              </Avatar.Root>\n              <Card.Title mb=\"2\">Nue Camp</Card.Title>\n              <Card.Description>\n                This is the card body. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit.\n              </Card.Description>\n            </Card.Body>\n            <Card.Footer justifyContent=\"flex-end\">\n              <Button variant=\"outline\">View</Button>\n              <Button>Join</Button>\n            </Card.Footer>\n          </Card.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Button, Card, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Card } from \"@chakra-ui/react\""
+    }
+  ]
+}

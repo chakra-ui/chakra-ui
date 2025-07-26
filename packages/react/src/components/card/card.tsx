@@ -39,7 +39,7 @@ export const CardPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardBodyProps extends HTMLChakraProps<"div"> {}
+export interface CardBodyProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const CardBody = withContext<HTMLDivElement, CardBodyProps>(
   "div",
@@ -48,7 +48,7 @@ export const CardBody = withContext<HTMLDivElement, CardBodyProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardHeaderProps extends HTMLChakraProps<"div"> {}
+export interface CardHeaderProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const CardHeader = withContext<HTMLDivElement, CardHeaderProps>(
   "div",
@@ -57,7 +57,7 @@ export const CardHeader = withContext<HTMLDivElement, CardHeaderProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardFooterProps extends HTMLChakraProps<"div"> {}
+export interface CardFooterProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const CardFooter = withContext<HTMLDivElement, CardFooterProps>(
   "div",
@@ -66,7 +66,7 @@ export const CardFooter = withContext<HTMLDivElement, CardFooterProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardTitleProps extends HTMLChakraProps<"h2"> {}
+export interface CardTitleProps extends HTMLChakraProps<"h2">, UnstyledProp {}
 
 export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
   "h3",
@@ -75,7 +75,9 @@ export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardDescriptionProps extends HTMLChakraProps<"p"> {}
+export interface CardDescriptionProps
+  extends HTMLChakraProps<"p">,
+    UnstyledProp {}
 
 export const CardDescription = withContext<
   HTMLParagraphElement,

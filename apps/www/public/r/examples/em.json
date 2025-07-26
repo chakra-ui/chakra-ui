@@ -1,0 +1,15 @@
+{
+  "name": "em",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "em-basic",
+      "content": "export const EmBasic = () => {\n  return (\n    <Text>\n      The <Em>design system</Em> is a collection of UI elements\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Em, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Em } from \"@chakra-ui/react\""
+    }
+  ]
+}

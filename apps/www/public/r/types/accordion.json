@@ -1,0 +1,220 @@
+{
+  "ItemBody": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ItemContent": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The value of the accordion item."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the accordion item is disabled."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "collapsible": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether an accordion item can be closed after it has been expanded."
+      },
+      "defaultValue": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The initial value of the expanded accordion items.\nUse when you don't need to control the value of the accordion."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the accordion items are disabled"
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  item: (value: string) => string\n  itemContent: (value: string) => string\n  itemTrigger: (value: string) => string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the accordion. Useful for composition."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "multiple": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether multiple accordion items can be expanded at the same time."
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback fired when the focused accordion item changes."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "The callback fired when the state of expanded/collapsed accordion items changes."
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "defaultValue": "\"vertical\"",
+        "description": "The orientation of the accordion items."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      },
+      "value": {
+        "type": "string[]",
+        "isRequired": false,
+        "description": "The controlled value of the expanded accordion items."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "variant": {
+        "type": "\"outline\" | \"subtle\" | \"enclosed\" | \"plain\"",
+        "defaultValue": "outline",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "size": {
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseAccordionReturn",
+        "isRequired": true
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable lazy mounting"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to unmount on exit."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

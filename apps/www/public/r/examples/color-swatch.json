@@ -1,0 +1,71 @@
+{
+  "name": "color-swatch",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "color-swatch-basic",
+      "content": "export const ColorSwatchBasic = () => {\n  return <ColorSwatch value=\"#bada55\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorSwatch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-mixed",
+      "content": "export const ColorSwatchMixed = () => {\n  return (\n    <HStack>\n      <ColorSwatchMix size=\"lg\" items={[\"red\", \"pink\"]} />\n      <ColorSwatchMix size=\"lg\" items={[\"red\", \"pink\", \"green\"]} />\n      <ColorSwatchMix\n        size=\"lg\"\n        items={[\"lightgreen\", \"green\", \"darkgreen\", \"black\"]}\n      />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorSwatchMix, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-palette",
+      "content": "export const ColorSwatchPalette = () => {\n  return (\n    <Group attached width=\"full\" maxW=\"sm\" grow>\n      {swatches.map((color) => (\n        <ColorSwatch key={color} value={color} size=\"2xl\" />\n      ))}\n    </Group>\n  )\n}\n\nconst swatches = [\"#ff0000\", \"#00ff00\", \"#0000ff\", \"#ffff00\", \"#ff00ff\"]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorSwatch, Group } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-with-alpha",
+      "content": "export const ColorSwatchWithAlpha = () => {\n  return (\n    <HStack>\n      {colors.map((color) => (\n        <ColorSwatch key={color} value={color} size=\"xl\" />\n      ))}\n    </HStack>\n  )\n}\n\nconst colors = [\n  \"rgba(255, 0, 0, 0.5)\",\n  \"rgba(0, 0, 255, 0.7)\",\n  \"rgba(0, 255, 0, 0.4)\",\n  \"rgba(255, 192, 203, 0.6)\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorSwatch, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-with-badge",
+      "content": "export const ColorSwatchWithBadge = () => {\n  return (\n    <Badge>\n      <ColorSwatch value=\"#bada55\" boxSize=\"0.82em\" />\n      #bada55\n    </Badge>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, ColorSwatch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-with-sizes",
+      "content": "export const ColorSwatchWithSizes = () => {\n  return (\n    <HStack>\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => <ColorSwatch key={size} value=\"#bada55\" size={size} />}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack } from \"@chakra-ui/react\"",
+        "import { ColorSwatch } from \"@chakra-ui/react\"",
+        "import { For } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "color-swatch-with-transparent",
+      "content": "export const ColorSwatchWithTransparent = () => {\n  return <ColorSwatch value=\"rgba(0, 0, 0, 0)\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ColorSwatch } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ColorSwatch } from \"@chakra-ui/react\""
+    }
+  ]
+}

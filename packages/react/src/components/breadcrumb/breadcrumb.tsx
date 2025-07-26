@@ -41,7 +41,9 @@ export const BreadcrumbPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbListProps extends HTMLChakraProps<"ol"> {}
+export interface BreadcrumbListProps
+  extends HTMLChakraProps<"ol">,
+    UnstyledProp {}
 
 export const BreadcrumbList = withContext<HTMLElement, BreadcrumbListProps>(
   "ol",
@@ -50,7 +52,9 @@ export const BreadcrumbList = withContext<HTMLElement, BreadcrumbListProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbItemProps extends HTMLChakraProps<"li"> {}
+export interface BreadcrumbItemProps
+  extends HTMLChakraProps<"li">,
+    UnstyledProp {}
 
 export const BreadcrumbItem = withContext<HTMLElement, BreadcrumbItemProps>(
   "li",
@@ -59,7 +63,9 @@ export const BreadcrumbItem = withContext<HTMLElement, BreadcrumbItemProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {}
+export interface BreadcrumbLinkProps
+  extends HTMLChakraProps<"a">,
+    UnstyledProp {}
 
 export const BreadcrumbLink = withContext<
   HTMLAnchorElement,
@@ -68,7 +74,9 @@ export const BreadcrumbLink = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbCurrentLinkProps extends HTMLChakraProps<"span"> {}
+export interface BreadcrumbCurrentLinkProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const BreadcrumbCurrentLink = withContext<
   HTMLElement,
@@ -82,7 +90,9 @@ export const BreadcrumbCurrentLink = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"li"> {}
+export interface BreadcrumbSeparatorProps
+  extends HTMLChakraProps<"li">,
+    UnstyledProp {}
 
 export const BreadcrumbSeparator = withContext<
   HTMLElement,
@@ -96,12 +106,14 @@ export const BreadcrumbSeparator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbEllipsisProps extends HTMLChakraProps<"span"> {}
+export interface BreadcrumbEllipsisProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const BreadcrumbEllipsis = withContext<
   HTMLElement,
   BreadcrumbEllipsisProps
->("span", "ellipsis", {
+>("li", "ellipsis", {
   defaultProps: {
     role: "presentation",
     "aria-hidden": true,

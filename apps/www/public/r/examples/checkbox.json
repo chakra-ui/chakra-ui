@@ -1,0 +1,193 @@
+{
+  "name": "checkbox",
+  "file": "compositions/ui/checkbox",
+  "snippet": "import { Checkbox as ChakraCheckbox } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface CheckboxProps extends ChakraCheckbox.RootProps {\n  icon?: React.ReactNode\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.RefObject<HTMLLabelElement | null>\n}\n\nexport const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(\n  function Checkbox(props, ref) {\n    const { icon, children, inputProps, rootRef, ...rest } = props\n    return (\n      <ChakraCheckbox.Root ref={rootRef} {...rest}>\n        <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />\n        <ChakraCheckbox.Control>\n          {icon || <ChakraCheckbox.Indicator />}\n        </ChakraCheckbox.Control>\n        {children != null && (\n          <ChakraCheckbox.Label>{children}</ChakraCheckbox.Label>\n        )}\n      </ChakraCheckbox.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "checkbox-basic",
+      "content": "export const CheckboxBasic = () => {\n  return (\n    <Checkbox.Root>\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-closed-component",
+      "content": "export interface CheckboxProps extends ChakraCheckbox.RootProps {\n  icon?: React.ReactNode\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.RefObject<HTMLLabelElement | null>\n}\n\nexport const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(\n  function Checkbox(props, ref) {\n    const { icon, children, inputProps, rootRef, ...rest } = props\n    return (\n      <ChakraCheckbox.Root ref={rootRef} {...rest}>\n        <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />\n        <ChakraCheckbox.Control>\n          {icon || <ChakraCheckbox.Indicator />}\n        </ChakraCheckbox.Control>\n        {children != null && (\n          <ChakraCheckbox.Label>{children}</ChakraCheckbox.Label>\n        )}\n      </ChakraCheckbox.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox as ChakraCheckbox } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-controlled",
+      "content": "\"use client\"\nexport const CheckboxControlled = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <Checkbox.Root\n      checked={checked}\n      onCheckedChange={(e) => setChecked(!!e.checked)}\n    >\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-indeterminate",
+      "content": "\"use client\"\nconst initialValues = [\n  { label: \"Monday\", checked: false, value: \"monday\" },\n  { label: \"Tuesday\", checked: false, value: \"tuesday\" },\n  { label: \"Wednesday\", checked: false, value: \"wednesday\" },\n  { label: \"Thursday\", checked: false, value: \"thursday\" },\n]\n\nexport const CheckboxIndeterminate = () => {\n  const [values, setValues] = useState(initialValues)\n\n  const allChecked = values.every((value) => value.checked)\n  const indeterminate = values.some((value) => value.checked) && !allChecked\n\n  const items = values.map((item, index) => (\n    <Checkbox.Root\n      ms=\"6\"\n      key={item.value}\n      checked={item.checked}\n      onCheckedChange={(e) => {\n        setValues((current) => {\n          const newValues = [...current]\n          newValues[index] = { ...newValues[index], checked: !!e.checked }\n          return newValues\n        })\n      }}\n    >\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Checkbox.Label>{item.label}</Checkbox.Label>\n    </Checkbox.Root>\n  ))\n\n  return (\n    <Stack align=\"flex-start\">\n      <Checkbox.Root\n        checked={indeterminate ? \"indeterminate\" : allChecked}\n        onCheckedChange={(e) => {\n          setValues((current) =>\n            current.map((value) => ({ ...value, checked: !!e.checked })),\n          )\n        }}\n      >\n        <Checkbox.HiddenInput />\n        <Checkbox.Control>\n          <Checkbox.Indicator />\n        </Checkbox.Control>\n        <Checkbox.Label>Weekdays</Checkbox.Label>\n      </Checkbox.Root>\n      {items}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-colors",
+      "content": "export const CheckboxWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          width=\"full\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n          <For each={[\"outline\", \"subtle\", \"solid\"]}>\n            {(variant) => (\n              <Stack key={variant} mb=\"4\">\n                <Checkbox.Root variant={variant} colorPalette={colorPalette}>\n                  <Checkbox.HiddenInput />\n                  <Checkbox.Control />\n                  <Checkbox.Label>Checkbox</Checkbox.Label>\n                </Checkbox.Root>\n\n                <Checkbox.Root\n                  defaultChecked\n                  variant={variant}\n                  colorPalette={colorPalette}\n                >\n                  <Checkbox.HiddenInput />\n                  <Checkbox.Control />\n                  <Checkbox.Label>Checkbox</Checkbox.Label>\n                </Checkbox.Root>\n              </Stack>\n            )}\n          </For>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, For, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-custom-icon",
+      "content": "export const CheckboxWithCustomIcon = () => {\n  return (\n    <Checkbox.Root defaultChecked>\n      <Checkbox.HiddenInput />\n      <Checkbox.Control>\n        <HiOutlinePlus />\n      </Checkbox.Control>\n      <Checkbox.Label>With Custom Icon</Checkbox.Label>\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox } from \"@chakra-ui/react\"",
+        "import { HiOutlinePlus } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "checkbox-with-description",
+      "content": "export const CheckboxWithDescription = () => {\n  return (\n    <Checkbox.Root gap=\"4\" alignItems=\"flex-start\">\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Stack gap=\"1\">\n        <Checkbox.Label>I agree to the terms and conditions</Checkbox.Label>\n        <Box textStyle=\"sm\" color=\"fg.muted\">\n          By clicking this, you agree to our Terms and Privacy Policy.\n        </Box>\n      </Stack>\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Checkbox, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-form",
+      "content": "\"use client\"\nexport const CheckboxWithForm = () => {\n  return (\n    <form\n      onSubmit={(e) => {\n        e.preventDefault()\n        console.log(e.currentTarget.elements)\n      }}\n    >\n      <Stack maxW=\"sm\" gap=\"4\" align=\"flex-start\">\n        <Field.Root>\n          <Field.Label>Username</Field.Label>\n          <Input placeholder=\"username\" />\n        </Field.Root>\n        <Field.Root>\n          <Field.Label>Password</Field.Label>\n          <Input placeholder=\"password\" />\n        </Field.Root>\n\n        <Checkbox.Root mt=\"2\" value=\"remember me\">\n          <Checkbox.HiddenInput />\n          <Checkbox.Control />\n          <Checkbox.Label>Remember me</Checkbox.Label>\n        </Checkbox.Root>\n\n        <Button variant=\"solid\" mt=\"3\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Checkbox, Field, Input, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-group-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  framework: z.array(z.string()).min(1, {\n    message: \"You must select at least one framework.\",\n  }),\n})\n\ntype FormData = z.infer<typeof formSchema>\n\nconst items = [\n  { label: \"React\", value: \"react\" },\n  { label: \"Svelte\", value: \"svelte\" },\n  { label: \"Vue\", value: \"vue\" },\n  { label: \"Angular\", value: \"angular\" },\n]\n\nexport const CheckboxWithGroupHookForm = () => {\n  const {\n    handleSubmit,\n    control,\n    formState: { errors },\n  } = useForm<FormData>({\n    resolver: zodResolver(formSchema),\n  })\n\n  const framework = useController({\n    control,\n    name: \"framework\",\n    defaultValue: [],\n  })\n\n  const invalid = !!errors.framework\n\n  return (\n    <form onSubmit={handleSubmit((data) => console.log(data))}>\n      <Fieldset.Root invalid={invalid}>\n        <Fieldset.Legend>Select your framework</Fieldset.Legend>\n        <CheckboxGroup\n          invalid={invalid}\n          value={framework.field.value}\n          onValueChange={framework.field.onChange}\n          name={framework.field.name}\n        >\n          <Fieldset.Content>\n            {items.map((item) => (\n              <Checkbox.Root key={item.value} value={item.value}>\n                <Checkbox.HiddenInput />\n                <Checkbox.Control />\n                <Checkbox.Label>{item.label}</Checkbox.Label>\n              </Checkbox.Root>\n            ))}\n          </Fieldset.Content>\n        </CheckboxGroup>\n\n        {errors.framework && (\n          <Fieldset.ErrorText>{errors.framework.message}</Fieldset.ErrorText>\n        )}\n\n        <Button size=\"sm\" type=\"submit\" alignSelf=\"flex-start\">\n          Submit\n        </Button>\n\n        <Code>Values: {JSON.stringify(framework.field.value, null, 2)}</Code>\n      </Fieldset.Root>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Checkbox,\n  CheckboxGroup,\n  Code,\n  Fieldset,\n} from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { useController, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "checkbox-with-group",
+      "content": "export const CheckboxWithGroup = () => {\n  return (\n    <Fieldset.Root>\n      <CheckboxGroup defaultValue={[\"react\"]} name=\"framework\">\n        <Fieldset.Legend fontSize=\"sm\" mb=\"2\">\n          Select framework\n        </Fieldset.Legend>\n        <Fieldset.Content>\n          <For each={[\"React\", \"Svelte\", \"Vue\", \"Angular\"]}>\n            {(value) => (\n              <Checkbox.Root key={value} value={value}>\n                <Checkbox.HiddenInput />\n                <Checkbox.Control />\n                <Checkbox.Label>{value}</Checkbox.Label>\n              </Checkbox.Root>\n            )}\n          </For>\n        </Fieldset.Content>\n      </CheckboxGroup>\n    </Fieldset.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, CheckboxGroup, Fieldset, For } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  enabled: z.boolean(),\n})\n\ntype FormData = z.infer<typeof formSchema>\n\nexport const CheckboxWithHookForm = () => {\n  const form = useForm<FormData>({\n    resolver: zodResolver(formSchema),\n    defaultValues: { enabled: false },\n  })\n\n  const enabled = useController({\n    control: form.control,\n    name: \"enabled\",\n  })\n\n  const invalid = !!form.formState.errors.enabled\n\n  return (\n    <form onSubmit={form.handleSubmit((data) => console.log(data))}>\n      <Stack align=\"flex-start\">\n        <Controller\n          control={form.control}\n          name=\"enabled\"\n          render={({ field }) => (\n            <Field.Root invalid={invalid} disabled={field.disabled}>\n              <Checkbox.Root\n                checked={field.value}\n                onCheckedChange={({ checked }) => field.onChange(checked)}\n              >\n                <Checkbox.HiddenInput />\n                <Checkbox.Control />\n                <Checkbox.Label>Checkbox</Checkbox.Label>\n              </Checkbox.Root>\n              <Field.ErrorText>\n                {form.formState.errors.enabled?.message}\n              </Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <HStack>\n          <Button\n            size=\"xs\"\n            variant=\"outline\"\n            onClick={() => form.setValue(\"enabled\", !enabled.field.value)}\n          >\n            Toggle\n          </Button>\n          <Button size=\"xs\" variant=\"outline\" onClick={() => form.reset()}>\n            Reset\n          </Button>\n        </HStack>\n\n        <Button size=\"sm\" type=\"submit\" alignSelf=\"flex-start\">\n          Submit\n        </Button>\n\n        <Code>Checked: {JSON.stringify(enabled.field.value, null, 2)}</Code>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Checkbox, Code, Field, HStack, Stack } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { Controller, useController, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "checkbox-with-indeterminate",
+      "content": "export const CheckboxWithIndeterminate = () => {\n  return (\n    <Stack>\n      <For each={[\"subtle\", \"outline\"]}>\n        {(variant) => (\n          <Checkbox.Root\n            defaultChecked=\"indeterminate\"\n            variant={variant}\n            key={variant}\n          >\n            <Checkbox.HiddenInput />\n            <Checkbox.Control />\n            <Checkbox.Label>{variant}</Checkbox.Label>\n          </Checkbox.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-label-position",
+      "content": "export const CheckboxWithLabelPosition = () => {\n  return (\n    <Checkbox.Root>\n      <Checkbox.HiddenInput />\n      <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n      <Checkbox.Control />\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-link",
+      "content": "export const CheckboxWithLink = () => {\n  return (\n    <Checkbox.Root>\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Checkbox.Label>\n        I agree to the{\" \"}\n        <Link colorPalette=\"teal\" href=\"https://google.com\">\n          terms and conditions\n        </Link>\n      </Checkbox.Label>\n    </Checkbox.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, Link } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-sizes",
+      "content": "export const CheckboxWithSizes = () => {\n  return (\n    <Stack align=\"flex-start\" flex=\"1\" gap=\"4\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Checkbox.Root defaultChecked size={size} key={size}>\n            <Checkbox.HiddenInput />\n            <Checkbox.Control />\n            <Checkbox.Label>Checkbox</Checkbox.Label>\n          </Checkbox.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-states",
+      "content": "export const CheckboxWithStates = () => {\n  return (\n    <Stack>\n      <Checkbox.Root disabled>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Disabled</Checkbox.Label>\n      </Checkbox.Root>\n\n      <Checkbox.Root defaultChecked disabled>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Disabled</Checkbox.Label>\n      </Checkbox.Root>\n\n      <Checkbox.Root readOnly>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Readonly</Checkbox.Label>\n      </Checkbox.Root>\n\n      <Checkbox.Root invalid>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Invalid</Checkbox.Label>\n      </Checkbox.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-store",
+      "content": "\"use client\"\nexport const CheckboxWithStore = () => {\n  const checkbox = useCheckbox()\n  return (\n    <Checkbox.RootProvider value={checkbox}>\n      <Checkbox.Root>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n      </Checkbox.Root>\n    </Checkbox.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, useCheckbox } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkbox-with-variants",
+      "content": "export const CheckboxWithVariants = () => {\n  return (\n    <HStack align=\"flex-start\">\n      <For each={[\"outline\", \"subtle\", \"solid\"]}>\n        {(variant) => (\n          <Stack align=\"flex-start\" flex=\"1\" key={variant}>\n            <Text>{variant}</Text>\n            <Checkbox.Root defaultChecked variant={variant}>\n              <Checkbox.HiddenInput />\n              <Checkbox.Control />\n              <Checkbox.Label>Checkbox</Checkbox.Label>\n            </Checkbox.Root>\n          </Stack>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, For, HStack, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkbox } from \"@chakra-ui/react\""
+    }
+  ]
+}

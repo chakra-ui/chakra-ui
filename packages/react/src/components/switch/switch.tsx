@@ -60,7 +60,8 @@ export const SwitchPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchLabelProps
-  extends HTMLChakraProps<"span", ArkSwitch.LabelBaseProps> {}
+  extends HTMLChakraProps<"span", ArkSwitch.LabelBaseProps>,
+    UnstyledProp {}
 
 export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
   ArkSwitch.Label,
@@ -71,7 +72,8 @@ export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchThumbProps
-  extends HTMLChakraProps<"span", ArkSwitch.ThumbBaseProps> {}
+  extends HTMLChakraProps<"span", ArkSwitch.ThumbBaseProps>,
+    UnstyledProp {}
 
 export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
   ArkSwitch.Thumb,
@@ -82,7 +84,8 @@ export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchControlProps
-  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps> {}
+  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps>,
+    UnstyledProp {}
 
 export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
   ArkSwitch.Control,
@@ -95,7 +98,9 @@ export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SwitchIndicatorProps extends HTMLChakraProps<"span"> {
+export interface SwitchIndicatorProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {
   fallback?: React.ReactNode | undefined
 }
 
@@ -105,13 +110,13 @@ export const SwitchIndicator = forwardRef<
 >(function SwitchIndicator(props, ref) {
   const api = useSwitchContext()
   const styles = useSwitchStyles()
-  const { fallback, children, ...rest } = props
+  const { fallback, children, unstyled, ...rest } = props
   return (
     <chakra.span
       ref={ref}
       data-checked={dataAttr(api.checked)}
       {...rest}
-      css={[styles.indicator, props.css]}
+      css={[!unstyled ? styles.indicator : undefined, props.css]}
     >
       {api.checked ? children : fallback}
     </chakra.span>

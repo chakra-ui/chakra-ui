@@ -1,5 +1,5 @@
 import { docs } from "@/.velite"
-import { cleanupContent } from "../shared"
+import { cleanupContent } from "@/lib/llms-utils"
 
 export const dynamic = "force-static"
 

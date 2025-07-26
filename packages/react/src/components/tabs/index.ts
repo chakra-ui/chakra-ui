@@ -7,7 +7,6 @@ export {
   TabsRootProvider,
   TabsPropsProvider,
   TabsTrigger,
-  TabsContext,
   useTabsStyles,
 } from "./tabs"
 
@@ -21,8 +20,13 @@ export type {
   TabsTriggerProps,
 } from "./tabs"
 
-export { useTabs, useTabsContext } from "@ark-ui/react/tabs"
+export { useTabs, useTabsContext, TabsContext } from "@ark-ui/react/tabs"
 
-export type { UseTabsProps, UseTabsReturn } from "@ark-ui/react/tabs"
+export type {
+  UseTabsProps,
+  UseTabsReturn,
+  TabsFocusChangeDetails,
+  TabsValueChangeDetails,
+} from "@ark-ui/react/tabs"
 
 export * as Tabs from "./namespace"

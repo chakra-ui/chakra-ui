@@ -48,7 +48,8 @@ export const FieldPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldLabelProps
-  extends HTMLChakraProps<"label", ArkField.LabelBaseProps> {}
+  extends HTMLChakraProps<"label", ArkField.LabelBaseProps>,
+    UnstyledProp {}
 
 export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
   ArkField.Label,
@@ -59,7 +60,8 @@ export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldHelperTextProps
-  extends HTMLChakraProps<"div", ArkField.HelperTextBaseProps> {}
+  extends HTMLChakraProps<"div", ArkField.HelperTextBaseProps>,
+    UnstyledProp {}
 
 export const FieldHelperText = withContext<
   HTMLDivElement,
@@ -69,7 +71,8 @@ export const FieldHelperText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldErrorTextProps
-  extends HTMLChakraProps<"div", ArkField.ErrorTextBaseProps> {}
+  extends HTMLChakraProps<"div", ArkField.ErrorTextBaseProps>,
+    UnstyledProp {}
 
 export const FieldErrorText = withContext<HTMLDivElement, FieldErrorTextProps>(
   ArkField.ErrorText,

@@ -1,0 +1,208 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group will be disabled"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  label: string\n  indicator: string\n  item: (value: string) => string\n  itemLabel: (value: string) => string\n  itemControl: (value: string) => string\n  itemHiddenInput: (value: string) => string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the radio. Useful for composition."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input fields in the radio\n(Useful for form submission)."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called once a radio is checked"
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "description": "Orientation of the radio group"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is read-only"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The controlled value of the radio group"
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseSegmentGroupReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLLabelElement"
+  },
+  "ItemText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "Indicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Items": {
+    "props": {
+      "items": {
+        "type": "Array<string | Item>",
+        "isRequired": true
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ItemControl": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemHiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
+  },
+  "Label": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLLabelElement"
+  }
+}

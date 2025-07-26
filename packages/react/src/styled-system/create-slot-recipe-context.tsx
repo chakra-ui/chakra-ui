@@ -166,14 +166,15 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   > => {
     const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
+      const { unstyled, ...restProps } = props
       const styles = useStyles()
       const classNames = useClassNames()
       const className = classNames?.[slot as keyof typeof classNames]
 
       return (
         <SuperComponent
-          {...props}
-          css={[slot ? styles[slot] : undefined, props.css]}
+          {...restProps}
+          css={[!unstyled && slot ? styles[slot] : undefined, props.css]}
           ref={ref}
           className={cx(props.className, className)}
         />

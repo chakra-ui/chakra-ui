@@ -1,0 +1,117 @@
+{
+  "name": "popover",
+  "file": "compositions/ui/popover",
+  "snippet": "import { Popover as ChakraPopover, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"@/components/ui/close-button\"\nimport * as React from \"react\"\n\ninterface PopoverContentProps extends ChakraPopover.ContentProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement>\n}\n\nexport const PopoverContent = React.forwardRef<\n  HTMLDivElement,\n  PopoverContentProps\n>(function PopoverContent(props, ref) {\n  const { portalled = true, portalRef, ...rest } = props\n  return (\n    <Portal disabled={!portalled} container={portalRef}>\n      <ChakraPopover.Positioner>\n        <ChakraPopover.Content ref={ref} {...rest} />\n      </ChakraPopover.Positioner>\n    </Portal>\n  )\n})\n\nexport const PopoverArrow = React.forwardRef<\n  HTMLDivElement,\n  ChakraPopover.ArrowProps\n>(function PopoverArrow(props, ref) {\n  return (\n    <ChakraPopover.Arrow {...props} ref={ref}>\n      <ChakraPopover.ArrowTip />\n    </ChakraPopover.Arrow>\n  )\n})\n\nexport const PopoverCloseTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraPopover.CloseTriggerProps\n>(function PopoverCloseTrigger(props, ref) {\n  return (\n    <ChakraPopover.CloseTrigger\n      position=\"absolute\"\n      top=\"1\"\n      insetEnd=\"1\"\n      {...props}\n      asChild\n      ref={ref}\n    >\n      <CloseButton size=\"sm\" />\n    </ChakraPopover.CloseTrigger>\n  )\n})\n\nexport const PopoverTitle = ChakraPopover.Title\nexport const PopoverDescription = ChakraPopover.Description\nexport const PopoverFooter = ChakraPopover.Footer\nexport const PopoverHeader = ChakraPopover.Header\nexport const PopoverRoot = ChakraPopover.Root\nexport const PopoverBody = ChakraPopover.Body\nexport const PopoverTrigger = ChakraPopover.Trigger\n",
+  "examples": [
+    {
+      "name": "popover-basic",
+      "content": "export const PopoverBasic = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n              <Text my=\"4\">\n                Naruto is a Japanese manga series written and illustrated by\n                Masashi Kishimoto.\n              </Text>\n              <Input placeholder=\"Your fav. character\" size=\"sm\" />\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Input, Popover, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-controlled",
+      "content": "\"use client\"\nexport const PopoverControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              This is a popover with the same width as the trigger button\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-in-dialog",
+      "content": "\"use client\"\nexport const PopoverInDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton />\n            </Dialog.CloseTrigger>\n            <Dialog.Header>\n              <Dialog.Title>Popover in Dialog</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <DialogPopover />\n            </Dialog.Body>\n            <Dialog.Footer />\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nfunction DialogPopover() {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Popover.Positioner>\n        <Popover.Content>\n          <Popover.Arrow />\n          <Popover.Body>\n            <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n            <Text my=\"4\">\n              Naruto is a Japanese manga series written and illustrated by\n              Masashi Kishimoto.\n            </Text>\n          </Popover.Body>\n        </Popover.Content>\n      </Popover.Positioner>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Popover,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-lazy-mounted",
+      "content": "export const PopoverLazyMounted = () => {\n  return (\n    <Popover.Root lazyMount unmountOnExit>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n              <Text my=\"4\">\n                Naruto is a Japanese manga series written and illustrated by\n                Masashi Kishimoto.\n              </Text>\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-nested",
+      "content": "export const PopoverNested = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Text mb=\"4\">\n                Naruto is a Japanese manga series written and illustrated by\n                Masashi Kishimoto.\n              </Text>\n\n              <Popover.Root>\n                <Popover.Trigger asChild>\n                  <Button variant=\"outline\" size=\"xs\">\n                    Open Nested Popover\n                  </Button>\n                </Popover.Trigger>\n                <Popover.Positioner>\n                  <Popover.Content>\n                    <Popover.Arrow />\n                    <Popover.Body>Some nested popover content</Popover.Body>\n                  </Popover.Content>\n                </Popover.Positioner>\n              </Popover.Root>\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-custom-bg",
+      "content": "export const PopoverWithCustomBg = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content css={{ \"--popover-bg\": \"lightblue\" }}>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n              <Text my=\"4\">\n                Naruto is a Japanese manga series written and illustrated by\n                Masashi Kishimoto.\n              </Text>\n              <Input bg=\"bg\" placeholder=\"Your fav. character\" size=\"sm\" />\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Input, Popover, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-form",
+      "content": "export const PopoverWithForm = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Stack gap=\"4\">\n                <Field.Root>\n                  <Field.Label>Width</Field.Label>\n                  <Input placeholder=\"40px\" />\n                </Field.Root>\n                <Field.Root>\n                  <Field.Label>Height</Field.Label>\n                  <Input placeholder=\"32px\" />\n                </Field.Root>\n                <Field.Root>\n                  <Field.Label>Comments</Field.Label>\n                  <Textarea placeholder=\"Start typing...\" />\n                </Field.Root>\n              </Stack>\n            </Popover.Body>\n            <Popover.CloseTrigger />\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Field,\n  Input,\n  Popover,\n  Portal,\n  Stack,\n  Textarea,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-initial-focus",
+      "content": "\"use client\"\nexport const PopoverWithInitialFocus = () => {\n  const ref = useRef<HTMLButtonElement | null>(null)\n  return (\n    <Popover.Root initialFocusEl={() => ref.current}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Header>Manage Your Channels</Popover.Header>\n            <Popover.Arrow />\n            <Popover.Body>\n              This is a popover with the same width as the trigger button\n            </Popover.Body>\n            <Popover.Footer>\n              <Box fontSize=\"sm\" flex=\"1\">\n                Step 2 of 4\n              </Box>\n              <Group>\n                <Button size=\"sm\" ref={ref}>\n                  Prev\n                </Button>\n                <Button size=\"sm\">Next</Button>\n              </Group>\n            </Popover.Footer>\n            <Popover.CloseTrigger />\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Group, Popover, Portal } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-offset",
+      "content": "export const PopoverWithOffset = () => {\n  return (\n    <Popover.Root positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Open\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Body>\n              This popover has a custom offset from its trigger\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-placement",
+      "content": "export const PopoverWithPlacement = () => {\n  return (\n    <Popover.Root positioning={{ placement: \"bottom-end\" }}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>Some content</Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-same-width",
+      "content": "export const PopoverWithSameWidth = () => {\n  return (\n    <Popover.Root positioning={{ sameWidth: true }}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\" minW=\"xs\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content width=\"auto\">\n            <Popover.Arrow />\n            <Popover.Body>\n              This is a popover with the same width as the trigger button\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Popover, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-with-sizes",
+      "content": "export const PopoverWithSizes = () => {\n  return (\n    <Stack align=\"center\" direction=\"row\" gap=\"10\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Popover.Root key={size} size={size}>\n            <Popover.Trigger asChild>\n              <Button size={size} variant=\"outline\">\n                Click me\n              </Button>\n            </Popover.Trigger>\n            <Portal>\n              <Popover.Positioner>\n                <Popover.Content>\n                  <Popover.Arrow />\n                  <Popover.Body>\n                    <Popover.Title fontWeight=\"medium\">\n                      Naruto Form\n                    </Popover.Title>\n                    <Text my=\"4\">\n                      Naruto is a Japanese manga series written and illustrated\n                      by Masashi Kishimoto.\n                    </Text>\n                    <Input placeholder=\"Your fav. character\" size={size} />\n                  </Popover.Body>\n                </Popover.Content>\n              </Popover.Positioner>\n            </Portal>\n          </Popover.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  For,\n  Input,\n  Popover,\n  Portal,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    }
+  ]
+}

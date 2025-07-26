@@ -1310,6 +1310,41 @@ export type QrCodeVariantMap = {
   [K in keyof QrCodeVariant]: Array<QrCodeVariant[K]>
 }
 
+// TreeView
+
+export type TreeViewSlot =
+  | "branch"
+  | "branchContent"
+  | "branchControl"
+  | "branchIndentGuide"
+  | "branchIndicator"
+  | "branchText"
+  | "branchTrigger"
+  | "item"
+  | "itemIndicator"
+  | "itemText"
+  | "label"
+  | "nodeCheckbox"
+  | "root"
+  | "tree"
+  | "branchBody"
+
+export interface TreeViewVariant {
+  /** @default "md" */
+  size?: "md" | "sm" | "xs" | undefined
+  /** @default "subtle" */
+  variant?: "subtle" | "solid" | "surface" | undefined
+  animateContent?: boolean | undefined
+}
+
+export type TreeViewVariantProps = {
+  [K in keyof TreeViewVariant]?: ConditionalValue<TreeViewVariant[K]> | undefined
+}
+
+export type TreeViewVariantMap = {
+  [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1357,6 +1392,7 @@ export interface ConfigSlotRecipes {
   timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps, TimelineVariantMap>
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
+  treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1406,6 +1442,7 @@ export interface ConfigRecipeSlots {
   timeline: TimelineSlot
   colorPicker: ColorPickerSlot
   qrCode: QrCodeSlot
+  treeView: TreeViewSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
@@ -1414,4 +1451,6 @@ export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
   ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
   : { recipe?: SlotRecipeDefinition | undefined }
 
-export type RecipeProps<T> = T extends keyof ConfigRecipes ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined } : { recipe?: RecipeDefinition | undefined }
+export type RecipeProps<T> = T extends keyof ConfigRecipes
+  ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
+  : { recipe?: RecipeDefinition | undefined }

@@ -122,6 +122,7 @@ type LayerStyleProperty =
   | "outlineStyle"
   | "outlineWidth"
   | "outlineOffset"
+  | "transition"
 
 export type LayerStyle = CompositionStyleObject<LayerStyleProperty>
 
