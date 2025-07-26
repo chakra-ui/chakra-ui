@@ -204,7 +204,8 @@ component.
 </Box>
 ```
 
-To style the Next.js link component, use the `asChild` prop on the `Link` component
+To style the Next.js link component, use the `asChild` prop on the `Link`
+component
 
 ```jsx
 <Link isExternal asChild>
@@ -672,10 +673,12 @@ After
 
 ```tsx
 <NumberInput.Root>
-  <NumberInput.Input />
   <NumberInput.Control>
-    <NumberInput.IncrementTrigger />
-    <NumberInput.DecrementTrigger />
+    <NumberInput.Input />
+    <NumberInput.TriggerGroup>
+      <NumberInput.IncrementTrigger />
+      <NumberInput.DecrementTrigger />
+    </NumberInput.TriggerGroup>
   </NumberInput.Control>
 </NumberInput.Root>
 ```
