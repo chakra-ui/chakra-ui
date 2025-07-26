@@ -291,9 +291,6 @@ importers:
 
   apps/mcp:
     dependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../../packages/react
       '@modelcontextprotocol/sdk':
         specifier: ^1.15.0
         version: 1.15.0
