@@ -16,8 +16,9 @@
     "generate:examples": "pnpm tsx scripts/generate-examples.ts",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
+    "generate:theme": "pnpm tsx scripts/generate-theme.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
-    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react"
+    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm generate:theme && pnpm build:react"
   },
   "dependencies": {
     "@ark-ui/react": "5.18.1",

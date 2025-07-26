@@ -44,7 +44,7 @@ const docs = defineCollection({
       toc: s.toc(),
       code: s.mdx(),
       llm: s.custom().transform((_data, { meta }) => {
-        const content = replaceExampleTabs(meta.content ?? "")
+        const content = replaceExampleTabs((meta.content as string) ?? "")
         return replacePropsTable(replaceTokenDoc(content))
       }),
       hideToc: s.boolean().optional(),
@@ -63,7 +63,7 @@ const docs = defineCollection({
       const links = data.links || {}
       return {
         ...data,
-        slug: slugify(meta.path),
+        slug: slugify(meta.path as string),
         links: {
           ...links,
           source: links.source
@@ -76,7 +76,7 @@ const docs = defineCollection({
             ? `${docsConfig.repoUrl}/tree/${docsConfig.repoBranch}/packages/react/src/theme/recipes/${links.recipe}.ts`
             : undefined,
         },
-        category: meta.path
+        category: (meta.path as string)
           .replace(/.*\/content\//, "")
           .replace(/\/[^/]*$/, "")
           .replace(cwd, ""),
@@ -126,7 +126,7 @@ const blogs = defineCollection({
     .transform((data, { meta }) => {
       return {
         ...data,
-        slug: slugify(meta.path),
+        slug: slugify(meta.path as string),
       }
     }),
 })
@@ -156,7 +156,7 @@ const guides = defineCollection({
     .transform((data, { meta }) => {
       return {
         ...data,
-        slug: slugify(meta.path),
+        slug: slugify(meta.path as string),
       }
     }),
 })
