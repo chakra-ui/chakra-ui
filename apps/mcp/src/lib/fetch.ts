@@ -147,3 +147,32 @@ export async function getProBlockContext(): Promise<{
     variants: blocks.data.flatMap((block) => block.variants.map((v) => v.id)),
   }
 }
+
+/**
+ * Fetches the design context from the Chakra UI API
+ */
+export async function fetchTheme(): Promise<any> {
+  const response = await fetch("https://chakra-ui.com/api/theme")
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch theme: ${response.status} ${response.statusText}`,
+    )
+  }
+
+  return response.json()
+}
+
+/**
+ * Fetches the token categories from the Chakra UI API
+ */
+export async function fetchTokenCategories(): Promise<any> {
+  const response = await fetch("https://chakra-ui.com/api/theme/tokens")
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch theme customization: ${response.status} ${response.statusText}`,
+    )
+  }
+
+  return response.json()
+}

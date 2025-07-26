@@ -1,26 +1,20 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
-import type { Tool } from "../lib/types.js"
+import type { Tool, ToolConfig } from "../lib/types.js"
+import { customizeThemeTool } from "./customize-theme.js"
 import { getComponentExampleTool } from "./get-component-example.js"
 import { getComponentPropsTool } from "./get-component-props.js"
 import { getComponentTemplatesTool } from "./get-component-templates.js"
-import { getLayerStylesTool } from "./get-layer-style.js"
-import { getSemanticTokensTool } from "./get-semantic-tokens.js"
-import { getTextStylesTool } from "./get-text-styles.js"
-import { getTokenTool } from "./get-token.js"
+import { getThemeTool } from "./get-theme.js"
 import { listComponentTemplatesTool } from "./list-component-templates.js"
 import { listComponentsTool } from "./list-components.js"
-import { themeCustomizationTool } from "./theme-customization.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
-const allTools: Tool[] = [
+const tools: Tool[] = [
   getComponentExampleTool,
   getComponentPropsTool,
-  getLayerStylesTool,
-  getSemanticTokensTool,
-  getTextStylesTool,
-  getTokenTool,
+  getThemeTool,
   listComponentsTool,
-  themeCustomizationTool,
+  customizeThemeTool,
   v2ToV3MigrationTool,
   listComponentTemplatesTool,
   getComponentTemplatesTool,
@@ -30,9 +24,9 @@ const registeredToolCache = new Map<string, Tool>()
 
 export const initializeTools = async (
   server: McpServer,
-  config: { apiKey?: string },
+  config: ToolConfig,
 ) => {
-  const enabledTools = allTools.filter((tool) => !tool.disabled?.(config))
+  const enabledTools = tools.filter((tool) => !tool.disabled?.(config))
 
   await Promise.all(
     enabledTools.map(async (tool) => {

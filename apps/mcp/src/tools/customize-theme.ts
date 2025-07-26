@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { tokenCategories } from "../lib/system.js"
+import { fetchTokenCategories } from "../lib/fetch.js"
 import type { Tool } from "../lib/types.js"
 
 interface CustomizationScenario {
@@ -177,26 +177,30 @@ const fallbackTemplate = (category: string) => {
     `)
 }
 
-const themeCustomizationCategory = Array.from(
-  new Set([
-    ...tokenCategories,
-    ...Object.keys(CUSTOMIZATION_SCENARIOS),
-    "conditions",
-    "globalCss",
-  ]),
-)
-
-export const themeCustomizationTool: Tool = {
-  name: "theme_customization",
+export const customizeThemeTool: Tool<{
+  categories: string[]
+}> = {
+  name: "customize_theme",
   description:
-    "Use this tool to create custom design tokens for your Chakra UI theme. You can define new tokens, modify existing ones, and apply them to your components.",
-  exec(server, { name, description }) {
+    "Used to setup a custom theme for your Chakra UI. You can define new tokens or modify existing ones.",
+  async ctx() {
+    const tokenCategories = await fetchTokenCategories()
+    return {
+      categories: [
+        ...tokenCategories,
+        ...Object.keys(CUSTOMIZATION_SCENARIOS),
+        "conditions",
+        "globalCss",
+      ],
+    }
+  },
+  exec(server, { ctx, name, description }) {
     server.tool(
       name,
       description,
       {
         category: z
-          .enum(themeCustomizationCategory as [string, ...string[]])
+          .enum(ctx.categories as [string, ...string[]])
           .describe("The category of the token to customize"),
       },
       async ({ category }) => {

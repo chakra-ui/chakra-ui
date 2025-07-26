@@ -23,7 +23,6 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@chakra-ui/react": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.15.0",
     "express": "^5.1.0",
     "zod": "^3.24.4"

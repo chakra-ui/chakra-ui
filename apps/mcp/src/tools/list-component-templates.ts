@@ -4,7 +4,7 @@ import type { Tool } from "../lib/types.js"
 export const listComponentTemplatesTool: Tool = {
   name: "list_component_templates",
   description:
-    "List all available component templates in the Chakra UI pro. This tool retrieves the names of all available component templates in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
+    "List available component templates or blocks in the Chakra UI pro. This tool retrieves the names of all available component templates in the Chakra UI pro, which can be used to enhance the design and functionality of your application.",
   disabled(config) {
     return !config.apiKey
   },
