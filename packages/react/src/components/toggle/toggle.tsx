@@ -57,7 +57,8 @@ export const TogglePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToggleIndicatorProps
-  extends HTMLChakraProps<"div", ArkToggle.IndicatorBaseProps> {}
+  extends HTMLChakraProps<"div", ArkToggle.IndicatorBaseProps>,
+    UnstyledProp {}
 
 export const ToggleIndicator = withContext<
   HTMLButtonElement,

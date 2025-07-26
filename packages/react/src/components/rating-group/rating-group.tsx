@@ -67,7 +67,8 @@ export const RatingGroupPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupLabelProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.LabelBaseProps> {}
+  extends HTMLChakraProps<"div", ArkRatingGroup.LabelBaseProps>,
+    UnstyledProp {}
 
 export const RatingGroupLabel = withContext<
   HTMLDivElement,
@@ -77,7 +78,8 @@ export const RatingGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupItemProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.ItemBaseProps> {}
+  extends HTMLChakraProps<"div", ArkRatingGroup.ItemBaseProps>,
+    UnstyledProp {}
 
 export const RatingGroupItem = withContext<
   HTMLDivElement,
@@ -140,7 +142,8 @@ export const RatingGroupItems = (props: RatingGroupItemsProps) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupControlProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps>,
+    UnstyledProp {}
 
 export const RatingGroupControl = withContext<
   HTMLDivElement,

@@ -60,7 +60,8 @@ export const PinInputPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PinInputControlProps
-  extends HTMLChakraProps<"div", ArkPinInput.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkPinInput.ControlBaseProps>,
+    UnstyledProp {}
 
 export const PinInputControl = withContext<
   HTMLDivElement,
@@ -70,7 +71,8 @@ export const PinInputControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PinInputInputProps
-  extends HTMLChakraProps<"input", ArkPinInput.InputBaseProps> {}
+  extends HTMLChakraProps<"input", ArkPinInput.InputBaseProps>,
+    UnstyledProp {}
 
 export const PinInputInput = withContext<HTMLInputElement, PinInputInputProps>(
   ArkPinInput.Input,
@@ -80,7 +82,9 @@ export const PinInputInput = withContext<HTMLInputElement, PinInputInputProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface PinInputLabelProps extends HTMLChakraProps<"label"> {}
+export interface PinInputLabelProps
+  extends HTMLChakraProps<"label">,
+    UnstyledProp {}
 
 export const PinInputLabel = withContext<HTMLLabelElement, PinInputLabelProps>(
   ArkPinInput.Label,

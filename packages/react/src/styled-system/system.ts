@@ -22,10 +22,15 @@ import { createTokenDictionary } from "./token-dictionary"
 import type {
   SystemConfig,
   SystemContext,
+  SystemQuery,
+  Token,
+  TokenCategory,
   TokenDictionary,
   TokenFn,
 } from "./types"
 import { createUtility } from "./utility"
+
+const EMPTY_OBJECT = {}
 
 export function createSystem(...configs: SystemConfig[]): SystemContext {
   const config = mergeConfigs(...configs)
@@ -47,10 +52,10 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     prefix: cssVarsPrefix,
   })
 
-  const breakpoints = createBreakpoints(theme.breakpoints ?? {})
+  const breakpoints = createBreakpoints(theme.breakpoints ?? EMPTY_OBJECT)
 
   const conditions = createConditions({
-    conditions: config.conditions ?? {},
+    conditions: config.conditions ?? EMPTY_OBJECT,
     breakpoints,
   })
 
@@ -69,10 +74,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     })
 
     for (const [key, values] of Object.entries(compositions)) {
-      const flatValues = flatten(
-        values ?? {},
-        (v) => isObject(v) && "value" in v,
-      )
+      const flatValues = flatten(values ?? EMPTY_OBJECT, stop)
 
       utility.register(key, {
         values: Object.keys(flatValues),
@@ -84,7 +86,10 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   assignComposition()
-  utility.addPropertyType("animationName", Object.keys(theme.keyframes ?? {}))
+  utility.addPropertyType(
+    "animationName",
+    Object.keys(theme.keyframes ?? EMPTY_OBJECT),
+  )
 
   const properties = new Set(["css", ...utility.keys(), ...conditions.keys()])
 
@@ -149,7 +154,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
   function getGlobalCss() {
     const keyframes = Object.fromEntries(
-      Object.entries(theme.keyframes ?? {}).map(([key, value]) => [
+      Object.entries(theme.keyframes ?? EMPTY_OBJECT).map(([key, value]) => [
         `@keyframes ${key}`,
         value,
       ]),
@@ -186,11 +191,11 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   function isRecipe(key: string) {
-    return Object.hasOwnProperty.call(theme.recipes ?? {}, key)
+    return Object.hasOwnProperty.call(theme.recipes ?? EMPTY_OBJECT, key)
   }
 
   function isSlotRecipe(key: string) {
-    return Object.hasOwnProperty.call(theme.slotRecipes ?? {}, key)
+    return Object.hasOwnProperty.call(theme.slotRecipes ?? EMPTY_OBJECT, key)
   }
 
   function hasRecipe(key: string) {
@@ -198,6 +203,25 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   const _global = [getPreflightCss(), getGlobalCss(), getTokenCss()]
+
+  const query: SystemQuery = {
+    layerStyles: compositionQuery(theme.layerStyles ?? EMPTY_OBJECT),
+    textStyles: compositionQuery(theme.textStyles ?? EMPTY_OBJECT),
+    animationStyles: compositionQuery(theme.animationStyles ?? EMPTY_OBJECT),
+    tokens: semanticTokenQuery(
+      tokens,
+      Object.keys(theme.tokens ?? EMPTY_OBJECT),
+      (value, key) =>
+        !value.extensions.conditions && !key.includes("colorPalette"),
+    ),
+    semanticTokens: semanticTokenQuery(
+      tokens,
+      Object.keys(theme.semanticTokens ?? EMPTY_OBJECT),
+      (value) => !!value.extensions.conditions,
+    ),
+    keyframes: basicQuery(theme.keyframes ?? EMPTY_OBJECT),
+    breakpoints: basicQuery(theme.breakpoints ?? EMPTY_OBJECT),
+  }
 
   return {
     $$chakra: true,
@@ -224,6 +248,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     hasRecipe,
     isRecipe,
     isSlotRecipe,
+    query,
   }
 }
 
@@ -242,3 +267,43 @@ function getTokenMap(tokens: TokenDictionary) {
 export const isValidSystem = (mod: unknown): mod is SystemContext => {
   return isObject(mod) && !!Reflect.get(mod, "$$chakra")
 }
+
+const stop = (v: any) => isObject(v) && "value" in v
+
+const compositionQuery = (dict: Record<string, any>) => ({
+  list() {
+    return Object.keys(flatten(dict, stop))
+  },
+  search(query: string) {
+    return this.list().filter((style) => style.includes(query))
+  },
+})
+
+const semanticTokenQuery = (
+  tokens: TokenDictionary,
+  categoryKeys: string[],
+  predicate: (value: Token<any>, key: string) => boolean,
+) => ({
+  categoryKeys,
+  list(category: TokenCategory) {
+    return Array.from(tokens.categoryMap.get(category)?.entries() ?? []).reduce(
+      (acc, [key, value]) => {
+        if (predicate(value, key)) acc.push(key)
+        return acc
+      },
+      [] as string[],
+    )
+  },
+  search(category: TokenCategory, query: string) {
+    return this.list(category).filter((style) => style.includes(query))
+  },
+})
+
+const basicQuery = (dict: Record<string, any>) => ({
+  list() {
+    return Object.keys(dict)
+  },
+  search(query: string) {
+    return this.list().filter((style) => style.includes(query))
+  },
+})

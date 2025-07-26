@@ -112,7 +112,7 @@
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "engines": {
     "node": ">=20.x"
   }

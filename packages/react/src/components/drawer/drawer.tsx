@@ -61,7 +61,8 @@ export const DrawerRootPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
   ArkDialog.Trigger,
@@ -72,7 +73,8 @@ export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerPositionerProps
-  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps>,
+    UnstyledProp {}
 
 export const DrawerPositioner = withContext<
   HTMLDivElement,
@@ -82,7 +84,8 @@ export const DrawerPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerContentProps
-  extends HTMLChakraProps<"section", ArkDialog.ContentBaseProps> {}
+  extends HTMLChakraProps<"section", ArkDialog.ContentBaseProps>,
+    UnstyledProp {}
 
 export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
   ArkDialog.Content,
@@ -93,7 +96,8 @@ export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerDescriptionProps
-  extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps> {}
+  extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps>,
+    UnstyledProp {}
 
 export const DrawerDescription = withContext<
   HTMLDivElement,
@@ -103,7 +107,8 @@ export const DrawerDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTitleProps
-  extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps> {}
+  extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps>,
+    UnstyledProp {}
 
 export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
   ArkDialog.Title,
@@ -114,7 +119,8 @@ export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps>,
+    UnstyledProp {}
 
 export const DrawerCloseTrigger = withContext<
   HTMLButtonElement,
@@ -138,7 +144,8 @@ export const DrawerActionTrigger = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerBackdropProps
-  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps>,
+    UnstyledProp {}
 
 export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
   ArkDialog.Backdrop,
@@ -148,7 +155,7 @@ export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DrawerBodyProps extends HTMLChakraProps<"div"> {}
+export interface DrawerBodyProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const DrawerBody = withContext<HTMLDivElement, DrawerBodyProps>(
   "div",
@@ -157,7 +164,9 @@ export const DrawerBody = withContext<HTMLDivElement, DrawerBodyProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DrawerFooterProps extends HTMLChakraProps<"footer"> {}
+export interface DrawerFooterProps
+  extends HTMLChakraProps<"footer">,
+    UnstyledProp {}
 
 export const DrawerFooter = withContext<HTMLDivElement, DrawerFooterProps>(
   "div",
@@ -166,7 +175,9 @@ export const DrawerFooter = withContext<HTMLDivElement, DrawerFooterProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DrawerHeaderProps extends HTMLChakraProps<"div"> {}
+export interface DrawerHeaderProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const DrawerHeader = withContext<HTMLDivElement, DrawerHeaderProps>(
   "div",

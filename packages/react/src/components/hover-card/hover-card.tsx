@@ -59,7 +59,8 @@ export const HoverCardPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardTriggerProps
-  extends HTMLChakraProps<"button", ArkHoverCard.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkHoverCard.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const HoverCardTrigger = withContext<
   HTMLButtonElement,
@@ -69,7 +70,8 @@ export const HoverCardTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardPositionerProps
-  extends HTMLChakraProps<"div", ArkHoverCard.PositionerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.PositionerBaseProps>,
+    UnstyledProp {}
 
 export const HoverCardPositioner = withContext<
   HTMLDivElement,
@@ -79,7 +81,8 @@ export const HoverCardPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardContentProps
-  extends HTMLChakraProps<"section", ArkHoverCard.ContentBaseProps> {}
+  extends HTMLChakraProps<"section", ArkHoverCard.ContentBaseProps>,
+    UnstyledProp {}
 
 export const HoverCardContent = withContext<
   HTMLDivElement,
@@ -89,7 +92,8 @@ export const HoverCardContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardArrowTipProps
-  extends HTMLChakraProps<"div", ArkHoverCard.ArrowTipBaseProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.ArrowTipBaseProps>,
+    UnstyledProp {}
 
 export const HoverCardArrowTip = withContext<
   HTMLDivElement,
@@ -99,7 +103,8 @@ export const HoverCardArrowTip = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardArrowProps
-  extends HTMLChakraProps<"div", ArkHoverCard.ArrowBaseProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.ArrowBaseProps>,
+    UnstyledProp {}
 
 export const HoverCardArrow = withContext<HTMLDivElement, HoverCardArrowProps>(
   ArkHoverCard.Arrow,

@@ -39,7 +39,9 @@ export const StatusPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatusIndicatorProps extends HTMLChakraProps<"div"> {}
+export interface StatusIndicatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const StatusIndicator = withContext<
   HTMLDivElement,

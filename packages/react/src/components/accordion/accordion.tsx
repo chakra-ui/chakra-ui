@@ -61,7 +61,8 @@ export const AccordionPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemBaseProps> {}
+  extends HTMLChakraProps<"div", ArkAccordion.ItemBaseProps>,
+    UnstyledProp {}
 
 export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
   ArkAccordion.Item,
@@ -72,7 +73,8 @@ export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemContentProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkAccordion.ItemContentBaseProps>,
+    UnstyledProp {}
 
 export const AccordionItemContent = withContext<
   HTMLDivElement,
@@ -81,7 +83,9 @@ export const AccordionItemContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AccordionItemBodyProps extends HTMLChakraProps<"div"> {}
+export interface AccordionItemBodyProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const AccordionItemBody = withContext<
   HTMLDivElement,
@@ -91,7 +95,8 @@ export const AccordionItemBody = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemTriggerProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps>,
+    UnstyledProp {}
 
 export const AccordionItemTrigger = withContext<
   HTMLButtonElement,
@@ -101,7 +106,8 @@ export const AccordionItemTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemIndicatorProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemIndicatorBaseProps> {}
+  extends HTMLChakraProps<"button", ArkAccordion.ItemIndicatorBaseProps>,
+    UnstyledProp {}
 
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,

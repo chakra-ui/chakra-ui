@@ -305,6 +305,7 @@ export interface SystemContext {
   hasRecipe(key: string): boolean
   token: TokenFn
   layers: Layers
+  query: SystemQuery
 }
 
 export interface ThemingConfig {
@@ -338,4 +339,25 @@ export interface SystemConfig extends PreflightConfig {
   utilities?: UtilityConfig | undefined
   conditions?: Dict | undefined
   strictTokens?: boolean | undefined
+}
+
+interface CompositionQuery {
+  list(): string[]
+  search(query: string): string[]
+}
+
+interface TokenQuery {
+  categoryKeys: string[]
+  list(category: TokenCategory): string[]
+  search(category: TokenCategory, query: string): string[]
+}
+
+export interface SystemQuery {
+  textStyles: CompositionQuery
+  layerStyles: CompositionQuery
+  animationStyles: CompositionQuery
+  tokens: TokenQuery
+  semanticTokens: TokenQuery
+  keyframes: CompositionQuery
+  breakpoints: CompositionQuery
 }

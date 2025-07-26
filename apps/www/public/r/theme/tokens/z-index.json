@@ -1,0 +1,15 @@
+[
+  "hide",
+  "base",
+  "docked",
+  "dropdown",
+  "sticky",
+  "banner",
+  "overlay",
+  "modal",
+  "popover",
+  "skipNav",
+  "toast",
+  "tooltip",
+  "max"
+]

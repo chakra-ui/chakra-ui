@@ -44,3 +44,9 @@ export type {
   FileUploadItemsProps as ItemsProps,
   FileUploadListProps as ListProps,
 } from "./file-upload"
+
+export type {
+  FileUploadFileError as FileError,
+  FileUploadFileMimeType as FileMimeType,
+  FileUploadFileRejection as FileRejection,
+} from "@ark-ui/react/file-upload"
