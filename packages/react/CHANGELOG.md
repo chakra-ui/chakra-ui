@@ -1,5 +1,74 @@
 # @chakra-ui/react
 
+## 3.23.0
+
+### Minor Changes
+
+- [`86ca96a`](https://github.com/chakra-ui/chakra-ui/commit/86ca96a0ee8720c9475c0a05019ae8e6e3002831)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Add
+  `unstyled` prop support to compound component children to opt-out of recipe
+  styles per component.
+
+  ```tsx
+  <Accordion.Root defaultValue={["a"]}>
+    <Accordion.Item value="a">
+      {/* Opt-out of recipe styles */}
+      <Accordion.ItemTrigger unstyled bg="red.500" />
+      <Accordion.ItemContent>
+        <Accordion.ItemBody />
+      </Accordion.ItemContent>
+    </Accordion.Item>
+  </Accordion.Root>
+  ```
+
+  - **Group**: Add support changing group gap globally via `--group-gap` CSS
+    variable
+
+### Patch Changes
+
+- [`dd3af62`](https://github.com/chakra-ui/chakra-ui/commit/dd3af62c4e646f8beae791364928f8e2723966b7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tree View**
+  - Fixed issue where tree view doesn't scroll into view when content overflows
+  - Fix issue where the `filter` method completely deletes the children key from
+    the node when there are no matching children
+  - **File Upload**
+    - Add support for programmatically controlling the accepted files via
+      `acceptedFiles` and `defaultAcceptedFiles`
+    - Export `FileError`, `FileMimeType`, and `FileRejection` types and fix
+      validation issues
+
+- [`dc02076`](https://github.com/chakra-ui/chakra-ui/commit/dc02076d91c1ea837c15a8831f70cad9e40f4eb2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix HTML semantic
+  structure for `Breadcrumb.Ellipsis` component by changing the underlying
+  element from `<span>` to `<li>`.
+
+  ```tsx
+  // Before: <span> inside <ol> (invalid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* rendered as <span> */}
+  </Breadcrumb.List>
+
+  // After: <li> inside <ol> (valid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* now renders as <li> */}
+  </Breadcrumb.List>
+  ```
+
+- [`4da48e3`](https://github.com/chakra-ui/chakra-ui/commit/4da48e327a8213b8ef8822ccdc6accd51f36779d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tabs**: Export
+  missing types
+  - **Hooks**: Export entrypoint for better tree-shaking
+    `@chakra-ui/react/hooks`
+  - **Theme**: Expose smaller bits of the theme in the entrypoint for better
+    tree-shaking `@chakra-ui/react/theme`. We now expose `recipes`,
+    `slotRecipes`, `breakpoints`, `keyframes`, `textStyles`, `layerStyles`,
+    `animationStyles`, `globalCss`, `cssVarsPrefix`, `cssVarsRoot`,
+    `semanticTokens`, `tokens` as dedicated modules.
+  - **Dialog**: Use `dvh` and `dvw` units instead of `vh` and `vw` to
+    dynamically adjust to viewport size changes.
+  - **Native Select**: Ensure height is consistent with input and select across
+    sizes.
+
 ## 3.22.0
 
 ### Minor Changes
