@@ -78,6 +78,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Blockquote", url: "blockquote" },
             { title: "Code", url: "code" },
+            // { title: "Code Block", url: "code-block", status: "beta" },
             { title: "Em", url: "em" },
             { title: "Heading", url: "heading" },
             { title: "Highlight", url: "highlight" },
