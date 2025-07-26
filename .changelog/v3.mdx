@@ -39,8 +39,11 @@ description:
   `globalCss`, `cssVarsPrefix`, `cssVarsRoot`, `semanticTokens`, `tokens` as
   dedicated modules.
 
-- **Dialog**: Use `dvh` and `dvw` units instead of `vh` and `vw` to dynamically
-  adjust to viewport size changes.
+- **Dialog**
+  - Use `dvh` and `dvw` units instead of `vh` and `vw` to dynamically adjust to
+    viewport size changes.
+  - Fix issue where dialog backdrop doesn't have the correct z-index when used
+    in a nested dialog.
 
 - **Native Select**: Ensure height is consistent with input and select across
   sizes.

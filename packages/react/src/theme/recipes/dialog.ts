@@ -12,7 +12,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100dvw",
       h: "100dvh",
-      zIndex: "overlay",
+      zIndex: "var(--z-index)",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
