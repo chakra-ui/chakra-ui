@@ -23,68 +23,97 @@ interface ChakraProBlocksResponse {
   data: ChakraProBlock[]
 }
 
+// Base URLs for different API endpoints
+const CHAKRA_BASE_URL = "https://chakra-ui.com"
+const PRO_BASE_URL = "https://pro.chakra-ui.com"
+
+/**
+ * Generic fetch utility with consistent error handling
+ */
+async function fetchJson<T>(
+  url: string,
+  options?: RequestInit,
+  errorContext?: string,
+): Promise<T> {
+  const response = await fetch(url, options)
+
+  if (!response.ok) {
+    const context = errorContext || `fetch ${url}`
+    throw new Error(
+      `Failed to ${context}: ${response.status} ${response.statusText}`,
+    )
+  }
+
+  return response.json() as Promise<T>
+}
+
+/**
+ * Creates a Chakra UI API URL
+ */
+function createChakraUrl(path: string): string {
+  return `${CHAKRA_BASE_URL}${path}`
+}
+
+/**
+ * Creates a Chakra UI Pro API URL
+ */
+function createProUrl(path: string): string {
+  return `${PRO_BASE_URL}${path}`
+}
+
+/**
+ * Creates authorization headers for Pro API
+ */
+function createAuthHeaders(apiKey: string): RequestInit {
+  return {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+  }
+}
+
 /**
  * Fetches the list of all available Chakra UI components and charts
  */
 export async function fetchComponentList(): Promise<ComponentList> {
-  const response = await fetch("https://chakra-ui.com/r/types/index.json")
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch component list: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json() as Promise<ComponentList>
+  return fetchJson<ComponentList>(
+    createChakraUrl("/r/types/index.json"),
+    undefined,
+    "fetch component list",
+  )
 }
 
 /**
  * Fetches the properties/props for a specific Chakra UI component
  */
 export async function fetchComponentProps(component: string): Promise<any> {
-  const response = await fetch(
-    `https://chakra-ui.com/r/types/${component}.json`,
+  return fetchJson(
+    createChakraUrl(`/r/types/${component}.json`),
+    undefined,
+    `fetch props for component ${component}`,
   )
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch props for component ${component}: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json()
 }
 
 /**
  * Fetches example code for a specific Chakra UI component
  */
 export async function fetchComponentExample(component: string): Promise<any> {
-  const response = await fetch(
-    `https://chakra-ui.com/r/examples/${component}.json`,
+  return fetchJson(
+    createChakraUrl(`/r/examples/${component}.json`),
+    undefined,
+    `fetch example for component ${component}`,
   )
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch example for component ${component}: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json()
 }
 
 /**
  * Fetches all available Chakra UI Pro blocks
  */
 export async function fetchProBlocks(): Promise<ChakraProBlocksResponse> {
-  const response = await fetch("https://pro.chakra-ui.com/api/blocks")
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch pro blocks: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json() as Promise<ChakraProBlocksResponse>
+  return fetchJson<ChakraProBlocksResponse>(
+    createProUrl("/api/blocks"),
+    undefined,
+    "fetch pro blocks",
+  )
 }
 
 /**
@@ -99,22 +128,11 @@ export async function fetchProBlock(
     throw new Error("Chakra UI Pro API key is required")
   }
 
-  const response = await fetch(
-    `https://pro.chakra-ui.com/api/blocks/${category}/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    },
+  return fetchJson(
+    createProUrl(`/api/blocks/${category}/${id}`),
+    createAuthHeaders(apiKey),
+    `fetch pro block ${category}/${id}`,
   )
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch pro block ${category}/${id}: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json()
 }
 
 /**
@@ -152,27 +170,16 @@ export async function getProBlockContext(): Promise<{
  * Fetches the design context from the Chakra UI API
  */
 export async function fetchTheme(): Promise<any> {
-  const response = await fetch("https://chakra-ui.com/api/theme")
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch theme: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json()
+  return fetchJson(createChakraUrl("/api/theme"), undefined, "fetch theme")
 }
 
 /**
  * Fetches the token categories from the Chakra UI API
  */
 export async function fetchTokenCategories(): Promise<any> {
-  const response = await fetch("https://chakra-ui.com/api/theme/tokens")
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch theme customization: ${response.status} ${response.statusText}`,
-    )
-  }
-
-  return response.json()
+  return fetchJson(
+    createChakraUrl("/api/theme/tokens"),
+    undefined,
+    "fetch theme customization",
+  )
 }
