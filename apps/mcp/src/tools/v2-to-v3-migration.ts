@@ -366,7 +366,7 @@ export const App = ({ Component }) => (
   editable_props: {
     name: "Editable Props",
     description:
-      "Update Editable component props: finalFocusRef to finalFocusEl, isDisabled to disabled, and other prop changes",
+      "Replace Editable with Editable.Root and update props: finalFocusRef → finalFocusEl function, isDisabled → disabled, onSubmit → onValueCommit, onCancel → onValueRevert, onChange → onValueChange, startWithEditView → defaultEdit, submitOnBlur → submitMode",
     before: `<Editable
   finalFocusRef={finalFocusRef}
   isDisabled={isDisabled}
