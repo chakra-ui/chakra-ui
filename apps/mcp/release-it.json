@@ -1,0 +1,24 @@
+{
+  "git": {
+    "commitMessage": "chore: release ${npm.name} v${version}",
+    "tagName": "${npm.name}@${version}",
+    "requireCleanWorkingDir": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "${npm.name}@${version}"
+  },
+  "plugins": {
+    "@release-it/keep-a-changelog": {
+      "addUnreleased": true,
+      "filename": "CHANGELOG.md"
+    }
+  },
+  "npm": {
+    "versionArgs": ["--workspaces-update=false"],
+    "publishPath": "./dist/"
+  },
+  "hooks": {
+    "before:init": ["pnpm build"]
+  }
+}
