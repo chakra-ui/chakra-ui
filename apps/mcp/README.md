@@ -18,8 +18,7 @@ examples, migration patterns, and premium templates.
 - `get_components` - List all Chakra UI components
 - `get_component_props` - Get component properties and configuration
 - `get_component_example` - Retrieve usage examples and code patterns
-- `get_semantic_tokens` - Get semantic color tokens for light/dark mode
-- `get_text_styles` - Retrieve predefined typography styles
+- `get_theme` - Get theme tokens, semantic tokens, text styles and layer styles
 - `list_blocks` - List Chakra UI Pro blocks
 - `get_component_templates` - Get premium component templates (Pro)
 - `v2_to_v3_code_review` - Migration guidance with code snippets
@@ -33,24 +32,9 @@ examples, migration patterns, and premium templates.
   "mcpServers": {
     "chakra-ui": {
       "command": "npx",
-      "args": ["-y", "@chakra-ui/mcp"],
+      "args": ["-y", "@chakra-ui/react-mcp"],
       "env": {
         "CHAKRA_PRO_API_KEY": "your-api-key-here"
-      }
-    }
-  }
-}
-```
-
-To use the remote mcp server, you can use the following configuration:
-
-```json
-{
-  "mcpServers": {
-    "chakra-ui": {
-      "url": "https://mcp.chakra-ui.com/sse",
-      "headers": {
-        "x-api-key": "your-api-key-here"
       }
     }
   }
