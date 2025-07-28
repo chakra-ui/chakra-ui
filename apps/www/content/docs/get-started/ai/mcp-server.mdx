@@ -1,31 +1,176 @@
 ---
 title: "MCP Server"
 description:
-  Use the official Chakra UI Figma Kit to design faster and stay in sync with
-  your code.
+  The Chakra UI MCP server bridges the gap between AI tools and Chakra UI app
+  development.
 ---
 
-The official
-[Chakra UI v3 Figma Kit is now available!](https://www.figma.com/community/file/1506648876941130701)
+Model-Context Protocol (MCP) is a communication standard designed to help LLMs
+(Large Language Models) understand and interact with software systems in a
+structured, context-aware manner.
 
-This kit helps you design with the same building blocks that exist in code,
-making it easier for developers and designers to collaborate, stay consistent,
-and move faster.
+The Chakra UI MCP Server is a specialized Model Context Protocol server that
+provides AI assistants (like Claude, ChatGPT, and others) .
 
-<Image
-  src="/chakra-figma-kit.png"
-  alt="Chakra Figma Kit"
-  objectFit="contain"
-  fill
-  height="500px"
-/>
+## Features
 
-## Get the Kit
+- Component library access to get components, props, and usage examples
+- Migration support for upgrading from Chakra UI v2 to v3
+- Design tokens access to semantic tokens and text styles for consistent theming
+- Premium 200+ Templates via Chakra UI Pro blocks (requires API key)
 
-You can access the kit for free on Figma Community:
+## Set up
 
-👉🏽
-[Chakra UI v3 Figma Kit](https://www.figma.com/community/file/1506648876941130701)
+To run the MCP server in a local or development environment using Claude
+Desktop, Cursor, or any compatible MCP client:
 
-> Everything in the kit is designed to reflect how Chakra UI works, so your
-> design decisions translate directly into production components.
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/mcp"],
+      "env": {
+        "CHAKRA_PRO_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
+> The `CHAKRA_PRO_API_KEY` is optional. 💡 Replace "your-api-key-here" with a
+> valid Chakra Pro key to unlock premium templates and blocks.
+
+## Available Tools
+
+The Chakra UI MCP server provides 15+ specialized tools for development:
+
+### Component Tools
+
+- **`list_components`**: Get a complete list of all available components
+- **`get_component_props`**: Detailed props, types, and configuration options
+  for any component
+- **`get_component_example`**: Retrieve code examples and usage patterns
+
+### Design System Tool
+
+- **`get_theme`**: Get a detailed list of all the design tokens
+- **`theme_customization`**: Custom theme token creation and modification
+
+### Pro Templates & Blocks
+
+- **`list_blocks`**: Browse 200+ Chakra UI Pro blocks for layout and structure
+- **`get_component_templates`**: Get specific premium templates with full code
+
+### Migration
+
+- **`v2_to_v3_code_review`**: Migration guidance from version 2 to version 3
+
+## Connecting to MCP Client
+
+The Chakra UI MCP Server is designed to work with any tool that supports the
+Model Context Protocol (MCP). Below are instructions to connect your local
+Chakra UI MCP server with popular clients.
+
+### Claude Code (Anthropic)
+
+Ensure you have Claude Code installed. Visit
+[Anthropic docs](https://docs.anthropic.com/en/docs/claude-code/mcp) for
+installation instructions.
+
+1. Add the Chakra UI MCP server In your terminal, run:
+
+```bash
+claude mcp add chakra-ui -- npx -y @chakra-ui/mcp
+```
+
+2. Start a Claude Code session by running `claude`.
+
+Now, you can start using the Chakra MCP server.
+
+### VS Code (with GitHub Copilot)
+
+> To use MCP servers with VS Code, you need to have
+> [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+> and
+> [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+> extensions installed
+
+1. Create a `.vscode/mcp.json`file at the root of your project.
+
+2. Within that file, add the MCP server block:
+
+```json
+{
+  "servers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/mcp"]
+    }
+  }
+}
+```
+
+3. Click on Start on the MCP server.
+
+### Cursor
+
+1. Create a `.cursor/mcp.json` at the root of your project.
+
+2. Add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/mcp"]
+    }
+  }
+}
+```
+
+> If Cursor doesn’t automatically detect the changes, restart the editor or
+> manually enable the Chakra UI server via "MCP Tools."
+
+### Windsurf
+
+1. Navigate to the Cascade Assistant sidebar.
+
+2. Click on the hammer icon, then click the "Configure" button. This opens up
+   the "Manage MCPs" file in Windsurf.
+
+3. Select "View raw config" to open the Windsurf's MCP configuration file.
+
+4. Inside the raw configuration file, add the following:
+
+```json
+{
+  "mcpServers": {
+    "Chakra UI": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/mcp"]
+    }
+  }
+}
+```
+
+5. Save the MCP configuration file.
+
+### Zed
+
+1. Open Zed Preview application.
+
+2. Go to Assistant > Settings.
+
+3. Within the Context Servers section, click "+ Add Context Server" to add the
+   Chakra UI MCP Server
+
+- Name: Chakra UI
+- Comman:
+
+```bash
+npx -y @chakra-ui/mcp
+```
+
+4. Select Add Server and confirm that “Chakra UI” appears under Context Servers.
