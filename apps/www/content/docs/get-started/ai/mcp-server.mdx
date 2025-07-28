@@ -17,7 +17,6 @@ provides AI assistants (like Claude, ChatGPT, and others) .
 - Component library access to get components, props, and usage examples
 - Migration support for upgrading from Chakra UI v2 to v3
 - Design tokens access to semantic tokens and text styles for consistent theming
-- Premium 200+ Templates via Chakra UI Pro blocks (requires API key)
 
 ## Set up
 
@@ -29,19 +28,13 @@ Desktop, Cursor, or any compatible MCP client:
   "mcpServers": {
     "chakra-ui": {
       "command": "npx",
-      "args": ["-y", "@chakra-ui/mcp"],
-      "env": {
-        "CHAKRA_PRO_API_KEY": "your-api-key-here"
-      }
+      "args": ["-y", "@chakra-ui/react-mcp"]
     }
   }
 }
 ```
 
-> The `CHAKRA_PRO_API_KEY` is optional. 💡 Replace "your-api-key-here" with a
-> valid Chakra Pro key to unlock premium templates and blocks.
-
-## Available Tools
+## Tools
 
 The Chakra UI MCP server provides 15+ specialized tools for development:
 
@@ -57,16 +50,11 @@ The Chakra UI MCP server provides 15+ specialized tools for development:
 - **`get_theme`**: Get a detailed list of all the design tokens
 - **`theme_customization`**: Custom theme token creation and modification
 
-### Pro Templates & Blocks
-
-- **`list_blocks`**: Browse 200+ Chakra UI Pro blocks for layout and structure
-- **`get_component_templates`**: Get specific premium templates with full code
-
 ### Migration
 
 - **`v2_to_v3_code_review`**: Migration guidance from version 2 to version 3
 
-## Connecting to MCP Client
+## Connect MCP Client
 
 The Chakra UI MCP Server is designed to work with any tool that supports the
 Model Context Protocol (MCP). Below are instructions to connect your local
@@ -81,31 +69,30 @@ installation instructions.
 1. Add the Chakra UI MCP server In your terminal, run:
 
 ```bash
-claude mcp add chakra-ui -- npx -y @chakra-ui/mcp
+claude mcp add chakra-ui -- npx -y @chakra-ui/react-mcp
 ```
 
 2. Start a Claude Code session by running `claude`.
 
 Now, you can start using the Chakra MCP server.
 
-### VS Code (with GitHub Copilot)
+### Visual Studio Code
 
-> To use MCP servers with VS Code, you need to have
-> [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-> and
-> [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
-> extensions installed
+To use MCP servers with VS Code, you need to have
+[GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+and
+[GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+extensions installed.
 
-1. Create a `.vscode/mcp.json`file at the root of your project.
-
-2. Within that file, add the MCP server block:
+In the `.vscode/mcp.json` file at the root of your project, add the MCP server
+block:
 
 ```json
 {
   "servers": {
     "chakra-ui": {
       "command": "npx",
-      "args": ["-y", "@chakra-ui/mcp"]
+      "args": ["-y", "@chakra-ui/react-mcp"]
     }
   }
 }
@@ -115,22 +102,21 @@ Now, you can start using the Chakra MCP server.
 
 ### Cursor
 
-1. Create a `.cursor/mcp.json` at the root of your project.
-
-2. Add the following configuration:
+In the `.cursor/mcp.json` file at the root of your project, add the following
+configuration:
 
 ```json
 {
   "mcpServers": {
     "chakra-ui": {
       "command": "npx",
-      "args": ["-y", "@chakra-ui/mcp"]
+      "args": ["-y", "@chakra-ui/react-mcp"]
     }
   }
 }
 ```
 
-> If Cursor doesn’t automatically detect the changes, restart the editor or
+> If Cursor doesn't automatically detect the changes, restart the editor or
 > manually enable the Chakra UI server via "MCP Tools."
 
 ### Windsurf
@@ -149,7 +135,7 @@ Now, you can start using the Chakra MCP server.
   "mcpServers": {
     "Chakra UI": {
       "command": "npx",
-      "args": ["-y", "@chakra-ui/mcp"]
+      "args": ["-y", "@chakra-ui/react-mcp"]
     }
   }
 }
@@ -163,14 +149,10 @@ Now, you can start using the Chakra MCP server.
 
 2. Go to Assistant > Settings.
 
-3. Within the Context Servers section, click "+ Add Context Server" to add the
-   Chakra UI MCP Server
+3. Within the Context Servers section, click **+ Add Context Server** to add the
+   Chakra UI MCP Server:
+   - Name: `Chakra UI`
+   - Command: `npx -y @chakra-ui/react-mcp`
 
-- Name: Chakra UI
-- Comman:
-
-```bash
-npx -y @chakra-ui/mcp
-```
-
-4. Select Add Server and confirm that “Chakra UI” appears under Context Servers.
+4. Select Add Server and confirm that **Chakra UI** appears under Context
+   Servers.
