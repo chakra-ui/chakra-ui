@@ -1,0 +1,62 @@
+---
+title: Announcing the Chakra UI MCP Server
+description: "The Chakra UI MCP Server is out"
+type: release
+version: "3.22"
+authors: ["sage"]
+publishedAt: "2025-07-30"
+---
+
+Building user interfaces with Chakra UI just got a lot easier! Today, we're
+launching the Chakra UI MCP Server to connect your LLM directly with Chakra UI.
+
+If you've ever found yourself switching between your editor and the Chakra UI
+docs, looking for the right prop name, or trying to remember how to implement a
+particular component, the MCP server is for you.
+
+## What you get with the MCP Server
+
+Built on the Model Context Protocol (MCP), the Chakra MCP Server understands
+your questions and gives you accurate answers. Here's what it does:
+
+- Get a complete list of every Chakra UI component when you need it
+- See what props each component accepts, their types, and default values
+- Get ready-to-use code blocks to build your applications
+- Customize design tokens, colors, and typography settings easily
+- Migrate your existing code from version 2 to version 3
+
+Check out the list of all the tools available.
+
+## See it in action
+
+The MCP Server integrates with various MCP Clients like GitHub Copilot, Claude,
+Cursor and more. For example, if you need a pricing section for your app?
+Instead of manually developing this yourself, figuring out semantic tokens and
+responsiveness, simply describe what you need.
+
+[Video showing prompting the MCP for a pricing card]
+
+## Try it today
+
+The Chakra UI MCP Server is available now and getting started takes about two
+minutes.
+
+Within your `mcp.json` file, add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+Check out our detailed [guides](docs/get-started/ai/mcp-server) on how to set it
+up with various MCP clients.
+
+The MCP ecosystem is growing fast, and we want to make sure the Chakra UI MCP
+Server keeps getting better. We're always listening to developer feedback and
+working on improvements that actually matter to your daily workflow.
