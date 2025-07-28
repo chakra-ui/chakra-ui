@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [2.0.3] - 2025-07-28
+
 ### Fixed
 
 - Improve `v2_to_v3_code_review` tool to use the correct props for Dialog,
