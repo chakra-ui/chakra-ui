@@ -5,10 +5,6 @@ if [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
 fi
 
-# Setup Node 20 and NPM auth
-source ~/.nvm/nvm.sh
-nvm use 20
-
 log() {
     echo "[release] $1"
 }
@@ -33,7 +29,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Forward all command-line arguments to release-it
-COMMAND="pnpm release-it $*"
+COMMAND="pnpm release-it --config ../release-it.json $*"
 log "🔄 Running: $COMMAND"
 
 if eval "$COMMAND"; then

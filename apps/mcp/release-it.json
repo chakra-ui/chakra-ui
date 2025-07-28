@@ -15,8 +15,7 @@
     }
   },
   "npm": {
-    "versionArgs": ["--workspaces-update=false"],
-    "publishPath": "./dist/"
+    "versionArgs": ["--workspaces-update=false"]
   },
   "hooks": {
     "before:init": ["pnpm build"]
