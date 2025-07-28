@@ -9,40 +9,7 @@ interface MigrationScenario {
 }
 
 const MIGRATION_SCENARIOS: Record<string, MigrationScenario> = {
-  spacing_to_gap: {
-    name: "Spacing to Gap",
-    description: "Replace 'spacing' prop with 'gap' prop in Stack components",
-    before: `<Stack spacing={4}>
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-</Stack>`,
-    after: `<Stack gap={4}>
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-</Stack>`,
-  },
-
-  button_icon_to_children: {
-    name: "Button Icon Props to Children",
-    description:
-      "Replace 'leftIcon' and 'rightIcon' props with icons as children in Button component",
-    before: `<Button leftIcon={<Icon />}>
-  Click me
-</Button>
-
-<Button rightIcon={<Icon />}>
-  Click me
-</Button>`,
-    after: `<Button>
-  <Icon />
-  Click me
-</Button>
-
-<Button>
-  Click me
-  <Icon />
-</Button>`,
-  },
+  // ==================== CORE FRAMEWORK & SETUP CHANGES ====================
 
   extend_theme_to_create_system: {
     name: "Extend Theme to Create System",
@@ -100,6 +67,46 @@ export function Provider(props) {
 }`,
   },
 
+  color_mode_changes: {
+    name: "Color Mode Changes",
+    description:
+      "Replace ColorModeProvider/useColorMode with next-themes, remove LightMode/DarkMode/ColorModeScript components, replace useColorModeValue with useTheme",
+    before: `import { 
+  ColorModeProvider, 
+  useColorMode, 
+  useColorModeValue,
+  LightMode,
+  DarkMode,
+  ColorModeScript 
+} from "@chakra-ui/react"
+
+const { colorMode, toggleColorMode } = useColorMode()
+const bg = useColorModeValue('white', 'gray.800')
+
+<ColorModeProvider>
+  <LightMode>
+    <Box>Always light</Box>
+  </LightMode>
+  <DarkMode>
+    <Box>Always dark</Box>
+  </DarkMode>
+</ColorModeProvider>`,
+    after: `import { useTheme } from "next-themes"
+
+const { theme, setTheme } = useTheme()
+const bg = theme === 'light' ? 'white' : 'gray.800'
+
+// Use className for forced themes
+<Box className="light">
+  <Box>Always light</Box>
+</Box>
+<Box className="dark">
+  <Box>Always dark</Box>
+</Box>`,
+  },
+
+  // ==================== BOOLEAN PROPS STANDARDIZATION ====================
+
   boolean_prop_naming: {
     name: "Boolean Prop Naming",
     description:
@@ -122,49 +129,6 @@ export function Provider(props) {
 <Accordion defaultOpen />`,
   },
 
-  form_control_to_field: {
-    name: "FormControl to Field",
-    description:
-      "Replace FormControl with Field.Root and related components: FormLabel → Field.Label, FormHelperText → Field.HelperText, FormErrorMessage → Field.ErrorText",
-    before: `<FormControl isInvalid={isError}>
-  <FormLabel>Email address</FormLabel>
-  <Input type='email' />
-  <FormHelperText>We'll never share your email.</FormHelperText>
-  <FormErrorMessage>This field is required</FormErrorMessage>
-</FormControl>`,
-    after: `<Field.Root invalid={isError}>
-  <Field.Label>Email address</Field.Label>
-  <Input type='email' />
-  <Field.HelperText>We'll never share your email.</Field.HelperText>
-  <Field.ErrorText>This field is required</Field.ErrorText>
-</Field.Root>`,
-  },
-
-  spinner_props: {
-    name: "Spinner Props",
-    description:
-      "Update Spinner component props: thickness → borderWidth, speed → animationDuration",
-    before: `<Spinner thickness="2px" speed="0.5s" />`,
-    after: `<Spinner borderWidth="2px" animationDuration="0.5s" />`,
-  },
-
-  icon_button_changes: {
-    name: "IconButton Changes",
-    description:
-      "Update IconButton component: remove icon prop (use children), remove isRounded prop (use borderRadius='full')",
-    before: `<IconButton
-  icon={<SearchIcon />}
-  isRounded
-  aria-label="Search"
-/>`,
-    after: `<IconButton
-  borderRadius="full"
-  aria-label="Search"
->
-  <SearchIcon />
-</IconButton>`,
-  },
-
   button_isActive_prop: {
     name: "Button isActive Prop",
     description: "Replace isActive prop with data-active attribute",
@@ -180,6 +144,8 @@ export function Provider(props) {
   Click me
 </Link>`,
   },
+
+  // ==================== COMPONENT-TO-COMPONENT RENAMES ====================
 
   divider_to_separator: {
     name: "Divider to Separator",
@@ -205,6 +171,8 @@ export function Provider(props) {
   <Collapsible.Content>Some content</Collapsible.Content>
 </Collapsible.Root>`,
   },
+
+  // ==================== STYLE PROPS & THEMING CHANGES ====================
 
   style_props_pseudo_selectors: {
     name: "Style Props Pseudo Selectors",
@@ -291,138 +259,78 @@ export function Provider(props) {
 <Badge colorPalette="green">New</Badge>`,
   },
 
-  modal_to_dialog: {
-    name: "Modal to Dialog",
-    description:
-      "Replace Modal with Dialog component and update props: isOpen → open, onClose → onOpenChange, isCentered → placement='center'",
-    before: `<Modal isOpen={isOpen} onClose={onClose} isCentered>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>Title</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>
-      Content goes here
-    </ModalBody>
-    <ModalFooter>
-      <Button onClick={onClose}>Close</Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>`,
-    after: `<Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
-  <Dialog.Backdrop />
-  <Dialog.Positioner>
-    <Dialog.Content>
-      <Dialog.Header>
-        <Dialog.Title>Title</Dialog.Title>
-      </Dialog.Header>
-      <Dialog.Body>
-        Content goes here
-      </Dialog.Body>
-      <Dialog.Footer>
-        <Button onClick={onClose}>Close</Button>
-      </Dialog.Footer>
-      <Dialog.CloseTrigger />
-    </Dialog.Content>
-  </Dialog.Positioner>
-</Dialog.Root>`,
+  spacing_to_gap: {
+    name: "Spacing to Gap",
+    description: "Replace 'spacing' prop with 'gap' prop in Stack components",
+    before: `<Stack spacing={4}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Stack>`,
+    after: `<Stack gap={4}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Stack>`,
   },
 
-  select_to_native_select: {
-    name: "Select to Native Select",
+  // ==================== BUTTON & ICON COMPONENTS ====================
+
+  button_icon_to_children: {
+    name: "Button Icon Props to Children",
     description:
-      "Replace Select with NativeSelect component using the new compound component pattern",
-    before: `<Select placeholder='Select option' icon={<ChevronDownIcon />}>
-  <option value='option1'>Option 1</option>
-  <option value='option2'>Option 2</option>
-  <option value='option3'>Option 3</option>
-</Select>`,
-    after: `<NativeSelect.Root size="sm" width="240px">
-  <NativeSelect.Field placeholder="Select option">
-    <option value='option1'>Option 1</option>
-    <option value='option2'>Option 2</option>
-    <option value='option3'>Option 3</option>
-  </NativeSelect.Field>
-  <NativeSelect.Indicator>
-    <ChevronDownIcon />
-  </NativeSelect.Indicator>
-</NativeSelect.Root>`,
+      "Replace 'leftIcon' and 'rightIcon' props with icons as children in Button component",
+    before: `<Button leftIcon={<Icon />}>
+  Click me
+</Button>
+
+<Button rightIcon={<Icon />}>
+  Click me
+</Button>`,
+    after: `<Button>
+  <Icon />
+  Click me
+</Button>
+
+<Button>
+  Click me
+  <Icon />
+</Button>`,
   },
 
-  dialog_or_drawer_props_changes: {
-    name: "Dialog and Drawer Props",
+  icon_button_changes: {
+    name: "IconButton Changes",
     description:
-      "Update Dialog and Drawer props: isOpen → open, onChange → onOpenChange, blockScrollOnMount → preventScroll, closeOnEsc → closeOnEscape, closeOnOverlayClick → closeOnInteractOutside, initialFocusRef → initialFocusEl function, finalFocusRef → finalFocusEl function",
-    before: `<Dialog 
-  isOpen={isOpen} 
-  onChange={onChange}
-  blockScrollOnMount={true}
-  closeOnEsc={true}
-  closeOnOverlayClick={true}
-  initialFocusRef={initialFocusRef}
-  finalFocusRef={finalFocusRef}
+      "Update IconButton component: remove icon prop (use children), remove isRounded prop (use borderRadius='full')",
+    before: `<IconButton
+  icon={<SearchIcon />}
+  isRounded
+  aria-label="Search"
+/>`,
+    after: `<IconButton
+  borderRadius="full"
+  aria-label="Search"
 >
-  Content
-</Dialog>`,
-    after: `<Dialog.Root 
-  open={isOpen} 
-  onOpenChange={onOpenChange}
-  preventScroll={true}
-  closeOnEscape={true}
-  closeOnInteractOutside={true}
-  initialFocusEl={() => initialFocusRef.current}
-  finalFocusEl={() => finalFocusRef.current}
->
-  <Dialog.Content>Content</Dialog.Content>
-</Dialog.Root>`,
+  <SearchIcon />
+</IconButton>`,
   },
 
-  editable_props_changes: {
-    name: "Editable Props",
+  // ==================== FORM COMPONENTS ====================
+
+  form_control_to_field: {
+    name: "FormControl to Field",
     description:
-      "Replace Editable with Editable.Root and update props: finalFocusRef → finalFocusEl function, isDisabled → disabled, onSubmit → onValueCommit, onCancel → onValueRevert, onChange → onValueChange, startWithEditView → defaultEdit, submitOnBlur → submitMode",
-    before: `<Editable
-  finalFocusRef={finalFocusRef}
-  isDisabled={isDisabled}
-  onSubmit={onSubmit}
-  onCancel={onCancel}
-  onChange={onChange}
-  startWithEditView={true}
-  submitOnBlur={true}
-  defaultValue="Edit me"
->
-  <EditablePreview />
-  <EditableInput />
-</Editable>`,
-    after: `<Editable.Root
-  finalFocusEl={() => finalFocusRef.current}
-  disabled={disabled}
-  onValueCommit={onSubmit}
-  onValueRevert={onCancel}
-  onValueChange={onChange}
-  defaultEdit={true}
-  submitMode="blur"
-  defaultValue="Edit me"
->
-  <Editable.Preview />
-  <Editable.Input />
-</Editable.Root>`,
-  },
-  avatar_props_changes: {
-    name: "Avatar Changes",
-    description:
-      "Update Avatar component: move image props to Avatar.Image, move fallback to Avatar.Fallback, move name prop to Avatar.Fallback",
-    before: `<Avatar 
-  name="John Doe" 
-  src="/avatar.jpg"
-  fallbackSrc="/fallback.jpg"
-  size="lg"
->
-  <AvatarBadge boxSize="1.25em" bg="green.500" />
-</Avatar>`,
-    after: `<Avatar.Root size="lg">
-  <Avatar.Image src="/avatar.jpg" />
-  <Avatar.Fallback name="John Doe" />
-</Avatar.Root>`,
+      "Replace FormControl with Field.Root and related components: FormLabel → Field.Label, FormHelperText → Field.HelperText, FormErrorMessage → Field.ErrorText",
+    before: `<FormControl isInvalid={isError}>
+  <FormLabel>Email address</FormLabel>
+  <Input type='email' />
+  <FormHelperText>We'll never share your email.</FormHelperText>
+  <FormErrorMessage>This field is required</FormErrorMessage>
+</FormControl>`,
+    after: `<Field.Root invalid={isError}>
+  <Field.Label>Email address</Field.Label>
+  <Input type='email' />
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+  <Field.ErrorText>This field is required</Field.ErrorText>
+</Field.Root>`,
   },
 
   pin_input_changes: {
@@ -463,6 +371,39 @@ export function Provider(props) {
   </NumberInput.Control>
 </NumberInput.Root>`,
   },
+
+  checkbox_component_changes: {
+    name: "Checkbox Component Changes",
+    description:
+      "Refactor Checkbox to use compound components with Root, HiddenInput, Control, Indicator, and Label",
+    before: `<Checkbox defaultChecked>Checkbox</Checkbox>`,
+    after: `<Checkbox.Root defaultChecked>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+  <Checkbox.Label>Checkbox</Checkbox.Label>
+</Checkbox.Root>`,
+  },
+
+  radio_group_component_changes: {
+    name: "Radio Group Component Changes",
+    description:
+      "Refactor RadioGroup to use compound components with Root, Item, ItemHiddenInput, ItemIndicator, and ItemText",
+    before: `<RadioGroup defaultValue="2">
+  <Radio value="1">Radio</Radio>
+  <Radio value="2">Radio</Radio>
+</RadioGroup>`,
+    after: `<RadioGroup.Root defaultValue="2">
+  <RadioGroup.Item value="1">
+    <RadioGroup.ItemHiddenInput />
+    <RadioGroup.ItemIndicator />
+    <RadioGroup.ItemText />
+  </RadioGroup.Item>
+</RadioGroup.Root>`,
+  },
+
+  // ==================== SLIDER COMPONENTS ====================
 
   slider_props_changes: {
     name: "Slider Props Changes",
@@ -515,152 +456,93 @@ export function Provider(props) {
 </Slider.Root>`,
   },
 
-  table_component_renames: {
-    name: "Table Component Renames",
+  // ==================== MODAL & DIALOG COMPONENTS ====================
+
+  modal_to_dialog: {
+    name: "Modal to Dialog",
     description:
-      "Update Table components: TableContainer → Table.ScrollArea, Td/Th → Table.Cell/Table.ColumnHeader, isNumeric → textAlign='end'",
-    before: `<TableContainer>
-  <Table variant="simple">
-    <TableCaption>Imperial to metric conversion factors</TableCaption>
-    <Thead>
-      <Tr>
-        <Th>Product</Th>
-        <Th isNumeric>Price</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>Item</Td>
-        <Td isNumeric>$25.00</Td>
-      </Tr>
-    </Tbody>
-  </Table>
-</TableContainer>`,
-    after: `<Table.ScrollArea>
-  <Table.Root size="sm">
-    <Table.Header>
-      <Table.Row>
-        <Table.ColumnHeader>Product</Table.ColumnHeader>
-        <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
-      </Table.Row>
-    </Table.Header>
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>Item</Table.Cell>
-        <Table.Cell textAlign="end">$25.00</Table.Cell>
-      </Table.Row>
-    </Table.Body>
-  </Table.Root>
-</Table.ScrollArea>`,
+      "Replace Modal with Dialog component and update props: isOpen → open, onClose → onOpenChange, isCentered → placement='center'",
+    before: `<Modal isOpen={isOpen} onClose={onClose} isCentered>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      Content goes here
+    </ModalBody>
+    <ModalFooter>
+      <Button onClick={onClose}>Close</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>`,
+    after: `<Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
+  <Dialog.Backdrop />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.Header>
+        <Dialog.Title>Title</Dialog.Title>
+      </Dialog.Header>
+      <Dialog.Body>
+        Content goes here
+      </Dialog.Body>
+      <Dialog.Footer>
+        <Button onClick={onClose}>Close</Button>
+      </Dialog.Footer>
+      <Dialog.CloseTrigger />
+    </Dialog.Content>
+  </Dialog.Positioner>
+</Dialog.Root>`,
   },
 
-  color_mode_changes: {
-    name: "Color Mode Changes",
+  dialog_or_drawer_props_changes: {
+    name: "Dialog and Drawer Props",
     description:
-      "Replace ColorModeProvider/useColorMode with next-themes, remove LightMode/DarkMode/ColorModeScript components, replace useColorModeValue with useTheme",
-    before: `import { 
-  ColorModeProvider, 
-  useColorMode, 
-  useColorModeValue,
-  LightMode,
-  DarkMode,
-  ColorModeScript 
-} from "@chakra-ui/react"
-
-const { colorMode, toggleColorMode } = useColorMode()
-const bg = useColorModeValue('white', 'gray.800')
-
-<ColorModeProvider>
-  <LightMode>
-    <Box>Always light</Box>
-  </LightMode>
-  <DarkMode>
-    <Box>Always dark</Box>
-  </DarkMode>
-</ColorModeProvider>`,
-    after: `import { useTheme } from "next-themes"
-
-const { theme, setTheme } = useTheme()
-const bg = theme === 'light' ? 'white' : 'gray.800'
-
-// Use className for forced themes
-<Box className="light">
-  <Box>Always light</Box>
-</Box>
-<Box className="dark">
-  <Box>Always dark</Box>
-</Box>`,
+      "Update Dialog and Drawer props: isOpen → open, onChange → onOpenChange, blockScrollOnMount → preventScroll, closeOnEsc → closeOnEscape, closeOnOverlayClick → closeOnInteractOutside, initialFocusRef → initialFocusEl function, finalFocusRef → finalFocusEl function",
+    before: `<Dialog 
+  isOpen={isOpen} 
+  onChange={onChange}
+  blockScrollOnMount={true}
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  initialFocusRef={initialFocusRef}
+  finalFocusRef={finalFocusRef}
+>
+  Content
+</Dialog>`,
+    after: `<Dialog.Root 
+  open={isOpen} 
+  onOpenChange={onOpenChange}
+  preventScroll={true}
+  closeOnEscape={true}
+  closeOnInteractOutside={true}
+  initialFocusEl={() => initialFocusRef.current}
+  finalFocusEl={() => finalFocusRef.current}
+>
+  <Dialog.Content>Content</Dialog.Content>
+</Dialog.Root>`,
   },
 
-  tag_component_changes: {
-    name: "Tag Component Changes",
+  // ==================== SELECTION COMPONENTS ====================
+
+  select_to_native_select: {
+    name: "Select to Native Select",
     description:
-      "Update Tag component structure: Tag → Tag.Root, TagLabel → Tag.Label, TagLeftIcon → Tag.StartElement, TagRightIcon → Tag.EndElement, TagCloseButton → Tag.CloseTrigger",
-    before: `<Tag>
-  <TagLeftIcon boxSize="12px" as={AddIcon} />
-  <TagLabel>Cyan</TagLabel>
-  <TagRightIcon boxSize="12px" as={AddIcon} />
-</Tag>
-
-<Tag>
-  <TagLabel>Green</TagLabel>
-  <TagCloseButton />
-</Tag>`,
-    after: `<Tag.Root>
-  <Tag.StartElement>
-    <AddIcon />
-  </Tag.StartElement>
-  <Tag.Label>Cyan</Tag.Label>
-  <Tag.EndElement>
-    <AddIcon />
-  </Tag.EndElement>
-</Tag.Root>
-
-<Tag.Root>
-  <Tag.Label>Green</Tag.Label>
-  <Tag.CloseTrigger />
-</Tag.Root>`,
-  },
-
-  skeleton_component_changes: {
-    name: "Skeleton Component Changes",
-    description:
-      "Update Skeleton component: startColor and endColor props now use CSS variables, isLoaded prop is now loading with inverted boolean logic",
-    before: `<Skeleton startColor="pink.500" endColor="orange.500" />
-
-<Skeleton isLoaded>
-  <span>Chakra ui is cool</span>
-</Skeleton>`,
-    after: `<Skeleton
-  css={{
-    "--start-color": "colors.pink.500",
-    "--end-color": "colors.orange.500",
-  }}
-/>
-
-<Skeleton loading={false}>
-  <span>Chakra ui is cool</span>
-</Skeleton>`,
-  },
-
-  alert_component_changes: {
-    name: "Alert Component Changes",
-    description:
-      "Update Alert component structure: AlertIcon → Alert.Indicator, wrap content in Alert.Content, and use compound component pattern with Alert.Root",
-    before: `<Alert>
-  <AlertIcon />
-  <AlertTitle>Your browser is outdated!</AlertTitle>
-  <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
-</Alert>`,
-    after: `<Alert.Root status="error">
-  <Alert.Indicator />
-  <Alert.Content>
-    <Alert.Title>Invalid Fields</Alert.Title>
-    <Alert.Description>
-      Your form has some errors. Please fix them and try again.
-    </Alert.Description>
-  </Alert.Content>
-</Alert.Root>`,
+      "Replace Select with NativeSelect component using the new compound component pattern",
+    before: `<Select placeholder='Select option' icon={<ChevronDownIcon />}>
+  <option value='option1'>Option 1</option>
+  <option value='option2'>Option 2</option>
+  <option value='option3'>Option 3</option>
+</Select>`,
+    after: `<NativeSelect.Root size="sm" width="240px">
+  <NativeSelect.Field placeholder="Select option">
+    <option value='option1'>Option 1</option>
+    <option value='option2'>Option 2</option>
+    <option value='option3'>Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Indicator>
+    <ChevronDownIcon />
+  </NativeSelect.Indicator>
+</NativeSelect.Root>`,
   },
 
   menu_component_changes: {
@@ -776,31 +658,7 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
 </Menu.Root>`,
   },
 
-  tooltip_component_changes: {
-    name: "Tooltip Component Changes",
-    description:
-      "Update Tooltip component: closeOnEsc → closeOnEscape, closeOnMouseDown → closeOnPointerDown, placement/gutter/offset/arrow props moved to positioning prop on Tooltip.Root",
-    before: `<Tooltip placement="top" />`,
-    after: `<Tooltip.Root positioning={{ placement: "top" }} />`,
-  },
-
-  accordion_component_changes: {
-    name: "Accordion Component Changes",
-    description:
-      "Update Accordion component: allowMultiple → multiple, allowToggle → collapsible, index → value, defaultIndex → defaultValue, AccordionButton → Accordion.Trigger, AccordionIcon → Accordion.ItemIndicator",
-    before: `<Accordion allowMultiple index={[0]} onChange={() => {}}>
-  <AccordionItem>
-    <AccordionButton>Section 1 title</AccordionButton>
-    <AccordionPanel>Panel content</AccordionPanel>
-  </AccordionItem>
-</Accordion>`,
-    after: `<Accordion multiple value={["0"]} onValueChange={() => {}}>
-  <AccordionItem>
-    <Accordion.Trigger>Section 1 title</Accordion.Trigger>
-    <AccordionPanel>Panel content</AccordionPanel>
-  </AccordionItem>
-</Accordion>`,
-  },
+  // ==================== NAVIGATION & LAYOUT COMPONENTS ====================
 
   tabs_component_changes: {
     name: "Tabs Component Changes",
@@ -838,6 +696,204 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
     after: `<Tabs.Root defaultValue={0} value={0} onValueChange={({ value }) => {}} lazyMount unmountOnExit />`,
   },
 
+  accordion_component_changes: {
+    name: "Accordion Component Changes",
+    description:
+      "Update Accordion component: allowMultiple → multiple, allowToggle → collapsible, index → value, defaultIndex → defaultValue, AccordionButton → Accordion.Trigger, AccordionIcon → Accordion.ItemIndicator",
+    before: `<Accordion allowMultiple index={[0]} onChange={() => {}}>
+  <AccordionItem>
+    <AccordionButton>Section 1 title</AccordionButton>
+    <AccordionPanel>Panel content</AccordionPanel>
+  </AccordionItem>
+</Accordion>`,
+    after: `<Accordion multiple value={["0"]} onValueChange={() => {}}>
+  <AccordionItem>
+    <Accordion.Trigger>Section 1 title</Accordion.Trigger>
+    <AccordionPanel>Panel content</AccordionPanel>
+  </AccordionItem>
+</Accordion>`,
+  },
+
+  // ==================== CONTENT DISPLAY COMPONENTS ====================
+
+  table_component_renames: {
+    name: "Table Component Renames",
+    description:
+      "Update Table components: TableContainer → Table.ScrollArea, Td/Th → Table.Cell/Table.ColumnHeader, isNumeric → textAlign='end'",
+    before: `<TableContainer>
+  <Table variant="simple">
+    <TableCaption>Imperial to metric conversion factors</TableCaption>
+    <Thead>
+      <Tr>
+        <Th>Product</Th>
+        <Th isNumeric>Price</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>Item</Td>
+        <Td isNumeric>$25.00</Td>
+      </Tr>
+    </Tbody>
+  </Table>
+</TableContainer>`,
+    after: `<Table.ScrollArea>
+  <Table.Root size="sm">
+    <Table.Header>
+      <Table.Row>
+        <Table.ColumnHeader>Product</Table.ColumnHeader>
+        <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>Item</Table.Cell>
+        <Table.Cell textAlign="end">$25.00</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
+</Table.ScrollArea>`,
+  },
+
+  avatar_props_changes: {
+    name: "Avatar Changes",
+    description:
+      "Update Avatar component: move image props to Avatar.Image, move fallback to Avatar.Fallback, move name prop to Avatar.Fallback",
+    before: `<Avatar 
+  name="John Doe" 
+  src="/avatar.jpg"
+  fallbackSrc="/fallback.jpg"
+  size="lg"
+>
+  <AvatarBadge boxSize="1.25em" bg="green.500" />
+</Avatar>`,
+    after: `<Avatar.Root size="lg">
+  <Avatar.Image src="/avatar.jpg" />
+  <Avatar.Fallback name="John Doe" />
+</Avatar.Root>`,
+  },
+
+  tag_component_changes: {
+    name: "Tag Component Changes",
+    description:
+      "Update Tag component structure: Tag → Tag.Root, TagLabel → Tag.Label, TagLeftIcon → Tag.StartElement, TagRightIcon → Tag.EndElement, TagCloseButton → Tag.CloseTrigger",
+    before: `<Tag>
+  <TagLeftIcon boxSize="12px" as={AddIcon} />
+  <TagLabel>Cyan</TagLabel>
+  <TagRightIcon boxSize="12px" as={AddIcon} />
+</Tag>
+
+<Tag>
+  <TagLabel>Green</TagLabel>
+  <TagCloseButton />
+</Tag>`,
+    after: `<Tag.Root>
+  <Tag.StartElement>
+    <AddIcon />
+  </Tag.StartElement>
+  <Tag.Label>Cyan</Tag.Label>
+  <Tag.EndElement>
+    <AddIcon />
+  </Tag.EndElement>
+</Tag.Root>
+
+<Tag.Root>
+  <Tag.Label>Green</Tag.Label>
+  <Tag.CloseTrigger />
+</Tag.Root>`,
+  },
+
+  alert_component_changes: {
+    name: "Alert Component Changes",
+    description:
+      "Update Alert component structure: AlertIcon → Alert.Indicator, wrap content in Alert.Content, and use compound component pattern with Alert.Root",
+    before: `<Alert>
+  <AlertIcon />
+  <AlertTitle>Your browser is outdated!</AlertTitle>
+  <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
+</Alert>`,
+    after: `<Alert.Root status="error">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Invalid Fields</Alert.Title>
+    <Alert.Description>
+      Your form has some errors. Please fix them and try again.
+    </Alert.Description>
+  </Alert.Content>
+</Alert.Root>`,
+  },
+
+  // ==================== UTILITY & INTERACTIVE COMPONENTS ====================
+
+  spinner_props: {
+    name: "Spinner Props",
+    description:
+      "Update Spinner component props: thickness → borderWidth, speed → animationDuration",
+    before: `<Spinner thickness="2px" speed="0.5s" />`,
+    after: `<Spinner borderWidth="2px" animationDuration="0.5s" />`,
+  },
+
+  skeleton_component_changes: {
+    name: "Skeleton Component Changes",
+    description:
+      "Update Skeleton component: startColor and endColor props now use CSS variables, isLoaded prop is now loading with inverted boolean logic",
+    before: `<Skeleton startColor="pink.500" endColor="orange.500" />
+
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>`,
+    after: `<Skeleton
+  css={{
+    "--start-color": "colors.pink.500",
+    "--end-color": "colors.orange.500",
+  }}
+/>
+
+<Skeleton loading={false}>
+  <span>Chakra ui is cool</span>
+</Skeleton>`,
+  },
+
+  editable_props_changes: {
+    name: "Editable Props",
+    description:
+      "Replace Editable with Editable.Root and update props: finalFocusRef → finalFocusEl function, isDisabled → disabled, onSubmit → onValueCommit, onCancel → onValueRevert, onChange → onValueChange, startWithEditView → defaultEdit, submitOnBlur → submitMode",
+    before: `<Editable
+  finalFocusRef={finalFocusRef}
+  isDisabled={isDisabled}
+  onSubmit={onSubmit}
+  onCancel={onCancel}
+  onChange={onChange}
+  startWithEditView={true}
+  submitOnBlur={true}
+  defaultValue="Edit me"
+>
+  <EditablePreview />
+  <EditableInput />
+</Editable>`,
+    after: `<Editable.Root
+  finalFocusEl={() => finalFocusRef.current}
+  disabled={disabled}
+  onValueCommit={onSubmit}
+  onValueRevert={onCancel}
+  onValueChange={onChange}
+  defaultEdit={true}
+  submitMode="blur"
+  defaultValue="Edit me"
+>
+  <Editable.Preview />
+  <Editable.Input />
+</Editable.Root>`,
+  },
+
+  tooltip_component_changes: {
+    name: "Tooltip Component Changes",
+    description:
+      "Update Tooltip component: closeOnEsc → closeOnEscape, closeOnMouseDown → closeOnPointerDown, placement/gutter/offset/arrow props moved to positioning prop on Tooltip.Root",
+    before: `<Tooltip placement="top" />`,
+    after: `<Tooltip.Root positioning={{ placement: "top" }} />`,
+  },
+
   show_hide_component_changes: {
     name: "Show and Hide Component Changes",
     description:
@@ -856,37 +912,6 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
 <Box hideFrom="md">
   This text appears only on screens md and larger.
 </Box>`,
-  },
-
-  checkbox_component_changes: {
-    name: "Checkbox Component Changes",
-    description:
-      "Refactor Checkbox to use compound components with Root, HiddenInput, Control, Indicator, and Label",
-    before: `<Checkbox defaultChecked>Checkbox</Checkbox>`,
-    after: `<Checkbox.Root defaultChecked>
-  <Checkbox.HiddenInput />
-  <Checkbox.Control>
-    <Checkbox.Indicator />
-  </Checkbox.Control>
-  <Checkbox.Label>Checkbox</Checkbox.Label>
-</Checkbox.Root>`,
-  },
-
-  radio_group_component_changes: {
-    name: "Radio Group Component Changes",
-    description:
-      "Refactor RadioGroup to use compound components with Root, Item, ItemHiddenInput, ItemIndicator, and ItemText",
-    before: `<RadioGroup defaultValue="2">
-  <Radio value="1">Radio</Radio>
-  <Radio value="2">Radio</Radio>
-</RadioGroup>`,
-    after: `<RadioGroup.Root defaultValue="2">
-  <RadioGroup.Item value="1">
-    <RadioGroup.ItemHiddenInput />
-    <RadioGroup.ItemIndicator />
-    <RadioGroup.ItemText />
-  </RadioGroup.Item>
-</RadioGroup.Root>`,
   },
 }
 
