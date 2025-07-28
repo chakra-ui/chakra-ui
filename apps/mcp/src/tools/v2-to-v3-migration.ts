@@ -105,14 +105,19 @@ export const App = ({ Component }) => (
 
   form_control_to_field: {
     name: "FormControl to Field",
-    description: "Replace FormControl with Field.Root and related components",
+    description:
+      "Replace FormControl with Field.Root and related components: FormLabel → Field.Label, FormHelperText → Field.HelperText, FormErrorMessage → Field.ErrorText",
     before: `<FormControl>
-  <Input />
-  <FormErrorMessage>Required</FormErrorMessage>
+  <FormLabel>Email address</FormLabel>
+  <Input type='email' />
+  <FormHelperText>We'll never share your email.</FormHelperText>
+  <FormErrorMessage>This field is required</FormErrorMessage>
 </FormControl>`,
     after: `<Field.Root>
-  <Input />
-  <Field.ErrorText>Required</Field.ErrorText>
+  <Field.Label>Email address</Field.Label>
+  <Input type='email' />
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+  <Field.ErrorText>This field is required</Field.ErrorText>
 </Field.Root>`,
   },
 
@@ -173,7 +178,7 @@ export const App = ({ Component }) => (
   collapse_to_collapsible: {
     name: "Collapse to Collapsible",
     description:
-      "Rename Collapse to Collapsible namespace, rename 'in' to 'open', and replace animateOpacity with keyframes animations",
+      "Replace Collapse with Collapsible component, change 'in' prop to 'open', wrap content in Collapsible.Content, and replace animateOpacity with keyframes animations",
     before: `<Collapse in={isOpen} animateOpacity>
   Some content
 </Collapse>`,
@@ -328,6 +333,66 @@ export const App = ({ Component }) => (
   </NativeSelect.Field>
   <NativeSelect.Indicator />
 </NativeSelect.Root>`,
+  },
+
+  dialog_drawer_props: {
+    name: "Dialog and Drawer Props",
+    description:
+      "Update Dialog and Drawer props: isOpen to open, onChange to onOpenChange, and other prop changes",
+    before: `<Dialog 
+  isOpen={isOpen} 
+  onChange={onChange}
+  blockScrollOnMount={true}
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  initialFocusRef={initialFocusRef}
+  finalFocusRef={finalFocusRef}
+>
+  Content
+</Dialog>`,
+    after: `<Dialog.Root 
+  open={isOpen} 
+  onOpenChange={onOpenChange}
+  preventScroll={true}
+  closeOnEscape={true}
+  closeOnInteractOutside={true}
+  initialFocusEl={() => initialFocusRef.current}
+  finalFocusEl={() => finalFocusRef.current}
+>
+  <Dialog.Content>Content</Dialog.Content>
+</Dialog.Root>`,
+  },
+
+  editable_props: {
+    name: "Editable Props",
+    description:
+      "Update Editable component props: finalFocusRef to finalFocusEl, isDisabled to disabled, and other prop changes",
+    before: `<Editable
+  finalFocusRef={finalFocusRef}
+  isDisabled={isDisabled}
+  onSubmit={onSubmit}
+  onCancel={onCancel}
+  onChange={onChange}
+  startWithEditView={true}
+  submitOnBlur={true}
+  defaultValue="Edit me"
+>
+  <EditablePreview />
+  <EditableInput />
+</Editable>`,
+    after: `<Editable.Root
+  finalFocusEl={() => finalFocusRef.current}
+  disabled={disabled}
+  onValueCommit={onSubmit}
+  onValueRevert={onCancel}
+  onValueChange={onChange}
+  defaultEdit={true}
+  submitMode="blur"
+  defaultValue="Edit me"
+>
+  <Editable.Preview />
+  <Editable.Input />
+</Editable.Root>`,
   },
 }
 
