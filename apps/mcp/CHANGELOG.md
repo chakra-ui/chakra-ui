@@ -1,7 +1,5 @@
-# @chakra-ui/react-mcp
+## [Unreleased]
 
-## Unreleased
-
-### BREAKING CHANGE
+### Added
 
 - Initial release of the official MCP server for Chakra UI
