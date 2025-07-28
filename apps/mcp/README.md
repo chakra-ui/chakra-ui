@@ -53,19 +53,6 @@ pnpm build
 pnpm dev
 ```
 
-### Testing with MCP Inspector
-
-```bash
-pnpm inspect
-```
-
-The script will:
-
-1. Build the server if `dist/server.js` doesn't exist
-2. Copy the server command to your clipboard
-3. Launch the MCP Inspector
-4. Just select "Command" and paste!
-
 ## License
 
 MIT @ Chakra Systems
