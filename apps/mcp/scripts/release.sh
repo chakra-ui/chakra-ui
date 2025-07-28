@@ -29,7 +29,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Forward all command-line arguments to release-it
-COMMAND="pnpm release-it --config ../release-it.json $*"
+COMMAND="pnpm release-it $* --config ../release-it.json"
 log "🔄 Running: $COMMAND"
 
 if eval "$COMMAND"; then
