@@ -1,3 +1,5 @@
+import { uniq } from "./uniq.js"
+
 interface ComponentList {
   components: string[]
   charts: string[]
@@ -140,7 +142,7 @@ export async function fetchProBlock(
  */
 export async function getAllComponentNames(): Promise<string[]> {
   const componentList = await fetchComponentList()
-  return [...componentList.components, ...componentList.charts]
+  return uniq([...componentList.components, ...componentList.charts])
 }
 
 /**
@@ -148,7 +150,7 @@ export async function getAllComponentNames(): Promise<string[]> {
  */
 export async function getRegularComponentNames(): Promise<string[]> {
   const componentList = await fetchComponentList()
-  return componentList.components
+  return uniq(componentList.components)
 }
 
 /**
@@ -159,7 +161,6 @@ export async function getProBlockContext(): Promise<{
   variants: string[]
 }> {
   const blocks = await fetchProBlocks()
-
   return {
     categories: blocks.data.map((block) => block.id),
     variants: blocks.data.flatMap((block) => block.variants.map((v) => v.id)),

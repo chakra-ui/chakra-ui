@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { fetchTokenCategories } from "../lib/fetch.js"
 import type { Tool } from "../lib/types.js"
+import { uniq } from "../lib/uniq.js"
 
 interface CustomizationScenario {
   usage?: string
@@ -186,12 +187,12 @@ export const customizeThemeTool: Tool<{
   async ctx() {
     const tokenCategories = await fetchTokenCategories()
     return {
-      categories: [
+      categories: uniq([
         ...tokenCategories,
         ...Object.keys(CUSTOMIZATION_SCENARIOS),
         "conditions",
         "globalCss",
-      ],
+      ]),
     }
   },
   exec(server, { ctx, name, description }) {
