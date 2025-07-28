@@ -44,8 +44,8 @@ const MIGRATION_SCENARIOS: Record<string, MigrationScenario> = {
 </Button>`,
   },
 
-  theme_configuration: {
-    name: "Theme Configuration",
+  extend_theme_to_create_system: {
+    name: "Extend Theme to Create System",
     description: "Update theme configuration from extendTheme to createSystem",
     before: `import { extendTheme } from "@chakra-ui/react"
 
@@ -69,9 +69,10 @@ export const system = createSystem(defaultConfig, {
 })`,
   },
 
-  provider_configuration: {
+  chakra_provider_configuration: {
     name: "Provider Configuration",
-    description: "Update provider setup from ChakraProvider to Provider",
+    description:
+      "Update provider setup from ChakraProvider to Provider with snippets",
     before: `import { ChakraProvider } from "@chakra-ui/react"
 
 export const App = ({ Component }) => (
@@ -79,41 +80,59 @@ export const App = ({ Component }) => (
     <Component />
   </ChakraProvider>
 )`,
-    after: `import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+    after: `import { Provider } from "@/components/ui/provider"
 
 export const App = ({ Component }) => (
-  <ChakraProvider value={defaultSystem}>
+  <Provider>
     <Component />
-  </ChakraProvider>
-)`,
+  </Provider>
+)
+
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+
+export function Provider(props) {
+  return (
+    <ChakraProvider value={defaultSystem}>
+      <ColorModeProvider {...props} />
+    </ChakraProvider>
+  )
+}`,
   },
 
   boolean_prop_naming: {
     name: "Boolean Prop Naming",
-    description: "Simplify boolean prop names (remove 'is' prefix)",
+    description:
+      "Update boolean prop names: isOpen → open, isDisabled → disabled, isRequired → required, isInvalid → invalid, defaultIsOpen → defaultOpen",
     before: `<Modal isOpen={isOpen} onClose={onClose}>
   <ModalContent>
     <ModalHeader>Title</ModalHeader>
   </ModalContent>
-</Modal>`,
+</Modal>
+
+<Input isDisabled isRequired isInvalid />
+<Accordion defaultIsOpen />`,
     after: `<Modal open={isOpen} onClose={onClose}>
   <ModalContent>
     <ModalHeader>Title</ModalHeader>
   </ModalContent>
-</Modal>`,
+</Modal>
+
+<Input disabled required invalid />
+<Accordion defaultOpen />`,
   },
 
   form_control_to_field: {
     name: "FormControl to Field",
     description:
       "Replace FormControl with Field.Root and related components: FormLabel → Field.Label, FormHelperText → Field.HelperText, FormErrorMessage → Field.ErrorText",
-    before: `<FormControl>
+    before: `<FormControl isInvalid={isError}>
   <FormLabel>Email address</FormLabel>
   <Input type='email' />
   <FormHelperText>We'll never share your email.</FormHelperText>
   <FormErrorMessage>This field is required</FormErrorMessage>
 </FormControl>`,
-    after: `<Field.Root>
+    after: `<Field.Root invalid={isError}>
   <Field.Label>Email address</Field.Label>
   <Input type='email' />
   <Field.HelperText>We'll never share your email.</Field.HelperText>
@@ -124,7 +143,7 @@ export const App = ({ Component }) => (
   spinner_props: {
     name: "Spinner Props",
     description:
-      "Update Spinner component props: thickness to borderWidth, speed to animationDuration",
+      "Update Spinner component props: thickness → borderWidth, speed → animationDuration",
     before: `<Spinner thickness="2px" speed="0.5s" />`,
     after: `<Spinner borderWidth="2px" animationDuration="0.5s" />`,
   },
@@ -132,7 +151,7 @@ export const App = ({ Component }) => (
   icon_button_changes: {
     name: "IconButton Changes",
     description:
-      "Update IconButton component: remove icon prop and isRounded prop",
+      "Update IconButton component: remove icon prop (use children), remove isRounded prop (use borderRadius='full')",
     before: `<IconButton
   icon={<SearchIcon />}
   isRounded
@@ -190,7 +209,7 @@ export const App = ({ Component }) => (
   style_props_pseudo_selectors: {
     name: "Style Props Pseudo Selectors",
     description:
-      "Update pseudo selector prop names to follow new v3 naming conventions",
+      "Update pseudo selector prop names: _activeLink → _currentPage, _activeStep → _currentStep, _mediaDark → _osDark, _mediaLight → _osLight",
     before: `<Link _activeLink={{ color: "blue.500" }}>
   Active Link
 </Link>
@@ -237,7 +256,7 @@ export const App = ({ Component }) => (
   bg_gradient_props: {
     name: "Gradient Props",
     description:
-      "Gradient style prop split into `bgGradient`, `gradientFrom`, and `gradientTo` props",
+      "Gradient style prop split into bgGradient, gradientFrom, and gradientTo props for better performance and type inference",
     before: `<Box bgGradient="linear(to-r, red.200, pink.500)" />
 
 <Box bgGradient="linear(to-b, blue.100, blue.500)" />
@@ -274,7 +293,8 @@ export const App = ({ Component }) => (
 
   modal_to_dialog: {
     name: "Modal to Dialog",
-    description: "Replace Modal with Dialog component and update props",
+    description:
+      "Replace Modal with Dialog component and update props: isOpen → open, onClose → onOpenChange, isCentered → placement='center'",
     before: `<Modal isOpen={isOpen} onClose={onClose} isCentered>
   <ModalOverlay />
   <ModalContent>
@@ -289,56 +309,49 @@ export const App = ({ Component }) => (
   </ModalContent>
 </Modal>`,
     after: `<Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
-  <Portal>
-    <Dialog.Backdrop />
-    <Dialog.Positioner>
-      <Dialog.Content>
-        <Dialog.Header>
-          <Dialog.Title>Title</Dialog.Title>
-        </Dialog.Header>
-        <Dialog.Body>
-          Content goes here
-        </Dialog.Body>
-        <Dialog.Footer>
-          <Button onClick={onClose}>Close</Button>
-        </Dialog.Footer>
-        <Dialog.CloseTrigger asChild>
-          <CloseButton size="sm" />
-        </Dialog.CloseTrigger>
-      </Dialog.Content>
-    </Dialog.Positioner>
-  </Portal>
+  <Dialog.Backdrop />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.Header>
+        <Dialog.Title>Title</Dialog.Title>
+      </Dialog.Header>
+      <Dialog.Body>
+        Content goes here
+      </Dialog.Body>
+      <Dialog.Footer>
+        <Button onClick={onClose}>Close</Button>
+      </Dialog.Footer>
+      <Dialog.CloseTrigger />
+    </Dialog.Content>
+  </Dialog.Positioner>
 </Dialog.Root>`,
-  },
-
-  boolean_props_convention: {
-    name: "Boolean Props Convention",
-    description: "Update boolean prop naming from 'is<X>' to '<x>' convention",
-    before: `[isOpen, isDisabled, isRequired, isInvalid, defaultIsOpen, defaultOpen]`,
-    after: `[open, disabled, required, invalid, defaultOpen]`,
   },
 
   select_to_native_select: {
     name: "Select to Native Select",
     description:
       "Replace Select with NativeSelect component using the new compound component pattern",
-    before: `<Select placeholder='Select option'>
+    before: `<Select placeholder='Select option' icon={<ChevronDownIcon />}>
   <option value='option1'>Option 1</option>
   <option value='option2'>Option 2</option>
+  <option value='option3'>Option 3</option>
 </Select>`,
-    after: `<NativeSelect.Root>
+    after: `<NativeSelect.Root size="sm" width="240px">
   <NativeSelect.Field placeholder="Select option">
     <option value='option1'>Option 1</option>
     <option value='option2'>Option 2</option>
+    <option value='option3'>Option 3</option>
   </NativeSelect.Field>
-  <NativeSelect.Indicator />
+  <NativeSelect.Indicator>
+    <ChevronDownIcon />
+  </NativeSelect.Indicator>
 </NativeSelect.Root>`,
   },
 
-  dialog_drawer_props: {
+  dialog_or_drawer_props_changes: {
     name: "Dialog and Drawer Props",
     description:
-      "Update Dialog and Drawer props: isOpen to open, onChange to onOpenChange, and other prop changes",
+      "Update Dialog and Drawer props: isOpen → open, onChange → onOpenChange, blockScrollOnMount → preventScroll, closeOnEsc → closeOnEscape, closeOnOverlayClick → closeOnInteractOutside, initialFocusRef → initialFocusEl function, finalFocusRef → finalFocusEl function",
     before: `<Dialog 
   isOpen={isOpen} 
   onChange={onChange}
@@ -363,7 +376,7 @@ export const App = ({ Component }) => (
 </Dialog.Root>`,
   },
 
-  editable_props: {
+  editable_props_changes: {
     name: "Editable Props",
     description:
       "Replace Editable with Editable.Root and update props: finalFocusRef → finalFocusEl function, isDisabled → disabled, onSubmit → onValueCommit, onCancel → onValueRevert, onChange → onValueChange, startWithEditView → defaultEdit, submitOnBlur → submitMode",
@@ -393,6 +406,220 @@ export const App = ({ Component }) => (
   <Editable.Preview />
   <Editable.Input />
 </Editable.Root>`,
+  },
+  avatar_props_changes: {
+    name: "Avatar Changes",
+    description:
+      "Update Avatar component: move image props to Avatar.Image, move fallback to Avatar.Fallback, move name prop to Avatar.Fallback",
+    before: `<Avatar 
+  name="John Doe" 
+  src="/avatar.jpg"
+  fallbackSrc="/fallback.jpg"
+  size="lg"
+>
+  <AvatarBadge boxSize="1.25em" bg="green.500" />
+</Avatar>`,
+    after: `<Avatar.Root size="lg">
+  <Avatar.Image src="/avatar.jpg" />
+  <Avatar.Fallback name="John Doe" />
+</Avatar.Root>`,
+  },
+
+  pin_input_changes: {
+    name: "PinInput Changes",
+    description:
+      "Update PinInput: value/defaultValue use string[] instead of string, onChange → onValueChange, onComplete → onValueComplete, add PinInput.Control and PinInput.Label",
+    before: `<PinInput defaultValue="123" onChange={onChange} onComplete={onComplete}>
+  <PinInputField />
+  <PinInputField />
+  <PinInputField />
+</PinInput>`,
+    after: `<PinInput.Root defaultValue={["1", "2", "3"]} onValueChange={onValueChange} onValueComplete={onValueComplete}>
+  <PinInput.Label>Enter PIN</PinInput.Label>
+  <PinInput.Control>
+    <PinInput.Input index={0} />
+    <PinInput.Input index={1} />
+    <PinInput.Input index={2} />
+  </PinInput.Control>
+</PinInput.Root>`,
+  },
+
+  number_input_changes: {
+    name: "NumberInput Changes",
+    description:
+      "Update NumberInput: rename components to NumberInput.Control, NumberInput.IncrementTrigger, NumberInput.DecrementTrigger, onChange → onValueChange, onInvalid → onValueInvalid, remove parse/format props",
+    before: `<NumberInput onChange={onChange} onInvalid={onInvalid} parse={parse} format={format}>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>`,
+    after: `<NumberInput.Root onValueChange={onValueChange} onValueInvalid={onValueInvalid} formatOptions={formatOptions}>
+  <NumberInput.Input />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+</NumberInput.Root>`,
+  },
+
+  slider_props_changes: {
+    name: "Slider Props Changes",
+    description:
+      "Update Slider: onChange → onValueChange, onChangeEnd → onValueChangeEnd, remove onChangeStart and isReversed props",
+    before: `<Slider 
+  defaultValue={30} 
+  onChange={onChange}
+  onChangeStart={onChangeStart}
+  onChangeEnd={onChangeEnd}
+  isReversed
+>
+  <SliderTrack>
+    <SliderFilledTrack />
+  </SliderTrack>
+  <SliderThumb />
+</Slider>`,
+    after: `<Slider.Root 
+  defaultValue={[30]} 
+  onValueChange={onValueChange}
+  onValueChangeEnd={onValueChangeEnd}
+>
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Range />
+    </Slider.Track>
+    <Slider.Thumb index={0} />
+  </Slider.Control>
+</Slider.Root>`,
+  },
+
+  range_slider_to_slider: {
+    name: "RangeSlider to Slider",
+    description:
+      "Replace RangeSlider with Slider component that accepts array values",
+    before: `<RangeSlider defaultValue={[10, 30]}>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>`,
+    after: `<Slider.Root defaultValue={[10, 30]}>
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Range />
+    </Slider.Track>
+    <Slider.Thumbs />
+  </Slider.Control>
+</Slider.Root>`,
+  },
+
+  table_component_renames: {
+    name: "Table Component Renames",
+    description:
+      "Update Table components: TableContainer → Table.ScrollArea, Td/Th → Table.Cell/Table.ColumnHeader, isNumeric → textAlign='end'",
+    before: `<TableContainer>
+  <Table variant="simple">
+    <TableCaption>Imperial to metric conversion factors</TableCaption>
+    <Thead>
+      <Tr>
+        <Th>Product</Th>
+        <Th isNumeric>Price</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>Item</Td>
+        <Td isNumeric>$25.00</Td>
+      </Tr>
+    </Tbody>
+  </Table>
+</TableContainer>`,
+    after: `<Table.ScrollArea>
+  <Table.Root size="sm">
+    <Table.Header>
+      <Table.Row>
+        <Table.ColumnHeader>Product</Table.ColumnHeader>
+        <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>Item</Table.Cell>
+        <Table.Cell textAlign="end">$25.00</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
+</Table.ScrollArea>`,
+  },
+
+  color_mode_changes: {
+    name: "Color Mode Changes",
+    description:
+      "Replace ColorModeProvider/useColorMode with next-themes, remove LightMode/DarkMode/ColorModeScript components, replace useColorModeValue with useTheme",
+    before: `import { 
+  ColorModeProvider, 
+  useColorMode, 
+  useColorModeValue,
+  LightMode,
+  DarkMode,
+  ColorModeScript 
+} from "@chakra-ui/react"
+
+const { colorMode, toggleColorMode } = useColorMode()
+const bg = useColorModeValue('white', 'gray.800')
+
+<ColorModeProvider>
+  <LightMode>
+    <Box>Always light</Box>
+  </LightMode>
+  <DarkMode>
+    <Box>Always dark</Box>
+  </DarkMode>
+</ColorModeProvider>`,
+    after: `import { useTheme } from "next-themes"
+
+const { theme, setTheme } = useTheme()
+const bg = theme === 'light' ? 'white' : 'gray.800'
+
+// Use className for forced themes
+<Box className="light">
+  <Box>Always light</Box>
+</Box>
+<Box className="dark">
+  <Box>Always dark</Box>
+</Box>`,
+  },
+
+  tag_component_changes: {
+    name: "Tag Component Changes",
+    description:
+      "Update Tag component structure: Tag → Tag.Root, TagLabel → Tag.Label, TagLeftIcon → Tag.StartElement, TagRightIcon → Tag.EndElement, TagCloseButton → Tag.CloseTrigger",
+    before: `<Tag>
+  <TagLeftIcon boxSize="12px" as={AddIcon} />
+  <TagLabel>Cyan</TagLabel>
+  <TagRightIcon boxSize="12px" as={AddIcon} />
+</Tag>
+
+<Tag>
+  <TagLabel>Green</TagLabel>
+  <TagCloseButton />
+</Tag>`,
+    after: `<Tag.Root>
+  <Tag.StartElement>
+    <AddIcon />
+  </Tag.StartElement>
+  <Tag.Label>Cyan</Tag.Label>
+  <Tag.EndElement>
+    <AddIcon />
+  </Tag.EndElement>
+</Tag.Root>
+
+<Tag.Root>
+  <Tag.Label>Green</Tag.Label>
+  <Tag.CloseTrigger />
+</Tag.Root>`,
   },
 }
 

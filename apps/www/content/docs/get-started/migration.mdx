@@ -570,6 +570,49 @@ const system = createSystem(defaultConfig, { preflight: false })
 - Changed `spacing` to `gap`
 - Removed `StackItem` in favor of using the `Box` component directly
 
+### Select
+
+Now called `NativeSelect` and exposes all parts now.
+
+Before:
+
+```tsx
+<Select placeholder="Select option">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+</Select>
+```
+
+After:
+
+```tsx
+<NativeSelect.Root size="sm" width="240px">
+  <NativeSelect.Field placeholder="Select option">
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Indicator />
+</NativeSelect.Root>
+```
+
+Changing the icon
+
+Before:
+
+```tsx
+<Select icon={<MdArrowDropDown />} placeholder="Woohoo! A new icon" />
+```
+
+After:
+
+```tsx
+<NativeSelect.Indicator>
+  <MdArrowDropDown />
+</NativeSelect.Indicator>
+```
+
 ### Collapse
 
 - Rename `Collapse` to `Collapsible` namespace
@@ -607,6 +650,7 @@ After
 - Add new `PinInput.Control` and `PinInput.Label` component parts
 - `PinInput.Root` now renders a `div` element by default. Consider combining
   with `Stack` or `Group` for better layout control
+- `onComplete` prop is now called `onValueComplete`
 
 ### NumberInput
 
@@ -616,6 +660,8 @@ After
 - `onChange` prop is now called `onValueChange`
 - Remove `focusBorderColor` and `errorBorderColor`, consider setting the
   `--focus-color` and `--error-color` css variables instead
+- `onInvalid` prop is now called `onValueInvalid`
+- `parse` and `format` props removed in favor of `formatOptions` prop
 
 Before
 
@@ -788,4 +834,149 @@ After:
 <Collapsible.Root open={isOpen}>
   <Collapsible.Content>Some content</Collapsible.Content>
 </Collapsible.Root>
+```
+
+### Slider
+
+- `onChange` prop is now called `onValueChange`
+- `onChangeEnd` prop is now called `onValueChangeEnd`
+- `onChangeStart` prop is now removed
+- `isReversed` prop is now removed
+
+### RangeSlider
+
+Can now be used as a single slider by passing an array of values
+
+Before:
+
+```tsx
+<RangeSlider defaultValue={[10, 30]}>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+After:
+
+```tsx
+<Slider.Root defaultValue={[10, 30]}>
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Range />
+    </Slider.Track>
+    <Slider.Thumbs />
+  </Slider.Control>
+</Slider.Root>
+```
+
+### Table
+
+- `TableContainer` is now `Table.ScrollArea`
+- `Td`(now called `Table.ColumnHeader`) `isNumeric` is now `textAlign="end"`
+
+The compound component have been renamed slightly.
+
+Before:
+
+```tsx
+<Table variant="simple">
+  <TableCaption>Imperial to metric conversion factors</TableCaption>
+  <Thead>
+    <Tr>
+      <Th>Product</Th>
+      <Th>Category</Th>
+      <Th isNumeric>Price</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    {items.map((item) => (
+      <Tr key={item.id}>
+        <Td>{item.name}</Td>
+        <Td>{item.category}</Td>
+        <Td isNumeric>{item.price}</Td>
+      </Tr>
+    ))}
+  </Tbody>
+  <Tfoot>
+    <Tr>
+      <Th>Product</Th>
+      <Th>Category</Th>
+      <Th isNumeric>Price</Th>
+    </Tr>
+  </Tfoot>
+</Table>
+```
+
+After:
+
+```tsx
+<Table.Root size="sm">
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeader>Product</Table.ColumnHeader>
+      <Table.ColumnHeader>Category</Table.ColumnHeader>
+      <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    {items.map((item) => (
+      <Table.Row key={item.id}>
+        <Table.Cell>{item.name}</Table.Cell>
+        <Table.Cell>{item.category}</Table.Cell>
+        <Table.Cell textAlign="end">{item.price}</Table.Cell>
+      </Table.Row>
+    ))}
+  </Table.Body>
+</Table.Root>
+```
+
+### Tag
+
+`TagLeftIcon` and `TagRightIcon` are now `Tag.StartElement` and `Tag.EndElement`
+
+Before:
+
+```tsx
+<Tag>
+  <TagLeftIcon boxSize="12px" as={AddIcon} />
+  <TagLabel>Cyan</TagLabel>
+  <TagRightIcon boxSize="12px" as={AddIcon} />
+</Tag>
+```
+
+After:
+
+```tsx
+<Tag.Root>
+  <Tag.StartElement>
+    <AddIcon />
+  </Tag.StartElement>
+  <Tag.Label>Cyan</Tag.Label>
+  <Tag.EndElement>
+    <AddIcon />
+  </Tag.EndElement>
+</Tag.Root>
+```
+
+- `TagCloseButton` is now `Tag.CloseTrigger`
+
+Before:
+
+```tsx
+<Tag>
+  <TagLabel>Green</TagLabel>
+  <TagCloseButton />
+</Tag>
+```
+
+After:
+
+```tsx
+<Tag.Root>
+  <Tag.Label>Green</Tag.Label>
+  <Tag.CloseTrigger />
+</Tag.Root>
 ```
