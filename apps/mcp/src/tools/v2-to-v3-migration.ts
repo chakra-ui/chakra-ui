@@ -36,6 +36,14 @@ export const system = createSystem(defaultConfig, {
 })`,
   },
 
+  package_json_updates: {
+    name: "Package JSON Updates",
+    description:
+      "Remove framer-motion and @emotion/styled from package.jsonn if unused",
+    before: `npm uninstall @emotion/styled framer-motion`,
+    after: `The install the latest @emotion/react, next-themes, and @chakra-ui/react packages.`,
+  },
+
   chakra_provider_configuration: {
     name: "Provider Configuration",
     description:
@@ -47,7 +55,10 @@ export const App = ({ Component }) => (
     <Component />
   </ChakraProvider>
 )`,
-    after: `import { Provider } from "@/components/ui/provider"
+    after: `Use the \`npx @chakra-ui/cli snippet add\` command to add the provider and color-mode snippets.
+Then update the app to use the new provider.
+
+import { Provider } from "@/components/ui/provider"
 
 export const App = ({ Component }) => (
   <Provider>
@@ -69,8 +80,7 @@ export function Provider(props) {
 
   color_mode_changes: {
     name: "Color Mode Changes",
-    description:
-      "Replace ColorModeProvider/useColorMode with next-themes, remove LightMode/DarkMode/ColorModeScript components, replace useColorModeValue with useTheme",
+    description: "Replace ColorModeProvider/useColorMode with next-themes",
     before: `import { 
   ColorModeProvider, 
   useColorMode, 
@@ -91,17 +101,17 @@ const bg = useColorModeValue('white', 'gray.800')
     <Box>Always dark</Box>
   </DarkMode>
 </ColorModeProvider>`,
-    after: `import { useTheme } from "next-themes"
+    after: `import { useColorMode, useColorModeValue, LightMode, DarkMode } from "@/components/ui/color-mode"
 
-const { theme, setTheme } = useTheme()
-const bg = theme === 'light' ? 'white' : 'gray.800'
+const { colorMode, toggleColorMode } = useColorMode()
+const bg = useColorModeValue('white', 'gray.800')
 
 // Use className for forced themes
 <Box className="light">
-  <Box>Always light</Box>
+  Always light
 </Box>
 <Box className="dark">
-  <Box>Always dark</Box>
+  Always dark
 </Box>`,
   },
 
@@ -118,22 +128,22 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
 </Modal>
 
 <Input isDisabled isRequired isInvalid />
-<Accordion defaultIsOpen />`,
-    after: `<Modal open={isOpen} onClose={onClose}>
-  <ModalContent>
-    <ModalHeader>Title</ModalHeader>
-  </ModalContent>
-</Modal>
+<Popover defaultIsOpen />`,
+    after: `<Modal.Root open={isOpen}>
+  <Modal.Content>
+    <Modal.Header>Title</Modal.Header>
+  </Modal.Content>
+</Modal.Root>
 
 <Input disabled required invalid />
-<Accordion defaultOpen />`,
+<Popover.Root defaultOpen />`,
   },
 
   button_isActive_prop: {
     name: "Button isActive Prop",
     description: "Replace isActive prop with data-active attribute",
     before: `<Button isActive>Click me</Button>`,
-    after: `<Button data-active>Click me</Button>`,
+    after: `<Button data-active="">Click me</Button>`,
   },
 
   link_isExternal_prop: {
@@ -251,17 +261,18 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
 <Badge colorScheme="green">New</Badge>`,
     after: `<Button colorPalette="blue">Click me</Button>
 
-<Alert colorPalette="red">
-  <AlertIcon />
+<Alert.Root colorPalette="red">
+  <Alert.Indicator />
   Alert message
-</Alert>
+</Alert.Root>
 
 <Badge colorPalette="green">New</Badge>`,
   },
 
-  spacing_to_gap: {
-    name: "Spacing to Gap",
-    description: "Replace 'spacing' prop with 'gap' prop in Stack components",
+  stack_spacing_to_gap: {
+    name: "Stack Spacing to Gap",
+    description:
+      "In HStack, VStack, and Stack: replace 'spacing' prop with 'gap' prop",
     before: `<Stack spacing={4}>
   <Box>Item 1</Box>
   <Box>Item 2</Box>

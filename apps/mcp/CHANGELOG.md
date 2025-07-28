@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [2.0.5] - 2025-07-28
+
+### Fixed
+
+- Fix `v2_to_v3_code_review` tool to run snippet command
+
 ## [2.0.4] - 2025-07-28
 
 ### Fixed
