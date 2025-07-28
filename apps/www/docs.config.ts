@@ -19,6 +19,14 @@ const docsLinks: NavItem = {
           ],
         },
         {
+          title: "AI",
+          url: "ai",
+          items: [
+            { title: "MCP Server", url: "mcp-server" },
+            { title: "Connect MCP Clients", url: "connect-mcp-clients" },
+          ],
+        },
+        {
           title: "Frameworks",
           url: "frameworks",
           items: [
