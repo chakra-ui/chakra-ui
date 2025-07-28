@@ -179,7 +179,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         },
         itemIndicator: {
           borderWidth: "1px",
-          borderColor: "border",
+          borderColor: "border.emphasized",
           _checked: {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
@@ -220,7 +220,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         },
         itemIndicator: {
           borderWidth: "1px",
-          borderColor: "border",
+          borderColor: "border.emphasized",
           _checked: {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",

@@ -44,7 +44,7 @@ export const checkmarkRecipe = defineRecipe({
     },
     variant: {
       solid: {
-        borderColor: "border",
+        borderColor: "border.emphasized",
         "&:is([data-state=checked], [data-state=indeterminate])": {
           bg: "colorPalette.solid",
           color: "colorPalette.contrast",
