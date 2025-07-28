@@ -47,6 +47,7 @@
     "@types/express": "^5.0.3",
     "@types/fs-extra": "^11.0.4",
     "release-it": "19.0.4",
+    "@vercel/node": "5.3.7",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
     "typescript": "5.8.3"
