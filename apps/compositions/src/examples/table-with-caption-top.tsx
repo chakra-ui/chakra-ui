@@ -3,7 +3,7 @@ import { Table } from "@chakra-ui/react"
 export const TableWithCaptionTop = () => {
   return (
     <Table.Root size="sm">
-      <Table.Caption side="top">
+      <Table.Caption captionSide="top">
         Product inventory and pricing information
       </Table.Caption>
       <Table.Header>
