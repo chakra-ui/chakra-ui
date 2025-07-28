@@ -980,3 +980,406 @@ After:
   <Tag.CloseTrigger />
 </Tag.Root>
 ```
+
+### Alert
+
+- `AlertIcon` is now `Alert.Indicator`
+
+Before:
+
+```tsx
+<Alert>
+  <AlertIcon />
+  <AlertTitle>Your browser is outdated!</AlertTitle>
+  <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
+</Alert>
+```
+
+After:
+
+```tsx
+<Alert.Root status="error">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Invalid Fields</Alert.Title>
+    <Alert.Description>
+      Your form has some errors. Please fix them and try again.
+    </Alert.Description>
+  </Alert.Content>
+</Alert.Root>
+```
+
+- Removed `addRole`prop in favor of `role` prop.
+
+### Skeleton
+
+- `startColor` and `endColor` props now use CSS variables
+
+Before:
+
+```tsx
+<Skeleton startColor="pink.500" endColor="orange.500" />
+```
+
+After:
+
+```tsx
+<Skeleton
+  css={{
+    "--start-color": "colors.pink.500",
+    "--end-color": "colors.orange.500",
+  }}
+/>
+```
+
+- `isLoaded` prop is now `loading`
+
+Before:
+
+```tsx
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>
+```
+
+After:
+
+```tsx
+<Skeleton loading={false}>
+  <span>Chakra ui is cool</span>
+</Skeleton>
+```
+
+### Menu
+
+- Now uses compound components everywhere
+
+Before:
+
+```tsx
+<Menu>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Actions
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+    <MenuItem>Create a Copy</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+After:
+
+```tsx
+<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>
+      Actions
+      <ChevronDownIcon />
+    </Button>
+  </Menu.Trigger>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content>
+        <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy">Create a Copy</Menu.Item>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>
+```
+
+- Accesing internal state is now done via `Menu.Context` no longer render prop.
+
+Before:
+
+```tsx
+<Menu>
+  {({ isOpen }) => (
+    <>
+      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+        {isOpen ? "Close" : "Open"}
+      </MenuButton>
+      <MenuList>
+        <MenuItem>Download</MenuItem>
+        <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
+      </MenuList>
+    </>
+  )}
+</Menu>
+```
+
+After:
+
+```tsx
+<Menu.Root>
+  <Menu.Context>
+    {(menu) => (
+      <Menu.Trigger asChild>
+        <Button>
+          {menu.open ? "Close" : "Open"}
+          <ChevronDownIcon />
+        </Button>
+      </Menu.Trigger>
+    )}
+  </Menu.Context>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content>
+        <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy" onSelect={() => alert("Kagebunshin")}>
+          Create a Copy
+        </Menu.Item>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>
+```
+
+- `isLazy` prop on `Menu` is split into `lazyMount` and `unmountOnExit` on
+  `Menu.Root`
+
+- `MenuOptionGroup` is now split into `Menu.RadioItemGroup` and
+  `Menu.CheckboxItemGroup` to handle the states separately.
+
+Before:
+
+```tsx
+<Menu>
+  <MenuButton as={Button}>Trigger</MenuButton>
+  <MenuList>
+    <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
+      <MenuItemOption value="asc">Ascending</MenuItemOption>
+      <MenuItemOption value="desc">Descending</MenuItemOption>
+    </MenuOptionGroup>
+    <MenuDivider />
+    <MenuOptionGroup title="Country" type="checkbox">
+      <MenuItemOption value="email">Email</MenuItemOption>
+      <MenuItemOption value="phone">Phone</MenuItemOption>
+      <MenuItemOption value="country">Country</MenuItemOption>
+    </MenuOptionGroup>
+  </MenuList>
+</Menu>
+```
+
+After:
+
+```tsx
+<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>Trigger</Button>
+  </Menu.Trigger>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content minW="10rem">
+        <Menu.RadioItemGroup defaultValue="asc">
+          <Menu.RadioItem value="asc">Ascending</Menu.RadioItem>
+          <Menu.RadioItem value="desc">Descending</Menu.RadioItem>
+        </Menu.RadioItemGroup>
+        <Menu.CheckboxItemGroup defaultValue={["email"]}>
+          <Menu.CheckboxItem value="email">Email</Menu.CheckboxItem>
+          <Menu.CheckboxItem value="phone">Phone</Menu.CheckboxItem>
+          <Menu.CheckboxItem value="country">Country</Menu.CheckboxItem>
+        </Menu.CheckboxItemGroup>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>
+```
+
+### Tooltip
+
+- `closeOnEsc` now renamed to `closeOnEscape`
+- `closeOnMouseDown` is now `closeOnPointerDown`
+
+- `placement`, `gutter`, `offset` and `arrow` on `Tooltip` is now included as
+  `positioning` prop on `Tooltip.Root`
+
+Before:
+
+```tsx
+<Tooltip placement="top" />
+```
+
+After:
+
+```tsx
+<Tooltip.Root positioning={{ placement: "top" }} />
+```
+
+### Accordion
+
+- These props have been changed:
+  - `allowMultiple` -> `multiple`
+  - `allowToggle` -> `collapsible`
+  - `index` -> `value`
+  - `defaultIndex` -> `defaultValue`
+
+Before:
+
+```tsx
+<Accordion allowMultiple index={[0]} onChange={() => {}} />
+```
+
+After:
+
+```tsx
+<Accordion multiple value={["0"]} onValueChange={() => {}} />
+```
+
+- `AccordionButton` is now `Accordion.Trigger`
+- `AccordionIcon` is now `Accordion.ItemIndicator`
+
+Before:
+
+```tsx
+<AccordionButton>Section 1 title</AccordionButton>
+```
+
+After:
+
+```tsx
+<Accordion.Trigger>Section 1 title</Accordion.Trigger>
+```
+
+### Tabs
+
+- Component structure has changed and `value` prop is now required on list and
+  panels.
+
+Before:
+
+```tsx
+<Tabs>
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>one!</TabPanel>
+    <TabPanel>two!</TabPanel>
+    <TabPanel>three!</TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+After:
+
+```tsx
+<Tabs.Root>
+  <Tabs.List>
+    <Tabs.Trigger value="one">One</Tabs.Trigger>
+    <Tabs.Trigger value="two">Two</Tabs.Trigger>
+    <Tabs.Trigger value="three">Three</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="one">one!</Tabs.Content>
+  <Tabs.Content value="two">two!</Tabs.Content>
+  <Tabs.Content value="three">three!</Tabs.Content>
+</Tabs.Root>
+```
+
+- `defaultIndex`, `index` and `onChange` is now `defaultValue`, `value` and
+  `onValueChange` respectively
+
+Before:
+
+```tsx
+<Tabs defaultIndex={0} index={0} onChange={(index) => {}} />
+```
+
+After:
+
+```tsx
+<Tabs defaultValue={0} value={0} onValueChange={({ value }) => {}} />
+```
+
+- `isLazy` prop on `Tabs` is now `lazyMount` and `unmountOnExit` on `Tabs.Root`
+
+Before:
+
+```tsx
+<Tabs isLazy />
+```
+
+After:
+
+```tsx
+<Tabs.Root lazyMount unmountOnExit />
+```
+
+### Show and Hide
+
+- `Show` and `Hide` components are removed in favor of `hideFrom` and
+  `hideBelow`
+
+Before:
+
+```tsx
+<Show below="md">
+  This text appears only on screens md and smaller.
+</Show>
+
+<Hide below="md">
+  This text hides at the "md" value screen width and smaller.
+</Hide>
+```
+
+After:
+
+```tsx
+<Box hideBelow="md">
+  This text hides at the "md" value screen width and smaller.
+</Box>
+
+<Box hideFrom="md">
+  This text appears only on screens md and larger.
+</Box>
+```
+
+### Checkbox
+
+- Refactored to use compound components
+
+Before:
+
+```tsx
+<Checkbox defaultChecked>Checkbox</Checkbox>
+```
+
+After:
+
+```tsx
+<Checkbox.Root defaultChecked>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+  <Checkbox.Label>Checkbox</Checkbox.Label>
+</Checkbox.Root>
+```
+
+### Radio Group
+
+- Refactored to use compound components
+
+Before:
+
+```tsx
+<RadioGroup defaultValue="2">
+  <Radio value="1">Radio</Radio>
+  <Radio value="2">Radio</Radio>
+</RadioGroup>
+```
+
+After:
+
+```tsx
+<RadioGroup.Root defaultValue="2">
+  <RadioGroup.Item value="1">
+    <RadioGroup.ItemHiddenInput />
+    <RadioGroup.ItemIndicator />
+    <RadioGroup.ItemText />
+  </RadioGroup.Item>
+</RadioGroup.Root>
+```

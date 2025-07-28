@@ -621,6 +621,273 @@ const bg = theme === 'light' ? 'white' : 'gray.800'
   <Tag.CloseTrigger />
 </Tag.Root>`,
   },
+
+  skeleton_component_changes: {
+    name: "Skeleton Component Changes",
+    description:
+      "Update Skeleton component: startColor and endColor props now use CSS variables, isLoaded prop is now loading with inverted boolean logic",
+    before: `<Skeleton startColor="pink.500" endColor="orange.500" />
+
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>`,
+    after: `<Skeleton
+  css={{
+    "--start-color": "colors.pink.500",
+    "--end-color": "colors.orange.500",
+  }}
+/>
+
+<Skeleton loading={false}>
+  <span>Chakra ui is cool</span>
+</Skeleton>`,
+  },
+
+  alert_component_changes: {
+    name: "Alert Component Changes",
+    description:
+      "Update Alert component structure: AlertIcon → Alert.Indicator, wrap content in Alert.Content, and use compound component pattern with Alert.Root",
+    before: `<Alert>
+  <AlertIcon />
+  <AlertTitle>Your browser is outdated!</AlertTitle>
+  <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
+</Alert>`,
+    after: `<Alert.Root status="error">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Invalid Fields</Alert.Title>
+    <Alert.Description>
+      Your form has some errors. Please fix them and try again.
+    </Alert.Description>
+  </Alert.Content>
+</Alert.Root>`,
+  },
+
+  menu_component_changes: {
+    name: "Menu Component Changes",
+    description:
+      "Update Menu component to use compound components: Menu → Menu.Root, MenuButton → Menu.Trigger, MenuList → Menu.Content, MenuItem → Menu.Item, wrap in Portal and Menu.Positioner",
+    before: `<Menu>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Actions
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+    <MenuItem>Create a Copy</MenuItem>
+  </MenuList>
+</Menu>`,
+    after: `<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>
+      Actions
+      <ChevronDownIcon />
+    </Button>
+  </Menu.Trigger>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content>
+        <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy">Create a Copy</Menu.Item>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>`,
+  },
+
+  menu_context_changes: {
+    name: "Menu Context Changes",
+    description:
+      "Update Menu render prop pattern to use Menu.Context instead of render prop function",
+    before: `<Menu>
+  {({ isOpen }) => (
+    <>
+      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+        {isOpen ? "Close" : "Open"}
+      </MenuButton>
+      <MenuList>
+        <MenuItem>Download</MenuItem>
+        <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
+      </MenuList>
+    </>
+  )}
+</Menu>`,
+    after: `<Menu.Root>
+  <Menu.Context>
+    {(menu) => (
+      <Menu.Trigger asChild>
+        <Button>
+          {menu.open ? "Close" : "Open"}
+          <ChevronDownIcon />
+        </Button>
+      </Menu.Trigger>
+    )}
+  </Menu.Context>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content>
+        <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy" onSelect={() => alert("Kagebunshin")}>
+          Create a Copy
+        </Menu.Item>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>`,
+  },
+
+  menu_option_group_changes: {
+    name: "Menu Option Group Changes",
+    description:
+      "Update MenuOptionGroup to use Menu.RadioItemGroup and Menu.CheckboxItemGroup for separate state handling",
+    before: `<Menu>
+  <MenuButton as={Button}>Trigger</MenuButton>
+  <MenuList>
+    <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
+      <MenuItemOption value="asc">Ascending</MenuItemOption>
+      <MenuItemOption value="desc">Descending</MenuItemOption>
+    </MenuOptionGroup>
+    <MenuDivider />
+    <MenuOptionGroup title="Country" type="checkbox">
+      <MenuItemOption value="email">Email</MenuItemOption>
+      <MenuItemOption value="phone">Phone</MenuItemOption>
+      <MenuItemOption value="country">Country</MenuItemOption>
+    </MenuOptionGroup>
+  </MenuList>
+</Menu>`,
+    after: `<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>Trigger</Button>
+  </Menu.Trigger>
+  <Portal>
+    <Menu.Positioner>
+      <Menu.Content minW="10rem">
+        <Menu.RadioItemGroup defaultValue="asc">
+          <Menu.RadioItem value="asc">Ascending</Menu.RadioItem>
+          <Menu.RadioItem value="desc">Descending</Menu.RadioItem>
+        </Menu.RadioItemGroup>
+        <Menu.CheckboxItemGroup defaultValue={["email"]}>
+          <Menu.CheckboxItem value="email">Email</Menu.CheckboxItem>
+          <Menu.CheckboxItem value="phone">Phone</Menu.CheckboxItem>
+          <Menu.CheckboxItem value="country">Country</Menu.CheckboxItem>
+        </Menu.CheckboxItemGroup>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Portal>
+</Menu.Root>`,
+  },
+
+  tooltip_component_changes: {
+    name: "Tooltip Component Changes",
+    description:
+      "Update Tooltip component: closeOnEsc → closeOnEscape, closeOnMouseDown → closeOnPointerDown, placement/gutter/offset/arrow props moved to positioning prop on Tooltip.Root",
+    before: `<Tooltip placement="top" />`,
+    after: `<Tooltip.Root positioning={{ placement: "top" }} />`,
+  },
+
+  accordion_component_changes: {
+    name: "Accordion Component Changes",
+    description:
+      "Update Accordion component: allowMultiple → multiple, allowToggle → collapsible, index → value, defaultIndex → defaultValue, AccordionButton → Accordion.Trigger, AccordionIcon → Accordion.ItemIndicator",
+    before: `<Accordion allowMultiple index={[0]} onChange={() => {}}>
+  <AccordionItem>
+    <AccordionButton>Section 1 title</AccordionButton>
+    <AccordionPanel>Panel content</AccordionPanel>
+  </AccordionItem>
+</Accordion>`,
+    after: `<Accordion multiple value={["0"]} onValueChange={() => {}}>
+  <AccordionItem>
+    <Accordion.Trigger>Section 1 title</Accordion.Trigger>
+    <AccordionPanel>Panel content</AccordionPanel>
+  </AccordionItem>
+</Accordion>`,
+  },
+
+  tabs_component_changes: {
+    name: "Tabs Component Changes",
+    description:
+      "Update Tabs component structure: Tab → Tabs.Trigger, TabList → Tabs.List, TabPanel → Tabs.Content, TabPanels removed, value prop required on triggers and content",
+    before: `<Tabs>
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>one!</TabPanel>
+    <TabPanel>two!</TabPanel>
+    <TabPanel>three!</TabPanel>
+  </TabPanels>
+</Tabs>`,
+    after: `<Tabs.Root>
+  <Tabs.List>
+    <Tabs.Trigger value="one">One</Tabs.Trigger>
+    <Tabs.Trigger value="two">Two</Tabs.Trigger>
+    <Tabs.Trigger value="three">Three</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="one">one!</Tabs.Content>
+  <Tabs.Content value="two">two!</Tabs.Content>
+  <Tabs.Content value="three">three!</Tabs.Content>
+</Tabs.Root>`,
+  },
+
+  tabs_props_changes: {
+    name: "Tabs Props Changes",
+    description:
+      "Update Tabs props: defaultIndex → defaultValue, index → value, onChange → onValueChange, isLazy → lazyMount and unmountOnExit",
+    before: `<Tabs defaultIndex={0} index={0} onChange={(index) => {}} isLazy />`,
+    after: `<Tabs.Root defaultValue={0} value={0} onValueChange={({ value }) => {}} lazyMount unmountOnExit />`,
+  },
+
+  show_hide_component_changes: {
+    name: "Show and Hide Component Changes",
+    description:
+      "Replace Show and Hide components with hideFrom and hideBelow props on Box or other components",
+    before: `<Show below="md">
+  This text appears only on screens md and smaller.
+</Show>
+
+<Hide below="md">
+  This text hides at the "md" value screen width and smaller.
+</Hide>`,
+    after: `<Box hideBelow="md">
+  This text hides at the "md" value screen width and smaller.
+</Box>
+
+<Box hideFrom="md">
+  This text appears only on screens md and larger.
+</Box>`,
+  },
+
+  checkbox_component_changes: {
+    name: "Checkbox Component Changes",
+    description:
+      "Refactor Checkbox to use compound components with Root, HiddenInput, Control, Indicator, and Label",
+    before: `<Checkbox defaultChecked>Checkbox</Checkbox>`,
+    after: `<Checkbox.Root defaultChecked>
+  <Checkbox.HiddenInput />
+  <Checkbox.Control>
+    <Checkbox.Indicator />
+  </Checkbox.Control>
+  <Checkbox.Label>Checkbox</Checkbox.Label>
+</Checkbox.Root>`,
+  },
+
+  radio_group_component_changes: {
+    name: "Radio Group Component Changes",
+    description:
+      "Refactor RadioGroup to use compound components with Root, Item, ItemHiddenInput, ItemIndicator, and ItemText",
+    before: `<RadioGroup defaultValue="2">
+  <Radio value="1">Radio</Radio>
+  <Radio value="2">Radio</Radio>
+</RadioGroup>`,
+    after: `<RadioGroup.Root defaultValue="2">
+  <RadioGroup.Item value="1">
+    <RadioGroup.ItemHiddenInput />
+    <RadioGroup.ItemIndicator />
+    <RadioGroup.ItemText />
+  </RadioGroup.Item>
+</RadioGroup.Root>`,
+  },
 }
 
 export const v2ToV3MigrationTool: Tool = {
@@ -637,17 +904,12 @@ export const v2ToV3MigrationTool: Tool = {
           .describe("The migration scenario to get guidance for"),
       },
       async ({ scenario }) => {
-        const migrationInfo = Reflect.get(MIGRATION_SCENARIOS, scenario)
+        const json = Reflect.get(MIGRATION_SCENARIOS, scenario)
         return {
           content: [
             {
               type: "text",
-              text: JSON.stringify({
-                name: migrationInfo.name,
-                description: migrationInfo.description,
-                before: migrationInfo.before,
-                after: migrationInfo.after,
-              }),
+              text: JSON.stringify(json),
             },
           ],
         }
