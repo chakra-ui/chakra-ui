@@ -1,0 +1,56 @@
+{
+  "name": "simple-grid",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "simple-grid-basic",
+      "content": "export const SimpleGridBasic = () => {\n  return (\n    <SimpleGrid columns={2} gap=\"40px\">\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SimpleGrid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "simple-grid-with-autofit",
+      "content": "export const SimpleGridWithAutofit = () => (\n  <SimpleGrid minChildWidth=\"sm\" gap=\"40px\">\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n  </SimpleGrid>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SimpleGrid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "simple-grid-with-col-span",
+      "content": "export const SimpleGridWithColSpan = () => (\n  <SimpleGrid columns={{ base: 2, md: 4 }} gap={{ base: \"24px\", md: \"40px\" }}>\n    <GridItem colSpan={{ base: 1, md: 3 }}>\n      <Box height=\"20\">Column 1</Box>\n    </GridItem>\n    <GridItem colSpan={{ base: 1, md: 1 }}>\n      <Box height=\"20\">Column 2</Box>\n    </GridItem>\n  </SimpleGrid>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { GridItem, SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SimpleGrid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "simple-grid-with-columns",
+      "content": "export const SimpleGridWithColumns = () => (\n  <SimpleGrid columns={[2, null, 3]} gap=\"40px\">\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n    <Box height=\"20\" />\n  </SimpleGrid>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SimpleGrid } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "simple-grid-with-row-and-col-gap",
+      "content": "export const SimpleGridWithRowAndColGap = () => {\n  return (\n    <SimpleGrid columns={2} columnGap=\"2\" rowGap=\"4\">\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n      <Box height=\"20\" />\n    </SimpleGrid>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SimpleGrid } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SimpleGrid } from \"@chakra-ui/react\""
+    }
+  ]
+}
