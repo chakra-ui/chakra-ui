@@ -32,7 +32,7 @@ export interface SimpleGridProps
  *
  * Provides props that easily define columns and spacing.
  *
- * @see Docs https://chakra-ui.com/simplegrid
+ * @see Docs https://chakra-ui.com/docs/components/simple-grid
  */
 export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
   function SimpleGrid(props, ref) {
