@@ -84,11 +84,12 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
     )
 
     const clones = useMemo(() => {
-      if (!separator) return children
+      if (!isValidElement(separator)) return children
       return getValidChildren(children).map((child, index, arr) => {
         const key = typeof child.key !== "undefined" ? child.key : index
-        const sep = cloneElement(separator, {
-          css: [separatorStyle, separator.props.css],
+        const typedSep = separator as React.ReactElement<any>
+        const sep = cloneElement(typedSep, {
+          css: [separatorStyle, typedSep.props.css],
         })
         return (
           <Fragment key={key}>
