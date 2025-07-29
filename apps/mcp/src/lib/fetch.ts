@@ -79,7 +79,7 @@ function createAuthHeaders(apiKey: string): RequestInit {
  */
 export async function fetchComponentList(): Promise<ComponentList> {
   return fetchJson<ComponentList>(
-    createChakraUrl("/r/types/index.json"),
+    createChakraUrl("/api/types"),
     undefined,
     "fetch component list",
   )
@@ -90,7 +90,7 @@ export async function fetchComponentList(): Promise<ComponentList> {
  */
 export async function fetchComponentProps(component: string): Promise<any> {
   return fetchJson(
-    createChakraUrl(`/r/types/${component}.json`),
+    createChakraUrl(`/api/types/${component}`),
     undefined,
     `fetch props for component ${component}`,
   )
