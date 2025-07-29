@@ -174,6 +174,7 @@ const docsLinks: NavItem = {
             { title: "Presence", url: "presence" },
             { title: "Portal", url: "portal" },
             { title: "Show", url: "show" },
+            { title: "Skip Nav", url: "skip-nav" },
             { title: "Visually Hidden", url: "visually-hidden" },
             { title: "Theme", url: "theme" },
           ],
