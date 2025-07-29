@@ -1,6 +1,10 @@
 {
-  "Center": {
+  "AbsoluteCenter": {
     "props": {
+      "axis": {
+        "type": "\"horizontal\" | \"vertical\" | \"both\" | undefined",
+        "isRequired": false
+      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,

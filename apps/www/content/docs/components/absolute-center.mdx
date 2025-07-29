@@ -1,0 +1,61 @@
+---
+title: AbsoluteCenter
+description:
+  Used to horizontally and vertically center an element relative to its parent
+  dimensions using absolute positioning.
+links:
+  source: components/absolute-center
+  storybook: layout-absolutecenter--basic
+---
+
+<ExampleTabs name="absolute-center-basic" />
+
+## Usage
+
+The `AbsoluteCenter` component uses the `position: absolute` strategy to center
+its child element relative to its parent. The parent element must have
+`position: relative` for proper positioning.
+
+```jsx
+import { AbsoluteCenter } from "@chakra-ui/react"
+```
+
+```jsx
+<Box position="relative" h="100px">
+  <AbsoluteCenter>Centered Content</AbsoluteCenter>
+</Box>
+```
+
+## Examples
+
+### Axis Control
+
+Control which axis to center on using the `axis` prop. Options are `horizontal`,
+`vertical`, or `both` (default).
+
+<ExampleTabs name="absolute-center-with-axis" />
+
+### With Content
+
+Use `AbsoluteCenter` with various content types like icons, badges, and status
+indicators.
+
+<ExampleTabs name="absolute-center-with-content" />
+
+### Overlay Usage
+
+Perfect for creating loading overlays or modal-like content that needs to be
+centered over existing content.
+
+<ExampleTabs name="absolute-center-with-overlay" />
+
+### RTL Support
+
+`AbsoluteCenter` automatically handles right-to-left (RTL) layouts by adjusting
+the horizontal positioning and transforms appropriately.
+
+<ExampleTabs name="absolute-center-with-rtl" />
+
+## Props
+
+<PropTable component="AbsoluteCenter" />

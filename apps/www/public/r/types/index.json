@@ -1,5 +1,6 @@
 {
   "components": [
+    "absolute-center",
     "accordion",
     "action-bar",
     "alert",
