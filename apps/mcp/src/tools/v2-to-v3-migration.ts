@@ -115,6 +115,116 @@ const bg = useColorModeValue('white', 'gray.800')
 </Box>`,
   },
 
+  // ==================== MISSING COMPONENT MIGRATIONS ====================
+
+  circular_progress_to_progress_circle: {
+    name: "CircularProgress to ProgressCircle",
+    description:
+      "Replace CircularProgress with ProgressCircle compound component, update props: thickness → --thickness CSS variable, color → stroke prop on Range",
+    before: `<CircularProgress 
+  value={75} 
+  thickness="4px" 
+  color="blue.500" 
+  size="lg"
+  isIndeterminate={false}
+/>
+
+<CircularProgress isIndeterminate />`,
+    after: `<ProgressCircle.Root value={75} size="lg">
+  <ProgressCircle.Circle css={{ "--thickness": "4px" }}>
+    <ProgressCircle.Track />
+    <ProgressCircle.Range stroke="blue.500" />
+  </ProgressCircle.Circle>
+</ProgressCircle.Root>
+
+<ProgressCircle.Root value={null} size="sm">
+  <ProgressCircle.Circle>
+    <ProgressCircle.Track />
+    <ProgressCircle.Range />
+  </ProgressCircle.Circle>
+</ProgressCircle.Root>`,
+  },
+
+  progress_stripe_props: {
+    name: "Progress Stripe Props",
+    description:
+      "Update Progress stripe properties: hasStripe → striped, isAnimated → animated",
+    before: `<Progress hasStripe value={64} />
+
+<Progress hasStripe isAnimated value={75} colorScheme="blue" />`,
+    after: `<Progress.Root striped value={64}>
+  <Progress.Track>
+    <Progress.Range />
+  </Progress.Track>
+</Progress.Root>
+
+<Progress.Root striped animated value={75} colorPalette="blue">
+  <Progress.Track>
+    <Progress.Range />
+  </Progress.Track>
+</Progress.Root>`,
+  },
+
+  text_props_changes: {
+    name: "Text Props Changes",
+    description:
+      "Update Text component props: noOfLines → lineClamp, truncated → truncate",
+    before: `<Text noOfLines={2}>
+  "The quick brown fox jumps over the lazy dog" is an English-language pangram
+</Text>
+
+<Text truncated>
+  This text will be truncated with ellipsis
+</Text>
+
+<Text noOfLines={[1, 2, 3]}>
+  Responsive line clamping
+</Text>`,
+    after: `<Text lineClamp={2}>
+  "The quick brown fox jumps over the lazy dog" is an English-language pangram
+</Text>
+
+<Text truncate>
+  This text will be truncated with ellipsis
+</Text>
+
+<Text lineClamp={[1, 2, 3]}>
+  Responsive line clamping
+</Text>`,
+  },
+
+  stack_divider_changes: {
+    name: "Stack Divider Changes",
+    description:
+      "Replace StackDivider with explicit Stack.Separator components between Stack items",
+    before: `<VStack divider={<StackDivider borderColor="gray.200" />} spacing={4}>
+  <Box h="40px" bg="yellow.200">1</Box>
+  <Box h="40px" bg="tomato">2</Box>
+  <Box h="40px" bg="pink.100">3</Box>
+</VStack>
+
+<HStack divider={<StackDivider />}>
+  <Text>Item 1</Text>
+  <Text>Item 2</Text>
+  <Text>Item 3</Text>
+</HStack>`,
+    after: `<VStack gap={4}>
+  <Box h="40px" bg="yellow.200">1</Box>
+  <Stack.Separator borderColor="gray.200" />
+  <Box h="40px" bg="tomato">2</Box>
+  <Stack.Separator borderColor="gray.200" />
+  <Box h="40px" bg="pink.100">3</Box>
+</VStack>
+
+<HStack gap={4}>
+  <Text>Item 1</Text>
+  <Stack.Separator orientation="vertical" />
+  <Text>Item 2</Text>
+  <Stack.Separator orientation="vertical" />
+  <Text>Item 3</Text>
+</HStack>`,
+  },
+
   // ==================== BOOLEAN PROPS STANDARDIZATION ====================
 
   boolean_prop_naming: {
