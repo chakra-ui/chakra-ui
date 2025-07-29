@@ -218,15 +218,19 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       options.forwardAsChild || options.forwardProps?.includes("asChild")
 
     if (props.asChild && !forwardAsChild) {
-      const child = React.Children.only(props.children)
-      FinalTag = child.type
-
-      // clean props
-      finalProps.children = null
-      Reflect.deleteProperty(finalProps, "asChild")
-
-      finalProps = mergeProps(finalProps, child.props)
-      finalProps.ref = mergeRefs(ref, getElementRef(child))
+      if (React.isValidElement(props.children)) {
+        const child = React.Children.only(props.children)
+        FinalTag = child.type
+  
+        // clean props
+        finalProps.children = null
+        Reflect.deleteProperty(finalProps, "asChild")
+  
+        finalProps = mergeProps(finalProps, child.props as any)
+        finalProps.ref = mergeRefs(ref, getElementRef(child))
+      } else {
+        finalProps.children = props.children
+      }
     }
 
     if (finalProps.as && forwardAsChild) {
