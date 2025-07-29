@@ -7,7 +7,7 @@ import {
   chakra,
 } from "../../styled-system"
 
-export interface GridOptions {
+export interface GridBaseProps {
   templateColumns?: SystemStyleObject["gridTemplateColumns"] | undefined
   autoFlow?: SystemStyleObject["gridAutoFlow"] | undefined
   autoRows?: SystemStyleObject["gridAutoRows"] | undefined
@@ -19,9 +19,7 @@ export interface GridOptions {
   inline?: boolean | undefined
 }
 
-export interface GridProps
-  extends Omit<HTMLChakraProps<"div">, keyof GridOptions>,
-    GridOptions {}
+export interface GridProps extends HTMLChakraProps<"div", GridBaseProps> {}
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
   function Grid(props, ref) {
