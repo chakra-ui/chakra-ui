@@ -1,47 +1,74 @@
 ---
-title: Announcing the Chakra UI MCP Server
-description: "The Chakra UI MCP Server is out"
-type: release
-version: "3.22"
-authors: ["sage"]
+title: Chakra UI - MCP Server
+description:
+  "The Chakra UI MCP Server provides tools for building production apps with
+  Chakra UI, and migrating from v2 to v3."
+type: article
+authors: ["sage", "kolawole", "esther"]
 publishedAt: "2025-07-30"
 ---
 
-Building user interfaces with Chakra UI just got a lot easier! Today, we're
-launching the Chakra UI MCP Server to connect your LLM directly with Chakra UI.
+The days of juggling multiple browser tabs while coding are over. And if you're
+migrating from Chakra UI v2 to v3, the days of wrestling with breaking changes
+and outdated examples are finally behind you too.
 
-If you've ever found yourself switching between your editor and the Chakra UI
-docs, looking for the right prop name, or trying to remember how to implement a
-particular component, the MCP server is for you.
+Today, we're excited to introduce the **Chakra UI MCP Server** - your personal
+AI assistant that knows everything about Chakra UI v3 and works directly inside
+your favorite IDE.
 
-## What you get with the MCP Server
+[VIDEO DEMO: Quick 30-second overview showing the MCP server in action across
+different AI tools ]
 
-Built on the Model Context Protocol (MCP), the Chakra MCP Server understands
-your questions and gives you accurate answers. Here's what it does:
+## Introducing Chakra MCP
 
-- Get a complete list of every Chakra UI component when you need it
-- See what props each component accepts, their types, and default values
-- Get ready-to-use code blocks to build your applications
-- Customize design tokens, colors, and typography settings easily
-- Migrate your existing code from version 2 to version 3
+Whether you're using Cursor, GitHub Copilot, or Claude Code, you can now get
+instant answers about:
 
-Check out the list of all the tools available.
+- component props and examples
+- design tokens and theme customization
+- migrating from v2 to v3
+- building UIs with Chakra UI
+- **[SOON]** pre-made component blocks (requires a
+  [Chakra Pro](https://pro.chakra-ui.com/) license)
 
-## See it in action
+all without ever leaving your IDE.
 
-The MCP Server integrates with various MCP Clients like GitHub Copilot, Claude,
-Cursor and more. For example, if you need a pricing section for your app?
-Instead of manually developing this yourself, figuring out semantic tokens and
-responsiveness, simply describe what you need.
+## The new way of building
 
-[Video showing prompting the MCP for a pricing card]
+**Picture this:** You're working on a new feature in your product. You know
+Chakra UI has components for what you need, but you can't remember whether the
+component is called `Modal` or `Dialog` in v3 or even the prop to use.
 
-## Try it today
+Instead of hunting through docs, just ask your AI assistant natural questions:
 
-The Chakra UI MCP Server is available now and getting started takes about two
-minutes.
+- _"What components can I use for navigation?"_
+- _"Show me how to build a pricing card with proper dark mode support"_
+- _"Help me convert this v2 Modal to the new v3 syntax"_
 
-Within your `mcp.json` file, add the following configuration:
+Let's look at a few demos.
+
+**Asking about components**
+
+[VIDEO DEMO: Asking "What props does Button accept?" and getting instant
+detailed response ]
+
+**Mastering the theming system**
+
+[VIDEO DEMO: Asking "Help me create a custom brand color palette" and getting
+complete theme setup ]
+
+**Upgrading from v2 to v3**
+
+[VIDEO DEMO: Showing a complex v2 component being converted to v3 with AI
+assistance ]
+
+## Using the MCP Server
+
+:::steps
+
+### Configuring the MCP Server
+
+Add this to your AI tool's configuration file:
 
 ```json
 {
@@ -54,9 +81,52 @@ Within your `mcp.json` file, add the following configuration:
 }
 ```
 
-Check out our detailed [guides](docs/get-started/ai/mcp-server) on how to set it
-up with various MCP clients.
+[IMAGE OF THE MCP SERVER CONFIGURATION]
 
-The MCP ecosystem is growing fast, and we want to make sure the Chakra UI MCP
-Server keeps getting better. We're always listening to developer feedback and
-working on improvements that actually matter to your daily workflow.
+### Start the MCP Server
+
+In some IDEs (like VSCode), you might need to start the MCP server manually.
+Click the "Start" button.
+
+[IMAGE OF THE MCP SERVER RUNNING]
+
+### Start Vibing! 😎
+
+That's it! Your AI assistant now has expert knowledge of:
+
+✅ **All 50+ Chakra UI components** and their props  
+✅ **Design patterns and best practices** for every use case  
+✅ **Theme customization** with semantic tokens  
+✅ **Migration strategies** for v2 to v3 upgrades
+
+[VIDEO DEMO: Complete setup process from configuration to first successful
+query]
+
+:::
+
+## What's Coming Next
+
+We're just getting started! Here's what's on the horizon:
+
+🚀 **Enhanced Pro Integration**: AI can now browse and access our entire premium
+component library directly to design even more beautiful apps
+
+⚡ **Optimization Insights**: AI can now suggest optimizations for your Chakra
+UI usage to make your apps even faster and more efficient
+
+🎨 **Custom Theme Support**: AI can now understand and work with your custom
+design tokens, color palettes, and component variants
+
+## Conclusion
+
+The Chakra UI MCP Server isn't just a tool - it's your gateway to a faster, more
+intuitive way of building user interfaces. No more context switching. No more
+prop guessing. Just pure, uninterrupted coding flow.
+
+**[Get started with our setup guides →](/docs/get-started/ai/mcp-server)**
+
+---
+
+Got ideas for making the MCP Server even better? We'd love to hear from you!
+Share your thoughts on
+[GitHub Discussions](https://github.com/chakra-ui/chakra-ui/discussions)
