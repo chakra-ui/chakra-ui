@@ -30,7 +30,7 @@ const authorMap: Record<string, Author> = {
     x: { url: "https://x.com/eelcodotdev", username: "@eelcodotdev" },
   },
   kolawole: {
-    name: "Tioluwani Adebayo",
+    name: "Tioluwani Kolawole",
     image: "/authors/kolawole-headshot.jpg",
     x: { url: "https://x.com/TioluwaniK", username: "@TioluwaniK" },
   },
