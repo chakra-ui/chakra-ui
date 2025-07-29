@@ -112,7 +112,7 @@ export async function main() {
 
   const indexContent = JSON.stringify(
     {
-      components: dirs.concat("password-input"),
+      components: dirs.concat("password-input", "hstack", "vstack"),
       charts: chartComponents,
     },
     null,

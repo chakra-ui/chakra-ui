@@ -106,7 +106,9 @@
     "tree-view",
     "visually-hidden",
     "wrap",
-    "password-input"
+    "password-input",
+    "hstack",
+    "vstack"
   ],
   "charts": [
     "area-chart",
