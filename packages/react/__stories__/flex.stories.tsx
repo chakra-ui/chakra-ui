@@ -18,4 +18,5 @@ export { FlexWithAutoMargin as AutoMargin } from "compositions/examples/flex-wit
 export { FlexWithDirection as Direction } from "compositions/examples/flex-with-direction"
 export { FlexWithJustify as Justify } from "compositions/examples/flex-with-justify"
 export { FlexWithOrder as Order } from "compositions/examples/flex-with-order"
+export { FlexWithSpacer as Spacer } from "compositions/examples/flex-with-spacer"
 export { FlexWithWrap as Wrap } from "compositions/examples/flex-with-wrap"

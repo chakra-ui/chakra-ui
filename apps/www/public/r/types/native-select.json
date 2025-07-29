@@ -1,10 +1,6 @@
 {
   "Root": {
     "props": {
-      "icon": {
-        "type": "React.ReactNode",
-        "isRequired": false
-      },
       "disabled": {
         "type": "boolean | undefined",
         "isRequired": false
@@ -50,10 +46,6 @@
   },
   "Field": {
     "props": {
-      "items": {
-        "type": "Array<string | NativeSelectItem>",
-        "isRequired": false
-      },
       "placeholder": {
         "type": "string | undefined",
         "isRequired": false

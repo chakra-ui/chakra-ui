@@ -24,6 +24,7 @@
     "sandbox-iframe",
     "react-router-ts",
     "@chakra-ui/www",
-    "@chakra-ui/compositions"
+    "@chakra-ui/compositions",
+    "@chakra-ui/react-mcp"
   ]
 }

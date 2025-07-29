@@ -1,5 +1,6 @@
 {
   "components": [
+    "absolute-center",
     "accordion",
     "action-bar",
     "alert",
@@ -78,6 +79,7 @@
     "select",
     "separator",
     "show",
+    "simple-grid",
     "skeleton",
     "skip-nav",
     "slider",
@@ -104,7 +106,9 @@
     "tree-view",
     "visually-hidden",
     "wrap",
-    "password-input"
+    "password-input",
+    "hstack",
+    "vstack"
   ],
   "charts": [
     "area-chart",

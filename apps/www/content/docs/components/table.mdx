@@ -17,6 +17,7 @@ import { Table } from "@chakra-ui/react"
 
 ```jsx
 <Table.Root>
+  <Table.Caption />
   <Table.Header>
     <Table.Row>
       <Table.ColumnHeader />
@@ -54,6 +55,19 @@ Use the `variant` prop to change the appearance of the table.
 Use the `striped` prop to add zebra-stripes to the table.
 
 <ExampleTabs name="table-with-striped" />
+
+### Caption
+
+Use the `Table.Caption` component to add a caption to the table.
+
+<ExampleTabs name="table-with-caption" />
+
+### Caption Top
+
+Use the `side` prop on `Table.Caption` to position the caption at the top of the
+table.
+
+<ExampleTabs name="table-with-caption-top" />
 
 ### Column Border
 

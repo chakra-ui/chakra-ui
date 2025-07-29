@@ -7,9 +7,9 @@ import {
   useChakraContext,
 } from "../../styled-system"
 import { mapObject } from "../../utils"
-import { Grid, type GridProps } from "./grid"
+import { Grid, type GridProps } from "../grid"
 
-interface SimpleGridOptions {
+interface SimpleGridBaseProps {
   /**
    * The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.
    */
@@ -22,7 +22,7 @@ interface SimpleGridOptions {
 
 export interface SimpleGridProps
   extends Omit<GridProps, "columns">,
-    SimpleGridOptions {}
+    SimpleGridBaseProps {}
 
 /**
  * SimpleGrid
@@ -32,7 +32,7 @@ export interface SimpleGridProps
  *
  * Provides props that easily define columns and spacing.
  *
- * @see Docs https://chakra-ui.com/simplegrid
+ * @see Docs https://chakra-ui.com/docs/components/simple-grid
  */
 export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
   function SimpleGrid(props, ref) {

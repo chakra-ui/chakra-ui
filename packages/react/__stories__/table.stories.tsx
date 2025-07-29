@@ -13,6 +13,8 @@ export default {
 } satisfies Meta
 
 export { TableBasic as Basic } from "compositions/examples/table-basic"
+export { TableWithCaption as Caption } from "compositions/examples/table-with-caption"
+export { TableWithCaptionTop as CaptionTop } from "compositions/examples/table-with-caption-top"
 export { TableWithColumnBorder as ColumnBorder } from "compositions/examples/table-with-column-border"
 export { TableWithColumnGroup as ColumnGroup } from "compositions/examples/table-with-column-group"
 export { TableWithInteractive as Interactive } from "compositions/examples/table-with-interactive"

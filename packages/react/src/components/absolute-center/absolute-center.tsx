@@ -12,7 +12,7 @@ export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
  *
  * It uses the `position: absolute` strategy.
  *
- * @see Docs https://chakra-ui.com/center
+ * @see Docs https://chakra-ui.com/components/center
  */
 export const AbsoluteCenter = chakra("div", {
   base: {

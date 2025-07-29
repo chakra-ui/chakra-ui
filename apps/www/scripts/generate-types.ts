@@ -16,7 +16,7 @@ import {
 import { defaultSystem } from "@chakra-ui/react/preset"
 import { ensureDirSync } from "fs-extra"
 import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs"
-import { basename, join, resolve } from "node:path"
+import { basename, join } from "node:path"
 import { camelCase, kebabCase } from "scule"
 
 const fetchArkComponents = async <T>(arg = ""): Promise<T> => {
@@ -72,6 +72,11 @@ async function writeStaticProps(outDir: string) {
   })
 }
 
+const arkPropsMap: Record<string, string> = {
+  drawer: "dialog",
+  "action-bar": "popover",
+}
+
 export async function main() {
   const outDir = join("public", "r", "types")
 
@@ -96,7 +101,7 @@ export async function main() {
     const json = deepMerge(
       {},
       wrapInProps(props, recipeKey),
-      arkProps[dir],
+      arkProps[arkPropsMap[dir] || dir],
       recipeProps[dir],
     )
 
@@ -107,7 +112,7 @@ export async function main() {
 
   const indexContent = JSON.stringify(
     {
-      components: dirs.concat("password-input"),
+      components: dirs.concat("password-input", "hstack", "vstack"),
       charts: chartComponents,
     },
     null,
