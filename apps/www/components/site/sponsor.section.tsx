@@ -1,3 +1,4 @@
+import { getSponsors } from "@/lib/get-sponsors"
 import {
   Box,
   BoxProps,
@@ -133,11 +134,8 @@ const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
 }
 
 const SponsorsList = async () => {
-  const response = await fetch(
-    "https://opencollective.com/chakra-ui/members/all.json",
-  )
+  const allSponsors = await getSponsors()
 
-  const allSponsors: Sponsor[] = await response.json()
   const companies = allSponsors
     .filter((sponsor) => sponsor.tier && sponsor.type === "ORGANIZATION")
     .sort((a, b) => b.totalAmountDonated - a.totalAmountDonated)

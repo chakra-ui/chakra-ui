@@ -43,8 +43,6 @@
   },
   "version": "2.0.0",
   "dependencies": {
-    "@babel/core": "7.28.0",
-    "@babel/eslint-parser": "7.28.0",
     "@chakra-ui/cli": "workspace:*",
     "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.29.5",
@@ -96,7 +94,6 @@
     "lint-staged": "16.1.2",
     "node-fetch": "3.3.2",
     "npm-run-all": "4.1.5",
-    "outdent": "0.8.0",
     "prettier": "3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
