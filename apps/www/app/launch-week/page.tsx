@@ -261,7 +261,7 @@ const HeroSection = () => {
           { title: "DX", color: "blue" },
           { title: "Live", color: "purple" },
         ].map((item, idx) => (
-          <VStack gap={2} colorPalette={item.color}>
+          <VStack key={item.title} gap={2} colorPalette={item.color}>
             <Text
               fontSize="2xl"
               color="colorPalette.fg"
