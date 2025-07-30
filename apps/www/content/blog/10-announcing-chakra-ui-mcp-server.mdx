@@ -1,0 +1,133 @@
+---
+title: Launching Chakra UI MCP Server
+description:
+  "The Chakra UI MCP Server exposes tools for building production apps to AI
+  agents"
+type: announcement
+authors: ["sage", "kolawole", "esther"]
+publishedAt: "2025-07-30"
+---
+
+The days of juggling multiple browser tabs while coding are over. And if you're
+migrating from Chakra UI v2 to v3, the days of wrestling with breaking changes
+and outdated examples are finally behind you too.
+
+Today, we're excited to introduce the **Chakra UI MCP Server** - a server that
+provides a comprehensive knowledge base about Chakra UI v3 to AI agents.
+
+<Image
+  src="/images/chakra-mcp-cursor.png"
+  alt="Chakra MCP Server in Cursor"
+  objectFit="cover"
+  fill
+  aspectRatio="16/9"
+/>
+
+## Chakra UI MCP Server
+
+Whether you're using Cursor, GitHub Copilot, or Claude Code, you can now get
+instant answers about:
+
+- component props and examples
+- design tokens and theme customization
+- migrating from v2 to v3
+- building UIs with Chakra UI
+- **[Coming Soon]** pre-made component blocks (requires a
+  [Chakra Pro](https://pro.chakra-ui.com/) license)
+
+## The new way of building
+
+**Picture this:** You're working on a new feature in your product. You know
+Chakra UI has components for what you need, but you can't remember whether the
+component is called `Modal` or `Dialog` in v3 or even the prop to use.
+
+Instead of checking through docs, just ask your AI agent natural questions:
+
+- "What components can I use for navigation?"
+- "Show me how to build a pricing card with proper dark mode support"
+- "Help me convert this v2 Modal to the new v3 syntax"
+
+<br />
+
+Let's look at a few demos.
+
+:::steps
+
+### Asking about components
+
+Using VSCode Copilot to ask about the props of a dialog component.
+
+<Video src="/videos/vscode-mcp.mp4" />
+
+### Building a custom component
+
+Using Cursor to build a beautiful looking pricing section.
+
+<Video src="/videos/cursor-mcp.mp4" />
+
+### Upgrading from v2 to v3
+
+Using Claude Code to upgrade a login page from v2 to v3.
+
+<Video src="/videos/claude-code-mcp.mp4" />
+
+:::
+
+## Using the MCP Server
+
+:::steps
+
+### Configuring the MCP Server
+
+Add this to your AI tool's configuration file:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+### Start the MCP Server
+
+In some IDEs (like VSCode), you might need to start the MCP server manually.
+Click the "Start" button.
+
+### Start Vibe coding! 😎
+
+That's it! Your AI assistant now has expert knowledge of:
+
+✅ **Access to Chakra UI components** and their props  
+✅ **Design patterns and best practices** for every use case  
+✅ **Theme customization** with semantic tokens  
+✅ **Migration strategies** for v2 to v3 upgrades
+
+:::
+
+## What's Coming Next
+
+We're just getting started! Here's what's on the horizon:
+
+🚀 **Pro Blocks Integration**: Support for accessing our entire premium
+component library to design even more beautiful apps
+
+⚡ **Recipe customization**: Support for customizing the default recipes in
+Chakra UI.
+
+🎨 **Custom Theming**: Support for custom design tokens.
+
+## Conclusion
+
+The Chakra UI MCP Server helps you ship apps faster with the help of AI agents.
+Check out the **[MCP docs](/docs/get-started/ai/mcp-server)** to setup the
+server in your favorite IDE.
+
+---
+
+Got ideas for making the MCP Server even better? We'd love to hear from you!
+Share your thoughts on
+[GitHub Discussions](https://github.com/chakra-ui/chakra-ui/discussions)
