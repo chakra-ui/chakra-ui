@@ -1,0 +1,158 @@
+---
+title: "MCP Server"
+description: "Bridging the gap between AI agents and Chakra UI"
+---
+
+<Image
+  marginTop="0"
+  src="/images/chakra-ui-mcp.png"
+  alt="MCP Server"
+  objectFit="cover"
+  fill
+  aspectRatio="16/9"
+/>
+
+The Chakra UI MCP Server is a specialized
+[Model Context Protocol](https://modelcontextprotocol.io/introduction) server
+that provides AI assistants (like Claude Code, Cursor, and Copilot) with access
+to the Chakra UI component library, design tokens, and migration guidance.
+
+## Tools
+
+The Chakra UI MCP exposes the following tools to AI agents:
+
+### Component Tools
+
+- **`list_components`**: Get a complete list of all available components
+- **`get_component_props`**: Detailed props, types, and configuration options
+  for any component
+- **`get_component_example`**: Retrieve code examples and usage patterns
+
+### Design System Tools
+
+- **`get_theme`**: Get a detailed list of all the design tokens
+- **`theme_customization`**: Custom theme token creation and modification
+
+### Migration Tools
+
+- **`v2_to_v3_code_review`**: Migration guidance from version 2 to version 3
+
+## Setup
+
+The MCP server currently supports only
+[stdio transport](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#stdio)
+and is published at `@chakra-ui/react-mcp`.
+
+### Visual Studio Code
+
+> Make sure you have the
+> [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+> and
+> [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+> extensions installed.
+
+In the `.vscode/mcp.json` file at the root of your project, add the MCP server
+block:
+
+```json title=".vscode/mcp.json"
+{
+  "servers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+The MCP server is now ready to use. Click on Start on the MCP server.
+
+### Cursor
+
+In the `.cursor/mcp.json` file at the root of your project, add the following
+configuration:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+> If Cursor doesn't automatically detect the changes, restart the editor or
+> manually enable the Chakra UI server via "MCP Tools."
+
+### Claude Code
+
+> Make sure you have Claude Code installed. Visit
+> [Anthropic docs](https://docs.anthropic.com/en/docs/claude-code/mcp) for
+> installation instructions.
+
+Run the following command in your terminal to add the Chakra UI MCP server:
+
+```bash
+claude mcp add chakra-ui -- npx -y @chakra-ui/react-mcp
+```
+
+The MCP server is now ready to use. Start a Claude Code session by running
+`claude`.
+
+### Windsurf
+
+1. Navigate to "Settings" > "Windsurf Settings" > "Cascade"
+
+2. Click the "Manage MCPs" button, then click the "View raw config" button.
+
+3. Add the following to the MCP configuration file:
+
+```json title=".codeium/windsurf/mcp_config.json"
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+> You might need to click the "Refresh" button to see the MCP server in the
+> list.
+
+### Zed
+
+1. Go to Settings > Open Settings
+
+2. In the `settings.json` file, add MCP server as a new **context server**
+
+```json title=".config/zed/settings.json"
+{
+  "context_servers": {
+    "chakra-ui": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```
+
+### Custom MCP Client
+
+To run the MCP server in a local or development environment using a custom MCP
+client, you need to add the MCP server to the client's configuration file.
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "command": "npx",
+      "args": ["-y", "@chakra-ui/react-mcp"]
+    }
+  }
+}
+```

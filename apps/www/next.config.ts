@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         destination: "/docs/charts/installation",
         permanent: true,
       },
+      {
+        source: "/docs/get-started/llms",
+        destination: "/docs/get-started/ai/llms",
+        permanent: true,
+      },
     ]
   },
 }
