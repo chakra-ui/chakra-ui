@@ -4,6 +4,7 @@ import { Logo, LogoBlitzIcon } from "@/components/logo"
 import { FooterSection } from "@/components/site/footer.section"
 import { BlitzIcon } from "@/components/site/icons"
 import {
+  AbsoluteCenter,
   Badge,
   Box,
   Card,
@@ -14,6 +15,8 @@ import {
   HStack,
   Heading,
   Icon,
+  LinkBox,
+  LinkOverlay,
   Separator,
   SimpleGrid,
   Span,
@@ -22,10 +25,11 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import { ColorModeButton } from "compositions/ui/color-mode"
+import Image from "next/image"
 import Link from "next/link"
 import { LuCircleCheck, LuSparkles } from "react-icons/lu"
+import { RiPlayFill } from "react-icons/ri"
 import { LAUNCH_DATA, LaunchItem } from "./data"
-import { ImagePlaceholder } from "./image-placeholder"
 
 const BlitzIconSection = () => (
   <Icon
@@ -37,6 +41,7 @@ const BlitzIconSection = () => (
     right="67px"
     color="fg.inverted"
     hideBelow="md"
+    pointerEvents="none"
   >
     <BlitzIcon />
   </Icon>
@@ -73,7 +78,6 @@ const DaySection = ({ data, index }: { data: LaunchItem; index: number }) => {
       w="full"
       colorPalette={color}
     >
-      {/* Content Section */}
       <VStack
         gap={8}
         align="start"
@@ -153,37 +157,52 @@ const DaySection = ({ data, index }: { data: LaunchItem; index: number }) => {
         </SimpleGrid>
       </VStack>
 
-      {/* Image Card Section */}
-      <Card.Root
-        overflow="hidden"
-        variant="elevated"
-        boxShadow="2xl"
-        bg="bg.panel"
-        borderColor="border.muted"
-      >
-        <Card.Header p="0">
-          <Box position="relative">
-            <ImagePlaceholder height="80" color={color} />
-          </Box>
-        </Card.Header>
-        <Card.Body>
-          <VStack gap={3} align="start">
-            <Heading size="lg">
-              {index === 0 && "MCP Server Launch"}
-              {index === 1 && "New Tools & Smoother Workflows"}
-              {index === 2 && "Live Community Celebration"}
-            </Heading>
-            <Text color="fg.muted">
-              {index === 0 &&
-                "A brand new way to connect Chakra UI to AI tools using Model Context Protocol"}
-              {index === 1 &&
-                "Command Palette, Code Block components, Stackblitz integration, and AI-ready docs"}
-              {index === 2 &&
-                "Join us on YouTube for live demos, Q&A, giveaways, and community showcases"}
-            </Text>
-          </VStack>
-        </Card.Body>
-      </Card.Root>
+      <LinkBox>
+        <Card.Root
+          overflow="hidden"
+          variant="elevated"
+          boxShadow="2xl"
+          bg="bg.panel"
+          borderColor="border.muted"
+        >
+          <Card.Header p="0">
+            <Box position="relative" height="80">
+              <Image
+                src={data.player.image}
+                alt={data.player.title}
+                fill
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+              <AbsoluteCenter>
+                <Center
+                  layerStyle="fill.solid"
+                  colorPalette="red"
+                  h="12"
+                  w="4rem"
+                  rounded="sm"
+                  _icon={{ boxSize: "8" }}
+                >
+                  <RiPlayFill />
+                </Center>
+              </AbsoluteCenter>
+            </Box>
+          </Card.Header>
+          <Card.Body>
+            <VStack gap={3} align="start">
+              <LinkOverlay
+                href={data.player.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Heading size="lg">{data.player.title}</Heading>
+                <Text color="fg.muted">{data.player.description}</Text>
+              </LinkOverlay>
+            </VStack>
+          </Card.Body>
+        </Card.Root>
+      </LinkBox>
     </Grid>
   )
 }

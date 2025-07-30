@@ -1,6 +1,7 @@
 import {
   LuCode,
   LuExternalLink,
+  LuFileText,
   LuUsers,
   LuVideo,
   LuWandSparkles,
@@ -13,7 +14,12 @@ export interface LaunchItem {
   title: string
   subtitle: string
   description: string
-  image: string
+  player: {
+    image: string
+    title: string
+    description: string
+    url: string
+  }
   icon: React.ElementType
   color: string
   features: string[]
@@ -30,21 +36,27 @@ export const LAUNCH_DATA: LaunchItem[] = [
     date: "Wednesday, July 30",
     title: "Chakra UI MCP Server",
     subtitle: "AI agent meets Chakra UI",
-    image: "/images/mcp-server.png",
+    player: {
+      image: "/images/chakra-ui-mcp.png",
+      title: "MCP Server Launch",
+      description:
+        "A brand new way to connect Chakra UI to AI tools using Model Context Protocol",
+      url: "https://youtu.be/C5XKWTeyY3Q",
+    },
     description:
       "Introducing the Chakra UI MCP Server, a brand new way to connect Chakra UI to AI tools using Model Context Protocol. It lets LLMs like Claude use Chakra UI tokens to create scalable applications and design systems.",
     icon: LuWandSparkles,
     color: "teal",
     features: [
-      "Smarter design-to-code handoffs",
-      "AI tools that know your theme",
-      "Developer workflows that feel... magical",
+      "Instant answers in your IDE",
+      "Smart design-to-code handoffs",
+      "Build components with AI",
     ],
     cards: [
       {
         title: "Blog Post",
         url: "/blog/10-announcing-chakra-ui-mcp-server",
-        icon: LuVideo,
+        icon: LuFileText,
       },
       {
         title: "Docs - MCP Server",
@@ -67,15 +79,21 @@ export const LAUNCH_DATA: LaunchItem[] = [
   //     "Copy .llm.mdx files for every component",
   //     "Plug Chakra into your AI tools",
   //   ],
+  //   player: {
+  //     image: "/images/chakra-ui-mcp.png",
+  //     title: "New Tools & Smoother Workflows",
+  //     description:
+  //       "Code Block components, Stackblitz integration, and AI-ready docs",
+  //   },
   //   cards: [
   //     {
   //       title: "New Components",
-  //       description: "Command Palette & Code Block",
+  //       url: "Code Block",
   //       icon: LuVideo,
   //     },
   //     {
   //       title: "Enhanced Docs",
-  //       description: "Stackblitz & AI-ready files",
+  //       url: "Stackblitz & AI-ready files",
   //       icon: LuExternalLink,
   //     },
   //   ],
@@ -95,6 +113,12 @@ export const LAUNCH_DATA: LaunchItem[] = [
   //     "Community Q&A & showcases",
   //     "Giveaways & dev shoutouts",
   //   ],
+  //   player: {
+  //     image: "/images/chakra-ui-mcp.png",
+  //     title: "Live Community Celebration",
+  //     description:
+  //       "Join us on YouTube for live demos, Q&A, giveaways, and community showcases",
+  //   },
   //   cards: [
   //     {
   //       title: "YouTube Live",
