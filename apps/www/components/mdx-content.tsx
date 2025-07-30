@@ -117,6 +117,23 @@ const sharedComponents = {
   ZIndexTokenDoc,
   CursorTokenDoc,
   ConditionalStylesReferenceDoc,
+  Video: (props: any) => {
+    return (
+      <video
+        muted
+        loop
+        playsInline
+        autoPlay
+        {...props}
+        style={{
+          marginBlock: "12px",
+          borderRadius: "10px",
+          backgroundColor: "teal",
+          ...props.style,
+        }}
+      />
+    )
+  },
 }
 
 const useMDXComponent = (code: string) => {
