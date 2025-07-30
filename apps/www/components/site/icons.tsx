@@ -31,7 +31,7 @@ export const Patreon = () => (
   </svg>
 )
 
-export const BlitzIcon = () => {
+export const BlitzIcon = (props: React.SVGProps<SVGSVGElement>) => {
   const id = useId()
   return (
     <svg
@@ -40,6 +40,7 @@ export const BlitzIcon = () => {
       viewBox="0 0 245 342"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         opacity="0.4"
