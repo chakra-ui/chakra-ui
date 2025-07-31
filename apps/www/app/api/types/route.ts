@@ -1,4 +1,4 @@
-import { readTypesFile } from "@/lib/read-types-file"
+import { readTypesFile } from "@/lib/read-public-file"
 
 export const dynamic = "force-static"
 

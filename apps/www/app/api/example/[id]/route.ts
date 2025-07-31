@@ -1,5 +1,5 @@
+import { readExampleFile } from "@/lib/read-public-file"
 import { ProjectSdk } from "@/utils/project-sdk"
-import { isChartComponent } from "@/utils/shared"
 
 interface Params {
   id: string
@@ -12,24 +12,12 @@ export async function GET(_req: Request, ctx: { params: Promise<Params> }) {
   const component = project.getComponentFromExample(exampleId)
 
   if (!component) {
-    return new Response(JSON.stringify({ error: "Component not found" }), {
-      status: 404,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    return Response.json({ error: "Component not found" }, { status: 404 })
   }
 
-  const example = project.parseExample(
-    component,
-    isChartComponent(component)
-      ? `charts/${exampleId}.tsx`
-      : `${exampleId}.tsx`,
-  )
+  const examples = await readExampleFile(`${component}.json`)
+  const example =
+    examples.examples.find((ex: any) => ex.name === exampleId) || examples
 
-  return new Response(JSON.stringify(example), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  return Response.json(example)
 }

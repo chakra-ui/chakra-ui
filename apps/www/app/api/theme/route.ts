@@ -18,25 +18,11 @@ export async function GET() {
     const themeIndex = await readThemeFile("index.json")
 
     if (!themeIndex) {
-      return new Response(JSON.stringify({ error: "Theme data not found" }), {
-        status: 404,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      return Response.json({ error: "Theme data not found" }, { status: 404 })
     }
 
-    return new Response(JSON.stringify(themeIndex), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    return Response.json(themeIndex)
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Internal server error" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    return Response.json({ error: "Internal server error" }, { status: 500 })
   }
 }

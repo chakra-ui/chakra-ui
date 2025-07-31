@@ -106,10 +106,7 @@ function filterArray(array: string[], search: string): string[] {
 }
 
 function createResponse(data: any, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  })
+  return Response.json(data, { status })
 }
 
 function createErrorResponse(message: string, status = 404) {
