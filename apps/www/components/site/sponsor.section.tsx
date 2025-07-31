@@ -75,9 +75,9 @@ const SponsorGroup = (props: {
         },
       }}
     >
-      {sponsors.map((sponsor) => {
+      {sponsors.map((sponsor, index) => {
         return (
-          <Center asChild key={sponsor.MemberId} px="4" focusRing="outside">
+          <Center asChild key={index} px="4" focusRing="outside">
             <a
               href={sponsor.website ?? sponsor.profile}
               target="_blank"
@@ -117,27 +117,30 @@ function getSponsorsByTier(sponsors: Sponsor[], tier: string) {
 const SponsorsList = async () => {
   const allSponsors = await getSponsors()
 
-  const companies = allSponsors
-    .filter((sponsor) => sponsor.tier && sponsor.type === "ORGANIZATION")
-    .sort((a, b) => b.totalAmountDonated - a.totalAmountDonated)
+  const companies = allSponsors.sort(
+    (a, b) => b.totalAmountDonated - a.totalAmountDonated,
+  )
 
   const platinumSponsors = getSponsorsByTier(companies, "Platinum")
   const goldSponsors = getSponsorsByTier(companies, "Gold")
   const silverSponsors = getSponsorsByTier(companies, "Silver")
   const bronzeSponsors = getSponsorsByTier(companies, "Bronze")
+  const backersSponsors = getSponsorsByTier(companies, "Backer")
 
   return (
     <Stack gap="20">
       <Stack gap="6">
         <TierHeading tier="Gold + Platinum Sponsors" icon={GoldSponsorIcon} />
-        <SponsorGroup sponsors={[...platinumSponsors, ...goldSponsors]} />
+        <SponsorGroup
+          sponsors={[...platinumSponsors, ...goldSponsors, ...silverSponsors]}
+        />
       </Stack>
 
       <Stack gap="6">
         <TierHeading tier="Silver + Bronze Sponsors" icon={SilverSponsorIcon} />
         <SponsorGroup
           size="6"
-          sponsors={[...silverSponsors, ...bronzeSponsors]}
+          sponsors={[...bronzeSponsors, ...backersSponsors]}
         />
       </Stack>
     </Stack>

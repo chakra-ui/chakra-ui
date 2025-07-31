@@ -89,7 +89,7 @@ export const LAUNCH_DATA: LaunchItem[] = [
     cards: [
       {
         title: "Announcement",
-        url: "/blog/11-improving-developer-experience",
+        url: "/blog/11-improved-developer-experience",
         icon: LuFileText,
       },
       {
