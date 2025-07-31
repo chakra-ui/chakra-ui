@@ -1,9 +1,9 @@
-interface Sponsor {
+export interface Sponsor {
   MemberId: number
   createdAt: string
-  type: string
+  type: string | null
   role: string
-  tier: string
+  tier: string | null
   isActive: boolean
   totalAmountDonated: number
   currency: string
@@ -70,57 +70,76 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
   })
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`)
+    throw new Error(
+      `GraphQL HTTP error! status: ${response.status}, statusText: ${response.statusText}`,
+    )
   }
 
   const contentType = response.headers.get("content-type")
   if (!contentType || !contentType.includes("application/json")) {
-    throw new Error(`Expected JSON, got ${contentType}`)
+    const responseText = await response.text()
+    throw new Error(
+      `Expected JSON, got ${contentType}. Response: ${responseText.slice(0, 500)}`,
+    )
   }
 
   const result = await response.json()
 
   if (result.errors) {
-    throw new Error(`GraphQL errors: ${JSON.stringify(result.errors)}`)
+    throw new Error(`GraphQL errors: ${JSON.stringify(result.errors, null, 2)}`)
   }
 
   if (!result.data?.collective?.members?.nodes) {
-    throw new Error("Invalid GraphQL response structure")
+    throw new Error(
+      `Invalid GraphQL response structure. Data: ${JSON.stringify(result.data, null, 2)}`,
+    )
   }
+
+  console.log(
+    `Raw GraphQL response contains ${result.data.collective.members.nodes.length} members`,
+  )
 
   return result.data.collective.members.nodes.map((member: any) => ({
     MemberId: parseInt(member.id),
     createdAt: member.createdAt,
-    type: member.account.type,
+    type: member.account?.type || "INDIVIDUAL",
     role: member.role,
-    tier: member.tier.name,
+    tier: member.tier?.name || "Backer 💚",
     isActive: true,
-    totalAmountDonated: member.totalDonations.value || 0,
+    totalAmountDonated: member.totalDonations?.value || 0,
     currency: "USD",
     lastTransactionAt: member.createdAt,
     lastTransactionAmount: 0,
     profile: `https://opencollective.com/${member.account.id}`,
     name: member.account.name,
     company: null,
-    description: member.account.description,
-    image: member.account.imageUrl,
+    description: member.account?.description || null,
+    image: member.account?.imageUrl || "",
     email: null,
-    twitter: member.account.twitterHandle
+    twitter: member.account?.twitterHandle
       ? `https://twitter.com/${member.account.twitterHandle}`
       : null,
-    github: member.account.githubHandle
+    github: member.account?.githubHandle
       ? `https://github.com/${member.account.githubHandle}`
       : null,
-    website: member.account.website,
+    website: member.account?.website || null,
   }))
 }
 
 export async function getSponsors(): Promise<Sponsor[]> {
   try {
     // Try GraphQL API first
-    return await fetchSponsorsFromGraphQL()
+    const sponsors = await fetchSponsorsFromGraphQL()
+    console.log(
+      `Successfully fetched ${sponsors.length} sponsors from GraphQL API`,
+    )
+    return sponsors
   } catch (error: any) {
-    console.log("Failed to fetch sponsors from GraphQL API:", error.toString())
+    console.error("Failed to fetch sponsors from GraphQL API:", {
+      message: error.message,
+      stack: error.stack,
+      toString: error.toString(),
+    })
 
     try {
       // Fallback to REST API (in case GraphQL is down but REST works)
@@ -148,15 +167,21 @@ export async function getSponsors(): Promise<Sponsor[]> {
         throw new Error("Invalid OpenCollective API response: expected array")
       }
 
+      console.log(
+        `Successfully fetched ${allSponsors.length} sponsors from REST API`,
+      )
       return allSponsors
     } catch (restError: any) {
-      console.log(
-        "Failed to fetch sponsors from REST API:",
-        restError.toString(),
-      )
+      console.error("Failed to fetch sponsors from REST API:", {
+        message: restError.message,
+        stack: restError.stack,
+        toString: restError.toString(),
+      })
 
       // Final fallback to static data
-      console.log("Using static fallback sponsor data")
+      console.warn(
+        `Using static fallback sponsor data (${FALLBACK_SPONSORS.length} sponsors)`,
+      )
       return FALLBACK_SPONSORS
     }
   }

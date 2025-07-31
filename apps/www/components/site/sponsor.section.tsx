@@ -1,4 +1,4 @@
-import { getSponsors } from "@/lib/get-sponsors"
+import { type Sponsor, getSponsors } from "@/lib/get-sponsors"
 import {
   Box,
   BoxProps,
@@ -8,7 +8,6 @@ import {
   Flex,
   Group,
   HStack,
-  Image,
   Span,
   Stack,
   Text,
@@ -97,28 +96,6 @@ const SponsorGroup = (props: {
   )
 }
 
-interface Sponsor {
-  MemberId: number
-  createdAt: string
-  type: string
-  role: string
-  tier: string
-  isActive: boolean
-  totalAmountDonated: number
-  currency: string
-  lastTransactionAt: string
-  lastTransactionAmount: number
-  profile: string
-  name: string
-  company: string | null
-  description: string | null
-  image: string
-  email: string | null
-  twitter: string | null
-  github: string | null
-  website: string | null
-}
-
 const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
   const { tier, icon: Icon } = props
   return (
@@ -133,6 +110,10 @@ const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
   )
 }
 
+function getSponsorsByTier(sponsors: Sponsor[], tier: string) {
+  return sponsors.filter((sponsor) => sponsor.tier?.includes(tier))
+}
+
 const SponsorsList = async () => {
   const allSponsors = await getSponsors()
 
@@ -140,11 +121,10 @@ const SponsorsList = async () => {
     .filter((sponsor) => sponsor.tier && sponsor.type === "ORGANIZATION")
     .sort((a, b) => b.totalAmountDonated - a.totalAmountDonated)
 
-  const platinumSponsors = companies.filter((c) => c.tier.includes("Platinum"))
-  const goldSponsors = companies.filter((c) => c.tier.includes("Gold"))
-
-  const silverSponsors = companies.filter((c) => c.tier.includes("Silver"))
-  const bronzeSponsors = companies.filter((c) => c.tier.includes("Bronze"))
+  const platinumSponsors = getSponsorsByTier(companies, "Platinum")
+  const goldSponsors = getSponsorsByTier(companies, "Gold")
+  const silverSponsors = getSponsorsByTier(companies, "Silver")
+  const bronzeSponsors = getSponsorsByTier(companies, "Bronze")
 
   return (
     <Stack gap="20">
