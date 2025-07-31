@@ -75,26 +75,26 @@ export const LAUNCH_DATA: LaunchItem[] = [
     icon: LuCode,
     color: "blue",
     features: [
-      "Open any example in Stackblitz",
-      "Copy .llm.mdx files for every component",
-      "New Code Block component",
+      "Open docs example in Stackblitz",
+      "Copy AI-ready MDX files for every component",
+      "New <CodeBlock /> component",
     ],
     player: {
       url: "https://youtu.be/cvLrBEYlCEg",
-      image: "/images/chakra-ui-mcp.png",
-      title: "New Tools & Smoother Workflows",
+      image: "/images/launch-week-dev-ex.png",
+      title: "Improved Developer Experience",
       description:
         "Code Block components, Stackblitz integration, and AI-ready docs",
     },
     cards: [
       {
-        title: "New Components",
-        url: "Code Block",
-        icon: LuVideo,
+        title: "Announcement",
+        url: "/blog/11-improving-developer-experience",
+        icon: LuFileText,
       },
       {
-        title: "Enhanced Docs",
-        url: "Stackblitz & AI-ready files",
+        title: "Code Block Component",
+        url: "/docs/components/code-block",
         icon: LuExternalLink,
       },
     ],
