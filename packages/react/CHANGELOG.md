@@ -1,5 +1,33 @@
 # @chakra-ui/react
 
+## 3.24.0
+
+### Minor Changes
+
+- [#10164](https://github.com/chakra-ui/chakra-ui/pull/10164)
+  [`79971c0`](https://github.com/chakra-ui/chakra-ui/commit/79971c0d1ccac7921e5e5c65faa93e3fe8456bca)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new codeblock
+  component with support for highlight.js and shiki.
+
+  ```tsx
+  <CodeBlock.AdapterProvider value={shikiAdapter}>
+    <CodeBlock.Root code="console.log('Hello, world!')" language="tsx">
+      <CodeBlock.Content>
+        <CodeBlock.Code>
+          <CodeBlock.CodeText />
+        </CodeBlock.Code>
+      </CodeBlock.Content>
+    </CodeBlock.Root>
+  </CodeBlock.AdapterProvider>
+  ```
+
+### Patch Changes
+
+- [#10199](https://github.com/chakra-ui/chakra-ui/pull/10199)
+  [`5e7831f`](https://github.com/chakra-ui/chakra-ui/commit/5e7831f97c84fd50a084fae82039d7dc8e851b24)
+  Thanks [@ponharu](https://github.com/ponharu)! - fix: check if `separator` is
+  a valid React element
+
 ## 3.23.0
 
 ### Minor Changes
