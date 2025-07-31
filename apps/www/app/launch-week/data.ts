@@ -65,39 +65,40 @@ export const LAUNCH_DATA: LaunchItem[] = [
       },
     ],
   },
-  // {
-  //   day: "Day 2",
-  //   date: "Thursday, July 31",
-  //   title: "Developer Experience Day",
-  //   subtitle: "Faster dev time",
-  //   description:
-  //     "Here's what's coming: New Components like Command Palette for quick actions & navigation via keyboard, and Code Block with syntax-highlighted code with Chakra theming.",
-  //   icon: LuCode,
-  //   color: "blue",
-  //   features: [
-  //     "Open any example in Stackblitz",
-  //     "Copy .llm.mdx files for every component",
-  //     "Plug Chakra into your AI tools",
-  //   ],
-  //   player: {
-  //     image: "/images/chakra-ui-mcp.png",
-  //     title: "New Tools & Smoother Workflows",
-  //     description:
-  //       "Code Block components, Stackblitz integration, and AI-ready docs",
-  //   },
-  //   cards: [
-  //     {
-  //       title: "New Components",
-  //       url: "Code Block",
-  //       icon: LuVideo,
-  //     },
-  //     {
-  //       title: "Enhanced Docs",
-  //       url: "Stackblitz & AI-ready files",
-  //       icon: LuExternalLink,
-  //     },
-  //   ],
-  // },
+  {
+    day: "Day 2",
+    date: "Thursday, July 31",
+    title: "Developer Experience Day",
+    subtitle: "Faster dev time",
+    description:
+      "Improving developer experience with new tools and smoother workflows. From Stackblitz integration to AI-ready docs, we're making it easier than ever to build with Chakra UI.",
+    icon: LuCode,
+    color: "blue",
+    features: [
+      "Open docs example in Stackblitz",
+      "Copy AI-ready MDX files for every component",
+      "New <CodeBlock /> component",
+    ],
+    player: {
+      url: "https://youtu.be/cvLrBEYlCEg",
+      image: "/images/launch-week-dev-ex.png",
+      title: "Improved Developer Experience",
+      description:
+        "Code Block components, Stackblitz integration, and AI-ready docs",
+    },
+    cards: [
+      {
+        title: "Announcement",
+        url: "/blog/11-improving-developer-experience",
+        icon: LuFileText,
+      },
+      {
+        title: "Code Block Component",
+        url: "/docs/components/code-block",
+        icon: LuExternalLink,
+      },
+    ],
+  },
   // {
   //   day: "Day 3",
   //   date: "Friday, August 1",
