@@ -1,17 +1,17 @@
 "use client"
 
 import { ChakraProvider } from "@chakra-ui/react"
+import { ColorModeProvider } from "compositions/ui/color-mode"
 import { Toaster } from "compositions/ui/toaster"
-import { ThemeProvider } from "next-themes"
 import { system } from "./theme"
 
 export const Provider = (props: { children: React.ReactNode }) => {
   return (
     <ChakraProvider value={system}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
+      <ColorModeProvider>
         {props.children}
         <Toaster />
-      </ThemeProvider>
+      </ColorModeProvider>
     </ChakraProvider>
   )
 }

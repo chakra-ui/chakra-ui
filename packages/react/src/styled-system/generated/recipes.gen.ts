@@ -469,6 +469,37 @@ export type CheckboxCardVariantMap = {
   [K in keyof CheckboxCardVariant]: Array<CheckboxCardVariant[K]>
 }
 
+// CodeBlock
+
+export type CodeBlockSlot =
+  | "root"
+  | "content"
+  | "title"
+  | "header"
+  | "footer"
+  | "control"
+  | "overlay"
+  | "code"
+  | "codeText"
+  | "copyTrigger"
+  | "copyIndicator"
+  | "collapseTrigger"
+  | "collapseIndicator"
+  | "collapseText"
+
+export interface CodeBlockVariant {
+  /** @default "md" */
+  size?: "sm" | "md" | "lg" | undefined
+}
+
+export type CodeBlockVariantProps = {
+  [K in keyof CodeBlockVariant]?: ConditionalValue<CodeBlockVariant[K]> | undefined
+}
+
+export type CodeBlockVariantMap = {
+  [K in keyof CodeBlockVariant]: Array<CodeBlockVariant[K]>
+}
+
 // Collapsible
 
 export type CollapsibleSlot = "root" | "trigger" | "content" | "indicator"
@@ -1327,13 +1358,12 @@ export type TreeViewSlot =
   | "nodeCheckbox"
   | "root"
   | "tree"
-  | "branchBody"
 
 export interface TreeViewVariant {
   /** @default "md" */
   size?: "md" | "sm" | "xs" | undefined
   /** @default "subtle" */
-  variant?: "subtle" | "solid" | "surface" | undefined
+  variant?: "subtle" | "solid" | undefined
   animateContent?: boolean | undefined
 }
 
@@ -1355,6 +1385,7 @@ export interface ConfigSlotRecipes {
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps, CardVariantMap>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps, CheckboxVariantMap>
   checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps, CheckboxCardVariantMap>
+  codeBlock: SystemSlotRecipeFn<CodeBlockSlot, CodeBlockVariantProps, CodeBlockVariantMap>
   collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps, CollapsibleVariantMap>
   dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps, DataListVariantMap>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps, DialogVariantMap>
@@ -1405,6 +1436,7 @@ export interface ConfigRecipeSlots {
   card: CardSlot
   checkbox: CheckboxSlot
   checkboxCard: CheckboxCardSlot
+  codeBlock: CodeBlockSlot
   collapsible: CollapsibleSlot
   dataList: DataListSlot
   dialog: DialogSlot

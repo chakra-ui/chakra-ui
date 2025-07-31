@@ -232,6 +232,23 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 export const colorPickerAnatomy =
   arkColorPickerAnatomy.extendWith("channelText")
 
+export const codeBlockAnatomy = createAnatomy("code-block", [
+  "root",
+  "content",
+  "title",
+  "header",
+  "footer",
+  "control",
+  "overlay",
+  "code",
+  "codeText",
+  "copyTrigger",
+  "copyIndicator",
+  "collapseTrigger",
+  "collapseIndicator",
+  "collapseText",
+])
+
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
