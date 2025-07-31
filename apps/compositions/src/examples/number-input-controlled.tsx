@@ -11,7 +11,7 @@ export const NumberInputControlled = () => {
       value={value}
       onValueChange={(e) => setValue(e.value)}
     >
-      <NumberInput.Control />
+      <NumberInput.TriggerGroup />
       <NumberInput.Input />
     </NumberInput.Root>
   )
