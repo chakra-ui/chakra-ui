@@ -99,38 +99,37 @@ export const LAUNCH_DATA: LaunchItem[] = [
       },
     ],
   },
-  // {
-  //   day: "Day 3",
-  //   date: "Friday, August 1",
-  //   title: "Community Day",
-  //   subtitle: "Time to wrap it up together 🎉",
-  //   description:
-  //     "We're going live on YouTube to recap everything we launched, give live demos, and invite YOU (the community!) to ask questions, share what you're building, or just vibe with us.",
-  //   icon: LuUsers,
-  //   color: "purple",
-  //   features: [
-  //     "Recap everything we launched",
-  //     "Give live demos",
-  //     "Community Q&A & showcases",
-  //     "Giveaways & dev shoutouts",
-  //   ],
-  //   player: {
-  //     image: "/images/chakra-ui-mcp.png",
-  //     title: "Live Community Celebration",
-  //     description:
-  //       "Join us on YouTube for live demos, Q&A, giveaways, and community showcases",
-  //   },
-  //   cards: [
-  //     {
-  //       title: "YouTube Live",
-  //       url: "Interactive community celebration",
-  //       icon: LuYoutube,
-  //     },
-  //     {
-  //       title: "Giveaways",
-  //       url: "Amazing prizes for the community",
-  //       icon: LuExternalLink,
-  //     },
-  //   ],
-  // },
+  {
+    day: "Day 3",
+    date: "Friday, August 1",
+    title: "Community Day",
+    subtitle: "Time to wrap it up together 🎉",
+    description:
+      "We're going live on YouTube to recap everything we launched, give live demos, and invite YOU (the community!) to ask questions, share what you're building, or just vibe with us.",
+    icon: LuUsers,
+    color: "purple",
+    features: [
+      "Recap everything we launched",
+      "Give live demos",
+      "Community Q&A & showcases",
+    ],
+    player: {
+      url: "https://www.youtube.com/live/enRYSLZ_8p4",
+      image: "/images/launch-week-live.png",
+      title: "Live Community Hangout",
+      description: "Join us on YouTube for live demos and community Q&A",
+    },
+    cards: [
+      {
+        title: "YouTube Live",
+        url: "Interactive community session",
+        icon: LuYoutube,
+      },
+      {
+        title: "Launch Demos",
+        url: "See the new features in action",
+        icon: LuVideo,
+      },
+    ],
+  },
 ]
