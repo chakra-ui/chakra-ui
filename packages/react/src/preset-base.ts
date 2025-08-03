@@ -164,7 +164,7 @@ export const defaultConditions = defineConditions({
   optional: "&:optional",
   open: "&:is([open], [data-open], [data-state=open])",
   closed: "&:is([closed], [data-closed], [data-state=closed])",
-  fullscreen: "&is(:fullscreen, [data-fullscreen])",
+  fullscreen: "&:is(:fullscreen, [data-fullscreen])",
   loading: "&:is([data-loading], [aria-busy=true])",
   hidden: "&:is([hidden], [data-hidden])",
 
