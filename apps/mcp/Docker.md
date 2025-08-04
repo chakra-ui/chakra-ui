@@ -46,7 +46,11 @@ accurate migration patterns with code examples.
 **Setup server:**
 
 ```bash
+# Run official release
 docker run -p 3000:3000 -e MCP_MODE=http ghcr.io/chakra-ui/chakra-ui/react-mcp
+
+# Run local development build
+docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
 ```
 
 **MCP Configuration:**
