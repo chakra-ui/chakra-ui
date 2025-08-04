@@ -14,16 +14,23 @@ RUN pnpm install --frozen-lockfile --filter=@chakra-ui/react-mcp...
 RUN pnpm run --filter=@chakra-ui/react-mcp build
 
 FROM base AS runtime
+# Create non-root user for security
+RUN groupadd -r mcpuser && useradd -r -g mcpuser mcpuser
+
 # Copy built application
 COPY --from=build /app/apps/mcp/dist /app/dist
+COPY --from=build /app/apps/mcp/api /app/api
 COPY --from=build /app/apps/mcp/package.json /app/package.json
 WORKDIR /app
 
 # Install production dependencies
 RUN pnpm install --prod --no-frozen-lockfile
 
-# Make stdio.js executable
-RUN chmod 755 dist/stdio.js
+# Make stdio.js executable and set ownership
+RUN chmod 755 dist/stdio.js && chown -R mcpuser:mcpuser /app
+
+# Switch to non-root user
+USER mcpuser
 
 # Default to stdio mode (main MCP use case)
 ENV MCP_MODE=stdio
@@ -40,4 +47,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
       fi
 
 # Run based on mode
-CMD ["sh", "-c", "if [ \"$MCP_MODE\" = \"http\" ]; then node dist/http.js; else node dist/stdio.js; fi"]
+CMD ["sh", "-c", "if [ \"$MCP_MODE\" = \"http\" ]; then node api/index.js; else node dist/stdio.js; fi"]
