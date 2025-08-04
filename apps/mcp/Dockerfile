@@ -35,6 +35,9 @@ USER mcpuser
 # Default to stdio mode (main MCP use case)
 ENV MCP_MODE=stdio
 
+# API key for Pro templates (optional)
+ENV CHAKRA_PRO_API_KEY=""
+
 # Expose port only for HTTP mode
 EXPOSE 3000
 

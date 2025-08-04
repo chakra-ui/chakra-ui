@@ -18,17 +18,21 @@ docker pull ghcr.io/chakra-ui/chakra-ui/react-mcp:latest
 docker build -f apps/mcp/Dockerfile -t chakra-ui/react-mcp:development .
 ```
 
-**2. Add to your IDE's mcp.json:**
+**2. Add to your IDE's `mcp.json`:**
 
 ```json
 {
   "mcpServers": {
     "chakra-ui": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "ghcr.io/chakra-ui/chakra-ui/react-mcp"],
-      "env": {
-        "CHAKRA_PRO_API_KEY": "your-api-key-here"
-      }
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "CHAKRA_PRO_API_KEY=your-api-key-here",
+        "ghcr.io/chakra-ui/chakra-ui/react-mcp"
+      ]
     }
   }
 }
@@ -41,7 +45,11 @@ accurate migration patterns with code examples.
 
 ### 🌐 HTTP Mode
 
-**For:** Web deployments, shared servers, team environments
+**For:** Web deployments, shared servers, team environments, remote MCP access
+
+_HTTP mode enables centralized Chakra UI knowledge servers - useful for teams
+standardizing on design systems or organizations providing internal developer
+tooling._
 
 **Setup server:**
 
@@ -61,7 +69,7 @@ docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
     "chakra-ui": {
       "url": "http://localhost:3000/mcp",
       "headers": {
-        "CHAKRA_PRO_API_KEY": "your-api-key-here"
+        "x-api-key": "your-api-key-here"
       }
     }
   }
@@ -73,8 +81,13 @@ docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
 | Variable             | Default | Description                    |
 | :------------------- | :------ | :----------------------------- |
 | `MCP_MODE`           | `stdio` | Server mode: `stdio` or `http` |
-| `CHAKRA_PRO_API_KEY` | -       | API key for Pro templates      |
+| `CHAKRA_PRO_API_KEY` | `""`    | API key for Pro templates      |
 | `PORT`               | `3000`  | HTTP server port               |
+
+**API Key Usage:**
+
+- **Stdio mode**: Pass via `-e CHAKRA_PRO_API_KEY=xxx` environment variable
+- **HTTP mode**: Pass via `"x-api-key"` header in MCP configuration
 
 ## Available Images
 

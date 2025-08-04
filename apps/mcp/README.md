@@ -48,10 +48,14 @@ examples, migration patterns, and premium templates.
   "mcpServers": {
     "chakra-ui": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "ghcr.io/chakra-ui/chakra-ui/react-mcp"],
-      "env": {
-        "CHAKRA_PRO_API_KEY": "your-api-key-here"
-      }
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "CHAKRA_PRO_API_KEY=your-api-key-here",
+        "ghcr.io/chakra-ui/chakra-ui/react-mcp"
+      ]
     }
   }
 }
