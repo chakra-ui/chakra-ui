@@ -1,0 +1,54 @@
+# Chakra UI MCP Server - Docker Build Context
+# Copy: pnpm-lock.yaml, package.json, pnpm-workspace.yaml, apps/mcp/
+
+# Large directories
+node_modules/
+packages/
+sandbox/
+apps/www/
+apps/compositions/
+
+# Development tools
+.git/
+.github/
+.storybook/
+.vscode/
+.husky/
+scripts/
+
+# Build artifacts
+dist/
+.turbo/
+coverage/
+
+# Documentation & media (except MCP docs)
+*.md
+!apps/mcp/*.md
+media/
+
+# Config files
+.all-contributorsrc
+.changelog/
+.changeset/
+.prettier*
+.commitlintrc
+.lintstagedrc
+eslint.config.mjs
+renovate.json
+tsconfig.build.json
+vite.config.ts
+vitest.setup.ts
+
+# Environment & cache
+.env*
+*.log
+.cache/
+.DS_Store
+*.tgz
+*.tar.gz
+
+# Tests
+__tests__/
+__stories__/
+*.test.*
+*.spec.*
