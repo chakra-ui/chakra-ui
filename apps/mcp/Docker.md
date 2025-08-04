@@ -9,7 +9,7 @@
 
 ```bash
 # Pin to specific version for production security
-docker pull ghcr.io/chakra-ui/chakra-ui/react-mcp:v2.0.5
+docker pull ghcr.io/chakra-ui/chakra-ui/react-mcp:2.0.5
 
 # Or use latest for development
 docker pull ghcr.io/chakra-ui/chakra-ui/react-mcp:latest
@@ -78,7 +78,7 @@ docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
 
 ## Available Images
 
-- **Production**: `ghcr.io/chakra-ui/chakra-ui/react-mcp:v2.0.5` (pinned version
+- **Production**: `ghcr.io/chakra-ui/chakra-ui/react-mcp:2.0.5` (pinned version
   recommended)
 - **Latest**: `ghcr.io/chakra-ui/chakra-ui/react-mcp:latest` (development use)
 - **Local**: `chakra-ui/react-mcp:development` (local builds)
