@@ -5,6 +5,7 @@ import { getComponentExampleTool } from "./get-component-example.js"
 import { getComponentPropsTool } from "./get-component-props.js"
 import { getComponentTemplatesTool } from "./get-component-templates.js"
 import { getThemeTool } from "./get-theme.js"
+import { installationTool } from "./installation.js"
 import { listComponentTemplatesTool } from "./list-component-templates.js"
 import { listComponentsTool } from "./list-components.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
@@ -18,6 +19,7 @@ const tools: Tool[] = [
   v2ToV3MigrationTool,
   listComponentTemplatesTool,
   getComponentTemplatesTool,
+  installationTool,
 ]
 
 const registeredToolCache = new Map<string, Tool>()
