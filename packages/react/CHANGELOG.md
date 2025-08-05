@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.24.1
+
+### Patch Changes
+
+- [`e81a6ae`](https://github.com/chakra-ui/chakra-ui/commit/e81a6aedfddbf76ee152fd545f9157b5de1988a4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Provide a way to
+  exclude components from prose styling by using `not-prose`
+
+- [`9b7bf1d`](https://github.com/chakra-ui/chakra-ui/commit/9b7bf1dcab47686db6ef42416dc91d613df1d5a0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `_fullscreen` returns the wrong css selector
+
 ## 3.24.0
 
 ### Minor Changes
