@@ -7,8 +7,8 @@ on:
   workflow_dispatch:  # For testing
     inputs:
       version:
-        description: 'MCP version to build (e.g., 2.0.5)'
-        default: '2.0.5'
+        description: 'Docker image tag (e.g., 2.0.5, development) - independent of internal @chakra-ui/react-mcp version'
+        default: 'development'
         required: true
       push_to_registry:
         description: 'Push to GHCR (false = dry-run)'
