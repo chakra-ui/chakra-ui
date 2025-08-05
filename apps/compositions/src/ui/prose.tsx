@@ -2,23 +2,36 @@
 
 import { chakra } from "@chakra-ui/react"
 
+const TRAILING_PSEUDO_REGEX = /(::?[\w-]+(?:\([^)]*\))?)+$/
+const EXCLUDE_CLASSNAME = ".not-prose"
+function inWhere<T extends string>(selector: T): T {
+  const rebuiltSelector = selector.startsWith("& ")
+    ? selector.slice(2)
+    : selector
+  const match = selector.match(TRAILING_PSEUDO_REGEX)
+  const pseudo = match ? match[0] : ""
+  const base = match ? selector.slice(0, -match[0].length) : rebuiltSelector
+  return `& :where(${base}):not(${EXCLUDE_CLASSNAME}, ${EXCLUDE_CLASSNAME} *)${pseudo}` as T
+}
+
 export const Prose = chakra("div", {
   base: {
     color: "fg.muted",
     maxWidth: "65ch",
     fontSize: "sm",
     lineHeight: "1.7em",
-    "& p": {
+    [inWhere("& p")]: {
       marginTop: "1em",
       marginBottom: "1em",
     },
-    "& blockquote": {
+    [inWhere("& blockquote")]: {
       marginTop: "1.285em",
       marginBottom: "1.285em",
       paddingInline: "1.285em",
       borderInlineStartWidth: "0.25em",
+      color: "fg",
     },
-    "& a": {
+    [inWhere("& a")]: {
       color: "fg",
       textDecoration: "underline",
       textUnderlineOffset: "3px",
@@ -26,58 +39,58 @@ export const Prose = chakra("div", {
       textDecorationColor: "border.muted",
       fontWeight: "500",
     },
-    "& strong": {
+    [inWhere("& strong")]: {
       fontWeight: "600",
     },
-    "& a strong": {
+    [inWhere("& a strong")]: {
       color: "inherit",
     },
-    "& h1": {
+    [inWhere("& h1")]: {
       fontSize: "2.15em",
       letterSpacing: "-0.02em",
       marginTop: "0",
       marginBottom: "0.8em",
       lineHeight: "1.2em",
     },
-    "& h2": {
+    [inWhere("& h2")]: {
       fontSize: "1.4em",
       letterSpacing: "-0.02em",
       marginTop: "1.6em",
       marginBottom: "0.8em",
       lineHeight: "1.4em",
     },
-    "& h3": {
+    [inWhere("& h3")]: {
       fontSize: "1.285em",
       letterSpacing: "-0.01em",
       marginTop: "1.5em",
       marginBottom: "0.4em",
       lineHeight: "1.5em",
     },
-    "& h4": {
+    [inWhere("& h4")]: {
       marginTop: "1.4em",
       marginBottom: "0.5em",
       letterSpacing: "-0.01em",
       lineHeight: "1.5em",
     },
-    "& img": {
+    [inWhere("& img")]: {
       marginTop: "1.7em",
       marginBottom: "1.7em",
       borderRadius: "lg",
       boxShadow: "inset",
     },
-    "& picture": {
+    [inWhere("& picture")]: {
       marginTop: "1.7em",
       marginBottom: "1.7em",
     },
-    "& picture > img": {
+    [inWhere("& picture > img")]: {
       marginTop: "0",
       marginBottom: "0",
     },
-    "& video": {
+    [inWhere("& video")]: {
       marginTop: "1.7em",
       marginBottom: "1.7em",
     },
-    "& kbd": {
+    [inWhere("& kbd")]: {
       fontSize: "0.85em",
       borderRadius: "xs",
       paddingTop: "0.15em",
@@ -89,26 +102,26 @@ export const Prose = chakra("div", {
       "--shadow": "colors.border",
       boxShadow: "0 0 0 1px var(--shadow),0 1px 0 1px var(--shadow)",
     },
-    "& code": {
+    [inWhere("& code")]: {
       fontSize: "0.925em",
       letterSpacing: "-0.01em",
       borderRadius: "md",
       borderWidth: "1px",
       padding: "0.25em",
     },
-    "& pre code": {
+    [inWhere("& pre code")]: {
       fontSize: "inherit",
       letterSpacing: "inherit",
       borderWidth: "inherit",
       padding: "0",
     },
-    "& h2 code": {
+    [inWhere("& h2 code")]: {
       fontSize: "0.9em",
     },
-    "& h3 code": {
+    [inWhere("& h3 code")]: {
       fontSize: "0.8em",
     },
-    "& pre": {
+    [inWhere("& pre")]: {
       backgroundColor: "bg.subtle",
       marginTop: "1.6em",
       marginBottom: "1.6em",
@@ -121,74 +134,74 @@ export const Prose = chakra("div", {
       overflowX: "auto",
       fontWeight: "400",
     },
-    "& ol": {
+    [inWhere("& ol")]: {
       marginTop: "1em",
       marginBottom: "1em",
       paddingInlineStart: "1.5em",
     },
-    "& ul": {
+    [inWhere("& ul")]: {
       marginTop: "1em",
       marginBottom: "1em",
       paddingInlineStart: "1.5em",
     },
-    "& li": {
+    [inWhere("& li")]: {
       marginTop: "0.285em",
       marginBottom: "0.285em",
     },
-    "& ol > li": {
+    [inWhere("& ol > li")]: {
       paddingInlineStart: "0.4em",
       listStyleType: "decimal",
       "&::marker": {
         color: "fg.muted",
       },
     },
-    "& ul > li": {
+    [inWhere("& ul > li")]: {
       paddingInlineStart: "0.4em",
       listStyleType: "disc",
       "&::marker": {
         color: "fg.muted",
       },
     },
-    "& > ul > li p": {
+    [inWhere("& > ul > li p")]: {
       marginTop: "0.5em",
       marginBottom: "0.5em",
     },
-    "& > ul > li > p:first-of-type": {
+    [inWhere("& > ul > li > p:first-of-type")]: {
       marginTop: "1em",
     },
-    "& > ul > li > p:last-of-type": {
+    [inWhere("& > ul > li > p:last-of-type")]: {
       marginBottom: "1em",
     },
-    "& > ol > li > p:first-of-type": {
+    [inWhere("& > ol > li > p:first-of-type")]: {
       marginTop: "1em",
     },
-    "& > ol > li > p:last-of-type": {
+    [inWhere("& > ol > li > p:last-of-type")]: {
       marginBottom: "1em",
     },
-    "& ul ul, ul ol, ol ul, ol ol": {
+    [inWhere("& ul ul, ul ol, ol ul, ol ol")]: {
       marginTop: "0.5em",
       marginBottom: "0.5em",
     },
-    "& dl": {
+    [inWhere("& dl")]: {
       marginTop: "1em",
       marginBottom: "1em",
     },
-    "& dt": {
+    [inWhere("& dt")]: {
       fontWeight: "600",
       marginTop: "1em",
     },
-    "& dd": {
+    [inWhere("& dd")]: {
       marginTop: "0.285em",
       paddingInlineStart: "1.5em",
     },
-    "& hr": {
+    [inWhere("& hr")]: {
       marginTop: "2.25em",
       marginBottom: "2.25em",
     },
-    "& :is(h1,h2,h3,h4,h5,hr) + *": {
+    [inWhere("& :is(h1,h2,h3,h4,h5,hr) + *")]: {
       marginTop: "0",
     },
-    "& table": {
+    [inWhere("& table")]: {
       width: "100%",
       tableLayout: "auto",
       textAlign: "start",
@@ -196,54 +209,54 @@ export const Prose = chakra("div", {
       marginTop: "2em",
       marginBottom: "2em",
     },
-    "& thead": {
+    [inWhere("& thead")]: {
       borderBottomWidth: "1px",
       color: "fg",
     },
-    "& tbody tr": {
+    [inWhere("& tbody tr")]: {
       borderBottomWidth: "1px",
       borderBottomColor: "border",
     },
-    "& thead th": {
+    [inWhere("& thead th")]: {
       paddingInlineEnd: "1em",
       paddingBottom: "0.65em",
       paddingInlineStart: "1em",
       fontWeight: "medium",
       textAlign: "start",
     },
-    "& thead th:first-of-type": {
+    [inWhere("& thead th:first-of-type")]: {
       paddingInlineStart: "0",
     },
-    "& thead th:last-of-type": {
+    [inWhere("& thead th:last-of-type")]: {
       paddingInlineEnd: "0",
     },
-    "& tbody td, tfoot td": {
+    [inWhere("& tbody td, tfoot td")]: {
       paddingTop: "0.65em",
       paddingInlineEnd: "1em",
       paddingBottom: "0.65em",
       paddingInlineStart: "1em",
     },
-    "& tbody td:first-of-type, tfoot td:first-of-type": {
+    [inWhere("& tbody td:first-of-type, tfoot td:first-of-type")]: {
       paddingInlineStart: "0",
     },
-    "& tbody td:last-of-type, tfoot td:last-of-type": {
+    [inWhere("& tbody td:last-of-type, tfoot td:last-of-type")]: {
       paddingInlineEnd: "0",
     },
-    "& figure": {
+    [inWhere("& figure")]: {
       marginTop: "1.625em",
       marginBottom: "1.625em",
     },
-    "& figure > *": {
+    [inWhere("& figure > *")]: {
       marginTop: "0",
       marginBottom: "0",
     },
-    "& figcaption": {
+    [inWhere("& figcaption")]: {
       fontSize: "0.85em",
       lineHeight: "1.25em",
       marginTop: "0.85em",
       color: "fg.muted",
     },
-    "& h1, h2, h3, h4": {
+    [inWhere("& h1, h2, h3, h4")]: {
       color: "fg",
       fontWeight: "600",
     },
