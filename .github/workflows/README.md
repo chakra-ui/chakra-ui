@@ -112,6 +112,24 @@ Auto-closes stale issues (30+7 days) and PRs (15+7 days). **Exempt:** `roadmap`,
 - **Release:** `cd apps/mcp && pnpm release` (needs `NPM_TOKEN` in `.env`)
 - **Result:** NPM package + tag → triggers Docker build to GHCR
 
+#### Docker Image Publishing
+
+**Automatic:** NPM release creates `@chakra-ui/react-mcp@X.X.X` tag → triggers
+`mcp-docker.yml` → publishes to GHCR
+
+**Manual (first release/testing):**
+
+1. Go to [Actions](https://github.com/chakra-ui/chakra-ui/actions) → MCP Docker
+   Build & Publish
+2. Click "Run workflow" dropdown
+3. Select branch, set version tag, toggle `push_to_registry`, and confirm run
+
+> [!IMPORTANT]  
+> Docker tag is independent of internal @chakra-ui/react-mcp version. For
+> **current versions**, see
+> [`apps/mcp/package.json`](../../apps/mcp/package.json) → Docker images tagged
+> `{version}` + `latest`.
+
 ### Repository Maintainers
 
 **Monitor:** Actions tab for failures | **Secrets:** `SAGE_PAT`, `NPM_TOKEN`,
