@@ -1,5 +1,33 @@
 # @chakra-ui/react
 
+## 3.24.2
+
+### Patch Changes
+
+- [`333b063`](https://github.com/chakra-ui/chakra-ui/commit/333b0636230ec83a51e50dd74896117b60b32cda)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  using `asChild` with invalid child elements or `React.lazy` components would
+  throw an error.
+
+  > This issue more commonly occurs when composing with Next.js `Link`
+  > component.
+
+  ```tsx
+  import { Breadcrumb } from "@chakra-ui/react"
+  import Link from "next/link"
+
+  export default function Page() {
+    return (
+      <Breadcrumb.Root>
+        {/* 🧨 Throws an error */}
+        <Breadcrumb.Link asChild>
+          <Link href="#">aaaa</Link>
+        </Breadcrumb.Link>
+      </Breadcrumb.Root>
+    )
+  }
+  ```
+
 ## 3.24.1
 
 ### Patch Changes
