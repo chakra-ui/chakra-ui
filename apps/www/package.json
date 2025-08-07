@@ -49,6 +49,7 @@
     "velite": "0.2.4"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "workspace:*",
     "@svgr/core": "8.1.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^24",
