@@ -1,17 +1,14 @@
 # Chakra UI MCP Server
 
-An MCP server providing AI assistants with access to Chakra UI components,
-examples, migration patterns, and premium templates.
+An MCP server that gives AI assistants direct access to Chakra UI's complete
+component ecosystem, migration tools, and design system.
 
 ## Features
 
-- **Component Library**: Get components, props, and usage examples
-- **Migration Support**: v2 to v3 upgrade guidance with before/after code
-  snippets
-- **Design Tokens**: Access semantic tokens and text styles for consistent
-  theming
-- **Premium Templates**: Chakra UI Pro blocks and component templates (requires
-  API key)
+- **Components**: Browse library, get props, examples, and installation guides
+- **Design System**: Access themes, tokens, and customization tools
+- **Migration**: v2→v3 upgrade guidance with code review and migration patterns
+- **Pro Templates**: Premium component blocks and templates (API key required)
 
 ## Available Tools
 

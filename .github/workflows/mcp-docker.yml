@@ -7,7 +7,7 @@ on:
   workflow_dispatch:  # For testing
     inputs:
       version:
-        description: 'Docker image tag (e.g., 2.0.5, development) - independent of internal @chakra-ui/react-mcp version'
+        description: 'Docker image tag (X.X.X, test, etc.) - independent of @chakra-ui/react-mcp version'
         default: 'development'
         required: true
       push_to_registry:
@@ -16,15 +16,14 @@ on:
         default: false
 
 env:
-  REGISTRY: ghcr.io # GitHub container registry
-  IMAGE_NAME: chakra-ui/react-mcp  # Matching @chakra-ui/react-mcp on npmjs.com
+  REGISTRY: ghcr.io  # GitHub container registry
+  IMAGE_NAME: react-mcp  # Matching @chakra-ui/react-mcp on npmjs.com
   SHOULD_PUSH: ${{ github.event_name == 'push' || inputs.push_to_registry }}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build-and-push:
-    if: github.repository == 'chakra-ui/chakra-ui'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -57,19 +56,20 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ steps.version.outputs.version }}
             type=raw,value=latest
+          labels: |
+            org.opencontainers.image.description=MCP server providing AI assistants access to Chakra UI components, migration tools, and design system
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.licenses=MIT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Copy MCP README for GHCR
-        run: cp apps/mcp/README.md README.md
 
       - name: Build and push Docker image
         id: push
@@ -88,6 +88,6 @@ jobs:
         if: env.SHOULD_PUSH == 'true'
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: ${{ env.SHOULD_PUSH }}
