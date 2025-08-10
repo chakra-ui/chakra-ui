@@ -3,6 +3,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 import express from "express"
 import { randomUUID } from "node:crypto"
+import packageJson from "../package.json" with { type: "json" }
 import { server } from "./server.js"
 import { initializeTools } from "./tools/index.js"
 
@@ -122,7 +123,7 @@ app.post("/messages", async (req, res) => {
 app.get("/", (req, res) => {
   res.json({
     name: "Chakra UI MCP Server",
-    version: "2.0.3",
+    version: packageJson.version,
     description: "The official MCP server for Chakra UI",
     endpoints: {
       "/mcp": "Modern Streamable HTTP endpoint",
@@ -147,7 +148,7 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000
 // For local development
 if (process.env.NODE_ENV !== "production") {
   app.listen(port, () => {
-    console.info(`Chakra MCP SSE Server running on http://localhost:${port}`)
+    console.info(`Chakra UI MCP Server running on http://localhost:${port}`)
   })
 }
 
