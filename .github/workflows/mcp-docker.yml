@@ -17,7 +17,7 @@ on:
 
 env:
   REGISTRY: ghcr.io # GitHub container registry
-  IMAGE_NAME: chakra-ui/chakra-ui/react-mcp  # Format: organization/repository/server, matching @chakra-ui/react-mcp on npmjs.com
+  IMAGE_NAME: chakra-ui/react-mcp  # Matching @chakra-ui/react-mcp on npmjs.com
   SHOULD_PUSH: ${{ github.event_name == 'push' || inputs.push_to_registry }}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -67,6 +67,9 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Copy MCP README for GHCR
+        run: cp apps/mcp/README.md README.md
 
       - name: Build and push Docker image
         id: push

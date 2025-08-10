@@ -15,17 +15,37 @@ examples, migration patterns, and premium templates.
 
 ## Available Tools
 
-- `get_components` - List all Chakra UI components
-- `get_component_props` - Get component properties and configuration
-- `get_component_example` - Retrieve usage examples and code patterns
-- `get_theme` - Get theme tokens, semantic tokens, text styles and layer styles
-- `list_blocks` - List Chakra UI Pro blocks
-- `get_component_templates` - Get premium component templates (Pro)
-- `v2_to_v3_code_review` - Migration guidance with code snippets
+- [`customize_theme`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/customize-theme.ts) -
+  Used to setup a custom theme for your Chakra UI. You can define new tokens or
+  modify existing ones.
+- [`get_component_example`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-component-example.ts) -
+  Retrieve comprehensive example code and usage patterns for a specific Chakra
+  UI component
+- [`get_component_props`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-component-props.ts) -
+  Get detailed properties of a specific Chakra UI component
+- [`get_component_templates`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-component-templates.ts) -
+  Retrieve well designed, fully responsive, and accessible component templates
+  (Pro)
+- [`get_theme`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-theme.ts) -
+  Retrieve the theme specification (colors, fonts, textStyles, etc.) to design
+  any page, component or section
+- [`installation`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/installation.ts) -
+  Get lightweight installation steps for Chakra UI when using Vite, Next.js App
+  Router, Next.js Pages Router, or general setup
+- [`list_component_templates`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/list-component-templates.ts) -
+  List available component templates or blocks in the Chakra UI pro (Pro)
+- [`list_components`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/list-components.ts) -
+  List all available components in Chakra UI
+- [`v2_to_v3_code_review`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/v2-to-v3-migration.ts) -
+  ALWAYS use this tool to review any generated code. This tool helps you get
+  familiar with the new Chakra UI v3 API before/after code snippets for common
+  migration scenarios
 
 ## Setup
 
-### NPM (Recommended)
+Choose from **NPX** (stdio only) or **Docker** (stdio/HTTP modes).
+
+### NPX (Recommended)
 
 ```json
 {
@@ -43,6 +63,31 @@ examples, migration patterns, and premium templates.
 
 ### Docker
 
+**Pull or build images**:
+
+```bash
+# Pin to specific version for production, matching @chakra-ui/react-mcp npm tags
+docker pull ghcr.io/chakra-ui/react-mcp:X.X.X
+
+# Or use latest for development
+docker pull ghcr.io/chakra-ui/react-mcp:latest
+
+# Build locally for development
+docker build -f apps/mcp/Dockerfile -t chakra-ui/react-mcp:development .
+```
+
+**Environment Variables**:
+
+| Variable             | Default | Description                    |
+| :------------------- | :------ | :----------------------------- |
+| `MCP_MODE`           | `stdio` | Server mode: `stdio` or `http` |
+| `CHAKRA_PRO_API_KEY` | `""`    | API key for Pro templates      |
+| `PORT`               | `3000`  | HTTP server port               |
+
+#### Stdio
+
+**MCP configuration**:
+
 ```json
 {
   "mcpServers": {
@@ -54,18 +99,53 @@ examples, migration patterns, and premium templates.
         "--rm",
         "-e",
         "CHAKRA_PRO_API_KEY=your-api-key-here",
-        "ghcr.io/chakra-ui/chakra-ui/react-mcp"
+        "ghcr.io/chakra-ui/react-mcp"
       ]
     }
   }
 }
 ```
 
-> See [Docker.md](./Docker.md) for HTTP mode, building, and deployment details.
+#### HTTP Server
 
-### Environment Variables
+**For**: Web deployments, shared servers, team environments, remote MCP access
 
-- `CHAKRA_PRO_API_KEY` (optional) - For accessing premium templates and blocks
+**Start server**:
+
+```bash
+# Run official release
+docker run -p 3000:3000 -e MCP_MODE=http ghcr.io/chakra-ui/react-mcp
+
+# Run local development build
+docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
+```
+
+**MCP configuration**:
+
+```json
+{
+  "mcpServers": {
+    "chakra-ui": {
+      "url": "http://localhost:3000/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
+**API Key Usage**:
+
+- **NPX/Docker stdio**: Pass via environment variable
+- **Docker HTTP**: Pass via `"x-api-key"` header in MCP configuration
+
+## Available Images
+
+- **Production**: `ghcr.io/chakra-ui/react-mcp:X.X.X` (pinned version,
+  recommended)
+- **Latest**: `ghcr.io/chakra-ui/react-mcp:latest` (development use)
+- **Local**: `chakra-ui/react-mcp:development` (local builds)
 
 ## Development
 

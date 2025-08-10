@@ -87,7 +87,7 @@ sandbox apps.
 manual dispatch
 
 Multi-arch Docker builds (`linux/amd64` + `linux/arm64`) to
-`ghcr.io/chakra-ui/chakra-ui/react-mcp`. Supports dry-run testing.
+`ghcr.io/chakra-ui/react-mcp`. Supports dry-run testing.
 
 ---
 
@@ -142,6 +142,5 @@ Auto-closes stale issues (30+7 days) and PRs (15+7 days). **Exempt:** `roadmap`,
 - **Main packages:**
   [Changesets workflow](https://github.com/changesets/changesets)
 - **MCP server:** [`apps/mcp/README.md`](../../apps/mcp/README.md)
-- **Docker usage:** [`apps/mcp/Docker.md`](../../apps/mcp/Docker.md)
 - **Composite actions:**
   [`../.github/composite-actions/`](../composite-actions/)
