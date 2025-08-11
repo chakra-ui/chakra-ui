@@ -223,6 +223,9 @@ export interface UtilityValues {
   letterSpacing: Tokens["letterSpacings"]
   textIndent: Tokens["spacing"]
   truncate: boolean
+  borderSpacing: Tokens["spacing"] | "auto"
+  borderSpacingX: Tokens["spacing"]
+  borderSpacingY: Tokens["spacing"]
   srOnly: boolean
   debug: boolean
   caretColor: Tokens["colors"] | "currentBg"

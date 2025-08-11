@@ -1073,6 +1073,29 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
+    // table
+    borderSpacing: {
+      values: (token) => ({
+        ...token("spacing"),
+        auto: "var(--border-spacing-x, 0) var(--border-spacing-y, 0)",
+      }),
+    },
+    borderSpacingX: {
+      values: "spacing",
+      transform(value) {
+        return {
+          "--border-spacing-x": value,
+        }
+      },
+    },
+    borderSpacingY: {
+      values: "spacing",
+      transform(value) {
+        return {
+          "--border-spacing-y": value,
+        }
+      },
+    },
     // helpers
     srOnly: {
       values: { type: "boolean" },
