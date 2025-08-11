@@ -13,7 +13,7 @@ component ecosystem, migration tools, and design system.
 ## Available Tools
 
 - [`customize_theme`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/customize-theme.ts) -
-  Used to setup a custom theme for your Chakra UI. You can define new tokens or
+  Used to set up a custom theme for your Chakra UI. You can define new tokens or
   modify existing ones.
 - [`get_component_example`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-component-example.ts) -
   Retrieve comprehensive example code and usage patterns for a specific Chakra
@@ -22,7 +22,7 @@ component ecosystem, migration tools, and design system.
   Get detailed properties of a specific Chakra UI component
 - [`get_component_templates`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-component-templates.ts) -
   Retrieve well designed, fully responsive, and accessible component templates
-  (Pro)
+  in Chakra UI Pro
 - [`get_theme`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/get-theme.ts) -
   Retrieve the theme specification (colors, fonts, textStyles, etc.) to design
   any page, component or section
@@ -30,7 +30,7 @@ component ecosystem, migration tools, and design system.
   Get lightweight installation steps for Chakra UI when using Vite, Next.js App
   Router, Next.js Pages Router, or general setup
 - [`list_component_templates`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/list-component-templates.ts) -
-  List available component templates or blocks in the Chakra UI pro (Pro)
+  List available component templates or blocks in Chakra UI Pro
 - [`list_components`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/list-components.ts) -
   List all available components in Chakra UI
 - [`v2_to_v3_code_review`](https://github.com/chakra-ui/chakra-ui/tree/main/apps/mcp/src/tools/v2-to-v3-migration.ts) -
@@ -51,7 +51,7 @@ Choose from **NPX** (stdio only) or **Docker** (stdio/HTTP modes).
       "command": "npx",
       "args": ["-y", "@chakra-ui/react-mcp"],
       "env": {
-        "CHAKRA_PRO_API_KEY": "your-api-key-here"
+        "CHAKRA_PRO_API_KEY": "your-api-key"
       }
     }
   }
@@ -63,7 +63,7 @@ Choose from **NPX** (stdio only) or **Docker** (stdio/HTTP modes).
 **Pull or build images**:
 
 ```bash
-# Pin to specific version for production, matching @chakra-ui/react-mcp npm tags
+# Pin to a specific version for production
 docker pull ghcr.io/chakra-ui/react-mcp:X.X.X
 
 # Or use latest for development
@@ -78,7 +78,7 @@ docker build -f apps/mcp/Dockerfile -t chakra-ui/react-mcp:development .
 | Variable             | Default | Description                    |
 | :------------------- | :------ | :----------------------------- |
 | `MCP_MODE`           | `stdio` | Server mode: `stdio` or `http` |
-| `CHAKRA_PRO_API_KEY` | `""`    | API key for Pro templates      |
+| `CHAKRA_PRO_API_KEY` | (none)  | API key for Pro templates      |
 | `PORT`               | `3000`  | HTTP server port               |
 
 #### Stdio
@@ -95,7 +95,7 @@ docker build -f apps/mcp/Dockerfile -t chakra-ui/react-mcp:development .
         "-i",
         "--rm",
         "-e",
-        "CHAKRA_PRO_API_KEY=your-api-key-here",
+        "CHAKRA_PRO_API_KEY=your-api-key",
         "ghcr.io/chakra-ui/react-mcp"
       ]
     }
@@ -105,7 +105,8 @@ docker build -f apps/mcp/Dockerfile -t chakra-ui/react-mcp:development .
 
 #### HTTP Server
 
-**For**: Web deployments, shared servers, team environments, remote MCP access
+**Use cases**: Web deployments, shared servers, team environments, remote MCP
+access
 
 **Start server**:
 
@@ -125,17 +126,21 @@ docker run -p 3000:3000 -e MCP_MODE=http chakra-ui/react-mcp:development
     "chakra-ui": {
       "url": "http://localhost:3000/mcp",
       "headers": {
-        "x-api-key": "your-api-key-here"
+        "x-api-key": "your-api-key"
       }
     }
   }
 }
 ```
 
-**API Key Usage**:
-
-- **NPX/Docker stdio**: Pass via environment variable
-- **Docker HTTP**: Pass via `"x-api-key"` header in MCP configuration
+> [!IMPORTANT] API Key Security
+>
+> - **NEVER hardcode API keys in Dockerfiles or configuration files**
+> - **Runtime configuration**:
+>   - **NPX/Docker stdio**: Pass via `-e CHAKRA_PRO_API_KEY=key` environment
+>     variable
+>   - **Docker HTTP**: Pass via `"x-api-key"` header in MCP client configuration
+> - **Optional**: Server works without API key (core features only)
 
 ## Available Images
 
