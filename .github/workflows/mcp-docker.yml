@@ -60,10 +60,6 @@ jobs:
           tags: |
             type=raw,value=${{ steps.version.outputs.version }}
             type=raw,value=latest
-          labels: |
-            org.opencontainers.image.description=MCP server providing AI assistants access to Chakra UI components, migration tools, and design system
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.licenses=MIT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -81,6 +77,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            GITHUB_REPOSITORY=${{ github.repository }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
