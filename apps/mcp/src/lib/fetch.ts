@@ -69,7 +69,7 @@ function createProUrl(path: string): string {
 function createAuthHeaders(apiKey: string): RequestInit {
   return {
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      "x-api-key": apiKey,
     },
   }
 }
