@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Added
+
+- New installation tool to install Chakra UI from scratch
+- Support for Chakra UI Pro Blocks
+
 ## [2.0.5] - 2025-07-28
 
 ### Fixed
