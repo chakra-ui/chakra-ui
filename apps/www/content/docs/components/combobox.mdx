@@ -152,6 +152,30 @@ in a form field. Useful for form layouts.
 
 <ExampleTabs name="combobox-with-field" />
 
+### Form + Custom Object
+
+When working with custom objects in forms, you often need to submit the
+programmatic value rather than the display value. This example shows how to
+combine custom object mapping with form submission using a hidden input.
+
+The key is using `itemToValue` to define what gets submitted, while
+`itemToString` controls what users see. A hidden input captures the programmatic
+value for form submission.
+
+> In this example, users see "🇺🇸 United States" but the form submits "US".
+
+<ExampleTabs name="combobox-with-form-submit" />
+
+### Hook Form
+
+This example demonstrates how to integrate the Combobox with React Hook Form
+using the `Controller` component. The form automatically receives the item's
+`value` property without needing a hidden input.
+
+Users see "React" but the form receives "react".
+
+<ExampleTabs name="combobox-with-hook-form" />
+
 ### Disabled State
 
 Pass the `disabled` prop to the `Combobox.Root` to disable the entire combobox.
