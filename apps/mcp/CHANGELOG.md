@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [2.1.0] - 2025-08-14
+
 ### Added
 
 - New installation tool to install Chakra UI from scratch
