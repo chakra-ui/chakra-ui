@@ -28,6 +28,26 @@ The Chakra UI MCP exposes the following tools to AI agents:
   for any component
 - **`get_component_example`**: Retrieve code examples and usage patterns
 
+### Chakra UI Pro Tools
+
+These tools provide AI agents with access to well-designed, fully responsive,
+and accessible component templates from Chakra UI Pro.
+
+- **`list_component_templates`**: List available component templates from Chakra
+  UI Pro
+- **`get_component_templates`**: Retrieve well-designed, fully responsive, and
+  accessible component templates from Chakra UI Pro
+
+:::note
+
+These tools require an active [Chakra UI Pro](https://pro.chakra-ui.com/pricing)
+license and setting the `CHAKRA_PRO_API_KEY` environment variable with your API
+key generated from Chakra UI Pro. See the
+[Chakra UI Pro Integration](#chakra-ui-pro-integration) section for setup
+instructions.
+
+:::
+
 ### Design System Tools
 
 - **`get_theme`**: Get a detailed list of all the design tokens
@@ -156,3 +176,35 @@ client, you need to add the MCP server to the client's configuration file.
   }
 }
 ```
+
+## Chakra UI Pro Integration
+
+To enable access to premium component templates from Chakra UI Pro, you'll need
+to configure your API key. This requires an active
+[Chakra UI Pro](https://pro.chakra-ui.com/pricing) license.
+
+### Setting Up Your API Key
+
+1. Get your API key from the [Chakra UI Pro](https://pro.chakra-ui.com) user
+   menu.
+
+2. Add the `CHAKRA_PRO_API_KEY` environment variable to your MCP configuration:
+
+**For editors with `env` support (VS Code, Cursor, Windsurf, Zed, Custom MCP):**
+
+```json
+{
+  "env": {
+    "CHAKRA_PRO_API_KEY": "your_api_key_here"
+  }
+}
+```
+
+**For Claude Code:**
+
+```bash
+claude mcp add chakra-ui --env CHAKRA_PRO_API_KEY=your_api_key_here -- npx -y @chakra-ui/react-mcp
+```
+
+Once configured, the `list_component_templates` and `get_component_templates`
+tools will be available for accessing PRO component templates.
