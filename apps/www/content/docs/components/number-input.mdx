@@ -23,11 +23,13 @@ import { NumberInput } from "@chakra-ui/react"
   <NumberInput.Label />
   <NumberInput.ValueText />
   <NumberInput.Control>
-    <NumberInput.IncrementTrigger />
-    <NumberInput.DecrementTrigger />
+    <NumberInput.TriggerGroup>
+      <NumberInput.IncrementTrigger />
+      <NumberInput.DecrementTrigger />
+    </NumberInput.TriggerGroup>
+    <NumberInput.Scrubber />
+    <NumberInput.Input />
   </NumberInput.Control>
-  <NumberInput.Scrubber />
-  <NumberInput.Input />
 </NumberInput.Root>
 ```
 
@@ -42,7 +44,7 @@ If you prefer a closed component composition, check out the
 
 The `NumberInput` component provides a set of shortcuts for common use cases
 
-### NumberInputControl
+### NumberInputTriggerGroup
 
 This component renders the `NumberInput.IncrementTrigger` and
 `NumberInput.DecrementTrigger` within it by default.
@@ -50,16 +52,16 @@ This component renders the `NumberInput.IncrementTrigger` and
 Writing this:
 
 ```tsx
-<NumberInput.Control />
+<NumberInput.TriggerGroup />
 ```
 
 is shorthand for writing this if you don't need to customize the triggers:
 
 ```tsx
-<NumberInput.Control>
+<NumberInput.TriggerGroup>
   <NumberInput.IncrementTrigger />
   <NumberInput.DecrementTrigger />
-</NumberInput.Control>
+</NumberInput.TriggerGroup>
 ```
 
 ## Examples
@@ -106,6 +108,9 @@ to control the value of the number input.
 ### Mobile Stepper
 
 Here's an example of how to compose the number input as a mobile stepper.
+
+> We are using `NumberInput.ValueText` to display the current value and also
+> avoid opening the keyboard on mobile screens.
 
 <ExampleTabs name="number-input-with-stepper" />
 
