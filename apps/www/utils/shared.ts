@@ -36,9 +36,8 @@ export function mapEntries<A, B, K extends string | number | symbol>(
   return result
 }
 
-export const uniq = <T>(...items: T[]) => {
-  const _items = items.filter(Boolean)
-  return Array.from(new Set(_items))
+export const uniq = <T>(items: T[]): T[] => {
+  return Array.from(new Set(items.filter(Boolean)))
 }
 
 export const chartComponents = [

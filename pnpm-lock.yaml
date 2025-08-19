@@ -272,6 +272,9 @@ importers:
       use-mask-input:
         specifier: 3.4.2
         version: 3.4.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      use-stick-to-bottom:
+        specifier: 1.1.1
+        version: 1.1.1(react@19.1.1)
       zod:
         specifier: 3.25.67
         version: 3.25.67
@@ -10132,6 +10135,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-stick-to-bottom@1.1.1:
+    resolution: {integrity: sha512-JkDp0b0tSmv7HQOOpL1hT7t7QaoUBXkq045WWWOFDTlLGRzgIIyW7vyzOIJzY7L2XVIG7j1yUxeDj2LHm9Vwng==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -21611,6 +21619,10 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.1.8
+
+  use-stick-to-bottom@1.1.1(react@19.1.1):
+    dependencies:
+      react: 19.1.1
 
   util-deprecate@1.0.2: {}
 

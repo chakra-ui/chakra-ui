@@ -1,0 +1,148 @@
+---
+title: Scroll Area
+description: Used to create a scrollable area with custom styled scrollbars
+links:
+  source: components/scroll-area
+  storybook: components-scroll-area--basic
+  recipe: scroll-area
+  ark: https://ark-ui.com/react/docs/components/scroll-area
+---
+
+<ExampleTabs name="scroll-area-basic" />
+
+## Usage
+
+```tsx
+import { ScrollArea } from "@chakra-ui/react"
+```
+
+```tsx
+<ScrollArea.Root>
+  <ScrollArea.Viewport>
+    <ScrollArea.Content />
+  </ScrollArea.Viewport>
+  <ScrollArea.Scrollbar>
+    <ScrollArea.Thumb />
+  </ScrollArea.Scrollbar>
+  <ScrollArea.Corner />
+</ScrollArea.Root>
+```
+
+## Examples
+
+### Variants
+
+Use the `variant` prop to change the scrollbar visibility behavior. Values can
+be either `hover` (default) or `always`.
+
+<ExampleTabs name="scroll-area-with-variants" />
+
+### Sizes
+
+Use the `size` prop to change the size of the scroll area. This affects the
+scrollbar thickness and content padding.
+
+<ExampleTabs name="scroll-area-with-sizes" />
+
+### Horizontal Scrolling
+
+The scroll area automatically supports horizontal scrolling when content
+overflows horizontally.
+
+<ExampleTabs name="scroll-area-horizontal" />
+
+### Both Directions
+
+When content overflows in both directions, both scrollbars will appear.
+
+<ExampleTabs name="scroll-area-both-directions" />
+
+:::info
+
+You can render the `ScrollArea.Corner` component to show a corner indicator to
+fill the intersection of the two scrollbars for a seamless, styled appearance.
+
+:::
+
+### Scroll Shadow
+
+Add visual feedback when content is scrollable by implementing scroll shadows
+that appear at the edges using `mask-image`.
+
+<ExampleTabs name="scroll-area-with-scroll-shadow" />
+
+### Thumb Styling
+
+Customize the appearance of the scrollbar thumb with different styles and
+colors.
+
+<ExampleTabs name="scroll-area-with-thumb-styling" />
+
+### Stick to Bottom
+
+Implement chat-like behavior where new content automatically scrolls to the
+bottom, but allows manual scrolling.
+
+> This example uses `use-stick-to-bottom` to scroll pinning.
+
+<ExampleTabs name="scroll-area-stick-to-bottom" />
+
+### Virtualization
+
+Handle large datasets efficiently by rendering only visible items using
+`@tanstack/react-virtual`.
+
+<ExampleTabs name="scroll-area-virtualization" />
+
+### Store
+
+Use the scroll area with external state management and programmatic control.
+
+<ExampleTabs name="scroll-area-with-store" />
+
+### Scroll to Side
+
+Programmatically navigate through content by scrolling to different sides and
+directions.
+
+<ExampleTabs name="scroll-area-scroll-to-side" />
+
+### Scroll to Position
+
+Jump to specific positions or items within the scrollable area with smooth
+animations.
+
+<ExampleTabs name="scroll-area-scroll-to-position" />
+
+### RTL Support
+
+The scroll area component fully supports Right-to-Left (RTL) languages like
+Arabic and Hebrew.
+
+<ExampleTabs name="scroll-area-with-rtl" />
+
+## Props
+
+### Root
+
+<PropTable component="ScrollArea" part="Root" />
+
+### Viewport
+
+<PropTable component="ScrollArea" part="Viewport" />
+
+### Content
+
+<PropTable component="ScrollArea" part="Content" />
+
+### Scrollbar
+
+<PropTable component="ScrollArea" part="Scrollbar" />
+
+### Thumb
+
+<PropTable component="ScrollArea" part="Thumb" />
+
+### Corner
+
+<PropTable component="ScrollArea" part="Corner" />

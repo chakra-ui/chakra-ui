@@ -37,6 +37,7 @@
     "react-icons": "5.5.0",
     "react-lorem-ipsum": "1.4.10",
     "use-mask-input": "3.4.2",
+    "use-stick-to-bottom": "1.1.1",
     "react-payment-inputs": "1.2.0",
     "zod": "3.25.67"
   },

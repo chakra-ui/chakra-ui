@@ -258,6 +258,7 @@ export { numberInputAnatomy } from "@ark-ui/react/number-input"
 export { pinInputAnatomy } from "@ark-ui/react/pin-input"
 export { progressAnatomy } from "@ark-ui/react/progress"
 export { qrCodeAnatomy } from "@ark-ui/react/qr-code"
+export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 

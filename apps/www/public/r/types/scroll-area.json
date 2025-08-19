@@ -1,0 +1,143 @@
+{
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; viewport: string; content: string; scrollbar: string; thumb: string }>",
+        "isRequired": false,
+        "description": "The ids of the scroll area elements"
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "variant": {
+        "type": "\"hover\" | \"always\"",
+        "defaultValue": "hover",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "size": {
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseScrollAreaReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Viewport": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Content": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Scrollbar": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "orientation": {
+        "type": "Orientation",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Thumb": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Corner": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

@@ -964,6 +964,25 @@ export type RatingGroupVariantMap = {
   [K in keyof RatingGroupVariant]: Array<RatingGroupVariant[K]>
 }
 
+// ScrollArea
+
+export type ScrollAreaSlot = "root" | "viewport" | "content" | "scrollbar" | "thumb" | "corner"
+
+export interface ScrollAreaVariant {
+  /** @default "hover" */
+  variant?: "hover" | "always" | undefined
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg" | undefined
+}
+
+export type ScrollAreaVariantProps = {
+  [K in keyof ScrollAreaVariant]?: ConditionalValue<ScrollAreaVariant[K]> | undefined
+}
+
+export type ScrollAreaVariantMap = {
+  [K in keyof ScrollAreaVariant]: Array<ScrollAreaVariant[K]>
+}
+
 // SegmentGroup
 
 export type SegmentGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
@@ -1407,6 +1426,7 @@ export interface ConfigSlotRecipes {
   radioCard: SystemSlotRecipeFn<RadioCardSlot, RadioCardVariantProps, RadioCardVariantMap>
   radioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps, RadioGroupVariantMap>
   ratingGroup: SystemSlotRecipeFn<RatingGroupSlot, RatingGroupVariantProps, RatingGroupVariantMap>
+  scrollArea: SystemSlotRecipeFn<ScrollAreaSlot, ScrollAreaVariantProps, ScrollAreaVariantMap>
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps, SegmentGroupVariantMap>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
@@ -1458,6 +1478,7 @@ export interface ConfigRecipeSlots {
   radioCard: RadioCardSlot
   radioGroup: RadioGroupSlot
   ratingGroup: RatingGroupSlot
+  scrollArea: ScrollAreaSlot
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
   combobox: ComboboxSlot
