@@ -90,7 +90,7 @@ export const scrollAreaSlotRecipe = defineSlotRecipe({
       margin: "var(--scrollbar-margin)",
       opacity: 0,
       transition: "opacity 150ms 300ms",
-      "[data-hover] ~ &": {
+      "&[data-hover]": {
         transitionDelay: "0ms",
         opacity: 1,
       },
