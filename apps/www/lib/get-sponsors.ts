@@ -21,10 +21,7 @@ export interface Sponsor {
 }
 
 // Static fallback data for major sponsors (updated manually when needed)
-const FALLBACK_SPONSORS: Sponsor[] = [
-  // Add major sponsors here as fallback
-  // This can be updated periodically from the OpenCollective UI export feature
-]
+const FALLBACK_SPONSORS: Sponsor[] = []
 
 async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
   const response = await fetch("https://api.opencollective.com/graphql/v2", {
@@ -37,11 +34,12 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
       query: `
         query GetCollectiveMembers($slug: String!) {
           collective(slug: $slug) {
-            members(limit: 100, role: [BACKER]) {
+            members(limit: 1000, role: [BACKER]) {
               nodes {
                 id
                 createdAt
                 role
+                isActive
                 tier {
                   name
                 }
@@ -95,17 +93,21 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
     )
   }
 
-  console.log(
-    `Raw GraphQL response contains ${result.data.collective.members.nodes.length} members`,
+  const activeMembers = result.data.collective.members.nodes.filter(
+    (member: any) => member.isActive,
   )
 
-  return result.data.collective.members.nodes.map((member: any) => ({
+  console.log(
+    `Filtered to ${activeMembers.length} active members (${result.data.collective.members.nodes.length - activeMembers.length} inactive filtered out)`,
+  )
+
+  return activeMembers.map((member: any) => ({
     MemberId: parseInt(member.id),
     createdAt: member.createdAt,
     type: member.account?.type || "INDIVIDUAL",
     role: member.role,
     tier: member.tier?.name || "Backer 💚",
-    isActive: true,
+    isActive: member.isActive,
     totalAmountDonated: member.totalDonations?.value || 0,
     currency: "USD",
     lastTransactionAt: member.createdAt,
@@ -167,10 +169,11 @@ export async function getSponsors(): Promise<Sponsor[]> {
         throw new Error("Invalid OpenCollective API response: expected array")
       }
 
+      const activeSponsors = allSponsors.filter((sponsor) => sponsor.isActive)
       console.log(
-        `Successfully fetched ${allSponsors.length} sponsors from REST API`,
+        `Successfully fetched ${activeSponsors.length} active sponsors from REST API (${allSponsors.length} total)`,
       )
-      return allSponsors
+      return activeSponsors
     } catch (restError: any) {
       console.error("Failed to fetch sponsors from REST API:", {
         message: restError.message,
