@@ -5,6 +5,80 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.25.0](./#3.25.0) - 2025-08-20
+
+### Added
+
+- **Scroll Area**: Add new scroll area component
+
+  ```tsx
+  <ScrollArea.Root>
+    <ScrollArea.Viewport>
+      <ScrollArea.Content>{/* Scrolling content */}</ScrollArea.Content>
+    </ScrollArea.Viewport>
+    <ScrollArea.Scrollbar>
+      <ScrollArea.Thumb />
+    </ScrollArea.Scrollbar>
+    <ScrollArea.Corner />
+  </ScrollArea.Root>
+  ```
+
+### Changed
+
+- **System**: Implement preset for table `border-spacing` property and improve
+  documentation
+
+- **Highlight**: Add `exactMatch` prop that enables whole-word matching using
+  regex word boundaries.
+
+### Fixed
+
+- **System**: Fix nested token override issue during theme merging
+
+  ```tsx
+  const defaultConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: { value: "#000000" },
+        },
+      },
+    },
+  }
+
+  const userConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: {
+            100: { value: "#EE0F0F" },
+            200: { value: "#CC0C0C" },
+          },
+        },
+      },
+    },
+  }
+
+  // Before: This would return undefined
+  const system = createSystem(defaultConfig, userConfig)
+  system.token("colors.black.100") // undefined
+
+  // After: This will return merged correctly, preserving the default value
+  system.token("colors.black.100") // "#EE0F0F"
+  system.token("colors.black.200") // "#CC0C0C"
+  system.token("colors.black") // "#000000"
+  ```
+
+- **Menu**
+  - Fix issue where `onCheckedChange` could be called twice on checkbox or radio
+    item
+  - Add `data-state` attribute for context menu trigger
+  - Fix context menu positioning bug where reopening at the same coordinates
+    fails to reposition
+
+- **Radio Group**: Fixed issue where arrow key navigation doesn't apply
+  `data-focus-visible` on the newly focused item.
+
 ## [3.24.2](./#3.24.2) - 2025-08-06
 
 ### Fixed
