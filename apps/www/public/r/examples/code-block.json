@@ -1,16 +1,7 @@
 {
-  "name": "code",
+  "name": "code-block",
   "snippet": null,
   "examples": [
-    {
-      "name": "code-basic",
-      "content": "export const CodeBasic = () => {\n  return <Code>{`console.log(\"Hello, world!\")`}</Code>\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Code } from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { Code } from \"@chakra-ui/react\""
-    },
     {
       "name": "code-block-basic",
       "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockBasic = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
@@ -19,7 +10,7 @@
         "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -31,7 +22,7 @@
       "importPaths": [
         "import { CodeBlock, Float, IconButton, Span } from \"@chakra-ui/react\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\""
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\""
     },
     {
       "name": "code-block-with-copy-button",
@@ -41,7 +32,7 @@
         "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -55,7 +46,7 @@
         "import { RxCodesandboxLogo } from \"react-icons/rx\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "react-icons",
         "shiki"
@@ -69,7 +60,7 @@
         "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -82,7 +73,7 @@
         "import {\n  CodeBlock,\n  Float,\n  IconButton,\n  createShikiAdapter,\n} from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -95,7 +86,7 @@
         "import { CodeBlock, createHighlightJsAdapter } from \"@chakra-ui/react\"",
         "import hljs from \"highlight.js/lib/core\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "highlight.js"
       ]
@@ -109,7 +100,7 @@
         "import { IoLogoJavascript, IoLogoPython } from \"react-icons/io5\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "react-icons",
         "shiki"
@@ -123,7 +114,7 @@
         "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -136,7 +127,7 @@
         "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -149,7 +140,7 @@
         "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -162,7 +153,7 @@
         "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -175,7 +166,7 @@
         "import { CodeBlock, For, Stack, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -189,7 +180,7 @@
         "import { useEffect } from \"react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -202,7 +193,7 @@
         "import {\n  CodeBlock,\n  IconButton,\n  Tabs,\n  createShikiAdapter,\n  useTabs,\n} from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
@@ -216,7 +207,7 @@
         "import { useColorMode } from \"@/components/ui/color-mode\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ],
@@ -233,7 +224,7 @@
         "import { FaHtml5 } from \"react-icons/fa\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "react-icons",
         "shiki"
@@ -247,38 +238,10 @@
         "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
         "import type { HighlighterGeneric } from \"shiki\""
       ],
-      "importPath": "import { Code } from \"@chakra-ui/react\"",
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "shiki"
       ]
-    },
-    {
-      "name": "code-with-colors",
-      "content": "export const CodeWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n          width=\"full\"\n        >\n          <Text minW=\"8ch\" textStyle=\"sm\">\n            {colorPalette}\n          </Text>\n          <Code colorPalette={colorPalette} variant=\"solid\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"outline\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"subtle\">\n            {`console.log()`}\n          </Code>\n          <Code colorPalette={colorPalette} variant=\"surface\">\n            {`console.log()`}\n          </Code>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Code, Stack, Text } from \"@chakra-ui/react\"",
-        "import { colorPalettes } from \"compositions/lib/color-palettes\""
-      ],
-      "importPath": "import { Code } from \"@chakra-ui/react\""
-    },
-    {
-      "name": "code-with-sizes",
-      "content": "export const CodeWithSizes = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <Code size=\"xs\">console.log()</Code>\n      <Code size=\"sm\">console.log()</Code>\n      <Code size=\"md\">console.log()</Code>\n      <Code size=\"lg\">console.log()</Code>\n    </Stack>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Code, Stack } from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { Code } from \"@chakra-ui/react\""
-    },
-    {
-      "name": "code-with-variants",
-      "content": "export const CodeWithVariants = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      <Code variant=\"solid\">console.log()</Code>\n      <Code variant=\"outline\">console.log()</Code>\n      <Code variant=\"subtle\">console.log()</Code>\n      <Code variant=\"surface\">console.log()</Code>\n    </Stack>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Code, Stack } from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { Code } from \"@chakra-ui/react\""
     }
   ]
 }

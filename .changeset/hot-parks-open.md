@@ -14,3 +14,6 @@
 
 - **Radio Group**: Fixed issue where arrow key navigation doesn't apply
   `data-focus-visible` on the newly focused item.
+
+- **Highlight**: Add `exactMatch` prop that enables whole-word matching using
+  regex word boundaries.

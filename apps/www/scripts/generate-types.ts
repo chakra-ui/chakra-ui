@@ -72,20 +72,50 @@ async function writeStaticProps(outDir: string) {
   })
 }
 
+async function writeIndexFile(outDir: string) {
+  const allDirs = await getComponentDirectories()
+  const indexContent = JSON.stringify(
+    {
+      components: allDirs.concat("password-input", "hstack", "vstack"),
+      charts: chartComponents,
+    },
+    null,
+    2,
+  )
+  writeFileSync(`${outDir}/index.json`, indexContent)
+}
+
 const arkPropsMap: Record<string, string> = {
   drawer: "dialog",
   "action-bar": "popover",
 }
 
-export async function main() {
+async function extractComponents(components?: string[]) {
   const outDir = join("public", "r", "types")
 
   const componentDir = getComponentDir()
-  const dirs = await getComponentDirectories()
+  const allDirs = await getComponentDirectories()
   const arkProps = await getArkComponentProps()
   const recipeProps = await getRecipeProps()
 
   ensureDirSync(outDir)
+
+  // Filter directories based on specific components if provided
+  const dirs =
+    components && components.length > 0
+      ? allDirs.filter((dir) => components.includes(dir))
+      : allDirs
+
+  if (components && components.length > 0) {
+    const notFound = components.filter((comp) => !allDirs.includes(comp))
+    if (notFound.length > 0) {
+      console.error(
+        `Component(s) "${notFound.join(", ")}" not found. Available components:`,
+      )
+      console.error(allDirs.join(", "))
+      process.exit(1)
+    }
+  }
 
   for await (const dir of dirs) {
     const recipeKey = camelCase(dir)
@@ -108,17 +138,10 @@ export async function main() {
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
 
-  writeStaticProps(outDir)
-
-  const indexContent = JSON.stringify(
-    {
-      components: dirs.concat("password-input", "hstack", "vstack"),
-      charts: chartComponents,
-    },
-    null,
-    2,
-  )
-  writeFileSync(`${outDir}/index.json`, indexContent)
+  // Only write static props if processing all components
+  if (!components || components.length === 0) {
+    writeStaticProps(outDir)
+  }
 }
 
 const commonProps = {
@@ -177,7 +200,22 @@ function wrapInProps(obj: any, recipeKey: string) {
   return result
 }
 
-main().catch((err) => {
+// Get the specific components from command line arguments
+const specificComponents = process.argv.slice(2).filter((arg) => arg.length > 0)
+
+async function run() {
+  const outDir = join("public", "r", "types")
+
+  // Generate types for components
+  await extractComponents(
+    specificComponents.length > 0 ? specificComponents : undefined,
+  )
+
+  // Always generate the index file
+  await writeIndexFile(outDir)
+}
+
+run().catch((err) => {
   console.error(err.message)
   process.exit(1)
 })

@@ -78,6 +78,7 @@ const docsLinks: NavItem = {
             { title: "Grid", url: "grid" },
             { title: "SimpleGrid", url: "simple-grid" },
             { title: "Group", url: "group" },
+            { title: "Scroll Area", url: "scroll-area", status: "new" },
             { title: "Stack", url: "stack" },
             { title: "Wrap", url: "wrap" },
           ],
