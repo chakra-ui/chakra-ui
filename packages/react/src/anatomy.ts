@@ -8,6 +8,7 @@ import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
 import { fieldsetAnatomy as arkFieldsetAnatomy } from "@ark-ui/react/fieldset"
 import { fileUploadAnatomy as arkFileUploadAnatomy } from "@ark-ui/react/file-upload"
+import { listboxAnatomy as arkListboxAnatomy } from "@ark-ui/react/listbox"
 import { menuAnatomy as arkMenuAnatomy } from "@ark-ui/react/menu"
 import { popoverAnatomy as arkPopoverAnatomy } from "@ark-ui/react/popover"
 import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-group"
@@ -263,3 +264,4 @@ export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
+export const listboxAnatomy = arkListboxAnatomy

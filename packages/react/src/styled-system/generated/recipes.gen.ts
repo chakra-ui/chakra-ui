@@ -230,6 +230,8 @@ export interface CheckmarkVariant {
   size?: "xs" | "sm" | "md" | "lg" | undefined
   /** @default "solid" */
   variant?: "solid" | "outline" | "subtle" | "plain" | "inverted" | undefined
+  /** @default false */
+  filled?: boolean | undefined
 }
 
 export type CheckmarkVariantProps = {
@@ -1394,6 +1396,25 @@ export type TreeViewVariantMap = {
   [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
 }
 
+// Listbox
+
+export type ListboxSlot = "root" | "label" | "content" | "item" | "itemText" | "itemIndicator" | "itemGroup" | "itemGroupLabel"
+
+export interface ListboxVariant {
+  /** @default "subtle" */
+  variant?: "subtle" | "solid" | "plain" | undefined
+}
+
+export type ListboxVariantProps = {
+  [K in keyof ListboxVariant]?: ConditionalValue<ListboxVariant[K]> | undefined
+}
+
+export type ListboxVariantMap = {
+  [K in keyof ListboxVariant]: Array<ListboxVariant[K]>
+}
+
+
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1444,6 +1465,7 @@ export interface ConfigSlotRecipes {
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
+  listbox: SystemSlotRecipeFn<ListboxSlot, ListboxVariantProps, ListboxVariantMap>
 }
 
 export interface ConfigRecipeSlots {
