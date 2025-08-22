@@ -26,7 +26,7 @@ export { ListboxVirtualized as Virtualized } from "compositions/examples/listbox
 export { ListboxWithCheckmark as Checkmark } from "compositions/examples/listbox-with-checkmark"
 export { ListboxWithDescription as Description } from "compositions/examples/listbox-with-description"
 export { ListboxWithDialog as Dialog } from "compositions/examples/listbox-with-dialog"
-export { ListboxWithEmojiGrid as EmojiGrid } from "compositions/examples/listbox-with-grid"
+export { ListboxWithEmojiGrid as EmojiGrid } from "compositions/examples/listbox-with-emoji-grid"
 export { ListboxWithIcon as Icon } from "compositions/examples/listbox-with-icon"
 export { ListboxWithInput as Input } from "compositions/examples/listbox-with-input"
 export { ListboxWithPopover as Popover } from "compositions/examples/listbox-with-popover"
