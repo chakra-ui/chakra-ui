@@ -3,18 +3,21 @@
 import {
   Input,
   Listbox,
+  Square,
   createGridCollection,
   useFilter,
+  useListboxContext,
 } from "@chakra-ui/react"
 import emojibase from "emojibase-data/en/compact.json"
 import { useCallback, useMemo, useState } from "react"
+import { LuSmile } from "react-icons/lu"
 
 type Emoji = (typeof emojibase)[number]
 const emojis = emojibase
   .filter((e) => !e.label.startsWith("regional indicator"))
   .slice(0, 200) as Emoji[]
 
-export const ListboxWithGrid = () => {
+export const ListboxWithEmojiGrid = () => {
   let { contains } = useFilter({ sensitivity: "base" })
 
   const [items, setItems] = useState(emojis)
@@ -42,7 +45,8 @@ export const ListboxWithGrid = () => {
   )
 
   return (
-    <Listbox.Root collection={collection} maxW="380px">
+    <Listbox.Root collection={collection} maxW="min-content">
+      <SelectedEmoji />
       <Listbox.Input
         as={Input}
         placeholder="Type to filter frameworks..."
@@ -72,5 +76,15 @@ export const ListboxWithGrid = () => {
         ))}
       </Listbox.Content>
     </Listbox.Root>
+  )
+}
+
+const SelectedEmoji = () => {
+  const listbox = useListboxContext()
+  const [item] = listbox.selectedItems as Emoji[]
+  return (
+    <Square size="40px" bg="bg.muted" rounded="sm" textStyle="lg">
+      {item ? item.unicode : <LuSmile />}
+    </Square>
   )
 }
