@@ -1,8 +1,46 @@
 "use client"
 
 import { Listbox, createListCollection, useLiveRef } from "@chakra-ui/react"
-import { useVirtualizer } from "@tanstack/react-virtual"
-import { useEffect, useMemo, useRef } from "react"
+import { type VirtualItem, useVirtualizer } from "@tanstack/react-virtual"
+import React, { useEffect, useMemo, useRef } from "react"
+
+export const ListboxVirtualized = () => {
+  const virtual = useListboxVirtualizer({
+    count: countries.length,
+  })
+
+  const collection = useMemo(
+    () => createListCollection({ items: countries }),
+    [],
+  )
+
+  return (
+    <Listbox.Root
+      maxW="sm"
+      collection={collection}
+      scrollToIndexFn={virtual.scrollToIndexFn}
+    >
+      <Listbox.Label>Select Country ({countries.length} items)</Listbox.Label>
+      <Listbox.Content ref={virtual.scrollRef} maxH="300px">
+        <div {...virtual.getViewportProps()}>
+          {virtual.virtualItems.map((virtualItem) => {
+            const item = countries[virtualItem.index]
+            return (
+              <Listbox.Item
+                key={item.value}
+                item={item}
+                {...virtual.getItemProps({ virtualItem })}
+              >
+                <Listbox.ItemText>{item.label}</Listbox.ItemText>
+                <Listbox.ItemIndicator />
+              </Listbox.Item>
+            )
+          })}
+        </div>
+      </Listbox.Content>
+    </Listbox.Root>
+  )
+}
 
 interface ScrollToIndexDetails {
   index: number
@@ -10,9 +48,8 @@ interface ScrollToIndexDetails {
   immediate?: boolean
 }
 
-export const ListboxVirtualized = () => {
-  const contentRef = useRef<HTMLDivElement>(null)
-
+function useListboxVirtualizer(props: { count: number }) {
+  const scrollRef = useRef<HTMLDivElement | null>(null)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const clearScrollTimeout = () => {
@@ -23,20 +60,15 @@ export const ListboxVirtualized = () => {
   }
 
   const virtualizer = useVirtualizer({
-    count: countries.length,
-    getScrollElement: () => contentRef.current,
+    count: props.count,
+    getScrollElement: () => scrollRef.current,
     estimateSize: () => 32,
     overscan: 10,
   })
 
   const virtualizerRef = useLiveRef(virtualizer)
 
-  const collection = useMemo(
-    () => createListCollection({ items: countries }),
-    [],
-  )
-
-  const handleScrollToIndexFn = (details: ScrollToIndexDetails) => {
+  const scrollToIndexFn = (details: ScrollToIndexDetails) => {
     clearScrollTimeout()
 
     const scrollToIndex = () => {
@@ -68,48 +100,49 @@ export const ListboxVirtualized = () => {
   // Cleanup timeout on unmount
   useEffect(() => clearScrollTimeout, [])
 
-  return (
-    <Listbox.Root
-      maxW="sm"
-      collection={collection}
-      scrollToIndexFn={handleScrollToIndexFn}
-    >
-      <Listbox.Label>Select Country ({countries.length} items)</Listbox.Label>
-      <Listbox.Content ref={contentRef} maxH="300px">
-        <div
-          style={{
-            height: `${virtualizer.getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          {virtualizer.getVirtualItems().map((virtualItem) => {
-            const item = countries[virtualItem.index]
-            return (
-              <Listbox.Item
-                key={item.value}
-                item={item}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: `${virtualItem.size}px`,
-                  transform: `translateY(${virtualItem.start}px)`,
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                <Listbox.ItemText>{item.label}</Listbox.ItemText>
-                <Listbox.ItemIndicator />
-              </Listbox.Item>
-            )
-          })}
-        </div>
-      </Listbox.Content>
-    </Listbox.Root>
-  )
+  const totalSize = virtualizer.getTotalSize()
+
+  return {
+    scrollRef,
+    scrollToIndexFn,
+    totalSize,
+    virtualItems: virtualizer.getVirtualItems(),
+    getViewportProps(
+      props: React.ComponentProps<"div"> = {},
+    ): React.ComponentProps<"div"> {
+      return {
+        ...props,
+        style: {
+          ...props.style,
+          height: `${totalSize}px`,
+          width: "100%",
+          position: "relative",
+        },
+      }
+    },
+    getItemProps(
+      props: React.ComponentProps<"div"> & { virtualItem: VirtualItem },
+    ): React.ComponentProps<"div"> {
+      const { virtualItem, ...rest } = props
+      return {
+        ...rest,
+        "aria-posinset": virtualItem.index + 1,
+        "aria-setsize": totalSize,
+        style: {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          ...rest.style,
+          height: `${virtualItem.size}px`,
+          transform: `translateY(${virtualItem.start}px)`,
+        },
+      }
+    },
+  }
 }
 
 export const countries = [
