@@ -21,6 +21,7 @@ import { fieldsetSlotRecipe } from "./recipes/fieldset"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
+import { listboxSlotRecipe } from "./recipes/listbox"
 import { menuSlotRecipe } from "./recipes/menu"
 import { nativeSelectSlotRecipe } from "./recipes/native-select"
 import { numberInputSlotRecipe } from "./recipes/number-input"
@@ -70,6 +71,7 @@ export const slotRecipes = {
   fileUpload: fileUploadSlotRecipe,
   hoverCard: hoverCardSlotRecipe,
   list: listSlotRecipe,
+  listbox: listboxSlotRecipe,
   menu: menuSlotRecipe,
   nativeSelect: nativeSelectSlotRecipe,
   numberInput: numberInputSlotRecipe,
