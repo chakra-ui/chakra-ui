@@ -54,52 +54,54 @@ export const ListboxWithDialog = () => {
 
         <Portal>
           <Dialog.Backdrop />
-          <Dialog.Content>
-            <Listbox.Root
-              collection={collection}
-              value={selectedFrameworks}
-              onValueChange={handleSelectionChange}
-              variant="plain"
-            >
-              <Dialog.Header>
-                <Listbox.Input
-                  placeholder="Search for apps or command..."
-                  minH="6"
-                  outline="0"
-                  width="full"
-                  onChange={(e) => filter(e.currentTarget.value)}
-                />
-              </Dialog.Header>
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Listbox.Root
+                collection={collection}
+                value={selectedFrameworks}
+                onValueChange={handleSelectionChange}
+                variant="plain"
+              >
+                <Dialog.Header>
+                  <Listbox.Input
+                    placeholder="Search for apps or command..."
+                    minH="6"
+                    outline="0"
+                    width="full"
+                    onChange={(e) => filter(e.currentTarget.value)}
+                  />
+                </Dialog.Header>
 
-              <Listbox.Content px="3" maxH="300px">
-                {collection.group().map(([group, items]) => (
-                  <Listbox.ItemGroup key={group}>
-                    <Listbox.ItemGroupLabel textTransform="capitalize">
-                      {group}
-                    </Listbox.ItemGroupLabel>
-                    {items.map((item) => (
-                      <Listbox.Item
-                        item={item}
-                        key={item.value}
-                        justifyContent="space-between"
-                      >
-                        <Listbox.ItemText>{item.label}</Listbox.ItemText>
-                        <Span fontSize="xs" color="fg.muted">
-                          {item.type}
-                        </Span>
-                      </Listbox.Item>
-                    ))}
-                  </Listbox.ItemGroup>
-                ))}
-              </Listbox.Content>
+                <Listbox.Content px="3" maxH="300px">
+                  {collection.group().map(([group, items]) => (
+                    <Listbox.ItemGroup key={group}>
+                      <Listbox.ItemGroupLabel textTransform="capitalize">
+                        {group}
+                      </Listbox.ItemGroupLabel>
+                      {items.map((item) => (
+                        <Listbox.Item
+                          item={item}
+                          key={item.value}
+                          justifyContent="space-between"
+                        >
+                          <Listbox.ItemText>{item.label}</Listbox.ItemText>
+                          <Span fontSize="xs" color="fg.muted">
+                            {item.type}
+                          </Span>
+                        </Listbox.Item>
+                      ))}
+                    </Listbox.ItemGroup>
+                  ))}
+                </Listbox.Content>
 
-              <Dialog.Footer textStyle="xs" borderTopWidth="1px">
-                <CommandItem label="Press Esc to close" keys={["Esc"]} />
-                <CommandItem label="Open Application" keys={["⏎"]} />
-                <CommandItem label="Actions" keys={["⌘", "K"]} />
-              </Dialog.Footer>
-            </Listbox.Root>
-          </Dialog.Content>
+                <Dialog.Footer textStyle="xs" borderTopWidth="1px">
+                  <CommandItem label="Press Esc to close" keys={["Esc"]} />
+                  <CommandItem label="Open Application" keys={["⏎"]} />
+                  <CommandItem label="Actions" keys={["⌘", "K"]} />
+                </Dialog.Footer>
+              </Listbox.Root>
+            </Dialog.Content>
+          </Dialog.Positioner>
         </Portal>
       </Dialog.Root>
 

@@ -4,6 +4,7 @@ import {
   Button,
   Listbox,
   Popover,
+  Portal,
   useFilter,
   useListCollection,
   useListbox,
@@ -54,33 +55,37 @@ export const ListboxWithPopover = () => {
         </Button>
       </Popover.Trigger>
 
-      <Popover.Content _closed={{ animation: "none" }}>
-        <Popover.Body p="0">
-          <Listbox.RootProvider value={listbox} gap="0" overflow="hidden">
-            <Listbox.Input
-              minH="10"
-              px="3"
-              roundedTop="l2"
-              outline="0"
-              value={inputValue}
-              onChange={(e) => setInputValueFn(e.currentTarget.value)}
-            />
-            <Listbox.Content
-              borderWidth="0"
-              borderTopWidth="1px"
-              roundedTop="0"
-              gap="0"
-            >
-              {collection.items.map((framework) => (
-                <Listbox.Item item={framework} key={framework.value}>
-                  <Listbox.ItemText>{framework.label}</Listbox.ItemText>
-                  <Listbox.ItemIndicator />
-                </Listbox.Item>
-              ))}
-            </Listbox.Content>
-          </Listbox.RootProvider>
-        </Popover.Body>
-      </Popover.Content>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content _closed={{ animation: "none" }}>
+            <Popover.Body p="0">
+              <Listbox.RootProvider value={listbox} gap="0" overflow="hidden">
+                <Listbox.Input
+                  minH="10"
+                  px="3"
+                  roundedTop="l2"
+                  outline="0"
+                  value={inputValue}
+                  onChange={(e) => setInputValueFn(e.currentTarget.value)}
+                />
+                <Listbox.Content
+                  borderWidth="0"
+                  borderTopWidth="1px"
+                  roundedTop="0"
+                  gap="0"
+                >
+                  {collection.items.map((framework) => (
+                    <Listbox.Item item={framework} key={framework.value}>
+                      <Listbox.ItemText>{framework.label}</Listbox.ItemText>
+                      <Listbox.ItemIndicator />
+                    </Listbox.Item>
+                  ))}
+                </Listbox.Content>
+              </Listbox.RootProvider>
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
     </Popover.Root>
   )
 }
