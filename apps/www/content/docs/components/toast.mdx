@@ -89,6 +89,12 @@ of the promise.
 
 <ExampleTabs name="toaster-with-promise" />
 
+### Update
+
+Update an in-progress toast using `toaster.update(id, options)`.
+
+<ExampleTabs name="toaster-with-update" />
+
 ### Custom Duration
 
 Use the `duration` prop to set the duration of the toast.
@@ -147,9 +153,19 @@ const toaster = createToaster({
 })
 ```
 
+### Page Idle Behavior
+
+Pause toast timers when the page is idle/hidden.
+
+```tsx title="@/components/ui/toaster.tsx"
+const toaster = createToaster({
+  pauseOnPageIdle: true,
+})
+```
+
 ### Offset
 
-Set the `offset` prop in the `createToaster` function to offset the toasts from
+Set the `offsets` prop in the `createToaster` function to offset the toasts from
 the edges of the screen.
 
 ```jsx title="@/components/ui/toaster.tsx"
@@ -158,7 +174,7 @@ const toaster = createToaster({
 })
 ```
 
-Alternatively, you can use the `offset` prop to set the offset for each edge of
+Alternatively, you can use the `offsets` prop to set the offset for each edge of
 the screen.
 
 ```jsx title="@/components/ui/toaster.tsx"
@@ -166,3 +182,13 @@ const toaster = createToaster({
   offsets: { left: "20px", top: "20px", right: "20px", bottom: "20px" },
 })
 ```
+
+## Props
+
+<PropTable component="Toaster" part="Toaster" />
+
+<PropTable component="Toast" part="Root" />
+<PropTable component="Toast" part="Title" />
+<PropTable component="Toast" part="Description" />
+<PropTable component="Toast" part="ActionTrigger" />
+<PropTable component="Toast" part="CloseTrigger" />
