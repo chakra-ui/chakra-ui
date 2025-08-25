@@ -13,7 +13,6 @@ export const listboxSlotRecipe = defineSlotRecipe({
     },
     content: {
       display: "flex",
-      zIndex: "dropdown",
       maxH: "96",
       p: "1",
       gap: "1",
