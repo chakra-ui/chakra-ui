@@ -64,6 +64,7 @@ export const ListboxWithPopover = () => {
                   minH="10"
                   px="3"
                   roundedTop="l2"
+                  bg="transparent"
                   outline="0"
                   value={inputValue}
                   onChange={(e) => setInputValueFn(e.currentTarget.value)}
