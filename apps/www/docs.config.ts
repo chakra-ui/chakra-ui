@@ -208,6 +208,7 @@ const docsLinks: NavItem = {
         {
           title: "Utilities",
           items: [
+            { title: "Checkmark", url: "checkmark" },
             { title: "ClientOnly", url: "client-only" },
             { title: "EnvironmentProvider", url: "environment-provider" },
             { title: "For", url: "for" },
