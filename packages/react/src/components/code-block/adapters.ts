@@ -19,14 +19,17 @@ type ShikiHighlighterBaseOptions<T extends ShikiHighlighterBase> = Parameters<
 
 export interface ShikiAdapterOptions<T extends ShikiHighlighterBase> {
   load: () => Promise<T>
+  loadSync?: () => T
   highlightOptions?: ShikiHighlighterBaseOptions<T>
+  theme: string | Record<string, string>
 }
 
 export function createShikiAdapter<T extends ShikiHighlighterBase>(
   opts: ShikiAdapterOptions<T>,
 ): CodeBlockAdapter {
-  const { load, highlightOptions } = opts
+  const { load, loadSync, highlightOptions, theme } = opts
   return {
+    loadContextSync: loadSync,
     loadContext: load,
     unloadContext(ctx) {
       ctx?.dispose?.()
@@ -37,12 +40,19 @@ export function createShikiAdapter<T extends ShikiHighlighterBase>(
           return { code, highlighted: false }
         }
 
+        const colorScheme = meta?.colorScheme || "dark"
+        const resolvedTheme =
+          typeof theme === "string" ? theme : theme[colorScheme]
+
+        if (!resolvedTheme) {
+          throw new Error(`Theme not found for color scheme: ${colorScheme}`)
+        }
+
         return {
           highlighted: true,
           code: removeWrapperTags(
             ctx.codeToHtml(code, {
-              theme:
-                meta?.colorScheme === "dark" ? "github-dark" : "github-light",
+              theme: resolvedTheme,
               ...highlightOptions,
               lang: language,
               transformers: [
@@ -105,14 +115,16 @@ export interface HighlightJsAdapterOptions<
   T extends HighlightJsHighlighterBase,
 > {
   load: () => Promise<T>
+  loadSync?: () => T
   highlightOptions?: HighlightJsHighlighterBaseOptions
 }
 
 export function createHighlightJsAdapter<T extends HighlightJsHighlighterBase>(
   opts: HighlightJsAdapterOptions<T>,
 ): CodeBlockAdapter {
-  const { load, highlightOptions } = opts
+  const { load, loadSync, highlightOptions } = opts
   return {
+    loadContextSync: loadSync,
     loadContext: load,
     unloadContext(ctx) {
       const langs = ctx?.listLanguages?.()

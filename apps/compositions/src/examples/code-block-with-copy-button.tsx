@@ -43,4 +43,5 @@ const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
       themes: ["github-dark"],
     })
   },
+  theme: "github-dark",
 })
