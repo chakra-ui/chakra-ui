@@ -31,7 +31,6 @@ export const ListboxWithFormSubmit = () => {
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
         <Field.Root width="320px">
-          <Field.Label>Framework</Field.Label>
           <Listbox.Root collection={frameworks}>
             <Listbox.Label>Select framework</Listbox.Label>
             <Listbox.Content>

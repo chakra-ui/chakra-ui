@@ -35,7 +35,6 @@ export const ListboxWithHookForm = () => {
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start">
         <Field.Root invalid={!!errors.framework} width="320px">
-          <Field.Label>Framework</Field.Label>
           <Controller
             control={control}
             name="framework"
