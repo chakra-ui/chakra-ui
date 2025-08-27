@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import type { CodeBlockAdapter, CodeBlockHighlighter } from "./types"
 
 export interface UseCodeHighlightProps extends CodeBlockAdapter {}
@@ -8,22 +8,23 @@ export interface UseCodeHighlightReturn extends CodeBlockAdapter {
 }
 
 export function useCodeHighlight(props: UseCodeHighlightProps) {
-  const { loadContext, getHighlighter, unloadContext } = props
+  const { loadContext, loadContextSync, getHighlighter, unloadContext } = props
 
-  const [context, setContext] = useState<any>(null)
+  const [context, setContext] = useState<any>(() => loadContextSync?.() ?? null)
+  const contextRef = useRef<any>(context)
+
   const highlight = useMemo(
     () => getHighlighter(context),
     [getHighlighter, context],
   )
 
   useEffect(() => {
-    let ctx: any = null
     loadContext?.().then((c) => {
-      ctx = c
+      contextRef.current = c
       setContext(c)
     })
     return () => {
-      unloadContext?.(ctx)
+      unloadContext?.(contextRef.current)
     }
   }, [loadContext, unloadContext])
 

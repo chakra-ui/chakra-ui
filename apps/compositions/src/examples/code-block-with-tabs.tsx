@@ -63,9 +63,10 @@ const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["python", "typescript", "java"],
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     })
   },
+  theme: "github-dark",
 })
 
 const files = [

@@ -98,6 +98,12 @@ export const radiomarkRecipe = defineRecipe({
         boxSize: "6",
       },
     },
+
+    filled: {
+      true: {
+        bg: "bg",
+      },
+    },
   },
 
   defaultVariants: {

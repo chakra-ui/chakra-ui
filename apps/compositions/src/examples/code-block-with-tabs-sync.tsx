@@ -41,9 +41,10 @@ const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
     const { createHighlighter } = await import("shiki")
     return createHighlighter({
       langs: ["bash"],
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     })
   },
+  theme: "github-dark",
 })
 
 const CodeTabs = () => {
