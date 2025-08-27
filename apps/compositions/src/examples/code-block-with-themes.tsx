@@ -19,7 +19,7 @@ export const CodeBlockWithThemes = () => {
 
   return (
     <CodeBlock.AdapterProvider value={shikiAdapter}>
-      <ClientOnly>
+      <ClientOnly fallback={<div>Loading...</div>}>
         {() => (
           <CodeBlock.Root
             code={file.code}
@@ -45,5 +45,9 @@ const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
       langs: ["tsx", "scss", "html", "bash", "json"],
       themes: ["github-dark", "github-light"],
     })
+  },
+  theme: {
+    light: "github-light",
+    dark: "github-dark",
   },
 })

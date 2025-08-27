@@ -57,6 +57,10 @@ export interface CodeBlockAdapter {
    */
   loadContext?: (() => Promise<any>) | undefined
   /**
+   * Load the context for the code block synchronously.
+   */
+  loadContextSync?: (() => any) | undefined
+  /**
    * Get the highlighter for the code block.
    */
   getHighlighter: (ctx: any) => CodeBlockHighlighter

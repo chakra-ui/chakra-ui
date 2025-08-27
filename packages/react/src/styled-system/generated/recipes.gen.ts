@@ -247,6 +247,8 @@ export interface RadiomarkVariant {
   variant?: "solid" | "subtle" | "outline" | "inverted" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | undefined
+  /** @default false */
+  filled?: boolean | undefined
 }
 
 export type RadiomarkVariantProps = {
