@@ -106,6 +106,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         content: {
           minW: "8rem",
           padding: "1",
+          scrollPadding: "1",
         },
         item: {
           gap: "1",
@@ -118,6 +119,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         content: {
           minW: "8rem",
           padding: "1.5",
+          scrollPadding: "1.5",
         },
         item: {
           gap: "2",

@@ -149,6 +149,20 @@ the top horizontal menu includes common menu items.
 
 <ExampleTabs name="menu-with-mixed-layout" />
 
+### Overflow
+
+When you have a long list of menu items, you can set a `maxH` prop on the
+`Menu.Content` to create a scrollable menu.
+
+:::note
+
+The content has a default `maxHeight: "var(--available-height)"`, which is the
+maximum available height for the content relative to the viewport.
+
+:::
+
+<ExampleTabs name="menu-with-overflow" />
+
 ### Hide When Detached
 
 When the menu is rendered in an scrolling container, set the
