@@ -19,6 +19,7 @@ export { ScrollAreaScrollToPosition as ScrollToPosition } from "compositions/exa
 export { ScrollAreaScrollToSide as ScrollToSide } from "compositions/examples/scroll-area-scroll-to-side"
 export { ScrollAreaStickToBottom as StickToBottom } from "compositions/examples/scroll-area-stick-to-bottom"
 export { ScrollAreaVirtualization as Virtualization } from "compositions/examples/scroll-area-virtualization"
+export { ScrollAreaWithMenu as WithMenu } from "compositions/examples/scroll-area-with-menu"
 export { ScrollAreaWithRtl as RTL } from "compositions/examples/scroll-area-with-rtl"
 export { ScrollAreaWithScrollShadow as ScrollShadow } from "compositions/examples/scroll-area-with-scroll-shadow"
 export { ScrollAreaWithSizes as Sizes } from "compositions/examples/scroll-area-with-sizes"
