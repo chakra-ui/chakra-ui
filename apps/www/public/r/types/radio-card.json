@@ -134,7 +134,17 @@
         "defaultValue": "horizontal",
         "isRequired": false,
         "description": "The orientation of the component"
-      }
+      },
+       "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The controlled value of the radio card"
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called once a radio card item is selected"
+      },
     }
   },
   "RootProvider": {
