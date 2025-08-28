@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  Box,
-  Input,
-  Listbox,
-  useFilter,
-  useListCollection,
-} from "@chakra-ui/react"
+import { Input, Listbox, useFilter, useListCollection } from "@chakra-ui/react"
 
 export const ListboxWithInput = () => {
   const { contains } = useFilter({ sensitivity: "base" })
@@ -36,18 +30,14 @@ export const ListboxWithInput = () => {
         onChange={(e) => filter(e.target.value)}
       />
       <Listbox.Content maxH="200px">
-        {collection.items.length > 0 ? (
-          collection.items.map((framework) => (
-            <Listbox.Item item={framework} key={framework.value}>
-              <Listbox.ItemText>{framework.label}</Listbox.ItemText>
-              <Listbox.ItemIndicator />
-            </Listbox.Item>
-          ))
-        ) : (
-          <Box p="2" textAlign="center" color="fg.muted" fontSize="sm">
-            No frameworks found
-          </Box>
-        )}
+        {collection.items.map((framework) => (
+          <Listbox.Item item={framework} key={framework.value}>
+            <Listbox.ItemText>{framework.label}</Listbox.ItemText>
+            <Listbox.ItemIndicator />
+          </Listbox.Item>
+        ))}
+
+        <Listbox.Empty>No frameworks found</Listbox.Empty>
       </Listbox.Content>
     </Listbox.Root>
   )

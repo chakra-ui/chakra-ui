@@ -1,5 +1,6 @@
 export {
   ListboxContent as Content,
+  ListboxEmpty as Empty,
   ListboxInput as Input,
   ListboxItem as Item,
   ListboxItemGroup as ItemGroup,
@@ -30,4 +31,5 @@ export type {
   ListboxValueChangeDetails as ValueChangeDetails,
   ListboxValueTextProps as ValueTextProps,
   ListboxRootComponent as RootComponent,
+  ListboxEmptyProps as EmptyProps,
 } from "./listbox"

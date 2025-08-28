@@ -18,7 +18,7 @@ const emojis = emojibase
   .slice(0, 200) as Emoji[]
 
 export const ListboxWithEmojiGrid = () => {
-  let { contains } = useFilter({ sensitivity: "base" })
+  const { contains } = useFilter({ sensitivity: "base" })
 
   const [items, setItems] = useState(emojis)
 

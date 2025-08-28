@@ -27,6 +27,8 @@ export const listboxSlotRecipe = defineSlotRecipe({
         flexDirection: "column",
         overflowY: "auto",
       },
+      "--listbox-item-padding-x": "spacing.2",
+      "--listbox-item-padding-y": "spacing.1.5",
     },
     item: {
       position: "relative",
@@ -39,9 +41,8 @@ export const listboxSlotRecipe = defineSlotRecipe({
       flex: "1",
       textAlign: "start",
       borderRadius: "l1",
-      py: "1.5",
-      px: "2",
-
+      py: "var(--listbox-item-padding-y)",
+      px: "var(--listbox-item-padding-x)",
       _highlighted: {
         outline: "2px solid",
         outlineColor: "border.emphasized",
@@ -50,6 +51,11 @@ export const listboxSlotRecipe = defineSlotRecipe({
         pointerEvents: "none",
         opacity: "0.5",
       },
+    },
+
+    empty: {
+      py: "var(--listbox-item-padding-y)",
+      px: "var(--listbox-item-padding-x)",
     },
 
     itemText: {

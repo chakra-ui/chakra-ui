@@ -183,6 +183,18 @@ export const ListboxLabel = withContext<HTMLLabelElement, ListboxLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ListboxEmptyProps
+  extends HTMLChakraProps<"div", ArkListbox.EmptyBaseProps>,
+    UnstyledProp {}
+
+export const ListboxEmpty = withContext<HTMLDivElement, ListboxEmptyProps>(
+  ArkListbox.Empty,
+  "empty",
+  { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const ListboxContext = ArkListbox.Context
 export const ListboxItemContext = ArkListbox.ItemContext
 

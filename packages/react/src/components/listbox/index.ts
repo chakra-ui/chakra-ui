@@ -13,11 +13,13 @@ export {
   ListboxRoot,
   ListboxRootProvider,
   ListboxValueText,
+  ListboxEmpty,
   useListboxStyles,
 } from "./listbox"
 
 export type {
   ListboxContentProps,
+  ListboxEmptyProps,
   ListboxHighlightChangeDetails,
   ListboxInputProps,
   ListboxItemGroupLabelProps,

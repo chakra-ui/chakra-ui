@@ -230,7 +230,6 @@ export interface CheckmarkVariant {
   size?: "xs" | "sm" | "md" | "lg" | undefined
   /** @default "solid" */
   variant?: "solid" | "outline" | "subtle" | "plain" | "inverted" | undefined
-  /** @default false */
   filled?: boolean | undefined
 }
 
@@ -247,7 +246,6 @@ export interface RadiomarkVariant {
   variant?: "solid" | "subtle" | "outline" | "inverted" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | undefined
-  /** @default false */
   filled?: boolean | undefined
 }
 
@@ -736,6 +734,34 @@ export type ListVariantMap = {
   [K in keyof ListVariant]: Array<ListVariant[K]>
 }
 
+// Listbox
+
+export type ListboxSlot =
+  | "label"
+  | "input"
+  | "item"
+  | "itemText"
+  | "itemIndicator"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "content"
+  | "root"
+  | "valueText"
+  | "empty"
+
+export interface ListboxVariant {
+  /** @default "subtle" */
+  variant?: "subtle" | "solid" | "plain" | undefined
+}
+
+export type ListboxVariantProps = {
+  [K in keyof ListboxVariant]?: ConditionalValue<ListboxVariant[K]> | undefined
+}
+
+export type ListboxVariantMap = {
+  [K in keyof ListboxVariant]: Array<ListboxVariant[K]>
+}
+
 // Menu
 
 export type MenuSlot =
@@ -1056,6 +1082,7 @@ export type ComboboxSlot =
   | "list"
   | "positioner"
   | "trigger"
+  | "empty"
   | "indicatorGroup"
   | "empty"
 
@@ -1398,25 +1425,6 @@ export type TreeViewVariantMap = {
   [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
 }
 
-// Listbox
-
-export type ListboxSlot = "root" | "label" | "content" | "item" | "itemText" | "itemIndicator" | "itemGroup" | "itemGroupLabel"
-
-export interface ListboxVariant {
-  /** @default "subtle" */
-  variant?: "subtle" | "solid" | "plain" | undefined
-}
-
-export type ListboxVariantProps = {
-  [K in keyof ListboxVariant]?: ConditionalValue<ListboxVariant[K]> | undefined
-}
-
-export type ListboxVariantMap = {
-  [K in keyof ListboxVariant]: Array<ListboxVariant[K]>
-}
-
-
-
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1439,6 +1447,7 @@ export interface ConfigSlotRecipes {
   fileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps, FileUploadVariantMap>
   hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps, HoverCardVariantMap>
   list: SystemSlotRecipeFn<ListSlot, ListVariantProps, ListVariantMap>
+  listbox: SystemSlotRecipeFn<ListboxSlot, ListboxVariantProps, ListboxVariantMap>
   menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps, MenuVariantMap>
   nativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps, NativeSelectVariantMap>
   numberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps, NumberInputVariantMap>
@@ -1467,7 +1476,6 @@ export interface ConfigSlotRecipes {
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
-  listbox: SystemSlotRecipeFn<ListboxSlot, ListboxVariantProps, ListboxVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1492,6 +1500,7 @@ export interface ConfigRecipeSlots {
   fileUpload: FileUploadSlot
   hoverCard: HoverCardSlot
   list: ListSlot
+  listbox: ListboxSlot
   menu: MenuSlot
   nativeSelect: NativeSelectSlot
   numberInput: NumberInputSlot
