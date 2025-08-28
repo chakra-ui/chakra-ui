@@ -11,7 +11,8 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLDivElement"
   },
   "Item": {
     "props": {
@@ -52,8 +53,21 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false
       }
-    }
+    },
+    "element": "HTMLLabelElement"
   },
   "ItemText": {
     "props": {
@@ -67,7 +81,8 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLSpanElement"
   },
   "Label": {
     "props": {
@@ -81,7 +96,8 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -99,6 +115,57 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether to remove the component's style."
+      },
+      "defaultValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group will be disabled"
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The associate form of the underlying input."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  label: string\n  indicator: string\n  item: (value: string) => string\n  itemLabel: (value: string) => string\n  itemControl: (value: string) => string\n  itemHiddenInput: (value: string) => string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the radio. Useful for composition."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The name of the input fields in the radio\n(Useful for form submission)."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called once a radio is checked"
+      },
+      "orientation": {
+        "type": "\"vertical\" | \"horizontal\"",
+        "isRequired": false,
+        "description": "The orientation of the component",
+        "defaultValue": "horizontal"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkbox is read-only"
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The controlled value of the radio group"
       },
       "colorPalette": {
         "defaultValue": "gray",
@@ -128,14 +195,9 @@
         "defaultValue": "start",
         "isRequired": false,
         "description": "The align of the component"
-      },
-      "orientation": {
-        "type": "\"vertical\" | \"horizontal\"",
-        "defaultValue": "horizontal",
-        "isRequired": false,
-        "description": "The orientation of the component"
       }
-    }
+    },
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -148,8 +210,13 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseRadioGroupReturn",
+        "isRequired": true
       }
-    }
+    },
+    "element": "HTMLDivElement"
   },
   "ItemAddon": {
     "props": {
@@ -210,5 +277,25 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     }
+  },
+  "Indicator": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ItemHiddenInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
   }
 }
