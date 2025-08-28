@@ -19,6 +19,8 @@ export type {
   PaginationNextTriggerProps,
   PaginationEllipsisProps,
   PaginationItemProps,
+  PaginationPageChangeDetails,
+  PaginationPageSizeChangeDetails,
   PaginationPageTextProps,
   PaginationItemsProps,
 } from "./pagination"
