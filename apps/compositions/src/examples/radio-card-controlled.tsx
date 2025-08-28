@@ -1,3 +1,5 @@
+"use client"
+
 import { HStack, RadioCard } from "@chakra-ui/react"
 
 export const RadioCardControlled = () => {
