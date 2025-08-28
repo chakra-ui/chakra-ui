@@ -1,19 +1,5 @@
 {
-  "Addon": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
-  "Control": {
+  "ItemControl": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -28,8 +14,36 @@
     },
     "element": "HTMLDivElement"
   },
-  "Indicator": {
+  "Item": {
     "props": {
+      "icon": {
+        "type": "React.ReactElement",
+        "isRequired": false
+      },
+      "label": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "description": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "addon": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      },
+      "indicator": {
+        "type": "React.ReactNode | null",
+        "isRequired": false
+      },
+      "indicatorPlacement": {
+        "type": "\"start\" | \"end\" | \"inside\"",
+        "isRequired": false
+      },
+      "inputProps": {
+        "type": "React.InputHTMLAttributes<HTMLInputElement>",
+        "isRequired": false
+      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -40,12 +54,35 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
-      "indeterminate": {
+      "value": {
+        "type": "string",
+        "isRequired": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      },
+      "invalid": {
         "type": "boolean",
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLLabelElement"
+  },
+  "ItemText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
   },
   "Label": {
     "props": {
@@ -60,7 +97,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -79,25 +116,20 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "checked": {
-        "type": "CheckedState",
+      "defaultValue": {
+        "type": "string",
         "isRequired": false,
-        "description": "The controlled checked state of the checkbox"
-      },
-      "defaultChecked": {
-        "type": "CheckedState",
-        "isRequired": false,
-        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox."
+        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group."
       },
       "disabled": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is disabled"
+        "description": "If `true`, the radio group will be disabled"
       },
       "form": {
         "type": "string",
         "isRequired": false,
-        "description": "The id of the form that the checkbox belongs to."
+        "description": "The associate form of the underlying input."
       },
       "id": {
         "type": "string",
@@ -105,40 +137,35 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{ root: string; hiddenInput: string; control: string; label: string }>",
+        "type": "Partial<{\n  root: string\n  label: string\n  indicator: string\n  item: (value: string) => string\n  itemLabel: (value: string) => string\n  itemControl: (value: string) => string\n  itemHiddenInput: (value: string) => string\n}>",
         "isRequired": false,
-        "description": "The ids of the elements in the checkbox. Useful for composition."
-      },
-      "invalid": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the checkbox is invalid"
+        "description": "The ids of the elements in the radio. Useful for composition."
       },
       "name": {
         "type": "string",
         "isRequired": false,
-        "description": "The name of the input field in a checkbox.\nUseful for form submission."
+        "description": "The name of the input fields in the radio\n(Useful for form submission)."
       },
-      "onCheckedChange": {
-        "type": "(details: CheckedChangeDetails) => void",
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
         "isRequired": false,
-        "description": "The callback invoked when the checked state changes."
+        "description": "Function called once a radio is checked"
+      },
+      "orientation": {
+        "type": "\"vertical\" | \"horizontal\"",
+        "isRequired": false,
+        "description": "The orientation of the component",
+        "defaultValue": "horizontal"
       },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the checkbox is read-only"
       },
-      "required": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Whether the checkbox is required"
-      },
       "value": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"on\"",
-        "description": "The value of checkbox input. Useful for form submission."
+        "description": "The controlled value of the radio group"
       },
       "colorPalette": {
         "defaultValue": "gray",
@@ -168,15 +195,9 @@
         "defaultValue": "start",
         "isRequired": false,
         "description": "The align of the component"
-      },
-      "orientation": {
-        "type": "\"vertical\" | \"horizontal\"",
-        "defaultValue": "horizontal",
-        "isRequired": false,
-        "description": "The orientation of the component"
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLDivElement"
   },
   "RootProvider": {
     "props": {
@@ -191,13 +212,13 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "value": {
-        "type": "UseCheckboxReturn",
+        "type": "UseRadioGroupReturn",
         "isRequired": true
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLDivElement"
   },
-  "Content": {
+  "ItemAddon": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -211,7 +232,25 @@
       }
     }
   },
-  "Description": {
+  "ItemIndicator": {
+    "props": {
+      "checked": {
+        "type": "React.ReactElement | undefined",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ItemContent": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -225,57 +264,22 @@
       }
     }
   },
-  "Group": {
+  "ItemDescription": {
     "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
       "asChild": {
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "defaultValue": {
-        "type": "string[]",
-        "isRequired": false,
-        "description": "The initial value of `value` when uncontrolled"
-      },
-      "disabled": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is disabled"
-      },
-      "invalid": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is invalid"
-      },
-      "name": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The name of the input fields in the checkbox group\n(Useful for form submission)."
-      },
-      "onValueChange": {
-        "type": "(value: string[]) => void",
-        "isRequired": false,
-        "description": "The callback to call when the value changes"
-      },
-      "readOnly": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "If `true`, the checkbox group is read-only"
-      },
-      "value": {
-        "type": "string[]",
-        "isRequired": false,
-        "description": "The controlled value of the checkbox group"
       }
-    },
-    "element": "HTMLDivElement"
+    }
   },
-  "GroupProvider": {
+  "Indicator": {
     "props": {
-      "value": {
-        "type": "UseCheckboxGroupContext",
-        "isRequired": true
-      },
       "asChild": {
         "type": "boolean",
         "isRequired": false,
@@ -284,7 +288,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "HiddenInput": {
+  "ItemHiddenInput": {
     "props": {
       "asChild": {
         "type": "boolean",
