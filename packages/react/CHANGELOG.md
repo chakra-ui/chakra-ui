@@ -1,5 +1,71 @@
 # @chakra-ui/react
 
+## 3.26.0
+
+### Minor Changes
+
+- [`b9eede5`](https://github.com/chakra-ui/chakra-ui/commit/b9eede50a104bee4e74cb54704f121c973652a0b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Listbox
+  [New]**: Add new component with support for single/multi-select, grouping,
+  virtualization, controlled state, icons, descriptions, and accessibility
+  features.
+
+  This component can be used to build command palettes, dropdowns with search,
+  and much more.
+
+  ```tsx
+  <Listbox.Root collection={frameworks} width="320px">
+    <Listbox.Label>Select framework</Listbox.Label>
+    <Listbox.Content>
+      {frameworks.items.map((framework) => (
+        <Listbox.Item item={framework} key={framework.value}>
+          <Listbox.ItemText>{framework.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator />
+        </Listbox.Item>
+      ))}
+    </Listbox.Content>
+  </Listbox.Root>
+  ```
+
+  - **Hover Card**: Add support for `disabled` prop
+  - **Select, Menu**: Fix issue where disabled items could be reached via
+    typeahead
+  - **Color Picker**: Fix issue where color picker was not working correctly in
+    RTL mode
+  - **Number Input**
+    - Omit the input `pattern` when `formatOptions` is provided. This prevents
+      native pattern validation from conflicting with formatted values (e.g.,
+      currency or percent).
+    - Handle empty values consistently across all format options.
+    - Add `data-scrubbing` attribute to the number input parts.
+
+### Patch Changes
+
+- [`b9eede5`](https://github.com/chakra-ui/chakra-ui/commit/b9eede50a104bee4e74cb54704f121c973652a0b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **CodeBlock**: Add
+  configurable theme support and sync loading for Shiki adapter
+  - **Theme configuration is now required** - The `theme` property must be
+    explicitly provided to `createShikiAdapter`
+  - **Removed hard-coded theme fallbacks** - Missing themes now throw
+    descriptive errors
+  - **Optional sync loading** with `loadSync` method for better performance
+
+  ```typescript
+  // Before
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+  })
+
+  // After
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+    theme: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+  })
+  ```
+
 ## 3.25.0
 
 ### Minor Changes
