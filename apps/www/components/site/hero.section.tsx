@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/docs/get-started/ai/mcp-server">
+          <Link href="/docs/components/listbox">
             <LuWandSparkles />
-            [New] Chakra UI MCP Server
+            [New] Listbox Component
             <HiArrowRight />
           </Link>
         </Annoucement>
