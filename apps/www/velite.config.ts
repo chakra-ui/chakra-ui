@@ -126,7 +126,7 @@ const blogs = defineCollection({
     .transform((data, { meta }) => {
       return {
         ...data,
-        slug: slugify(meta.path as string),
+        slug: slugify(meta.path as string).replace(/^(blog\/)\d+-/, "$1"),
       }
     }),
 })

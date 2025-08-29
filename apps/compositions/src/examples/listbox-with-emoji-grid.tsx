@@ -53,6 +53,7 @@ export const ListboxWithEmojiGrid = () => {
         onChange={(e) => filter(e.target.value)}
       />
       <Listbox.Content
+        w="374px"
         display="grid"
         gridTemplateColumns="repeat(8, 1fr)"
         gap="1"

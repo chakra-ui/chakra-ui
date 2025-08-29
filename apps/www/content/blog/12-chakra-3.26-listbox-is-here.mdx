@@ -1,0 +1,80 @@
+---
+title: Hello, Listbox!
+description:
+  "Introducing the Listbox component and improved CodeBlock configuration"
+type: release
+version: "3.26"
+authors: ["sage"]
+publishedAt: "2025-08-29"
+---
+
+We've just shipped Chakra UI v3.26! This release introduces the highly
+anticipated **[Listbox](/docs/components/listbox)** component, bringing powerful
+selection capabilities to Chakra UI.
+
+This release also made important improvements to the
+[CodeBlock](/docs/components/code-block) component and fixed several bugs across
+more components.
+
+## Listbox
+
+The Listbox component is a versatile selection component that provides single
+and multi-select functionality with support for filtering, grid layout, and
+virtualization.
+
+> Use it to build command palettes, searchable dropdowns, transfer lists, image
+> galleries with selection, and much more.
+
+<ExampleTabs name="listbox-basic" />
+
+Here's a fun example of an emoji picker that composes the listbox with grid
+collection.
+
+<ExampleTabs name="listbox-with-emoji-grid" />
+
+## Improvements
+
+- **HoverCard**: Added support for `disabled` prop to conditionally disable
+  hover interactions.
+
+- **CodeBlock [Breaking Change]**: Theme configuration is now required when
+  creating a Shiki adapter:
+
+```ts
+// Before
+const adapter = createShikiAdapter({
+  async load() { /* ... */ },
+})
+
+// After
+const adapter = createShikiAdapter({
+  async load() { /* ... */ },
+  theme: {
+    light: "github-light",
+    dark: "github-dark",
+  },
+  // or theme: 'github-dark'
+})
+```
+
+## Bug Fixes
+
+- **Select & Menu**: Fixed disabled items being reachable via keyboard typeahead
+- **Color Picker**: Fixed RTL mode rendering issues
+- **Number Input**: Fixed pattern validation conflicts with formatted values,
+  improved empty value handling, and added `data-scrubbing` attribute
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+Make sure to update your CodeBlock configuration if you're using the Shiki
+adapter, as the theme property is now required.
+
+We're excited to see what you build with the new Listbox component! Share your
+creations with us on [Twitter](https://twitter.com/chakra_ui) or in our
+[Discord community](https://chakra-ui.com/discord).
