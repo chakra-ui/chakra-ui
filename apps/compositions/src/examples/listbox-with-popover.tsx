@@ -17,7 +17,7 @@ export const ListboxWithPopover = () => {
   const [open, setOpen] = useState(false)
 
   const { contains } = useFilter({ sensitivity: "base" })
-  const triggerRef = useRef<HTMLButtonElement>(null)
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
 
   const { collection, filter } = useListCollection({
     initialItems: [

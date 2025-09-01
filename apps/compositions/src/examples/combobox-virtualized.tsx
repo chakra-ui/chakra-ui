@@ -11,7 +11,7 @@ import { useRef } from "react"
 import { flushSync } from "react-dom"
 
 export const ComboboxVirtualized = () => {
-  const contentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
 
   const { startsWith } = useFilter({ sensitivity: "base" })
 
