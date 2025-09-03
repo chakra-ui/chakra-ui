@@ -117,6 +117,18 @@ Here's an example of how to dynamically add and remove tabs.
 
 <ExampleTabs name="tabs-with-dynamic-add" />
 
+### Responsive Orientation
+
+Responsive values are not supported for the `orientation` prop because it
+affects keyboard navigation and `aria-orientation` behavior, not just styling.
+The orientation changes how arrow keys work (horizontal uses left/right,
+vertical uses up/down).
+
+To achieve responsive orientation, use the `useBreakpointValue` hook to change
+the orientation based on the screen size.
+
+<ExampleTabs name="tabs-with-responsive-orientation" />
+
 ### Animation
 
 Use the `_open` and `_close` conditional props to animate the tabs.
