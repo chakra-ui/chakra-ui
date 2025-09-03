@@ -55,6 +55,24 @@ screen.
 
 <ExampleTabs name="dialog-with-fullscreen" />
 
+### Responsive Size
+
+Use responsive values for the `size` prop to make the dialog adapt to different
+screen sizes.
+
+We recommend using exact breakpoints values instead of using a `base` to ensure
+styles are properly contained.
+
+```tsx
+// ❌ Might cause a style leak between the breakpoints
+<Dialog.Root size={{ base: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+
+// Works ✅
+<Dialog.Root size={{ mdDown: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+```
+
+<ExampleTabs name="dialog-with-responsive-size" />
+
 ### Placement
 
 Use the `placement` prop to change the placement of the dialog component.
