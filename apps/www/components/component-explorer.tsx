@@ -2,70 +2,16 @@
 
 import { Box, HStack, Heading, Text, VStack } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
-import { useColorModeValue } from "compositions/ui/color-mode"
 import { useCallback } from "react"
 
 const normalizeComponentName = (name: string) => {
   return name.split("-")[0].toLowerCase()
 }
 
-interface ComponentExplorerProps {
-  Component: React.ReactNode
-  name: string
-}
-
-export const ComponentExplorer = ({
-  Component,
-  name,
-}: ComponentExplorerProps) => {
-  const borderColor = useColorModeValue("gray.200", "gray.700")
-  const bg = useColorModeValue("bg.canvas", "bg.muted")
-
-  return (
-    <Box
-      display="grid"
-      gridTemplateColumns="1fr 260px"
-      minH="480px"
-      border="0.5px solid"
-      borderColor={borderColor}
-      borderRadius="md"
-      overflow="hidden"
-      mt={6}
-      bg={bg}
-    >
-      <Box p={5}>
-        <Heading size="sm" mb={3} color="fg">
-          Preview
-        </Heading>
-
-        <Box
-          id="component-preview"
-          p={6}
-          minH="xs"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          bg="bg.subtle"
-          borderRadius="sm"
-        >
-          {Component ?? <Text>No component provided</Text>}
-        </Box>
-      </Box>
-
-      <ComponentExplorerSidebar
-        componentName={name}
-        borderColor={borderColor}
-      />
-    </Box>
-  )
-}
-
-const ComponentExplorerSidebar = ({
+export const ComponentExplorerSidebar = ({
   componentName,
-  borderColor,
 }: {
   componentName: string
-  borderColor: string
 }) => {
   const normalizedName = normalizeComponentName(componentName)
   const anatomy =
@@ -103,7 +49,8 @@ const ComponentExplorerSidebar = ({
     <Box
       p={5}
       borderLeft="0.5px solid"
-      borderColor={borderColor}
+      borderColor="gray.200"
+      _dark={{ borderColor: "gray.700", bg: "bg.muted" }}
       bg="bg.subtle"
     >
       <Heading size="sm" mb={2} color="fg">
@@ -138,5 +85,3 @@ const ComponentExplorerSidebar = ({
     </Box>
   )
 }
-
-export default ComponentExplorer
