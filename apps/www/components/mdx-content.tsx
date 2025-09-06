@@ -15,6 +15,7 @@ import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
 import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
+import { ComponentExplorerWrapper } from "./component-explorer-wrapper"
 import {
   Example,
   ExampleCode,
@@ -133,6 +134,9 @@ const sharedComponents = {
         }}
       />
     )
+  },
+  Explorer(props: { name: string }) {
+    return <ComponentExplorerWrapper name={props.name} />
   },
 }
 
