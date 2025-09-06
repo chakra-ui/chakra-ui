@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/react": patch
+"@chakra-ui/react": minor
 ---
 
 Enhanced composition types with comprehensive CSS property support
