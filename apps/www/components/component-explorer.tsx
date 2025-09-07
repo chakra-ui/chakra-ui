@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, HStack, Heading, Text, VStack } from "@chakra-ui/react"
+import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { useCallback } from "react"
 
@@ -46,13 +46,7 @@ export const ComponentExplorerSidebar = ({
   }
 
   return (
-    <Box
-      p={5}
-      borderLeft="0.5px solid"
-      borderColor="gray.200"
-      _dark={{ borderColor: "gray.700", bg: "bg.muted" }}
-      bg="bg.subtle"
-    >
+    <Box p={5} borderLeft="1px solid" borderColor="border" bg="bg">
       <Heading size="sm" mb={2} color="fg">
         Component Anatomy
       </Heading>
@@ -60,17 +54,20 @@ export const ComponentExplorerSidebar = ({
         Hover or click to highlight parts
       </Text>
 
-      <VStack align="stretch" spaceY={2}>
+      <Flex wrap="wrap" gap={2}>
         {anatomy.keys().map((key) => (
-          <HStack
+          <Box
             key={key}
             px={3}
             py={2}
             borderRadius="md"
             cursor="pointer"
+            bg="bg.subtle"
+            border="1px solid"
+            borderColor="border.subtle"
             _hover={{
               bg: "bg.emphasized",
-              transform: "translateX(2px)",
+              borderColor: "border.emphasized",
             }}
             onMouseEnter={() => highlightPart(key, "add")}
             onMouseLeave={() => highlightPart(key, "remove")}
@@ -79,9 +76,9 @@ export const ComponentExplorerSidebar = ({
             <Text fontSize="sm" fontWeight="medium" textTransform="capitalize">
               {key}
             </Text>
-          </HStack>
+          </Box>
         ))}
-      </VStack>
+      </Flex>
     </Box>
   )
 }

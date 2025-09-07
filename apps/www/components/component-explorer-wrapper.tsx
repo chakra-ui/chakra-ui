@@ -20,13 +20,12 @@ function ComponentExplorer({
       display="grid"
       gridTemplateColumns="1fr 260px"
       minH="480px"
-      border="0.5px solid"
-      borderColor="gray.200"
-      _dark={{ borderColor: "gray.700", bg: "bg.muted" }}
+      border="1px solid"
+      borderColor="border"
       borderRadius="md"
       overflow="hidden"
       mt={6}
-      bg="bg.canvas"
+      bg="bg"
     >
       <Box p={5}>
         <Heading size="sm" mb={3} color="fg">
