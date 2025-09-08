@@ -3,6 +3,7 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { useCallback } from "react"
+import { kebabCase } from "scule"
 
 const normalizeComponentName = (name: string) => {
   return name.split("-")[0].toLowerCase()
@@ -19,7 +20,8 @@ export const ComponentExplorerSidebar = ({
 
   const highlightPart = useCallback(
     (part: string, action: "add" | "remove") => {
-      const selector = `[data-scope=${normalizedName}][data-part=${part}]`
+      const kebabPart = kebabCase(part)
+      const selector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
       const preview = document.getElementById("component-preview")
       if (!preview) return
 
