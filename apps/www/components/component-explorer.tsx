@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import { ComponentExplorerSidebar } from "./component-explorer-sidebar"
 import { ExamplePreview } from "./example"
 
@@ -16,24 +16,21 @@ export function ComponentExplorer({
       minH="480px"
       className={className}
     >
-      <Box p={5}>
-        <Heading size="sm" mb={3} color="fg">
-          Preview
-        </Heading>
-        <Box
+      <Box mt={6}>
+        <Flex
           id="component-preview"
           p={6}
           minH="xs"
-          display="flex"
           alignItems="center"
           justifyContent="center"
           bg="bg.subtle"
           borderRadius="sm"
           border="1px solid"
           borderColor="border.subtle"
+          gap={4}
         >
           <ExamplePreview name={name} />
-        </Box>
+        </Flex>
       </Box>
       <ComponentExplorerSidebar componentName={name} />
     </Box>
