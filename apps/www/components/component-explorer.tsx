@@ -23,8 +23,11 @@ export const ComponentExplorerSidebar = ({
       const preview = document.getElementById("component-preview")
       if (!preview) return
 
-      const el = preview.querySelector(selector) as HTMLElement | null
-      if (el) {
+      const elements = preview.querySelectorAll(
+        selector,
+      ) as NodeListOf<HTMLElement>
+
+      for (const el of elements) {
         if (action === "add") {
           el.style.outline = "2px solid red"
           el.style.outlineOffset = "2px"
