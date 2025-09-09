@@ -23,7 +23,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",
-    "www": "ulimit -n 4096 && pnpm --filter=./apps/www",
+    "www": "pnpm --filter=./apps/www",
     "mcp": "pnpm --filter=./apps/mcp",
     "lint": "eslint packages --ext .ts,.tsx --cache",
     "format:check": "prettier --check packages --cache",
