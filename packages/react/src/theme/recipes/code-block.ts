@@ -64,7 +64,8 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
     content: {
       position: "relative",
       colorScheme: "dark",
-      overflow: "hidden",
+      overflowX: "auto",
+      overflowY: "hidden",
       borderBottomRadius: "var(--code-block-radius)",
       maxHeight: "var(--code-block-max-height)",
       "& ::selection": {
