@@ -118,6 +118,17 @@ export const NumberInputControl = withContext<
   NumberInputControlProps
 >(ArkNumberInput.Control, "control", {
   forwardAsChild: true,
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface NumberInputTriggerGroupProps extends HTMLChakraProps<"div"> {}
+
+export const NumberInputTriggerGroup = withContext<
+  HTMLDivElement,
+  NumberInputTriggerGroupProps
+>("div", "triggerGroup", {
+  forwardAsChild: true,
   defaultProps: {
     children: (
       <>
