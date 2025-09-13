@@ -15,6 +15,12 @@ interface ComponentCodeSnapshotProps {
   getActiveStyle: () => HighlightStyle
 }
 
+interface ComponentCodeSnapshotProps {
+  name: string
+  activePart: string | null
+  getActiveStyle: () => HighlightStyle
+}
+
 export function ComponentCodeSnapshot({
   name,
   activePart,
@@ -25,16 +31,22 @@ export function ComponentCodeSnapshot({
 
   useEffect(() => {
     const generate = async () => {
-      if (!activePart) return
-      const activeStyle = getActiveStyle()
-      const content = `
+      const content = activePart
+        ? `
 import { defineRecipe } from "@chakra-ui/react"
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${componentName}Anatomy.keys(),
   base: {
-    ${activePart}: ${JSON.stringify(activeStyle, null, 2)}
+    ${activePart}: ${JSON.stringify(getActiveStyle(), null, 2)}
   }
+})
+`.trim()
+        : `
+import { defineRecipe } from "@chakra-ui/react"
+
+export const ${componentName}SlotRecipe = defineSlotRecipe({
+  slots: ${componentName}Anatomy.keys()
 })
 `.trim()
 
