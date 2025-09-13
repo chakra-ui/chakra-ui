@@ -2,79 +2,100 @@
 
 import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
-import { useState } from "react"
 import { kebabCase } from "scule"
 
-const normalizeComponentName = (name: string) =>
+export const normalizeComponentName = (name: string) =>
   name.split("-")[0].toLowerCase()
+
+export type HighlightStyle = Partial<
+  Pick<
+    CSSStyleDeclaration,
+    "outline" | "outlineOffset" | "border" | "borderColor"
+  >
+>
 
 const applyHighlight = (
   normalizedName: string,
   part: string | null,
   action: "add" | "remove",
+  highlightStyle: HighlightStyle,
 ) => {
-  if (!part) return null
+  if (!part) return
+
   const kebabPart = kebabCase(part)
   const selector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
   const preview = document.getElementById("component-preview")
-  if (!preview) return null
+  if (!preview) return
 
-  const elements = preview.querySelectorAll(selector) as NodeListOf<HTMLElement>
-
-  const styles: Record<string, string> = {
-    outline: "2px solid red",
-    outlineOffset: "2px",
-  }
+  const elements = preview.querySelectorAll<HTMLElement>(selector)
 
   for (const el of elements) {
     if (action === "add") {
-      Object.assign(el.style, styles)
+      for (const key in highlightStyle) {
+        const k = key as keyof HighlightStyle
+        if (highlightStyle[k]) el.style[k] = highlightStyle[k]!
+      }
     } else {
-      el.style.outline = ""
-      el.style.outlineOffset = ""
+      for (const key in highlightStyle) {
+        const k = key as keyof HighlightStyle
+        el.style[k] = ""
+      }
     }
   }
-
-  return action === "add" ? styles : null
 }
 
-function useAnatomySelection<PartKey extends string>(normalizedName: string) {
-  const [activePart, setActivePart] = useState<PartKey | null>(null)
-
-  const selectPart = (part: PartKey) => {
-    if (activePart === part) {
-      applyHighlight(normalizedName, part, "remove")
-      setActivePart(null)
-    } else {
-      if (activePart) applyHighlight(normalizedName, activePart, "remove")
-      setActivePart(part)
-      applyHighlight(normalizedName, part, "add")
-    }
-  }
-
-  const hoverPart = (part: PartKey, isEntering: boolean) => {
-    if (isEntering) {
-      applyHighlight(normalizedName, part, "add")
-    } else {
-      if (activePart !== part) applyHighlight(normalizedName, part, "remove")
-    }
-  }
-
-  return { activePart, selectPart, hoverPart }
+interface ComponentExplorerSidebarProps {
+  componentName: string
+  activePart: string | null
+  setActivePart: (part: string | null) => void
+  getHighlightStyle: () => HighlightStyle
 }
 
 export const ComponentExplorerSidebar = ({
   componentName,
-}: {
-  componentName: string
-}) => {
+  activePart,
+  setActivePart,
+  getHighlightStyle,
+}: ComponentExplorerSidebarProps) => {
   const normalizedName = normalizeComponentName(componentName)
   const anatomy =
     anatomies[`${normalizedName}Anatomy` as keyof typeof anatomies]
   const anatomyKeys = anatomy.keys()
+  const highlightStyle = getHighlightStyle()
 
-  const { activePart, selectPart, hoverPart } =
-    useAnatomySelection<(typeof anatomyKeys)[number]>(normalizedName)
+  const selectPart = (part: string) => {
+    if (activePart === part) {
+      applyHighlight(normalizedName, part, "remove", highlightStyle)
+      setActivePart(null)
+    } else {
+      if (activePart)
+        applyHighlight(normalizedName, activePart, "remove", highlightStyle)
+      setActivePart(part)
+      applyHighlight(normalizedName, part, "add", highlightStyle)
+    }
+  }
+
+  const hoverPart = (part: string, isEntering: boolean) => {
+    const preview = document.getElementById("component-preview")
+    if (!preview) return
+
+    const selector = `[data-scope=${normalizedName}][data-part=${kebabCase(part)}]`
+    const elements = preview.querySelectorAll<HTMLElement>(selector)
+
+    for (const el of elements) {
+      if (isEntering) {
+        for (const key in highlightStyle) {
+          const k = key as keyof HighlightStyle
+          if (highlightStyle[k]) el.style[k] = highlightStyle[k]!
+        }
+      } else if (activePart !== part) {
+        for (const key in highlightStyle) {
+          const k = key as keyof HighlightStyle
+          el.style[k] = ""
+        }
+      }
+    }
+  }
 
   return (
     <Box p={5} bg="bg" minW="260px">
@@ -86,19 +107,16 @@ export const ComponentExplorerSidebar = ({
       </Text>
 
       <Flex wrap="wrap" gap={2}>
-        {anatomyKeys.map((key) => {
-          const isSelected = activePart === key
-          return (
-            <AnatomyPart
-              key={key}
-              partKey={key}
-              isSelected={isSelected}
-              onMouseEnter={() => hoverPart(key, true)}
-              onMouseLeave={() => hoverPart(key, false)}
-              onClick={() => selectPart(key)}
-            />
-          )
-        })}
+        {anatomyKeys.map((key) => (
+          <AnatomyPart
+            key={key}
+            partKey={key}
+            isSelected={activePart === key}
+            onMouseEnter={() => hoverPart(key, true)}
+            onMouseLeave={() => hoverPart(key, false)}
+            onClick={() => selectPart(key)}
+          />
+        ))}
       </Flex>
     </Box>
   )

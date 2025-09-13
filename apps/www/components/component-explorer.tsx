@@ -1,5 +1,5 @@
-import { Box, Flex } from "@chakra-ui/react"
-import { ComponentExplorerSidebar } from "./component-explorer-sidebar"
+import { Box } from "@chakra-ui/react"
+import { ComponentExplorerWrapper } from "./component-snapshot"
 import { ExamplePreview } from "./example"
 
 export function ComponentExplorer({
@@ -10,32 +10,28 @@ export function ComponentExplorer({
   className?: string
 }) {
   return (
-    <Box>
+    <Box
+      className={className}
+      display="grid"
+      gridTemplateColumns={{ base: "1fr", lg: "1fr 260px" }}
+      gridTemplateRows="auto auto"
+      gap={4}
+    >
       <Box
-        display="grid"
-        gridTemplateColumns={{ base: "1fr", lg: "1fr 260px" }}
-        minH="480px"
-        className={className}
+        id="component-preview"
+        p={6}
+        minH={{ base: "200px", md: "300px", lg: "480px" }}
+        bg="bg.subtle"
+        borderRadius="sm"
+        border="1px solid"
+        borderColor="border.subtle"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
-        <Box mt={6}>
-          <Flex
-            id="component-preview"
-            p={6}
-            minH="xs"
-            alignItems="center"
-            justifyContent="center"
-            bg="bg.subtle"
-            borderRadius="sm"
-            border="1px solid"
-            borderColor="border.subtle"
-            gap={4}
-          >
-            <ExamplePreview name={name} />
-          </Flex>
-        </Box>
-        <ComponentExplorerSidebar componentName={name} />
+        <ExamplePreview name={name} />
       </Box>
-      <Box>{/* Code snapshot example would live here */}</Box>
+      <ComponentExplorerWrapper name={name} />
     </Box>
   )
 }
