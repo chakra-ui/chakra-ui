@@ -8,6 +8,61 @@ import { kebabCase } from "scule"
 const normalizeComponentName = (name: string) =>
   name.split("-")[0].toLowerCase()
 
+const applyHighlight = (
+  normalizedName: string,
+  part: string | null,
+  action: "add" | "remove",
+) => {
+  if (!part) return null
+  const kebabPart = kebabCase(part)
+  const selector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
+  const preview = document.getElementById("component-preview")
+  if (!preview) return null
+
+  const elements = preview.querySelectorAll(selector) as NodeListOf<HTMLElement>
+
+  const styles: Record<string, string> = {
+    outline: "2px solid red",
+    outlineOffset: "2px",
+  }
+
+  for (const el of elements) {
+    if (action === "add") {
+      Object.assign(el.style, styles)
+    } else {
+      el.style.outline = ""
+      el.style.outlineOffset = ""
+    }
+  }
+
+  return action === "add" ? styles : null
+}
+
+function useAnatomySelection<PartKey extends string>(normalizedName: string) {
+  const [activePart, setActivePart] = useState<PartKey | null>(null)
+
+  const selectPart = (part: PartKey) => {
+    if (activePart === part) {
+      applyHighlight(normalizedName, part, "remove")
+      setActivePart(null)
+    } else {
+      if (activePart) applyHighlight(normalizedName, activePart, "remove")
+      setActivePart(part)
+      applyHighlight(normalizedName, part, "add")
+    }
+  }
+
+  const hoverPart = (part: PartKey, isEntering: boolean) => {
+    if (isEntering) {
+      applyHighlight(normalizedName, part, "add")
+    } else {
+      if (activePart !== part) applyHighlight(normalizedName, part, "remove")
+    }
+  }
+
+  return { activePart, selectPart, hoverPart }
+}
+
 export const ComponentExplorerSidebar = ({
   componentName,
 }: {
@@ -16,49 +71,10 @@ export const ComponentExplorerSidebar = ({
   const normalizedName = normalizeComponentName(componentName)
   const anatomy =
     anatomies[`${normalizedName}Anatomy` as keyof typeof anatomies]
+  const anatomyKeys = anatomy.keys()
 
-  const [activePart, setActivePart] = useState<string | null>(null)
-
-  const applyHighlight = (part: string | null, action: "add" | "remove") => {
-    if (!part) return
-    const kebabPart = kebabCase(part)
-    const selector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
-    const preview = document.getElementById("component-preview")
-    if (!preview) return
-
-    const elements = preview.querySelectorAll(
-      selector,
-    ) as NodeListOf<HTMLElement>
-
-    for (const el of elements) {
-      if (action === "add") {
-        el.style.outline = "2px solid red"
-        el.style.outlineOffset = "2px"
-      } else {
-        el.style.outline = ""
-        el.style.outlineOffset = ""
-      }
-    }
-  }
-
-  const handleSelect = (part: string) => {
-    if (activePart === part) {
-      applyHighlight(part, "remove")
-      setActivePart(null)
-    } else {
-      if (activePart) applyHighlight(activePart, "remove")
-      applyHighlight(part, "add")
-      setActivePart(part)
-    }
-  }
-
-  if (!anatomy) {
-    return (
-      <Box p={5}>
-        <Text>No anatomy found for {componentName}</Text>
-      </Box>
-    )
-  }
+  const { activePart, selectPart, hoverPart } =
+    useAnatomySelection<(typeof anatomyKeys)[number]>(normalizedName)
 
   return (
     <Box p={5} bg="bg" minW="260px">
@@ -70,52 +86,69 @@ export const ComponentExplorerSidebar = ({
       </Text>
 
       <Flex wrap="wrap" gap={2}>
-        {anatomy.keys().map((key) => {
+        {anatomyKeys.map((key) => {
           const isSelected = activePart === key
-
           return (
-            <Box
+            <AnatomyPart
               key={key}
-              px={3}
-              py={2}
-              borderRadius="md"
-              cursor="pointer"
-              bg={isSelected ? "bg.emphasized" : "bg.subtle"}
-              border="1px solid"
-              borderColor={isSelected ? "border.emphasized" : "border.subtle"}
-              _hover={{
-                bg: "bg.emphasized",
-                borderColor: "border.emphasized",
-              }}
-              onMouseEnter={() => {
-                if (activePart !== key) applyHighlight(key, "add")
-              }}
-              onMouseLeave={() => {
-                if (activePart !== key) applyHighlight(key, "remove")
-              }}
-              onClick={() => handleSelect(key)}
-            >
-              <Flex align="center" gap={2}>
-                <Text
-                  fontSize="sm"
-                  fontWeight="medium"
-                  textTransform="capitalize"
-                  color={isSelected ? "fg" : "fg.muted"}
-                >
-                  {key}
-                </Text>
-                <Box
-                  w={2}
-                  h={2}
-                  bg={isSelected ? "green.solid" : "transparent"}
-                  borderRadius="full"
-                  flexShrink={0}
-                />
-              </Flex>
-            </Box>
+              partKey={key}
+              isSelected={isSelected}
+              onMouseEnter={() => hoverPart(key, true)}
+              onMouseLeave={() => hoverPart(key, false)}
+              onClick={() => selectPart(key)}
+            />
           )
         })}
       </Flex>
     </Box>
   )
 }
+
+const AnatomyPart = <T extends string>({
+  partKey,
+  isSelected,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+}: {
+  partKey: T
+  isSelected: boolean
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+  onClick: () => void
+}) => (
+  <Box
+    px={3}
+    py={2}
+    borderRadius="md"
+    cursor="pointer"
+    bg={isSelected ? "bg.emphasized" : "bg.subtle"}
+    border="1px solid"
+    borderColor={isSelected ? "border.emphasized" : "border.subtle"}
+    _hover={{
+      bg: "bg.emphasized",
+      borderColor: "border.emphasized",
+    }}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onClick={onClick}
+  >
+    <Flex align="center" gap={2}>
+      <Text
+        fontSize="sm"
+        fontWeight="medium"
+        textTransform="capitalize"
+        color="fg"
+      >
+        {partKey}
+      </Text>
+      <Box
+        w={2}
+        h={2}
+        bg={isSelected ? "green.solid" : "transparent"}
+        borderRadius="full"
+        flexShrink={0}
+      />
+    </Flex>
+  </Box>
+)
