@@ -1,3 +1,5 @@
+"use client"
+
 import { highlightCode } from "@/lib/highlight-code"
 import { Box } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
