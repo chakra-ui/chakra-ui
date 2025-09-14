@@ -62,6 +62,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
       overflow="auto"
       colorScheme="dark"
       pos="relative"
+      rounded="lg"
       css={{
         "& pre": {
           px: "8",
