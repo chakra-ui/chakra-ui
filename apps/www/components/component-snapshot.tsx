@@ -59,6 +59,9 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
 
   return (
     <Box
+      overflow="auto"
+      colorScheme="dark"
+      pos="relative"
       css={{
         "& pre": {
           px: "8",
