@@ -26,6 +26,7 @@ export { DialogWithInitialFocus as InitialFocus } from "compositions/examples/di
 export { DialogWithInsideScroll as InsideScroll } from "compositions/examples/dialog-with-inside-scroll"
 export { DialogWithOutsideScroll as OutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 export { DialogWithPlacement as Placement } from "compositions/examples/dialog-with-placement"
+export { DialogWithResponsiveSize as ResponsiveSize } from "compositions/examples/dialog-with-responsive-size"
 export { DialogWithRole as Role } from "compositions/examples/dialog-with-role"
 export { DialogWithSizes as Sizes } from "compositions/examples/dialog-with-sizes"
 export { DialogWithStore as Store } from "compositions/examples/dialog-with-store"

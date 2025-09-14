@@ -5,7 +5,7 @@ links:
   source: components/dialog
   storybook: components-dialog--basic
   recipe: dialog
-  ark: https://ark-ui.com/react/docs/components/dialog
+  ark: https://ark-ui.com/docs/components/dialog
 ---
 
 <ExampleTabs name="dialog-basic" />
@@ -54,6 +54,24 @@ Use the `size="full"` prop to make the dialog component take up the entire
 screen.
 
 <ExampleTabs name="dialog-with-fullscreen" />
+
+### Responsive Size
+
+Use responsive values for the `size` prop to make the dialog adapt to different
+screen sizes.
+
+We recommend using exact breakpoints values instead of using a `base` to ensure
+styles are properly contained.
+
+```tsx
+// ❌ Might cause a style leak between the breakpoints
+<Dialog.Root size={{ base: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+
+// Works ✅
+<Dialog.Root size={{ mdDown: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+```
+
+<ExampleTabs name="dialog-with-responsive-size" />
 
 ### Placement
 

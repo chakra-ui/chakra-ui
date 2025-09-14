@@ -26,7 +26,7 @@ import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu, AiOutlineRight } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
   const route = useRoute()
 
   useScrollIntoView(containerRef, '[aria-current="page"]', "center")
@@ -51,17 +51,15 @@ export const SidebarStart = (props: BoxProps) => {
       {...props}
     >
       <Stack gap="6">
-        {route
-          .getSidebarNavItems()
-          ?.map((group) => (
-            <SideNav
-              key={group.title}
-              currentUrl={route.currentUrl}
-              title={group.title}
-              items={group.items}
-              status={group.status}
-            />
-          ))}
+        {route.getSidebarNavItems()?.map((group) => (
+          <SideNav
+            key={group.title}
+            currentUrl={route.currentUrl}
+            title={group.title}
+            items={group.items}
+            status={group.status}
+          />
+        ))}
       </Stack>
     </Box>
   )
@@ -127,7 +125,9 @@ export const MobileMenuBreadcrumbs = () => {
 
   return (
     <BreadcrumbRoot separator={<AiOutlineRight />}>
-      {crumbs?.map((crumb, index) => <Text key={index}>{crumb}</Text>)}
+      {crumbs?.map((crumb, index) => (
+        <Text key={index}>{crumb}</Text>
+      ))}
     </BreadcrumbRoot>
   )
 }
@@ -171,16 +171,14 @@ export const MobileSidebarNav = () => {
             </IconButton>
           </DrawerCloseTrigger>
           <DrawerBody display="flex" flexDir="column" gap="6" py="5" flex="1">
-            {route
-              .getSidebarNavItems()
-              ?.map((group) => (
-                <SideNav
-                  key={group.title}
-                  currentUrl={route.currentUrl}
-                  title={group.title}
-                  items={group.items}
-                />
-              ))}
+            {route.getSidebarNavItems()?.map((group) => (
+              <SideNav
+                key={group.title}
+                currentUrl={route.currentUrl}
+                title={group.title}
+                items={group.items}
+              />
+            ))}
           </DrawerBody>
         </DrawerContent>
       </Portal>

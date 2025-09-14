@@ -579,7 +579,7 @@
 
   This brings a **1.5x–4x** performance improvements across components. Learn
   more from the
-  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+  [Ark UI v5 changelog](https://ark-ui.com/docs/overview/changelog#500---2025-03-06).
 
 ## 3.13.0
 

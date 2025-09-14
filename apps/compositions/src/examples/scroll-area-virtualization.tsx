@@ -6,7 +6,7 @@ import { DecorativeBox } from "compositions/lib/decorative-box"
 import React, { useCallback, useMemo, useRef } from "react"
 
 export const ScrollAreaVirtualization = () => {
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
 
   const items = useMemo(
     () =>

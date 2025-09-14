@@ -11,7 +11,7 @@ import {
 import { useRef } from "react"
 
 export const DrawerWithInitialFocus = () => {
-  const ref = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement | null>(null)
   return (
     <Drawer.Root initialFocusEl={() => ref.current}>
       <Drawer.Trigger asChild>

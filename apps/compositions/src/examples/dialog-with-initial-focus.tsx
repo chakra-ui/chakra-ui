@@ -4,7 +4,7 @@ import { Button, Dialog, Field, Input, Portal, Stack } from "@chakra-ui/react"
 import { useRef } from "react"
 
 export const DialogWithInitialFocus = () => {
-  const ref = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement | null>(null)
   return (
     <Dialog.Root initialFocusEl={() => ref.current}>
       <Dialog.Trigger asChild>

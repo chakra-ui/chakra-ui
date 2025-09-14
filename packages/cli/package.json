@@ -57,6 +57,7 @@
     "cli-table": "^0.3.11",
     "commander": "12.1.0",
     "debug": "^4.4.1",
+    "dotenv": "^17.2.2",
     "https-proxy-agent": "^7.0.6",
     "look-it-up": "2.1.0",
     "node-fetch": "3.3.2",
