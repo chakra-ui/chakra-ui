@@ -33,7 +33,7 @@ export function ComponentCodeSnapshot({
     const generate = async () => {
       const content = activePart
         ? `
-import { defineRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${componentName}Anatomy.keys(),
@@ -43,7 +43,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
 })
 `.trim()
         : `
-import { defineRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${componentName}Anatomy.keys()
