@@ -2,18 +2,13 @@
 
 import { highlightCode } from "@/lib/highlight-code"
 import { Box } from "@chakra-ui/react"
+import * as anatomies from "@chakra-ui/react/anatomy"
 import { useEffect, useState } from "react"
 import {
   ComponentExplorerSidebar,
   HighlightStyle,
   normalizeComponentName,
 } from "./component-explorer-sidebar"
-
-interface ComponentCodeSnapshotProps {
-  name: string
-  activePart: string | null
-  getActiveStyle: () => HighlightStyle
-}
 
 interface ComponentCodeSnapshotProps {
   name: string
@@ -31,12 +26,16 @@ export function ComponentCodeSnapshot({
 
   useEffect(() => {
     const generate = async () => {
+      const anatomy =
+        anatomies[`${componentName}Anatomy` as keyof typeof anatomies]
+      const anatomyKeys = anatomy.keys() || []
+
       const content = activePart
         ? `
 import { defineSlotRecipe } from "@chakra-ui/react"
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${componentName}Anatomy.keys(),
+  slots: ${JSON.stringify(anatomyKeys)},
   base: {
     ${activePart}: ${JSON.stringify(getActiveStyle(), null, 2)}
   }
@@ -46,7 +45,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
 import { defineSlotRecipe } from "@chakra-ui/react"
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${componentName}Anatomy.keys()
+  slots: ${JSON.stringify(anatomyKeys)}
 })
 `.trim()
 
