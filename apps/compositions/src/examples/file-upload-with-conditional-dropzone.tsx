@@ -1,3 +1,5 @@
+"use client"
+
 import { Box, FileUpload, Icon, useFileUploadContext } from "@chakra-ui/react"
 import { LuUpload } from "react-icons/lu"
 
