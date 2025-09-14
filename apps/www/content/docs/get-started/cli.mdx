@@ -1,11 +1,13 @@
 ---
 title: "CLI"
 description:
-  Learn more to use the Chakra CLI command to generate snippets and typings
+  Learn more to use the Chakra CLI command to generate snippets, typings, and
+  download Pro blocks
 ---
 
 The Chakra UI CLI can be used to generate typings for your custom theme tokens,
-like colors, semantic tokens, recipe variants, etc.
+like colors, semantic tokens, recipe variants, etc. You can also add community
+snippets and premium Pro blocks to your project.
 
 ## Installation
 
@@ -51,6 +53,7 @@ Options:
 Commands:
   typegen [options] <source>  Generate theme and recipe typings
   snippet                     Add snippets to your project for better DX
+  blocks                      Add Chakra UI Pro blocks to your project
   eject [options]             Take control over the default theme tokens and recipes
   help [command]              display help for command
 ```
@@ -88,6 +91,62 @@ chakra snippet list
 # Specify a custom directory
 chakra snippet add dialog --outdir ./components/custom
 ```
+
+## `chakra blocks`
+
+Add premium blocks from Chakra UI Pro to your project. These are professionally
+designed, fully responsive components that you can customize for your needs.
+
+```bash
+# Interactive block selection
+chakra blocks add
+
+# Add all variants of a specific block
+chakra blocks add hero
+
+# Add a specific variant of a block
+chakra blocks add hero --variant "simple"
+
+# List available blocks
+chakra blocks list
+
+# List blocks in a specific category
+chakra blocks list --category "marketing"
+
+# Preview blocks without downloading
+chakra blocks add --dry-run --category "marketing"
+
+# Specify output directory
+chakra blocks add --outdir ./components/blocks
+```
+
+### Pro API Key Setup
+
+To use Pro blocks, you need a Chakra UI Pro subscription and API key:
+
+1. Get your API key from [Chakra UI Pro](https://pro.chakra-ui.com)
+2. Set the environment variable:
+
+   ```bash
+   export CHAKRA_UI_PRO_API_KEY="your-api-key"
+   ```
+
+   Or create a `.env` file in your project root:
+
+   ```env
+   CHAKRA_UI_PRO_API_KEY=your-api-key
+   ```
+
+3. Add it to your shell profile (`.bashrc`, `.zshrc`, etc.) for persistence if
+   using environment variables
+
+### Available Options
+
+- `--variant <variant>`: Add a specific variant instead of all variants
+- `--outdir <dir>`: Specify output directory for blocks
+- `--force`: Overwrite existing files
+- `--dry-run`: Preview what will be downloaded without writing files
+- `--tsx`: Force TypeScript JSX format (auto-detected by default)
 
 ## `chakra eject`
 

@@ -174,6 +174,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
           display: "inline-block",
           textAlign: "end",
           userSelect: "none",
+          whiteSpace: "nowrap",
           opacity: 0.4,
         },
 
