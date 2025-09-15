@@ -4,11 +4,28 @@ import { highlightCode } from "@/lib/highlight-code"
 import { Box } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { useEffect, useState } from "react"
+import ts from "typescript"
 import {
   ComponentExplorerSidebar,
-  HighlightStyle,
+  type HighlightStyle,
   normalizeComponentName,
 } from "./component-explorer-sidebar"
+
+function formatWithTS(code: string): string {
+  const sourceFile = ts.createSourceFile(
+    "temp.ts",
+    code,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS,
+  )
+
+  const printer = ts.createPrinter({
+    newLine: ts.NewLineKind.LineFeed,
+    removeComments: false,
+  })
+  return printer.printFile(sourceFile)
+}
 
 interface ComponentCodeSnapshotProps {
   name: string
@@ -32,24 +49,26 @@ export function ComponentCodeSnapshot({
 
       const content = activePart
         ? `
-import { defineSlotRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@chakra-ui/react";
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${JSON.stringify(anatomyKeys)},
   base: {
     ${activePart}: ${JSON.stringify(getActiveStyle(), null, 2)}
   }
-})
-`.trim()
+});
+`
         : `
-import { defineSlotRecipe } from "@chakra-ui/react"
+import { defineSlotRecipe } from "@chakra-ui/react";
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${JSON.stringify(anatomyKeys)}
-})
-`.trim()
+});
+`
 
-      const highlighted = await highlightCode(content)
+      const formattedCode = formatWithTS(content)
+
+      const highlighted = await highlightCode(formattedCode)
       setHtml(highlighted)
     }
 
