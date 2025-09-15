@@ -1,5 +1,70 @@
 # @chakra-ui/react
 
+## 3.27.0
+
+### Minor Changes
+
+- [`16fb3cc`](https://github.com/chakra-ui/chakra-ui/commit/16fb3cc3ef658949fc1673cda913fb3b65ce1670)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Enhanced
+  composition types with comprehensive CSS property support
+
+  **Text Style Properties:** Added these properties to `theme.textStyles`:
+  - Basic properties (`color`, `direction`, `font`, `fontFamily`,
+    `fontFeatureSettings`, `fontKerning`, `fontLanguageOverride`,
+    `fontOpticalSizing`, `fontPalette`)
+  - Typography properties (`hangingPunctuation`, `hyphens`,
+    `hyphenateCharacter`, `hyphenateLimitChars`, `lineBreak`, `quotes`,
+    `overflowWrap`, `tabSize`)
+  - Text alignment (`textAlign`, `textAlignLast`, `textCombineUpright`,
+    `textJustify`)
+  - Text decoration (`textDecorationSkip`, `textDecorationSkipBox`,
+    `textDecorationSkipInk`, `textDecorationSkipInset`,
+    `textDecorationThickness`, `textEmphasis`)
+  - Text formatting (`textShadow`, `textStroke`, `textStrokeColor`,
+    `textStrokeWidth`, `textUnderlineOffset`, `textUnderlinePosition`,
+    `textWrap`, `textWrapMode`, `textWrapStyle`)
+  - Text layout (`unicodeBidi`, `verticalAlign`, `whiteSpace`, `wordBreak`,
+    `wordSpacing`, `writingMode`)
+
+  **Layer Style Properties:** Added these properties to `theme.layerStyles`:
+  - Layout properties (`aspectRatio`, `display`, `contain`, `contentVisibility`,
+    `isolation`)
+  - Visual effects (`clipPath`, `mixBlendMode`, `maskClip`, `maskComposite`,
+    `maskImage`, `maskMode`, `maskOrigin`, `maskPosition`, `maskRepeat`,
+    `maskSize`)
+  - Modern properties (`objectFit`, `objectPosition`, `pointerEvents`, `resize`,
+    `visibility`, `willChange`)
+  - Border properties (`borderImage`, `borderImageOutset`, `borderImageRepeat`,
+    `borderImageSlice`, `borderImageSource`, `borderImageWidth`)
+  - Overflow properties (`overflow`, `overflowX`, `overflowY`)
+
+### Patch Changes
+
+- [`c741fe9`](https://github.com/chakra-ui/chakra-ui/commit/c741fe92dde5388d89e7d0ed2d38011752ce249a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **CodeBlock**:
+  Fix issue where Line numbers display incorrectly when `meta.wordWrap` is true
+  in code blocks
+  - **Hover Card**: Change default delay values for hover card to improve
+    accessibility.
+    - `openDelay`: from `700ms` to `600ms`
+  - **Tooltip**: Change default delay values for tooltip to improve
+    accessibility.
+    [Learn more](https://www.nngroup.com/articles/timing-exposing-content)
+    - `openDelay`: from `1000ms` to `400ms`
+    - `closeDelay`: from `500ms` to `150ms`
+  - **Menu**
+    - Fix issue where keyboard activation of menu items with `target="_blank"`
+      would open two tabs
+    - Fix issue where hovering a partially visible item with pointer causes it
+      to scroll into view
+  - **Combobox**: Add `alwaysSubmitOnEnter` prop to allow forcing the form to be
+    submitted immediately on Enter press.
+
+- [#10312](https://github.com/chakra-ui/chakra-ui/pull/10312)
+  [`6189068`](https://github.com/chakra-ui/chakra-ui/commit/618906897170f595321f597c32b6cfa25a6c1dba)
+  Thanks [@itushh](https://github.com/itushh)! - - **CodeBlock**: Allow
+  horizontal scrolling when code block overflows
+
 ## 3.26.0
 
 ### Minor Changes

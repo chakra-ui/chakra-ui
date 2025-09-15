@@ -5,6 +5,88 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.27.0](./#3.27.0) - 2025-09-14
+
+### Added
+
+- **CLI**: Add new `blocks` command to add chakra pro blocks to your project.
+
+  This command requires valid Chakra Pro license and API key in the
+  `CHAKRA_UI_PRO_API_KEY` environment variable.
+
+  ```sh
+  # Interactive block selection
+  npx @chakra-ui/cli blocks add
+
+  # Add all variants of a specific block
+  npx @chakra-ui/cli blocks add hero
+
+  # Add a specific variant of a block
+  npx @chakra-ui/cli blocks add hero --variant "simple"
+
+  # List available blocks
+  npx @chakra-ui/cli blocks list
+
+  # List blocks in a specific category
+  npx @chakra-ui/cli blocks list --category "marketing"
+  ```
+
+- **Composition Types**: Enhanced with comprehensive CSS property support
+
+  **Text Style Properties:** Added properties to `theme.textStyles`:
+  - Basic properties (`color`, `direction`, `font`, `fontFamily`,
+    `fontFeatureSettings`, `fontKerning`, `fontLanguageOverride`,
+    `fontOpticalSizing`, `fontPalette`)
+  - Typography properties (`hangingPunctuation`, `hyphens`,
+    `hyphenateCharacter`, `hyphenateLimitChars`, `lineBreak`, `quotes`,
+    `overflowWrap`, `tabSize`)
+  - Text alignment (`textAlign`, `textAlignLast`, `textCombineUpright`,
+    `textJustify`)
+  - Text decoration (`textDecorationSkip`, `textDecorationSkipBox`,
+    `textDecorationSkipInk`, `textDecorationSkipInset`,
+    `textDecorationThickness`, `textEmphasis`)
+  - Text formatting (`textShadow`, `textStroke`, `textStrokeColor`,
+    `textStrokeWidth`, `textUnderlineOffset`, `textUnderlinePosition`,
+    `textWrap`, `textWrapMode`, `textWrapStyle`)
+  - Text layout (`unicodeBidi`, `verticalAlign`, `whiteSpace`, `wordBreak`,
+    `wordSpacing`, `writingMode`)
+
+  **Layer Style Properties:** Added properties to `theme.layerStyles`:
+  - Layout properties (`aspectRatio`, `display`, `contain`, `contentVisibility`,
+    `isolation`)
+  - Visual effects (`clipPath`, `mixBlendMode`, `maskClip`, `maskComposite`,
+    `maskImage`, `maskMode`, `maskOrigin`, `maskPosition`, `maskRepeat`,
+    `maskSize`)
+  - Modern properties (`objectFit`, `objectPosition`, `pointerEvents`, `resize`,
+    `visibility`, `willChange`)
+  - Border properties (`borderImage`, `borderImageOutset`, `borderImageRepeat`,
+    `borderImageSlice`, `borderImageSource`, `borderImageWidth`)
+  - Overflow properties (`overflow`, `overflowX`, `overflowY`)
+
+### Fixed
+
+- **CodeBlock**:
+  - Fix issue where Line numbers display incorrectly when `meta.wordWrap` is
+    true
+  - Allow horizontal scrolling when code block overflows
+
+- **Hover Card**: Change default delay values to improve accessibility
+  - `openDelay`: from `700ms` to `600ms`
+
+- **Tooltip**: Change default delay values to improve accessibility.
+  [Learn more](https://www.nngroup.com/articles/timing-exposing-content)
+  - `openDelay`: from `1000ms` to `400ms`
+  - `closeDelay`: from `500ms` to `150ms`
+
+- **Menu**:
+  - Fix issue where keyboard activation of menu items with `target="_blank"`
+    would open two tabs
+  - Fix issue where hovering a partially visible item with pointer causes it to
+    scroll into view
+
+- **Combobox**: Add `alwaysSubmitOnEnter` prop to allow forcing the form to be
+  submitted immediately on Enter press
+
 ## [3.26.0](./#3.26.0) - 2025-08-28
 
 ### Added
@@ -36,7 +118,6 @@ description:
 
 - **CodeBlock**: Add configurable theme support and sync loading for Shiki
   adapter
-
   - **Theme configuration is now required** - The `theme` property must be
     explicitly provided to `createShikiAdapter`
   - **Removed hard-coded theme fallbacks** - Missing themes now throw
@@ -139,7 +220,6 @@ description:
   ```
 
 - **Menu**
-
   - Fix issue where `onCheckedChange` could be called twice on checkbox or radio
     item
   - Add `data-state` attribute for context menu trigger
@@ -243,7 +323,6 @@ description:
   dedicated modules.
 
 - **Dialog**
-
   - Use `dvh` and `dvw` units instead of `vh` and `vw` to dynamically adjust to
     viewport size changes.
   - Fix issue where dialog backdrop doesn't have the correct z-index when used
@@ -268,7 +347,6 @@ description:
   ```
 
 - **Tree View**
-
   - Fixed issue where tree view doesn't scroll into view when content overflows
   - Fix issue where the `filter` method completely deletes the children key from
     the node when there are no matching children
@@ -292,7 +370,6 @@ description:
   `@chakra-ui/react/anatomy`
 
 - **Combobox**
-
   - Expose `reason` to `onOpenChange` and `onInputValueChange` callbacks
   - Expose `api.clearHighlightedValue` function to clear highlighted value
 
@@ -302,7 +379,6 @@ description:
 - **Progress**: Improve `valueAsString` formatting
 
 - **Select**
-
   - Select highlighted item only if it exists in the collection
   - Expose `api.clearHighlightedValue` function to clear highlighted value
 
@@ -324,14 +400,12 @@ description:
   controlled
 
 - **Combobox**
-
   - Fixed issue where `onInputValueChange` could be called twice when selecting
     an item
   - Fixed issue where combobox with `allowCustomValue: true` used within in a
     form requires two enter keypress to submit
 
 - **Progress**
-
   - Fix issue where setting orientation to `vertical` don't work
   - Fix issue where setting `defaultValue` to `null` doesn't show indeterminate
     state
@@ -407,7 +481,6 @@ description:
   in shadow DOM environments.
 
 - **Slider**
-
   - Fixed issue where `minStepsBetweenThumbs` isn't computed correctly when
     interacting with pointer or keyboard.
   - Fixed issue where `Shift` + `ArrowRight` set value to `0` instead of `max`
@@ -438,7 +511,6 @@ description:
 - **Drawer**: Fix drawer close animation in RTL
 
 - **Button**
-
   - Fix layout issue when in loading state with icons by using
     `display: contents` and `visibility: hidden`
   - Add `data-loading` attribute when `loading` is `true` so allow styling
@@ -496,7 +568,6 @@ description:
 ### Fixed
 
 - **System**
-
   - Fix issue where passing `d` prop to `chakra.path` adds it to styles not as a
     direct attribute.
   - Fix issue where responsive semantic tokens did not get applied.
@@ -542,7 +613,6 @@ description:
 - **Global CSS**: Improve text selection contrast
 
 - **System**
-
   - Fix issue where `borderEnd` shorthand was not working despite `borderStart`
     being present
   - Fix issue where `system.cva` return type was incorrect
@@ -580,7 +650,6 @@ description:
 - **RadioCard**: Fix accessibility issue due to html structure
 
 - **Slider**
-
   - Add support for `origin: end` to align the thumb to the end of the track
   - Expose `thumbSize` as CSS variables in the root element. Can be useful for
     styling the slider
@@ -626,14 +695,12 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Added
 
 - **ColorPicker**
-
   - Add support for `ColorPicker.ChannelText` component
   - Add `ColorPicker.EyeDropper` component that wraps `IconButton`
   - Add `ColorPicker.Slider` and `ColorPicker.Input` shortcut components to
     reduce LOC.
 
 - **InputGroup**
-
   - Export directly from the `@chakra-ui/react` package
 
 - **Pagination**
@@ -671,12 +738,10 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Changed
 
 - **Menu**
-
   - Set the default children of `Menu.Arrow` to `Menu.ArrowTip`, reducing LOC in
     common use cases.
 
 - **HoverCard**
-
   - Set the default children of `HoverCard.Arrow` to `HoverCard.ArrowTip`,
     reducing LOC in common use cases.
 
@@ -692,34 +757,28 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
   v2.
 
 - **Switch**
-
   - Transition background color when checked
   - Set `Switch.Control` to include `Switch.Thumb` as its default children,
     reducing LOC in common use cases.
 
 - **Checkbox**
-
   - Set `Checkbox.Control` to include `Checkbox.Indicator` as its default
     children, reducing LOC in common use cases.
 
 - **NumberInput**
-
   - Set `NumberInput.Control` to include `NumberInput.IncrementTrigger` and
     `NumberInput.DecrementTrigger` as its default children, reducing LOC in
     common use cases.
 
 - **QrCode**
-
   - Set `QrCode.Frame` to include `QrCode.Pattern` as its default children,
     reducing LOC in common use cases.
 
 - **RatingGroup**
-
   - Set `RatingGroup.Control` to include an array of `RatingGroup.Item`
     components as its default children, reducing LOC in common use cases.
 
 - **Slider**
-
   - Add `Slider.Marks` component to render marks on the slider track. This is a
     closed composition of `Slider.MarkerGroup` and `Slider.Marker` to reduce LOC
     for common use cases.
@@ -727,7 +786,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
     a closed composition of `Slider.Thumb` to reduce LOC for common use cases.
 
 - **PinInput**
-
   - Add support for `attached` variant prop to render a pin input with attached
     inputs. This removes the need for the `Group` component to wrap the inputs.
 
@@ -757,7 +815,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Added
 
 - **[New] Hooks:**
-
   - `useElementRect`: Get the dimensions and position of an element
   - `useForceUpdate`: Force a component re-render
   - `useLiveRef`: Create a ref that stays up-to-date with its value
@@ -805,7 +862,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Changed
 
 - **Styled System:**
-
   - Boost performance of style resolution by removing `JSON.stringify` in `memo`
     function and avoid memoizing non-primitive arguments.
   - Connect `assets` token to `backgroundImage` and `listStyleImage` css
@@ -897,7 +953,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 ### Fixed
 
 - **Icon**
-
   - Refactor icon recipe `size=inherit` to allow for composition with button
   - Fix issue where using `<Icon as={...} />` throws an error, forcing users to
     use the `asChild` approach
@@ -938,7 +993,6 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 - **Clipboard**: Introduced `Clipboard.ValueText` to display clipboard content.
 
 - **FileUpload**
-
   - Added `preventDropOnDocument` to block file drops on the document when the
     file upload component is active.
 
@@ -995,7 +1049,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   > `aspect-ratio < 1 / 1` in the browser.
 
 - **System**
-
   - Improve type-safety in `useRecipe` and `useSlotRecipe` hooks
   - Fix issue where composing `Input` component throws `asChild` React HTML prop
     warning.
@@ -1036,7 +1089,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
 ### Fixed
 
 - **Slider**
-
   - Add `DraggingIndicator` component to show an element only while dragging
   - Fix issue where slider marks were not styled correctly in vertical
     orientation
@@ -1048,7 +1100,6 @@ npx @chakra-ui/cli snippet add [...components] --tsx
   type error
 
 - **Snippets / Slider**
-
   - Move `MarkerGroup` into the `Control` component
   - Remove hardcoded margin values in favor of recipes and `data-has-mark-label`
     attribute
@@ -1152,11 +1203,9 @@ npx @chakra-ui/cli snippet add [...components] --tsx
 - **Button:** Tweak the horizontal padding when size is `sm`.
 
 - **Snippets**
-
   - Slider: Add `showValue` prop to render the text value of the slider.
 
   - Select
-
     - Add `HiddenSelect` to ensure it works in form submissions.
     - Fix type inference is lost when using `SelectRoot` component from snippet
     - Fix issue where form data is not populated when using native form element
