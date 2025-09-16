@@ -15,6 +15,11 @@ const docsLinks: NavItem = {
             { title: "Figma", url: "figma" },
             { title: "Contributing", url: "contributing" },
             { title: "Showcase", url: "/showcase", external: true },
+            {
+              title: "Changelog",
+              url: "https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v3.mdx",
+              external: true,
+            },
           ],
         },
         {
