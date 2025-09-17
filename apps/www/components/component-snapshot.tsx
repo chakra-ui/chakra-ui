@@ -4,6 +4,7 @@ import { highlightCode } from "@/lib/highlight-code"
 import { Box, Flex, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { useEffect, useState } from "react"
+import { SiTypescript } from "react-icons/si"
 import ts from "typescript"
 import {
   ComponentExplorerSidebar,
@@ -11,7 +12,7 @@ import {
   normalizeComponentName,
 } from "./component-explorer-sidebar"
 
-function formatWithTS(code: string): string {
+function formatWithTS(code: string) {
   const sourceFile = ts.createSourceFile(
     "temp.ts",
     code,
@@ -41,6 +42,7 @@ export function ComponentCodeSnapshot({
 }: ComponentCodeSnapshotProps) {
   const [html, setHtml] = useState("")
   const componentName = normalizeComponentName(name)
+  const activeStyles = getActiveStyle()
 
   useEffect(() => {
     const generate = async () => {
@@ -49,32 +51,32 @@ export function ComponentCodeSnapshot({
       const anatomyKeys = anatomy.keys() || []
 
       const content = activePart
-        ? `
-import { defineSlotRecipe } from "@chakra-ui/react";
+        ? `import { defineSlotRecipe } from "@chakra-ui/react";
+
+// __SPACE__
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${JSON.stringify(anatomyKeys)},
   base: {
-    ${activePart}: ${JSON.stringify(getActiveStyle(), null, 2)}
+    ${activePart}: ${JSON.stringify(activeStyles, null, 2)}
   }
-});
-`
-        : `
-import { defineSlotRecipe } from "@chakra-ui/react";
+});`
+        : `import { defineSlotRecipe } from "@chakra-ui/react";
+
+// __SPACE__
 
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${JSON.stringify(anatomyKeys)}
-});
-`
+});`
 
       const formattedCode = formatWithTS(content)
-
-      const highlighted = await highlightCode(formattedCode)
+      const withSpacing = formattedCode.replace("// __SPACE__", "\n")
+      const highlighted = await highlightCode(withSpacing)
       setHtml(highlighted)
     }
 
     generate()
-  }, [componentName, activePart, getActiveStyle])
+  }, [componentName, activePart, activeStyles])
 
   return (
     <Box
@@ -105,35 +107,8 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
           borderColor="border.subtle"
           borderBottom="none"
           borderTopRadius="md"
-          position="relative"
-          _before={{
-            content: '""',
-            position: "absolute",
-            bottom: "-1px",
-            left: 0,
-            right: 0,
-            height: "1px",
-            bg: "bg",
-          }}
         >
-          <Box
-            w={3}
-            h={3}
-            bg="green.solid"
-            borderRadius="sm"
-            flexShrink={0}
-            position="relative"
-            _after={{
-              content: '""',
-              position: "absolute",
-              top: 0,
-              right: 0,
-              width: "6px",
-              height: "6px",
-              bg: "bg.muted",
-              clipPath: "polygon(0 0, 100% 100%, 0 100%)",
-            }}
-          />
+          <SiTypescript size={12} color="#3178c6" style={{ flexShrink: 0 }} />
           <Text
             fontSize="sm"
             fontWeight="medium"
