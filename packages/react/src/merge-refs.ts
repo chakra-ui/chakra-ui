@@ -1,14 +1,11 @@
-export type ReactRef<T> = React.RefCallback<T> | React.MutableRefObject<T>
+type StrictRef<T> = NonNullable<React.Ref<T>>
+type RefCleanup<T> = ReturnType<React.RefCallback<T>>
 
-export function assignRef<T = any>(
-  ref: ReactRef<T> | null | undefined,
-  value: T,
-) {
+export function assignRef<T = any>(ref: StrictRef<T>, value: T | null) {
   if (ref == null) return
 
   if (typeof ref === "function") {
-    ref(value)
-    return
+    return ref(value)
   }
 
   try {
@@ -18,10 +15,31 @@ export function assignRef<T = any>(
   }
 }
 
-export function mergeRefs<T>(...refs: (ReactRef<T> | null | undefined)[]) {
+export function mergeRefs<T>(
+  ...refs: (React.Ref<T> | undefined)[]
+): React.RefCallback<T> {
+  const availableRefs = refs.filter((ref) => ref != null)
+  const cleanupMap = new Map<StrictRef<T>, Exclude<RefCleanup<T>, void>>()
+
   return (node: T | null) => {
-    refs.forEach((ref) => {
-      assignRef(ref, node)
+    availableRefs.forEach((ref) => {
+      const cleanup = assignRef(ref, node)
+      if (cleanup) {
+        cleanupMap.set(ref, cleanup)
+      }
     })
+
+    return () => {
+      availableRefs.forEach((ref) => {
+        const cleanup = cleanupMap.get(ref)
+        if (cleanup && typeof cleanup === "function") {
+          cleanup()
+        } else {
+          assignRef(ref, null)
+        }
+      })
+
+      cleanupMap.clear()
+    }
   }
 }
