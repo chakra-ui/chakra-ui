@@ -110,6 +110,16 @@
   },
   {
     "type": "composition",
+    "id": "combobox",
+    "file": "combobox.tsx",
+    "component": "Combobox",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "data-list",
     "file": "data-list.tsx",
     "component": "DataList",
