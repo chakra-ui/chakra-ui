@@ -12,9 +12,6 @@ import {
   normalizeComponentName,
 } from "./component-explorer-sidebar"
 
-/**
- * Format using TypeScript printer (keeps this repo free from client-side prettier bundling issues).
- */
 function formatWithTS(code: string) {
   const sourceFile = ts.createSourceFile(
     "temp.ts",
