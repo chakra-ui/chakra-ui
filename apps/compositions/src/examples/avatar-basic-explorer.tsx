@@ -1,6 +1,6 @@
 import { Avatar, HStack } from "@chakra-ui/react"
 
-export const AvatarExplorerDemo = () => {
+export const AvatarBasicExplorer = () => {
   return (
     <HStack gap={2}>
       <Avatar.Root>

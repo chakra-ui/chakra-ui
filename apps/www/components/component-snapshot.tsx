@@ -12,6 +12,9 @@ import {
   normalizeComponentName,
 } from "./component-explorer-sidebar"
 
+/**
+ * Format using TypeScript printer (keeps this repo free from client-side prettier bundling issues).
+ */
 function formatWithTS(code: string) {
   const sourceFile = ts.createSourceFile(
     "temp.ts",
@@ -27,6 +30,19 @@ function formatWithTS(code: string) {
   })
 
   return printer.printFile(sourceFile)
+}
+
+/**
+ * Small helper that turns an array into either a one-line JSON array
+ * or a multi-line, nicely indented array (so we get readable `slots` formatting).
+ */
+function stringifySlots(slots: string[], maxInlineLength = 80) {
+  const single = JSON.stringify(slots)
+  if (single.length <= maxInlineLength && !single.includes("\n")) return single
+
+  // multi-line representation with two-space indent (match the template indentation)
+  const lines = slots.map((s) => `  ${JSON.stringify(s)}`)
+  return `[\n${lines.join(",\n")}\n]`
 }
 
 interface ComponentCodeSnapshotProps {
@@ -50,23 +66,21 @@ export function ComponentCodeSnapshot({
         anatomies[`${componentName}Anatomy` as keyof typeof anatomies]
       const anatomyKeys = anatomy.keys() || []
 
+      const slotsCode = stringifySlots(anatomyKeys)
+
       const content = activePart
         ? `import { defineSlotRecipe } from "@chakra-ui/react";
-
 // __SPACE__
-
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${JSON.stringify(anatomyKeys)},
+  slots: ${slotsCode},
   base: {
     ${activePart}: ${JSON.stringify(activeStyles, null, 2)}
   }
 });`
         : `import { defineSlotRecipe } from "@chakra-ui/react";
-
 // __SPACE__
-
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${JSON.stringify(anatomyKeys)}
+  slots: ${slotsCode}
 });`
 
       const formattedCode = formatWithTS(content)
@@ -92,7 +106,6 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
         align="center"
         px={4}
         py={2}
-        bg="bg.muted"
         borderBottom="1px solid"
         borderBottomColor="border.subtle"
         position="relative"
