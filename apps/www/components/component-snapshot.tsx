@@ -32,19 +32,6 @@ function formatWithTS(code: string) {
   return printer.printFile(sourceFile)
 }
 
-/**
- * Small helper that turns an array into either a one-line JSON array
- * or a multi-line, nicely indented array (so we get readable `slots` formatting).
- */
-function stringifySlots(slots: string[], maxInlineLength = 80) {
-  const single = JSON.stringify(slots)
-  if (single.length <= maxInlineLength && !single.includes("\n")) return single
-
-  // multi-line representation with two-space indent (match the template indentation)
-  const lines = slots.map((s) => `  ${JSON.stringify(s)}`)
-  return `[\n${lines.join(",\n")}\n]`
-}
-
 interface ComponentCodeSnapshotProps {
   name: string
   activePart: string | null
@@ -62,25 +49,23 @@ export function ComponentCodeSnapshot({
 
   useEffect(() => {
     const generate = async () => {
-      const anatomy =
-        anatomies[`${componentName}Anatomy` as keyof typeof anatomies]
-      const anatomyKeys = anatomy.keys() || []
-
-      const slotsCode = stringifySlots(anatomyKeys)
-
       const content = activePart
-        ? `import { defineSlotRecipe } from "@chakra-ui/react";
+        ? `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
+import { defineSlotRecipe } from "@chakra-ui/react"
+
 // __SPACE__
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${slotsCode},
+  slots: ${componentName}Anatomy.keys(),
   base: {
     ${activePart}: ${JSON.stringify(activeStyles, null, 2)}
   }
 });`
-        : `import { defineSlotRecipe } from "@chakra-ui/react";
+        : `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
+import { defineSlotRecipe } from "@chakra-ui/react"
+
 // __SPACE__
 export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${slotsCode}
+  slots: ${componentName}Anatomy.keys()
 });`
 
       const formattedCode = formatWithTS(content)

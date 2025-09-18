@@ -157,6 +157,7 @@ const AnatomyPart = <T extends string>({
         fontWeight="medium"
         textTransform="capitalize"
         color="fg"
+        textStyle="sm"
       >
         {partKey}
       </Text>
