@@ -16,6 +16,7 @@ export function ComponentExplorer({
       gridTemplateColumns={{ base: "1fr", lg: "1fr 260px" }}
       gridTemplateRows="auto auto"
       gap={4}
+      mt={4}
     >
       <Box
         id="component-preview"

@@ -14,21 +14,28 @@ export type HighlightStyle = Partial<
   >
 >
 
-const applyHighlight = (
+const getPartElements = (
+  preview: HTMLElement,
   normalizedName: string,
-  part: string | null,
+  part: string,
+): HTMLElement[] => {
+  const kebabPart = kebabCase(part)
+
+  const scopeSelector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
+  const scopeMatches = Array.from(
+    preview.querySelectorAll<HTMLElement>(scopeSelector),
+  )
+  if (scopeMatches.length > 0) return scopeMatches
+
+  const classSelector = `.chakra-${normalizedName}__${kebabPart}`
+  return Array.from(preview.querySelectorAll<HTMLElement>(classSelector))
+}
+
+const highlightElements = (
+  elements: HTMLElement[],
   action: "add" | "remove",
   highlightStyle: HighlightStyle,
 ) => {
-  if (!part) return
-
-  const kebabPart = kebabCase(part)
-  const selector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
-  const preview = document.getElementById("component-preview")
-  if (!preview) return
-
-  const elements = preview.querySelectorAll<HTMLElement>(selector)
-
   for (const el of elements) {
     if (action === "add") {
       for (const key in highlightStyle) {
@@ -42,6 +49,20 @@ const applyHighlight = (
       }
     }
   }
+}
+
+const applyHighlight = (
+  normalizedName: string,
+  part: string | null,
+  action: "add" | "remove",
+  highlightStyle: HighlightStyle,
+) => {
+  if (!part) return
+  const preview = document.getElementById("component-preview")
+  if (!preview) return
+
+  const elements = getPartElements(preview, normalizedName, part)
+  highlightElements(elements, action, highlightStyle)
 }
 
 interface ComponentExplorerSidebarProps {
@@ -79,21 +100,11 @@ export const ComponentExplorerSidebar = ({
     const preview = document.getElementById("component-preview")
     if (!preview) return
 
-    const selector = `[data-scope=${normalizedName}][data-part=${kebabCase(part)}]`
-    const elements = preview.querySelectorAll<HTMLElement>(selector)
-
-    for (const el of elements) {
-      if (isEntering) {
-        for (const key in highlightStyle) {
-          const k = key as keyof HighlightStyle
-          if (highlightStyle[k]) el.style[k] = highlightStyle[k]!
-        }
-      } else if (activePart !== part) {
-        for (const key in highlightStyle) {
-          const k = key as keyof HighlightStyle
-          el.style[k] = ""
-        }
-      }
+    const elements = getPartElements(preview, normalizedName, part)
+    if (isEntering) {
+      highlightElements(elements, "add", highlightStyle)
+    } else if (activePart !== part) {
+      highlightElements(elements, "remove", highlightStyle)
     }
   }
 
