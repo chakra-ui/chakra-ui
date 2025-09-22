@@ -107,11 +107,13 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
       counterReset: "line 0",
     },
     codeText: {
-      px: "var(--code-block-padding)",
+      paddingLeft: "var(--code-block-padding)",
+      paddingRight: "var(--code-block-padding)",
       py: "var(--code-block-padding)",
       position: "relative",
       display: "block",
       width: "100%",
+      minWidth: "max-content",
       "&[data-has-focused]": {
         "& [data-line]:not([data-focused])": {
           transitionProperty: "opacity, filter",
