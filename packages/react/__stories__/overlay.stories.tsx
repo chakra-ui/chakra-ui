@@ -17,3 +17,4 @@ export { OverlayWithAlert as Alert } from "compositions/examples/overlay-with-al
 export { OverlayWithReturnValue as ReturnValue } from "compositions/examples/overlay-with-return-value"
 export { OverlayWithUpdate as Update } from "compositions/examples/overlay-with-update"
 export { OverlayWithDrawer as Drawer } from "compositions/examples/overlay-with-drawer"
+export { OverlayWithForm as Form } from "compositions/examples/overlay-with-form"
