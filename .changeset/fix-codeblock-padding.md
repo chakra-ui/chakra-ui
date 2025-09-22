@@ -1,0 +1,1 @@
+---\n\"@chakra-ui/panda-preset\": patch\n---\n\nFix CodeBlock horizontal scrolling padding issue where text touches right border\n
