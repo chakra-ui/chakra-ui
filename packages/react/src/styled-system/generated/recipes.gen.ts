@@ -334,6 +334,7 @@ export type AlertSlot = "title" | "description" | "root" | "indicator" | "conten
 export interface AlertVariant {
   /** @default "info" */
   status?: "info" | "warning" | "success" | "error" | "neutral" | undefined
+  /** @default false */
   inline?: boolean | undefined
   /** @default "subtle" */
   variant?: "subtle" | "surface" | "outline" | "solid" | undefined
@@ -1317,6 +1318,8 @@ export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicato
 export interface TimelineVariant {
   /** @default "solid" */
   variant?: "subtle" | "solid" | "outline" | "plain" | undefined
+  /** @default false */
+  showLastSeparator?: boolean | undefined
   /** @default "md" */
   size?: "sm" | "md" | "lg" | "xl" | undefined
 }
