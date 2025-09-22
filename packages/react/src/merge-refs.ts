@@ -1,7 +1,10 @@
 type StrictRef<T> = NonNullable<React.Ref<T>>
 type RefCleanup<T> = ReturnType<React.RefCallback<T>>
 
-export function assignRef<T = any>(ref: StrictRef<T>, value: T | null) {
+export function assignRef<T = any>(
+  ref: StrictRef<T>,
+  value: T | null,
+): RefCleanup<T> {
   if (ref == null) return
 
   if (typeof ref === "function") {
