@@ -2,7 +2,7 @@ export type CodeBlockColorScheme = "light" | "dark" | (string & {})
 
 export interface CodeBlockHighlightMeta {
   /**
-   * The lines to highlight.
+   * The lines to highlight. Line numbers are 1-based.
    */
   highlightLines?: number[] | undefined
   /**
@@ -14,15 +14,15 @@ export interface CodeBlockHighlightMeta {
    */
   wordWrap?: boolean | undefined
   /**
-   * The lines to remove.
+   * The lines to remove. Line numbers are 1-based.
    */
   removedLineNumbers?: number[] | undefined
   /**
-   * The lines to add.
+   * The lines to add. Line numbers are 1-based.
    */
   addedLineNumbers?: number[] | undefined
   /**
-   * The lines to focus.
+   * The lines to focus. Line numbers are 1-based.
    */
   focusedLineNumbers?: number[] | undefined
   /**

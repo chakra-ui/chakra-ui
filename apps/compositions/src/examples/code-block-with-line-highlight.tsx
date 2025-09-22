@@ -19,7 +19,7 @@ export const CodeBlockWithLineHighlight = () => {
       <CodeBlock.Root
         code={file.code}
         language={file.language}
-        meta={{ highlightLines: [2, 1] }}
+        meta={{ highlightLines: [2, 3] }}
       >
         <CodeBlock.Content>
           <CodeBlock.Code>
