@@ -137,6 +137,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
             content: `''`,
             display: "block",
             position: "absolute",
+            top: "0",
             insetStart: "calc(var(--code-block-padding) * -1)",
             insetEnd: "0px",
             width: "calc(100% + var(--code-block-padding) * 2)",
