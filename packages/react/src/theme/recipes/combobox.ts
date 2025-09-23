@@ -89,7 +89,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       background: "bg.panel",
       display: "flex",
       flexDirection: "column",
-      zIndex: "dropdown",
+      zIndex: "popover",
       borderRadius: "l2",
       outline: 0,
       maxH: "96",
