@@ -2,7 +2,7 @@
 
 import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
-import { kebabCase } from "scule"
+import { camelCase, kebabCase } from "scule"
 
 export const normalizeComponentName = (name: string) =>
   name.split("-")[0].toLowerCase()
@@ -20,6 +20,7 @@ const getPartElements = (
   part: string,
 ): HTMLElement[] => {
   const kebabPart = kebabCase(part)
+  const camelPart = camelCase(part)
 
   const scopeSelector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
   const scopeMatches = Array.from(
@@ -27,7 +28,7 @@ const getPartElements = (
   )
   if (scopeMatches.length > 0) return scopeMatches
 
-  const classSelector = `.chakra-${normalizedName}__${kebabPart}`
+  const classSelector = `.chakra-${normalizedName}__${camelPart}`
   return Array.from(preview.querySelectorAll<HTMLElement>(classSelector))
 }
 
