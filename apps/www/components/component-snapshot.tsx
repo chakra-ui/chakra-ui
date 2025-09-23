@@ -49,7 +49,6 @@ export function ComponentCodeSnapshot({
       const content = activePart
         ? `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
 import { defineSlotRecipe } from "@chakra-ui/react"
-
 // __SPACE__
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${componentName}Anatomy.keys(),
@@ -59,14 +58,13 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
 });`
         : `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
 import { defineSlotRecipe } from "@chakra-ui/react"
-
 // __SPACE__
 export const ${componentName}SlotRecipe = defineSlotRecipe({
   slots: ${componentName}Anatomy.keys()
 });`
 
       const formattedCode = formatWithTS(content)
-      const withSpacing = formattedCode.replace("// __SPACE__", "\n")
+      const withSpacing = formattedCode.replace("// __SPACE__", "")
       const highlighted = await highlightCode(withSpacing)
       setHtml(highlighted)
     }
@@ -81,13 +79,13 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
       pos="relative"
       rounded="lg"
       border="1px solid"
-      borderColor="border.subtle"
+      borderColor="border"
       bg="bg"
     >
       <Flex
         align="center"
         px={4}
-        py={2}
+        pt={2}
         borderBottom="1px solid"
         borderBottomColor="border.subtle"
         position="relative"
