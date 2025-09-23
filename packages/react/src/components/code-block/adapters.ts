@@ -159,7 +159,13 @@ export function createHighlightJsAdapter<T extends HighlightJsHighlighterBase>(
                 meta?.highlightLines?.includes(lineNumber) && "data-highlight",
                 meta?.wordWrap && "data-word-wrap",
                 hasDiff &&
-                  `data-diff="${meta?.addedLineNumbers?.includes(lineNumber) ? "added" : meta?.removedLineNumbers?.includes(lineNumber) ? "removed" : undefined}"`,
+                  meta?.addedLineNumbers?.includes(lineNumber) &&
+                  `data-diff="added"`,
+                hasDiff &&
+                  meta?.removedLineNumbers?.includes(lineNumber) &&
+                  `data-diff="removed"`,
+                meta?.focusedLineNumbers?.includes(lineNumber) &&
+                  "data-focused",
               ]
               return `<span ${attrs.filter(Boolean).join(" ")}>${line || " "}</span>`
             })

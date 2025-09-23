@@ -24,7 +24,7 @@ export const CodeBlockWithDiff = () => {
         language={file.language}
         meta={{
           showLineNumbers: true,
-          addedLineNumbers: [1, 4],
+          addedLineNumbers: [4],
           removedLineNumbers: [3],
         }}
       >
