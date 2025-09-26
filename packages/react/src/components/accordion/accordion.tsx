@@ -61,8 +61,9 @@ export const AccordionPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemBaseProps>,
-    UnstyledProp {}
+  extends React.PropsWithChildren<
+    HTMLChakraProps<"div", ArkAccordion.ItemBaseProps> & UnstyledProp
+  > {}
 
 export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
   ArkAccordion.Item,
@@ -73,8 +74,9 @@ export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemContentProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemContentBaseProps>,
-    UnstyledProp {}
+  extends React.PropsWithChildren<
+    HTMLChakraProps<"div", ArkAccordion.ItemContentBaseProps> & UnstyledProp
+  > {}
 
 export const AccordionItemContent = withContext<
   HTMLDivElement,
@@ -95,8 +97,9 @@ export const AccordionItemBody = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemTriggerProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps>,
-    UnstyledProp {}
+  extends React.PropsWithChildren<
+    HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps> & UnstyledProp
+  > {}
 
 export const AccordionItemTrigger = withContext<
   HTMLButtonElement,
@@ -106,8 +109,10 @@ export const AccordionItemTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemIndicatorProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemIndicatorBaseProps>,
-    UnstyledProp {}
+  extends React.PropsWithChildren<
+    HTMLChakraProps<"button", ArkAccordion.ItemIndicatorBaseProps> &
+      UnstyledProp
+  > {}
 
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,
