@@ -13,7 +13,7 @@ export function createSerializeFn(
 
         if (!conditions.has(prop) && !isValidProperty(prop)) {
           return parseSelectors(prop)
-            .map((s) => "&" + s)
+            .map((s) => (isTopLevelSelector(s) ? `${s} &` : `&${s}`))
             .join(", ")
         }
 
@@ -21,6 +21,10 @@ export function createSerializeFn(
       },
     })
   }
+}
+
+function isTopLevelSelector(s: string): boolean {
+  return s.startsWith(":host") || s.startsWith(":host-context")
 }
 
 function parseSelectors(selector: string): string[] {
