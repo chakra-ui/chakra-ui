@@ -25,10 +25,10 @@ const docsLinks: NavItem = {
         {
           title: "AI for Agents",
           url: "ai",
-          status: "new",
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
+            { title: "AI Rules", url: "rules", status: "new" },
           ],
         },
         {
