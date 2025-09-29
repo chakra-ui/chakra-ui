@@ -22,6 +22,7 @@
     "@hookform/resolvers": "5.1.1",
     "@tanstack/react-table": "8.21.3",
     "@tanstack/react-virtual": "3.13.12",
+    "check-password-strength": "^3.0.0",
     "emojibase-data": "^16.0.3",
     "es-toolkit": "1.39.5",
     "highlight.js": "11.11.1",
