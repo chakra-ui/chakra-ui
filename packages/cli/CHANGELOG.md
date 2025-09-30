@@ -1,5 +1,7 @@
 # @chakra-ui/cli
 
+## 3.27.1
+
 ## 3.27.0
 
 ### Minor Changes
