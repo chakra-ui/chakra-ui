@@ -3,6 +3,8 @@ import { isObject } from "../utils"
 export type Operand = string | number | { reference: string }
 type Operator = "+" | "-" | "*" | "/"
 
+const CALC_REGEX = /calc/g
+
 function resolveReference(operand: Operand): string {
   if (isObject(operand) && operand.reference) {
     return operand.reference
@@ -11,7 +13,7 @@ function resolveReference(operand: Operand): string {
 }
 
 const toExpression = (operator: Operator, ...operands: Array<Operand>) =>
-  operands.map(resolveReference).join(` ${operator} `).replace(/calc/g, "")
+  operands.map(resolveReference).join(` ${operator} `).replace(CALC_REGEX, "")
 
 const add = (...operands: Array<Operand>) =>
   `calc(${toExpression("+", ...operands)})`

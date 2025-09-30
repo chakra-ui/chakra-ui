@@ -4,6 +4,7 @@ import {
   compact,
   flatten,
   isObject,
+  mapEntries,
   memo,
   mergeWith,
   splitProps,
@@ -153,11 +154,9 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   function getGlobalCss() {
-    const keyframes = Object.fromEntries(
-      Object.entries(theme.keyframes ?? EMPTY_OBJECT).map(([key, value]) => [
-        `@keyframes ${key}`,
-        value,
-      ]),
+    const keyframes = mapEntries(
+      theme.keyframes ?? EMPTY_OBJECT,
+      (key, value) => [`@keyframes ${key}`, value],
     )
     const result = Object.assign({}, keyframes, css(serialize(globalCss)))
     return layers.wrap("base", result)
