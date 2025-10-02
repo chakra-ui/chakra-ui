@@ -14,7 +14,7 @@ const docsLinks: NavItem = {
             { title: "CLI", url: "cli" },
             { title: "Figma", url: "figma" },
             { title: "Contributing", url: "contributing" },
-            { title: "Showcase", url: "/showcase", external: true },
+            { title: "Playground", url: "/playground", external: true },
             {
               title: "Changelog",
               url: "https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v3.mdx",
@@ -25,10 +25,10 @@ const docsLinks: NavItem = {
         {
           title: "AI for Agents",
           url: "ai",
-          status: "new",
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
+            { title: "AI Rules", url: "rules", status: "new" },
           ],
         },
         {
@@ -377,6 +377,13 @@ const docsLinks: NavItem = {
   ],
 }
 
+export const NAV_LINKS = [
+  { title: "Docs", url: "/docs/get-started/installation" },
+  { title: "Showcase", url: "/showcase" },
+  { title: "Blog", url: "/blog" },
+  { title: "Guides", url: "/guides" },
+]
+
 export const docsConfig: DocsConfig = {
   storybookUrl: "https://storybook.chakra-ui.com",
   copyright: "Copyright © {{date}} Segun Adebayo. All Rights Reserved.",
@@ -394,9 +401,9 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Playground", url: "playground" },
-    { title: "Guides", url: "guides" },
+    { title: "Showcase", url: "showcase" },
     { title: "Blog", url: "blog" },
+    { title: "Guides", url: "guides" },
   ],
   proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
 }

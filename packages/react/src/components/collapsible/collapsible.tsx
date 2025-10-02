@@ -80,6 +80,17 @@ export const CollapsibleContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CollapsibleIndicatorProps
+  extends HTMLChakraProps<"div", ArkCollapsible.IndicatorBaseProps>,
+    UnstyledProp {}
+
+export const CollapsibleIndicator = withContext<
+  HTMLDivElement,
+  CollapsibleIndicatorProps
+>(ArkCollapsible.Indicator, "indicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const CollapsibleContext = ArkCollapsible.Context
 
 export interface CollapsibleOpenChangeDetails
