@@ -110,7 +110,13 @@ export const ComponentExplorerSidebar = ({
   }
 
   return (
-    <Box p={5} bg="bg" minW={{ base: "100%", lg: "260px" }} maxW="100%">
+    <Box
+      p={5}
+      px={{ base: 0, lg: 5 }}
+      bg="bg"
+      minW={{ base: "100%", lg: "260px" }}
+      maxW="100%"
+    >
       <Heading size="sm" mb={2} color="fg">
         Component Anatomy
       </Heading>

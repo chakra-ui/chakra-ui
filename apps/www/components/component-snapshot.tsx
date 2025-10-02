@@ -164,7 +164,6 @@ export function ComponentExplorerWrapper({ name }: { name: string }) {
         setActivePart={setActivePart}
         getHighlightStyle={getHighlightStyle}
       />
-
       <Box gridColumn={{ base: "1 / -1", lg: "1 / -1" }}>
         <ComponentCodeSnapshot
           name={name}
