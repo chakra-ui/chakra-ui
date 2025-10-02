@@ -12,13 +12,12 @@ export function ComponentExplorer({
   return (
     <Box
       className={className}
-      display="grid"
+      display={{ base: "block", lg: "grid" }}
       gridTemplateColumns={{ base: "1fr", lg: "1fr 260px" }}
       gridTemplateRows="auto auto"
       gap={4}
       mt={4}
       maxW="100%"
-      overflow="hidden"
     >
       <Box
         id="component-preview"
@@ -31,6 +30,7 @@ export function ComponentExplorer({
         display="flex"
         alignItems="center"
         justifyContent="center"
+        overflow="hidden"
       >
         <ExamplePreview name={name} />
       </Box>
