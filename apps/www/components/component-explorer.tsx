@@ -17,6 +17,8 @@ export function ComponentExplorer({
       gridTemplateRows="auto auto"
       gap={4}
       mt={4}
+      maxW="100%"
+      overflow="hidden"
     >
       <Box
         id="component-preview"

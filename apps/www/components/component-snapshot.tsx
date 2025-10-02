@@ -126,14 +126,17 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
 
       <Box
         overflow="auto"
+        maxW="100%"
         css={{
           "& pre": {
-            px: "6",
+            px: "4", // reduce padding on mobile
             py: "4",
             maxHeight: "400px",
             overflow: "auto",
             my: "0",
             bg: "transparent",
+            whiteSpace: "pre-wrap", // wrap long lines
+            wordBreak: "break-word", // avoid overflow
           },
         }}
       >
