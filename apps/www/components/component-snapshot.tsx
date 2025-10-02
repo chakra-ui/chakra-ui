@@ -2,7 +2,6 @@
 
 import { highlightCode } from "@/lib/highlight-code"
 import { Box, Flex, Text } from "@chakra-ui/react"
-import * as anatomies from "@chakra-ui/react/anatomy"
 import { useEffect, useState } from "react"
 import { SiTypescript } from "react-icons/si"
 import ts from "typescript"
