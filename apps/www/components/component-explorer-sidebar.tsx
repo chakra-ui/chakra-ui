@@ -123,7 +123,6 @@ export const ComponentExplorerSidebar = ({
       <Text fontSize="sm" mb={4} color="fg.muted">
         Hover to highlight, click to select parts
       </Text>
-
       <Flex wrap="wrap" gap={2}>
         {anatomyKeys.map((key) => (
           <AnatomyPart
