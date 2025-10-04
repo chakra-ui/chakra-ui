@@ -9,9 +9,23 @@ Floating labels conserve space in forms, particularly on mobile devices where
 screen space is limited.
 
 To add a floating label to an input component in Chakra UI, create a styled
-input field using the `Field`, `Input`, and `Box` components.
+input field using the `Field`, `Input`, and `Box` components with React state
+management for reliable cross-device compatibility.
 
 <ExampleTabs name="input-with-floating-label" />
 
 > For more details on Chakra UI's input component, refer to the
 > [documentation](/docs/components/input).
+
+## How it works
+
+This implementation uses:
+
+- **React state management**: Tracks focus and value states for consistent
+  behavior
+- **`data-float` attribute**: Applied conditionally for CSS-based styling
+- **CSS attribute selectors**: `&[data-float]` for hardware-accelerated style
+  changes
+
+The state approach ensures the label floats correctly on all devices, including
+mobile browsers where CSS-only solutions may fail due to autofill behavior.

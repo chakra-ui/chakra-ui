@@ -5,7 +5,7 @@ links:
   source: components/file-upload
   storybook: components-file-upload--basic
   recipe: file-upload
-  ark: https://ark-ui.com/react/docs/components/file-upload
+  ark: https://ark-ui.com/docs/components/file-upload
 ---
 
 <ExampleTabs name="file-upload-basic" />
@@ -132,6 +132,13 @@ Drop multiple files inside the dropzone and use the `maxFiles` prop to set the
 number of files that can be uploaded at once.
 
 <ExampleTabs name="file-upload-with-dropzone" />
+
+### Conditional Dropzone
+
+Hide the dropzone when the maximum number of files has been reached by using
+`useFileUploadContext` to access the accepted files count.
+
+<ExampleTabs name="file-upload-with-conditional-dropzone" />
 
 ### Input
 

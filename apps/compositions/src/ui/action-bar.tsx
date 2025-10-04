@@ -4,7 +4,7 @@ import * as React from "react"
 
 interface ActionBarContentProps extends ActionBar.ContentProps {
   portalled?: boolean
-  portalRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement | null>
 }
 
 export const ActionBarContent = React.forwardRef<

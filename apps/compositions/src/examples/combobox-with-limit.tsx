@@ -9,7 +9,7 @@ import {
 import { useRef } from "react"
 
 export const ComboboxWithLimit = () => {
-  const contentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
 
   const { startsWith } = useFilter({ sensitivity: "base" })
 

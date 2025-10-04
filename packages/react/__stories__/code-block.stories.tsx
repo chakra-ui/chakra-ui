@@ -22,6 +22,7 @@ export { CodeBlockWithLineNumbers as LineNumbers } from "compositions/examples/c
 export { CodeBlockWithDiff as Diff } from "compositions/examples/code-block-with-diff"
 export { CodeBlockWithMaxLines as MaxLines } from "compositions/examples/code-block-with-max-lines"
 export { CodeBlockWithWordWrap as WordWrap } from "compositions/examples/code-block-with-word-wrap"
+export { CodeBlockWithLineNumbersWordWrap as LineNumbersWordWrap } from "compositions/examples/code-block-with-line-numbers-word-wrap"
 export { CodeBlockWithLanguageSwitcher as LanguageSwitcher } from "compositions/examples/code-block-with-language-switcher"
 export { CodeBlockWithSizes as Sizes } from "compositions/examples/code-block-with-sizes"
 export { CodeBlockWithFloatingCopyButton as FloatingCopyButton } from "compositions/examples/code-block-with-floating-copy-button"

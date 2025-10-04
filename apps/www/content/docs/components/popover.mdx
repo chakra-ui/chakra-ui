@@ -5,7 +5,7 @@ links:
   source: components/popover
   storybook: components-popover--basic
   recipe: popover
-  ark: https://ark-ui.com/react/docs/components/popover
+  ark: https://ark-ui.com/docs/components/popover
 ---
 
 <ExampleTabs name="popover-basic" />
@@ -99,10 +99,18 @@ as the trigger.
 
 ### Nested Popover
 
-When nesting overlay elements like popover, select, menu, inside of the popover,
-set `portalled=false` on them.
+When nesting floating elements like popover, select, menu, inside of the
+popover, avoid portalling them to the document's body.
 
-Here's an example of a popover inside another popover.
+```diff
+-<Portal>
+  <Popover.Positioner>
+    <Popover.Content>
+      {/* ... */}
+    </Popover.Content>
+  </Popover.Positioner>
+-</Portal>
+```
 
 <ExampleTabs name="popover-nested" />
 
@@ -166,4 +174,4 @@ If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
 Explore the `Popover` component parts interactively. Click on parts in the
 sidebar to highlight them in the preview.
 
-<Explorer name="popover-basic" />
+<Explorer name="popover-basic-explorer" />

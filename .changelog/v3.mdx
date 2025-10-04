@@ -5,6 +5,88 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.27.0](./#3.27.0) - 2025-09-14
+
+### Added
+
+- **CLI**: Add new `blocks` command to add chakra pro blocks to your project.
+
+  This command requires valid Chakra Pro license and API key in the
+  `CHAKRA_UI_PRO_API_KEY` environment variable.
+
+  ```sh
+  # Interactive block selection
+  npx @chakra-ui/cli blocks add
+
+  # Add all variants of a specific block
+  npx @chakra-ui/cli blocks add hero
+
+  # Add a specific variant of a block
+  npx @chakra-ui/cli blocks add hero --variant "simple"
+
+  # List available blocks
+  npx @chakra-ui/cli blocks list
+
+  # List blocks in a specific category
+  npx @chakra-ui/cli blocks list --category "marketing"
+  ```
+
+- **Composition Types**: Enhanced with comprehensive CSS property support
+
+  **Text Style Properties:** Added properties to `theme.textStyles`:
+  - Basic properties (`color`, `direction`, `font`, `fontFamily`,
+    `fontFeatureSettings`, `fontKerning`, `fontLanguageOverride`,
+    `fontOpticalSizing`, `fontPalette`)
+  - Typography properties (`hangingPunctuation`, `hyphens`,
+    `hyphenateCharacter`, `hyphenateLimitChars`, `lineBreak`, `quotes`,
+    `overflowWrap`, `tabSize`)
+  - Text alignment (`textAlign`, `textAlignLast`, `textCombineUpright`,
+    `textJustify`)
+  - Text decoration (`textDecorationSkip`, `textDecorationSkipBox`,
+    `textDecorationSkipInk`, `textDecorationSkipInset`,
+    `textDecorationThickness`, `textEmphasis`)
+  - Text formatting (`textShadow`, `textStroke`, `textStrokeColor`,
+    `textStrokeWidth`, `textUnderlineOffset`, `textUnderlinePosition`,
+    `textWrap`, `textWrapMode`, `textWrapStyle`)
+  - Text layout (`unicodeBidi`, `verticalAlign`, `whiteSpace`, `wordBreak`,
+    `wordSpacing`, `writingMode`)
+
+  **Layer Style Properties:** Added properties to `theme.layerStyles`:
+  - Layout properties (`aspectRatio`, `display`, `contain`, `contentVisibility`,
+    `isolation`)
+  - Visual effects (`clipPath`, `mixBlendMode`, `maskClip`, `maskComposite`,
+    `maskImage`, `maskMode`, `maskOrigin`, `maskPosition`, `maskRepeat`,
+    `maskSize`)
+  - Modern properties (`objectFit`, `objectPosition`, `pointerEvents`, `resize`,
+    `visibility`, `willChange`)
+  - Border properties (`borderImage`, `borderImageOutset`, `borderImageRepeat`,
+    `borderImageSlice`, `borderImageSource`, `borderImageWidth`)
+  - Overflow properties (`overflow`, `overflowX`, `overflowY`)
+
+### Fixed
+
+- **CodeBlock**:
+  - Fix issue where Line numbers display incorrectly when `meta.wordWrap` is
+    true
+  - Allow horizontal scrolling when code block overflows
+
+- **Hover Card**: Change default delay values to improve accessibility
+  - `openDelay`: from `700ms` to `600ms`
+
+- **Tooltip**: Change default delay values to improve accessibility.
+  [Learn more](https://www.nngroup.com/articles/timing-exposing-content)
+  - `openDelay`: from `1000ms` to `400ms`
+  - `closeDelay`: from `500ms` to `150ms`
+
+- **Menu**:
+  - Fix issue where keyboard activation of menu items with `target="_blank"`
+    would open two tabs
+  - Fix issue where hovering a partially visible item with pointer causes it to
+    scroll into view
+
+- **Combobox**: Add `alwaysSubmitOnEnter` prop to allow forcing the form to be
+  submitted immediately on Enter press
+
 ## [3.26.0](./#3.26.0) - 2025-08-28
 
 ### Added
@@ -599,7 +681,7 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 - **General**: Improve render performance by upgrading to the latest Ark UI v5.
   This brings a **1.5x - 4x** improvements across components. Learn more from
   the
-  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+  [Ark UI v5 changelog](https://ark-ui.com/docs/overview/changelog#500---2025-03-06).
 
 - **RadioGroup**: Allow passing `null` as a valid value to clear the value. This
   means the signature of `onValueChange` now supports `string | null` instead of

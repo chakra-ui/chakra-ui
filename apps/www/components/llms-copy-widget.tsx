@@ -42,7 +42,7 @@ const CopyMarkdownButton = (props: ButtonProps & { data: Docs }) => {
   const clipboard = useClipboard({ value: getLlmContent(data), timeout: 1000 })
   return (
     <Button {...rest} onClick={clipboard.copy}>
-      {clipboard.copied ? <LuCheck /> : <BsMarkdown />} Copy Markdown
+      {clipboard.copied ? <LuCheck /> : <BsMarkdown />} Copy Page
     </Button>
   )
 }

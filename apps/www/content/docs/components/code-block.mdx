@@ -146,9 +146,9 @@ highlight specific lines of code. The prop accepts an array of line numbers.
 
 ### Line focus
 
-Pass the `meta.highlightLines` prop to the `CodeBlock.Root` component to
-highlight specific lines of code. The prop accepts an array of line numbers. The
-line numbers are 1-based.
+Pass the `meta.focusedLineNumbers` prop to the `CodeBlock.Root` component to
+focus specific lines of code. The prop accepts an array of line numbers. The
+line numbers.
 
 <ExampleTabs name="code-block-with-line-focus" />
 
@@ -209,6 +209,14 @@ this example, the colorScheme is set to color mode from the `useColorMode` hook.
 Use the `meta.wordWrap` prop to wrap the code block component.
 
 <ExampleTabs name="code-block-with-word-wrap" />
+
+### Line numbers with word wrap
+
+You can combine line numbers with word wrapping by setting both
+`meta.showLineNumbers` and `meta.wordWrap` to `true`. The line numbers will
+properly align with wrapped text.
+
+<ExampleTabs name="code-block-with-line-numbers-word-wrap" />
 
 ### Highlight.js
 

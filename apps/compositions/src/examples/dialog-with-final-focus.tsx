@@ -12,7 +12,7 @@ import { useRef } from "react"
 import Lorem from "react-lorem-ipsum"
 
 export const DialogWithFinalFocus = () => {
-  const finalRef = useRef<HTMLDivElement>(null)
+  const finalRef = useRef<HTMLDivElement | null>(null)
   return (
     <Stack align="start">
       <Dialog.Root finalFocusEl={() => finalRef.current}>
