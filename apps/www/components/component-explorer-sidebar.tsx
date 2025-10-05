@@ -4,8 +4,28 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { camelCase, kebabCase } from "scule"
 
-export const normalizeComponentName = (name: string) =>
-  name.split("-")[0].toLowerCase()
+export const normalizeComponentName = (name: string) => {
+  let parts = name.split("-")
+
+  while (
+    parts.length > 1 &&
+    ["basic", "explorer"].includes(parts[parts.length - 1])
+  ) {
+    parts.pop()
+  }
+
+  const pascal = parts
+    .map((p, i) =>
+      i === 0
+        ? p.toLowerCase()
+        : p.charAt(0).toUpperCase() + p.slice(1).toLowerCase(),
+    )
+    .join("")
+
+  const kebab = parts.map((p) => p.toLowerCase()).join("-")
+
+  return { pascal, kebab }
+}
 
 export type HighlightStyle = Partial<
   Pick<
@@ -16,20 +36,26 @@ export type HighlightStyle = Partial<
 
 const getPartElements = (
   preview: HTMLElement,
-  normalizedName: string,
+  kebabName: string,
   part: string,
 ): HTMLElement[] => {
   const kebabPart = kebabCase(part)
   const camelPart = camelCase(part)
 
-  const scopeSelector = `[data-scope=${normalizedName}][data-part=${kebabPart}]`
+  const scopeSelector = `[data-scope=${kebabName}][data-part=${kebabPart}]`
   const scopeMatches = Array.from(
     preview.querySelectorAll<HTMLElement>(scopeSelector),
   )
   if (scopeMatches.length > 0) return scopeMatches
 
-  const classSelector = `.chakra-${normalizedName}__${camelPart}`
-  return Array.from(preview.querySelectorAll<HTMLElement>(classSelector))
+  const chakraSelector = `.chakra-${kebabName}__${camelPart}`
+  const chakraMatches = Array.from(
+    preview.querySelectorAll<HTMLElement>(chakraSelector),
+  )
+  if (chakraMatches.length > 0) return chakraMatches
+
+  const bareSelector = `.${kebabName}__${camelPart}`
+  return Array.from(preview.querySelectorAll<HTMLElement>(bareSelector))
 }
 
 const highlightElements = (
@@ -53,7 +79,7 @@ const highlightElements = (
 }
 
 const applyHighlight = (
-  normalizedName: string,
+  kebabName: string,
   part: string | null,
   action: "add" | "remove",
   highlightStyle: HighlightStyle,
@@ -62,7 +88,7 @@ const applyHighlight = (
   const preview = document.getElementById("component-preview")
   if (!preview) return
 
-  const elements = getPartElements(preview, normalizedName, part)
+  const elements = getPartElements(preview, kebabName, part)
   highlightElements(elements, action, highlightStyle)
 }
 
@@ -79,21 +105,24 @@ export const ComponentExplorerSidebar = ({
   setActivePart,
   getHighlightStyle,
 }: ComponentExplorerSidebarProps) => {
-  const normalizedName = normalizeComponentName(componentName)
-  const anatomy =
-    anatomies[`${normalizedName}Anatomy` as keyof typeof anatomies]
+  const { pascal, kebab } = normalizeComponentName(componentName)
+
+  console.log({ pascal, kebab })
+
+  const anatomy = anatomies[`${pascal}Anatomy` as keyof typeof anatomies]
   const anatomyKeys = anatomy.keys()
   const highlightStyle = getHighlightStyle()
 
   const selectPart = (part: string) => {
     if (activePart === part) {
-      applyHighlight(normalizedName, part, "remove", highlightStyle)
+      applyHighlight(kebab, part, "remove", highlightStyle)
       setActivePart(null)
     } else {
-      if (activePart)
-        applyHighlight(normalizedName, activePart, "remove", highlightStyle)
+      if (activePart) {
+        applyHighlight(kebab, activePart, "remove", highlightStyle)
+      }
       setActivePart(part)
-      applyHighlight(normalizedName, part, "add", highlightStyle)
+      applyHighlight(kebab, part, "add", highlightStyle)
     }
   }
 
@@ -101,7 +130,7 @@ export const ComponentExplorerSidebar = ({
     const preview = document.getElementById("component-preview")
     if (!preview) return
 
-    const elements = getPartElements(preview, normalizedName, part)
+    const elements = getPartElements(preview, kebab, part)
     if (isEntering) {
       highlightElements(elements, "add", highlightStyle)
     } else if (activePart !== part) {
