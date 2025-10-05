@@ -107,7 +107,7 @@ export const ComponentExplorerSidebar = ({
 }: ComponentExplorerSidebarProps) => {
   const { pascal, kebab } = normalizeComponentName(componentName)
   const anatomy = anatomies[`${pascal}Anatomy` as keyof typeof anatomies]
-  const anatomyKeys = anatomy.keys()
+  const anatomyKeys = Array.from(new Set(anatomy.keys()))
   const highlightStyle = getHighlightStyle()
 
   console.log("anatomyKeys", anatomyKeys.join(", "))
