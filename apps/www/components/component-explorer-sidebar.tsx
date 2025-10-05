@@ -106,12 +106,11 @@ export const ComponentExplorerSidebar = ({
   getHighlightStyle,
 }: ComponentExplorerSidebarProps) => {
   const { pascal, kebab } = normalizeComponentName(componentName)
-
-  console.log({ pascal, kebab })
-
   const anatomy = anatomies[`${pascal}Anatomy` as keyof typeof anatomies]
   const anatomyKeys = anatomy.keys()
   const highlightStyle = getHighlightStyle()
+
+  console.log("anatomyKeys", anatomyKeys.join(", "))
 
   const selectPart = (part: string) => {
     if (activePart === part) {
