@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "3.27.0",
+  "version": "3.27.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-frame-component": "5.2.7"
   },
   "scripts": {
