@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.27.1
+
+### Patch Changes
+
+- [#10368](https://github.com/chakra-ui/chakra-ui/pull/10368)
+  [`62260a5`](https://github.com/chakra-ui/chakra-ui/commit/62260a5310dcdc3d61411700acd45d5ad012aa65)
+  Thanks [@tioluwani94](https://github.com/tioluwani94)! - **Pro Blocks**: Allow
+  CLI to read new documentation blocks filtering
+
 ## 3.27.0
 
 ### Minor Changes
