@@ -31,7 +31,6 @@ export const fieldSlotRecipe = defineSlotRecipe({
       textStyle: "sm",
       fontWeight: "medium",
       gap: "1",
-      userSelect: "none",
       _disabled: {
         opacity: "0.5",
       },
