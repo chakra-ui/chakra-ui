@@ -1,5 +1,55 @@
 # @chakra-ui/react
 
+## 3.27.1
+
+### Patch Changes
+
+- [`e1774c8`](https://github.com/chakra-ui/chakra-ui/commit/e1774c8c2e64db4996f936db761dc91786174378)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose
+  `Collapsible.Indicator` component to provide visual indicator for collapsible
+  state
+
+- [`f9d66f4`](https://github.com/chakra-ui/chakra-ui/commit/f9d66f431515bd7184cf02d872391f8d0f08a305)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **CodeBlock**
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- [`f26e863`](https://github.com/chakra-ui/chakra-ui/commit/f26e863add1030514f1c60a33d63362e7a2d9069)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- [#10325](https://github.com/chakra-ui/chakra-ui/pull/10325)
+  [`3e6d1f7`](https://github.com/chakra-ui/chakra-ui/commit/3e6d1f7d52d61eccceeb0da3dee2b941e1718e87)
+  Thanks [@wo-o29](https://github.com/wo-o29)! - Fix issue where refs don't
+  support cleanup function (React 19 compatibility)
+
+- [#10328](https://github.com/chakra-ui/chakra-ui/pull/10328)
+  [`451209e`](https://github.com/chakra-ui/chakra-ui/commit/451209e7564799cbf03b7a08b7839367c124447d)
+  Thanks [@megos](https://github.com/megos)! - fix(table): ensure stickyHeader
+  works with outline variant
+
+- [`56a4501`](https://github.com/chakra-ui/chakra-ui/commit/56a450188b44fef495750aa249163f0c0811100f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Timeline:** Add
+  `showLastSeparator` variant to control visibility of the last separator
+
 ## 3.27.0
 
 ### Minor Changes

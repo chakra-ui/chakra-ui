@@ -5,6 +5,47 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.27.1](./#3.27.1) - 2025-10-06
+
+### Fixed
+
+- **Collapsible**: Expose `Collapsible.Indicator` component to provide visual
+  indicator for collapsible state
+
+- **Timeline**: Add `showLastSeparator` variant to control visibility of the
+  last separator
+
+- **Table**: Ensure stickyHeader works with outline variant
+
+- **CodeBlock**:
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- **Styled System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- **React 19 Compatibility**: Fix issue where refs don't support cleanup
+  function
+
+- **CLI**: Allow CLI to read new documentation blocks filtering
+
 ## [3.27.0](./#3.27.0) - 2025-09-14
 
 ### Added
