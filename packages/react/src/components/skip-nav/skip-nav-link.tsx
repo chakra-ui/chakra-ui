@@ -22,7 +22,8 @@ export const fallbackId = "chakra-skip-nav"
 export const SkipNavLink = forwardRef<HTMLAnchorElement, SkipNavLinkProps>(
   function SkipNavLink(props, ref) {
     const recipe = useRecipe({ key: "skipNavLink", recipe: props.recipe })
-    const [variantProps, { id, ...localProps }] = recipe.splitVariantProps(props)
+    const [variantProps, { id, ...localProps }] =
+      recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 
     const targetId = id ?? fallbackId
