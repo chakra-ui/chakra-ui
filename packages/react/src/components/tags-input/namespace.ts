@@ -1,0 +1,29 @@
+export {
+  TagsInputContext as Context,
+  TagsInputControl as Control,
+  TagsInputInput as Input,
+  TagsInputItem as Item,
+  TagsInputItemText as ItemText,
+  TagsInputItemDeleteTrigger as ItemDeleteTrigger,
+  TagsInputItemContext as ItemContext,
+  TagsInputLabel as Label,
+  TagsInputPropsProvider as PropsProvider,
+  TagsInputRoot as Root,
+  TagsInputRootProvider as RootProvider,
+  TagsInputHiddenInput as HiddenInput,
+  TagsInputClearTrigger as ClearTrigger,
+} from "./tags-input"
+
+export type {
+  TagsInputRootProviderProps as RootProviderProps,
+  TagsInputControlProps as ControlProps,
+  TagsInputInputProps as InputProps,
+  TagsInputItemProps as ItemProps,
+  TagsInputItemTextProps as ItemTextProps,
+  TagsInputItemDeleteTriggerProps as ItemDeleteTriggerProps,
+  TagsInputLabelProps as LabelProps,
+  TagsInputRootProps as RootProps,
+  TagsInputClearTriggerProps as ClearTriggerProps,
+  TagsInputValueChangeDetails as ValueChangeDetails,
+  TagsInputValidityChangeDetails as ValidityChangeDetails,
+} from "./tags-input"

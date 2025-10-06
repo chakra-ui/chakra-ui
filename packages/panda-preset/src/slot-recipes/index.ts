@@ -46,6 +46,8 @@ import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
 import { treeViewSlotRecipe } from "./tree-view"
 
+export { tagsInputSlotRecipe } from "./tags-input"
+
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
   actionBar: actionBarSlotRecipe,
