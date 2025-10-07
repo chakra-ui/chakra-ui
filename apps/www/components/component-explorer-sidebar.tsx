@@ -1,7 +1,9 @@
 "use client"
 
-import { Box, Flex, Heading, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Flex, Heading, Icon, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
+import { useEffect, useRef, useState } from "react"
+import { HiChevronRight } from "react-icons/hi"
 import { camelCase, kebabCase } from "scule"
 
 export const normalizeComponentName = (name: string) => {
@@ -110,16 +112,35 @@ export const ComponentExplorerSidebar = ({
   const anatomyKeys = anatomy ? Array.from(new Set(anatomy.keys())) : []
   const highlightStyle = getHighlightStyle()
 
-  console.log(`${componentName} anatomyKeys`, anatomyKeys.join(", "))
+  const flexRef = useRef<HTMLDivElement | null>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  const updateScrollState = () => {
+    const el = flexRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth)
+  }
+
+  useEffect(() => {
+    updateScrollState()
+    window.addEventListener("resize", updateScrollState)
+    return () => window.removeEventListener("resize", updateScrollState)
+  }, [anatomyKeys])
+
+  const scrollBy = (distance: number) => {
+    if (!flexRef.current) return
+    flexRef.current.scrollBy({ left: distance, behavior: "smooth" })
+  }
 
   const selectPart = (part: string) => {
     if (activePart === part) {
       applyHighlight(kebab, part, "remove", highlightStyle)
       setActivePart(null)
     } else {
-      if (activePart) {
+      if (activePart)
         applyHighlight(kebab, activePart, "remove", highlightStyle)
-      }
       setActivePart(part)
       applyHighlight(kebab, part, "add", highlightStyle)
     }
@@ -128,41 +149,104 @@ export const ComponentExplorerSidebar = ({
   const hoverPart = (part: string, isEntering: boolean) => {
     const preview = document.getElementById("component-preview")
     if (!preview) return
-
     const elements = getPartElements(preview, kebab, part)
-    if (isEntering) {
-      highlightElements(elements, "add", highlightStyle)
-    } else if (activePart !== part) {
+    if (isEntering) highlightElements(elements, "add", highlightStyle)
+    else if (activePart !== part)
       highlightElements(elements, "remove", highlightStyle)
-    }
   }
 
   return (
     <Box
       p={5}
       px={{ base: 0, lg: 5 }}
-      bg="bg"
-      minW={{ base: "100%", lg: "260px" }}
-      maxW="100%"
+      bg={{ base: "transparent", lg: "bg" }}
+      borderRadius={{ base: "none", lg: "md" }}
+      border={{ base: "none", lg: "1px solid" }}
+      borderColor={{ base: "transparent", lg: "border.subtle" }}
+      w="100%"
+      order={{ base: -1, lg: 0 }}
     >
-      <Heading size="sm" mb={2} color="fg">
+      <Heading
+        size="sm"
+        mb={2}
+        color="fg"
+        display={{ base: "none", lg: "block" }}
+      >
         Component Anatomy
       </Heading>
-      <Text fontSize="sm" mb={4} color="fg.muted">
+      <Text
+        fontSize="sm"
+        mb={4}
+        color="fg.muted"
+        display={{ base: "none", lg: "block" }}
+      >
         Hover to highlight, click to select parts
       </Text>
-      <Flex wrap="wrap" gap={2}>
-        {anatomyKeys.map((key) => (
-          <AnatomyPart
-            key={key}
-            partKey={key}
-            isSelected={activePart === key}
-            onMouseEnter={() => hoverPart(key, true)}
-            onMouseLeave={() => hoverPart(key, false)}
-            onClick={() => selectPart(key)}
-          />
-        ))}
-      </Flex>
+
+      <Box position="relative">
+        <Flex
+          ref={flexRef}
+          wrap={{ base: "nowrap", lg: "wrap" }}
+          gap={2}
+          overflowX={{ base: "auto", lg: "visible" }}
+          px={2}
+          onScroll={updateScrollState}
+        >
+          {anatomyKeys.map((key, i) => (
+            <AnatomyPart
+              key={key}
+              partKey={key}
+              isSelected={activePart === key}
+              onMouseEnter={() => hoverPart(key, true)}
+              onMouseLeave={() => hoverPart(key, false)}
+              onClick={() => selectPart(key)}
+              mr={i === anatomyKeys.length - 1 ? "40px" : undefined}
+            />
+          ))}
+        </Flex>
+
+        {canScrollLeft && (
+          <Box
+            display={{ base: "flex", lg: "none" }}
+            position="absolute"
+            top={0}
+            left={0}
+            w="32px"
+            h="100%"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="0 16px 16px 0"
+            bgGradient="linear(to-r, rgba(255,255,255,0.4), transparent)"
+            backdropFilter="blur(6px)"
+            boxShadow="0 0 6px rgba(0,0,0,0.1)"
+            cursor="pointer"
+            onClick={() => scrollBy(-100)}
+          >
+            <HiChevronRight size={16} style={{ transform: "rotate(180deg)" }} />
+          </Box>
+        )}
+
+        {canScrollRight && (
+          <Box
+            display={{ base: "flex", lg: "none" }}
+            position="absolute"
+            top={0}
+            right={0}
+            w="32px"
+            h="100%"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="16px 0 0 16px"
+            bgGradient="linear(to-l, rgba(255,255,255,0.4), transparent)"
+            backdropFilter="blur(6px)"
+            boxShadow="0 0 6px rgba(0,0,0,0.1)"
+            cursor="pointer"
+            onClick={() => scrollBy(100)}
+          >
+            <HiChevronRight size={16} />
+          </Box>
+        )}
+      </Box>
     </Box>
   )
 }
@@ -173,13 +257,14 @@ const AnatomyPart = <T extends string>({
   onMouseEnter,
   onMouseLeave,
   onClick,
+  ...boxProps
 }: {
   partKey: T
   isSelected: boolean
   onMouseEnter: () => void
   onMouseLeave: () => void
   onClick: () => void
-}) => (
+} & BoxProps) => (
   <Box
     px={3}
     py={2}
@@ -195,6 +280,7 @@ const AnatomyPart = <T extends string>({
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
     onClick={onClick}
+    {...boxProps}
   >
     <Flex align="center" gap={2}>
       <Text
