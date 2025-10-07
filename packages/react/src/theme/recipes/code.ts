@@ -8,7 +8,16 @@ export const codeRecipe = defineRecipe({
     fontFamily: "mono",
     fontSize: "sm",
     px: "0.2em",
-    pr: "0.6em",   // Fix: preventing from text touching border
     borderRadius: "sm",
   },
+  variants: {
+    block: {
+      true: {
+        pr: "0.6em",   // only applies when used as a block,corrected from prevoius pull request @Coderxrohan
+        overflowX: "auto",
+        whiteSpace: "nowrap",
+      },
+    },
+  },
+  defaultVariants,
 })
