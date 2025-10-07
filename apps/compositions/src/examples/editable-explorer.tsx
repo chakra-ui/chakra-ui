@@ -22,6 +22,9 @@ export const EditableExplorer = () => {
           <Editable.Textarea
             placeholder="Editable textarea"
             minH="80px"
+            data-part="textarea"
+            border={"1px solid"}
+            borderColor="fg.muted"
             p="2"
           />
 
