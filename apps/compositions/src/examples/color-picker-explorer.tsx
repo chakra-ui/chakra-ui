@@ -84,7 +84,6 @@ export const ColorPickerExplorer = () => {
         </ColorPicker.Trigger>
       </ColorPicker.Control>
 
-      {/* TODO: Fix positioner to remain in centre */}
       <ColorPicker.Positioner>
         <ColorPicker.Content
           animation="none"
