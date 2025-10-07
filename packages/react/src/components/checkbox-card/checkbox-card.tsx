@@ -86,6 +86,8 @@ export const CheckboxCardDescription = forwardRef<
   return (
     <chakra.div
       ref={ref}
+      data-scope="checkbox-card"
+      data-part="description"
       {...props}
       css={[styles.description, props.css]}
       data-disabled={api.disabled ? "" : undefined}
@@ -126,6 +128,7 @@ export const CheckboxCardIndicator = forwardRef<
 >(function CheckboxCardIndicator(props, ref) {
   const api = useCheckboxContext()
   const styles = useCheckboxCardStyles()
+
   return (
     <Checkmark
       ref={ref}
@@ -133,6 +136,8 @@ export const CheckboxCardIndicator = forwardRef<
       indeterminate={api.indeterminate}
       disabled={api.disabled}
       unstyled
+      data-scope="checkbox-card"
+      data-part="indicator"
       {...props}
       css={[styles.indicator, props.css]}
     />

@@ -304,6 +304,8 @@ export const FileUploadFileText = forwardRef<
     <Span
       ref={ref}
       data-placeholder={fileText === fallback ? "" : undefined}
+      data-scope="file-upload"
+      data-part="file-text"
       {...rest}
       css={[styles.fileText, props.css]}
     >

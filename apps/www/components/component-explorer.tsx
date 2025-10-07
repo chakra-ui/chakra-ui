@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import { ComponentExplorerWrapper } from "./component-snapshot"
 import { ExamplePreview } from "./example"
 
@@ -12,11 +12,12 @@ export function ComponentExplorer({
   return (
     <Box
       className={className}
-      display={{ base: "block", lg: "grid" }}
-      gridTemplateColumns={{ base: "1fr", lg: "1fr 260px" }}
-      gridTemplateRows="auto auto"
+      display={{ base: "flex", lg: "grid" }}
+      flexDirection={{ base: "column", lg: undefined }}
+      gridTemplateColumns={{ base: undefined, lg: "1fr 260px" }}
+      gridTemplateRows={{ base: undefined, lg: "auto auto" }}
       gap={4}
-      mt={4}
+      mt={{ base: 2, lg: 4 }}
       maxW="100%"
     >
       <Box
