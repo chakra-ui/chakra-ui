@@ -12,43 +12,49 @@ import { LuAtom, LuGlobe, LuPalette, LuZap } from "react-icons/lu"
 export const ListboxExplorer = () => {
   const { contains } = useFilter({ sensitivity: "base" })
 
+  const initialItems = [
+    {
+      label: "React.js",
+      value: "react",
+      icon: <LuAtom size={16} />,
+      category: "JavaScript",
+    },
+    {
+      label: "Vue.js",
+      value: "vue",
+      icon: <LuPalette size={16} />,
+      category: "JavaScript",
+    },
+    {
+      label: "Angular",
+      value: "angular",
+      icon: <LuGlobe size={16} />,
+      category: "JavaScript",
+    },
+    {
+      label: "Svelte",
+      value: "svelte",
+      icon: <LuZap size={16} />,
+      category: "JavaScript",
+    },
+    { label: "Naruto", value: "naruto", category: "Anime" },
+    { label: "One Piece", value: "one-piece", category: "Anime" },
+    { label: "The Godfather", value: "godfather", category: "Movies" },
+    { label: "The Dark Knight", value: "dark-knight", category: "Movies" },
+  ]
+
   const { collection, filter } = useListCollection({
-    initialItems: [
-      {
-        label: "React.js",
-        value: "react",
-        icon: <LuAtom size={16} />,
-        category: "JavaScript",
-      },
-      {
-        label: "Vue.js",
-        value: "vue",
-        icon: <LuPalette size={16} />,
-        category: "JavaScript",
-      },
-      {
-        label: "Angular",
-        value: "angular",
-        icon: <LuGlobe size={16} />,
-        category: "JavaScript",
-      },
-      {
-        label: "Svelte",
-        value: "svelte",
-        icon: <LuZap size={16} />,
-        category: "JavaScript",
-      },
-      { label: "Naruto", value: "naruto", category: "Anime" },
-      { label: "One Piece", value: "one-piece", category: "Anime" },
-      { label: "The Godfather", value: "godfather", category: "Movies" },
-      { label: "The Dark Knight", value: "dark-knight", category: "Movies" },
-    ],
+    initialItems,
     filter: contains,
     groupBy: (item) => item.category,
   })
 
   return (
-    <Listbox.Root maxW="320px" collection={collection}>
+    <Listbox.Root
+      maxW="320px"
+      collection={collection}
+      defaultValue={[collection.items[0].value]}
+    >
       <Listbox.Label>Select item</Listbox.Label>
 
       <Listbox.Input

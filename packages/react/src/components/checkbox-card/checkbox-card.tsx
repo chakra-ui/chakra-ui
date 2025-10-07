@@ -88,6 +88,8 @@ export const CheckboxCardDescription = forwardRef<
       ref={ref}
       {...props}
       css={[styles.description, props.css]}
+      data-scope="checkbox-card"
+      data-part="description"
       data-disabled={api.disabled ? "" : undefined}
       data-state={api.checked ? "checked" : "unchecked"}
     />
@@ -126,6 +128,7 @@ export const CheckboxCardIndicator = forwardRef<
 >(function CheckboxCardIndicator(props, ref) {
   const api = useCheckboxContext()
   const styles = useCheckboxCardStyles()
+
   return (
     <Checkmark
       ref={ref}
@@ -135,6 +138,8 @@ export const CheckboxCardIndicator = forwardRef<
       unstyled
       {...props}
       css={[styles.indicator, props.css]}
+      data-scope="checkbox-card"
+      data-part="indicator"
     />
   )
 })
