@@ -81,10 +81,7 @@ export const BlocksCommand = new Command("blocks")
         const apiKey = ensureApiKey()
 
         const blocksResponse = await fetchProBlocks()
-        const allBlocks = blocksResponse.data.filter(
-          (block: ChakraProBlock) =>
-            block.group.toLowerCase() !== "documentation",
-        )
+        const allBlocks = blocksResponse.data
 
         let blocksToDownload: string[] = []
 
