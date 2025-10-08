@@ -1,0 +1,38 @@
+---
+title: Tags Input
+description:
+  Used to enter multiple values as tags with features like tag creation,
+  deletion, and keyboard navigation.
+links:
+  source: components/tags-input
+  storybook: components-tags-input--basic
+  recipe: tags-input
+  ark: https://ark-ui.com/docs/components/tags-input
+---
+
+<ExampleTabs name="tags-input-basic" />
+
+## Usage
+
+```jsx
+import { TagsInput } from "@chakra-ui/react"
+
+;<TagsInput.Root>
+  <TagsInput.Label />
+  <TagsInput.Control>
+    <TagsInput.Context>
+      {({ value }) =>
+        value.map((tag, index) => (
+          <TagsInput.Item key={index} index={index} value={tag}>
+            <TagsInput.ItemText>{tag}</TagsInput.ItemText>
+            <TagsInput.ItemDeleteTrigger />
+          </TagsInput.Item>
+        ))
+      }
+    </TagsInput.Context>
+    <TagsInput.Input />
+    <TagsInput.ClearTrigger />
+  </TagsInput.Control>
+  <TagsInput.HiddenInput />
+</TagsInput.Root>
+```
