@@ -40,26 +40,26 @@ export function ComponentCodeSnapshot({
   getActiveStyle,
 }: ComponentCodeSnapshotProps) {
   const [html, setHtml] = useState("")
-  const componentName = normalizeComponentName(name)
+  const { pascal, kebab } = normalizeComponentName(name) // ✅ destructure
   const activeStyles = getActiveStyle()
 
   useEffect(() => {
     const generate = async () => {
       const content = activePart
-        ? `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
+        ? `import { ${pascal}Anatomy } from "@chakra-ui/react/anatomy"
 import { defineSlotRecipe } from "@chakra-ui/react"
 // __SPACE__
-export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${componentName}Anatomy.keys(),
+export const ${pascal}SlotRecipe = defineSlotRecipe({
+  slots: ${pascal}Anatomy.keys(),
   base: {
     ${activePart}: ${JSON.stringify(activeStyles, null, 2)}
   }
 });`
-        : `import { ${componentName}Anatomy } from "@chakra-ui/react/anatomy"
+        : `import { ${pascal}Anatomy } from "@chakra-ui/react/anatomy"
 import { defineSlotRecipe } from "@chakra-ui/react"
 // __SPACE__
-export const ${componentName}SlotRecipe = defineSlotRecipe({
-  slots: ${componentName}Anatomy.keys()
+export const ${pascal}SlotRecipe = defineSlotRecipe({
+  slots: ${pascal}Anatomy.keys()
 });`
 
       const formattedCode = formatWithTS(content)
@@ -69,7 +69,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
     }
 
     generate()
-  }, [componentName, activePart, activeStyles])
+  }, [pascal, activePart, activeStyles])
 
   return (
     <Box
@@ -107,7 +107,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
             fontFamily="mono"
             letterSpacing="tight"
           >
-            {componentName}.recipe.ts
+            {kebab}.recipe.ts
           </Text>
 
           {activePart && (
@@ -137,6 +137,7 @@ export const ${componentName}SlotRecipe = defineSlotRecipe({
             wordBreak: "break-word",
           },
         }}
+        roundedBottom="lg"
       >
         <div
           className="code-highlight"
