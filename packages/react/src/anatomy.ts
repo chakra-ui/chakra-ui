@@ -3,6 +3,7 @@ import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion
 import { createAnatomy } from "@ark-ui/react/anatomy"
 import { clipboardAnatomy as arkClipboardAnatomy } from "@ark-ui/react/clipboard"
 import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
+import { datePickerAnatomy as arkDatePickerAnatomy } from "@ark-ui/react/date-picker"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
@@ -232,6 +233,8 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 
 export const colorPickerAnatomy =
   arkColorPickerAnatomy.extendWith("channelText")
+
+export const datePickerAnatomy = arkDatePickerAnatomy
 
 export const codeBlockAnatomy = createAnatomy("code-block", [
   "root",
