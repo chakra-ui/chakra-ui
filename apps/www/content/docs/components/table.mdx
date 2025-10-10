@@ -132,6 +132,24 @@ The only prop that works for this component is `htmlWidth`
 
 <ExampleTabs name="table-with-column-group" />
 
+### Native Mode
+
+Use the `native` prop to render table descendants using native HTML elements
+(`<thead>`, `<tbody>`, `<tr>`, `<td>`, `<th>`) instead of Chakra's styled
+components.
+
+> This is a great way to improve performance for large tables by eliminating the
+> runtime styling and React Context overhead.
+
+<ExampleTabs name="table-with-native" />
+
+### TanStack Table
+
+Chakra UI works seamlessly with
+[TanStack Table](https://tanstack.com/table/latest) for advanced table features.
+
+<ExampleTabs name="table-with-tanstack" />
+
 ## Props
 
 ### Root
