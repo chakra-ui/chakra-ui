@@ -66,6 +66,12 @@ export const TagsInputRoot = React.forwardRef<
   return <ChakraTagsInput.Root {...props} ref={ref} />
 }) as ChakraTagsInput.RootProps
 
+export const TagsInputItemText = ChakraTagsInput.ItemText
+export const TagsInputItemPreview = ChakraTagsInput.ItemPreview
+export const TagsInputItemInput = ChakraTagsInput.ItemInput
+export const TagsInputItemContext = ChakraTagsInput.ItemContext
+export const TagsInputRootProvider = ChakraTagsInput.RootProvider
+export const TagsInputPropsProvider = ChakraTagsInput.PropsProvider
 export const TagsInputLabel = ChakraTagsInput.Label
 export const TagsInputInput = ChakraTagsInput.Input
 export const TagsInputContext = ChakraTagsInput.Context
