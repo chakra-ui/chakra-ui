@@ -12,6 +12,8 @@ export {
   TagsInputRootProvider as RootProvider,
   TagsInputHiddenInput as HiddenInput,
   TagsInputClearTrigger as ClearTrigger,
+  TagsInputItemInput as ItemInput,
+  TagsInputItemPreview as ItemPreview,
 } from "./tags-input"
 
 export type {
@@ -26,4 +28,6 @@ export type {
   TagsInputClearTriggerProps as ClearTriggerProps,
   TagsInputValueChangeDetails as ValueChangeDetails,
   TagsInputValidityChangeDetails as ValidityChangeDetails,
+  TagsInputItemInputProps as ItemInputProps,
+  TagsInputItemPreviewProps as ItemPreviewProps,
 } from "./tags-input"

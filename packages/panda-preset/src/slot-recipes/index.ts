@@ -41,12 +41,11 @@ import { switchSlotRecipe } from "./switch"
 import { tableSlotRecipe } from "./table"
 import { tabsSlotRecipe } from "./tabs"
 import { tagSlotRecipe } from "./tag"
+import { tagsInputSlotRecipe } from "./tags-input"
 import { timelineSlotRecipe } from "./timeline"
 import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
 import { treeViewSlotRecipe } from "./tree-view"
-
-export { tagsInputSlotRecipe } from "./tags-input"
 
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
@@ -88,6 +87,7 @@ export const slotRecipes = {
   swittch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
+  tagsInput: tagsInputSlotRecipe,
   tag: tagSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,

@@ -11,10 +11,11 @@ export const TagsInputBasic = () => {
           {({ value }) =>
             value.map((tag, index) => (
               <TagsInput.Item key={index} index={index} value={tag}>
-                <TagsInput.ItemText>{tag}</TagsInput.ItemText>
-                <TagsInput.ItemDeleteTrigger
-                  onClick={() => console.log("I was clicked")}
-                />
+                <TagsInput.ItemPreview>
+                  <TagsInput.ItemText>{tag}</TagsInput.ItemText>
+                  <TagsInput.ItemDeleteTrigger />
+                </TagsInput.ItemPreview>
+                <TagsInput.ItemInput />
               </TagsInput.Item>
             ))
           }

@@ -128,6 +128,28 @@ export const TagsInputItemDeleteTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface TagsInputItemPreviewProps
+  extends HTMLChakraProps<"div", ArkTagsInput.ItemPreviewBaseProps>,
+    UnstyledProp {}
+
+export const TagsInputItemPreview = withContext<
+  HTMLDivElement,
+  HTMLChakraProps<"div", ArkTagsInput.ItemPreviewBaseProps> & UnstyledProp
+>(ArkTagsInput.ItemPreview, "itemPreview", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TagsInputItemInputProps
+  extends HTMLChakraProps<"input", ArkTagsInput.ItemInputBaseProps>,
+    UnstyledProp {}
+
+export const TagsInputItemInput = withContext<
+  HTMLInputElement,
+  TagsInputItemInputProps
+>(ArkTagsInput.ItemInput, "itemInput", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface TagsInputClearTriggerProps
   extends HTMLChakraProps<"button", ArkTagsInput.ClearTriggerBaseProps>,
     UnstyledProp {}
