@@ -11,11 +11,11 @@ export const TagsInputWithColors = () => (
           value.map((tag, index) => {
             const backgroundColor =
               index % 3 === 0
-                ? "#4FD1C5" // teal-ish
+                ? "#4FD1C5"
                 : index % 3 === 1
-                  ? "#63B3ED" // blue-ish
-                  : "#F6AD55" // orange-ish
-            const textColor = "#fff" // white text for contrast
+                  ? "#63B3ED"
+                  : "#F6AD55"
+            const textColor = "#fff"
 
             return (
               <TagsInput.Item key={index} index={index} value={tag}>
