@@ -88,6 +88,10 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
     itemPreview: {
       userSelect: "none",
       lineClamp: "1",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "1",
+      maxWidth: "full",
     },
     itemDeleteTrigger: {
       display: "flex",
