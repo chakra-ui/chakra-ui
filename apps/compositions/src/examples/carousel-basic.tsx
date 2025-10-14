@@ -1,14 +1,4 @@
-import { Image } from "../../.."
-import {
-  CarouselControl,
-  CarouselIndicator,
-  CarouselIndicatorGroup,
-  CarouselItem,
-  CarouselItemGroup,
-  CarouselNextTrigger,
-  CarouselPrevTrigger,
-  CarouselRoot,
-} from "../carousel"
+import { Carousel, Image } from "@chakra-ui/react"
 
 const items = [
   "https://picsum.photos/400/300?random=1",
@@ -20,10 +10,10 @@ const items = [
 
 export const CarouselBasic = () => {
   return (
-    <CarouselRoot slideCount={items.length} maxW="400px" mx="auto">
-      <CarouselItemGroup>
+    <Carousel.Root slideCount={items.length} maxW="400px" mx="auto">
+      <Carousel.ItemGroup>
         {items.map((src, index) => (
-          <CarouselItem key={index} index={index}>
+          <Carousel.Item key={index} index={index}>
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
@@ -32,25 +22,25 @@ export const CarouselBasic = () => {
               objectFit="cover"
               borderRadius="md"
             />
-          </CarouselItem>
+          </Carousel.Item>
         ))}
-      </CarouselItemGroup>
+      </Carousel.ItemGroup>
 
-      <CarouselControl>
-        <CarouselPrevTrigger />
-        <CarouselNextTrigger />
-      </CarouselControl>
+      <Carousel.Control>
+        <Carousel.PrevTrigger />
+        <Carousel.NextTrigger />
+      </Carousel.Control>
 
-      <CarouselIndicatorGroup>
+      <Carousel.IndicatorGroup>
         {items.map((_, index) => (
-          <CarouselIndicator
+          <Carousel.Indicator
             key={index}
             index={index}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </CarouselIndicatorGroup>
-    </CarouselRoot>
+      </Carousel.IndicatorGroup>
+    </Carousel.Root>
   )
 }
 
