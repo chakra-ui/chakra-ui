@@ -1,26 +1,20 @@
 "use client"
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
-import {
-  Combobox as ArkCombobox,
-  useComboboxContext,
-} from "@ark-ui/react/combobox"
-import { type JSX, forwardRef } from "react"
+import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
+import { type JSX } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { cx } from "../../utils"
 import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons"
 
 const {
   withProvider,
   withContext,
   useStyles: useComboboxStyles,
-  useClassNames,
   PropsProvider,
 } = createSlotRecipeContext({ key: "combobox" })
 
@@ -78,7 +72,8 @@ export const ComboboxPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxTriggerProps
-  extends HTMLChakraProps<"button", ArkCombobox.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkCombobox.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxTrigger = withContext<
   HTMLButtonElement,
@@ -94,7 +89,8 @@ export const ComboboxTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxPositionerProps
-  extends HTMLChakraProps<"div", ArkCombobox.PositionerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.PositionerBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxPositioner = withContext<
   HTMLDivElement,
@@ -104,7 +100,8 @@ export const ComboboxPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxContentProps
-  extends HTMLChakraProps<"div", ArkCombobox.ContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ContentBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxContent = withContext<
   HTMLDivElement,
@@ -114,7 +111,8 @@ export const ComboboxContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxInputProps
-  extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps> {}
+  extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxInput = withContext<HTMLInputElement, ComboboxInputProps>(
   ArkCombobox.Input,
@@ -125,7 +123,8 @@ export const ComboboxInput = withContext<HTMLInputElement, ComboboxInputProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxClearTriggerProps
-  extends HTMLChakraProps<"button", ArkCombobox.ClearTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkCombobox.ClearTriggerBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxClearTrigger = withContext<
   HTMLButtonElement,
@@ -139,7 +138,9 @@ export const ComboboxClearTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ComboboxIndicatorGroupProps extends HTMLChakraProps<"div"> {}
+export interface ComboboxIndicatorGroupProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const ComboboxIndicatorGroup = withContext<
   HTMLDivElement,
@@ -149,7 +150,8 @@ export const ComboboxIndicatorGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemGroupProps
-  extends HTMLChakraProps<"div", ArkCombobox.ItemGroupBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemGroupBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxItemGroup = withContext<
   HTMLDivElement,
@@ -159,7 +161,8 @@ export const ComboboxItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemGroupLabelProps
-  extends HTMLChakraProps<"div", ArkCombobox.ItemGroupLabelBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemGroupLabelBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxItemGroupLabel = withContext<
   HTMLDivElement,
@@ -169,7 +172,8 @@ export const ComboboxItemGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemProps
-  extends HTMLChakraProps<"div", ArkCombobox.ItemBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxItem = withContext<HTMLDivElement, ComboboxItemProps>(
   ArkCombobox.Item,
@@ -180,7 +184,8 @@ export const ComboboxItem = withContext<HTMLDivElement, ComboboxItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemTextProps
-  extends HTMLChakraProps<"div", ArkCombobox.ItemTextBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemTextBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxItemText = withContext<
   HTMLDivElement,
@@ -189,7 +194,8 @@ export const ComboboxItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkCombobox.ItemIndicatorBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemIndicatorBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxItemIndicator = withContext<
   HTMLDivElement,
@@ -203,7 +209,8 @@ export const ComboboxItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxControlProps
-  extends HTMLChakraProps<"div", ArkCombobox.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCombobox.ControlBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxControl = withContext<
   HTMLDivElement,
@@ -213,7 +220,8 @@ export const ComboboxControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxLabelProps
-  extends HTMLChakraProps<"label", ArkCombobox.LabelBaseProps> {}
+  extends HTMLChakraProps<"label", ArkCombobox.LabelBaseProps>,
+    UnstyledProp {}
 
 export const ComboboxLabel = withContext<HTMLLabelElement, ComboboxLabelProps>(
   ArkCombobox.Label,
@@ -223,26 +231,14 @@ export const ComboboxLabel = withContext<HTMLLabelElement, ComboboxLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ComboboxEmptyProps extends HTMLChakraProps<"div"> {}
+export interface ComboboxEmptyProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
-export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
-  function ComboboxEmpty(props, ref) {
-    const combobox = useComboboxContext()
-    const styles = useComboboxStyles()
-    const classNames = useClassNames()
-    if (combobox.collection.size !== 0) return null
-    return (
-      <chakra.div
-        ref={ref}
-        {...props}
-        role="presentation"
-        data-scope="combobox"
-        data-part="empty"
-        className={cx(classNames.empty, props.className)}
-        css={[styles.empty, props.css]}
-      />
-    )
-  },
+export const ComboboxEmpty = withContext<HTMLDivElement, ComboboxEmptyProps>(
+  ArkCombobox.Empty,
+  "empty",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

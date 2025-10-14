@@ -59,7 +59,8 @@ export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkToast.CloseTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkToast.CloseTriggerProps>,
+    UnstyledProp {}
 
 export const ToastCloseTrigger = withContext<
   HTMLButtonElement,
@@ -74,7 +75,8 @@ export const ToastCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastTitleProps
-  extends HTMLChakraProps<"div", ArkToast.TitleProps> {}
+  extends HTMLChakraProps<"div", ArkToast.TitleProps>,
+    UnstyledProp {}
 
 export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
   ArkToast.Title,
@@ -85,7 +87,8 @@ export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastDescriptionProps
-  extends HTMLChakraProps<"div", ArkToast.DescriptionProps> {}
+  extends HTMLChakraProps<"div", ArkToast.DescriptionProps>,
+    UnstyledProp {}
 
 export const ToastDescription = withContext<
   HTMLDivElement,
@@ -95,7 +98,8 @@ export const ToastDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastActionTriggerProps
-  extends HTMLChakraProps<"button", ArkToast.ActionTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkToast.ActionTriggerProps>,
+    UnstyledProp {}
 
 export const ToastActionTrigger = withContext<
   HTMLButtonElement,
@@ -110,18 +114,25 @@ const iconMap: Record<string, React.ElementType> = {
   error: WarningIcon,
 }
 
-export interface ToastIndicatorProps extends HTMLChakraProps<"span"> {}
+export interface ToastIndicatorProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const ToastIndicator = forwardRef<HTMLSpanElement, ToastIndicatorProps>(
   function ToastIndicator(props, ref) {
+    const { unstyled, ...restProps } = props
+
     const api = useToastContext()
     const styles = useToastStyles()
-
     const Component = iconMap[api.type]
     if (!Component) return null
 
     return (
-      <Component ref={ref} {...props} css={[styles.indicator, props.css]} />
+      <Component
+        ref={ref}
+        {...restProps}
+        css={[!unstyled ? styles.indicator : undefined, props.css]}
+      />
     )
   },
 )

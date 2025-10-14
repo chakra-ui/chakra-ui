@@ -129,9 +129,13 @@ export interface SystemProperties {
   borderRightColor?: ConditionalValue<UtilityValues["borderRightColor"] | CssVars | CssProperties["borderRightColor"] | undefined | AnyString> | undefined
   borderRightStyle?: ConditionalValue<UtilityValues["borderRightStyle"] | CssVars | CssProperties["borderRightStyle"] | undefined | AnyString> | undefined
   borderRightWidth?: ConditionalValue<UtilityValues["borderRightWidth"] | CssVars | CssProperties["borderRightWidth"] | undefined | AnyString> | undefined
-  borderSpacing?: ConditionalValue<CssProperties["borderSpacing"] | undefined | AnyString> | undefined
-  borderStartEndRadius?: ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString> | undefined
-  borderStartStartRadius?: ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString> | undefined
+  borderSpacing?: ConditionalValue<UtilityValues["borderSpacing"] | CssVars | CssProperties["borderSpacing"] | undefined | AnyString> | undefined
+  borderStartEndRadius?:
+    | ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString>
+    | undefined
+  borderStartStartRadius?:
+    | ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString>
+    | undefined
   borderStyle?: ConditionalValue<UtilityValues["borderStyle"] | CssVars | CssProperties["borderStyle"] | undefined | AnyString> | undefined
   borderTop?: ConditionalValue<UtilityValues["borderTop"] | CssVars | CssProperties["borderTop"] | undefined | AnyString> | undefined
   borderTopColor?: ConditionalValue<UtilityValues["borderTopColor"] | CssVars | CssProperties["borderTopColor"] | undefined | AnyString> | undefined
@@ -708,6 +712,8 @@ export interface SystemProperties {
   translateX?: ConditionalValue<UtilityValues["translateX"] | CssVars | undefined | AnyString> | undefined
   translateY?: ConditionalValue<UtilityValues["translateY"] | CssVars | undefined | AnyString> | undefined
   truncate?: ConditionalValue<UtilityValues["truncate"] | CssVars | undefined | AnyString> | undefined
+  borderSpacingX?: ConditionalValue<UtilityValues["borderSpacingX"] | CssVars | undefined | AnyString> | undefined
+  borderSpacingY?: ConditionalValue<UtilityValues["borderSpacingY"] | CssVars | undefined | AnyString> | undefined
   srOnly?: ConditionalValue<UtilityValues["srOnly"] | CssVars | undefined | AnyString> | undefined
   debug?: ConditionalValue<UtilityValues["debug"] | CssVars | undefined | AnyString> | undefined
   colorPalette?: ConditionalValue<UtilityValues["colorPalette"] | CssVars | undefined | AnyString> | undefined

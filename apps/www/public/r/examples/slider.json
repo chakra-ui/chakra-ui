@@ -1,0 +1,220 @@
+{
+  "name": "slider",
+  "file": "compositions/ui/slider",
+  "snippet": "import { Slider as ChakraSlider, For, HStack } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface SliderProps extends ChakraSlider.RootProps {\n  marks?: Array<number | { value: number; label: React.ReactNode }>\n  label?: React.ReactNode\n  showValue?: boolean\n}\n\nexport const Slider = React.forwardRef<HTMLDivElement, SliderProps>(\n  function Slider(props, ref) {\n    const { marks: marksProp, label, showValue, ...rest } = props\n    const value = props.defaultValue ?? props.value\n\n    const marks = marksProp?.map((mark) => {\n      if (typeof mark === \"number\") return { value: mark, label: undefined }\n      return mark\n    })\n\n    const hasMarkLabel = !!marks?.some((mark) => mark.label)\n\n    return (\n      <ChakraSlider.Root ref={ref} thumbAlignment=\"center\" {...rest}>\n        {label && !showValue && (\n          <ChakraSlider.Label>{label}</ChakraSlider.Label>\n        )}\n        {label && showValue && (\n          <HStack justify=\"space-between\">\n            <ChakraSlider.Label>{label}</ChakraSlider.Label>\n            <ChakraSlider.ValueText />\n          </HStack>\n        )}\n        <ChakraSlider.Control data-has-mark-label={hasMarkLabel || undefined}>\n          <ChakraSlider.Track>\n            <ChakraSlider.Range />\n          </ChakraSlider.Track>\n          <SliderThumbs value={value} />\n          <SliderMarks marks={marks} />\n        </ChakraSlider.Control>\n      </ChakraSlider.Root>\n    )\n  },\n)\n\nfunction SliderThumbs(props: { value?: number[] }) {\n  const { value } = props\n  return (\n    <For each={value}>\n      {(_, index) => (\n        <ChakraSlider.Thumb key={index} index={index}>\n          <ChakraSlider.HiddenInput />\n        </ChakraSlider.Thumb>\n      )}\n    </For>\n  )\n}\n\ninterface SliderMarksProps {\n  marks?: Array<number | { value: number; label: React.ReactNode }>\n}\n\nconst SliderMarks = React.forwardRef<HTMLDivElement, SliderMarksProps>(\n  function SliderMarks(props, ref) {\n    const { marks } = props\n    if (!marks?.length) return null\n\n    return (\n      <ChakraSlider.MarkerGroup ref={ref}>\n        {marks.map((mark, index) => {\n          const value = typeof mark === \"number\" ? mark : mark.value\n          const label = typeof mark === \"number\" ? undefined : mark.label\n          return (\n            <ChakraSlider.Marker key={index} value={value}>\n              <ChakraSlider.MarkerIndicator />\n              {label}\n            </ChakraSlider.Marker>\n          )\n        })}\n      </ChakraSlider.MarkerGroup>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "slider-basic",
+      "content": "export const SliderBasic = () => {\n  return (\n    <Slider.Root width=\"200px\" defaultValue={[40]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-change-end",
+      "content": "\"use client\"\nconst initialValue = [50]\n\nexport const SliderChangeEnd = () => {\n  const [value, setValue] = useState(initialValue)\n  const [endValue, setEndValue] = useState(initialValue)\n\n  return (\n    <Box maxW=\"240px\">\n      <Slider.Root\n        value={value}\n        onValueChange={(e) => setValue(e.value)}\n        onValueChangeEnd={(e) => setEndValue(e.value)}\n      >\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.Root>\n\n      <Stack mt=\"3\" gap=\"1\">\n        <Code>\n          onChange: <b>{value}</b>\n        </Code>\n        <Code>\n          onChangeEnd: <b>{endValue}</b>\n        </Code>\n      </Stack>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Code, Slider, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-closed-component",
+      "content": "export interface SliderProps extends ChakraSlider.RootProps {\n  marks?: Array<number | { value: number; label: React.ReactNode }>\n  label?: React.ReactNode\n  showValue?: boolean\n}\n\nexport const Slider = React.forwardRef<HTMLDivElement, SliderProps>(\n  function Slider(props, ref) {\n    const { label, showValue, marks, ...rest } = props\n    return (\n      <ChakraSlider.Root ref={ref} thumbAlignment=\"center\" {...rest}>\n        {label && !showValue && (\n          <ChakraSlider.Label>{label}</ChakraSlider.Label>\n        )}\n        {label && showValue && (\n          <HStack justify=\"space-between\">\n            <ChakraSlider.Label>{label}</ChakraSlider.Label>\n            <ChakraSlider.ValueText />\n          </HStack>\n        )}\n        <ChakraSlider.Control>\n          <ChakraSlider.Track>\n            <ChakraSlider.Range />\n          </ChakraSlider.Track>\n          <ChakraSlider.Thumbs />\n          <ChakraSlider.Marks marks={marks} />\n        </ChakraSlider.Control>\n      </ChakraSlider.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider as ChakraSlider, HStack } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-controlled",
+      "content": "\"use client\"\nexport const SliderControlled = () => {\n  const [value, setValue] = useState([40])\n  return (\n    <Slider.Root\n      maxW=\"200px\"\n      value={value}\n      onValueChange={(e) => setValue(e.value)}\n    >\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-customization",
+      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\" shadow=\"md\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Slider } from \"@chakra-ui/react\"",
+        "import { MdGraphicEq } from \"react-icons/md\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "slider-disabled",
+      "content": "export const SliderDisabled = () => {\n  return (\n    <Slider.Root width=\"200px\" disabled defaultValue={[40]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-prevent-overlap",
+      "content": "export const SliderPreventOverlap = () => {\n  return (\n    <Slider.Root maxW=\"md\" defaultValue={[20, 60]} minStepsBetweenThumbs={8}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-vertical",
+      "content": "export const SliderVertical = () => {\n  return (\n    <Slider.Root height=\"200px\" orientation=\"vertical\" defaultValue={[40]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-colors",
+      "content": "const colors = [\"gray\", \"blue\", \"red\", \"green\", \"pink\"]\n\nexport const SliderWithColors = () => {\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <For each={colors}>\n        {(color) => (\n          <Slider.Root\n            key={color}\n            width=\"200px\"\n            colorPalette={color}\n            defaultValue={[40]}\n          >\n            <Slider.Control>\n              <Slider.Track>\n                <Slider.Range />\n              </Slider.Track>\n              <Slider.Thumbs />\n            </Slider.Control>\n          </Slider.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Slider, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-dragging-indicator",
+      "content": "export const SliderWithDraggingIndicator = () => {\n  return (\n    <Slider.Root maxW=\"200px\" defaultValue={[40]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumb index={0}>\n          <Slider.DraggingIndicator\n            layerStyle=\"fill.solid\"\n            top=\"6\"\n            rounded=\"sm\"\n            px=\"1.5\"\n          >\n            <Slider.ValueText />\n          </Slider.DraggingIndicator>\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  value: z.array(\n    z\n      .number({ message: \"Value is required\" })\n      .min(60, { message: \"Value must be greater than 60\" }),\n  ),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const SliderWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n    defaultValues: { value: [40] },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack align=\"flex-start\" gap=\"4\" maxW=\"300px\">\n        <Controller\n          name=\"value\"\n          control={control}\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.value?.length}>\n              <Field.Label>Slider: {field.value[0]}</Field.Label>\n              <Slider.Root\n                width=\"full\"\n                name={field.name}\n                value={field.value}\n                onValueChange={({ value }) => {\n                  field.onChange(value)\n                }}\n                onFocusChange={({ focusedIndex }) => {\n                  if (focusedIndex !== -1) return\n                  field.onBlur()\n                }}\n              >\n                <Slider.Control>\n                  <Slider.Track>\n                    <Slider.Range />\n                  </Slider.Track>\n                  <Slider.Thumbs />\n                </Slider.Control>\n              </Slider.Root>\n              <Field.ErrorText>{errors.value?.[0]?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, Slider, Stack } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "slider-with-label",
+      "content": "export const SliderWithLabel = () => {\n  return (\n    <Slider.Root width=\"200px\" defaultValue={[40]}>\n      <Slider.Label>Quantity</Slider.Label>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-marks-and-label",
+      "content": "const marks = [\n  { value: 0, label: \"0%\" },\n  { value: 50, label: \"50%\" },\n  { value: 100, label: \"100%\" },\n]\n\nexport const SliderWithMarksAndLabel = () => {\n  return (\n    <Slider.Root width=\"200px\" colorPalette=\"pink\" defaultValue={[40]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n        <Slider.Marks marks={marks} />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-marks-vertical",
+      "content": "const marks = [\n  { value: 0, label: \"0%\" },\n  { value: 50, label: \"50%\" },\n  { value: 100, label: \"100%\" },\n]\n\nexport const SliderWithMarksVertical = () => {\n  return (\n    <Slider.Root\n      height=\"200px\"\n      orientation=\"vertical\"\n      colorPalette=\"pink\"\n      defaultValue={[40]}\n    >\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n        <Slider.Marks marks={marks} />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-marks",
+      "content": "export const SliderWithMarks = () => {\n  return (\n    <Stack gap=\"4\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <VStack key={size} align=\"flex-start\">\n            <Slider.Root\n              key={size}\n              size={size}\n              defaultValue={[40]}\n              width=\"200px\"\n            >\n              <Slider.Control>\n                <Slider.Track>\n                  <Slider.Range />\n                </Slider.Track>\n                <Slider.Thumbs />\n                <Slider.Marks marks={[0, 50, 100]} />\n              </Slider.Control>\n            </Slider.Root>\n            <Text>size = {size}</Text>\n          </VStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Slider, Stack, Text, VStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-multiple-thumbs",
+      "content": "export const SliderWithMultipleThumbs = () => {\n  return (\n    <Slider.Root width=\"200px\" defaultValue={[30, 60]}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-sizes",
+      "content": "export const SliderWithSizes = () => {\n  return (\n    <Stack width=\"200px\" gap=\"4\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Slider.Root defaultValue={[40]} size={size} key={size}>\n            <Slider.Label>Slider - {size}</Slider.Label>\n            <Slider.Control>\n              <Slider.Track>\n                <Slider.Range />\n              </Slider.Track>\n              <Slider.Thumbs />\n            </Slider.Control>\n          </Slider.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Slider, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-step",
+      "content": "export const SliderWithStep = () => {\n  return (\n    <Slider.Root width=\"200px\" defaultValue={[40]} step={10}>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-store",
+      "content": "\"use client\"\nexport const SliderWithStore = () => {\n  const slider = useSlider({\n    defaultValue: [40],\n    thumbAlignment: \"center\",\n  })\n\n  return (\n    <Stack align=\"flex-start\">\n      <Code>current: {slider.value}</Code>\n      <Slider.RootProvider value={slider} width=\"200px\">\n        <Slider.Label>Slider</Slider.Label>\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Code, Slider, Stack, useSlider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-thumb-alignment",
+      "content": "export const SliderWithThumbAlignment = () => {\n  return (\n    <Stack maxW=\"200px\" gap=\"4\">\n      <Slider.Root\n        thumbAlignment=\"contain\"\n        thumbSize={{ width: 16, height: 16 }}\n        defaultValue={[40]}\n      >\n        <Slider.Label>Slider (contain)</Slider.Label>\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.Root>\n\n      <Slider.Root thumbAlignment=\"center\" defaultValue={[40]}>\n        <Slider.Label>Slider (center)</Slider.Label>\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-value-text",
+      "content": "export const SliderWithValueText = () => {\n  return (\n    <Slider.Root maxW=\"sm\" size=\"sm\" defaultValue={[40]}>\n      <HStack justify=\"space-between\">\n        <Slider.Label>Volume</Slider.Label>\n        <Slider.ValueText />\n      </HStack>\n      <Slider.Control>\n        <Slider.Track>\n          <Slider.Range />\n        </Slider.Track>\n        <Slider.Thumbs rounded=\"l1\" />\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-variants",
+      "content": "export const SliderWithVariants = () => {\n  return (\n    <Stack width=\"200px\" gap=\"4\">\n      <For each={[\"outline\", \"solid\"]}>\n        {(variant) => (\n          <Slider.Root defaultValue={[40]} variant={variant} key={variant}>\n            <Slider.Label>Slider - {variant}</Slider.Label>\n            <Slider.Control>\n              <Slider.Track>\n                <Slider.Range />\n              </Slider.Track>\n              <Slider.Thumbs />\n            </Slider.Control>\n          </Slider.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Slider, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    }
+  ]
+}

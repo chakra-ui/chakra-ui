@@ -8,6 +8,7 @@ import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
 import { fieldsetAnatomy as arkFieldsetAnatomy } from "@ark-ui/react/fieldset"
 import { fileUploadAnatomy as arkFileUploadAnatomy } from "@ark-ui/react/file-upload"
+import { listboxAnatomy as arkListboxAnatomy } from "@ark-ui/react/listbox"
 import { menuAnatomy as arkMenuAnatomy } from "@ark-ui/react/menu"
 import { popoverAnatomy as arkPopoverAnatomy } from "@ark-ui/react/popover"
 import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-group"
@@ -232,6 +233,23 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
 export const colorPickerAnatomy =
   arkColorPickerAnatomy.extendWith("channelText")
 
+export const codeBlockAnatomy = createAnatomy("code-block", [
+  "root",
+  "content",
+  "title",
+  "header",
+  "footer",
+  "control",
+  "overlay",
+  "code",
+  "codeText",
+  "copyTrigger",
+  "copyIndicator",
+  "collapseTrigger",
+  "collapseIndicator",
+  "collapseText",
+])
+
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
@@ -241,7 +259,9 @@ export { numberInputAnatomy } from "@ark-ui/react/number-input"
 export { pinInputAnatomy } from "@ark-ui/react/pin-input"
 export { progressAnatomy } from "@ark-ui/react/progress"
 export { qrCodeAnatomy } from "@ark-ui/react/qr-code"
+export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
+export const listboxAnatomy = arkListboxAnatomy

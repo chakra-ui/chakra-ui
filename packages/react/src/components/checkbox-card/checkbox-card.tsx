@@ -65,7 +65,8 @@ export const CheckboxCardRootPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardLabelProps
-  extends HTMLChakraProps<"span", ArkCheckbox.LabelBaseProps> {}
+  extends HTMLChakraProps<"span", ArkCheckbox.LabelBaseProps>,
+    UnstyledProp {}
 
 export const CheckboxCardLabel = withContext<
   HTMLElement,
@@ -85,6 +86,8 @@ export const CheckboxCardDescription = forwardRef<
   return (
     <chakra.div
       ref={ref}
+      data-scope="checkbox-card"
+      data-part="description"
       {...props}
       css={[styles.description, props.css]}
       data-disabled={api.disabled ? "" : undefined}
@@ -96,7 +99,8 @@ export const CheckboxCardDescription = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardControlProps
-  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps>,
+    UnstyledProp {}
 
 export const CheckboxCardControl = withContext<
   HTMLDivElement,
@@ -105,7 +109,9 @@ export const CheckboxCardControl = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxCardContentProps extends HTMLChakraProps<"div"> {}
+export interface CheckboxCardContentProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const CheckboxCardContent = withContext<
   HTMLDivElement,
@@ -122,6 +128,7 @@ export const CheckboxCardIndicator = forwardRef<
 >(function CheckboxCardIndicator(props, ref) {
   const api = useCheckboxContext()
   const styles = useCheckboxCardStyles()
+
   return (
     <Checkmark
       ref={ref}
@@ -129,6 +136,8 @@ export const CheckboxCardIndicator = forwardRef<
       indeterminate={api.indeterminate}
       disabled={api.disabled}
       unstyled
+      data-scope="checkbox-card"
+      data-part="indicator"
       {...props}
       css={[styles.indicator, props.css]}
     />
@@ -137,7 +146,9 @@ export const CheckboxCardIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxCardAddonProps extends HTMLChakraProps<"div"> {}
+export interface CheckboxCardAddonProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const CheckboxCardAddon = withContext<
   HTMLElement,

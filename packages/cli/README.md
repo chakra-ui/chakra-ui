@@ -1,8 +1,13 @@
 # @chakra-ui/cli
 
-Generate TypeScript types to provide autocomplete for your custom theme.
+Generate TypeScript types to provide autocomplete for your custom theme and add
+components and blocks to your project.
 
-## Usage
+## Commands
+
+### Type Generation
+
+Generate TypeScript types for your custom theme:
 
 ```sh
 npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
@@ -44,3 +49,64 @@ you don't have to think about this every time you re-install your dependencies.
   "postinstall": "npm run gen:theme-typings"
 }
 ```
+
+### Snippets
+
+Add community-driven snippets to your project:
+
+```sh
+# Add recommended snippets
+npx @chakra-ui/cli snippet add
+
+# Add specific snippets
+npx @chakra-ui/cli snippet add provider toaster
+
+# List available snippets
+npx @chakra-ui/cli snippet list
+```
+
+### Pro Blocks
+
+Add premium blocks from Chakra UI Pro to your project:
+
+```sh
+# Interactive block selection
+npx @chakra-ui/cli blocks add
+
+# Add all variants of a specific block
+npx @chakra-ui/cli blocks add hero
+
+# Add a specific variant of a block
+npx @chakra-ui/cli blocks add hero --variant "simple"
+
+# List available blocks
+npx @chakra-ui/cli blocks list
+
+# List blocks in a specific category
+npx @chakra-ui/cli blocks list --category "marketing"
+```
+
+#### Pro Blocks Setup
+
+To use Pro blocks, you need a Chakra UI Pro API key:
+
+1. Get your API key from [Chakra UI Pro](https://pro.chakra-ui.com)
+2. Set the environment variable:
+
+   ```sh
+   export CHAKRA_UI_PRO_API_KEY="your-api-key"
+   ```
+
+   Or create a `.env` file in your project root:
+
+   ```env
+   CHAKRA_UI_PRO_API_KEY=your-api-key
+   ```
+
+#### Pro Blocks Options
+
+- `--variant <variant>`: Add a specific variant instead of all variants
+- `--outdir <dir>`: Specify output directory for blocks
+- `--force`: Overwrite existing files
+- `--dry-run`: Preview what will be downloaded without writing files
+- `--tsx`: Force TypeScript JSX format (auto-detected by default)

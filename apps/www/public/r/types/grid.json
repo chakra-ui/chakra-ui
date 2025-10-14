@@ -1,0 +1,84 @@
+{
+  "Grid": {
+    "props": {
+      "templateColumns": {
+        "type": "SystemStyleObject[\"gridTemplateColumns\"] | undefined",
+        "isRequired": false
+      },
+      "autoFlow": {
+        "type": "SystemStyleObject[\"gridAutoFlow\"] | undefined",
+        "isRequired": false
+      },
+      "autoRows": {
+        "type": "SystemStyleObject[\"gridAutoRows\"] | undefined",
+        "isRequired": false
+      },
+      "autoColumns": {
+        "type": "SystemStyleObject[\"gridAutoColumns\"] | undefined",
+        "isRequired": false
+      },
+      "templateRows": {
+        "type": "SystemStyleObject[\"gridTemplateRows\"] | undefined",
+        "isRequired": false
+      },
+      "templateAreas": {
+        "type": "SystemStyleObject[\"gridTemplateAreas\"] | undefined",
+        "isRequired": false
+      },
+      "column": {
+        "type": "SystemStyleObject[\"gridColumn\"] | undefined",
+        "isRequired": false
+      },
+      "row": {
+        "type": "SystemStyleObject[\"gridRow\"] | undefined",
+        "isRequired": false
+      },
+      "inline": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "GridItem": {
+    "props": {
+      "area": {
+        "type": "SystemStyleObject[\"gridArea\"] | undefined",
+        "isRequired": false
+      },
+      "colSpan": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      },
+      "colStart": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      },
+      "colEnd": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      },
+      "rowStart": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      },
+      "rowEnd": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      },
+      "rowSpan": {
+        "type": "ConditionalValue<number | \"auto\"> | undefined",
+        "isRequired": false
+      }
+    }
+  }
+}

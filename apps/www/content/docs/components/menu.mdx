@@ -5,7 +5,7 @@ links:
   source: components/menu
   storybook: components-menu--basic
   recipe: menu
-  ark: https://ark-ui.com/react/docs/components/menu
+  ark: https://ark-ui.com/docs/components/menu
 ---
 
 <ExampleTabs name="menu-basic" />
@@ -149,6 +149,20 @@ the top horizontal menu includes common menu items.
 
 <ExampleTabs name="menu-with-mixed-layout" />
 
+### Overflow
+
+When you have a long list of menu items, you can set a `maxH` prop on the
+`Menu.Content` to create a scrollable menu.
+
+:::note
+
+The content has a default `maxHeight: "var(--available-height)"`, which is the
+maximum available height for the content relative to the viewport.
+
+:::
+
+<ExampleTabs name="menu-with-overflow" />
+
 ### Hide When Detached
 
 When the menu is rendered in an scrolling container, set the
@@ -172,6 +186,19 @@ To use the `Menu` within a `Dialog`, you need to avoid portalling the
 -</Portal>
 ```
 
+If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
+
+- Set the menu positioning to `fixed` to avoid the menu from being clipped by
+  the dialog.
+- Set `hideWhenDetached` to `true` to hide the menu when the trigger is scrolled
+  out of view.
+
+```tsx
+<Menu.Root positioning={{ strategy: "fixed", hideWhenDetached: true }}>
+  {/* ... */}
+</Menu.Root>
+```
+
 <ExampleTabs name="menu-within-dialog" />
 
 ## Props
@@ -183,3 +210,10 @@ To use the `Menu` within a `Dialog`, you need to avoid portalling the
 ### Item
 
 <PropTable component="Menu" part="Item" />
+
+## Explorer
+
+Explore the `Menu` component parts interactively. Click on parts in the sidebar
+to highlight them in the preview.
+
+<Explorer name="menu-explorer" />

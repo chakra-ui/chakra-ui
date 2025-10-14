@@ -7,7 +7,8 @@ description: Learn how to customize the Chakra UI theme
 
 Chakra UI uses a system of configs to define the default styling system.
 
-- `defaultBaseConfig`: contains the conditions and style properties.
+- `defaultBaseConfig`: contains the conditions and style properties (without
+  tokens and recipes).
 - `defaultConfig`: everything from `defaultBaseConfig` plus the built-in tokens
   and recipes.
 
@@ -24,21 +25,21 @@ These are the key functions needed to customize the Chakra UI theme.
 - `createSystem`: used to create a styling engine from the config
 
 ```tsx title="theme.ts"
-import { createSystem, defaultBaseConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
-const customConfig = defineConfig({
+const config = defineConfig({
   theme: {
     tokens: {
       colors: {
         brand: {
-          500: "tomato",
+          "500": { value: "tomato" },
         },
       },
     },
   },
 })
 
-export const system = createSystem(defaultBaseConfig, customConfig)
+export const system = createSystem(defaultConfig, config)
 ```
 
 Next, update the `ChakraProvider` to use the custom system.
@@ -51,9 +52,7 @@ import { system } from "./theme"
 export function Provider(props: { children: React.ReactNode }) {
   return (
     <ChakraProvider value={system}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
-        {props.children}
-      </ThemeProvider>
+      <ThemeProvider attribute="class">{props.children}</ThemeProvider>
     </ChakraProvider>
   )
 }

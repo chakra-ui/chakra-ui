@@ -2,14 +2,21 @@
 import { Box } from "@chakra-ui/react"
 import Image, { type ImageProps } from "next/image"
 
-export const Img = (props: ImageProps) => {
-  const { height, ...rest } = props
+interface ImgProps extends ImageProps {
+  marginTop?: string
+  aspectRatio?: string
+}
+
+export const Img = (props: ImgProps) => {
+  const { height, marginTop = "1.7em", aspectRatio, ...rest } = props
   return (
     <Box
       height={height}
+      aspectRatio={aspectRatio}
       css={{
+        overflow: "hidden",
         position: "relative",
-        marginTop: "1.7em",
+        marginTop,
         marginBottom: "1.7em",
         borderRadius: "lg",
         boxShadow: "inset",

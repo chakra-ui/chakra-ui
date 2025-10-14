@@ -1,0 +1,109 @@
+{
+  "name": "qr-code",
+  "file": "compositions/ui/qr-code",
+  "snippet": "import { QrCode as ChakraQrCode } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface QrCodeProps\n  extends Omit<ChakraQrCode.RootProps, \"fill\" | \"overlay\"> {\n  fill?: string\n  overlay?: React.ReactNode\n}\n\nexport const QrCode = React.forwardRef<HTMLDivElement, QrCodeProps>(\n  function QrCode(props, ref) {\n    const { children, fill, overlay, ...rest } = props\n    return (\n      <ChakraQrCode.Root ref={ref} {...rest}>\n        <ChakraQrCode.Frame style={{ fill }}>\n          <ChakraQrCode.Pattern />\n        </ChakraQrCode.Frame>\n        {overlay}\n        {children && <ChakraQrCode.Overlay>{children}</ChakraQrCode.Overlay>}\n      </ChakraQrCode.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "qr-code-basic",
+      "content": "export const QrCodeBasic = () => {\n  return (\n    <QrCode.Root value=\"https://www.google.com\">\n      <QrCode.Frame>\n        <QrCode.Pattern />\n      </QrCode.Frame>\n    </QrCode.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { QrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-closed-component",
+      "content": "export interface QrCodeProps\n  extends Omit<ChakraQrCode.RootProps, \"fill\" | \"overlay\"> {\n  fill?: string\n  overlay?: React.ReactNode\n}\n\nexport const QrCode = React.forwardRef<HTMLDivElement, QrCodeProps>(\n  function QrCode(props, ref) {\n    const { children, fill, overlay, ...rest } = props\n    return (\n      <ChakraQrCode.Root ref={ref} {...rest}>\n        <ChakraQrCode.Frame style={{ fill }}>\n          <ChakraQrCode.Pattern />\n        </ChakraQrCode.Frame>\n        {overlay}\n        {children && <ChakraQrCode.Overlay>{children}</ChakraQrCode.Overlay>}\n      </ChakraQrCode.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { QrCode as ChakraQrCode } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-error-level",
+      "content": "\"use client\"\ntype ErrorLevel = \"L\" | \"M\" | \"Q\" | \"H\"\n\nexport const QrCodeWithErrorLevel = () => {\n  const [errorLevel, setErrorLevel] = useState<ErrorLevel>(\"L\")\n  return (\n    <Stack align=\"flex-start\">\n      <QrCode.Root\n        value=\"https://www.google.com\"\n        size=\"xl\"\n        encoding={{ ecc: errorLevel }}\n      >\n        <QrCode.Frame />\n      </QrCode.Root>\n      <SegmentGroup.Root\n        size=\"sm\"\n        defaultValue={\"L\"}\n        onValueChange={(e) => setErrorLevel(e.value as ErrorLevel)}\n      >\n        <SegmentGroup.Indicator />\n        <SegmentGroup.Items items={[\"L\", \"M\", \"Q\", \"H\"]} />\n      </SegmentGroup.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { QrCode, SegmentGroup, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-export-with-logo",
+      "content": "export const QrCodeWithExportWithLogo = () => {\n  return (\n    <QrCode.Root value=\"https://www.google.com\">\n      <QrCode.Frame>\n        <QrCode.Pattern />\n        <foreignObject x=\"0\" y=\"0\" width=\"100%\" height=\"100%\">\n          <QrCode.Overlay\n            style={{\n              width: \"33%\",\n              height: \"33%\",\n              padding: \"8px\",\n              background: \"white\",\n            }}\n          >\n            <Logo />\n          </QrCode.Overlay>\n        </foreignObject>\n      </QrCode.Frame>\n\n      <QrCode.DownloadTrigger\n        fileName=\"qr-code-with-logo.png\"\n        mimeType=\"image/png\"\n        asChild\n      >\n        <Button variant=\"outline\" size=\"xs\" mt=\"3\">\n          Download\n        </Button>\n      </QrCode.DownloadTrigger>\n    </QrCode.Root>\n  )\n}\n\nconst Logo = () => {\n  return (\n    <svg\n      width=\"100%\"\n      height=\"100%\"\n      viewBox=\"0 0 40 40\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      <path\n        fillRule=\"evenodd\"\n        clipRule=\"evenodd\"\n        d=\"M10 0C15.5228 0 20 4.47715 20 10V0H30C35.5228 0 40 4.47715 40 10C40 15.5228 35.5228 20 30 20C35.5228 20 40 24.4772 40 30C40 32.7423 38.8961 35.2268 37.1085 37.0334L37.0711 37.0711L37.0379 37.1041C35.2309 38.8943 32.7446 40 30 40C27.2741 40 24.8029 38.9093 22.999 37.1405C22.9756 37.1175 22.9522 37.0943 22.9289 37.0711C22.907 37.0492 22.8852 37.0272 22.8635 37.0051C21.0924 35.2009 20 32.728 20 30C20 35.5228 15.5228 40 10 40C4.47715 40 0 35.5228 0 30V20H10C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM18 10C18 14.4183 14.4183 18 10 18V2C14.4183 2 18 5.58172 18 10ZM38 30C38 25.5817 34.4183 22 30 22C25.5817 22 22 25.5817 22 30H38ZM2 22V30C2 34.4183 5.58172 38 10 38C14.4183 38 18 34.4183 18 30V22H2ZM22 18V2L30 2C34.4183 2 38 5.58172 38 10C38 14.4183 34.4183 18 30 18H22Z\"\n        fill=\"#5417D7\"\n      ></path>\n    </svg>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, QrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-export",
+      "content": "export const QrCodeWithExport = () => {\n  return (\n    <QrCode.Root value=\"https://www.google.com\">\n      <QrCode.Frame>\n        <QrCode.Pattern />\n      </QrCode.Frame>\n\n      <QrCode.DownloadTrigger\n        asChild\n        fileName=\"qr-code.png\"\n        mimeType=\"image/png\"\n      >\n        <Button variant=\"outline\" size=\"xs\" mt=\"3\">\n          Download\n        </Button>\n      </QrCode.DownloadTrigger>\n    </QrCode.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, QrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-fill",
+      "content": "export const QrCodeWithFill = () => {\n  return (\n    <Flex gap=\"4\">\n      <For each={[\"#5417D7\", \"#FF0000\"]}>\n        {(fill) => (\n          <QrCode.Root key={fill} value=\"https://www.google.com\">\n            <QrCode.Frame style={{ fill }}>\n              <QrCode.Pattern />\n            </QrCode.Frame>\n          </QrCode.Root>\n        )}\n      </For>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex, For, QrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-input",
+      "content": "\"use client\"\nexport const QrCodeWithInput = () => {\n  const [value, setValue] = useState(\"https://www.google.com\")\n  return (\n    <Stack maxW=\"240px\" gap=\"4\">\n      <QrCode.Root value={value}>\n        <QrCode.Frame>\n          <QrCode.Pattern />\n        </QrCode.Frame>\n      </QrCode.Root>\n      <Input value={value} onChange={(e) => setValue(e.target.value)} />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Input, QrCode, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-overlay",
+      "content": "export const QrCodeWithOverlay = () => {\n  return (\n    <QrCode.Root value=\"https://www.google.com\">\n      <QrCode.Frame>\n        <QrCode.Pattern />\n      </QrCode.Frame>\n      <QrCode.Overlay>\n        <Logo />\n      </QrCode.Overlay>\n    </QrCode.Root>\n  )\n}\n\nconst Logo = () => {\n  return (\n    <svg\n      width=\"40\"\n      height=\"40\"\n      viewBox=\"0 0 40 40\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      <path\n        fillRule=\"evenodd\"\n        clipRule=\"evenodd\"\n        d=\"M10 0C15.5228 0 20 4.47715 20 10V0H30C35.5228 0 40 4.47715 40 10C40 15.5228 35.5228 20 30 20C35.5228 20 40 24.4772 40 30C40 32.7423 38.8961 35.2268 37.1085 37.0334L37.0711 37.0711L37.0379 37.1041C35.2309 38.8943 32.7446 40 30 40C27.2741 40 24.8029 38.9093 22.999 37.1405C22.9756 37.1175 22.9522 37.0943 22.9289 37.0711C22.907 37.0492 22.8852 37.0272 22.8635 37.0051C21.0924 35.2009 20 32.728 20 30C20 35.5228 15.5228 40 10 40C4.47715 40 0 35.5228 0 30V20H10C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM18 10C18 14.4183 14.4183 18 10 18V2C14.4183 2 18 5.58172 18 10ZM38 30C38 25.5817 34.4183 22 30 22C25.5817 22 22 25.5817 22 30H38ZM2 22V30C2 34.4183 5.58172 38 10 38C14.4183 38 18 34.4183 18 30V22H2ZM22 18V2L30 2C34.4183 2 38 5.58172 38 10C38 14.4183 34.4183 18 30 18H22Z\"\n        fill=\"#5417D7\"\n      ></path>\n    </svg>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { QrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-sizes",
+      "content": "export const QrCodeWithSizes = () => {\n  return (\n    <Stack>\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <QrCode.Root size={size} value=\"https://www.google.com\" key={size}>\n            <QrCode.Frame>\n              <QrCode.Pattern />\n            </QrCode.Frame>\n          </QrCode.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, QrCode, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-spinner",
+      "content": "export const QrCodeWithSpinner = () => {\n  return (\n    <Box position=\"relative\">\n      <QrCode.Root value=\"https://www.google.com\">\n        <QrCode.Frame>\n          <QrCode.Pattern />\n        </QrCode.Frame>\n\n        <AbsoluteCenter bg=\"bg/80\" boxSize=\"100%\">\n          <Spinner color=\"red\" />\n        </AbsoluteCenter>\n      </QrCode.Root>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box, QrCode, Spinner } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "qr-code-with-store",
+      "content": "\"use client\"\nexport const QrCodeWithStore = () => {\n  const qrCode = useQrCode({ defaultValue: \"https://www.google.com\" })\n  return (\n    <Stack align=\"flex-start\">\n      <Button onClick={() => qrCode.setValue(\"https://www.x.com\")}>\n        Update to x.com\n      </Button>\n      <QrCode.RootProvider value={qrCode}>\n        <QrCode.Frame>\n          <QrCode.Pattern />\n        </QrCode.Frame>\n      </QrCode.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, QrCode, Stack, useQrCode } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { QrCode } from \"@chakra-ui/react\""
+    }
+  ]
+}

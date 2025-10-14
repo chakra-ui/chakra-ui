@@ -25,5 +25,6 @@ export { TabsWithFitted as Fitted } from "compositions/examples/tabs-with-fitted
 export { TabsWithIndicator as Indicator } from "compositions/examples/tabs-with-indicator"
 export { TabsWithLinks as LinkTabs } from "compositions/examples/tabs-with-links"
 export { TabsWithManualActivation as ManualActivation } from "compositions/examples/tabs-with-manual-activation"
+export { TabsWithResponsiveOrientation as ResponsiveOrientation } from "compositions/examples/tabs-with-responsive-orientation"
 export { TabsWithStore as Store } from "compositions/examples/tabs-with-store"
 export { TabsWithVertical as Vertical } from "compositions/examples/tabs-with-vertical"

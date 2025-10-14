@@ -5,6 +5,7 @@ import {
   isFunction,
   isObject,
   isString,
+  mapEntries,
   mapObject,
   memo,
   walkObject,
@@ -47,12 +48,10 @@ function expandBreakpoints(breakpoints?: Record<string, string>) {
   if (!breakpoints) return { breakpoints: {}, sizes: {} }
   return {
     breakpoints: mapObject(breakpoints, (value) => ({ value })),
-    sizes: Object.fromEntries(
-      Object.entries(breakpoints).map(([key, value]) => [
-        `breakpoint-${key}`,
-        { value },
-      ]),
-    ),
+    sizes: mapEntries(breakpoints, (key, value) => [
+      `breakpoint-${key}`,
+      { value },
+    ]),
   }
 }
 

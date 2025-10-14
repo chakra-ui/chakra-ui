@@ -1,0 +1,35 @@
+{
+  "name": "show",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "show-basic",
+      "content": "\"use client\"\nexport const ShowBasic = () => {\n  const [count, setCount] = useState(0)\n  return (\n    <Stack align=\"flex-start\">\n      <Button variant=\"outline\" onClick={() => setCount(count + 1)}>\n        Value: {count}\n      </Button>\n      <Show when={count > 3}>\n        <div>My Content</div>\n      </Show>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Show, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Show } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "show-with-fallback",
+      "content": "\"use client\"\nexport const ShowWithFallback = () => {\n  const [count, setCount] = useState(0)\n  return (\n    <Stack align=\"flex-start\">\n      <Button variant=\"outline\" onClick={() => setCount(count + 1)}>\n        Value: {count}\n      </Button>\n      <Show\n        when={count > 3}\n        fallback={<Text>Not there yet. Keep clicking...</Text>}\n      >\n        <div>Congrats! I am here</div>\n      </Show>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Show, Stack, Text } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Show } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "show-with-render-prop",
+      "content": "export const ShowWithRenderProp = () => {\n  const value: number | undefined = 10\n  return <Show when={value}>{(value) => <div>Value: {value}</div>}</Show>\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Show } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Show } from \"@chakra-ui/react\""
+    }
+  ]
+}

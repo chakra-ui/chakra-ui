@@ -1,5 +1,4 @@
 import { EditPageButton } from "@/components/edit-page-button"
-// import { EventBadge } from "@/components/event-badge"
 import { MDXContent } from "@/components/mdx-content"
 import { MDXPagination } from "@/components/mdx-pagination"
 import { PageHeader } from "@/components/page-header"
@@ -39,11 +38,7 @@ export default async function Page(props: PageContext) {
         overflow="auto"
         minHeight="var(--content-height)"
       >
-        <PageHeader
-          title={page.title}
-          description={page.description}
-          links={page.links}
-        />
+        <PageHeader data={page} />
         <Box>
           <MDXContent code={page.code} />
           <MDXPagination />
@@ -69,7 +64,9 @@ export default async function Page(props: PageContext) {
 
 export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
   const params = await ctx.params
-  const page = getPageBySlug(params.slug)
+  const page = docs.find(
+    (doc) => doc.slug === ["docs", ...params.slug].join("/"),
+  )
 
   const category = page?.slug
     .replace("docs/", "")
@@ -77,7 +74,7 @@ export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
     .slice(0, -1)
     .join(" > ")
     ?.replace("-", " ")
-    .replace(/\b\w/g, (l) => l.toUpperCase())
+    .replace(/\b\w/g, (l: string) => l.toUpperCase())
 
   return {
     title: page?.title,
@@ -92,8 +89,4 @@ export function generateStaticParams() {
   return docs.map((item) => ({
     slug: item.slug.split("/").slice(1),
   }))
-}
-
-function getPageBySlug(slug: string[]) {
-  return docs.find((doc) => doc.slug === ["docs", ...slug].join("/"))
 }

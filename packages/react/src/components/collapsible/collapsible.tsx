@@ -59,7 +59,8 @@ export const CollapsiblePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleTriggerProps
-  extends HTMLChakraProps<"button", ArkCollapsible.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkCollapsible.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const CollapsibleTrigger = withContext<
   HTMLButtonElement,
@@ -69,12 +70,24 @@ export const CollapsibleTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleContentProps
-  extends HTMLChakraProps<"div", ArkCollapsible.ContentBaseProps> {}
+  extends HTMLChakraProps<"div", ArkCollapsible.ContentBaseProps>,
+    UnstyledProp {}
 
 export const CollapsibleContent = withContext<
   HTMLDivElement,
   CollapsibleContentProps
 >(ArkCollapsible.Content, "content", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CollapsibleIndicatorProps
+  extends HTMLChakraProps<"div", ArkCollapsible.IndicatorBaseProps>,
+    UnstyledProp {}
+
+export const CollapsibleIndicator = withContext<
+  HTMLDivElement,
+  CollapsibleIndicatorProps
+>(ArkCollapsible.Indicator, "indicator", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 

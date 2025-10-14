@@ -7,10 +7,10 @@ import {
   type UnstyledProp,
   createRecipeContext,
 } from "../../styled-system"
-import { Circle } from "../box"
-import type { CircleProps } from "../box"
-import { Stack } from "../stack"
+import type { CircleProps } from "../circle"
+import { Circle } from "../circle"
 import type { StackProps } from "../stack"
+import { Stack } from "../stack"
 
 const { withContext, PropsProvider } = createRecipeContext({
   key: "skeleton",

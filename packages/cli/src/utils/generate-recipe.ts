@@ -23,9 +23,10 @@ export function generateRecipeResult(sys: SystemContext) {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const def = Reflect.get(recipe.defaultVariants ?? {}, key)
-              const jsDoc = def
-                ? `/** @default ${JSON.stringify(def)} */\n`
-                : ""
+              const jsDoc =
+                def !== undefined
+                  ? `/** @default ${JSON.stringify(def)} */\n`
+                  : ""
 
               const values = variantKeyMap[key]
 
@@ -89,9 +90,10 @@ export function generateSlotRecipeResult(sys: SystemContext, strict = true) {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const def = Reflect.get(recipe.defaultVariants ?? {}, key)
-              const jsDoc = def
-                ? `/** @default ${JSON.stringify(def)} */\n`
-                : ""
+              const jsDoc =
+                def !== undefined
+                  ? `/** @default ${JSON.stringify(def)} */\n`
+                  : ""
 
               const values = variantKeyMap[key]
 

@@ -1,0 +1,43 @@
+{
+  "name": "group",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "group-basic",
+      "content": "export const GroupBasic = () => {\n  return (\n    <Group>\n      <Box h=\"20\" w=\"40\">\n        1\n      </Box>\n      <Box h=\"20\" w=\"40\">\n        2\n      </Box>\n    </Group>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Group } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Group } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "group-with-attached",
+      "content": "export const GroupWithAttached = () => {\n  return (\n    <Stack gap=\"4\">\n      <Group attached>\n        <Button variant=\"outline\">Item 1</Button>\n        <Button variant=\"outline\">Item 2</Button>\n      </Group>\n\n      <Group attached>\n        <Badge variant=\"solid\" colorPalette=\"purple\">\n          Commit status\n        </Badge>\n        <Badge variant=\"solid\" colorPalette=\"green\">\n          90+\n        </Badge>\n      </Group>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Badge, Button, Group, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Group } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "group-with-button",
+      "content": "export const GroupWithButton = () => {\n  return (\n    <Group>\n      <Button variant=\"outline\">Item 1</Button>\n      <Button variant=\"outline\">Item 2</Button>\n    </Group>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Group } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Group } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "group-with-grow",
+      "content": "export const GroupWithGrow = () => {\n  return (\n    <Group grow>\n      <Button variant=\"outline\">First</Button>\n      <Button variant=\"outline\">Second</Button>\n      <Button variant=\"outline\">Third</Button>\n    </Group>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Group } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Group } from \"@chakra-ui/react\""
+    }
+  ]
+}

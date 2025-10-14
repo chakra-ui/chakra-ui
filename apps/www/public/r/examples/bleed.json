@@ -1,0 +1,36 @@
+{
+  "name": "bleed",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "bleed-basic",
+      "content": "export const BleedBasic = () => {\n  return (\n    <Box padding=\"10\" rounded=\"sm\" borderWidth=\"1px\">\n      <Bleed inline=\"10\">\n        <Box height=\"20\">Bleed</Box>\n      </Bleed>\n\n      <Stack mt=\"6\">\n        <Heading size=\"md\">Some Heading</Heading>\n        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>\n      </Stack>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Bleed, Box, Heading, Stack, Text } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Bleed } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "bleed-vertical",
+      "content": "export const BleedVertical = () => {\n  return (\n    <Box padding=\"10\" rounded=\"sm\" borderWidth=\"1px\">\n      <Bleed block=\"10\">\n        <Box height=\"20\">Bleed</Box>\n      </Bleed>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Bleed, Box } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Bleed } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "bleed-with-direction",
+      "content": "export const BleedWithDirection = () => {\n  return (\n    <Stack gap=\"8\">\n      <Box padding=\"8\" rounded=\"sm\" borderWidth=\"1px\">\n        <Bleed inlineStart=\"8\">\n          <Box height=\"8\">inlineStart</Box>\n        </Bleed>\n      </Box>\n\n      <Box padding=\"8\" rounded=\"sm\" borderWidth=\"1px\">\n        <Bleed inlineEnd=\"8\">\n          <Box height=\"8\">inlineEnd</Box>\n        </Bleed>\n      </Box>\n\n      <Box padding=\"8\" rounded=\"sm\" borderWidth=\"1px\">\n        <Bleed blockStart=\"8\">\n          <Box height=\"8\">blockStart</Box>\n        </Bleed>\n      </Box>\n\n      <Box padding=\"8\" rounded=\"sm\" borderWidth=\"1px\">\n        <Bleed blockEnd=\"8\">\n          <Box height=\"8\">blockEnd</Box>\n        </Bleed>\n      </Box>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Bleed, Box, Stack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Bleed } from \"@chakra-ui/react\""
+    }
+  ]
+}

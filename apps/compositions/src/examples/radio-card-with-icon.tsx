@@ -11,7 +11,7 @@ export const RadioCardWithIcon = () => {
             <RadioCard.ItemHiddenInput />
             <RadioCard.ItemControl>
               <RadioCard.ItemContent>
-                <Icon fontSize="2xl" color="fg.muted" mb="2">
+                <Icon size="xl" color="fg.muted" mb="2">
                   {item.icon}
                 </Icon>
                 <RadioCard.ItemText>{item.title}</RadioCard.ItemText>

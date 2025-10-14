@@ -1,0 +1,61 @@
+{
+  "name": "checkmark",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "checkmark-basic",
+      "content": "export const CheckmarkBasic = () => {\n  return (\n    <Stack>\n      <Checkmark />\n      <Checkmark checked />\n      <Checkmark indeterminate />\n      <Checkmark disabled />\n      <Checkmark checked disabled />\n      <Checkmark indeterminate disabled />\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": ["import { Checkmark, Stack } from \"@chakra-ui/react\""],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-states",
+      "content": "export const CheckmarkStates = () => {\n  return (\n    <HStack gap={3}>\n      <Checkmark />\n      <Checkmark checked />\n      <Checkmark indeterminate />\n      <Checkmark disabled />\n      <Checkmark checked disabled />\n      <Checkmark indeterminate disabled />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": ["import { Checkmark, HStack } from \"@chakra-ui/react\""],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-with-variants",
+      "content": "export const CheckmarkWithVariants = () => {\n  return (\n    <HStack gap={4}>\n      <For each={[\"solid\", \"outline\", \"subtle\", \"plain\", \"inverted\"]}>\n        {(variant) => (\n          <Checkmark key={variant} variant={variant} checked />\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkmark, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-with-sizes",
+      "content": "export const CheckmarkWithSizes = () => {\n  return (\n    <HStack gap={4} alignItems=\"center\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Checkmark key={size} size={size} checked />\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkmark, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-with-colors",
+      "content": "export const CheckmarkWithColors = () => {\n  return (\n    <HStack gap={4}>\n      <For each={[\"gray\", \"red\", \"orange\", \"yellow\", \"green\", \"teal\", \"blue\", \"cyan\", \"purple\", \"pink\"]}>\n        {(colorPalette) => (\n          <Checkmark key={colorPalette} colorPalette={colorPalette} checked />\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkmark, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-with-filled",
+      "content": "export const CheckmarkWithFilled = () => {\n  return <Checkmark variant=\"outline\" filled />\n}\n",
+      "hasSnippet": false,
+      "importPaths": ["import { Checkmark } from \"@chakra-ui/react\""],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "checkmark-indeterminate",
+      "content": "export const CheckmarkIndeterminate = () => {\n  return (\n    <HStack gap={4}>\n      <Checkmark />\n      <Checkmark checked />\n      <Checkmark indeterminate />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": ["import { Checkmark, HStack } from \"@chakra-ui/react\""],
+      "importPath": "import { Checkmark } from \"@chakra-ui/react\""
+    }
+  ]
+}

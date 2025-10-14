@@ -164,7 +164,7 @@ export const defaultConditions = defineConditions({
   optional: "&:optional",
   open: "&:is([open], [data-open], [data-state=open])",
   closed: "&:is([closed], [data-closed], [data-state=closed])",
-  fullscreen: "&is(:fullscreen, [data-fullscreen])",
+  fullscreen: "&:is(:fullscreen, [data-fullscreen])",
   loading: "&:is([data-loading], [aria-busy=true])",
   hidden: "&:is([hidden], [data-hidden])",
 
@@ -1070,6 +1070,29 @@ export const defaultBaseConfig = defineConfig({
           WebkitLineClamp: value,
           WebkitBoxOrient: "vertical",
           textWrap: "wrap",
+        }
+      },
+    },
+    // table
+    borderSpacing: {
+      values: (token) => ({
+        ...token("spacing"),
+        auto: "var(--border-spacing-x, 0) var(--border-spacing-y, 0)",
+      }),
+    },
+    borderSpacingX: {
+      values: "spacing",
+      transform(value) {
+        return {
+          "--border-spacing-x": value,
+        }
+      },
+    },
+    borderSpacingY: {
+      values: "spacing",
+      transform(value) {
+        return {
+          "--border-spacing-y": value,
         }
       },
     },

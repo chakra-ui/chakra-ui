@@ -3,7 +3,7 @@ import * as React from "react"
 
 interface HoverCardContentProps extends HoverCard.ContentProps {
   portalled?: boolean
-  portalRef?: React.RefObject<HTMLElement>
+  portalRef?: React.RefObject<HTMLElement | null>
 }
 
 export const HoverCardContent = React.forwardRef<

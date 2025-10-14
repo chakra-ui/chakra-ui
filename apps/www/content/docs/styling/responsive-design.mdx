@@ -7,27 +7,16 @@ description:
 
 ## Overview
 
-Responsive design is a fundamental aspect of modern web development, allowing
-websites and applications to adapt seamlessly to different screen sizes and
-devices.
-
-:::info
-
-Chakra uses a mobile-first breakpoint system and leverages min-width media
-queries `@media(min-width)` when you write responsive styles.
-
-:::
-
-Chakra provides five breakpoints by default:
+Chakra UI uses a mobile-first breakpoint system with min-width media queries:
 
 ```ts
 const breakpoints = {
-  base: "0em", // 0px
-  sm: "30em", // ~480px
-  md: "48em", // ~768px
-  lg: "62em", // ~992px
-  xl: "80em", // ~1280px
-  "2xl": "96em", // ~1536px
+  base: "0rem", // 0px
+  sm: "30rem", // ~480px
+  md: "48rem", // ~768px
+  lg: "62rem", // ~992px
+  xl: "80rem", // ~1280px
+  "2xl": "96rem", // ~1536px
 }
 ```
 
@@ -83,6 +72,18 @@ to apply styles only in the `lg` breakpoint, using the `lgOnly` property:
 <Text fontWeight={{ lgOnly: "bold" }}>Text</Text>
 ```
 
+### Down breakpoint
+
+To target a breakpoint and below, use the `Down` notation. This creates clear
+boundaries for responsive variants. Here's an example of how to apply styles
+from the `sm` breakpoint and below:
+
+```jsx
+<Text fontWeight={{ smDown: "bold" }}>Text</Text>
+```
+
+> This text will be bold from `base` up to and including the `sm` breakpoint.
+
 ## Hiding elements at breakpoint
 
 Chakra provides the `hideFrom` and `hideBelow` utilities to hide elements at
@@ -109,14 +110,29 @@ To hide an element below the `md` breakpoint, use the `hideBelow` utility:
 To learn how to customize breakpoints, please refer to the
 [customizing breakpoints](/docs/theming/customization/breakpoints) section.
 
+## Responsive Variants
+
+When applying breakpoints to component variants, we recommend using explicit
+breakpoints instead of using the `base` breakpoint.
+
+This way, you can avoid style leaking from one variant to another.
+
+```jsx
+// okay, but can lead to style leaking ⚠️
+<Button variant={{ base: "solid", md: "outline" }}>Button</Button>
+
+// good ✅
+<Button variant={{ smDown: "solid", md: "outline" }}>Button</Button>
+```
+
+This creates clear boundaries without style accumulation. :::
+
 ## FAQs
 
 ### Why are breakpoints converted to `rem`?
 
 The conversion to `rem` is intentional and beneficial for accessibility reasons:
 
-- User Changed Their Browser's Font Setting
-- User Zooms In
-- Font size Changed in HTML
-
-> Learn more here: https://zellwk.com/blog/media-query-units/
+- User changed their browser's font setting
+- User zoomed in
+- Font size changed in HTML

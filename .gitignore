@@ -106,3 +106,5 @@ report.*
 .vercel
 
 *storybook.log
+
+.vscode/mcp.json

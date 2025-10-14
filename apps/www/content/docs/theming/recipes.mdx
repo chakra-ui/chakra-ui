@@ -13,7 +13,7 @@ A recipe consists of these properties:
 
 - `className`: The className to attach to the component
 - `base`: The base styles for the component
-- `variants`: The different visual styles for the component
+- `variants`: The different style variations for the component
 - `compoundVariants`: The different combinations of variants for the component
 - `defaultVariants`: The default variant values for the component
 
@@ -29,7 +29,7 @@ export const buttonRecipe = defineRecipe({
     display: "flex",
   },
   variants: {
-    visual: {
+    variant: {
       solid: { bg: "red.200", color: "white" },
       outline: { borderWidth: "1px", borderColor: "red.200" },
     },
@@ -67,10 +67,10 @@ import { chakra, useRecipe } from "@chakra-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 export const Button = (props) => {
-  const { visual, size, ...restProps } = props
+  const { variant, size, ...restProps } = props
 
   const recipe = useRecipe({ recipe: buttonRecipe })
-  const styles = recipe({ visual, size })
+  const styles = recipe({ variant, size })
 
   return <chakra.button css={styles} {...restProps} />
 }
@@ -78,7 +78,7 @@ export const Button = (props) => {
 
 #### splitVariantProps
 
-Notice how the `visual` and `size` props were destructured from the props to be
+Notice how the `variant` and `size` props were destructured from the props to be
 passed to the recipe. A smarter approach would be to automatically split the
 recipe props from the component props.
 
@@ -137,7 +137,7 @@ import { Button } from "./button"
 
 const App = () => {
   return (
-    <Button visual="solid" size="lg">
+    <Button variant="solid" size="lg">
       Click Me
     </Button>
   )
@@ -159,7 +159,7 @@ const Button = chakra("button", {
     display: "flex",
   },
   variants: {
-    visual: {
+    variant: {
       solid: { bg: "red.200", color: "white" },
       outline: { borderWidth: "1px", borderColor: "red.200" },
     },
@@ -169,7 +169,7 @@ const Button = chakra("button", {
     },
   },
   defaultVariants: {
-    visual: "solid",
+    variant: "solid",
     size: "lg",
   },
 })
@@ -190,7 +190,7 @@ const button = cva({
     display: "flex",
   },
   variants: {
-    visual: {
+    variant: {
       solid: { bg: "red.200", color: "white" },
       outline: { borderWidth: "1px", borderColor: "red.200" },
     },
@@ -202,7 +202,7 @@ const button = cva({
   compoundVariants: [
     {
       size: "small",
-      visual: "outline",
+      variant: "outline",
       css: {
         borderWidth: "2px",
       },
@@ -211,11 +211,11 @@ const button = cva({
 })
 ```
 
-When you use the `size="small"` and `visual="outline"` variants together, the
+When you use the `size="small"` and `variant="outline"` variants together, the
 `compoundVariants` will apply the `css` property to the component.
 
 ```tsx title="app.tsx"
-<Button size="small" visual="outline">
+<Button size="small" variant="outline">
   Click Me
 </Button>
 ```
@@ -228,7 +228,7 @@ doesn't work.
 This means a code like this will not work:
 
 ```tsx
-<Button size={{ base: "sm", md: "lg" }} visual="outline">
+<Button size={{ base: "sm", md: "lg" }} variant="outline">
   Click Me
 </Button>
 ```

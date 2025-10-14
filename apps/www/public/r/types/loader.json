@@ -1,0 +1,41 @@
+{
+  "Loader": {
+    "props": {
+      "visible": {
+        "type": "boolean | undefined",
+        "defaultValue": true,
+        "isRequired": false,
+        "description": "Whether the loader is visible"
+      },
+      "spinner": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The spinner to display when loading"
+      },
+      "spinnerPlacement": {
+        "type": "\"start\" | \"end\" | undefined",
+        "defaultValue": "start",
+        "isRequired": false,
+        "description": "The placement of the spinner"
+      },
+      "text": {
+        "type": "React.ReactNode | undefined",
+        "isRequired": false,
+        "description": "The text to display when loading"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "LoaderOverlay": {
+    "props": {}
+  }
+}

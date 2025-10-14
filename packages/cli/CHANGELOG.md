@@ -1,5 +1,55 @@
 # @chakra-ui/cli
 
+## 3.27.1
+
+### Patch Changes
+
+- [#10368](https://github.com/chakra-ui/chakra-ui/pull/10368)
+  [`62260a5`](https://github.com/chakra-ui/chakra-ui/commit/62260a5310dcdc3d61411700acd45d5ad012aa65)
+  Thanks [@tioluwani94](https://github.com/tioluwani94)! - **Pro Blocks**: Allow
+  CLI to read new documentation blocks filtering
+
+## 3.27.0
+
+### Minor Changes
+
+- [#10299](https://github.com/chakra-ui/chakra-ui/pull/10299)
+  [`27b920a`](https://github.com/chakra-ui/chakra-ui/commit/27b920a859bff0899d4441e6c73a845d3ad10412)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new `blocks`
+  command to add chakra pro blocks to your project.
+
+  This command requires valid Chakra Pro license and API key in the
+  `CHAKRA_UI_PRO_API_KEY` environment variable.
+
+  ```sh
+  # Interactive block selection
+  npx @chakra-ui/cli blocks add
+
+  # Add all variants of a specific block
+  npx @chakra-ui/cli blocks add hero
+
+  # Add a specific variant of a block
+  npx @chakra-ui/cli blocks add hero --variant "simple"
+
+  # List available blocks
+  npx @chakra-ui/cli blocks list
+
+  # List blocks in a specific category
+  npx @chakra-ui/cli blocks list --category "marketing"
+  ```
+
+## 3.26.0
+
+## 3.25.0
+
+## 3.24.2
+
+## 3.24.1
+
+## 3.24.0
+
+## 3.23.0
+
 ## 3.22.0
 
 ## 3.21.1

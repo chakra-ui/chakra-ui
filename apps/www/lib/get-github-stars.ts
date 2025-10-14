@@ -12,8 +12,16 @@ export async function getGithubStars() {
       owner: "chakra-ui",
       repo: "chakra-ui",
     })
-    count = repo.data.stargazers_count
-  } catch (error) {
+
+    // Validate that the response has the expected structure
+    if (repo.data && typeof repo.data.stargazers_count === "number") {
+      count = repo.data.stargazers_count
+    } else {
+      console.log("Invalid GitHub API response structure:", repo.data)
+      count = 36_700
+    }
+  } catch (error: any) {
+    console.log("Failed to get github stars: ", error.toString())
     count = 19_700
   }
 

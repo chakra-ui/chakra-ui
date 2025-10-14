@@ -1,0 +1,123 @@
+{
+  "name": "tag",
+  "file": "compositions/ui/tag",
+  "snippet": "import { Tag as ChakraTag } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface TagProps extends ChakraTag.RootProps {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  onClose?: VoidFunction\n  closable?: boolean\n}\n\nexport const Tag = React.forwardRef<HTMLSpanElement, TagProps>(\n  function Tag(props, ref) {\n    const {\n      startElement,\n      endElement,\n      onClose,\n      closable = !!onClose,\n      children,\n      ...rest\n    } = props\n\n    return (\n      <ChakraTag.Root ref={ref} {...rest}>\n        {startElement && (\n          <ChakraTag.StartElement>{startElement}</ChakraTag.StartElement>\n        )}\n        <ChakraTag.Label>{children}</ChakraTag.Label>\n        {endElement && (\n          <ChakraTag.EndElement>{endElement}</ChakraTag.EndElement>\n        )}\n        {closable && (\n          <ChakraTag.EndElement>\n            <ChakraTag.CloseTrigger onClick={onClose} />\n          </ChakraTag.EndElement>\n        )}\n      </ChakraTag.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "tag-as-button",
+      "content": "export const TagAsButton = () => {\n  return (\n    <Tag.Root asChild variant=\"solid\">\n      <button type=\"submit\">\n        <Tag.Label>Fish </Tag.Label>\n        <LuCheck />\n      </button>\n    </Tag.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tag } from \"@chakra-ui/react\"",
+        "import { LuCheck } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tag-basic",
+      "content": "export const TagBasic = () => {\n  return (\n    <HStack>\n      <Tag.Root>\n        <Tag.Label>Plain Tag</Tag.Label>\n      </Tag.Root>\n      <Tag.Root>\n        <Tag.Label>Closable Tag</Tag.Label>\n        <Tag.EndElement>\n          <Tag.CloseTrigger />\n        </Tag.EndElement>\n      </Tag.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Tag } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tag-closed-component",
+      "content": "export interface TagProps extends ChakraTag.RootProps {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  onClose?: VoidFunction\n  closable?: boolean\n}\n\nexport const Tag = React.forwardRef<HTMLSpanElement, TagProps>(\n  function Tag(props, ref) {\n    const {\n      startElement,\n      endElement,\n      onClose,\n      closable = !!onClose,\n      children,\n      ...rest\n    } = props\n\n    return (\n      <ChakraTag.Root ref={ref} {...rest}>\n        {startElement && (\n          <ChakraTag.StartElement>{startElement}</ChakraTag.StartElement>\n        )}\n        <ChakraTag.Label>{children}</ChakraTag.Label>\n        {endElement && (\n          <ChakraTag.EndElement>{endElement}</ChakraTag.EndElement>\n        )}\n        {closable && (\n          <ChakraTag.EndElement>\n            <ChakraTag.CloseTrigger onClick={onClose} />\n          </ChakraTag.EndElement>\n        )}\n      </ChakraTag.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tag as ChakraTag } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tag-with-avatar",
+      "content": "export const TagWithAvatar = () => {\n  return (\n    <HStack>\n      <For each={[\"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => (\n          <Tag.Root key={size} size={size} rounded=\"full\">\n            <Tag.StartElement>\n              <Avatar.Root size=\"full\">\n                <Avatar.Image src=\"https://i.pravatar.cc/300?u=1\" />\n                <Avatar.Fallback name=\"John Doe\" />\n              </Avatar.Root>\n            </Tag.StartElement>\n            <Tag.Label>Emily {size}</Tag.Label>\n          </Tag.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, For, HStack, Tag } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tag-with-close",
+      "content": "export const TagWithClose = () => {\n  return (\n    <HStack>\n      <Tag.Root>\n        <Tag.StartElement>\n          <LuActivity />\n        </Tag.StartElement>\n        <Tag.Label>Tag 1</Tag.Label>\n        <Tag.EndElement>\n          <Tag.CloseTrigger />\n        </Tag.EndElement>\n      </Tag.Root>\n      <Tag.Root>\n        <Tag.Label>Tag 2</Tag.Label>\n        <Tag.EndElement>\n          <Tag.CloseTrigger />\n        </Tag.EndElement>\n      </Tag.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Tag } from \"@chakra-ui/react\"",
+        "import { LuActivity } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tag-with-colors",
+      "content": "export const TagWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <Tag.Root size=\"sm\" colorPalette={colorPalette}>\n            <Tag.Label>Content</Tag.Label>\n          </Tag.Root>\n          <Tag.Root size=\"sm\" colorPalette={colorPalette}>\n            <Tag.StartElement>\n              <HiPlus />\n            </Tag.StartElement>\n            <Tag.Label>Content</Tag.Label>\n          </Tag.Root>\n          <Tag.Root colorPalette={colorPalette} variant=\"solid\">\n            <Tag.Label>Content</Tag.Label>\n            <Tag.EndElement>\n              <Tag.CloseTrigger />\n            </Tag.EndElement>\n          </Tag.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, Tag, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\"",
+        "import { HiPlus } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tag-with-icon",
+      "content": "export const TagWithIcon = () => {\n  return (\n    <HStack>\n      <Tag.Root>\n        <Tag.StartElement>\n          <LuCircleUser />\n        </Tag.StartElement>\n        <Tag.Label>Tag 1</Tag.Label>\n      </Tag.Root>\n      <Tag.Root>\n        <Tag.StartElement>\n          <LuFileBadge />\n        </Tag.StartElement>\n        <Tag.Label>Top Rated</Tag.Label>\n      </Tag.Root>\n      <Tag.Root>\n        <Tag.Label>Tag 2</Tag.Label>\n        <Tag.EndElement>\n          <LuCircleUser />\n        </Tag.EndElement>\n      </Tag.Root>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, Tag } from \"@chakra-ui/react\"",
+        "import { LuCircleUser, LuFileBadge } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tag-with-overflow",
+      "content": "export const TagWithOverflow = () => {\n  return (\n    <Tag.Root size=\"sm\" colorPalette=\"blue\" maxW=\"200px\">\n      <Tag.Label>\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam\n        molestias, laboriosam, quod, quia quidem quae voluptatem natus\n        exercitationem autem quibusdam\n      </Tag.Label>\n      <Tag.EndElement>\n        <Tag.CloseTrigger />\n      </Tag.EndElement>\n    </Tag.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tag } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tag-with-sizes",
+      "content": "export const TagWithSizes = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <HStack key={size}>\n            <Tag.Root size={size}>\n              <Tag.Label>Gray</Tag.Label>\n            </Tag.Root>\n            <Tag.Root size={size}>\n              <Tag.Label>Gray</Tag.Label>\n              <Tag.EndElement>\n                <Tag.CloseTrigger />\n              </Tag.EndElement>\n            </Tag.Root>\n            <Tag.Root size={size}>\n              <Tag.Label>Gray</Tag.Label>\n              <Tag.EndElement>\n                <HiCheck />\n              </Tag.EndElement>\n            </Tag.Root>\n          </HStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Stack, Tag } from \"@chakra-ui/react\"",
+        "import { HiCheck } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "tag-with-variants",
+      "content": "export const TagWithVariants = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"subtle\", \"solid\", \"outline\", \"surface\"]}>\n        {(variant) => (\n          <HStack key={variant}>\n            <Tag.Root variant={variant}>\n              <Tag.Label>Gray</Tag.Label>\n            </Tag.Root>\n            <Tag.Root variant={variant}>\n              <Tag.Label>Gray</Tag.Label>\n              <Tag.EndElement>\n                <Tag.CloseTrigger />\n              </Tag.EndElement>\n            </Tag.Root>\n            <Tag.Root variant={variant}>\n              <Tag.Label>Gray</Tag.Label>\n              <Tag.EndElement>\n                <HiCheck />\n              </Tag.EndElement>\n            </Tag.Root>\n          </HStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Stack, Tag } from \"@chakra-ui/react\"",
+        "import { HiCheck } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Tag } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

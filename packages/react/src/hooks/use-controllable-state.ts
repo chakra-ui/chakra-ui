@@ -17,8 +17,8 @@ export function useControllableProp<T>(prop: T | undefined, state: T) {
 export interface UseControllableStateProps<T> {
   value?: T | undefined
   defaultValue?: T | (() => T) | undefined
-  onChange?: (value: T) => void | undefined
-  shouldUpdate?: (prev: T, next: T) => boolean | undefined
+  onChange?: ((value: T) => void) | undefined
+  shouldUpdate?: ((prev: T, next: T) => boolean) | undefined
 }
 
 /**

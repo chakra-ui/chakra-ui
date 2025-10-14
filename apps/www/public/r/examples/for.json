@@ -1,0 +1,38 @@
+{
+  "name": "for",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "for-basic",
+      "content": "export const ForBasic = () => {\n  return (\n    <For each={[\"One\", \"Two\", \"Three\"]}>\n      {(item, index) => <div key={index}>{item}</div>}\n    </For>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { For } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "for-with-fallback",
+      "content": "export const ForWithFallback = () => {\n  return (\n    <Stack gap=\"4\">\n      <For\n        each={[]}\n        fallback={\n          <VStack textAlign=\"center\" fontWeight=\"medium\">\n            <LuBox />\n            No items to show\n          </VStack>\n        }\n      >\n        {(item, index) => (\n          <Box h=\"10\" key={index}>\n            {item}\n          </Box>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Stack, VStack } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuBox } from \"react-icons/lu\""
+      ],
+      "importPath": "import { For } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "for-with-object",
+      "content": "export const ForWithObject = () => {\n  return (\n    <Stack>\n      <For\n        each={[\n          { name: \"Naruto\", powers: [\"Shadow Clone\", \"Rasengan\"] },\n          { name: \"Sasuke\", powers: [\"Chidori\", \"Sharingan\"] },\n          { name: \"Sakura\", powers: [\"Healing\", \"Super Strength\"] },\n        ]}\n      >\n        {(item, index) => (\n          <Box borderWidth=\"1px\" key={index} p=\"4\">\n            <Text fontWeight=\"bold\">{item.name}</Text>\n            <Text color=\"fg.muted\">Powers: {item.powers.join(\", \")}</Text>\n          </Box>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, For, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { For } from \"@chakra-ui/react\""
+    }
+  ]
+}

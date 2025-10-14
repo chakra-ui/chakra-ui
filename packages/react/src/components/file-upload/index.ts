@@ -52,6 +52,9 @@ export { useFileUpload, useFileUploadContext } from "@ark-ui/react/file-upload"
 export type {
   UseFileUploadProps,
   UseFileUploadReturn,
+  FileUploadFileError,
+  FileUploadFileMimeType,
+  FileUploadFileRejection,
 } from "@ark-ui/react/file-upload"
 
 export * as FileUpload from "./namespace"

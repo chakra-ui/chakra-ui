@@ -1,0 +1,53 @@
+{
+  "name": "@chakra-ui/react-mcp",
+  "description": "The official MCP server for Chakra UI",
+  "version": "2.1.0",
+  "main": "dist/stdio.js",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "apps/mcp"
+  },
+  "scripts": {
+    "build": "tsup && chmod 755 dist/stdio.js",
+    "dev": "tsup --watch",
+    "serve": "tsx --watch src/http.ts",
+    "release": "scripts/release.sh"
+  },
+  "bin": {
+    "chakra-ui-mcp": "./dist/stdio.js"
+  },
+  "keywords": [
+    "chakra-ui",
+    "mcp-server",
+    "chat",
+    "chatgpt",
+    "mcp"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "express": "^5.1.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@release-it/keep-a-changelog": "7.0.0",
+    "@tsconfig/node22": "^22.0.1",
+    "@types/express": "^5.0.3",
+    "@types/fs-extra": "^11.0.4",
+    "release-it": "19.0.4",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "5.8.3"
+  }
+}

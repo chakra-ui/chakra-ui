@@ -1,4 +1,3 @@
-import { clone, mergeWith } from "../utils"
 import type { CompositionStyles } from "./composition"
 import type {
   GlobalStyleIdentityFn,
@@ -68,6 +67,4 @@ export const defineSemanticTokens =
 
 export const defineConfig = (v: SystemConfig) => v
 
-export const mergeConfigs = (...configs: SystemConfig[]): SystemConfig => {
-  return mergeWith({}, ...configs.map(clone))
-}
+export { mergeConfigs } from "./merge-config"

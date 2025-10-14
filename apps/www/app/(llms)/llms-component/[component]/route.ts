@@ -3,7 +3,7 @@ import {
   findMatchingDocs,
   minifyContent,
   parseComponent,
-} from "../../shared"
+} from "@/lib/llms-utils"
 
 export const dynamic = "force-static"
 

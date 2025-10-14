@@ -1,0 +1,86 @@
+{
+  "name": "toggle",
+  "file": "compositions/ui/toggle",
+  "snippet": "\"use client\"\n\nimport type { ButtonProps } from \"@chakra-ui/react\"\nimport {\n  Button,\n  Toggle as ChakraToggle,\n  useToggleContext,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface ToggleProps extends ChakraToggle.RootProps {\n  variant?: keyof typeof variantMap\n  size?: ButtonProps[\"size\"]\n}\n\nconst variantMap = {\n  solid: { on: \"solid\", off: \"outline\" },\n  surface: { on: \"surface\", off: \"outline\" },\n  subtle: { on: \"subtle\", off: \"ghost\" },\n  ghost: { on: \"subtle\", off: \"ghost\" },\n} as const\n\nexport const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(\n  function Toggle(props, ref) {\n    const { variant = \"subtle\", size, children, ...rest } = props\n    const variantConfig = variantMap[variant]\n\n    return (\n      <ChakraToggle.Root asChild {...rest}>\n        <ToggleBaseButton size={size} variant={variantConfig} ref={ref}>\n          {children}\n        </ToggleBaseButton>\n      </ChakraToggle.Root>\n    )\n  },\n)\n\ninterface ToggleBaseButtonProps extends Omit<ButtonProps, \"variant\"> {\n  variant: Record<\"on\" | \"off\", ButtonProps[\"variant\"]>\n}\n\nconst ToggleBaseButton = React.forwardRef<\n  HTMLButtonElement,\n  ToggleBaseButtonProps\n>(function ToggleBaseButton(props, ref) {\n  const toggle = useToggleContext()\n  const { variant, ...rest } = props\n  return (\n    <Button\n      variant={toggle.pressed ? variant.on : variant.off}\n      ref={ref}\n      {...rest}\n    />\n  )\n})\n\nexport const ToggleIndicator = ChakraToggle.Indicator\n",
+  "examples": [
+    {
+      "name": "toggle-basic",
+      "content": "export const ToggleBasic = () => {\n  return (\n    <Toggle.Root px=\"0\" asChild>\n      <Button variant={{ base: \"subtle\", _pressed: \"solid\" }}>\n        <LuBold />\n      </Button>\n    </Toggle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Toggle } from \"@chakra-ui/react\"",
+        "import { LuBold } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Toggle } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "toggle-controlled",
+      "content": "\"use client\"\nexport const ToggleControlled = () => {\n  const [pressed, setPressed] = useState(false)\n\n  return (\n    <Stack align=\"flex-start\">\n      <Toggle.Root asChild pressed={pressed} onPressedChange={setPressed}>\n        <Button variant={{ base: \"subtle\", _pressed: \"solid\" }}>Pressed</Button>\n      </Toggle.Root>\n\n      <Code size=\"sm\" fontWeight=\"medium\">\n        Pressed: {pressed ? \"true\" : \"false\"}\n      </Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Code, Stack, Toggle } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Toggle } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "toggle-tip-basic",
+      "content": "export const ToggleTipBasic = () => {\n  return (\n    <ToggleTip content=\"This is some additional information.\">\n      <Button size=\"xs\" variant=\"ghost\">\n        <LuInfo />\n      </Button>\n    </ToggleTip>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { ToggleTip } from \"@/components/ui/toggle-tip\"",
+        "import { LuInfo } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ToggleTip } from \"@/components/ui/toggle-tip\"",
+      "npmDependencies": [
+        "react-icons"
+      ],
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "toggle-tip-info-tip",
+      "content": "export const ToggleTipInfoTip = () => {\n  return (\n    <HStack justify=\"center\">\n      <Text textStyle=\"lg\">\n        File size: <FormatByte value={1450.45} />\n      </Text>\n      <InfoTip content=\"The file size for content.tsx is 1.45kb\" />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, HStack, Text } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "toggle-with-indicator",
+      "content": "export const ToggleWithIndicator = () => {\n  return (\n    <Toggle.Root asChild>\n      <Button variant={{ base: \"outline\", _pressed: \"solid\" }}>\n        <Toggle.Indicator fallback={<LuVolume2 />}>\n          <LuVolumeX />\n        </Toggle.Indicator>\n        <Toggle.Indicator fallback=\"Mute\">Unmute</Toggle.Indicator>\n      </Button>\n    </Toggle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Toggle } from \"@chakra-ui/react\"",
+        "import { LuVolume2, LuVolumeX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Toggle } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "toggle-with-pressed-icon",
+      "content": "export const ToggleWithPressedIcon = () => {\n  return (\n    <Toggle.Root asChild defaultPressed>\n      <Button\n        variant={{ base: \"outline\", _pressed: \"solid\" }}\n        colorPalette={{ base: \"gray\", _pressed: \"red\" }}\n      >\n        <Toggle.Indicator>\n          <LuX />\n        </Toggle.Indicator>\n        Declined\n      </Button>\n    </Toggle.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Toggle } from \"@chakra-ui/react\"",
+        "import { LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Toggle } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

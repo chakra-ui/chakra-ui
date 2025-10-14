@@ -20,9 +20,21 @@ import * as React from "react"
 import { LuEye, LuEyeOff } from "react-icons/lu"
 
 export interface PasswordVisibilityProps {
+  /**
+   * The default visibility state of the password input.
+   */
   defaultVisible?: boolean
+  /**
+   * The controlled visibility state of the password input.
+   */
   visible?: boolean
+  /**
+   * Callback invoked when the visibility state changes.
+   */
   onVisibleChange?: (visible: boolean) => void
+  /**
+   * Custom icons for the visibility toggle button.
+   */
   visibilityIcon?: { on: React.ReactNode; off: React.ReactNode }
 }
 
@@ -113,7 +125,7 @@ export const PasswordStrengthMeter = React.forwardRef<
 
   return (
     <Stack align="flex-end" gap="1" ref={ref} {...rest}>
-      <HStack width="full" ref={ref} {...rest}>
+      <HStack width="full" {...rest}>
         {Array.from({ length: max }).map((_, index) => (
           <Box
             key={index}

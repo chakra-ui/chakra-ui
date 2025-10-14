@@ -1,0 +1,69 @@
+{
+  "name": "empty-state",
+  "file": "compositions/ui/empty-state",
+  "snippet": "import { EmptyState as ChakraEmptyState, VStack } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface EmptyStateProps extends ChakraEmptyState.RootProps {\n  title: string\n  description?: string\n  icon?: React.ReactNode\n}\n\nexport const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(\n  function EmptyState(props, ref) {\n    const { title, description, icon, children, ...rest } = props\n    return (\n      <ChakraEmptyState.Root ref={ref} {...rest}>\n        <ChakraEmptyState.Content>\n          {icon && (\n            <ChakraEmptyState.Indicator>{icon}</ChakraEmptyState.Indicator>\n          )}\n          {description ? (\n            <VStack textAlign=\"center\">\n              <ChakraEmptyState.Title>{title}</ChakraEmptyState.Title>\n              <ChakraEmptyState.Description>\n                {description}\n              </ChakraEmptyState.Description>\n            </VStack>\n          ) : (\n            <ChakraEmptyState.Title>{title}</ChakraEmptyState.Title>\n          )}\n          {children}\n        </ChakraEmptyState.Content>\n      </ChakraEmptyState.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "empty-state-basic",
+      "content": "export const EmptyStateBasic = () => {\n  return (\n    <EmptyState.Root>\n      <EmptyState.Content>\n        <EmptyState.Indicator>\n          <LuShoppingCart />\n        </EmptyState.Indicator>\n        <VStack textAlign=\"center\">\n          <EmptyState.Title>Your cart is empty</EmptyState.Title>\n          <EmptyState.Description>\n            Explore our products and add items to your cart\n          </EmptyState.Description>\n        </VStack>\n      </EmptyState.Content>\n    </EmptyState.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { EmptyState, VStack } from \"@chakra-ui/react\"",
+        "import { LuShoppingCart } from \"react-icons/lu\""
+      ],
+      "importPath": "import { EmptyState } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "empty-state-closed-component",
+      "content": "export interface EmptyStateProps extends ChakraEmptyState.RootProps {\n  title: string\n  description?: string\n  icon?: React.ReactNode\n}\n\nexport const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(\n  function EmptyState(props, ref) {\n    const { title, description, icon, children, ...rest } = props\n    return (\n      <ChakraEmptyState.Root ref={ref} {...rest}>\n        <ChakraEmptyState.Content>\n          {icon && (\n            <ChakraEmptyState.Indicator>{icon}</ChakraEmptyState.Indicator>\n          )}\n          {description ? (\n            <VStack textAlign=\"center\">\n              <ChakraEmptyState.Title>{title}</ChakraEmptyState.Title>\n              <ChakraEmptyState.Description>\n                {description}\n              </ChakraEmptyState.Description>\n            </VStack>\n          ) : (\n            <ChakraEmptyState.Title>{title}</ChakraEmptyState.Title>\n          )}\n          {children}\n        </ChakraEmptyState.Content>\n      </ChakraEmptyState.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { EmptyState as ChakraEmptyState, VStack } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { EmptyState } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "empty-state-sizes",
+      "content": "export const EmptyStateSizes = () => {\n  return (\n    <Stack>\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <EmptyState.Root size={size} key={size}>\n            <EmptyState.Content>\n              <EmptyState.Indicator>\n                <LuShoppingCart />\n              </EmptyState.Indicator>\n              <VStack textAlign=\"center\">\n                <EmptyState.Title>Your cart is empty</EmptyState.Title>\n                <EmptyState.Description>\n                  Explore our products and add items to your cart\n                </EmptyState.Description>\n              </VStack>\n            </EmptyState.Content>\n          </EmptyState.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { EmptyState, For, Stack, VStack } from \"@chakra-ui/react\"",
+        "import { LuShoppingCart } from \"react-icons/lu\""
+      ],
+      "importPath": "import { EmptyState } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "empty-state-with-action",
+      "content": "export const EmptyStateWithAction = () => {\n  return (\n    <EmptyState.Root>\n      <EmptyState.Content>\n        <EmptyState.Indicator>\n          <HiColorSwatch />\n        </EmptyState.Indicator>\n        <VStack textAlign=\"center\">\n          <EmptyState.Title>Start adding tokens</EmptyState.Title>\n          <EmptyState.Description>\n            Add a new design token to get started\n          </EmptyState.Description>\n        </VStack>\n        <ButtonGroup>\n          <Button>Create token</Button>\n          <Button variant=\"outline\">Import</Button>\n        </ButtonGroup>\n      </EmptyState.Content>\n    </EmptyState.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ButtonGroup, EmptyState, VStack } from \"@chakra-ui/react\"",
+        "import { HiColorSwatch } from \"react-icons/hi\""
+      ],
+      "importPath": "import { EmptyState } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "empty-state-with-list",
+      "content": "export const EmptyStateWithList = () => {\n  return (\n    <EmptyState.Root>\n      <EmptyState.Content>\n        <EmptyState.Indicator>\n          <HiColorSwatch />\n        </EmptyState.Indicator>\n        <VStack textAlign=\"center\">\n          <EmptyState.Title>No results found</EmptyState.Title>\n          <EmptyState.Description>\n            Try adjusting your search\n          </EmptyState.Description>\n        </VStack>\n        <List.Root variant=\"marker\">\n          <List.Item>Try removing filters</List.Item>\n          <List.Item>Try different keywords</List.Item>\n        </List.Root>\n      </EmptyState.Content>\n    </EmptyState.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { EmptyState, List, VStack } from \"@chakra-ui/react\"",
+        "import { HiColorSwatch } from \"react-icons/hi\""
+      ],
+      "importPath": "import { EmptyState } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

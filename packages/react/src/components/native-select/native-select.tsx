@@ -76,7 +76,8 @@ export const NativeSelectPropsProvider =
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface NativeSelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted> {
+  extends Omit<HTMLChakraProps<"select">, Omitted>,
+    UnstyledProp {
   placeholder?: string | undefined
 }
 
@@ -86,7 +87,7 @@ export const NativeSelectField = forwardRef<
   HTMLSelectElement,
   NativeSelectFieldProps
 >(function NativeSelectField(props, ref) {
-  const { children, placeholder, ...restProps } = props
+  const { children, placeholder, unstyled, ...restProps } = props
 
   const { disabled, invalid } = useNativeSelectBaseProps()
   const styles = useNativeSelectStyles()
@@ -99,7 +100,7 @@ export const NativeSelectField = forwardRef<
       {...(restProps as any)}
       ref={ref}
       className={cx(classNames.field, props.className)}
-      css={[styles.field, props.css]}
+      css={[!unstyled ? styles.field : undefined, props.css]}
     >
       {placeholder && <option value="">{placeholder}</option>}
       {children}
@@ -109,19 +110,22 @@ export const NativeSelectField = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface NativeSelectIndicatorProps extends HTMLChakraProps<"div"> {}
+export interface NativeSelectIndicatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
+  const { unstyled, ...restProps } = props
   const styles = useNativeSelectStyles()
   const { disabled, invalid } = useNativeSelectBaseProps()
   const classNames = useClassNames()
   return (
     <chakra.div
-      {...props}
+      {...restProps}
       data-disabled={dataAttr(disabled)}
       data-invalid={dataAttr(invalid)}
       className={cx(classNames.indicator, props.className)}
-      css={[styles.indicator, props.css]}
+      css={[!unstyled ? styles.indicator : undefined, props.css]}
     >
       {props.children ?? <ChevronDownIcon />}
     </chakra.div>

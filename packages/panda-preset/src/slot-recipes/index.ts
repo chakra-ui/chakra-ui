@@ -44,6 +44,7 @@ import { tagSlotRecipe } from "./tag"
 import { timelineSlotRecipe } from "./timeline"
 import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
+import { treeViewSlotRecipe } from "./tree-view"
 
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
@@ -56,8 +57,6 @@ export const slotRecipes = {
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
   collapsible: collapsibleSlotRecipe,
-  colorPicker: colorPickerSlotRecipe,
-  combobox: comboboxSlotRecipe,
   dataList: dataListSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
@@ -75,21 +74,24 @@ export const slotRecipes = {
   popover: popoverSlotRecipe,
   progress: progressSlotRecipe,
   progressCircle: progressCircleSlotRecipe,
-  qrCode: qrCodeSlotRecipe,
   radioCard: radioCardSlotRecipe,
   radioGroup: radioGroupSlotRecipe,
   ratingGroup: ratingGroupSlotRecipe,
   segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
+  combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
   stat: statSlotRecipe,
-  status: statusSlotRecipe,
   steps: stepsSlotRecipe,
   switch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
   tag: tagSlotRecipe,
-  timeline: timelineSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
+  status: statusSlotRecipe,
+  timeline: timelineSlotRecipe,
+  colorPicker: colorPickerSlotRecipe,
+  qrCode: qrCodeSlotRecipe,
+  treeView: treeViewSlotRecipe,
 }

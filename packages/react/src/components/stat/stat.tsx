@@ -41,13 +41,15 @@ export const StatPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
+export interface StatLabelProps extends HTMLChakraProps<"dt">, UnstyledProp {}
 
 export const StatLabel = withContext<HTMLElement, StatLabelProps>("dt", "label")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatValueTextProps extends HTMLChakraProps<"dd"> {}
+export interface StatValueTextProps
+  extends HTMLChakraProps<"dd">,
+    UnstyledProp {}
 
 export const StatValueText = withContext<HTMLElement, StatValueTextProps>(
   "dd",
@@ -56,7 +58,9 @@ export const StatValueText = withContext<HTMLElement, StatValueTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatHelpTextProps extends HTMLChakraProps<"span"> {}
+export interface StatHelpTextProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
   "span",
@@ -65,7 +69,9 @@ export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatValueUnitProps extends HTMLChakraProps<"span"> {}
+export interface StatValueUnitProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
   "span",
@@ -74,7 +80,9 @@ export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatUpIndicatorProps extends HTMLChakraProps<"span"> {}
+export interface StatUpIndicatorProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
   "span",
@@ -89,7 +97,9 @@ export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StatDownIndicatorProps extends HTMLChakraProps<"span"> {}
+export interface StatDownIndicatorProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
 
 export const StatDownIndicator = withContext<
   HTMLElement,

@@ -12,9 +12,9 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { Span } from "../box"
 import { For } from "../for"
 import { CloseIcon, FileIcon } from "../icons"
+import { Span } from "../span"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,7 +67,8 @@ export const FileUploadPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadClearTriggerProps
-  extends HTMLChakraProps<"button"> {}
+  extends HTMLChakraProps<"button">,
+    UnstyledProp {}
 
 export const FileUploadClearTrigger = withContext<
   HTMLButtonElement,
@@ -77,7 +78,8 @@ export const FileUploadClearTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadDropzoneProps
-  extends HTMLChakraProps<"li", ArkFileUpload.DropzoneBaseProps> {}
+  extends HTMLChakraProps<"li", ArkFileUpload.DropzoneBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadDropzone = withContext<
   HTMLDivElement,
@@ -87,7 +89,8 @@ export const FileUploadDropzone = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadDropzoneContentProps
-  extends HTMLChakraProps<"div"> {}
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const FileUploadDropzoneContent = withContext<
   HTMLDivElement,
@@ -97,7 +100,8 @@ export const FileUploadDropzoneContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemProps
-  extends HTMLChakraProps<"li", ArkFileUpload.ItemBaseProps> {}
+  extends HTMLChakraProps<"li", ArkFileUpload.ItemBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItem = withContext<HTMLLIElement, FileUploadItemProps>(
   ArkFileUpload.Item,
@@ -107,7 +111,9 @@ export const FileUploadItem = withContext<HTMLLIElement, FileUploadItemProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface FileUploadItemContentProps extends HTMLChakraProps<"div"> {}
+export interface FileUploadItemContentProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export const FileUploadItemContent = withContext<
   HTMLDivElement,
@@ -117,7 +123,8 @@ export const FileUploadItemContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemDeleteTriggerProps
-  extends HTMLChakraProps<"button", ArkFileUpload.ItemDeleteTriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkFileUpload.ItemDeleteTriggerBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemDeleteTrigger = withContext<
   HTMLButtonElement,
@@ -132,7 +139,8 @@ export const FileUploadItemDeleteTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemGroupProps
-  extends HTMLChakraProps<"ul", ArkFileUpload.ItemGroupBaseProps> {}
+  extends HTMLChakraProps<"ul", ArkFileUpload.ItemGroupBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemGroup = withContext<
   HTMLUListElement,
@@ -142,7 +150,8 @@ export const FileUploadItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemNameProps
-  extends HTMLChakraProps<"span", ArkFileUpload.ItemNameBaseProps> {}
+  extends HTMLChakraProps<"span", ArkFileUpload.ItemNameBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemName = withContext<
   HTMLSpanElement,
@@ -152,7 +161,8 @@ export const FileUploadItemName = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemPreviewProps
-  extends HTMLChakraProps<"div", ArkFileUpload.ItemPreviewBaseProps> {}
+  extends HTMLChakraProps<"div", ArkFileUpload.ItemPreviewBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemPreview = withContext<
   HTMLDivElement,
@@ -167,7 +177,8 @@ export const FileUploadItemPreview = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemPreviewImageProps
-  extends HTMLChakraProps<"img", ArkFileUpload.ItemPreviewImageBaseProps> {}
+  extends HTMLChakraProps<"img", ArkFileUpload.ItemPreviewImageBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemPreviewImage = withContext<
   HTMLImageElement,
@@ -177,7 +188,8 @@ export const FileUploadItemPreviewImage = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemSizeTextProps
-  extends HTMLChakraProps<"span", ArkFileUpload.ItemSizeTextBaseProps> {}
+  extends HTMLChakraProps<"span", ArkFileUpload.ItemSizeTextBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadItemSizeText = withContext<
   HTMLSpanElement,
@@ -187,7 +199,8 @@ export const FileUploadItemSizeText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadLabelProps
-  extends HTMLChakraProps<"label", ArkFileUpload.LabelBaseProps> {}
+  extends HTMLChakraProps<"label", ArkFileUpload.LabelBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadLabel = withContext<
   HTMLLabelElement,
@@ -197,7 +210,8 @@ export const FileUploadLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadTriggerProps
-  extends HTMLChakraProps<"button", ArkFileUpload.TriggerBaseProps> {}
+  extends HTMLChakraProps<"button", ArkFileUpload.TriggerBaseProps>,
+    UnstyledProp {}
 
 export const FileUploadTrigger = withContext<
   HTMLButtonElement,
@@ -290,6 +304,8 @@ export const FileUploadFileText = forwardRef<
     <Span
       ref={ref}
       data-placeholder={fileText === fallback ? "" : undefined}
+      data-scope="file-upload"
+      data-part="file-text"
       {...rest}
       css={[styles.fileText, props.css]}
     >

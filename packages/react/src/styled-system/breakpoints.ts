@@ -1,3 +1,4 @@
+import { uniq } from "../utils"
 import type { BreakpointEntry, SystemContext } from "./types"
 import { toPx, toRem } from "./unit-conversion"
 
@@ -62,7 +63,7 @@ export function createBreakpoints(
   }
 
   function keys() {
-    return ["base", ...Object.keys(values)]
+    return uniq(["base", ...Object.keys(values)])
   }
 
   function up(name: string) {

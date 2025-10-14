@@ -141,7 +141,7 @@ export interface Conditions {
   _open: string
   /** `&:is([closed], [data-closed], [data-state=closed])` */
   _closed: string
-  /** `&is(:fullscreen, [data-fullscreen])` */
+  /** `&:is(:fullscreen, [data-fullscreen])` */
   _fullscreen: string
   /** `&:is([data-loading], [aria-busy=true])` */
   _loading: string

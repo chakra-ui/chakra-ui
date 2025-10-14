@@ -26,7 +26,7 @@ export const CheckboxWithForm = () => {
           <Checkbox.Label>Remember me</Checkbox.Label>
         </Checkbox.Root>
 
-        <Button variant="solid" mt="3">
+        <Button type="submit" variant="solid" mt="3">
           Submit
         </Button>
       </Stack>

@@ -1,0 +1,142 @@
+{
+  "name": "icon",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "icon-basic",
+      "content": "export const IconBasic = () => (\n  <Icon size=\"lg\" color=\"pink.700\">\n    <HiHeart />\n  </Icon>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Icon } from \"@chakra-ui/react\"",
+        "import { HiHeart } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-button-basic",
+      "content": "export const IconButtonBasic = () => {\n  return (\n    <IconButton aria-label=\"Search database\">\n      <LuSearch />\n    </IconButton>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { IconButton } from \"@chakra-ui/react\"",
+        "import { LuSearch } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-button-rounded",
+      "content": "export const IconButtonRounded = () => {\n  return (\n    <IconButton aria-label=\"Call support\" rounded=\"full\">\n      <LuVoicemail />\n    </IconButton>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { IconButton } from \"@chakra-ui/react\"",
+        "import { LuVoicemail } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-button-with-colors",
+      "content": "export const IconButtonWithColors = () => {\n  return (\n    <HStack wrap=\"wrap\">\n      <For each={colorPalettes}>\n        {(c) => (\n          <IconButton aria-label=\"Search database\" key={c} colorPalette={c}>\n            <LuSearch />\n          </IconButton>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\"",
+        "import { LuSearch } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-button-with-sizes",
+      "content": "export const IconButtonWithSizes = () => {\n  return (\n    <HStack wrap=\"wrap\" gap=\"8\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <VStack key={size}>\n            <IconButton\n              aria-label=\"Search database\"\n              variant=\"outline\"\n              size={size}\n            >\n              <LuPhone />\n            </IconButton>\n            <Text textStyle=\"sm\">{size}</Text>\n          </VStack>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, IconButton, Text, VStack } from \"@chakra-ui/react\"",
+        "import { LuPhone } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-button-with-variants",
+      "content": "export const IconButtonWithVariants = () => {\n  return (\n    <HStack wrap=\"wrap\" gap=\"8\">\n      <For each={[\"solid\", \"subtle\", \"surface\", \"outline\", \"ghost\"]}>\n        {(variant) => (\n          <VStack key={variant}>\n            <IconButton\n              aria-label=\"Call support\"\n              key={variant}\n              variant={variant}\n            >\n              <LuVoicemail />\n            </IconButton>\n            <Text textStyle=\"sm\">{variant}</Text>\n          </VStack>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, IconButton, Text, VStack } from \"@chakra-ui/react\"",
+        "import { LuVoicemail } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-with-as-prop",
+      "content": "export const IconWithAsProp = () => (\n  <Icon as={HiHeart} size=\"lg\" color=\"pink.700\" />\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Icon } from \"@chakra-ui/react\"",
+        "import { HiHeart } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-with-create-icon",
+      "content": "\"use client\"\nconst HeartIcon = createIcon({\n  displayName: \"HeartIcon\",\n  path: (\n    <>\n      <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" />\n      <path\n        fill=\"currentColor\"\n        d=\"M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572\"\n      />\n    </>\n  ),\n})\n\nexport const IconWithCreateIcon = () => {\n  return <HeartIcon size=\"lg\" color=\"blue.400\" />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { createIcon } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "icon-with-custom-svg",
+      "content": "export const IconWithCustomSvg = () => {\n  return (\n    <Icon size=\"lg\" color=\"red.500\">\n      <svg viewBox=\"0 0 32 32\">\n        <g fill=\"currentColor\">\n          <path d=\"M16,11.5a3,3,0,1,0-3-3A3,3,0,0,0,16,11.5Z\" />\n          <path d=\"M16.868.044A8.579,8.579,0,0,0,16,0a15.99,15.99,0,0,0-.868,31.956A8.579,8.579,0,0,0,16,32,15.99,15.99,0,0,0,16.868.044ZM16,26.5a3,3,0,1,1,3-3A3,3,0,0,1,16,26.5ZM16,15A8.483,8.483,0,0,0,8.788,27.977,13.986,13.986,0,0,1,16,2a6.5,6.5,0,0,1,0,13Z\" />\n        </g>\n      </svg>\n    </Icon>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Icon } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "icon-with-react-icon",
+      "content": "export const IconWithReactIcon = () => (\n  <Icon size=\"lg\" color=\"tomato\">\n    <Md3dRotation />\n  </Icon>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Icon } from \"@chakra-ui/react\"",
+        "import { Md3dRotation } from \"react-icons/md\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "icon-with-sizes",
+      "content": "export const IconWithSizes = () => {\n  return (\n    <HStack gap=\"8\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <VStack key={size}>\n            <Icon size={size} color=\"fg.muted\">\n              <LuPackage />\n            </Icon>\n            <Text textStyle=\"sm\">{size}</Text>\n          </VStack>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Icon, Text, VStack } from \"@chakra-ui/react\"",
+        "import { LuPackage } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Icon } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

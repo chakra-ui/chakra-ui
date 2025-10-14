@@ -1,0 +1,139 @@
+{
+  "name": "pagination",
+  "file": "compositions/ui/pagination",
+  "snippet": "\"use client\"\n\nimport type { ButtonProps, TextProps } from \"@chakra-ui/react\"\nimport {\n  Button,\n  Pagination as ChakraPagination,\n  IconButton,\n  Text,\n  createContext,\n  usePaginationContext,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport {\n  HiChevronLeft,\n  HiChevronRight,\n  HiMiniEllipsisHorizontal,\n} from \"react-icons/hi2\"\nimport { LinkButton } from \"./link-button\"\n\ninterface ButtonVariantMap {\n  current: ButtonProps[\"variant\"]\n  default: ButtonProps[\"variant\"]\n  ellipsis: ButtonProps[\"variant\"]\n}\n\ntype PaginationVariant = \"outline\" | \"solid\" | \"subtle\"\n\ninterface ButtonVariantContext {\n  size: ButtonProps[\"size\"]\n  variantMap: ButtonVariantMap\n  getHref?: (page: number) => string\n}\n\nconst [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({\n  name: \"RootPropsProvider\",\n})\n\nexport interface PaginationRootProps\n  extends Omit<ChakraPagination.RootProps, \"type\"> {\n  size?: ButtonProps[\"size\"]\n  variant?: PaginationVariant\n  getHref?: (page: number) => string\n}\n\nconst variantMap: Record<PaginationVariant, ButtonVariantMap> = {\n  outline: { default: \"ghost\", ellipsis: \"plain\", current: \"outline\" },\n  solid: { default: \"outline\", ellipsis: \"outline\", current: \"solid\" },\n  subtle: { default: \"ghost\", ellipsis: \"plain\", current: \"subtle\" },\n}\n\nexport const PaginationRoot = React.forwardRef<\n  HTMLDivElement,\n  PaginationRootProps\n>(function PaginationRoot(props, ref) {\n  const { size = \"sm\", variant = \"outline\", getHref, ...rest } = props\n  return (\n    <RootPropsProvider\n      value={{ size, variantMap: variantMap[variant], getHref }}\n    >\n      <ChakraPagination.Root\n        ref={ref}\n        type={getHref ? \"link\" : \"button\"}\n        {...rest}\n      />\n    </RootPropsProvider>\n  )\n})\n\nexport const PaginationEllipsis = React.forwardRef<\n  HTMLDivElement,\n  ChakraPagination.EllipsisProps\n>(function PaginationEllipsis(props, ref) {\n  const { size, variantMap } = useRootProps()\n  return (\n    <ChakraPagination.Ellipsis ref={ref} {...props} asChild>\n      <Button as=\"span\" variant={variantMap.ellipsis} size={size}>\n        <HiMiniEllipsisHorizontal />\n      </Button>\n    </ChakraPagination.Ellipsis>\n  )\n})\n\nexport const PaginationItem = React.forwardRef<\n  HTMLButtonElement,\n  ChakraPagination.ItemProps\n>(function PaginationItem(props, ref) {\n  const { page } = usePaginationContext()\n  const { size, variantMap, getHref } = useRootProps()\n\n  const current = page === props.value\n  const variant = current ? variantMap.current : variantMap.default\n\n  if (getHref) {\n    return (\n      <LinkButton href={getHref(props.value)} variant={variant} size={size}>\n        {props.value}\n      </LinkButton>\n    )\n  }\n\n  return (\n    <ChakraPagination.Item ref={ref} {...props} asChild>\n      <Button variant={variant} size={size}>\n        {props.value}\n      </Button>\n    </ChakraPagination.Item>\n  )\n})\n\nexport const PaginationPrevTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraPagination.PrevTriggerProps\n>(function PaginationPrevTrigger(props, ref) {\n  const { size, variantMap, getHref } = useRootProps()\n  const { previousPage } = usePaginationContext()\n\n  if (getHref) {\n    return (\n      <LinkButton\n        href={previousPage != null ? getHref(previousPage) : undefined}\n        variant={variantMap.default}\n        size={size}\n      >\n        <HiChevronLeft />\n      </LinkButton>\n    )\n  }\n\n  return (\n    <ChakraPagination.PrevTrigger ref={ref} asChild {...props}>\n      <IconButton variant={variantMap.default} size={size}>\n        <HiChevronLeft />\n      </IconButton>\n    </ChakraPagination.PrevTrigger>\n  )\n})\n\nexport const PaginationNextTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraPagination.NextTriggerProps\n>(function PaginationNextTrigger(props, ref) {\n  const { size, variantMap, getHref } = useRootProps()\n  const { nextPage } = usePaginationContext()\n\n  if (getHref) {\n    return (\n      <LinkButton\n        href={nextPage != null ? getHref(nextPage) : undefined}\n        variant={variantMap.default}\n        size={size}\n      >\n        <HiChevronRight />\n      </LinkButton>\n    )\n  }\n\n  return (\n    <ChakraPagination.NextTrigger ref={ref} asChild {...props}>\n      <IconButton variant={variantMap.default} size={size}>\n        <HiChevronRight />\n      </IconButton>\n    </ChakraPagination.NextTrigger>\n  )\n})\n\nexport const PaginationItems = (props: React.HTMLAttributes<HTMLElement>) => {\n  return (\n    <ChakraPagination.Context>\n      {({ pages }) =>\n        pages.map((page, index) => {\n          return page.type === \"ellipsis\" ? (\n            <PaginationEllipsis key={index} index={index} {...props} />\n          ) : (\n            <PaginationItem\n              key={index}\n              type=\"page\"\n              value={page.value}\n              {...props}\n            />\n          )\n        })\n      }\n    </ChakraPagination.Context>\n  )\n}\n\ninterface PageTextProps extends TextProps {\n  format?: \"short\" | \"compact\" | \"long\"\n}\n\nexport const PaginationPageText = React.forwardRef<\n  HTMLParagraphElement,\n  PageTextProps\n>(function PaginationPageText(props, ref) {\n  const { format = \"compact\", ...rest } = props\n  const { page, totalPages, pageRange, count } = usePaginationContext()\n  const content = React.useMemo(() => {\n    if (format === \"short\") return `${page} / ${totalPages}`\n    if (format === \"compact\") return `${page} of ${totalPages}`\n    return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`\n  }, [format, page, totalPages, pageRange, count])\n\n  return (\n    <Text fontWeight=\"medium\" ref={ref} {...rest}>\n      {content}\n    </Text>\n  )\n})\n",
+  "examples": [
+    {
+      "name": "pagination-as-link",
+      "content": "\"use client\"\nconst PaginationLink = (\n  props: IconButtonProps & { page?: \"prev\" | \"next\" | number },\n) => {\n  const { page, ...rest } = props\n  const pagination = usePaginationContext()\n  const pageValue = () => {\n    if (page === \"prev\") return pagination.previousPage\n    if (page === \"next\") return pagination.nextPage\n    return page\n  }\n  return (\n    <IconButton asChild {...rest}>\n      <a href={`?page=${pageValue()}`}>{props.children}</a>\n    </IconButton>\n  )\n}\n\nexport const PaginationAsLink = () => {\n  return (\n    <Pagination.Root count={20} pageSize={2} defaultPage={1}>\n      <ButtonGroup variant=\"ghost\" size=\"sm\">\n        <PaginationLink page=\"prev\">\n          <HiChevronLeft />\n        </PaginationLink>\n\n        <Pagination.Items\n          render={(page) => (\n            <PaginationLink\n              page={page.value}\n              variant={{ base: \"ghost\", _selected: \"outline\" }}\n            >\n              {page.value}\n            </PaginationLink>\n          )}\n        />\n\n        <PaginationLink page=\"next\">\n          <HiChevronRight />\n        </PaginationLink>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ButtonGroup,\n  IconButton,\n  type IconButtonProps,\n  Pagination,\n  usePaginationContext,\n} from \"@chakra-ui/react\"",
+        "import { HiChevronLeft, HiChevronRight } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-attached",
+      "content": "\"use client\"\nexport const PaginationAttached = () => {\n  return (\n    <Pagination.Root count={20} pageSize={2} defaultPage={1}>\n      <ButtonGroup attached variant=\"outline\" size=\"sm\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <HiChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n\n        <Pagination.Items\n          render={(page) => (\n            <IconButton\n              variant={{ base: \"outline\", _selected: \"solid\" }}\n              zIndex={{ _selected: \"1\" }}\n            >\n              {page.value}\n            </IconButton>\n          )}\n        />\n\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <HiChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { HiChevronLeft, HiChevronRight } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-basic",
+      "content": "\"use client\"\nexport const PaginationBasic = () => {\n  return (\n    <Pagination.Root count={20} pageSize={2} defaultPage={1}>\n      <ButtonGroup variant=\"ghost\" size=\"sm\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <LuChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n\n        <Pagination.Items\n          render={(page) => (\n            <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n              {page.value}\n            </IconButton>\n          )}\n        />\n\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <LuChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-compact",
+      "content": "export const PaginationCompact = () => {\n  return (\n    <Pagination.Root count={20} pageSize={2} defaultPage={1}>\n      <ButtonGroup gap=\"4\" size=\"sm\" variant=\"ghost\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <HiChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n        <Pagination.PageText />\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <HiChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { HiChevronLeft, HiChevronRight } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-controlled",
+      "content": "\"use client\"\nexport const PaginationControlled = () => {\n  const [page, setPage] = useState(1)\n\n  return (\n    <Pagination.Root\n      count={20}\n      pageSize={2}\n      page={page}\n      onPageChange={(e) => setPage(e.page)}\n    >\n      <ButtonGroup variant=\"ghost\" size=\"sm\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <HiChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n\n        <Pagination.Items\n          render={(page) => (\n            <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n              {page.value}\n            </IconButton>\n          )}\n        />\n\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <HiChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { HiChevronLeft, HiChevronRight } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-with-content",
+      "content": "\"use client\"\nconst pageSize = 5\nconst count = 50\nconst items = new Array(count)\n  .fill(0)\n  .map((_, index) => `Lorem ipsum dolor sit amet ${index + 1}`)\n\nexport const PaginationWithContent = () => {\n  const [page, setPage] = useState(1)\n\n  const startRange = (page - 1) * pageSize\n  const endRange = startRange + pageSize\n\n  const visibleItems = items.slice(startRange, endRange)\n\n  return (\n    <Stack gap=\"4\">\n      <Stack>\n        {visibleItems.map((item) => (\n          <Text key={item}>{item}</Text>\n        ))}\n      </Stack>\n      <Pagination.Root\n        count={count}\n        pageSize={pageSize}\n        page={page}\n        onPageChange={(e) => setPage(e.page)}\n      >\n        <ButtonGroup variant=\"ghost\" size=\"sm\">\n          <Pagination.PrevTrigger asChild>\n            <IconButton>\n              <HiChevronLeft />\n            </IconButton>\n          </Pagination.PrevTrigger>\n\n          <Pagination.Items\n            render={(page) => (\n              <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n                {page.value}\n              </IconButton>\n            )}\n          />\n\n          <Pagination.NextTrigger asChild>\n            <IconButton>\n              <HiChevronRight />\n            </IconButton>\n          </Pagination.NextTrigger>\n        </ButtonGroup>\n      </Pagination.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ButtonGroup,\n  IconButton,\n  Pagination,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { HiChevronLeft, HiChevronRight } from \"react-icons/hi\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-with-count-text",
+      "content": "export const PaginationWithCountText = () => {\n  return (\n    <Pagination.Root count={50} pageSize={5} defaultPage={1} maxW=\"240px\">\n      <ButtonGroup variant=\"ghost\" size=\"sm\" w=\"full\">\n        <Pagination.PageText format=\"long\" flex=\"1\" />\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <LuChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <LuChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-with-sibling-count",
+      "content": "\"use client\"\nexport const PaginationWithSiblingCount = () => {\n  return (\n    <Pagination.Root\n      count={200}\n      pageSize={10}\n      defaultPage={10}\n      siblingCount={2}\n    >\n      <ButtonGroup variant=\"ghost\" size=\"sm\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <LuChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n\n        <Pagination.Items\n          render={(page) => (\n            <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n              {page.value}\n            </IconButton>\n          )}\n        />\n\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <LuChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-with-sizes",
+      "content": "\"use client\"\nexport const PaginationWithSizes = () => {\n  return (\n    <Stack gap=\"8\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Pagination.Root count={20} pageSize={2} defaultPage={1} key={size}>\n            <ButtonGroup variant=\"ghost\" size={size}>\n              <Pagination.PrevTrigger asChild>\n                <IconButton>\n                  <LuChevronLeft />\n                </IconButton>\n              </Pagination.PrevTrigger>\n\n              <Pagination.Items\n                render={(page) => (\n                  <IconButton variant={{ base: \"ghost\", _selected: \"outline\" }}>\n                    {page.value}\n                  </IconButton>\n                )}\n              />\n\n              <Pagination.NextTrigger asChild>\n                <IconButton>\n                  <LuChevronRight />\n                </IconButton>\n              </Pagination.NextTrigger>\n            </ButtonGroup>\n          </Pagination.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ButtonGroup,\n  For,\n  IconButton,\n  Pagination,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "pagination-with-variants",
+      "content": "\"use client\"\nexport const PaginationWithVariants = () => {\n  return (\n    <Pagination.Root count={20} pageSize={2} defaultPage={1}>\n      <ButtonGroup variant=\"outline\" size=\"sm\">\n        <Pagination.PrevTrigger asChild>\n          <IconButton>\n            <LuChevronLeft />\n          </IconButton>\n        </Pagination.PrevTrigger>\n\n        <Pagination.Items\n          render={(page) => (\n            <IconButton variant={{ base: \"outline\", _selected: \"solid\" }}>\n              {page.value}\n            </IconButton>\n          )}\n        />\n\n        <Pagination.NextTrigger asChild>\n          <IconButton>\n            <LuChevronRight />\n          </IconButton>\n        </Pagination.NextTrigger>\n      </ButtonGroup>\n    </Pagination.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ButtonGroup, IconButton, Pagination } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Pagination } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

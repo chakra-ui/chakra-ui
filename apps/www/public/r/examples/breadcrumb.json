@@ -1,0 +1,92 @@
+{
+  "name": "breadcrumb",
+  "file": "compositions/ui/breadcrumb",
+  "snippet": "import { Breadcrumb, type SystemStyleObject } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface BreadcrumbRootProps extends Breadcrumb.RootProps {\n  separator?: React.ReactNode\n  separatorGap?: SystemStyleObject[\"gap\"]\n}\n\nexport const BreadcrumbRoot = React.forwardRef<\n  HTMLDivElement,\n  BreadcrumbRootProps\n>(function BreadcrumbRoot(props, ref) {\n  const { separator, separatorGap, children, ...rest } = props\n\n  const validChildren = React.Children.toArray(children).filter(\n    React.isValidElement,\n  )\n\n  return (\n    <Breadcrumb.Root ref={ref} {...rest}>\n      <Breadcrumb.List gap={separatorGap}>\n        {validChildren.map((child, index) => {\n          const last = index === validChildren.length - 1\n          return (\n            <React.Fragment key={index}>\n              <Breadcrumb.Item>{child}</Breadcrumb.Item>\n              {!last && (\n                <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>\n              )}\n            </React.Fragment>\n          )\n        })}\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n})\n\nexport const BreadcrumbLink = Breadcrumb.Link\nexport const BreadcrumbCurrentLink = Breadcrumb.CurrentLink\nexport const BreadcrumbEllipsis = Breadcrumb.Ellipsis\n",
+  "examples": [
+    {
+      "name": "breadcrumb-basic",
+      "content": "export const BreadcrumbBasic = () => {\n  return (\n    <Breadcrumb.Root>\n      <Breadcrumb.List>\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Components</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n        </Breadcrumb.Item>\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "breadcrumb-closed-component",
+      "content": "export interface BreadcrumbProps extends ChakraBreadcrumb.RootProps {\n  separator?: React.ReactNode\n  separatorGap?: SystemStyleObject[\"gap\"]\n  items: Array<{ title: React.ReactNode; url?: string }>\n}\n\nexport const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(\n  function BreadcrumbRoot(props, ref) {\n    const { separator, separatorGap, items, ...rest } = props\n\n    return (\n      <ChakraBreadcrumb.Root ref={ref} {...rest}>\n        <ChakraBreadcrumb.List gap={separatorGap}>\n          {items.map((item, index) => {\n            const last = index === items.length - 1\n            return (\n              <React.Fragment key={index}>\n                <ChakraBreadcrumb.Item>\n                  <ChakraBreadcrumb.Link href={item.url}>\n                    {item.title}\n                  </ChakraBreadcrumb.Link>\n                </ChakraBreadcrumb.Item>\n                <Show\n                  when={last}\n                  fallback={\n                    <ChakraBreadcrumb.Separator>\n                      {separator}\n                    </ChakraBreadcrumb.Separator>\n                  }\n                >\n                  <ChakraBreadcrumb.Item>\n                    <ChakraBreadcrumb.CurrentLink>\n                      {item.title}\n                    </ChakraBreadcrumb.CurrentLink>\n                  </ChakraBreadcrumb.Item>\n                </Show>\n              </React.Fragment>\n            )\n          })}\n        </ChakraBreadcrumb.List>\n      </ChakraBreadcrumb.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Breadcrumb as ChakraBreadcrumb,\n  Show,\n  type SystemStyleObject,\n} from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "breadcrumb-with-ellipsis",
+      "content": "export const BreadcrumbWithEllipsis = () => {\n  return (\n    <Breadcrumb.Root>\n      <Breadcrumb.List>\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Components</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n        <Breadcrumb.Ellipsis />\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n        </Breadcrumb.Item>\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "breadcrumb-with-icon",
+      "content": "export const BreadcrumbWithIcon = () => {\n  return (\n    <Breadcrumb.Root>\n      <Breadcrumb.List>\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">\n            <LuHouse />\n            Home\n          </Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">\n            <LuShirt />\n            Men Wear\n          </Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator />\n\n        <Breadcrumb.Item>\n          <Breadcrumb.CurrentLink>Trousers</Breadcrumb.CurrentLink>\n        </Breadcrumb.Item>\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb } from \"@chakra-ui/react\"",
+        "import { LuHouse, LuShirt } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "breadcrumb-with-menu",
+      "content": "interface BreadcrumbMenuItemProps {\n  children: React.ReactNode\n  items: Array<{ label: string; value: string }>\n}\n\nconst BreadcrumbMenuItem = (props: BreadcrumbMenuItemProps) => {\n  const { children, items } = props\n  return (\n    <Breadcrumb.Item>\n      <Menu.Root>\n        <Menu.Trigger asChild>{children}</Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              {items.map((item) => (\n                <Menu.Item key={item.value} value={item.value}>\n                  {item.label}\n                </Menu.Item>\n              ))}\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.Root>\n    </Breadcrumb.Item>\n  )\n}\n\nexport const BreadcrumbWithMenu = () => {\n  return (\n    <Breadcrumb.Root>\n      <Breadcrumb.List gap=\"4\">\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator>/</Breadcrumb.Separator>\n\n        <BreadcrumbMenuItem\n          items={[\n            { label: \"Components\", value: \"components\" },\n            { label: \"Props\", value: \"props\" },\n            { label: \"Customization\", value: \"customization\" },\n          ]}\n        >\n          <Breadcrumb.Link as=\"button\">\n            Components\n            <LuChevronDown />\n          </Breadcrumb.Link>\n        </BreadcrumbMenuItem>\n\n        <Breadcrumb.Separator>/</Breadcrumb.Separator>\n        <Breadcrumb.Item>\n          <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n        </Breadcrumb.Item>\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuChevronDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "breadcrumb-with-separator",
+      "content": "export const BreadcrumbWithSeparator = () => {\n  return (\n    <Breadcrumb.Root>\n      <Breadcrumb.List>\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator>\n          <LiaSlashSolid />\n        </Breadcrumb.Separator>\n        <Breadcrumb.Item>\n          <Breadcrumb.Link href=\"#\">Components</Breadcrumb.Link>\n        </Breadcrumb.Item>\n        <Breadcrumb.Separator>\n          <LiaSlashSolid />\n        </Breadcrumb.Separator>\n        <Breadcrumb.Item>\n          <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n        </Breadcrumb.Item>\n      </Breadcrumb.List>\n    </Breadcrumb.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb } from \"@chakra-ui/react\"",
+        "import { LiaSlashSolid } from \"react-icons/lia\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "breadcrumb-with-sizes",
+      "content": "export const BreadcrumbWithSizes = () => {\n  return (\n    <Stack>\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <Breadcrumb.Root key={size} size={size}>\n            <Breadcrumb.List>\n              <Breadcrumb.Item>\n                <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n              </Breadcrumb.Item>\n              <Breadcrumb.Separator />\n              <Breadcrumb.Item>\n                <Breadcrumb.Link href=\"#\">Components</Breadcrumb.Link>\n              </Breadcrumb.Item>\n              <Breadcrumb.Separator />\n              <Breadcrumb.Item>\n                <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n              </Breadcrumb.Item>\n            </Breadcrumb.List>\n          </Breadcrumb.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "breadcrumb-with-variants",
+      "content": "export const BreadcrumbWithVariants = () => {\n  return (\n    <Stack>\n      <For each={[\"plain\", \"underline\"]}>\n        {(variant) => (\n          <Breadcrumb.Root key={variant} variant={variant}>\n            <Breadcrumb.List>\n              <Breadcrumb.Item>\n                <Breadcrumb.Link href=\"#\">Docs</Breadcrumb.Link>\n              </Breadcrumb.Item>\n              <Breadcrumb.Separator />\n              <Breadcrumb.Item>\n                <Breadcrumb.Link href=\"#\">Components</Breadcrumb.Link>\n              </Breadcrumb.Item>\n              <Breadcrumb.Separator />\n              <Breadcrumb.Item>\n                <Breadcrumb.CurrentLink>Props</Breadcrumb.CurrentLink>\n              </Breadcrumb.Item>\n            </Breadcrumb.List>\n          </Breadcrumb.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Breadcrumb, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Breadcrumb } from \"@chakra-ui/react\""
+    }
+  ]
+}

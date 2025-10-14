@@ -1,0 +1,247 @@
+{
+  "name": "code-block",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "code-block-basic",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockBasic = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-plain-text",
+      "content": "\"use client\"\nconst file = {\n  code: \"npm install @chakra-ui/react\",\n  language: \"bash\",\n  title: \"npm install @chakra-ui/react\",\n}\n\nexport const CodeBlockPlainText = () => {\n  return (\n    <CodeBlock.Root\n      code={file.code}\n      language={file.language}\n      display=\"inline-flex\"\n    >\n      <CodeBlock.Content>\n        <Float placement=\"middle-end\" offsetX=\"6\" zIndex=\"1\">\n          <CodeBlock.CopyTrigger asChild>\n            <IconButton variant=\"ghost\" size=\"2xs\">\n              <CodeBlock.CopyIndicator />\n            </IconButton>\n          </CodeBlock.CopyTrigger>\n        </Float>\n        <CodeBlock.Code pe=\"10\">\n          <Span color=\"fg.muted\" ms=\"4\" userSelect=\"none\">\n            $\n          </Span>\n          <CodeBlock.CodeText display=\"inline-block\" />\n        </CodeBlock.Code>\n      </CodeBlock.Content>\n    </CodeBlock.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, Float, IconButton, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "code-block-with-copy-button",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithCopyButton = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Header>\n          <CodeBlock.Title>{file.title}</CodeBlock.Title>\n          <CodeBlock.CopyTrigger asChild>\n            <IconButton variant=\"ghost\" size=\"2xs\">\n              <CodeBlock.CopyIndicator />\n            </IconButton>\n          </CodeBlock.CopyTrigger>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-custom-action",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithCustomAction = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Header>\n          <CodeBlock.Title>{file.title}</CodeBlock.Title>\n          <CodeBlock.CopyTrigger asChild>\n            <IconButton variant=\"ghost\" size=\"2xs\">\n              <CodeBlock.CopyIndicator />\n            </IconButton>\n          </CodeBlock.CopyTrigger>\n          <IconButton\n            variant=\"ghost\"\n            size=\"2xs\"\n            aria-label=\"Open in CodeSandbox\"\n            onClick={() => {\n              alert(\"Open in CodeSandbox\")\n            }}\n          >\n            <RxCodesandboxLogo />\n          </IconButton>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import { RxCodesandboxLogo } from \"react-icons/rx\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-diff",
+      "content": "\"use client\"\nconst file = {\n  code: `\nconst greeting = \"Hello, World!\"; \nfunction sayHello() {\n  console.log(\"Hello, World!\"); \n  console.log(greeting); \n}\nsayHello();\n`,\n  language: \"tsx\",\n  title: \"index.tsx\",\n}\n\nexport const CodeBlockWithDiff = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        code={file.code}\n        language={file.language}\n        meta={{\n          showLineNumbers: true,\n          addedLineNumbers: [1, 4],\n          removedLineNumbers: [3],\n        }}\n      >\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-floating-copy-button",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithFloatingCopyButton = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Content>\n          <Float placement=\"top-end\" offset=\"5\" zIndex=\"1\">\n            <CodeBlock.CopyTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\">\n                <CodeBlock.CopyIndicator />\n              </IconButton>\n            </CodeBlock.CopyTrigger>\n          </Float>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  CodeBlock,\n  Float,\n  IconButton,\n  createShikiAdapter,\n} from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-highlight-js",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithHighlightJs = () => {\n  return (\n    <CodeBlock.AdapterProvider value={highlightJsAdapter}>\n      <link\n        rel=\"stylesheet\"\n        href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css\"\n      />\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Header>\n          <CodeBlock.Title>{file.title}</CodeBlock.Title>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst highlightJsAdapter = createHighlightJsAdapter<typeof hljs>({\n  async load() {\n    const languages = {\n      tsx: () => import(\"highlight.js/lib/languages/typescript\"),\n      html: () => import(\"highlight.js/lib/languages/xml\"),\n    }\n    await Promise.all(\n      Object.entries(languages).map(async ([language, file]) => {\n        const { default: langModule } = await file()\n        hljs.registerLanguage(language, langModule)\n      }),\n    )\n    return hljs\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createHighlightJsAdapter } from \"@chakra-ui/react\"",
+        "import hljs from \"highlight.js/lib/core\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "highlight.js"
+      ]
+    },
+    {
+      "name": "code-block-with-language-switcher",
+      "content": "\"use client\"\nexport const CodeBlockWithLanguageSwitcher = () => {\n  const select = useSelect({\n    positioning: { strategy: \"fixed\" },\n    defaultValue: [files[0].value],\n    collection,\n  })\n\n  const selectedFile = select.selectedItems[0]\n\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        code={selectedFile.code}\n        language={selectedFile.language}\n        size=\"lg\"\n      >\n        <CodeBlock.Header>\n          <HStack flex=\"1\">\n            <Badge colorPalette=\"teal\" fontWeight=\"bold\">\n              POST\n            </Badge>\n            <Span textStyle=\"xs\">/v1/search</Span>\n          </HStack>\n          <CodeBlock.Control>\n            <LanguageSwitcher value={select} />\n            <CodeBlock.CopyTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\">\n                <CodeBlock.CopyIndicator />\n              </IconButton>\n            </CodeBlock.CopyTrigger>\n          </CodeBlock.Control>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code fontSize=\"xs\">\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nfunction LanguageSwitcher(props: Select.RootProviderProps) {\n  const { value: select } = props\n  return (\n    <Select.RootProvider size=\"xs\" variant=\"subtle\" {...props}>\n      <Select.Control>\n        <Select.Trigger>\n          <Select.ValueText />\n          <Select.Indicator />\n        </Select.Trigger>\n      </Select.Control>\n      <Select.Positioner>\n        <Select.Content>\n          {select.collection.items.map((item) => (\n            <Select.Item item={item} key={item.value}>\n              {item.icon}\n              <Select.ItemText>{item.value}</Select.ItemText>\n            </Select.Item>\n          ))}\n        </Select.Content>\n      </Select.Positioner>\n    </Select.RootProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"python\", \"typescript\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n\ninterface CodeFile {\n  value: string\n  code: string\n  language: string\n  title: string\n  icon: React.ReactElement\n}\n\nconst files: CodeFile[] = [\n  {\n    value: \"python\",\n    code: `\nfrom github import Github\n\n# Create a Github instance using an access token\ng = Github(\"YOUR_ACCESS_TOKEN\")\n\n# Get a repository\nrepo = g.get_repo(\"octocat/Hello-World\")\n\n# Get repository information\nprint(f\"Repository: {repo.name}\")\nprint(f\"Description: {repo.description}\")\nprint(f\"Stars: {repo.stargazers_count}\")\n\n# List issues\nissues = repo.get_issues(state='open')\nfor issue in issues:\n    print(f\"Issue #{issue.number}: {issue.title}\")\n`,\n    language: \"python\",\n    title: \"python.py\",\n    icon: <Icon as={IoLogoPython} size=\"xs\" color=\"orange.500\" />,\n  },\n  {\n    value: \"typescript\",\n    code: `\nimport { Octokit } from \"@octokit/rest\";\n\n// Create an Octokit instance\nconst octokit = new Octokit({\n  auth: \"YOUR_ACCESS_TOKEN\",\n});\n\n// Get repository information\nconst { data: repo } = await octokit.rest.repos.get({\n  owner: \"octocat\",\n  repo: \"Hello-World\",\n});\n\nconsole.log(\\`Repository: \\${repo.name}\\`);\nconsole.log(\\`Description: \\${repo.description}\\`);\nconsole.log(\\`Stars: \\${repo.stargazers_count}\\`);\n\n// List issues\nconst { data: issues } = await octokit.rest.issues.listForRepo({\n  owner: \"octocat\",\n  repo: \"Hello-World\",\n  state: \"open\",\n});\n\nissues.forEach((issue) => {\n  console.log(\\`Issue #\\${issue.number}: \\${issue.title}\\`);\n});\n    `,\n    language: \"typescript\",\n    title: \"typescript.ts\",\n    icon: <Icon as={IoLogoJavascript} size=\"xs\" color=\"blue.500\" />,\n  },\n]\n\nconst collection = createListCollection({\n  items: files,\n  itemToString: (item) => item.value,\n  itemToValue: (item) => item.value,\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Badge,\n  CodeBlock,\n  HStack,\n  Icon,\n  IconButton,\n  Select,\n  Span,\n  createListCollection,\n  createShikiAdapter,\n  useSelect,\n} from \"@chakra-ui/react\"",
+        "import { IoLogoJavascript, IoLogoPython } from \"react-icons/io5\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-line-focus",
+      "content": "\"use client\"\nconst file = {\n  code: `\nconst greeting = \"Hello, World!\"\n\nfunction sayHello() {\n  console.log(greeting);\n}\n\nsayHello()\n`,\n  language: \"tsx\",\n  title: \"index.tsx\",\n}\n\nexport const CodeBlockWithLineFocus = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        code={file.code}\n        language={file.language}\n        meta={{ focusedLineNumbers: [3, 7] }}\n      >\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-line-highlight",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithLineHighlight = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        code={file.code}\n        language={file.language}\n        meta={{ highlightLines: [2, 1] }}\n      >\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-line-numbers",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithLineNumbers = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        code={file.code}\n        language={file.language}\n        meta={{ showLineNumbers: true }}\n      >\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-max-lines",
+      "content": "\"use client\"\nexport const CodeBlockWithMaxLines = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language} maxLines={10}>\n        <CodeBlock.Header>\n          <CodeBlock.Title>{file.title}</CodeBlock.Title>\n          <CodeBlock.Control>\n            <CodeBlock.CollapseTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\">\n                <CodeBlock.CollapseIndicator />\n              </IconButton>\n            </CodeBlock.CollapseTrigger>\n            <CodeBlock.CopyTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\">\n                <CodeBlock.CopyIndicator />\n              </IconButton>\n            </CodeBlock.CopyTrigger>\n          </CodeBlock.Control>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n\n          <CodeBlock.Overlay>\n            <CodeBlock.CollapseTrigger>\n              <CodeBlock.CollapseText textStyle=\"sm\" />\n            </CodeBlock.CollapseTrigger>\n          </CodeBlock.Overlay>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n\nconst file = {\n  code: `import * as React from 'react';\nimport { CodeBlock } from '@chakra-ui/react';\n\nconst Example = () => {\n  const code = \\`\n{\n  \"name\": \"My App\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A simple web application\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"start\": \"node server.js\",\n    \"dev\": \"nodemon server.js\",\n    \"build\": \"webpack --mode production\",\n    \"test\": \"jest\"\n  },\n  \"dependencies\": {\n    \"express\": \"^4.18.2\",\n    \"react\": \"^18.2.0\",\n    \"axios\": \"^1.4.0\"\n  },\n  \"author\": \"Developer\",\n  \"license\": \"MIT\"\n}\n  \\`\n\n  return (\n    <CodeBlock.Root language=\"json\" code={code}>\n      <CodeBlock.Header>\n        <CodeBlock.Title>{file.title}</CodeBlock.Title>\n      </CodeBlock.Header>\n    </CodeBlock.Root>\n  );\n};\n\nexport default Example;\n`,\n  language: \"tsx\",\n  title: \"index.tsx\",\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-sizes",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithSizes = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <Stack gap=\"8\">\n        <For each={[\"sm\", \"md\", \"lg\"]}>\n          {(size) => (\n            <CodeBlock.Root\n              key={size}\n              code={file.code}\n              language={file.language}\n              size={size}\n            >\n              <CodeBlock.Header>\n                <CodeBlock.Title>(size={size})</CodeBlock.Title>\n              </CodeBlock.Header>\n              <CodeBlock.Content>\n                <CodeBlock.Code>\n                  <CodeBlock.CodeText />\n                </CodeBlock.Code>\n              </CodeBlock.Content>\n            </CodeBlock.Root>\n          )}\n        </For>\n      </Stack>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, For, Stack, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-tabs-sync",
+      "content": "\"use client\"\nconst files = [\n  { title: \"npm\", language: \"bash\", code: \"npm install @chakra-ui/react\" },\n  {\n    title: \"yarn\",\n    language: \"bash\",\n    code: \"yarn add @chakra-ui/react\",\n  },\n  {\n    title: \"bun\",\n    language: \"bash\",\n    code: \"bun install @chakra-ui/react\",\n  },\n]\n\nexport const CodeBlockWithTabsSync = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <Stack gap=\"8\">\n        <CodeTabs />\n        <CodeTabs />\n      </Stack>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"bash\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n\nconst CodeTabs = () => {\n  const tabs = useTabsSync({\n    defaultValue: files[0].title,\n    storageKey: \"code-tabs-sync\",\n  })\n\n  const activeTab = files.find((file) => file.title === tabs.value) || files[0]\n  const otherTabs = files.filter((file) => file.title !== tabs.value)\n\n  return (\n    <Tabs.RootProvider value={tabs} size=\"sm\" variant=\"line\">\n      <CodeBlock.Root code={activeTab.code} language={activeTab.language}>\n        <CodeBlock.Header borderBottomWidth=\"1px\">\n          <Tabs.List w=\"full\" border=\"0\" ms=\"-1\">\n            {files.map((file) => (\n              <Tabs.Trigger\n                colorPalette=\"teal\"\n                key={file.title}\n                value={file.title}\n                textStyle=\"xs\"\n              >\n                {file.title}\n              </Tabs.Trigger>\n            ))}\n          </Tabs.List>\n          <CodeBlock.CopyTrigger asChild>\n            <IconButton variant=\"ghost\" size=\"2xs\">\n              <CodeBlock.CopyIndicator />\n            </IconButton>\n          </CodeBlock.CopyTrigger>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          {otherTabs.map((file) => (\n            <Tabs.Content key={file.title} value={file.title} />\n          ))}\n          <Tabs.Content pt=\"1\" value={activeTab.title}>\n            <CodeBlock.Code>\n              <CodeBlock.CodeText />\n            </CodeBlock.Code>\n          </Tabs.Content>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </Tabs.RootProvider>\n  )\n}\n\nfunction useTabsSync(props: { defaultValue: string; storageKey: string }) {\n  const { defaultValue, storageKey } = props\n\n  const tabs = useTabs({\n    defaultValue,\n    onValueChange(details) {\n      if (details.value) {\n        localStorage.setItem(storageKey, details.value)\n        dispatchEvent(\n          new StorageEvent(\"storage\", {\n            key: storageKey,\n            newValue: details.value,\n          }),\n        )\n      }\n    },\n  })\n\n  useEffect(() => {\n    const handleStorageChange = (e: StorageEvent) => {\n      requestAnimationFrame(() => {\n        if (e.key === storageKey && e.newValue) {\n          tabs.setValue(e.newValue)\n        }\n      })\n    }\n    window.addEventListener(\"storage\", handleStorageChange)\n    return () => window.removeEventListener(\"storage\", handleStorageChange)\n  }, [storageKey, tabs])\n\n  return tabs\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  CodeBlock,\n  IconButton,\n  Stack,\n  Tabs,\n  createShikiAdapter,\n  useTabs,\n} from \"@chakra-ui/react\"",
+        "import { useEffect } from \"react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-tabs",
+      "content": "\"use client\"\nexport const CodeBlockWithTabs = () => {\n  const tabs = useTabs({\n    defaultValue: \"python\",\n  })\n\n  const activeTab =\n    files.find((file) => file.language === tabs.value) || files[0]\n\n  const otherTabs = files.filter((file) => file.language !== tabs.value)\n\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <Tabs.RootProvider value={tabs} size=\"sm\" variant=\"line\">\n        <CodeBlock.Root code={activeTab.code} language={activeTab.language}>\n          <CodeBlock.Header borderBottomWidth=\"1px\">\n            <Tabs.List w=\"full\" border=\"0\" ms=\"-1\">\n              {files.map((file) => (\n                <Tabs.Trigger\n                  colorPalette=\"teal\"\n                  key={file.language}\n                  value={file.language}\n                  textStyle=\"xs\"\n                >\n                  {file.title}\n                </Tabs.Trigger>\n              ))}\n            </Tabs.List>\n            <CodeBlock.CopyTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\">\n                <CodeBlock.CopyIndicator />\n              </IconButton>\n            </CodeBlock.CopyTrigger>\n          </CodeBlock.Header>\n          <CodeBlock.Content>\n            {otherTabs.map((file) => (\n              <Tabs.Content key={file.language} value={file.language} />\n            ))}\n            <Tabs.Content pt=\"1\" value={activeTab.language}>\n              <CodeBlock.Code>\n                <CodeBlock.CodeText />\n              </CodeBlock.Code>\n            </Tabs.Content>\n          </CodeBlock.Content>\n        </CodeBlock.Root>\n      </Tabs.RootProvider>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"python\", \"typescript\", \"java\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n\nconst files = [\n  { title: \"Python\", language: \"python\", code: \"print('Hello, World!')\" },\n  {\n    title: \"TypeScript\",\n    language: \"typescript\",\n    code: \"console.log('Hello, World!')\",\n  },\n  {\n    title: \"Java\",\n    language: \"java\",\n    code: \"System.out.println('Hello, World!');\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  CodeBlock,\n  IconButton,\n  Tabs,\n  createShikiAdapter,\n  useTabs,\n} from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-themes",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithThemes = () => {\n  const { colorMode } = useColorMode()\n\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <ClientOnly>\n        {() => (\n          <CodeBlock.Root\n            code={file.code}\n            language={file.language}\n            meta={{ colorScheme: colorMode }}\n          >\n            <CodeBlock.Content bg=\"bg\">\n              <CodeBlock.Code>\n                <CodeBlock.CodeText />\n              </CodeBlock.Code>\n            </CodeBlock.Content>\n          </CodeBlock.Root>\n        )}\n      </ClientOnly>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ClientOnly, CodeBlock, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import { useColorMode } from \"@/components/ui/color-mode\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ],
+      "fileDependencies": [
+        "compositions/ui/color-mode"
+      ]
+    },
+    {
+      "name": "code-block-with-title",
+      "content": "\"use client\"\nconst file = {\n  code: `\n<div class=\"container\">\n  <h1>Hello, world!</h1>\n</div>\n`,\n  language: \"html\",\n  title: \"index.html\",\n}\n\nexport const CodeBlockWithTitle = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root code={file.code} language={file.language}>\n        <CodeBlock.Header>\n          <CodeBlock.Title>\n            <Icon as={FaHtml5} color=\"orange.300\" />\n            {file.title}\n          </CodeBlock.Title>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, Icon, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import { FaHtml5 } from \"react-icons/fa\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "shiki"
+      ]
+    },
+    {
+      "name": "code-block-with-word-wrap",
+      "content": "\"use client\"\nconst file = {\n  code: `\nconst greeting = \"Hello, World! I am a long line of text that will wrap to the next line.\"\n\nfunction sayHello() {\n  console.log(greeting)\n}\n\nsayHello()\n`,\n  language: \"tsx\",\n  title: \"index.tsx\",\n}\n\nexport const CodeBlockWithWordWrap = () => {\n  return (\n    <CodeBlock.AdapterProvider value={shikiAdapter}>\n      <CodeBlock.Root\n        maxW=\"md\"\n        code={file.code}\n        language={file.language}\n        meta={{ wordWrap: true }}\n      >\n        <CodeBlock.Header>\n          <CodeBlock.Title>{file.title}</CodeBlock.Title>\n          <CodeBlock.CopyTrigger asChild>\n            <IconButton variant=\"ghost\" size=\"2xs\">\n              <CodeBlock.CopyIndicator />\n            </IconButton>\n          </CodeBlock.CopyTrigger>\n        </CodeBlock.Header>\n        <CodeBlock.Content>\n          <CodeBlock.Code>\n            <CodeBlock.CodeText />\n          </CodeBlock.Code>\n        </CodeBlock.Content>\n      </CodeBlock.Root>\n    </CodeBlock.AdapterProvider>\n  )\n}\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"scss\", \"html\", \"bash\", \"json\"],\n      themes: [\"github-dark\", \"github-light\"],\n    })\n  },\n})\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CodeBlock, IconButton, createShikiAdapter } from \"@chakra-ui/react\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { CodeBlock } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "shiki"
+      ]
+    }
+  ]
+}

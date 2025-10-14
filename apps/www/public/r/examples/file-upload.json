@@ -1,0 +1,178 @@
+{
+  "name": "file-upload",
+  "file": "compositions/ui/file-upload",
+  "snippet": "\"use client\"\n\nimport type { ButtonProps, RecipeProps } from \"@chakra-ui/react\"\nimport {\n  Button,\n  FileUpload as ChakraFileUpload,\n  Icon,\n  IconButton,\n  Span,\n  Text,\n  useFileUploadContext,\n  useRecipe,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuFile, LuUpload, LuX } from \"react-icons/lu\"\n\nexport interface FileUploadRootProps extends ChakraFileUpload.RootProps {\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const FileUploadRoot = React.forwardRef<\n  HTMLInputElement,\n  FileUploadRootProps\n>(function FileUploadRoot(props, ref) {\n  const { children, inputProps, ...rest } = props\n  return (\n    <ChakraFileUpload.Root {...rest}>\n      <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />\n      {children}\n    </ChakraFileUpload.Root>\n  )\n})\n\nexport interface FileUploadDropzoneProps\n  extends ChakraFileUpload.DropzoneProps {\n  label: React.ReactNode\n  description?: React.ReactNode\n}\n\nexport const FileUploadDropzone = React.forwardRef<\n  HTMLInputElement,\n  FileUploadDropzoneProps\n>(function FileUploadDropzone(props, ref) {\n  const { children, label, description, ...rest } = props\n  return (\n    <ChakraFileUpload.Dropzone ref={ref} {...rest}>\n      <Icon fontSize=\"xl\" color=\"fg.muted\">\n        <LuUpload />\n      </Icon>\n      <ChakraFileUpload.DropzoneContent>\n        <div>{label}</div>\n        {description && <Text color=\"fg.muted\">{description}</Text>}\n      </ChakraFileUpload.DropzoneContent>\n      {children}\n    </ChakraFileUpload.Dropzone>\n  )\n})\n\ninterface VisibilityProps {\n  showSize?: boolean\n  clearable?: boolean\n}\n\ninterface FileUploadItemProps extends VisibilityProps {\n  file: File\n}\n\nconst FileUploadItem = React.forwardRef<HTMLLIElement, FileUploadItemProps>(\n  function FileUploadItem(props, ref) {\n    const { file, showSize, clearable } = props\n    return (\n      <ChakraFileUpload.Item file={file} ref={ref}>\n        <ChakraFileUpload.ItemPreview asChild>\n          <Icon fontSize=\"lg\" color=\"fg.muted\">\n            <LuFile />\n          </Icon>\n        </ChakraFileUpload.ItemPreview>\n\n        {showSize ? (\n          <ChakraFileUpload.ItemContent>\n            <ChakraFileUpload.ItemName />\n            <ChakraFileUpload.ItemSizeText />\n          </ChakraFileUpload.ItemContent>\n        ) : (\n          <ChakraFileUpload.ItemName flex=\"1\" />\n        )}\n\n        {clearable && (\n          <ChakraFileUpload.ItemDeleteTrigger asChild>\n            <IconButton variant=\"ghost\" color=\"fg.muted\" size=\"xs\">\n              <LuX />\n            </IconButton>\n          </ChakraFileUpload.ItemDeleteTrigger>\n        )}\n      </ChakraFileUpload.Item>\n    )\n  },\n)\n\ninterface FileUploadListProps\n  extends VisibilityProps,\n    ChakraFileUpload.ItemGroupProps {\n  files?: File[]\n}\n\nexport const FileUploadList = React.forwardRef<\n  HTMLUListElement,\n  FileUploadListProps\n>(function FileUploadList(props, ref) {\n  const { showSize, clearable, files, ...rest } = props\n\n  const fileUpload = useFileUploadContext()\n  const acceptedFiles = files ?? fileUpload.acceptedFiles\n\n  if (acceptedFiles.length === 0) return null\n\n  return (\n    <ChakraFileUpload.ItemGroup ref={ref} {...rest}>\n      {acceptedFiles.map((file) => (\n        <FileUploadItem\n          key={file.name}\n          file={file}\n          showSize={showSize}\n          clearable={clearable}\n        />\n      ))}\n    </ChakraFileUpload.ItemGroup>\n  )\n})\n\ntype Assign<T, U> = Omit<T, keyof U> & U\n\ninterface FileInputProps extends Assign<ButtonProps, RecipeProps<\"input\">> {\n  placeholder?: React.ReactNode\n}\n\nexport const FileInput = React.forwardRef<HTMLButtonElement, FileInputProps>(\n  function FileInput(props, ref) {\n    const inputRecipe = useRecipe({ key: \"input\" })\n    const [recipeProps, restProps] = inputRecipe.splitVariantProps(props)\n    const { placeholder = \"Select file(s)\", ...rest } = restProps\n    return (\n      <ChakraFileUpload.Trigger asChild>\n        <Button\n          unstyled\n          py=\"0\"\n          ref={ref}\n          {...rest}\n          css={[inputRecipe(recipeProps), props.css]}\n        >\n          <ChakraFileUpload.Context>\n            {({ acceptedFiles }) => {\n              if (acceptedFiles.length === 1) {\n                return <span>{acceptedFiles[0].name}</span>\n              }\n              if (acceptedFiles.length > 1) {\n                return <span>{acceptedFiles.length} files</span>\n              }\n              return <Span color=\"fg.subtle\">{placeholder}</Span>\n            }}\n          </ChakraFileUpload.Context>\n        </Button>\n      </ChakraFileUpload.Trigger>\n    )\n  },\n)\n\nexport const FileUploadLabel = ChakraFileUpload.Label\nexport const FileUploadClearTrigger = ChakraFileUpload.ClearTrigger\nexport const FileUploadTrigger = ChakraFileUpload.Trigger\n",
+  "examples": [
+    {
+      "name": "file-upload-accepted-files",
+      "content": "export const FileUploadAcceptedFiles = () => {\n  return (\n    <FileUpload.Root accept={[\"image/png\"]}>\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiUpload /> Upload file\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FileUpload } from \"@chakra-ui/react\"",
+        "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-basic",
+      "content": "export const FileUploadBasic = () => {\n  return (\n    <FileUpload.Root>\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiUpload /> Upload file\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FileUpload } from \"@chakra-ui/react\"",
+        "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-custom-preview",
+      "content": "\"use client\"\nconst FileUploadList = () => {\n  const fileUpload = useFileUploadContext()\n  const files = fileUpload.acceptedFiles\n  if (files.length === 0) return null\n  return (\n    <FileUpload.ItemGroup>\n      {files.map((file) => (\n        <FileUpload.Item\n          w=\"auto\"\n          boxSize=\"20\"\n          p=\"2\"\n          file={file}\n          key={file.name}\n        >\n          <FileUpload.ItemPreviewImage />\n          <Float placement=\"top-end\">\n            <FileUpload.ItemDeleteTrigger boxSize=\"4\" layerStyle=\"fill.solid\">\n              <LuX />\n            </FileUpload.ItemDeleteTrigger>\n          </Float>\n        </FileUpload.Item>\n      ))}\n    </FileUpload.ItemGroup>\n  )\n}\n\nexport const FileUploadCustomPreview = () => {\n  return (\n    <FileUpload.Root accept=\"image/*\">\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <LuFileImage /> Upload Images\n        </Button>\n      </FileUpload.Trigger>\n      <FileUploadList />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FileUpload,\n  Float,\n  useFileUploadContext,\n} from \"@chakra-ui/react\"",
+        "import { LuFileImage, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-directory",
+      "content": "export const FileUploadDirectory = () => {\n  return (\n    <FileUpload.Root directory>\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiUpload /> Upload file\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FileUpload } from \"@chakra-ui/react\"",
+        "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-in-dialog",
+      "content": "export const FileUploadInDialog = () => {\n  return (\n    <Dialog.Root size=\"sm\" placement=\"center\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Upload File</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body pb=\"6\">\n              <Dialog.Description mb=\"4\">\n                Here's a dialog with a file dropzone component.\n              </Dialog.Description>\n              <FileUpload.Root>\n                <FileUpload.HiddenInput />\n                <FileUpload.Dropzone width=\"full\">\n                  <Icon size=\"xl\" color=\"fg.muted\">\n                    <LuUpload />\n                  </Icon>\n                  <FileUpload.DropzoneContent>\n                    Drag and drop files here\n                  </FileUpload.DropzoneContent>\n                </FileUpload.Dropzone>\n                <FileUpload.List />\n              </FileUpload.Root>\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, FileUpload, Icon, Portal } from \"@chakra-ui/react\"",
+        "import { LuUpload } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-media-capture",
+      "content": "export const FileUploadMediaCapture = () => {\n  return (\n    <FileUpload.Root capture=\"environment\">\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiCamera /> Open Camera\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FileUpload } from \"@chakra-ui/react\"",
+        "import { HiCamera } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-multiple",
+      "content": "export const FileUploadMultiple = () => {\n  return (\n    <FileUpload.Root maxFiles={5}>\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiUpload /> Upload file\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List showSize clearable />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FileUpload } from \"@chakra-ui/react\"",
+        "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-with-dropzone",
+      "content": "export const FileUploadWithDropzone = () => {\n  return (\n    <FileUpload.Root maxW=\"xl\" alignItems=\"stretch\" maxFiles={10}>\n      <FileUpload.HiddenInput />\n      <FileUpload.Dropzone>\n        <Icon size=\"md\" color=\"fg.muted\">\n          <LuUpload />\n        </Icon>\n        <FileUpload.DropzoneContent>\n          <Box>Drag and drop files here</Box>\n          <Box color=\"fg.muted\">.png, .jpg up to 5MB</Box>\n        </FileUpload.DropzoneContent>\n      </FileUpload.Dropzone>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, FileUpload, Icon } from \"@chakra-ui/react\"",
+        "import { LuUpload } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  images: z.array(z.instanceof(File)).min(1, \"At least one image is required\"),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const FileUploadWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n    defaultValues: {\n      images: [],\n    },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Controller\n        control={control}\n        name=\"images\"\n        render={({ field }) => (\n          <Field.Root invalid={!!errors.images}>\n            <Field.Label>Images</Field.Label>\n            <FileUpload.Root\n              name={field.name}\n              onFileChange={(e) => {\n                field.onChange(e.acceptedFiles)\n              }}\n            >\n              <FileUpload.HiddenInput />\n              <FileUpload.Trigger asChild onBlur={() => field.onBlur()}>\n                <Button variant=\"outline\" size=\"sm\">\n                  <HiUpload /> Upload file\n                </Button>\n              </FileUpload.Trigger>\n\n              <FileUpload.List />\n            </FileUpload.Root>\n            <Field.ErrorText>{errors.images?.message}</Field.ErrorText>\n          </Field.Root>\n        )}\n      />\n\n      <Button type=\"submit\" size=\"sm\" mt=\"4\">\n        Submit\n      </Button>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, FileUpload } from \"@chakra-ui/react\"",
+        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { HiUpload } from \"react-icons/hi\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "react-icons",
+        "zod"
+      ]
+    },
+    {
+      "name": "file-upload-with-input-clear",
+      "content": "export const FileUploadWithInputClear = () => {\n  return (\n    <FileUpload.Root gap=\"1\" maxWidth=\"300px\">\n      <FileUpload.HiddenInput />\n      <FileUpload.Label>Upload file</FileUpload.Label>\n      <InputGroup\n        startElement={<LuFileUp />}\n        endElement={\n          <FileUpload.ClearTrigger asChild>\n            <CloseButton\n              me=\"-1\"\n              size=\"xs\"\n              variant=\"plain\"\n              focusVisibleRing=\"inside\"\n              focusRingWidth=\"2px\"\n              pointerEvents=\"auto\"\n            />\n          </FileUpload.ClearTrigger>\n        }\n      >\n        <Input asChild>\n          <FileUpload.Trigger>\n            <FileUpload.FileText lineClamp={1} />\n          </FileUpload.Trigger>\n        </Input>\n      </InputGroup>\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton, FileUpload, Input, InputGroup } from \"@chakra-ui/react\"",
+        "import { LuFileUp } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-with-input",
+      "content": "export const FileUploadWithInput = () => {\n  return (\n    <FileUpload.Root gap=\"1\" maxWidth=\"300px\">\n      <FileUpload.HiddenInput />\n      <FileUpload.Label>Upload file</FileUpload.Label>\n      <Input asChild>\n        <FileUpload.Trigger>\n          <FileUpload.FileText />\n        </FileUpload.Trigger>\n      </Input>\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FileUpload, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "file-upload-with-paste-event",
+      "content": "\"use client\"\nconst FilePasteInput = (props: InputProps) => {\n  const fileUpload = useFileUploadContext()\n  return (\n    <Input\n      {...props}\n      onPaste={(e) => {\n        fileUpload.setClipboardFiles(e.clipboardData)\n      }}\n    />\n  )\n}\n\nconst FileImageList = () => {\n  const fileUpload = useFileUploadContext()\n  return (\n    <HStack wrap=\"wrap\" gap=\"3\">\n      {fileUpload.acceptedFiles.map((file) => (\n        <FileUpload.Item\n          p=\"2\"\n          width=\"auto\"\n          key={file.name}\n          file={file}\n          pos=\"relative\"\n        >\n          <Float placement=\"top-start\">\n            <FileUpload.ItemDeleteTrigger\n              p=\"0.5\"\n              rounded=\"l1\"\n              bg=\"bg\"\n              borderWidth=\"1px\"\n            >\n              <HiX />\n            </FileUpload.ItemDeleteTrigger>\n          </Float>\n          <FileUpload.ItemPreviewImage\n            boxSize=\"12\"\n            rounded=\"l1\"\n            objectFit=\"cover\"\n          />\n        </FileUpload.Item>\n      ))}\n    </HStack>\n  )\n}\n\nexport const FileUploadWithPasteEvent = () => {\n  return (\n    <FileUpload.Root maxFiles={3} accept=\"image/*\">\n      <FileUpload.HiddenInput />\n      <FileImageList />\n      <FilePasteInput placeholder=\"Paste image here...\" />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  FileUpload,\n  Float,\n  HStack,\n  Input,\n  type InputProps,\n  useFileUploadContext,\n} from \"@chakra-ui/react\"",
+        "import { HiX } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-with-store",
+      "content": "\"use client\"\nexport const FileUploadWithStore = () => {\n  const fileUpload = useFileUpload({\n    maxFiles: 1,\n    maxFileSize: 3000,\n  })\n\n  const accepted = fileUpload.acceptedFiles.map((file) => file.name)\n  const rejected = fileUpload.rejectedFiles.map((e) => e.file.name)\n\n  return (\n    <Stack align=\"flex-start\">\n      <Code colorPalette=\"green\">accepted: {accepted.join(\", \")}</Code>\n      <Code colorPalette=\"red\">rejected: {rejected.join(\", \")}</Code>\n      <FileUpload.RootProvider value={fileUpload}>\n        <FileUpload.HiddenInput />\n        <FileUpload.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            <HiUpload /> Upload file\n          </Button>\n        </FileUpload.Trigger>\n        <FileUpload.List />\n      </FileUpload.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Code,\n  FileUpload,\n  Stack,\n  useFileUpload,\n} from \"@chakra-ui/react\"",
+        "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

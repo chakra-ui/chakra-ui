@@ -1,0 +1,53 @@
+{
+  "SimpleGrid": {
+    "props": {
+      "templateColumns": {
+        "isRequired": false
+      },
+      "autoFlow": {
+        "isRequired": false
+      },
+      "autoRows": {
+        "isRequired": false
+      },
+      "autoColumns": {
+        "isRequired": false
+      },
+      "templateRows": {
+        "isRequired": false
+      },
+      "templateAreas": {
+        "isRequired": false
+      },
+      "column": {
+        "isRequired": false
+      },
+      "row": {
+        "isRequired": false
+      },
+      "inline": {
+        "isRequired": false
+      },
+      "minChildWidth": {
+        "type": "GridProps[\"minWidth\"] | undefined",
+        "isRequired": false,
+        "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length."
+      },
+      "columns": {
+        "type": "ConditionalValue<number> | undefined",
+        "isRequired": false,
+        "description": "The number of columns"
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}

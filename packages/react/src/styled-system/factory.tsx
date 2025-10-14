@@ -186,7 +186,10 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       cache.registered,
       mergedProps,
     )
-    className = cx(className, `${cache.key}-${serialized.name}`)
+
+    if (serialized.styles) {
+      className = cx(className, `${cache.key}-${serialized.name}`)
+    }
 
     if (targetClassName !== undefined) {
       className = cx(className, targetClassName)
@@ -211,14 +214,29 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       }
     }
 
-    finalProps.className = className.trim()
+    let classNameToUse = className.trim()
+    if (classNameToUse) {
+      finalProps.className = classNameToUse
+    } else {
+      Reflect.deleteProperty(finalProps, "className")
+    }
+
     finalProps.ref = ref
 
     const forwardAsChild =
       options.forwardAsChild || options.forwardProps?.includes("asChild")
 
     if (props.asChild && !forwardAsChild) {
-      const child = React.Children.only(props.children)
+      const child = (
+        React.isValidElement(props.children)
+          ? React.Children.only(props.children)
+          : React.Children.toArray(props.children).find(React.isValidElement)
+      ) as React.ReactElement<any> | undefined
+
+      if (!child) {
+        throw new Error("[chakra-ui > factory] No valid child found")
+      }
+
       FinalTag = child.type
 
       // clean props

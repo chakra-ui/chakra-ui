@@ -1,0 +1,105 @@
+{
+  "name": "format",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "format-byte-basic",
+      "content": "export const FormatByteBasic = () => {\n  return (\n    <Text textStyle=\"lg\">\n      File size: <FormatByte value={1450.45} />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-byte-sizes",
+      "content": "export const FormatByteSizes = () => {\n  return (\n    <Stack>\n      <Text textStyle=\"lg\">\n        <FormatByte value={50} />\n      </Text>\n      <Text textStyle=\"lg\">\n        <FormatByte value={5000} />\n      </Text>\n      <Text textStyle=\"lg\">\n        <FormatByte value={5000000} />\n      </Text>\n      <Text textStyle=\"lg\">\n        <FormatByte value={5000000000} />\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-byte-with-locale",
+      "content": "export const FormatByteWithLocale = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <HStack>\n        <Text fontWeight=\"medium\">de-DE</Text>\n        <LocaleProvider locale=\"de-DE\">\n          <FormatByte value={1450.45} />\n        </LocaleProvider>\n      </HStack>\n\n      <HStack>\n        <Text fontWeight=\"medium\">zh-CN</Text>\n        <LocaleProvider locale=\"zh-CN\">\n          <FormatByte value={1450.45} />\n        </LocaleProvider>\n      </HStack>\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, HStack, LocaleProvider, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-byte-with-unit-display",
+      "content": "export const FormatByteWithUnitDisplay = () => {\n  return (\n    <Stack>\n      <Text textStyle=\"lg\">\n        <FormatByte value={50345.53} unitDisplay=\"narrow\" />\n      </Text>\n      <Text textStyle=\"lg\">\n        <FormatByte value={50345.53} unitDisplay=\"short\" />\n      </Text>\n      <Text textStyle=\"lg\">\n        <FormatByte value={50345.53} unitDisplay=\"long\" />\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-byte-with-unit",
+      "content": "export const FormatByteWithUnit = () => {\n  return (\n    <Text textStyle=\"lg\">\n      File size: <FormatByte value={1450.45} unit=\"bit\" />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatByte, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-basic",
+      "content": "export const FormatNumberBasic = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <FormatNumber value={1450.45} />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-with-compact",
+      "content": "export const FormatNumberWithCompact = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <FormatNumber value={1500000} notation=\"compact\" compactDisplay=\"short\" />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-with-currency",
+      "content": "export const FormatNumberWithCurrency = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <FormatNumber value={1234.45} style=\"currency\" currency=\"USD\" />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-with-locale",
+      "content": "export const FormatNumberWithLocale = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <HStack>\n        <Text fontWeight=\"medium\">de-DE</Text>\n        <LocaleProvider locale=\"de-DE\">\n          <FormatNumber value={1450.45} />\n        </LocaleProvider>\n      </HStack>\n\n      <HStack>\n        <Text fontWeight=\"medium\">zh-CN</Text>\n        <LocaleProvider locale=\"zh-CN\">\n          <FormatNumber value={1450.45} />\n        </LocaleProvider>\n      </HStack>\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, HStack, LocaleProvider, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-with-percentage",
+      "content": "export const FormatNumberWithPercentage = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <FormatNumber\n        value={0.145}\n        style=\"percent\"\n        maximumFractionDigits={2}\n        minimumFractionDigits={2}\n      />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "format-number-with-unit",
+      "content": "export const FormatNumberWithUnit = () => {\n  return (\n    <Text textStyle=\"lg\">\n      <FormatNumber value={384.4} style=\"unit\" unit=\"kilometer\" />\n    </Text>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { FormatNumber, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Format } from \"@chakra-ui/react\""
+    }
+  ]
+}

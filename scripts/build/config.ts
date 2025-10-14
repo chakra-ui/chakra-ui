@@ -1,4 +1,5 @@
 import alias, { Alias } from "@rollup/plugin-alias"
+import commonjs from "@rollup/plugin-commonjs"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
 import glob from "fast-glob"
@@ -17,10 +18,15 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
 
   const packageJson = await import(resolve(dir, "package.json"))
 
-  const isCli = packageJson.bin !== undefined
+  const isCli =
+    packageJson.bin !== undefined || packageJson.name.includes("docgen")
 
   const plugins: Plugin[] = [
-    nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),
+    nodeResolve({
+      extensions: [".ts", ".tsx", ".js", ".jsx"],
+      preferBuiltins: true,
+    }),
+    commonjs(),
     alias({ entries: aliases }),
     esbuild({
       sourceMap: true,

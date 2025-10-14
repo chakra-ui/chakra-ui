@@ -2,6 +2,7 @@ import {
   type Dict,
   compact,
   cx,
+  mapEntries,
   mergeWith,
   omit,
   splitProps,
@@ -30,8 +31,13 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   const { css, conditions, normalize, layers } = options
 
   function cva(config: Dict = {}) {
-    const { base, variants, defaultVariants, compoundVariants } =
-      defaults(config)
+    const defaultsConfig = defaults(config)
+    const { base, defaultVariants, compoundVariants } = defaultsConfig
+
+    const variants = mapEntries(defaultsConfig.variants, (key, obj) => [
+      key,
+      mapEntries(obj, (optionKey, styles) => [optionKey, normalize(styles)]),
+    ])
 
     const getVariantCss = createCssFn({
       conditions,
@@ -77,12 +83,10 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       return [recipeProps, localProps]
     }
 
-    const variantMap = Object.fromEntries(
-      Object.entries(variants).map(([key, value]) => [
-        key,
-        Object.keys(value as any),
-      ]),
-    )
+    const variantMap = mapEntries(variants, (key, value) => [
+      key,
+      Object.keys(value as any),
+    ])
 
     const cvaFn = (props: any) => css(resolve(props))
     return Object.assign(cvaFn, {
