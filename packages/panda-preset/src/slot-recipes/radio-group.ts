@@ -91,7 +91,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       solid: {
         itemControl: {
           borderWidth: "1px",
-          borderColor: "border",
+          borderColor: "border.emphasized",
           _checked: {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",

@@ -1,4 +1,4 @@
-import { type Dict, omit, splitProps } from "../utils"
+import { type Dict, mapEntries, omit, splitProps } from "../utils"
 import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {
@@ -79,9 +79,10 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       return [recipeProps, localProps]
     }
 
-    const variantMap = Object.fromEntries(
-      Object.entries(variants).map(([key, value]) => [key, Object.keys(value)]),
-    )
+    const variantMap = mapEntries(variants, (key, value) => [
+      key,
+      Object.keys(value),
+    ])
 
     let classNameMap: Record<string, string> = {}
 

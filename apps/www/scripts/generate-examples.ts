@@ -1,3 +1,4 @@
+import { uniq } from "@/utils/shared"
 import { ensureDirSync } from "fs-extra"
 import { writeFile } from "node:fs/promises"
 import { join } from "node:path"
@@ -27,11 +28,12 @@ async function main() {
   const indexContent = result.flatMap((json) =>
     json.examples.map((ex) => ex.name),
   )
+
   await Promise.all([
     ...writePromises,
     writeFile(
       join(project.publicPath, "r", "examples", "index.json"),
-      JSON.stringify(indexContent, null, 2),
+      JSON.stringify(uniq(indexContent), null, 2),
     ),
   ])
 }

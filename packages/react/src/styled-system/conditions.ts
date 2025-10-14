@@ -1,14 +1,7 @@
-import type { Dict } from "../utils"
+import { mapEntries } from "../utils"
 import type { Condition, ConditionConfig } from "./types"
 
-const mapEntries = <T extends Dict, R extends Dict>(
-  obj: T,
-  fn: (key: string, value: T[keyof T]) => [string, R[keyof R]],
-): R => {
-  return Object.fromEntries(
-    Object.entries(obj).map(([key, value]) => fn(key, value)),
-  ) as R
-}
+const SPECIAL_KEY_REGEX = /^@|&|&$/
 
 export const createConditions = (options: ConditionConfig): Condition => {
   const { breakpoints, conditions: conds = {} } = options
@@ -21,7 +14,9 @@ export const createConditions = (options: ConditionConfig): Condition => {
   }
 
   function has(key: string) {
-    return keys().includes(key) || /^@|&|&$/.test(key) || key.startsWith("_")
+    return (
+      keys().includes(key) || SPECIAL_KEY_REGEX.test(key) || key.startsWith("_")
+    )
   }
 
   function sort(paths: string[]) {

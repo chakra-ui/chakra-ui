@@ -63,6 +63,15 @@
       "importPath": "import { Flex } from \"@chakra-ui/react\""
     },
     {
+      "name": "flex-with-spacer",
+      "content": "export const FlexWithSpacer = () => {\n  return (\n    <Flex>\n      <Box p=\"4\" bg=\"red.400\" color=\"white\">\n        Box 1\n      </Box>\n      <Spacer />\n      <Box p=\"4\" bg=\"green.400\" color=\"white\">\n        Box 2\n      </Box>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Flex, Spacer } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Flex } from \"@chakra-ui/react\""
+    },
+    {
       "name": "flex-with-wrap",
       "content": "export const FlexWithWrap = () => {\n  return (\n    <Flex gap=\"4\" wrap=\"wrap\" maxW=\"500px\">\n      <Box height=\"10\" width=\"200px\" />\n      <Box height=\"10\" width=\"200px\" />\n      <Box height=\"10\" width=\"200px\" />\n    </Flex>\n  )\n}\n",
       "hasSnippet": false,

@@ -3,7 +3,7 @@ import { useEffect } from "react"
 type ScrollAlignment = "nearest" | "center"
 
 export function useScrollIntoView(
-  containerRef: React.RefObject<HTMLElement>,
+  containerRef: React.RefObject<HTMLElement | null>,
   itemSelector: string,
   alignment: ScrollAlignment = "nearest",
 ) {

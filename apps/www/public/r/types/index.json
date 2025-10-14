@@ -1,5 +1,6 @@
 {
   "components": [
+    "absolute-center",
     "accordion",
     "action-bar",
     "alert",
@@ -20,6 +21,7 @@
     "client-only",
     "clipboard",
     "code",
+    "code-block",
     "collapsible",
     "color-picker",
     "color-swatch",
@@ -55,6 +57,7 @@
     "kbd",
     "link",
     "list",
+    "listbox",
     "loader",
     "locale",
     "mark",
@@ -74,10 +77,12 @@
     "radio-group",
     "radiomark",
     "rating-group",
+    "scroll-area",
     "segment-group",
     "select",
     "separator",
     "show",
+    "simple-grid",
     "skeleton",
     "skip-nav",
     "slider",
@@ -104,7 +109,9 @@
     "tree-view",
     "visually-hidden",
     "wrap",
-    "password-input"
+    "password-input",
+    "hstack",
+    "vstack"
   ],
   "charts": [
     "area-chart",

@@ -12,13 +12,5 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     }
-  },
-  "AbsoluteCenter": {
-    "props": {
-      "axis": {
-        "type": "\"horizontal\" | \"vertical\" | \"both\" | undefined",
-        "isRequired": false
-      }
-    }
   }
 }

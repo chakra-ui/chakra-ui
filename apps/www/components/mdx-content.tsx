@@ -15,6 +15,7 @@ import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
 import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
+import { ComponentExplorer } from "./component-explorer"
 import {
   Example,
   ExampleCode,
@@ -117,6 +118,26 @@ const sharedComponents = {
   ZIndexTokenDoc,
   CursorTokenDoc,
   ConditionalStylesReferenceDoc,
+  Video: (props: any) => {
+    return (
+      <video
+        muted
+        loop
+        playsInline
+        autoPlay
+        {...props}
+        style={{
+          marginBlock: "12px",
+          borderRadius: "10px",
+          backgroundColor: "teal",
+          ...props.style,
+        }}
+      />
+    )
+  },
+  Explorer(props: { name: string }) {
+    return <ComponentExplorer name={props.name} />
+  },
 }
 
 const useMDXComponent = (code: string) => {

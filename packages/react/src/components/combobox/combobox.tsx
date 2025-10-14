@@ -1,26 +1,20 @@
 "use client"
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
-import {
-  Combobox as ArkCombobox,
-  useComboboxContext,
-} from "@ark-ui/react/combobox"
-import { type JSX, forwardRef } from "react"
+import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
+import { type JSX } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { cx } from "../../utils"
 import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons"
 
 const {
   withProvider,
   withContext,
   useStyles: useComboboxStyles,
-  useClassNames,
   PropsProvider,
 } = createSlotRecipeContext({ key: "combobox" })
 
@@ -237,26 +231,14 @@ export const ComboboxLabel = withContext<HTMLLabelElement, ComboboxLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ComboboxEmptyProps extends HTMLChakraProps<"div"> {}
+export interface ComboboxEmptyProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
-export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
-  function ComboboxEmpty(props, ref) {
-    const combobox = useComboboxContext()
-    const styles = useComboboxStyles()
-    const classNames = useClassNames()
-    if (combobox.collection.size !== 0) return null
-    return (
-      <chakra.div
-        ref={ref}
-        {...props}
-        role="presentation"
-        data-scope="combobox"
-        data-part="empty"
-        className={cx(classNames.empty, props.className)}
-        css={[styles.empty, props.css]}
-      />
-    )
-  },
+export const ComboboxEmpty = withContext<HTMLDivElement, ComboboxEmptyProps>(
+  ArkCombobox.Empty,
+  "empty",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

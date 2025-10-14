@@ -1,6 +1,6 @@
 "use client"
 
-import { Annoucement } from "@/components/annoucement"
+import { Announcement } from "@/components/announcement"
 import {
   DemoFrame,
   DemoFrameContent,
@@ -24,7 +24,7 @@ import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
 import Link from "next/link"
 import { HiArrowRight } from "react-icons/hi"
-import { LuPartyPopper, LuTerminal } from "react-icons/lu"
+import { LuTerminal, LuWandSparkles } from "react-icons/lu"
 
 const tabsData = [
   {
@@ -146,13 +146,13 @@ export const HeroSection = () => (
   <Box pt="16" pb="20">
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
-        <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/tree-view">
-            <LuPartyPopper />
-            [New] Tree View component
+        <Announcement alignSelf="flex-start" asChild>
+          <Link href="/docs/components/listbox">
+            <LuWandSparkles />
+            [New] Listbox Component
             <HiArrowRight />
           </Link>
-        </Annoucement>
+        </Announcement>
         <Stack gap="5" pr="4" maxW="3xl" px="1.5">
           <HighlightHeading as="h1" query="with speed">
             Chakra UI is a component system for building products with speed

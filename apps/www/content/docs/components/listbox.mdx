@@ -1,0 +1,202 @@
+---
+title: Listbox
+description: Used to display a list of options for selection.
+links:
+  source: components/listbox
+  storybook: components-listbox--basic
+  recipe: listbox
+  ark: https://ark-ui.com/docs/components/listbox
+---
+
+<ExampleTabs name="listbox-basic" />
+
+## Usage
+
+```jsx
+import { Listbox } from "@chakra-ui/react"
+```
+
+```jsx
+<Listbox.Root>
+  <Listbox.Label />
+  <Listbox.Content>
+    <Listbox.Item>
+      <Listbox.ItemText />
+      <Listbox.ItemIndicator />
+    </Listbox.Item>
+  </Listbox.Content>
+</Listbox.Root>
+```
+
+## Examples
+
+### Controlled
+
+Control the listbox value externally using the `value` and `onValueChange` props
+for custom state management.
+
+<ExampleTabs name="listbox-controlled" />
+
+### With Store
+
+An alternative way to control the listbox is to use the `RootProvider` component
+and the `useListbox` store hook.
+
+This way you can access the listbox state and methods from outside the listbox.
+
+> Use `RootProvider + useListbox` or `Root`, not both.
+
+<ExampleTabs name="listbox-with-store" />
+
+### Disabled Item
+
+Disable specific items in the listbox to indicate unavailable options while
+keeping them visible for context.
+
+<ExampleTabs name="listbox-disabled-item" />
+
+### Grouped
+
+Use item groups to organize related options with clear section headers, making
+it easier for users to find specific categories of items.
+
+<ExampleTabs name="listbox-grouped" />
+
+### Horizontal
+
+Display listbox items in a horizontal layout with card-based presentation,
+perfect for media galleries or visual selection interfaces.
+
+<ExampleTabs name="listbox-horizontal" />
+
+### Multiple Selection
+
+Enable users to select multiple items from the list, useful for scenarios like
+choosing tags, categories, or preferences.
+
+<ExampleTabs name="listbox-multiselect" />
+
+### Select All
+
+Provide convenient "Select All" and "Select None" controls for multiple
+selection scenarios, with visual indicators showing selection state.
+
+<ExampleTabs name="listbox-select-all" />
+
+### Extended Select
+
+Use extended selection mode to allow users to select multiple items using
+keyboard shortcuts like Cmd/Ctrl for advanced selection patterns.
+
+<ExampleTabs name="listbox-extended-select" />
+
+### With Checkmark
+
+Display custom checkmarks for multiple selection scenarios, providing clear
+visual feedback for selected items.
+
+<ExampleTabs name="listbox-with-checkmark" />
+
+### With Icon
+
+Add icons to listbox items to provide visual context and improve recognition of
+different options.
+
+<ExampleTabs name="listbox-with-icon" />
+
+### With Description
+
+Include additional descriptive text for each item to provide more context and
+help users make informed choices.
+
+<ExampleTabs name="listbox-with-description" />
+
+### With Input
+
+Combine a search input with the listbox to filter options dynamically, making it
+easy to find specific items in long lists.
+
+<ExampleTabs name="listbox-with-input" />
+
+### With Popover
+
+Use the listbox within a popover to create dropdown-like selection menus that
+overlay other content without taking up permanent screen space.
+
+<ExampleTabs name="listbox-with-popover" />
+
+### With Dialog
+
+Present the listbox in a modal dialog for focused selection experiences,
+particularly useful for important choices that need user attention.
+
+<ExampleTabs name="listbox-with-dialog" />
+
+### Virtualized
+
+Handle large datasets efficiently with virtualization, rendering only visible
+items to maintain smooth scrolling performance even with thousands of items.
+
+<ExampleTabs name="listbox-virtualized" />
+
+### Image Explorer
+
+Create an interactive gallery where the listbox acts as navigation for
+displaying different images or media content.
+
+<ExampleTabs name="listbox-image-explorer" />
+
+### Transfer List
+
+Create a dual-listbox interface for moving items between available and selected
+states, commonly used for permission management or item selection workflows.
+
+<ExampleTabs name="listbox-transfer-list" />
+
+### Emoji Grid
+
+Display emojis in a grid layout with filtering capability, perfect for emoji
+pickers or icon selection interfaces.
+
+<ExampleTabs name="listbox-with-emoji-grid" />
+
+## Props
+
+### Root
+
+<PropTable component="Listbox" part="Root" />
+
+### Label
+
+<PropTable component="Listbox" part="Label" />
+
+### Content
+
+<PropTable component="Listbox" part="Content" />
+
+### Item
+
+<PropTable component="Listbox" part="Item" />
+
+### ItemText
+
+<PropTable component="Listbox" part="ItemText" />
+
+### ItemIndicator
+
+<PropTable component="Listbox" part="ItemIndicator" />
+
+### ItemGroup
+
+<PropTable component="Listbox" part="ItemGroup" />
+
+### ItemGroupLabel
+
+<PropTable component="Listbox" part="ItemGroupLabel" />
+
+## Explorer
+
+Explore the `Listbox` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="listbox-explorer" />

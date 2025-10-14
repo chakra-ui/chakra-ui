@@ -20,6 +20,7 @@ export { FileUploadInDialog as Dialog } from "compositions/examples/file-upload-
 export { FileUploadMediaCapture as MediaCapture } from "compositions/examples/file-upload-media-capture"
 export { FileUploadMultiple as Multiple } from "compositions/examples/file-upload-multiple"
 export { FileUploadWithDropzone as Dropzone } from "compositions/examples/file-upload-with-dropzone"
+export { FileUploadWithConditionalDropzone as ConditionalDropzone } from "compositions/examples/file-upload-with-conditional-dropzone"
 export { FileUploadWithHookForm as HookForm } from "compositions/examples/file-upload-with-hook-form"
 export { FileUploadWithInput as Input } from "compositions/examples/file-upload-with-input"
 export { FileUploadWithInputClear as InputClear } from "compositions/examples/file-upload-with-input-clear"

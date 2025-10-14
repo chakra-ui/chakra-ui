@@ -1,3 +1,4 @@
+import { type Sponsor, getSponsors } from "@/lib/get-sponsors"
 import {
   Box,
   BoxProps,
@@ -7,7 +8,6 @@ import {
   Flex,
   Group,
   HStack,
-  Image,
   Span,
   Stack,
   Text,
@@ -75,9 +75,9 @@ const SponsorGroup = (props: {
         },
       }}
     >
-      {sponsors.map((sponsor) => {
+      {sponsors.map((sponsor, index) => {
         return (
-          <Center asChild key={sponsor.MemberId} px="4" focusRing="outside">
+          <Center asChild key={index} px="4" focusRing="outside">
             <a
               href={sponsor.website ?? sponsor.profile}
               target="_blank"
@@ -96,28 +96,6 @@ const SponsorGroup = (props: {
   )
 }
 
-interface Sponsor {
-  MemberId: number
-  createdAt: string
-  type: string
-  role: string
-  tier: string
-  isActive: boolean
-  totalAmountDonated: number
-  currency: string
-  lastTransactionAt: string
-  lastTransactionAmount: number
-  profile: string
-  name: string
-  company: string | null
-  description: string | null
-  image: string
-  email: string | null
-  twitter: string | null
-  github: string | null
-  website: string | null
-}
-
 const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
   const { tier, icon: Icon } = props
   return (
@@ -132,34 +110,37 @@ const TierHeading = (props: { tier: string; icon: React.ElementType }) => {
   )
 }
 
+function getSponsorsByTier(sponsors: Sponsor[], tier: string) {
+  return sponsors.filter((sponsor) => sponsor.tier?.includes(tier))
+}
+
 const SponsorsList = async () => {
-  const response = await fetch(
-    "https://opencollective.com/chakra-ui/members/all.json",
+  const allSponsors = await getSponsors()
+
+  const companies = allSponsors.sort(
+    (a, b) => b.totalAmountDonated - a.totalAmountDonated,
   )
 
-  const allSponsors: Sponsor[] = await response.json()
-  const companies = allSponsors
-    .filter((sponsor) => sponsor.tier && sponsor.type === "ORGANIZATION")
-    .sort((a, b) => b.totalAmountDonated - a.totalAmountDonated)
-
-  const platinumSponsors = companies.filter((c) => c.tier.includes("Platinum"))
-  const goldSponsors = companies.filter((c) => c.tier.includes("Gold"))
-
-  const silverSponsors = companies.filter((c) => c.tier.includes("Silver"))
-  const bronzeSponsors = companies.filter((c) => c.tier.includes("Bronze"))
+  const platinumSponsors = getSponsorsByTier(companies, "Platinum")
+  const goldSponsors = getSponsorsByTier(companies, "Gold")
+  const silverSponsors = getSponsorsByTier(companies, "Silver")
+  const bronzeSponsors = getSponsorsByTier(companies, "Bronze")
+  const backersSponsors = getSponsorsByTier(companies, "Backer")
 
   return (
     <Stack gap="20">
       <Stack gap="6">
         <TierHeading tier="Gold + Platinum Sponsors" icon={GoldSponsorIcon} />
-        <SponsorGroup sponsors={[...platinumSponsors, ...goldSponsors]} />
+        <SponsorGroup
+          sponsors={[...platinumSponsors, ...goldSponsors, ...silverSponsors]}
+        />
       </Stack>
 
       <Stack gap="6">
         <TierHeading tier="Silver + Bronze Sponsors" icon={SilverSponsorIcon} />
         <SponsorGroup
           size="6"
-          sponsors={[...silverSponsors, ...bronzeSponsors]}
+          sponsors={[...bronzeSponsors, ...backersSponsors]}
         />
       </Stack>
     </Stack>

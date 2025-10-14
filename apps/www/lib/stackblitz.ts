@@ -151,7 +151,7 @@ async function readComposition(path: string) {
 }
 
 async function readExample(exampleId: string) {
-  const url = `${BASE_URL}/example/${exampleId}`
+  const url = `${BASE_URL}/api/example/${exampleId}`
   const response = await fetch(url)
   const data = await response.json()
 

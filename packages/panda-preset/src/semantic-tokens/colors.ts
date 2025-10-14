@@ -252,8 +252,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.red.400}",
-        _dark: "{colors.red.400}",
+        _light: "{colors.red.500}",
+        _dark: "{colors.red.500}",
       },
     },
   },
@@ -296,8 +296,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.orange.400}",
-        _dark: "{colors.orange.400}",
+        _light: "{colors.orange.500}",
+        _dark: "{colors.orange.500}",
       },
     },
   },
@@ -340,8 +340,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.green.400}",
-        _dark: "{colors.green.400}",
+        _light: "{colors.green.500}",
+        _dark: "{colors.green.500}",
       },
     },
   },
@@ -384,8 +384,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.blue.400}",
-        _dark: "{colors.blue.400}",
+        _light: "{colors.blue.500}",
+        _dark: "{colors.blue.500}",
       },
     },
   },
@@ -428,8 +428,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.yellow.400}",
-        _dark: "{colors.yellow.400}",
+        _light: "{colors.yellow.500}",
+        _dark: "{colors.yellow.500}",
       },
     },
   },
@@ -472,8 +472,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.teal.400}",
-        _dark: "{colors.teal.400}",
+        _light: "{colors.teal.500}",
+        _dark: "{colors.teal.500}",
       },
     },
   },
@@ -516,8 +516,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.purple.400}",
-        _dark: "{colors.purple.400}",
+        _light: "{colors.purple.500}",
+        _dark: "{colors.purple.500}",
       },
     },
   },
@@ -560,8 +560,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.pink.400}",
-        _dark: "{colors.pink.400}",
+        _light: "{colors.pink.500}",
+        _dark: "{colors.pink.500}",
       },
     },
   },
@@ -604,8 +604,8 @@ export const colors = defineSemanticTokens.colors({
     },
     focusRing: {
       value: {
-        _light: "{colors.cyan.400}",
-        _dark: "{colors.cyan.400}",
+        _light: "{colors.cyan.500}",
+        _dark: "{colors.cyan.500}",
       },
     },
   },

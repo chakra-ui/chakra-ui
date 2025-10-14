@@ -10,7 +10,7 @@ interface ScrollToIndexDetails {
 }
 
 export const SelectVirtualized = () => {
-  const contentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
 
   const virtualizer = useVirtualizer({
     count: items.length,

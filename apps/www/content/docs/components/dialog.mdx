@@ -5,7 +5,7 @@ links:
   source: components/dialog
   storybook: components-dialog--basic
   recipe: dialog
-  ark: https://ark-ui.com/react/docs/components/dialog
+  ark: https://ark-ui.com/docs/components/dialog
 ---
 
 <ExampleTabs name="dialog-basic" />
@@ -55,6 +55,24 @@ screen.
 
 <ExampleTabs name="dialog-with-fullscreen" />
 
+### Responsive Size
+
+Use responsive values for the `size` prop to make the dialog adapt to different
+screen sizes.
+
+We recommend using exact breakpoints values instead of using a `base` to ensure
+styles are properly contained.
+
+```tsx
+// ❌ Might cause a style leak between the breakpoints
+<Dialog.Root size={{ base: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+
+// Works ✅
+<Dialog.Root size={{ mdDown: "full", md: "lg" }}>{/* ... */}</Dialog.Root>
+```
+
+<ExampleTabs name="dialog-with-responsive-size" />
+
 ### Placement
 
 Use the `placement` prop to change the placement of the dialog component.
@@ -83,6 +101,13 @@ Use the `DialogContext` component to access the dialog state and methods from
 outside the dialog.
 
 <ExampleTabs name="dialog-with-context" />
+
+### Nested Dialogs
+
+You can nest dialogs by using the `Dialog.Root` component inside another
+`Dialog.Root` component.
+
+<ExampleTabs name="dialog-nested" />
 
 ### Initial Focus
 

@@ -5,6 +5,399 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.27.1](./#3.27.1) - 2025-10-06
+
+### Fixed
+
+- **Collapsible**: Expose `Collapsible.Indicator` component to provide visual
+  indicator for collapsible state
+
+- **Timeline**: Add `showLastSeparator` variant to control visibility of the
+  last separator
+
+- **Table**: Ensure stickyHeader works with outline variant
+
+- **CodeBlock**:
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- **Styled System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- **React 19 Compatibility**: Fix issue where refs don't support cleanup
+  function
+
+- **CLI**: Allow CLI to read new documentation blocks filtering
+
+## [3.27.0](./#3.27.0) - 2025-09-14
+
+### Added
+
+- **CLI**: Add new `blocks` command to add chakra pro blocks to your project.
+
+  This command requires valid Chakra Pro license and API key in the
+  `CHAKRA_UI_PRO_API_KEY` environment variable.
+
+  ```sh
+  # Interactive block selection
+  npx @chakra-ui/cli blocks add
+
+  # Add all variants of a specific block
+  npx @chakra-ui/cli blocks add hero
+
+  # Add a specific variant of a block
+  npx @chakra-ui/cli blocks add hero --variant "simple"
+
+  # List available blocks
+  npx @chakra-ui/cli blocks list
+
+  # List blocks in a specific category
+  npx @chakra-ui/cli blocks list --category "marketing"
+  ```
+
+- **Composition Types**: Enhanced with comprehensive CSS property support
+
+  **Text Style Properties:** Added properties to `theme.textStyles`:
+  - Basic properties (`color`, `direction`, `font`, `fontFamily`,
+    `fontFeatureSettings`, `fontKerning`, `fontLanguageOverride`,
+    `fontOpticalSizing`, `fontPalette`)
+  - Typography properties (`hangingPunctuation`, `hyphens`,
+    `hyphenateCharacter`, `hyphenateLimitChars`, `lineBreak`, `quotes`,
+    `overflowWrap`, `tabSize`)
+  - Text alignment (`textAlign`, `textAlignLast`, `textCombineUpright`,
+    `textJustify`)
+  - Text decoration (`textDecorationSkip`, `textDecorationSkipBox`,
+    `textDecorationSkipInk`, `textDecorationSkipInset`,
+    `textDecorationThickness`, `textEmphasis`)
+  - Text formatting (`textShadow`, `textStroke`, `textStrokeColor`,
+    `textStrokeWidth`, `textUnderlineOffset`, `textUnderlinePosition`,
+    `textWrap`, `textWrapMode`, `textWrapStyle`)
+  - Text layout (`unicodeBidi`, `verticalAlign`, `whiteSpace`, `wordBreak`,
+    `wordSpacing`, `writingMode`)
+
+  **Layer Style Properties:** Added properties to `theme.layerStyles`:
+  - Layout properties (`aspectRatio`, `display`, `contain`, `contentVisibility`,
+    `isolation`)
+  - Visual effects (`clipPath`, `mixBlendMode`, `maskClip`, `maskComposite`,
+    `maskImage`, `maskMode`, `maskOrigin`, `maskPosition`, `maskRepeat`,
+    `maskSize`)
+  - Modern properties (`objectFit`, `objectPosition`, `pointerEvents`, `resize`,
+    `visibility`, `willChange`)
+  - Border properties (`borderImage`, `borderImageOutset`, `borderImageRepeat`,
+    `borderImageSlice`, `borderImageSource`, `borderImageWidth`)
+  - Overflow properties (`overflow`, `overflowX`, `overflowY`)
+
+### Fixed
+
+- **CodeBlock**:
+  - Fix issue where Line numbers display incorrectly when `meta.wordWrap` is
+    true
+  - Allow horizontal scrolling when code block overflows
+
+- **Hover Card**: Change default delay values to improve accessibility
+  - `openDelay`: from `700ms` to `600ms`
+
+- **Tooltip**: Change default delay values to improve accessibility.
+  [Learn more](https://www.nngroup.com/articles/timing-exposing-content)
+  - `openDelay`: from `1000ms` to `400ms`
+  - `closeDelay`: from `500ms` to `150ms`
+
+- **Menu**:
+  - Fix issue where keyboard activation of menu items with `target="_blank"`
+    would open two tabs
+  - Fix issue where hovering a partially visible item with pointer causes it to
+    scroll into view
+
+- **Combobox**: Add `alwaysSubmitOnEnter` prop to allow forcing the form to be
+  submitted immediately on Enter press
+
+## [3.26.0](./#3.26.0) - 2025-08-28
+
+### Added
+
+- **Listbox [New]**: Add new component with support for single/multi-select,
+  grouping, virtualization, controlled state, icons, descriptions, and
+  accessibility features.
+
+  This component can be used to build command palettes, dropdowns with search,
+  and much more.
+
+```tsx
+<Listbox.Root collection={frameworks} width="320px">
+  <Listbox.Label>Select framework</Listbox.Label>
+  <Listbox.Content>
+    {frameworks.items.map((framework) => (
+      <Listbox.Item item={framework} key={framework.value}>
+        <Listbox.ItemText>{framework.label}</Listbox.ItemText>
+        <Listbox.ItemIndicator />
+      </Listbox.Item>
+    ))}
+  </Listbox.Content>
+</Listbox.Root>
+```
+
+- **Hover Card**: Add support for `disabled` prop
+
+### Changed
+
+- **CodeBlock**: Add configurable theme support and sync loading for Shiki
+  adapter
+  - **Theme configuration is now required** - The `theme` property must be
+    explicitly provided to `createShikiAdapter`
+  - **Removed hard-coded theme fallbacks** - Missing themes now throw
+    descriptive errors
+  - **Optional sync loading** with `loadSync` method for better performance
+
+  ```typescript
+  // Before
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+  })
+
+  // After
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+    theme: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+  })
+  ```
+
+### Fixed
+
+- **Select, Menu**: Fix issue where disabled items could be reached via
+  typeahead
+
+- **Color Picker**: Fix issue where color picker was not working correctly in
+  RTL mode
+
+- **Number Input**
+  - Omit the input `pattern` when `formatOptions` is provided. This prevents
+    native pattern validation from conflicting with formatted values (e.g.,
+    currency or percent).
+  - Handle empty values consistently across all format options.
+  - Add `data-scrubbing` attribute to the number input parts.
+
+## [3.25.0](./#3.25.0) - 2025-08-20
+
+### Added
+
+- **Scroll Area**: Add new scroll area component
+
+  ```tsx
+  <ScrollArea.Root>
+    <ScrollArea.Viewport>
+      <ScrollArea.Content>{/* Scrolling content */}</ScrollArea.Content>
+    </ScrollArea.Viewport>
+    <ScrollArea.Scrollbar>
+      <ScrollArea.Thumb />
+    </ScrollArea.Scrollbar>
+    <ScrollArea.Corner />
+  </ScrollArea.Root>
+  ```
+
+### Changed
+
+- **System**: Implement preset for table `border-spacing` property and improve
+  documentation
+
+- **Highlight**: Add `exactMatch` prop that enables whole-word matching using
+  regex word boundaries.
+
+### Fixed
+
+- **System**: Fix nested token override issue during theme merging
+
+  ```tsx
+  const defaultConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: { value: "#000000" },
+        },
+      },
+    },
+  }
+
+  const userConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: {
+            100: { value: "#EE0F0F" },
+            200: { value: "#CC0C0C" },
+          },
+        },
+      },
+    },
+  }
+
+  // Before: This would return undefined
+  const system = createSystem(defaultConfig, userConfig)
+  system.token("colors.black.100") // undefined
+
+  // After: This will return merged correctly, preserving the default value
+  system.token("colors.black.100") // "#EE0F0F"
+  system.token("colors.black.200") // "#CC0C0C"
+  system.token("colors.black") // "#000000"
+  ```
+
+- **Menu**
+  - Fix issue where `onCheckedChange` could be called twice on checkbox or radio
+    item
+  - Add `data-state` attribute for context menu trigger
+  - Fix context menu positioning bug where reopening at the same coordinates
+    fails to reposition
+
+- **Radio Group**: Fixed issue where arrow key navigation doesn't apply
+  `data-focus-visible` on the newly focused item.
+
+## [3.24.2](./#3.24.2) - 2025-08-06
+
+### Fixed
+
+- **System**: Fix issue where using `asChild` with invalid child elements or
+  `React.lazy` components would throw an error. This issue more commonly occurs
+  when composing with Next.js `Link` component.
+
+  ```tsx
+  import { Breadcrumb } from "@chakra-ui/react"
+  import Link from "next/link"
+
+  export default function Page() {
+    return (
+      <Breadcrumb.Root>
+        {/* ✅ Now works correctly */}
+        <Breadcrumb.Link asChild>
+          <Link href="#">aaaa</Link>
+        </Breadcrumb.Link>
+      </Breadcrumb.Root>
+    )
+  }
+  ```
+
+## [3.24.1](./#3.24.1) - 2025-08-05
+
+### Changed
+
+- **Prose**: Provide a way to exclude components from prose styling by using
+  `not-prose` class
+
+### Fixed
+
+- **System**: Fix issue where `fullscreen` condition returns the wrong css
+  selector
+
+## [3.24.0](./#3.24.0) - 2025-07-31
+
+### Added
+
+- **CodeBlock**: Add new codeblock component with support for highlight.js and
+  shiki.
+
+  ```tsx
+  <CodeBlock.AdapterProvider value={shikiAdapter}>
+    <CodeBlock.Root code="console.log('Hello, world!')" language="tsx">
+      <CodeBlock.Content>
+        <CodeBlock.Code>
+          <CodeBlock.CodeText />
+        </CodeBlock.Code>
+      </CodeBlock.Content>
+    </CodeBlock.Root>
+  </CodeBlock.AdapterProvider>
+  ```
+
+### Fixed
+
+- **Breadcrumb**: Fix invalid HTML structure
+
+## [3.23.0](./#3.23.0) - 2025-07-26
+
+### Added
+
+- **System**: Add `unstyled` prop support to compound component children to
+  opt-out of recipe styles per component.
+
+  ```tsx
+  <Accordion.Root defaultValue={["a"]}>
+    <Accordion.Item value="a">
+      {/* Opt-out of recipe styles */}
+      <Accordion.ItemTrigger unstyled bg="red.500" />
+      <Accordion.ItemContent>
+        <Accordion.ItemBody />
+      </Accordion.ItemContent>
+    </Accordion.Item>
+  </Accordion.Root>
+  ```
+
+- **Group**: Add support changing group gap globally via `--group-gap` CSS
+  variable
+
+### Fixed
+
+- **Tabs**: Export missing types
+
+- **Hooks**: Export entrypoint for better tree-shaking `@chakra-ui/react/hooks`
+
+- **Theme**: Expose smaller bits of the theme in the entrypoint for better
+  tree-shaking `@chakra-ui/react/theme`. We now expose `recipes`, `slotRecipes`,
+  `breakpoints`, `keyframes`, `textStyles`, `layerStyles`, `animationStyles`,
+  `globalCss`, `cssVarsPrefix`, `cssVarsRoot`, `semanticTokens`, `tokens` as
+  dedicated modules.
+
+- **Dialog**
+  - Use `dvh` and `dvw` units instead of `vh` and `vw` to dynamically adjust to
+    viewport size changes.
+  - Fix issue where dialog backdrop doesn't have the correct z-index when used
+    in a nested dialog.
+
+- **Native Select**: Ensure height is consistent with input and select across
+  sizes.
+
+- **Breadcrumb**: Fix HTML semantic structure for `Breadcrumb.Ellipsis`
+  component by changing the underlying element from `<span>` to `<li>`.
+
+  ```tsx
+  // Before: <span> inside <ol> (invalid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* rendered as <span> */}
+  </Breadcrumb.List>
+
+  // After: <li> inside <ol> (valid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* now renders as <li> */}
+  </Breadcrumb.List>
+  ```
+
+- **Tree View**
+  - Fixed issue where tree view doesn't scroll into view when content overflows
+  - Fix issue where the `filter` method completely deletes the children key from
+    the node when there are no matching children
+
+- **File Upload**
+  - Add support for programmatically controlling the accepted files via
+    `acceptedFiles` and `defaultAcceptedFiles`
+  - Export `FileError`, `FileMimeType`, and `FileRejection` types and fix
+    validation issues
+
 ## [3.22.0](./#3.22.0) - 2025-07-07
 
 ### Added
@@ -329,7 +722,7 @@ Fix potential import error from `@zag-js/utils` in `@ark-ui/react`.
 - **General**: Improve render performance by upgrading to the latest Ark UI v5.
   This brings a **1.5x - 4x** improvements across components. Learn more from
   the
-  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+  [Ark UI v5 changelog](https://ark-ui.com/docs/overview/changelog#500---2025-03-06).
 
 - **RadioGroup**: Allow passing `null` as a valid value to clear the value. This
   means the signature of `onValueChange` now supports `string | null` instead of

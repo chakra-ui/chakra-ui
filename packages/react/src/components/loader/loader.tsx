@@ -1,6 +1,6 @@
 import * as React from "react"
 import type { HTMLChakraProps } from "../../styled-system"
-import { AbsoluteCenter } from "../center"
+import { AbsoluteCenter } from "../absolute-center"
 import { Span } from "../span"
 import { Spinner } from "../spinner"
 

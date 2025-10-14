@@ -1,0 +1,33 @@
+{
+  "name": "skip-nav",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "skip-nav-basic",
+      "content": "export const SkipNavBasic = () => {\n  return (\n    <Box>\n      <SkipNavLink>Skip to Content</SkipNavLink>\n\n      {/* Simulated navigation */}\n      <Box p=\"4\" bg=\"gray.100\" borderRadius=\"md\" mb=\"4\">\n        <Text fontWeight=\"medium\" mb=\"2\">\n          Navigation\n        </Text>\n        <Text fontSize=\"sm\" color=\"gray.600\">\n          This represents a navigation area that users might want to skip over.\n        </Text>\n      </Box>\n\n      {/* Main content area */}\n      <SkipNavContent>\n        <Box p=\"4\" bg=\"blue.50\" borderRadius=\"md\">\n          <Text fontWeight=\"medium\" mb=\"2\">\n            Main Content\n          </Text>\n          <Text fontSize=\"sm\">\n            This is the main content area. When users press Tab and then Enter\n            on the \"Skip to Content\" link, focus will jump directly here,\n            bypassing the navigation.\n          </Text>\n        </Box>\n      </SkipNavContent>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, SkipNavContent, SkipNavLink, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SkipNav } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skip-nav-custom-id",
+      "content": "export const SkipNavCustomId = () => {\n  return (\n    <Box>\n      <SkipNavLink id=\"main-content\">Skip to Main Content</SkipNavLink>\n\n      {/* Simulated header and navigation */}\n      <Box p=\"4\" bg=\"gray.100\" borderRadius=\"md\" mb=\"4\">\n        <Text fontWeight=\"medium\" mb=\"2\">\n          Header & Navigation\n        </Text>\n        <Text fontSize=\"sm\" color=\"gray.600\">\n          This example uses a custom ID \"main-content\" for both components to\n          ensure they match.\n        </Text>\n      </Box>\n\n      {/* Main content area with custom ID */}\n      <SkipNavContent id=\"main-content\">\n        <Box p=\"4\" bg=\"green.50\" borderRadius=\"md\">\n          <Text fontWeight=\"medium\" mb=\"2\">\n            Main Content (Custom ID)\n          </Text>\n          <Text fontSize=\"sm\">\n            Both the SkipNavLink and SkipNavContent use the same custom ID\n            \"main-content\" to ensure proper linking and focus management.\n          </Text>\n        </Box>\n      </SkipNavContent>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, SkipNavContent, SkipNavLink, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SkipNav } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "skip-nav-with-content",
+      "content": "export const SkipNavWithContent = () => {\n  return (\n    <Box>\n      <SkipNavLink>Skip to Content</SkipNavLink>\n\n      {/* Simulated header with multiple navigation items */}\n      <Box p=\"4\" bg=\"gray.100\" borderRadius=\"md\" mb=\"4\">\n        <Text fontWeight=\"medium\" mb=\"2\">\n          Site Header\n        </Text>\n        <VStack align=\"start\" gap=\"1\">\n          <Text fontSize=\"sm\" color=\"gray.600\">\n            • Home\n          </Text>\n          <Text fontSize=\"sm\" color=\"gray.600\">\n            • About\n          </Text>\n          <Text fontSize=\"sm\" color=\"gray.600\">\n            • Services\n          </Text>\n          <Text fontSize=\"sm\" color=\"gray.600\">\n            • Contact\n          </Text>\n        </VStack>\n      </Box>\n\n      {/* SkipNavContent wrapping main content */}\n      <SkipNavContent>\n        <Box p=\"6\" bg=\"purple.50\" borderRadius=\"md\">\n          <Heading size=\"lg\" mb=\"4\">\n            Welcome to Our Site\n          </Heading>\n\n          <VStack align=\"start\" gap=\"4\">\n            <Text>\n              This is the main content area. The SkipNavContent component wraps\n              this entire section, making it the target for the skip navigation\n              link.\n            </Text>\n\n            <Text>\n              When keyboard users press Tab to focus the \"Skip to Content\" link\n              and then press Enter, focus will jump directly to this content\n              area, bypassing all the navigation items above.\n            </Text>\n\n            <Text fontSize=\"sm\" color=\"purple.600\">\n              This is especially helpful for users with screen readers or those\n              who navigate primarily with keyboards.\n            </Text>\n          </VStack>\n        </Box>\n      </SkipNavContent>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Heading,\n  SkipNavContent,\n  SkipNavLink,\n  Text,\n  VStack,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SkipNav } from \"@chakra-ui/react\""
+    }
+  ]
+}

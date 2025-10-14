@@ -1,0 +1,55 @@
+{
+  "name": "absolute-center",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "absolute-center-basic",
+      "content": "export const AbsoluteCenterBasic = () => {\n  return (\n    <Box position=\"relative\" h=\"100px\" bg=\"bg.muted\" borderRadius=\"md\">\n      <AbsoluteCenter>\n        <Box bg=\"bg.emphasized\" px=\"4\" py=\"2\" borderRadius=\"md\" color=\"fg\">\n          Centered Content\n        </Box>\n      </AbsoluteCenter>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { AbsoluteCenter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "absolute-center-with-axis",
+      "content": "export const AbsoluteCenterWithAxis = () => {\n  return (\n    <VStack gap=\"6\" align=\"stretch\">\n      <For each={[\"horizontal\", \"vertical\", \"both\"]}>\n        {(axis) => (\n          <VStack gap=\"2\" key={axis}>\n            <Text fontWeight=\"medium\">{`<AbsoluteCenter axis=\"${axis}\" />`}</Text>\n            <Box position=\"relative\" h=\"80px\" outline=\"1px solid red\">\n              <AbsoluteCenter axis={axis}>\n                <Box\n                  bg=\"blue.solid\"\n                  px=\"3\"\n                  py=\"1\"\n                  borderRadius=\"sm\"\n                  color=\"white\"\n                >\n                  {axis}\n                </Box>\n              </AbsoluteCenter>\n            </Box>\n          </VStack>\n        )}\n      </For>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box, For, Text, VStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { AbsoluteCenter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "absolute-center-with-content",
+      "content": "export const AbsoluteCenterWithContent = () => {\n  return (\n    <Box\n      position=\"relative\"\n      w=\"100px\"\n      h=\"100px\"\n      bg=\"bg.muted\"\n      borderRadius=\"md\"\n    >\n      <AbsoluteCenter>\n        <Box\n          bg=\"red.solid\"\n          color=\"white\"\n          p=\"3\"\n          borderRadius=\"full\"\n          fontSize=\"xl\"\n        >\n          <LuHeart />\n        </Box>\n      </AbsoluteCenter>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box } from \"@chakra-ui/react\"",
+        "import { LuHeart } from \"react-icons/lu\""
+      ],
+      "importPath": "import { AbsoluteCenter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "absolute-center-with-overlay",
+      "content": "const Overlay = () => (\n  <AbsoluteCenter bg=\"bg/80\" backdropFilter=\"blur(2px)\" rounded=\"md\" p=\"4\">\n    <HStack gap=\"3\">\n      <Spinner size=\"sm\" colorPalette=\"blue\" />\n      <Text fontSize=\"sm\" color=\"fg.muted\">\n        Loading...\n      </Text>\n    </HStack>\n  </AbsoluteCenter>\n)\n\nexport const AbsoluteCenterWithOverlay = () => {\n  return (\n    <Box position=\"relative\" h=\"120px\" bg=\"bg.muted\" rounded=\"md\" p=\"10\">\n      <Box opacity=\"0.5\" aria-busy=\"true\">\n        Some content that is being loaded...\n      </Box>\n      <Overlay />\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { AbsoluteCenter, Box, HStack, Spinner, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { AbsoluteCenter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "absolute-center-with-rtl",
+      "content": "export const AbsoluteCenterWithRtl = () => {\n  return (\n    <VStack gap=\"6\" align=\"stretch\">\n      <For each={[\"horizontal\", \"vertical\", \"both\"]}>\n        {(axis) => (\n          <VStack gap=\"2\" dir=\"rtl\" key={axis}>\n            <Text fontWeight=\"medium\">RTL ({axis})</Text>\n            <Box\n              position=\"relative\"\n              h=\"100px\"\n              bg=\"bg.muted\"\n              borderRadius=\"md\"\n              outline=\"1px solid red\"\n            >\n              <AbsoluteCenter axis={axis}>\n                <HStack\n                  bg=\"green.solid\"\n                  color=\"white\"\n                  px=\"4\"\n                  py=\"2\"\n                  borderRadius=\"md\"\n                  gap=\"2\"\n                >\n                  <Span>البداية</Span>\n                </HStack>\n              </AbsoluteCenter>\n            </Box>\n          </VStack>\n        )}\n      </For>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  AbsoluteCenter,\n  Box,\n  For,\n  HStack,\n  Span,\n  Text,\n  VStack,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { AbsoluteCenter } from \"@chakra-ui/react\""
+    }
+  ]
+}

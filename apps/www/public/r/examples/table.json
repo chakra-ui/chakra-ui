@@ -12,6 +12,24 @@
       "importPath": "import { Table } from \"@chakra-ui/react\""
     },
     {
+      "name": "table-with-caption-top",
+      "content": "export const TableWithCaptionTop = () => {\n  return (\n    <Table.Root size=\"sm\">\n      <Table.Caption captionSide=\"top\">\n        Product inventory and pricing information\n      </Table.Caption>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "table-with-caption",
+      "content": "export const TableWithCaption = () => {\n  return (\n    <Table.Root size=\"sm\">\n      <Table.Caption>Product inventory and pricing information</Table.Caption>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Table } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Table } from \"@chakra-ui/react\""
+    },
+    {
       "name": "table-with-column-border",
       "content": "export const TableWithColumnBorder = () => {\n  return (\n    <Table.Root size=\"sm\" showColumnBorder>\n      <Table.Header>\n        <Table.Row>\n          <Table.ColumnHeader>Product</Table.ColumnHeader>\n          <Table.ColumnHeader>Category</Table.ColumnHeader>\n          <Table.ColumnHeader textAlign=\"end\">Price</Table.ColumnHeader>\n        </Table.Row>\n      </Table.Header>\n      <Table.Body>\n        {items.map((item) => (\n          <Table.Row key={item.id}>\n            <Table.Cell>{item.name}</Table.Cell>\n            <Table.Cell>{item.category}</Table.Cell>\n            <Table.Cell textAlign=\"end\">{item.price}</Table.Cell>\n          </Table.Row>\n        ))}\n      </Table.Body>\n    </Table.Root>\n  )\n}\n\nconst items = [\n  { id: 1, name: \"Laptop\", category: \"Electronics\", price: 999.99 },\n  { id: 2, name: \"Coffee Maker\", category: \"Home Appliances\", price: 49.99 },\n  { id: 3, name: \"Desk Chair\", category: \"Furniture\", price: 150.0 },\n  { id: 4, name: \"Smartphone\", category: \"Electronics\", price: 799.99 },\n  { id: 5, name: \"Headphones\", category: \"Accessories\", price: 199.99 },\n]\n",
       "hasSnippet": false,

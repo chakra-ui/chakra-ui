@@ -1,0 +1,171 @@
+{
+  "name": "scroll-area",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "scroll-area-basic",
+      "content": "export const ScrollAreaBasic = () => (\n  <ScrollArea.Root height=\"8.5rem\">\n    <ScrollArea.Viewport>\n      <ScrollArea.Content spaceY=\"4\">\n        <LoremIpsum p={3} />\n      </ScrollArea.Content>\n    </ScrollArea.Viewport>\n    <ScrollArea.Scrollbar>\n      <ScrollArea.Thumb />\n    </ScrollArea.Scrollbar>\n    <ScrollArea.Corner />\n  </ScrollArea.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-both-directions",
+      "content": "export const ScrollAreaBothDirections = () => (\n  <ScrollArea.Root height=\"12rem\" width=\"xl\" size=\"xs\">\n    <ScrollArea.Viewport>\n      <ScrollArea.Content p=\"1\" spaceY=\"4\" w=\"40rem\">\n        <LoremIpsum p={3} />\n      </ScrollArea.Content>\n    </ScrollArea.Viewport>\n    <ScrollArea.Scrollbar orientation=\"horizontal\" />\n    <ScrollArea.Scrollbar orientation=\"vertical\" />\n    <ScrollArea.Corner />\n  </ScrollArea.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-horizontal",
+      "content": "export const ScrollAreaHorizontal = () => (\n  <ScrollArea.Root width=\"24rem\" size=\"xs\">\n    <ScrollArea.Viewport>\n      <ScrollArea.Content py=\"4\">\n        <Flex gap=\"4\" flexWrap=\"nowrap\">\n          {Array.from({ length: 12 }, (_, i) => (\n            <Box rounded=\"sm\" key={i} h=\"20\" w=\"40\" flexShrink=\"0\">\n              Item {i + 1}\n            </Box>\n          ))}\n        </Flex>\n      </ScrollArea.Content>\n    </ScrollArea.Viewport>\n    <ScrollArea.Scrollbar orientation=\"horizontal\" />\n    <ScrollArea.Corner />\n  </ScrollArea.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex, ScrollArea } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "scroll-area-scroll-to-position",
+      "content": "\"use client\"\nexport const ScrollAreaScrollToPosition = () => {\n  const scrollArea = useScrollArea()\n  return (\n    <Stack gap=\"8\" align=\"flex-start\" maxW=\"xl\">\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() => scrollArea.scrollTo({ top: 200, behavior: \"smooth\" })}\n      >\n        Scroll to 100px\n      </Button>\n      <ScrollArea.RootProvider value={scrollArea} height=\"8rem\" width=\"24rem\">\n        <ScrollArea.Viewport>\n          <ScrollArea.Content>\n            <LoremIpsum p={3} />\n          </ScrollArea.Content>\n        </ScrollArea.Viewport>\n\n        <ScrollArea.Scrollbar />\n      </ScrollArea.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, ScrollArea, Stack, useScrollArea } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-scroll-to-side",
+      "content": "\"use client\"\nexport const ScrollAreaScrollToSide = () => {\n  const scrollArea = useScrollArea()\n  return (\n    <Stack gap=\"8\" align=\"flex-start\" maxW=\"xl\">\n      <ButtonGroup variant=\"outline\" justify=\"center\" size=\"sm\">\n        <Button\n          onClick={() =>\n            scrollArea.scrollToEdge({ edge: \"bottom\", behavior: \"smooth\" })\n          }\n        >\n          Scroll to bottom\n        </Button>\n        <Button\n          onClick={() =>\n            scrollArea.scrollToEdge({ edge: \"top\", behavior: \"smooth\" })\n          }\n        >\n          Scroll to top\n        </Button>\n      </ButtonGroup>\n\n      <ScrollArea.RootProvider value={scrollArea} height=\"8rem\" width=\"24rem\">\n        <ScrollArea.Viewport>\n          <ScrollArea.Content>\n            <LoremIpsum p={3} />\n          </ScrollArea.Content>\n        </ScrollArea.Viewport>\n\n        <ScrollArea.Scrollbar />\n      </ScrollArea.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ButtonGroup,\n  ScrollArea,\n  Stack,\n  useScrollArea,\n} from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-stick-to-bottom",
+      "content": "\"use client\"\nexport const ScrollAreaStickToBottom = () => {\n  const sticky = useStickToBottom()\n\n  const [messages, setMessages] = useState<string[]>([\n    \"Message 1 - 10:00:00\",\n    \"Message 2 - 10:00:01\",\n    \"Message 3 - 10:00:02\",\n    \"Message 4 - 10:00:03\",\n    \"Message 5 - 10:00:04\",\n    \"Message 6 - 10:00:05\",\n    \"Message 7 - 10:00:06\",\n    \"Message 8 - 10:00:07\",\n    \"Message 9 - 10:00:08\",\n    \"Message 10 - 10:00:09\",\n  ])\n\n  const addMessage = () => {\n    const newMessage = `Message ${messages.length + 1} - ${new Date().toLocaleTimeString()}`\n    setMessages((prev) => [...prev, newMessage])\n  }\n\n  const addMultipleMessages = () => {\n    const newMessages = Array.from(\n      { length: 5 },\n      (_, i) =>\n        `Batch message ${messages.length + i + 1} - ${new Date().toLocaleTimeString()}`,\n    )\n    setMessages((prev) => [...prev, ...newMessages])\n  }\n\n  const removeMessage = () => {\n    setMessages((prev) => prev.slice(0, -1))\n  }\n\n  return (\n    <VStack gap=\"4\" align=\"stretch\" width=\"20rem\">\n      <ButtonGroup gap=\"2\" size=\"sm\" variant=\"outline\">\n        <Button onClick={addMessage}>Add Message</Button>\n        <Button onClick={addMultipleMessages}>Add 5 Messages</Button>\n        <Button onClick={removeMessage}>Remove Message</Button>\n      </ButtonGroup>\n\n      <ScrollArea.Root\n        maxHeight=\"20rem\"\n        width=\"full\"\n        borderWidth=\"1px\"\n        rounded=\"l2\"\n        size=\"xs\"\n      >\n        <ScrollArea.Viewport ref={sticky.scrollRef}>\n          <ScrollArea.Content ref={sticky.contentRef}>\n            <VStack gap=\"2\" p=\"3\" align=\"stretch\">\n              {messages.map((message, index) => (\n                <Box key={index} h=\"12\">\n                  {message}\n                </Box>\n              ))}\n            </VStack>\n          </ScrollArea.Content>\n        </ScrollArea.Viewport>\n        <ScrollArea.Scrollbar />\n\n        {!sticky.isAtBottom && (\n          <Box position=\"absolute\" bottom=\"4\" right=\"4\" zIndex=\"10\">\n            <IconButton\n              size=\"sm\"\n              onClick={() => {\n                sticky.scrollToBottom()\n              }}\n              colorScheme=\"blue\"\n              variant=\"solid\"\n            >\n              <LuArrowDown />\n            </IconButton>\n          </Box>\n        )}\n      </ScrollArea.Root>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Button,\n  ButtonGroup,\n  IconButton,\n  ScrollArea,\n  VStack,\n} from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuArrowDown } from \"react-icons/lu\"",
+        "import { useStickToBottom } from \"use-stick-to-bottom\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "use-stick-to-bottom"
+      ]
+    },
+    {
+      "name": "scroll-area-virtualization",
+      "content": "\"use client\"\nexport const ScrollAreaVirtualization = () => {\n  const scrollRef = useRef<HTMLDivElement>(null)\n\n  const items = useMemo(\n    () =>\n      Array.from({ length: 1000 }, (_, i) => ({\n        id: i,\n        name: `Item ${i + 1}`,\n      })),\n    [],\n  )\n\n  const virtualizer = useVirtualizer({\n    count: items.length,\n    getScrollElement: () => scrollRef.current,\n    estimateSize: () => 80,\n    overscan: 5,\n  })\n\n  const contentProps = useMemo(\n    (): React.ComponentProps<\"div\"> => ({\n      style: {\n        height: `${virtualizer.getTotalSize()}px`,\n        width: \"full\",\n        position: \"relative\",\n      },\n    }),\n    [virtualizer],\n  )\n\n  const getItemProps = useCallback(\n    (item: VirtualItem): React.ComponentProps<\"div\"> => ({\n      style: {\n        position: \"absolute\",\n        top: 0,\n        left: 0,\n        width: \"100%\",\n        paddingBottom: 4,\n        height: `${item.size}px`,\n        transform: `translateY(${item.start}px)`,\n      },\n    }),\n    [],\n  )\n\n  return (\n    <ScrollArea.Root height=\"20rem\" maxWidth=\"xl\">\n      <ScrollArea.Viewport ref={scrollRef}>\n        <ScrollArea.Content {...contentProps}>\n          {virtualizer.getVirtualItems().map((virtualItem) => {\n            const item = items[virtualItem.index]\n            return (\n              <div key={virtualItem.key} {...getItemProps(virtualItem)}>\n                <Box w=\"full\">{item.name}</Box>\n              </div>\n            )\n          })}\n        </ScrollArea.Content>\n      </ScrollArea.Viewport>\n      <ScrollArea.Scrollbar bg=\"transparent\" />\n    </ScrollArea.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea } from \"@chakra-ui/react\"",
+        "import { type VirtualItem, useVirtualizer } from \"@tanstack/react-virtual\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import React, { useCallback, useMemo, useRef } from \"react\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@tanstack/react-virtual"
+      ]
+    },
+    {
+      "name": "scroll-area-with-rtl",
+      "content": "const arabicText = [\n  \"مرحباً بكم في نظام التمرير المخصص\",\n  \"هذا مثال على النص العربي في منطقة التمرير\",\n  \"يدعم النظام اللغات التي تُكتب من اليمين إلى اليسار\",\n  \"التمرير الأفقي يعمل بشكل صحيح مع النصوص العربية\",\n  \"يمكنك رؤية كيف تتكيف أشرطة التمرير مع اتجاه النص\",\n  \"النظام يدعم التمرير العمودي والأفقي في نفس الوقت\",\n  \"يمكن تخصيص مظهر أشرطة التمرير حسب التصميم المطلوب\",\n  \"التفاعل مع أشرطة التمرير سهل ومريح للمستخدم\",\n  \"يعمل النظام بسلاسة على جميع المتصفحات الحديثة\",\n  \"يمكن دمج هذا المكون مع مكونات أخرى بسهولة\",\n  \"الأداء محسّن للتعامل مع كميات كبيرة من المحتوى\",\n]\n\nexport const ScrollAreaWithRtl = () => {\n  return (\n    <LocaleProvider locale=\"ar-AE\">\n      <ScrollArea.Root height=\"8rem\" width=\"24rem\" size=\"sm\">\n        <ScrollArea.Viewport>\n          <ScrollArea.Content p=\"2\">\n            {arabicText.map((text, i) => (\n              <span key={i}>{text}</span>\n            ))}\n          </ScrollArea.Content>\n        </ScrollArea.Viewport>\n        <ScrollArea.Scrollbar />\n        <ScrollArea.Corner />\n      </ScrollArea.Root>\n    </LocaleProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { LocaleProvider, ScrollArea } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "scroll-area-with-scroll-shadow",
+      "content": "export const ScrollAreaWithScrollShadow = () => {\n  return (\n    <ScrollArea.Root height=\"20rem\" maxW=\"2xl\">\n      <ScrollArea.Viewport\n        css={{\n          \"--scroll-shadow-size\": \"4rem\",\n          maskImage:\n            \"linear-gradient(#000,#000,transparent 0,#000 var(--scroll-shadow-size),#000 calc(100% - var(--scroll-shadow-size)),transparent)\",\n          \"&[data-at-top]\": {\n            maskImage:\n              \"linear-gradient(180deg,#000 calc(100% - var(--scroll-shadow-size)),transparent)\",\n          },\n          \"&[data-at-bottom]\": {\n            maskImage:\n              \"linear-gradient(0deg,#000 calc(100% - var(--scroll-shadow-size)),transparent)\",\n          },\n        }}\n      >\n        <ScrollArea.Content spaceY=\"4\">\n          {Array.from({ length: 10 }, (_, i) => (\n            <Box key={i} h=\"20\">\n              Item {i + 1}\n            </Box>\n          ))}\n        </ScrollArea.Content>\n      </ScrollArea.Viewport>\n    </ScrollArea.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "scroll-area-with-sizes",
+      "content": "export const ScrollAreaWithSizes = () => (\n  <Stack gap=\"8\" maxW=\"2xl\">\n    <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n      {(size) => (\n        <Stack gap=\"2\" key={size}>\n          <Text ps=\"3\" fontWeight=\"medium\">\n            size=\"{size}\"\n          </Text>\n          <ScrollArea.Root size={size} height=\"8rem\" variant=\"always\">\n            <ScrollArea.Viewport>\n              <ScrollArea.Content spaceY=\"4\">\n                <LoremIpsum />\n              </ScrollArea.Content>\n            </ScrollArea.Viewport>\n            <ScrollArea.Scrollbar />\n          </ScrollArea.Root>\n        </Stack>\n      )}\n    </For>\n  </Stack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, ScrollArea, Stack, Text } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-with-store",
+      "content": "\"use client\"\nexport const ScrollAreaWithStore = () => {\n  const scrollArea = useScrollArea()\n  return (\n    <ScrollArea.RootProvider value={scrollArea} height=\"8.5rem\">\n      <ScrollArea.Viewport>\n        <ScrollArea.Content spaceY=\"4\">\n          <LoremIpsum p={3} />\n        </ScrollArea.Content>\n      </ScrollArea.Viewport>\n      <ScrollArea.Scrollbar>\n        <ScrollArea.Thumb />\n      </ScrollArea.Scrollbar>\n    </ScrollArea.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea, useScrollArea } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-with-thumb-styling",
+      "content": "export const ScrollAreaWithThumbStyling = () => (\n  <ScrollArea.Root height=\"8rem\" maxW=\"2xl\" variant=\"always\">\n    <ScrollArea.Viewport>\n      <ScrollArea.Content spaceY=\"4\">\n        <LoremIpsum p={2} />\n      </ScrollArea.Content>\n    </ScrollArea.Viewport>\n    <ScrollArea.Scrollbar bg=\"red.subtle\">\n      <ScrollArea.Thumb bg=\"red.solid\" />\n    </ScrollArea.Scrollbar>\n  </ScrollArea.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ScrollArea } from \"@chakra-ui/react\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "scroll-area-with-variants",
+      "content": "export const ScrollAreaWithVariants = () => (\n  <Stack gap=\"8\">\n    <For each={[\"hover\", \"always\"]}>\n      {(variant) => (\n        <Stack gap=\"2\" key={variant}>\n          <Text ps=\"3\" fontWeight=\"medium\">\n            variant=\"{variant}\"\n          </Text>\n          <ScrollArea.Root height=\"8rem\" variant={variant}>\n            <ScrollArea.Viewport>\n              <ScrollArea.Content>\n                <Lorem p={4} />\n              </ScrollArea.Content>\n            </ScrollArea.Viewport>\n            <ScrollArea.Scrollbar />\n          </ScrollArea.Root>\n        </Stack>\n      )}\n    </For>\n  </Stack>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, ScrollArea, Stack, Text } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { ScrollArea } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    }
+  ]
+}

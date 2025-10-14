@@ -1,6 +1,6 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   type ConditionalValue,
   type SystemStyleObject,
@@ -38,16 +38,20 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
       ...rest
     } = props
 
-    const styles = compact({
-      gridArea: area,
-      gridColumn: spanFn(colSpan),
-      gridRow: spanFn(rowSpan),
-      gridColumnStart: colStart,
-      gridColumnEnd: colEnd,
-      gridRowStart: rowStart,
-      gridRowEnd: rowEnd,
-    })
+    const styles = useMemo(
+      () =>
+        compact({
+          gridArea: area,
+          gridColumn: spanFn(colSpan),
+          gridRow: spanFn(rowSpan),
+          gridColumnStart: colStart,
+          gridColumnEnd: colEnd,
+          gridRowStart: rowStart,
+          gridRowEnd: rowEnd,
+        }),
+      [area, colSpan, colStart, colEnd, rowEnd, rowSpan, rowStart],
+    )
 
-    return <chakra.div ref={ref} css={styles} {...rest} />
+    return <chakra.div ref={ref} css={[styles, props.css]} {...rest} />
   },
 )

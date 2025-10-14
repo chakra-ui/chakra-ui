@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react-vite"
-import { Box, SkipNavContent, SkipNavLink } from "../src"
+import { Box } from "../src"
 
 export default {
   title: "Components / Skip Nav",
@@ -12,9 +12,6 @@ export default {
   ],
 } satisfies Meta
 
-export const BasicExample = () => (
-  <>
-    <SkipNavLink>Skip to Content</SkipNavLink>
-    <SkipNavContent />
-  </>
-)
+export { SkipNavBasic as Basic } from "compositions/examples/skip-nav-basic"
+export { SkipNavWithContent as WithContent } from "compositions/examples/skip-nav-with-content"
+export { SkipNavCustomId as CustomId } from "compositions/examples/skip-nav-custom-id"

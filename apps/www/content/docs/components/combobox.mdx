@@ -8,7 +8,7 @@ links:
   source: components/combobox
   storybook: components-combobox--basic
   recipe: combobox
-  ark: https://ark-ui.com/react/docs/components/combobox
+  ark: https://ark-ui.com/docs/components/combobox
 ---
 
 <ExampleTabs name="combobox-basic" />
@@ -151,6 +151,30 @@ Compose the `Combobox` component with the `Field` component to wrap the combobox
 in a form field. Useful for form layouts.
 
 <ExampleTabs name="combobox-with-field" />
+
+### Form + Custom Object
+
+When working with custom objects in forms, you often need to submit the
+programmatic value rather than the display value. This example shows how to
+combine custom object mapping with form submission using a hidden input.
+
+The key is using `itemToValue` to define what gets submitted, while
+`itemToString` controls what users see. A hidden input captures the programmatic
+value for form submission.
+
+> In this example, users see "🇺🇸 United States" but the form submits "US".
+
+<ExampleTabs name="combobox-with-form-submit" />
+
+### Hook Form
+
+This example demonstrates how to integrate the Combobox with React Hook Form
+using the `Controller` component. The form automatically receives the item's
+`value` property without needing a hidden input.
+
+Users see "React" but the form receives "react".
+
+<ExampleTabs name="combobox-with-hook-form" />
 
 ### Disabled State
 
@@ -336,3 +360,10 @@ If you use a `Dialog` and have set `scrollBehavior="inside"`, you need to:
 ### Item
 
 <PropTable component="Combobox" part="Item" />
+
+## Explorer
+
+Explore the `Combobox` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="combobox-explorer" />

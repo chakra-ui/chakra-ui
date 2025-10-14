@@ -17,6 +17,7 @@ import { Table } from "@chakra-ui/react"
 
 ```jsx
 <Table.Root>
+  <Table.Caption />
   <Table.Header>
     <Table.Row>
       <Table.ColumnHeader />
@@ -54,6 +55,19 @@ Use the `variant` prop to change the appearance of the table.
 Use the `striped` prop to add zebra-stripes to the table.
 
 <ExampleTabs name="table-with-striped" />
+
+### Caption
+
+Use the `Table.Caption` component to add a caption to the table.
+
+<ExampleTabs name="table-with-caption" />
+
+### Caption Top
+
+Use the `side` prop on `Table.Caption` to position the caption at the top of the
+table.
+
+<ExampleTabs name="table-with-caption-top" />
 
 ### Column Border
 
@@ -118,8 +132,33 @@ The only prop that works for this component is `htmlWidth`
 
 <ExampleTabs name="table-with-column-group" />
 
+### Native Mode
+
+Use the `native` prop to render table descendants using native HTML elements
+(`<thead>`, `<tbody>`, `<tr>`, `<td>`, `<th>`) instead of Chakra's styled
+components.
+
+> This is a great way to improve performance for large tables by eliminating the
+> runtime styling and React Context overhead.
+
+<ExampleTabs name="table-with-native" />
+
+### TanStack Table
+
+Chakra UI works seamlessly with
+[TanStack Table](https://tanstack.com/table/latest) for advanced table features.
+
+<ExampleTabs name="table-with-tanstack" />
+
 ## Props
 
 ### Root
 
 <PropTable component="Table" part="Root" />
+
+## Explorer
+
+Explore the `Table` component parts interactively. Click on parts in the sidebar
+to highlight them in the preview.
+
+<Explorer name="table-basic-explorer" />

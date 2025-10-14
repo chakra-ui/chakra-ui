@@ -1,5 +1,399 @@
 # @chakra-ui/react
 
+## 3.27.1
+
+### Patch Changes
+
+- [`e1774c8`](https://github.com/chakra-ui/chakra-ui/commit/e1774c8c2e64db4996f936db761dc91786174378)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose
+  `Collapsible.Indicator` component to provide visual indicator for collapsible
+  state
+
+- [`f9d66f4`](https://github.com/chakra-ui/chakra-ui/commit/f9d66f431515bd7184cf02d872391f8d0f08a305)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **CodeBlock**
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- [`f26e863`](https://github.com/chakra-ui/chakra-ui/commit/f26e863add1030514f1c60a33d63362e7a2d9069)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- [#10325](https://github.com/chakra-ui/chakra-ui/pull/10325)
+  [`3e6d1f7`](https://github.com/chakra-ui/chakra-ui/commit/3e6d1f7d52d61eccceeb0da3dee2b941e1718e87)
+  Thanks [@wo-o29](https://github.com/wo-o29)! - Fix issue where refs don't
+  support cleanup function (React 19 compatibility)
+
+- [#10328](https://github.com/chakra-ui/chakra-ui/pull/10328)
+  [`451209e`](https://github.com/chakra-ui/chakra-ui/commit/451209e7564799cbf03b7a08b7839367c124447d)
+  Thanks [@megos](https://github.com/megos)! - fix(table): ensure stickyHeader
+  works with outline variant
+
+- [`56a4501`](https://github.com/chakra-ui/chakra-ui/commit/56a450188b44fef495750aa249163f0c0811100f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Timeline:** Add
+  `showLastSeparator` variant to control visibility of the last separator
+
+## 3.27.0
+
+### Minor Changes
+
+- [`16fb3cc`](https://github.com/chakra-ui/chakra-ui/commit/16fb3cc3ef658949fc1673cda913fb3b65ce1670)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Enhanced
+  composition types with comprehensive CSS property support
+
+  **Text Style Properties:** Added these properties to `theme.textStyles`:
+  - Basic properties (`color`, `direction`, `font`, `fontFamily`,
+    `fontFeatureSettings`, `fontKerning`, `fontLanguageOverride`,
+    `fontOpticalSizing`, `fontPalette`)
+  - Typography properties (`hangingPunctuation`, `hyphens`,
+    `hyphenateCharacter`, `hyphenateLimitChars`, `lineBreak`, `quotes`,
+    `overflowWrap`, `tabSize`)
+  - Text alignment (`textAlign`, `textAlignLast`, `textCombineUpright`,
+    `textJustify`)
+  - Text decoration (`textDecorationSkip`, `textDecorationSkipBox`,
+    `textDecorationSkipInk`, `textDecorationSkipInset`,
+    `textDecorationThickness`, `textEmphasis`)
+  - Text formatting (`textShadow`, `textStroke`, `textStrokeColor`,
+    `textStrokeWidth`, `textUnderlineOffset`, `textUnderlinePosition`,
+    `textWrap`, `textWrapMode`, `textWrapStyle`)
+  - Text layout (`unicodeBidi`, `verticalAlign`, `whiteSpace`, `wordBreak`,
+    `wordSpacing`, `writingMode`)
+
+  **Layer Style Properties:** Added these properties to `theme.layerStyles`:
+  - Layout properties (`aspectRatio`, `display`, `contain`, `contentVisibility`,
+    `isolation`)
+  - Visual effects (`clipPath`, `mixBlendMode`, `maskClip`, `maskComposite`,
+    `maskImage`, `maskMode`, `maskOrigin`, `maskPosition`, `maskRepeat`,
+    `maskSize`)
+  - Modern properties (`objectFit`, `objectPosition`, `pointerEvents`, `resize`,
+    `visibility`, `willChange`)
+  - Border properties (`borderImage`, `borderImageOutset`, `borderImageRepeat`,
+    `borderImageSlice`, `borderImageSource`, `borderImageWidth`)
+  - Overflow properties (`overflow`, `overflowX`, `overflowY`)
+
+### Patch Changes
+
+- [`c741fe9`](https://github.com/chakra-ui/chakra-ui/commit/c741fe92dde5388d89e7d0ed2d38011752ce249a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **CodeBlock**:
+  Fix issue where Line numbers display incorrectly when `meta.wordWrap` is true
+  in code blocks
+  - **Hover Card**: Change default delay values for hover card to improve
+    accessibility.
+    - `openDelay`: from `700ms` to `600ms`
+  - **Tooltip**: Change default delay values for tooltip to improve
+    accessibility.
+    [Learn more](https://www.nngroup.com/articles/timing-exposing-content)
+    - `openDelay`: from `1000ms` to `400ms`
+    - `closeDelay`: from `500ms` to `150ms`
+  - **Menu**
+    - Fix issue where keyboard activation of menu items with `target="_blank"`
+      would open two tabs
+    - Fix issue where hovering a partially visible item with pointer causes it
+      to scroll into view
+  - **Combobox**: Add `alwaysSubmitOnEnter` prop to allow forcing the form to be
+    submitted immediately on Enter press.
+
+- [#10312](https://github.com/chakra-ui/chakra-ui/pull/10312)
+  [`6189068`](https://github.com/chakra-ui/chakra-ui/commit/618906897170f595321f597c32b6cfa25a6c1dba)
+  Thanks [@itushh](https://github.com/itushh)! - - **CodeBlock**: Allow
+  horizontal scrolling when code block overflows
+
+## 3.26.0
+
+### Minor Changes
+
+- [`b9eede5`](https://github.com/chakra-ui/chakra-ui/commit/b9eede50a104bee4e74cb54704f121c973652a0b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Listbox
+  [New]**: Add new component with support for single/multi-select, grouping,
+  virtualization, controlled state, icons, descriptions, and accessibility
+  features.
+
+  This component can be used to build command palettes, dropdowns with search,
+  and much more.
+
+  ```tsx
+  <Listbox.Root collection={frameworks} width="320px">
+    <Listbox.Label>Select framework</Listbox.Label>
+    <Listbox.Content>
+      {frameworks.items.map((framework) => (
+        <Listbox.Item item={framework} key={framework.value}>
+          <Listbox.ItemText>{framework.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator />
+        </Listbox.Item>
+      ))}
+    </Listbox.Content>
+  </Listbox.Root>
+  ```
+
+  - **Hover Card**: Add support for `disabled` prop
+  - **Select, Menu**: Fix issue where disabled items could be reached via
+    typeahead
+  - **Color Picker**: Fix issue where color picker was not working correctly in
+    RTL mode
+  - **Number Input**
+    - Omit the input `pattern` when `formatOptions` is provided. This prevents
+      native pattern validation from conflicting with formatted values (e.g.,
+      currency or percent).
+    - Handle empty values consistently across all format options.
+    - Add `data-scrubbing` attribute to the number input parts.
+
+### Patch Changes
+
+- [`b9eede5`](https://github.com/chakra-ui/chakra-ui/commit/b9eede50a104bee4e74cb54704f121c973652a0b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **CodeBlock**: Add
+  configurable theme support and sync loading for Shiki adapter
+  - **Theme configuration is now required** - The `theme` property must be
+    explicitly provided to `createShikiAdapter`
+  - **Removed hard-coded theme fallbacks** - Missing themes now throw
+    descriptive errors
+  - **Optional sync loading** with `loadSync` method for better performance
+
+  ```typescript
+  // Before
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+  })
+
+  // After
+  const adapter = createShikiAdapter({
+    async load() { /* ... */ },
+    theme: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+  })
+  ```
+
+## 3.25.0
+
+### Minor Changes
+
+- [#10254](https://github.com/chakra-ui/chakra-ui/pull/10254)
+  [`3fb9d7c`](https://github.com/chakra-ui/chakra-ui/commit/3fb9d7c045ec948088fe3a669d8839cd5de79f1b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new scroll area
+  component
+
+  ```tsx
+  <ScrollArea.Root>
+    <ScrollArea.Viewport>
+      <ScrollArea.Content>{/* Scrolling content */}</ScrollArea.Content>
+    </ScrollArea.Viewport>
+    <ScrollArea.Scrollbar>
+      <ScrollArea.Thumb />
+    </ScrollArea.Scrollbar>
+    <ScrollArea.Corner />
+  </ScrollArea.Root>
+  ```
+
+### Patch Changes
+
+- [`d3a1064`](https://github.com/chakra-ui/chakra-ui/commit/d3a10648adb6fc1c811549a23813b92df05a35e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix nested token
+  override issue during theme merging
+
+  ```tsx
+  const defaultConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: { value: "#000000" },
+        },
+      },
+    },
+  }
+
+  const userConfig = {
+    theme: {
+      tokens: {
+        colors: {
+          black: {
+            100: { value: "#EE0F0F" },
+            200: { value: "#CC0C0C" },
+          },
+        },
+      },
+    },
+  }
+
+  // Before: This would return undefined
+  const system = createSystem(defaultConfig, userConfig)
+  system.token("colors.black.100") // undefined
+
+  // After: This will return merged correctly, preserving the default value
+  system.token("colors.black.100") // "#EE0F0F"
+  system.token("colors.black.200") // "#CC0C0C"
+  system.token("colors.black") // "#000000"
+  ```
+
+- [#10244](https://github.com/chakra-ui/chakra-ui/pull/10244)
+  [`9501179`](https://github.com/chakra-ui/chakra-ui/commit/9501179fc4b1962622672a7f16bd30901d5bf8f9)
+  Thanks [@isBatak](https://github.com/isBatak)! - - **System**: Implement
+  preset for table `border-spacing` property and improve documentation
+  - **Menu**
+    - Fix issue where `onCheckedChange` could be called twice on checkbox or
+      radio item
+    - Add `data-state` attribute for context menu trigger
+    - Fix context menu positioning bug where reopening at the same coordinates
+      fails to reposition
+  - **Radio Group**: Fixed issue where arrow key navigation doesn't apply
+    `data-focus-visible` on the newly focused item.
+  - **Highlight**: Add `exactMatch` prop that enables whole-word matching using
+    regex word boundaries.
+
+## 3.24.2
+
+### Patch Changes
+
+- [`333b063`](https://github.com/chakra-ui/chakra-ui/commit/333b0636230ec83a51e50dd74896117b60b32cda)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  using `asChild` with invalid child elements or `React.lazy` components would
+  throw an error.
+
+  > This issue more commonly occurs when composing with Next.js `Link`
+  > component.
+
+  ```tsx
+  import { Breadcrumb } from "@chakra-ui/react"
+  import Link from "next/link"
+
+  export default function Page() {
+    return (
+      <Breadcrumb.Root>
+        {/* 🧨 Throws an error */}
+        <Breadcrumb.Link asChild>
+          <Link href="#">aaaa</Link>
+        </Breadcrumb.Link>
+      </Breadcrumb.Root>
+    )
+  }
+  ```
+
+## 3.24.1
+
+### Patch Changes
+
+- [`e81a6ae`](https://github.com/chakra-ui/chakra-ui/commit/e81a6aedfddbf76ee152fd545f9157b5de1988a4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Provide a way to
+  exclude components from prose styling by using `not-prose`
+
+- [`9b7bf1d`](https://github.com/chakra-ui/chakra-ui/commit/9b7bf1dcab47686db6ef42416dc91d613df1d5a0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `_fullscreen` returns the wrong css selector
+
+## 3.24.0
+
+### Minor Changes
+
+- [#10164](https://github.com/chakra-ui/chakra-ui/pull/10164)
+  [`79971c0`](https://github.com/chakra-ui/chakra-ui/commit/79971c0d1ccac7921e5e5c65faa93e3fe8456bca)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new codeblock
+  component with support for highlight.js and shiki.
+
+  ```tsx
+  <CodeBlock.AdapterProvider value={shikiAdapter}>
+    <CodeBlock.Root code="console.log('Hello, world!')" language="tsx">
+      <CodeBlock.Content>
+        <CodeBlock.Code>
+          <CodeBlock.CodeText />
+        </CodeBlock.Code>
+      </CodeBlock.Content>
+    </CodeBlock.Root>
+  </CodeBlock.AdapterProvider>
+  ```
+
+### Patch Changes
+
+- [#10199](https://github.com/chakra-ui/chakra-ui/pull/10199)
+  [`5e7831f`](https://github.com/chakra-ui/chakra-ui/commit/5e7831f97c84fd50a084fae82039d7dc8e851b24)
+  Thanks [@ponharu](https://github.com/ponharu)! - fix: check if `separator` is
+  a valid React element
+
+## 3.23.0
+
+### Minor Changes
+
+- [`86ca96a`](https://github.com/chakra-ui/chakra-ui/commit/86ca96a0ee8720c9475c0a05019ae8e6e3002831)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Add
+  `unstyled` prop support to compound component children to opt-out of recipe
+  styles per component.
+
+  ```tsx
+  <Accordion.Root defaultValue={["a"]}>
+    <Accordion.Item value="a">
+      {/* Opt-out of recipe styles */}
+      <Accordion.ItemTrigger unstyled bg="red.500" />
+      <Accordion.ItemContent>
+        <Accordion.ItemBody />
+      </Accordion.ItemContent>
+    </Accordion.Item>
+  </Accordion.Root>
+  ```
+
+  - **Group**: Add support changing group gap globally via `--group-gap` CSS
+    variable
+
+### Patch Changes
+
+- [`dd3af62`](https://github.com/chakra-ui/chakra-ui/commit/dd3af62c4e646f8beae791364928f8e2723966b7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tree View**
+  - Fixed issue where tree view doesn't scroll into view when content overflows
+  - Fix issue where the `filter` method completely deletes the children key from
+    the node when there are no matching children
+  - **File Upload**
+    - Add support for programmatically controlling the accepted files via
+      `acceptedFiles` and `defaultAcceptedFiles`
+    - Export `FileError`, `FileMimeType`, and `FileRejection` types and fix
+      validation issues
+
+- [`dc02076`](https://github.com/chakra-ui/chakra-ui/commit/dc02076d91c1ea837c15a8831f70cad9e40f4eb2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix HTML semantic
+  structure for `Breadcrumb.Ellipsis` component by changing the underlying
+  element from `<span>` to `<li>`.
+
+  ```tsx
+  // Before: <span> inside <ol> (invalid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* rendered as <span> */}
+  </Breadcrumb.List>
+
+  // After: <li> inside <ol> (valid HTML)
+  <Breadcrumb.List>
+    <Breadcrumb.Ellipsis /> {/* now renders as <li> */}
+  </Breadcrumb.List>
+  ```
+
+- [`4da48e3`](https://github.com/chakra-ui/chakra-ui/commit/4da48e327a8213b8ef8822ccdc6accd51f36779d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tabs**: Export
+  missing types
+  - **Hooks**: Export entrypoint for better tree-shaking
+    `@chakra-ui/react/hooks`
+  - **Theme**: Expose smaller bits of the theme in the entrypoint for better
+    tree-shaking `@chakra-ui/react/theme`. We now expose `recipes`,
+    `slotRecipes`, `breakpoints`, `keyframes`, `textStyles`, `layerStyles`,
+    `animationStyles`, `globalCss`, `cssVarsPrefix`, `cssVarsRoot`,
+    `semanticTokens`, `tokens` as dedicated modules.
+  - **Dialog**: Use `dvh` and `dvw` units instead of `vh` and `vw` to
+    dynamically adjust to viewport size changes.
+  - **Native Select**: Ensure height is consistent with input and select across
+    sizes.
+
 ## 3.22.0
 
 ### Minor Changes
@@ -300,7 +694,7 @@
 
   This brings a **1.5x–4x** performance improvements across components. Learn
   more from the
-  [Ark UI v5 changelog](https://ark-ui.com/react/docs/overview/changelog#500---2025-03-06).
+  [Ark UI v5 changelog](https://ark-ui.com/docs/overview/changelog#500---2025-03-06).
 
 ## 3.13.0
 

@@ -25,6 +25,7 @@ export { MenuWithHideWhenDetached as HideWhenDetached } from "compositions/examp
 export { MenuWithIconAndCommand as IconAndCommand } from "compositions/examples/menu-with-icon-and-command"
 export { MenuWithLinks as Links } from "compositions/examples/menu-with-links"
 export { MenuWithMixedLayout as MixedLayout } from "compositions/examples/menu-with-mixed-layout"
+export { MenuWithOverflow as Overflow } from "compositions/examples/menu-with-overflow"
 export { MenuWithPlacement as Placement } from "compositions/examples/menu-with-placement"
 export { MenuWithRadioItems as RadioItems } from "compositions/examples/menu-with-radio-items"
 export { MenuWithSubmenu as Submenu } from "compositions/examples/menu-with-submenu"

@@ -78,6 +78,29 @@ animation to complete before opening a new overlay.
 
 <ExampleTabs name="overlay-with-return-value" />
 
+### Programmatic Closing
+
+You can close an overlay from within the component itself by calling the
+injected `onOpenChange` prop with `{ open: false }`.
+
+This is useful for scenarios like form submissions or user interactions that
+should close the overlay.
+
+```tsx
+const dialog = createOverlay<DialogProps>((props) => {
+  const { onOpenChange, ...rest } = props
+
+  const handleSubmit = () => {
+    // Close the overlay after successful action
+    onOpenChange?.({ open: false })
+  }
+
+  return <Dialog.Root {...rest}>{/* ... */}</Dialog.Root>
+})
+```
+
+<ExampleTabs name="overlay-with-form" />
+
 ## API
 
 ### Props
