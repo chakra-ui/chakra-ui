@@ -17,6 +17,7 @@ export const comboboxSlotRecipe = defineSlotRecipe({
     "list",
     "positioner",
     "trigger",
+    "empty",
     "indicatorGroup",
     "empty",
   ],

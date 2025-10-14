@@ -1,0 +1,30 @@
+export {
+  CarouselAutoplayTrigger as AutoplayTrigger,
+  CarouselControl as Control,
+  CarouselIndicator as Indicator,
+  CarouselIndicatorGroup as IndicatorGroup,
+  CarouselItem as Item,
+  CarouselItemGroup as ItemGroup,
+  CarouselNextTrigger as NextTrigger,
+  CarouselPrevTrigger as PrevTrigger,
+  CarouselRoot as Root,
+  CarouselRootProvider as RootProvider,
+  CarouselPropsProvider as PropsProvider,
+  CarouselContext as Context,
+} from "./carousel"
+
+export type {
+  CarouselAutoplayTriggerProps as AutoplayTriggerProps,
+  CarouselControlProps as ControlProps,
+  CarouselIndicatorProps as IndicatorProps,
+  CarouselIndicatorGroupProps as IndicatorGroupProps,
+  CarouselItemProps as ItemProps,
+  CarouselItemGroupProps as ItemGroupProps,
+  CarouselNextTriggerProps as NextTriggerProps,
+  CarouselPrevTriggerProps as PrevTriggerProps,
+  CarouselRootProps as RootProps,
+  CarouselRootProviderProps as RootProviderProps,
+  CarouselAutoplayStatusDetails as AutoplayStatusDetails,
+  CarouselDragStatusDetails as DragStatusDetails,
+  CarouselPageChangeDetails as PageChangeDetails,
+} from "./carousel"
