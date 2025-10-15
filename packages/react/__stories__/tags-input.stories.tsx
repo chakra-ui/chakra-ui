@@ -22,6 +22,7 @@ export { TagsInputReadOnly as ReadOnly } from "compositions/examples/tags-input-
 export { TagsInputValidation as Validation } from "compositions/examples/tags-input-validation"
 export { TagsInputWithBlurBehavior as BlurBehavior } from "compositions/examples/tags-input-with-blur-behavior"
 export { TagsInputWithColors as Colors } from "compositions/examples/tags-input-with-colors"
+export { TagsInputWithCombobox as Combobox } from "compositions/examples/tags-input-with-combobox"
 export { TagsInputWithDelimiter as Delimiter } from "compositions/examples/tags-input-with-delimiter"
 export { TagsInputWithField as Field } from "compositions/examples/tags-input-with-field"
 export { TagsInputWithForm as Form } from "compositions/examples/tags-input-with-form"

@@ -75,7 +75,14 @@ tags that can be added.
 
 <ExampleTabs name="tags-input-with-max" />
 
-### Validation
+### Editable Tags
+
+Use the `editable` prop to enable inline editing of existing tags by clicking on
+them, allowing users to quickly update tag values.
+
+<ExampleTabs name="tags-input-editable" />
+
+### Validate Tag
 
 Use the `validate` prop to implement custom validation rules. Tags will be added
 when the validation passes.
@@ -138,19 +145,20 @@ spaces to create new tags as users type.
 
 <ExampleTabs name="tags-input-with-delimiter" />
 
-### Editable Tags
-
-Use the `editable` prop to enable inline editing of existing tags by clicking on
-them, allowing users to quickly update tag values.
-
-<ExampleTabs name="tags-input-editable" />
-
 ### Colors
 
 Here's an example that assigns rather color scheme to the tags based on the tag
 value.
 
 <ExampleTabs name="tags-input-with-colors" />
+
+### Combobox
+
+Here's an example that composes the `TagsInput` component with the `Combobox`
+component to create a tags input that allows users to select from a list of
+predefined tags.
+
+<ExampleTabs name="tags-input-with-combobox" />
 
 ## Props
 
