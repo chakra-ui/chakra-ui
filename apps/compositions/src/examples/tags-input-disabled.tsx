@@ -21,7 +21,7 @@ export const TagsInputDisabled = () => (
         }
       </TagsInput.Context>
 
-      <TagsInput.Input placeholder="Can't type here" disabled />
+      <TagsInput.Input placeholder="Can't type here" />
     </TagsInput.Control>
 
     <TagsInput.HiddenInput />

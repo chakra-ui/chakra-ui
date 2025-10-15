@@ -5,7 +5,7 @@ import { TagsInput } from "@chakra-ui/react"
 export const TagsInputValidation = () => (
   <TagsInput.Root
     defaultValue={["React", "Chakra"]}
-    validate={({ value }) => value.length >= 3}
+    validate={(e) => e.inputValue.length >= 3}
   >
     <TagsInput.Label>Tags (min 3 chars)</TagsInput.Label>
 

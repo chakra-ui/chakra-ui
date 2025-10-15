@@ -8,35 +8,18 @@ export const TagsInputWithColors = () => (
     <TagsInput.Control>
       <TagsInput.Context>
         {({ value }) =>
-          value.map((tag, index) => {
-            const backgroundColor =
-              index % 3 === 0
-                ? "#4FD1C5"
-                : index % 3 === 1
-                  ? "#63B3ED"
-                  : "#F6AD55"
-            const textColor = "#fff"
-
-            return (
-              <TagsInput.Item key={index} index={index} value={tag}>
-                <TagsInput.ItemPreview
-                  style={{
-                    backgroundColor,
-                    color: textColor,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    padding: "0.25rem 0.5rem",
-                    borderRadius: "0.375rem",
-                  }}
-                >
-                  <TagsInput.ItemText>{tag}</TagsInput.ItemText>
-                  <TagsInput.ItemDeleteTrigger style={{ color: textColor }} />
-                </TagsInput.ItemPreview>
-                <TagsInput.ItemInput />
-              </TagsInput.Item>
-            )
-          })
+          value.map((tag, index) => (
+            <TagsInput.Item key={index} index={index} value={tag}>
+              <TagsInput.ItemPreview
+                style={{ backgroundColor: randomColor(tag) }}
+                _highlighted={{ filter: "brightness(0.9)" }}
+              >
+                <TagsInput.ItemText>{tag}</TagsInput.ItemText>
+                <TagsInput.ItemDeleteTrigger />
+              </TagsInput.ItemPreview>
+              <TagsInput.ItemInput />
+            </TagsInput.Item>
+          ))
         }
       </TagsInput.Context>
 
@@ -47,3 +30,18 @@ export const TagsInputWithColors = () => (
     <TagsInput.HiddenInput />
   </TagsInput.Root>
 )
+
+const randomColor = (str: string) => {
+  // Simple hash from string
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash)
+  }
+
+  // Generate light HSL color (H: 0-359, S: 60-80%, L: 85-94%)
+  const h = Math.abs(hash) % 360
+  const s = 60 + (Math.abs(hash) % 20) // 60% - 79%
+  const l = 85 + (Math.abs(hash) % 10) // 85% - 94%
+
+  return `hsl(${h},${s}%,${l}%)`
+}

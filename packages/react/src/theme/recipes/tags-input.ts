@@ -9,221 +9,214 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1.5",
+      width: "full",
     },
+
     label: {
       fontWeight: "medium",
-      color: "fg",
+      textStyle: "sm",
       _disabled: {
         opacity: "0.5",
       },
     },
+
     control: {
+      "--focus-color": "colors.colorPalette.focusRing",
+      "--error-color": "colors.border.error",
+      minH: "var(--tags-input-height)",
+      px: "var(--tags-input-px)",
+      py: "var(--tags-input-py)",
+      gap: "var(--tags-input-gap)",
       display: "flex",
       flexWrap: "wrap",
       alignItems: "center",
-      gap: "1.5",
-      px: "3",
-      py: "2",
       borderRadius: "l2",
-      borderWidth: "1px",
-      borderColor: "border",
-      bg: "bg",
+
       transitionProperty: "border-color, box-shadow",
       transitionDuration: "normal",
-      _focusWithin: {
-        borderColor: "colorPalette.solid",
-        boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-      },
+
       _disabled: {
         opacity: "0.5",
-        cursor: "not-allowed",
       },
       _invalid: {
-        borderColor: "border.error",
-        _focusWithin: {
-          borderColor: "border.error",
-          boxShadow: "0 0 0 1px var(--colors-border-error)",
-        },
+        borderColor: "var(--error-color)",
       },
     },
+
     input: {
       flex: "1",
       minWidth: "20",
       outline: "none",
       bg: "transparent",
       color: "fg",
-      _placeholder: { color: "fg.muted" },
-      _disabled: {
-        cursor: "not-allowed",
+      px: "calc(var(--tags-input-item-px) / 1.25)",
+      height: "var(--tags-input-item-height)",
+      _readOnly: {
+        display: "none",
       },
     },
-    item: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: "1",
-      px: "2",
-      py: "0.5",
-      borderRadius: "l1",
-      bg: "colorPalette.subtle",
-      color: "colorPalette.fg",
-      fontSize: "sm",
-      maxWidth: "full",
-      _disabled: {
-        opacity: "0.5",
-      },
-      _highlighted: {
-        bg: "colorPalette.muted",
-      },
-    },
+
     itemText: {
-      userSelect: "none",
       lineClamp: "1",
     },
+
     itemInput: {
       outline: "none",
       bg: "transparent",
       minWidth: "2ch",
       color: "inherit",
+      px: "var(--tags-input-item-px)",
+      height: "var(--tags-input-item-height)",
     },
+
     itemPreview: {
+      height: "var(--tags-input-item-height)",
       userSelect: "none",
-      lineClamp: "1",
       display: "inline-flex",
       alignItems: "center",
       gap: "1",
-      maxWidth: "full",
+      rounded: "l1",
+      px: "var(--tags-input-item-px)",
     },
+
     itemDeleteTrigger: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      width: "4",
-      height: "4",
-      borderRadius: "l1",
-      color: "fg.muted",
-      cursor: "pointer",
-      flexShrink: "0",
+      boxSize: "calc(var(--tags-input-item-height) / 1.5)",
+      cursor: { base: "button", _disabled: "initial" },
+      me: "-1",
+      opacity: "0.4",
       _hover: {
-        bg: "bg.muted",
-        color: "fg",
+        opacity: "1",
       },
-      _disabled: {
-        opacity: "0.5",
-        cursor: "not-allowed",
+      "[data-highlighted] &": {
+        opacity: "1",
       },
-    },
-    clearTrigger: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "fg.muted",
-      cursor: "pointer",
-      flexShrink: "0",
-      _hover: {
-        color: "fg",
-      },
-      _disabled: {
-        opacity: "0.5",
-        cursor: "not-allowed",
+      _icon: {
+        boxSize: "80%",
       },
     },
   },
+
   variants: {
     size: {
+      xs: {
+        root: {
+          "--tags-input-height": "sizes.8",
+          "--tags-input-px": "spacing.1.5",
+          "--tags-input-py": "spacing.1",
+          "--tags-input-gap": "spacing.1",
+          "--tags-input-item-height": "sizes.6",
+          "--tags-input-item-px": "spacing.2",
+          textStyle: "xs",
+        },
+      },
       sm: {
-        control: {
-          minHeight: "8",
-          px: "2.5",
-          py: "1.5",
-          gap: "1",
-        },
-        input: {
-          fontSize: "sm",
-        },
-        label: {
-          fontSize: "sm",
-        },
-        item: {
-          px: "1.5",
-          py: "0.5",
-          fontSize: "xs",
-        },
-        itemDeleteTrigger: {
-          width: "3",
-          height: "3",
+        root: {
+          "--tags-input-height": "sizes.9",
+          "--tags-input-px": "spacing.1.5",
+          "--tags-input-py": "spacing.1",
+          "--tags-input-gap": "spacing.1",
+          "--tags-input-item-height": "sizes.6",
+          "--tags-input-item-px": "spacing.2",
+          textStyle: "sm",
         },
       },
       md: {
-        control: {
-          minHeight: "10",
-          px: "3",
-          py: "2",
-          gap: "1.5",
-        },
-        input: {
-          fontSize: "sm",
-        },
-        label: {
-          fontSize: "sm",
-        },
-        item: {
-          px: "2",
-          py: "0.5",
-          fontSize: "sm",
-        },
-        itemDeleteTrigger: {
-          width: "4",
-          height: "4",
+        root: {
+          "--tags-input-height": "sizes.10",
+          "--tags-input-px": "spacing.1.5",
+          "--tags-input-py": "spacing.1",
+          "--tags-input-gap": "spacing.1",
+          "--tags-input-item-height": "sizes.7",
+          "--tags-input-item-px": "spacing.2",
+          textStyle: "sm",
         },
       },
       lg: {
-        control: {
-          minHeight: "12",
-          px: "4",
-          py: "2.5",
-          gap: "2",
-        },
-        input: {
-          fontSize: "md",
-        },
-        label: {
-          fontSize: "md",
-        },
-        item: {
-          px: "2.5",
-          py: "1",
-          fontSize: "sm",
-        },
-        itemDeleteTrigger: {
-          width: "5",
-          height: "5",
+        root: {
+          "--tags-input-height": "sizes.11",
+          "--tags-input-px": "spacing.1.5",
+          "--tags-input-py": "spacing.1",
+          "--tags-input-gap": "spacing.1",
+          "--tags-input-item-height": "sizes.8",
+          "--tags-input-item-px": "spacing.2",
+          textStyle: "md",
         },
       },
     },
+
     variant: {
       outline: {
         control: {
-          borderColor: "border",
+          borderWidth: "1px",
           bg: "bg",
+          _focusWithin: {
+            outlineWidth: "1px",
+            outlineStyle: "solid",
+            outlineColor: "var(--focus-color)",
+            borderColor: "var(--focus-color)",
+            _invalid: {
+              outlineColor: "var(--error-color)",
+              borderColor: "var(--error-color)",
+            },
+          },
+        },
+        itemPreview: {
+          bg: "colorPalette.subtle",
+          _highlighted: {
+            bg: "colorPalette.muted",
+          },
         },
       },
-      filled: {
+      subtle: {
         control: {
-          borderColor: "transparent",
           bg: "bg.muted",
+          borderWidth: "1px",
+          borderColor: "transparent",
+          _focusWithin: {
+            outlineWidth: "1px",
+            outlineStyle: "solid",
+            outlineColor: "var(--focus-color)",
+            borderColor: "var(--focus-color)",
+            _invalid: {
+              outlineColor: "var(--error-color)",
+              borderColor: "var(--error-color)",
+            },
+          },
+        },
+        itemPreview: {
+          bg: "bg",
+          borderWidth: "1px",
+          _highlighted: {
+            bg: "colorPalette.subtle",
+            borderColor: "colorPalette.emphasized",
+          },
         },
       },
       flushed: {
         control: {
-          borderColor: "transparent",
-          borderBottomColor: "border",
           borderRadius: "0",
           px: "0",
           bg: "transparent",
+          borderBottomWidth: "1px",
+          borderBottomColor: "border",
+          _focusWithin: {
+            borderColor: "var(--focus-color)",
+            boxShadow: "0px 1px 0px 0px var(--focus-color)",
+          },
+        },
+        itemPreview: {
+          bg: "colorPalette.subtle",
+          _highlighted: {
+            bg: "colorPalette.muted",
+          },
         },
       },
     },
   },
+
   defaultVariants: {
     size: "md",
     variant: "outline",

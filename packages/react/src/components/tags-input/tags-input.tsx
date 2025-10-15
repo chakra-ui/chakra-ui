@@ -50,7 +50,7 @@ export interface TagsInputRootProps
 export const TagsInputRoot = withProvider<HTMLDivElement, TagsInputRootProps>(
   ArkTagsInput.Root,
   "root",
-  { forwardAsChild: true },
+  { forwardAsChild: true, defaultProps: { editable: false } },
 )
 
 export const TagsInputPropsProvider =

@@ -20,7 +20,7 @@ export const TagsInputReadOnly = () => (
         }
       </TagsInput.Context>
 
-      <TagsInput.Input placeholder="Read-only..." disabled />
+      <TagsInput.Input placeholder="Read-only..." />
     </TagsInput.Control>
 
     <TagsInput.HiddenInput />

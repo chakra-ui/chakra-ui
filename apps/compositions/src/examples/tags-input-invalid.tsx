@@ -1,12 +1,11 @@
 "use client"
 
-import { TagsInput } from "@chakra-ui/react"
+import { Field, TagsInput } from "@chakra-ui/react"
 
-export const TagsInputMaxTags = () => {
-  return (
-    <TagsInput.Root max={3}>
-      <TagsInput.Label>Tags (max 3)</TagsInput.Label>
-
+export const TagsInputInvalid = () => (
+  <Field.Root invalid>
+    <TagsInput.Root defaultValue={["React", "Chakra"]}>
+      <TagsInput.Label>Invalid Tags</TagsInput.Label>
       <TagsInput.Control>
         <TagsInput.Context>
           {({ value }) =>
@@ -22,8 +21,11 @@ export const TagsInputMaxTags = () => {
           }
         </TagsInput.Context>
 
-        <TagsInput.Input placeholder="Add up to 3 tags..." />
+        <TagsInput.Input placeholder="Add tags..." />
       </TagsInput.Control>
+
+      <TagsInput.HiddenInput />
     </TagsInput.Root>
-  )
-}
+    <Field.ErrorText>This is an error</Field.ErrorText>
+  </Field.Root>
+)

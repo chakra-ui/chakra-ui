@@ -1,6 +1,6 @@
 "use client"
 
-import { TagsInput } from "@chakra-ui/react"
+import { Span, TagsInput } from "@chakra-ui/react"
 
 export const TagsInputBasic = () => {
   return (
@@ -15,13 +15,15 @@ export const TagsInputBasic = () => {
                   <TagsInput.ItemText>{tag}</TagsInput.ItemText>
                   <TagsInput.ItemDeleteTrigger />
                 </TagsInput.ItemPreview>
-                <TagsInput.ItemInput />
               </TagsInput.Item>
             ))
           }
         </TagsInput.Context>
         <TagsInput.Input placeholder="Add tag..." />
       </TagsInput.Control>
+      <Span textStyle="xs" color="fg.muted" ms="auto">
+        Press Enter or Return to add tag
+      </Span>
     </TagsInput.Root>
   )
 }

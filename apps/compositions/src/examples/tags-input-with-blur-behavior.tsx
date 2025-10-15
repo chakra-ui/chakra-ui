@@ -2,7 +2,7 @@
 
 import { TagsInput } from "@chakra-ui/react"
 
-export const TagsInputWithBlur = () => (
+export const TagsInputWithBlurBehavior = () => (
   <TagsInput.Root blurBehavior="add">
     <TagsInput.Label>Create Tag on Blur</TagsInput.Label>
     <TagsInput.Control>
