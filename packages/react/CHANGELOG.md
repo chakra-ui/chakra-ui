@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 3.28.0
+
+### Minor Changes
+
+- [#10374](https://github.com/chakra-ui/chakra-ui/pull/10374)
+  [`e62bae7`](https://github.com/chakra-ui/chakra-ui/commit/e62bae7b9af3a32cee5a2ff82dc5b00a9c6a468e)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - feat: add
+  tags-input
+
 ## 3.27.1
 
 ### Patch Changes
