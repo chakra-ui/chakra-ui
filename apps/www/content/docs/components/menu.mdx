@@ -163,6 +163,46 @@ maximum available height for the content relative to the viewport.
 
 <ExampleTabs name="menu-with-overflow" />
 
+## Accessibility
+
+### Active vs Current states
+
+Menus are typically used for commands or selections. In these cases, prefer:
+
+- `Menu.CheckboxItem` / `Menu.RadioItem` for selectable states, which expose
+  the correct semantics via `aria-checked`.
+- Visual “active” styling only for the focused/highlighted item during
+  keyboard navigation.
+
+When your menu displays navigation links (e.g., to pages), render link
+components as children of `Menu.Item` using `asChild` and apply
+`aria-current` on the link target when it represents the current page.
+
+```tsx
+import { Menu } from "@chakra-ui/react"
+import Link from "next/link"
+
+export const NavMenu = () => (
+  <Menu.Root>
+    <Menu.Trigger>Open</Menu.Trigger>
+    <Menu.Positioner>
+      <Menu.Content>
+        <Menu.Item asChild>
+          <Link href="/home" aria-current="page">Home</Link>
+        </Menu.Item>
+        <Menu.Item asChild>
+          <Link href="/settings">Settings</Link>
+        </Menu.Item>
+      </Menu.Content>
+    </Menu.Positioner>
+  </Menu.Root>
+)
+```
+
+Note: Avoid adding `aria-current` directly to `Menu.Item` for command menus. Use
+checked/selected semantics where appropriate, or apply the attribute to the
+link itself when the item is truly a navigation link.
+
 ### Hide When Detached
 
 When the menu is rendered in an scrolling container, set the
