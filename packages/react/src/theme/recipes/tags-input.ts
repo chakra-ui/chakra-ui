@@ -24,6 +24,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
       minH: "var(--tags-input-height)",
+      "--input-height": "var(--tags-input-height)",
       px: "var(--tags-input-px)",
       py: "var(--tags-input-py)",
       gap: "var(--tags-input-gap)",
@@ -31,7 +32,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
       flexWrap: "wrap",
       alignItems: "center",
       borderRadius: "l2",
-
+      pos: "relative",
       transitionProperty: "border-color, box-shadow",
       transitionDuration: "normal",
 
@@ -97,6 +98,21 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
         boxSize: "80%",
       },
     },
+
+    clearTrigger: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxSize: "calc(var(--tags-input-item-height) / 1.5)",
+      cursor: { base: "button", _disabled: "initial" },
+      color: "fg.muted",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      rounded: "l1",
+      _icon: {
+        boxSize: "5",
+      },
+    },
   },
 
   variants: {
@@ -152,7 +168,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
         control: {
           borderWidth: "1px",
           bg: "bg",
-          _focusWithin: {
+          _focus: {
             outlineWidth: "1px",
             outlineStyle: "solid",
             outlineColor: "var(--focus-color)",
@@ -175,7 +191,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
           bg: "bg.muted",
           borderWidth: "1px",
           borderColor: "transparent",
-          _focusWithin: {
+          _focus: {
             outlineWidth: "1px",
             outlineStyle: "solid",
             outlineColor: "var(--focus-color)",
@@ -202,7 +218,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
           bg: "transparent",
           borderBottomWidth: "1px",
           borderBottomColor: "border",
-          _focusWithin: {
+          _focus: {
             borderColor: "var(--focus-color)",
             boxShadow: "0px 1px 0px 0px var(--focus-color)",
           },

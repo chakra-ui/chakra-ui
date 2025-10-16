@@ -30,10 +30,41 @@ import { TagsInput } from "@chakra-ui/react"
       <TagsInput.ItemInput />
     </TagsInput.Item>
     <TagsInput.Input />
-    <TagsInput.ClearTrigger />
   </TagsInput.Control>
-  <TagsInput.HiddenInput />
 </TagsInput.Root>
+```
+
+## Shortcuts
+
+The `TagsInput` component also provides a set of shortcuts for common use cases.
+
+### TagsInputItems
+
+The `TagsInputItems` shortcut renders all tag items automatically based on the
+current value.
+
+This works:
+
+```jsx
+<TagsInput.Context>
+  {({ value }) =>
+    value.map((tag, index) => (
+      <TagsInput.Item key={index} index={index} value={tag}>
+        <TagsInput.ItemPreview>
+          <TagsInput.ItemText>{tag}</TagsInput.ItemText>
+          <TagsInput.ItemDeleteTrigger />
+        </TagsInput.ItemPreview>
+        <TagsInput.ItemInput />
+      </TagsInput.Item>
+    ))
+  }
+</TagsInput.Context>
+```
+
+This might be more concise, if you don't need to customize the items:
+
+```jsx
+<TagsInput.Items />
 ```
 
 ## Examples

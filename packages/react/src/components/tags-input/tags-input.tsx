@@ -1,13 +1,17 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { TagsInput as ArkTagsInput } from "@ark-ui/react/tags-input"
+import {
+  TagsInput as ArkTagsInput,
+  useTagsInputContext,
+} from "@ark-ui/react/tags-input"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 import { CloseIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -161,6 +165,28 @@ export const TagsInputClearTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <CloseIcon /> },
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TagsInputItemsProps
+  extends Omit<TagsInputItemProps, "value" | "index"> {}
+
+export const TagsInputItems = (props: TagsInputItemsProps) => {
+  const api = useTagsInputContext()
+  return (
+    <For each={api.value}>
+      {(item, index) => (
+        <TagsInputItem key={index} index={index} value={item} {...props}>
+          <TagsInputItemPreview>
+            <TagsInputItemText>{item}</TagsInputItemText>
+            <TagsInputItemDeleteTrigger />
+          </TagsInputItemPreview>
+          <TagsInputItemInput />
+        </TagsInputItem>
+      )}
+    </For>
+  )
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 

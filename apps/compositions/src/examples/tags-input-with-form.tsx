@@ -23,19 +23,7 @@ export const TagsInputWithForm = () => {
           <TagsInput.Root name="categories">
             <TagsInput.Label>Categories</TagsInput.Label>
             <TagsInput.Control>
-              <TagsInput.Context>
-                {({ value }) =>
-                  value.map((tag, index) => (
-                    <TagsInput.Item key={index} index={index} value={tag}>
-                      <TagsInput.ItemPreview>
-                        <TagsInput.ItemText>{tag}</TagsInput.ItemText>
-                        <TagsInput.ItemDeleteTrigger />
-                      </TagsInput.ItemPreview>
-                      <TagsInput.HiddenInput />
-                    </TagsInput.Item>
-                  ))
-                }
-              </TagsInput.Context>
+              <TagsInput.Items />
               <TagsInput.Input placeholder="Add tag..." />
             </TagsInput.Control>
 
