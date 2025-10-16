@@ -41,6 +41,7 @@ import { switchSlotRecipe } from "./switch"
 import { tableSlotRecipe } from "./table"
 import { tabsSlotRecipe } from "./tabs"
 import { tagSlotRecipe } from "./tag"
+import { tagsInputSlotRecipe } from "./tags-input"
 import { timelineSlotRecipe } from "./timeline"
 import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
@@ -86,6 +87,7 @@ export const slotRecipes = {
   switch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
+  tagsInput: tagsInputSlotRecipe,
   tag: tagSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,

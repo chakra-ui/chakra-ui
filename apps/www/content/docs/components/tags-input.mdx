@@ -1,0 +1,170 @@
+---
+title: Tags Input
+description:
+  Used to enter multiple values as tags with features like tag creation,
+  deletion, and keyboard navigation.
+links:
+  source: components/tags-input
+  storybook: components-tags-input--basic
+  recipe: tags-input
+  ark: https://ark-ui.com/docs/components/tags-input
+---
+
+<ExampleTabs name="tags-input-basic" />
+
+## Usage
+
+```jsx
+import { TagsInput } from "@chakra-ui/react"
+```
+
+```jsx
+<TagsInput.Root>
+  <TagsInput.Label />
+  <TagsInput.Control>
+    <TagsInput.Item>
+      <TagsInput.ItemPreview>
+        <TagsInput.ItemText />
+        <TagsInput.ItemDeleteTrigger />
+      </TagsInput.ItemPreview>
+      <TagsInput.ItemInput />
+    </TagsInput.Item>
+    <TagsInput.Input />
+    <TagsInput.ClearTrigger />
+  </TagsInput.Control>
+  <TagsInput.HiddenInput />
+</TagsInput.Root>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to adjust the size of the tags input.
+
+<ExampleTabs name="tags-input-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the tags input.
+
+<ExampleTabs name="tags-input-with-variants" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to programmatically control the tags.
+
+<ExampleTabs name="tags-input-controlled" />
+
+### Store
+
+An alternative way to control the tags input is to use the `RootProvider`
+component and the `useTagsInput` store hook.
+
+This way you can access the tags input state and methods from outside the
+component.
+
+> Use `RootProvider + useTagsInput` or `Root`, not both.
+
+<ExampleTabs name="tags-input-with-store" />
+
+### Max Tags
+
+Pass the `max` prop to the `TagsInput.Root` component to limit the number of
+tags that can be added.
+
+<ExampleTabs name="tags-input-with-max" />
+
+### Editable Tags
+
+Use the `editable` prop to enable inline editing of existing tags by clicking on
+them, allowing users to quickly update tag values.
+
+<ExampleTabs name="tags-input-editable" />
+
+### Validate Tag
+
+Use the `validate` prop to implement custom validation rules. Tags will be added
+when the validation passes.
+
+<ExampleTabs name="tags-input-validation" />
+
+### Disabled
+
+Use the `disabled` prop to disable the tags input to prevent user interaction.
+
+<ExampleTabs name="tags-input-disabled" />
+
+### Readonly
+
+Use the `readOnly` prop to make the tags input read-only. Tags input can be
+focused but can't be modified.
+
+<ExampleTabs name="tags-input-read-only" />
+
+### Invalid
+
+Pass the `invalid` prop to the `TagsInput.Root` component to display the tags
+input in an invalid state with error messages.
+
+<ExampleTabs name="tags-input-invalid" />
+
+### Field
+
+Here's an example that composes the `TagsInput.Root` with the `Field` component
+to add labels, helper text, and error messages.
+
+<ExampleTabs name="tags-input-with-field" />
+
+### Form
+
+Here's an example that composes the `TagsInput.Root` with a `form` to collect
+structured data and handle submissions.
+
+<ExampleTabs name="tags-input-with-form" />
+
+### Paste
+
+Pass the `addOnPaste` prop to the `TagsInput.Root` component to allow users to
+paste multiple values at once, automatically splitting them into individual tags
+based on a delimiter.
+
+<ExampleTabs name="tags-input-with-paste" />
+
+### Blur Behavior
+
+Use the `blurBehavior` prop to configure how the input behaves when it loses
+focus, such as automatically creating a tag from the current input value.
+
+<ExampleTabs name="tags-input-with-blur-behavior" />
+
+### Custom Delimiter
+
+Use the `delimiter` prop to use custom delimiters like commas, semicolons, or
+spaces to create new tags as users type.
+
+<ExampleTabs name="tags-input-with-delimiter" />
+
+### Colors
+
+Here's an example that assigns rather color scheme to the tags based on the tag
+value.
+
+<ExampleTabs name="tags-input-with-colors" />
+
+### Combobox
+
+Here's an example that composes the `TagsInput` component with the `Combobox`
+component to create a tags input that allows users to select from a list of
+predefined tags.
+
+<ExampleTabs name="tags-input-with-combobox" />
+
+## Props
+
+## Explorer
+
+Explore the `TagsInput` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="tags-input-explorer" />
