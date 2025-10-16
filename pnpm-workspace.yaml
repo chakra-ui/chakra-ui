@@ -1,4 +1,7 @@
 packages:
-  - "packages/**/**"
-  - "sandbox/**"
-  - "apps/**"
+  - packages/**/**
+  - sandbox/**
+  - apps/**
+
+onlyBuiltDependencies:
+  - sharp
