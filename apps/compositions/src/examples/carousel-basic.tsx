@@ -10,7 +10,12 @@ const items = [
 
 export const CarouselBasic = () => {
   return (
-    <Carousel.Root slideCount={items.length} maxW="400px" mx="auto">
+    <Carousel.Root
+      defaultPage={0}
+      slideCount={items.length}
+      maxW="full"
+      mx="auto"
+    >
       <Carousel.ItemGroup>
         {items.map((src, index) => (
           <Carousel.Item key={index} index={index}>

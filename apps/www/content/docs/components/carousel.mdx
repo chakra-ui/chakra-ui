@@ -1,0 +1,43 @@
+---
+title: Carousel
+description: Used to display multiple items or images in a sliding view.
+links:
+  source: components/carousel
+  storybook: components-carousel--basic
+  recipe: carousel
+  ark: https://ark-ui.com/docs/components/carousel
+---
+
+<ExampleTabs name="carousel-basic" />
+
+## Usage
+
+```jsx
+import { Carousel } from "@chakra-ui/react"
+```
+
+```jsx
+<Carousel.Root>
+  <Carousel.ItemGroup>
+    <Carousel.Item />
+  </Carousel.ItemGroup>
+
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+
+  <Carousel.IndicatorGroup>
+    <Carousel.Indicator />
+  </Carousel.IndicatorGroup>
+</Carousel.Root>
+```
+
+## Examples
+
+### Controlled
+
+Control the carousel's active page externally using the `page` and
+`onPageChange` props for custom state management.
+
+<ExampleTabs name="carousel-controlled" />
