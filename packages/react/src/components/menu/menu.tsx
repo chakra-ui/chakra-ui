@@ -176,12 +176,24 @@ export const MenuItemGroupLabel = withContext<
 
 export interface MenuItemProps
   extends HTMLChakraProps<"div", ArkMenu.ItemBaseProps>,
-    UnstyledProp {}
+    UnstyledProp {
+  /**
+   * When true, communicates the current (active) page/item to assistive tech.
+   * Applied as `aria-current="page"` on the item.
+   */
+  isActive?: boolean
+}
 
 export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
   ArkMenu.Item,
   "item",
-  { forwardAsChild: true },
+  {
+    forwardAsChild: true,
+    mapProps: (props) => {
+      const { isActive, ...rest } = props as MenuItemProps
+      return isActive ? { "aria-current": "page", ...rest } : rest
+    },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
