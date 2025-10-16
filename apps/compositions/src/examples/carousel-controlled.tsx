@@ -24,7 +24,7 @@ export const CarouselControlled = () => {
 
       <Carousel.Root
         page={page}
-        onPageChange={(details) => setPage(details.page)}
+        onPageChange={(e) => setPage(e.page)}
         maxW="full"
         mx="auto"
         slideCount={items.length}
