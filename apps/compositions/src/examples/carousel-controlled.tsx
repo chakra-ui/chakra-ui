@@ -14,14 +14,8 @@ const items = [
 export const CarouselControlled = () => {
   const [page, setPage] = useState(0)
 
-  console.log("page", page)
-
   return (
-    <VStack gap={4}>
-      <Text fontSize="lg" fontWeight="semibold">
-        Active Index: {page + 1} / {items.length}
-      </Text>
-
+    <VStack gap={5} align="center" py={6}>
       <Carousel.Root
         page={page}
         onPageChange={(e) => setPage(e.page)}
@@ -39,6 +33,7 @@ export const CarouselControlled = () => {
                 h="300px"
                 objectFit="cover"
                 borderRadius="md"
+                shadow="md"
               />
             </Carousel.Item>
           ))}
@@ -50,12 +45,13 @@ export const CarouselControlled = () => {
         </Carousel.Control>
       </Carousel.Root>
 
-      <HStack justify="center" mt={4}>
+      <HStack justify="center" mt={2}>
         {items.map((_, index) => (
           <Button
             key={index}
             size="sm"
             variant={page === index ? "solid" : "outline"}
+            colorScheme="blue"
             onClick={() => setPage(index)}
             disabled={page === index}
             cursor={page === index ? "not-allowed" : "pointer"}
@@ -64,6 +60,10 @@ export const CarouselControlled = () => {
           </Button>
         ))}
       </HStack>
+
+      <Text fontSize="sm" color="gray.500" fontWeight="medium">
+        Active index: {page + 1} / {items.length}
+      </Text>
     </VStack>
   )
 }
