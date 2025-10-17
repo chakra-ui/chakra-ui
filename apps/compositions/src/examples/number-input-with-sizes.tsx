@@ -6,7 +6,7 @@ export const NumberInputWithSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <NumberInput.Root size={size} key={size} defaultValue="10">
-            <NumberInput.Control />
+            <NumberInput.TriggerGroup />
             <NumberInput.Input />
           </NumberInput.Root>
         )}
