@@ -12,8 +12,8 @@ export default {
   ],
 } satisfies Meta
 
-// export { CarouselBasic as Basic } from "compositions/examples/carousel-basic"
-// export { CarouselWithIndicators as WithIndicators } from "compositions/examples/carousel-with-indicators"
-// export { CarouselWithAutoplay as WithAutoplay } from "compositions/examples/carousel-with-autoplay"
-// export { CarouselSizeTable as Sizes } from "compositions/examples/carousel-size-table"
-// export { CarouselVariantTable as Variants } from "compositions/examples/carousel-variant-table"
+export { CarouselBasic as Basic } from "compositions/examples/carousel-basic"
+export { CarouselWithIndicators as WithIndicators } from "compositions/examples/carousel-with-indicators"
+export { CarouselSlidesPerPage as SlidesPerPage } from "compositions/examples/carousel-slides-per-page"
+export { CarouselControlled as Controlled } from "compositions/examples/carousel-controlled"
+export { CarouselSpacing as Spacing } from "compositions/examples/carousel-spacing"
