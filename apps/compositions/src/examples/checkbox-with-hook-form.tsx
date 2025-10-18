@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Checkbox, Code, Field, HStack, Stack } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useController, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -13,7 +13,7 @@ type FormData = z.infer<typeof formSchema>
 
 export const CheckboxWithHookForm = () => {
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
     defaultValues: { enabled: false },
   })
 

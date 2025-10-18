@@ -14,6 +14,7 @@ export default {
 
 export { SegmentedControlBasic as Basic } from "compositions/examples/segmented-control-basic"
 export { SegmentedControlControlled as Controlled } from "compositions/examples/segmented-control-controlled"
+export { SegmentedControlWithColorPalette as ColorPalette } from "compositions/examples/segmented-control-with-color-palette"
 export { SegmentedControlInCard as Card } from "compositions/examples/segmented-control-in-card"
 export { SegmentedControlVertical as Vertical } from "compositions/examples/segmented-control-vertical"
 export { SegmentedControlWithDisabled as Disabled } from "compositions/examples/segmented-control-with-disabled"

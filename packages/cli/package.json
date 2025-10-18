@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@clack/prompts": "0.11.0",
-    "@pandacss/is-valid-prop": "0.54.0",
+    "@pandacss/is-valid-prop": "1.4.2",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
     "@visulima/boxen": "^2.0.2",
@@ -65,7 +65,7 @@
     "prettier": "3.6.2",
     "scule": "1.3.0",
     "sucrase": "^3.35.0",
-    "zod": "^3.25.67"
+    "zod": "^4.1.12"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=3.0.0-next.0"

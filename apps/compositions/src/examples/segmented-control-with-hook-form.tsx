@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, SegmentGroup, Stack } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -18,7 +18,7 @@ export const SegmentedControlWithHookForm = () => {
     control,
   } = useForm<FormValues>({
     defaultValues: { fontSize: "md" },
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))

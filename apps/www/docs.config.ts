@@ -151,6 +151,7 @@ const docsLinks: NavItem = {
             { title: "Listbox", url: "listbox", status: "new" },
             { title: "Select", url: "select" },
             { title: "Tree View", url: "tree-view", status: "beta" },
+            // { title: "Tags Input", url: "tags-input", status: "beta" },
           ],
         },
         {
