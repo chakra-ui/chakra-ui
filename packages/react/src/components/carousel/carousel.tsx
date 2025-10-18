@@ -50,7 +50,7 @@ export interface CarouselRootProps
 export const CarouselRoot = withProvider<HTMLDivElement, CarouselRootProps>(
   ArkCarousel.Root,
   "root",
-  { forwardAsChild: true, forwardProps: ["page"] },
+  { forwardAsChild: true, forwardProps: ["page", "loop"] },
 )
 
 export const CarouselPropsProvider =

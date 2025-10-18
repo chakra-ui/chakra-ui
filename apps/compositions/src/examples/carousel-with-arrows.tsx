@@ -5,7 +5,7 @@ const items = Array.from(
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
 
-export const CarouselBasic = () => {
+export const CarouselWithArrows = () => {
   return (
     <Carousel.Root
       defaultPage={0}
@@ -32,18 +32,8 @@ export const CarouselBasic = () => {
         <Carousel.PrevTrigger />
         <Carousel.NextTrigger />
       </Carousel.Control>
-
-      <Carousel.IndicatorGroup>
-        {items.map((_, index) => (
-          <Carousel.Indicator
-            key={index}
-            index={index}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </Carousel.IndicatorGroup>
     </Carousel.Root>
   )
 }
 
-export default CarouselBasic
+export default CarouselWithArrows

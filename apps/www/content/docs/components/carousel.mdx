@@ -35,29 +35,70 @@ import { Carousel } from "@chakra-ui/react"
 
 ## Examples
 
-### With Indicators
+### Navigation Arrows
 
-Use indicators to show which slide is currently active.
+Enable intuitive navigation through your slides with previous and next arrows.
+
+<ExampleTabs name="carousel-with-arrows" />
+
+### Indicator Dots
+
+Add visual indicators to help users track their position within the carousel and
+jump to specific slides.
 
 <ExampleTabs name="carousel-with-indicators" />
 
-### Spacing
+### Custom Spacing
 
-Add consistent spacing between slides using the `spacing` prop. You can adjust
-the spacing interactively with a slider in this example.
+Control the gap between slides using the `spacing` prop. This example includes
+an interactive slider to demonstrate dynamic spacing adjustments.
 
 <ExampleTabs name="carousel-spacing" />
 
-### Slides per page
+### Multiple Slides Per View
 
-Display multiple slides in view at once using the slidesPerPage prop. You can
-also control how many slides move per navigation action using slidesPerMove.
+Display several slides simultaneously with the `slidesPerPage` prop. Fine-tune
+navigation behavior using `slidesPerMove` to control how many slides advance
+with each interaction.
 
 <ExampleTabs name="carousel-slides-per-page" />
 
 ### Controlled
 
-Control the carousel's active page externally using the `page` and
-`onPageChange` props for custom state management.
+Take full control of the carousel's behavior by managing the active page
+externally. Use the `page` and `onPageChange` props to integrate with your
+application's state management.
 
 <ExampleTabs name="carousel-controlled" />
+
+### Vertical
+
+Transform your carousel into a vertical slider by setting the `orientation`
+prop, ideal for sidebars or unique layout designs.
+
+<ExampleTabs name="carousel-with-orientation" />
+
+### Loop
+
+Enable continuous slide navigation using the `loop` prop.
+
+<ExampleTabs name="carousel-with-loop" />
+
+### Mouse Drag
+
+Toggle whether the carousel can be scrolled using mouse dragging via the
+`allowMouseDrag` prop.
+
+<ExampleTabs name="carousel-with-mouse-drag" />
+
+### Autoplay
+
+Automatically move between slides using the `autoplay` prop.
+
+<ExampleTabs name="carousel-with-autoplay" />
+
+### Autoplay with Delay
+
+Customize the autoplay interval using the `autoplay={{ delay }}` prop.
+
+<ExampleTabs name="carousel-with-autoplay-delay" />

@@ -3,13 +3,10 @@
 import { Button, Carousel, HStack, Image, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 
-const items = [
-  "https://picsum.photos/400/300?random=1",
-  "https://picsum.photos/400/300?random=2",
-  "https://picsum.photos/400/300?random=3",
-  "https://picsum.photos/400/300?random=4",
-  "https://picsum.photos/400/300?random=5",
-]
+const items = Array.from(
+  { length: 5 },
+  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
+)
 
 export const CarouselControlled = () => {
   const [page, setPage] = useState(0)
@@ -19,9 +16,9 @@ export const CarouselControlled = () => {
       <Carousel.Root
         page={page}
         onPageChange={(e) => setPage(e.page)}
+        slideCount={items.length}
         maxW="full"
         mx="auto"
-        slideCount={items.length}
       >
         <Carousel.ItemGroup>
           {items.map((src, index) => (
@@ -33,7 +30,6 @@ export const CarouselControlled = () => {
                 h="300px"
                 objectFit="cover"
                 borderRadius="md"
-                shadow="md"
               />
             </Carousel.Item>
           ))}
@@ -61,8 +57,8 @@ export const CarouselControlled = () => {
         ))}
       </HStack>
 
-      <Text fontSize="sm" color="gray.500" fontWeight="medium">
-        Active index: {page + 1} / {items.length}
+      <Text fontSize="sm" color="fg.muted" fontWeight="medium">
+        Active page: {page + 1} / {items.length}
       </Text>
     </VStack>
   )

@@ -1,12 +1,9 @@
 import { Carousel, Image } from "@chakra-ui/react"
 
-const items = [
-  "https://picsum.photos/400/300?random=1",
-  "https://picsum.photos/400/300?random=2",
-  "https://picsum.photos/400/300?random=3",
-  "https://picsum.photos/400/300?random=4",
-  "https://picsum.photos/400/300?random=5",
-]
+const items = Array.from(
+  { length: 5 },
+  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
+)
 
 export const CarouselSlidesPerPage = () => {
   const slidesPerPage = 2

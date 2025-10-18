@@ -1,20 +1,23 @@
+"use client"
+
 import { Carousel, Image } from "@chakra-ui/react"
 
-const items = Array.from(
+const images = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
 
-export const CarouselBasic = () => {
+export const CarouselWithLoop = () => {
   return (
     <Carousel.Root
+      loop
       defaultPage={0}
-      slideCount={items.length}
+      slideCount={images.length}
       maxW="full"
       mx="auto"
     >
       <Carousel.ItemGroup>
-        {items.map((src, index) => (
+        {images.map((src, index) => (
           <Carousel.Item key={index} index={index}>
             <Image
               src={src}
@@ -34,7 +37,7 @@ export const CarouselBasic = () => {
       </Carousel.Control>
 
       <Carousel.IndicatorGroup>
-        {items.map((_, index) => (
+        {images.map((_, index) => (
           <Carousel.Indicator
             key={index}
             index={index}
@@ -46,4 +49,4 @@ export const CarouselBasic = () => {
   )
 }
 
-export default CarouselBasic
+export default CarouselWithLoop

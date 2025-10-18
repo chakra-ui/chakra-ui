@@ -3,27 +3,27 @@
 import { Carousel, Image, Slider, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 
-const items = Array.from(
+const images = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
 
-export const CarouselSpacing = () => {
-  const [spacing, setSpacing] = useState([4])
+export const CarouselWithAutoplayDelay = () => {
+  const [delay, setDelay] = useState([3000])
 
   return (
-    <VStack gap={6} align="center" py={4}>
+    <VStack gap={6} align="center" py={6}>
       <VStack gap={2}>
         <Text fontSize="sm" fontWeight="medium">
-          Adjust slide spacing
+          Adjust delay speed
         </Text>
         <Slider.Root
-          min={0}
-          max={16}
-          step={1}
-          value={spacing}
-          onValueChange={(e) => setSpacing(e.value)}
-          w="240px"
+          min={1000}
+          max={8000}
+          step={500}
+          value={delay}
+          onValueChange={(e) => setDelay(e.value)}
+          w="260px"
         >
           <Slider.Control>
             <Slider.Track>
@@ -34,19 +34,18 @@ export const CarouselSpacing = () => {
           <Slider.ValueText />
         </Slider.Root>
         <Text fontSize="sm" color="fg.muted">
-          Spacing: {spacing[0] * 4}px
+          Delay: {delay[0] / 1000}s
         </Text>
       </VStack>
+
       <Carousel.Root
-        slideCount={items.length}
-        slidesPerPage={2}
-        slidesPerMove={2}
-        spacing={`${spacing[0] * 4}px`}
-        maxW="full"
+        autoplay={{ delay: delay[0] }}
+        slideCount={images.length}
         mx="auto"
+        maxW="full"
       >
         <Carousel.ItemGroup>
-          {items.map((src, index) => (
+          {images.map((src, index) => (
             <Carousel.Item key={index} index={index}>
               <Image
                 src={src}
@@ -54,19 +53,25 @@ export const CarouselSpacing = () => {
                 w="100%"
                 h="300px"
                 objectFit="cover"
-                borderRadius="md"
+                borderRadius="lg"
+                shadow="base"
               />
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
 
-        <Carousel.Control>
-          <Carousel.PrevTrigger />
-          <Carousel.NextTrigger />
-        </Carousel.Control>
+        <Carousel.IndicatorGroup mt={2}>
+          {images.map((_, index) => (
+            <Carousel.Indicator
+              key={index}
+              index={index}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </Carousel.IndicatorGroup>
       </Carousel.Root>
     </VStack>
   )
 }
 
-export default CarouselSpacing
+export default CarouselWithAutoplayDelay
