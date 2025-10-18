@@ -36,7 +36,10 @@ export interface CarouselRootProviderProps
 export const CarouselRootProvider = withProvider<
   HTMLDivElement,
   CarouselRootProviderProps
->(ArkCarousel.RootProvider, "root", { forwardAsChild: true })
+>(ArkCarousel.RootProvider, "root", {
+  forwardAsChild: true,
+  forwardProps: ["page"],
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
