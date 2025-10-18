@@ -8,6 +8,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { IconButton, type IconButtonProps } from "../button"
 import { ChevronLeftIcon, ChevronRightIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +144,85 @@ export const CarouselIndicators = ({
     </CarouselIndicatorGroup>
   )
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CarouselNavsProps {
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+  prevButtonProps?: IconButtonProps
+  nextButtonProps?: IconButtonProps
+  children?: React.ReactNode
+}
+
+export const CarouselNavs = ({
+  leftIcon,
+  rightIcon,
+  prevButtonProps,
+  nextButtonProps,
+  children,
+}: CarouselNavsProps) => {
+  if (children) {
+    return <CarouselControl>{children}</CarouselControl>
+  }
+
+  return (
+    <CarouselControl>
+      <CarouselPrevTrigger asChild>
+        <IconButton
+          aria-label="Previous Slide"
+          size="sm"
+          borderRadius="full"
+          bg="bg/80"
+          color="fg"
+          border="1px solid"
+          borderColor="border"
+          width="10"
+          height="10"
+          cursor="pointer"
+          transition="all 0.2s"
+          _hover={{ bg: "bg.emphasized" }}
+          _focusVisible={{
+            outline: "2px solid",
+            outlineColor: "colorPalette.focusRing",
+            outlineOffset: "2px",
+          }}
+          _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
+          {...prevButtonProps}
+        >
+          {leftIcon}
+        </IconButton>
+      </CarouselPrevTrigger>
+
+      <CarouselNextTrigger asChild>
+        <IconButton
+          aria-label="Next Slide"
+          size="sm"
+          borderRadius="full"
+          bg="bg/80"
+          color="fg"
+          border="1px solid"
+          borderColor="border"
+          width="10"
+          height="10"
+          cursor="pointer"
+          transition="all 0.2s"
+          _hover={{ bg: "bg.emphasized" }}
+          _focusVisible={{
+            outline: "2px solid",
+            outlineColor: "colorPalette.focusRing",
+            outlineOffset: "2px",
+          }}
+          _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
+          {...nextButtonProps}
+        >
+          {rightIcon}
+        </IconButton>
+      </CarouselNextTrigger>
+    </CarouselControl>
+  )
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselAutoplayTriggerProps

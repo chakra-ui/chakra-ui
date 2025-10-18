@@ -1,6 +1,7 @@
 "use client"
 
 import { Box, Carousel, HStack, VStack } from "@chakra-ui/react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = [
   { width: "20%", label: "Small", color: "bg.subtle" },
@@ -53,10 +54,10 @@ export const CarouselWithVariableWidth = () => {
             ))}
           </Carousel.ItemGroup>
 
-          <Carousel.Control>
-            <Carousel.PrevTrigger />
-            <Carousel.NextTrigger />
-          </Carousel.Control>
+          <Carousel.Navs
+            leftIcon={<LuArrowLeft />}
+            rightIcon={<LuArrowRight />}
+          />
 
           <HStack justify="center" mt={6}>
             <Carousel.Indicators count={totalPages} />

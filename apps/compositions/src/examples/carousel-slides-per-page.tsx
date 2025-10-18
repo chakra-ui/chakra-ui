@@ -1,4 +1,5 @@
 import { Carousel, Image } from "@chakra-ui/react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from(
   { length: 5 },
@@ -32,10 +33,7 @@ export const CarouselSlidesPerPage = () => {
         ))}
       </Carousel.ItemGroup>
 
-      <Carousel.Control>
-        <Carousel.PrevTrigger />
-        <Carousel.NextTrigger />
-      </Carousel.Control>
+      <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
 
       <Carousel.Indicators mt={4} count={totalPages} />
     </Carousel.Root>

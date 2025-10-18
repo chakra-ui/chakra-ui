@@ -1,4 +1,5 @@
 import { Carousel, Image } from "@chakra-ui/react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from(
   { length: 5 },
@@ -28,10 +29,7 @@ export const CarouselWithArrows = () => {
         ))}
       </Carousel.ItemGroup>
 
-      <Carousel.Control>
-        <Carousel.PrevTrigger />
-        <Carousel.NextTrigger />
-      </Carousel.Control>
+      <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
     </Carousel.Root>
   )
 }

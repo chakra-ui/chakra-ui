@@ -1,6 +1,7 @@
 "use client"
 
 import { Carousel, Image } from "@chakra-ui/react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from(
   { length: 5 },
@@ -29,11 +30,7 @@ export const CarouselWithOrientation = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
-      <Carousel.Control>
-        <Carousel.PrevTrigger />
-        <Carousel.NextTrigger />
-      </Carousel.Control>
+      <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
       <Carousel.Indicators count={items.length} />
     </Carousel.Root>
   )

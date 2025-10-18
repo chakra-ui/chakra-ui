@@ -3,6 +3,7 @@
 import { Carousel, HStack, Image, Text, VStack } from "@chakra-ui/react"
 import { Switch } from "compositions/ui/switch"
 import { useState } from "react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const images = Array.from(
   { length: 5 },
@@ -45,10 +46,10 @@ export const CarouselWithMouseDrag = () => {
           ))}
         </Carousel.ItemGroup>
 
-        <Carousel.Control>
-          <Carousel.PrevTrigger />
-          <Carousel.NextTrigger />
-        </Carousel.Control>
+        <Carousel.Navs
+          leftIcon={<LuArrowLeft />}
+          rightIcon={<LuArrowRight />}
+        />
         <Carousel.Indicators count={images.length} />
       </Carousel.Root>
     </VStack>

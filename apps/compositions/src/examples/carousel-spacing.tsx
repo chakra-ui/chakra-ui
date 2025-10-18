@@ -2,6 +2,7 @@
 
 import { Carousel, Image, Slider, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from(
   { length: 5 },
@@ -60,10 +61,10 @@ export const CarouselSpacing = () => {
           ))}
         </Carousel.ItemGroup>
 
-        <Carousel.Control>
-          <Carousel.PrevTrigger />
-          <Carousel.NextTrigger />
-        </Carousel.Control>
+        <Carousel.Navs
+          leftIcon={<LuArrowLeft />}
+          rightIcon={<LuArrowRight />}
+        />
       </Carousel.Root>
     </VStack>
   )
