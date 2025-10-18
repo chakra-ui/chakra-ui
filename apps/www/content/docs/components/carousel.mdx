@@ -1,0 +1,194 @@
+---
+title: Carousel
+description: Used to display multiple items or images in a sliding view.
+links:
+  source: components/carousel
+  storybook: components-carousel--basic
+  recipe: carousel
+  ark: https://ark-ui.com/docs/components/carousel
+---
+
+<ExampleTabs name="carousel-basic" />
+
+## Usage
+
+```jsx
+import { Carousel } from "@chakra-ui/react"
+```
+
+```jsx
+<Carousel.Root>
+  <Carousel.ItemGroup>
+    <Carousel.Item />
+  </Carousel.ItemGroup>
+
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+
+  <Carousel.IndicatorGroup>
+    <Carousel.Indicator />
+  </Carousel.IndicatorGroup>
+</Carousel.Root>
+```
+
+## Shortcuts
+
+The `Carousel` component also provides convenient shortcuts for common patterns.
+
+### CarouselIndicators
+
+The `CarouselIndicators` shortcut renders a full set of indicators automatically
+based on the number of slides.
+
+This works:
+
+```jsx
+<Carousel.IndicatorGroup>
+  {Array.from({ length: items.length }, (_, index) => (
+    <Carousel.Indicator
+      key={index}
+      index={index}
+      aria-label={`Go to slide ${index + 1}`}
+    />
+  ))}
+</Carousel.IndicatorGroup>
+```
+
+This might be more concise if you don't need to customize each indicator:
+
+```jsx
+<Carousel.Indicators count={items.length} />
+```
+
+### CarouselNavs
+
+The `CarouselNavs` shortcut renders default previous and next navigation arrows
+for your carousel. You can also customize the icons or fully provide your own
+children.
+
+**Default usage:**
+
+```jsx
+<Carousel.Root slideCount={5}>
+  <Carousel.ItemGroup>
+    <Carousel.Item>Slide 1</Carousel.Item>
+    <Carousel.Item>Slide 2</Carousel.Item>
+    <Carousel.Item>Slide 3</Carousel.Item>
+  </Carousel.ItemGroup>
+
+  <CarouselNavs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
+
+  <Carousel.Indicators count={5} />
+</Carousel.Root>
+```
+
+**Custom children usage:**
+
+```jsx
+<CarouselNavs>
+  <CarouselPrevTrigger asChild>
+    <button>Prev</button>
+  </CarouselPrevTrigger>
+  <CarouselNextTrigger asChild>
+    <button>Next</button>
+  </CarouselNextTrigger>
+</CarouselNavs>
+```
+
+This shows both the default arrows and how you can replace them with custom
+triggers.
+
+## Examples
+
+### Navigation Arrows
+
+Enable intuitive navigation through your slides with previous and next arrows.
+
+<ExampleTabs name="carousel-with-arrows" />
+
+### Indicator Dots
+
+Add visual indicators to help users track their position within the carousel and
+jump to specific slides.
+
+<ExampleTabs name="carousel-with-indicators" />
+
+### Custom Spacing
+
+Control the gap between slides using the `spacing` prop. This example includes
+an interactive slider to demonstrate dynamic spacing adjustments.
+
+<ExampleTabs name="carousel-spacing" />
+
+### Variable Width
+
+Support slides of different widths for more dynamic layouts. This is useful for
+showcasing content with varying sizes such as cards, previews, or banners.
+
+<ExampleTabs name="carousel-with-variable-width" />
+
+### Multiple Slides Per View
+
+Display several slides simultaneously with the `slidesPerPage` prop. Fine-tune
+navigation behavior using `slidesPerMove` to control how many slides advance
+with each interaction.
+
+<ExampleTabs name="carousel-slides-per-page" />
+
+### Controlled
+
+Take full control of the carousel's behavior by managing the active page
+externally. Use the `page` and `onPageChange` props to integrate with your
+application's state management.
+
+<ExampleTabs name="carousel-controlled" />
+
+### Store
+
+Alternatively, use the `useCarousel` hook to create a carousel store and pass it
+to the `Carousel.RootProvider` component. This gives you full programmatic
+control over the carousel's behavior, allowing you to manipulate navigation,
+autoplay, and state directly through the Carousel API.
+
+<ExampleTabs name="carousel-with-store" />
+
+### Vertical
+
+Transform your carousel into a vertical slider by setting the `orientation`
+prop, ideal for sidebars or unique layout designs.
+
+<ExampleTabs name="carousel-with-orientation" />
+
+### Loop
+
+Enable continuous slide navigation using the `loop` prop.
+
+<ExampleTabs name="carousel-with-loop" />
+
+### Mouse Drag
+
+Toggle whether the carousel can be scrolled using mouse dragging via the
+`allowMouseDrag` prop.
+
+<ExampleTabs name="carousel-with-mouse-drag" />
+
+### Autoplay
+
+Automatically move between slides using the `autoplay` prop.
+
+<ExampleTabs name="carousel-with-autoplay" />
+
+### Autoplay with Delay
+
+Customize the autoplay interval using the `autoplay={{ delay }}` prop.
+
+<ExampleTabs name="carousel-with-autoplay-delay" />
+
+## Explorer
+
+Explore the `Carousel` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="carousel-basic-explorer" />

@@ -21,18 +21,18 @@ export const timelineSlotRecipe = defineSlotRecipe({
       "--timeline-gutter": "4px",
     },
     item: {
+      "--timeline-content-gap": "spacing.6",
       display: "flex",
       position: "relative",
       alignItems: "flex-start",
       flexShrink: 0,
       gap: "4",
       _last: {
-        "& :where(.timeline__separator)": {
-          display: "none",
-        },
+        "--timeline-content-gap": "0",
       },
     },
     separator: {
+      display: "var(--timeline-separator-display)",
       position: "absolute",
       borderStartWidth: "var(--timeline-thickness)",
       ms: "calc(-1 * var(--timeline-thickness) / 2)",
@@ -57,7 +57,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       position: "relative",
     },
     content: {
-      pb: "6",
+      pb: "var(--timeline-content-gap)",
       display: "flex",
       flexDirection: "column",
       width: "full",
@@ -97,6 +97,22 @@ export const timelineSlotRecipe = defineSlotRecipe({
         },
       },
       plain: {},
+    },
+    showLastSeparator: {
+      true: {
+        item: {
+          _last: {
+            "--timeline-separator-display": "initial",
+          },
+        },
+      },
+      false: {
+        item: {
+          _last: {
+            "--timeline-separator-display": "none",
+          },
+        },
+      },
     },
     size: {
       sm: {
@@ -142,5 +158,6 @@ export const timelineSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "solid",
+    showLastSeparator: false,
   },
 })
