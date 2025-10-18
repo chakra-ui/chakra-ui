@@ -1266,6 +1266,25 @@ export type TagVariantMap = {
   [K in keyof TagVariant]: Array<TagVariant[K]>
 }
 
+// TagsInput
+
+export type TagsInputSlot = "root" | "label" | "control" | "input" | "clearTrigger" | "item" | "itemPreview" | "itemInput" | "itemText" | "itemDeleteTrigger"
+
+export interface TagsInputVariant {
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg" | undefined
+  /** @default "outline" */
+  variant?: "outline" | "subtle" | "flushed" | undefined
+}
+
+export type TagsInputVariantProps = {
+  [K in keyof TagsInputVariant]?: ConditionalValue<TagsInputVariant[K]> | undefined
+}
+
+export type TagsInputVariantMap = {
+  [K in keyof TagsInputVariant]: Array<TagsInputVariant[K]>
+}
+
 // Toast
 
 export type ToastSlot = "root" | "title" | "description" | "indicator" | "closeTrigger" | "actionTrigger"
@@ -1472,6 +1491,7 @@ export interface ConfigSlotRecipes {
   table: SystemSlotRecipeFn<TableSlot, TableVariantProps, TableVariantMap>
   tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps, TabsVariantMap>
   tag: SystemSlotRecipeFn<TagSlot, TagVariantProps, TagVariantMap>
+  tagsInput: SystemSlotRecipeFn<TagsInputSlot, TagsInputVariantProps, TagsInputVariantMap>
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps, ToastVariantMap>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps, TooltipVariantMap>
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps, StatusVariantMap>
@@ -1525,6 +1545,7 @@ export interface ConfigRecipeSlots {
   table: TableSlot
   tabs: TabsSlot
   tag: TagSlot
+  tagsInput: TagsInputSlot
   toast: ToastSlot
   tooltip: TooltipSlot
   status: StatusSlot

@@ -422,6 +422,16 @@
   },
   {
     "type": "composition",
+    "id": "tags-input",
+    "file": "tags-input.tsx",
+    "component": "TagsInput",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "timeline",
     "file": "timeline.tsx",
     "component": "Timeline",
