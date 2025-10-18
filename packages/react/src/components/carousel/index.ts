@@ -4,6 +4,7 @@ export {
   CarouselIndicator,
   CarouselIndicatorGroup,
   CarouselItem,
+  CarouselIndicators,
   CarouselItemGroup,
   CarouselNextTrigger,
   CarouselPrevTrigger,
@@ -28,6 +29,7 @@ export type {
   CarouselAutoplayStatusDetails,
   CarouselDragStatusDetails,
   CarouselPageChangeDetails,
+  CarouselIndicatorsProps,
 } from "./carousel"
 
 export { useCarousel, useCarouselContext } from "@ark-ui/react/carousel"

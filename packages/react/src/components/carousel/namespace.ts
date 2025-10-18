@@ -11,6 +11,7 @@ export {
   CarouselRootProvider as RootProvider,
   CarouselPropsProvider as PropsProvider,
   CarouselContext as Context,
+  CarouselIndicators as Indicators,
 } from "./carousel"
 
 export type {
@@ -27,4 +28,5 @@ export type {
   CarouselAutoplayStatusDetails as AutoplayStatusDetails,
   CarouselDragStatusDetails as DragStatusDetails,
   CarouselPageChangeDetails as PageChangeDetails,
+  CarouselIndicatorsProps as IndicatorsProps,
 } from "./carousel"

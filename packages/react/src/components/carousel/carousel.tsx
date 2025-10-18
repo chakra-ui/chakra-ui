@@ -119,6 +119,29 @@ export const CarouselNextTrigger = withContext<
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
+export interface CarouselIndicatorsProps
+  extends Omit<CarouselIndicatorProps, "index"> {
+  count: number
+}
+
+export const CarouselIndicators = ({
+  count,
+  ...props
+}: CarouselIndicatorsProps) => {
+  return (
+    <CarouselIndicatorGroup>
+      {Array.from({ length: count }, (_, index) => (
+        <CarouselIndicator
+          key={index}
+          index={index}
+          aria-label={`Go to slide ${index + 1}`}
+          {...props}
+        />
+      ))}
+    </CarouselIndicatorGroup>
+  )
+}
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselAutoplayTriggerProps
   extends HTMLChakraProps<"button", ArkCarousel.AutoplayTriggerBaseProps>,
