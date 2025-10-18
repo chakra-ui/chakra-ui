@@ -38,7 +38,6 @@ export const CarouselRootProvider = withProvider<
   CarouselRootProviderProps
 >(ArkCarousel.RootProvider, "root", {
   forwardAsChild: true,
-  forwardProps: ["page"],
 })
 
 ////////////////////////////////////////////////////////////////////////////////////

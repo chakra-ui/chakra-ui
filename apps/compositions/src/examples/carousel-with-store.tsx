@@ -1,17 +1,13 @@
 "use client"
 
 import {
-  Box,
   Button,
   Carousel,
   HStack,
   Image,
-  Input,
-  Text,
   VStack,
   useCarousel,
 } from "@chakra-ui/react"
-import { useState } from "react"
 
 const items = Array.from(
   { length: 5 },
@@ -23,15 +19,6 @@ export const CarouselWithStore = () => {
     slideCount: items.length,
     allowMouseDrag: true,
   })
-  const [targetPage, setTargetPage] = useState("")
-
-  const handleGoToSlide = () => {
-    const pageNum = parseInt(targetPage)
-    if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= items.length) {
-      carousel.scrollToIndex(pageNum - 1)
-      setTargetPage("")
-    }
-  }
 
   return (
     <VStack gap={8} align="stretch" py={8} maxW="800px" mx="auto">
@@ -70,74 +57,13 @@ export const CarouselWithStore = () => {
           <Button
             size="md"
             variant="outline"
-            onClick={() => carousel.scrollToIndex(0)}
+            onClick={() => carousel.scrollToIndex(2)}
           >
-            Reset
+            Go to Slide 3
           </Button>
         </HStack>
-        <Carousel.Indicators mt={4} count={items.length} />
-        <Box
-          bg="bg.muted"
-          borderRadius="md"
-          p={6}
-          borderWidth="1px"
-          borderColor="border"
-          mt={5}
-        >
-          <VStack gap={4} align="stretch">
-            <HStack gap={2}>
-              <Input
-                size="md"
-                placeholder={`Enter 1-${items.length}`}
-                type="number"
-                min="1"
-                max={items.length}
-                flex="1"
-                value={targetPage}
-                onChange={(e) => {
-                  const value = e.target.value
-                  const num = parseInt(value)
-                  if (
-                    value === "" ||
-                    (!isNaN(num) && num >= 1 && num <= items.length)
-                  ) {
-                    setTargetPage(value)
-                  }
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleGoToSlide()
-                }}
-              />
-              <Button
-                size="md"
-                colorScheme="blue"
-                onClick={handleGoToSlide}
-                disabled={
-                  !targetPage ||
-                  parseInt(targetPage) < 1 ||
-                  parseInt(targetPage) > items.length
-                }
-              >
-                Go to Slide
-              </Button>
-            </HStack>
 
-            <VStack gap={2} align="stretch" fontSize="sm" color="fg.muted">
-              <HStack justify="space-between">
-                <Text>Current Slide:</Text>
-                <Text fontWeight="semibold" color="fg">
-                  {carousel.page + 1} of {items.length}
-                </Text>
-              </HStack>
-              <HStack justify="space-between">
-                <Text>Progress:</Text>
-                <Text fontWeight="semibold" color="fg">
-                  {((carousel.page / (items.length - 1)) * 100).toFixed(0)}%
-                </Text>
-              </HStack>
-            </VStack>
-          </VStack>
-        </Box>
+        <Carousel.Indicators mt={4} count={items.length} />
       </Carousel.RootProvider>
     </VStack>
   )
