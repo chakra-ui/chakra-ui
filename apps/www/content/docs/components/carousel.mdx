@@ -33,6 +33,35 @@ import { Carousel } from "@chakra-ui/react"
 </Carousel.Root>
 ```
 
+## Shortcuts
+
+The `Carousel` component also provides convenient shortcuts for common patterns.
+
+### CarouselIndicators
+
+The `CarouselIndicators` shortcut renders a full set of indicators automatically
+based on the number of slides.
+
+This works:
+
+```jsx
+<Carousel.IndicatorGroup>
+  {Array.from({ length: items.length }, (_, index) => (
+    <Carousel.Indicator
+      key={index}
+      index={index}
+      aria-label={`Go to slide ${index + 1}`}
+    />
+  ))}
+</Carousel.IndicatorGroup>
+```
+
+This might be more concise if you don't need to customize each indicator:
+
+```jsx
+<Carousel.Indicators count={items.length} />
+```
+
 ## Examples
 
 ### Navigation Arrows
@@ -54,6 +83,13 @@ Control the gap between slides using the `spacing` prop. This example includes
 an interactive slider to demonstrate dynamic spacing adjustments.
 
 <ExampleTabs name="carousel-spacing" />
+
+### Variable Width
+
+Support slides of different widths for more dynamic layouts. This is useful for
+showcasing content with varying sizes such as cards, previews, or banners.
+
+<ExampleTabs name="carousel-with-variable-width" />
 
 ### Multiple Slides Per View
 

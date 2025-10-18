@@ -52,7 +52,6 @@ export const carouselSlotRecipe = defineSlotRecipe({
       transition: "all 0.2s",
       _hover: {
         bg: "bg.emphasized",
-        transform: "scale(1.05)",
       },
       _focusVisible: {
         outline: "2px solid",
@@ -62,9 +61,6 @@ export const carouselSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.5",
         cursor: "not-allowed",
-        _hover: {
-          transform: "none",
-        },
       },
     },
     nextTrigger: {
@@ -79,7 +75,6 @@ export const carouselSlotRecipe = defineSlotRecipe({
       transition: "all 0.2s",
       _hover: {
         bg: "bg.emphasized",
-        transform: "scale(1.05)",
       },
       _focusVisible: {
         outline: "2px solid",
@@ -89,9 +84,6 @@ export const carouselSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.5",
         cursor: "not-allowed",
-        _hover: {
-          transform: "none",
-        },
       },
     },
     autoplayTrigger: {
@@ -178,60 +170,58 @@ export const carouselSlotRecipe = defineSlotRecipe({
     },
     size: {
       sm: {
-        root: {
-          "--carousel-spacing": "spacing.3",
-        },
-        prevTrigger: {
-          width: "8",
-          height: "8",
-        },
-        nextTrigger: {
-          width: "8",
-          height: "8",
-        },
-        indicator: {
-          width: "2",
-          height: "2",
-        },
+        root: { "--carousel-spacing": "spacing.3" },
+        prevTrigger: { width: "8", height: "8" },
+        nextTrigger: { width: "8", height: "8" },
+        indicator: { width: "2", height: "2" },
       },
       md: {
-        root: {
-          "--carousel-spacing": "spacing.4",
-        },
-        prevTrigger: {
-          width: "10",
-          height: "10",
-        },
-        nextTrigger: {
-          width: "10",
-          height: "10",
-        },
-        indicator: {
-          width: "3",
-          height: "3",
-        },
+        root: { "--carousel-spacing": "spacing.4" },
+        prevTrigger: { width: "10", height: "10" },
+        nextTrigger: { width: "10", height: "10" },
+        indicator: { width: "3", height: "3" },
       },
       lg: {
-        root: {
-          "--carousel-spacing": "spacing.6",
+        root: { "--carousel-spacing": "spacing.6" },
+        prevTrigger: { width: "12", height: "12" },
+        nextTrigger: { width: "12", height: "12" },
+        indicator: { width: "4", height: "4" },
+      },
+    },
+    orientation: {
+      horizontal: {
+        itemGroup: { flexDirection: "row" },
+        control: {
+          top: "50%",
+          left: 0,
+          width: "100%",
+          flexDirection: "row",
+          transform: "translateY(-50%)",
         },
-        prevTrigger: {
-          width: "12",
-          height: "12",
+      },
+      vertical: {
+        itemGroup: {
+          flexDirection: "column",
         },
-        nextTrigger: {
-          width: "12",
-          height: "12",
+        control: {
+          top: 0,
+          left: "50%",
+          height: "100%",
+          width: "auto",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          transform: "translateX(-50%)",
+          py: "var(--carousel-spacing)",
         },
-        indicator: {
-          width: "4",
-          height: "4",
-        },
+        prevTrigger: { transform: "rotate(90deg)" },
+        nextTrigger: { transform: "rotate(90deg)" },
       },
     },
   },
   defaultVariants: {
     size: "md",
     variant: "basic",
+    orientation: "horizontal",
   },
 })

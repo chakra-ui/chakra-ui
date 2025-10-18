@@ -23,7 +23,6 @@ export const CarouselWithMouseDrag = () => {
           onCheckedChange={(details) => setIsDraggable(details.checked)}
         />
       </HStack>
-
       <Carousel.Root
         allowMouseDrag={isDraggable}
         slideCount={images.length}
