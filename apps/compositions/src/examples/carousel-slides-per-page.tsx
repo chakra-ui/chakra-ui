@@ -37,15 +37,7 @@ export const CarouselSlidesPerPage = () => {
         <Carousel.NextTrigger />
       </Carousel.Control>
 
-      <Carousel.IndicatorGroup>
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <Carousel.Indicator
-            key={index}
-            index={index}
-            aria-label={`Go to page ${index + 1}`}
-          />
-        ))}
-      </Carousel.IndicatorGroup>
+      <Carousel.Indicators mt={4} count={totalPages} />
     </Carousel.Root>
   )
 }

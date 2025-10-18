@@ -75,17 +75,7 @@ export const CarouselWithStore = () => {
             Reset
           </Button>
         </HStack>
-
-        <Carousel.IndicatorGroup mt={2} justifyContent="center">
-          {items.map((_, index) => (
-            <Carousel.Indicator
-              key={index}
-              index={index}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </Carousel.IndicatorGroup>
-
+        <Carousel.Indicators mt={4} count={items.length} />
         <Box
           bg="bg.muted"
           borderRadius="md"

@@ -36,15 +36,7 @@ export const CarouselWithLoop = () => {
         <Carousel.NextTrigger />
       </Carousel.Control>
 
-      <Carousel.IndicatorGroup>
-        {images.map((_, index) => (
-          <Carousel.Indicator
-            key={index}
-            index={index}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </Carousel.IndicatorGroup>
+      <Carousel.Indicators mt={4} count={images.length} />
     </Carousel.Root>
   )
 }
