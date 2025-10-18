@@ -16,20 +16,9 @@ const items = Array.from(
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
 
-const AutoplayIcon = ({
-  running,
-  toggle,
-}: {
-  running: boolean
-  toggle: () => void
-}) => {
+const AutoplayIcon = ({ running }: { running: boolean }) => {
   return (
-    <IconButton
-      aria-label="Toggle autoplay"
-      size="sm"
-      variant="ghost"
-      onClick={toggle}
-    >
+    <IconButton aria-label="Toggle autoplay" size="sm" variant="ghost">
       {running ? <LuPause /> : <LuPlay />}
     </IconButton>
   )
@@ -75,8 +64,8 @@ export const CarouselBasicExplorer = () => {
           bottom="var(--carousel-spacing)"
           right="var(--carousel-spacing)"
         >
-          <Carousel.AutoplayTrigger asChild>
-            <AutoplayIcon running={autoplayRunning} toggle={toggleAutoplay} />
+          <Carousel.AutoplayTrigger onClick={toggleAutoplay}>
+            <AutoplayIcon running={autoplayRunning} />
           </Carousel.AutoplayTrigger>
         </Box>
 
