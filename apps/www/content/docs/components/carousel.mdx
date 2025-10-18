@@ -62,6 +62,44 @@ This might be more concise if you don't need to customize each indicator:
 <Carousel.Indicators count={items.length} />
 ```
 
+### CarouselNavs
+
+The `CarouselNavs` shortcut renders default previous and next navigation arrows
+for your carousel. You can also customize the icons or fully provide your own
+children.
+
+**Default usage:**
+
+```jsx
+<Carousel.Root slideCount={5}>
+  <Carousel.ItemGroup>
+    <Carousel.Item>Slide 1</Carousel.Item>
+    <Carousel.Item>Slide 2</Carousel.Item>
+    <Carousel.Item>Slide 3</Carousel.Item>
+  </Carousel.ItemGroup>
+
+  <CarouselNavs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
+
+  <Carousel.Indicators count={5} />
+</Carousel.Root>
+```
+
+**Custom children usage:**
+
+```jsx
+<CarouselNavs>
+  <CarouselPrevTrigger asChild>
+    <button>Prev</button>
+  </CarouselPrevTrigger>
+  <CarouselNextTrigger asChild>
+    <button>Next</button>
+  </CarouselNextTrigger>
+</CarouselNavs>
+```
+
+This shows both the default arrows and how you can replace them with custom
+triggers.
+
 ## Examples
 
 ### Navigation Arrows
