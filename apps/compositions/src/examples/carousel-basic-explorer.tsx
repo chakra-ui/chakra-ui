@@ -21,6 +21,7 @@ export const CarouselBasicExplorer = () => {
         py="10"
         autoplay={autoplayRunning}
         loop
+        spacing="20px"
       >
         <Carousel.ItemGroup>
           {items.map((src, index) => (
