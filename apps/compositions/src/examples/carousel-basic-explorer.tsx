@@ -1,13 +1,6 @@
 "use client"
 
-import {
-  Box,
-  Carousel,
-  HStack,
-  IconButton,
-  Image,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Carousel, IconButton, Image, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuArrowLeft, LuArrowRight, LuPause, LuPlay } from "react-icons/lu"
 
@@ -15,14 +8,6 @@ const items = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
-
-const AutoplayIcon = ({ running }: { running: boolean }) => {
-  return (
-    <IconButton aria-label="Toggle autoplay" size="sm" variant="ghost">
-      {running ? <LuPause /> : <LuPlay />}
-    </IconButton>
-  )
-}
 
 export const CarouselBasicExplorer = () => {
   const [autoplayRunning, setAutoplayRunning] = useState(true)
@@ -54,24 +39,28 @@ export const CarouselBasicExplorer = () => {
           ))}
         </Carousel.ItemGroup>
 
-        <Carousel.Navs
-          leftIcon={<LuArrowLeft />}
-          rightIcon={<LuArrowRight />}
-        />
-
         <Box
           position="absolute"
           bottom="var(--carousel-spacing)"
           right="var(--carousel-spacing)"
         >
-          <Carousel.AutoplayTrigger onClick={toggleAutoplay}>
-            <AutoplayIcon running={autoplayRunning} />
-          </Carousel.AutoplayTrigger>
+          <IconButton
+            as={Carousel.AutoplayTrigger}
+            aria-label="Toggle autoplay"
+            size="sm"
+            variant="ghost"
+            onClick={toggleAutoplay}
+            _hover={{ transform: "scale(1.05)" }}
+          >
+            {autoplayRunning ? <LuPause /> : <LuPlay />}
+          </IconButton>
         </Box>
 
-        <HStack justify="center" gap={4} mt={4}>
-          <Carousel.Indicators count={items.length} />
-        </HStack>
+        <Carousel.Navs
+          leftIcon={<LuArrowLeft />}
+          rightIcon={<LuArrowRight />}
+        />
+        <Carousel.Indicators count={items.length} />
       </Carousel.Root>
     </VStack>
   )
