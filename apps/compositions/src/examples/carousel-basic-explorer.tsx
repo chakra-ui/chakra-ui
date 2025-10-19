@@ -24,18 +24,16 @@ export const CarouselBasicExplorer = () => {
       >
         <Carousel.ItemGroup>
           {items.map((src, index) => (
-            <Box key={index} position="relative">
-              <Carousel.Item index={index} asChild>
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  w="100%"
-                  h="200px"
-                  objectFit="cover"
-                  borderRadius="md"
-                />
-              </Carousel.Item>
-            </Box>
+            <Carousel.Item index={index} key={index}>
+              <Image
+                src={src}
+                alt={`Slide ${index + 1}`}
+                w="100%"
+                h="200px"
+                objectFit="cover"
+                borderRadius="md"
+              />
+            </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
 
