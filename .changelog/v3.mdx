@@ -5,6 +5,81 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.28.0](./#3.28.0) - 2025-10-20
+
+### Added
+
+- **TagsInput [New]**: Add new `TagsInput` component for entering multiple
+  values as tags with features like tag creation, deletion, and keyboard
+  navigation.
+
+  ```tsx
+  import { Span, TagsInput } from "@chakra-ui/react"
+
+  export const TagsInputBasic = () => {
+    return (
+      <TagsInput.Root defaultValue={["React", "Chakra", "TypeScript"]}>
+        <TagsInput.Label>Tags</TagsInput.Label>
+        <TagsInput.Control>
+          <TagsInput.Items />
+          <TagsInput.Input placeholder="Add tag..." />
+        </TagsInput.Control>
+      </TagsInput.Root>
+    )
+  }
+  ```
+
+- **Collapsible**: Add support for `collapsedHeight` and `collapsedWidth` props
+  to control the dimensions of the collapsible content when in its collapsed
+  state
+
+- **Pagination**: Add `getPageUrl` prop for generating `href` attributes when
+  using pagination as links
+
+### Changed
+
+- **Tabs, SegmentGroup**: Refactor to use `getBoundingClientRect()` for precise
+  indicator positioning
+
+- **Dialog, Popover**: In modal mode, allow elements referenced by
+  `aria-controls` to be included in the focus trap scope
+
+### Fixed
+
+- **Checkbox**: Fix issue where setting initial checked state to `indeterminate`
+  doesn't work
+
+- **Collapsible**: Fix issue where `dir` prop value doesn't get applied
+  correctly
+
+- **Combobox**: Fix issue where controlled single-select combobox does not
+  propagate its initial value to `inputValue`
+
+- **Listbox**: Fix issue where pressing Enter key when no highlighted item still
+  calls `event.preventDefault()`
+
+- **Number Input**: Fix cursor jumping to end when typing in the middle with
+  `formatOptions` like `style: "currency"`
+
+- **Pin Input**: Fix issue where keyboard shortcuts `Cmd+Backspace` and
+  `Cmd+Delete` would insert "undefined" instead of clearing the field
+
+- **Scroll Area**
+  - Fix horizontal scrollbar positioning on Safari in RTL mode
+  - Fix issue where resize tracking was not observing the root element
+
+- **Select**: Fix accessibility violation where the required state was not set
+  correctly on the trigger
+
+- **Slider**: Fix issue where slider continues dragging when disabled during
+  drag operation
+
+- **Switch**: Fix issue where `data-active` is inconsistently applied when
+  `disabled` state changes at runtime
+
+- **mergeRefs**: Add React version detection to properly handle cleanup
+  functions in React 19+ while avoiding warnings in React 18
+
 ## [3.27.1](./#3.27.1) - 2025-10-06
 
 ### Fixed
