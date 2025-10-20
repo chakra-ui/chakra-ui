@@ -18,7 +18,7 @@
   <a href="https://www.npmjs.com/package/@chakra-ui/react">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   </a>
-  <a href="https://github.com/chakra-ui/chakra-ui">
+  <a href="https://github.com/chakra-ui/chakra-ui/stargazers">
     <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
   </a>
   <a href="https://discord.gg/chakra-ui">
