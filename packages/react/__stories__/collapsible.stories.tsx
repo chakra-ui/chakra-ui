@@ -14,3 +14,8 @@ export default {
 
 export { CollapsibleBasic as Basic } from "compositions/examples/collapsible-basic"
 export { CollapsibleLazyMounted as LazyMounted } from "compositions/examples/collapsible-lazy-mounted"
+export { CollapsiblePartialHeight as PartialHeight } from "compositions/examples/collapsible-partial-height"
+export { CollapsibleInitialOpen as InitialOpen } from "compositions/examples/collapsible-initial-open"
+export { CollapsibleWithDisabled as Disabled } from "compositions/examples/collapsible-with-disabled"
+export { CollapsibleControlled as Controlled } from "compositions/examples/collapsible-controlled"
+export { CollapsibleWithStore as Store } from "compositions/examples/collapsible-with-store"
