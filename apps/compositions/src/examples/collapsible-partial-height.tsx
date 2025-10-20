@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Collapsible } from "@chakra-ui/react"
+import { Button, Collapsible, Stack } from "@chakra-ui/react"
 import { LuChevronDown } from "react-icons/lu"
 import { LoremIpsum } from "react-lorem-ipsum"
 
@@ -12,11 +12,10 @@ export const CollapsiblePartialHeight = () => (
         shadowColor: "blackAlpha.500",
       }}
     >
-      <Box padding="4" borderWidth="1px" rounded="l2">
+      <Stack padding="4" borderWidth="1px" rounded="l2">
         <LoremIpsum p={1} />
-        <LoremIpsum p={2} />
         <LoremIpsum p={1} />
-      </Box>
+      </Stack>
     </Collapsible.Content>
     <Collapsible.Trigger asChild mt="4">
       <Button variant="outline" size="sm">
