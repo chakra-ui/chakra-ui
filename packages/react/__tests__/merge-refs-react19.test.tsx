@@ -65,7 +65,8 @@ describe("mergeRefs - React 19", () => {
     const TestComponent = React.forwardRef<
       HTMLDivElement,
       { children: React.ReactNode }
-    >(({ children }, ref) => {
+    >(function TestComponent(props, ref) {
+      const { children } = props
       const localRef = React.useRef<HTMLDivElement>(null)
       const combinedRef = mergeRefs(ref, localRef, callbackRef)
 
@@ -173,7 +174,8 @@ describe("mergeRefs - React 19", () => {
     const TestInput = React.forwardRef<
       HTMLInputElement,
       { placeholder: string }
-    >(({ placeholder }, ref) => {
+    >(function TestInput(props, ref) {
+      const { placeholder } = props
       const localRef = React.useRef<HTMLInputElement>(null)
       const combinedRef = mergeRefs(ref, localRef, focusRef)
 
@@ -232,7 +234,8 @@ describe("mergeRefs - React 19", () => {
         children: React.ReactNode
         onFocus?: () => void
       }
-    >(({ children, onFocus }, ref) => {
+    >(function ComplexComponent(props, ref) {
+      const { children, onFocus } = props
       const localRef = React.useRef<HTMLDivElement>(null)
       const combinedRef = mergeRefs(ref, localRef, focusRef, measureRef)
 
