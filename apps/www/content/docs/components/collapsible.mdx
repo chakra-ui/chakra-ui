@@ -69,11 +69,7 @@ Use the `unmountOnExit` prop to make the content unmount when collapsed.
 
 To prevent janky animations when the collapsible expands or collapses, apply
 padding to the inner content element rather than directly on
-`Collapsible.Content`.
-
-When padding is applied directly to `Collapsible.Content`, the height animation
-calculation includes the padding values, which can cause visual stuttering and
-inconsistent animation timing as the component transitions between states.
+`Collapsible.Content` to prevent visual stuttering as its animations.
 
 **DO THIS:**
 
@@ -111,4 +107,4 @@ inconsistent animation timing as the component transitions between states.
 Explore the `Collapsible` component parts interactively. Click on parts in the
 sidebar to highlight them in the preview.
 
-<Explorer name="collapsible-basic" />
+<Explorer name="collapsible-initial-open" />
