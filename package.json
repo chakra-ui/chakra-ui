@@ -73,6 +73,7 @@
     "@typescript-eslint/parser": "8.46.1",
     "consola": "^3.4.2",
     "cross-env": "7.0.3",
+    "date-fns": "^4.1.0",
     "dotenv": "16.6.0",
     "eslint": "9.37.0",
     "eslint-config-prettier": "10.1.8",

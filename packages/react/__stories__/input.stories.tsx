@@ -38,3 +38,4 @@ export { InputWithStartAndEndText as StartAndEndText } from "compositions/exampl
 export { InputWithStartElementEndAddon as StartElementEndAddon } from "compositions/examples/input-with-start-element-end-addon"
 export { InputWithStartIcon as StartIcon } from "compositions/examples/input-with-start-icon"
 export { InputWithStartText as StartText } from "compositions/examples/input-with-start-text"
+export { DatePickerExample as DatePicker } from "compositions/examples/calender-example"
