@@ -126,6 +126,7 @@ const docsLinks: NavItem = {
             { title: "Checkbox Card", url: "checkbox-card" },
             { title: "Color Picker", url: "color-picker" },
             { title: "Color Swatch", url: "color-swatch" },
+            { title: "Date Picker", url: "date-picker" },
             { title: "Editable", url: "editable" },
             { title: "Field", url: "field" },
             { title: "Fieldset", url: "fieldset" },

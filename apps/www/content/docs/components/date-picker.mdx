@@ -1,0 +1,228 @@
+---
+title: Date Picker
+description:
+  Used to select dates from a calendar interface with support for single dates,
+  date ranges, and various formats
+links:
+  source: components/date-picker
+  storybook: components-date-picker--basic
+  recipe: date-picker
+  ark: https://ark-ui.com/docs/components/date-picker
+---
+
+<ExampleTabs name="date-picker-basic" />
+
+## Usage
+
+```jsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+```jsx
+<DatePicker.Root>
+  <DatePicker.Label />
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.Trigger />
+    <DatePicker.ClearTrigger />
+  </DatePicker.Control>
+  <DatePicker.Positioner>
+    <DatePicker.Content>
+      <DatePicker.View view="day">
+        <DatePicker.Context>
+          {(datePicker) => (
+            <>
+              <DatePicker.ViewControl>
+                <DatePicker.PrevTrigger />
+                <DatePicker.ViewTrigger>
+                  <DatePicker.RangeText />
+                </DatePicker.ViewTrigger>
+                <DatePicker.NextTrigger />
+              </DatePicker.ViewControl>
+              <DatePicker.Table>
+                <DatePicker.TableHead>
+                  <DatePicker.TableRow>
+                    {datePicker.weekDays.map((weekDay, id) => (
+                      <DatePicker.TableHeader key={id}>
+                        {weekDay.short}
+                      </DatePicker.TableHeader>
+                    ))}
+                  </DatePicker.TableRow>
+                </DatePicker.TableHead>
+                <DatePicker.TableBody>
+                  {datePicker.weeks.map((week, id) => (
+                    <DatePicker.TableRow key={id}>
+                      {week.map((day, id) => (
+                        <DatePicker.TableCell key={id} value={day}>
+                          <DatePicker.TableCellTrigger>
+                            {day.day}
+                          </DatePicker.TableCellTrigger>
+                        </DatePicker.TableCell>
+                      ))}
+                    </DatePicker.TableRow>
+                  ))}
+                </DatePicker.TableBody>
+              </DatePicker.Table>
+            </>
+          )}
+        </DatePicker.Context>
+      </DatePicker.View>
+    </DatePicker.Content>
+  </DatePicker.Positioner>
+</DatePicker.Root>
+```
+
+## Shortcuts
+
+### DatePicker.View
+
+This component renders the calendar view with navigation controls and table.
+
+```tsx
+<DatePicker.View view="day">
+  <DatePicker.Context>
+    {(datePicker) => (
+      <>
+        <DatePicker.ViewControl>
+          <DatePicker.PrevTrigger />
+          <DatePicker.ViewTrigger>
+            <DatePicker.RangeText />
+          </DatePicker.ViewTrigger>
+          <DatePicker.NextTrigger />
+        </DatePicker.ViewControl>
+        <DatePicker.Table>
+          <DatePicker.TableHead>
+            <DatePicker.TableRow>
+              {datePicker.weekDays.map((weekDay, id) => (
+                <DatePicker.TableHeader key={id}>
+                  {weekDay.short}
+                </DatePicker.TableHeader>
+              ))}
+            </DatePicker.TableRow>
+          </DatePicker.TableHead>
+          <DatePicker.TableBody>
+            {datePicker.weeks.map((week, id) => (
+              <DatePicker.TableRow key={id}>
+                {week.map((day, id) => (
+                  <DatePicker.TableCell key={id} value={day}>
+                    <DatePicker.TableCellTrigger>
+                      {day.day}
+                    </DatePicker.TableCellTrigger>
+                  </DatePicker.TableCell>
+                ))}
+              </DatePicker.TableRow>
+            ))}
+          </DatePicker.TableBody>
+        </DatePicker.Table>
+      </>
+    )}
+  </DatePicker.Context>
+</DatePicker.View>
+```
+
+### DatePicker.Control
+
+This component renders the input control with trigger and clear button.
+
+```tsx
+<DatePicker.Control>
+  <DatePicker.Input />
+  <DatePicker.Trigger />
+  <DatePicker.ClearTrigger />
+</DatePicker.Control>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the date picker.
+
+<ExampleTabs name="date-picker-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the date picker. Values can
+be either `outline` or `subtle`.
+
+<ExampleTabs name="date-picker-with-variants" />
+
+### Input Only
+
+Use only the input field without the trigger button for a minimal interface.
+
+<ExampleTabs name="date-picker-input-only" />
+
+### Trigger Only
+
+Use only the trigger button without the input field for a compact interface.
+
+<ExampleTabs name="date-picker-trigger-only" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the state of the date
+picker.
+
+<ExampleTabs name="date-picker-controlled" />
+
+### Date Range
+
+Use the `selectionMode="range"` prop to enable date range selection.
+
+<ExampleTabs name="date-picker-range" />
+
+### Presets
+
+Add preset date options for quick selection using `DatePicker.PresetTrigger`.
+
+<ExampleTabs name="date-picker-with-presets" />
+
+### Hook Form
+
+Here's an example of how to integrate the date picker with `react-hook-form`.
+
+<ExampleTabs name="date-picker-with-hook-form" />
+
+### Disabled
+
+Pass the `disabled` prop to disable the date picker.
+
+<ExampleTabs name="date-picker-with-disabled" />
+
+### ReadOnly
+
+Use the `readOnly` prop to make the date picker component read-only.
+
+<ExampleTabs name="date-picker-with-readonly" />
+
+### Date Format
+
+Use the `format` prop to customize how dates are displayed and parsed.
+
+<ExampleTabs name="date-picker-with-format" />
+
+### Min/Max Dates
+
+Use the `min` and `max` props to restrict the selectable date range.
+
+<ExampleTabs name="date-picker-with-min-max" />
+
+### Timezone
+
+Use the `timeZone` prop to display dates in different timezones.
+
+<ExampleTabs name="date-picker-with-timezone" />
+
+## Props
+
+### Root
+
+<PropTable component="DatePicker" part="Root" />
+
+## Explorer
+
+Explore the `Date Picker` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="date-picker-explorer" />
