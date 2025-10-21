@@ -1,0 +1,83 @@
+---
+title: Chakra UI v3.28 - TagsInput is here
+description:
+  "Introducing the TagsInput component and comprehensive quality improvements
+  across the board"
+type: release
+version: "3.28"
+authors: ["sage", "lope"]
+publishedAt: "2025-10-20"
+---
+
+We've just shipped Chakra UI v3.28! This release introduces the highly requested
+**[TagsInput](/docs/components/tags-input)** component, bringing powerful
+multi-value input capabilities to Chakra UI.
+
+This release also includes comprehensive bug fixes and improvements across 14+
+components, addressing edge cases in form handling, accessibility, and
+cross-browser compatibility.
+
+## TagsInput
+
+The TagsInput component provides a robust interface for entering and managing
+multiple values as tags. Think of it as a multi-value input with built-in
+keyboard navigation, tag editing, validation, and deletion—all the complexity
+handled for you.
+
+Use it for skill selection, email recipients, keyword tagging, category
+assignment, or any scenario where users need to input multiple discrete values.
+
+<ExampleTabs name="tags-input-basic" />
+
+### TagsInput + Combobox
+
+TagsInput works seamlessly with Combobox to create an autocomplete tag
+input—perfect for suggesting existing tags or categories as users type.
+
+<ExampleTabs name="tags-input-with-combobox" />
+
+## Collapsible Partial Height
+
+The Collapsible component now supports `collapsedHeight` and `collapsedWidth`
+props, allowing you to show a preview of the content when collapsed instead of
+hiding it completely.
+
+This is particularly useful for "Read more" patterns, content previews, or
+showing the first few lines of a long text block before expanding.
+
+<ExampleTabs name="collapsible-partial-height" />
+
+## Quality Improvements
+
+This release includes comprehensive bug fixes across 14+ components:
+
+- **Checkbox**: Fixed `indeterminate` initial state and `api.checkedState`
+  accuracy
+- **Combobox**: Fixed initial value propagation in controlled single-select mode
+- **Dialog & Popover**: Improved focus trap scope for elements with
+  `aria-controls`
+- **Listbox**: Fixed Enter key behavior when no item is highlighted
+- **Number Input**: Fixed cursor jumping when typing in formatted values
+- **Pagination**: Added `getPageUrl` prop for link-based pagination
+- **Pin Input**: Fixed `Cmd+Backspace` and `Cmd+Delete` keyboard shortcuts
+- **Scroll Area**: Fixed Safari RTL scrollbar positioning and resize tracking
+- **Select**: Fixed `required` state accessibility
+- **Slider**: Fixed dragging behavior when disabled mid-operation
+- **Switch**: Fixed `data-active` attribute consistency with runtime `disabled`
+  changes
+- **Tabs**: Improved indicator positioning with `getBoundingClientRect()`
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+All improvements in this release are backward compatible—no breaking changes or
+migration required.
+
+We're excited to see what you build with TagsInput! Share your creations with us
+on [Twitter](https://twitter.com/chakra_ui) or join the conversation in our
+[Discord community](https://chakra-ui.com/discord).

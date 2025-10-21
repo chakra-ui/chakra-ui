@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Rules", url: "rules", status: "new" },
+            { title: "AI Rules", url: "rules" },
           ],
         },
         {
@@ -142,16 +142,16 @@ const docsLinks: NavItem = {
             { title: "Switch", url: "switch" },
             { title: "Slider", url: "slider" },
             { title: "Textarea", url: "textarea" },
+            { title: "Tags Input", url: "tags-input", status: "new" },
           ],
         },
         {
           title: "Collections",
           items: [
             { title: "Combobox", url: "combobox" },
-            { title: "Listbox", url: "listbox", status: "new" },
+            { title: "Listbox", url: "listbox" },
             { title: "Select", url: "select" },
             { title: "Tree View", url: "tree-view", status: "beta" },
-            // { title: "Tags Input", url: "tags-input", status: "beta" },
           ],
         },
         {

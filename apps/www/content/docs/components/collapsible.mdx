@@ -18,18 +18,85 @@ import { Collapsible } from "@chakra-ui/react"
 
 ```jsx
 <Collapsible.Root>
-  <Collapsible.Trigger />
+  <Collapsible.Trigger>
+    <Collapsible.Indicator />
+  </Collapsible.Trigger>
   <Collapsible.Content />
 </Collapsible.Root>
 ```
 
 ## Examples
 
+### Initial Open
+
+Use the `defaultOpen` prop to render the collapsible in an open state by
+default.
+
+<ExampleTabs name="collapsible-initial-open" />
+
+### Partial Height
+
+Use the `collapsedHeight` prop to show a preview of the content when collapsed.
+
+<ExampleTabs name="collapsible-partial-height" />
+
+### Disabled
+
+Use the `disabled` prop to prevent the collapsible from being toggled.
+
+<ExampleTabs name="collapsible-with-disabled" />
+
+### Controlled
+
+Use the `open` and `onOpenChange` props to control the collapsible state.
+
+<ExampleTabs name="collapsible-controlled" />
+
+### Store
+
+An alternative way to control the collapsible is to use the `RootProvider`
+component and the `useCollapsible` store hook.
+
+<ExampleTabs name="collapsible-with-store" />
+
 ### Lazy Mounted
 
 Use the `unmountOnExit` prop to make the content unmount when collapsed.
 
 <ExampleTabs name="collapsible-lazy-mounted" />
+
+## Guides
+
+### Content Padding
+
+To prevent janky animations when the collapsible expands or collapses, apply
+padding to the inner content element rather than directly on
+`Collapsible.Content` to prevent visual stuttering as its animations.
+
+**DO THIS:**
+
+```tsx
+<Collapsible.Root>
+  <Collapsible.Trigger>Toggle</Collapsible.Trigger>
+  <Collapsible.Content>
+    <Box padding="4" borderWidth="1px">
+      {/* Content here */}
+    </Box>
+  </Collapsible.Content>
+</Collapsible.Root>
+```
+
+**NOT THIS:**
+
+```tsx
+<Collapsible.Root>
+  <Collapsible.Trigger>Toggle</Collapsible.Trigger>
+  {/* ❌ Avoid applying padding directly to Content */}
+  <Collapsible.Content padding="4" borderWidth="1px">
+    {/* Content here */}
+  </Collapsible.Content>
+</Collapsible.Root>
+```
 
 ## Props
 
@@ -42,4 +109,4 @@ Use the `unmountOnExit` prop to make the content unmount when collapsed.
 Explore the `Collapsible` component parts interactively. Click on parts in the
 sidebar to highlight them in the preview.
 
-<Explorer name="collapsible-basic" />
+<Explorer name="collapsible-initial-open" />
