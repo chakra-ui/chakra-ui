@@ -86,10 +86,10 @@ export const keyframes = {
   },
   "collapse-width": {
     from: {
-      height: "var(--width)",
+      width: "var(--width)",
     },
     to: {
-      height: "0",
+      width: "0",
     },
   },
   "fade-in": {
