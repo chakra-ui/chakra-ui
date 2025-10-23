@@ -1,24 +1,31 @@
 "use client"
 
-import { Box, Stack, Tour, useTour } from "@chakra-ui/react"
-import { useEffect } from "react"
+import { Box, HStack, Stack, Tour, useTour } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
+import { useEffect, useRef } from "react"
+import { LuLayers, LuMousePointer, LuSettings } from "react-icons/lu"
 
 export const TourExplorer = () => {
+  const backdropRef = useRef<HTMLButtonElement | null>(null)
+  const contentRef = useRef<HTMLButtonElement | null>(null)
+  const controlsRef = useRef<HTMLButtonElement | null>(null)
+
   const steps = [
     {
       id: "step-1",
       type: "dialog" as const,
-      title: "Welcome to the Tour",
-      description: "Explore how each component part renders.",
-      actions: [{ label: "Start Tour", action: "next" as const }],
+      title: "Welcome to the Component Explorer",
+      description:
+        "Learn how each tour component works together to create guided experiences.",
+      actions: [{ label: "Start Exploring", action: "next" as const }],
     },
     {
       id: "step-2",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#explorer-target-1"),
+      target: () => backdropRef.current,
       title: "Backdrop & Spotlight",
       description:
-        "The backdrop dims the page, while the spotlight highlights the target.",
+        "The backdrop dims the page while the spotlight highlights your target element.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
@@ -27,10 +34,10 @@ export const TourExplorer = () => {
     {
       id: "step-3",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#explorer-target-2"),
+      target: () => contentRef.current,
       title: "Content & Arrow",
       description:
-        "The content shows the step details, arrow points to the target.",
+        "The content displays step information and the arrow points directly to your target.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
@@ -39,12 +46,13 @@ export const TourExplorer = () => {
     {
       id: "step-4",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#explorer-target-3"),
+      target: () => controlsRef.current,
       title: "Controls & Actions",
-      description: "Progress text and action triggers navigate the tour.",
+      description:
+        "Progress indicators and action buttons help users navigate through your tour.",
       actions: [
         { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Next", action: "next" as const },
       ],
     },
   ]
@@ -65,7 +73,6 @@ export const TourExplorer = () => {
             <Tour.Arrow>
               <Tour.ArrowTip />
             </Tour.Arrow>
-            <Tour.CloseTrigger />
             <Tour.Title />
             <Tour.Description />
             <Tour.Control>
@@ -76,19 +83,21 @@ export const TourExplorer = () => {
         </Tour.Positioner>
       </Tour.RootProvider>
 
-      <Stack gap={4} p={6}>
-        <Box id="explorer-target-1" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Backdrop & Spotlight</strong>
-          <p>Dim and highlight effect</p>
-        </Box>
-        <Box id="explorer-target-2" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Content & Arrow</strong>
-          <p>Tooltip content with arrow pointing</p>
-        </Box>
-        <Box id="explorer-target-3" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Controls & Actions</strong>
-          <p>Navigation and progress display</p>
-        </Box>
+      <Stack gap={6} p={6} maxW="600px" mx="auto">
+        <HStack gap={3} justify="center">
+          <Button ref={backdropRef} variant="outline">
+            <LuLayers />
+            Backdrop
+          </Button>
+          <Button ref={contentRef} variant="outline" colorPalette="blue">
+            <LuMousePointer />
+            Content
+          </Button>
+          <Button ref={controlsRef} variant="outline" colorPalette="green">
+            <LuSettings />
+            Controls
+          </Button>
+        </HStack>
       </Stack>
     </Box>
   )

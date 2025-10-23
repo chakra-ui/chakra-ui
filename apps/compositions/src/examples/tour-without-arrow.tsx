@@ -1,17 +1,54 @@
 "use client"
 
-import { Box, Button, HStack, Stack, Tour, useTour } from "@chakra-ui/react"
+import {
+  Badge,
+  Box,
+  Button,
+  HStack,
+  Stack,
+  Text,
+  Tour,
+  useTour,
+} from "@chakra-ui/react"
+import { LuCalendar, LuMusic, LuSparkles, LuUsers } from "react-icons/lu"
 
 export const TourWithoutArrow = () => {
   const steps = [
     {
       id: "step-1",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#no-arrow-target"),
-      title: "No Arrow",
-      description: "This tooltip has the arrow hidden.",
+      target: () => document.querySelector<HTMLElement>("#stage-setup"),
+      title: "Stage Setup",
+      description:
+        "Configure your stage layout, lighting preferences, and sound check requirements for an epic performance.",
       arrow: false,
-      actions: [{ label: "Finish", action: "dismiss" as const }],
+      actions: [{ label: "Next", action: "next" as const }],
+    },
+    {
+      id: "step-2",
+      type: "tooltip" as const,
+      target: () => document.querySelector<HTMLElement>("#band-members"),
+      title: "Band Members",
+      description:
+        "Invite your bandmates, assign instruments, and coordinate rehearsal schedules all in one place.",
+      arrow: false,
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Next", action: "next" as const },
+      ],
+    },
+    {
+      id: "step-3",
+      type: "tooltip" as const,
+      target: () => document.querySelector<HTMLElement>("#tour-dates"),
+      title: "Tour Dates",
+      description:
+        "Schedule your shows, manage ticket sales, and track your tour revenue across multiple venues.",
+      arrow: false,
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Finish", action: "dismiss" as const },
+      ],
     },
   ]
 
@@ -20,7 +57,8 @@ export const TourWithoutArrow = () => {
   return (
     <Box>
       <Button onClick={() => tour.start()} mb={4}>
-        Start No-Arrow Tour
+        <LuSparkles />
+        Begin Tour
       </Button>
 
       <Tour.RootProvider tour={tour}>
@@ -39,9 +77,62 @@ export const TourWithoutArrow = () => {
       </Tour.RootProvider>
 
       <Stack gap={4} p={6}>
-        <HStack>
-          <Box id="no-arrow-target" p={6} borderWidth="1px" borderRadius="md">
-            Hover Target
+        <HStack gap={4}>
+          <Box
+            id="stage-setup"
+            p={6}
+            borderWidth="1px"
+            borderRadius="lg"
+            scrollMarginInline="10"
+            bg="purple.50"
+            _dark={{ bg: "purple.950" }}
+            flex="1"
+          >
+            <HStack mb={2}>
+              <LuMusic size={24} />
+              <Text fontWeight="semibold" fontSize="lg">
+                Stage Setup
+              </Text>
+            </HStack>
+            <Badge colorPalette="purple">Active</Badge>
+          </Box>
+
+          <Box
+            id="band-members"
+            p={6}
+            borderWidth="1px"
+            borderRadius="lg"
+            scrollMarginInline="10"
+            bg="blue.50"
+            _dark={{ bg: "blue.950" }}
+            flex="1"
+          >
+            <HStack mb={2}>
+              <LuUsers size={24} />
+              <Text fontWeight="semibold" fontSize="lg">
+                Members
+              </Text>
+            </HStack>
+            <Badge colorPalette="blue">4 Members</Badge>
+          </Box>
+
+          <Box
+            id="tour-dates"
+            p={6}
+            borderWidth="1px"
+            borderRadius="lg"
+            scrollMarginInline="10"
+            bg="green.50"
+            _dark={{ bg: "green.950" }}
+            flex="1"
+          >
+            <HStack mb={2}>
+              <LuCalendar size={24} />
+              <Text fontWeight="semibold" fontSize="lg">
+                Tour Dates
+              </Text>
+            </HStack>
+            <Badge colorPalette="green">12 Shows</Badge>
           </Box>
         </HStack>
       </Stack>

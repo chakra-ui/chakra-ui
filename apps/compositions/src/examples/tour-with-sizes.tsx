@@ -1,37 +1,49 @@
 "use client"
 
-import { Box, Button, Stack, Tour, useTour } from "@chakra-ui/react"
+import { Badge, Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import { useRef } from "react"
+import { LuMaximize2, LuMinimize2, LuMusic } from "react-icons/lu"
 
 export const TourWithSizes = () => {
+  const smRef = useRef<HTMLButtonElement | null>(null)
+  const mdRef = useRef<HTMLButtonElement | null>(null)
+  const lgRef = useRef<HTMLButtonElement | null>(null)
+
   const steps = [
     {
-      id: "step-1",
+      id: "welcome",
+      type: "dialog" as const,
+      title: "Tour Sizes",
+      description: "See how small, medium, and large tour content looks.",
+      actions: [{ label: "Start", action: "next" as const }],
+    },
+    {
+      id: "sm",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#size-sm"),
-      title: "Small Tour Step",
-      description: "This is a compact tour step.",
+      target: () => smRef.current,
+      title: "Small",
+      description: "Compact player UI.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
-      id: "step-2",
+      id: "md",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#size-md"),
-      title: "Medium Tour Step",
-      description: "This is a medium-sized tour step with more content.",
+      target: () => mdRef.current,
+      title: "Medium",
+      description: "Balance between size and detail.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "step-3",
+      id: "lg",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#size-lg"),
-      title: "Large Tour Step",
-      description:
-        "This is a large tour step that can accommodate more detailed information and descriptions.",
+      target: () => lgRef.current,
+      title: "Large",
+      description: "Full detail for immersive content experiences like lyrics.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
       ],
     },
@@ -42,20 +54,20 @@ export const TourWithSizes = () => {
   return (
     <Box>
       <Button onClick={() => tour.start()} mb={4}>
-        Start Tour
+        Begin Tour
       </Button>
 
-      <Stack gap={4} mb={8} p={6}>
-        <Box id="size-sm" p={4} borderWidth="1px" borderRadius="md">
-          First Feature
-        </Box>
-        <Box id="size-md" p={4} borderWidth="1px" borderRadius="md">
-          Second Feature
-        </Box>
-        <Box id="size-lg" p={4} borderWidth="1px" borderRadius="md">
-          Third Feature
-        </Box>
-      </Stack>
+      <HStack gap={3} flexWrap="wrap" mt={2}>
+        <Button ref={smRef} size="sm">
+          <LuMinimize2 /> Queue <Badge size="sm">SM</Badge>
+        </Button>
+        <Button ref={mdRef} size="md">
+          <LuMusic /> Playlist <Badge>MD</Badge>
+        </Button>
+        <Button ref={lgRef} size="lg">
+          <LuMaximize2 /> Lyrics <Badge size="lg">LG</Badge>
+        </Button>
+      </HStack>
 
       <Tour.RootProvider tour={tour} colorPalette="teal">
         <Tour.Backdrop />

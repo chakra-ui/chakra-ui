@@ -1,50 +1,62 @@
 "use client"
 
-import { Box, Button, HStack, Stack, Tour, useTour } from "@chakra-ui/react"
+import { Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import { useRef } from "react"
+import { LuCalendarPlus, LuShare2, LuTicket, LuVideo } from "react-icons/lu"
 
 export const TourWithVariants = () => {
+  const solidRef = useRef<HTMLButtonElement | null>(null)
+  const outlineRef = useRef<HTMLButtonElement | null>(null)
+  const ghostRef = useRef<HTMLButtonElement | null>(null)
+  const subtleRef = useRef<HTMLButtonElement | null>(null)
+
   const steps = [
     {
-      id: "step-1",
-      type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#variant-1"),
-      title: "Solid Variant",
+      id: "welcome",
+      type: "dialog" as const,
+      title: "Button Variants",
       description:
-        "This tour step uses the solid variant for a bold appearance.",
+        "Discover different action styles: solid, outline, ghost, subtle.",
+      actions: [{ label: "Start", action: "next" as const }],
+    },
+    {
+      id: "solid",
+      type: "tooltip" as const,
+      target: () => solidRef.current,
+      title: "Solid Variant",
+      description: "Bold and eye-catching—perfect for primary actions.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
-      id: "step-2",
+      id: "outline",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#variant-2"),
+      target: () => outlineRef.current,
       title: "Outline Variant",
-      description:
-        "This tour step uses the outline variant for a subtle border style.",
+      description: "Clean borders for secondary actions.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "step-3",
+      id: "ghost",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#variant-3"),
+      target: () => ghostRef.current,
       title: "Ghost Variant",
-      description: "This tour step uses the ghost variant for a minimal look.",
+      description: "Minimal style, ideal for tertiary actions.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "step-4",
+      id: "subtle",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#variant-4"),
+      target: () => subtleRef.current,
       title: "Subtle Variant",
-      description:
-        "This tour step uses the subtle variant for a muted background.",
+      description: "Soft background—gentle on the eyes.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
       ],
     },
@@ -53,28 +65,24 @@ export const TourWithVariants = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box p={6}>
+    <Box>
       <Button onClick={() => tour.start()} mb={4}>
-        Start Tour
+        Begin Tour
       </Button>
-      <Stack gap={4} mb={8}>
-        <HStack>
-          <Button id="variant-1" colorPalette="blue">
-            Solid Button
-          </Button>
-          <Button id="variant-2" colorPalette="green">
-            Outline Button
-          </Button>
-        </HStack>
-        <HStack>
-          <Button id="variant-3" colorPalette="purple">
-            Ghost Button
-          </Button>
-          <Button id="variant-4" colorPalette="orange">
-            Subtle Button
-          </Button>
-        </HStack>
-      </Stack>
+      <HStack gap={3} flexWrap="wrap" mt={2}>
+        <Button ref={solidRef} colorPalette="blue">
+          <LuTicket /> Buy Tickets
+        </Button>
+        <Button ref={outlineRef} colorPalette="green" variant="outline">
+          <LuCalendarPlus /> Add to Calendar
+        </Button>
+        <Button ref={ghostRef} colorPalette="purple" variant="ghost">
+          <LuVideo /> Watch Trailer
+        </Button>
+        <Button ref={subtleRef} colorPalette="orange" variant="subtle">
+          <LuShare2 /> Share Event
+        </Button>
+      </HStack>
 
       <Tour.Root tour={tour} colorPalette="purple">
         <Tour.Backdrop />

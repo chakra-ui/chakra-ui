@@ -1,37 +1,38 @@
 "use client"
 
-import { Box, Button, HStack, Stack, Tour, useTour } from "@chakra-ui/react"
+import { Box, Button, Tour, useTour } from "@chakra-ui/react"
+import { useRef } from "react"
 
 export const TourWithPlacements = () => {
+  const btnRef = useRef<HTMLButtonElement | null>(null)
+
   const steps = [
     {
-      id: "step-top",
-      type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#placement-top"),
-      placement: "top-start" as const,
-      title: "Top Start",
-      description: "Tooltip placed at top-start.",
+      id: "center",
+      type: "dialog" as const,
+      title: "Center",
+      description: "Displayed in the center of screen.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
-      id: "step-right",
+      id: "right",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#placement-right"),
+      target: () => btnRef.current,
       placement: "right" as const,
       title: "Right",
-      description: "Tooltip placed to the right.",
+      description: "On the right of target.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "step-bottom",
+      id: "top",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#placement-bottom"),
-      placement: "bottom-end" as const,
-      title: "Bottom End",
-      description: "Tooltip placed at bottom-end.",
+      target: () => btnRef.current,
+      placement: "top" as const,
+      title: "Top",
+      description: "On the top of target.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
@@ -43,8 +44,8 @@ export const TourWithPlacements = () => {
 
   return (
     <Box>
-      <Button onClick={() => tour.start()} mb={4}>
-        Start Placement Tour
+      <Button ref={btnRef} onClick={() => tour.start()} mb={4}>
+        Begin Tour
       </Button>
 
       <Tour.RootProvider tour={tour}>
@@ -65,14 +66,6 @@ export const TourWithPlacements = () => {
           </Tour.Content>
         </Tour.Positioner>
       </Tour.RootProvider>
-
-      <Stack gap={4} p={6}>
-        <HStack>
-          <Button id="placement-top">Top Start Target</Button>
-          <Button id="placement-right">Right Target</Button>
-          <Button id="placement-bottom">Bottom End Target</Button>
-        </HStack>
-      </Stack>
     </Box>
   )
 }

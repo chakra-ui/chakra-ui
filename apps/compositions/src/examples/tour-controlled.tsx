@@ -1,24 +1,36 @@
 "use client"
 
-import { Box, Button, HStack, Stack, Tour, useTour } from "@chakra-ui/react"
+import {
+  Badge,
+  Box,
+  Button,
+  HStack,
+  Stack,
+  Text,
+  Tour,
+  useTour,
+} from "@chakra-ui/react"
+import { HiHome } from "react-icons/hi"
+import { LuSearch, LuSparkles, LuUser } from "react-icons/lu"
 
 export const TourControlled = () => {
   const steps = [
     {
       id: "step-1",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#controlled-1"),
-      title: "Controlled Tour",
+      target: () => document.querySelector<HTMLElement>("#home-tab"),
+      title: "Your Home Feed",
       description:
-        "This tour is controlled programmatically using the useTour hook.",
+        "Discover new music, trending playlists, and personalized recommendations just for you.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
       id: "step-2",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#controlled-2"),
-      title: "Step 2",
-      description: "You can control the tour externally with buttons.",
+      target: () => document.querySelector<HTMLElement>("#search-tab"),
+      title: "Search Everything",
+      description:
+        "Find any song, artist, album, or playlist in seconds. Your music library awaits.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
@@ -27,9 +39,10 @@ export const TourControlled = () => {
     {
       id: "step-3",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#controlled-3"),
-      title: "Final Step",
-      description: "Use the API to navigate, check progress, and more.",
+      target: () => document.querySelector<HTMLElement>("#profile-tab"),
+      title: "Your Profile",
+      description:
+        "Manage your playlists, liked songs, and listening history all in one place.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
@@ -40,28 +53,105 @@ export const TourControlled = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box>
-      <Stack gap={4} mb={6}>
-        <HStack>
-          <Button onClick={() => tour.start()} colorPalette="blue">
+    <Box maxW="500px" mx="auto">
+      <Stack gap={6}>
+        <Box>
+          <Button
+            onClick={() => tour.start()}
+            width="full"
+            colorPalette="purple"
+            mb={3}
+          >
+            <LuSparkles />
             Start Tour
           </Button>
-          <Button onClick={() => tour.next()} disabled={!tour.hasNextStep}>
-            Next
-          </Button>
-          <Button onClick={() => tour.prev()} disabled={!tour.hasPrevStep}>
-            Previous
-          </Button>
-          <Button onClick={() => tour.setStep("step-2")}>Jump to Step 2</Button>
-        </HStack>
 
-        <Box p={4} borderWidth="1px" borderRadius="md" bg="bg.muted">
-          <strong>Tour State:</strong>
-          <p>
-            Current Step: {tour.stepIndex + 1} of {tour.totalSteps}
-          </p>
-          <p>Progress: {tour.getProgressPercent()}%</p>
-          <p>Step ID: {tour.step?.id || "None"}</p>
+          {tour.step && (
+            <Box
+              p={4}
+              borderWidth="1px"
+              borderRadius="lg"
+              bg="gray.50"
+              _dark={{ bg: "gray.900" }}
+            >
+              <HStack justify="space-between" mb={2}>
+                <Text fontSize="sm" fontWeight="medium">
+                  Tour Progress
+                </Text>
+                <Badge colorPalette="purple">
+                  {tour.stepIndex + 1} of {tour.totalSteps}
+                </Badge>
+              </HStack>
+              <HStack gap={2}>
+                <Button
+                  size="sm"
+                  onClick={() => tour.prev()}
+                  disabled={!tour.hasPrevStep}
+                  flex="1"
+                >
+                  Previous
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => tour.next()}
+                  disabled={!tour.hasNextStep}
+                  flex="1"
+                  colorPalette="purple"
+                >
+                  Next
+                </Button>
+              </HStack>
+            </Box>
+          )}
+        </Box>
+
+        <Box
+          borderWidth="1px"
+          borderRadius="xl"
+          p={6}
+          bg="gray.50"
+          _dark={{ bg: "gray.900" }}
+        >
+          <Text
+            fontSize="sm"
+            color="gray.600"
+            _dark={{ color: "gray.400" }}
+            mb={4}
+          >
+            Main Navigation
+          </Text>
+          <Stack gap={3}>
+            <Button
+              id="home-tab"
+              variant="outline"
+              size="lg"
+              justifyContent="flex-start"
+              scrollMarginTop="10"
+            >
+              <HiHome />
+              Home
+            </Button>
+            <Button
+              id="search-tab"
+              variant="outline"
+              size="lg"
+              justifyContent="flex-start"
+              scrollMarginTop="10"
+            >
+              <LuSearch />
+              Search
+            </Button>
+            <Button
+              id="profile-tab"
+              variant="outline"
+              size="lg"
+              justifyContent="flex-start"
+              scrollMarginTop="10"
+            >
+              <LuUser />
+              Profile
+            </Button>
+          </Stack>
         </Box>
       </Stack>
 
@@ -83,21 +173,6 @@ export const TourControlled = () => {
           </Tour.Content>
         </Tour.Positioner>
       </Tour.RootProvider>
-
-      <Stack gap={4} p={6}>
-        <Box id="controlled-1" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Feature 1</strong>
-          <p>First feature to highlight in the tour.</p>
-        </Box>
-        <Box id="controlled-2" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Feature 2</strong>
-          <p>Second feature to highlight in the tour.</p>
-        </Box>
-        <Box id="controlled-3" p={6} borderWidth="1px" borderRadius="md">
-          <strong>Feature 3</strong>
-          <p>Third feature to highlight in the tour.</p>
-        </Box>
-      </Stack>
     </Box>
   )
 }

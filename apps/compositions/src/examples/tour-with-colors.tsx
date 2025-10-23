@@ -1,36 +1,49 @@
 "use client"
 
 import { Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import { useRef } from "react"
+import { LuImage, LuMap, LuTicket } from "react-icons/lu"
 
 export const TourWithColors = () => {
+  const redRef = useRef<HTMLDivElement | null>(null)
+  const blueRef = useRef<HTMLDivElement | null>(null)
+  const greenRef = useRef<HTMLDivElement | null>(null)
+
   const steps = [
     {
-      id: "step-1",
+      id: "welcome",
+      type: "dialog" as const,
+      title: "Color Palettes",
+      description: "See how tour styling adapts to different color schemes.",
+      actions: [{ label: "Start", action: "next" as const }],
+    },
+    {
+      id: "red",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#red-box"),
-      title: "Red Feature",
-      description: "This is the red feature box with important functionality.",
+      target: () => redRef.current,
+      title: "Tour Poster",
+      description: "Official artwork for the upcoming tour.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
-      id: "step-2",
+      id: "blue",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#blue-box"),
-      title: "Blue Feature",
-      description: "Explore the blue feature box with advanced options.",
+      target: () => blueRef.current,
+      title: "VIP Access",
+      description: "Exclusive backstage and early entry passes.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "step-3",
+      id: "green",
       type: "tooltip" as const,
-      target: () => document.querySelector<HTMLElement>("#green-box"),
-      title: "Green Feature",
-      description: "Complete your tour with the green feature box.",
+      target: () => greenRef.current,
+      title: "Venue Map",
+      description: "Interactive seating chart and venue layout.",
       actions: [
-        { label: "Previous", action: "prev" as const },
+        { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
       ],
     },
@@ -41,39 +54,57 @@ export const TourWithColors = () => {
   return (
     <Box>
       <Button onClick={() => tour.start()} mb={4}>
-        Start Tour
+        Begin Tour
       </Button>
 
-      <HStack gap={4} mb={8} p={6}>
+      <HStack gap={4} flexWrap="wrap" mt={2}>
         <Box
-          id="red-box"
-          p={8}
-          bg="red.100"
-          borderRadius="md"
+          ref={redRef}
+          p={6}
+          bg="red.50"
+          borderRadius="lg"
           borderWidth="2px"
-          borderColor="red.500"
+          borderColor="red.400"
+          cursor="pointer"
+          _hover={{ bg: "red.100" }}
+          minW="140px"
         >
-          Red Box
+          <LuImage size={24} />
+          <Box mt={2} fontWeight="semibold">
+            Tour Poster
+          </Box>
         </Box>
         <Box
-          id="blue-box"
-          p={8}
-          bg="blue.100"
-          borderRadius="md"
+          ref={blueRef}
+          p={6}
+          bg="blue.50"
+          borderRadius="lg"
           borderWidth="2px"
-          borderColor="blue.500"
+          borderColor="blue.400"
+          cursor="pointer"
+          _hover={{ bg: "blue.100" }}
+          minW="140px"
         >
-          Blue Box
+          <LuTicket size={24} />
+          <Box mt={2} fontWeight="semibold">
+            VIP Ticket
+          </Box>
         </Box>
         <Box
-          id="green-box"
-          p={8}
-          bg="green.100"
-          borderRadius="md"
+          ref={greenRef}
+          p={6}
+          bg="green.50"
+          borderRadius="lg"
           borderWidth="2px"
-          borderColor="green.500"
+          borderColor="green.400"
+          cursor="pointer"
+          _hover={{ bg: "green.100" }}
+          minW="140px"
         >
-          Green Box
+          <LuMap size={24} />
+          <Box mt={2} fontWeight="semibold">
+            Venue Map
+          </Box>
         </Box>
       </HStack>
 
