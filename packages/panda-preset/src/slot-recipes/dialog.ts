@@ -21,9 +21,9 @@ export const dialogSlotRecipe = defineSlotRecipe({
       pos: "fixed",
       left: 0,
       top: 0,
-      w: "100vw",
+      w: "100dvw",
       h: "100dvh",
-      zIndex: "overlay",
+      zIndex: "var(--z-index)",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
@@ -35,7 +35,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     positioner: {
       display: "flex",
-      width: "100vw",
+      width: "100dvw",
       height: "100dvh",
       position: "fixed",
       left: 0,
@@ -188,8 +188,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
       },
       full: {
         content: {
-          maxW: "100vw",
-          minH: "100vh",
+          maxW: "100dvw",
+          minH: "100dvh",
           "--dialog-margin": "0",
           borderRadius: "0",
         },

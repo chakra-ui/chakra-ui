@@ -78,6 +78,11 @@ export const checkmarkRecipe = defineRecipe({
         },
       },
     },
+    filled: {
+      true: {
+        bg: "bg",
+      },
+    },
   },
   defaultVariants: {
     variant: "solid",
