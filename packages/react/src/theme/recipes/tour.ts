@@ -11,10 +11,12 @@ export const tourSlotRecipe = defineSlotRecipe({
       bg: "blackAlpha.600",
       zIndex: "1200",
       _open: {
-        animation: "fade-in",
+        animationName: "fade-in",
+        animationDuration: "slow",
       },
       _closed: {
-        animation: "fade-out",
+        animationName: "fade-out",
+        animationDuration: "moderate",
       },
     },
 
@@ -27,11 +29,16 @@ export const tourSlotRecipe = defineSlotRecipe({
       outlineOffset: "2",
       zIndex: "1400",
       pointerEvents: "none",
+      transitionProperty: "inset, width, height, transform",
+      transitionDuration: "moderate",
+      transitionTimingFunction: "default",
       _open: {
-        animation: "fade-in",
+        animationName: "fade-in",
+        animationDuration: "slow",
       },
       _closed: {
-        animation: "fade-out",
+        animationName: "fade-out",
+        animationDuration: "moderate",
       },
     },
 
@@ -40,6 +47,9 @@ export const tourSlotRecipe = defineSlotRecipe({
       zIndex: "1500 !important",
       display: "flex",
       flexDirection: "column",
+      transitionProperty: "transform, top, left",
+      transitionDuration: "moderate",
+      transitionTimingFunction: "default",
     },
 
     content: {
@@ -52,22 +62,31 @@ export const tourSlotRecipe = defineSlotRecipe({
       boxShadow: "lg",
       maxWidth: "sm",
       p: "6",
+      willChange: "transform, opacity",
       _open: {
-        animation: "fade-in, scale-in",
+        animationName: "scale-in, fade-in",
+        animationDuration: "moderate",
       },
       _closed: {
-        animation: "fade-out, scale-out",
+        animationName: "scale-out, fade-out",
+        animationDuration: "faster",
       },
     },
 
     arrow: {
       "--arrow-size": "sizes.3",
       "--arrow-background": "colors.bg.panel",
+      transitionProperty: "transform, top, left",
+      transitionDuration: "moderate",
+      transitionTimingFunction: "default",
     },
 
     arrowTip: {
       borderTopWidth: "1px",
       borderInlineStartWidth: "1px",
+      transitionProperty: "transform, top, left",
+      transitionDuration: "moderate",
+      transitionTimingFunction: "default",
     },
 
     title: {

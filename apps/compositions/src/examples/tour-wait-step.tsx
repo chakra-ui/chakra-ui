@@ -20,6 +20,8 @@ export const TourWaitStep = () => {
       description:
         "Let's learn by doing! We'll guide you through adding a song to your favorites.",
       actions: [{ label: "Let's Go", action: "next" as const }],
+      backdrop: false,
+      placement: "top" as const,
     },
     {
       id: "wait-play",
