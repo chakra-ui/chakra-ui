@@ -1,0 +1,108 @@
+---
+title: Tour
+description:
+  A guided tour that helps users understand the interface through a series of
+  interactive steps highlighting key features.
+links:
+  source: components/tour
+  storybook: components-tour--basic
+  recipe: tour
+  ark: https://ark-ui.com/docs/components/tour
+---
+
+<ExampleTabs name="tour-basic" />
+
+## Usage
+
+```jsx
+import { Tour, useTour } from "@chakra-ui/react"
+```
+
+## Shortcuts
+
+TourActionTriggers renders all action buttons for the current step from its
+`actions` array. Each action can be a built-in string
+(`"next" | "prev" | "dismiss"`) or a custom handler.
+
+This works (manual mapping):
+
+```jsx
+<Tour.Context>
+  {(api) =>
+    api.step?.actions?.map((action) => (
+      <Tour.ActionTrigger key={action.label} action={action}>
+        {action.label}
+      </Tour.ActionTrigger>
+    ))
+  }
+</Tour.Context>
+```
+
+This is more concise:
+
+```jsx
+<Tour.ActionTriggers />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to adjust the size of the tour content.
+
+<ExampleTabs name="tour-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the action buttons.
+
+<ExampleTabs name="tour-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color scheme of the tour.
+
+<ExampleTabs name="tour-with-colors" />
+
+### Placement
+
+Control where the tooltip appears relative to its target using the `placement`
+option per step.
+
+<ExampleTabs name="tour-with-placements" />
+
+### Without Arrow
+
+Hide the arrow by setting `arrow: false` on a step.
+
+<ExampleTabs name="tour-without-arrow" />
+
+### Without Backdrop
+
+Disable the dimmed background by setting `backdrop: false` on a step.
+
+<ExampleTabs name="tour-without-backdrop" />
+
+### Controlled
+
+Control the tour programmatically with the `useTour` store (start, next, prev,
+setStep, progress).
+
+<ExampleTabs name="tour-controlled" />
+
+### Wait Step
+
+Pause the tour until a condition is met (e.g., wait for a user click) using a
+`type: "wait"` step.
+
+<ExampleTabs name="tour-wait-step" />
+
+## Props
+
+### Root
+
+<PropTable component="Tour" part="Root" />
+
+## Explorer
+
+<Explorer name="tour-explorer" />

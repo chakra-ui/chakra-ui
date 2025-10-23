@@ -21,7 +21,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       position: "fixed",
       inset: "0",
       bg: "blackAlpha.600",
-      zIndex: "overlay",
+      zIndex: "1200",
       _open: {
         animation: "fade-in",
       },
@@ -37,7 +37,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       outline: "2px solid",
       outlineColor: "colorPalette.solid",
       outlineOffset: "2",
-      zIndex: "overlay",
+      zIndex: "1400",
       pointerEvents: "none",
       _open: {
         animation: "fade-in",
@@ -49,7 +49,7 @@ export const tourSlotRecipe = defineSlotRecipe({
 
     positioner: {
       position: "absolute",
-      zIndex: "popover",
+      zIndex: "1500",
       display: "flex",
       flexDirection: "column",
     },

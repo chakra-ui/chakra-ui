@@ -1,13 +1,14 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Tour as ArkTour } from "@ark-ui/react/tour"
+import { Tour as ArkTour, useTourContext } from "@ark-ui/react/tour"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 import { CloseIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -160,6 +161,22 @@ export const TourActionTrigger = withContext<
   HTMLButtonElement,
   TourActionTriggerProps
 >(ArkTour.ActionTrigger, "actionTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const TourActionTriggers = () => {
+  const api = useTourContext()
+  const actions = api.step?.actions ?? []
+  return (
+    <For each={actions}>
+      {(action) => (
+        <TourActionTrigger key={action.label} action={action}>
+          {action.label}
+        </TourActionTrigger>
+      )}
+    </For>
+  )
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 
