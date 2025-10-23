@@ -1,38 +1,61 @@
 "use client"
 
-import { Box, Button, Tour, useTour } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  HStack,
+  IconButton,
+  Tour,
+  useTour,
+} from "@chakra-ui/react"
 import { useRef } from "react"
+import { FaBold, FaItalic, FaPlay, FaUnderline } from "react-icons/fa"
 
 export const TourWithPlacements = () => {
-  const btnRef = useRef<HTMLButtonElement | null>(null)
+  const boldRef = useRef<HTMLButtonElement | null>(null)
+  const italicRef = useRef<HTMLButtonElement | null>(null)
+  const underlineRef = useRef<HTMLButtonElement | null>(null)
 
   const steps = [
     {
-      id: "center",
+      id: "intro",
       type: "dialog" as const,
-      title: "Center",
-      description: "Displayed in the center of screen.",
+      title: "Welcome to the Editor!",
+      description:
+        "This short tour will walk you through the text formatting tools.",
       actions: [{ label: "Next", action: "next" as const }],
     },
     {
-      id: "right",
+      id: "bold",
       type: "tooltip" as const,
-      target: () => btnRef.current,
-      placement: "right" as const,
-      title: "Right",
-      description: "On the right of target.",
+      target: () => boldRef.current,
+      placement: "top" as const,
+      title: "Bold Tool",
+      description: "Click here to make selected text bold.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
       ],
     },
     {
-      id: "top",
+      id: "italic",
       type: "tooltip" as const,
-      target: () => btnRef.current,
-      placement: "top" as const,
-      title: "Top",
-      description: "On the top of target.",
+      target: () => italicRef.current,
+      placement: "bottom" as const,
+      title: "Italic Tool",
+      description: "Use this to italicize your text.",
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Next", action: "next" as const },
+      ],
+    },
+    {
+      id: "underline",
+      type: "tooltip" as const,
+      target: () => underlineRef.current,
+      placement: "right" as const,
+      title: "Underline Tool",
+      description: "Click to underline text for emphasis.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
@@ -43,9 +66,42 @@ export const TourWithPlacements = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box>
-      <Button ref={btnRef} onClick={() => tour.start()} mb={4}>
-        Begin Tour
+    <Box p={6} rounded="2xl" maxW="lg" mx="auto">
+      <HStack gap={4} mb={6} justify="center">
+        <IconButton
+          ref={boldRef}
+          aria-label="Bold"
+          variant="outline"
+          colorScheme="teal"
+          size="sm"
+        >
+          <FaBold />
+        </IconButton>
+
+        <IconButton
+          ref={italicRef}
+          aria-label="Italic"
+          variant="outline"
+          colorScheme="teal"
+          size="sm"
+        >
+          <FaItalic />
+        </IconButton>
+
+        <IconButton
+          ref={underlineRef}
+          aria-label="Underline"
+          variant="outline"
+          colorScheme="teal"
+          size="sm"
+        >
+          <FaUnderline />
+        </IconButton>
+      </HStack>
+
+      <Button onClick={() => tour.start()} colorScheme="teal" w="full">
+        <FaPlay />
+        Start Tour
       </Button>
 
       <Tour.RootProvider tour={tour}>
@@ -57,7 +113,7 @@ export const TourWithPlacements = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
-            <Tour.Title />
+            <Tour.Title fontWeight="bold" />
             <Tour.Description />
             <Tour.Control>
               <Tour.ProgressText />
@@ -69,3 +125,5 @@ export const TourWithPlacements = () => {
     </Box>
   )
 }
+
+export default TourWithPlacements
