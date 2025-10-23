@@ -43,7 +43,6 @@ export const TourWaitStep = () => {
       title: "Great Choice!",
       description: "Now tap the heart to add this song to your Liked Songs.",
       placement: "top" as const,
-      actions: [],
     },
     {
       id: "wait-like",
