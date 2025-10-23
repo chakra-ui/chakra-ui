@@ -1,16 +1,58 @@
 "use client"
 
-import { Box, Button, Stack, Tour, useTour } from "@chakra-ui/react"
+import { Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import { useRef } from "react"
+import { LuRefreshCw, LuSettings, LuSparkles, LuZap } from "react-icons/lu"
 
 export const TourWithImmediate = () => {
+  const syncRef = useRef<HTMLButtonElement | null>(null)
+  const refreshRef = useRef<HTMLButtonElement | null>(null)
+  const settingsRef = useRef<HTMLButtonElement | null>(null)
+
   const steps = [
     {
-      id: "step-1",
+      id: "welcome",
       type: "dialog" as const,
-      title: "Immediate Sync",
+      title: "Immediate Sync Mode",
       description:
-        "Use immediate={true} to sync state changes in the current frame.",
-      actions: [{ label: "Close", action: "dismiss" as const }],
+        "This tour demonstrates immediate state synchronization without frame delays.",
+      actions: [{ label: "Start", action: "next" as const }],
+    },
+    {
+      id: "sync",
+      type: "tooltip" as const,
+      target: () => syncRef.current,
+      title: "Instant Sync",
+      description:
+        "Changes apply immediately in the current frame without deferring.",
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Next", action: "next" as const },
+      ],
+    },
+    {
+      id: "refresh",
+      type: "tooltip" as const,
+      target: () => refreshRef.current,
+      title: "Real-time Updates",
+      description:
+        "State changes reflect instantly without waiting for the next render cycle.",
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Next", action: "next" as const },
+      ],
+    },
+    {
+      id: "settings",
+      type: "tooltip" as const,
+      target: () => settingsRef.current,
+      title: "Performance Mode",
+      description:
+        "Enable immediate mode for time-critical UI updates and animations.",
+      actions: [
+        { label: "Back", action: "prev" as const },
+        { label: "Finish", action: "dismiss" as const },
+      ],
     },
   ]
 
@@ -19,8 +61,24 @@ export const TourWithImmediate = () => {
   return (
     <Box>
       <Button onClick={() => tour.start()} mb={4}>
-        Start Tour (Immediate)
+        <LuSparkles />
+        Start Tour
       </Button>
+
+      <HStack gap={3} mt={4}>
+        <Button ref={syncRef}>
+          <LuZap />
+          Sync
+        </Button>
+        <Button ref={refreshRef} colorPalette="blue">
+          <LuRefreshCw />
+          Refresh
+        </Button>
+        <Button ref={settingsRef}>
+          <LuSettings />
+          Settings
+        </Button>
+      </HStack>
 
       <Tour.Root tour={tour} immediate={true}>
         <Tour.Backdrop />
@@ -34,17 +92,12 @@ export const TourWithImmediate = () => {
             <Tour.Title />
             <Tour.Description />
             <Tour.Control>
+              <Tour.ProgressText />
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-
-      <Stack gap={4} p={6}>
-        <Box p={6} borderWidth="1px" borderRadius="md">
-          State changes sync immediately without deferring to next frame.
-        </Box>
-      </Stack>
     </Box>
   )
 }
