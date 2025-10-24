@@ -18,6 +18,7 @@ import { createLayers } from "./layers"
 import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
 import type {
@@ -30,8 +31,6 @@ import type {
   TokenFn,
 } from "./types"
 import { createUtility } from "./utility"
-
-const EMPTY_OBJECT = {}
 
 export function createSystem(...configs: SystemConfig[]): SystemContext {
   const config = mergeConfigs(...configs)
@@ -100,11 +99,15 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
   const normalizeValue = (value: any): any => {
     if (Array.isArray(value)) {
-      return value.reduce((acc, current, index) => {
-        const key = conditions.breakpoints[index]
-        if (current != null) acc[key] = current
-        return acc
-      }, {})
+      const result = createEmptyObject()
+      for (let index = 0; index < value.length; index++) {
+        const current = value[index]
+        if (current != null) {
+          const key = conditions.breakpoints[index]
+          result[key] = current
+        }
+      }
+      return result
     }
     return value
   }

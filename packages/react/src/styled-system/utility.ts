@@ -1,6 +1,7 @@
 import { type Dict, isFunction, isString, mapEntries, memo } from "../utils"
 import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
+import { EMPTY_OBJECT } from "./singleton"
 import type {
   TokenDictionary,
   Utility,
@@ -141,7 +142,7 @@ export function createUtility(options: Options) {
     }
 
     if (isString(values)) {
-      return fn?.(values) ?? tokens.getCategoryValues(values) ?? {}
+      return fn?.(values) ?? tokens.getCategoryValues(values) ?? EMPTY_OBJECT
     }
 
     if (Array.isArray(values)) {

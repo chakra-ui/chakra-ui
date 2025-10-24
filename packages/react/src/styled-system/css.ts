@@ -8,6 +8,7 @@ import {
   walkObject,
 } from "../utils"
 import type { SystemStyleObject } from "./css.types"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
@@ -32,7 +33,7 @@ export function createCssFn(context: CssFnOptions) {
     const styles = mergeFn(...styleArgs)
 
     const normalized = normalize(styles)
-    const result: Dict = Object.create(null)
+    const result: Dict = createEmptyObject()
 
     walkObject(normalized, (value, paths) => {
       const important = isImportant(value)
@@ -46,7 +47,7 @@ export function createCssFn(context: CssFnOptions) {
         value = withoutImportant(value)
       }
 
-      let transformed = transform(prop, value) ?? Object.create(null)
+      let transformed = transform(prop, value) ?? EMPTY_OBJECT
 
       transformed = walkObject(
         transformed,
@@ -65,7 +66,7 @@ function mergeByPath(target: Dict, paths: string[], value: Dict) {
   let acc = target
   for (const path of paths) {
     if (!path) continue
-    if (!acc[path]) acc[path] = Object.create(null)
+    if (!acc[path]) acc[path] = createEmptyObject()
     acc = acc[path]
   }
   mergeWith(acc, value)
