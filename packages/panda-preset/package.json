@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/panda-preset",
-  "version": "3.28.0",
+  "version": "3.28.1",
   "description": "Panda preset for Chakra UI",
   "type": "module",
   "main": "dist/cjs/index.cjs",

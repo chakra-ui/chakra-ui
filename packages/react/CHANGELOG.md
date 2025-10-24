@@ -1,5 +1,33 @@
 # @chakra-ui/react
 
+## 3.28.1
+
+### Patch Changes
+
+- [`fad9a2e`](https://github.com/chakra-ui/chakra-ui/commit/fad9a2ef3197b73633f08c02a0861d37aaa8929c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix CodeBlock right
+  padding when scrolling long code lines horizontally
+
+- [`7067c95`](https://github.com/chakra-ui/chakra-ui/commit/7067c9584e87c320279e81633097b0c1b5786eb7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix Shadow DOM and
+  Web Component selector handling in `globalCss`. The `:host`,
+  `:host-context()`, and `::slotted()` pseudo-classes now correctly transform to
+  top-level selectors with case-insensitive matching.
+
+- [`c7060de`](https://github.com/chakra-ui/chakra-ui/commit/c7060deba8bf9f7b6cf6c9c015a1003ba3004f85)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve
+  styled-system performance with multiple optimizations
+  - **Token cloning**: Replace `structuredClone()` with efficient shallow clone
+    (75x faster)
+  - **Memoization**: Improve cache key generation with efficient hashing and LRU
+    cache (1.4x faster baseline, up to 585x faster for cached operations)
+  - **Object allocation**: Use singleton empty objects instead of creating new
+    ones in hot paths
+  - **Array operations**: Optimize responsive value normalization with for loops
+    instead of reduce
+  - **Performance impact**: Significant improvement in style computation speed
+    with the memoization layer providing 100-500x gains for repeated operations
+
 ## 3.28.0
 
 ### Minor Changes
