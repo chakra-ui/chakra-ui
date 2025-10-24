@@ -4,7 +4,7 @@ export const FloatWithAvatar = () => {
   return (
     <Box display="inline-block" pos="relative">
       <Avatar.Root size="lg" shape="rounded">
-        <Avatar.Image src="https://bit.ly/dan-abramov" />
+        <Avatar.Image src="https://i.pravatar.cc/150?img=5" />
         <Avatar.Fallback />
       </Avatar.Root>
       <Float placement="bottom-end">
