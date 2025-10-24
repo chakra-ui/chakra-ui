@@ -105,7 +105,7 @@ export const TourWaitStep = () => {
     },
   ]
 
-  const tour = useTour({ steps, closeOnInteractOutside: false })
+  const tour = useTour({ steps })
 
   return (
     <Box maxW="1200px" mx="auto" py={10} px={6}>
