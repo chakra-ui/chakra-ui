@@ -13,7 +13,12 @@ export function createSerializeFn(
 
         if (!conditions.has(prop) && !isValidProperty(prop)) {
           return parseSelectors(prop)
-            .map((s) => "&" + s)
+            .map((s) => {
+              const selector = s.startsWith("&") ? s.slice(1) : s
+              return isTopLevelSelector(selector)
+                ? `${selector} &`
+                : `&${selector}`
+            })
             .join(", ")
         }
 
@@ -21,6 +26,15 @@ export function createSerializeFn(
       },
     })
   }
+}
+
+function isTopLevelSelector(s: string): boolean {
+  const lower = s.toLowerCase()
+  return (
+    lower.startsWith(":host-context") ||
+    lower.startsWith(":host") ||
+    lower.startsWith("::slotted")
+  )
 }
 
 function parseSelectors(selector: string): string[] {

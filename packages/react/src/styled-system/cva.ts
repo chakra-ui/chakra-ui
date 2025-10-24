@@ -10,12 +10,13 @@ import {
 } from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
+import { EMPTY_OBJECT } from "./singleton"
 import type { Condition, CssFn, Layers } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
-  base: {},
-  variants: {},
-  defaultVariants: {},
+  base: EMPTY_OBJECT,
+  variants: EMPTY_OBJECT,
+  defaultVariants: EMPTY_OBJECT,
   compoundVariants: [],
   ...conf,
 })
@@ -71,12 +72,15 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       const restProps = omit(props, ["recipe"])
       const [recipeProps, localProps] = splitProps(restProps, variantKeys)
 
-      if (!variantKeys.includes("colorPalette")) {
+      const hasColorPalette = variantKeys.includes("colorPalette")
+      const hasOrientation = variantKeys.includes("orientation")
+
+      if (!hasColorPalette) {
         recipeProps.colorPalette =
           props.colorPalette || defaultVariants.colorPalette
       }
 
-      if (variantKeys.includes("orientation")) {
+      if (hasOrientation) {
         ;(localProps as any).orientation = props.orientation
       }
 
@@ -104,7 +108,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   }
 
   function getCompoundVariantCss(cvs: any[], vm: any) {
-    let result = {}
+    let result = EMPTY_OBJECT
     cvs.forEach((cv) => {
       const isMatching = Object.entries(cv).every(([key, value]) => {
         if (key === "css") return true
