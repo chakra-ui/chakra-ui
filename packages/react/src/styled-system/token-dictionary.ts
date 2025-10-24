@@ -494,10 +494,15 @@ function getConditionalTokens(token: Token) {
     const nextPath = filterBaseCondition(path)
     if (!nextPath.length) return
 
-    const nextToken = structuredClone(token)
-
-    nextToken.value = value
-    nextToken.extensions.condition = nextPath.join(":")
+    // Efficient shallow clone - only copy what we need to modify
+    const nextToken: Token = {
+      ...token,
+      value,
+      extensions: {
+        ...token.extensions,
+        condition: nextPath.join(":"),
+      },
+    }
 
     tokens.push(nextToken)
   })
