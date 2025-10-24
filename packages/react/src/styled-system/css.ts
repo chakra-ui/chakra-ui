@@ -14,11 +14,13 @@ import type { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
 
-const isImportant = (v: unknown) =>
-  isString(v) ? importantRegex.test(v) : false
+const isImportant = memo((v: unknown) =>
+  isString(v) ? importantRegex.test(v) : false,
+)
 
-const withoutImportant = (v: unknown) =>
-  isString(v) ? v.replace(importantRegex, "").trim() : v
+const withoutImportant = memo((v: unknown) =>
+  isString(v) ? v.replace(importantRegex, "").trim() : v,
+)
 
 type CssFnOptions = Pick<SystemContext, "conditions"> & {
   normalize: (styles: Dict) => Dict
@@ -73,9 +75,12 @@ function mergeByPath(target: Dict, paths: string[], value: Dict) {
 }
 
 function compactFn(...styles: Dict[]) {
-  return styles.filter(
-    (style) => isObject(style) && Object.keys(compact(style)).length > 0,
-  )
+  return styles.filter((style) => {
+    if (!isObject(style)) return false
+    const compacted = compact(style)
+    const keys = Object.keys(compacted)
+    return keys.length > 0
+  })
 }
 
 function mergeCss(ctx: CssFnOptions) {

@@ -146,10 +146,11 @@ export function createUtility(options: Options) {
     }
 
     if (Array.isArray(values)) {
-      return values.reduce<Dict<string>>((result, value) => {
-        result[value] = value
-        return result
-      }, {})
+      const result: Dict<string> = {}
+      for (let i = 0; i < values.length; i++) {
+        result[values[i]] = values[i]
+      }
+      return result
     }
 
     if (isFunction(values)) {

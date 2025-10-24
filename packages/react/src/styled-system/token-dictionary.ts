@@ -432,7 +432,16 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
   function getTokenReferences(value: string) {
     const refs = getReferences(value)
-    return refs.map((ref) => getByName(ref)).filter(Boolean) as Token[]
+    const result: Token[] = []
+
+    for (let i = 0; i < refs.length; i++) {
+      const token = getByName(refs[i])
+      if (token) {
+        result.push(token)
+      }
+    }
+
+    return result
   }
 
   function addReferences() {

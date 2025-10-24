@@ -288,13 +288,18 @@ const semanticTokenQuery = (
 ) => ({
   categoryKeys,
   list(category: TokenCategory) {
-    return Array.from(tokens.categoryMap.get(category)?.entries() ?? []).reduce(
-      (acc, [key, value]) => {
-        if (predicate(value, key)) acc.push(key)
-        return acc
-      },
-      [] as string[],
-    )
+    const map = tokens.categoryMap.get(category)
+    const entries = map ? [...map.entries()] : []
+    const result: string[] = []
+
+    for (let i = 0; i < entries.length; i++) {
+      const [key, value] = entries[i]
+      if (predicate(value, key)) {
+        result.push(key)
+      }
+    }
+
+    return result
   },
   search(category: TokenCategory, query: string) {
     return this.list(category).filter((style) => style.includes(query))

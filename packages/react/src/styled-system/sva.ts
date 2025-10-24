@@ -69,12 +69,15 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       const restProps = omit(props, ["recipe"])
       const [recipeProps, localProps] = splitProps(restProps, variantKeys)
 
-      if (!variantKeys.includes("colorPalette")) {
+      const hasColorPalette = variantKeys.includes("colorPalette")
+      const hasOrientation = variantKeys.includes("orientation")
+
+      if (!hasColorPalette) {
         recipeProps.colorPalette =
           props.colorPalette || config.defaultVariants?.colorPalette
       }
 
-      if (variantKeys.includes("orientation")) {
+      if (hasOrientation) {
         ;(localProps as any).orientation = props.orientation
       }
 
