@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   Tour,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { LuHeart, LuMusic, LuShare2, LuSparkles } from "react-icons/lu"
@@ -14,22 +15,31 @@ import { LuHeart, LuMusic, LuShare2, LuSparkles } from "react-icons/lu"
 export const TourWaitStep = () => {
   const steps = [
     {
-      id: "step-1",
+      id: "intro",
       type: "dialog" as const,
-      title: "Interactive Music Tutorial",
+      title: "Welcome to Luna Music",
       description:
-        "Let's learn by doing! We'll guide you through adding a song to your favorites.",
-      actions: [{ label: "Let's Go", action: "next" as const }],
-      backdrop: false,
+        "Let's take a quick tour! You'll learn how to play, like, and share your favorite tracks.",
+      actions: [{ label: "Start", action: "next" as const }],
+    },
+    {
+      id: "play-step",
+      type: "tooltip" as const,
+      target: () => document.querySelector<HTMLElement>("#play-btn"),
+      title: "Step 1: Play the Song",
+      description:
+        "Scroll down to the player section and click the Play button to start the music 🎵",
       placement: "top" as const,
     },
     {
       id: "wait-play",
       type: "wait" as const,
-      title: "Play the Song",
-      description: "Click the Play button to start listening.",
+      title: "Waiting for Play",
+      target: () => document.querySelector<HTMLElement>("#play-btn"),
+      description: "Click the Play button to continue.",
       effect({ next }: { next: () => void }) {
         const btn = document.querySelector<HTMLButtonElement>("#play-btn")
+        console.log(btn)
         const handler = () => next()
         if (btn) {
           btn.addEventListener("click", handler)
@@ -39,48 +49,47 @@ export const TourWaitStep = () => {
       },
     },
     {
-      id: "step-2",
+      id: "like-step",
       type: "tooltip" as const,
       target: () => document.querySelector<HTMLElement>("#like-btn"),
-      title: "Great Choice!",
-      description: "Now tap the heart to add this song to your Liked Songs.",
+      title: "Step 2: Like the Song",
+      description: "Click the heart ❤️ to save it to your Liked Songs.",
       placement: "top" as const,
     },
     {
       id: "wait-like",
       type: "wait" as const,
-      title: "Save to Favorites",
-      description: "Tap the heart icon to like this song.",
+      title: "Waiting for Like",
+      description: "Click the Heart button to continue.",
       effect({ next }: { next: () => void }) {
         const btn = document.querySelector<HTMLButtonElement>("#like-btn")
         const handler = () => next()
         if (btn) {
-          btn.addEventListener("click", handler)
+          btn.addEventListener("click", handler, { once: true })
           return () => btn.removeEventListener("click", handler)
         }
         return () => {}
       },
     },
     {
-      id: "step-3",
+      id: "share-step",
       type: "tooltip" as const,
       target: () => document.querySelector<HTMLElement>("#share-btn"),
-      title: "Share the Vibes",
+      title: "Step 3: Share the Vibes",
       description:
-        "Share this track with your friends! Click the share button when you're ready.",
+        "Now click the Share icon to let your friends enjoy this track 🎧",
       placement: "top" as const,
-      actions: [],
     },
     {
       id: "wait-share",
       type: "wait" as const,
-      title: "Share This Track",
-      description: "Click the share button to send this song to your friends.",
+      title: "Waiting for Share",
+      description: "Click the Share button to continue.",
       effect({ next }: { next: () => void }) {
         const btn = document.querySelector<HTMLButtonElement>("#share-btn")
         const handler = () => next()
         if (btn) {
-          btn.addEventListener("click", handler)
+          btn.addEventListener("click", handler, { once: true })
           return () => btn.removeEventListener("click", handler)
         }
         return () => {}
@@ -91,21 +100,16 @@ export const TourWaitStep = () => {
       type: "dialog" as const,
       title: "You're All Set!",
       description:
-        "You've mastered the basics of our music player. Keep exploring and enjoy your music!",
+        "You've just learned the basics of Luna Music. Time to enjoy your tunes!",
       actions: [{ label: "Finish", action: "dismiss" as const }],
     },
   ]
 
-  const tour = useTour({ steps })
+  const tour = useTour({ steps, closeOnInteractOutside: false })
 
   return (
-    <Box maxW="600px" mx="auto">
-      <Button
-        onClick={() => tour.start()}
-        mb={6}
-        width="full"
-        colorPalette="purple"
-      >
+    <Box maxW="1200px" mx="auto" py={10} px={6}>
+      <Button onClick={() => tour.start()} mb={8} colorPalette="purple">
         <LuSparkles />
         Start Tutorial
       </Button>
@@ -128,70 +132,85 @@ export const TourWaitStep = () => {
         </Tour.Positioner>
       </Tour.RootProvider>
 
-      <Stack gap={6}>
+      <VStack align="stretch" gap={12}>
+        <Box>
+          <Text fontSize="2xl" fontWeight="bold" mb={4}>
+            Recommended Tracks
+          </Text>
+          <Stack gap={3}>
+            {["Echo Nights"].map((track) => (
+              <HStack
+                key={track}
+                justify="space-between"
+                p={4}
+                borderWidth="1px"
+                borderRadius="lg"
+                _hover={{ bg: "gray.50", _dark: { bg: "gray.800" } }}
+              >
+                <Text>{track}</Text>
+                <HStack gap={2}>
+                  <Button size="sm" variant="ghost" colorPalette="red">
+                    <LuHeart />
+                  </Button>
+                  <Button size="sm" variant="ghost" colorPalette="blue">
+                    <LuShare2 />
+                  </Button>
+                </HStack>
+              </HStack>
+            ))}
+          </Stack>
+        </Box>
+
         <Box
-          p={6}
+          p={8}
           borderWidth="1px"
           borderRadius="xl"
           bg="gradient-to-br from-purple.100 to-blue.100"
           _dark={{ bg: "gradient-to-br from-purple.900 to-blue.900" }}
         >
-          <Stack gap={4}>
-            <Box>
-              <Text fontSize="2xl" fontWeight="bold">
-                Midnight Dreams
-              </Text>
-              <Text color="gray.600" _dark={{ color: "gray.400" }}>
-                The Luna Band
-              </Text>
-            </Box>
+          <Stack gap={4} align="center">
+            <Text fontSize="2xl" fontWeight="semibold">
+              Now Playing
+            </Text>
 
-            <HStack justify="center" gap={6}>
+            <HStack gap={8}>
               <Button
                 id="play-btn"
                 size="xl"
                 colorPalette="purple"
-                scrollMarginTop="20"
-                scrollMarginBottom="20"
+                aria-label="Play"
+                onClick={() => console.log("Hello World")}
               >
-                <LuMusic size={24} />
+                <LuMusic size={28} />
               </Button>
-            </HStack>
 
-            <HStack justify="center" gap={4}>
               <Button
                 id="like-btn"
                 variant="outline"
                 size="lg"
                 colorPalette="red"
-                scrollMarginTop="20"
-                scrollMarginBottom="20"
+                aria-label="Like"
               >
-                <LuHeart size={20} />
+                <LuHeart size={24} />
               </Button>
+
               <Button
                 id="share-btn"
                 variant="outline"
                 size="lg"
                 colorPalette="blue"
-                scrollMarginTop="20"
-                scrollMarginBottom="20"
+                aria-label="Share"
               >
-                <LuShare2 size={20} />
+                <LuShare2 size={24} />
               </Button>
             </HStack>
+
+            <Text fontSize="sm" color="gray.600" _dark={{ color: "gray.400" }}>
+              Play, Like, or Share your favorite songs
+            </Text>
           </Stack>
         </Box>
-
-        <Text
-          textAlign="center"
-          fontSize="sm"
-          color="gray.600"
-          _dark={{ color: "gray.400" }}
-        >
-          Follow the tutorial to learn how to interact with songs
-        </Text>
-      </Stack>
+      </VStack>
     </Box>
   )
 }

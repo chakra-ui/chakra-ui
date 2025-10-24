@@ -28,7 +28,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       outlineColor: "colorPalette.solid",
       outlineOffset: "2",
       zIndex: "1400",
-      pointerEvents: "none",
+      pointerEvents: "auto",
       transitionProperty: "inset, width, height, transform",
       transitionDuration: "moderate",
       transitionTimingFunction: "default",
