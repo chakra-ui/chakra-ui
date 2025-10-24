@@ -1,6 +1,6 @@
 import { type Dict, mapEntries, omit, splitProps } from "../utils"
 import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
-import { EMPTY_ARRAY, EMPTY_OBJECT } from "./singleton"
+import { EMPTY_ARRAY, EMPTY_OBJECT, createEmptyObject } from "./singleton"
 
 interface Options {
   cva: RecipeCreatorFn
@@ -11,7 +11,7 @@ const getSlotRecipes = (
 ): Record<string, any> => {
   const init = (slot: string) => ({
     base: config.base?.[slot] ?? EMPTY_OBJECT,
-    variants: EMPTY_OBJECT,
+    variants: createEmptyObject(),
     defaultVariants: config.defaultVariants ?? EMPTY_OBJECT,
     compoundVariants: config.compoundVariants
       ? getSlotCompoundVariant(config.compoundVariants, slot)
