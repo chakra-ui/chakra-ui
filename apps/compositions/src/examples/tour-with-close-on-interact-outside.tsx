@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
-export const TourWithKeyboard = () => {
+export const TourWithCloseOnInteractOutside = () => {
   const uploadRef = useRef<HTMLButtonElement | null>(null)
   const saveRef = useRef<HTMLButtonElement | null>(null)
   const moreRef = useRef<HTMLButtonElement | null>(null)
@@ -14,9 +14,8 @@ export const TourWithKeyboard = () => {
     {
       id: "welcome",
       type: "dialog" as const,
-      title: "Keyboard Navigation",
-      description:
-        "Use arrow keys to navigate between steps. Press Right to continue or Escape to close.",
+      title: "Close on Outside Click",
+      description: "Click outside the tour to close it.",
       actions: [{ label: "Start", action: "next" as const }],
     },
     {
@@ -24,7 +23,7 @@ export const TourWithKeyboard = () => {
       type: "tooltip" as const,
       target: () => uploadRef.current,
       title: "Upload",
-      description: "Try using arrow keys to move between steps.",
+      description: "Try clicking outside the tour area.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
@@ -35,7 +34,7 @@ export const TourWithKeyboard = () => {
       type: "tooltip" as const,
       target: () => saveRef.current,
       title: "Save",
-      description: "Right arrow key goes to the next step.",
+      description: "Clicking outside will dismiss the tour.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Next", action: "next" as const },
@@ -46,7 +45,7 @@ export const TourWithKeyboard = () => {
       type: "tooltip" as const,
       target: () => moreRef.current,
       title: "More Actions",
-      description: "Left arrow key goes to the previous step.",
+      description: "Click anywhere outside this tooltip to close.",
       actions: [
         { label: "Back", action: "prev" as const },
         { label: "Finish", action: "dismiss" as const },
@@ -54,7 +53,7 @@ export const TourWithKeyboard = () => {
     },
   ]
 
-  const tour = useTour({ steps, keyboardNavigation: true })
+  const tour = useTour({ steps, closeOnInteractOutside: true })
 
   return (
     <Box>

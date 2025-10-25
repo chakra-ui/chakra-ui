@@ -60,12 +60,6 @@ adapts to the size of its container or the target element it’s attached to.
 
 <ExampleTabs name="tour-with-sizes" />
 
-### Colors
-
-Use the `colorPalette` prop to change the color scheme of the tour.
-
-<ExampleTabs name="tour-with-colors" />
-
 ### Placement
 
 Control where the tooltip appears relative to its target using the `placement`
@@ -97,6 +91,42 @@ Pause the tour until a condition is met (e.g., wait for a user click) using a
 Sync state changes immediately without deferring to the next frame.
 
 <ExampleTabs name="tour-with-immediate" />
+
+### Keyboard Navigation
+
+Enable keyboard navigation to allow users to navigate between steps using arrow
+keys (Left and Right). Pass `keyboardNavigation: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-with-keyboard" />
+
+### Close on Escape
+
+Close the tour when the user presses the Escape key. Pass `closeOnEscape: true`
+to the `useTour` hook.
+
+<ExampleTabs name="tour-with-close-on-escape" />
+
+### Close on Interact Outside
+
+Close the tour when the user clicks or interacts outside the tour content. Pass
+`closeOnInteractOutside: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-with-close-on-interact-outside" />
+
+### Prevent Interaction
+
+Prevent interaction with the rest of the page while the tour is active. Pass
+`preventInteraction: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-with-prevent-interaction" />
+
+### Spotlight Offset
+
+Customize the spacing around the spotlight by setting the `spotlightOffset`
+property on each step. Pass an object with `x` and `y` values to adjust the
+padding.
+
+<ExampleTabs name="tour-with-spotlight-offset" />
 
 ## Props
 
