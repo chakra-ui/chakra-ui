@@ -3,7 +3,7 @@
 import { Carousel, Image } from "@chakra-ui/react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
-const images = Array.from(
+const items = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
@@ -13,12 +13,12 @@ export const CarouselWithLoop = () => {
     <Carousel.Root
       loop
       defaultPage={0}
-      slideCount={images.length}
+      slideCount={items.length}
       maxW="full"
       mx="auto"
     >
       <Carousel.ItemGroup>
-        {images.map((src, index) => (
+        {items.map((src, index) => (
           <Carousel.Item key={index} index={index}>
             <Image
               src={src}
@@ -31,9 +31,8 @@ export const CarouselWithLoop = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
       <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
-      <Carousel.Indicators mt={4} count={images.length} />
+      <Carousel.Indicators mt={4} count={items.length} />
     </Carousel.Root>
   )
 }

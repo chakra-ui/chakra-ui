@@ -35,12 +35,10 @@ export const CarouselWithThumbnails = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-
         <Carousel.Navs
           leftIcon={<LuArrowLeft />}
           rightIcon={<LuArrowRight />}
         />
-
         <Carousel.IndicatorGroup justifyContent="center" mt={4} gap={2}>
           {items.map((src, index) => (
             <Box

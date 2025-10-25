@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Carousel, HStack, Image, VStack } from "@chakra-ui/react"
+import { Carousel, Image } from "@chakra-ui/react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from(
@@ -10,38 +10,29 @@ const items = Array.from(
 
 export const CarouselBasic = () => {
   return (
-    <VStack align="stretch" py={8} w="full" gap={6}>
-      <Box maxW="900px" mx="auto" w="full">
-        <Carousel.Root
-          defaultPage={0}
-          slideCount={items.length}
-          maxW="full"
-          mx="auto"
-        >
-          <Carousel.ItemGroup>
-            {items.map((src, index) => (
-              <Carousel.Item key={index} index={index}>
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  w="100%"
-                  h="300px"
-                  objectFit="cover"
-                  borderRadius="md"
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel.ItemGroup>
-          <Carousel.Navs
-            leftIcon={<LuArrowLeft />}
-            rightIcon={<LuArrowRight />}
-          />
-          <HStack justify="center" mt={4}>
-            <Carousel.Indicators count={items.length} />
-          </HStack>
-        </Carousel.Root>
-      </Box>
-    </VStack>
+    <Carousel.Root
+      defaultPage={0}
+      slideCount={items.length}
+      maxW="full"
+      mx="auto"
+    >
+      <Carousel.ItemGroup>
+        {items.map((src, index) => (
+          <Carousel.Item key={index} index={index}>
+            <Image
+              src={src}
+              alt={`Slide ${index + 1}`}
+              w="100%"
+              h="300px"
+              objectFit="cover"
+              borderRadius="md"
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel.ItemGroup>
+      <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
+      <Carousel.Indicators mt={4} count={items.length} />
+    </Carousel.Root>
   )
 }
 

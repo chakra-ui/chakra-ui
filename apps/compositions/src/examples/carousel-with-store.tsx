@@ -38,7 +38,6 @@ export const CarouselWithStore = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-
         <HStack justify="center" gap={4} my={8}>
           <Button
             size="md"
@@ -62,7 +61,6 @@ export const CarouselWithStore = () => {
             Go to Slide 3
           </Button>
         </HStack>
-
         <Carousel.Indicators mt={4} count={items.length} />
       </Carousel.RootProvider>
     </VStack>

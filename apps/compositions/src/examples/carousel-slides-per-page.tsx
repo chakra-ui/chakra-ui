@@ -1,3 +1,5 @@
+"use client"
+
 import { Carousel, Image } from "@chakra-ui/react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
@@ -32,9 +34,7 @@ export const CarouselSlidesPerPage = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
       <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
-
       <Carousel.Indicators mt={4} count={totalPages} />
     </Carousel.Root>
   )

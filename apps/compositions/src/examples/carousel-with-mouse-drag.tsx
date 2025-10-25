@@ -1,37 +1,24 @@
 "use client"
 
-import { Carousel, HStack, Image, Text, VStack } from "@chakra-ui/react"
-import { Switch } from "compositions/ui/switch"
-import { useState } from "react"
+import { Carousel, Image, VStack } from "@chakra-ui/react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
-const images = Array.from(
+const items = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
 
 export const CarouselWithMouseDrag = () => {
-  const [isDraggable, setIsDraggable] = useState(false)
-
   return (
     <VStack gap={6} align="center" py={4}>
-      <HStack gap={2} align="center">
-        <Text fontSize="md" fontWeight="medium">
-          Allow mouse drag
-        </Text>
-        <Switch
-          checked={isDraggable}
-          onCheckedChange={(details) => setIsDraggable(details.checked)}
-        />
-      </HStack>
       <Carousel.Root
-        allowMouseDrag={isDraggable}
-        slideCount={images.length}
+        allowMouseDrag={true}
+        slideCount={items.length}
         maxW="full"
         mx="auto"
       >
         <Carousel.ItemGroup>
-          {images.map((src, index) => (
+          {items.map((src, index) => (
             <Carousel.Item key={index} index={index}>
               <Image
                 src={src}
@@ -45,12 +32,11 @@ export const CarouselWithMouseDrag = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-
         <Carousel.Navs
           leftIcon={<LuArrowLeft />}
           rightIcon={<LuArrowRight />}
         />
-        <Carousel.Indicators count={images.length} />
+        <Carousel.Indicators mt={4} count={items.length} />
       </Carousel.Root>
     </VStack>
   )

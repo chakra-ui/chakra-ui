@@ -24,8 +24,7 @@ export const CarouselWithIndicators = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
-      <Carousel.Indicators count={items.length} />
+      <Carousel.Indicators mt={4} count={items.length} />
     </Carousel.Root>
   )
 }

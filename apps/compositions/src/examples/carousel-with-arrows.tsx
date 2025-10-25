@@ -1,3 +1,5 @@
+"use client"
+
 import { Carousel, Image } from "@chakra-ui/react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
@@ -28,7 +30,6 @@ export const CarouselWithArrows = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
       <Carousel.Navs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
     </Carousel.Root>
   )

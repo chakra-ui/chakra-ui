@@ -1,10 +1,10 @@
 "use client"
 
-import { Carousel, HStack, IconButton, Image, VStack } from "@chakra-ui/react"
+import { Carousel, IconButton, Image, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { FaPause, FaPlay } from "react-icons/fa"
 
-const images = Array.from(
+const items = Array.from(
   { length: 5 },
   (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
 )
@@ -14,26 +14,23 @@ export const CarouselWithAutoplay = () => {
 
   return (
     <VStack gap={4} align="center" py={6}>
-      <HStack>
-        <IconButton
-          size="sm"
-          variant="subtle"
-          colorScheme="gray"
-          aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
-          onClick={() => setIsPlaying(!isPlaying)}
-        >
-          {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} />}
-        </IconButton>
-      </HStack>
-
+      <IconButton
+        size="sm"
+        variant="subtle"
+        colorScheme="gray"
+        aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
+        onClick={() => setIsPlaying(!isPlaying)}
+      >
+        {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} />}
+      </IconButton>
       <Carousel.Root
         autoplay={isPlaying}
-        slideCount={images.length}
+        slideCount={items.length}
         mx="auto"
         maxW="600px"
       >
         <Carousel.ItemGroup>
-          {images.map((src, index) => (
+          {items.map((src, index) => (
             <Carousel.Item key={index} index={index}>
               <Image
                 src={src}
@@ -47,8 +44,7 @@ export const CarouselWithAutoplay = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-
-        <Carousel.Indicators mt={4} count={images.length} />
+        <Carousel.Indicators mt={4} count={items.length} />
       </Carousel.Root>
     </VStack>
   )

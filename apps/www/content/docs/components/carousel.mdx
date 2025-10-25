@@ -117,47 +117,41 @@ jump to specific slides.
 
 ### Custom Spacing
 
-Control the gap between slides using the `spacing` prop. This example includes
-an interactive slider to demonstrate dynamic spacing adjustments.
+Use the `spacing` prop to control the gap between slides.
 
 <ExampleTabs name="carousel-spacing" />
 
 ### Variable Width
 
-Support slides of different widths for more dynamic layouts. This is useful for
-showcasing content with varying sizes such as cards, previews, or banners.
+Support slides of different widths for more dynamic layouts.
 
 <ExampleTabs name="carousel-with-variable-width" />
 
 ### Multiple Slides Per View
 
-Display several slides simultaneously with the `slidesPerPage` prop. Fine-tune
-navigation behavior using `slidesPerMove` to control how many slides advance
-with each interaction.
+Display several slides simultaneously with the `slidesPerPage` prop. Use
+`slidesPerMove` to control how many slides advance with each interaction.
 
 <ExampleTabs name="carousel-slides-per-page" />
 
 ### Controlled
 
-Take full control of the carousel's behavior by managing the active page
-externally. Use the `page` and `onPageChange` props to integrate with your
-application's state management.
+Use the `page` and `onPageChange` props to manage the carousel's behavior
+externally.
 
 <ExampleTabs name="carousel-controlled" />
 
 ### Store
 
 Alternatively, use the `useCarousel` hook to create a carousel store and pass it
-to the `Carousel.RootProvider` component. This gives you full programmatic
-control over the carousel's behavior, allowing you to manipulate navigation,
-autoplay, and state directly through the Carousel API.
+to the `Carousel.RootProvider` component for full programmatic control.
 
 <ExampleTabs name="carousel-with-store" />
 
 ### Vertical
 
 Transform your carousel into a vertical slider by setting the `orientation`
-prop, ideal for sidebars or unique layout designs.
+prop.
 
 <ExampleTabs name="carousel-with-orientation" />
 
@@ -176,14 +170,13 @@ Toggle whether the carousel can be scrolled using mouse dragging via the
 
 ### Thumbnail
 
-You can add a custom indicator using thumbnails for navigation.
+Add custom indicators using thumbnails for navigation.
 
 <ExampleTabs name="carousel-with-thumbnails" />
 
 ### Dialog
 
-Carousel can be used in a `Dialog` to create a first-run experience or modal
-gallery.
+Use carousel in a `Dialog` to create a first-run experience or modal gallery.
 
 <ExampleTabs name="carousel-with-dialog" />
 

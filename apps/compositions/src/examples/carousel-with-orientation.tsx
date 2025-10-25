@@ -31,7 +31,7 @@ export const CarouselWithOrientation = () => {
         ))}
       </Carousel.ItemGroup>
       <Carousel.Navs leftIcon={<LuArrowUp />} rightIcon={<LuArrowDown />} />
-      <Carousel.Indicators count={items.length} />
+      <Carousel.Indicators mt={4} count={items.length} />
     </Carousel.Root>
   )
 }

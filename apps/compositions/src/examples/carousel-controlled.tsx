@@ -35,13 +35,11 @@ export const CarouselControlled = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-
         <Carousel.Navs
           leftIcon={<LuArrowLeft />}
           rightIcon={<LuArrowRight />}
         />
       </Carousel.Root>
-
       <HStack justify="center" mt={2}>
         {items.map((_, index) => (
           <Button
@@ -57,7 +55,6 @@ export const CarouselControlled = () => {
           </Button>
         ))}
       </HStack>
-
       <Text fontSize="sm" color="fg.muted" fontWeight="medium">
         Active page: {page + 1} / {items.length}
       </Text>
