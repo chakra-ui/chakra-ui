@@ -61,7 +61,7 @@ export const TourWithoutArrow = () => {
         Begin Tour
       </Button>
 
-      <Tour.RootProvider tour={tour}>
+      <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
@@ -74,7 +74,7 @@ export const TourWithoutArrow = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
 
       <Stack gap={4} p={6}>
         <HStack gap={4}>

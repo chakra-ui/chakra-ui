@@ -83,7 +83,7 @@ export const TourWithoutBackdrop = () => {
         Start Tour
       </Button>
 
-      <Tour.RootProvider tour={tour}>
+      <Tour.Root tour={tour}>
         <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
@@ -99,7 +99,7 @@ export const TourWithoutBackdrop = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
 
       <Stack
         gap={6}

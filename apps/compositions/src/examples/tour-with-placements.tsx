@@ -104,7 +104,7 @@ export const TourWithPlacements = () => {
         Start Tour
       </Button>
 
-      <Tour.RootProvider tour={tour}>
+      <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
@@ -121,7 +121,7 @@ export const TourWithPlacements = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
     </Box>
   )
 }

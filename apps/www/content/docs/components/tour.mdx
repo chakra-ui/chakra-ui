@@ -46,17 +46,19 @@ This is more concise:
 
 ## Examples
 
+### Controlled
+
+Control the tour programmatically with the `useTour` store (start, next, prev,
+setStep, progress).
+
+<ExampleTabs name="tour-controlled" />
+
 ### Sizes
 
-Use the `size` prop to adjust the size of the tour content.
+The tour content doesn’t have a dedicated `size` prop. Instead, it automatically
+adapts to the size of its container or the target element it’s attached to.
 
 <ExampleTabs name="tour-with-sizes" />
-
-### Variants
-
-Use the `variant` prop to change the visual style of the action buttons.
-
-<ExampleTabs name="tour-with-variants" />
 
 ### Colors
 
@@ -82,13 +84,6 @@ Hide the arrow by setting `arrow: false` on a step.
 Disable the dimmed background by setting `backdrop: false` on a step.
 
 <ExampleTabs name="tour-without-backdrop" />
-
-### Controlled
-
-Control the tour programmatically with the `useTour` store (start, next, prev,
-setStep, progress).
-
-<ExampleTabs name="tour-controlled" />
 
 ### Wait Step
 

@@ -155,7 +155,7 @@ export const TourControlled = () => {
         </Box>
       </Stack>
 
-      <Tour.RootProvider tour={tour}>
+      <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
@@ -172,7 +172,7 @@ export const TourControlled = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
     </Box>
   )
 }

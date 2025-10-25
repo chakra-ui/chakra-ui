@@ -114,7 +114,7 @@ export const TourWaitStep = () => {
         Start Tutorial
       </Button>
 
-      <Tour.RootProvider tour={tour}>
+      <Tour.Root tour={tour}>
         <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
@@ -130,7 +130,7 @@ export const TourWaitStep = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
 
       <VStack align="stretch" gap={12}>
         <Box>

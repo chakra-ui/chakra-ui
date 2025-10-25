@@ -108,7 +108,7 @@ export const TourWithColors = () => {
         </Box>
       </HStack>
 
-      <Tour.RootProvider tour={tour} colorPalette="red">
+      <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
@@ -125,7 +125,7 @@ export const TourWithColors = () => {
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
-      </Tour.RootProvider>
+      </Tour.Root>
     </Box>
   )
 }

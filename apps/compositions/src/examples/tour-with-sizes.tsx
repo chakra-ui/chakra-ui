@@ -69,7 +69,7 @@ export const TourWithSizes = () => {
         </Button>
       </HStack>
 
-      <Tour.RootProvider tour={tour} colorPalette="teal">
+      <Tour.RootProvider tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
