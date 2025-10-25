@@ -18,7 +18,8 @@
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "generate:theme": "pnpm tsx scripts/generate-theme.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
-    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme"
+    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme",
+    "typegen": "pnpm exec chakra typegen ./app/theme.ts --outdir ./typings"
   },
   "dependencies": {
     "@ark-ui/react": "5.24.1",
