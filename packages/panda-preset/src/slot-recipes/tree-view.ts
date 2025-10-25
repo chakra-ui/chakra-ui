@@ -14,6 +14,7 @@ export const treeViewSlotRecipe = defineSlotRecipe({
     "itemText",
     "label",
     "nodeCheckbox",
+    "nodeRenameInput",
     "root",
     "tree",
   ],

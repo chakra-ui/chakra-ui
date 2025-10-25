@@ -21,24 +21,25 @@ export const addNegativeTokens: TokenMiddleware = {
         return
       }
 
-      const nextToken = structuredClone(token)
-
-      Object.assign(nextToken.extensions, {
-        negative: true,
-        prop: `-${token.extensions.prop}`,
-        originalPath,
-      })
-
-      nextToken.value = calc.negate(originalVar.ref)
-
-      const lastPath = nextToken.path[nextToken.path.length - 1]
+      // Efficient shallow clone - only copy what we need to modify
+      const newPath = [...token.path]
+      const lastPath = newPath[newPath.length - 1]
 
       if (lastPath != null) {
-        nextToken.path[nextToken.path.length - 1] = `-${lastPath}`
+        newPath[newPath.length - 1] = `-${lastPath}`
       }
 
-      if (nextToken.path) {
-        nextToken.name = formatTokenName(nextToken.path)
+      const nextToken: Token = {
+        ...token,
+        value: calc.negate(originalVar.ref),
+        name: formatTokenName(newPath),
+        path: newPath,
+        extensions: {
+          ...token.extensions,
+          negative: true,
+          prop: `-${token.extensions.prop}`,
+          originalPath,
+        },
       }
 
       registerToken(nextToken)

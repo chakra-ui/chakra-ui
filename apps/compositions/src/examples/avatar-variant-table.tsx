@@ -28,11 +28,11 @@ export const AvatarVariantTable = () => {
                   <td key={v}>
                     <HStack>
                       <Avatar.Root colorPalette={c} variant={v}>
-                        <Avatar.Image src="https://bit.ly/dan-abramov" />
-                        <Avatar.Fallback name="Dan Abramov" />
+                        <Avatar.Image src="https://i.pravatar.cc/150?img=4" />
+                        <Avatar.Fallback name="Alex Brown" />
                       </Avatar.Root>
                       <Avatar.Root colorPalette={c} variant={v}>
-                        <Avatar.Fallback name="Dan Abramov" />
+                        <Avatar.Fallback name="Alex Brown" />
                       </Avatar.Root>
                       <Avatar.Root colorPalette={c} variant={v}>
                         <Avatar.Fallback />
