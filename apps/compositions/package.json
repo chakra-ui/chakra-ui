@@ -37,7 +37,7 @@
     "react-payment-inputs": "1.2.0",
     "react-spinners": "0.17.0",
     "react-use": "17.6.0",
-    "recharts": "2.15.3",
+    "recharts": "^3.3.0",
     "shiki": "3.13.0",
     "use-mask-input": "3.5.2",
     "use-stick-to-bottom": "1.1.1",
