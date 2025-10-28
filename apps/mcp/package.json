@@ -36,9 +36,9 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.20.0",
+    "@modelcontextprotocol/sdk": "^1.20.2",
     "express": "^5.1.0",
-    "zod": "^4.1.12"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@release-it/keep-a-changelog": "7.0.0",
