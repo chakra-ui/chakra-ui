@@ -9,3 +9,5 @@ export const Em = chakra("em", {
     fontStyle: "italic",
   },
 })
+
+Em.displayName = "Em"

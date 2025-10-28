@@ -18,4 +18,6 @@ export interface TextProps
 
 export const Text = withContext<HTMLParagraphElement, TextProps>("p")
 
+Text.displayName = "Text"
+
 export const TextPropsProvider = PropsProvider as React.Provider<TextProps>

@@ -68,3 +68,5 @@ export const Bleed = forwardRef<HTMLDivElement, BleedProps>(
     )
   },
 )
+
+Bleed.displayName = "Bleed"

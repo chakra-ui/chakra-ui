@@ -63,3 +63,5 @@ export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
     )
   },
 )
+
+Checkmark.displayName = "Checkmark"

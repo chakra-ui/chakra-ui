@@ -17,4 +17,6 @@ export interface CodeProps extends HTMLChakraProps<"code", CodeBaseProps> {}
 
 export const Code = withContext<HTMLElement, CodeProps>("code")
 
+Code.displayName = "Code"
+
 export const CodePropsProvider = PropsProvider as React.Provider<CodeBaseProps>
