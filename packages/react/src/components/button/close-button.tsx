@@ -14,3 +14,5 @@ export const CloseButton = React.forwardRef<
     </IconButton>
   )
 })
+
+CloseButton.displayName = "CloseButton"

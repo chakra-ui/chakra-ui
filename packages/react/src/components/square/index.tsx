@@ -31,3 +31,5 @@ export const Square = forwardRef<HTMLDivElement, SquareProps>(
     )
   },
 )
+
+Square.displayName = "Square"

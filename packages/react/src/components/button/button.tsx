@@ -87,5 +87,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 )
 
+Button.displayName = "Button"
+
 export const ButtonPropsProvider =
   PropsProvider as React.Provider<ButtonBaseProps>

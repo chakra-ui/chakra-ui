@@ -18,5 +18,7 @@ export interface SpinnerProps
 
 export const Spinner = withContext<HTMLSpanElement, SpinnerProps>("span")
 
+Spinner.displayName = "Spinner"
+
 export const SpinnerPropsProvider =
   PropsProvider as React.Provider<SpinnerProps>
