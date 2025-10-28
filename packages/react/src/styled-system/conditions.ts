@@ -1,4 +1,4 @@
-import { mapEntries } from "../utils"
+import { mapEntries, memo } from "../utils"
 import type { Condition, ConditionConfig } from "./types"
 
 const SPECIAL_KEY_REGEX = /^@|&|&$/
@@ -19,7 +19,7 @@ export const createConditions = (options: ConditionConfig): Condition => {
     )
   }
 
-  function sort(paths: string[]) {
+  const sort = memo((paths: string[]) => {
     return paths
       .filter((v) => v !== "base")
       .sort((a, b) => {
@@ -29,7 +29,7 @@ export const createConditions = (options: ConditionConfig): Condition => {
         if (!aa && bb) return -1
         return 0
       })
-  }
+  })
 
   function expandAtRule(key: string) {
     if (!key.startsWith("@breakpoint")) return key

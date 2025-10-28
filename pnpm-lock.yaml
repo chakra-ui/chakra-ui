@@ -568,13 +568,13 @@ importers:
       csstype:
         specifier: ^3.1.3
         version: 3.1.3
-      fast-safe-stringify:
-        specifier: ^2.1.1
-        version: 2.1.1
     devDependencies:
       '@emotion/react':
         specifier: 11.14.0
         version: 11.14.0(@types/react@19.2.2)(react@19.2.0)
+      fast-safe-stringify:
+        specifier: ^2.1.1
+        version: 2.1.1
       react:
         specifier: 19.2.0
         version: 19.2.0
