@@ -7,6 +7,7 @@ import {
   IconButton,
   Stack,
   Tour,
+  type TourStep,
   useTour,
 } from "@chakra-ui/react"
 import {
@@ -22,54 +23,54 @@ import {
 } from "react-icons/lu"
 
 export const TourWithoutBackdrop = () => {
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "step-1",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#play-button"),
       title: "Play Your Music",
       description:
         "Hit play to start jamming to your favorite tracks. Your music, your vibe.",
       backdrop: false,
-      actions: [{ label: "Next", action: "next" as const }],
+      actions: [{ label: "Next", action: "next" }],
     },
     {
       id: "step-2",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#shuffle-button"),
       title: "Shuffle Mode",
       description:
         "Mix things up! Shuffle your playlist for a fresh listening experience every time.",
       backdrop: false,
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "step-3",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#like-button"),
       title: "Save Your Favorites",
       description:
         "Love a track? Tap the heart to add it to your Liked Songs collection.",
       backdrop: false,
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "step-4",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#playlist-button"),
       title: "Your Playlists",
       description:
         "Access all your curated playlists and create new ones to organize your music library.",
       backdrop: false,
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
       ],
     },
   ]

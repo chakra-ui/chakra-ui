@@ -7,33 +7,34 @@ import {
   Stack,
   Text,
   Tour,
+  type TourStep,
   VStack,
   useTour,
 } from "@chakra-ui/react"
 import { LuHeart, LuMusic, LuShare2, LuSparkles } from "react-icons/lu"
 
 export const TourWaitStep = () => {
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "intro",
-      type: "dialog" as const,
+      type: "dialog",
       title: "Welcome to Luna Music",
       description:
         "Let's take a quick tour! You'll learn how to play, like, and share your favorite tracks.",
-      actions: [{ label: "Start", action: "next" as const }],
+      actions: [{ label: "Start", action: "next" }],
     },
     {
       id: "play-step",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#play-btn"),
       title: "Step 1: Play the Song",
       description:
         "Scroll down to the player section and click the Play button to start the music 🎵",
-      placement: "top" as const,
+      placement: "top",
     },
     {
       id: "wait-play",
-      type: "wait" as const,
+      type: "wait",
       title: "Waiting for Play",
       target: () => document.querySelector<HTMLElement>("#play-btn"),
       description: "Click the Play button to continue.",
@@ -50,15 +51,15 @@ export const TourWaitStep = () => {
     },
     {
       id: "like-step",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#like-btn"),
       title: "Step 2: Like the Song",
       description: "Click the heart ❤️ to save it to your Liked Songs.",
-      placement: "top" as const,
+      placement: "top",
     },
     {
       id: "wait-like",
-      type: "wait" as const,
+      type: "wait",
       title: "Waiting for Like",
       description: "Click the Heart button to continue.",
       effect({ next }: { next: () => void }) {
@@ -73,16 +74,16 @@ export const TourWaitStep = () => {
     },
     {
       id: "share-step",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#share-btn"),
       title: "Step 3: Share the Vibes",
       description:
         "Now click the Share icon to let your friends enjoy this track 🎧",
-      placement: "top" as const,
+      placement: "top",
     },
     {
       id: "wait-share",
-      type: "wait" as const,
+      type: "wait",
       title: "Waiting for Share",
       description: "Click the Share button to continue.",
       effect({ next }: { next: () => void }) {
@@ -97,11 +98,11 @@ export const TourWaitStep = () => {
     },
     {
       id: "final",
-      type: "dialog" as const,
+      type: "dialog",
       title: "You're All Set!",
       description:
         "You've just learned the basics of Luna Music. Time to enjoy your tunes!",
-      actions: [{ label: "Finish", action: "dismiss" as const }],
+      actions: [{ label: "Finish", action: "dismiss" }],
     },
   ]
 

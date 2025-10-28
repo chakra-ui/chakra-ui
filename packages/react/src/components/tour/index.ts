@@ -35,6 +35,8 @@ export type {
   TourRootProviderBaseProps,
   TourRootProviderProps,
   TourSpotlightProps,
+  TourStep,
+  TourStepAction,
   TourStepChangeDetails,
   TourStatusChangeDetails,
   TourTitleProps,

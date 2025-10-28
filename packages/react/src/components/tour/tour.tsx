@@ -219,3 +219,5 @@ export const TourContext = ArkTour.Context
 
 export interface TourStepChangeDetails extends ArkTour.StepChangeDetails {}
 export interface TourStatusChangeDetails extends ArkTour.StatusChangeDetails {}
+export interface TourStep extends ArkTour.StepDetails {}
+export interface TourStepAction extends ArkTour.StepAction {}

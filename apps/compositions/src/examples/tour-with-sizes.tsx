@@ -1,6 +1,14 @@
 "use client"
 
-import { Badge, Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import {
+  Badge,
+  Box,
+  Button,
+  HStack,
+  Tour,
+  type TourStep,
+  useTour,
+} from "@chakra-ui/react"
 import { useRef } from "react"
 import { LuMaximize2, LuMinimize2, LuMusic } from "react-icons/lu"
 
@@ -9,42 +17,42 @@ export const TourWithSizes = () => {
   const mdRef = useRef<HTMLButtonElement | null>(null)
   const lgRef = useRef<HTMLButtonElement | null>(null)
 
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "welcome",
-      type: "dialog" as const,
+      type: "dialog",
       title: "Tour Sizes",
       description: "See how small, medium, and large tour content looks.",
-      actions: [{ label: "Start", action: "next" as const }],
+      actions: [{ label: "Start", action: "next" }],
     },
     {
       id: "sm",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => smRef.current,
       title: "Small",
       description: "Compact player UI.",
-      actions: [{ label: "Next", action: "next" as const }],
+      actions: [{ label: "Next", action: "next" }],
     },
     {
       id: "md",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => mdRef.current,
       title: "Medium",
       description: "Balance between size and detail.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "lg",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => lgRef.current,
       title: "Large",
       description: "Full detail for immersive content experiences like lyrics.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
       ],
     },
   ]

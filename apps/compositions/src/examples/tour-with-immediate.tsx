@@ -1,6 +1,13 @@
 "use client"
 
-import { Box, Button, HStack, Tour, useTour } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  HStack,
+  Tour,
+  type TourStep,
+  useTour,
+} from "@chakra-ui/react"
 import { useRef } from "react"
 import { LuRefreshCw, LuSettings, LuSparkles, LuZap } from "react-icons/lu"
 
@@ -9,49 +16,49 @@ export const TourWithImmediate = () => {
   const refreshRef = useRef<HTMLButtonElement | null>(null)
   const settingsRef = useRef<HTMLButtonElement | null>(null)
 
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "welcome",
-      type: "dialog" as const,
+      type: "dialog",
       title: "Immediate Sync Mode",
       description:
         "This tour demonstrates immediate state synchronization without frame delays.",
-      actions: [{ label: "Start", action: "next" as const }],
+      actions: [{ label: "Start", action: "next" }],
     },
     {
       id: "sync",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => syncRef.current,
       title: "Instant Sync",
       description:
         "Changes apply immediately in the current frame without deferring.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "refresh",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => refreshRef.current,
       title: "Real-time Updates",
       description:
         "State changes reflect instantly without waiting for the next render cycle.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "settings",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => settingsRef.current,
       title: "Performance Mode",
       description:
         "Enable immediate mode for time-critical UI updates and animations.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
       ],
     },
   ]

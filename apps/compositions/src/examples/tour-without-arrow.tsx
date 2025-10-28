@@ -8,46 +8,47 @@ import {
   Stack,
   Text,
   Tour,
+  type TourStep,
   useTour,
 } from "@chakra-ui/react"
 import { LuCalendar, LuMusic, LuSparkles, LuUsers } from "react-icons/lu"
 
 export const TourWithoutArrow = () => {
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "step-1",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#stage-setup"),
       title: "Stage Setup",
       description:
         "Configure your stage layout, lighting preferences, and sound check requirements for an epic performance.",
       arrow: false,
-      actions: [{ label: "Next", action: "next" as const }],
+      actions: [{ label: "Next", action: "next" }],
     },
     {
       id: "step-2",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#band-members"),
       title: "Band Members",
       description:
         "Invite your bandmates, assign instruments, and coordinate rehearsal schedules all in one place.",
       arrow: false,
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "step-3",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#tour-dates"),
       title: "Tour Dates",
       description:
         "Schedule your shows, manage ticket sales, and track your tour revenue across multiple venues.",
       arrow: false,
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
       ],
     },
   ]

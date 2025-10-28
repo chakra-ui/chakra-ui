@@ -8,44 +8,45 @@ import {
   Stack,
   Text,
   Tour,
+  type TourStep,
   useTour,
 } from "@chakra-ui/react"
 import { HiHome } from "react-icons/hi"
 import { LuSearch, LuSparkles, LuUser } from "react-icons/lu"
 
 export const TourControlled = () => {
-  const steps = [
+  const steps: TourStep[] = [
     {
       id: "step-1",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#home-tab"),
       title: "Your Home Feed",
       description:
         "Discover new music, trending playlists, and personalized recommendations just for you.",
-      actions: [{ label: "Next", action: "next" as const }],
+      actions: [{ label: "Next", action: "next" }],
     },
     {
       id: "step-2",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#search-tab"),
       title: "Search Everything",
       description:
         "Find any song, artist, album, or playlist in seconds. Your music library awaits.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Next", action: "next" as const },
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
       ],
     },
     {
       id: "step-3",
-      type: "tooltip" as const,
+      type: "tooltip",
       target: () => document.querySelector<HTMLElement>("#profile-tab"),
       title: "Your Profile",
       description:
         "Manage your playlists, liked songs, and listening history all in one place.",
       actions: [
-        { label: "Back", action: "prev" as const },
-        { label: "Finish", action: "dismiss" as const },
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
       ],
     },
   ]
