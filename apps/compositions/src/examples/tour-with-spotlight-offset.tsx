@@ -73,15 +73,15 @@ export const TourWithSpotlightOffset = () => {
       </Button>
 
       <HStack gap={3} mt={4}>
-        <Button ref={uploadRef}>
+        <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
         </Button>
-        <Button ref={saveRef} colorPalette="blue">
+        <Button ref={saveRef} variant="outline" colorPalette="blue">
           <LuSave />
           Save
         </Button>
-        <Button ref={moreRef}>
+        <Button ref={moreRef} variant="outline">
           <MdMoreHoriz />
           More
         </Button>

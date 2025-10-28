@@ -73,15 +73,15 @@ export const TourWithImmediate = () => {
       </Button>
 
       <HStack gap={3} mt={4}>
-        <Button ref={syncRef}>
+        <Button ref={syncRef} variant="outline">
           <LuZap />
           Sync
         </Button>
-        <Button ref={refreshRef} colorPalette="blue">
+        <Button ref={refreshRef} variant="outline" colorPalette="blue">
           <LuRefreshCw />
           Refresh
         </Button>
-        <Button ref={settingsRef}>
+        <Button ref={settingsRef} variant="outline">
           <LuSettings />
           Settings
         </Button>

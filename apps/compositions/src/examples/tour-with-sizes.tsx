@@ -66,13 +66,13 @@ export const TourWithSizes = () => {
       </Button>
 
       <HStack gap={3} flexWrap="wrap" mt={2}>
-        <Button ref={smRef} size="sm">
+        <Button ref={smRef} variant="outline" size="sm">
           <LuMinimize2 /> Queue <Badge size="sm">SM</Badge>
         </Button>
-        <Button ref={mdRef} size="md">
+        <Button ref={mdRef} variant="outline" size="md">
           <LuMusic /> Playlist <Badge>MD</Badge>
         </Button>
-        <Button ref={lgRef} size="lg">
+        <Button ref={lgRef} variant="outline" size="lg">
           <LuMaximize2 /> Lyrics <Badge size="lg">LG</Badge>
         </Button>
       </HStack>
