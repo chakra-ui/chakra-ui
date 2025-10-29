@@ -263,6 +263,9 @@ importers:
       react-payment-inputs:
         specifier: 1.2.0
         version: 1.2.0(react@19.2.0)(styled-components@6.1.15(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
+      react-router-dom:
+        specifier: ^7.9.4
+        version: 7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-spinners:
         specifier: 0.17.0
         version: 0.17.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -8960,6 +8963,13 @@ packages:
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
+
+  react-router-dom@7.9.4:
+    resolution: {integrity: sha512-f30P6bIkmYvnHHa5Gcu65deIXoA2+r3Eb6PJIAddvsT9aGlchMatJ51GgpU470aSqRRbFX22T70yQNUGuW3DfA==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   react-router@6.30.0:
     resolution: {integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==}
@@ -20297,6 +20307,12 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
       react-router: 6.30.0(react@19.2.0)
+
+  react-router-dom@7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-router: 7.9.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
 
   react-router@6.30.0(react@19.2.0):
     dependencies:
