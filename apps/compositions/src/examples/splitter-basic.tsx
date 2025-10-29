@@ -1,26 +1,19 @@
 "use client"
 
-import { Box, Splitter } from "@chakra-ui/react"
+import { Splitter } from "@chakra-ui/react"
 
 export const SplitterBasic = () => {
   return (
-    <Splitter.Root
-      size={[
-        { id: "a", size: 50 },
-        { id: "b", size: 50 },
-      ]}
-    >
-      <Splitter.Panel id="a">
-        <Box p="4" bg="bg.subtle" height="200px">
-          Panel A
-        </Box>
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+      <Splitter.Panel id="a" h="250px" bg="fg.muted" color="white">
+        A
       </Splitter.Panel>
-      <Splitter.ResizeTrigger id="a:b" />
-      <Splitter.Panel id="b">
-        <Box p="4" bg="bg.muted" height="200px">
-          Panel B
-        </Box>
+      <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
+      <Splitter.Panel id="b" h="250px" bg="fg.muted" color="white">
+        B
       </Splitter.Panel>
     </Splitter.Root>
   )
 }
+
+export default SplitterBasic
