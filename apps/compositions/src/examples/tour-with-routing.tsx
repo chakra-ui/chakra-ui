@@ -11,7 +11,7 @@ import {
   type TourStep,
   useTour,
 } from "@chakra-ui/react"
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { HiHome } from "react-icons/hi"
 import { LuSettings, LuSparkles, LuUser } from "react-icons/lu"
 import {
@@ -32,22 +32,22 @@ const HomePage = () => {
       id="home-content"
       p={6}
       borderWidth="1px"
-      borderRadius="lg"
-      bg="gray.50"
-      _dark={{ bg: "gray.900" }}
+      borderRadius="xl"
+      bg="bg.surface"
+      borderColor="border"
     >
-      <Text fontSize="2xl" fontWeight="bold" mb={4}>
+      <Text fontSize="2xl" fontWeight="bold" mb={4} color="fg">
         Home Page
       </Text>
-      <Text mb={4}>
+      <Text mb={4} color="fg.muted">
         Welcome to your dashboard! This is where you'll find your recent
         activity and quick actions.
       </Text>
       <Stack gap={2}>
-        <Box p={3} borderWidth="1px" borderRadius="md">
+        <Box p={3} borderWidth="1px" borderRadius="md" borderColor="border">
           Recent Activity #1
         </Box>
-        <Box p={3} borderWidth="1px" borderRadius="md">
+        <Box p={3} borderWidth="1px" borderRadius="md" borderColor="border">
           Recent Activity #2
         </Box>
       </Stack>
@@ -64,32 +64,34 @@ const ProfilePage = () => {
       id="profile-content"
       p={6}
       borderWidth="1px"
-      borderRadius="lg"
-      bg="gray.50"
-      _dark={{ bg: "gray.900" }}
+      borderRadius="xl"
+      bg="bg.surface"
+      borderColor="border"
     >
-      <Text fontSize="2xl" fontWeight="bold" mb={4}>
+      <Text fontSize="2xl" fontWeight="bold" mb={4} color="fg">
         Profile Page
       </Text>
-      <Text mb={4}>Manage your personal information and preferences here.</Text>
+      <Text mb={4} color="fg.muted">
+        Manage your personal information and preferences here.
+      </Text>
       <Stack gap={3}>
         <HStack>
-          <Text fontWeight="medium" w="100px">
+          <Text fontWeight="medium" w="100px" color="fg">
             Name:
           </Text>
-          <Text>John Doe</Text>
+          <Text color="fg.subtle">John Doe</Text>
         </HStack>
         <HStack>
-          <Text fontWeight="medium" w="100px">
+          <Text fontWeight="medium" w="100px" color="fg">
             Email:
           </Text>
-          <Text>john@example.com</Text>
+          <Text color="fg.subtle">john@example.com</Text>
         </HStack>
         <HStack>
-          <Text fontWeight="medium" w="100px">
+          <Text fontWeight="medium" w="100px" color="fg">
             Role:
           </Text>
-          <Badge>Admin</Badge>
+          <Badge colorPalette="accent">Admin</Badge>
         </HStack>
       </Stack>
     </Box>
@@ -105,30 +107,32 @@ const SettingsPage = () => {
       id="settings-content"
       p={6}
       borderWidth="1px"
-      borderRadius="lg"
-      bg="gray.50"
-      _dark={{ bg: "gray.900" }}
+      borderRadius="xl"
+      bg="bg.surface"
+      borderColor="border"
     >
-      <Text fontSize="2xl" fontWeight="bold" mb={4}>
+      <Text fontSize="2xl" fontWeight="bold" mb={4} color="fg">
         Settings Page
       </Text>
-      <Text mb={4}>Configure your application settings and preferences.</Text>
+      <Text mb={4} color="fg.muted">
+        Configure your application settings and preferences.
+      </Text>
       <Stack gap={3}>
         <HStack justify="space-between">
-          <Text>Dark Mode</Text>
-          <Button size="sm" variant="outline">
+          <Text color="fg">Dark Mode</Text>
+          <Button size="sm" variant="outline" colorPalette="accent">
             Toggle
           </Button>
         </HStack>
         <HStack justify="space-between">
-          <Text>Notifications</Text>
-          <Button size="sm" variant="outline">
+          <Text color="fg">Notifications</Text>
+          <Button size="sm" variant="outline" colorPalette="accent">
             Configure
           </Button>
         </HStack>
         <HStack justify="space-between">
-          <Text>Privacy</Text>
-          <Button size="sm" variant="outline">
+          <Text color="fg">Privacy</Text>
+          <Button size="sm" variant="outline" colorPalette="accent">
             Manage
           </Button>
         </HStack>
@@ -140,7 +144,27 @@ const SettingsPage = () => {
 const TourContent = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [isNavigating, setIsNavigating] = useState(false)
+
+  const stepToPageMap: Record<string, string> = {
+    welcome: "/",
+    "home-nav": "/",
+    "home-content": "/",
+    "profile-nav": "/profile",
+    "profile-content": "/profile",
+    "settings-nav": "/settings",
+    "settings-content": "/settings",
+  }
+
+  const makeEffect =
+    (stepId: string) =>
+    ({ show }: { show: () => void }) => {
+      const targetPath = stepToPageMap[stepId]
+      if (targetPath && location.pathname !== targetPath) {
+        navigate(targetPath)
+      }
+      show()
+      return () => {}
+    }
 
   const steps: TourStep[] = [
     {
@@ -150,6 +174,7 @@ const TourContent = () => {
       description:
         "This tour will guide you through different pages of the application. The tour state persists as you navigate between pages.",
       actions: [{ label: "Start Tour", action: "next" }],
+      effect: makeEffect("welcome"),
     },
     {
       id: "home-nav",
@@ -161,6 +186,7 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
+      effect: makeEffect("home-nav"),
     },
     {
       id: "home-content",
@@ -173,6 +199,7 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
+      effect: makeEffect("home-content"),
     },
     {
       id: "profile-nav",
@@ -184,6 +211,7 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
+      effect: makeEffect("profile-nav"),
     },
     {
       id: "profile-content",
@@ -196,6 +224,7 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
+      effect: makeEffect("profile-content"),
     },
     {
       id: "settings-nav",
@@ -207,6 +236,7 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
+      effect: makeEffect("settings-nav"),
     },
     {
       id: "settings-content",
@@ -219,33 +249,11 @@ const TourContent = () => {
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
       ],
+      effect: makeEffect("settings-content"),
     },
   ]
 
   const tour = useTour({ steps })
-
-  useEffect(() => {
-    if (!tour.step || isNavigating) return
-
-    const stepToPageMap: Record<string, string> = {
-      welcome: "/",
-      "home-nav": "/",
-      "home-content": "/",
-      "profile-nav": "/profile",
-      "profile-content": "/profile",
-      "settings-nav": "/settings",
-      "settings-content": "/settings",
-    }
-
-    const targetPath = stepToPageMap[tour.step.id]
-    if (targetPath && location.pathname !== targetPath) {
-      setIsNavigating(true)
-      navigate(targetPath)
-      setTimeout(() => {
-        setIsNavigating(false)
-      }, 100)
-    }
-  }, [tour.step, location.pathname, navigate, isNavigating])
 
   const isActive = (path: string) => location.pathname === path
 
@@ -256,7 +264,7 @@ const TourContent = () => {
           <Button
             onClick={() => tour.start()}
             width="full"
-            colorPalette="teal"
+            colorPalette="accent"
             mb={3}
           >
             <LuSparkles />
@@ -268,22 +276,18 @@ const TourContent = () => {
               p={4}
               borderWidth="1px"
               borderRadius="lg"
-              bg="blue.50"
-              _dark={{ bg: "blue.950" }}
+              bg="bg.muted"
+              borderColor="border"
             >
               <HStack justify="space-between" mb={2}>
-                <Text fontSize="sm" fontWeight="medium">
+                <Text fontSize="sm" fontWeight="medium" color="fg">
                   Tour Progress
                 </Text>
-                <Badge colorPalette="teal">
+                <Badge colorPalette="accent">
                   Step {tour.stepIndex + 1} of {tour.totalSteps}
                 </Badge>
               </HStack>
-              <Text
-                fontSize="xs"
-                color="gray.600"
-                _dark={{ color: "gray.400" }}
-              >
+              <Text fontSize="xs" color="fg.muted">
                 Current page: {location.pathname}
               </Text>
             </Box>
@@ -293,11 +297,11 @@ const TourContent = () => {
         <Box
           p={4}
           borderWidth="1px"
-          borderRadius="lg"
-          bg="gray.50"
-          _dark={{ bg: "gray.900" }}
+          borderRadius="xl"
+          bg="bg.surface"
+          borderColor="border"
         >
-          <Text fontSize="sm" fontWeight="medium" mb={3}>
+          <Text fontSize="sm" fontWeight="medium" mb={3} color="fg">
             Navigation
           </Text>
           <HStack gap={2}>
@@ -306,7 +310,7 @@ const TourContent = () => {
                 id="nav-home"
                 size="sm"
                 variant={isActive("/") ? "solid" : "outline"}
-                colorPalette={isActive("/") ? "teal" : undefined}
+                colorPalette="accent"
               >
                 <HiHome />
                 Home
@@ -317,7 +321,7 @@ const TourContent = () => {
                 id="nav-profile"
                 size="sm"
                 variant={isActive("/profile") ? "solid" : "outline"}
-                colorPalette={isActive("/profile") ? "teal" : undefined}
+                colorPalette="accent"
               >
                 <LuUser />
                 Profile
@@ -328,7 +332,7 @@ const TourContent = () => {
                 id="nav-settings"
                 size="sm"
                 variant={isActive("/settings") ? "solid" : "outline"}
-                colorPalette={isActive("/settings") ? "teal" : undefined}
+                colorPalette="accent"
               >
                 <LuSettings />
                 Settings
@@ -366,10 +370,8 @@ const TourContent = () => {
   )
 }
 
-export const TourWithRouting = () => {
-  return (
-    <MemoryRouter initialEntries={["/"]} initialIndex={0}>
-      <TourContent />
-    </MemoryRouter>
-  )
-}
+export const TourWithRouting = () => (
+  <MemoryRouter initialEntries={["/"]} initialIndex={0}>
+    <TourContent />
+  </MemoryRouter>
+)

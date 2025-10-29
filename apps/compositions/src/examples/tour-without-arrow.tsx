@@ -57,7 +57,7 @@ export const TourWithoutArrow = () => {
 
   return (
     <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+      <Button onClick={() => tour.start()} mb={4} colorScheme="teal">
         <LuSparkles />
         Begin Tour
       </Button>
@@ -84,56 +84,53 @@ export const TourWithoutArrow = () => {
             p={6}
             borderWidth="1px"
             borderRadius="lg"
-            scrollMarginInline="10"
-            bg="purple.50"
-            _dark={{ bg: "purple.950" }}
+            borderColor="border.default"
+            bg="bg.subtle"
             flex="1"
           >
             <HStack mb={2}>
               <LuMusic size={24} />
-              <Text fontWeight="semibold" fontSize="lg">
+              <Text fontWeight="semibold" fontSize="lg" color="fg.emphasized">
                 Stage Setup
               </Text>
             </HStack>
-            <Badge colorPalette="purple">Active</Badge>
+            <Badge colorScheme="purple">Active</Badge>
           </Box>
 
+          {/* Band Members */}
           <Box
             id="band-members"
             p={6}
             borderWidth="1px"
             borderRadius="lg"
-            scrollMarginInline="10"
-            bg="blue.50"
-            _dark={{ bg: "blue.950" }}
+            borderColor="border.default"
+            bg="bg.subtle"
             flex="1"
           >
             <HStack mb={2}>
               <LuUsers size={24} />
-              <Text fontWeight="semibold" fontSize="lg">
+              <Text fontWeight="semibold" fontSize="lg" color="fg.emphasized">
                 Members
               </Text>
             </HStack>
-            <Badge colorPalette="blue">4 Members</Badge>
+            <Badge colorScheme="blue">4 Members</Badge>
           </Box>
-
           <Box
             id="tour-dates"
             p={6}
             borderWidth="1px"
             borderRadius="lg"
-            scrollMarginInline="10"
-            bg="green.50"
-            _dark={{ bg: "green.950" }}
+            borderColor="border.default"
+            bg="bg.subtle"
             flex="1"
           >
             <HStack mb={2}>
               <LuCalendar size={24} />
-              <Text fontWeight="semibold" fontSize="lg">
+              <Text fontWeight="semibold" fontSize="lg" color="fg.emphasized">
                 Tour Dates
               </Text>
             </HStack>
-            <Badge colorPalette="green">12 Shows</Badge>
+            <Badge colorScheme="green">12 Shows</Badge>
           </Box>
         </HStack>
       </Stack>
