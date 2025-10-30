@@ -24,5 +24,7 @@ export const Textarea = withContext<HTMLTextAreaElement, TextareaProps>(
   Field.Textarea,
 )
 
+Textarea.displayName = "Textarea"
+
 export const TextareaPropsProvider =
   PropsProvider as React.Provider<TextareaProps>
