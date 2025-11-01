@@ -28,7 +28,6 @@ export const DonutChartWithDetachedSegment = () => {
           data={chart.data}
           dataKey={chart.key("value")}
           nameKey={chart.key("name")}
-          activeIndex={0}
           activeShape={<Sector outerRadius={120} />}
           strokeWidth={5}
         >

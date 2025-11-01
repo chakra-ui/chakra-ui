@@ -13,3 +13,5 @@ export const LoaderOverlay = chakra("div", {
     gap: "2",
   },
 })
+
+LoaderOverlay.displayName = "LoaderOverlay"

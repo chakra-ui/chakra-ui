@@ -432,7 +432,16 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
   function getTokenReferences(value: string) {
     const refs = getReferences(value)
-    return refs.map((ref) => getByName(ref)).filter(Boolean) as Token[]
+    const result: Token[] = []
+
+    for (let i = 0; i < refs.length; i++) {
+      const token = getByName(refs[i])
+      if (token) {
+        result.push(token)
+      }
+    }
+
+    return result
   }
 
   function addReferences() {
@@ -494,10 +503,15 @@ function getConditionalTokens(token: Token) {
     const nextPath = filterBaseCondition(path)
     if (!nextPath.length) return
 
-    const nextToken = structuredClone(token)
-
-    nextToken.value = value
-    nextToken.extensions.condition = nextPath.join(":")
+    // Efficient shallow clone - only copy what we need to modify
+    const nextToken: Token = {
+      ...token,
+      value,
+      extensions: {
+        ...token.extensions,
+        condition: nextPath.join(":"),
+      },
+    }
 
     tokens.push(nextToken)
   })

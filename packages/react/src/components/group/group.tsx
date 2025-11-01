@@ -177,3 +177,5 @@ export const Group = memo(
     )
   }),
 )
+
+Group.displayName = "Group"

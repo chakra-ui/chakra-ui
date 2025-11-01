@@ -7,6 +7,7 @@ import { breadcrumbSlotRecipe } from "./breadcrumb"
 import { cardSlotRecipe } from "./card"
 import { checkboxSlotRecipe } from "./checkbox"
 import { checkboxCardSlotRecipe } from "./checkbox-card"
+import { codeBlockSlotRecipe } from "./code-block"
 import { collapsibleSlotRecipe } from "./collapsible"
 import { colorPickerSlotRecipe } from "./color-picker"
 import { comboboxSlotRecipe } from "./combobox"
@@ -20,6 +21,7 @@ import { fieldsetSlotRecipe } from "./fieldset"
 import { fileUploadSlotRecipe } from "./file-upload"
 import { hoverCardSlotRecipe } from "./hover-card"
 import { listSlotRecipe } from "./list"
+import { listboxSlotRecipe } from "./listbox"
 import { menuSlotRecipe } from "./menu"
 import { nativeSelectSlotRecipe } from "./native-select"
 import { numberInputSlotRecipe } from "./number-input"
@@ -31,6 +33,7 @@ import { qrCodeSlotRecipe } from "./qr-code"
 import { radioCardSlotRecipe } from "./radio-card"
 import { radioGroupSlotRecipe } from "./radio-group"
 import { ratingGroupSlotRecipe } from "./rating-group"
+import { scrollAreaSlotRecipe } from "./scroll-area"
 import { segmentGroupSlotRecipe } from "./segment-group"
 import { selectSlotRecipe } from "./select"
 import { sliderSlotRecipe } from "./slider"
@@ -58,6 +61,7 @@ export const slotRecipes = {
   card: cardSlotRecipe,
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
+  codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
   dialog: dialogSlotRecipe,
@@ -69,6 +73,7 @@ export const slotRecipes = {
   fileUpload: fileUploadSlotRecipe,
   hoverCard: hoverCardSlotRecipe,
   list: listSlotRecipe,
+  listbox: listboxSlotRecipe,
   menu: menuSlotRecipe,
   nativeSelect: nativeSelectSlotRecipe,
   numberInput: numberInputSlotRecipe,
@@ -79,6 +84,7 @@ export const slotRecipes = {
   radioCard: radioCardSlotRecipe,
   radioGroup: radioGroupSlotRecipe,
   ratingGroup: ratingGroupSlotRecipe,
+  scrollArea: scrollAreaSlotRecipe,
   segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
   combobox: comboboxSlotRecipe,
@@ -86,11 +92,11 @@ export const slotRecipes = {
   splitter: splitterSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
-  switch: switchSlotRecipe,
+  swittch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
-  tagsInput: tagsInputSlotRecipe,
   tag: tagSlotRecipe,
+  tagsInput: tagsInputSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
   status: statusSlotRecipe,

@@ -36,12 +36,12 @@ export const AvatarSizeTable = () => {
                   <td key={v}>
                     <HStack>
                       <Avatar.Root colorPalette={c} size={v}>
-                        <Avatar.Image src="https://bit.ly/dan-abramov" />
-                        <Avatar.Fallback name="Dan Abramov" />
+                        <Avatar.Image src="https://i.pravatar.cc/150?img=3" />
+                        <Avatar.Fallback name="Chris Johnson" />
                       </Avatar.Root>
                       <Avatar.Root colorPalette={c} size={v}>
                         <Avatar.Image />
-                        <Avatar.Fallback name="Dan Abramov" />
+                        <Avatar.Fallback name="Chris Johnson" />
                       </Avatar.Root>
                       <Avatar.Root colorPalette={c} size={v}>
                         <Avatar.Image />
