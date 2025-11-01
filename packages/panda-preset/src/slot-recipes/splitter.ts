@@ -6,23 +6,28 @@ export const splitterSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "flex",
-      gap: "0",
+      gap: "3",
       overflow: "hidden",
+      _horizontal: {
+        alignItems: "center",
+      },
       _vertical: {
         height: "600px !important",
+        alignItems: "center",
       },
     },
     panel: {
       display: "flex",
       overflow: "auto",
     },
+
     resizeTrigger: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       outline: "none",
       flexShrink: "0",
-      bg: "bg.muted",
+      bg: "fg.subtle",
       cursor: "col-resize",
       position: "relative",
       transitionProperty: "background",
@@ -30,10 +35,12 @@ export const splitterSlotRecipe = defineSlotRecipe({
       _horizontal: {
         cursor: "col-resize",
         width: "1",
+        height: "80px",
       },
       _vertical: {
         cursor: "row-resize",
         height: "1",
+        width: "80px",
       },
       _hover: {
         bg: "border.emphasized",
@@ -48,61 +55,5 @@ export const splitterSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
       },
     },
-  },
-  variants: {
-    size: {
-      sm: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "0.5",
-          },
-          _vertical: {
-            height: "0.5",
-          },
-        },
-      },
-      md: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "1",
-          },
-          _vertical: {
-            height: "1",
-          },
-        },
-      },
-      lg: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "1.5",
-          },
-          _vertical: {
-            height: "1.5",
-          },
-        },
-      },
-    },
-    variant: {
-      solid: {
-        resizeTrigger: {
-          bg: "border",
-          _hover: {
-            bg: "border.emphasized",
-          },
-        },
-      },
-      subtle: {
-        resizeTrigger: {
-          bg: "transparent",
-          _hover: {
-            bg: "bg.muted",
-          },
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    size: "md",
-    variant: "solid",
   },
 })
