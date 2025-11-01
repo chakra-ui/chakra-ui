@@ -19,3 +19,5 @@ export const SplitterThreePanels = () => {
     </Splitter.Root>
   )
 }
+
+export default SplitterThreePanels

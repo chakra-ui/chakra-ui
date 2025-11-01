@@ -7,10 +7,16 @@ export const splitterSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "flex",
-      gap: "0",
+      gap: "3",
       overflow: "hidden",
+      _horizontal: {
+        alignItems: "center",
+      },
+      _vertical: {
+        height: "600px !important",
+        alignItems: "center",
+      },
     },
-
     panel: {
       display: "flex",
       overflow: "auto",
@@ -22,7 +28,7 @@ export const splitterSlotRecipe = defineSlotRecipe({
       justifyContent: "center",
       outline: "none",
       flexShrink: "0",
-      bg: "border",
+      bg: "fg.subtle",
       cursor: "col-resize",
       position: "relative",
       transitionProperty: "background",
@@ -30,94 +36,25 @@ export const splitterSlotRecipe = defineSlotRecipe({
       _horizontal: {
         cursor: "col-resize",
         width: "1",
-        minWidth: "1",
+        height: "80px",
       },
       _vertical: {
         cursor: "row-resize",
         height: "1",
-        minHeight: "1",
+        width: "80px",
       },
       _hover: {
         bg: "border.emphasized",
       },
-      _focus: {
-        bg: "colorPalette.solid",
+      _focusVisible: {
+        outline: "2px solid",
+        outlineColor: "colorPalette.solid",
+        outlineOffset: "2px",
       },
       _disabled: {
         opacity: "0.5",
         cursor: "not-allowed",
       },
     },
-  },
-
-  variants: {
-    size: {
-      sm: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "0.5",
-            minWidth: "0.5",
-          },
-          _vertical: {
-            height: "0.5",
-            minHeight: "0.5",
-          },
-        },
-      },
-      md: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "1",
-            minWidth: "1",
-          },
-          _vertical: {
-            height: "1",
-            minHeight: "1",
-          },
-        },
-      },
-      lg: {
-        resizeTrigger: {
-          _horizontal: {
-            width: "1.5",
-            minWidth: "1.5",
-          },
-          _vertical: {
-            height: "1.5",
-            minHeight: "1.5",
-          },
-        },
-      },
-    },
-
-    variant: {
-      solid: {
-        resizeTrigger: {
-          bg: "border",
-          _hover: {
-            bg: "border.emphasized",
-          },
-          _focus: {
-            bg: "colorPalette.solid",
-          },
-        },
-      },
-      subtle: {
-        resizeTrigger: {
-          bg: "transparent",
-          _hover: {
-            bg: "bg.subtle",
-          },
-          _focus: {
-            bg: "colorPalette.subtle",
-          },
-        },
-      },
-    },
-  },
-
-  defaultVariants: {
-    size: "md",
-    variant: "solid",
   },
 })

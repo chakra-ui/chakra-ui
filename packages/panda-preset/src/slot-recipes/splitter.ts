@@ -8,6 +8,9 @@ export const splitterSlotRecipe = defineSlotRecipe({
       display: "flex",
       gap: "0",
       overflow: "hidden",
+      _vertical: {
+        height: "600px !important",
+      },
     },
     panel: {
       display: "flex",
@@ -19,7 +22,7 @@ export const splitterSlotRecipe = defineSlotRecipe({
       justifyContent: "center",
       outline: "none",
       flexShrink: "0",
-      bg: "border",
+      bg: "bg.muted",
       cursor: "col-resize",
       position: "relative",
       transitionProperty: "background",
