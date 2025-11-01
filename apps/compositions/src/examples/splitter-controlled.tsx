@@ -4,7 +4,7 @@ import { Splitter } from "@chakra-ui/react"
 import { useState } from "react"
 
 export const SplitterControlled = () => {
-  const [sizes, setSizes] = useState<number[]>([50, 50])
+  const [sizes, setSizes] = useState([50, 50])
 
   return (
     <Splitter.Root
