@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "splitter",
+  "file": {
+    "name": "splitter.tsx",
+    "content": "import { Splitter as ChakraSplitter } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface SplitterProps extends ChakraSplitter.RootProps {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\nexport const Splitter = React.forwardRef<HTMLDivElement, SplitterProps>(\n  function Splitter(props, ref) {\n    const { orientation = \"horizontal\", children, ...rest } = props\n    return (\n      <ChakraSplitter.Root ref={ref} orientation={orientation} {...rest}>\n        {children}\n      </ChakraSplitter.Root>\n    )\n  },\n)\n\nexport const SplitterPanel = React.forwardRef<\n  HTMLDivElement,\n  ChakraSplitter.PanelProps\n>(function SplitterPanel(props, ref) {\n  return <ChakraSplitter.Panel {...props} ref={ref} />\n})\n\nexport const SplitterResizeTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraSplitter.ResizeTriggerProps\n>(function SplitterResizeTrigger(props, ref) {\n  return <ChakraSplitter.ResizeTrigger {...props} ref={ref} />\n})\n\nexport const SplitterRoot = ChakraSplitter.Root\nexport const SplitterRootProvider = ChakraSplitter.RootProvider\nexport const SplitterPropsProvider = ChakraSplitter.PropsProvider\nexport const SplitterContext = ChakraSplitter.Context\n"
+  },
+  "component": "Splitter"
+}

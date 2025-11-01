@@ -368,6 +368,14 @@
   },
   {
     "type": "composition",
+    "id": "splitter",
+    "file": "splitter.tsx",
+    "component": "Splitter",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "stat",
     "file": "stat.tsx",
     "component": "Stat",
