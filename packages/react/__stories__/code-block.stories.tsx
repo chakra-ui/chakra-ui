@@ -28,6 +28,7 @@ export { CodeBlockWithSizes as Sizes } from "compositions/examples/code-block-wi
 export { CodeBlockWithFloatingCopyButton as FloatingCopyButton } from "compositions/examples/code-block-with-floating-copy-button"
 export { CodeBlockWithThemes as Themes } from "compositions/examples/code-block-with-themes"
 export { CodeBlockPlainText as PlainText } from "compositions/examples/code-block-plain-text"
+export { CodeBlockWithHorizontalOverflow as HorizontalOverflow } from "compositions/examples/code-block-with-horizontal-overflow"
 
 export { CodeBlockWithHighlightJs as HighlightJs } from "compositions/examples/code-block-with-highlight-js"
 

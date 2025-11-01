@@ -68,3 +68,5 @@ export const Loader = React.forwardRef<HTMLSpanElement, LoaderProps>(
     )
   },
 )
+
+Loader.displayName = "Loader"

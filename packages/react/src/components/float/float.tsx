@@ -112,3 +112,5 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
     return <chakra.div ref={ref} css={styles} {...rest} />
   },
 )
+
+Float.displayName = "Float"

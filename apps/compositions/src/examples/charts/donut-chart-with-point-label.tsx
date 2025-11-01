@@ -15,7 +15,7 @@ export const DonutChartWithPointLabel = () => {
 
   return (
     <Chart.Root boxSize="200px" chart={chart} mx="auto">
-      <PieChart margin={{ left: 40 }}>
+      <PieChart margin={{ left: 40, top: 0, right: 0, bottom: 0 }}>
         <Tooltip
           cursor={false}
           animationDuration={100}

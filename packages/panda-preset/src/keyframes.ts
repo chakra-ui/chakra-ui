@@ -62,7 +62,7 @@ export const keyframes = {
   },
   "expand-height": {
     from: {
-      height: "0",
+      height: "var(--collapsed-height, 0)",
     },
     to: {
       height: "var(--height)",
@@ -73,12 +73,12 @@ export const keyframes = {
       height: "var(--height)",
     },
     to: {
-      height: "0",
+      height: "var(--collapsed-height, 0)",
     },
   },
   "expand-width": {
     from: {
-      width: "0",
+      width: "var(--collapsed-width, 0)",
     },
     to: {
       width: "var(--width)",
@@ -89,7 +89,7 @@ export const keyframes = {
       height: "var(--width)",
     },
     to: {
-      height: "0",
+      height: "var(--collapsed-width, 0)",
     },
   },
   "fade-in": {

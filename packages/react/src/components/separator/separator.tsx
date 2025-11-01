@@ -38,5 +38,7 @@ export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
   },
 )
 
+Separator.displayName = "Separator"
+
 export const SeparatorPropsProvider =
   PropsProvider as React.Provider<SeparatorBaseProps>

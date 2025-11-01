@@ -17,4 +17,6 @@ export interface KbdProps extends HTMLChakraProps<"kbd", KbdBaseProps> {}
 
 export const Kbd = withContext<HTMLElement, KbdProps>("kbd")
 
+Kbd.displayName = "Kbd"
+
 export const KbdPropsProvider = PropsProvider as React.Provider<KbdProps>

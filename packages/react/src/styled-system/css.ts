@@ -8,16 +8,19 @@ import {
   walkObject,
 } from "../utils"
 import type { SystemStyleObject } from "./css.types"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
 
-const isImportant = (v: unknown) =>
-  isString(v) ? importantRegex.test(v) : false
+const isImportant = memo((v: unknown) =>
+  isString(v) ? importantRegex.test(v) : false,
+)
 
-const withoutImportant = (v: unknown) =>
-  isString(v) ? v.replace(importantRegex, "").trim() : v
+const withoutImportant = memo((v: unknown) =>
+  isString(v) ? v.replace(importantRegex, "").trim() : v,
+)
 
 type CssFnOptions = Pick<SystemContext, "conditions"> & {
   normalize: (styles: Dict) => Dict
@@ -32,7 +35,7 @@ export function createCssFn(context: CssFnOptions) {
     const styles = mergeFn(...styleArgs)
 
     const normalized = normalize(styles)
-    const result: Dict = Object.create(null)
+    const result: Dict = createEmptyObject()
 
     walkObject(normalized, (value, paths) => {
       const important = isImportant(value)
@@ -46,7 +49,7 @@ export function createCssFn(context: CssFnOptions) {
         value = withoutImportant(value)
       }
 
-      let transformed = transform(prop, value) ?? Object.create(null)
+      let transformed = transform(prop, value) ?? EMPTY_OBJECT
 
       transformed = walkObject(
         transformed,
@@ -65,16 +68,19 @@ function mergeByPath(target: Dict, paths: string[], value: Dict) {
   let acc = target
   for (const path of paths) {
     if (!path) continue
-    if (!acc[path]) acc[path] = Object.create(null)
+    if (!acc[path]) acc[path] = createEmptyObject()
     acc = acc[path]
   }
   mergeWith(acc, value)
 }
 
 function compactFn(...styles: Dict[]) {
-  return styles.filter(
-    (style) => isObject(style) && Object.keys(compact(style)).length > 0,
-  )
+  return styles.filter((style) => {
+    if (!isObject(style)) return false
+    const compacted = compact(style)
+    const keys = Object.keys(compacted)
+    return keys.length > 0
+  })
 }
 
 function mergeCss(ctx: CssFnOptions) {

@@ -17,5 +17,7 @@ export interface BadgeProps extends HTMLChakraProps<"span", BadgeBaseProps> {}
 
 export const Badge = withContext<HTMLSpanElement, BadgeProps>("span")
 
+Badge.displayName = "Badge"
+
 export const BadgePropsProvider =
   PropsProvider as React.Provider<BadgeBaseProps>

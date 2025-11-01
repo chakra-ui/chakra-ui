@@ -1,20 +1,21 @@
 import { type Dict, mapEntries, omit, splitProps } from "../utils"
 import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
+import { EMPTY_ARRAY, EMPTY_OBJECT, createEmptyObject } from "./singleton"
 
 interface Options {
   cva: RecipeCreatorFn
 }
 
 const getSlotRecipes = (
-  config: Record<string, any> = {},
+  config: Record<string, any> = EMPTY_OBJECT,
 ): Record<string, any> => {
   const init = (slot: string) => ({
-    base: config.base?.[slot] ?? {},
-    variants: {},
-    defaultVariants: config.defaultVariants ?? {},
+    base: config.base?.[slot] ?? EMPTY_OBJECT,
+    variants: createEmptyObject(),
+    defaultVariants: config.defaultVariants ?? EMPTY_OBJECT,
     compoundVariants: config.compoundVariants
       ? getSlotCompoundVariant(config.compoundVariants, slot)
-      : [],
+      : (EMPTY_ARRAY as any[]),
   })
 
   const slots = config.slots ?? []
@@ -28,7 +29,8 @@ const getSlotRecipes = (
     )) {
       entries.forEach(([slot, slotRecipe]) => {
         slotRecipe.variants[variantsKey] ??= {}
-        slotRecipe.variants[variantsKey][variantKey] = variantSpec[slot] ?? {}
+        slotRecipe.variants[variantsKey][variantKey] =
+          variantSpec[slot] ?? EMPTY_OBJECT
       })
     }
   }
@@ -49,7 +51,7 @@ export const getSlotCompoundVariant = <T extends { css: any }>(
 
 export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
   const { cva } = options
-  return function sva(config: Dict = {}): any {
+  return function sva(config: Dict = EMPTY_OBJECT): any {
     const slots = Object.entries(getSlotRecipes(config)).map(
       ([slot, slotCva]) => [slot, cva(slotCva)],
     )
@@ -60,19 +62,22 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       return Object.fromEntries(result)
     }
 
-    const variants = (config.variants ?? {}) as Dict
+    const variants = (config.variants ?? EMPTY_OBJECT) as Dict
     const variantKeys = Object.keys(variants)
 
     function splitVariantProps(props: Dict) {
       const restProps = omit(props, ["recipe"])
       const [recipeProps, localProps] = splitProps(restProps, variantKeys)
 
-      if (!variantKeys.includes("colorPalette")) {
+      const hasColorPalette = variantKeys.includes("colorPalette")
+      const hasOrientation = variantKeys.includes("orientation")
+
+      if (!hasColorPalette) {
         recipeProps.colorPalette =
           props.colorPalette || config.defaultVariants?.colorPalette
       }
 
-      if (variantKeys.includes("orientation")) {
+      if (hasOrientation) {
         ;(localProps as any).orientation = props.orientation
       }
 
