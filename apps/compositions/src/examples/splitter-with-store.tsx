@@ -15,10 +15,10 @@ export const SplitterWithStore = () => {
   return (
     <>
       <Flex gap={5} mb={2} w="full" justify="space-between">
-        <Button variant="outline" colorScheme="blue" onClick={maximizeA}>
+        <Button variant="outline" onClick={maximizeA}>
           Maximize A
         </Button>
-        <Button variant="outline" colorScheme="blue" onClick={resetSizes}>
+        <Button variant="outline" onClick={resetSizes}>
           Reset
         </Button>
       </Flex>
