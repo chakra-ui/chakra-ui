@@ -1,0 +1,84 @@
+---
+title: Splitter
+description:
+  The Splitter component allows users to resize panels by dragging a handle
+  between them. It supports horizontal, vertical, multi-panel, controlled, and
+  store-driven configurations.
+links:
+  source: components/splitter
+  storybook: components-splitter--basic
+  recipe: splitter
+  ark: https://ark-ui.com/docs/components/splitter
+---
+
+<ExampleTabs name="splitter-basic" />
+
+## Usage
+
+```jsx
+import { Splitter } from "@chakra-ui/react"
+```
+
+```jsx
+<Splitter.Root>
+  <Splitter.Panel id="a">Panel A</Splitter.Panel>
+  <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
+  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+</Splitter.Root>
+```
+
+## Examples
+
+### Horizontal
+
+Default orientation for resizable side-by-side panels.
+
+<ExampleTabs name="splitter-basic" />
+
+### Vertical
+
+Set `orientation="vertical"` for stacked panels that resize vertically.
+
+<ExampleTabs name="splitter-vertical" />
+
+### Three Panels
+
+Create layouts with more than two resizable panels.
+
+<ExampleTabs name="splitter-three-panels" />
+
+### Controlled
+
+Use `onResize` and `size` props to manage panel sizes programmatically.
+
+<ExampleTabs name="splitter-controlled" />
+
+### Store
+
+Use the `RootProvider` with the `useSplitter` hook to manage and control the
+splitter state from outside the component.
+
+> Use `RootProvider + useSplitter` or `Root`, not both.
+
+<ExampleTabs name="splitter-with-store" />
+
+## Props
+
+### Root
+
+<PropTable component="Splitter" part="Root" />
+
+### Panel
+
+<PropTable component="Splitter" part="Panel" />
+
+### ResizeTrigger
+
+<PropTable component="Splitter" part="ResizeTrigger" />
+
+## Explorer
+
+Explore the `Splitter` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="splitter-explorer" />

@@ -1,8 +1,8 @@
 import { Splitter } from "@chakra-ui/react"
 
-export const SplitterThreePanels = () => {
+export const SplitterExplorer = () => {
   return (
-    <Splitter.Root panels={[{ id: "a" }, { id: "b" }, { id: "c" }]}>
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
       <Splitter.Panel id="a" h="250px" bg="fg.muted" color="white">
         A
       </Splitter.Panel>
@@ -10,12 +10,8 @@ export const SplitterThreePanels = () => {
       <Splitter.Panel id="b" h="250px" bg="fg.muted" color="white">
         B
       </Splitter.Panel>
-      <Splitter.ResizeTrigger id="b:c" aria-label="Resize" />
-      <Splitter.Panel id="c" h="250px" bg="fg.muted" color="white">
-        C
-      </Splitter.Panel>
     </Splitter.Root>
   )
 }
 
-export default SplitterThreePanels
+export default SplitterExplorer
