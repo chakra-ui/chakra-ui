@@ -1,5 +1,3 @@
-"use client"
-
 import { Splitter } from "@chakra-ui/react"
 
 export const SplitterCollapsible = () => {
