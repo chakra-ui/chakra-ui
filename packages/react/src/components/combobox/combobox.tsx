@@ -117,8 +117,13 @@ export interface ComboboxInputProps
 export const ComboboxInput = withContext<HTMLInputElement, ComboboxInputProps>(
   ArkCombobox.Input,
   "input",
-  { forwardAsChild: true },
+  { forwardAsChild: true,
+    defaultProps:{
+      paddingRight:"3rem"
+    }
+  },
 )
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,7 +183,9 @@ export interface ComboboxItemProps
 export const ComboboxItem = withContext<HTMLDivElement, ComboboxItemProps>(
   ArkCombobox.Item,
   "item",
-  { forwardAsChild: true },
+  { forwardAsChild: true, 
+    
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
