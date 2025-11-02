@@ -5,7 +5,7 @@ import { Box, Flex, FormatNumber, HStack, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { LuDownload } from "react-icons/lu"
 import { Area, AreaChart, Tooltip } from "recharts"
-import type { CategoricalChartState } from "recharts/types/chart/types"
+import type { CategoricalChartFunc } from "recharts/types/chart/types"
 
 export const SparklineWithInteraction = () => {
   const chart = useChart({
@@ -26,9 +26,9 @@ export const SparklineWithInteraction = () => {
   const lastValue = chart.data[lastIndex].value
   const [value, setValue] = useState(lastValue)
 
-  const onMouseMove = (state: CategoricalChartState) => {
+  const onMouseMove: CategoricalChartFunc = (state) => {
     const index = state.activeTooltipIndex ?? lastIndex
-    const { value = lastValue } = chart.data[index]
+    const { value = lastValue } = chart.data[index as number]
     setValue(value)
   }
 

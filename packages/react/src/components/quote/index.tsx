@@ -10,3 +10,5 @@ export const Quote = chakra("q", {
     lineHeight: "1.2",
   },
 })
+
+Quote.displayName = "Quote"
