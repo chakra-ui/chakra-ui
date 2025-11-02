@@ -7,7 +7,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       "--segment-radius": "radii.l2",
-      borderRadius: "l2",
+      borderRadius: "var(--segment-radius)",
       display: "inline-flex",
       boxShadow: "inset",
       minW: "max-content",
