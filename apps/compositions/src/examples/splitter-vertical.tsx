@@ -7,11 +7,11 @@ export const SplitterVertical = () => {
       orientation="vertical"
       height="600px"
     >
-      <Splitter.Panel id="a" bg="fg.muted" color="white" w="full">
+      <Splitter.Panel id="a" bg="fg.muted" color="white" w="full" p={4}>
         A
       </Splitter.Panel>
       <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
-      <Splitter.Panel id="b" bg="fg.muted" color="white" w="full">
+      <Splitter.Panel id="b" bg="fg.muted" color="white" w="full" p={4}>
         B
       </Splitter.Panel>
     </Splitter.Root>

@@ -70,6 +70,22 @@ panels to a defined minimum size.
 
 <ExampleTabs name="splitter-collapsible" />
 
+### Keyboard Resize
+
+Panels can be resized using the keyboard for greater accessibility and precise
+control. When the resize handle is focused, users can use the arrow keys to
+adjust panel sizes.
+
+Use the `keyboardResizeBy` prop on `Splitter.Root` to define how many pixels the
+panels resize per key press.
+
+<ExampleTabs name="splitter--with-keyboard-resize" />
+
+#### Keyboard Controls
+
+- **ArrowLeft / ArrowUp** — Decrease the size of the previous panel
+- **ArrowRight / ArrowDown** — Increase the size of the previous panel
+
 ## Props
 
 ### Root
