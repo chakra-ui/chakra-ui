@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/react-mcp",
   "description": "The official MCP server for Chakra UI",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "dist/stdio.js",
   "files": [
     "dist"
