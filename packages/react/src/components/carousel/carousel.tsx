@@ -1,7 +1,11 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Carousel as ArkCarousel } from "@ark-ui/react/carousel"
+import {
+  Carousel as ArkCarousel,
+  useCarouselContext,
+} from "@ark-ui/react/carousel"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -53,7 +57,13 @@ export interface CarouselRootProps
 export const CarouselRoot = withProvider<HTMLDivElement, CarouselRootProps>(
   ArkCarousel.Root,
   "root",
-  { forwardAsChild: true, forwardProps: ["page", "loop"] },
+  {
+    forwardAsChild: true,
+    forwardProps: ["page", "loop"],
+    defaultProps: {
+      spacing: "1rem",
+    },
+  },
 )
 
 export const CarouselPropsProvider =
@@ -123,27 +133,21 @@ export const CarouselNextTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 export interface CarouselIndicatorsProps
-  extends Omit<CarouselIndicatorProps, "index"> {
-  count: number
-}
+  extends Omit<CarouselIndicatorProps, "index"> {}
 
-export const CarouselIndicators = ({
-  count,
-  ...props
-}: CarouselIndicatorsProps) => {
+export const CarouselIndicators = forwardRef<
+  HTMLDivElement,
+  CarouselIndicatorsProps
+>(function CarouselIndicators(props, ref) {
+  const api = useCarouselContext()
   return (
-    <CarouselIndicatorGroup>
-      {Array.from({ length: count }, (_, index) => (
-        <CarouselIndicator
-          key={index}
-          index={index}
-          aria-label={`Go to slide ${index + 1}`}
-          {...props}
-        />
+    <CarouselIndicatorGroup ref={ref}>
+      {api.pageSnapPoints.map((_, index) => (
+        <CarouselIndicator key={index} index={index} {...props} />
       ))}
     </CarouselIndicatorGroup>
   )
-}
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
