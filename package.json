@@ -25,6 +25,7 @@
     "react": "pnpm --filter=@chakra-ui/react",
     "www": "pnpm --filter=./apps/www",
     "mcp": "pnpm --filter=./apps/mcp",
+    "panda": "pnpm --filter=./packages/panda-preset",
     "lint": "eslint packages --ext .ts,.tsx --cache",
     "format:check": "prettier --check packages --cache",
     "format:write": "prettier --write packages --cache",
