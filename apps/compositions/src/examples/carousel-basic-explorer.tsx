@@ -8,13 +8,12 @@ export const CarouselBasicExplorer = () => {
   return (
     <Carousel.Root
       slideCount={items.length}
-      mx="auto"
-      maxW="xl"
       loop
       autoplay={{ delay: 2000 }}
       spacing="20px"
+      flexGrow="1"
     >
-      <Carousel.ItemGroup>
+      <Carousel.ItemGroup p="2">
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
             <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">

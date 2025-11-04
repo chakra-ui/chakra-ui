@@ -60,35 +60,23 @@ This might be more concise if you don't need to customize each indicator:
 
 ### CarouselAutoplayIndicator
 
+Renders a play or pause element based on the carousel’s autoplay state. Use it
+to toggle visuals when autoplay starts or stops.
+
+```jsx
+<Carousel.AutoplayIndicator play={<PlayIcon />} pause={<PauseIcon />} />
+```
+
 ### CarouselProgressText
 
+Displays the current slide and total slide count (e.g. 2 / 5). Updates
+automatically as the carousel moves.
+
+```jsx
+<Carousel.ProgressText />
+```
+
 ## Examples
-
-### Arrows
-
-Enable intuitive navigation through your slides with previous and next arrows.
-
-<ExampleTabs name="carousel-with-floating-arrows" />
-
-### Indicators
-
-Add visual indicators to help users track their position within the carousel and
-jump to specific slides.
-
-<ExampleTabs name="carousel-with-indicators" />
-
-### Spacing
-
-Use the `spacing` prop to control the gap between slides.
-
-<ExampleTabs name="carousel-spacing" />
-
-### Multiple Slides Per View
-
-Display several slides simultaneously with the `slidesPerPage` prop. Use
-`slidesPerMove` to control how many slides advance with each interaction.
-
-<ExampleTabs name="carousel-slides-per-page" />
 
 ### Controlled
 
@@ -104,6 +92,25 @@ to the `Carousel.RootProvider` component for full programmatic control.
 
 <ExampleTabs name="carousel-with-store" />
 
+### Arrows
+
+Enable intuitive navigation through your slides with previous and next arrows.
+
+<ExampleTabs name="carousel-with-floating-arrow" />
+
+### Indicators
+
+Add visual indicators to help users track their position within the carousel and
+jump to specific slides.
+
+<ExampleTabs name="carousel-with-indicators" />
+
+### Spacing
+
+Use the `spacing` prop to control the gap between slides.
+
+<ExampleTabs name="carousel-spacing" />
+
 ### Vertical
 
 Transform your carousel into a vertical slider by setting the `orientation`
@@ -118,18 +125,18 @@ Toggle whether the carousel can be scrolled using mouse dragging via the
 
 <ExampleTabs name="carousel-with-mouse-drag" />
 
-### Thumbnail
-
-Add custom indicators using thumbnails for navigation.
-
-<ExampleTabs name="carousel-with-thumbnails" />
-
 ### Lightbox
 
 Use carousel in a `Dialog` to create a first-run experience or modal gallery or
 a lightbox.
 
 <ExampleTabs name="carousel-with-dialog" />
+
+### Thumbnail
+
+Add custom indicators using thumbnails for navigation.
+
+<ExampleTabs name="carousel-with-thumbnails" />
 
 ### Autoplay
 
