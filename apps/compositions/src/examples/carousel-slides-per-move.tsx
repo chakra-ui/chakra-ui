@@ -8,7 +8,7 @@ export const CarouselSlidesPerMove = () => {
   return (
     <Carousel.Root
       slideCount={items.length}
-      slidesPerMove={2}
+      slidesPerMove={1}
       slidesPerPage={2}
       maxW="xl"
       mx="auto"
