@@ -47,11 +47,7 @@ This works:
 ```jsx
 <Carousel.IndicatorGroup>
   {Array.from({ length: items.length }, (_, index) => (
-    <Carousel.Indicator
-      key={index}
-      index={index}
-      aria-label={`Go to slide ${index + 1}`}
-    />
+    <Carousel.Indicator key={index} index={index} />
   ))}
 </Carousel.IndicatorGroup>
 ```
@@ -59,73 +55,33 @@ This works:
 This might be more concise if you don't need to customize each indicator:
 
 ```jsx
-<Carousel.Indicators count={items.length} />
+<Carousel.Indicators />
 ```
 
-### CarouselNavs
+### CarouselAutoplayIndicator
 
-The `CarouselNavs` shortcut renders default previous and next navigation arrows
-for your carousel. You can also customize the icons or fully provide your own
-children.
-
-**Default usage:**
-
-```jsx
-<Carousel.Root slideCount={5}>
-  <Carousel.ItemGroup>
-    <Carousel.Item>Slide 1</Carousel.Item>
-    <Carousel.Item>Slide 2</Carousel.Item>
-    <Carousel.Item>Slide 3</Carousel.Item>
-  </Carousel.ItemGroup>
-
-  <CarouselNavs leftIcon={<LuArrowLeft />} rightIcon={<LuArrowRight />} />
-
-  <Carousel.Indicators count={5} />
-</Carousel.Root>
-```
-
-**Custom children usage:**
-
-```jsx
-<CarouselNavs>
-  <CarouselPrevTrigger asChild>
-    <button>Prev</button>
-  </CarouselPrevTrigger>
-  <CarouselNextTrigger asChild>
-    <button>Next</button>
-  </CarouselNextTrigger>
-</CarouselNavs>
-```
-
-This shows both the default arrows and how you can replace them with custom
-triggers.
+### CarouselProgressText
 
 ## Examples
 
-### Navigation Arrows
+### Arrows
 
 Enable intuitive navigation through your slides with previous and next arrows.
 
-<ExampleTabs name="carousel-with-arrows" />
+<ExampleTabs name="carousel-with-floating-arrows" />
 
-### Indicator Dots
+### Indicators
 
 Add visual indicators to help users track their position within the carousel and
 jump to specific slides.
 
 <ExampleTabs name="carousel-with-indicators" />
 
-### Custom Spacing
+### Spacing
 
 Use the `spacing` prop to control the gap between slides.
 
 <ExampleTabs name="carousel-spacing" />
-
-### Variable Width
-
-Support slides of different widths for more dynamic layouts.
-
-<ExampleTabs name="carousel-with-variable-width" />
 
 ### Multiple Slides Per View
 
@@ -153,13 +109,7 @@ to the `Carousel.RootProvider` component for full programmatic control.
 Transform your carousel into a vertical slider by setting the `orientation`
 prop.
 
-<ExampleTabs name="carousel-with-orientation" />
-
-### Loop
-
-Enable continuous slide navigation using the `loop` prop.
-
-<ExampleTabs name="carousel-with-loop" />
+<ExampleTabs name="carousel-vertical" />
 
 ### Mouse Drag
 
@@ -174,9 +124,10 @@ Add custom indicators using thumbnails for navigation.
 
 <ExampleTabs name="carousel-with-thumbnails" />
 
-### Dialog
+### Lightbox
 
-Use carousel in a `Dialog` to create a first-run experience or modal gallery.
+Use carousel in a `Dialog` to create a first-run experience or modal gallery or
+a lightbox.
 
 <ExampleTabs name="carousel-with-dialog" />
 
