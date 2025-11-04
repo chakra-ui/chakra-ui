@@ -15,7 +15,7 @@ import { LuChevronLeft, LuChevronRight, LuHeart } from "react-icons/lu"
 
 export const CarouselComposition = () => {
   return (
-    <Carousel.Root slideCount={properties.length} slidesPerPage={5} gap="4">
+    <Carousel.Root slideCount={properties.length} slidesPerPage={3} gap="4">
       <CarouselControls title="Popular homes in Cape Town" />
 
       <Carousel.ItemGroup>
@@ -35,7 +35,7 @@ interface PropertyCardProps {
 }
 
 const PropertyCard = ({ property, showBadge }: PropertyCardProps) => (
-  <CardRoot w="full" border="none" shadow="none" p="0">
+  <CardRoot w="full" border="none" bg="none" shadow="none" p="0">
     <Box position="relative">
       <Image
         src={property.image}
