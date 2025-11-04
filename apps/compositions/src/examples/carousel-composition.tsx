@@ -2,11 +2,11 @@ import { Carousel, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
-const items = Array.from({ length: 5 })
+const items = Array.from({ length: 10 })
 
 export const CarouselComposition = () => {
   return (
-    <Carousel.Root slideCount={items.length} maxW="2xl" mx="auto">
+    <Carousel.Root slideCount={items.length} slidesPerPage={5}>
       <Carousel.Control justifyContent="flex-end" gap="2">
         <Carousel.PrevTrigger asChild>
           <IconButton size="xs" variant="ghost">
