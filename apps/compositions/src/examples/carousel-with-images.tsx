@@ -9,17 +9,18 @@ export const CarouselWithImages = () => {
       mx="auto"
       gap="4"
       position="relative"
+      colorPalette="white"
     >
       <Carousel.Control gap="4" width="full" position="relative">
         <Carousel.PrevTrigger asChild color="colorPalette.contrast">
           <IconButton
             size="xs"
             variant="outline"
-            bg="colorPalette.inverted"
             rounded="full"
             position="absolute"
             zIndex="1"
             ml="4"
+            bg="colorPalette.solid"
           >
             <LuArrowLeft />
           </IconButton>
@@ -42,11 +43,11 @@ export const CarouselWithImages = () => {
             size="xs"
             variant="outline"
             rounded="full"
-            bg="colorPalette.inverted"
             position="absolute"
             zIndex="1"
             mr="4"
             right="0"
+            bg="colorPalette.solid"
           >
             <LuArrowRight />
           </IconButton>
@@ -60,10 +61,10 @@ export const CarouselWithImages = () => {
 }
 
 const items = [
-  "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
-  "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
-  "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80",
+  "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1064",
+  "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=60&w=900",
+  "https://images.unsplash.com/photo-1662037131482-8fb5d10aab9a?q=60&w=900",
   "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80",
-  "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80",
+  "https://images.unsplash.com/photo-1747691875590-14db938e42d4?q=60&w=900",
   "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
 ]
