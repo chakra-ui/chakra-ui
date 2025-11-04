@@ -1,64 +1,49 @@
 "use client"
 
-import { Button, Carousel, HStack, Image, Text, VStack } from "@chakra-ui/react"
+import { Carousel, IconButton } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
 import { useState } from "react"
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
-const items = Array.from(
-  { length: 5 },
-  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
-)
+const items = Array.from({ length: 5 })
 
 export const CarouselControlled = () => {
   const [page, setPage] = useState(0)
 
   return (
-    <VStack gap={5} align="center" py={6}>
-      <Carousel.Root
-        page={page}
-        onPageChange={(e) => setPage(e.page)}
-        slideCount={items.length}
-        maxW="full"
-        mx="auto"
-      >
-        <Carousel.ItemGroup>
-          {items.map((src, index) => (
-            <Carousel.Item key={index} index={index}>
-              <Image
-                src={src}
-                alt={`Slide ${index + 1}`}
-                w="100%"
-                h="300px"
-                objectFit="cover"
-                borderRadius="md"
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel.ItemGroup>
-        <Carousel.Navs
-          leftIcon={<LuArrowLeft />}
-          rightIcon={<LuArrowRight />}
-        />
-      </Carousel.Root>
-      <HStack justify="center" mt={2}>
+    <Carousel.Root
+      slideCount={items.length}
+      maxW="md"
+      mx="auto"
+      page={page}
+      onPageChange={(e) => setPage(e.page)}
+    >
+      <Carousel.ItemGroup>
         {items.map((_, index) => (
-          <Button
-            key={index}
-            size="sm"
-            variant={page === index ? "solid" : "outline"}
-            colorScheme="blue"
-            onClick={() => setPage(index)}
-            disabled={page === index}
-            cursor={page === index ? "not-allowed" : "pointer"}
-          >
-            {index + 1}
-          </Button>
+          <Carousel.Item key={index} index={index}>
+            <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
+              {index + 1}
+            </DecorativeBox>
+          </Carousel.Item>
         ))}
-      </HStack>
-      <Text fontSize="sm" color="fg.muted" fontWeight="medium">
-        Active page: {page + 1} / {items.length}
-      </Text>
-    </VStack>
+      </Carousel.ItemGroup>
+
+      <Carousel.Control justifyContent="center" gap="4">
+        <Carousel.PrevTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronLeft />
+          </IconButton>
+        </Carousel.PrevTrigger>
+
+        <Carousel.Indicators />
+
+        <Carousel.NextTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronRight />
+          </IconButton>
+        </Carousel.NextTrigger>
+      </Carousel.Control>
+    </Carousel.Root>
   )
 }
 

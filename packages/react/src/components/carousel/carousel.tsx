@@ -12,7 +12,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { IconButton, type IconButtonProps } from "../button"
+import { Box } from "../box"
 import { ChevronLeftIcon, ChevronRightIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -149,85 +149,38 @@ export const CarouselIndicators = forwardRef<
   )
 })
 
-////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
-export interface CarouselNavsProps {
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
-  prevButtonProps?: IconButtonProps
-  nextButtonProps?: IconButtonProps
-  children?: React.ReactNode
+export interface CarouselAutoplayIndicatorProps {
+  play: React.ReactNode
+  paused: React.ReactNode
 }
 
-export const CarouselNavs = ({
-  leftIcon,
-  rightIcon,
-  prevButtonProps,
-  nextButtonProps,
-  children,
-}: CarouselNavsProps) => {
-  if (children) {
-    return <CarouselControl>{children}</CarouselControl>
-  }
+export const CarouselAutoplayIndicator = ({
+  play,
+  paused,
+}: CarouselAutoplayIndicatorProps) => {
+  const api = useCarouselContext()
+  return <>{api.isPlaying ? paused : play}</>
+}
 
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CarouselProgressTextProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const CarouselProgressText = forwardRef<
+  HTMLDivElement,
+  CarouselProgressTextProps
+>(function CarouselProgressText(props, ref) {
+  const api = useCarouselContext()
   return (
-    <CarouselControl>
-      <CarouselPrevTrigger asChild>
-        <IconButton
-          aria-label="Previous Slide"
-          size="sm"
-          borderRadius="full"
-          bg="bg/80"
-          color="fg"
-          border="1px solid"
-          borderColor="border"
-          width="10"
-          height="10"
-          cursor="pointer"
-          transition="all 0.2s"
-          _hover={{ bg: "bg.emphasized" }}
-          _focusVisible={{
-            outline: "2px solid",
-            outlineColor: "colorPalette.focusRing",
-            outlineOffset: "2px",
-          }}
-          _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
-          {...prevButtonProps}
-        >
-          {leftIcon}
-        </IconButton>
-      </CarouselPrevTrigger>
-
-      <CarouselNextTrigger asChild>
-        <IconButton
-          aria-label="Next Slide"
-          size="sm"
-          borderRadius="full"
-          bg="bg/80"
-          color="fg"
-          border="1px solid"
-          borderColor="border"
-          width="10"
-          height="10"
-          cursor="pointer"
-          transition="all 0.2s"
-          _hover={{ bg: "bg.emphasized" }}
-          _focusVisible={{
-            outline: "2px solid",
-            outlineColor: "colorPalette.focusRing",
-            outlineOffset: "2px",
-          }}
-          _disabled={{ opacity: 0.5, cursor: "not-allowed" }}
-          {...nextButtonProps}
-        >
-          {rightIcon}
-        </IconButton>
-      </CarouselNextTrigger>
-    </CarouselControl>
+    <Box ref={ref} {...props}>
+      {api.page + 1} / {api.pageSnapPoints.length}
+    </Box>
   )
-}
-
-////////////////////////////////////////////////////////////////////////////////////
+})
 
 export interface CarouselAutoplayTriggerProps
   extends HTMLChakraProps<"button", ArkCarousel.AutoplayTriggerBaseProps>,

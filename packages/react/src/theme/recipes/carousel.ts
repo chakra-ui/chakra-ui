@@ -8,23 +8,45 @@ export const carouselSlotRecipe = defineSlotRecipe({
     root: {
       position: "relative",
       display: "flex",
-      flexDirection: "column",
       gap: "2",
+      _horizontal: {
+        flexDirection: "column",
+      },
+      _vertical: {
+        flexDirection: "row",
+      },
     },
     item: {
-      minWidth: "0",
-      flex: "0 0 auto",
-      width: "100%",
+      _horizontal: {
+        width: "100%",
+      },
+      _vertical: {
+        height: "100%",
+      },
     },
     control: {
-      width: "100%",
       display: "flex",
       alignItems: "center",
+      _horizontal: {
+        flexDirection: "row",
+        width: "100%",
+      },
+      _vertical: {
+        flexDirection: "column",
+        height: "100%",
+      },
     },
     indicatorGroup: {
       display: "flex",
       justifyContent: "center",
       gap: "3",
+
+      _horizontal: {
+        flexDirection: "row",
+      },
+      _vertical: {
+        flexDirection: "column",
+      },
     },
     indicator: {
       width: "2.5",

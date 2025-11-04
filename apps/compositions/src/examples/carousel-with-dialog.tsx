@@ -1,130 +1,113 @@
-"use client"
-
 import {
+  AspectRatio,
   Button,
   Carousel,
   CloseButton,
   Dialog,
+  HStack,
+  IconButton,
   Image,
   Portal,
-  Text,
-  VStack,
 } from "@chakra-ui/react"
-
-const items = [
-  {
-    src: "https://picsum.photos/seed/step1/500/300",
-    title: "Welcome to Chakra UI",
-    description:
-      "Start building your design system effortlessly with Chakra UI.",
-  },
-  {
-    src: "https://picsum.photos/seed/step2/500/300",
-    title: "Customize Components Easily",
-    description:
-      "Modify components using props, themes, and responsive utilities.",
-  },
-  {
-    src: "https://picsum.photos/seed/step3/500/300",
-    title: "Build Responsive UIs",
-    description: "Design layouts that adapt to all screen sizes seamlessly.",
-  },
-]
+import { useCarouselContext } from "@chakra-ui/react"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 export const CarouselWithDialog = () => {
   return (
-    <Dialog.Root size={{ mdDown: "full", md: "lg" }}>
+    <Dialog.Root size="full">
       <Dialog.Trigger asChild>
         <Button variant="outline" size="sm">
-          Discover Chakra UI
+          View Product Images
         </Button>
       </Dialog.Trigger>
 
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content>
-            <Dialog.Header>
-              <Dialog.Title>&nbsp;</Dialog.Title>
-              <Dialog.CloseTrigger asChild>
-                <CloseButton size="sm" />
-              </Dialog.CloseTrigger>
-            </Dialog.Header>
+          <Dialog.Content bg="transparent" shadow="none">
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="lg" color="white" />
+            </Dialog.CloseTrigger>
 
-            <Dialog.Body>
-              <Carousel.Root
-                slideCount={items.length}
-                maxW="full"
-                loop={false}
-                autoplay={false}
-              >
-                <Carousel.ItemGroup>
-                  {items.map((item, index) => (
-                    <Carousel.Item key={index} index={index}>
-                      <VStack w="full" gap={4}>
-                        <Image
-                          src={item.src}
-                          alt={item.title}
-                          w="100%"
-                          h="300px"
-                          objectFit="cover"
-                          borderRadius="md"
-                        />
+            <Dialog.Body
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              h="full"
+              p={0}
+            >
+              <Carousel.Root slideCount={items.length} w="full" h="full">
+                <Carousel.Control justifyContent="center" px="4" gap="4">
+                  <Carousel.PrevTrigger asChild>
+                    <IconButton size="xs" variant="ghost">
+                      <LuChevronLeft />
+                    </IconButton>
+                  </Carousel.PrevTrigger>
 
-                        <VStack w="full" align="start" gap={1} px={2}>
-                          <Text fontWeight="bold" fontSize="lg">
-                            {item.title}
-                          </Text>
-                          <Text fontSize="sm" color="gray.600">
-                            {item.description}
-                          </Text>
-                        </VStack>
-                      </VStack>
-                    </Carousel.Item>
-                  ))}
-                </Carousel.ItemGroup>
+                  <Carousel.ItemGroup width="full">
+                    {items.map((src, index) => (
+                      <Carousel.Item key={index} index={index}>
+                        <AspectRatio ratio={16 / 9} maxH="72vh" w="full">
+                          <Image
+                            src={src}
+                            alt={`Product ${index + 1}`}
+                            objectFit="contain"
+                          />
+                        </AspectRatio>
+                      </Carousel.Item>
+                    ))}
+                  </Carousel.ItemGroup>
 
-                <VStack gap={4} mt={6}>
-                  <Carousel.Indicators count={items.length} />
-                </VStack>
+                  <Carousel.NextTrigger asChild>
+                    <IconButton size="xs" variant="ghost">
+                      <LuChevronRight />
+                    </IconButton>
+                  </Carousel.NextTrigger>
+                </Carousel.Control>
 
-                <Carousel.Context>
-                  {(carousel) => {
-                    const currentIndex = carousel.page
-                    const isFirst = currentIndex === 0
-                    const isLast = currentIndex === items.length - 1
-
-                    return (
-                      <Dialog.Footer justifyContent="space-between" px={0}>
-                        {isFirst ? (
-                          <Dialog.ActionTrigger asChild>
-                            <Button variant="outline">Not now</Button>
-                          </Dialog.ActionTrigger>
-                        ) : (
-                          <Carousel.PrevTrigger asChild>
-                            <Button variant="outline">Previous</Button>
-                          </Carousel.PrevTrigger>
-                        )}
-
-                        {isLast ? (
-                          <Dialog.ActionTrigger asChild>
-                            <Button colorScheme="blue">Check it out</Button>
-                          </Dialog.ActionTrigger>
-                        ) : (
-                          <Carousel.NextTrigger asChild>
-                            <Button colorScheme="blue">Next</Button>
-                          </Carousel.NextTrigger>
-                        )}
-                      </Dialog.Footer>
-                    )
-                  }}
-                </Carousel.Context>
+                <CarouselThumbnails items={items} />
               </Carousel.Root>
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>
     </Dialog.Root>
+  )
+}
+
+const items = [
+  "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+  "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+  "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80",
+  "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80",
+  "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80",
+  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
+]
+
+const CarouselThumbnails = ({ items }: { items: string[] }) => {
+  const carousel = useCarouselContext()
+
+  return (
+    <HStack justify="center">
+      <Carousel.ProgressText mr="4" />
+      {items.map((src, index) => (
+        <AspectRatio
+          key={index}
+          ratio={1}
+          w="16"
+          cursor="button"
+          onClick={() => carousel.scrollTo(index)}
+        >
+          <Image
+            src={src}
+            alt={`Product ${index + 1}`}
+            w="100%"
+            h="100%"
+            objectFit="cover"
+          />
+        </AspectRatio>
+      ))}
+    </HStack>
   )
 }
 

@@ -1,20 +1,13 @@
 import { Carousel, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
-import { LuChevronLeft, LuChevronRight, LuPause, LuPlay } from "react-icons/lu"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 const items = Array.from({ length: 5 })
 
-export const CarouselBasicExplorer = () => {
+export const CarouselWithProgressText = () => {
   return (
-    <Carousel.Root
-      slideCount={items.length}
-      mx="auto"
-      maxW="xl"
-      loop
-      autoplay={{ delay: 2000 }}
-      spacing="20px"
-    >
-      <Carousel.ItemGroup>
+    <Carousel.Root slideCount={items.length} slidesPerPage={1.6} spacing="32px">
+      <Carousel.ItemGroup scrollMarginInline="12">
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
             <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
@@ -24,32 +17,19 @@ export const CarouselBasicExplorer = () => {
         ))}
       </Carousel.ItemGroup>
 
-      <Carousel.Control justifyContent="center" gap="4">
+      <Carousel.Control gap="4">
         <Carousel.PrevTrigger asChild>
           <IconButton size="xs" variant="ghost">
-            <LuChevronLeft />
+            <LuArrowLeft />
           </IconButton>
         </Carousel.PrevTrigger>
-
-        <Carousel.AutoplayTrigger asChild>
-          <IconButton size="sm" variant="ghost" aria-label="Toggle autoplay">
-            <Carousel.AutoplayIndicator
-              paused={<LuPause />}
-              play={<LuPlay />}
-            />
-          </IconButton>
-        </Carousel.AutoplayTrigger>
-
-        <Carousel.Indicators />
-
+        <Carousel.ProgressText />
         <Carousel.NextTrigger asChild>
           <IconButton size="xs" variant="ghost">
-            <LuChevronRight />
+            <LuArrowRight />
           </IconButton>
         </Carousel.NextTrigger>
       </Carousel.Control>
     </Carousel.Root>
   )
 }
-
-export default CarouselBasicExplorer

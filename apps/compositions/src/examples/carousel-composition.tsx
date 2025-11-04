@@ -4,14 +4,22 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 const items = Array.from({ length: 5 })
 
-export const CarouselSlidesPerPage = () => {
+export const CarouselComposition = () => {
   return (
-    <Carousel.Root
-      slideCount={items.length}
-      slidesPerPage={2}
-      maxW="xl"
-      mx="auto"
-    >
+    <Carousel.Root slideCount={items.length} maxW="2xl" mx="auto">
+      <Carousel.Control justifyContent="flex-end" gap="2">
+        <Carousel.PrevTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronLeft />
+          </IconButton>
+        </Carousel.PrevTrigger>
+
+        <Carousel.NextTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronRight />
+          </IconButton>
+        </Carousel.NextTrigger>
+      </Carousel.Control>
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
@@ -21,22 +29,7 @@ export const CarouselSlidesPerPage = () => {
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
-
-      <Carousel.Control justifyContent="center" gap="4">
-        <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
-            <LuChevronLeft />
-          </IconButton>
-        </Carousel.PrevTrigger>
-
-        <Carousel.Indicators />
-
-        <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
-            <LuChevronRight />
-          </IconButton>
-        </Carousel.NextTrigger>
-      </Carousel.Control>
+      <Carousel.Indicators />
     </Carousel.Root>
   )
 }

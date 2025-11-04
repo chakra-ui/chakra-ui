@@ -1,67 +1,54 @@
-"use client"
-
 import {
   Button,
   Carousel,
-  HStack,
-  Image,
+  IconButton,
   VStack,
   useCarousel,
 } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
-const items = Array.from(
-  { length: 5 },
-  (_, i) => `https://picsum.photos/seed/store-${i + 1}/600/300`,
-)
+const items = Array.from({ length: 5 })
 
 export const CarouselWithStore = () => {
   const carousel = useCarousel({
     slideCount: items.length,
     allowMouseDrag: true,
+    spacing: "20px",
   })
 
   return (
-    <VStack gap={8} align="stretch" py={8} maxW="800px" mx="auto">
-      <Carousel.RootProvider value={carousel}>
+    <VStack gap="4" alignItems="flex-start" width="xl" mx="auto">
+      <Button variant="outline" onClick={() => carousel.scrollTo(2)}>
+        Go to slide 3
+      </Button>
+
+      <Carousel.RootProvider value={carousel} w="full">
         <Carousel.ItemGroup>
-          {items.map((src, index) => (
+          {items.map((_, index) => (
             <Carousel.Item key={index} index={index}>
-              <Image
-                src={src}
-                alt={`Slide ${index + 1}`}
-                w="100%"
-                h="400px"
-                objectFit="cover"
-                borderRadius="lg"
-                shadow="sm"
-              />
+              <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
+                {index + 1}
+              </DecorativeBox>
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-        <HStack justify="center" gap={4} my={8}>
-          <Button
-            size="md"
-            onClick={() => carousel.scrollPrev()}
-            disabled={!carousel.canScrollPrev}
-          >
-            Previous
-          </Button>
-          <Button
-            size="md"
-            onClick={() => carousel.scrollNext()}
-            disabled={!carousel.canScrollNext}
-          >
-            Next
-          </Button>
-          <Button
-            size="md"
-            variant="outline"
-            onClick={() => carousel.scrollToIndex(2)}
-          >
-            Go to Slide 3
-          </Button>
-        </HStack>
-        <Carousel.Indicators mt={4} count={items.length} />
+
+        <Carousel.Control justifyContent="center" gap="4">
+          <Carousel.PrevTrigger asChild>
+            <IconButton size="xs" variant="ghost">
+              <LuChevronLeft />
+            </IconButton>
+          </Carousel.PrevTrigger>
+
+          <Carousel.Indicators />
+
+          <Carousel.NextTrigger asChild>
+            <IconButton size="xs" variant="ghost">
+              <LuChevronRight />
+            </IconButton>
+          </Carousel.NextTrigger>
+        </Carousel.Control>
       </Carousel.RootProvider>
     </VStack>
   )

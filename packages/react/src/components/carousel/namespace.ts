@@ -12,7 +12,8 @@ export {
   CarouselPropsProvider as PropsProvider,
   CarouselContext as Context,
   CarouselIndicators as Indicators,
-  CarouselNavs as Navs,
+  CarouselAutoplayIndicator as AutoplayIndicator,
+  CarouselProgressText as ProgressText,
 } from "./carousel"
 
 export type {
@@ -30,5 +31,6 @@ export type {
   CarouselDragStatusDetails as DragStatusDetails,
   CarouselPageChangeDetails as PageChangeDetails,
   CarouselIndicatorsProps as IndicatorsProps,
-  CarouselNavsProps as NavsProps,
+  CarouselAutoplayIndicatorProps as AutoplayIndicatorProps,
+  CarouselProgressTextProps as ProgressTextProps,
 } from "./carousel"

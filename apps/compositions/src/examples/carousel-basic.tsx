@@ -8,7 +8,7 @@ export const CarouselBasic = () => {
   return (
     <Carousel.Root slideCount={items.length} maxW="md" mx="auto">
       <Carousel.ItemGroup>
-        {items.map((_src, index) => (
+        {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
             <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
               {index + 1}

@@ -1,52 +1,50 @@
-"use client"
+import { Carousel, IconButton } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
+import { LuChevronLeft, LuChevronRight, LuPause, LuPlay } from "react-icons/lu"
 
-import { Carousel, IconButton, Image, VStack } from "@chakra-ui/react"
-import { useState } from "react"
-import { FaPause, FaPlay } from "react-icons/fa"
-
-const items = Array.from(
-  { length: 5 },
-  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
-)
+const items = Array.from({ length: 5 })
 
 export const CarouselWithAutoplay = () => {
-  const [isPlaying, setIsPlaying] = useState(true)
-
   return (
-    <VStack gap={4} align="center" py={6}>
-      <IconButton
-        size="sm"
-        variant="subtle"
-        colorScheme="gray"
-        aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
-        onClick={() => setIsPlaying(!isPlaying)}
-      >
-        {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} />}
-      </IconButton>
-      <Carousel.Root
-        autoplay={isPlaying}
-        slideCount={items.length}
-        mx="auto"
-        maxW="600px"
-      >
-        <Carousel.ItemGroup>
-          {items.map((src, index) => (
-            <Carousel.Item key={index} index={index}>
-              <Image
-                src={src}
-                alt={`Slide ${index + 1}`}
-                w="100%"
-                h="300px"
-                objectFit="cover"
-                borderRadius="lg"
-                shadow="base"
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel.ItemGroup>
-        <Carousel.Indicators mt={4} count={items.length} />
-      </Carousel.Root>
-    </VStack>
+    <Carousel.Root
+      autoplay={{ delay: 2000 }}
+      slideCount={items.length}
+      mx="auto"
+      maxW="xl"
+      loop
+    >
+      <Carousel.ItemGroup>
+        {items.map((_, index) => (
+          <Carousel.Item key={index} index={index}>
+            <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
+              {index + 1}
+            </DecorativeBox>
+          </Carousel.Item>
+        ))}
+      </Carousel.ItemGroup>
+
+      <Carousel.Control justifyContent="center" gap="4">
+        <Carousel.PrevTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronLeft />
+          </IconButton>
+        </Carousel.PrevTrigger>
+
+        <Carousel.AutoplayTrigger asChild>
+          <IconButton aria-label="Toggle autoplay" size="sm" variant="ghost">
+            <Carousel.AutoplayIndicator
+              paused={<LuPause />}
+              play={<LuPlay />}
+            />
+          </IconButton>
+        </Carousel.AutoplayTrigger>
+        <Carousel.NextTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronRight />
+          </IconButton>
+        </Carousel.NextTrigger>
+      </Carousel.Control>
+    </Carousel.Root>
   )
 }
 

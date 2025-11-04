@@ -1,44 +1,38 @@
-"use client"
+import { Carousel, IconButton } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
-import { Carousel, Image, VStack } from "@chakra-ui/react"
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
-
-const items = Array.from(
-  { length: 5 },
-  (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`,
-)
+const items = Array.from({ length: 5 })
 
 export const CarouselWithMouseDrag = () => {
   return (
-    <VStack gap={6} align="center" py={4}>
-      <Carousel.Root
-        allowMouseDrag={true}
-        slideCount={items.length}
-        maxW="full"
-        mx="auto"
-      >
-        <Carousel.ItemGroup>
-          {items.map((src, index) => (
-            <Carousel.Item key={index} index={index}>
-              <Image
-                src={src}
-                alt={`Slide ${index + 1}`}
-                w="100%"
-                h="300px"
-                objectFit="cover"
-                borderRadius="md"
-                shadow="sm"
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel.ItemGroup>
-        <Carousel.Navs
-          leftIcon={<LuArrowLeft />}
-          rightIcon={<LuArrowRight />}
-        />
-        <Carousel.Indicators mt={4} count={items.length} />
-      </Carousel.Root>
-    </VStack>
+    <Carousel.Root slideCount={items.length} maxW="xl" mx="auto" allowMouseDrag>
+      <Carousel.ItemGroup>
+        {items.map((_, index) => (
+          <Carousel.Item key={index} index={index}>
+            <DecorativeBox w="100%" h="300px" rounded="lg" fontSize="2.5rem">
+              {index + 1}
+            </DecorativeBox>
+          </Carousel.Item>
+        ))}
+      </Carousel.ItemGroup>
+
+      <Carousel.Control justifyContent="center" gap="4">
+        <Carousel.PrevTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronLeft />
+          </IconButton>
+        </Carousel.PrevTrigger>
+
+        <Carousel.Indicators />
+
+        <Carousel.NextTrigger asChild>
+          <IconButton size="xs" variant="ghost">
+            <LuChevronRight />
+          </IconButton>
+        </Carousel.NextTrigger>
+      </Carousel.Control>
+    </Carousel.Root>
   )
 }
 

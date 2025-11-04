@@ -1,18 +1,17 @@
 import { Carousel, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
-import { LuChevronLeft, LuChevronRight, LuPause, LuPlay } from "react-icons/lu"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 const items = Array.from({ length: 5 })
 
-export const CarouselBasicExplorer = () => {
+export const CarouselSlidesPerMove = () => {
   return (
     <Carousel.Root
       slideCount={items.length}
-      mx="auto"
+      slidesPerMove={2}
+      slidesPerPage={2}
       maxW="xl"
-      loop
-      autoplay={{ delay: 2000 }}
-      spacing="20px"
+      mx="auto"
     >
       <Carousel.ItemGroup>
         {items.map((_, index) => (
@@ -31,15 +30,6 @@ export const CarouselBasicExplorer = () => {
           </IconButton>
         </Carousel.PrevTrigger>
 
-        <Carousel.AutoplayTrigger asChild>
-          <IconButton size="sm" variant="ghost" aria-label="Toggle autoplay">
-            <Carousel.AutoplayIndicator
-              paused={<LuPause />}
-              play={<LuPlay />}
-            />
-          </IconButton>
-        </Carousel.AutoplayTrigger>
-
         <Carousel.Indicators />
 
         <Carousel.NextTrigger asChild>
@@ -51,5 +41,3 @@ export const CarouselBasicExplorer = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselBasicExplorer
