@@ -25,6 +25,7 @@
     "react": "pnpm --filter=@chakra-ui/react",
     "www": "pnpm --filter=./apps/www",
     "mcp": "pnpm --filter=./apps/mcp",
+    "panda": "pnpm --filter=./packages/panda-preset",
     "lint": "eslint packages --ext .ts,.tsx --cache",
     "format:check": "prettier --check packages --cache",
     "format:write": "prettier --write packages --cache",
@@ -110,7 +111,7 @@
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "engines": {
     "node": ">=20.x"
   }
