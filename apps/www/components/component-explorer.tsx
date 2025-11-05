@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import { ComponentExplorerWrapper } from "./component-snapshot"
 import { ExamplePreview } from "./example"
 
