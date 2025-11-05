@@ -1,4 +1,4 @@
-import { Carousel, IconButton } from "@chakra-ui/react"
+import { Carousel, HStack, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
@@ -13,6 +13,9 @@ export const CarouselSlidesPerMove = () => {
       maxW="xl"
       mx="auto"
     >
+      <HStack textStyle="sm" mb="4">
+        {"slidesPerPage={2} + slidesPerMove={1}"}
+      </HStack>
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>

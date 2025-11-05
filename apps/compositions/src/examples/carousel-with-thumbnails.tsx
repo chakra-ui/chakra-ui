@@ -1,39 +1,31 @@
-"use client"
-
-import {
-  AspectRatio,
-  Carousel,
-  HStack,
-  IconButton,
-  Image,
-} from "@chakra-ui/react"
-import { useCarouselContext } from "@chakra-ui/react"
+import { Carousel, IconButton, Image } from "@chakra-ui/react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 export const CarouselWithThumbnails = () => {
   return (
-    <Carousel.Root slideCount={items.length}>
+    <Carousel.Root slideCount={items.length} maxW="2xl" gap="4">
       <Carousel.Control justifyContent="center" gap="4" width="full">
         <Carousel.PrevTrigger asChild>
           <IconButton size="xs" variant="outline">
             <LuChevronLeft />
           </IconButton>
         </Carousel.PrevTrigger>
+
         <Carousel.ItemGroup width="full">
           {items.map((item, index) => (
             <Carousel.Item key={index} index={index}>
-              <AspectRatio ratio={16 / 9}>
-                <Image
-                  src={item.url}
-                  alt={item.label}
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                />
-              </AspectRatio>
+              <Image
+                aspectRatio="16/9"
+                src={item.url}
+                alt={item.label}
+                w="100%"
+                h="100%"
+                objectFit="cover"
+              />
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
+
         <Carousel.NextTrigger asChild>
           <IconButton size="xs" variant="outline">
             <LuChevronRight />
@@ -41,38 +33,28 @@ export const CarouselWithThumbnails = () => {
         </Carousel.NextTrigger>
       </Carousel.Control>
 
-      <CarouselThumbnails items={items} />
+      <Carousel.IndicatorGroup>
+        {items.map((item, index) => (
+          <Carousel.Indicator
+            key={index}
+            index={index}
+            unstyled
+            _current={{
+              outline: "2px solid currentColor",
+              outlineOffset: "2px",
+            }}
+          >
+            <Image
+              w="20"
+              aspectRatio="16/9"
+              src={item.url}
+              alt={item.label}
+              objectFit="cover"
+            />
+          </Carousel.Indicator>
+        ))}
+      </Carousel.IndicatorGroup>
     </Carousel.Root>
-  )
-}
-
-const CarouselThumbnails = ({
-  items,
-}: {
-  items: { label: string; url: string }[]
-}) => {
-  const carousel = useCarouselContext()
-
-  return (
-    <HStack justify="center" mt={2} gap={2}>
-      {items.map((item, index) => (
-        <AspectRatio
-          key={index}
-          ratio={16 / 9}
-          w="20"
-          cursor="button"
-          onClick={() => carousel.scrollTo(index)}
-        >
-          <Image
-            src={item.url}
-            alt={item.label}
-            w="100%"
-            h="100%"
-            objectFit="cover"
-          />
-        </AspectRatio>
-      ))}
-    </HStack>
   )
 }
 

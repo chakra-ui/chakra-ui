@@ -5,7 +5,7 @@ const items = Array.from({ length: 5 })
 
 export const CarouselWithIndicators = () => {
   return (
-    <Carousel.Root slideCount={items.length} maxW="md" mx="auto">
+    <Carousel.Root slideCount={items.length} maxW="md" mx="auto" gap="4">
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
@@ -22,5 +22,3 @@ export const CarouselWithIndicators = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselWithIndicators

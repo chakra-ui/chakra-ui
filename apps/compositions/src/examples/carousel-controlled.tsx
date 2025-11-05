@@ -46,5 +46,3 @@ export const CarouselControlled = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselControlled

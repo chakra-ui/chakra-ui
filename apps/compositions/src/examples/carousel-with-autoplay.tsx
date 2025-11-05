@@ -1,6 +1,12 @@
-import { Carousel, IconButton } from "@chakra-ui/react"
+import { Carousel, HStack, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
-import { LuChevronLeft, LuChevronRight, LuPause, LuPlay } from "react-icons/lu"
+import {
+  LuChevronLeft,
+  LuChevronRight,
+  LuClock,
+  LuPause,
+  LuPlay,
+} from "react-icons/lu"
 
 const items = Array.from({ length: 5 })
 
@@ -11,8 +17,10 @@ export const CarouselWithAutoplay = () => {
       slideCount={items.length}
       mx="auto"
       maxW="xl"
-      loop
     >
+      <HStack textStyle="sm" mb="4">
+        <LuClock /> {"autoplay={{ delay: 2000 }}"} or {"autoplay={true}"}
+      </HStack>
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
@@ -47,5 +55,3 @@ export const CarouselWithAutoplay = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselWithAutoplay

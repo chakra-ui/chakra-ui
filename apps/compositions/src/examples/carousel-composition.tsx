@@ -1,27 +1,39 @@
 import {
   Badge,
   Box,
-  CardRoot,
   Carousel,
   HStack,
-  Heading,
+  Icon,
   IconButton,
   Image,
-  RatingGroup,
-  Text,
-  VStack,
+  Span,
+  Stack,
 } from "@chakra-ui/react"
-import { LuChevronLeft, LuChevronRight, LuHeart } from "react-icons/lu"
+import { FaStar } from "react-icons/fa"
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
 export const CarouselComposition = () => {
   return (
-    <Carousel.Root slideCount={properties.length} slidesPerPage={3} gap="4">
-      <CarouselControls title="Popular homes in Cape Town" />
-
+    <Carousel.Root slideCount={properties.length} slidesPerPage={3} gap="3">
+      <HStack justify="space-between">
+        <Span fontWeight="medium">Popular homes in Cape Town</Span>
+        <HStack>
+          <Carousel.PrevTrigger asChild>
+            <IconButton size="xs" variant="subtle">
+              <LuChevronLeft />
+            </IconButton>
+          </Carousel.PrevTrigger>
+          <Carousel.NextTrigger asChild>
+            <IconButton size="xs" variant="subtle">
+              <LuChevronRight />
+            </IconButton>
+          </Carousel.NextTrigger>
+        </HStack>
+      </HStack>
       <Carousel.ItemGroup>
         {properties.map((property, index) => (
           <Carousel.Item key={property.id} index={index}>
-            <PropertyCard property={property} showBadge={index < 4} />
+            <PropertyCard data={property} />
           </Carousel.Item>
         ))}
       </Carousel.ItemGroup>
@@ -30,118 +42,80 @@ export const CarouselComposition = () => {
 }
 
 interface PropertyCardProps {
-  property: Property
-  showBadge: boolean
+  data: Property
 }
 
-const PropertyCard = ({ property, showBadge }: PropertyCardProps) => (
-  <CardRoot w="full" border="none" bg="none" shadow="none" p="0">
+const PropertyCard = ({ data }: PropertyCardProps) => (
+  <Stack gap="3">
     <Box position="relative">
       <Image
-        src={property.image}
-        alt={property.title}
-        borderRadius="md"
+        src={data.image}
+        alt={data.title}
+        rounded="l2"
         w="full"
         h="200px"
         objectFit="cover"
+        draggable={false}
       />
-      <HStack
-        position="absolute"
-        top="0"
-        w="full"
-        px="3"
-        py="2"
-        justify="space-between"
-      >
-        {showBadge ? (
-          <Badge p="2" rounded="full" fontSize="xs">
-            Guest favorite
-          </Badge>
-        ) : (
-          <Box />
-        )}
-        <IconButton
-          size="sm"
-          variant="ghost"
-          rounded="full"
-          _hover={{
-            transform: "scale(1.15)",
-            color: "red.400",
-            bg: "gray.100",
-          }}
-          aria-label="Add to favorites"
-        >
-          <LuHeart />
-        </IconButton>
-      </HStack>
+      {data.favorite && (
+        <Badge pos="absolute" top="2" insetStart="2" size="sm">
+          Guest favorite
+        </Badge>
+      )}
     </Box>
-
-    <VStack align="start" gap={1} mt="2">
-      <Text fontWeight="semibold" fontSize="sm">
-        {property.title}
-      </Text>
-      <HStack gap="1" color="fg.muted" fontSize="xs">
-        <Text>
-          ${property.price} for {property.nights} nights
-        </Text>
-        <Box as="span">·</Box>
+    <Stack gap="1">
+      <Span fontWeight="semibold" textStyle="sm">
+        {data.title}
+      </Span>
+      <HStack color="fg.muted" textStyle="xs">
+        <Span>
+          ${data.price} for {data.nights} nights
+        </Span>
         <HStack gap="1">
-          <RatingGroup.Root size="xs" value={property.rating}>
-            <RatingGroup.Item index={1}>
-              <RatingGroup.ItemIndicator colorPalette="yellow" />
-            </RatingGroup.Item>
-          </RatingGroup.Root>
-          <Text>{property.rating.toFixed(2)}</Text>
+          <Icon color="orange.solid">
+            <FaStar />
+          </Icon>
+          <Span fontWeight="medium">{data.rating}</Span>
         </HStack>
       </HStack>
-    </VStack>
-  </CardRoot>
+    </Stack>
+  </Stack>
 )
 
-interface CarouselControlsProps {
+interface Property {
+  id: number
   title: string
+  price: number
+  nights: number
+  rating: number
+  image: string
+  favorite?: boolean
 }
 
-const CarouselControls = ({ title }: CarouselControlsProps) => (
-  <HStack justify="space-between">
-    <Heading size="sm">{title}</Heading>
-    <HStack>
-      <Carousel.PrevTrigger asChild>
-        <IconButton size="xs" variant="subtle" rounded="full">
-          <LuChevronLeft />
-        </IconButton>
-      </Carousel.PrevTrigger>
-      <Carousel.NextTrigger asChild>
-        <IconButton size="xs" variant="subtle" rounded="full">
-          <LuChevronRight />
-        </IconButton>
-      </Carousel.NextTrigger>
-    </HStack>
-  </HStack>
-)
-
-const properties = [
+const properties: Property[] = [
   {
     id: 1,
-    title: "Apartment in Cape Town City Centre",
+    title: "Loft Apartment in City Bowl",
     price: 152,
     nights: 2,
     rating: 4.92,
     image:
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+    favorite: true,
   },
   {
     id: 2,
-    title: "Apartment in Camps Bay",
+    title: "Modern Studio, Camps Bay Beachfront",
     price: 296,
     nights: 2,
     rating: 4.99,
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    favorite: true,
   },
   {
     id: 3,
-    title: "Apartment in Hout Bay",
+    title: "Retreat in Hout Bay with Views",
     price: 257,
     nights: 2,
     rating: 4.94,
@@ -150,7 +124,7 @@ const properties = [
   },
   {
     id: 4,
-    title: "Condo in Sea Point",
+    title: "Sunny Flat in Sea Point",
     price: 132,
     nights: 2,
     rating: 4.87,
@@ -159,16 +133,17 @@ const properties = [
   },
   {
     id: 5,
-    title: "Apartment in Cape Town City Centre",
+    title: "V&A Waterfront City Studio",
     price: 200,
     nights: 2,
     rating: 4.83,
     image:
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    favorite: true,
   },
   {
     id: 6,
-    title: "Apartment in Cape Town City Centre",
+    title: "Luxury Pad, Bantry Bay",
     price: 247,
     nights: 2,
     rating: 4.96,
@@ -177,16 +152,17 @@ const properties = [
   },
   {
     id: 7,
-    title: "Apartment in Cape Town City Centre",
+    title: "Cozy Nest in Green Point",
     price: 135,
     nights: 2,
     rating: 4.81,
     image:
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&q=80",
+    favorite: true,
   },
   {
     id: 8,
-    title: "Villa in Constantia",
+    title: "Elegant Villa in Constantia",
     price: 450,
     nights: 2,
     rating: 4.98,
@@ -194,5 +170,3 @@ const properties = [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
   },
 ]
-
-type Property = (typeof properties)[number]

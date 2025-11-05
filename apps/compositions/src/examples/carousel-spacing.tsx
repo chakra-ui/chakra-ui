@@ -1,4 +1,4 @@
-import { Carousel, IconButton } from "@chakra-ui/react"
+import { Carousel, HStack, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
@@ -13,6 +13,9 @@ export const CarouselSpacing = () => {
       maxW="xl"
       mx="auto"
     >
+      <HStack textStyle="sm" mb="4">
+        {"spacing='48px'"}
+      </HStack>
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>

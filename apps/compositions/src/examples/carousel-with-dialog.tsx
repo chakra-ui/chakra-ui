@@ -112,5 +112,3 @@ const CarouselThumbnails = ({ items }: { items: string[] }) => {
     </HStack>
   )
 }
-
-export default CarouselWithDialog

@@ -1,30 +1,25 @@
+import type { IconButtonProps } from "@chakra-ui/react"
 import { AspectRatio, Box, Carousel, IconButton, Image } from "@chakra-ui/react"
+import { forwardRef } from "react"
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 
 export const CarouselWithImages = () => {
   return (
     <Carousel.Root
       slideCount={items.length}
-      maxW="5xl"
+      maxW="2xl"
       mx="auto"
       gap="4"
       position="relative"
       colorPalette="white"
     >
       <Carousel.Control gap="4" width="full" position="relative">
-        <Carousel.PrevTrigger asChild color="colorPalette.contrast">
-          <IconButton
-            size="xs"
-            variant="outline"
-            rounded="full"
-            position="absolute"
-            zIndex="1"
-            ml="4"
-            bg="colorPalette.solid"
-          >
+        <Carousel.PrevTrigger asChild>
+          <ActionButton insetStart="4">
             <LuArrowLeft />
-          </IconButton>
+          </ActionButton>
         </Carousel.PrevTrigger>
+
         <Carousel.ItemGroup width="full">
           {items.map((src, index) => (
             <Carousel.Item key={index} index={index}>
@@ -38,33 +33,49 @@ export const CarouselWithImages = () => {
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
-        <Carousel.NextTrigger asChild color="colorPalette.contrast">
-          <IconButton
-            size="xs"
-            variant="outline"
-            rounded="full"
-            position="absolute"
-            zIndex="1"
-            mr="4"
-            right="0"
-            bg="colorPalette.solid"
-          >
+
+        <Carousel.NextTrigger asChild>
+          <ActionButton insetEnd="4">
             <LuArrowRight />
-          </IconButton>
+          </ActionButton>
         </Carousel.NextTrigger>
-        <Box position="absolute" bottom="4" width="full">
-          <Carousel.Indicators _current={{ width: "10" }} />
+
+        <Box position="absolute" bottom="6" width="full">
+          <Carousel.Indicators
+            transition="width 0.2s ease-in-out"
+            transformOrigin="center"
+            opacity="0.5"
+            boxSize="2"
+            _current={{ width: "10", bg: "colorPalette.subtle", opacity: 1 }}
+          />
         </Box>
       </Carousel.Control>
     </Carousel.Root>
   )
 }
 
+const ActionButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  function ActionButton(props, ref) {
+    return (
+      <IconButton
+        {...props}
+        ref={ref}
+        size="xs"
+        variant="outline"
+        rounded="full"
+        position="absolute"
+        zIndex="1"
+        bg="bg"
+      />
+    )
+  },
+)
+
 const items = [
-  "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1064",
-  "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=60&w=900",
-  "https://images.unsplash.com/photo-1662037131482-8fb5d10aab9a?q=60&w=900",
-  "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80",
-  "https://images.unsplash.com/photo-1747691875590-14db938e42d4?q=60&w=900",
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
+  "https://images.unsplash.com/photo-1656433031375-5042f5afe894?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2371",
+  "https://images.unsplash.com/photo-1587466412525-87497b34fc88?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2673",
+  "https://images.unsplash.com/photo-1629581688635-5d88654e5bdd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2831",
+  "https://images.unsplash.com/photo-1661030420948-862787de0056?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2370",
+  "https://images.unsplash.com/photo-1703505841379-2f863b201212?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2371",
+  "https://images.unsplash.com/photo-1607776905497-b4f788205f6a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2370",
 ]

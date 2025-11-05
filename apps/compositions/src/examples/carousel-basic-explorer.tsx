@@ -6,13 +6,7 @@ const items = Array.from({ length: 5 })
 
 export const CarouselBasicExplorer = () => {
   return (
-    <Carousel.Root
-      slideCount={items.length}
-      loop
-      autoplay={{ delay: 2000 }}
-      spacing="20px"
-      flexGrow="1"
-    >
+    <Carousel.Root slideCount={items.length} spacing="20px" flexGrow="1">
       <Carousel.ItemGroup p="2">
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
@@ -24,6 +18,8 @@ export const CarouselBasicExplorer = () => {
       </Carousel.ItemGroup>
 
       <Carousel.Control justifyContent="center" gap="4">
+        <Carousel.ProgressText textStyle="sm" minW="8" />
+
         <Carousel.PrevTrigger asChild>
           <IconButton size="xs" variant="ghost">
             <LuChevronLeft />
@@ -50,5 +46,3 @@ export const CarouselBasicExplorer = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselBasicExplorer

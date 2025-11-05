@@ -1,12 +1,20 @@
-import { Carousel, IconButton } from "@chakra-ui/react"
+import { Carousel, HStack, IconButton } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import {
+  LuChevronLeft,
+  LuChevronRight,
+  LuMouse,
+  LuMoveHorizontal,
+} from "react-icons/lu"
 
 const items = Array.from({ length: 5 })
 
 export const CarouselWithMouseDrag = () => {
   return (
     <Carousel.Root slideCount={items.length} maxW="xl" mx="auto" allowMouseDrag>
+      <HStack textStyle="sm" mb="4">
+        <LuMouse /> <LuMoveHorizontal /> Click and drag to change slides
+      </HStack>
       <Carousel.ItemGroup>
         {items.map((_, index) => (
           <Carousel.Item key={index} index={index}>
@@ -35,5 +43,3 @@ export const CarouselWithMouseDrag = () => {
     </Carousel.Root>
   )
 }
-
-export default CarouselWithMouseDrag
