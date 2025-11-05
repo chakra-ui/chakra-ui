@@ -110,6 +110,42 @@ Here's how to use the it
 <CheckboxCard label="Checkbox Card" />
 ```
 
+## Guides
+
+### CheckboxGroup + Field vs Fieldset
+
+When working with multiple checkbox cards, it's important to understand the
+semantic difference between `Field` and `Fieldset`:
+
+- **Single CheckboxCard**: Can be wrapped with `Field.Root` for proper form
+  field structure with labels and helper text
+- **CheckboxGroup**: Should be wrapped with `Fieldset.Root`, not `Field.Root`
+
+A group of checkbox cards represents a collection of related options and should
+be marked up as a fieldset with a legend, not as a single field. Wrapping
+`CheckboxGroup` in `Field.Root` can cause interaction issues where only the
+first checkbox card responds to clicks.
+
+**✅ Correct Usage:**
+
+```tsx
+<Fieldset.Root>
+  <CheckboxGroup name="framework">
+    <Fieldset.Legend>Select framework(s)</Fieldset.Legend>
+    {/* ... checkbox cards ... */}
+  </CheckboxGroup>
+</Fieldset.Root>
+```
+
+**❌ Incorrect Usage:**
+
+```tsx
+// Don't wrap CheckboxGroup with Field.Root
+<Field.Root>
+  <CheckboxGroup>{/* ... checkbox cards ... */}</CheckboxGroup>
+</Field.Root>
+```
+
 ## Props
 
 ### Root
