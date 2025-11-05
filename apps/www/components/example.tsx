@@ -57,7 +57,7 @@ export const ExampleCode = async (props: CodeProps) => {
 interface CodeWrapperProps extends BoxProps {}
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight, bg, px = "8", py = "6", ...rest } = props
+  const { children, maxHeight, bg, px = "6", py = "6", ...rest } = props
   return (
     <Box
       height="100%"
@@ -113,6 +113,7 @@ export const ExampleTabs = (props: Props) => {
       mb="4em"
       size="sm"
       unmountOnExit
+      lazyMount
     >
       <Tabs.List mb="4" width="full">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
