@@ -1,0 +1,179 @@
+---
+title: Carousel
+description: Used to display multiple items or images in a sliding view.
+links:
+  source: components/carousel
+  storybook: components-carousel--basic
+  recipe: carousel
+  ark: https://ark-ui.com/docs/components/carousel
+---
+
+<ExampleTabs name="carousel-basic" />
+
+## Usage
+
+```jsx
+import { Carousel } from "@chakra-ui/react"
+```
+
+```jsx
+<Carousel.Root>
+  <Carousel.ItemGroup>
+    <Carousel.Item />
+  </Carousel.ItemGroup>
+
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+
+  <Carousel.IndicatorGroup>
+    <Carousel.Indicator />
+  </Carousel.IndicatorGroup>
+</Carousel.Root>
+```
+
+## Shortcuts
+
+The `Carousel` component also provides convenient shortcuts for common patterns.
+
+### CarouselIndicators
+
+The `CarouselIndicators` shortcut renders a full set of indicators automatically
+based on the number of slides.
+
+This works:
+
+```jsx
+<Carousel.IndicatorGroup>
+  {Array.from({ length: items.length }, (_, index) => (
+    <Carousel.Indicator key={index} index={index} />
+  ))}
+</Carousel.IndicatorGroup>
+```
+
+This might be more concise if you don't need to customize each indicator:
+
+```jsx
+<Carousel.Indicators />
+```
+
+### CarouselAutoplayIndicator
+
+Renders a play or pause element based on the carousel’s autoplay state. Use it
+to toggle visuals when autoplay starts or stops.
+
+```jsx
+<Carousel.AutoplayIndicator play={<PlayIcon />} pause={<PauseIcon />} />
+```
+
+### CarouselProgressText
+
+Displays the current slide and total slide count (e.g. 2 / 5). Updates
+automatically as the carousel moves.
+
+```jsx
+<Carousel.ProgressText />
+```
+
+## Examples
+
+### Controlled
+
+Use the `page` and `onPageChange` props to manage the carousel's behavior
+externally.
+
+<ExampleTabs name="carousel-controlled" />
+
+### Store
+
+Alternatively, use the `useCarousel` hook to create a carousel store and pass it
+to the `Carousel.RootProvider` component for full programmatic control.
+
+<ExampleTabs name="carousel-with-store" />
+
+### Arrows
+
+Enable intuitive navigation through your slides with previous and next arrows.
+
+<ExampleTabs name="carousel-with-floating-arrow" />
+
+### Indicators
+
+Add visual indicators to help users track their position within the carousel and
+jump to specific slides.
+
+<ExampleTabs name="carousel-with-indicators" />
+
+### Spacing
+
+Use the `spacing` prop to control the gap between slides.
+
+<ExampleTabs name="carousel-spacing" />
+
+### Vertical
+
+Transform your carousel into a vertical slider by setting the `orientation`
+prop.
+
+<ExampleTabs name="carousel-vertical" />
+
+### Mouse Drag
+
+Toggle whether the carousel can be scrolled using mouse dragging via the
+`allowMouseDrag` prop.
+
+<ExampleTabs name="carousel-with-mouse-drag" />
+
+### Lightbox
+
+Use carousel in a `Dialog` to create a first-run experience or modal gallery or
+a lightbox.
+
+<ExampleTabs name="carousel-with-dialog" />
+
+### Thumbnail
+
+Add custom indicators using thumbnails for navigation.
+
+<ExampleTabs name="carousel-with-thumbnails" />
+
+### Autoplay
+
+Automatically move between slides using the `autoplay` prop. Customize the
+autoplay interval using the `autoplay={{ delay }}` prop.
+
+<ExampleTabs name="carousel-with-autoplay" />
+
+### Image Carousel
+
+<ExampleTabs name="carousel-with-images" />
+
+### Composition
+
+<ExampleTabs name="carousel-composition" />
+
+## Props
+
+### Root
+
+<PropTable component="Carousel" part="Root" />
+
+### ItemGroup
+
+<PropTable component="Carousel" part="ItemGroup" />
+
+### Item
+
+<PropTable component="Carousel" part="Item" />
+
+### Control
+
+<PropTable component="Carousel" part="Control" />
+
+## Explorer
+
+Explore the `Carousel` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="carousel-basic-explorer" />
