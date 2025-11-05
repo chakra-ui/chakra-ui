@@ -1,3 +1,5 @@
+"use client"
+
 import type { Assign } from "@ark-ui/react"
 import {
   Presence as ArkPresence,

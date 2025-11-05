@@ -1,6 +1,7 @@
 ---
 title: Carousel
-description: Used to display multiple items or images in a sliding view.
+description:
+  Used to cycle through a series of visual content within a container.
 links:
   source: components/carousel
   storybook: components-carousel--basic
@@ -21,15 +22,15 @@ import { Carousel } from "@chakra-ui/react"
   <Carousel.ItemGroup>
     <Carousel.Item />
   </Carousel.ItemGroup>
-
   <Carousel.Control>
+    <Carousel.AutoplayTrigger>
+      <Carousel.AutoplayIndicator />
+    </Carousel.AutoplayTrigger>
     <Carousel.PrevTrigger />
+    <Carousel.Indicators />
     <Carousel.NextTrigger />
+    <Carousel.ProgressText />
   </Carousel.Control>
-
-  <Carousel.IndicatorGroup>
-    <Carousel.Indicator />
-  </Carousel.IndicatorGroup>
 </Carousel.Root>
 ```
 
@@ -37,12 +38,10 @@ import { Carousel } from "@chakra-ui/react"
 
 The `Carousel` component also provides convenient shortcuts for common patterns.
 
-### CarouselIndicators
+### Carousel.Indicators
 
-The `CarouselIndicators` shortcut renders a full set of indicators automatically
-based on the number of slides.
-
-This works:
+The `Carousel.Indicators` shortcut renders a full set of indicators
+automatically based on the number of slides.
 
 ```jsx
 <Carousel.IndicatorGroup>
@@ -58,30 +57,12 @@ This might be more concise if you don't need to customize each indicator:
 <Carousel.Indicators />
 ```
 
-### CarouselAutoplayIndicator
-
-Renders a play or pause element based on the carousel’s autoplay state. Use it
-to toggle visuals when autoplay starts or stops.
-
-```jsx
-<Carousel.AutoplayIndicator play={<PlayIcon />} pause={<PauseIcon />} />
-```
-
-### CarouselProgressText
-
-Displays the current slide and total slide count (e.g. 2 / 5). Updates
-automatically as the carousel moves.
-
-```jsx
-<Carousel.ProgressText />
-```
-
 ## Examples
 
 ### Controlled
 
-Use the `page` and `onPageChange` props to manage the carousel's behavior
-externally.
+Use the `page` and `onPageChange` props to programatically control the active
+carousel page.
 
 <ExampleTabs name="carousel-controlled" />
 
@@ -94,62 +75,68 @@ to the `Carousel.RootProvider` component for full programmatic control.
 
 ### Arrows
 
-Enable intuitive navigation through your slides with previous and next arrows.
+Use the `Carousel.PrevTrigger` and `Carousel.NextTrigger` components to create
+arrows that navigate between slides.
 
 <ExampleTabs name="carousel-with-floating-arrow" />
 
 ### Indicators
 
-Add visual indicators to help users track their position within the carousel and
-jump to specific slides.
+Use the `Carousel.Indicators` component to render visual indicators that help
+users track the progress of the carousel and jump to specific slides.
 
 <ExampleTabs name="carousel-with-indicators" />
 
+### Thumbnail Indicators
+
+Here's an example that uses an image thumbnail as a custom indicator.
+
+<ExampleTabs name="carousel-with-thumbnails" />
+
 ### Spacing
 
-Use the `spacing` prop to control the gap between slides.
+Use the `spacing` prop to control the spacing between slides.
 
 <ExampleTabs name="carousel-spacing" />
 
 ### Vertical
 
-Transform your carousel into a vertical slider by setting the `orientation`
-prop.
+Use the `orientation` prop to `vertical` to transform your carousel into a
+vertical slider.
 
 <ExampleTabs name="carousel-vertical" />
 
 ### Mouse Drag
 
-Toggle whether the carousel can be scrolled using mouse dragging via the
-`allowMouseDrag` prop.
+Use the `allowMouseDrag` prop to enable mouse dragging on the carousel.
 
 <ExampleTabs name="carousel-with-mouse-drag" />
 
-### Lightbox
-
-Use carousel in a `Dialog` to create a first-run experience or modal gallery or
-a lightbox.
-
-<ExampleTabs name="carousel-with-dialog" />
-
-### Thumbnail
-
-Add custom indicators using thumbnails for navigation.
-
-<ExampleTabs name="carousel-with-thumbnails" />
-
 ### Autoplay
 
-Automatically move between slides using the `autoplay` prop. Customize the
-autoplay interval using the `autoplay={{ delay }}` prop.
+Pass the `autoplay` prop to the `Carousel.Root` component to make the carousel
+automatically move between slides.
 
 <ExampleTabs name="carousel-with-autoplay" />
 
+### Lightbox
+
+Compose the `Carousel` component with the `Dialog` component to create a
+lightbox.
+
+<ExampleTabs name="carousel-with-dialog" />
+
 ### Image Carousel
+
+Here's an example that shows how to create an image carousel for a product
+showcase.
 
 <ExampleTabs name="carousel-with-images" />
 
-### Composition
+### Property Card
+
+Here's an example that shows how to compose the `Carousel` component with other
+components to create a property card carousel.
 
 <ExampleTabs name="carousel-composition" />
 
