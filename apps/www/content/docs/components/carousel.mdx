@@ -1,0 +1,166 @@
+---
+title: Carousel
+description:
+  Used to cycle through a series of visual content within a container.
+links:
+  source: components/carousel
+  storybook: components-carousel--basic
+  recipe: carousel
+  ark: https://ark-ui.com/docs/components/carousel
+---
+
+<ExampleTabs name="carousel-basic" />
+
+## Usage
+
+```jsx
+import { Carousel } from "@chakra-ui/react"
+```
+
+```jsx
+<Carousel.Root>
+  <Carousel.ItemGroup>
+    <Carousel.Item />
+  </Carousel.ItemGroup>
+  <Carousel.Control>
+    <Carousel.AutoplayTrigger>
+      <Carousel.AutoplayIndicator />
+    </Carousel.AutoplayTrigger>
+    <Carousel.PrevTrigger />
+    <Carousel.Indicators />
+    <Carousel.NextTrigger />
+    <Carousel.ProgressText />
+  </Carousel.Control>
+</Carousel.Root>
+```
+
+## Shortcuts
+
+The `Carousel` component also provides convenient shortcuts for common patterns.
+
+### Carousel.Indicators
+
+The `Carousel.Indicators` shortcut renders a full set of indicators
+automatically based on the number of slides.
+
+```jsx
+<Carousel.IndicatorGroup>
+  {Array.from({ length: items.length }, (_, index) => (
+    <Carousel.Indicator key={index} index={index} />
+  ))}
+</Carousel.IndicatorGroup>
+```
+
+This might be more concise if you don't need to customize each indicator:
+
+```jsx
+<Carousel.Indicators />
+```
+
+## Examples
+
+### Controlled
+
+Use the `page` and `onPageChange` props to programatically control the active
+carousel page.
+
+<ExampleTabs name="carousel-controlled" />
+
+### Store
+
+Alternatively, use the `useCarousel` hook to create a carousel store and pass it
+to the `Carousel.RootProvider` component for full programmatic control.
+
+<ExampleTabs name="carousel-with-store" />
+
+### Arrows
+
+Use the `Carousel.PrevTrigger` and `Carousel.NextTrigger` components to create
+arrows that navigate between slides.
+
+<ExampleTabs name="carousel-with-floating-arrow" />
+
+### Indicators
+
+Use the `Carousel.Indicators` component to render visual indicators that help
+users track the progress of the carousel and jump to specific slides.
+
+<ExampleTabs name="carousel-with-indicators" />
+
+### Thumbnail Indicators
+
+Here's an example that uses an image thumbnail as a custom indicator.
+
+<ExampleTabs name="carousel-with-thumbnails" />
+
+### Spacing
+
+Use the `spacing` prop to control the spacing between slides.
+
+<ExampleTabs name="carousel-spacing" />
+
+### Vertical
+
+Use the `orientation` prop to `vertical` to transform your carousel into a
+vertical slider.
+
+<ExampleTabs name="carousel-vertical" />
+
+### Mouse Drag
+
+Use the `allowMouseDrag` prop to enable mouse dragging on the carousel.
+
+<ExampleTabs name="carousel-with-mouse-drag" />
+
+### Autoplay
+
+Pass the `autoplay` prop to the `Carousel.Root` component to make the carousel
+automatically move between slides.
+
+<ExampleTabs name="carousel-with-autoplay" />
+
+### Lightbox
+
+Compose the `Carousel` component with the `Dialog` component to create a
+lightbox.
+
+<ExampleTabs name="carousel-with-dialog" />
+
+### Image Carousel
+
+Here's an example that shows how to create an image carousel for a product
+showcase.
+
+<ExampleTabs name="carousel-with-images" />
+
+### Property Card
+
+Here's an example that shows how to compose the `Carousel` component with other
+components to create a property card carousel.
+
+<ExampleTabs name="carousel-composition" />
+
+## Props
+
+### Root
+
+<PropTable component="Carousel" part="Root" />
+
+### ItemGroup
+
+<PropTable component="Carousel" part="ItemGroup" />
+
+### Item
+
+<PropTable component="Carousel" part="Item" />
+
+### Control
+
+<PropTable component="Carousel" part="Control" />
+
+## Explorer
+
+Explore the `Carousel` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="carousel-basic-explorer" />

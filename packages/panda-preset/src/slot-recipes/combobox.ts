@@ -36,6 +36,19 @@ export const comboboxSlotRecipe = defineSlotRecipe({
         layerStyle: "disabled",
       },
     },
+    control: {
+      pos: "relative",
+      "--padding-factor": "1",
+      "--combobox-input-padding-end": "var(--combobox-input-padding-x)",
+      "&:has([data-part=trigger]), &:has([data-part=clear-trigger])": {
+        "--combobox-input-padding-end":
+          "calc(var(--combobox-input-height) * var(--padding-factor))",
+      },
+      "&:has([data-part=trigger]):has([data-part=clear-trigger]:not([hidden]))":
+        {
+          "--padding-factor": "1.5",
+        },
+    },
     input: {
       display: "flex",
       alignItems: "center",
@@ -43,7 +56,8 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       background: "bg.panel",
       width: "full",
       minH: "var(--combobox-input-height)",
-      px: "var(--combobox-input-padding-x)",
+      ps: "var(--combobox-input-padding-x)",
+      pe: "var(--combobox-input-padding-end)",
       "--input-height": "var(--combobox-input-height)",
       borderRadius: "l2",
       outline: 0,
@@ -74,9 +88,6 @@ export const comboboxSlotRecipe = defineSlotRecipe({
       focusVisibleRing: "inside",
       focusRingWidth: "2px",
       rounded: "l1",
-    },
-    control: {
-      pos: "relative",
     },
     indicatorGroup: {
       display: "flex",

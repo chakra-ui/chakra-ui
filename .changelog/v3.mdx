@@ -5,6 +5,46 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.29.0](./#3.29.0) - 2025-11-05
+
+### Added
+
+- **Carousel [New]**: Add new `Carousel` component for creating slideshows and
+  image galleries with features like autoplay, pagination, and navigation
+  controls.
+
+### Fixed
+
+- **CodeBlock**: Add missing `use client` directive
+
+- **Combobox**: Refactor recipe for smarter padding management to prevent input
+  text from overflowing onto triggers
+
+## [3.28.1](./#3.28.1) - 2025-11-02
+
+### Fixed
+
+- **CodeBlock**: Fix right padding when scrolling long code lines horizontally
+
+- **MCP Server**: Fix OpenAI Codex compatibility by removing stdout logging,
+  downgrading Zod to v3.23.8, and upgrading MCP SDK to v1.20.2
+
+- **Styled System**
+  - Fix Shadow DOM selector handling in `globalCss` for `:host`,
+    `:host-context()`, and `::slotted()` pseudo-classes
+  - Improve performance with optimized token cloning (75x faster), enhanced
+    memoization with LRU cache (up to 585x faster), and efficient object
+    allocation
+
+### Changed
+
+- **SegmentGroup**: Refactor to use CSS variables for styling indicator
+  (`--segment-indicator-bg` and `--segment-indicator-shadow`) for better
+  customization
+
+- **Tabs**: Refactor to use CSS variables for styling indicator
+  (`--tabs-indicator-bg`) for better customization
+
 ## [3.28.0](./#3.28.0) - 2025-10-20
 
 ### Added
