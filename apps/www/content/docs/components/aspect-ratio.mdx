@@ -1,6 +1,7 @@
 ---
 title: Aspect Ratio
-description: Used to embed responsive videos and maps, etc
+description:
+  Maintain a consistent aspect ratio for embedding videos, images, maps, etc.
 links:
   source: components/aspect-ratio
   storybook: layout-aspectratio--responsive
@@ -10,12 +11,15 @@ links:
 
 ## Usage
 
+The `ratio` prop overrides the original aspect ratios of `AspectRatio`'s child
+content, accepting only numeric values, not strings.
+
 ```jsx
 import { AspectRatio } from "@chakra-ui/react"
 ```
 
 ```jsx
-<AspectRatio>
+<AspectRatio ratio={16 / 9}>
   <iframe
     title="naruto"
     src="https://www.youtube.com/embed/QhBnZ6NPOY0"
@@ -34,8 +38,8 @@ Here's how to embed an image that has a 4 by 3 aspect ratio.
 
 ### Video
 
-To embed a video with a specific aspect ratio, use an iframe with `src` pointing
-to the link of the video.
+Embed a video using an iframe, and use the `ratio` prop to override the video's
+original aspect ratio.
 
 <ExampleTabs name="aspect-ratio-with-video" />
 
@@ -56,3 +60,8 @@ Here's an example of applying a responsive aspect ratio to a box.
 These props can be passed to the `AspectRatio` component.
 
 <PropTable component="AspectRatio" part="AspectRatio" />
+Chakra UI also provides [predefined aspect ratio
+tokens](/docs/theming/aspect-ratios) out of the box, including `square`,
+`landscape`, `portrait`, `wide`, `ultrawide`, and `golden` that can be used with
+components that support the `aspectRatio` CSS prop. They cannot currently be
+used with the `ratio` prop that `AspectRatio` accepts.
