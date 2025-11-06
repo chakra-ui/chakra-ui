@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.29.0
+
+### Minor Changes
+
+- [#10391](https://github.com/chakra-ui/chakra-ui/pull/10391)
+  [`1580aeb`](https://github.com/chakra-ui/chakra-ui/commit/1580aebf63e7267d86db2fcb91f6303a4c453914)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - feat: add
+  carousel component
+
+### Patch Changes
+
+- [`69aabbf`](https://github.com/chakra-ui/chakra-ui/commit/69aabbfd5f32283329b272544670ebadea9b6788)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Combobox:**
+  Refactor recipe for smarter padding management to prevent input text from
+  overflowing unto triggers
+  - **CodeBlock:** Add missing `use client` directive
+
 ## 3.28.1
 
 ### Patch Changes
