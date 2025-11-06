@@ -55,13 +55,27 @@ Here's an example of applying a responsive aspect ratio to a box.
 
 <ExampleTabs name="aspect-ratio-responsive" />
 
+## Guide
+
+### Aspect Ratio Token
+
+Chakra UI also provides
+[predefined aspect ratio tokens](/docs/theming/aspect-ratios) out of the box,
+including `square`, `landscape`, `portrait`, `wide`, `ultrawide`, and `golden`
+that can only be used in the `aspectRatio` CSS prop.
+
+:::note
+
+They cannot be used with the `ratio` prop that `AspectRatio` accepts.
+
+:::
+
+```tsx
+<Box aspectRatio="square" />
+```
+
 ## Props
 
 These props can be passed to the `AspectRatio` component.
 
 <PropTable component="AspectRatio" part="AspectRatio" />
-Chakra UI also provides [predefined aspect ratio
-tokens](/docs/theming/aspect-ratios) out of the box, including `square`,
-`landscape`, `portrait`, `wide`, `ultrawide`, and `golden` that can be used with
-components that support the `aspectRatio` CSS prop. They cannot currently be
-used with the `ratio` prop that `AspectRatio` accepts.
