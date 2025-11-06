@@ -142,7 +142,7 @@ const docsLinks: NavItem = {
             { title: "Switch", url: "switch" },
             { title: "Slider", url: "slider" },
             { title: "Textarea", url: "textarea" },
-            { title: "Tags Input", url: "tags-input", status: "new" },
+            { title: "Tags Input", url: "tags-input" },
           ],
         },
         {
@@ -169,6 +169,18 @@ const docsLinks: NavItem = {
           ],
         },
         {
+          title: "Disclosure",
+          items: [
+            { title: "Accordion", url: "accordion" },
+            { title: "Breadcrumb", url: "breadcrumb" },
+            { title: "Carousel", url: "carousel", status: "new" },
+            { title: "Collapsible", url: "collapsible" },
+            { title: "Pagination", url: "pagination" },
+            { title: "Steps", url: "steps" },
+            { title: "Tabs", url: "tabs" },
+          ],
+        },
+        {
           title: "Feedback",
           items: [
             { title: "Alert", url: "alert" },
@@ -187,7 +199,6 @@ const docsLinks: NavItem = {
             { title: "Avatar", url: "avatar" },
             { title: "Badge", url: "badge" },
             { title: "Card", url: "card" },
-            // { title: "Carousel", url: "carousel", status: "new" },
             { title: "Clipboard", url: "clipboard" },
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
@@ -197,17 +208,6 @@ const docsLinks: NavItem = {
             { title: "Table", url: "table" },
             { title: "Tag", url: "tag" },
             { title: "Timeline", url: "timeline" },
-          ],
-        },
-        {
-          title: "Disclosure",
-          items: [
-            { title: "Accordion", url: "accordion" },
-            { title: "Breadcrumb", url: "breadcrumb" },
-            { title: "Collapsible", url: "collapsible" },
-            { title: "Pagination", url: "pagination" },
-            { title: "Steps", url: "steps" },
-            { title: "Tabs", url: "tabs" },
           ],
         },
         {
