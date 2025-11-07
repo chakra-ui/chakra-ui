@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
     "@react-router/node": "^7.6.2",
     "@react-router/serve": "^7.6.2",
     "isbot": "^5.1.28",
