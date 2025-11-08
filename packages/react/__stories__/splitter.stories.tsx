@@ -19,3 +19,6 @@ export { SplitterControlled as Controlled } from "compositions/examples/splitter
 export { SplitterWithStore as Store } from "compositions/examples/splitter-with-store"
 export { SplitterCollapsible as Collapsible } from "compositions/examples/splitter-collapsible"
 export { SplitterWithKeyboardResize as KeyboardResize } from "compositions/examples/splitter-with-keyboard-resize"
+export { SplitterWithSizes as Sizes } from "compositions/examples/splitter-with-sizes"
+export { SplitterExplorer as Explorer } from "compositions/examples/splitter-explorer"
+export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
