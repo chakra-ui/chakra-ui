@@ -1,23 +1,39 @@
-import { Splitter } from "@chakra-ui/react"
+import { Box, HStack, Splitter, Text } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
+import {
+  LuArrowDown,
+  LuArrowLeft,
+  LuArrowRight,
+  LuArrowUp,
+} from "react-icons/lu"
 
 export const SplitterWithKeyboardResize = () => {
   return (
-    <Splitter.Root
-      panels={[{ id: "a" }, { id: "b" }]}
-      defaultSize={[50, 50]}
-      keyboardResizeBy={5}
-    >
-      <Splitter.Panel id="a" bg="fg.muted" h="250px" color="white" p={4}>
-        Panel A
-      </Splitter.Panel>
+    <Box>
+      <HStack textStyle="sm" mb={4} gap={2} wrap="wrap">
+        <Text>Use keyboard to resize panels:</Text>
+        <LuArrowLeft />
+        <LuArrowRight />
+        <LuArrowUp />
+        <LuArrowDown />
+        <Text>: Shift for bigger steps, Home/End to jump to min/max</Text>
+      </HStack>
 
-      <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
+      <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} keyboardResizeBy={5}>
+        <Splitter.Panel id="a">
+          <DecorativeBox fontSize="2xl" h="250px">
+            A
+          </DecorativeBox>
+        </Splitter.Panel>
 
-      <Splitter.Panel id="b" bg="fg.muted" h="250px" color="white" p={4}>
-        Panel B
-      </Splitter.Panel>
-    </Splitter.Root>
+        <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
+
+        <Splitter.Panel id="b">
+          <DecorativeBox fontSize="2xl" h="250px">
+            B
+          </DecorativeBox>
+        </Splitter.Panel>
+      </Splitter.Root>
+    </Box>
   )
 }
-
-export default SplitterWithKeyboardResize

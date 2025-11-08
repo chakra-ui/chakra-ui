@@ -49,7 +49,9 @@ export interface SplitterRootProps
 export const SplitterRoot = withProvider<HTMLDivElement, SplitterRootProps>(
   ArkSplitter.Root,
   "root",
-  { forwardAsChild: true },
+  {
+    forwardAsChild: true,
+  },
 )
 
 export const SplitterPropsProvider =

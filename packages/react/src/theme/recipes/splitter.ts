@@ -6,54 +6,26 @@ export const splitterSlotRecipe = defineSlotRecipe({
   className: "splitter",
   base: {
     root: {
-      display: "flex",
-      gap: "3",
-      overflow: "hidden",
-      _horizontal: {
-        alignItems: "center",
-      },
+      gap: "2",
+      alignItems: "center",
       _vertical: {
-        height: "600px !important",
-        alignItems: "center",
+        height: "650px !important",
       },
     },
     panel: {
-      display: "flex",
-      overflow: "auto",
+      _vertical: {
+        width: "100%",
+      },
     },
-
     resizeTrigger: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      outline: "none",
-      flexShrink: "0",
-      bg: "fg.subtle",
-      cursor: "col-resize",
-      position: "relative",
-      transitionProperty: "background",
-      transitionDuration: "normal",
+      bg: "colorPalette.emphasized",
       _horizontal: {
-        cursor: "col-resize",
         width: "1",
-        height: "80px",
+        height: "20",
       },
       _vertical: {
-        cursor: "row-resize",
         height: "1",
-        width: "80px",
-      },
-      _hover: {
-        bg: "border.emphasized",
-      },
-      _focusVisible: {
-        outline: "2px solid",
-        outlineColor: "colorPalette.solid",
-        outlineOffset: "2px",
-      },
-      _disabled: {
-        opacity: "0.5",
-        cursor: "not-allowed",
+        width: "20",
       },
     },
   },

@@ -1,21 +1,25 @@
 import { Splitter } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SplitterVertical = () => {
   return (
     <Splitter.Root
       panels={[{ id: "a" }, { id: "b" }]}
       orientation="vertical"
-      height="600px"
+      width="xl"
+      mx="auto"
     >
-      <Splitter.Panel id="a" bg="fg.muted" color="white" w="full" p={4}>
-        A
+      <Splitter.Panel id="a">
+        <DecorativeBox fontSize="2xl" h="250px">
+          A
+        </DecorativeBox>
       </Splitter.Panel>
       <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
-      <Splitter.Panel id="b" bg="fg.muted" color="white" w="full" p={4}>
-        B
+      <Splitter.Panel id="b">
+        <DecorativeBox fontSize="2xl" h="250px">
+          B
+        </DecorativeBox>
       </Splitter.Panel>
     </Splitter.Root>
   )
 }
-
-export default SplitterVertical

@@ -1,39 +1,55 @@
 "use client"
 
-import { Button, Flex, Splitter, useSplitter } from "@chakra-ui/react"
+import { Box, Button, Flex, Splitter, useSplitter } from "@chakra-ui/react"
+import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SplitterWithStore = () => {
   const splitter = useSplitter({
     defaultSize: [50, 50],
-    panels: [{ id: "a" }, { id: "b" }],
+    panels: [
+      {
+        id: "a",
+        collapsible: true,
+        collapsedSize: 10,
+        minSize: 20,
+      },
+      { id: "b", minSize: 20 },
+    ],
     orientation: "horizontal",
   })
 
-  const maximizeA = () => splitter.setSizes([100, 0])
-  const resetSizes = () => splitter.setSizes([50, 50])
-
   return (
-    <>
-      <Flex gap={5} mb={2} w="full" justify="space-between">
-        <Button variant="outline" onClick={maximizeA}>
-          Maximize A
-        </Button>
-        <Button variant="outline" onClick={resetSizes}>
-          Reset
+    <Box>
+      <Flex gap={3} mb={4} wrap="wrap">
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() =>
+            splitter.isPanelCollapsed("a")
+              ? splitter.expandPanel("a")
+              : splitter.collapsePanel("a")
+          }
+        >
+          {splitter.isPanelCollapsed("a")
+            ? "Expand Panel A"
+            : "Collapse Panel A"}
         </Button>
       </Flex>
-
-      <Splitter.RootProvider value={splitter} mt={10}>
-        <Splitter.Panel id="a" bg="fg.muted" color="white" h="250px" p={4}>
-          Panel A
+      <Splitter.RootProvider value={splitter}>
+        <Splitter.Panel id="a">
+          <DecorativeBox fontSize="2xl" h="250px">
+            A
+          </DecorativeBox>
         </Splitter.Panel>
+
         <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
-        <Splitter.Panel id="b" bg="fg.muted" color="white" h="250px" p={4}>
-          Panel B
+
+        <Splitter.Panel id="b">
+          <DecorativeBox fontSize="2xl" h="250px">
+            B
+          </DecorativeBox>
         </Splitter.Panel>
       </Splitter.RootProvider>
-    </>
+    </Box>
   )
 }
-
-export default SplitterWithStore

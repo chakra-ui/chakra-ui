@@ -1,9 +1,9 @@
 import { Splitter } from "@chakra-ui/react"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 
-export const SplitterThreePanels = () => {
+export const SplitterWithSizes = () => {
   return (
-    <Splitter.Root panels={[{ id: "a" }, { id: "b" }, { id: "c" }]}>
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} defaultSize={[70, 50]}>
       <Splitter.Panel id="a">
         <DecorativeBox fontSize="2xl" h="250px">
           A
@@ -13,12 +13,6 @@ export const SplitterThreePanels = () => {
       <Splitter.Panel id="b">
         <DecorativeBox fontSize="2xl" h="250px">
           B
-        </DecorativeBox>
-      </Splitter.Panel>
-      <Splitter.ResizeTrigger id="b:c" aria-label="Resize" />
-      <Splitter.Panel id="c">
-        <DecorativeBox fontSize="2xl" h="250px">
-          C
         </DecorativeBox>
       </Splitter.Panel>
     </Splitter.Root>
