@@ -7,7 +7,7 @@ import {
   LuArrowUp,
 } from "react-icons/lu"
 
-export const SplitterWithKeyboardResize = () => {
+export const SplitterKeyboardResize = () => {
   return (
     <Box>
       <HStack textStyle="sm" mb={4} gap={2} wrap="wrap">
