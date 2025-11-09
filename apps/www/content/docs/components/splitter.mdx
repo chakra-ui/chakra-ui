@@ -72,11 +72,12 @@ parent splitter.
 
 <ExampleTabs name="splitter-nested" />
 
-### Local Storage
+### Storage
 
-You can provide `defaultSize` and combine it with a storage hook like
-`useLocalStorage` to save user preferences for panel sizes. This allows users’
-panel layouts to persist across sessions.
+You can set a `defaultSize` and pair it with a storage solution, such as
+`useLocalStorage`, to save users’ panel size preferences. This ensures that
+panel layouts persist across sessions. Alternatively, you can use cookies or
+other storage mechanisms depending on your needs.
 
 <ExampleTabs name="splitter-with-storage" />
 
@@ -104,6 +105,18 @@ control:
 - Control the step size using the `keyboardResizeBy` prop.
 
 <ExampleTabs name="splitter-keyboard-resize" />
+
+### Conditional Panels
+
+This example shows a **horizontal splitter** where panels can be shown or hidden
+dynamically. Use the buttons above the splitter to toggle the left and right
+panels—perfect for layouts where certain sections may not always be needed.
+
+The splitter automatically adjusts the remaining panels when one is hidden,
+keeping everything responsive. Initial panel sizes are set with `defaultSize`,
+and `minSize` ensures panels never shrink too small.
+
+<ExampleTabs name="splitter-conditional" />
 
 ## Props
 

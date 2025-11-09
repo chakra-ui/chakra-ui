@@ -23,3 +23,4 @@ export { SplitterWithStorage as Storage } from "compositions/examples/splitter-w
 export { SplitterExplorer as Explorer } from "compositions/examples/splitter-explorer"
 export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
 export { SplitterDisabled as Disabled } from "compositions/examples/splitter-disabled"
+export { SplitterConditional as Conditional } from "compositions/examples/splitter-conditional"
