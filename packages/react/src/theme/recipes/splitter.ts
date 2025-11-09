@@ -19,6 +19,9 @@ export const splitterSlotRecipe = defineSlotRecipe({
       _vertical: {
         minHeight: "1.5",
       },
+      _disabled: {
+        opacity: 0.5,
+      },
     },
   },
 })

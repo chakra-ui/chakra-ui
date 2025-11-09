@@ -22,3 +22,4 @@ export { SplitterWithKeyboardResize as KeyboardResize } from "compositions/examp
 export { SplitterWithSizes as Sizes } from "compositions/examples/splitter-with-sizes"
 export { SplitterExplorer as Explorer } from "compositions/examples/splitter-explorer"
 export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
+export { SplitterDisabled as Disabled } from "compositions/examples/splitter-disabled"
