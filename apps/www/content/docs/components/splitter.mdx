@@ -29,24 +29,6 @@ import { Splitter } from "@chakra-ui/react"
 
 ## Examples
 
-### Horizontal
-
-Default orientation for resizable side-by-side panels.
-
-<ExampleTabs name="splitter-basic" />
-
-### Vertical
-
-Set `orientation="vertical"` for stacked panels that resize vertically.
-
-<ExampleTabs name="splitter-vertical" />
-
-### Multiple Panels
-
-Create layouts with more than two resizable panels.
-
-<ExampleTabs name="splitter-three-panels" />
-
 ### Controlled
 
 Use `onResize` and `size` props to manage panel sizes programmatically.
@@ -62,6 +44,18 @@ splitter state from outside the component.
 
 <ExampleTabs name="splitter-with-store" />
 
+### Vertical
+
+Set `orientation="vertical"` for stacked panels that resize vertically.
+
+<ExampleTabs name="splitter-vertical" />
+
+### Multiple Panels
+
+Create layouts with more than two resizable panels.
+
+<ExampleTabs name="splitter-three-panels" />
+
 ### Collapsible Panels
 
 Panels can be made collapsible by setting the `collapsible` and `collapsedSize`
@@ -70,21 +64,44 @@ panels to a defined minimum size.
 
 <ExampleTabs name="splitter-collapsible" />
 
+### Nested Panels
+
+You can nest splitters inside panels to create more complex layouts. Each nested
+splitter can have its own orientation, sizes, and behaviors independent of the
+parent splitter.
+
+<ExampleTabs name="splitter-nested" />
+
+### Local Storage
+
+You can provide `defaultSize` and combine it with a storage hook like
+`useLocalStorage` to save user preferences for panel sizes. This allows users’
+panel layouts to persist across sessions.
+
+<ExampleTabs name="splitter-with-storage" />
+
+### Disabled Resize
+
+You can disable a panel's resize by setting `disabled` on the ResizeTrigger.
+This is useful if certain panels should remain fixed while allowing others to
+resize.
+
+<ExampleTabs name="splitter-disabled" />
+
 ### Keyboard Resize
 
-Panels can be resized using the keyboard for greater accessibility and precise
-control. When the resize handle is focused, users can use the arrow keys to
-adjust panel sizes.
+The `Splitter` supports keyboard-based resizing for accessibility and precise
+control:
 
-Use the `keyboardResizeBy` prop on `Splitter.Root` to define how many pixels the
-panels resize per key press.
+- Use Arrow keys to resize panels.
 
-<ExampleTabs name="splitter-with-keyboard-resize" />
+- Hold Shift for larger steps.
 
-#### Keyboard Controls
+- Press Home / End to jump to minimum or maximum sizes.
 
-- **ArrowLeft / ArrowUp** — Decrease the size of the previous panel
-- **ArrowRight / ArrowDown** — Increase the size of the previous panel
+- Control the step size using the `keyboardResizeBy` prop.
+
+<ExampleTabs name="splitter-keyboard-resize" />
 
 ## Props
 

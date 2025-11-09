@@ -19,7 +19,7 @@ export { SplitterControlled as Controlled } from "compositions/examples/splitter
 export { SplitterWithStore as Store } from "compositions/examples/splitter-with-store"
 export { SplitterCollapsible as Collapsible } from "compositions/examples/splitter-collapsible"
 export { SplitterWithKeyboardResize as KeyboardResize } from "compositions/examples/splitter-with-keyboard-resize"
-export { SplitterWithSizes as Sizes } from "compositions/examples/splitter-with-sizes"
+export { SplitterWithStorage as Storage } from "compositions/examples/splitter-with-storage"
 export { SplitterExplorer as Explorer } from "compositions/examples/splitter-explorer"
 export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
 export { SplitterDisabled as Disabled } from "compositions/examples/splitter-disabled"
