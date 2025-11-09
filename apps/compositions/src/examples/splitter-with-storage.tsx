@@ -6,10 +6,7 @@ import { LuMouse, LuMoveHorizontal } from "react-icons/lu"
 import { useLocalStorage } from "react-use"
 
 export const SplitterWithStorage = () => {
-  const [sizes, setSizes] = useLocalStorage<number[]>(
-    "splitter-sizes",
-    [70, 50],
-  )
+  const [sizes, setSizes] = useLocalStorage("splitter-sizes", [70, 50])
 
   return (
     <Box>
