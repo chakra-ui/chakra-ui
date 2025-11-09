@@ -3,7 +3,7 @@ import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SplitterNested = () => {
   return (
-    <Splitter.Root debug panels={[{ id: "a" }, { id: "b" }]} h="500px">
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
       <Splitter.Panel id="a">
         <DecorativeBox fontSize="2xl">A</DecorativeBox>
       </Splitter.Panel>
@@ -13,6 +13,7 @@ export const SplitterNested = () => {
         <Splitter.Root
           panels={[{ id: "b1" }, { id: "b2" }]}
           orientation="vertical"
+          minH="650px"
         >
           <Splitter.Panel id="b1">
             <DecorativeBox fontSize="2xl">B1</DecorativeBox>

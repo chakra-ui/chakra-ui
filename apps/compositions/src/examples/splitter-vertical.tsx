@@ -6,19 +6,14 @@ export const SplitterVertical = () => {
     <Splitter.Root
       panels={[{ id: "a" }, { id: "b" }]}
       orientation="vertical"
-      width="xl"
-      mx="auto"
+      minH="650px"
     >
       <Splitter.Panel id="a">
-        <DecorativeBox fontSize="2xl" h="250px">
-          A
-        </DecorativeBox>
+        <DecorativeBox fontSize="2xl">A</DecorativeBox>
       </Splitter.Panel>
       <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
       <Splitter.Panel id="b">
-        <DecorativeBox fontSize="2xl" h="250px">
-          B
-        </DecorativeBox>
+        <DecorativeBox fontSize="2xl">B</DecorativeBox>
       </Splitter.Panel>
     </Splitter.Root>
   )
