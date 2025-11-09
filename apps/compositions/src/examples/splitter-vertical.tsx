@@ -6,7 +6,7 @@ export const SplitterVertical = () => {
     <Splitter.Root
       panels={[{ id: "a" }, { id: "b" }]}
       orientation="vertical"
-      minH="650px"
+      minH="80"
     >
       <Splitter.Panel id="a">
         <DecorativeBox fontSize="2xl">A</DecorativeBox>

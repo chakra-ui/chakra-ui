@@ -13,7 +13,7 @@ export const SplitterNested = () => {
         <Splitter.Root
           panels={[{ id: "b1" }, { id: "b2" }]}
           orientation="vertical"
-          minH="650px"
+          minH="80"
         >
           <Splitter.Panel id="b1">
             <DecorativeBox fontSize="2xl">B1</DecorativeBox>
