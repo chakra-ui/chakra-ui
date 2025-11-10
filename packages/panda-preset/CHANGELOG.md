@@ -1,5 +1,22 @@
 # @chakra-ui/panda-preset
 
+## 3.29.0
+
+### Minor Changes
+
+- [#10391](https://github.com/chakra-ui/chakra-ui/pull/10391)
+  [`1580aeb`](https://github.com/chakra-ui/chakra-ui/commit/1580aebf63e7267d86db2fcb91f6303a4c453914)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - feat: add
+  carousel component
+
+## 3.28.1
+
+### Patch Changes
+
+- [`fad9a2e`](https://github.com/chakra-ui/chakra-ui/commit/fad9a2ef3197b73633f08c02a0861d37aaa8929c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix CodeBlock right
+  padding when scrolling long code lines horizontally
+
 ## 3.28.0
 
 ## 3.27.1

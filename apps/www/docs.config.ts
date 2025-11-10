@@ -142,7 +142,7 @@ const docsLinks: NavItem = {
             { title: "Switch", url: "switch" },
             { title: "Slider", url: "slider" },
             { title: "Textarea", url: "textarea" },
-            { title: "Tags Input", url: "tags-input", status: "new" },
+            { title: "Tags Input", url: "tags-input" },
           ],
         },
         {
@@ -166,6 +166,18 @@ const docsLinks: NavItem = {
             { title: "Popover", url: "popover" },
             { title: "Toggle Tip", url: "toggle-tip" },
             { title: "Tooltip", url: "tooltip" },
+          ],
+        },
+        {
+          title: "Disclosure",
+          items: [
+            { title: "Accordion", url: "accordion" },
+            { title: "Breadcrumb", url: "breadcrumb" },
+            { title: "Carousel", url: "carousel", status: "new" },
+            { title: "Collapsible", url: "collapsible" },
+            { title: "Pagination", url: "pagination" },
+            { title: "Steps", url: "steps" },
+            { title: "Tabs", url: "tabs" },
           ],
         },
         {
@@ -196,17 +208,6 @@ const docsLinks: NavItem = {
             { title: "Table", url: "table" },
             { title: "Tag", url: "tag" },
             { title: "Timeline", url: "timeline" },
-          ],
-        },
-        {
-          title: "Disclosure",
-          items: [
-            { title: "Accordion", url: "accordion" },
-            { title: "Breadcrumb", url: "breadcrumb" },
-            { title: "Collapsible", url: "collapsible" },
-            { title: "Pagination", url: "pagination" },
-            { title: "Steps", url: "steps" },
-            { title: "Tabs", url: "tabs" },
           ],
         },
         {

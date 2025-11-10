@@ -179,6 +179,43 @@ Here's how to use the it
 </NumberInputRoot>
 ```
 
+## Guides
+
+### Why use string values?
+
+When controlling the NumberInput component, use string values instead of
+converting to numbers. This preserves locale-specific formatting, especially for
+currencies with different decimal and thousands separators (e.g., `1.523,30` vs
+`1,523.30`).
+
+```tsx
+const [value, setValue] = useState("0")
+
+<NumberInput.Root
+  value={value}
+  onValueChange={(details) => setValue(details.value)}
+>
+  {/* ... */}
+</NumberInput.Root>
+```
+
+If you need a numeric value for form submission, use `NumberInput.Context` to
+access `valueAsNumber`:
+
+```tsx
+<NumberInput.Root
+  value={value}
+  onValueChange={(details) => setValue(details.value)}
+>
+  <NumberInput.Input />
+  <NumberInput.Context>
+    {(context) => (
+      <input type="hidden" name="amount" value={context.valueAsNumber} />
+    )}
+  </NumberInput.Context>
+</NumberInput.Root>
+```
+
 ## Props
 
 ### Root

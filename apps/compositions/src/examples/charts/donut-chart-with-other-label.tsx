@@ -2,8 +2,9 @@
 
 import { Chart, useChart } from "@chakra-ui/charts"
 import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import type { PieLabelRenderProps } from "recharts"
 
-interface DataItem {
+interface DataItem extends Record<string, unknown> {
   name: string
   value: number
   color: string
@@ -40,8 +41,8 @@ const data = rawData.reduce<DataItem[]>((acc, item) => {
 export const DonutChartWithOtherLabel = () => {
   const chart = useChart({ data: data })
 
-  const label = (entry: DataItem) => {
-    const percent = chart.getValuePercent("value", entry.value)
+  const label = (entry: PieLabelRenderProps) => {
+    const percent = chart.getValuePercent("value", entry.value as number)
     return `${entry.name} (${percent.toFixed(1)}%)`
   }
 

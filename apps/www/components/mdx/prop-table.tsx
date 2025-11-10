@@ -18,10 +18,24 @@ interface PropTableProps {
   omit?: string[]
 }
 
-const stringify = (value: any) => {
+const stringify = (property: any) => {
+  let value = property.defaultValue
   if (value === "true") return `true`
   if (value === "false") return `false`
-  return JSON.stringify(value)
+
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value)
+      if (typeof parsed === "string" && property.type?.includes("string")) {
+        return parsed
+      }
+      return JSON.stringify(parsed).replaceAll('"', "'")
+    } catch {
+      return value
+    }
+  }
+
+  return JSON.stringify(value).replaceAll('"', "'")
 }
 
 export const PropTable = async (props: PropTableProps) => {
@@ -74,7 +88,7 @@ export const PropTable = async (props: PropTableProps) => {
               <Table.Cell width="28" px="4" py="2" verticalAlign="top">
                 {property.defaultValue ? (
                   <Code size="sm" color="accent.fg" variant="surface">
-                    {stringify(property.defaultValue).replaceAll('"', "'")}
+                    {stringify(property)}
                   </Code>
                 ) : (
                   <Icon fontSize="xs" color="fg.subtle">

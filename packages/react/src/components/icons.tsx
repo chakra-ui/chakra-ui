@@ -3,13 +3,13 @@
 import { type HTMLChakraProps, chakra } from "../styled-system"
 
 /**
-   
+
  This file is internal and should not be exported to the consumer.
- 
+
  We only add icons really needed for the component to looks good by default.
  We're not in the business of creating icons.
- 
- Please find ideas from https://react-icons.github.io/react-icons/ 
+
+ Please find ideas from https://react-icons.github.io/react-icons/
 
  */
 
@@ -30,6 +30,20 @@ export const CheckIcon = (props: SvgProps) => {
     </chakra.svg>
   )
 }
+
+export const ChevronLeftIcon = (props: SvgProps) => (
+  <chakra.svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="m15 18-6-6 6-6" />
+  </chakra.svg>
+)
 
 export const ChevronUpIcon = (props: SvgProps) => (
   <chakra.svg

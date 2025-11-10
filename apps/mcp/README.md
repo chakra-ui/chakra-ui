@@ -27,6 +27,8 @@ examples, migration patterns, and premium templates.
 
 ### Claude Desktop / Cursor
 
+Add to your Claude Desktop or Cursor configuration file:
+
 ```json
 {
   "mcpServers": {
@@ -40,6 +42,29 @@ examples, migration patterns, and premium templates.
   }
 }
 ```
+
+### OpenAI Codex
+
+Add to your `~/.codex/config.toml` file:
+
+```toml
+[mcp_servers.chakra-ui]
+command = "npx"
+args = ["-y", "@chakra-ui/react-mcp"]
+startup_timeout_ms = 20_000
+
+# Optional: Add Chakra Pro API key if using premium features
+# [mcp_servers.chakra-ui.env]
+# CHAKRA_PRO_API_KEY = "your-api-key-here"
+```
+
+Or use the CLI command:
+
+```bash
+codex mcp add chakra-ui -- npx -y @chakra-ui/react-mcp
+```
+
+**Note:** Requires Codex CLI v0.34.0 or later.
 
 ### Environment Variables
 

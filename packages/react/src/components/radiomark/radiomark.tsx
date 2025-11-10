@@ -48,3 +48,5 @@ export const Radiomark = forwardRef<HTMLSpanElement, RadiomarkProps>(
     )
   },
 )
+
+Radiomark.displayName = "Radiomark"

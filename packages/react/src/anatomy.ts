@@ -264,6 +264,7 @@ export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 export { tagsInputAnatomy } from "@ark-ui/react/tags-input"
 export { tourAnatomy } from "@ark-ui/react/tour"
+export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
 export const listboxAnatomy = arkListboxAnatomy

@@ -1,7 +1,7 @@
 "use client"
 
 import { highlightCode } from "@/lib/highlight-code"
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Flex, Span } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { SiTypescript } from "react-icons/si"
 import ts from "typescript"
@@ -76,39 +76,15 @@ export const ${pascal}SlotRecipe = defineSlotRecipe({
       colorScheme="dark"
       pos="relative"
       rounded="lg"
-      border="1px solid"
-      borderColor="border"
+      borderWidth="1px"
       bg="bg"
     >
-      <Flex
-        align="center"
-        px={4}
-        pt={2}
-        borderBottom="1px solid"
-        borderBottomColor="border.subtle"
-        position="relative"
-      >
-        <Flex
-          align="center"
-          gap={2}
-          px={3}
-          py={1.5}
-          bg="bg"
-          border="1px solid"
-          borderColor="border.subtle"
-          borderBottom="none"
-          borderTopRadius="md"
-        >
+      <Flex align="center" px="4" pt="2" position="relative">
+        <Flex align="center" gap="2" pb="2">
           <SiTypescript size={12} color="#3178c6" style={{ flexShrink: 0 }} />
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            color="fg"
-            fontFamily="mono"
-            letterSpacing="tight"
-          >
+          <Span textStyle="sm" fontWeight="medium" fontFamily="mono">
             {kebab}.recipe.ts
-          </Text>
+          </Span>
 
           {activePart && (
             <Box

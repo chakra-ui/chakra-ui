@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Announcement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/tags-input">
+          <Link href="/docs/components/carousel">
             <LuWandSparkles />
-            [New] TagsInput Component
+            [New] Carousel Component
             <HiArrowRight />
           </Link>
         </Announcement>

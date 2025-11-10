@@ -87,6 +87,67 @@ Here's an example of adding actions to an accordion item trigger.
 
 <ExampleTabs name="accordion-with-actions" />
 
+### Styling Expanded Style
+
+Pass the `_open` pseudo selector to the `Accordion.ItemTrigger` or
+`Accordion.Item` to attach styles to it when expanded.
+
+<ExampleTabs name="accordion-with-expanded-style" />
+
+## Guides
+
+### Accessing Root State
+
+Use `useAccordionContext` to access the accordion state at the root level:
+
+```tsx
+import { useAccordionContext } from "@chakra-ui/react"
+
+const AccordionValueText = () => {
+  const accordion = useAccordionContext()
+  return <Box>Opened: {accordion.value.join(", ")}</Box>
+}
+
+// Usage
+const Demo = () => (
+  <Accordion.Root>
+    <AccordionValueText />
+    {/* ... accordion items */}
+  </Accordion.Root>
+)
+```
+
+### Accessing Item State
+
+Use `useAccordionItemContext` to access the state of a specific accordion item:
+
+```tsx
+import { useAccordionItemContext } from "@chakra-ui/react"
+
+const AccordionItemStatus = () => {
+  const item = useAccordionItemContext()
+  return (
+    <Box color={item.open ? "green.500" : "gray.500"}>
+      {item.open ? "Expanded" : "Collapsed"}
+    </Box>
+  )
+}
+
+// Usage
+const Demo = () => (
+  <Accordion.Root>
+    <Accordion.Item value="item-1">
+      <Accordion.ItemTrigger>
+        <AccordionItemStatus />
+      </Accordion.ItemTrigger>
+      <Accordion.ItemContent>
+        <Accordion.ItemBody>Content</Accordion.ItemBody>
+      </Accordion.ItemContent>
+    </Accordion.Item>
+  </Accordion.Root>
+)
+```
+
 ## Props
 
 ### Root

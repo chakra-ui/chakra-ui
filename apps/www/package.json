@@ -21,7 +21,7 @@
     "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme"
   },
   "dependencies": {
-    "@ark-ui/react": "5.26.2",
+    "@ark-ui/react": "5.27.1",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
     "@emotion/react": "11.14.0",
@@ -34,7 +34,7 @@
     "next": "15.5.5",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
-    "recharts": "2.15.3",
+    "recharts": "^3.3.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-icons": "5.5.0",
@@ -56,7 +56,7 @@
     "@types/react-dom": "19.2.2",
     "color2k": "2.0.3",
     "eslint": "^9",
-    "eslint-config-next": "15.5.5",
+    "eslint-config-next": "15.5.6",
     "typescript": "^5",
     "ts-morph": "27.0.2",
     "npm-run-all": "^4.1.5",

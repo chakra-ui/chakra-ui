@@ -1,12 +1,12 @@
-import { codeToHtml } from "shiki"
+import { getHighlighter } from "./highlighter"
 
-export const highlightCode = (
+export const highlightCode = async (
   code: string,
-  opts?: Partial<Parameters<typeof codeToHtml>[1]>,
+  opts?: { lang?: string; theme?: string },
 ) => {
-  return codeToHtml(code, {
-    lang: "tsx",
-    theme: "dark-plus",
-    ...opts,
+  const highlighter = await getHighlighter()
+  return highlighter.codeToHtml(code, {
+    lang: opts?.lang || "tsx",
+    theme: opts?.theme || "dark-plus",
   })
 }

@@ -132,6 +132,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
       },
       "& [data-line]": {
         position: "relative",
+        paddingInlineEnd: "var(--code-block-padding)",
         "--highlight-bg": "var(--code-block-highlight-bg)",
         "--highlight-border": "var(--code-block-highlight-border)",
         "&[data-highlight], &[data-diff]": {

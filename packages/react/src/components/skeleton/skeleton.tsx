@@ -23,6 +23,8 @@ export interface SkeletonProps
 
 export const Skeleton = withContext<HTMLDivElement, SkeletonProps>("div")
 
+Skeleton.displayName = "Skeleton"
+
 export const SkeletonPropsProvider =
   PropsProvider as React.Provider<SkeletonProps>
 
@@ -43,6 +45,8 @@ export const SkeletonCircle = React.forwardRef<
     </Circle>
   )
 })
+
+SkeletonCircle.displayName = "SkeletonCircle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,3 +72,5 @@ export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
     )
   },
 )
+
+SkeletonText.displayName = "SkeletonText"

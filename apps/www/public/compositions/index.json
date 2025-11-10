@@ -53,6 +53,16 @@
   },
   {
     "type": "composition",
+    "id": "carousel",
+    "file": "carousel.tsx",
+    "component": "Carousel",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "checkbox-card",
     "file": "checkbox-card.tsx",
     "component": "CheckboxCard",

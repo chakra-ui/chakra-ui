@@ -5,6 +5,7 @@ import { avatarSlotRecipe } from "./recipes/avatar"
 import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
+import { carouselSlotRecipe } from "./recipes/carousel"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { codeBlockSlotRecipe } from "./recipes/code-block"
@@ -59,6 +60,7 @@ export const slotRecipes = {
   blockquote: blockquoteSlotRecipe,
   breadcrumb: breadcrumbSlotRecipe,
   card: cardSlotRecipe,
+  carousel: carouselSlotRecipe,
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
   codeBlock: codeBlockSlotRecipe,
