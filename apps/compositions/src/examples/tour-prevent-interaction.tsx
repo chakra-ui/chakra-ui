@@ -1,18 +1,18 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
-export const TourWithCloseOnInteractOutside = () => {
+export const TourPreventInteraction = () => {
   const uploadRef = useRef<HTMLButtonElement | null>(null)
   const saveRef = useRef<HTMLButtonElement | null>(null)
   const moreRef = useRef<HTMLButtonElement | null>(null)
@@ -21,16 +21,16 @@ export const TourWithCloseOnInteractOutside = () => {
     {
       id: "welcome",
       type: "dialog",
-      title: "Close on Outside Click",
-      description: "Click outside the tour to close it.",
+      title: "Welcome to your Tour!",
+      description: "Let's walk through key actions for your next concert drop.",
       actions: [{ label: "Start", action: "next" }],
     },
     {
       id: "upload",
       type: "tooltip",
       target: () => uploadRef.current,
-      title: "Upload",
-      description: "Try clicking outside the tour area.",
+      title: "Upload Setlist",
+      description: "Add the setlist you'll perform tonight.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -40,8 +40,8 @@ export const TourWithCloseOnInteractOutside = () => {
       id: "save",
       type: "tooltip",
       target: () => saveRef.current,
-      title: "Save",
-      description: "Clicking outside will dismiss the tour.",
+      title: "Save Changes",
+      description: "Keep your edits synced for collaborators.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -52,7 +52,7 @@ export const TourWithCloseOnInteractOutside = () => {
       type: "tooltip",
       target: () => moreRef.current,
       title: "More Actions",
-      description: "Click anywhere outside this tooltip to close.",
+      description: "Share the drop, schedule publish, and more.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -60,16 +60,16 @@ export const TourWithCloseOnInteractOutside = () => {
     },
   ]
 
-  const tour = useTour({ steps, closeOnInteractOutside: true })
+  const tour = useTour({ steps, preventInteraction: true })
 
   return (
-    <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
         Begin Tour
       </Button>
 
-      <HStack gap={3} mt={4}>
+      <HStack gap={3}>
         <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
@@ -93,15 +93,15 @@ export const TourWithCloseOnInteractOutside = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
+            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
-              <Tour.ProgressText />
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }

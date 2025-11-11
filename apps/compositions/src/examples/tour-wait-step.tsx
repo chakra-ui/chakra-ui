@@ -40,7 +40,7 @@ export const TourWaitStep = () => {
       description: "Click the Play button to continue.",
       effect({ next }: { next: () => void }) {
         const btn = document.querySelector<HTMLButtonElement>("#play-btn")
-        console.log(btn)
+
         const handler = () => next()
         if (btn) {
           btn.addEventListener("click", handler)
@@ -110,23 +110,24 @@ export const TourWaitStep = () => {
 
   return (
     <Box maxW="1200px" mx="auto" py={10} px={6}>
-      <Button onClick={() => tour.start()} mb={8} colorPalette="purple">
+      <Button onClick={() => tour.start()} mb={8}>
         <LuSparkles />
         Start Tutorial
       </Button>
 
       <Tour.Root tour={tour}>
         <Tour.Spotlight />
+        <Tour.Backdrop />
         <Tour.Positioner>
           <Tour.Content>
             <Tour.Arrow>
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
+            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
             <Tour.Control>
-              <Tour.ProgressText />
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>

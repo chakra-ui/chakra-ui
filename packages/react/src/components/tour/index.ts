@@ -21,6 +21,7 @@ export {
 
 export type {
   TourActionTriggerProps,
+  TourActionTriggersProps,
   TourArrowProps,
   TourArrowTipProps,
   TourBackdropProps,

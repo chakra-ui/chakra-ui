@@ -164,13 +164,17 @@ export const TourActionTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const TourActionTriggers = () => {
+export interface TourActionTriggersProps
+  extends Omit<TourActionTriggerProps, "action"> {}
+
+export const TourActionTriggers = (props: TourActionTriggersProps) => {
   const api = useTourContext()
   const actions = api.step?.actions ?? []
+
   return (
     <For each={actions}>
       {(action) => (
-        <TourActionTrigger key={action.label} action={action}>
+        <TourActionTrigger key={action.label} action={action} {...props}>
           {action.label}
         </TourActionTrigger>
       )}

@@ -1,11 +1,11 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
@@ -63,13 +63,13 @@ export const TourBasic = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
         Begin Tour
       </Button>
 
-      <HStack gap={3} mt={4}>
+      <HStack gap={3}>
         <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
@@ -89,31 +89,19 @@ export const TourBasic = () => {
         <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
-            <Tour.Context>
-              {(api) =>
-                api.step?.id === "upload" ? (
-                  <img
-                    draggable={false}
-                    alt="tour"
-                    src="https://user-images.githubusercontent.com/5378891/197385811-55df8480-7ff4-44bd-9d43-a7dade598d70.png"
-                    style={{ borderRadius: 8, marginBottom: 8 }}
-                  />
-                ) : null
-              }
-            </Tour.Context>
             <Tour.Arrow>
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
+            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
-              <Tour.ProgressText />
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }

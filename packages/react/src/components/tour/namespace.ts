@@ -37,4 +37,5 @@ export type {
   TourStepChangeDetails as StepChangeDetails,
   TourStatusChangeDetails as StatusChangeDetails,
   TourTitleProps as TitleProps,
+  TourActionTriggersProps as ActionTriggersProps,
 } from "./tour"

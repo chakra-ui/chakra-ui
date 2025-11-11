@@ -9,53 +9,50 @@ import {
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
-import { LuRefreshCw, LuSettings, LuSparkles, LuZap } from "react-icons/lu"
+import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
+import { MdMoreHoriz } from "react-icons/md"
 
-export const TourWithImmediate = () => {
-  const syncRef = useRef<HTMLButtonElement | null>(null)
-  const refreshRef = useRef<HTMLButtonElement | null>(null)
-  const settingsRef = useRef<HTMLButtonElement | null>(null)
+export const TourCloseOnEscape = () => {
+  const uploadRef = useRef<HTMLButtonElement | null>(null)
+  const saveRef = useRef<HTMLButtonElement | null>(null)
+  const moreRef = useRef<HTMLButtonElement | null>(null)
 
   const steps: TourStep[] = [
     {
       id: "welcome",
       type: "dialog",
-      title: "Immediate Sync Mode",
-      description:
-        "This tour demonstrates immediate state synchronization without frame delays.",
+      title: "Close on Escape",
+      description: "Press the Escape key at any time to close the tour.",
       actions: [{ label: "Start", action: "next" }],
     },
     {
-      id: "sync",
+      id: "upload",
       type: "tooltip",
-      target: () => syncRef.current,
-      title: "Instant Sync",
-      description:
-        "Changes apply immediately in the current frame without deferring.",
+      target: () => uploadRef.current,
+      title: "Upload",
+      description: "Try pressing Escape to dismiss the tour.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
     },
     {
-      id: "refresh",
+      id: "save",
       type: "tooltip",
-      target: () => refreshRef.current,
-      title: "Real-time Updates",
-      description:
-        "State changes reflect instantly without waiting for the next render cycle.",
+      target: () => saveRef.current,
+      title: "Save",
+      description: "You can close this at any time with Escape.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
       ],
     },
     {
-      id: "settings",
+      id: "more",
       type: "tooltip",
-      target: () => settingsRef.current,
-      title: "Performance Mode",
-      description:
-        "Enable immediate mode for time-critical UI updates and animations.",
+      target: () => moreRef.current,
+      title: "More Actions",
+      description: "Test the Escape key functionality.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -63,31 +60,31 @@ export const TourWithImmediate = () => {
     },
   ]
 
-  const tour = useTour({ steps })
+  const tour = useTour({ steps, closeOnEscape: true })
 
   return (
     <Box>
       <Button onClick={() => tour.start()} mb={4}>
         <LuSparkles />
-        Start Tour
+        Begin Tour
       </Button>
 
       <HStack gap={3} mt={4}>
-        <Button ref={syncRef} variant="outline">
-          <LuZap />
-          Sync
+        <Button ref={uploadRef} variant="outline">
+          <LuUpload />
+          Upload
         </Button>
-        <Button ref={refreshRef} variant="outline" colorPalette="blue">
-          <LuRefreshCw />
-          Refresh
+        <Button ref={saveRef} variant="outline" colorPalette="blue">
+          <LuSave />
+          Save
         </Button>
-        <Button ref={settingsRef} variant="outline">
-          <LuSettings />
-          Settings
+        <Button ref={moreRef} variant="outline">
+          <MdMoreHoriz />
+          More
         </Button>
       </HStack>
 
-      <Tour.Root tour={tour} immediate={true}>
+      <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
