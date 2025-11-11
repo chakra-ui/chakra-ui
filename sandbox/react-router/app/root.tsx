@@ -1,3 +1,4 @@
+import { withEmotionCache } from "@emotion/react"
 import {
   Links,
   Meta,
@@ -8,6 +9,7 @@ import {
 } from "react-router"
 import type { Route } from "./+types/root"
 import { Provider } from "./components/ui/provider"
+import { useInjectStyles } from "./emotion/emotion-client"
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,14 +24,26 @@ export const links: Route.LinksFunction = () => [
   },
 ]
 
-export function Layout({ children }: { children: React.ReactNode }) {
+interface LayoutProps {
+  children: React.ReactNode
+}
+
+export const Layout = withEmotionCache((props: LayoutProps, cache) => {
+  const { children } = props
+
+  useInjectStyles(cache)
+
   return (
-    <html lang="en">
-      <head>
+    <html lang="en" suppressHydrationWarning>
+      <head suppressHydrationWarning>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <meta
+          name="emotion-insertion-point"
+          content="emotion-insertion-point"
+        />
       </head>
       <body>
         <Provider>
@@ -40,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   )
-}
+})
 
 export default function App() {
   return <Outlet />
