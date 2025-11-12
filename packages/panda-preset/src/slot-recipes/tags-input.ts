@@ -62,8 +62,13 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
         display: "none",
       },
     },
+    item: {
+      maxWidth: "100%",
+      minWidth: "0",
+    },
     itemText: {
       lineClamp: "1",
+      minWidth: "0",
     },
     itemInput: {
       outline: "none",
@@ -81,6 +86,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
       gap: "1",
       rounded: "l1",
       px: "var(--tags-input-item-px)",
+      maxWidth: "100%",
     },
     itemDeleteTrigger: {
       display: "flex",
