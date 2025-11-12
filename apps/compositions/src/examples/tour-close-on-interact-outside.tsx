@@ -1,11 +1,11 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
@@ -32,7 +32,7 @@ export const TourCloseOnInteractOutside = () => {
       target: () => uploadRef.current,
       title: "Upload",
       description:
-        "Here you can upload your setlist. Clicking outside won’t close the tour — you’ll need to use the controls below.",
+        "Here you can upload your setlist. Clicking outside won’t close the tour, you’ll need to use the controls below.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -56,7 +56,7 @@ export const TourCloseOnInteractOutside = () => {
       target: () => moreRef.current,
       title: "More Actions",
       description:
-        "Access sharing, scheduling, and more here. Remember — the tour won’t close when clicking outside.",
+        "Access sharing, scheduling, and more here. Remember, the tour won’t close when clicking outside.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -67,13 +67,13 @@ export const TourCloseOnInteractOutside = () => {
   const tour = useTour({ steps, closeOnInteractOutside: false })
 
   return (
-    <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
         Begin Tour
       </Button>
 
-      <HStack gap={3} mt={4}>
+      <HStack gap={3}>
         <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
@@ -106,6 +106,6 @@ export const TourCloseOnInteractOutside = () => {
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }

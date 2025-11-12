@@ -1,11 +1,11 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
@@ -63,13 +63,13 @@ export const TourCloseOnEscape = () => {
   const tour = useTour({ steps, closeOnEscape: true })
 
   return (
-    <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
         Begin Tour
       </Button>
 
-      <HStack gap={3} mt={4}>
+      <HStack gap={3}>
         <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
@@ -102,6 +102,6 @@ export const TourCloseOnEscape = () => {
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }
