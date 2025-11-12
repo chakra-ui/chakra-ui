@@ -91,6 +91,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      flexShrink: "0",
       boxSize: "calc(var(--tags-input-item-height) / 1.5)",
       cursor: { base: "button", _disabled: "initial" },
       me: "-1",
