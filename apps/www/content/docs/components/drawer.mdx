@@ -103,6 +103,17 @@ corresponding sizes. For example:
 
 <ExampleTabs name="drawer-with-conditional-variants" />
 
+### Non-Modal Drawer
+
+We don't recommend using a non-modal drawer due to the accessibility concerns
+they present. In event you need it, here's what you can do:
+
+- set the `modal` prop to `false`
+- set `pointerEvents` to `none` on the `Drawer.Positioner` component
+- (optional)set the `closeOnInteractOutside` prop to `false`
+
+<ExampleTabs name="drawer-non-modal" />
+
 ## Props
 
 ### Root
