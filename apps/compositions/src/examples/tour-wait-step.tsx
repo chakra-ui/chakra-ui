@@ -1,123 +1,107 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
-  Stack,
-  Text,
   Tour,
   type TourStep,
   VStack,
   useTour,
 } from "@chakra-ui/react"
-import { LuHeart, LuMusic, LuShare2, LuSparkles } from "react-icons/lu"
+import { useRef } from "react"
+import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
+import { MdMoreHoriz } from "react-icons/md"
 
 export const TourWaitStep = () => {
+  const uploadRef = useRef<HTMLButtonElement | null>(null)
+  const saveRef = useRef<HTMLButtonElement | null>(null)
+  const moreRef = useRef<HTMLButtonElement | null>(null)
+
   const steps: TourStep[] = [
     {
-      id: "intro",
+      id: "welcome",
       type: "dialog",
-      title: "Welcome to Luna Music",
-      description:
-        "Let's take a quick tour! You'll learn how to play, like, and share your favorite tracks.",
+      title: "Welcome to your Tour!",
+      description: "Let's walk through key actions for your next concert drop.",
       actions: [{ label: "Start", action: "next" }],
     },
     {
-      id: "play-step",
+      id: "upload",
       type: "tooltip",
-      target: () => document.querySelector<HTMLElement>("#play-btn"),
-      title: "Step 1: Play the Song",
-      description:
-        "Scroll down to the player section and click the Play button to start the music 🎵",
-      placement: "top",
+      target: () => uploadRef.current,
+      title: "Upload Setlist",
+      description: "Add the setlist you'll perform tonight.",
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
+      ],
     },
     {
-      id: "wait-play",
-      type: "wait",
-      title: "Waiting for Play",
-      target: () => document.querySelector<HTMLElement>("#play-btn"),
-      description: "Click the Play button to continue.",
-      effect({ next }: { next: () => void }) {
-        const btn = document.querySelector<HTMLButtonElement>("#play-btn")
-
-        const handler = () => next()
-        if (btn) {
-          btn.addEventListener("click", handler)
-          return () => btn.removeEventListener("click", handler)
-        }
-        return () => {}
-      },
-    },
-    {
-      id: "like-step",
+      id: "save",
       type: "tooltip",
-      target: () => document.querySelector<HTMLElement>("#like-btn"),
-      title: "Step 2: Like the Song",
-      description: "Click the heart ❤️ to save it to your Liked Songs.",
-      placement: "top",
+      target: () => saveRef.current,
+      title: "Save Changes",
+      description: "Keep your edits synced for collaborators.",
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
+      ],
     },
     {
-      id: "wait-like",
+      id: "confirm-step",
       type: "wait",
-      title: "Waiting for Like",
-      description: "Click the Heart button to continue.",
-      effect({ next }: { next: () => void }) {
-        const btn = document.querySelector<HTMLButtonElement>("#like-btn")
-        const handler = () => next()
-        if (btn) {
-          btn.addEventListener("click", handler, { once: true })
-          return () => btn.removeEventListener("click", handler)
-        }
-        return () => {}
-      },
+      title: "Confirm Your Readiness",
+      description:
+        "Before we move on, click the button below when you’re ready to continue.",
+      backdrop: false,
     },
     {
-      id: "share-step",
+      id: "more",
       type: "tooltip",
-      target: () => document.querySelector<HTMLElement>("#share-btn"),
-      title: "Step 3: Share the Vibes",
-      description:
-        "Now click the Share icon to let your friends enjoy this track 🎧",
-      placement: "top",
-    },
-    {
-      id: "wait-share",
-      type: "wait",
-      title: "Waiting for Share",
-      description: "Click the Share button to continue.",
-      effect({ next }: { next: () => void }) {
-        const btn = document.querySelector<HTMLButtonElement>("#share-btn")
-        const handler = () => next()
-        if (btn) {
-          btn.addEventListener("click", handler, { once: true })
-          return () => btn.removeEventListener("click", handler)
-        }
-        return () => {}
-      },
-    },
-    {
-      id: "final",
-      type: "dialog",
-      title: "You're All Set!",
-      description:
-        "You've just learned the basics of Luna Music. Time to enjoy your tunes!",
-      actions: [{ label: "Finish", action: "dismiss" }],
+      target: () => moreRef.current,
+      title: "More Actions",
+      description: "Share the drop, schedule publish, and more.",
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Finish", action: "dismiss" },
+      ],
     },
   ]
 
   const tour = useTour({ steps })
+  const { step, next } = tour
 
   return (
-    <Box maxW="1200px" mx="auto" py={10} px={6}>
-      <Button onClick={() => tour.start()} mb={8}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
-        Start Tutorial
+        Begin Tour
       </Button>
 
+      <HStack gap={3}>
+        <Button ref={uploadRef} variant="outline">
+          <LuUpload />
+          Upload
+        </Button>
+        <Button ref={saveRef} variant="outline" colorPalette="blue">
+          <LuSave />
+          Save
+        </Button>
+        <Button ref={moreRef} variant="outline">
+          <MdMoreHoriz />
+          More
+        </Button>
+
+        {step?.id === "confirm-step" && (
+          <Button variant="subtle" onClick={next}>
+            Click to Continue
+          </Button>
+        )}
+      </HStack>
+
       <Tour.Root tour={tour}>
-        <Tour.Spotlight />
         <Tour.Backdrop />
+        <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
             <Tour.Arrow>
@@ -127,92 +111,12 @@ export const TourWaitStep = () => {
             <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-
-      <VStack align="stretch" gap={12}>
-        <Box>
-          <Text fontSize="2xl" fontWeight="bold" mb={4}>
-            Recommended Tracks
-          </Text>
-          <Stack gap={3}>
-            {["Echo Nights"].map((track) => (
-              <HStack
-                key={track}
-                justify="space-between"
-                p={4}
-                borderWidth="1px"
-                borderRadius="lg"
-                _hover={{ bg: "gray.50", _dark: { bg: "gray.800" } }}
-              >
-                <Text>{track}</Text>
-                <HStack gap={2}>
-                  <Button size="sm" variant="ghost" colorPalette="red">
-                    <LuHeart />
-                  </Button>
-                  <Button size="sm" variant="ghost" colorPalette="blue">
-                    <LuShare2 />
-                  </Button>
-                </HStack>
-              </HStack>
-            ))}
-          </Stack>
-        </Box>
-
-        <Box
-          p={8}
-          borderWidth="1px"
-          borderRadius="xl"
-          bg="gradient-to-br from-purple.100 to-blue.100"
-          _dark={{ bg: "gradient-to-br from-purple.900 to-blue.900" }}
-        >
-          <Stack gap={4} align="center">
-            <Text fontSize="2xl" fontWeight="semibold">
-              Now Playing
-            </Text>
-
-            <HStack gap={8}>
-              <Button
-                id="play-btn"
-                size="xl"
-                colorPalette="purple"
-                aria-label="Play"
-                onClick={() => console.log("Hello World")}
-              >
-                <LuMusic size={28} />
-              </Button>
-
-              <Button
-                id="like-btn"
-                variant="outline"
-                size="lg"
-                colorPalette="red"
-                aria-label="Like"
-              >
-                <LuHeart size={24} />
-              </Button>
-
-              <Button
-                id="share-btn"
-                variant="outline"
-                size="lg"
-                colorPalette="blue"
-                aria-label="Share"
-              >
-                <LuShare2 size={24} />
-              </Button>
-            </HStack>
-
-            <Text fontSize="sm" color="gray.600" _dark={{ color: "gray.400" }}>
-              Play, Like, or Share your favorite songs
-            </Text>
-          </Stack>
-        </Box>
-      </VStack>
-    </Box>
+    </VStack>
   )
 }

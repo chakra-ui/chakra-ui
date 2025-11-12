@@ -1,12 +1,11 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
-  IconButton,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
@@ -67,43 +66,26 @@ export const TourWithPlacements = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box p={6} rounded="2xl" maxW="lg" mx="auto">
-      <HStack gap={4} mb={6} justify="center">
-        <IconButton
-          ref={boldRef}
-          aria-label="Bold"
-          variant="outline"
-          colorScheme="teal"
-          size="sm"
-        >
-          <FaBold />
-        </IconButton>
-
-        <IconButton
-          ref={italicRef}
-          aria-label="Italic"
-          variant="outline"
-          colorScheme="teal"
-          size="sm"
-        >
-          <FaItalic />
-        </IconButton>
-
-        <IconButton
-          ref={underlineRef}
-          aria-label="Underline"
-          variant="outline"
-          colorScheme="teal"
-          size="sm"
-        >
-          <FaUnderline />
-        </IconButton>
-      </HStack>
-
-      <Button onClick={() => tour.start()} colorScheme="teal" w="full">
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <FaPlay />
-        Start Tour
+        Begin Tour
       </Button>
+
+      <HStack gap={3}>
+        <Button ref={boldRef} variant="outline">
+          <FaBold />
+          Bold
+        </Button>
+        <Button ref={italicRef} variant="outline">
+          <FaItalic />
+          Italic
+        </Button>
+        <Button ref={underlineRef} variant="outline">
+          <FaUnderline />
+          Underline
+        </Button>
+      </HStack>
 
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
@@ -114,17 +96,15 @@ export const TourWithPlacements = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
-            <Tour.Title fontWeight="bold" />
+            <Tour.ProgressText />
+            <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
-              <Tour.ProgressText />
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }
-
-export default TourWithPlacements

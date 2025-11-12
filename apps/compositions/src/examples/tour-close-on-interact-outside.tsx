@@ -21,8 +21,9 @@ export const TourCloseOnInteractOutside = () => {
     {
       id: "welcome",
       type: "dialog",
-      title: "Close on Outside Click",
-      description: "Click outside the tour to close it.",
+      title: "Guided Tour Mode",
+      description:
+        "This tour will stay open even if you click outside of it. Let’s explore the key actions!",
       actions: [{ label: "Start", action: "next" }],
     },
     {
@@ -30,7 +31,8 @@ export const TourCloseOnInteractOutside = () => {
       type: "tooltip",
       target: () => uploadRef.current,
       title: "Upload",
-      description: "Try clicking outside the tour area.",
+      description:
+        "Here you can upload your setlist. Clicking outside won’t close the tour — you’ll need to use the controls below.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -41,7 +43,8 @@ export const TourCloseOnInteractOutside = () => {
       type: "tooltip",
       target: () => saveRef.current,
       title: "Save",
-      description: "Clicking outside will dismiss the tour.",
+      description:
+        "Use this button to save your progress. The tour remains active until you finish or dismiss it.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -52,7 +55,8 @@ export const TourCloseOnInteractOutside = () => {
       type: "tooltip",
       target: () => moreRef.current,
       title: "More Actions",
-      description: "Click anywhere outside this tooltip to close.",
+      description:
+        "Access sharing, scheduling, and more here. Remember — the tour won’t close when clicking outside.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -60,7 +64,7 @@ export const TourCloseOnInteractOutside = () => {
     },
   ]
 
-  const tour = useTour({ steps, closeOnInteractOutside: true })
+  const tour = useTour({ steps, closeOnInteractOutside: false })
 
   return (
     <Box>
@@ -93,10 +97,10 @@ export const TourCloseOnInteractOutside = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
+            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
-              <Tour.ProgressText />
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>

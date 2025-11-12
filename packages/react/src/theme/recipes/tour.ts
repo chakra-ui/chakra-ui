@@ -8,6 +8,7 @@ export const tourSlotRecipe = defineSlotRecipe({
     backdrop: {
       inset: "0",
       bg: "blackAlpha.600",
+      zIndex: "var(--tour-z-index, 1400)",
       _open: { animationName: "fade-in", animationDuration: "slow" },
       _closed: { animationName: "fade-out", animationDuration: "moderate" },
     },
@@ -20,6 +21,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "2",
       maxW: "sm",
+      zIndex: "calc(var(--tour-z-index, 1400) + 1)",
       _open: {
         animationName: "scale-in, fade-in",
         animationDuration: "moderate",

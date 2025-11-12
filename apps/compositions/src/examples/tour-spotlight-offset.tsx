@@ -1,11 +1,11 @@
 "use client"
 
 import {
-  Box,
   Button,
   HStack,
   Tour,
   type TourStep,
+  VStack,
   useTour,
 } from "@chakra-ui/react"
 import { useRef } from "react"
@@ -55,7 +55,7 @@ export const TourWithSpotlightOffset = () => {
       target: () => moreRef.current,
       title: "More Actions",
       description: "Offset helps highlight multiple elements clearly.",
-      offset: { mainAxis: 16, crossAxis: 16 },
+      offset: { mainAxis: 200, crossAxis: 200 },
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -66,18 +66,18 @@ export const TourWithSpotlightOffset = () => {
   const tour = useTour({ steps })
 
   return (
-    <Box>
-      <Button onClick={() => tour.start()} mb={4}>
+    <VStack gap="4" alignItems="flex-start">
+      <Button onClick={() => tour.start()}>
         <LuSparkles />
         Begin Tour
       </Button>
 
-      <HStack gap={3} mt={4}>
+      <HStack gap={3}>
         <Button ref={uploadRef} variant="outline">
           <LuUpload />
           Upload
         </Button>
-        <Button ref={saveRef} variant="outline" colorPalette="blue">
+        <Button ref={saveRef} variant="outline" colorScheme="blue">
           <LuSave />
           Save
         </Button>
@@ -96,15 +96,15 @@ export const TourWithSpotlightOffset = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
+            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control>
-              <Tour.ProgressText />
+            <Tour.Control justifyContent="flex-end" gap="4">
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </VStack>
   )
 }

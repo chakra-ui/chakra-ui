@@ -22,15 +22,15 @@ export const TourPreventInteraction = () => {
       id: "welcome",
       type: "dialog",
       title: "Welcome to your Tour!",
-      description: "Let's walk through key actions for your next concert drop.",
+      description: "Click through the buttons below to see their actions.",
       actions: [{ label: "Start", action: "next" }],
     },
     {
       id: "upload",
       type: "tooltip",
       target: () => uploadRef.current,
-      title: "Upload Setlist",
-      description: "Add the setlist you'll perform tonight.",
+      title: "Upload",
+      description: "Click this button to upload your setlist.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -40,8 +40,8 @@ export const TourPreventInteraction = () => {
       id: "save",
       type: "tooltip",
       target: () => saveRef.current,
-      title: "Save Changes",
-      description: "Keep your edits synced for collaborators.",
+      title: "Save",
+      description: "Click here to save your edits.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Next", action: "next" },
@@ -51,8 +51,8 @@ export const TourPreventInteraction = () => {
       id: "more",
       type: "tooltip",
       target: () => moreRef.current,
-      title: "More Actions",
-      description: "Share the drop, schedule publish, and more.",
+      title: "More",
+      description: "Click this for additional options.",
       actions: [
         { label: "Back", action: "prev" },
         { label: "Finish", action: "dismiss" },
@@ -60,7 +60,11 @@ export const TourPreventInteraction = () => {
     },
   ]
 
-  const tour = useTour({ steps, preventInteraction: true })
+  const tour = useTour({
+    steps,
+    preventInteraction: true,
+    closeOnInteractOutside: false,
+  })
 
   return (
     <VStack gap="4" alignItems="flex-start">
@@ -74,7 +78,7 @@ export const TourPreventInteraction = () => {
           <LuUpload />
           Upload
         </Button>
-        <Button ref={saveRef} variant="outline" colorPalette="blue">
+        <Button ref={saveRef} variant="outline" colorScheme="blue">
           <LuSave />
           Save
         </Button>
