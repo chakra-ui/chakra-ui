@@ -158,7 +158,7 @@ export const CheckboxGroup = chakra(
     },
   },
   { forwardAsChild: true },
-)
+) as React.FC<CheckboxGroupProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

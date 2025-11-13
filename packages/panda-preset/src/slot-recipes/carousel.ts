@@ -7,54 +7,63 @@ export const carouselSlotRecipe = defineSlotRecipe({
     "itemGroup",
     "item",
     "control",
-    "prevTrigger",
     "nextTrigger",
-    "autoplayTrigger",
+    "prevTrigger",
     "indicatorGroup",
     "indicator",
+    "autoplayTrigger",
   ],
   base: {
     root: {
       position: "relative",
-      overflow: "hidden",
-      "--carousel-spacing": "spacing.4",
-    },
-    itemGroup: {
       display: "flex",
-      transition: "transform 0.3s ease-in-out",
+      gap: "2",
+      _horizontal: {
+        flexDirection: "column",
+      },
+      _vertical: {
+        flexDirection: "row",
+      },
     },
     item: {
-      minWidth: "0",
-      flex: "0 0 auto",
-      width: "full",
+      _horizontal: {
+        width: "100%",
+      },
+      _vertical: {
+        height: "100%",
+      },
     },
     control: {
-      position: "absolute",
-      top: "50%",
-      left: 0,
-      width: "100%",
       display: "flex",
-      justifyContent: "space-between",
       alignItems: "center",
-      transform: "translateY(-50%)",
-      px: "var(--carousel-spacing)",
-      zIndex: 2,
+      _horizontal: {
+        flexDirection: "row",
+        width: "100%",
+      },
+      _vertical: {
+        flexDirection: "column",
+        height: "100%",
+      },
     },
     indicatorGroup: {
       display: "flex",
       justifyContent: "center",
-      gap: "2",
-      mt: "var(--carousel-spacing)",
+      gap: "3",
+      _horizontal: {
+        flexDirection: "row",
+      },
+      _vertical: {
+        flexDirection: "column",
+      },
     },
     indicator: {
-      width: "3",
-      height: "3",
+      width: "2.5",
+      height: "2.5",
       borderRadius: "full",
-      bg: "bg.muted",
-      cursor: "pointer",
-      transition: "all 0.2s",
-      "&[data-current]": {
-        bg: "fg",
+      bg: "colorPalette.subtle",
+      cursor: "button",
+      _current: {
+        bg: "colorPalette.solid",
       },
     },
   },
