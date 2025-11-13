@@ -19,19 +19,19 @@ export const SplitterKeyboardResize = () => {
         <Text>: Shift for bigger steps, Home/End to jump to min/max</Text>
       </HStack>
 
-      <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} keyboardResizeBy={5}>
+      <Splitter.Root
+        panels={[{ id: "a" }, { id: "b" }]}
+        keyboardResizeBy={5}
+        minH="60"
+      >
         <Splitter.Panel id="a">
-          <DecorativeBox fontSize="2xl" h="250px">
-            A
-          </DecorativeBox>
+          <DecorativeBox fontSize="2xl">A</DecorativeBox>
         </Splitter.Panel>
 
         <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
 
         <Splitter.Panel id="b">
-          <DecorativeBox fontSize="2xl" h="250px">
-            B
-          </DecorativeBox>
+          <DecorativeBox fontSize="2xl">B</DecorativeBox>
         </Splitter.Panel>
       </Splitter.Root>
     </Box>

@@ -24,3 +24,4 @@ export { SplitterExplorer as Explorer } from "compositions/examples/splitter-exp
 export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
 export { SplitterDisabled as Disabled } from "compositions/examples/splitter-disabled"
 export { SplitterConditional as Conditional } from "compositions/examples/splitter-conditional"
+export { SplitterComposition as Composition } from "compositions/examples/splitter-composition"

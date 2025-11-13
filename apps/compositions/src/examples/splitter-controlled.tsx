@@ -24,19 +24,16 @@ export const SplitterControlled = () => {
         panels={[{ id: "a" }, { id: "b" }]}
         size={sizes}
         onResize={(details) => setSizes(details.size)}
+        minH="60"
       >
         <Splitter.Panel id="a">
-          <DecorativeBox fontSize="2xl" h="250px">
-            A
-          </DecorativeBox>
+          <DecorativeBox fontSize="2xl">A</DecorativeBox>
         </Splitter.Panel>
 
         <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
 
         <Splitter.Panel id="b">
-          <DecorativeBox fontSize="2xl" h="250px">
-            B
-          </DecorativeBox>
+          <DecorativeBox fontSize="2xl">B</DecorativeBox>
         </Splitter.Panel>
       </Splitter.Root>
     </Box>

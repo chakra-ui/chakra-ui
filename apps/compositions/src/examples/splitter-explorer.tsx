@@ -3,7 +3,7 @@ import { DecorativeBox } from "compositions/lib/decorative-box"
 
 export const SplitterExplorer = () => {
   return (
-    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} minH="60">
       <Splitter.Panel id="a">
         <DecorativeBox fontSize="2xl">A</DecorativeBox>
       </Splitter.Panel>
