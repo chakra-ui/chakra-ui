@@ -8,61 +8,10 @@ import {
   VStack,
   useTour,
 } from "@chakra-ui/react"
-import { useRef } from "react"
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
 export const TourWithSpotlightOffset = () => {
-  const uploadRef = useRef<HTMLButtonElement | null>(null)
-  const saveRef = useRef<HTMLButtonElement | null>(null)
-  const moreRef = useRef<HTMLButtonElement | null>(null)
-
-  const steps: TourStep[] = [
-    {
-      id: "welcome",
-      type: "dialog",
-      title: "Spotlight Offset",
-      description: "The spotlight has a custom offset around the target.",
-      actions: [{ label: "Start", action: "next" }],
-    },
-    {
-      id: "upload",
-      type: "tooltip",
-      target: () => uploadRef.current,
-      title: "Upload",
-      description: "Extra padding around the spotlight gives breathing room.",
-      offset: { mainAxis: 8, crossAxis: 8 },
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "save",
-      type: "tooltip",
-      target: () => saveRef.current,
-      title: "Save",
-      description: "Different steps can have different offsets.",
-      offset: { mainAxis: 12, crossAxis: 12 },
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "more",
-      type: "tooltip",
-      target: () => moreRef.current,
-      title: "More Actions",
-      description: "Offset helps highlight multiple elements clearly.",
-      offset: { mainAxis: 200, crossAxis: 200 },
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Finish", action: "dismiss" },
-      ],
-    },
-  ]
-
   const tour = useTour({ steps })
 
   return (
@@ -72,20 +21,7 @@ export const TourWithSpotlightOffset = () => {
         Begin Tour
       </Button>
 
-      <HStack gap={3}>
-        <Button ref={uploadRef} variant="outline">
-          <LuUpload />
-          Upload
-        </Button>
-        <Button ref={saveRef} variant="outline" colorScheme="blue">
-          <LuSave />
-          Save
-        </Button>
-        <Button ref={moreRef} variant="outline">
-          <MdMoreHoriz />
-          More
-        </Button>
-      </HStack>
+      <ActionButtons />
 
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
@@ -108,3 +44,72 @@ export const TourWithSpotlightOffset = () => {
     </VStack>
   )
 }
+
+export const ActionButtons = () => {
+  return (
+    <HStack gap={3}>
+      {buttons.map((btn) => (
+        <Button
+          key={btn.id}
+          id={btn.id}
+          variant="outline"
+          colorScheme={btn.colorScheme}
+        >
+          {btn.icon} {btn.label}
+        </Button>
+      ))}
+    </HStack>
+  )
+}
+
+const buttons = [
+  { id: "btn-upload", label: "Upload", icon: <LuUpload /> },
+  { id: "btn-save", label: "Save", icon: <LuSave />, colorScheme: "blue" },
+  { id: "btn-more", label: "More", icon: <MdMoreHoriz /> },
+]
+
+const steps: TourStep[] = [
+  {
+    id: "welcome",
+    type: "dialog",
+    title: "Spotlight Offset",
+    description: "The spotlight has a custom offset around the target.",
+    actions: [{ label: "Start", action: "next" }],
+  },
+  {
+    id: "upload",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-upload"),
+    title: "Upload",
+    description: "Extra padding around the spotlight gives breathing room.",
+    offset: { mainAxis: 8, crossAxis: 8 },
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "save",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-save"),
+    title: "Save",
+    description: "Different steps can have different offsets.",
+    offset: { mainAxis: 12, crossAxis: 12 },
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "more",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-more"),
+    title: "More Actions",
+    description: "Offset helps highlight multiple elements clearly.",
+    offset: { mainAxis: 20, crossAxis: 90 },
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Finish", action: "dismiss" },
+    ],
+  },
+]

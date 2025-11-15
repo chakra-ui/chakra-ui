@@ -8,58 +8,10 @@ import {
   VStack,
   useTour,
 } from "@chakra-ui/react"
-import { useRef } from "react"
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
 export const TourCloseOnEscape = () => {
-  const uploadRef = useRef<HTMLButtonElement | null>(null)
-  const saveRef = useRef<HTMLButtonElement | null>(null)
-  const moreRef = useRef<HTMLButtonElement | null>(null)
-
-  const steps: TourStep[] = [
-    {
-      id: "welcome",
-      type: "dialog",
-      title: "Close on Escape",
-      description: "Press the Escape key at any time to close the tour.",
-      actions: [{ label: "Start", action: "next" }],
-    },
-    {
-      id: "upload",
-      type: "tooltip",
-      target: () => uploadRef.current,
-      title: "Upload",
-      description: "Try pressing Escape to dismiss the tour.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "save",
-      type: "tooltip",
-      target: () => saveRef.current,
-      title: "Save",
-      description: "You can close this at any time with Escape.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "more",
-      type: "tooltip",
-      target: () => moreRef.current,
-      title: "More Actions",
-      description: "Test the Escape key functionality.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Finish", action: "dismiss" },
-      ],
-    },
-  ]
-
   const tour = useTour({ steps, closeOnEscape: true })
 
   return (
@@ -69,20 +21,7 @@ export const TourCloseOnEscape = () => {
         Begin Tour
       </Button>
 
-      <HStack gap={3}>
-        <Button ref={uploadRef} variant="outline">
-          <LuUpload />
-          Upload
-        </Button>
-        <Button ref={saveRef} variant="outline" colorPalette="blue">
-          <LuSave />
-          Save
-        </Button>
-        <Button ref={moreRef} variant="outline">
-          <MdMoreHoriz />
-          More
-        </Button>
-      </HStack>
+      <ActionButtons />
 
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
@@ -105,3 +44,69 @@ export const TourCloseOnEscape = () => {
     </VStack>
   )
 }
+
+export const ActionButtons = () => {
+  return (
+    <HStack gap={3}>
+      {buttons.map((btn) => (
+        <Button
+          key={btn.id}
+          id={btn.id}
+          variant="outline"
+          colorScheme={btn.colorScheme}
+        >
+          {btn.icon} {btn.label}
+        </Button>
+      ))}
+    </HStack>
+  )
+}
+
+const buttons = [
+  { id: "btn-upload", label: "Upload", icon: <LuUpload /> },
+  { id: "btn-save", label: "Save", icon: <LuSave />, colorScheme: "blue" },
+  { id: "btn-more", label: "More", icon: <MdMoreHoriz /> },
+]
+
+const steps: TourStep[] = [
+  {
+    id: "welcome",
+    type: "dialog",
+    title: "Close on Escape",
+    description: "Press the Escape key at any time to close the tour.",
+    actions: [{ label: "Start", action: "next" }],
+  },
+  {
+    id: "upload",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-upload"),
+    title: "Upload",
+    description: "Try pressing Escape to dismiss the tour.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "save",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-save"),
+    title: "Save",
+    description: "You can close this at any time with Escape.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "more",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-more"),
+    title: "More Actions",
+    description: "Test the Escape key functionality.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Finish", action: "dismiss" },
+    ],
+  },
+]

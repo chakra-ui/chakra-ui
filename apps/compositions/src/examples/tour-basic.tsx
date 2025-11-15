@@ -8,58 +8,10 @@ import {
   VStack,
   useTour,
 } from "@chakra-ui/react"
-import { useRef } from "react"
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
 export const TourBasic = () => {
-  const uploadRef = useRef<HTMLButtonElement | null>(null)
-  const saveRef = useRef<HTMLButtonElement | null>(null)
-  const moreRef = useRef<HTMLButtonElement | null>(null)
-
-  const steps: TourStep[] = [
-    {
-      id: "welcome",
-      type: "dialog",
-      title: "Welcome to your Tour!",
-      description: "Let's walk through key actions for your next concert drop.",
-      actions: [{ label: "Start", action: "next" }],
-    },
-    {
-      id: "upload",
-      type: "tooltip",
-      target: () => uploadRef.current,
-      title: "Upload Setlist",
-      description: "Add the setlist you'll perform tonight.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "save",
-      type: "tooltip",
-      target: () => saveRef.current,
-      title: "Save Changes",
-      description: "Keep your edits synced for collaborators.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Next", action: "next" },
-      ],
-    },
-    {
-      id: "more",
-      type: "tooltip",
-      target: () => moreRef.current,
-      title: "More Actions",
-      description: "Share the drop, schedule publish, and more.",
-      actions: [
-        { label: "Back", action: "prev" },
-        { label: "Finish", action: "dismiss" },
-      ],
-    },
-  ]
-
   const tour = useTour({ steps })
 
   return (
@@ -69,20 +21,7 @@ export const TourBasic = () => {
         Begin Tour
       </Button>
 
-      <HStack gap={3}>
-        <Button ref={uploadRef} variant="outline">
-          <LuUpload />
-          Upload
-        </Button>
-        <Button ref={saveRef} variant="outline" colorPalette="blue">
-          <LuSave />
-          Save
-        </Button>
-        <Button ref={moreRef} variant="outline">
-          <MdMoreHoriz />
-          More
-        </Button>
-      </HStack>
+      <ActionButtons />
 
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
@@ -105,3 +44,73 @@ export const TourBasic = () => {
     </VStack>
   )
 }
+
+export const ActionButtons = () => {
+  return (
+    <HStack gap={3}>
+      {buttons.map((btn) => (
+        <Button
+          key={btn.id}
+          id={btn.id}
+          variant="outline"
+          colorScheme={btn.colorScheme}
+        >
+          {btn.icon} {btn.label}
+        </Button>
+      ))}
+    </HStack>
+  )
+}
+
+const buttons = [
+  { id: "btn-upload", label: "Upload", icon: <LuUpload /> },
+  { id: "btn-save", label: "Save", icon: <LuSave />, colorScheme: "blue" },
+  { id: "btn-more", label: "More", icon: <MdMoreHoriz /> },
+]
+
+const steps: TourStep[] = [
+  {
+    id: "welcome",
+    type: "dialog",
+    title: "Welcome to Your Tour!",
+    description:
+      "This tour will guide you through the main actions in the UI: uploading files, saving changes, and accessing more options.",
+    actions: [{ label: "Start", action: "next" }],
+  },
+  {
+    id: "upload",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-upload"),
+    title: "Upload Setlist",
+    description:
+      "Click the Upload button to add your setlist files to the system.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "save",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-save"),
+    title: "Save Changes",
+    description:
+      "Click Save to store your edits and make sure your changes are not lost.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "more",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#btn-more"),
+    title: "More Actions",
+    description:
+      "Click More to access additional options such as sharing, scheduling, and other tools.",
+    actions: [
+      { label: "Back", action: "prev" },
+      { label: "Finish", action: "dismiss" },
+    ],
+  },
+]

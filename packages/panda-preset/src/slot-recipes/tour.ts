@@ -18,10 +18,16 @@ export const tourSlotRecipe = defineSlotRecipe({
   className: "tour",
   base: {
     backdrop: {
-      inset: "0",
-      bg: "blackAlpha.600",
-      _open: { animationName: "fade-in", animationDuration: "slow" },
-      _closed: { animationName: "fade-out", animationDuration: "moderate" },
+      bg: "blackAlpha.500",
+      zIndex: "var(--tour-z-index, 1400)",
+      _open: {
+        animationName: "fade-in",
+        animationDuration: "slow",
+      },
+      _closed: {
+        animationName: "fade-out",
+        animationDuration: "moderate",
+      },
     },
     content: {
       position: "relative",
@@ -29,15 +35,15 @@ export const tourSlotRecipe = defineSlotRecipe({
       borderRadius: "l3",
       p: "6",
       display: "flex",
+      width: "100%",
       flexDirection: "column",
       gap: "2",
-      maxW: "sm",
+      zIndex: "calc(var(--tour-z-index, 1400) + 1)",
+      boxShadow: "lg",
       _open: {
-        animationName: "scale-in, fade-in",
         animationDuration: "moderate",
       },
       _closed: {
-        animationName: "scale-out, fade-out",
         animationDuration: "faster",
       },
     },
@@ -58,6 +64,11 @@ export const tourSlotRecipe = defineSlotRecipe({
       gap: "3",
       mt: "4",
     },
+    spotlight: {
+      border: "3px solid var(--colors-bg.panel)",
+      boxShadow: "lg",
+      borderRadius: "l3",
+    },
     actionTrigger: {
       px: "5",
       py: "1",
@@ -73,5 +84,10 @@ export const tourSlotRecipe = defineSlotRecipe({
       cursor: "button",
       _icon: { boxSize: "4" },
     },
+    arrow: {
+      "--arrow-size": "sizes.3",
+      "--arrow-background": "colors.bg.panel",
+    },
+    arrowTip: { borderTopWidth: "1px", borderInlineStartWidth: "1px" },
   },
 })
