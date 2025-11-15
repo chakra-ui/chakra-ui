@@ -32,3 +32,4 @@ export { TagsInputWithPaste as Paste } from "compositions/examples/tags-input-wi
 export { TagsInputWithSizes as Sizes } from "compositions/examples/tags-input-with-sizes"
 export { TagsInputWithStore as Store } from "compositions/examples/tags-input-with-store"
 export { TagsInputWithVariants as Variants } from "compositions/examples/tags-input-with-variants"
+export { TagsInputWithLongTags as LongTags } from "compositions/examples/tags-input-with-long-tags"
