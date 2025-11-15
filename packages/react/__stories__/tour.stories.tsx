@@ -24,3 +24,4 @@ export { TourWithoutBackdrop as WithoutBackdrop } from "compositions/examples/to
 export { TourWithRouting as Routing } from "compositions/examples/tour-with-routing"
 export { TourWithSpotlightOffset as SpotlightOffset } from "compositions/examples/tour-spotlight-offset"
 export { TourWithImages as Images } from "compositions/examples/tour-with-images"
+export { TourTypes as Types } from "compositions/examples/tour-types"

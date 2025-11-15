@@ -18,6 +18,30 @@ links:
 import { Tour, useTour } from "@chakra-ui/react"
 ```
 
+```jsx
+
+const tour = useTour({ steps })
+
+<Tour.Root tour={tour}>
+  <Tour.Backdrop />
+  <Tour.Spotlight />
+  <Tour.Positioner>
+    <Tour.Content>
+      <Tour.Arrow>
+        <Tour.ArrowTip />
+      </Tour.Arrow>
+      <Tour.CloseTrigger />
+      <Tour.ProgressText />
+      <Tour.Title />
+      <Tour.Description />
+      <Tour.Control justifyContent="flex-end" gap="4">
+        <Tour.ActionTriggers />
+      </Tour.Control>
+    </Tour.Content>
+  </Tour.Positioner>
+</Tour.Root>
+```
+
 ## Shortcuts
 
 TourActionTriggers renders all action buttons for the current step from its
@@ -46,19 +70,21 @@ This is more concise:
 
 ## Examples
 
-### Controlled
+### Types
 
-Control the tour programmatically with the `useTour` store (start, next, prev,
-setStep, progress).
+You can specify the type of each step using the `type` property. Depending on
+the type, the tour step behaves differently:
 
-<ExampleTabs name="tour-controlled" />
+- `dialog` – modal-like step without a target
+- `tooltip` – points to a specific target element
+- `wait` – pauses the tour until a certain condition is met
+- `floating` – a step that floats without targeting an element
 
-### Sizes
+<ExampleTabs name="tour-types" />
 
-The tour content doesn’t have a dedicated `size` prop. Instead, it automatically
-adapts to the size of its container or the target element it’s attached to.
-
-<ExampleTabs name="tour-with-sizes" />
+:::note The `type` property is optional. If no target is provided, `dialog` is
+used by default. Use `tooltip` for contextual highlights, `wait` to pause, and
+`floating` for custom floating steps. :::
 
 ### Placement
 
@@ -69,7 +95,7 @@ option per step.
 
 ### Without Arrow
 
-Hide the arrow by setting `arrow: false` on a step.
+Hide the tour arrow by setting `arrow: false` on a step.
 
 <ExampleTabs name="tour-without-arrow" />
 
@@ -86,12 +112,6 @@ Pause the tour until a condition is met (e.g., wait for a user click) using a
 
 <ExampleTabs name="tour-wait-step" />
 
-### Immediate
-
-Sync state changes immediately without deferring to the next frame.
-
-<ExampleTabs name="tour-with-immediate" />
-
 ### Keyboard Navigation
 
 Enable keyboard navigation to allow users to navigate between steps using arrow
@@ -104,34 +124,45 @@ keys (Left and Right). Pass `keyboardNavigation: true` to the `useTour` hook.
 Close the tour when the user presses the Escape key. Pass `closeOnEscape: true`
 to the `useTour` hook.
 
-<ExampleTabs name="tour-with-close-on-escape" />
+<ExampleTabs name="tour-close-on-escape" />
 
 ### Close on Interact Outside
 
 Close the tour when the user clicks or interacts outside the tour content. Pass
 `closeOnInteractOutside: true` to the `useTour` hook.
 
-<ExampleTabs name="tour-with-close-on-interact-outside" />
+<ExampleTabs name="tour-close-on-interact-outside" />
 
 ### Prevent Interaction
 
 Prevent interaction with the rest of the page while the tour is active. Pass
 `preventInteraction: true` to the `useTour` hook.
 
-<ExampleTabs name="tour-with-prevent-interaction" />
+<ExampleTabs name="tour-prevent-interaction" />
 
 ### Spotlight Offset
 
-Customize the spacing around the spotlight by setting the `spotlightOffset`
-property on each step. Pass an object with `x` and `y` values to adjust the
+Customize the spacing between the spotlight and target by setting the
+`spotlightOffset` property. Pass an object with `x` and `y` values to adjust the
 padding.
 
-<ExampleTabs name="tour-with-spotlight-offset" />
+<ExampleTabs name="tour-spotlight-offset" />
+
+### Images
+
+You can display custom images for each step in the tour by using the `meta`
+property of a step.
+
+<ExampleTabs name="tour-with-images" />
+
+:::info The `meta` property is a great way to add extra metadata to a step, such
+as images, icons, or any custom data you might need. :::
 
 ### Routing
 
-Demonstrates how to create a multi-page guided tour that persists across route
-changes.
+You can create a multi-page guided tour that persists across route changes using
+React Router. Each step can navigate to a different page before showing itself,
+making it easy to guide users through complex flows spanning multiple routes.
 
 <ExampleTabs name="tour-with-routing" />
 
@@ -140,3 +171,51 @@ changes.
 ### Root
 
 <PropTable component="Tour" part="Root" />
+
+### Control
+
+<PropTable component="Tour" part="Control" />
+
+### Content
+
+<PropTable component="Tour" part="Content" />
+
+### Positioner
+
+<PropTable component="Tour" part="Positioner" />
+
+### Title
+
+<PropTable component="Tour" part="Title" />
+
+### ActionTrigger
+
+<PropTable component="Tour" part="ActionTrigger" />
+
+### CloseTrigger
+
+<PropTable component="Tour" part="CloseTrigger" />
+
+### ProgressText
+
+<PropTable component="Tour" part="ProgressText" />
+
+### Description
+
+<PropTable component="Tour" part="Description" />
+
+### Arrow
+
+<PropTable component="Tour" part="Arrow" />
+
+### ArrowTip
+
+<PropTable component="Tour" part="ArrowTip" />
+
+### Backdrop
+
+<PropTable component="Tour" part="Backdrop" />
+
+### Spotlight
+
+<PropTable component="Tour" part="Spotlight" />
