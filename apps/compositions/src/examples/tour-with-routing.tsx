@@ -142,17 +142,15 @@ const ActivityPage = () => (
     <Text fontSize="xl" fontWeight="bold">
       Recent Activities
     </Text>
-    <SimpleGrid columns={{ base: 2 }} gap={10}>
-      <CardWithImage
-        title="New Project Launch"
-        description="Check out the details of our latest project launch."
-        image="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      />
-      <CardWithImage
-        title="Team Meetup"
-        description="Our team had a successful meetup in the city."
-        image="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      />
+    <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
+      {activities.map((activity, index) => (
+        <CardWithImage
+          key={index}
+          title={activity.title}
+          description={activity.description}
+          image={activity.image}
+        />
+      ))}
     </SimpleGrid>
   </Stack>
 )
@@ -221,5 +219,20 @@ const tourSteps: Omit<TourStep, "effect">[] = [
       { label: "Back", action: "prev" },
       { label: "Finish", action: "dismiss" },
     ],
+  },
+]
+
+const activities = [
+  {
+    title: "New Project Launch",
+    description: "Check out the details of our latest project launch.",
+    image:
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Team Meetup",
+    description: "Our team had a successful meetup in the city.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ]
