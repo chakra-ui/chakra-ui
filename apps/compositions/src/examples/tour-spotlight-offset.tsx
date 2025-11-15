@@ -11,7 +11,7 @@ import {
 import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
 import { MdMoreHoriz } from "react-icons/md"
 
-export const TourWithSpotlightOffset = () => {
+export const TourSpotlightOffset = () => {
   const tour = useTour({ steps })
 
   return (

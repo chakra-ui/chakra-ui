@@ -22,6 +22,6 @@ export { TourPreventInteraction as PreventInteraction } from "compositions/examp
 export { TourWithoutArrow as WithoutArrow } from "compositions/examples/tour-without-arrow"
 export { TourWithoutBackdrop as WithoutBackdrop } from "compositions/examples/tour-without-backdrop"
 export { TourWithRouting as Routing } from "compositions/examples/tour-with-routing"
-export { TourWithSpotlightOffset as SpotlightOffset } from "compositions/examples/tour-spotlight-offset"
+export { TourSpotlightOffset as SpotlightOffset } from "compositions/examples/tour-spotlight-offset"
 export { TourWithImages as Images } from "compositions/examples/tour-with-images"
 export { TourTypes as Types } from "compositions/examples/tour-types"

@@ -20,6 +20,8 @@ export const TourWithPlacements = () => {
         Begin Tour
       </Button>
 
+      <ActionButtons />
+
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
         <Tour.Spotlight />
