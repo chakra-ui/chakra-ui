@@ -43,7 +43,7 @@ export { ComboboxWithCustomObject as CustomObject } from "compositions/examples/
 export { ComboboxWithInputInContent as InputInContent } from "compositions/examples/combobox-with-input-in-content"
 export { ComboboxWithFormSubmit as FormSubmit } from "compositions/examples/combobox-with-form-submit"
 export { ComboboxWithHookForm as HookForm } from "compositions/examples/combobox-with-hook-form"
+export { ComboboxWithCreateable as Createable } from "compositions/examples/combobox-with-createable"
 
 export { ComboboxWithSelectionBehavior as SelectionBehavior } from "compositions/examples/combobox-with-selection-behavior"
-export { ComboboxWithCreateableOptions as CreateableOptions } from "compositions/examples/combobox-with-createable-options"
 export { ComboboxColorPicker as ColorPicker } from "compositions/examples/combobox-color-picker"
