@@ -1,0 +1,80 @@
+{
+  "name": "@chakra-ui/tiptap-editor",
+  "version": "1.0.0",
+  "description": "Customizable and accessible rich text editor for Chakra UI",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/tiptap-editor"
+  },
+  "keywords": [
+    "ui",
+    "editor",
+    "chakra-ui",
+    "rich-text",
+    "react"
+  ],
+  "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=3",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@tiptap/extension-code-block-lowlight": "^3.10.7",
+    "@tiptap/extension-color": "^3.10.7",
+    "@tiptap/extension-highlight": "^3.10.7",
+    "@tiptap/extension-link": "^3.10.7",
+    "@tiptap/extension-placeholder": "^3.10.7",
+    "@tiptap/extension-task-item": "^3.10.7",
+    "@tiptap/extension-task-list": "^3.10.7",
+    "@tiptap/extension-text-align": "^3.10.7",
+    "@tiptap/extension-text-style": "^3.10.7",
+    "@tiptap/pm": "^3.10.7",
+    "@tiptap/react": "^3.10.7",
+    "@tiptap/starter-kit": "^3.10.7",
+    "lowlight": "^3.1.0",
+    "react-icons": "^5.0.0"
+  }
+}

@@ -24,6 +24,7 @@
     "@ark-ui/react": "5.27.1",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
+    "@chakra-ui/tiptap-editor": "workspace:*",
     "@emotion/react": "11.14.0",
     "@shikijs/rehype": "3.13.0",
     "@shikijs/transformers": "3.13.0",
