@@ -1,11 +1,12 @@
-import { Splitter } from "@chakra-ui/react"
-import { DecorativeBox } from "compositions/lib/decorative-box"
+import { Center, Splitter } from "@chakra-ui/react"
 
 export const SplitterNested = () => {
   return (
-    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} borderWidth="1px">
       <Splitter.Panel id="a">
-        <DecorativeBox fontSize="2xl">A</DecorativeBox>
+        <Center boxSize="full" textStyle="2xl">
+          A
+        </Center>
       </Splitter.Panel>
       <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
 
@@ -16,7 +17,9 @@ export const SplitterNested = () => {
           minH="80"
         >
           <Splitter.Panel id="b1">
-            <DecorativeBox fontSize="2xl">B1</DecorativeBox>
+            <Center boxSize="full" textStyle="2xl">
+              B1
+            </Center>
           </Splitter.Panel>
 
           <Splitter.ResizeTrigger
@@ -25,7 +28,9 @@ export const SplitterNested = () => {
           />
 
           <Splitter.Panel id="b2">
-            <DecorativeBox fontSize="2xl">B2</DecorativeBox>
+            <Center boxSize="full" textStyle="2xl">
+              B2
+            </Center>
           </Splitter.Panel>
         </Splitter.Root>
       </Splitter.Panel>

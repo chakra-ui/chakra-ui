@@ -1,15 +1,22 @@
-import { Splitter } from "@chakra-ui/react"
-import { DecorativeBox } from "compositions/lib/decorative-box"
+import { Center, Splitter } from "@chakra-ui/react"
 
 export const SplitterDisabled = () => {
   return (
-    <Splitter.Root panels={[{ id: "a" }, { id: "b" }]} minH="60">
+    <Splitter.Root
+      panels={[{ id: "a" }, { id: "b" }]}
+      borderWidth="1px"
+      minH="60"
+    >
       <Splitter.Panel id="a">
-        <DecorativeBox fontSize="2xl">A</DecorativeBox>
+        <Center boxSize="full" textStyle="2xl">
+          A
+        </Center>
       </Splitter.Panel>
-      <Splitter.ResizeTrigger disabled id="a:b" aria-label="Resize" />
+      <Splitter.ResizeTrigger disabled id="a:b" />
       <Splitter.Panel id="b">
-        <DecorativeBox fontSize="2xl">B</DecorativeBox>
+        <Center boxSize="full" textStyle="2xl">
+          B
+        </Center>
       </Splitter.Panel>
     </Splitter.Root>
   )

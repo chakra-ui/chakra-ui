@@ -71,6 +71,28 @@ export const SplitterPanel = withContext<HTMLDivElement, SplitterPanelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SplitterResizeTriggerSeparatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const SplitterResizeTriggerSeparator = withContext<
+  HTMLDivElement,
+  SplitterResizeTriggerSeparatorProps
+>("div", "resizeTriggerSeparator")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SplitterResizeTriggerIndicatorProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const SplitterResizeTriggerIndicator = withContext<
+  HTMLDivElement,
+  SplitterResizeTriggerIndicatorProps
+>("div", "resizeTriggerIndicator")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SplitterResizeTriggerProps
   extends HTMLChakraProps<"button", ArkSplitter.ResizeTriggerBaseProps>,
     UnstyledProp {}
@@ -78,7 +100,18 @@ export interface SplitterResizeTriggerProps
 export const SplitterResizeTrigger = withContext<
   HTMLButtonElement,
   SplitterResizeTriggerProps
->(ArkSplitter.ResizeTrigger, "resizeTrigger", { forwardAsChild: true })
+>(ArkSplitter.ResizeTrigger, "resizeTrigger", {
+  forwardAsChild: true,
+  defaultProps: {
+    "aria-label": "Resize",
+    children: (
+      <>
+        <SplitterResizeTriggerSeparator />
+        <SplitterResizeTriggerIndicator />
+      </>
+    ),
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

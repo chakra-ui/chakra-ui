@@ -1,35 +1,36 @@
-import { Box, Splitter, Text } from "@chakra-ui/react"
-import { DecorativeBox } from "compositions/lib/decorative-box"
+import { Box, Center, HStack, Splitter } from "@chakra-ui/react"
+import { LuMouse, LuMoveHorizontal } from "react-icons/lu"
 
 export const SplitterCollapsible = () => {
   return (
     <Box>
-      <Text textStyle="sm" mb={4}>
+      <HStack textStyle="sm" mb={4}>
+        <LuMouse />
+        <LuMoveHorizontal />
         Drag the resizer to collapse or expand Panel A
-      </Text>
+      </HStack>
+
       <Splitter.Root
-        defaultSize={[15, 20]}
+        defaultSize={[40, 60]}
         panels={[
-          {
-            id: "a",
-            collapsible: true,
-            collapsedSize: 10,
-            minSize: 25,
-            maxSize: 25,
-          },
+          { id: "a", collapsible: true, collapsedSize: 10, minSize: 15 },
           { id: "b", minSize: 50 },
         ]}
-        orientation="horizontal"
+        borderWidth="1px"
         minH="60"
       >
         <Splitter.Panel id="a">
-          <DecorativeBox fontSize="2xl">A</DecorativeBox>
+          <Center boxSize="full" textStyle="2xl">
+            A
+          </Center>
         </Splitter.Panel>
 
-        <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
+        <Splitter.ResizeTrigger id="a:b" />
 
         <Splitter.Panel id="b">
-          <DecorativeBox fontSize="2xl">B</DecorativeBox>
+          <Center boxSize="full" textStyle="2xl">
+            B
+          </Center>
         </Splitter.Panel>
       </Splitter.Root>
     </Box>
