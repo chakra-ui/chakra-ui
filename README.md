@@ -1,7 +1,3 @@
-
-<h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
-<br />
-
 <p align="center">
   <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=chakra-ui&amp;config=eyJjb21tYW5kIjoibnB4IC15IEBjaGFrcmEtdWkvcmVhY3QtbWNwIn0%3D" target="_blank" rel="noreferrer">
     <img alt="Add MCP server to Cursor" height="20" src="https://cursor.com/deeplink/mcp-install-light.svg" />
