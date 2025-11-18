@@ -19,7 +19,7 @@
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   </a>
   <a href="https://github.com/chakra-ui/chakra-ui">
-    <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
+    <img alt="Github Stars" src="https://img.shields.io/github/stars/chakra-ui/chakra-ui?style=social" />
   </a>
   <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
