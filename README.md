@@ -1,4 +1,3 @@
-> subtle animation –
 > [Guillermo ▲](https://twitter.com/rauchg/status/1169632334389248000)
 
 ## Awards and Mentions
