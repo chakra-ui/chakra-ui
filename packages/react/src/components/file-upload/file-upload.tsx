@@ -5,7 +5,7 @@ import {
   FileUpload as ArkFileUpload,
   useFileUploadContext,
 } from "@ark-ui/react/file-upload"
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, useRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -81,10 +81,108 @@ export interface FileUploadDropzoneProps
   extends HTMLChakraProps<"li", ArkFileUpload.DropzoneBaseProps>,
     UnstyledProp {}
 
-export const FileUploadDropzone = withContext<
+const DropzoneBase = withContext<
   HTMLDivElement,
   FileUploadDropzoneProps
 >(ArkFileUpload.Dropzone, "dropzone", { forwardAsChild: true })
+
+export const FileUploadDropzone = forwardRef<
+  HTMLDivElement,
+  FileUploadDropzoneProps
+>(function FileUploadDropzone(props, ref) {
+  const { onClick, disableClick, ...rest } = props
+  const dropzoneRef = useRef<HTMLDivElement>(null)
+
+  // Combine refs using a callback
+  const setRef = (node: HTMLDivElement | null) => {
+    dropzoneRef.current = node
+    if (typeof ref === "function") {
+      ref(node)
+    } else if (ref) {
+      ref.current = node
+    }
+  }
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // If disableClick is true, don't handle the click
+    if (disableClick) {
+      onClick?.(event)
+      return
+    }
+
+    // Check if the click target is a child of the dropzone (not the dropzone itself)
+    const target = event.target as HTMLElement
+    const dropzoneElement = dropzoneRef.current
+
+    if (!dropzoneElement) {
+      onClick?.(event)
+      return
+    }
+
+    // Check if the click is on a child element (not the dropzone itself)
+    const isClickOnChild = target !== dropzoneElement && dropzoneElement.contains(target)
+
+    if (isClickOnChild) {
+      // Check if the click is on a button or trigger (which should not trigger the file input)
+      const isClickOnButton = target.closest("button") !== null
+      const isClickOnTrigger = target.closest('[data-part="trigger"]') !== null
+
+      // If clicking on a button or trigger, let it handle the click normally
+      if (isClickOnButton || isClickOnTrigger) {
+        onClick?.(event)
+        return
+      }
+
+      // Find the hidden input element within the file upload root
+      // First try to find by data-scope attribute, then by traversing up the DOM tree
+      let rootElement = dropzoneElement.closest('[data-scope="file-upload"]')
+      
+      // If not found by data-scope, try to find the root by looking for the hidden input's parent
+      if (!rootElement) {
+        // Traverse up to find a common ancestor that might contain the hidden input
+        let parent = dropzoneElement.parentElement
+        while (parent) {
+          const hiddenInput = parent.querySelector('input[type="file"]')
+          if (hiddenInput) {
+            rootElement = parent
+            break
+          }
+          parent = parent.parentElement
+        }
+      }
+
+      if (rootElement) {
+        const hiddenInput = rootElement.querySelector(
+          'input[type="file"]'
+        ) as HTMLInputElement | null
+
+        if (hiddenInput) {
+          // Trigger the file input click
+          hiddenInput.click()
+          // Prevent the event from bubbling to avoid double-triggering
+          // Note: We stop propagation only for child clicks we handle
+          event.stopPropagation()
+          event.preventDefault()
+          // Don't call onClick here since we've handled it
+          return
+        }
+      }
+    }
+
+    // For clicks on the dropzone itself, let the Ark UI handler work normally
+    // and also call the user's onClick handler if provided
+    onClick?.(event)
+  }
+
+  return (
+    <DropzoneBase
+      ref={setRef}
+      {...rest}
+      disableClick={disableClick}
+      onClick={handleClick}
+    />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
