@@ -1,6 +1,6 @@
 import { Center, Splitter } from "@chakra-ui/react"
 
-export const SplitterMutiplePanels = () => {
+export const SplitterMultiplePanels = () => {
   return (
     <Splitter.Root
       panels={[{ id: "a" }, { id: "b" }, { id: "c" }]}

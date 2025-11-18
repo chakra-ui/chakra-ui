@@ -14,7 +14,7 @@ export default {
 
 export { SplitterBasic as Basic } from "compositions/examples/splitter-basic"
 export { SplitterVertical as Vertical } from "compositions/examples/splitter-vertical"
-export { SplitterMutiplePanels as MultiplePanels } from "compositions/examples/splitter-multiple-panels"
+export { SplitterMultiplePanels as MultiplePanels } from "compositions/examples/splitter-multiple-panels"
 export { SplitterControlled as Controlled } from "compositions/examples/splitter-controlled"
 export { SplitterWithStore as Store } from "compositions/examples/splitter-with-store"
 export { SplitterCollapsible as Collapsible } from "compositions/examples/splitter-collapsible"
