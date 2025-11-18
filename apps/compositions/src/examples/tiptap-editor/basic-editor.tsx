@@ -1,9 +1,13 @@
 import {
+  BubbleMenu,
   EditorProvider,
   EditorRoot,
+  H1,
+  H2,
   RichTextEditor,
   TextFormatToolbar,
   ToolbarRoot,
+  Underline,
   useEditor,
 } from "@chakra-ui/tiptap-editor"
 
@@ -16,6 +20,11 @@ export function BasicEditor() {
     <EditorProvider editor={editor}>
       <RichTextEditor>
         <ToolbarRoot>
+          <BubbleMenu>
+            <H1 />
+            <H2 />
+            <Underline />
+          </BubbleMenu>
           <TextFormatToolbar />
         </ToolbarRoot>
         <EditorRoot />
