@@ -11,7 +11,7 @@
   <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=chakra-ui&amp;config=eyJjb21tYW5kIjoibnB4IC15IEBjaGFrcmEtdWkvcmVhY3QtbWNwIn0%3D" target="_blank" rel="noreferrer">
     <img alt="Add MCP server to Cursor" height="20" src="https://cursor.com/deeplink/mcp-install-light.svg" />
   </a>
-  <img alt="Github Checks" src="https://badgen.net/github/checks/chakra-ui/chakra-ui/main"/>
+  <img alt="Github Checks" src="https://img.shields.io/github/checks-status/chakra-ui/chakra-ui/main"/>
   <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   </a>
