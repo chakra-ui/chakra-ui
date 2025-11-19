@@ -26,3 +26,8 @@ export { SplitterDisabled as Disabled } from "compositions/examples/splitter-dis
 export { SplitterConditionalRendering as ConditionalRendering } from "compositions/examples/splitter-conditional-rendering"
 export { SplitterDynamicPanel as DynamicPanel } from "compositions/examples/splitter-dynamic-panel"
 export { SplitterIdeLayout as IdeLayout } from "compositions/examples/splitter-ide-layout"
+export { SplitterSeparatorOnly as SeparatorOnly } from "compositions/examples/splitter-separator-only"
+export { SplitterResponsiveOrientation as ResponsiveOrientation } from "compositions/examples/splitter-responsive-orientation"
+export { SplitterResetOnDoubleClick as ResetOnDoubleClick } from "compositions/examples/splitter-reset-on-double-click"
+export { SplitterResizeEvents as ResizeEvents } from "compositions/examples/splitter-resize-events"
+export { SplitterMinMaxConstraints as MinMaxConstraints } from "compositions/examples/splitter-min-max-constraints"

@@ -21,10 +21,38 @@ import { Splitter } from "@chakra-ui/react"
 
 ```jsx
 <Splitter.Root>
-  <Splitter.Panel id="a">Panel A</Splitter.Panel>
-  <Splitter.ResizeTrigger id="a:b" aria-label="Resize panels" />
-  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+  <Splitter.Panel />
+  <Splitter.ResizeTrigger>
+    <Splitter.ResizeTriggerSeparator />
+    <Splitter.ResizeTriggerIndicator />
+  </Splitter.ResizeTrigger>
+  <Splitter.Panel />
 </Splitter.Root>
+```
+
+## Shortcuts
+
+The `Splitter` component provides shortcuts for common use cases.
+
+### SplitterResizeTrigger
+
+The `Splitter.ResizeTrigger` renders the `Splitter.ResizeTriggerSeparator` and
+`Splitter.ResizeTriggerIndicator` within it by default.
+
+Writing this:
+
+```jsx
+<Splitter.ResizeTrigger id="a:b" />
+```
+
+is shorthand for writing this if you don't need to customize the separator or
+indicator:
+
+```jsx
+<Splitter.ResizeTrigger id="a:b">
+  <Splitter.ResizeTriggerSeparator />
+  <Splitter.ResizeTriggerIndicator />
+</Splitter.ResizeTrigger>
 ```
 
 ## Examples
@@ -50,6 +78,14 @@ Set `orientation="vertical"` for stacked panels that resize vertically.
 
 <ExampleTabs name="splitter-vertical" />
 
+### Responsive Orientation
+
+Use the `useBreakpointValue` hook to change the splitter orientation based on
+screen size. This example shows a vertical splitter on mobile devices and a
+horizontal splitter on larger screens.
+
+<ExampleTabs name="splitter-responsive-orientation" />
+
 ### Multiple Panels
 
 Create layouts with more than two resizable panels.
@@ -63,6 +99,13 @@ properties on a panel in the `panels` array. This allows users to collapse
 panels to a defined minimum size.
 
 <ExampleTabs name="splitter-collapsible" />
+
+### Min/Max Constraints
+
+Set `minSize` and `maxSize` on panels to constrain their resizable range and
+prevent resizing beyond these boundaries.
+
+<ExampleTabs name="splitter-min-max-constraints" />
 
 ### Nested Panels
 
@@ -88,6 +131,30 @@ This is useful if certain panels should remain fixed while allowing others to
 resize.
 
 <ExampleTabs name="splitter-disabled" />
+
+### Separator Only
+
+Customize the resize trigger to show only the separator without the indicator.
+This creates a minimal, clean appearance while maintaining full resize
+functionality.
+
+<ExampleTabs name="splitter-separator-only" />
+
+### Reset on Double Click
+
+Use `Splitter.Context` to access the splitter context and add a double-click
+handler to the resize trigger. This example resets panel sizes to their default
+values when the resize handle is double-clicked.
+
+<ExampleTabs name="splitter-reset-on-double-click" />
+
+### Resize Events
+
+Track resize events using `onResizeStart`, `onResize`, and `onResizeEnd` props.
+This example logs all resize events with timestamps and panel sizes, useful for
+debugging or implementing custom resize behavior.
+
+<ExampleTabs name="splitter-resize-events" />
 
 ### Keyboard Resize
 
@@ -129,11 +196,76 @@ panels are added or removed.
 ### Composition
 
 A real-world VS Code-like layout demonstrating nested splitters with different
-orientations, collapsible panels, and integrated code editing. Shows how to
-build complex, production-ready layouts with file explorers, editors, and
-terminals.
+orientations, collapsible panels, and integrated code editing.
 
 <ExampleTabs name="splitter-ide-layout" />
+
+## Guides
+
+### Accessing Splitter Context
+
+When you need to programmatically control the splitter, you can access the
+splitter context and its methods in two ways:
+
+- using the `Splitter.Context` render prop
+- using the `useSplitterContext` hook
+
+#### Using Splitter.Context Render Prop
+
+Use `Splitter.Context` as a render prop to access the context within the
+component tree:
+
+```tsx
+<Splitter.Root defaultSize={[50, 50]} panels={[{ id: "a" }, { id: "b" }]}>
+  <Splitter.Panel id="a">Panel A</Splitter.Panel>
+
+  <Splitter.Context>
+    {(context) => (
+      <Splitter.ResizeTrigger
+        id="a:b"
+        onDoubleClick={() => {
+          context.resetSizes()
+        }}
+      />
+    )}
+  </Splitter.Context>
+
+  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+</Splitter.Root>
+```
+
+#### Using useSplitterContext Hook
+
+Alternatively, use the `useSplitterContext` hook in a child component:
+
+```tsx
+import { useSplitterContext } from "@chakra-ui/react"
+
+const ResetButton = () => {
+  const splitter = useSplitterContext()
+  return <button onClick={() => splitter.resetSizes()}>Reset Sizes</button>
+}
+
+const Demo = () => (
+  <Splitter.Root defaultSize={[50, 50]} panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Panel id="a">Panel A</Splitter.Panel>
+    <Splitter.ResizeTrigger id="a:b" />
+    <Splitter.Panel id="b">
+      <ResetButton />
+    </Splitter.Panel>
+  </Splitter.Root>
+)
+```
+
+The context object (from either method) includes:
+
+- **`resetSizes()`**: Reset all panels to their default sizes
+- **`setSize(sizes)`**: Set panel sizes programmatically
+- **`collapsePanel(id)`**: Collapse a specific panel
+- **`expandPanel(id)`**: Expand a collapsed panel
+- **`isPanelCollapsed(id)`**: Check if a panel is collapsed
+- **`getItems()`**: Get the current items (panels and handles)
+- **`size`**: Current panel sizes array
 
 ## Props
 
