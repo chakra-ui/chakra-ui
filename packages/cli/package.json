@@ -50,7 +50,7 @@
     "@pandacss/is-valid-prop": "1.5.1",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
-    "@visulima/boxen": "^2.0.2",
+    "@visulima/boxen": "^2.0.10",
     "bundle-n-require": "1.1.2",
     "globby": "14.1.0",
     "chokidar": "3.6.0",
@@ -69,7 +69,7 @@
     "@babel/plugin-transform-typescript": "^7.26.0",
     "@types/babel__core": "^7.20.5",
     "recast": "^0.23.0",
-    "zod": "^4.1.12"
+    "zod": "^3.25.76"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=3.0.0-next.0"
