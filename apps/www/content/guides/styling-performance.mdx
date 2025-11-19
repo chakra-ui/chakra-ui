@@ -1,0 +1,278 @@
+---
+title: Styling Performance
+description:
+  Optimize styling performance by avoiding dynamic CSS props and using data
+  attributes, style attributes, and recipes
+publishedAt: "2025-11-19"
+collection: styling
+---
+
+Optimizing styling performance is crucial for maintaining smooth user
+experiences, especially in complex applications. This guide covers best
+practices for styling components in Chakra UI with a focus on performance.
+
+## The Cost of Dynamic Styles
+
+Dynamic styling through inline CSS props can impact performance in several ways:
+
+- **Runtime calculations**: Dynamic styles require computation on every render
+- **CSS-in-JS overhead**: Processing style objects into CSS strings introduces
+  additional processing time
+- **Memory usage**: Creating new style objects causes garbage collection
+  pressure
+- **React reconciliation**: Changing inline styles triggers React re-renders
+
+```tsx
+// ❌ Avoid: Dynamic styles recalculated on every render
+const Component = ({ isActive, size }) => {
+  return (
+    <Box
+      padding={isActive ? "8" : "4"}
+      background={isActive ? "blue.500" : "gray.100"}
+      fontSize={size === "large" ? "xl" : "md"}
+    >
+      Content
+    </Box>
+  )
+}
+```
+
+## Performance-First Patterns
+
+### 1. Use Data Attributes for State-Based Styling
+
+Data attributes provide a performant way to handle state-based styling without
+dynamic CSS props. The styles are pre-compiled and don't change at runtime.
+
+```tsx
+// ✅ Better: Use data attributes with static styles
+const Component = ({ isActive, isDisabled }) => {
+  return (
+    <Box
+      data-active={isActive || undefined}
+      data-disabled={isDisabled || undefined}
+      css={{
+        padding: "4",
+        background: "gray.100",
+        fontSize: "md",
+        "&[data-active]": {
+          padding: "8",
+          background: "blue.500",
+        },
+        "&[data-disabled]": {
+          opacity: 0.5,
+          cursor: "not-allowed",
+        },
+      }}
+    >
+      Content
+    </Box>
+  )
+}
+```
+
+### 2. Leverage CSS Variables for Dynamic Values
+
+For truly dynamic values (like animations or user-controlled properties), use
+CSS variables instead of inline styles.
+
+```tsx
+// ✅ Better: CSS variables for dynamic values
+const ProgressBar = ({ progress }) => {
+  return (
+    <Box
+      style={{ "--progress": `${progress}%` }}
+      css={{
+        width: "100%",
+        height: "8px",
+        background: "gray.200",
+        "&::before": {
+          content: '""',
+          display: "block",
+          width: "var(--progress)",
+          height: "100%",
+          background: "blue.500",
+          transition: "width 0.3s ease",
+        },
+      }}
+    ></Box>
+  )
+}
+```
+
+### 3. Use Recipes for Variant-Based Styling
+
+Recipes provide the most performant way to handle variant-based styling. All
+styles are pre-compiled and optimized at build time.
+
+```tsx
+// ✅ Best: Use recipes for variants
+import { createRecipeContext, defineRecipe } from "@chakra-ui/react"
+
+const cardRecipe = defineRecipe({
+  className: "card",
+  base: {
+    padding: "4",
+    borderRadius: "md",
+    transition: "all 0.2s",
+  },
+  variants: {
+    variant: {
+      elevated: {
+        boxShadow: "md",
+        background: "white",
+      },
+      outline: {
+        borderWidth: "1px",
+        borderColor: "gray.200",
+      },
+    },
+    size: {
+      sm: { padding: "2" },
+      md: { padding: "4" },
+      lg: { padding: "6" },
+    },
+    isActive: {
+      true: {
+        borderColor: "blue.500",
+        background: "blue.50",
+      },
+    },
+  },
+  compoundVariants: [
+    {
+      variant: "elevated",
+      isActive: true,
+      css: {
+        boxShadow: "lg",
+        transform: "translateY(-2px)",
+      },
+    },
+  ],
+})
+
+// Create component with recipe context
+const { withContext } = createRecipeContext({ recipe: cardRecipe })
+
+// Usage - variant props are passed directly
+const Card = withContext<HTMLDivElement, CardProps>("div")
+
+// In your app
+const App = () => (
+  <Card variant="elevated" size="lg" isActive>
+    Content
+  </Card>
+)
+```
+
+### 4. Use Style Attributes for One-Off Dynamic Values
+
+For single dynamic values that don't fit into variants, use the style attribute
+sparingly with CSS variables.
+
+```tsx
+// ✅ OK for one-off dynamic values
+const CustomComponent = ({ rotation, scale }) => {
+  return (
+    <Box
+      transform="rotate(var(--rotation)) scale(var(--scale))"
+      transition="transform 0.3s ease"
+      style={{ "--rotation": `${rotation}deg`, "--scale": scale }}
+    >
+      Content
+    </Box>
+  )
+}
+```
+
+## Performance Checklist
+
+Before shipping your component, consider:
+
+- [ ] **Are all style variants handled by recipes?** Steer clear of inline
+      conditional styles.
+- [ ] **Is state styling managed through data attributes?** Refrain from using
+      dynamic props for state changes.
+- [ ] **Are any dynamic values applied as CSS variables?** Avoid setting
+      individual style objects inline.
+- [ ] **Are class names static and consistent?** Prevent className recreation
+      and style object allocation on each render.
+
+## Zero-Runtime Alternative
+
+If your application requires absolute zero runtime CSS-in-JS overhead, consider
+using **Panda CSS** with **Ark UI** as an alternative stack:
+
+### Panda CSS + Chakra UI Preset
+
+[Panda CSS](https://panda-css.com) is a build-time CSS-in-JS solution that
+generates static CSS files with zero runtime overhead. You can use the
+`@chakra-ui/panda-preset` to get all of Chakra UI's design tokens, recipes, and
+patterns in a zero-runtime environment.
+
+```bash
+# Install dependencies
+npm install -D @pandacss/dev @chakra-ui/panda-preset
+```
+
+```tsx
+// panda.config.ts
+import { defineConfig } from "@pandacss/dev"
+
+export default defineConfig({
+  presets: ["@chakra-ui/panda-preset"],
+  include: ["./src/**/*.{js,jsx,ts,tsx}"],
+  outdir: "styled-system",
+})
+```
+
+```tsx
+// Use Chakra UI recipes with zero runtime
+import { css } from "styled-system/css"
+import { hstack, vstack } from "styled-system/patterns"
+import { button, card } from "styled-system/recipes"
+
+function App() {
+  return (
+    <div className={vstack({ gap: "4" })}>
+      <button className={button({ variant: "solid", size: "lg" })}>
+        Click me
+      </button>
+      <div className={card({ variant: "outline" })}>Card content</div>
+    </div>
+  )
+}
+```
+
+### Panda CSS + Ark UI
+
+For unstyled, accessible components with zero runtime, combine Panda CSS with
+[Ark UI](https://ark-ui.com):
+
+```tsx
+import { Dialog } from "@ark-ui/react/dialog"
+import { button, dialog } from "styled-system/recipes"
+
+const styles = dialog({ size: "md" })
+
+export const Modal = () => {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger className={button({ variant: "solid", size: "lg" })}>
+        Open
+      </Dialog.Trigger>
+      <Dialog.Positioner className={styles.positioner}>
+        <Dialog.Content className={styles.content}>
+          {/* Your content */}
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
+  )
+}
+```
+
+## Summary
+
+By following these patterns, you'll create applications that are not only fast
+but also maintainable and scalable. The key is to **move styling logic from
+runtime to build time whenever possible**.
