@@ -13,7 +13,7 @@ export const styles: Styles = {
     "*::placeholder": {
       color: "chakra-placeholder-color",
     },
-    "*, *::before, &::after": {
+    "*, *::before, *::after": {
       borderColor: "chakra-border-color",
     },
   },
