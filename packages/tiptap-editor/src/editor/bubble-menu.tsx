@@ -4,7 +4,7 @@ import type { BoxProps } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/react"
 import { BubbleMenu as TiptapBubbleMenu } from "@tiptap/react/menus"
 import type { ReactNode } from "react"
-import { useEditorContext } from "../context"
+import { useRichTextEditorContext } from "./editor"
 
 export interface BubbleMenuProps extends Omit<BoxProps, "children"> {
   /**
@@ -18,7 +18,7 @@ export interface BubbleMenuProps extends Omit<BoxProps, "children"> {
  */
 export function BubbleMenu(props: BubbleMenuProps) {
   const { children, ...rest } = props
-  const { editor } = useEditorContext()
+  const { editor } = useRichTextEditorContext()
 
   if (!editor) return null
 

@@ -62,19 +62,9 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@tiptap/extension-code-block-lowlight": "^3.10.7",
-    "@tiptap/extension-color": "^3.10.7",
-    "@tiptap/extension-highlight": "^3.10.7",
-    "@tiptap/extension-link": "^3.10.7",
-    "@tiptap/extension-placeholder": "^3.10.7",
-    "@tiptap/extension-task-item": "^3.10.7",
-    "@tiptap/extension-task-list": "^3.10.7",
-    "@tiptap/extension-text-align": "^3.10.7",
-    "@tiptap/extension-text-style": "^3.10.7",
     "@tiptap/pm": "^3.10.7",
     "@tiptap/react": "^3.10.7",
     "@tiptap/starter-kit": "^3.10.7",
-    "lowlight": "^3.1.0",
     "react-icons": "^5.0.0"
   }
 }

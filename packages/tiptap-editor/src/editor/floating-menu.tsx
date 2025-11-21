@@ -4,7 +4,7 @@ import type { BoxProps } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/react"
 import { FloatingMenu as TiptapFloatingMenu } from "@tiptap/react/menus"
 import type { ReactNode } from "react"
-import { useEditorContext } from "../context"
+import { useRichTextEditorContext } from "./editor"
 
 export interface FloatingMenuProps extends Omit<BoxProps, "children"> {
   /**
@@ -18,27 +18,13 @@ export interface FloatingMenuProps extends Omit<BoxProps, "children"> {
  */
 export function FloatingMenu(props: FloatingMenuProps) {
   const { children, ...rest } = props
-  const { editor } = useEditorContext()
+  const { editor } = useRichTextEditorContext()
 
   if (!editor) return null
 
   return (
     <TiptapFloatingMenu editor={editor}>
-      <Box
-        bg="white"
-        borderWidth="1px"
-        borderColor="border"
-        borderRadius="md"
-        shadow="lg"
-        p="2"
-        display="flex"
-        flexDirection="column"
-        gap="1"
-        _dark={{ bg: "gray.800" }}
-        {...rest}
-      >
-        {children}
-      </Box>
+      <Box {...rest}>{children}</Box>
     </TiptapFloatingMenu>
   )
 }

@@ -1,6 +1,4 @@
-import type { RichTextEditorLabels } from "../types"
-
-export const DEFAULT_LABELS: RichTextEditorLabels = {
+export const DEFAULT_LABELS = {
   // Text formatting
   bold: "Bold",
   italic: "Italic",

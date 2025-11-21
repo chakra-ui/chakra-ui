@@ -1,15 +1,4 @@
-import {
-  BubbleMenu,
-  EditorProvider,
-  EditorRoot,
-  H1,
-  H2,
-  RichTextEditor,
-  TextFormatToolbar,
-  ToolbarRoot,
-  Underline,
-  useEditor,
-} from "@chakra-ui/tiptap-editor"
+import { RichTextEditor, useEditor } from "@chakra-ui/tiptap-editor"
 
 export function BasicEditor() {
   const editor = useEditor({
@@ -17,18 +6,50 @@ export function BasicEditor() {
   })
 
   return (
-    <EditorProvider editor={editor}>
-      <RichTextEditor>
-        <ToolbarRoot>
-          <BubbleMenu>
-            <H1 />
-            <H2 />
-            <Underline />
-          </BubbleMenu>
-          <TextFormatToolbar />
-        </ToolbarRoot>
-        <EditorRoot />
-      </RichTextEditor>
-    </EditorProvider>
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Bold />
+          <RichTextEditor.Italic />
+          <RichTextEditor.Underline />
+          <RichTextEditor.Strike />
+          <RichTextEditor.Code />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.H1 />
+          <RichTextEditor.H2 />
+          <RichTextEditor.H3 />
+          <RichTextEditor.H4 />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Hr />
+          <RichTextEditor.BulletList />
+          <RichTextEditor.OrderedList />
+          <RichTextEditor.Subscript />
+          <RichTextEditor.Superscript />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Link />
+          <RichTextEditor.Unlink />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.AlignLeft />
+          <RichTextEditor.AlignCenter />
+          <RichTextEditor.AlignJustify />
+          <RichTextEditor.AlignRight />
+        </RichTextEditor.ControlsGroup>
+
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Undo />
+          <RichTextEditor.Redo />
+        </RichTextEditor.ControlsGroup>
+      </RichTextEditor.Toolbar>
+
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }

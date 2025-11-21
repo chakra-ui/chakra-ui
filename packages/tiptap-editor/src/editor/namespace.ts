@@ -1,18 +1,38 @@
-// Main editor container
-export { RichTextEditor } from "./root"
-export type { RichTextEditorProps } from "./root"
+export {
+  RichTextEditorRoot as Root,
+  Content,
+  Toolbar,
+  ControlsGroup,
+  Control,
+  Bold,
+  Italic,
+  Underline,
+  Strike,
+  Code,
+  H1,
+  H2,
+  H3,
+  H4,
+  BulletList,
+  OrderedList,
+  Blockquote,
+  Hr,
+  Unlink,
+  Subscript,
+  Superscript,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Undo,
+  Redo,
+  useRichTextEditorContext,
+} from "./editor"
 
-// Editor content area
-export { EditorRoot } from "./content"
-export type { EditorRootProps } from "./content"
-
-// Menus
-export { BubbleMenu } from "./bubble-menu"
-export type { BubbleMenuProps } from "./bubble-menu"
-
-export { FloatingMenu } from "./floating-menu"
-export type { FloatingMenuProps } from "./floating-menu"
-
-// Source code view
-export { SourceCode } from "./source-code"
-export type { SourceCodeProps } from "./source-code"
+export type {
+  RichTextEditorProps as RootProps,
+  RichTextEditorContentProps as ContentProps,
+  RichTextEditorToolbarProps as ToolbarProps,
+  RichTextEditorControlsGroupProps as ControlsGroupProps,
+  RichTextEditorControlProps as ControlProps,
+} from "./editor"
