@@ -12,6 +12,8 @@ import {
 import { Fragment, useState } from "react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 
+const MAX_PANELS = 5
+
 export const SplitterDynamicPanel = () => {
   const [panelIds, setPanelIds] = useState<string[]>(["a", "b"])
   const [sizes, setSizes] = useState<number[]>(distributeSizes(2))
@@ -26,6 +28,7 @@ export const SplitterDynamicPanel = () => {
   const panelCount = items.filter((item) => item.type === "panel").length
 
   const addPanel = () => {
+    if (panelIds.length >= MAX_PANELS) return // Prevent adding more than MAX_PANELS
     const newId = uuid()
     const newSizes = redistributeSizesForNewPanel(sizes, panelIds.length + 1)
     setSizes(newSizes)
@@ -44,7 +47,12 @@ export const SplitterDynamicPanel = () => {
   return (
     <Stack gap="4">
       <HStack gap="2" justify="space-between">
-        <Button size="sm" variant="outline" onClick={addPanel}>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={addPanel}
+          disabled={panelIds.length >= MAX_PANELS}
+        >
           <LuPlus /> Add Panel
         </Button>
         <HStack gap="1" textStyle="sm" color="fg.muted">
@@ -83,7 +91,11 @@ export const SplitterDynamicPanel = () => {
   )
 }
 
-const uuid = () => Math.random().toString(36).substring(2, 9)
+const uuid = () => {
+  // Generate a single random lowercase letter
+  const letters = "cdefghijklmnopqrstuvwxyz"
+  return letters[Math.floor(Math.random() * letters.length)]
+}
 
 const distributeSizes = (count: number): number[] =>
   Array(count).fill(100 / count)
