@@ -33,8 +33,9 @@ export function objectToArrayNotation(
   bps = breakpoints,
 ) {
   const result = bps.map((br) => obj[br] ?? null)
-  const lastItem = result[result.length - 1]
-  while (lastItem === null) result.pop()
+  while (result.length > 0 && result[result.length - 1] === null) {
+    result.pop()
+  }
   return result
 }
 
