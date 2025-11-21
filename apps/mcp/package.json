@@ -36,17 +36,17 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.20.2",
+    "@modelcontextprotocol/sdk": "^1.22.0",
     "express": "^5.1.0",
-    "zod": "^3.23.8"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@release-it/keep-a-changelog": "7.0.0",
-    "@tsconfig/node22": "^22.0.1",
-    "@types/express": "^5.0.3",
+    "@tsconfig/node22": "^22.0.5",
+    "@types/express": "^5.0.5",
     "@types/fs-extra": "^11.0.4",
-    "release-it": "19.0.5",
-    "tsup": "^8.5.0",
+    "release-it": "19.0.6",
+    "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "typescript": "5.9.3"
   }

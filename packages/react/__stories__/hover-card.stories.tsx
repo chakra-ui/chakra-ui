@@ -17,3 +17,4 @@ export { HoverCardControlled as Controlled } from "compositions/examples/hover-c
 export { HoverCardInDialog as WithinDialog } from "compositions/examples/hover-card-in-dialog"
 export { HoverCardWithDelay as Delay } from "compositions/examples/hover-card-with-delay"
 export { HoverCardWithPlacement as Placement } from "compositions/examples/hover-card-with-placement"
+export { HoverCardRTL as RTL } from "compositions/examples/hover-card-rtl"

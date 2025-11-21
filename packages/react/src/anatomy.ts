@@ -15,6 +15,7 @@ import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-g
 import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/rating-group"
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
+import { splitterAnatomy as arkSplitterAnatomy } from "@ark-ui/react/splitter"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
@@ -263,6 +264,10 @@ export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 export { tagsInputAnatomy } from "@ark-ui/react/tags-input"
+export const splitterAnatomy = arkSplitterAnatomy.extendWith(
+  "resizeTriggerSeparator",
+  "resizeTriggerIndicator",
+)
 export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")

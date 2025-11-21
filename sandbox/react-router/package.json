@@ -14,24 +14,24 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@react-router/node": "^7.6.2",
-    "@react-router/serve": "^7.6.2",
-    "isbot": "^5.1.28",
+    "@react-router/node": "^7.9.6",
+    "@react-router/serve": "^7.9.6",
+    "isbot": "^5.1.32",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-router": "^7.9.4"
+    "react-router": "^7.9.6"
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
-    "@react-router/dev": "^7.6.2",
+    "@react-router/dev": "^7.9.6",
     "@types/node": "^24",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
-    "react-router-devtools": "^5.1.3",
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3",
+    "react-router-devtools": "^6.0.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.10",
+    "vite": "^7.2.2",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

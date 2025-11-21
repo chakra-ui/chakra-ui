@@ -27,5 +27,6 @@ export { TableWithSelection as Selection } from "compositions/examples/table-wit
 export { TableWithSelectionActionBar as SelectionActionBar } from "compositions/examples/table-with-selection-action-bar"
 export { TableWithStickyColumn as StickyColumn } from "compositions/examples/table-with-sticky-column"
 export { TableWithStickyHeader as StickyHeader } from "compositions/examples/table-with-sticky-header"
+export { TableWithStickyHeaderAndColumn as StickyHeaderAndColumn } from "compositions/examples/table-with-sticky-header-and-column"
 export { TableWithStriped as Stripe } from "compositions/examples/table-with-striped"
 export { TableWithTanstack as Tanstack } from "compositions/examples/table-with-tanstack"

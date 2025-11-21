@@ -38,6 +38,7 @@ import { scrollAreaSlotRecipe } from "./recipes/scroll-area"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
+import { splitterSlotRecipe } from "./recipes/splitter"
 import { statSlotRecipe } from "./recipes/stat"
 import { statusSlotRecipe } from "./recipes/status"
 import { stepsSlotRecipe } from "./recipes/steps"
@@ -90,6 +91,7 @@ export const slotRecipes = {
   select: selectSlotRecipe,
   combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
+  splitter: splitterSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
   switch: switchSlotRecipe,
