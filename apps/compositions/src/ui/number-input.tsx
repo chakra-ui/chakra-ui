@@ -1,19 +1,24 @@
 import { NumberInput as ChakraNumberInput } from "@chakra-ui/react"
 import * as React from "react"
 
-export interface NumberInputProps extends ChakraNumberInput.RootProps {}
+export interface NumberInputProps extends ChakraNumberInput.RootProps {
+  label?: React.ReactNode | undefined
+}
 
 export const NumberInputRoot = React.forwardRef<
   HTMLDivElement,
   NumberInputProps
 >(function NumberInput(props, ref) {
-  const { children, ...rest } = props
+  const { children, label, ...rest } = props
   return (
     <ChakraNumberInput.Root ref={ref} variant="outline" {...rest}>
-      {children}
+      {label && <ChakraNumberInput.Label>{label}</ChakraNumberInput.Label>}
       <ChakraNumberInput.Control>
-        <ChakraNumberInput.IncrementTrigger />
-        <ChakraNumberInput.DecrementTrigger />
+        {children}
+        <ChakraNumberInput.TriggerGroup>
+          <ChakraNumberInput.IncrementTrigger />
+          <ChakraNumberInput.DecrementTrigger />
+        </ChakraNumberInput.TriggerGroup>
       </ChakraNumberInput.Control>
     </ChakraNumberInput.Root>
   )
@@ -21,4 +26,3 @@ export const NumberInputRoot = React.forwardRef<
 
 export const NumberInputField = ChakraNumberInput.Input
 export const NumberInputScrubber = ChakraNumberInput.Scrubber
-export const NumberInputLabel = ChakraNumberInput.Label
