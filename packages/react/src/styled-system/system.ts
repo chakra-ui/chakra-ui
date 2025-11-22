@@ -143,8 +143,11 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     for (const [key, values] of tokens.cssVarMap.entries()) {
       const varsObj = Object.fromEntries(values) as any
       if (Object.keys(varsObj).length === 0) continue
-      const selector = key === "base" ? cssVarsRoot : conditions.resolve(key)
-      const isAtRule = selector.startsWith("@")
+      const selector = key === "base" ? cssVarsRoot : key
+      const resolved = conditions.resolve(key)
+      const isAtRule = Array.isArray(resolved)
+        ? resolved.every((s) => s.startsWith("@"))
+        : resolved.startsWith("@")
       const cssObject = css(
         serialize({
           [selector]: isAtRule ? { [cssVarsRoot]: varsObj } : varsObj,
