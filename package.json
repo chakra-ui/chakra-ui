@@ -29,6 +29,7 @@
     "lint": "eslint packages --ext .ts,.tsx --cache",
     "format:check": "prettier --check packages --cache",
     "format:write": "prettier --write packages --cache",
+    "clean:modules": "find . -name node_modules -type d -prune -exec rm -rf {} +",
     "clean:storybook": "rm -rf node_modules/.cache/storybook",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "pnpm build:fast && storybook build",

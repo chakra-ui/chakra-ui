@@ -40,3 +40,9 @@ export type {
   ComboboxRootComponent as RootComponent,
   ComboboxEmptyProps as EmptyProps,
 } from "./combobox"
+
+export type {
+  ComboboxInteractOutsideEvent as InteractOutsideEvent,
+  ComboboxFocusOutsideEvent as FocusOutsideEvent,
+  ComboboxPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/combobox"

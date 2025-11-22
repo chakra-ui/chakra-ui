@@ -29,4 +29,7 @@ export { useHoverCard, useHoverCardContext } from "@ark-ui/react/hover-card"
 export type {
   UseHoverCardProps,
   UseHoverCardReturn,
+  HoverCardInteractOutsideEvent,
+  HoverCardFocusOutsideEvent,
+  HoverCardPointerDownOutsideEvent,
 } from "@ark-ui/react/hover-card"

@@ -30,6 +30,9 @@ export {
 export type {
   UsePopoverProps as UseActionBarProps,
   UsePopoverReturn as UseActionBarReturn,
+  PopoverInteractOutsideEvent as ActionBarInteractOutsideEvent,
+  PopoverFocusOutsideEvent as ActionBarFocusOutsideEvent,
+  PopoverPointerDownOutsideEvent as ActionBarPointerDownOutsideEvent,
 } from "@ark-ui/react/popover"
 
 export * as ActionBar from "./namespace"

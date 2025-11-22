@@ -50,3 +50,9 @@ export type {
   MenuSelectionDetails as SelectionDetails,
   MenuHighlightChangeDetails as HighlightChangeDetails,
 } from "./menu"
+
+export type {
+  MenuInteractOutsideEvent as InteractOutsideEvent,
+  MenuFocusOutsideEvent as FocusOutsideEvent,
+  MenuPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/menu"
