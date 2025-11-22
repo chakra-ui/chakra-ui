@@ -3,17 +3,23 @@
 import {
   Box,
   type BoxProps,
+  Button,
   HStack,
   IconButton,
   type IconButtonProps,
+  Input,
+  Popover,
+  Portal,
   Separator,
   type StackProps,
+  Switch,
+  Text,
   defineStyle,
 } from "@chakra-ui/react"
 import { type ChainedCommands, type Editor, EditorContent } from "@tiptap/react"
 import { Tooltip } from "compositions/ui/tooltip"
 import type { ReactNode } from "react"
-import { createContext, forwardRef, useContext } from "react"
+import { createContext, forwardRef, useContext, useState } from "react"
 import {
   LuAlignCenter,
   LuAlignJustify,
@@ -21,12 +27,13 @@ import {
   LuAlignRight,
   LuBold,
   LuCode,
+  LuEraser,
   LuHeading1,
   LuHeading2,
   LuHeading3,
   LuHeading4,
   LuItalic,
-  // LuLink,
+  LuLink,
   LuList,
   LuListOrdered,
   LuMinus,
@@ -91,7 +98,7 @@ export const RichTextEditorRoot = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const editorCSS = defineStyle({
+const baseCss = defineStyle({
   "& .ProseMirror": {
     outline: "none",
     minHeight: "100px",
@@ -125,12 +132,31 @@ const editorCSS = defineStyle({
       paddingStart: "4",
       fontStyle: "italic",
     },
+    "& ul": {
+      paddingInlineStart: "4",
+      listStyleType: "disc",
+      listStylePosition: "outside",
+    },
+    "& ol": {
+      paddingInlineStart: "4",
+      listStyleType: "decimal",
+      listStylePosition: "outside",
+    },
+    "& ul ul": {
+      listStyleType: "circle",
+    },
+    "& ul ul ul": {
+      listStyleType: "square",
+    },
     "& hr": {
       my: "4",
     },
     "& a": {
       color: "fg.link",
       textDecoration: "underline",
+    },
+    "& em": {
+      fontStyle: "italic",
     },
   },
 })
@@ -141,8 +167,9 @@ export const Content = forwardRef<HTMLDivElement, RichTextEditorContentProps>(
   function Content(props, ref) {
     const { editor } = useRichTextEditorContext()
     if (!editor) return null
+    const { css, ...rest } = props
     return (
-      <Box ref={ref} css={editorCSS} {...props}>
+      <Box ref={ref} css={[baseCss, css]} {...rest}>
         <EditorContent editor={editor} />
       </Box>
     )
@@ -374,35 +401,35 @@ export const Subscript = createControl({
   label: "Subscript",
   icon: LuSubscript,
   isActive: { name: "subscript" },
-  // command: (chain) => chain.toggleSubscript(),
+  command: (chain) => chain.toggleSubscript(),
 })
 
 export const Superscript = createControl({
   label: "Superscript",
   icon: LuSuperscript,
   isActive: { name: "superscript" },
-  // command: (chain) => chain.toggleSuperscript(),
+  command: (chain) => chain.toggleSuperscript(),
 })
 
 export const AlignLeft = createControl({
   label: "Align Left",
   icon: LuAlignLeft,
   isActive: { name: "textAlign", attributes: { textAlign: "left" } },
-  // command: (chain) => chain.setTextAlign("left"),
+  command: (chain) => chain.setTextAlign("left"),
 })
 
 export const AlignCenter = createControl({
   label: "Align Center",
   icon: LuAlignCenter,
   isActive: { name: "textAlign", attributes: { textAlign: "center" } },
-  // command: (chain) => chain.setTextAlign("center"),
+  command: (chain) => chain.setTextAlign("center"),
 })
 
 export const AlignRight = createControl({
   label: "Align Right",
   icon: LuAlignRight,
   isActive: { name: "textAlign", attributes: { textAlign: "right" } },
-  // command: (chain) => chain.setTextAlign("right"),
+  command: (chain) => chain.setTextAlign("right"),
 })
 
 export const AlignJustify = createControl({
@@ -415,11 +442,117 @@ export const AlignJustify = createControl({
 export const Undo = createControl({
   label: "Undo",
   icon: LuUndo,
+  isDisabled: (editor) => !editor.can().undo(),
   command: (chain) => chain.undo(),
 })
 
 export const Redo = createControl({
   label: "Redo",
   icon: LuRedo,
+  isDisabled: (editor) => !editor.can().redo(),
   command: (chain) => chain.redo(),
+})
+
+export const ClearFormatting = createControl({
+  label: "Clear Formatting",
+  icon: LuEraser,
+  isDisabled: (editor) => !editor,
+  command: (chain) => chain.focus().unsetAllMarks().clearNodes().setParagraph(),
+})
+
+export const LinkControl = forwardRef<
+  HTMLButtonElement,
+  Omit<RichTextEditorControlProps, "icon" | "label">
+>(function LinkControl(props, ref) {
+  const { editor } = useRichTextEditorContext()
+  const [open, setOpen] = useState(false)
+  const [url, setUrl] = useState("")
+  const [external, setExternal] = useState(false)
+
+  if (!editor) return null
+
+  const handleOpen = () => {
+    const markAttrs = editor.getAttributes("link")
+    setUrl(markAttrs.href ?? "")
+    setExternal(markAttrs.target === "_blank")
+    setOpen(true)
+  }
+
+  const handleApply = () => {
+    const trimmed = url.trim()
+    if (!trimmed) {
+      editor.chain().focus().unsetLink().run()
+      setOpen(false)
+      return
+    }
+
+    const isValid = /^https?:\/\//i.test(trimmed)
+    const finalUrl = isValid ? trimmed : `https://${trimmed}`
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange("link")
+      .setLink({ href: finalUrl, ...(external ? { target: "_blank" } : {}) })
+      .run()
+
+    setOpen(false)
+  }
+
+  return (
+    <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+      <Popover.Trigger>
+        <Control
+          ref={ref}
+          icon={<LuLink />}
+          isActive={editor.isActive("link")}
+          onClick={handleOpen}
+          label="Insert Link"
+          {...props}
+        />
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content p="1" minW="220px">
+            <Popover.Body>
+              <Text fontWeight="medium" mb="2">
+                Insert Link
+              </Text>
+              <Input
+                placeholder="Enter URL"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                size="sm"
+                mb="3"
+              />
+              <HStack mb="4" align="center">
+                <Switch.Root
+                  checked={external}
+                  onCheckedChange={(e) => setExternal(e.checked)}
+                >
+                  <Switch.HiddenInput />
+                  <Switch.Control>
+                    <Switch.Thumb />
+                  </Switch.Control>
+                  <Switch.Label>Open in new tab</Switch.Label>
+                </Switch.Root>
+              </HStack>
+              <HStack justify="flex-end" gap="2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button size="sm" onClick={handleApply}>
+                  Apply
+                </Button>
+              </HStack>
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
+  )
 })

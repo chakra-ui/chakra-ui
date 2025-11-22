@@ -26,6 +26,8 @@ export {
   AlignJustify,
   Undo,
   Redo,
+  LinkControl as Link,
+  ClearFormatting,
   useRichTextEditorContext,
 } from "./editor"
 
