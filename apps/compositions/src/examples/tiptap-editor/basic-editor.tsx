@@ -2,7 +2,29 @@ import { RichTextEditor, useEditor } from "@chakra-ui/tiptap-editor"
 
 export function BasicEditor() {
   const editor = useEditor({
-    content: "<p>Start typing to see the editor in action...</p>",
+    content: `
+    <h1>Welcome to Chakra UI + Tiptap!</h1>
+    <p><strong>Chakra UI Tiptap</strong> is a rich text editor built with <em>React</em>, powered by <strong>Tiptap v3</strong> and styled with <a href="https://chakra-ui.com" target="_blank">Chakra UI</a>.</p>
+
+    <h2>Why Tiptap?</h2>
+    <p>Tiptap is a headless, framework-agnostic editor built on top of <a href="https://prosemirror.net" target="_blank">ProseMirror</a>. This means Chakra UI Tiptap gives you all the flexibility of Tiptap while keeping Chakra's styling and accessibility.</p>
+
+    <h2>Features:</h2>
+    <ul>
+      <li>Bold, Italic, Underline, and Strike</li>
+      <li>Headings, Blockquotes, and Horizontal Rules</li>
+      <li>Lists: Bullet & Ordered</li>
+      <li>Links, Subscript, Superscript, and Text Alignment</li>
+      <li>Undo/Redo support and keyboard shortcuts</li>
+      <li>Custom extensions and commands from Tiptap</li>
+    </ul>
+
+    <h2>Getting Started</h2>
+    <p>Try editing this text to explore all the <strong>powerful commands</strong> available in the toolbar, which come straight from Tiptap's chainable API!</p>
+
+    <blockquote>Tip: You can also create custom Tiptap extensions to add new commands and formatting options!</blockquote>
+  `,
+    shouldRerenderOnTransaction: true,
   })
 
   return (
@@ -14,6 +36,7 @@ export function BasicEditor() {
           <RichTextEditor.Underline />
           <RichTextEditor.Strike />
           <RichTextEditor.Code />
+          <RichTextEditor.ClearFormatting />
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
@@ -24,6 +47,7 @@ export function BasicEditor() {
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Blockquote />
           <RichTextEditor.Hr />
           <RichTextEditor.BulletList />
           <RichTextEditor.OrderedList />
