@@ -50,4 +50,10 @@ export {
   useComboboxItemContext,
 } from "@ark-ui/react/combobox"
 
+export type {
+  ComboboxInteractOutsideEvent,
+  ComboboxFocusOutsideEvent,
+  ComboboxPointerDownOutsideEvent,
+} from "@ark-ui/react/combobox"
+
 export * as Combobox from "./namespace"
