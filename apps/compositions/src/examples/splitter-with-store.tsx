@@ -1,30 +1,20 @@
 "use client"
 
-import { Button, Center, Splitter, Stack, useSplitter } from "@chakra-ui/react"
+import { Center, Code, Splitter, Stack, useSplitter } from "@chakra-ui/react"
 
 export const SplitterWithStore = () => {
   const splitter = useSplitter({
     defaultSize: [50, 50],
-    panels: [
-      { id: "a", collapsible: true, collapsedSize: 10, minSize: 20 },
-      { id: "b", minSize: 20 },
-    ],
+    panels: [{ id: "a" }, { id: "b", minSize: 20 }],
   })
 
-  const toggleCollapse = (id: string) => {
-    if (splitter.isPanelCollapsed(id)) {
-      splitter.expandPanel(id)
-    } else {
-      splitter.collapsePanel(id)
-    }
-  }
+  const sizes = splitter
+    .getSizes()
+    .map((size) => size.toFixed(1))
+    .join("%, ")
 
   return (
     <Stack gap="4" align="start">
-      <Button size="sm" variant="outline" onClick={() => toggleCollapse("a")}>
-        {splitter.isPanelCollapsed("a") ? "Expand Panel A" : "Collapse Panel A"}
-      </Button>
-
       <Splitter.RootProvider value={splitter} borderWidth="1px" minH="60">
         <Splitter.Panel id="a">
           <Center boxSize="full" textStyle="2xl">
@@ -40,6 +30,8 @@ export const SplitterWithStore = () => {
           </Center>
         </Splitter.Panel>
       </Splitter.RootProvider>
+
+      <Code>Size: {JSON.stringify(sizes, null, 2)}</Code>
     </Stack>
   )
 }

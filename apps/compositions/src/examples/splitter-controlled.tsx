@@ -16,11 +16,10 @@ export const SplitterControlled = () => {
       </HStack>
 
       <Splitter.Root
-        orientation="horizontal"
         panels={[{ id: "a" }, { id: "b" }]}
-        borderWidth="1px"
         size={sizes}
         onResize={(details) => setSizes(details.size)}
+        borderWidth="1px"
         minH="60"
       >
         <Splitter.Panel id="a">

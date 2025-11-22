@@ -23,6 +23,7 @@ export { CarouselWithProgressText as ProgressText } from "compositions/examples/
 export { CarouselSlidesPerPage as SlidesPerPage } from "compositions/examples/carousel-slides-per-page"
 export { CarouselSlidesPerMove as SlidesPerMove } from "compositions/examples/carousel-slides-per-move"
 export { CarouselSpacing as Spacing } from "compositions/examples/carousel-spacing"
+export { CarouselVariableSize as VariableSize } from "compositions/examples/carousel-variable-size"
 export { CarouselWithDialog as Dialog } from "compositions/examples/carousel-with-dialog"
 export { CarouselWithThumbnails as Thumbnails } from "compositions/examples/carousel-with-thumbnails"
 export { CarouselWithAutoplay as Autoplay } from "compositions/examples/carousel-with-autoplay"

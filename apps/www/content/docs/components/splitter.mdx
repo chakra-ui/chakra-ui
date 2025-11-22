@@ -39,13 +39,13 @@ The `Splitter` component provides shortcuts for common use cases.
 The `Splitter.ResizeTrigger` renders the `Splitter.ResizeTriggerSeparator` and
 `Splitter.ResizeTriggerIndicator` within it by default.
 
-Writing this:
+Explicitly writing this:
 
 ```jsx
 <Splitter.ResizeTrigger id="a:b" />
 ```
 
-is shorthand for writing this if you don't need to customize the separator or
+is shorthand for the following if you don't need to customize the separator or
 indicator:
 
 ```jsx
@@ -61,20 +61,32 @@ indicator:
 
 Use `onResize` and `size` props to manage panel sizes programmatically.
 
+```tsx
+<Splitter.Root
+  panels={[{ id: "a" }, { id: "b" }]}
+  size={sizes}
+  onResize={(details) => setSizes(details.size)}
+>
+  {/* ... */}
+</Splitter.Root>
+```
+
 <ExampleTabs name="splitter-controlled" />
 
 ### Store
 
-Use the `RootProvider` with the `useSplitter` hook to manage and control the
-splitter state from outside the component.
+An alternative way to control the splitter is to use the `RootProvider`
+component and the `useSplitter` store hook.
 
-> Use `RootProvider + useSplitter` or `Root`, not both.
+This way you can access the splitter state and methods from outside the
+splitter.
 
 <ExampleTabs name="splitter-with-store" />
 
 ### Vertical
 
-Set `orientation="vertical"` for stacked panels that resize vertically.
+Pass the `orientation="vertical"` prop to the `Splitter.Root` component for
+stacked panels that resize vertically.
 
 <ExampleTabs name="splitter-vertical" />
 
@@ -88,15 +100,29 @@ horizontal splitter on larger screens.
 
 ### Multiple Panels
 
-Create layouts with more than two resizable panels.
+Create layouts with more than two resizable panels by passing an array of panels
+to the `panels` prop of the `Splitter.Root` component.
 
 <ExampleTabs name="splitter-multiple-panels" />
 
 ### Collapsible Panels
 
-Panels can be made collapsible by setting the `collapsible` and `collapsedSize`
-properties on a panel in the `panels` array. This allows users to collapse
-panels to a defined minimum size.
+Make the panels collapsible and snapped to a specific size by setting the
+`collapsible` and `collapsedSize` properties on a panel in the `panels` array.
+
+This allows users to snap panels to a defined minimum size.
+
+```tsx
+<Splitter.Root
+  defaultSize={[40, 60]}
+  panels={[
+    { id: "a", collapsible: true, collapsedSize: 5, minSize: 25 },
+    { id: "b", minSize: 50 },
+  ]}
+>
+  {/* ... */}
+</Splitter.Root>
+```
 
 <ExampleTabs name="splitter-collapsible" />
 
@@ -109,15 +135,15 @@ prevent resizing beyond these boundaries.
 
 ### Nested Panels
 
-You can nest splitters inside panels to create more complex layouts. Each nested
-splitter can have its own orientation, sizes, and behaviors independent of the
-parent splitter.
+Here's an example of how to nest splitters inside panels to create more complex
+layouts. Each nested splitter can have its own orientation, sizes, and behaviors
+independent of the parent splitter.
 
 <ExampleTabs name="splitter-nested" />
 
 ### Storage
 
-You can set a `defaultSize` and pair it with a storage solution, such as
+Set a `defaultSize` and pair it with a storage solution, such as
 `useLocalStorage`, to save users’ panel size preferences. This ensures that
 panel layouts persist across sessions. Alternatively, you can use cookies or
 other storage mechanisms depending on your needs.
@@ -126,9 +152,13 @@ other storage mechanisms depending on your needs.
 
 ### Disabled Resize
 
-You can disable a panel's resize by setting `disabled` on the ResizeTrigger.
-This is useful if certain panels should remain fixed while allowing others to
-resize.
+Pass the `disabled` prop to the `Splitter.ResizeTrigger` to disable resize on a
+panel. This is useful if you want certain panels to remain fixed while allowing
+others to resize.
+
+```tsx
+<Splitter.ResizeTrigger disabled id="a:b" />
+```
 
 <ExampleTabs name="splitter-disabled" />
 
@@ -137,6 +167,12 @@ resize.
 Customize the resize trigger to show only the separator without the indicator.
 This creates a minimal, clean appearance while maintaining full resize
 functionality.
+
+```tsx
+<Splitter.ResizeTrigger id="a:b">
+  <Splitter.ResizeTriggerSeparator />
+</Splitter.ResizeTrigger>
+```
 
 <ExampleTabs name="splitter-separator-only" />
 
@@ -162,22 +198,18 @@ The `Splitter` supports keyboard-based resizing for accessibility and precise
 control:
 
 - Press Tab until the resize handle is focused.
-
 - Use Arrow keys to resize panels.
-
 - Hold Shift for larger steps.
-
 - Press Home / End to jump to minimum or maximum sizes.
-
 - Control the step size using the `keyboardResizeBy` prop.
 
 <ExampleTabs name="splitter-keyboard-resize" />
 
 ### Conditional Rendering
 
-This example shows a **horizontal splitter** where panels can be shown or hidden
+This example shows a horizontal splitter where panels can be shown or hidden
 dynamically. Use the buttons above the splitter to toggle the left and right
-panels—perfect for layouts where certain sections may not always be needed.
+panels - perfect for layouts where certain sections may not always be needed.
 
 The splitter automatically adjusts the remaining panels when one is hidden,
 keeping everything responsive. Initial panel sizes are set with `defaultSize`,
@@ -202,7 +234,7 @@ orientations, collapsible panels, and integrated code editing.
 
 ## Guides
 
-### Accessing Splitter Context
+### Splitter Context
 
 When you need to programmatically control the splitter, you can access the
 splitter context and its methods in two ways:
@@ -210,7 +242,7 @@ splitter context and its methods in two ways:
 - using the `Splitter.Context` render prop
 - using the `useSplitterContext` hook
 
-#### Using Splitter.Context Render Prop
+#### Splitter.Context Render Prop
 
 Use `Splitter.Context` as a render prop to access the context within the
 component tree:
@@ -234,7 +266,7 @@ component tree:
 </Splitter.Root>
 ```
 
-#### Using useSplitterContext Hook
+#### useSplitterContext Hook
 
 Alternatively, use the `useSplitterContext` hook in a child component:
 
