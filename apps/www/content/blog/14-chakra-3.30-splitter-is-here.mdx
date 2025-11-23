@@ -1,0 +1,98 @@
+---
+title: Chakra UI v3.30 - Splitter Component
+description:
+  "Introducing the Splitter component, Carousel improvements, and enhanced
+  semantic tokens"
+type: release
+version: "3.30"
+authors: ["sage"]
+publishedAt: "2025-11-22"
+---
+
+We're excited to ship Chakra UI v3.30! This release brings you the highly
+requested **[Splitter](/docs/components/splitter)** component—a powerful,
+flexible way to build resizable panel interfaces that users can customize to
+their workflow.
+
+Alongside Splitter, we've polished the Carousel component with better
+variable-width support, enhanced our semantic token system for more consistent
+theming, and squashed bugs across the board.
+
+## Splitter
+
+Splitter gives you everything you need to build resizable panel interfaces.
+Users can drag handles between panels to adjust layouts on the fly—perfect for
+IDE layouts, customizable dashboards, or any interface where personalization
+matters.
+
+It handles all the complexity: horizontal and vertical orientations, multi-panel
+configurations, controlled and uncontrolled modes, and even nested splitters for
+sophisticated layouts. Just define your panels and let Splitter handle the rest.
+
+<ExampleTabs name="splitter-basic" />
+
+### IDE Layout Example
+
+Here's a real-world example: an IDE-style layout with resizable panels. This
+shows how Splitter can transform a static layout into something users can
+customize to their workflow.
+
+<ExampleTabs name="splitter-ide-layout" />
+
+### Controlled Splitter
+
+Need to persist user preferences or implement custom resize logic? Use the
+`onResize` and `size` props to take full control of panel sizing.
+
+<ExampleTabs name="splitter-controlled" />
+
+## Carousel Improvements
+
+Carousel just got more flexible. The new `autoSize` prop lets you build
+carousels with variable-width slides—no more wrestling with fixed dimensions.
+Perfect for card-based layouts, product galleries, or any content where slides
+vary in size.
+
+We've also tightened up the interaction behavior:
+
+- Fixed dragging after tab switches or scrolling
+- Smoothed out mouse wheel scrolling with `allowMouseDrag`
+
+## Enhanced Semantic Tokens
+
+We've added a new `border` semantic token across all color palettes, giving
+outline variants a more polished look. The token intelligently adapts to your
+palette—`gray.300`/`gray.700` for gray palettes, `color.500`/`color.400` for
+colored ones.
+
+Button, Badge, Tag, and Checkbox now use this token for their outline variants,
+delivering better visual consistency, especially when working with non-gray
+color palettes.
+
+> **Note**: Everything includes CSS variable fallbacks, so your existing themes
+> keep working without any changes.
+
+## Bug Fixes
+
+We've addressed several important issues:
+
+- **Combobox**: Fixed focus stealing in controlled mode and removed problematic
+  `aria-hidden` behavior
+- **HoverCard, Tooltip, Popover**: Fixed arrow direction in RTL layouts
+- **TagsInput**: Fixed overflow issue where very long tags would overflow
+  instead of truncating with ellipsis
+
+## Upgrading
+
+To upgrade to the latest version, run:
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+Everything in this release is backward compatible—no breaking changes or
+migration needed. Just upgrade and start building.
+
+We can't wait to see what you create with Splitter! Share your builds with us on
+[Twitter](https://twitter.com/chakra_ui) or join the conversation in our
+[Discord community](https://chakra-ui.com/discord).

@@ -5,6 +5,67 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.30.0](./#3.30.0) - 2025-11-22
+
+### Added
+
+- **Carousel**: Added `autoSize` prop for variable width/height slides
+
+- **Semantic Tokens**: Add new `border` semantic token to all color palettes
+  (`gray.300`/`gray.700` for gray, `color.500`/`color.400` for colored palettes)
+  to improve outline component appearance
+
+- **Splitter [NEW]**: Introduce new resizable splitter component
+
+```tsx
+<Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+  <Splitter.Panel id="a">Panel A</Splitter.Panel>
+  <Splitter.ResizeTrigger id="a:b" />
+  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+</Splitter.Root>
+```
+
+- **Types**: Exported `InteractOutsideEvent`, `FocusOutsideEvent`,
+  `PointerDownOutsideEvent` types
+
+### Fixed
+
+- **Badge, Button, Checkbox, Tag**: Update outline variants to use
+  `colorPalette.border` instead of `colorPalette.muted` or global `border` token
+  for better appearance, especially for non-gray color palettes
+
+- **Carousel**: Fixed dragging after tab switch/scroll and mouse wheel scroll
+  with `allowMouseDrag`
+
+- **CheckboxGroup**: Fix type issue where `CheckboxGroupProps` could not be
+  passed to the `CheckboxGroup` component
+
+- **CLI**: Fix high-severity security vulnerability by replacing `sucrase`
+  dependency with Babel-based TypeScript transformation
+
+- **Combobox**
+  - Fixed `onHighlightChange` not firing when filtered to empty
+  - Fixed focus stealing in controlled mode
+  - Removed problematic `aria-hidden` behavior
+
+- **File Upload**: Fixed non-interactive children in dropzone not opening file
+  picker
+
+- **HoverCard, Popover, Tooltip**: Fix arrow direction in RTL layouts
+
+- **Radio Group**: Fixed inconsistent `data-focus-visible`/`data-focus`
+  attributes; fixed indicator showing before rect resolved
+
+- **TagsInput**: Fix overflow issue where very long tags would overflow the
+  container instead of truncating with ellipsis
+
+- **Tabs**: Fixed indicator showing before rect resolved; fixed position not
+  updating when inactive tabs resize
+
+### Changed
+
+- **useListCollection**: `initialItems` now accepts `readonly` arrays
+
 ## [3.29.0](./#3.29.0) - 2025-11-05
 
 ### Added
