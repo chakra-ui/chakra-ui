@@ -1,5 +1,72 @@
 # @chakra-ui/react
 
+## 3.30.0
+
+### Minor Changes
+
+- [#10425](https://github.com/chakra-ui/chakra-ui/pull/10425)
+  [`0168a04`](https://github.com/chakra-ui/chakra-ui/commit/0168a04197874d7bd66ebcde25efc7662465571e)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - - **Splitter
+  [NEW]**: Introduce new resizable splitter component
+
+  ```tsx
+  <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Panel id="a">Panel A</Splitter.Panel>
+    <Splitter.ResizeTrigger id="a:b" />
+    <Splitter.Panel id="b">Panel B</Splitter.Panel>
+  </Splitter.Root>
+  ```
+
+- [`7b9aa97`](https://github.com/chakra-ui/chakra-ui/commit/7b9aa97b41c79d6937b6a3ec2c3e2f23b42c8778)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+  - **Carousel**: Added `autoSize` prop for variable width/height slides
+
+  ### Changed
+  - **useListCollection**: `initialItems` now accepts `readonly` arrays
+  - **Types**: Exported `InteractOutsideEvent`, `FocusOutsideEvent`,
+    `PointerDownOutsideEvent` types
+
+  ### Fixed
+  - **Carousel**: Fixed dragging after tab switch/scroll and mouse wheel scroll
+    with `allowMouseDrag`
+  - **Combobox**:
+    - Fixed `onHighlightChange` not firing when filtered to empty;
+    - Fixed focus stealing in controlled mode
+    - Removed problematic `aria-hidden` behavior
+  - **File Upload**: Fixed non-interactive children in dropzone not opening file
+    picker
+  - **Radio Group**: Fixed inconsistent `data-focus-visible`/`data-focus`
+    attributes; fixed indicator showing before rect resolved (with Tabs)
+  - **Tabs**: Fixed indicator showing before rect resolved (with Radio Group);
+    fixed position not updating when inactive tabs resize
+
+- [`503e11a`](https://github.com/chakra-ui/chakra-ui/commit/503e11ad4b2b5aa6d653e21d96b7f76a72c87d92)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+  - **Semantic Tokens**: Add new `border` semantic token to all color palettes
+    (`gray.300`/`gray.700` for gray, `color.500`/`color.400` for colored
+    palettes) to improve outline component appearance
+
+  ### Changed
+  - **Button, Badge, Tag, Checkbox**: Update outline variants to use
+    `colorPalette.border` instead of `colorPalette.muted` or global `border`
+    token for better appearance, especially for non-gray color palettes.
+
+    > **NOTE**: All changes include CSS variable fallbacks to
+    > `colorPalette.muted` for backward compatibility.
+
+### Patch Changes
+
+- [`fd15569`](https://github.com/chakra-ui/chakra-ui/commit/fd155693546b96e390e131c85fac192711d52cef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **HoverCard,
+  Tooltip, Popover**: Fix arrow direction in RTL layouts
+
+- [`81ec4e7`](https://github.com/chakra-ui/chakra-ui/commit/81ec4e781f96ef8051607d6e970ccb61baa1c788)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **TagsInput**:
+  Fix overflow issue where very long tags would overflow the container instead
+  of truncating with ellipsis.
+  - **CheckboxGroup**: Fix type issue where `CheckboxGroupProps` could not be
+    passed to the `CheckboxGroup` component.
+
 ## 3.29.0
 
 ### Minor Changes
