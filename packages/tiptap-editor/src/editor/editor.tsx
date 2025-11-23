@@ -305,6 +305,8 @@ function createControl({
     )
   })
 
+  CreatedControl.displayName = `RichTextEditorControl(${label})`
+
   return CreatedControl
 }
 
