@@ -15,3 +15,7 @@ export default {
 export { RichTextEditorBasic as Basic } from "compositions/examples/tiptap-editor/rich-text-editor-basic"
 export { RichTextEditorControlled as Controlled } from "compositions/examples/tiptap-editor/rich-text-editor-controlled"
 export { RichTextEditorPlaceholder as Placeholder } from "compositions/examples/tiptap-editor/rich-text-editor-placeholder"
+export { RichTextEditorBubbleMenu as BubbleMenu } from "compositions/examples/tiptap-editor/rich-text-editor-bubble-menu"
+export { RichTextEditorFloatingMenu as FloatingMenu } from "compositions/examples/tiptap-editor/rich-text-editor-floating-menu"
+export { RichTextEditorTask as Task } from "compositions/examples/tiptap-editor/rich-text-editor-task"
+export { RichTextEditorColor as Color } from "compositions/examples/tiptap-editor/rich-text-editor-color"

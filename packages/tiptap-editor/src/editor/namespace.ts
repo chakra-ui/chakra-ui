@@ -28,7 +28,13 @@ export {
   Redo,
   LinkControl as Link,
   ClearFormatting,
+  TaskListControl as TaskList,
+  TaskListSinkControl as IndentTask,
+  TaskListLiftControl as OutdentTask,
   useRichTextEditorContext,
+  Color,
+  ColorPicker,
+  UnsetColor,
 } from "./editor"
 
 export type {

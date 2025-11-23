@@ -4,6 +4,7 @@ import {
   Box,
   type BoxProps,
   Button,
+  ColorPicker as ChakraColorPicker,
   HStack,
   IconButton,
   type IconButtonProps,
@@ -13,6 +14,7 @@ import {
   Separator,
   type StackProps,
   defineStyle,
+  parseColor,
 } from "@chakra-ui/react"
 import { type ChainedCommands, type Editor, EditorContent } from "@tiptap/react"
 import { Tooltip } from "compositions/ui/tooltip"
@@ -25,16 +27,20 @@ import {
   LuAlignRight,
   LuBold,
   LuCode,
+  LuDroplet,
   LuEraser,
   LuHeading1,
   LuHeading2,
   LuHeading3,
   LuHeading4,
+  LuIndentDecrease,
+  LuIndentIncrease,
   LuItalic,
   LuLink,
   LuList,
   LuListOrdered,
   LuMinus,
+  LuPalette,
   LuQuote,
   LuRedo,
   LuStrikethrough,
@@ -43,6 +49,7 @@ import {
   LuUnderline,
   LuUndo,
   LuUnlink,
+  LuX,
 } from "react-icons/lu"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -166,6 +173,19 @@ const baseCss = defineStyle({
       pointerEvents: "none",
       userSelect: "none",
     },
+    "& ul[data-type='taskList'] li": {
+      listStyle: "none",
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "2",
+      "& input[type='checkbox']": {
+        accentColor: "colorPalette.solid",
+        marginTop: "1",
+      },
+      "& ul[data-type='taskList']": {
+        paddingLeft: "6",
+      },
+    },
   },
 })
 
@@ -206,16 +226,25 @@ export const Toolbar = forwardRef<HTMLDivElement, RichTextEditorToolbarProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RichTextEditorControlsGroupProps extends StackProps {}
+export interface RichTextEditorControlsGroupProps extends StackProps {
+  /**
+   * If true, the vertical separator at the end of the control group will be hidden.
+   * Default behavior is to show the separator.
+   */
+  noSeparator?: boolean
+}
 
 export const ControlsGroup = forwardRef<
   HTMLDivElement,
   RichTextEditorControlsGroupProps
->(function ControlsGroup(props, ref) {
+>(function ControlsGroup(
+  { children, noSeparator = false, ...rest }: RichTextEditorControlsGroupProps,
+  ref,
+) {
   return (
-    <HStack ref={ref} gap="1" {...props}>
-      {props.children}
-      <Separator orientation="vertical" h="5" mx="1" />
+    <HStack bgColor="bg" ref={ref} gap="1" {...rest}>
+      {children}
+      {!noSeparator && <Separator orientation="vertical" h="5" mx="1" />}
     </HStack>
   )
 })
@@ -459,14 +488,14 @@ export const AlignJustify = createControl({
 export const Undo = createControl({
   label: "Undo",
   icon: LuUndo,
-  isDisabled: (editor) => (!editor.can() as any).undo(),
+  isDisabled: (editor) => !(editor.can() as any).undo(),
   command: (chain) => chain.undo(),
 })
 
 export const Redo = createControl({
   label: "Redo",
   icon: LuRedo,
-  isDisabled: (editor) => (!editor.can() as any).redo(),
+  isDisabled: (editor) => !(editor.can() as any).undo(),
   command: (chain) => chain.redo(),
 })
 
@@ -476,6 +505,27 @@ export const ClearFormatting = createControl({
   isDisabled: (editor) => !editor,
   command: (chain) =>
     (chain.focus().unsetAllMarks().clearNodes() as any).setParagraph(),
+})
+
+export const TaskListControl = createControl({
+  label: "Task List",
+  icon: LuList,
+  isActive: { name: "taskItem" },
+  command: (chain) => chain.toggleTaskList(),
+})
+
+export const TaskListSinkControl = createControl({
+  label: "Indent Task",
+  icon: LuIndentIncrease,
+  command: (chain) => chain.sinkListItem("taskItem"),
+  isDisabled: (editor) => !editor.can().sinkListItem("taskItem"),
+})
+
+export const TaskListLiftControl = createControl({
+  label: "Outdent Task",
+  icon: LuIndentDecrease,
+  command: (chain) => chain.liftListItem("taskItem"),
+  isDisabled: (editor) => !editor.can().liftListItem("taskItem"),
 })
 
 export const LinkControl = forwardRef<
@@ -593,5 +643,251 @@ export const LinkControl = forwardRef<
         </Popover.Positioner>
       </Portal>
     </Popover.Root>
+  )
+})
+
+interface ColorProps
+  extends Omit<RichTextEditorControlProps, "icon" | "label"> {
+  color: string
+}
+
+export const Color = forwardRef<HTMLButtonElement, ColorProps>(function Color(
+  { color, ...props },
+  ref,
+) {
+  const { editor } = useRichTextEditorContext()
+
+  if (!editor) return null
+
+  const isActive = editor.getAttributes("textStyle").color === color
+
+  const handleClick = () => {
+    ;(editor.chain().focus() as any).setColor(color).run()
+  }
+
+  return (
+    <Control
+      ref={ref}
+      label={`Set text color ${color}`}
+      icon={
+        <Box
+          width="16px"
+          height="16px"
+          bg={color}
+          borderRadius="sm"
+          border="1px solid"
+          borderColor="border"
+        />
+      }
+      isActive={isActive}
+      onClick={handleClick}
+      {...props}
+    />
+  )
+})
+
+const DEFAULT_COLORS = [
+  "#25262b",
+  "#868e96",
+  "#fa5252",
+  "#e64980",
+  "#be4bdb",
+  "#7950f2",
+  "#4c6ef5",
+  "#228be6",
+  "#15aabf",
+  "#12b886",
+  "#40c057",
+  "#82c91e",
+  "#fab005",
+  "#fd7e14",
+]
+
+interface ColorPickerProps
+  extends Omit<RichTextEditorControlProps, "icon" | "label"> {
+  colors?: string[]
+}
+
+export const ColorPicker = forwardRef<
+  HTMLButtonElement,
+  Partial<ColorPickerProps>
+>(function ColorPicker({ colors = DEFAULT_COLORS, ...props }, ref) {
+  const { editor } = useRichTextEditorContext()
+  const [state, setState] = useState({
+    open: false,
+    mode: "swatches" as "swatches" | "picker",
+  })
+
+  if (!editor) return null
+
+  const chain = editor.chain().focus() as any
+
+  const currentColor = editor.getAttributes("textStyle").color || colors[0]
+
+  const handleColorSelect = (color: string) => {
+    chain.setColor(color).run()
+    setState({ open: false, mode: "swatches" })
+  }
+
+  const handlePickerChange = (details: any) => {
+    chain.setColor(details.valueAsString).run()
+  }
+
+  const handleUnsetColor = () => {
+    chain.unsetColor().run()
+    setState({ open: false, mode: "swatches" })
+  }
+
+  return (
+    <Popover.Root
+      open={state.open}
+      onOpenChange={(e) => setState((prev) => ({ ...prev, open: e.open }))}
+    >
+      <Popover.Trigger>
+        <Control
+          ref={ref}
+          label="Text Color"
+          icon={
+            <Box position="relative">
+              <LuDroplet />
+              <Box
+                position="absolute"
+                bottom="-2px"
+                left="50%"
+                transform="translateX(-50%)"
+                width="12px"
+                height="2px"
+                bg={currentColor}
+                borderRadius="sm"
+              />
+            </Box>
+          }
+          isActive={editor.isActive("textStyle")}
+          {...props}
+        />
+      </Popover.Trigger>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content p="3" minW="200px">
+            <Popover.Body p="0">
+              {state.mode === "swatches" ? (
+                <Box>
+                  <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(7, 1fr)"
+                    gap="1"
+                    mb="2"
+                  >
+                    {colors.map((color) => (
+                      <Box
+                        key={color}
+                        as="button"
+                        width="24px"
+                        height="24px"
+                        bg={color}
+                        borderRadius="sm"
+                        border="2px solid"
+                        borderColor={
+                          currentColor === color ? "white" : "transparent"
+                        }
+                        outline={currentColor === color ? "1px solid" : "none"}
+                        outlineColor={color}
+                        outlineOffset="1px"
+                        cursor="pointer"
+                        onClick={() => handleColorSelect(color)}
+                      />
+                    ))}
+                  </Box>
+                  <HStack
+                    justify="space-between"
+                    pt="2"
+                    borderTop="1px solid"
+                    borderColor="border"
+                  >
+                    <IconButton
+                      aria-label="Remove color"
+                      size="xs"
+                      variant="ghost"
+                      onClick={handleUnsetColor}
+                    >
+                      <LuX />
+                    </IconButton>
+                    <IconButton
+                      aria-label="Custom color"
+                      size="xs"
+                      variant="ghost"
+                      onClick={() =>
+                        setState((prev) => ({ ...prev, mode: "picker" }))
+                      }
+                    >
+                      <LuPalette />
+                    </IconButton>
+                  </HStack>
+                </Box>
+              ) : (
+                <Box>
+                  <ChakraColorPicker.Root
+                    defaultValue={parseColor(currentColor)}
+                    onValueChange={handlePickerChange}
+                  >
+                    <ChakraColorPicker.Area mb="2" />
+                    <HStack mb="2">
+                      <ChakraColorPicker.EyeDropper
+                        size="xs"
+                        variant="outline"
+                      />
+                      <ChakraColorPicker.Sliders />
+                    </HStack>
+                    <ChakraColorPicker.Input />
+                  </ChakraColorPicker.Root>
+                  <HStack
+                    justify="flex-end"
+                    pt="2"
+                    borderTop="1px solid"
+                    borderColor="border"
+                    mt="2"
+                  >
+                    <IconButton
+                      aria-label="Back to swatches"
+                      size="xs"
+                      variant="ghost"
+                      onClick={() =>
+                        setState((prev) => ({ ...prev, mode: "swatches" }))
+                      }
+                    >
+                      <LuX />
+                    </IconButton>
+                  </HStack>
+                </Box>
+              )}
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
+    </Popover.Root>
+  )
+})
+
+export const UnsetColor = forwardRef<
+  HTMLButtonElement,
+  Partial<RichTextEditorControlProps>
+>(function UnsetColor(props, ref) {
+  const { editor } = useRichTextEditorContext()
+
+  if (!editor) return null
+
+  const handleClick = () => {
+    ;(editor.chain().focus() as any).unsetColor().run()
+  }
+
+  return (
+    <Control
+      ref={ref}
+      label="Remove Color"
+      icon={<LuX />}
+      onClick={handleClick}
+      disabled={!editor.isActive("textStyle")}
+      {...props}
+    />
   )
 })
