@@ -19,3 +19,5 @@ export { RichTextEditorBubbleMenu as BubbleMenu } from "compositions/examples/ti
 export { RichTextEditorFloatingMenu as FloatingMenu } from "compositions/examples/tiptap-editor/rich-text-editor-floating-menu"
 export { RichTextEditorTask as Task } from "compositions/examples/tiptap-editor/rich-text-editor-task"
 export { RichTextEditorColor as Color } from "compositions/examples/tiptap-editor/rich-text-editor-color"
+export { RichTextEditorIcon as CustomIcon } from "compositions/examples/tiptap-editor/rich-text-editor-icon"
+export { RichTextEditorCustomControl as CustomControl } from "compositions/examples/tiptap-editor/rich-text-editor-custom-control"
