@@ -24,6 +24,7 @@
     "@tanstack/react-table": "8.21.3",
     "@tanstack/react-virtual": "3.13.12",
     "@tiptap/extension-color": "^3.11.0",
+    "@tiptap/extension-image": "^3.11.0",
     "@tiptap/extension-placeholder": "^3.11.0",
     "@tiptap/extension-subscript": "^3.11.0",
     "@tiptap/extension-superscript": "^3.11.0",

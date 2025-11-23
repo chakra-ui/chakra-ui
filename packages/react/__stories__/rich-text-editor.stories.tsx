@@ -21,3 +21,4 @@ export { RichTextEditorTask as Task } from "compositions/examples/tiptap-editor/
 export { RichTextEditorColor as Color } from "compositions/examples/tiptap-editor/rich-text-editor-color"
 export { RichTextEditorIcon as CustomIcon } from "compositions/examples/tiptap-editor/rich-text-editor-icon"
 export { RichTextEditorCustomControl as CustomControl } from "compositions/examples/tiptap-editor/rich-text-editor-custom-control"
+export { RichTextEditorWithImage as Image } from "compositions/examples/tiptap-editor/rich-text-editor-with-image"
