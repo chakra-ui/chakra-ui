@@ -13,7 +13,7 @@ export const SplitterCollapsible = () => {
       <Splitter.Root
         defaultSize={[40, 60]}
         panels={[
-          { id: "a", collapsible: true, collapsedSize: 10, minSize: 15 },
+          { id: "a", collapsible: true, collapsedSize: 5, minSize: 25 },
           { id: "b", minSize: 50 },
         ]}
         borderWidth="1px"

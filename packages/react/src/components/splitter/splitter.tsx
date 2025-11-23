@@ -89,7 +89,7 @@ export interface SplitterResizeTriggerIndicatorProps
 export const SplitterResizeTriggerIndicator = withContext<
   HTMLDivElement,
   SplitterResizeTriggerIndicatorProps
->("div", "resizeTriggerIndicator")
+>(ArkSplitter.ResizeTriggerIndicator, "resizeTriggerIndicator")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
