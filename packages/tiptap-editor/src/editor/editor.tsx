@@ -158,6 +158,12 @@ const baseCss = defineStyle({
     "& em": {
       fontStyle: "italic",
     },
+    "& p[data-placeholder]::before": {
+      content: "attr(data-placeholder)",
+      color: "fg.muted",
+      pointerEvents: "none",
+      userSelect: "none",
+    },
   },
 })
 
@@ -256,7 +262,7 @@ interface CreateControlOptions {
     attributes?: Record<string, any>
   }
   isDisabled?: (editor: Editor) => boolean
-  command?: (chain: ChainedCommands) => ChainedCommands
+  command: (chain: ChainedCommands) => ChainedCommands
 }
 
 function createControl({
@@ -281,7 +287,7 @@ function createControl({
     const disabled = isDisabled ? isDisabled(editor) : false
 
     const handleClick = () => {
-      command && command(editor.chain().focus()).run()
+      command(editor.chain().focus()).run()
     }
 
     return (
@@ -436,7 +442,7 @@ export const AlignJustify = createControl({
   label: "Align Justify",
   icon: LuAlignJustify,
   isActive: { name: "textAlign", attributes: { textAlign: "justify" } },
-  // command: (chain) => chain.setTextAlign("justify"),
+  command: (chain) => chain.setTextAlign("justify"),
 })
 
 export const Undo = createControl({

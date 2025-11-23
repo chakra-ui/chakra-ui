@@ -1,6 +1,11 @@
-import { RichTextEditor, useEditor } from "@chakra-ui/tiptap-editor"
+import { RichTextEditor } from "@chakra-ui/tiptap-editor"
+import Subscript from "@tiptap/extension-subscript"
+import Superscript from "@tiptap/extension-superscript"
+import TextAlign from "@tiptap/extension-text-align"
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
 
-export function BasicEditor() {
+export function RichTextEditorBasic() {
   const editor = useEditor({
     content: `
     <h1>Welcome to Chakra UI + Tiptap!</h1>
@@ -25,6 +30,18 @@ export function BasicEditor() {
     <blockquote>Tip: You can also create custom Tiptap extensions to add new commands and formatting options!</blockquote>
   `,
     shouldRerenderOnTransaction: true,
+    extensions: [
+      StarterKit.configure({
+        link: {
+          openOnClick: false,
+        },
+      }),
+      Subscript,
+      Superscript,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+    ],
   })
 
   return (
