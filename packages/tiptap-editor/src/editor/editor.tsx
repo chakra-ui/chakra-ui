@@ -12,8 +12,6 @@ import {
   Portal,
   Separator,
   type StackProps,
-  Switch,
-  Text,
   defineStyle,
 } from "@chakra-ui/react"
 import { type ChainedCommands, type Editor, EditorContent } from "@tiptap/react"
@@ -471,42 +469,53 @@ export const LinkControl = forwardRef<
   Omit<RichTextEditorControlProps, "icon" | "label">
 >(function LinkControl(props, ref) {
   const { editor } = useRichTextEditorContext()
-  const [open, setOpen] = useState(false)
-  const [url, setUrl] = useState("")
-  const [external, setExternal] = useState(false)
+  const [linkState, setLinkState] = useState({
+    open: false,
+    url: "",
+    external: false,
+  })
 
   if (!editor) return null
 
   const handleOpen = () => {
     const markAttrs = editor.getAttributes("link")
-    setUrl(markAttrs.href ?? "")
-    setExternal(markAttrs.target === "_blank")
-    setOpen(true)
+    setLinkState({
+      open: true,
+      url: markAttrs.href ?? "",
+      external: markAttrs.target === "_blank",
+    })
   }
 
   const handleApply = () => {
-    const trimmed = url.trim()
+    const trimmed = linkState.url.trim()
     if (!trimmed) {
       editor.chain().focus().unsetLink().run()
-      setOpen(false)
+      setLinkState((prev) => ({ ...prev, open: false }))
       return
     }
 
-    const isValid = /^https?:\/\//i.test(trimmed)
-    const finalUrl = isValid ? trimmed : `https://${trimmed}`
+    const finalUrl = /^https?:\/\//i.test(trimmed)
+      ? trimmed
+      : `https://${trimmed}`
 
     editor
       .chain()
       .focus()
       .extendMarkRange("link")
-      .setLink({ href: finalUrl, ...(external ? { target: "_blank" } : {}) })
+      .setLink({
+        href: finalUrl,
+        ...(linkState.external ? { target: "_blank" } : {}),
+      })
       .run()
 
-    setOpen(false)
+    setLinkState((prev) => ({ ...prev, open: false }))
   }
 
   return (
-    <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <Popover.Root
+      open={linkState.open}
+      onOpenChange={(e) => setLinkState((prev) => ({ ...prev, open: e.open }))}
+    >
       <Popover.Trigger>
         <Control
           ref={ref}
@@ -519,40 +528,48 @@ export const LinkControl = forwardRef<
       </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
-          <Popover.Content p="1" minW="220px">
-            <Popover.Body>
-              <Text fontWeight="medium" mb="2">
-                Insert Link
-              </Text>
-              <Input
-                placeholder="Enter URL"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                size="sm"
-                mb="3"
-              />
-              <HStack mb="4" align="center">
-                <Switch.Root
-                  checked={external}
-                  onCheckedChange={(e) => setExternal(e.checked)}
-                >
-                  <Switch.HiddenInput />
-                  <Switch.Control>
-                    <Switch.Thumb />
-                  </Switch.Control>
-                  <Switch.Label>Open in new tab</Switch.Label>
-                </Switch.Root>
-              </HStack>
-              <HStack justify="flex-end" gap="2">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </Button>
+          <Popover.Content p="0" minW="240px">
+            <Popover.Body p="3">
+              <HStack mb="2" gap="2">
+                <Box position="relative" flex="1">
+                  <Input
+                    placeholder="Enter URL"
+                    value={linkState.url}
+                    onChange={(e) =>
+                      setLinkState((prev) => ({ ...prev, url: e.target.value }))
+                    }
+                    size="sm"
+                    pr="8"
+                    h="12"
+                  />
+                  <Tooltip
+                    content={
+                      linkState.external
+                        ? "Open in new tab"
+                        : "Open in same tab"
+                    }
+                  >
+                    <IconButton
+                      aria-label="Toggle external link"
+                      size="xs"
+                      variant={linkState.external ? "solid" : "outline"}
+                      onClick={() =>
+                        setLinkState((prev) => ({
+                          ...prev,
+                          external: !prev.external,
+                        }))
+                      }
+                      position="absolute"
+                      top="50%"
+                      right="2"
+                      transform="translateY(-50%)"
+                    >
+                      <LuLink />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
                 <Button size="sm" onClick={handleApply}>
-                  Apply
+                  Save
                 </Button>
               </HStack>
             </Popover.Body>
