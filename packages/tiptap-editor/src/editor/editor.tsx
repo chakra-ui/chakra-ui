@@ -51,6 +51,10 @@ interface RichTextEditorContextValue {
   editor: Editor | null
 }
 
+type EditorChain = ChainedCommands & {
+  [key: string]: any
+}
+
 const RichTextEditorContext = createContext<RichTextEditorContextValue | null>(
   null,
 )
@@ -260,7 +264,7 @@ interface CreateControlOptions {
     attributes?: Record<string, any>
   }
   isDisabled?: (editor: Editor) => boolean
-  command: (chain: ChainedCommands) => ChainedCommands
+  command: (chain: EditorChain) => ChainedCommands
 }
 
 function createControl({
@@ -443,17 +447,24 @@ export const AlignJustify = createControl({
   command: (chain) => chain.setTextAlign("justify"),
 })
 
+// TODO: Implement a safe, type-aware pattern to extract and call TipTap commands
+// Goals:
+// 1. Avoid using `any` when calling `editor.chain()` or `editor.can()`.
+// 2. Make command calls type-safe while supporting all TipTap basic extensions.
+// 3. Ensure commands exist before executing (e.g., `undo`, `redo`, `setLink`).
+// 4. Provide a reusable helper to check command availability and execute safely.
+// 5. Keep rich TypeScript types for all editor controls without manual type casting.
 export const Undo = createControl({
   label: "Undo",
   icon: LuUndo,
-  isDisabled: (editor) => !editor.can().undo(),
+  isDisabled: (editor) => (!editor.can() as any).undo(),
   command: (chain) => chain.undo(),
 })
 
 export const Redo = createControl({
   label: "Redo",
   icon: LuRedo,
-  isDisabled: (editor) => !editor.can().redo(),
+  isDisabled: (editor) => (!editor.can() as any).redo(),
   command: (chain) => chain.redo(),
 })
 
@@ -461,7 +472,8 @@ export const ClearFormatting = createControl({
   label: "Clear Formatting",
   icon: LuEraser,
   isDisabled: (editor) => !editor,
-  command: (chain) => chain.focus().unsetAllMarks().clearNodes().setParagraph(),
+  command: (chain) =>
+    (chain.focus().unsetAllMarks().clearNodes() as any).setParagraph(),
 })
 
 export const LinkControl = forwardRef<
@@ -488,8 +500,11 @@ export const LinkControl = forwardRef<
 
   const handleApply = () => {
     const trimmed = linkState.url.trim()
+
+    const chain = editor.chain() as any
+
     if (!trimmed) {
-      editor.chain().focus().unsetLink().run()
+      chain.focus().unsetLink().run()
       setLinkState((prev) => ({ ...prev, open: false }))
       return
     }
@@ -498,8 +513,7 @@ export const LinkControl = forwardRef<
       ? trimmed
       : `https://${trimmed}`
 
-    editor
-      .chain()
+    chain
       .focus()
       .extendMarkRange("link")
       .setLink({
