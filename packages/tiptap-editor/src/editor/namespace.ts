@@ -35,6 +35,7 @@ export {
   Color,
   ColorPicker,
   UnsetColor,
+  CodeBlock,
 } from "./editor"
 
 export type {

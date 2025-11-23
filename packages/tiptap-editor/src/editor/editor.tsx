@@ -5,6 +5,7 @@ import {
   type BoxProps,
   Button,
   ColorPicker as ChakraColorPicker,
+  ColorSwatch,
   HStack,
   IconButton,
   type IconButtonProps,
@@ -112,79 +113,149 @@ const baseCss = defineStyle({
     outline: "none",
     minHeight: "100px",
     padding: "4",
+
     "& > * + *": {
       marginTop: "0.75em",
     },
-    "& ul, & ol": {
-      paddingInlineStart: "4",
-    },
-    "& h1": {
-      fontSize: "2xl",
-      fontWeight: "bold",
-    },
-    "& h2": {
-      fontSize: "xl",
-      fontWeight: "bold",
-    },
-    "& h3": {
-      fontSize: "lg",
-      fontWeight: "bold",
-    },
+
+    "& h1": { fontSize: "2xl", fontWeight: "bold" },
+    "& h2": { fontSize: "xl", fontWeight: "bold" },
+    "& h3": { fontSize: "lg", fontWeight: "bold" },
+
     "& code": {
       bg: "bg.muted",
       px: "1",
       rounded: "sm",
+      fontFamily: "mono",
+      fontSize: "0.9em",
     },
+
+    "& pre": {
+      bg: "gray.900",
+      color: "gray.100",
+      padding: "4",
+      rounded: "lg",
+      overflowX: "auto",
+      fontSize: "sm",
+      lineHeight: "1.6",
+      borderWidth: "1px",
+      borderColor: "gray.700",
+      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.03)",
+    },
+
+    "& pre code": {
+      bg: "transparent",
+      padding: "0",
+      fontFamily: "mono",
+      color: "inherit",
+    },
+
+    "& .hljs-comment, & .hljs-quote": {
+      color: "#616161",
+      fontStyle: "italic",
+    },
+
+    "& .hljs-variable, \
+       .hljs-template-variable, \
+       .hljs-attribute, \
+       .hljs-tag, \
+       .hljs-regexp, \
+       .hljs-link, \
+       .hljs-name, \
+       .hljs-selector-id, \
+       .hljs-selector-class": {
+      color: "#f98181",
+    },
+
+    "& .hljs-number, \
+       .hljs-meta, \
+       .hljs-built_in, \
+       .hljs-builtin-name, \
+       .hljs-literal, \
+       .hljs-type, \
+       .hljs-params": {
+      color: "#fbbc88",
+    },
+
+    "& .hljs-string, \
+       .hljs-symbol, \
+       .hljs-bullet": {
+      color: "#b9f18d",
+    },
+
+    "& .hljs-title, \
+       .hljs-section": {
+      color: "#faf594",
+    },
+
+    "& .hljs-keyword, \
+       .hljs-selector-tag": {
+      color: "#70cff8",
+      fontWeight: 600,
+    },
+
+    "& .hljs-emphasis": { fontStyle: "italic" },
+    "& .hljs-strong": { fontWeight: "700" },
+
     "& blockquote": {
       borderStartWidth: "4px",
       borderStartColor: "border",
       paddingStart: "4",
       fontStyle: "italic",
     },
+
     "& ul": {
       paddingInlineStart: "4",
       listStyleType: "disc",
-      listStylePosition: "outside",
     },
+
     "& ol": {
       paddingInlineStart: "4",
       listStyleType: "decimal",
-      listStylePosition: "outside",
     },
+
     "& ul ul": {
       listStyleType: "circle",
     },
+
     "& ul ul ul": {
       listStyleType: "square",
     },
-    "& hr": {
-      my: "4",
-    },
-    "& a": {
-      color: "fg.link",
-      textDecoration: "underline",
-    },
-    "& em": {
-      fontStyle: "italic",
-    },
-    "& p[data-placeholder]::before": {
-      content: "attr(data-placeholder)",
-      color: "fg.muted",
-      pointerEvents: "none",
-      userSelect: "none",
-    },
+
     "& ul[data-type='taskList'] li": {
       listStyle: "none",
       display: "flex",
       alignItems: "flex-start",
       gap: "2",
+
       "& input[type='checkbox']": {
         accentColor: "colorPalette.solid",
         marginTop: "1",
       },
+
       "& ul[data-type='taskList']": {
         paddingLeft: "6",
       },
+    },
+
+    "& hr": {
+      my: "4",
+    },
+
+    "& a": {
+      color: "fg.link",
+      textDecoration: "underline",
+    },
+
+    "& em": {
+      fontStyle: "italic",
+    },
+
+    "& p[data-placeholder]::before": {
+      content: "attr(data-placeholder)",
+      color: "fg.muted",
+      pointerEvents: "none",
+      userSelect: "none",
     },
   },
 })
@@ -206,10 +277,16 @@ export const Content = forwardRef<HTMLDivElement, RichTextEditorContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RichTextEditorToolbarProps extends StackProps {}
+export interface RichTextEditorToolbarProps extends StackProps {
+  /**
+   * Pass `sticky={true}` to make your toolbar stick to the top
+   * when scrolling inside the editor.
+   */
+  sticky?: boolean
+}
 
 export const Toolbar = forwardRef<HTMLDivElement, RichTextEditorToolbarProps>(
-  function Toolbar(props, ref) {
+  function Toolbar({ sticky = false, ...props }, ref) {
     return (
       <HStack
         ref={ref}
@@ -218,12 +295,15 @@ export const Toolbar = forwardRef<HTMLDivElement, RichTextEditorToolbarProps>(
         p="2"
         gap="1"
         wrap="wrap"
+        bg="bg"
+        zIndex={sticky ? 10 : undefined}
+        position={sticky ? "sticky" : undefined}
+        top={sticky ? 0 : undefined}
         {...props}
       />
     )
   },
 )
-
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RichTextEditorControlsGroupProps extends StackProps {
@@ -528,6 +608,14 @@ export const TaskListLiftControl = createControl({
   isDisabled: (editor) => !editor.can().liftListItem("taskItem"),
 })
 
+export const CodeBlock = createControl({
+  label: "Code Block",
+  icon: LuCode,
+  isDisabled: (editor) => !editor,
+  isActive: { name: "codeBlock" },
+  command: (chain) => chain.toggleCodeBlock(),
+})
+
 export const LinkControl = forwardRef<
   HTMLButtonElement,
   Omit<RichTextEditorControlProps, "icon" | "label">
@@ -721,7 +809,6 @@ export const ColorPicker = forwardRef<
   if (!editor) return null
 
   const chain = editor.chain().focus() as any
-
   const currentColor = editor.getAttributes("textStyle").color || colors[0]
 
   const handleColorSelect = (color: string) => {
@@ -766,6 +853,7 @@ export const ColorPicker = forwardRef<
           {...props}
         />
       </Popover.Trigger>
+
       <Portal>
         <Popover.Positioner>
           <Popover.Content p="3" minW="200px">
@@ -779,21 +867,9 @@ export const ColorPicker = forwardRef<
                     mb="2"
                   >
                     {colors.map((color) => (
-                      <Box
+                      <ColorSwatch
                         key={color}
-                        as="button"
-                        width="24px"
-                        height="24px"
-                        bg={color}
-                        borderRadius="sm"
-                        border="2px solid"
-                        borderColor={
-                          currentColor === color ? "white" : "transparent"
-                        }
-                        outline={currentColor === color ? "1px solid" : "none"}
-                        outlineColor={color}
-                        outlineOffset="1px"
-                        cursor="pointer"
+                        value={color}
                         onClick={() => handleColorSelect(color)}
                       />
                     ))}
@@ -817,7 +893,11 @@ export const ColorPicker = forwardRef<
                       size="xs"
                       variant="ghost"
                       onClick={() =>
-                        setState((prev) => ({ ...prev, mode: "picker" }))
+                        setState((prev) => ({
+                          ...prev,
+                          mode: "picker",
+                          open: true,
+                        }))
                       }
                     >
                       <LuPalette />
@@ -852,7 +932,11 @@ export const ColorPicker = forwardRef<
                       size="xs"
                       variant="ghost"
                       onClick={() =>
-                        setState((prev) => ({ ...prev, mode: "swatches" }))
+                        setState((prev) => ({
+                          ...prev,
+                          mode: "swatches",
+                          open: true,
+                        }))
                       }
                     >
                       <LuX />

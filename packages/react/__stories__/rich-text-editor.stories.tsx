@@ -22,3 +22,4 @@ export { RichTextEditorColor as Color } from "compositions/examples/tiptap-edito
 export { RichTextEditorIcon as CustomIcon } from "compositions/examples/tiptap-editor/rich-text-editor-icon"
 export { RichTextEditorCustomControl as CustomControl } from "compositions/examples/tiptap-editor/rich-text-editor-custom-control"
 export { RichTextEditorWithImage as Image } from "compositions/examples/tiptap-editor/rich-text-editor-with-image"
+export { RichTextEditorWithCode as Code } from "compositions/examples/tiptap-editor/rich-text-editor-with-code"
