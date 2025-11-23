@@ -51,16 +51,15 @@
     },
     "./package.json": "./package.json"
   },
-   "devDependencies": {
+  "devDependencies": {
     "@chakra-ui/react": "workspace:*",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-
     "@tiptap/react": "^3.11.0",
     "@tiptap/core": "^3.11.0",
     "@tiptap/pm": "^3.11.0"
   },
-   "peerDependencies": {
+  "peerDependencies": {
     "@chakra-ui/react": ">=3",
     "react": ">=18",
     "react-dom": ">=18",
