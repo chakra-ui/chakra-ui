@@ -1,7 +1,3 @@
-  <img alt="Github Checks" src="https://badgen.net/github/checks/chakra-ui/chakra-ui/main"/>
-  <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
-    <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
-  </a>
   <a href="https://www.npmjs.com/package/@chakra-ui/react">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   </a>
