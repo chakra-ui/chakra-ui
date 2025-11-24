@@ -84,7 +84,7 @@
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
-    "eslint-plugin-testing-library": "7.13.4",
+    "eslint-plugin-testing-library": "7.13.5",
     "execa": "9.6.0",
     "fast-glob": "3.3.3",
     "find-packages": "10.0.4",
