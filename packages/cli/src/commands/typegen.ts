@@ -91,6 +91,8 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
   io.ensureDir(flags.outdir)
   debug("writing codegen to", flags.outdir)
 
+  const isCustomOutdir = flags.outdir !== getDefaultBasePath()
+
   return tasks([
     {
       title: "Generating conditions types...",
@@ -105,7 +107,7 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
         await io.write(
           flags.outdir,
           "recipes.gen",
-          generateRecipe(sys, flags.strict),
+          generateRecipe(sys, flags.strict, isCustomOutdir),
         )
         return "✅ Generated recipe typings"
       },
@@ -113,7 +115,11 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
     {
       title: "Generating utility types...",
       task: async () => {
-        await io.write(flags.outdir, "prop-types.gen", generatePropTypes(sys))
+        await io.write(
+          flags.outdir,
+          "prop-types.gen",
+          generatePropTypes(sys, isCustomOutdir),
+        )
         return "✅ Generated utility typings"
       },
     },
@@ -127,7 +133,11 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
     {
       title: "Generating system types...",
       task: async () => {
-        await io.write(flags.outdir, "system.gen", generateSystemTypes(sys))
+        await io.write(
+          flags.outdir,
+          "system.gen",
+          generateSystemTypes(sys, isCustomOutdir),
+        )
         return "✅ Generated system types"
       },
     },

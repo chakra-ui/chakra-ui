@@ -2,7 +2,10 @@ import type { SystemContext } from "@chakra-ui/react"
 import { allCssProperties } from "@pandacss/is-valid-prop"
 import { pretty } from "./pretty.js"
 
-export async function generateSystemTypes(sys: SystemContext) {
+export async function generateSystemTypes(
+  sys: SystemContext,
+  isCustomOutdir = false,
+) {
   const props = new Set(
     allCssProperties.concat(sys.utility.keys()).filter(Boolean),
   )
@@ -10,8 +13,12 @@ export async function generateSystemTypes(sys: SystemContext) {
 
   const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
 
+  const cssTypesImport = isCustomOutdir
+    ? 'import type { ConditionalValue, CssProperties } from "@chakra-ui/react"'
+    : 'import type { ConditionalValue, CssProperties } from "../css.types"'
+
   const result = `
-  import type { ConditionalValue, CssProperties } from "../css.types"
+  ${cssTypesImport}
   ${
     shouldImportTypeWithEscapeHatch
       ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
