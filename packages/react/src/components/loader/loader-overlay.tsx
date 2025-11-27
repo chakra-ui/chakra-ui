@@ -1,3 +1,5 @@
+"use client"
+
 import { type HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface LoaderOverlayProps extends HTMLChakraProps<"div"> {}
@@ -13,3 +15,5 @@ export const LoaderOverlay = chakra("div", {
     gap: "2",
   },
 })
+
+LoaderOverlay.displayName = "LoaderOverlay"

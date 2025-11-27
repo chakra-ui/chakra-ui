@@ -2,7 +2,7 @@
 
 import { chakra } from "@chakra-ui/react"
 
-export const Annoucement = chakra("div", {
+export const Announcement = chakra("div", {
   base: {
     display: "inline-flex",
     alignItems: "center",

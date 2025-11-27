@@ -76,6 +76,18 @@ export const EditablePreview = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface EditableLabelProps
+  extends HTMLChakraProps<"label", ArkEditable.LabelProps>,
+    UnstyledProp {}
+
+export const EditableLabel = withContext<HTMLLabelElement, EditableLabelProps>(
+  ArkEditable.Label,
+  "label",
+  { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface EditableInputProps
   extends HTMLChakraProps<"input", ArkEditable.InputBaseProps>,
     UnstyledProp {}
@@ -165,6 +177,3 @@ export const EditableCancelTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const EditableContext = ArkEditable.Context
-
-export interface EditableValueChangeDetails
-  extends ArkEditable.ValueChangeDetails {}

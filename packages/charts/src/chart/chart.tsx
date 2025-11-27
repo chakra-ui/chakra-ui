@@ -13,10 +13,10 @@ import {
   defineStyle,
 } from "@chakra-ui/react"
 import { createContext, useContext, useMemo } from "react"
-import type { LegendProps, TooltipProps } from "recharts"
+import type { LegendPayload, LegendProps, TooltipContentProps } from "recharts"
 import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
-import type { PolarViewBox, ViewBox } from "recharts/types/util/types"
+import type { PolarViewBoxRequired, ViewBox } from "recharts/types/util/types"
 import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -100,6 +100,7 @@ export interface ChartLegendProps extends LegendProps {
   title?: React.ReactNode
   nameKey?: string
   interaction?: "hover" | "click"
+  payload?: LegendPayload[]
 }
 
 const hAlignMap = {
@@ -189,7 +190,8 @@ export function ChartLegend(props: ChartLegendProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartTooltipProps extends TooltipProps<string, string> {
+export interface ChartTooltipProps
+  extends Partial<TooltipContentProps<string | number, string>> {
   hideLabel?: boolean
   hideIndicator?: boolean
   hideSeriesLabel?: boolean
@@ -328,7 +330,7 @@ export interface ChartRadialTextProps {
   fontSize?: string
 }
 
-const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBox =>
+const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBoxRequired =>
   "cx" in viewBox && "cy" in viewBox
 
 export function ChartRadialText(props: ChartRadialTextProps) {

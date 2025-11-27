@@ -127,7 +127,7 @@ export default async function Page() {
                       <Avatar.Fallback name="Sage Adebayo" />
                     </Avatar.Root>
                     <Avatar.Root variant={variant} size="lg" shape="rounded">
-                      <Avatar.Fallback name="Dan Abramov" />
+                      <Avatar.Fallback name="Michael Davis" />
                     </Avatar.Root>
                     <Avatar.Root variant={variant} size="lg" shape="rounded">
                       <Avatar.Fallback />

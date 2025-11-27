@@ -1,4 +1,4 @@
-import { ProAdBanner } from "@/components/pro-banner"
+import { BlackFridaySaleBanner } from "@/components/pro-banner"
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
 import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
@@ -71,14 +71,23 @@ export default function RootLayout({
       ].join(" ")}
     >
       <head>
-        <Script
-          src="https://plausible.io/js/plausible.js"
-          data-domain="chakra-ui.com"
-        />
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              src="https://plausible.io/js/plausible.js"
+              data-domain="chakra-ui.com"
+            />
+            <Script
+              src="https://analytics.ahrefs.com/analytics.js"
+              data-key="WFEtMlDEHKIyFM4D3SFSiA"
+              strategy="afterInteractive"
+            />
+          </>
+        )}
       </head>
       <body suppressHydrationWarning>
         <Provider>
-          <ProAdBanner />
+          <BlackFridaySaleBanner />
           {children}
         </Provider>
       </body>

@@ -95,6 +95,15 @@
         "import {\n  Button,\n  CloseButton,\n  Drawer,\n  For,\n  HStack,\n  Kbd,\n  Portal,\n} from \"@chakra-ui/react\""
       ],
       "importPath": "import { Drawer } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "drawer-non-modal",
+      "content": "export const DrawerNonModal = () => {\n  return (\n    <Drawer.Root closeOnInteractOutside={false} modal={false}>\n      <Drawer.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Drawer\n        </Button>\n      </Drawer.Trigger>\n      <Portal>\n        <Drawer.Positioner pointerEvents=\"none\">\n          <Drawer.Content>\n            <Drawer.Header>\n              <Drawer.Title>Drawer Title</Drawer.Title>\n            </Drawer.Header>\n            <Drawer.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Drawer.Body>\n            <Drawer.Footer>\n              <Drawer.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Drawer.ActionTrigger>\n              <Button>Save</Button>\n            </Drawer.Footer>\n            <Drawer.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Drawer.CloseTrigger>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Drawer, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Drawer } from \"@chakra-ui/react\""
     }
   ]
 }

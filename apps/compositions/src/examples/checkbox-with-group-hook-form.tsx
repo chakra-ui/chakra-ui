@@ -7,7 +7,7 @@ import {
   Code,
   Fieldset,
 } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { useController, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -32,7 +32,7 @@ export const CheckboxWithGroupHookForm = () => {
     control,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const framework = useController({

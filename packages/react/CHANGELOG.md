@@ -1,5 +1,236 @@
 # @chakra-ui/react
 
+## 3.30.0
+
+### Minor Changes
+
+- [#10425](https://github.com/chakra-ui/chakra-ui/pull/10425)
+  [`0168a04`](https://github.com/chakra-ui/chakra-ui/commit/0168a04197874d7bd66ebcde25efc7662465571e)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - - **Splitter
+  [NEW]**: Introduce new resizable splitter component
+
+  ```tsx
+  <Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Panel id="a">Panel A</Splitter.Panel>
+    <Splitter.ResizeTrigger id="a:b" />
+    <Splitter.Panel id="b">Panel B</Splitter.Panel>
+  </Splitter.Root>
+  ```
+
+- [`7b9aa97`](https://github.com/chakra-ui/chakra-ui/commit/7b9aa97b41c79d6937b6a3ec2c3e2f23b42c8778)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+  - **Carousel**: Added `autoSize` prop for variable width/height slides
+
+  ### Changed
+  - **useListCollection**: `initialItems` now accepts `readonly` arrays
+  - **Types**: Exported `InteractOutsideEvent`, `FocusOutsideEvent`,
+    `PointerDownOutsideEvent` types
+
+  ### Fixed
+  - **Carousel**: Fixed dragging after tab switch/scroll and mouse wheel scroll
+    with `allowMouseDrag`
+  - **Combobox**:
+    - Fixed `onHighlightChange` not firing when filtered to empty;
+    - Fixed focus stealing in controlled mode
+    - Removed problematic `aria-hidden` behavior
+  - **File Upload**: Fixed non-interactive children in dropzone not opening file
+    picker
+  - **Radio Group**: Fixed inconsistent `data-focus-visible`/`data-focus`
+    attributes; fixed indicator showing before rect resolved (with Tabs)
+  - **Tabs**: Fixed indicator showing before rect resolved (with Radio Group);
+    fixed position not updating when inactive tabs resize
+
+- [`503e11a`](https://github.com/chakra-ui/chakra-ui/commit/503e11ad4b2b5aa6d653e21d96b7f76a72c87d92)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+  - **Semantic Tokens**: Add new `border` semantic token to all color palettes
+    (`gray.300`/`gray.700` for gray, `color.500`/`color.400` for colored
+    palettes) to improve outline component appearance
+
+  ### Changed
+  - **Button, Badge, Tag, Checkbox**: Update outline variants to use
+    `colorPalette.border` instead of `colorPalette.muted` or global `border`
+    token for better appearance, especially for non-gray color palettes.
+
+    > **NOTE**: All changes include CSS variable fallbacks to
+    > `colorPalette.muted` for backward compatibility.
+
+### Patch Changes
+
+- [`fd15569`](https://github.com/chakra-ui/chakra-ui/commit/fd155693546b96e390e131c85fac192711d52cef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **HoverCard,
+  Tooltip, Popover**: Fix arrow direction in RTL layouts
+
+- [`81ec4e7`](https://github.com/chakra-ui/chakra-ui/commit/81ec4e781f96ef8051607d6e970ccb61baa1c788)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **TagsInput**:
+  Fix overflow issue where very long tags would overflow the container instead
+  of truncating with ellipsis.
+  - **CheckboxGroup**: Fix type issue where `CheckboxGroupProps` could not be
+    passed to the `CheckboxGroup` component.
+
+## 3.29.0
+
+### Minor Changes
+
+- [#10391](https://github.com/chakra-ui/chakra-ui/pull/10391)
+  [`1580aeb`](https://github.com/chakra-ui/chakra-ui/commit/1580aebf63e7267d86db2fcb91f6303a4c453914)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - feat: add
+  carousel component
+
+### Patch Changes
+
+- [`69aabbf`](https://github.com/chakra-ui/chakra-ui/commit/69aabbfd5f32283329b272544670ebadea9b6788)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Combobox:**
+  Refactor recipe for smarter padding management to prevent input text from
+  overflowing unto triggers
+  - **CodeBlock:** Add missing `use client` directive
+
+## 3.28.1
+
+### Patch Changes
+
+- [`fad9a2e`](https://github.com/chakra-ui/chakra-ui/commit/fad9a2ef3197b73633f08c02a0861d37aaa8929c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix CodeBlock right
+  padding when scrolling long code lines horizontally
+
+- [`37d166a`](https://github.com/chakra-ui/chakra-ui/commit/37d166a293276a42c54e6918d04e045c2c7b66ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Tabs**:
+  Refactor to use css variables for styling indicator (`--tabs-indicator-bg` )
+  for better customization.
+  - **SegmentedControl**: Refactor to use css variables for styling indicator
+    (`--segment-indicator-bg` and `--segment-indicator-shadow`) for better
+    customization.
+
+- [`7067c95`](https://github.com/chakra-ui/chakra-ui/commit/7067c9584e87c320279e81633097b0c1b5786eb7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix Shadow DOM and
+  Web Component selector handling in `globalCss`. The `:host`,
+  `:host-context()`, and `::slotted()` pseudo-classes now correctly transform to
+  top-level selectors with case-insensitive matching.
+
+- [`c7060de`](https://github.com/chakra-ui/chakra-ui/commit/c7060deba8bf9f7b6cf6c9c015a1003ba3004f85)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve
+  styled-system performance with multiple optimizations
+  - **Token cloning**: Replace `structuredClone()` with efficient shallow clone
+    (75x faster)
+  - **Memoization**: Improve cache key generation with efficient hashing and LRU
+    cache (1.4x faster baseline, up to 585x faster for cached operations)
+  - **Object allocation**: Use singleton empty objects instead of creating new
+    ones in hot paths
+  - **Array operations**: Optimize responsive value normalization with for loops
+    instead of reduce
+  - **Performance impact**: Significant improvement in style computation speed
+    with the memoization layer providing 100-500x gains for repeated operations
+
+## 3.28.0
+
+### Minor Changes
+
+- [#10374](https://github.com/chakra-ui/chakra-ui/pull/10374)
+  [`e62bae7`](https://github.com/chakra-ui/chakra-ui/commit/e62bae7b9af3a32cee5a2ff82dc5b00a9c6a468e)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - Add new
+  `TagsInput` component for entering multiple values as tags with features like
+  tag creation, deletion, and keyboard navigation.
+
+  ```tsx
+  import { Span, TagsInput } from "@chakra-ui/react"
+
+  export const TagsInputBasic = () => {
+    return (
+      <TagsInput.Root defaultValue={["React", "Chakra", "TypeScript"]}>
+        <TagsInput.Label>Tags</TagsInput.Label>
+        <TagsInput.Control>
+          <TagsInput.Items />
+          <TagsInput.Input placeholder="Add tag..." />
+        </TagsInput.Control>
+      </TagsInput.Root>
+    )
+  }
+  ```
+
+- [`bf31e2a`](https://github.com/chakra-ui/chakra-ui/commit/bf31e2a9ddb2e72b25c44947d2aeb8c791281426)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Checkbox**
+  - Fix issue where setting initial checked state to `indeterminate` doesn't
+    work
+  - Ensure `api.checkedState` returns the correct checked state
+  - **Collapsible**
+    - Add support for `collapsedHeight` and `collapsedWidth` props to control
+      the dimensions of the collapsible content when in its collapsed state
+    - Fix issue where `dir` prop value doesn't get applied correctly
+    - Update the recipe styling as needed (when `data-has-collapsed-size` is
+      set)
+  - **Combobox**: Fix issue where controlled single-select combobox does not
+    propagate its initial value to `inputValue`
+  - **Dialog, Popover**: In modal mode, allow elements referenced by
+    `aria-controls` to be included in the focus trap scope
+  - **Listbox**: Fix issue where pressing Enter key when no highlighted item
+    still calls `event.preventDefault()`
+  - **Number Input**: Fix cursor jumping to end when typing in the middle with
+    `formatOptions` like `style: "currency"`
+  - **Pagination**: Add `getPageUrl` prop for generating `href` attributes when
+    using pagination as links
+  - **Pin Input**: Fix issue where keyboard shortcuts `Cmd+Backspace` and
+    `Cmd+Delete` would insert "undefined" instead of clearing the field
+  - **Scroll Area**
+    - Fix horizontal scrollbar positioning on Safari in RTL mode
+    - Fix issue where resize tracking was not observing the root element
+  - **Select**: Fix accessibility violation where the required state was not set
+    correctly on the trigger
+  - **Slider**: Fix issue where slider continues dragging when disabled during
+    drag operation
+  - **Switch**: Fix issue where `data-active` is inconsistently applied when
+    `disabled` state changes at runtime
+  - **Tabs**: Refactor to use `getBoundingClientRect()` for precise indicator
+    positioning
+
+## 3.27.1
+
+### Patch Changes
+
+- [`e1774c8`](https://github.com/chakra-ui/chakra-ui/commit/e1774c8c2e64db4996f936db761dc91786174378)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose
+  `Collapsible.Indicator` component to provide visual indicator for collapsible
+  state
+
+- [`f9d66f4`](https://github.com/chakra-ui/chakra-ui/commit/f9d66f431515bd7184cf02d872391f8d0f08a305)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **CodeBlock**
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- [`f26e863`](https://github.com/chakra-ui/chakra-ui/commit/f26e863add1030514f1c60a33d63362e7a2d9069)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- [#10325](https://github.com/chakra-ui/chakra-ui/pull/10325)
+  [`3e6d1f7`](https://github.com/chakra-ui/chakra-ui/commit/3e6d1f7d52d61eccceeb0da3dee2b941e1718e87)
+  Thanks [@wo-o29](https://github.com/wo-o29)! - Fix issue where refs don't
+  support cleanup function (React 19 compatibility)
+
+- [#10328](https://github.com/chakra-ui/chakra-ui/pull/10328)
+  [`451209e`](https://github.com/chakra-ui/chakra-ui/commit/451209e7564799cbf03b7a08b7839367c124447d)
+  Thanks [@megos](https://github.com/megos)! - fix(table): ensure stickyHeader
+  works with outline variant
+
+- [`56a4501`](https://github.com/chakra-ui/chakra-ui/commit/56a450188b44fef495750aa249163f0c0811100f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Timeline:** Add
+  `showLastSeparator` variant to control visibility of the last separator
+
 ## 3.27.0
 
 ### Minor Changes

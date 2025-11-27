@@ -5,6 +5,223 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.30.0](./#3.30.0) - 2025-11-22
+
+### Added
+
+- **Carousel**: Added `autoSize` prop for variable width/height slides
+
+- **Semantic Tokens**: Add new `border` semantic token to all color palettes
+  (`gray.300`/`gray.700` for gray, `color.500`/`color.400` for colored palettes)
+  to improve outline component appearance
+
+- **Splitter [NEW]**: Introduce new resizable splitter component
+
+```tsx
+<Splitter.Root panels={[{ id: "a" }, { id: "b" }]}>
+  <Splitter.Panel id="a">Panel A</Splitter.Panel>
+  <Splitter.ResizeTrigger id="a:b" />
+  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+</Splitter.Root>
+```
+
+- **Types**: Exported `InteractOutsideEvent`, `FocusOutsideEvent`,
+  `PointerDownOutsideEvent` types
+
+### Fixed
+
+- **Badge, Button, Checkbox, Tag**: Update outline variants to use
+  `colorPalette.border` instead of `colorPalette.muted` or global `border` token
+  for better appearance, especially for non-gray color palettes
+
+- **Carousel**: Fixed dragging after tab switch/scroll and mouse wheel scroll
+  with `allowMouseDrag`
+
+- **CheckboxGroup**: Fix type issue where `CheckboxGroupProps` could not be
+  passed to the `CheckboxGroup` component
+
+- **CLI**: Fix high-severity security vulnerability by replacing `sucrase`
+  dependency with Babel-based TypeScript transformation
+
+- **Combobox**
+  - Fixed `onHighlightChange` not firing when filtered to empty
+  - Fixed focus stealing in controlled mode
+  - Removed problematic `aria-hidden` behavior
+
+- **File Upload**: Fixed non-interactive children in dropzone not opening file
+  picker
+
+- **HoverCard, Popover, Tooltip**: Fix arrow direction in RTL layouts
+
+- **Radio Group**: Fixed inconsistent `data-focus-visible`/`data-focus`
+  attributes; fixed indicator showing before rect resolved
+
+- **TagsInput**: Fix overflow issue where very long tags would overflow the
+  container instead of truncating with ellipsis
+
+- **Tabs**: Fixed indicator showing before rect resolved; fixed position not
+  updating when inactive tabs resize
+
+### Changed
+
+- **useListCollection**: `initialItems` now accepts `readonly` arrays
+
+## [3.29.0](./#3.29.0) - 2025-11-05
+
+### Added
+
+- **Carousel [New]**: Add new `Carousel` component for creating slideshows and
+  image galleries with features like autoplay, pagination, and navigation
+  controls.
+
+### Fixed
+
+- **CodeBlock**: Add missing `use client` directive
+
+- **Combobox**: Refactor recipe for smarter padding management to prevent input
+  text from overflowing onto triggers
+
+## [3.28.1](./#3.28.1) - 2025-11-02
+
+### Fixed
+
+- **CodeBlock**: Fix right padding when scrolling long code lines horizontally
+
+- **MCP Server**: Fix OpenAI Codex compatibility by removing stdout logging,
+  downgrading Zod to v3.23.8, and upgrading MCP SDK to v1.20.2
+
+- **Styled System**
+  - Fix Shadow DOM selector handling in `globalCss` for `:host`,
+    `:host-context()`, and `::slotted()` pseudo-classes
+  - Improve performance with optimized token cloning (75x faster), enhanced
+    memoization with LRU cache (up to 585x faster), and efficient object
+    allocation
+
+### Changed
+
+- **SegmentGroup**: Refactor to use CSS variables for styling indicator
+  (`--segment-indicator-bg` and `--segment-indicator-shadow`) for better
+  customization
+
+- **Tabs**: Refactor to use CSS variables for styling indicator
+  (`--tabs-indicator-bg`) for better customization
+
+## [3.28.0](./#3.28.0) - 2025-10-20
+
+### Added
+
+- **TagsInput [New]**: Add new `TagsInput` component for entering multiple
+  values as tags with features like tag creation, deletion, and keyboard
+  navigation.
+
+  ```tsx
+  import { Span, TagsInput } from "@chakra-ui/react"
+
+  export const TagsInputBasic = () => {
+    return (
+      <TagsInput.Root defaultValue={["React", "Chakra", "TypeScript"]}>
+        <TagsInput.Label>Tags</TagsInput.Label>
+        <TagsInput.Control>
+          <TagsInput.Items />
+          <TagsInput.Input placeholder="Add tag..." />
+        </TagsInput.Control>
+      </TagsInput.Root>
+    )
+  }
+  ```
+
+- **Collapsible**: Add support for `collapsedHeight` and `collapsedWidth` props
+  to control the dimensions of the collapsible content when in its collapsed
+  state
+
+- **Pagination**: Add `getPageUrl` prop for generating `href` attributes when
+  using pagination as links
+
+### Changed
+
+- **Tabs, SegmentGroup**: Refactor to use `getBoundingClientRect()` for precise
+  indicator positioning
+
+- **Dialog, Popover**: In modal mode, allow elements referenced by
+  `aria-controls` to be included in the focus trap scope
+
+### Fixed
+
+- **Checkbox**: Fix issue where setting initial checked state to `indeterminate`
+  doesn't work
+
+- **Collapsible**: Fix issue where `dir` prop value doesn't get applied
+  correctly
+
+- **Combobox**: Fix issue where controlled single-select combobox does not
+  propagate its initial value to `inputValue`
+
+- **Listbox**: Fix issue where pressing Enter key when no highlighted item still
+  calls `event.preventDefault()`
+
+- **Number Input**: Fix cursor jumping to end when typing in the middle with
+  `formatOptions` like `style: "currency"`
+
+- **Pin Input**: Fix issue where keyboard shortcuts `Cmd+Backspace` and
+  `Cmd+Delete` would insert "undefined" instead of clearing the field
+
+- **Scroll Area**
+  - Fix horizontal scrollbar positioning on Safari in RTL mode
+  - Fix issue where resize tracking was not observing the root element
+
+- **Select**: Fix accessibility violation where the required state was not set
+  correctly on the trigger
+
+- **Slider**: Fix issue where slider continues dragging when disabled during
+  drag operation
+
+- **Switch**: Fix issue where `data-active` is inconsistently applied when
+  `disabled` state changes at runtime
+
+- **mergeRefs**: Add React version detection to properly handle cleanup
+  functions in React 19+ while avoiding warnings in React 18
+
+## [3.27.1](./#3.27.1) - 2025-10-06
+
+### Fixed
+
+- **Collapsible**: Expose `Collapsible.Indicator` component to provide visual
+  indicator for collapsible state
+
+- **Timeline**: Add `showLastSeparator` variant to control visibility of the
+  last separator
+
+- **Table**: Ensure stickyHeader works with outline variant
+
+- **CodeBlock**:
+  - Fix issue in diff mode where the wrong lines were being highlighted
+  - Fix `highlight.js` adapter to properly handle diff attributes for
+    added/removed lines
+
+- **Styled System**:
+  - Fix issue where bracket syntax for responsive styles didn't work in recipe
+    variants
+
+  ```jsx
+  // This now works correctly
+  const recipe = defineRecipe({
+    variants: {
+      variant: {
+        primary: {
+          color: ["red", "green"], // ✅ Now converts to breakpoints
+        },
+      },
+    },
+  })
+  ```
+
+  - Improve style resolution performance
+
+- **React 19 Compatibility**: Fix issue where refs don't support cleanup
+  function
+
+- **CLI**: Allow CLI to read new documentation blocks filtering
+
 ## [3.27.0](./#3.27.0) - 2025-09-14
 
 ### Added

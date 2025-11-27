@@ -53,6 +53,16 @@
   },
   {
     "type": "composition",
+    "id": "carousel",
+    "file": "carousel.tsx",
+    "component": "Carousel",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "checkbox-card",
     "file": "checkbox-card.tsx",
     "component": "CheckboxCard",
@@ -368,6 +378,14 @@
   },
   {
     "type": "composition",
+    "id": "splitter",
+    "file": "splitter.tsx",
+    "component": "Splitter",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "stat",
     "file": "stat.tsx",
     "component": "Stat",
@@ -419,6 +437,16 @@
     "component": "Tag",
     "npmDependencies": [],
     "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "tags-input",
+    "file": "tags-input.tsx",
+    "component": "TagsInput",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
   },
   {
     "type": "composition",

@@ -20,8 +20,10 @@ export const codeRecipe = defineRecipe({
       },
       outline: {
         color: "colorPalette.fg",
+        "--outline-shadow-legacy": "colors.colorPalette.muted",
+        "--outline-shadow": "colors.colorPalette.border",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.muted",
+        shadowColor: "var(--outline-shadow, var(--outline-shadow-legacy))",
       },
       surface: {
         bg: "colorPalette.subtle",

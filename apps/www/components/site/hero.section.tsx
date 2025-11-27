@@ -1,6 +1,6 @@
 "use client"
 
-import { Annoucement } from "@/components/annoucement"
+import { Announcement } from "@/components/announcement"
 import {
   DemoFrame,
   DemoFrameContent,
@@ -146,13 +146,13 @@ export const HeroSection = () => (
   <Box pt="16" pb="20">
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
-        <Annoucement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/listbox">
+        <Announcement alignSelf="flex-start" asChild>
+          <Link href="/docs/components/splitter">
             <LuWandSparkles />
-            [New] Listbox Component
+            [New] Splitter Component
             <HiArrowRight />
           </Link>
-        </Annoucement>
+        </Announcement>
         <Stack gap="5" pr="4" maxW="3xl" px="1.5">
           <HighlightHeading as="h1" query="with speed">
             Chakra UI is a component system for building products with speed

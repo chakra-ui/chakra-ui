@@ -1,5 +1,34 @@
 # @chakra-ui/cli
 
+## 3.30.0
+
+### Patch Changes
+
+- [`e546cb6`](https://github.com/chakra-ui/chakra-ui/commit/e546cb65980d0ff5e0a322486c9dfc89c37c3de4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix high-severity
+  security vulnerability by replacing `sucrase` dependency with Babel-based
+  TypeScript transformation.
+  - Resolves command injection vulnerability
+    ([GHSA-5j98-mcp5-4vw2](https://github.com/advisories/GHSA-5j98-mcp5-4vw2))
+    in `sucrase`'s `glob` dependency
+  - Replaces vulnerable `sucrase` with `@babel/core` +
+    `@babel/plugin-transform-typescript` + `recast`
+
+## 3.29.0
+
+## 3.28.1
+
+## 3.28.0
+
+## 3.27.1
+
+### Patch Changes
+
+- [#10368](https://github.com/chakra-ui/chakra-ui/pull/10368)
+  [`62260a5`](https://github.com/chakra-ui/chakra-ui/commit/62260a5310dcdc3d61411700acd45d5ad012aa65)
+  Thanks [@tioluwani94](https://github.com/tioluwani94)! - **Pro Blocks**: Allow
+  CLI to read new documentation blocks filtering
+
 ## 3.27.0
 
 ### Minor Changes

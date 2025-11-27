@@ -148,7 +148,7 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
         </StylesProvider>
       )
 
-      return options?.wrapElement?.(element, props) ?? element
+      return options?.wrapElement?.(element, props as P) ?? element
     })
 
     // @ts-expect-error

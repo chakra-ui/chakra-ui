@@ -1,0 +1,127 @@
+{
+  "name": "tags-input",
+  "file": "compositions/ui/tags-input",
+  "snippet": "\"use client\"\n\nimport { TagsInput as ChakraTagsInput } from \"@chakra-ui/react\"\nimport { CloseButton } from \"@/components/ui/close-button\"\nimport * as React from \"react\"\n\ninterface TagsInputControlProps extends ChakraTagsInput.ControlProps {\n  clearable?: boolean\n}\n\nexport const TagsInputControl = React.forwardRef<\n  HTMLDivElement,\n  TagsInputControlProps\n>(function TagsInputControl(props, ref) {\n  const { children, clearable, ...rest } = props\n  return (\n    <ChakraTagsInput.Control {...rest} ref={ref}>\n      {children}\n      {clearable && <TagsInputClearTrigger />}\n    </ChakraTagsInput.Control>\n  )\n})\n\nconst TagsInputClearTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraTagsInput.ClearTriggerProps\n>(function TagsInputClearTrigger(props, ref) {\n  return (\n    <ChakraTagsInput.ClearTrigger asChild {...props} ref={ref}>\n      <CloseButton\n        size=\"xs\"\n        variant=\"plain\"\n        focusVisibleRing=\"inside\"\n        focusRingWidth=\"2px\"\n        pointerEvents=\"auto\"\n      />\n    </ChakraTagsInput.ClearTrigger>\n  )\n})\n\nexport const TagsInputItem = React.forwardRef<\n  HTMLDivElement,\n  ChakraTagsInput.ItemProps\n>(function TagsInputItem(props, ref) {\n  const { children, ...rest } = props\n  return (\n    <ChakraTagsInput.Item {...rest} ref={ref}>\n      <ChakraTagsInput.ItemText>{children}</ChakraTagsInput.ItemText>\n      <ChakraTagsInput.ItemDeleteTrigger asChild>\n        <CloseButton\n          size=\"2xs\"\n          variant=\"plain\"\n          focusVisibleRing=\"inside\"\n          focusRingWidth=\"2px\"\n          pointerEvents=\"auto\"\n        />\n      </ChakraTagsInput.ItemDeleteTrigger>\n    </ChakraTagsInput.Item>\n  )\n})\n\nexport const TagsInputRoot = React.forwardRef<\n  HTMLDivElement,\n  ChakraTagsInput.RootProps\n>(function TagsInputRoot(props, ref) {\n  return <ChakraTagsInput.Root {...props} ref={ref} />\n}) as ChakraTagsInput.RootProps\n\nexport const TagsInputItemText = ChakraTagsInput.ItemText\nexport const TagsInputItemPreview = ChakraTagsInput.ItemPreview\nexport const TagsInputItemInput = ChakraTagsInput.ItemInput\nexport const TagsInputItemContext = ChakraTagsInput.ItemContext\nexport const TagsInputRootProvider = ChakraTagsInput.RootProvider\nexport const TagsInputPropsProvider = ChakraTagsInput.PropsProvider\nexport const TagsInputLabel = ChakraTagsInput.Label\nexport const TagsInputInput = ChakraTagsInput.Input\nexport const TagsInputContext = ChakraTagsInput.Context\nexport const TagsInputHiddenInput = ChakraTagsInput.HiddenInput\n",
+  "examples": [
+    {
+      "name": "tags-input-basic",
+      "content": "\"use client\"\nexport const TagsInputBasic = () => {\n  return (\n    <TagsInput.Root defaultValue={[\"React\", \"Chakra\", \"TypeScript\"]}>\n      <TagsInput.Label>Tags</TagsInput.Label>\n      <TagsInput.Control>\n        <TagsInput.Context>\n          {({ value }) =>\n            value.map((tag, index) => (\n              <TagsInput.Item key={index} index={index} value={tag}>\n                <TagsInput.ItemPreview>\n                  <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                  <TagsInput.ItemDeleteTrigger />\n                </TagsInput.ItemPreview>\n                <TagsInput.ItemInput />\n              </TagsInput.Item>\n            ))\n          }\n        </TagsInput.Context>\n        <TagsInput.Input placeholder=\"Add tag...\" />\n      </TagsInput.Control>\n    </TagsInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-controlled",
+      "content": "\"use client\"\nexport const TagsInputControlled = () => {\n  const [tags, setTags] = useState<string[]>([\"React\", \"Chakra\"])\n\n  return (\n    <Stack maxW=\"320px\" width=\"full\" gap=\"4\">\n      <TagsInput.Root\n        value={tags}\n        onValueChange={(details) => setTags(details.value)}\n      >\n        <TagsInput.Label>Tags</TagsInput.Label>\n        <TagsInput.Control>\n          <TagsInput.Context>\n            {({ value }) =>\n              value.map((tag, index) => (\n                <TagsInput.Item key={index} index={index} value={tag}>\n                  <TagsInput.ItemPreview>\n                    <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                    <TagsInput.ItemDeleteTrigger />\n                  </TagsInput.ItemPreview>\n                  <TagsInput.ItemInput />\n                </TagsInput.Item>\n              ))\n            }\n          </TagsInput.Context>\n          <TagsInput.Input placeholder=\"Add tag...\" />\n        </TagsInput.Control>\n      </TagsInput.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Stack, TagsInput } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-disabled",
+      "content": "\"use client\"\nexport const TagsInputDisabled = () => (\n  <TagsInput.Root disabled defaultValue={[\"React\", \"Chakra\"]}>\n    <TagsInput.Label>Disabled Tags</TagsInput.Label>\n\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Can't type here\" disabled />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-editable",
+      "content": "\"use client\"\nexport const TagsInputEditable = () => (\n  <TagsInput.Root editable>\n    <TagsInput.Label>Edit Tags Inline</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Add or edit tags...\" />\n      <TagsInput.ClearTrigger />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-explorer",
+      "content": "\"use client\"\nexport const TagsInputExplorer = () => {\n  return (\n    <Stack gap={4} maxW=\"400px\" p={4}>\n      <TagsInput.Root defaultValue={[\"React\", \"Chakra\"]}>\n        <TagsInput.Label>Add Tags</TagsInput.Label>\n\n        <TagsInput.Control>\n          <TagsInput.Context>\n            {({ value }) =>\n              value.map((tag, index) => (\n                <TagsInput.Item key={index} index={index} value={tag}>\n                  <TagsInput.ItemPreview>\n                    <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                    <TagsInput.ItemDeleteTrigger />\n                  </TagsInput.ItemPreview>\n                  <TagsInput.ItemInput />\n                </TagsInput.Item>\n              ))\n            }\n          </TagsInput.Context>\n\n          <TagsInput.Input placeholder=\"Add tag...\" />\n          <TagsInput.ClearTrigger />\n        </TagsInput.Control>\n\n        <TagsInput.HiddenInput />\n      </TagsInput.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\"",
+        "import { Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-max-tags",
+      "content": "\"use client\"\nexport const TagsInputMaxTags = () => {\n  return (\n    <TagsInput.Root max={3}>\n      <TagsInput.Label>Tags (max 3)</TagsInput.Label>\n\n      <TagsInput.Control>\n        <TagsInput.Context>\n          {({ value }) =>\n            value.map((tag, index) => (\n              <TagsInput.Item key={index} index={index} value={tag}>\n                <TagsInput.ItemPreview>\n                  <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                  <TagsInput.ItemDeleteTrigger />\n                </TagsInput.ItemPreview>\n                <TagsInput.ItemInput />\n              </TagsInput.Item>\n            ))\n          }\n        </TagsInput.Context>\n\n        <TagsInput.Input placeholder=\"Add up to 3 tags...\" />\n      </TagsInput.Control>\n    </TagsInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-read-only",
+      "content": "\"use client\"\nexport const TagsInputReadOnly = () => (\n  <TagsInput.Root readOnly defaultValue={[\"React\", \"Chakra\"]}>\n    <TagsInput.Label>Read Only Tags</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Read-only...\" disabled />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-validation",
+      "content": "\"use client\"\nexport const TagsInputValidation = () => (\n  <TagsInput.Root\n    defaultValue={[\"React\", \"Chakra\"]}\n    validate={({ value }) => value.length >= 3}\n  >\n    <TagsInput.Label>Tags (min 3 chars)</TagsInput.Label>\n\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Add a tag...\" />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-with-blur",
+      "content": "\"use client\"\nexport const TagsInputWithBlur = () => (\n  <TagsInput.Root blurBehavior=\"add\">\n    <TagsInput.Label>Create Tag on Blur</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Type and blur to create tag...\" />\n      <TagsInput.ClearTrigger />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-with-colors",
+      "content": "\"use client\"\nexport const TagsInputWithColors = () => (\n  <TagsInput.Root defaultValue={[\"React\", \"Chakra\", \"TypeScript\"]}>\n    <TagsInput.Label>Colored Tags</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => {\n            const backgroundColor =\n              index % 3 === 0\n                ? \"#4FD1C5\"\n                : index % 3 === 1\n                  ? \"#63B3ED\"\n                  : \"#F6AD55\"\n            const textColor = \"#fff\"\n\n            return (\n              <TagsInput.Item key={index} index={index} value={tag}>\n                <TagsInput.ItemPreview\n                  style={{\n                    backgroundColor,\n                    color: textColor,\n                    display: \"flex\",\n                    alignItems: \"center\",\n                    gap: \"0.5rem\",\n                    padding: \"0.25rem 0.5rem\",\n                    borderRadius: \"0.375rem\",\n                  }}\n                >\n                  <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                  <TagsInput.ItemDeleteTrigger style={{ color: textColor }} />\n                </TagsInput.ItemPreview>\n                <TagsInput.ItemInput />\n              </TagsInput.Item>\n            )\n          })\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Add tag...\" />\n      <TagsInput.ClearTrigger />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-with-delimiter",
+      "content": "\"use client\"\nexport const TagsInputWithDelimiter = () => (\n  <TagsInput.Root delimiter={/[;,]/}>\n    <TagsInput.Label>Custom Delimiters (; ,)</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Type and use ; or , to create tag...\" />\n      <TagsInput.ClearTrigger />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-with-paste",
+      "content": "\"use client\"\nexport const TagsInputWithPaste = () => (\n  <TagsInput.Root addOnPaste delimiter=\",\">\n    <TagsInput.Label>Paste Tags</TagsInput.Label>\n    <TagsInput.Control>\n      <TagsInput.Context>\n        {({ value }) =>\n          value.map((tag, index) => (\n            <TagsInput.Item key={index} index={index} value={tag}>\n              <TagsInput.ItemPreview>\n                <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                <TagsInput.ItemDeleteTrigger />\n              </TagsInput.ItemPreview>\n              <TagsInput.ItemInput />\n            </TagsInput.Item>\n          ))\n        }\n      </TagsInput.Context>\n\n      <TagsInput.Input placeholder=\"Paste comma-separated tags...\" />\n      <TagsInput.ClearTrigger />\n    </TagsInput.Control>\n\n    <TagsInput.HiddenInput />\n  </TagsInput.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "tags-input-with-store",
+      "content": "\"use client\"\nexport const TagsInputWithStore = () => {\n  const tagsStore = useTagsInput()\n\n  return (\n    <div>\n      <TagsInput.RootProvider value={tagsStore}>\n        <TagsInput.Control>\n          <TagsInput.Context>\n            {({ value }) =>\n              value.map((tag, index) => (\n                <TagsInput.Item key={index} index={index} value={tag}>\n                  <TagsInput.ItemPreview>\n                    <TagsInput.ItemText>{tag}</TagsInput.ItemText>\n                    <TagsInput.ItemDeleteTrigger />\n                  </TagsInput.ItemPreview>\n                  <TagsInput.ItemInput />\n                </TagsInput.Item>\n              ))\n            }\n          </TagsInput.Context>\n\n          <TagsInput.Input placeholder=\"Add tag...\" />\n        </TagsInput.Control>\n      </TagsInput.RootProvider>\n\n      <button onClick={() => tagsStore.setValue([])}>Clear All</button>\n    </div>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { TagsInput } from \"@chakra-ui/react\"",
+        "import { useTagsInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { TagsInput } from \"@chakra-ui/react\""
+    }
+  ]
+}

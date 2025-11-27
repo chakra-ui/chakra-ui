@@ -1,4 +1,9 @@
 packages:
-  - "packages/**/**"
-  - "sandbox/**"
-  - "apps/**"
+  - packages/**/**
+  - sandbox/**
+  - apps/**
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - unrs-resolver

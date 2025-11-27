@@ -40,4 +40,10 @@ export * as Popover from "./namespace"
 
 export { usePopover, usePopoverContext } from "@ark-ui/react/popover"
 
-export type { UsePopoverProps, UsePopoverReturn } from "@ark-ui/react/popover"
+export type {
+  UsePopoverProps,
+  UsePopoverReturn,
+  PopoverInteractOutsideEvent,
+  PopoverFocusOutsideEvent,
+  PopoverPointerDownOutsideEvent,
+} from "@ark-ui/react/popover"

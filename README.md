@@ -11,7 +11,7 @@
   <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=chakra-ui&amp;config=eyJjb21tYW5kIjoibnB4IC15IEBjaGFrcmEtdWkvcmVhY3QtbWNwIn0%3D" target="_blank" rel="noreferrer">
     <img alt="Add MCP server to Cursor" height="20" src="https://cursor.com/deeplink/mcp-install-light.svg" />
   </a>
-  <img alt="Github Checks" src="https://badgen.net/github/checks/chakra-ui/chakra-ui/main"/>
+  <img alt="Github Checks" src="https://img.shields.io/github/checks-status/chakra-ui/chakra-ui/main"/>
   <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   </a>
@@ -19,7 +19,7 @@
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   </a>
   <a href="https://github.com/chakra-ui/chakra-ui">
-    <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
+    <img alt="Github Stars" src="https://img.shields.io/github/stars/chakra-ui/chakra-ui?style=social" />
   </a>
   <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />

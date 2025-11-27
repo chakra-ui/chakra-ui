@@ -22,7 +22,7 @@
     },
     {
       "groupName": "storybook",
-      "matchPackagePatterns": ["@storybook*"]
+      "matchPackagePatterns": ["*storybook*"]
     },
     {
       "groupName": "changesets",

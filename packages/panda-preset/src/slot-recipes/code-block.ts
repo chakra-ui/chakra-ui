@@ -72,7 +72,8 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
     content: {
       position: "relative",
       colorScheme: "dark",
-      overflow: "hidden",
+      overflowX: "auto",
+      overflowY: "hidden",
       borderBottomRadius: "var(--code-block-radius)",
       maxHeight: "var(--code-block-max-height)",
       "& ::selection": {
@@ -131,6 +132,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
       },
       "& [data-line]": {
         position: "relative",
+        paddingInlineEnd: "var(--code-block-padding)",
         "--highlight-bg": "var(--code-block-highlight-bg)",
         "--highlight-border": "var(--code-block-highlight-border)",
         "&[data-highlight], &[data-diff]": {
@@ -140,6 +142,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
             content: "''",
             display: "block",
             position: "absolute",
+            top: "0",
             insetStart: "calc(var(--code-block-padding) * -1)",
             insetEnd: "0px",
             width: "calc(100% + var(--code-block-padding) * 2)",
@@ -174,6 +177,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
           display: "inline-block",
           textAlign: "end",
           userSelect: "none",
+          whiteSpace: "nowrap",
           opacity: 0.4,
         },
         "& [data-diff='added']:before": {

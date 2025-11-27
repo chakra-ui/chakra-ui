@@ -17,4 +17,6 @@ export interface LinkProps extends HTMLChakraProps<"a", LinkBaseProps> {}
 
 export const Link = withContext<HTMLAnchorElement, LinkProps>("a")
 
+Link.displayName = "Link"
+
 export const LinkPropsProvider = PropsProvider as React.Provider<LinkProps>

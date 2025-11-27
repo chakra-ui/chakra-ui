@@ -2,6 +2,7 @@ import {
   type Dict,
   compact,
   cx,
+  mapEntries,
   mergeWith,
   omit,
   splitProps,
@@ -9,12 +10,13 @@ import {
 } from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
+import { EMPTY_OBJECT } from "./singleton"
 import type { Condition, CssFn, Layers } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
-  base: {},
-  variants: {},
-  defaultVariants: {},
+  base: EMPTY_OBJECT,
+  variants: EMPTY_OBJECT,
+  defaultVariants: EMPTY_OBJECT,
   compoundVariants: [],
   ...conf,
 })
@@ -30,8 +32,13 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   const { css, conditions, normalize, layers } = options
 
   function cva(config: Dict = {}) {
-    const { base, variants, defaultVariants, compoundVariants } =
-      defaults(config)
+    const defaultsConfig = defaults(config)
+    const { base, defaultVariants, compoundVariants } = defaultsConfig
+
+    const variants = mapEntries(defaultsConfig.variants, (key, obj) => [
+      key,
+      mapEntries(obj, (optionKey, styles) => [optionKey, normalize(styles)]),
+    ])
 
     const getVariantCss = createCssFn({
       conditions,
@@ -65,24 +72,25 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       const restProps = omit(props, ["recipe"])
       const [recipeProps, localProps] = splitProps(restProps, variantKeys)
 
-      if (!variantKeys.includes("colorPalette")) {
+      const hasColorPalette = variantKeys.includes("colorPalette")
+      const hasOrientation = variantKeys.includes("orientation")
+
+      if (!hasColorPalette) {
         recipeProps.colorPalette =
           props.colorPalette || defaultVariants.colorPalette
       }
 
-      if (variantKeys.includes("orientation")) {
+      if (hasOrientation) {
         ;(localProps as any).orientation = props.orientation
       }
 
       return [recipeProps, localProps]
     }
 
-    const variantMap = Object.fromEntries(
-      Object.entries(variants).map(([key, value]) => [
-        key,
-        Object.keys(value as any),
-      ]),
-    )
+    const variantMap = mapEntries(variants, (key, value) => [
+      key,
+      Object.keys(value as any),
+    ])
 
     const cvaFn = (props: any) => css(resolve(props))
     return Object.assign(cvaFn, {
@@ -100,7 +108,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   }
 
   function getCompoundVariantCss(cvs: any[], vm: any) {
-    let result = {}
+    let result = EMPTY_OBJECT
     cvs.forEach((cv) => {
       const isMatching = Object.entries(cv).every(([key, value]) => {
         if (key === "css") return true

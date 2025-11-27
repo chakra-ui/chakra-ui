@@ -5,6 +5,7 @@ import { avatarSlotRecipe } from "./recipes/avatar"
 import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
+import { carouselSlotRecipe } from "./recipes/carousel"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { codeBlockSlotRecipe } from "./recipes/code-block"
@@ -37,6 +38,7 @@ import { scrollAreaSlotRecipe } from "./recipes/scroll-area"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
+import { splitterSlotRecipe } from "./recipes/splitter"
 import { statSlotRecipe } from "./recipes/stat"
 import { statusSlotRecipe } from "./recipes/status"
 import { stepsSlotRecipe } from "./recipes/steps"
@@ -44,6 +46,7 @@ import { switchSlotRecipe } from "./recipes/switch"
 import { tableSlotRecipe } from "./recipes/table"
 import { tabsSlotRecipe } from "./recipes/tabs"
 import { tagSlotRecipe } from "./recipes/tag"
+import { tagsInputSlotRecipe } from "./recipes/tags-input"
 import { timelineSlotRecipe } from "./recipes/timeline"
 import { toastSlotRecipe } from "./recipes/toast"
 import { tooltipSlotRecipe } from "./recipes/tooltip"
@@ -57,6 +60,7 @@ export const slotRecipes = {
   blockquote: blockquoteSlotRecipe,
   breadcrumb: breadcrumbSlotRecipe,
   card: cardSlotRecipe,
+  carousel: carouselSlotRecipe,
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
   codeBlock: codeBlockSlotRecipe,
@@ -87,12 +91,14 @@ export const slotRecipes = {
   select: selectSlotRecipe,
   combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
+  splitter: splitterSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
   switch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
   tag: tagSlotRecipe,
+  tagsInput: tagsInputSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
   status: statusSlotRecipe,

@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, NativeSelect } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -17,7 +17,7 @@ export const NativeSelectWithHookForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))
