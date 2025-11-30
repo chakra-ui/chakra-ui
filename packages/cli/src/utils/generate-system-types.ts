@@ -11,7 +11,7 @@ export async function generateSystemTypes(sys: SystemContext) {
   const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
 
   const result = `
-  import type { ConditionalValue, CssProperties } from "../css.types"
+  import type { ConditionalValue, CssProperties } from "@chakra-ui/react"
   ${
     shouldImportTypeWithEscapeHatch
       ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
