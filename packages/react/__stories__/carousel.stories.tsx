@@ -29,4 +29,4 @@ export { CarouselWithThumbnails as Thumbnails } from "compositions/examples/caro
 export { CarouselWithAutoplay as Autoplay } from "compositions/examples/carousel-with-autoplay"
 export { CarouselWithImages as Images } from "compositions/examples/carousel-with-images"
 export { CarouselComposition as Composition } from "compositions/examples/carousel-composition"
-export { CarouselBasicExplorer as _Explorer } from "compositions/examples/carousel-basic-explorer"
+export { CarouselExplorerDemo as _Explorer } from "compositions/examples/carousel-explorer-demo"

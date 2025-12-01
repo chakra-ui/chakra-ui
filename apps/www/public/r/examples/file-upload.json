@@ -95,6 +95,19 @@
       ]
     },
     {
+      "name": "file-upload-with-conditional-dropzone",
+      "content": "\"use client\"\nconst MAX_FILES = 3\n\nconst ConditionalDropzone = () => {\n  const fileUpload = useFileUploadContext()\n  const acceptedFiles = fileUpload.acceptedFiles\n\n  if (acceptedFiles.length >= MAX_FILES) {\n    return null\n  }\n\n  return (\n    <FileUpload.Dropzone>\n      <Icon size=\"md\" color=\"fg.muted\">\n        <LuUpload />\n      </Icon>\n      <FileUpload.DropzoneContent>\n        <Box>Drag and drop files here</Box>\n        <Box color=\"fg.muted\">\n          {MAX_FILES - acceptedFiles.length} more file\n          {MAX_FILES - acceptedFiles.length !== 1 ? \"s\" : \"\"} allowed\n        </Box>\n      </FileUpload.DropzoneContent>\n    </FileUpload.Dropzone>\n  )\n}\n\nexport const FileUploadWithConditionalDropzone = () => {\n  return (\n    <FileUpload.Root maxW=\"xl\" alignItems=\"stretch\" maxFiles={MAX_FILES}>\n      <FileUpload.HiddenInput />\n      <ConditionalDropzone />\n      <FileUpload.List clearable />\n    </FileUpload.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, FileUpload, Icon, useFileUploadContext } from \"@chakra-ui/react\"",
+        "import { LuUpload } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
       "name": "file-upload-with-dropzone",
       "content": "export const FileUploadWithDropzone = () => {\n  return (\n    <FileUpload.Root maxW=\"xl\" alignItems=\"stretch\" maxFiles={10}>\n      <FileUpload.HiddenInput />\n      <FileUpload.Dropzone>\n        <Icon size=\"md\" color=\"fg.muted\">\n          <LuUpload />\n        </Icon>\n        <FileUpload.DropzoneContent>\n          <Box>Drag and drop files here</Box>\n          <Box color=\"fg.muted\">.png, .jpg up to 5MB</Box>\n        </FileUpload.DropzoneContent>\n      </FileUpload.Dropzone>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -109,11 +122,11 @@
     },
     {
       "name": "file-upload-with-hook-form",
-      "content": "\"use client\"\nconst formSchema = z.object({\n  images: z.array(z.instanceof(File)).min(1, \"At least one image is required\"),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const FileUploadWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n    defaultValues: {\n      images: [],\n    },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Controller\n        control={control}\n        name=\"images\"\n        render={({ field }) => (\n          <Field.Root invalid={!!errors.images}>\n            <Field.Label>Images</Field.Label>\n            <FileUpload.Root\n              name={field.name}\n              onFileChange={(e) => {\n                field.onChange(e.acceptedFiles)\n              }}\n            >\n              <FileUpload.HiddenInput />\n              <FileUpload.Trigger asChild onBlur={() => field.onBlur()}>\n                <Button variant=\"outline\" size=\"sm\">\n                  <HiUpload /> Upload file\n                </Button>\n              </FileUpload.Trigger>\n\n              <FileUpload.List />\n            </FileUpload.Root>\n            <Field.ErrorText>{errors.images?.message}</Field.ErrorText>\n          </Field.Root>\n        )}\n      />\n\n      <Button type=\"submit\" size=\"sm\" mt=\"4\">\n        Submit\n      </Button>\n    </form>\n  )\n}\n",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  images: z.array(z.instanceof(File)).min(1, \"At least one image is required\"),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const FileUploadWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n    defaultValues: {\n      images: [],\n    },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Controller\n        control={control}\n        name=\"images\"\n        render={({ field }) => (\n          <Field.Root invalid={!!errors.images}>\n            <Field.Label>Images</Field.Label>\n            <FileUpload.Root\n              name={field.name}\n              onFileChange={(e) => {\n                field.onChange(e.acceptedFiles)\n              }}\n            >\n              <FileUpload.HiddenInput />\n              <FileUpload.Trigger asChild onBlur={() => field.onBlur()}>\n                <Button variant=\"outline\" size=\"sm\">\n                  <HiUpload /> Upload file\n                </Button>\n              </FileUpload.Trigger>\n\n              <FileUpload.List />\n            </FileUpload.Root>\n            <Field.ErrorText>{errors.images?.message}</Field.ErrorText>\n          </Field.Root>\n        )}\n      />\n\n      <Button type=\"submit\" size=\"sm\" mt=\"4\">\n        Submit\n      </Button>\n    </form>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Button, Field, FileUpload } from \"@chakra-ui/react\"",
-        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
         "import { Controller, useForm } from \"react-hook-form\"",
         "import { HiUpload } from \"react-icons/hi\"",
         "import { z } from \"zod\""

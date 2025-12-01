@@ -54,6 +54,15 @@
       "importPath": "import { Tabs } from \"@chakra-ui/react\""
     },
     {
+      "name": "tabs-with-custom-indicator",
+      "content": "export const TabsWithCustomIndicator = () => {\n  return (\n    <Tabs.Root\n      defaultValue=\"members\"\n      variant=\"plain\"\n      css={{\n        \"--tabs-indicator-bg\": \"colors.gray.subtle\",\n        \"--tabs-indicator-shadow\": \"shadows.xs\",\n        \"--tabs-trigger-radius\": \"radii.full\",\n      }}\n    >\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">Members</Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\">Projects</Tabs.Trigger>\n        <Tabs.Trigger value=\"settings\">Settings</Tabs.Trigger>\n        <Tabs.Indicator />\n      </Tabs.List>\n      <Tabs.Content value=\"members\">Manage your team members</Tabs.Content>\n      <Tabs.Content value=\"projects\">Manage your projects</Tabs.Content>\n      <Tabs.Content value=\"settings\">Manage your settings</Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
+    },
+    {
       "name": "tabs-with-disabled-tab",
       "content": "export const TabsWithDisabledTab = () => {\n  return (\n    <Tabs.Root defaultValue=\"members\">\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">\n          <LuUser />\n          Members\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\" disabled>\n          <LuFolder />\n          Projects\n        </Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">\n          <LuSquareCheck />\n          Settings\n        </Tabs.Trigger>\n      </Tabs.List>\n      {/* content */}\n    </Tabs.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -123,6 +132,15 @@
       "npmDependencies": [
         "react-icons"
       ]
+    },
+    {
+      "name": "tabs-with-responsive-orientation",
+      "content": "\"use client\"\nexport const TabsWithResponsiveOrientation = () => {\n  const orientation = useBreakpointValue<\"horizontal\" | \"vertical\">({\n    base: \"horizontal\",\n    md: \"vertical\",\n  })\n\n  return (\n    <Tabs.Root\n      variant=\"subtle\"\n      defaultValue=\"members\"\n      orientation={orientation}\n    >\n      <Tabs.List>\n        <Tabs.Trigger value=\"members\">Members</Tabs.Trigger>\n        <Tabs.Trigger value=\"projects\">Projects</Tabs.Trigger>\n        <Tabs.Trigger value=\"tasks\">Settings</Tabs.Trigger>\n      </Tabs.List>\n\n      <Tabs.Content value=\"members\">\n        Manage your team members and their roles here.\n      </Tabs.Content>\n\n      <Tabs.Content value=\"projects\">\n        Manage your projects and their status here.\n      </Tabs.Content>\n\n      <Tabs.Content value=\"tasks\">\n        Manage your tasks and their progress here.\n      </Tabs.Content>\n    </Tabs.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Tabs, useBreakpointValue } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Tabs } from \"@chakra-ui/react\""
     },
     {
       "name": "tabs-with-store",

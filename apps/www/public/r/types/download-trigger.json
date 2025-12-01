@@ -10,6 +10,21 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "data": {
+        "type": "DownloadableData | (() => MaybePromise<DownloadableData>)",
+        "isRequired": true,
+        "description": "The data to download"
+      },
+      "fileName": {
+        "type": "string",
+        "isRequired": true,
+        "description": "The name of the file to download"
+      },
+      "mimeType": {
+        "type": "FileMimeType",
+        "isRequired": true,
+        "description": "The MIME type of the data to download"
       }
     }
   }

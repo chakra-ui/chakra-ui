@@ -6,6 +6,7 @@ import {
   staticComponentList,
 } from "@/utils/get-component-list"
 import { getRecipeTypes } from "@/utils/get-recipe-types"
+import { exampleOnlyComponents } from "@/utils/project-sdk"
 import {
   chartComponents,
   filterEmpty,
@@ -76,7 +77,7 @@ async function writeIndexFile(outDir: string) {
   const allDirs = await getComponentDirectories()
   const indexContent = JSON.stringify(
     {
-      components: allDirs.concat("password-input", "hstack", "vstack"),
+      components: allDirs.concat(...exampleOnlyComponents, "hstack", "vstack"),
       charts: chartComponents,
     },
     null,

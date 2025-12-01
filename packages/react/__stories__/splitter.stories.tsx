@@ -20,7 +20,6 @@ export { SplitterWithStore as Store } from "compositions/examples/splitter-with-
 export { SplitterCollapsible as Collapsible } from "compositions/examples/splitter-collapsible"
 export { SplitterKeyboardResize as KeyboardResize } from "compositions/examples/splitter-keyboard-resize"
 export { SplitterWithStorage as Storage } from "compositions/examples/splitter-with-storage"
-export { SplitterExplorer as Explorer } from "compositions/examples/splitter-explorer"
 export { SplitterNested as Nested } from "compositions/examples/splitter-nested"
 export { SplitterDisabled as Disabled } from "compositions/examples/splitter-disabled"
 export { SplitterConditionalRendering as ConditionalRendering } from "compositions/examples/splitter-conditional-rendering"
@@ -31,3 +30,4 @@ export { SplitterResponsiveOrientation as ResponsiveOrientation } from "composit
 export { SplitterResetOnDoubleClick as ResetOnDoubleClick } from "compositions/examples/splitter-reset-on-double-click"
 export { SplitterResizeEvents as ResizeEvents } from "compositions/examples/splitter-resize-events"
 export { SplitterMinMaxConstraints as MinMaxConstraints } from "compositions/examples/splitter-min-max-constraints"
+export { SplitterExplorerDemo as _Explorer } from "compositions/examples/splitter-explorer-demo"

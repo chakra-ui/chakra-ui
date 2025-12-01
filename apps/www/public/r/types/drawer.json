@@ -45,18 +45,6 @@
   },
   "Content": {
     "props": {
-      "portalled": {
-        "type": "boolean",
-        "isRequired": false
-      },
-      "portalRef": {
-        "type": "React.RefObject<HTMLElement | null>",
-        "isRequired": false
-      },
-      "offset": {
-        "type": "ChakraDrawer.ContentProps[\"padding\"]",
-        "isRequired": false
-      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -234,6 +222,11 @@
         "type": "(event: PointerDownOutsideEvent) => void",
         "isRequired": false,
         "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onRequestDismiss": {
+        "type": "(event: LayerDismissEvent) => void",
+        "isRequired": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed"
       },
       "open": {
         "type": "boolean",
