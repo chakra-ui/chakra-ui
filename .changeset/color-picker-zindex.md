@@ -2,4 +2,4 @@
 "@chakra-ui/react": patch
 ---
 
-**ColorPicker**: Fix z-index stacking when used inside dialogs
+**ColorPicker, Select, Combobox**: Fix z-index stacking when used inside dialogs

@@ -317,7 +317,10 @@ export type AccordionVariantMap = {
 
 export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger" | "closeTrigger"
 
-export interface ActionBarVariant {}
+export interface ActionBarVariant {
+  /** @default "bottom" */
+  placement?: "bottom" | "bottom-start" | "bottom-end" | undefined
+}
 
 export type ActionBarVariantProps = {
   [K in keyof ActionBarVariant]?: ConditionalValue<ActionBarVariant[K]> | undefined
