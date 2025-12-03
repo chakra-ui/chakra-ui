@@ -1,5 +1,6 @@
 "use client"
 
+import { HStack } from "@chakra-ui/react"
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
@@ -33,12 +34,19 @@ export function RichTextEditorWithCode() {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor}>
-      <RichTextEditorButtonGroup>
-        <BoldButton />
-        <ItalicButton />
-        <CodeBlockButton />
-      </RichTextEditorButtonGroup>
+    <RichTextEditorRoot
+      editor={editor}
+      border="1px solid"
+      borderColor="border"
+      rounded="md"
+    >
+      <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
+        <RichTextEditorButtonGroup>
+          <BoldButton />
+          <ItalicButton />
+          <CodeBlockButton />
+        </RichTextEditorButtonGroup>
+      </HStack>
       <RichTextEditorContent />
     </RichTextEditorRoot>
   )
