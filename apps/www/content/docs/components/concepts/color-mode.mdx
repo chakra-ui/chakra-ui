@@ -82,3 +82,113 @@ built-in, you can import it to force the color mode.
 
 > You might need to update the `color-mode.tsx` snippet since the `LightMode`
 > and `DarkMode` components were recently added to the snippet.
+
+## Guides
+
+### Setting Default Color Mode
+
+To set the default color mode, update the `ColorModeProvider` in your
+`components/ui/color-mode.tsx` file.
+
+**Default to light mode:**
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      defaultTheme="light"
+      {...props}
+    />
+  )
+}
+```
+
+**Default to dark mode:**
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      defaultTheme="dark"
+      {...props}
+    />
+  )
+}
+```
+
+**Respect system preference (default):**
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      defaultTheme="system"
+      {...props}
+    />
+  )
+}
+```
+
+### Disabling System Preference
+
+By default, the color mode respects the user's system preference. To disable
+this and only use `light` or `dark` mode, set `enableSystem` to `false`.
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      defaultTheme="light"
+      enableSystem={false}
+      {...props}
+    />
+  )
+}
+```
+
+### Using Custom Storage Key
+
+The color mode is stored in `localStorage` under the key `theme`. To use a
+custom key, set the `storageKey` prop.
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      storageKey="my-app-color-mode"
+      {...props}
+    />
+  )
+}
+```
+
+### Forcing a Specific Page to Light/Dark Mode
+
+To force a specific page to render in a specific color mode, set the
+`forcedTheme` prop in the provider.
+
+```tsx
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      forcedTheme="dark"
+      {...props}
+    />
+  )
+}
+```
+
+Alternatively, use the `LightMode` or `DarkMode` components to force specific
+parts of your UI to render in a specific color mode.
