@@ -61,6 +61,90 @@ Use the Card component to display an avatar.
 
 <ExampleTabs name="card-with-avatar" />
 
+## Customization
+
+### Adding new variants
+
+Create a custom Card recipe to add new style variants:
+
+```tsx title="theme.ts"
+import { defineSlotRecipe } from "@chakra-ui/react"
+import { cardAnatomy } from "@chakra-ui/react/anatomy"
+
+const customCardRecipe = defineSlotRecipe({
+  className: "chakra-card",
+  slots: cardAnatomy.keys(),
+  variants: {
+    // add new variant="ghost"
+    variant: {
+      gradient: {
+        root: {
+          bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          color: "white",
+        },
+      },
+    },
+  },
+})
+```
+
+### Adding new sizes
+
+Add custom size variants to the Card recipe:
+
+```tsx title="theme.ts"
+const customCardRecipe = defineSlotRecipe({
+  // ...
+  variants: {
+    size: {
+      // ... existing sizes (sm, md, lg)
+      xl: {
+        root: { "--card-padding": "spacing.10" },
+        title: { textStyle: "2xl" },
+      },
+    },
+  },
+})
+```
+
+### Changing defaults
+
+Set new default values for size and variant:
+
+```tsx title="theme.ts"
+const customCardRecipe = defineSlotRecipe({
+  // ...
+  defaultVariants: {
+    variant: "elevated", // Default to elevated instead of outline
+    size: "lg", // Default to lg instead of md
+  },
+})
+```
+
+### Updating the theme
+
+Add the custom recipe to your theme:
+
+```tsx title="components/ui/provider.tsx"
+const config = defineConfig({
+  theme: {
+    slotRecipes: {
+      card: customCardRecipe,
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, config)
+
+export function Provider(props: { children: React.ReactNode }) {
+  return <ChakraProvider value={system}>{/* ... */}</ChakraProvider>
+}
+```
+
+View the
+[default Card recipe](https://github.com/chakra-ui/chakra-ui/blob/main/packages/react/src/theme/recipes/card.ts)
+for reference.
+
 ## Props
 
 ### Root
@@ -73,3 +157,4 @@ Explore the `Card` component parts interactively. Click on parts in the sidebar
 to highlight them in the preview.
 
 <Explorer name="card-explorer-demo" />
+```

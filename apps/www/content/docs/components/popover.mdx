@@ -163,6 +163,95 @@ If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
 
 <ExampleTabs name="popover-in-dialog" />
 
+## Guide
+
+### Accessing popover context
+
+Use `usePopoverContext` to access the popover's state and methods from any
+component inside the popover.
+
+```tsx
+import { usePopoverContext } from "@chakra-ui/react"
+
+const PopoverStatus = () => {
+  const popover = usePopoverContext()
+
+  return <div>Popover is {popover.open ? "open" : "closed"}</div>
+}
+
+const MyPopover = () => (
+  <Popover.Root>
+    <Popover.Trigger>Open</Popover.Trigger>
+    <Popover.Positioner>
+      <Popover.Content>
+        <PopoverStatus />
+      </Popover.Content>
+    </Popover.Positioner>
+  </Popover.Root>
+)
+```
+
+### Closing programmatically
+
+Use `setOpen(false)` from the context to close the popover programmatically.
+
+```tsx
+import { usePopoverContext } from "@chakra-ui/react"
+
+const CloseButton = () => {
+  const popover = usePopoverContext()
+
+  return <Button onClick={() => popover.setOpen(false)}>Close Popover</Button>
+}
+
+const MyPopover = () => (
+  <Popover.Root>
+    <Popover.Trigger>Open</Popover.Trigger>
+    <Popover.Positioner>
+      <Popover.Content>
+        <CloseButton />
+      </Popover.Content>
+    </Popover.Positioner>
+  </Popover.Root>
+)
+```
+
+### Positioning based on ref
+
+Use `positioning.getAnchorRect()` to position the popover based on a custom
+element ref.
+
+```tsx
+import { useRef } from "react"
+
+const MyPopover = () => {
+  const anchorRef = useRef<HTMLDivElement>(null)
+
+  return (
+    <>
+      <div ref={anchorRef}>Anchor Element</div>
+
+      <Popover.Root
+        positioning={{
+          getAnchorRect() {
+            return anchorRef.current?.getBoundingClientRect()
+          },
+        }}
+      >
+        <Popover.Trigger>Open</Popover.Trigger>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Body>
+              This popover is anchored to the div above
+            </Popover.Body>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Popover.Root>
+    </>
+  )
+}
+```
+
 ## Props
 
 ### Root

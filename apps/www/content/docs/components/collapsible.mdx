@@ -67,6 +67,57 @@ Use the `unmountOnExit` prop to make the content unmount when collapsed.
 
 ## Guides
 
+### Accessing collapsible context
+
+Use `useCollapsibleContext` to access the collapsible's state and methods from
+any component inside the collapsible.
+
+```tsx
+import { useCollapsibleContext } from "@chakra-ui/react"
+
+const CollapsibleStatus = () => {
+  const collapsible = useCollapsibleContext()
+
+  return <div>Collapsible is {collapsible.open ? "open" : "closed"}</div>
+}
+
+const MyCollapsible = () => (
+  <Collapsible.Root>
+    <Collapsible.Trigger>Toggle</Collapsible.Trigger>
+    <Collapsible.Content>
+      <CollapsibleStatus />
+    </Collapsible.Content>
+  </Collapsible.Root>
+)
+```
+
+### Closing programmatically
+
+Use `setOpen(false)` from the context to close the collapsible programmatically.
+
+```tsx
+import { useCollapsibleContext } from "@chakra-ui/react"
+
+const CloseButton = () => {
+  const collapsible = useCollapsibleContext()
+
+  return (
+    <Button onClick={() => collapsible.setOpen(false)}>
+      Close Collapsible
+    </Button>
+  )
+}
+
+const MyCollapsible = () => (
+  <Collapsible.Root>
+    <Collapsible.Trigger>Toggle</Collapsible.Trigger>
+    <Collapsible.Content>
+      <CloseButton />
+    </Collapsible.Content>
+  </Collapsible.Root>
+)
+```
+
 ### Content Padding
 
 To prevent janky animations when the collapsible expands or collapses, apply

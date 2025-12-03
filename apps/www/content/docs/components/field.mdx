@@ -100,6 +100,94 @@ command:
 npx @chakra-ui/cli snippet add field
 ```
 
+## Customization
+
+### Customizing slots
+
+The Field component has multiple slots that can be customized. Use the
+[Explorer](#explorer) below to see all available slots.
+
+```tsx title="theme.ts"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { fieldSlotRecipe } from "@chakra-ui/react/recipes"
+
+const customFieldRecipe = fieldSlotRecipe.extend({
+  base: {
+    label: {
+      color: "blue.600",
+      fontWeight: "bold",
+    },
+    errorText: {
+      bg: "red.50",
+      p: "2",
+      borderRadius: "md",
+    },
+    helperText: {
+      fontStyle: "italic",
+    },
+    requiredIndicator: {
+      color: "orange.500",
+    },
+  },
+})
+
+const config = defineConfig({
+  theme: {
+    slotRecipes: {
+      field: customFieldRecipe,
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+### Adding new variants
+
+Extend the Field recipe to add new layout or style variants:
+
+```tsx title="theme.ts"
+const customFieldRecipe = fieldSlotRecipe.extend({
+  variants: {
+    variant: {
+      // Add a new style variant
+      outlined: {
+        root: {
+          border: "1px solid",
+          borderColor: "border",
+          borderRadius: "md",
+          p: "3",
+        },
+        label: {
+          bg: "bg",
+          px: "2",
+          position: "absolute",
+          top: "-2",
+          left: "3",
+        },
+      },
+    },
+    size: {
+      // Add a new size variant
+      lg: {
+        root: {
+          gap: "3",
+        },
+        label: {
+          textStyle: "md",
+        },
+      },
+    },
+  },
+})
+```
+
+After customizing, run the typegen command:
+
+```bash
+npx @chakra-ui/cli typegen ./theme.ts
+```
+
 ## Props
 
 ### Root
