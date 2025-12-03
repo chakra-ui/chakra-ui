@@ -1,24 +1,29 @@
 "use client"
 
-import { Box, HStack, Portal, Text, VStack } from "@chakra-ui/react"
-import { Menu as ChakraMenu } from "@chakra-ui/react"
+import {
+  Box,
+  Menu as ChakraMenu,
+  HStack,
+  Portal,
+  Text,
+  VStack,
+} from "@chakra-ui/react"
 import { Extension } from "@tiptap/core"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
-import { TextStyleKit } from "@tiptap/extension-text-style"
-import { Plugin, PluginKey } from "@tiptap/pm/state"
-import { Decoration, DecorationSet } from "@tiptap/pm/view"
-import { Editor, useEditor } from "@tiptap/react"
+import { TextStyle } from "@tiptap/extension-text-style"
+import { PluginKey } from "@tiptap/pm/state"
+import { Editor, ReactRenderer, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { MenuItemGroup, MenuSeparator } from "compositions/ui/menu"
+import { Suggestion, type SuggestionProps } from "@tiptap/suggestion"
 import {
   RichTextEditorButtonGroup,
   RichTextEditorContent,
   RichTextEditorRoot,
   createButtonControl,
 } from "compositions/ui/rich-text-editor"
-import { useCallback, useState } from "react"
+import { forwardRef, useImperativeHandle, useState } from "react"
 import {
   LuBold,
   LuCode,
@@ -34,332 +39,40 @@ import {
   LuStrikethrough,
 } from "react-icons/lu"
 
-interface SlashCommand {
-  title: string
-  description: string
-  icon: string
-  command: (editor: Editor) => void
-}
-
-interface SlashCommandGroup {
-  group: string
-  items: SlashCommand[]
-}
-
-const SLASH_COMMANDS: SlashCommandGroup[] = [
-  {
-    group: "Text blocks",
-    items: [
-      {
-        title: "Heading 1",
-        description: "Large section heading",
-        icon: "H₁",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleHeading({ level: 1 }).run(),
-      },
-      {
-        title: "Heading 2",
-        description: "Medium section heading",
-        icon: "H₂",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleHeading({ level: 2 }).run(),
-      },
-      {
-        title: "Heading 3",
-        description: "Small section heading",
-        icon: "H₃",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleHeading({ level: 3 }).run(),
-      },
-      {
-        title: "Paragraph",
-        description: "Medium section heading",
-        icon: "¶",
-        command: (editor: Editor) =>
-          editor.chain().focus().setParagraph().run(),
-      },
-    ],
-  },
-  {
-    group: "Interactive blocks",
-    items: [
-      {
-        title: "Call Out",
-        description: "Large section heading",
-        icon: "📢",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleBlockquote().run(),
-      },
-      {
-        title: "Block Quote",
-        description: "",
-        icon: "❝",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleBlockquote().run(),
-      },
-      {
-        title: "Bullet List",
-        description: "Create a simple bullet list",
-        icon: "•",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleBulletList().run(),
-      },
-      {
-        title: "Ordered List",
-        description: "Create a numbered list",
-        icon: "1.",
-        command: (editor: Editor) =>
-          editor.chain().focus().toggleOrderedList().run(),
-      },
-    ],
-  },
-]
-
-interface SlashCommandsStorage {
-  active: boolean
-  query: string
-  position: { top: number; left: number }
-  slashPos: number | null
-  selectedIndex: number
-}
-
-declare module "@tiptap/core" {
-  interface Commands<ReturnType> {
-    slashCommands: {
-      openSlashMenu: () => ReturnType
-      closeSlashMenu: () => ReturnType
-    }
-  }
-}
-
-const SlashCommandsExtension = Extension.create<{}, SlashCommandsStorage>({
-  name: "slashCommands",
-
-  addStorage() {
-    return {
-      active: false,
-      query: "",
-      position: { top: 0, left: 0 },
-      slashPos: null,
-      selectedIndex: 0,
-    }
-  },
-
-  addCommands() {
-    return {
-      openSlashMenu:
-        () =>
-        ({ state }) => {
-          this.storage.active = true
-          return true
-        },
-      closeSlashMenu:
-        () =>
-        ({ state }) => {
-          this.storage.active = false
-          this.storage.query = ""
-          this.storage.slashPos = null
-          return true
-        },
-    }
-  },
-
-  addProseMirrorPlugins() {
-    const storage = this.storage
-
-    return [
-      new Plugin({
-        key: new PluginKey("slashCommands"),
-
-        state: {
-          init: () => DecorationSet.empty,
-          apply(tr, set) {
-            set = set.map(tr.mapping, tr.doc)
-            return set
-          },
-        },
-
-        props: {
-          decorations(state) {
-            return this.getState(state)
-          },
-        },
-
-        view() {
-          return {
-            update: (view, prevState) => {
-              const { state } = view
-              const { selection } = state
-              const { $from } = selection
-
-              const textBefore = $from.parent.textContent.slice(
-                0,
-                $from.parentOffset,
-              )
-              const slashMatch = textBefore.match(/\/(\w*)$/)
-
-              if (slashMatch) {
-                const query = slashMatch[1]
-                storage.query = query
-                storage.slashPos = $from.pos - query.length - 1
-
-                const coords = view.coordsAtPos($from.pos)
-                storage.position = {
-                  top: coords.top + 24,
-                  left: coords.left,
-                }
-                storage.active = true
-                storage.selectedIndex = 0
-              } else {
-                storage.active = false
-                storage.query = ""
-                storage.slashPos = null
-              }
-            },
-          }
-        },
-      }),
-    ]
-  },
-})
-
-export default function RichTextEditorWithSlashCommands() {
-  const [, forceUpdate] = useState({})
-
+export function RichTextEditorWithSlashCommands() {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        link: { openOnClick: false },
+        heading: {
+          levels: [1, 2, 3],
+        },
       }),
       Subscript,
       Superscript,
       TextAlign.configure({ types: ["paragraph", "heading"] }),
-      TextStyleKit,
+      TextStyle,
       SlashCommandsExtension,
     ],
-    content: `<h1>Welcome to Chakra UI + Tiptap!</h1><p>Type / to see slash commands...</p>`,
-    onUpdate: () => {
-      forceUpdate({})
-    },
+    content: `<h1>Slash Commands Editor</h1><p>Type <strong>/</strong> to see commands</p>`,
+    shouldRerenderOnTransaction: true,
   })
-
-  const getAllFilteredItems = useCallback((): SlashCommand[] => {
-    if (!editor) return []
-    const query = editor.storage.slashCommands.query
-    const filtered: SlashCommand[] = []
-    SLASH_COMMANDS.forEach((group) => {
-      group.items.forEach((item) => {
-        if (item.title.toLowerCase().includes(query.toLowerCase())) {
-          filtered.push(item)
-        }
-      })
-    })
-    return filtered
-  }, [editor])
-
-  const executeCommand = useCallback(
-    (item: SlashCommand) => {
-      if (!editor) return
-      const slashPos = editor.storage.slashCommands.slashPos
-      const query = editor.storage.slashCommands.query
-
-      if (slashPos !== null) {
-        editor
-          .chain()
-          .focus()
-          .deleteRange({ from: slashPos, to: slashPos + query.length + 1 })
-          .run()
-
-        item.command(editor)
-        editor.commands.closeSlashMenu()
-      }
-    },
-    [editor],
-  )
-
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (!editor || !editor.storage.slashCommands.active) return false
-
-      if (event.key === "ArrowDown") {
-        event.preventDefault()
-        const allItems = getAllFilteredItems()
-        editor.storage.slashCommands.selectedIndex =
-          (editor.storage.slashCommands.selectedIndex + 1) % allItems.length
-        forceUpdate({})
-        return true
-      }
-
-      if (event.key === "ArrowUp") {
-        event.preventDefault()
-        const allItems = getAllFilteredItems()
-        editor.storage.slashCommands.selectedIndex =
-          (editor.storage.slashCommands.selectedIndex - 1 + allItems.length) %
-          allItems.length
-        forceUpdate({})
-        return true
-      }
-
-      if (event.key === "Enter") {
-        event.preventDefault()
-        const allItems = getAllFilteredItems()
-        const selectedItem =
-          allItems[editor.storage.slashCommands.selectedIndex]
-        if (selectedItem) {
-          executeCommand(selectedItem)
-        }
-        return true
-      }
-
-      if (event.key === "Escape") {
-        event.preventDefault()
-        editor.commands.closeSlashMenu()
-        forceUpdate({})
-        return true
-      }
-
-      return false
-    },
-    [editor, getAllFilteredItems, executeCommand],
-  )
 
   if (!editor) return null
 
-  const showMenu = editor.storage.slashCommands.active
-  const menuPosition = editor.storage.slashCommands.position
-  const searchQuery = editor.storage.slashCommands.query
-  const selectedIndex = editor.storage.slashCommands.selectedIndex
-
-  const filteredGroups = SLASH_COMMANDS.map((group) => ({
-    ...group,
-    items: group.items.filter((item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()),
-    ),
-  })).filter((group) => group.items.length > 0)
-
-  let currentIndex = 0
-
-  if (showMenu) {
-    document.addEventListener("keydown", handleKeyDown)
-  } else {
-    document.removeEventListener("keydown", handleKeyDown)
-  }
-
   return (
-    <Box position="relative" maxW="900px" mx="auto" mt="8">
+    <Box maxW="800px" mx="auto" mt="8">
       <RichTextEditorRoot
         editor={editor}
-        border="1px solid"
+        border="1px"
         borderColor="border"
-        rounded="md"
+        rounded="sm"
       >
         <HStack
-          wrap="nowrap"
-          gap="2"
+          gap="1"
           p="2"
-          borderBottom="1px solid"
+          borderBottom="1px"
           borderColor="border"
-          overflowX="auto"
+          flexWrap="wrap"
         >
           <RichTextEditorButtonGroup>
             <Bold />
@@ -386,99 +99,304 @@ export default function RichTextEditorWithSlashCommands() {
           </RichTextEditorButtonGroup>
         </HStack>
 
-        <RichTextEditorContent minH="400px" />
+        <RichTextEditorContent minH="400px" p="4" />
       </RichTextEditorRoot>
-
-      {showMenu && (
-        <Portal>
-          <Box
-            position="fixed"
-            top={`${menuPosition.top}px`}
-            left={`${menuPosition.left}px`}
-            zIndex={1000}
-          >
-            <ChakraMenu.Content
-              bg="white"
-              border="1px solid"
-              borderColor="gray.200"
-              rounded="md"
-              shadow="lg"
-              w="320px"
-              maxH="400px"
-              overflowY="auto"
-              py="2"
-            >
-              <VStack align="stretch" gap="0">
-                {filteredGroups.map((group, groupIndex) => (
-                  <Box key={groupIndex}>
-                    <MenuItemGroup title={group.group}>
-                      {group.items.map((item, itemIndex) => {
-                        const isSelected = currentIndex === selectedIndex
-                        const itemCurrentIndex = currentIndex
-                        currentIndex++
-
-                        return (
-                          <ChakraMenu.Item
-                            key={itemIndex}
-                            value={item.title}
-                            cursor="pointer"
-                            bg={isSelected ? "gray.100" : "transparent"}
-                            _hover={{ bg: "gray.100" }}
-                            onClick={() => executeCommand(item)}
-                            px="4"
-                            py="2"
-                          >
-                            <HStack gap="3" w="full">
-                              <Box
-                                fontSize="xl"
-                                w="6"
-                                textAlign="center"
-                                fontWeight="medium"
-                              >
-                                {item.icon}
-                              </Box>
-                              <VStack align="start" gap="0" flex="1">
-                                <Text fontSize="sm" fontWeight="medium">
-                                  {item.title}
-                                </Text>
-                                {item.description && (
-                                  <Text fontSize="xs" color="gray.500">
-                                    {item.description}
-                                  </Text>
-                                )}
-                              </VStack>
-                            </HStack>
-                          </ChakraMenu.Item>
-                        )
-                      })}
-                    </MenuItemGroup>
-                  </Box>
-                ))}
-              </VStack>
-              <MenuSeparator />
-              <Box px="4" py="2" bg="gray.50">
-                <HStack fontSize="xs" color="gray.500" gap="4">
-                  <HStack gap="1">
-                    <Text fontWeight="medium">↑↓</Text>
-                    <Text>to navigate</Text>
-                  </HStack>
-                  <HStack gap="1">
-                    <Text fontWeight="medium">↵</Text>
-                    <Text>to select</Text>
-                  </HStack>
-                  <HStack gap="1">
-                    <Text fontWeight="medium">esc</Text>
-                    <Text>to dismiss</Text>
-                  </HStack>
-                </HStack>
-              </Box>
-            </ChakraMenu.Content>
-          </Box>
-        </Portal>
-      )}
     </Box>
   )
 }
+
+interface SlashCommand {
+  title: string
+  description: string
+  icon: string
+  command: (props: { editor: Editor; range: any }) => void
+}
+
+const SLASH_COMMANDS: SlashCommand[] = [
+  {
+    title: "Heading 1",
+    description: "Large section heading",
+    icon: "H₁",
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode("heading", { level: 1 })
+        .run()
+    },
+  },
+  {
+    title: "Heading 2",
+    description: "Medium section heading",
+    icon: "H₂",
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode("heading", { level: 2 })
+        .run()
+    },
+  },
+  {
+    title: "Heading 3",
+    description: "Small section heading",
+    icon: "H₃",
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode("heading", { level: 3 })
+        .run()
+    },
+  },
+  {
+    title: "Paragraph",
+    description: "Regular text",
+    icon: "¶",
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).setNode("paragraph").run()
+    },
+  },
+  {
+    title: "Bullet List",
+    description: "Simple bullet list",
+    icon: "•",
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).toggleBulletList().run()
+    },
+  },
+  {
+    title: "Ordered List",
+    description: "Numbered list",
+    icon: "1.",
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).toggleOrderedList().run()
+    },
+  },
+  {
+    title: "Block Quote",
+    description: "Quote block",
+    icon: "❝",
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).toggleBlockquote().run()
+    },
+  },
+  {
+    title: "Code Block",
+    description: "Code block",
+    icon: "</>",
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).toggleCodeBlock().run()
+    },
+  },
+]
+
+interface SlashMenuListProps {
+  items: SlashCommand[]
+  command: (item: SlashCommand) => void
+  selectedIndex: number
+  clientRect?: (() => DOMRect | null) | null
+}
+
+interface SlashMenuListRef {
+  onKeyDown: (props: { event: KeyboardEvent }) => boolean
+}
+
+const SlashMenuList = forwardRef<SlashMenuListRef, SlashMenuListProps>(
+  ({ items, command, selectedIndex, clientRect }, ref) => {
+    const [open] = useState(true)
+
+    useImperativeHandle(ref, () => ({
+      onKeyDown: () => false,
+    }))
+
+    const rect = clientRect?.()
+    const positioning = rect
+      ? {
+          strategy: "fixed" as const,
+          placement: "bottom-start" as const,
+          gutter: 8,
+          getAnchorRect: () => ({
+            x: rect.left,
+            y: rect.bottom,
+            width: rect.width,
+            height: 0,
+          }),
+        }
+      : undefined
+
+    return (
+      <ChakraMenu.Root open={open} positioning={positioning}>
+        <Portal>
+          <ChakraMenu.Positioner>
+            <ChakraMenu.Content
+              p="1"
+              minW="280px"
+              maxH="360px"
+              overflowY="auto"
+            >
+              {items.map((item, index) => (
+                <ChakraMenu.Item
+                  key={index}
+                  value={item.title}
+                  onPointerDown={(event) => {
+                    event.preventDefault()
+                    command(item)
+                  }}
+                  bg={selectedIndex === index ? "bg.muted" : "transparent"}
+                  _hover={{ bg: "bg.muted" }}
+                  rounded="sm"
+                  py="2"
+                  px="2.5"
+                  cursor="pointer"
+                >
+                  <HStack gap="2.5" w="full">
+                    <Box fontSize="lg" w="5" flexShrink={0} textAlign="center">
+                      {item.icon}
+                    </Box>
+
+                    <VStack align="start" gap="0" flex="1" minW="0">
+                      <Text fontSize="sm" fontWeight="medium">
+                        {item.title}
+                      </Text>
+
+                      {item.description && (
+                        <Text fontSize="xs" color="fg.muted">
+                          {item.description}
+                        </Text>
+                      )}
+                    </VStack>
+                  </HStack>
+                </ChakraMenu.Item>
+              ))}
+            </ChakraMenu.Content>
+          </ChakraMenu.Positioner>
+        </Portal>
+      </ChakraMenu.Root>
+    )
+  },
+)
+
+SlashMenuList.displayName = "SlashMenuList"
+
+const SlashCommandsExtension = Extension.create({
+  name: "slashCommands",
+
+  addOptions() {
+    return {
+      suggestion: {
+        char: "/",
+        pluginKey: new PluginKey("slashCommands"),
+
+        command: ({
+          editor,
+          range,
+          props,
+        }: {
+          editor: Editor
+          range: any
+          props: SlashCommand
+        }) => {
+          props.command({ editor, range })
+        },
+
+        items: ({ query }: { query: string }) =>
+          SLASH_COMMANDS.filter((item) =>
+            item.title.toLowerCase().includes(query.toLowerCase()),
+          ),
+
+        render: () => {
+          let component: ReactRenderer<
+            SlashMenuListRef,
+            SlashMenuListProps
+          > | null = null
+          let container: HTMLDivElement | null = null
+          let selectedIndex = 0
+
+          return {
+            onStart(props: SuggestionProps<SlashCommand>) {
+              selectedIndex = 0
+
+              container = document.createElement("div")
+              document.body.appendChild(container)
+
+              component = new ReactRenderer(SlashMenuList, {
+                props: {
+                  items: props.items,
+                  selectedIndex,
+                  command: (item: SlashCommand) => props.command(item),
+                  clientRect: props.clientRect,
+                },
+                editor: props.editor,
+              })
+
+              container.appendChild(component.element)
+            },
+
+            onUpdate(props: SuggestionProps<SlashCommand>) {
+              if (!component) return
+
+              component.updateProps({
+                items: props.items,
+                selectedIndex,
+                command: (item: SlashCommand) => props.command(item),
+                clientRect: props.clientRect,
+              })
+            },
+
+            onKeyDown({ event }: { event: KeyboardEvent }) {
+              if (!component) return false
+
+              if (event.key === "ArrowUp") {
+                selectedIndex =
+                  (selectedIndex - 1 + component.props.items.length) %
+                  component.props.items.length
+                component.updateProps({ ...component.props, selectedIndex })
+                return true
+              }
+
+              if (event.key === "ArrowDown") {
+                selectedIndex =
+                  (selectedIndex + 1) % component.props.items.length
+                component.updateProps({ ...component.props, selectedIndex })
+                return true
+              }
+
+              if (event.key === "Enter") {
+                const item = component.props.items[selectedIndex]
+                if (item) component.props.command(item)
+                return true
+              }
+
+              if (event.key === "Escape") return true
+
+              return false
+            },
+
+            onExit() {
+              if (container) container.remove()
+              container = null
+              if (component) component.destroy()
+              component = null
+            },
+          }
+        },
+      },
+    }
+  },
+
+  addProseMirrorPlugins() {
+    return [
+      Suggestion({
+        editor: this.editor,
+        ...this.options.suggestion,
+      }),
+    ]
+  },
+})
 
 const Bold = createButtonControl({
   label: "Bold",

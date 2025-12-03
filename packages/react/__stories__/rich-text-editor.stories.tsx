@@ -20,3 +20,4 @@ export { RichTextEditorCharacterCount as CharacterCount } from "compositions/exa
 export { RichTextEditorWithImage as Image } from "compositions/examples/tiptap-editor/rich-text-editor-with-image"
 export { RichTextEditorWithCode as Code } from "compositions/examples/tiptap-editor/rich-text-editor-with-code"
 export { RichTextEditorWithHashtags as Hashtags } from "compositions/examples/tiptap-editor/rich-text-editor-with-hashtags"
+export { RichTextEditorWithSlashCommands as SlashCommands } from "compositions/examples/tiptap-editor/rich-text-editor-with-slash-commands"
