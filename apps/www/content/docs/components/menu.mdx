@@ -201,6 +201,29 @@ If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
 
 <ExampleTabs name="menu-within-dialog" />
 
+## Guide
+
+### Styling highlighted items
+
+Use the `_highlighted` prop to style menu items when they are hovered or focused
+with keyboard navigation.
+
+```tsx
+<Menu.Item _highlighted={{ bg: "blue.500", color: "white" }}>
+  Custom highlighted item
+</Menu.Item>
+```
+
+### Styling open state
+
+Use the `_open` prop to style the menu trigger when the menu is open.
+
+```tsx
+<Menu.Trigger asChild>
+  <Button _open={{ bg: "blue.500", color: "white" }}>Menu</Button>
+</Menu.Trigger>
+```
+
 ## Props
 
 ### Root
