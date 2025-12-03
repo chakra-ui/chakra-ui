@@ -50,6 +50,17 @@ Use the `Heading` component to compose other components.
 
 ## Customization
 
+:::info
+
+After customizing the recipe, run the CLI typegen command to regenerate the
+types.
+
+```bash
+npx @chakra-ui/cli typegen
+```
+
+:::
+
 To override the `fontSize`, we recommend using the `textStyle` prop since it
 considers the line height and letter spacing as well.
 
@@ -58,8 +69,7 @@ considers the line height and letter spacing as well.
 Here's an example of customizing the `Heading` component.
 
 ```tsx title="components/ui/provider.tsx"
-import { createSystem, defineRecipe } from "@chakra-ui/react"
-import { defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
 
 const headingRecipe = defineRecipe({
   base: {
@@ -98,8 +108,7 @@ const system = createSystem(defaultConfig, {
 Update the `variants.size` property to create a custom size.
 
 ```tsx title="components/ui/provider.tsx"
-import { createSystem, defineRecipe } from "@chakra-ui/react"
-import { defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
 
 const headingRecipe = defineRecipe({
   variants: {
