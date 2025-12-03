@@ -5,48 +5,116 @@ import {
   Button,
   Dialog,
   FileUpload,
+  HStack,
   Icon,
   Input,
   Portal,
   Tabs,
 } from "@chakra-ui/react"
-import {
-  RichTextEditor,
-  useRichTextEditorContext,
-} from "@chakra-ui/tiptap-editor"
 import Image from "@tiptap/extension-image"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
+import {
+  RichTextEditorButtonControl,
+  RichTextEditorButtonGroup,
+  RichTextEditorContent,
+  RichTextEditorRoot,
+  createButtonControl,
+  useRichTextEditorContext,
+} from "compositions/ui/rich-text-editor"
 import { useState } from "react"
-import { LuImage, LuLink, LuUpload } from "react-icons/lu"
+import {
+  LuBold,
+  LuImage,
+  LuItalic,
+  LuLink,
+  LuList,
+  LuListOrdered,
+  LuStrikethrough,
+  LuUpload,
+} from "react-icons/lu"
 
 export function RichTextEditorWithImage() {
   const editor = useEditor({
     content: `
       <h2>Dr. Stone</h2>
       <p><strong>Dr. Stone</strong> is a Japanese manga and anime series that follows the story of Senku Ishigami, a scientific genius who awakens thousands of years after humanity has been petrified.</p>
-      <p>The world is in ruins, and Senku aims to rebuild civilization using the power of science. Alongside his friends, he embarks on adventures to revive humanity, confront threats, and innovate technologies from scratch.</p>
-      <p>Here’s a glimpse of the main character:</p>
-      <p><img src="https://wallpapers.com/images/hd/senku-ishigami-dr-stone-qecaaz5eq3v7s5do.webp" alt="Senku Ishigami" style="max-width:100%; border-radius:8px;" /></p>
-      <p>Use the toolbar to add your own images and enrich the story!</p>
+      <p>The world is in ruins, and Senku aims to rebuild civilization using the power of science.</p>
     `,
     extensions: [StarterKit, Image],
   })
 
-  return (
-    <RichTextEditor.Root editor={editor}>
-      <RichTextEditor.Toolbar>
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Bold />
-          <RichTextEditor.Italic />
-          <InsertImageControl />
-        </RichTextEditor.ControlsGroup>
-      </RichTextEditor.Toolbar>
+  if (!editor) return null
 
-      <RichTextEditor.Content />
-    </RichTextEditor.Root>
+  return (
+    <RichTextEditorRoot
+      editor={editor}
+      borderBottom="1px solid"
+      borderColor="border"
+    >
+      <Box>
+        <HStack gap={1} border="1px solid" borderColor="border" p="3">
+          <RichTextEditorButtonGroup>
+            <Bold />
+            <Italic />
+            <Strikethrough />
+          </RichTextEditorButtonGroup>
+
+          <RichTextEditorButtonGroup>
+            <BulletList />
+            <OrderedList />
+          </RichTextEditorButtonGroup>
+
+          <RichTextEditorButtonGroup>
+            <InsertImageControl />
+          </RichTextEditorButtonGroup>
+        </HStack>
+      </Box>
+
+      <RichTextEditorContent
+        minH="400px"
+        p={6}
+        borderX="1px solid"
+        borderColor="border"
+      />
+    </RichTextEditorRoot>
   )
 }
+
+const Bold = createButtonControl({
+  label: "Bold",
+  icon: LuBold,
+  command: (editor) => editor.chain().focus().toggleBold().run(),
+  getVariant: (editor) => (editor.isActive("bold") ? "solid" : "ghost"),
+})
+
+const Italic = createButtonControl({
+  label: "Italic",
+  icon: LuItalic,
+  command: (editor) => editor.chain().focus().toggleItalic().run(),
+  getVariant: (editor) => (editor.isActive("italic") ? "solid" : "ghost"),
+})
+
+const Strikethrough = createButtonControl({
+  label: "Strikethrough",
+  icon: LuStrikethrough,
+  command: (editor) => editor.chain().focus().toggleStrike().run(),
+  getVariant: (editor) => (editor.isActive("strike") ? "solid" : "ghost"),
+})
+
+const BulletList = createButtonControl({
+  label: "Bullet List",
+  icon: LuList,
+  command: (editor) => editor.chain().focus().toggleBulletList().run(),
+  getVariant: (editor) => (editor.isActive("bulletList") ? "solid" : "ghost"),
+})
+
+const OrderedList = createButtonControl({
+  label: "Ordered List",
+  icon: LuListOrdered,
+  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
+  getVariant: (editor) => (editor.isActive("orderedList") ? "solid" : "ghost"),
+})
 
 function InsertImageControl() {
   const { editor } = useRichTextEditorContext()
@@ -57,10 +125,11 @@ function InsertImageControl() {
 
   return (
     <>
-      <RichTextEditor.Control
+      <RichTextEditorButtonControl
         icon={<LuImage />}
         label="Insert Image"
         onClick={() => setOpen(true)}
+        variant="ghost"
       />
 
       <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>

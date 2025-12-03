@@ -1,15 +1,22 @@
-import { RichTextEditor } from "@chakra-ui/tiptap-editor"
+"use client"
+
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
+import {
+  RichTextEditorButtonGroup,
+  RichTextEditorContent,
+  RichTextEditorRoot,
+  createButtonControl,
+} from "compositions/ui/rich-text-editor"
 import css from "highlight.js/lib/languages/css"
 import js from "highlight.js/lib/languages/javascript"
 import ts from "highlight.js/lib/languages/typescript"
 import html from "highlight.js/lib/languages/xml"
 import { all, createLowlight } from "lowlight"
+import { LuBold, LuCode, LuItalic } from "react-icons/lu"
 
 const lowlight = createLowlight(all)
-
 lowlight.register("html", html)
 lowlight.register("css", css)
 lowlight.register("js", js)
@@ -17,37 +24,27 @@ lowlight.register("ts", ts)
 
 export function RichTextEditorWithCode() {
   const editor = useEditor({
-    content: `<p>
-    That’s a boring paragraph followed by a fenced code block:
-  </p>
-  <pre><code class="language-javascript">${code}</code></pre>
-  <p>
-    Press Command/Ctrl + Enter to leave the fenced code block and continue typing in boring paragraphs.
-  </p>`,
-    shouldRerenderOnTransaction: true,
     extensions: [StarterKit, CodeBlockLowlight.configure({ lowlight })],
+    content: `<p>That’s a boring paragraph followed by a fenced code block:</p>
+<pre><code class="language-javascript">${code}</code></pre>
+<p>Press Command/Ctrl + Enter to leave the fenced code block and continue typing in boring paragraphs.</p>`,
   })
 
   if (!editor) return null
 
   return (
-    <RichTextEditor.Root editor={editor}>
-      <RichTextEditor.Toolbar>
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Bold />
-          <RichTextEditor.Italic />
-        </RichTextEditor.ControlsGroup>
-
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.CodeBlock />
-        </RichTextEditor.ControlsGroup>
-      </RichTextEditor.Toolbar>
-
-      <RichTextEditor.Content />
-    </RichTextEditor.Root>
+    <RichTextEditorRoot editor={editor}>
+      <RichTextEditorButtonGroup>
+        <BoldButton />
+        <ItalicButton />
+        <CodeBlockButton />
+      </RichTextEditorButtonGroup>
+      <RichTextEditorContent />
+    </RichTextEditorRoot>
   )
 }
 
+// Escape HTML so it can be safely injected
 function escapeHtml(unsafe: string) {
   return unsafe
     .replace(/&/g, "&amp;")
@@ -71,3 +68,21 @@ async function showTodos() {
 
 showTodos()
 `)
+
+const BoldButton = createButtonControl({
+  label: "Bold",
+  icon: LuBold,
+  command: (editor) => editor.chain().focus().toggleBold().run(),
+})
+
+const ItalicButton = createButtonControl({
+  label: "Italic",
+  icon: LuItalic,
+  command: (editor) => editor.chain().focus().toggleItalic().run(),
+})
+
+const CodeBlockButton = createButtonControl({
+  label: "Code Block",
+  icon: LuCode,
+  command: (editor) => editor.chain().focus().toggleCodeBlock().run(),
+})

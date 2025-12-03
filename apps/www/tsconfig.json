@@ -37,9 +37,6 @@
       "@chakra-ui/charts": [
         "../../packages/charts/src"
       ],
-      "@chakra-ui/tiptap-editor": [
-        "../../packages/tiptap-editor/src"
-      ],
       "compositions/*": [
         "../compositions/src/*"
       ]
