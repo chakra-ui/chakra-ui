@@ -23,7 +23,7 @@ import {
   RichTextEditorRoot,
   createButtonControl,
 } from "compositions/ui/rich-text-editor"
-import { forwardRef, useImperativeHandle, useState } from "react"
+import { forwardRef, useImperativeHandle } from "react"
 import {
   LuBold,
   LuCode,
@@ -207,8 +207,6 @@ interface SlashMenuListRef {
 
 const SlashMenuList = forwardRef<SlashMenuListRef, SlashMenuListProps>(
   ({ items, command, selectedIndex, clientRect }, ref) => {
-    const [open] = useState(true)
-
     useImperativeHandle(ref, () => ({
       onKeyDown: () => false,
     }))
@@ -229,7 +227,7 @@ const SlashMenuList = forwardRef<SlashMenuListRef, SlashMenuListProps>(
       : undefined
 
     return (
-      <ChakraMenu.Root open={open} positioning={positioning}>
+      <ChakraMenu.Root open positioning={positioning}>
         <Portal>
           <ChakraMenu.Positioner>
             <ChakraMenu.Content
