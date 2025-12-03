@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs"
 import { dirname, extname, join, parse, resolve } from "node:path"
 import { trainCase } from "scule"
 import { Project } from "ts-morph"
-import { chartComponents, isChartComponent } from "./shared"
+import { chartComponents, isChartComponent, uniq } from "./shared"
 
 const excludeSet = new Map([
   ["checkbox", ["checkbox-card-*.tsx"]],
@@ -21,6 +21,22 @@ const importReplacements = new Map([
 const componentReplacements = new Map([["DecorativeBox", "Box"]])
 
 const nativeDependencies = new Set(["@chakra-ui/react", "react", "react-dom"])
+
+/**
+ * Components that have examples but no component directory.
+ * These are either composition-only components or aliases.
+ */
+export const exampleOnlyComponents = [
+  "close-button",
+  "overlay",
+  "password-input",
+  "prose",
+  "radio",
+  "rating",
+  "segmented-control",
+  "theme",
+  "toaster",
+]
 
 function refine(str: string) {
   return str.replaceAll("compositions/ui", "@/components/ui")
@@ -69,7 +85,7 @@ export class ProjectSdk {
     return [
       ...dirs.filter((v) => !extname(v).startsWith(".ts")),
       ...chartComponents,
-      "password-input",
+      ...exampleOnlyComponents,
     ]
   }
 
@@ -193,7 +209,7 @@ export class ProjectSdk {
     const chartDir = isChartComponent(component) ? "charts/" : ""
     return glob(`${chartDir}${component}-*.tsx`, {
       cwd: this.examplesDir,
-      ignore: ignore.concat("*-table.tsx"),
+      ignore: ignore.concat("*-table.tsx", "*-explorer-demo.tsx"),
     })
   }
 
@@ -279,7 +295,9 @@ export class ProjectSdk {
     })
 
     return {
-      npmDependencies: npmDependencies.length ? npmDependencies : undefined,
+      npmDependencies: npmDependencies.length
+        ? uniq(npmDependencies)
+        : undefined,
       fileDependencies: fileDependencies.length ? fileDependencies : undefined,
     }
   }

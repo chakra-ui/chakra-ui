@@ -1,0 +1,212 @@
+{
+  "name": "splitter",
+  "file": "compositions/ui/splitter",
+  "snippet": "import { Splitter as ChakraSplitter } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface SplitterProps extends ChakraSplitter.RootProps {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\nexport const Splitter = React.forwardRef<HTMLDivElement, SplitterProps>(\n  function Splitter(props, ref) {\n    const { orientation = \"horizontal\", children, ...rest } = props\n    return (\n      <ChakraSplitter.Root ref={ref} orientation={orientation} {...rest}>\n        {children}\n      </ChakraSplitter.Root>\n    )\n  },\n)\n\nexport const SplitterPanel = React.forwardRef<\n  HTMLDivElement,\n  ChakraSplitter.PanelProps\n>(function SplitterPanel(props, ref) {\n  return <ChakraSplitter.Panel {...props} ref={ref} />\n})\n\nexport const SplitterResizeTrigger = React.forwardRef<\n  HTMLButtonElement,\n  ChakraSplitter.ResizeTriggerProps\n>(function SplitterResizeTrigger(props, ref) {\n  return <ChakraSplitter.ResizeTrigger {...props} ref={ref} />\n})\n\nexport const SplitterRoot = ChakraSplitter.Root\nexport const SplitterRootProvider = ChakraSplitter.RootProvider\nexport const SplitterPropsProvider = ChakraSplitter.PropsProvider\nexport const SplitterContext = ChakraSplitter.Context\n",
+  "examples": [
+    {
+      "name": "splitter-basic",
+      "content": "export const SplitterBasic = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-collapsible",
+      "content": "export const SplitterCollapsible = () => {\n  return (\n    <Box>\n      <HStack textStyle=\"sm\" mb={4}>\n        <LuMouse />\n        <LuMoveHorizontal />\n        Drag the resizer to collapse or expand Panel A\n      </HStack>\n\n      <Splitter.Root\n        defaultSize={[40, 60]}\n        panels={[\n          { id: \"a\", collapsible: true, collapsedSize: 5, minSize: 25 },\n          { id: \"b\", minSize: 50 },\n        ]}\n        borderWidth=\"1px\"\n        minH=\"60\"\n      >\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.Root>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, HStack, Splitter } from \"@chakra-ui/react\"",
+        "import { LuMouse, LuMoveHorizontal } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-conditional-rendering",
+      "content": "\"use client\"\nconst initialPanels: Splitter.PanelData[] = [\n  { id: \"left\", order: 0 },\n  { id: \"center\", order: 1 },\n  { id: \"right\", order: 2 },\n]\n\nconst getLayoutKey = (panels: Array<{ id: string }>): string => {\n  return panels.map((p) => p.id).join(\":\")\n}\n\nconst distributeSizes = (count: number): number[] =>\n  Array(count).fill(100 / count)\n\nexport const SplitterConditionalRendering = () => {\n  const [panels, setPanels] = useState(initialPanels)\n  const [sizes, setSizes] = useState<number[]>([])\n\n  const initialLayout = getLayoutKey(initialPanels)\n\n  const layoutCache = useRef<Record<string, number[]>>({\n    [initialLayout]: [],\n  })\n\n  const splitter = useSplitter({\n    panels: panels.map((p) => ({ id: p.id, minSize: 20 })),\n    size: sizes,\n    orientation: \"horizontal\",\n    onResize: ({ size, layout }) => {\n      setSizes(size)\n      layoutCache.current[layout] = size\n    },\n  })\n\n  const items = splitter.getItems()\n\n  const hidePanel = (id: string) => {\n    const currentLayout = getLayoutKey(panels)\n    layoutCache.current[currentLayout] = sizes\n\n    const index = panels.findIndex((panel) => panel.id === id)\n    const newPanels = panels.filter((panel) => panel.id !== id)\n    const newSizes = sizes.filter((_, i) => i !== index)\n\n    setPanels(newPanels)\n    setSizes(newSizes)\n  }\n\n  const showPanel = (id: string) => {\n    const panel = initialPanels.find((panel) => panel.id === id)\n    if (!panel) return\n\n    const nextPanels = [...panels, panel].sort(\n      (a, b) => (a.order ?? 0) - (b.order ?? 0),\n    )\n    const nextLayout = getLayoutKey(nextPanels)\n    const cachedSizes = layoutCache.current[nextLayout]\n\n    setPanels(nextPanels)\n    setSizes(cachedSizes || distributeSizes(nextPanels.length))\n  }\n\n  const isPanelVisible = (id: string) => {\n    return panels.some((p) => p.id === id)\n  }\n\n  const togglePanel = (id: string) => {\n    if (isPanelVisible(id)) {\n      hidePanel(id)\n    } else {\n      showPanel(id)\n    }\n  }\n\n  return (\n    <Stack gap=\"4\">\n      <HStack gap=\"2\" justify=\"space-between\">\n        <Button size=\"sm\" variant=\"outline\" onClick={() => togglePanel(\"left\")}>\n          {isPanelVisible(\"left\") ? \"Hide Left\" : \"Show Left\"}\n        </Button>\n        <Button\n          size=\"sm\"\n          variant=\"outline\"\n          onClick={() => togglePanel(\"right\")}\n        >\n          {isPanelVisible(\"right\") ? \"Hide Right\" : \"Show Right\"}\n        </Button>\n      </HStack>\n\n      <Splitter.RootProvider value={splitter} borderWidth=\"1px\" minH=\"60\">\n        {items.map((item) => (\n          <Fragment key={item.id}>\n            {item.type === \"panel\" && (\n              <Splitter.Panel id={item.id}>\n                <Center boxSize=\"full\" textStyle=\"lg\">\n                  {item.id}\n                </Center>\n              </Splitter.Panel>\n            )}\n            {item.type === \"handle\" && <Splitter.ResizeTrigger id={item.id} />}\n          </Fragment>\n        ))}\n      </Splitter.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  HStack,\n  Splitter,\n  Stack,\n  useSplitter,\n} from \"@chakra-ui/react\"",
+        "import { Fragment, useRef, useState } from \"react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-controlled",
+      "content": "\"use client\"\nexport const SplitterControlled = () => {\n  const [sizes, setSizes] = useState([50, 50])\n\n  return (\n    <Stack gap=\"4\" align=\"start\">\n      <HStack textStyle=\"sm\" gap={2}>\n        <LuMouse />\n        <LuMoveHorizontal />\n        <Span>Drag the handle to resize panels</Span>\n      </HStack>\n\n      <Splitter.Root\n        panels={[{ id: \"a\" }, { id: \"b\" }]}\n        size={sizes}\n        onResize={(details) => setSizes(details.size)}\n        borderWidth=\"1px\"\n        minH=\"60\"\n      >\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.Root>\n\n      <Code color=\"fg.muted\">\n        Panel A: {sizes[0].toFixed(1)}% | Panel B: {sizes[1].toFixed(1)}%\n      </Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Code, HStack, Span, Splitter, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuMouse, LuMoveHorizontal } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-disabled",
+      "content": "export const SplitterDisabled = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger disabled id=\"a:b\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-dynamic-panel",
+      "content": "\"use client\"\nconst MAX_PANELS = 5\n\nexport const SplitterDynamicPanel = () => {\n  const [panelIds, setPanelIds] = useState<string[]>([\"a\", \"b\"])\n  const [sizes, setSizes] = useState<number[]>(distributeSizes(2))\n\n  const splitter = useSplitter({\n    size: sizes,\n    panels: panelIds.map((id: string) => ({ id, minSize: 15 })),\n    onResize: (details) => setSizes(details.size),\n  })\n\n  const items = splitter.getItems()\n  const panelCount = items.filter((item) => item.type === \"panel\").length\n\n  const addPanel = () => {\n    if (panelIds.length >= MAX_PANELS) return // Prevent adding more than MAX_PANELS\n    const newId = uuid()\n    const newSizes = redistributeSizesForNewPanel(sizes, panelIds.length + 1)\n    setSizes(newSizes)\n    setPanelIds([...panelIds, newId])\n  }\n\n  const removePanel = (id: string) => {\n    if (panelIds.length <= 1) return\n\n    const indexToRemove = panelIds.indexOf(id)\n    const newSizes = redistributeSizesAfterRemoval(sizes, indexToRemove)\n    setSizes(newSizes)\n    setPanelIds(panelIds.filter((panelId: string) => panelId !== id))\n  }\n\n  return (\n    <Stack gap=\"4\">\n      <HStack gap=\"2\" justify=\"space-between\">\n        <Button\n          size=\"sm\"\n          variant=\"outline\"\n          onClick={addPanel}\n          disabled={panelIds.length >= MAX_PANELS}\n        >\n          <LuPlus /> Add Panel\n        </Button>\n        <HStack gap=\"1\" textStyle=\"sm\" color=\"fg.muted\">\n          <span>\n            {panelCount} panel{panelCount !== 1 ? \"s\" : \"\"}\n          </span>\n        </HStack>\n      </HStack>\n\n      <Splitter.RootProvider value={splitter} borderWidth=\"1px\" minH=\"60\">\n        {items.map((item) => (\n          <Fragment key={item.id}>\n            {item.type === \"panel\" && (\n              <Splitter.Panel id={item.id}>\n                <Center boxSize=\"full\" textStyle=\"2xl\" position=\"relative\">\n                  {item.id}\n                  <IconButton\n                    size=\"xs\"\n                    variant=\"ghost\"\n                    position=\"absolute\"\n                    top=\"2\"\n                    right=\"2\"\n                    onClick={() => removePanel(item.id)}\n                    disabled={panelCount === 1}\n                  >\n                    <LuMinus />\n                  </IconButton>\n                </Center>\n              </Splitter.Panel>\n            )}\n            {item.type === \"handle\" && <Splitter.ResizeTrigger id={item.id} />}\n          </Fragment>\n        ))}\n      </Splitter.RootProvider>\n    </Stack>\n  )\n}\n\nconst uuid = () => {\n  // Generate a single random lowercase letter\n  const letters = \"cdefghijklmnopqrstuvwxyz\"\n  return letters[Math.floor(Math.random() * letters.length)]\n}\n\nconst distributeSizes = (count: number): number[] =>\n  Array(count).fill(100 / count)\n\nconst calculateTotalSize = (sizes: number[]): number =>\n  sizes.reduce((sum, size) => sum + size, 0)\n\nconst redistributeSizesForNewPanel = (\n  currentSizes: number[],\n  newPanelCount: number,\n): number[] => {\n  const totalSize = calculateTotalSize(currentSizes)\n  const newPanelSize = totalSize / newPanelCount\n\n  // Reduce existing panels proportionally to make room for the new panel\n  const adjustedSizes = currentSizes.map((size) => {\n    const proportion = size / totalSize\n    return size - newPanelSize * proportion\n  })\n\n  adjustedSizes.push(newPanelSize)\n  return adjustedSizes\n}\n\nconst redistributeSizesAfterRemoval = (\n  currentSizes: number[],\n  indexToRemove: number,\n): number[] => {\n  const removedSize = currentSizes[indexToRemove] || 0\n  const remainingSizes = currentSizes.filter((_, i) => i !== indexToRemove)\n  const totalRemainingSize = calculateTotalSize(remainingSizes)\n\n  // Distribute removed panel's size proportionally to remaining panels\n  return remainingSizes.map(\n    (size) => size + (removedSize * size) / totalRemainingSize,\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Center,\n  HStack,\n  IconButton,\n  Splitter,\n  Stack,\n  useSplitter,\n} from \"@chakra-ui/react\"",
+        "import { Fragment, useState } from \"react\"",
+        "import { LuMinus, LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-ide-layout",
+      "content": "\"use client\"\ntype FileNode = {\n  name: string\n  type: \"file\" | \"folder\"\n  id?: string\n  children?: FileNode[]\n}\n\nconst fileTree: FileNode[] = [\n  {\n    name: \"src\",\n    type: \"folder\",\n    children: [\n      { name: \"App.tsx\", type: \"file\", id: \"app\" },\n      { name: \"index.tsx\", type: \"file\", id: \"index\" },\n    ],\n  },\n  { name: \"package.json\", type: \"file\", id: \"package\" },\n]\n\nexport const SplitterIdeLayout = () => {\n  const [activeFileId, setActiveFileId] = useState<string>(\"app\")\n  const activeFile = fileContents[activeFileId] || fileContents.app\n\n  return (\n    <CodeBlockAdapter>\n      <Splitter.Root\n        defaultSize={[20, 80]}\n        panels={[\n          { id: \"explorer\", collapsible: true, collapsedSize: 0, minSize: 10 },\n          { id: \"editor-terminal\", minSize: 50 },\n        ]}\n        borderWidth=\"1px\"\n        minH=\"600px\"\n        className=\"dark\"\n        colorPalette=\"gray\"\n      >\n        {/* File Explorer */}\n        <Splitter.Panel id=\"explorer\" bg=\"bg\" color=\"fg\">\n          <Stack\n            gap=\"1\"\n            p=\"2\"\n            h=\"full\"\n            width=\"full\"\n            overflowY=\"auto\"\n            overflowX=\"hidden\"\n          >\n            <FileTree\n              nodes={fileTree}\n              activeFileId={activeFileId}\n              onFileClick={setActiveFileId}\n            />\n          </Stack>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"explorer:editor-terminal\" />\n\n        {/* Editor + Terminal Container */}\n        <Splitter.Panel id=\"editor-terminal\">\n          <Splitter.Root\n            defaultSize={[70, 30]}\n            panels={[\n              { id: \"editor\", minSize: 30 },\n              {\n                id: \"terminal\",\n                collapsible: true,\n                collapsedSize: 5,\n                minSize: 15,\n              },\n            ]}\n            orientation=\"vertical\"\n            h=\"full\"\n          >\n            {/* Editor */}\n            <Splitter.Panel id=\"editor\">\n              <Editor\n                activeFileId={activeFileId}\n                activeFile={activeFile}\n                fileTree={fileTree}\n              />\n            </Splitter.Panel>\n\n            <Splitter.ResizeTrigger id=\"editor:terminal\" />\n\n            {/* Terminal */}\n            <Splitter.Panel id=\"terminal\">\n              <Terminal output={terminalOutput} />\n            </Splitter.Panel>\n          </Splitter.Root>\n        </Splitter.Panel>\n      </Splitter.Root>\n    </CodeBlockAdapter>\n  )\n}\n\n////////////////////////////////////////////////////////////////////////////////\n\ntype FileTreeProps = {\n  nodes: FileNode[]\n  activeFileId: string\n  onFileClick: (fileId: string) => void\n}\n\nconst FileTree = ({ nodes, activeFileId, onFileClick }: FileTreeProps) => {\n  const renderFileTree = (fileNodes: FileNode[], level = 0) => {\n    return fileNodes.map((node) => {\n      if (node.type === \"folder\") {\n        return (\n          <Stack\n            key={node.name}\n            gap=\"0.5\"\n            ps={level > 0 ? \"4\" : \"0\"}\n            width=\"full\"\n          >\n            <HStack gap=\"2\" px=\"2\" py=\"1\" textStyle=\"sm\" flexShrink=\"0\">\n              <LuFolder style={{ flexShrink: 0 }} />\n              <Span truncate>{node.name}</Span>\n            </HStack>\n            {node.children && (\n              <Stack gap=\"0.5\">\n                {renderFileTree(node.children, level + 1)}\n              </Stack>\n            )}\n          </Stack>\n        )\n      }\n\n      const isActive = node.id === activeFileId\n      return (\n        <HStack\n          width=\"full\"\n          key={node.id}\n          gap=\"2\"\n          pe=\"2\"\n          ps={level * 4 + 2}\n          py=\"1\"\n          rounded=\"l2\"\n          textStyle=\"sm\"\n          cursor=\"pointer\"\n          data-current={isActive || undefined}\n          flexShrink=\"0\"\n          _current={{ bg: \"bg.emphasized\", color: \"yellow.solid\" }}\n          onClick={() => node.id && onFileClick(node.id)}\n        >\n          <LuFile style={{ flexShrink: 0 }} />\n          <Span truncate>{node.name}</Span>\n        </HStack>\n      )\n    })\n  }\n\n  return (\n    <Stack gap=\"0.5\" width=\"full\">\n      {renderFileTree(nodes)}\n    </Stack>\n  )\n}\n\n////////////////////////////////////////////////////////////////////////////////\n\nconst shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({\n  async load() {\n    const { createHighlighter } = await import(\"shiki\")\n    return createHighlighter({\n      langs: [\"tsx\", \"ts\", \"js\", \"json\", \"bash\"],\n      themes: [\"github-dark\"],\n    })\n  },\n  theme: \"github-dark\",\n})\n\nconst CodeBlockAdapter = (props: React.PropsWithChildren) => (\n  <CodeBlock.AdapterProvider value={shikiAdapter}>\n    {props.children}\n  </CodeBlock.AdapterProvider>\n)\n\ntype EditorProps = {\n  activeFileId: string\n  activeFile: { code: string; language: string }\n  fileTree: FileNode[]\n}\n\nconst Editor = ({ activeFileId, activeFile, fileTree }: EditorProps) => {\n  const fileName =\n    fileTree\n      .flatMap((node) =>\n        node.type === \"folder\" ? node.children || [] : [node],\n      )\n      .find((node) => node.id === activeFileId)?.name || \"App.tsx\"\n\n  return (\n    <CodeBlock.Root\n      code={activeFile.code}\n      language={activeFile.language}\n      h=\"full\"\n      rounded=\"none\"\n      size=\"sm\"\n    >\n      <CodeBlock.Header>\n        <CodeBlock.Title>{fileName}</CodeBlock.Title>\n      </CodeBlock.Header>\n      <CodeBlock.Content>\n        <CodeBlock.Code>\n          <CodeBlock.CodeText />\n        </CodeBlock.Code>\n      </CodeBlock.Content>\n    </CodeBlock.Root>\n  )\n}\n\n////////////////////////////////////////////////////////////////////////////////\n\ntype TerminalProps = {\n  output: string\n}\n\nconst Terminal = ({ output }: TerminalProps) => {\n  return (\n    <CodeBlock.Root\n      code={output}\n      language=\"bash\"\n      h=\"full\"\n      rounded=\"none\"\n      size=\"sm\"\n    >\n      <CodeBlock.Header>\n        <CodeBlock.Title>Terminal</CodeBlock.Title>\n      </CodeBlock.Header>\n      <CodeBlock.Content>\n        <CodeBlock.Code>\n          <CodeBlock.CodeText />\n        </CodeBlock.Code>\n      </CodeBlock.Content>\n    </CodeBlock.Root>\n  )\n}\n\n////////////////////////////////////////////////////////////////////////////////\n\nconst fileContents: Record<string, { code: string; language: string }> = {\n  app: {\n    code: `import { useState } from \"react\"\n  \n  export const Counter = () => {\n    const [count, setCount] = useState(0)\n  \n    return (\n      <div>\n        <p>Count: {count}</p>\n        <button onClick={() => setCount(count + 1)}>\n          Increment\n        </button>\n      </div>\n    )\n  }`,\n    language: \"tsx\",\n  },\n  index: {\n    code: `import React from \"react\"\n  import ReactDOM from \"react-dom/client\"\n  import App from \"./App\"\n  \n  ReactDOM.createRoot(document.getElementById(\"root\")!).render(\n    <React.StrictMode>\n      <App />\n    </React.StrictMode>\n  )`,\n    language: \"tsx\",\n  },\n  package: {\n    code: `{\n    \"name\": \"my-app\",\n    \"version\": \"1.0.0\",\n    \"scripts\": {\n      \"dev\": \"vite\",\n      \"build\": \"vite build\"\n    },\n    \"dependencies\": {\n      \"react\": \"^18.2.0\",\n      \"react-dom\": \"^18.2.0\"\n    }\n  }`,\n    language: \"json\",\n  },\n}\n\nconst terminalOutput = `$ npm run dev\n  \n  > dev@1.0.0 dev\n  > vite\n  \n    VITE v5.0.0  ready in 234 ms\n  \n    ➜  Local:   http://localhost:5173/\n    ➜  Network: use --host to expose\n    ➜  press h + enter to show help`\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  CodeBlock,\n  HStack,\n  Span,\n  Splitter,\n  Stack,\n  createShikiAdapter,\n} from \"@chakra-ui/react\"",
+        "import React, { useState } from \"react\"",
+        "import { LuFile, LuFolder } from \"react-icons/lu\"",
+        "import type { HighlighterGeneric } from \"shiki\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "shiki"
+      ]
+    },
+    {
+      "name": "splitter-keyboard-resize",
+      "content": "export const SplitterKeyboardResize = () => {\n  return (\n    <Box>\n      <HStack textStyle=\"sm\" mb={4} gap={2} wrap=\"wrap\">\n        <LuKeyboard />\n        <Span>Focus the resize handle and use arrow keys</Span>\n        <LuMoveLeft />\n        <LuMoveRight />\n      </HStack>\n\n      <Splitter.Root\n        panels={[{ id: \"a\" }, { id: \"b\" }]}\n        borderWidth=\"1px\"\n        keyboardResizeBy={5}\n        minH=\"60\"\n      >\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.Root>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Center, HStack, Span, Splitter } from \"@chakra-ui/react\"",
+        "import { LuKeyboard, LuMoveLeft, LuMoveRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-min-max-constraints",
+      "content": "\"use client\"\nexport const SplitterMinMaxConstraints = () => {\n  const [sizes, setSizes] = useState([30, 70])\n\n  return (\n    <Stack gap=\"4\" align=\"start\">\n      <HStack textStyle=\"sm\" gap={2}>\n        <LuMouse />\n        <LuMoveHorizontal />\n        <Span>Drag to resize - Panel A: 20-60%, Panel B: min 40%</Span>\n      </HStack>\n\n      <Splitter.Root\n        panels={[\n          { id: \"a\", minSize: 20, maxSize: 60 },\n          { id: \"b\", minSize: 40 },\n        ]}\n        defaultSize={[30, 70]}\n        borderWidth=\"1px\"\n        size={sizes}\n        onResize={(details) => setSizes(details.size)}\n        minH=\"60\"\n      >\n        <Splitter.Panel id=\"a\">\n          <Stack boxSize=\"full\" align=\"center\" justify=\"center\" gap=\"2\">\n            <Center textStyle=\"2xl\">A</Center>\n            <Code size=\"sm\" color=\"fg.muted\">\n              {sizes[0].toFixed(1)}% (min: 20%, max: 60%)\n            </Code>\n          </Stack>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Stack boxSize=\"full\" align=\"center\" justify=\"center\" gap=\"2\">\n            <Center textStyle=\"2xl\">B</Center>\n            <Code size=\"sm\" color=\"fg.muted\">\n              {sizes[1].toFixed(1)}% (min: 40%)\n            </Code>\n          </Stack>\n        </Splitter.Panel>\n      </Splitter.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Code, HStack, Span, Splitter, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuMouse, LuMoveHorizontal } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-multiple-panels",
+      "content": "export const SplitterMultiplePanels = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }, { id: \"c\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\" aria-label=\"Resize\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"b:c\" aria-label=\"Resize\" />\n      <Splitter.Panel id=\"c\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          C\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-nested",
+      "content": "export const SplitterNested = () => {\n  return (\n    <Splitter.Root panels={[{ id: \"a\" }, { id: \"b\" }]} borderWidth=\"1px\">\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\" aria-label=\"Resize\" />\n\n      <Splitter.Panel id=\"b\">\n        <Splitter.Root\n          panels={[{ id: \"b1\" }, { id: \"b2\" }]}\n          orientation=\"vertical\"\n          minH=\"80\"\n        >\n          <Splitter.Panel id=\"b1\">\n            <Center boxSize=\"full\" textStyle=\"2xl\">\n              B1\n            </Center>\n          </Splitter.Panel>\n\n          <Splitter.ResizeTrigger\n            id=\"b1:b2\"\n            aria-label=\"Resize nested panels\"\n          />\n\n          <Splitter.Panel id=\"b2\">\n            <Center boxSize=\"full\" textStyle=\"2xl\">\n              B2\n            </Center>\n          </Splitter.Panel>\n        </Splitter.Root>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-reset-on-double-click",
+      "content": "\"use client\"\nexport const SplitterResetOnDoubleClick = () => {\n  return (\n    <Splitter.Root\n      defaultSize={[50, 50]}\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n\n      <Splitter.Context>\n        {(context) => (\n          <Splitter.ResizeTrigger\n            id=\"a:b\"\n            onDoubleClick={() => {\n              context.resetSizes()\n            }}\n          />\n        )}\n      </Splitter.Context>\n\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-resize-events",
+      "content": "\"use client\"\ntype EventLog = [number, string, string]\n\nexport const SplitterResizeEvents = () => {\n  const [eventLog, setEventLog] = useState<EventLog[]>([])\n\n  const logEvent = useCallback(\n    (eventName: string, details?: { size?: number[] }) => {\n      const timestamp = Date.now()\n      const sizeInfo = details?.size\n        ? `[${details.size.map((s) => s.toFixed(1)).join(\", \")}]`\n        : \"\"\n      setEventLog((prev) => [[timestamp, eventName, sizeInfo], ...prev])\n    },\n    [],\n  )\n\n  const throttledLogEvent = useThrottle(logEvent, 100)\n\n  return (\n    <Stack gap=\"4\" align=\"start\">\n      <HStack textStyle=\"sm\" gap={2}>\n        <LuMouse />\n        <LuMoveHorizontal />\n        <Span>Drag the handle to resize panels</Span>\n      </HStack>\n\n      <Splitter.Root\n        panels={[{ id: \"a\" }, { id: \"b\" }]}\n        defaultSize={[50, 50]}\n        borderWidth=\"1px\"\n        minH=\"60\"\n        onResizeStart={() => logEvent(\"onResizeStart\")}\n        onResize={(details) => throttledLogEvent(\"onResize\", details)}\n        onResizeEnd={(details) => logEvent(\"onResizeEnd\", details)}\n      >\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.Root>\n\n      <Stack\n        p=\"2\"\n        gap=\"1\"\n        width=\"full\"\n        role=\"log\"\n        borderWidth=\"1px\"\n        minH=\"100px\"\n        maxH=\"200px\"\n        overflowY=\"auto\"\n      >\n        {eventLog.length === 0 ? (\n          <Span textStyle=\"sm\" color=\"fg.muted\">\n            Resize events will appear here...\n          </Span>\n        ) : (\n          eventLog.map(([time, eventName, sizeInfo], i) => {\n            const date = new Date(time)\n            return (\n              <HStack as=\"pre\" fontFamily=\"mono\" textStyle=\"sm\" key={i}>\n                <Span color=\"fg.muted\">{date.toLocaleTimeString()}</Span>\n                <Span fontWeight=\"bold\">{eventName}</Span>\n                {sizeInfo && <Span color=\"fg.muted\">{sizeInfo}</Span>}\n              </HStack>\n            )\n          })\n        )}\n      </Stack>\n    </Stack>\n  )\n}\n\nfunction useThrottle<T extends (...args: any[]) => void>(\n  fn: T,\n  delay: number,\n): T {\n  const lastRunRef = useRef<number>(0)\n  const timeoutRef = useRef<NodeJS.Timeout | null>(null)\n\n  useEffect(() => {\n    return () => {\n      if (timeoutRef.current) {\n        clearTimeout(timeoutRef.current)\n      }\n    }\n  }, [])\n\n  return useCallback(\n    ((...args: Parameters<T>) => {\n      const now = Date.now()\n      const timeSinceLastRun = now - lastRunRef.current\n\n      if (timeSinceLastRun >= delay) {\n        lastRunRef.current = now\n        fn(...args)\n      } else {\n        if (timeoutRef.current) {\n          clearTimeout(timeoutRef.current)\n        }\n        timeoutRef.current = setTimeout(() => {\n          lastRunRef.current = Date.now()\n          fn(...args)\n        }, delay - timeSinceLastRun)\n      }\n    }) as T,\n    [fn, delay],\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, HStack, Span, Splitter, Stack } from \"@chakra-ui/react\"",
+        "import { useCallback, useEffect, useRef } from \"react\"",
+        "import { useState } from \"react\"",
+        "import { LuMouse, LuMoveHorizontal } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "splitter-responsive-orientation",
+      "content": "\"use client\"\nexport const SplitterResponsiveOrientation = () => {\n  const orientation = useBreakpointValue<\"horizontal\" | \"vertical\">({\n    base: \"vertical\",\n    md: \"horizontal\",\n  })\n\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      orientation={orientation}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter, useBreakpointValue } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-separator-only",
+      "content": "export const SplitterSeparatorOnly = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\">\n        <Splitter.ResizeTriggerSeparator />\n      </Splitter.ResizeTrigger>\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-vertical",
+      "content": "export const SplitterVertical = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      orientation=\"vertical\"\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger id=\"a:b\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-with-storage",
+      "content": "\"use client\"\nexport const SplitterWithStorage = () => {\n  const [sizes, setSizes] = useLocalStorage(\"splitter-sizes\", [70, 50])\n  const formattedSizes = sizes?.map((size) => size.toFixed(1)).join(\", \")\n  const hasSavedState = sizes && sizes.length > 0\n\n  const clearStorage = () => {\n    setSizes(undefined)\n  }\n\n  return (\n    <Stack gap=\"4\" align=\"start\">\n      <HStack textStyle=\"sm\" alignSelf=\"stretch\" justify=\"space-between\">\n        <HStack>\n          <LuMouse />\n          <LuMoveHorizontal />\n          <Span>Drag to resize panels</Span>\n        </HStack>\n        {hasSavedState && (\n          <Button size=\"xs\" variant=\"ghost\" onClick={clearStorage}>\n            <LuTrash2 /> Clear Storage\n          </Button>\n        )}\n      </HStack>\n\n      <Splitter.Root\n        panels={[{ id: \"a\" }, { id: \"b\" }]}\n        defaultSize={sizes}\n        onResizeEnd={(e) => setSizes(e.size)}\n        borderWidth=\"1px\"\n        minH=\"60\"\n      >\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.Root>\n\n      <Badge>\n        <LuBox /> LocalStorage{\" \"}\n        {hasSavedState ? `[${formattedSizes}]` : \"[Not saved]\"}\n      </Badge>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Badge,\n  Button,\n  Center,\n  HStack,\n  Span,\n  Splitter,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { LuBox, LuMouse, LuMoveHorizontal, LuTrash2 } from \"react-icons/lu\"",
+        "import { useLocalStorage } from \"react-use\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-use"
+      ]
+    },
+    {
+      "name": "splitter-with-store",
+      "content": "\"use client\"\nexport const SplitterWithStore = () => {\n  const splitter = useSplitter({\n    defaultSize: [50, 50],\n    panels: [{ id: \"a\" }, { id: \"b\", minSize: 20 }],\n  })\n\n  const sizes = splitter\n    .getSizes()\n    .map((size) => size.toFixed(1))\n    .join(\"%, \")\n\n  return (\n    <Stack gap=\"4\" align=\"start\">\n      <Splitter.RootProvider value={splitter} borderWidth=\"1px\" minH=\"60\">\n        <Splitter.Panel id=\"a\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            A\n          </Center>\n        </Splitter.Panel>\n\n        <Splitter.ResizeTrigger id=\"a:b\" />\n\n        <Splitter.Panel id=\"b\">\n          <Center boxSize=\"full\" textStyle=\"2xl\">\n            B\n          </Center>\n        </Splitter.Panel>\n      </Splitter.RootProvider>\n\n      <Code>Size: {JSON.stringify(sizes, null, 2)}</Code>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Code, Splitter, Stack, useSplitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    }
+  ]
+}

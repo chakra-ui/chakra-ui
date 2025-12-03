@@ -165,6 +165,11 @@
         "defaultValue": "10",
         "description": "The initial number of data items per page when rendered.\nUse when you don't need to control the page size of the pagination."
       },
+      "getPageUrl": {
+        "type": "(details: PageUrlDetails) => string",
+        "isRequired": false,
+        "description": "Function to generate href attributes for pagination links.\nOnly used when `type` is set to \"link\"."
+      },
       "ids": {
         "type": "Partial<{\n  root: string\n  ellipsis: (index: number) => string\n  prevTrigger: string\n  nextTrigger: string\n  item: (page: number) => string\n}>",
         "isRequired": false,

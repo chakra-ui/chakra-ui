@@ -45,18 +45,6 @@
   },
   "Content": {
     "props": {
-      "portalled": {
-        "type": "boolean",
-        "isRequired": false
-      },
-      "portalRef": {
-        "type": "React.RefObject<HTMLElement>",
-        "isRequired": false
-      },
-      "backdrop": {
-        "type": "boolean",
-        "isRequired": false
-      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -190,6 +178,11 @@
         "type": "(event: PointerDownOutsideEvent) => void",
         "isRequired": false,
         "description": "Function called when the pointer is pressed down outside the component"
+      },
+      "onRequestDismiss": {
+        "type": "(event: LayerDismissEvent) => void",
+        "isRequired": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed"
       },
       "open": {
         "type": "boolean",

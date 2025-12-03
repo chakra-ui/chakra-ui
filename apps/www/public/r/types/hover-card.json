@@ -87,6 +87,11 @@
         "isRequired": false,
         "description": "The initial open state of the hover card when rendered.\nUse when you don't need to control the open state of the hover card."
       },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the hover card is disabled"
+      },
       "id": {
         "type": "string",
         "isRequired": false,
@@ -141,7 +146,7 @@
       "openDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "700",
+        "defaultValue": "600",
         "description": "The duration from when the mouse enters the trigger until the hover card opens."
       },
       "positioning": {

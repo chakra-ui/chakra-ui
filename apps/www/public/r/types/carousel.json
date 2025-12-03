@@ -88,7 +88,7 @@
         "description": "The index of the item."
       },
       "snapAlign": {
-        "type": "'center' | 'end' | 'start'",
+        "type": "'center' | 'start' | 'end'",
         "isRequired": false,
         "defaultValue": "\"start\"",
         "description": "The snap alignment of the item."
@@ -301,8 +301,9 @@
         "isRequired": false
       },
       "paused": {
-        "type": "React.ReactNode",
-        "isRequired": false
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false,
+        "description": "The content to render when autoplay is paused."
       },
       "as": {
         "type": "React.ElementType",
@@ -313,6 +314,11 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "playing": {
+        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "isRequired": false,
+        "description": "The content to render when autoplay is playing."
       }
     }
   },
@@ -328,6 +334,7 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLSpanElement"
   }
 }

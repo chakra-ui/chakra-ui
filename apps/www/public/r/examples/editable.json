@@ -63,7 +63,7 @@
     },
     {
       "name": "editable-with-final-focus",
-      "content": "\"use client\"\nexport const EditableWithFinalFocus = () => {\n  const ref = useRef<HTMLInputElement>(null)\n\n  return (\n    <Stack>\n      <Editable.Root\n        finalFocusEl={() => ref.current}\n        defaultValue=\"Final fantasy\"\n      >\n        <Editable.Preview />\n        <Editable.Input />\n        <Editable.Control>\n          <Editable.EditTrigger>Edit</Editable.EditTrigger>\n          <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>\n          <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>\n        </Editable.Control>\n      </Editable.Root>\n\n      <Input placeholder=\"Placeholder\" ref={ref} />\n    </Stack>\n  )\n}\n",
+      "content": "\"use client\"\nexport const EditableWithFinalFocus = () => {\n  const ref = useRef<HTMLInputElement | null>(null)\n\n  return (\n    <Stack>\n      <Editable.Root\n        finalFocusEl={() => ref.current}\n        defaultValue=\"Final fantasy\"\n      >\n        <Editable.Preview />\n        <Editable.Input />\n        <Editable.Control>\n          <Editable.EditTrigger>Edit</Editable.EditTrigger>\n          <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>\n          <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>\n        </Editable.Control>\n      </Editable.Root>\n\n      <Input placeholder=\"Placeholder\" ref={ref} />\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Editable, Input, Stack } from \"@chakra-ui/react\"",

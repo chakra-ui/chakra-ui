@@ -6,14 +6,18 @@
       "name": "radiomark-basic",
       "content": "export const RadiomarkBasic = () => {\n  return (\n    <Stack>\n      <Radiomark />\n      <Radiomark checked />\n      <Radiomark disabled />\n      <Radiomark checked disabled />\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
-      "importPaths": ["import { Radiomark, Stack } from \"@chakra-ui/react\""],
+      "importPaths": [
+        "import { Radiomark, Stack } from \"@chakra-ui/react\""
+      ],
       "importPath": "import { Radiomark } from \"@chakra-ui/react\""
     },
     {
       "name": "radiomark-states",
       "content": "export const RadiomarkStates = () => {\n  return (\n    <HStack gap={4}>\n      <Radiomark />\n      <Radiomark checked />\n      <Radiomark disabled />\n      <Radiomark checked disabled />\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,
-      "importPaths": ["import { HStack, Radiomark } from \"@chakra-ui/react\""],
+      "importPaths": [
+        "import { HStack, Radiomark } from \"@chakra-ui/react\""
+      ],
       "importPath": "import { Radiomark } from \"@chakra-ui/react\""
     },
     {
@@ -22,15 +26,6 @@
       "hasSnippet": false,
       "importPaths": [
         "import { For, Radiomark, Stack } from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { Radiomark } from \"@chakra-ui/react\""
-    },
-    {
-      "name": "radiomark-with-sizes",
-      "content": "export const RadiomarkWithSizes = () => {\n  return (\n    <HStack gap={4} alignItems=\"center\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => <Radiomark key={size} size={size} checked />}\n      </For>\n    </HStack>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { For, HStack, Radiomark } from \"@chakra-ui/react\""
       ],
       "importPath": "import { Radiomark } from \"@chakra-ui/react\""
     },
@@ -48,7 +43,18 @@
       "name": "radiomark-with-filled",
       "content": "export const RadiomarkWithFilled = () => {\n  return (\n    <HStack gap={4}>\n      <Radiomark variant=\"outline\" />\n      <Radiomark variant=\"outline\" checked />\n      <Radiomark variant=\"outline\" filled />\n      <Radiomark variant=\"outline\" filled checked />\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,
-      "importPaths": ["import { HStack, Radiomark } from \"@chakra-ui/react\""],
+      "importPaths": [
+        "import { HStack, Radiomark } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radiomark } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radiomark-with-sizes",
+      "content": "export const RadiomarkWithSizes = () => {\n  return (\n    <HStack gap={4} alignItems=\"center\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => <Radiomark key={size} size={size} checked />}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, Radiomark } from \"@chakra-ui/react\""
+      ],
       "importPath": "import { Radiomark } from \"@chakra-ui/react\""
     }
   ]
