@@ -1,5 +1,21 @@
 # @chakra-ui/react
 
+## 3.31.0
+
+### Minor Changes
+
+- [`756b385`](https://github.com/chakra-ui/chakra-ui/commit/756b3858b6c6758ca175ccc9746d559e12aee035)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **ActionBar**
+  - Add `placement` variant to configure bar position: `bottom`, `bottom-start`,
+    `bottom-end`
+  - Add `--action-bar-offset` CSS variable to configure offset from edges
+
+### Patch Changes
+
+- [`4fcf302`](https://github.com/chakra-ui/chakra-ui/commit/4fcf302e60cf1e6f397ea2a85d59b59da47de650)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **ColorPicker,
+  Select, Combobox**: Fix z-index stacking when used inside dialogs
+
 ## 3.30.0
 
 ### Minor Changes
