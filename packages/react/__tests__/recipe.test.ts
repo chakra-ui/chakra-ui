@@ -1,4 +1,4 @@
-import { createSystem } from "../src"
+import { createSystem, defaultConfig } from "../src"
 
 describe("Recipe bracket syntax fix", () => {
   const system = createSystem({
@@ -248,6 +248,88 @@ describe("Recipe bracket syntax fix", () => {
         "@media screen and (min-width: 40rem)": {
           color: "darkblue",
         },
+      },
+    })
+  })
+
+  it("should normalize base shorthand so variant longhand wins", () => {
+    const fullSystem = createSystem(defaultConfig)
+    const recipe = fullSystem.cva({
+      base: {
+        rounded: "1rem",
+      },
+      variants: {
+        size: {
+          md: {
+            rounded: "100px",
+          },
+        },
+      },
+      defaultVariants: {
+        size: "md",
+      },
+    })
+
+    const result = recipe({ size: "md" })
+
+    expect(result).toMatchObject({
+      "@layer recipes": {
+        borderRadius: "100px",
+      },
+    })
+    expect(result["@layer recipes"]).not.toHaveProperty("rounded")
+  })
+
+  it("should normalize base shorthand - variant should override base", () => {
+    const fullSystem = createSystem(defaultConfig)
+    const recipe = fullSystem.cva({
+      base: {
+        borderRadius: "8px",
+      },
+      variants: {
+        size: {
+          md: {
+            rounded: "100px",
+          },
+        },
+      },
+      defaultVariants: {
+        size: "md",
+      },
+    })
+
+    const result = recipe({ size: "md" })
+
+    expect(result).toMatchObject({
+      "@layer recipes": {
+        borderRadius: "100px",
+      },
+    })
+  })
+
+  it("should normalize base shorthand - variant longhand should override", () => {
+    const fullSystem = createSystem(defaultConfig)
+    const recipe = fullSystem.cva({
+      base: {
+        rounded: "8px",
+      },
+      variants: {
+        size: {
+          md: {
+            borderRadius: "100px",
+          },
+        },
+      },
+      defaultVariants: {
+        size: "md",
+      },
+    })
+
+    const result = recipe({ size: "md" })
+
+    expect(result).toMatchObject({
+      "@layer recipes": {
+        borderRadius: "100px",
       },
     })
   })
