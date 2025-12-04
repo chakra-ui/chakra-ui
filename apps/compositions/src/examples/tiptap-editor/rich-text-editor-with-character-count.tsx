@@ -19,7 +19,7 @@ import {
   LuStrikethrough,
 } from "react-icons/lu"
 
-export function RichTextEditorCharacterCount() {
+export function RichTextEditorWithCharacterCount() {
   const editor = useEditor({
     content: `
       <h2>Dr. Stone</h2>

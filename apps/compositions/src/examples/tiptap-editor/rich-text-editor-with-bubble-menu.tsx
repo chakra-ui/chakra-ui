@@ -19,7 +19,7 @@ import {
   LuUnderline,
 } from "react-icons/lu"
 
-export function RichTextEditorBubbleMenu() {
+export function RichTextEditorWithBubbleMenu() {
   const editor = useEditor({
     extensions: [StarterKit],
     content: sampleContent,

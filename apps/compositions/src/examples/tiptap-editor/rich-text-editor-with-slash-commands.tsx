@@ -60,48 +60,46 @@ export function RichTextEditorWithSlashCommands() {
   if (!editor) return null
 
   return (
-    <Box maxW="800px" mx="auto" mt="8">
-      <RichTextEditorRoot
-        editor={editor}
-        border="1px"
+    <RichTextEditorRoot
+      editor={editor}
+      border="1px solid"
+      borderColor="border"
+      rounded="sm"
+    >
+      <HStack
+        gap="1"
+        p="2"
+        borderBottom="1px solid"
         borderColor="border"
-        rounded="sm"
+        flexWrap="wrap"
       >
-        <HStack
-          gap="1"
-          p="2"
-          borderBottom="1px"
-          borderColor="border"
-          flexWrap="wrap"
-        >
-          <RichTextEditorButtonGroup>
-            <Bold />
-            <Italic />
-            <Strike />
-            <Code />
-          </RichTextEditorButtonGroup>
+        <RichTextEditorButtonGroup>
+          <Bold />
+          <Italic />
+          <Strike />
+          <Code />
+        </RichTextEditorButtonGroup>
 
-          <RichTextEditorButtonGroup>
-            <H1 />
-            <H2 />
-            <H3 />
-          </RichTextEditorButtonGroup>
+        <RichTextEditorButtonGroup>
+          <H1 />
+          <H2 />
+          <H3 />
+        </RichTextEditorButtonGroup>
 
-          <RichTextEditorButtonGroup>
-            <BulletList />
-            <OrderedList />
-            <Blockquote />
-          </RichTextEditorButtonGroup>
+        <RichTextEditorButtonGroup>
+          <BulletList />
+          <OrderedList />
+          <Blockquote />
+        </RichTextEditorButtonGroup>
 
-          <RichTextEditorButtonGroup noSeparator>
-            <Undo />
-            <Redo />
-          </RichTextEditorButtonGroup>
-        </HStack>
+        <RichTextEditorButtonGroup noSeparator>
+          <Undo />
+          <Redo />
+        </RichTextEditorButtonGroup>
+      </HStack>
 
-        <RichTextEditorContent minH="400px" p="4" />
-      </RichTextEditorRoot>
-    </Box>
+      <RichTextEditorContent minH="400px" p="4" />
+    </RichTextEditorRoot>
   )
 }
 
@@ -206,7 +204,7 @@ interface SlashMenuListRef {
 }
 
 const SlashMenuList = forwardRef<SlashMenuListRef, SlashMenuListProps>(
-  ({ items, command, selectedIndex, clientRect }, ref) => {
+  ({ items, command, clientRect }, ref) => {
     useImperativeHandle(ref, () => ({
       onKeyDown: () => false,
     }))
@@ -244,12 +242,7 @@ const SlashMenuList = forwardRef<SlashMenuListRef, SlashMenuListProps>(
                     event.preventDefault()
                     command(item)
                   }}
-                  bg={selectedIndex === index ? "bg.muted" : "transparent"}
-                  _hover={{ bg: "bg.muted" }}
-                  rounded="sm"
-                  py="2"
-                  px="2.5"
-                  cursor="pointer"
+                  cursor="button"
                 >
                   <HStack gap="2.5" w="full">
                     <Box fontSize="lg" w="5" flexShrink={0} textAlign="center">

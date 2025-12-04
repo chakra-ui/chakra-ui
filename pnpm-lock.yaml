@@ -236,6 +236,9 @@ importers:
       '@tiptap/extension-image':
         specifier: ^3.11.0
         version: 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))
+      '@tiptap/extension-mention':
+        specifier: 3.11.0
+        version: 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)(@tiptap/suggestion@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0))
       '@tiptap/extension-placeholder':
         specifier: ^3.11.0
         version: 3.11.0(@tiptap/extensions@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0))
@@ -258,6 +261,9 @@ importers:
         specifier: ^3.11.0
         version: 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))
       '@tiptap/extensions':
+        specifier: 3.11.0
+        version: 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)
+      '@tiptap/markdown':
         specifier: 3.11.0
         version: 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)
       '@tiptap/pm':
@@ -3725,6 +3731,13 @@ packages:
       '@tiptap/core': ^3.11.0
       '@tiptap/pm': ^3.11.0
 
+  '@tiptap/extension-mention@3.11.0':
+    resolution: {integrity: sha512-4y789hKNEvZoNals7PNSGAKThQ+b5nuP/KIEe4wPIfzknjwxzGi0f2YY3L/f+gIhueoZymYpkmhtiRND+wvAWA==}
+    peerDependencies:
+      '@tiptap/core': ^3.11.0
+      '@tiptap/pm': ^3.11.0
+      '@tiptap/suggestion': ^3.11.0
+
   '@tiptap/extension-ordered-list@3.11.0':
     resolution: {integrity: sha512-kO8GH4w4Xil+qPiHJLAyILdGHF9hCjkhoVtPD8YEfqK6Qx3bZql5FPySCQNs+MU6rLSCCdam8SUPGY/+SCufqA==}
     peerDependencies:
@@ -3789,6 +3802,12 @@ packages:
 
   '@tiptap/extensions@3.11.0':
     resolution: {integrity: sha512-g43beA73ZMLezez1st9LEwYrRHZ0FLzlsSlOZKk7sdmtHLmuqWHf4oyb0XAHol1HZIdGv104rYaGNgmQXr1ecQ==}
+    peerDependencies:
+      '@tiptap/core': ^3.11.0
+      '@tiptap/pm': ^3.11.0
+
+  '@tiptap/markdown@3.11.0':
+    resolution: {integrity: sha512-p6HQbiqChUlg9fXJMIv1ajAax19q7wApMApN9NAMM6B6tHQmV7oqbcvUAZEKF9iSE0xWMRFyqmQ8/8z0C9hpJQ==}
     peerDependencies:
       '@tiptap/core': ^3.11.0
       '@tiptap/pm': ^3.11.0
@@ -7127,6 +7146,11 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
+  marked@15.0.12:
+    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
+    engines: {node: '>= 18'}
+    hasBin: true
+
   match-sorter@8.1.0:
     resolution: {integrity: sha512-0HX3BHPixkbECX+Vt7nS1vJ6P2twPgGTU3PMXjWrl1eyVCL24tFHeyYN1FN5RKLzve0TyzNI9qntqQGbebnfPQ==}
 
@@ -7654,6 +7678,7 @@ packages:
   next@15.5.6:
     resolution: {integrity: sha512-zTxsnI3LQo3c9HSdSf91O1jMNsEzIXDShXd4wVdg9y5shwLqBXi4ZtUUJyB86KGVSJLZx0PFONvO54aheGX8QQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -12897,6 +12922,12 @@ snapshots:
       '@tiptap/core': 3.11.0(@tiptap/pm@3.11.0)
       '@tiptap/pm': 3.11.0
 
+  '@tiptap/extension-mention@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)(@tiptap/suggestion@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0))':
+    dependencies:
+      '@tiptap/core': 3.11.0(@tiptap/pm@3.11.0)
+      '@tiptap/pm': 3.11.0
+      '@tiptap/suggestion': 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)
+
   '@tiptap/extension-ordered-list@3.11.0(@tiptap/extension-list@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0))':
     dependencies:
       '@tiptap/extension-list': 3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)
@@ -12951,6 +12982,12 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.11.0(@tiptap/pm@3.11.0)
       '@tiptap/pm': 3.11.0
+
+  '@tiptap/markdown@3.11.0(@tiptap/core@3.11.0(@tiptap/pm@3.11.0))(@tiptap/pm@3.11.0)':
+    dependencies:
+      '@tiptap/core': 3.11.0(@tiptap/pm@3.11.0)
+      '@tiptap/pm': 3.11.0
+      marked: 15.0.12
 
   '@tiptap/pm@3.11.0':
     dependencies:
@@ -17091,6 +17128,8 @@ snapshots:
       uc.micro: 2.1.0
 
   markdown-table@3.0.4: {}
+
+  marked@15.0.12: {}
 
   match-sorter@8.1.0:
     dependencies:

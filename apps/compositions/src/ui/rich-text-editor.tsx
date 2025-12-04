@@ -126,10 +126,18 @@ export const richTextEditorRecipe = defineRecipe({
   variants: {
     isDisabled: {
       true: {
-        opacity: 0.5,
-        cursor: "not-allowed",
-        pointerEvents: "none",
-        "& .ProseMirror": { pointerEvents: "none" },
+        "& .ProseMirror": {
+          pointerEvents: "none",
+          opacity: 0.5,
+          cursor: "not-allowed",
+        },
+      },
+      false: {
+        "& .ProseMirror": {
+          pointerEvents: "auto",
+          opacity: 1,
+          cursor: "text",
+        },
       },
     },
     isFocused: {
