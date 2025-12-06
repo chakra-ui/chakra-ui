@@ -24,3 +24,4 @@ export { RichTextEditorWithSlashCommands as SlashCommands } from "compositions/e
 export { RichTextEditorWithMentions as Mentions } from "compositions/examples/tiptap-editor/rich-text-editor-with-mentions"
 export { RichTextEditorWithMode as Mode } from "compositions/examples/tiptap-editor/rich-text-editor-with-mode"
 export { RichTextEditorWithMarkdown as Markdown } from "compositions/examples/tiptap-editor/rich-text-editor-with-markdown"
+export { RichTextEditorComposition as Composition } from "compositions/examples/tiptap-editor/rich-text-editor-composition"
