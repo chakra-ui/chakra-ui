@@ -92,7 +92,7 @@
     },
     {
       "name": "sparkline-with-interaction",
-      "content": "\"use client\"\nexport const SparklineWithInteraction = () => {\n  const chart = useChart({\n    data: [\n      { value: 125000 },\n      { value: 158000 },\n      { value: 189000 },\n      { value: 210000 },\n      { value: 105000 },\n      { value: 278000 },\n      { value: 310000 },\n      { value: 345000 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  const lastIndex = chart.data.length - 1\n  const lastValue = chart.data[lastIndex].value\n  const [value, setValue] = useState(lastValue)\n\n  const onMouseMove = (state: CategoricalChartState) => {\n    const index = state.activeTooltipIndex ?? lastIndex\n    const { value = lastValue } = chart.data[index]\n    setValue(value)\n  }\n\n  const onMouseLeave = () => {\n    setValue(lastValue)\n  }\n\n  return (\n    <Flex align=\"flex-end\" maxW=\"sm\">\n      <Box flex=\"1\" fontWeight=\"medium\">\n        <HStack textStyle=\"sm\" color=\"fg.muted\">\n          <LuDownload /> Weekly Downloads\n        </HStack>\n        <Text textStyle=\"xl\" mt=\"2\">\n          <FormatNumber value={value} />\n        </Text>\n      </Box>\n      <Chart.Root width=\"full\" height=\"12\" flex=\"1\" chart={chart}>\n        <AreaChart\n          data={chart.data}\n          onMouseMove={onMouseMove}\n          onMouseLeave={onMouseLeave}\n        >\n          <Tooltip\n            cursor={{ stroke: chart.color(\"teal.solid\"), strokeWidth: 2 }}\n            content={() => null}\n          />\n          {chart.series.map((item) => (\n            <Area\n              activeDot={{ stroke: chart.color(\"bg\") }}\n              key={item.name}\n              isAnimationActive={false}\n              dataKey={chart.key(item.name)}\n              fill={chart.color(item.color)}\n              fillOpacity={0.2}\n              stroke={chart.color(item.color)}\n              strokeWidth={2}\n            />\n          ))}\n        </AreaChart>\n      </Chart.Root>\n    </Flex>\n  )\n}\n",
+      "content": "\"use client\"\nexport const SparklineWithInteraction = () => {\n  const chart = useChart({\n    data: [\n      { value: 125000 },\n      { value: 158000 },\n      { value: 189000 },\n      { value: 210000 },\n      { value: 105000 },\n      { value: 278000 },\n      { value: 310000 },\n      { value: 345000 },\n    ],\n    series: [{ name: \"value\", color: \"teal.solid\" }],\n  })\n\n  const lastIndex = chart.data.length - 1\n  const lastValue = chart.data[lastIndex].value\n  const [value, setValue] = useState(lastValue)\n\n  const onMouseMove: CategoricalChartFunc = (state) => {\n    const index = state.activeTooltipIndex ?? lastIndex\n    const { value = lastValue } = chart.data[index as number]\n    setValue(value)\n  }\n\n  const onMouseLeave = () => {\n    setValue(lastValue)\n  }\n\n  return (\n    <Flex align=\"flex-end\" maxW=\"sm\">\n      <Box flex=\"1\" fontWeight=\"medium\">\n        <HStack textStyle=\"sm\" color=\"fg.muted\">\n          <LuDownload /> Weekly Downloads\n        </HStack>\n        <Text textStyle=\"xl\" mt=\"2\">\n          <FormatNumber value={value} />\n        </Text>\n      </Box>\n      <Chart.Root width=\"full\" height=\"12\" flex=\"1\" chart={chart}>\n        <AreaChart\n          data={chart.data}\n          onMouseMove={onMouseMove}\n          onMouseLeave={onMouseLeave}\n        >\n          <Tooltip\n            cursor={{ stroke: chart.color(\"teal.solid\"), strokeWidth: 2 }}\n            content={() => null}\n          />\n          {chart.series.map((item) => (\n            <Area\n              activeDot={{ stroke: chart.color(\"bg\") }}\n              key={item.name}\n              isAnimationActive={false}\n              dataKey={chart.key(item.name)}\n              fill={chart.color(item.color)}\n              fillOpacity={0.2}\n              stroke={chart.color(item.color)}\n              strokeWidth={2}\n            />\n          ))}\n        </AreaChart>\n      </Chart.Root>\n    </Flex>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Chart, useChart } from \"@chakra-ui/charts\"",
@@ -100,13 +100,12 @@
         "import { useState } from \"react\"",
         "import { LuDownload } from \"react-icons/lu\"",
         "import { Area, AreaChart, Tooltip } from \"recharts\"",
-        "import type { CategoricalChartState } from \"recharts/types/chart/types\""
+        "import type { CategoricalChartFunc } from \"recharts/types/chart/types\""
       ],
       "importPath": "import { Sparkline } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "@chakra-ui/charts",
         "react-icons",
-        "recharts",
         "recharts"
       ]
     },

@@ -24,7 +24,6 @@
       "importPath": "import { Input } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "react-icons",
-        "react-payment-inputs",
         "react-payment-inputs"
       ]
     },
@@ -132,10 +131,12 @@
     },
     {
       "name": "input-with-floating-label",
-      "content": "export const InputWithFloatingLabel = () => {\n  return (\n    <Field.Root>\n      <Box pos=\"relative\" w=\"full\">\n        <Input className=\"peer\" placeholder=\"\" />\n        <Field.Label css={floatingStyles}>Email</Field.Label>\n      </Box>\n    </Field.Root>\n  )\n}\n\nconst floatingStyles = defineStyle({\n  pos: \"absolute\",\n  bg: \"bg\",\n  px: \"0.5\",\n  top: \"-3\",\n  insetStart: \"2\",\n  fontWeight: \"normal\",\n  pointerEvents: \"none\",\n  transition: \"position\",\n  _peerPlaceholderShown: {\n    color: \"fg.muted\",\n    top: \"2.5\",\n    insetStart: \"3\",\n  },\n  _peerFocusVisible: {\n    color: \"fg\",\n    top: \"-3\",\n    insetStart: \"2\",\n  },\n})\n",
+      "content": "\"use client\"\nexport const InputWithFloatingLabel = () => {\n  return (\n    <Field.Root>\n      <FloatingLabelInput label=\"Email\" />\n      <Field.ErrorText>This field is required</Field.ErrorText>\n    </Field.Root>\n  )\n}\n\ninterface FloatingLabelInputProps extends InputProps {\n  label: React.ReactNode\n  value?: string | undefined\n  defaultValue?: string | undefined\n  onValueChange?: ((value: string) => void) | undefined\n}\n\nconst FloatingLabelInput = (props: FloatingLabelInputProps) => {\n  const { label, onValueChange, value, defaultValue = \"\", ...rest } = props\n\n  const [inputState, setInputState] = useControllableState({\n    defaultValue,\n    onChange: onValueChange,\n    value,\n  })\n\n  const [focused, setFocused] = useState(false)\n  const shouldFloat = inputState.length > 0 || focused\n\n  return (\n    <Box pos=\"relative\" w=\"full\">\n      <Input\n        {...rest}\n        onFocus={(e) => {\n          props.onFocus?.(e)\n          setFocused(true)\n        }}\n        onBlur={(e) => {\n          props.onBlur?.(e)\n          setFocused(false)\n        }}\n        onChange={(e) => {\n          props.onChange?.(e)\n          setInputState(e.target.value)\n        }}\n        value={inputState}\n        data-float={shouldFloat || undefined}\n      />\n      <Field.Label css={floatingStyles} data-float={shouldFloat || undefined}>\n        {label}\n      </Field.Label>\n    </Box>\n  )\n}\n\nconst floatingStyles = defineStyle({\n  pos: \"absolute\",\n  bg: \"bg\",\n  px: \"0.5\",\n  top: \"2.5\",\n  insetStart: \"3\",\n  fontWeight: \"normal\",\n  pointerEvents: \"none\",\n  transition: \"position\",\n  color: \"fg.muted\",\n  \"&[data-float]\": {\n    top: \"-3\",\n    insetStart: \"2\",\n    color: \"fg\",\n  },\n})\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { Box, Field, Input, defineStyle } from \"@chakra-ui/react\""
+        "import type { InputProps } from \"@chakra-ui/react\"",
+        "import {\n  Box,\n  Field,\n  Input,\n  defineStyle,\n  useControllableState,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
       ],
       "importPath": "import { Input } from \"@chakra-ui/react\""
     },

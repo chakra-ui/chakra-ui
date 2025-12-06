@@ -128,3 +128,19 @@ This allows the use of the `bg` token in the following ways:
   <Box bg="bg.secondary">Hello World</Box>
 </Box>
 ```
+
+## Using in Recipes
+
+Semantic tokens are available in recipe definitions. Reference them by name.
+
+```tsx
+import { defineRecipe } from "@chakra-ui/react"
+
+const cardRecipe = defineRecipe({
+  base: {
+    bg: "bg.subtle", // semantic token
+    color: "fg", // semantic token
+    borderColor: "border",
+  },
+})
+```

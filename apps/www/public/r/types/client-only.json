@@ -2,7 +2,7 @@
   "ClientOnly": {
     "props": {
       "fallback": {
-        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
+        "type": "any",
         "isRequired": false,
         "description": "The fallback content to render while the component is mounting on the client\nside."
       },

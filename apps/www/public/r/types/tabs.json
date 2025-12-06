@@ -99,7 +99,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{ root: string; trigger: string; list: string; content: string; indicator: string }>",
+        "type": "Partial<{\n  root: string\n  trigger: (value: string) => string\n  list: string\n  content: (value: string) => string\n  indicator: string\n}>",
         "isRequired": false,
         "description": "The ids of the elements in the tabs. Useful for composition."
       },

@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, BoxProps, Flex, Heading, Icon, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Flex, Heading, Text } from "@chakra-ui/react"
 import * as anatomies from "@chakra-ui/react/anatomy"
 import { useEffect, useRef, useState } from "react"
 import { HiChevronRight } from "react-icons/hi"
@@ -11,7 +11,7 @@ export const normalizeComponentName = (name: string) => {
 
   while (
     parts.length > 1 &&
-    ["basic", "explorer"].includes(parts[parts.length - 1])
+    ["basic", "explorer", "demo"].includes(parts[parts.length - 1])
   ) {
     parts.pop()
   }

@@ -11,13 +11,15 @@ export const CodeVariantTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
         </tr>
       </thead>
       <tbody>
         <For each={colorPalettes}>
           {(c) => (
-            <tr>
+            <tr key={c}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
@@ -25,7 +27,7 @@ export const CodeVariantTable = () => {
               </td>
               <For each={recipe.variantMap.variant}>
                 {(v) => (
-                  <td>
+                  <td key={v}>
                     <Code variant={v} colorPalette={c}>
                       console.log("Chakra v3!")
                     </Code>

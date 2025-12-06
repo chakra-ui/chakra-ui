@@ -184,7 +184,7 @@
         "description": "The orientation of the component"
       },
       "origin": {
-        "type": "'center' | 'end' | 'start'",
+        "type": "'center' | 'start' | 'end'",
         "isRequired": false,
         "defaultValue": "\"start\"",
         "description": "The origin of the slider range. The track is filled from the origin\nto the thumb for single values.\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)\n- \"end\": Useful when the value represents an offset from the end"

@@ -78,6 +78,15 @@
       "importPath": "import { Accordion } from \"@chakra-ui/react\""
     },
     {
+      "name": "accordion-with-expanded-style",
+      "content": "export const AccordionWithExpandedStyle = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value}>\n          <Accordion.ItemTrigger px=\"3\" _open={{ bg: \"gray.subtle\" }}>\n            <Span flex=\"1\">{item.title}</Span>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  {\n    value: \"a\",\n    title: \"First Item\",\n    text: \"Click the accordion button to see a different style when expanded.\",\n  },\n  {\n    value: \"b\",\n    title: \"Second Item\",\n    text: \"The trigger background changes to teal with white text when expanded.\",\n  },\n  {\n    value: \"c\",\n    title: \"Third Item\",\n    text: \"You can use any style props with the _open pseudo selector.\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Span } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\""
+    },
+    {
       "name": "accordion-with-icon",
       "content": "export const AccordionWithIcon = () => {\n  return (\n    <Stack width=\"full\" maxW=\"400px\">\n      <Heading size=\"md\">Product details</Heading>\n      <Accordion.Root collapsible defaultValue={[\"info\"]}>\n        {items.map((item) => (\n          <Accordion.Item key={item.value} value={item.value}>\n            <Accordion.ItemTrigger>\n              <Icon fontSize=\"lg\" color=\"fg.subtle\">\n                {item.icon}\n              </Icon>\n              {item.title}\n            </Accordion.ItemTrigger>\n            <Accordion.ItemContent>\n              <Accordion.ItemBody>{item.content}</Accordion.ItemBody>\n            </Accordion.ItemContent>\n          </Accordion.Item>\n        ))}\n      </Accordion.Root>\n    </Stack>\n  )\n}\n\nconst items = [\n  {\n    value: \"info\",\n    icon: <LuTags />,\n    title: \"Product Info\",\n    content:\n      \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.\",\n  },\n  {\n    value: \"stats\",\n    icon: <LuChartBarStacked />,\n    title: \"Stats\",\n    content:\n      \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec odio vel dui euismod fermentum.\",\n  },\n]\n",
       "hasSnippet": false,

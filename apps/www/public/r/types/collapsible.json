@@ -14,6 +14,21 @@
     },
     "element": "HTMLDivElement"
   },
+  "Indicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
   "Root": {
     "props": {
       "as": {
@@ -30,6 +45,16 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether to remove the component's style."
+      },
+      "collapsedHeight": {
+        "type": "string | number",
+        "isRequired": false,
+        "description": "The height of the content when collapsed."
+      },
+      "collapsedWidth": {
+        "type": "string | number",
+        "isRequired": false,
+        "description": "The width of the content when collapsed."
       },
       "defaultOpen": {
         "type": "boolean",
@@ -109,15 +134,5 @@
       }
     },
     "element": "HTMLButtonElement"
-  },
-  "Indicator": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
   }
 }

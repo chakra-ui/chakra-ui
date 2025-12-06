@@ -53,21 +53,42 @@ Here's a preview of the supported focus ring.
 
 ### Ring Color
 
-To change the focus ring color for a specific component, you can use the
-`focusRingColor` prop.
+There are three ways to customize the focus ring color:
+
+**1. Per component** - Use the `focusRingColor` prop:
 
 ```tsx
 <Button focusRingColor="red.500">Click me</Button>
 ```
 
-To change the color of the focus ring globally, you can configure the
-`focusRing` semantic token.
+**2. Globally** - Set it in global CSS:
 
 ```tsx title="theme.ts"
 const config = defineConfig({
   globalCss: {
     "*": {
       focusRingColor: "red.500 !important",
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+**3. Per color palette** - Define semantic tokens for each palette:
+
+```tsx title="theme.ts"
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        gray: {
+          focusRing: { value: "blue.500" },
+        },
+        blue: {
+          focusRing: { value: "blue.400" },
+        },
+      },
     },
   },
 })

@@ -1,0 +1,139 @@
+{
+  "name": "rating",
+  "file": "compositions/ui/rating",
+  "snippet": "import { RatingGroup } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface RatingProps extends RatingGroup.RootProps {\n  icon?: React.ReactElement\n  count?: number\n  label?: React.ReactNode\n}\n\nexport const Rating = React.forwardRef<HTMLDivElement, RatingProps>(\n  function Rating(props, ref) {\n    const { icon, count = 5, label, ...rest } = props\n    return (\n      <RatingGroup.Root ref={ref} count={count} {...rest}>\n        {label && <RatingGroup.Label>{label}</RatingGroup.Label>}\n        <RatingGroup.HiddenInput />\n        <RatingGroup.Control>\n          {Array.from({ length: count }).map((_, index) => (\n            <RatingGroup.Item key={index} index={index + 1}>\n              <RatingGroup.ItemIndicator icon={icon} />\n            </RatingGroup.Item>\n          ))}\n        </RatingGroup.Control>\n      </RatingGroup.Root>\n    )\n  },\n)\n",
+  "examples": [
+    {
+      "name": "rating-basic",
+      "content": "export const RatingBasic = () => {\n  return (\n    <RatingGroup.Root count={5} defaultValue={3} size=\"sm\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control />\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-closed-component",
+      "content": "export interface RatingProps extends RatingGroup.RootProps {\n  icon?: React.ReactElement\n  count?: number\n  label?: React.ReactNode\n}\n\nexport const Rating = React.forwardRef<HTMLDivElement, RatingProps>(\n  function Rating(props, ref) {\n    const { icon, count = 5, label, ...rest } = props\n    return (\n      <RatingGroup.Root ref={ref} count={count} {...rest}>\n        {label && <RatingGroup.Label>{label}</RatingGroup.Label>}\n        <RatingGroup.HiddenInput />\n        <RatingGroup.Control>\n          {Array.from({ length: count }).map((_, index) => (\n            <RatingGroup.Item key={index} index={index + 1}>\n              <RatingGroup.ItemIndicator icon={icon} />\n            </RatingGroup.Item>\n          ))}\n        </RatingGroup.Control>\n      </RatingGroup.Root>\n    )\n  },\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-controlled",
+      "content": "\"use client\"\nexport const RatingControlled = () => {\n  const [value, setValue] = useState(3)\n  return (\n    <RatingGroup.Root\n      count={5}\n      value={value}\n      onValueChange={(e) => setValue(e.value)}\n    >\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control />\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-emoji",
+      "content": "const emojiMap: Record<string, string> = {\n  1: \"😡\",\n  2: \"😠\",\n  3: \"😐\",\n  4: \"😊\",\n  5: \"😍\",\n}\n\nexport const RatingEmoji = () => {\n  return (\n    <RatingGroup.Root count={5} defaultValue={3}>\n      <RatingGroup.Control>\n        {Array.from({ length: 5 }).map((_, index) => (\n          <RatingGroup.Item\n            key={index}\n            index={index + 1}\n            minW=\"9\"\n            filter={{ base: \"grayscale(1)\", _checked: \"revert\" }}\n            transition=\"scale 0.1s\"\n            _hover={{ scale: \"1.1\" }}\n          >\n            {emojiMap[index + 1]}\n          </RatingGroup.Item>\n        ))}\n      </RatingGroup.Control>\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-in-testimonial",
+      "content": "export const RatingInTestimonial = () => {\n  return (\n    <Stack maxW=\"320px\" gap=\"4\">\n      <RatingGroup.Root\n        colorPalette=\"orange\"\n        readOnly\n        count={5}\n        defaultValue={5}\n        size=\"xs\"\n      >\n        <RatingGroup.HiddenInput />\n        <RatingGroup.Control />\n      </RatingGroup.Root>\n\n      <Text>\n        Sage is a great software engineer. He is very professional and\n        knowledgeable.\n      </Text>\n\n      <HStack gap=\"4\">\n        <Avatar.Root>\n          <Avatar.Fallback name=\"Matthew Jones\" />\n          <Avatar.Image src=\"https://randomuser.me/api/portraits/men/70.jpg\" />\n        </Avatar.Root>\n        <Stack textStyle=\"sm\" gap=\"0\">\n          <Text fontWeight=\"medium\">Matthew Jones</Text>\n          <Text color=\"fg.muted\">CTO, Company</Text>\n        </Stack>\n      </HStack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, HStack, RatingGroup, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-colors",
+      "content": "export const RatingWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <Stack\n          align=\"center\"\n          key={colorPalette}\n          direction=\"row\"\n          gap=\"10\"\n          px=\"4\"\n        >\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <RatingGroup.Root\n            count={5}\n            defaultValue={3}\n            size=\"sm\"\n            colorPalette={colorPalette}\n          >\n            <RatingGroup.HiddenInput />\n            <RatingGroup.Control />\n          </RatingGroup.Root>\n        </Stack>\n      ))}\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-custom-icon",
+      "content": "export const RatingWithCustomIcon = () => {\n  return (\n    <RatingGroup.Root count={5} defaultValue={4} colorPalette=\"red\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control>\n        {Array.from({ length: 5 }).map((_, index) => (\n          <RatingGroup.Item key={index} index={index + 1}>\n            <RatingGroup.ItemIndicator icon={<IoHeart />} />\n          </RatingGroup.Item>\n        ))}\n      </RatingGroup.Control>\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\"",
+        "import { IoHeart } from \"react-icons/io5\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "rating-with-half",
+      "content": "export const RatingWithHalf = () => {\n  return (\n    <RatingGroup.Root allowHalf count={5} defaultValue={3.5} size=\"sm\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control />\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  rating: z.number({ message: \"Rating is required\" }).min(1).max(5),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const RatingWithHookForm = () => {\n  const {\n    handleSubmit,\n    formState: { errors },\n    control,\n  } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\">\n        <Field.Root invalid={!!errors.rating}>\n          <Field.Label>Rating</Field.Label>\n          <Controller\n            control={control}\n            name=\"rating\"\n            render={({ field }) => (\n              <RatingGroup.Root\n                count={5}\n                name={field.name}\n                value={field.value}\n                onValueChange={({ value }) => field.onChange(value)}\n              >\n                <RatingGroup.HiddenInput />\n                <RatingGroup.Control />\n              </RatingGroup.Root>\n            )}\n          />\n          <Field.ErrorText>{errors.rating?.message}</Field.ErrorText>\n        </Field.Root>\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, RatingGroup, Stack } from \"@chakra-ui/react\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "rating-with-label",
+      "content": "export const RatingWithLabel = () => {\n  return (\n    <RatingGroup.Root count={5} defaultValue={3} size=\"sm\" gap=\"4\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Label>Rating</RatingGroup.Label>\n      <RatingGroup.Control />\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-readonly",
+      "content": "export const RatingWithReadonly = () => {\n  return (\n    <RatingGroup.Root readOnly count={5} defaultValue={3} size=\"sm\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control />\n    </RatingGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-sizes",
+      "content": "export const RatingWithSizes = () => {\n  return (\n    <Stack>\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <RatingGroup.Root key={size} count={5} defaultValue={3} size={size}>\n            <RatingGroup.HiddenInput />\n            <RatingGroup.Control />\n          </RatingGroup.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, RatingGroup, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "rating-with-store",
+      "content": "\"use client\"\nexport const RatingWithStore = () => {\n  const store = useRatingGroup({ count: 5, defaultValue: 3 })\n  return (\n    <RatingGroup.RootProvider value={store} size=\"sm\">\n      <RatingGroup.HiddenInput />\n      <RatingGroup.Control />\n    </RatingGroup.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RatingGroup, useRatingGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Rating } from \"@chakra-ui/react\""
+    }
+  ]
+}

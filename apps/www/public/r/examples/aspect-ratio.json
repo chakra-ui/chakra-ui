@@ -4,7 +4,7 @@
   "examples": [
     {
       "name": "aspect-ratio-basic",
-      "content": "export const AspectRatioBasic = () => {\n  return (\n    <AspectRatio bg=\"bg.muted\" ratio={2 / 1}>\n      <Center fontSize=\"xl\">2 / 1</Center>\n    </AspectRatio>\n  )\n}\n",
+      "content": "export const AspectRatioBasic = () => {\n  return (\n    <AspectRatio bg=\"bg.muted\" ratio={16 / 9}>\n      <Center fontSize=\"xl\">16 / 9</Center>\n    </AspectRatio>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { AspectRatio, Center } from \"@chakra-ui/react\""
