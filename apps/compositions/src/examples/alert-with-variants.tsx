@@ -13,6 +13,11 @@ export const AlertWithVariants = () => {
         <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>
       </Alert.Root>
 
+      <Alert.Root status="success" variant="outline">
+        <Alert.Indicator />
+        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>
+      </Alert.Root>
+
       <Alert.Root status="success" variant="surface">
         <Alert.Indicator />
         <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>
