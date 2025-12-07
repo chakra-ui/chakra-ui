@@ -55,7 +55,8 @@
     "@emotion/react": "11.14.0",
     "fast-safe-stringify": "^2.1.1",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "react-frame-component": "5.2.7"
   },
   "scripts": {
     "prepack": "tsx ../../scripts/conditions.ts",

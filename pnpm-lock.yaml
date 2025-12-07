@@ -593,6 +593,9 @@ importers:
       react-dom:
         specifier: 19.2.1
         version: 19.2.1(react@19.2.1)
+      react-frame-component:
+        specifier: 5.2.7
+        version: 5.2.7(prop-types@15.8.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
   sandbox/iframe:
     dependencies:
