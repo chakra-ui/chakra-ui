@@ -11,8 +11,7 @@ import {
   Separator,
   type StackProps,
   createListCollection,
-  createRecipeContext,
-  defineRecipe,
+  defineStyle,
 } from "@chakra-ui/react"
 import { Editor, EditorContent } from "@tiptap/react"
 import {
@@ -57,131 +56,88 @@ export function useRichTextEditorContext() {
   return context
 }
 
-export const richTextEditorRecipe = defineRecipe({
-  className: "rich-text-editor",
-  base: {
-    "& .ProseMirror": {
-      outline: "none",
-      "& > * + *": { marginTop: "0.75em" },
-      "& h1": { fontSize: "2xl", fontWeight: "bold" },
-      "& h2": { fontSize: "xl", fontWeight: "bold" },
-      "& h3": { fontSize: "lg", fontWeight: "bold" },
-      "& code": {
-        bg: "bg.muted",
-        px: "1",
-        rounded: "sm",
-        fontFamily: "mono",
-        fontSize: "0.9em",
-      },
-      "& pre": {
-        bg: "gray.900",
-        color: "gray.100",
-        padding: "4",
-        rounded: "lg",
-        overflowX: "auto",
-        fontSize: "sm",
-        lineHeight: "1.6",
-        borderWidth: "1px",
-        borderColor: "gray.700",
-        boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.03)",
-      },
-      "& pre code": {
-        bg: "transparent",
-        padding: "0",
-        fontFamily: "mono",
-        color: "inherit",
-      },
-      "& blockquote": {
-        borderStartWidth: "4px",
-        borderStartColor: "border",
-        paddingStart: "4",
-        fontStyle: "italic",
-      },
-      "& ul": { paddingInlineStart: "4", listStyleType: "disc" },
-      "& ol": { paddingInlineStart: "4", listStyleType: "decimal" },
-      "& ul ul": { listStyleType: "circle" },
-      "& ul ul ul": { listStyleType: "square" },
-      "& ul[data-type='taskList'] li": {
-        listStyle: "none",
-        display: "flex",
-        alignItems: "flex-start",
-        gap: "2",
-        "& input[type='checkbox']": {
-          accentColor: "colorPalette.solid",
-          marginTop: "1",
-        },
-        "& ul[data-type='taskList']": { paddingLeft: "6" },
-      },
-      "& hr": { my: "4" },
-      "& a": { color: "fg.link", textDecoration: "underline" },
-      "& em": { fontStyle: "italic" },
-      "& p[data-placeholder]::before": {
-        content: "attr(data-placeholder)",
-        color: "fg.muted",
-        pointerEvents: "none",
-        userSelect: "none",
-      },
+const proseMirrorBaseCss = defineStyle({
+  "& .ProseMirror": {
+    outline: "none",
+    "& > * + *": { marginTop: "0.75em" },
+    "& h1": { fontSize: "2xl", fontWeight: "bold" },
+    "& h2": { fontSize: "xl", fontWeight: "bold" },
+    "& h3": { fontSize: "lg", fontWeight: "bold" },
+    "& code": {
+      bg: "bg.muted",
+      px: "1",
+      rounded: "sm",
+      fontFamily: "mono",
+      fontSize: "0.9em",
     },
-  },
-  variants: {
-    isDisabled: {
-      true: {
-        "& .ProseMirror": {
-          pointerEvents: "none",
-          opacity: 0.5,
-          cursor: "not-allowed",
-        },
-      },
-      false: {
-        "& .ProseMirror": {
-          pointerEvents: "auto",
-          opacity: 1,
-          cursor: "text",
-        },
-      },
+    "& pre": {
+      bg: "gray.900",
+      color: "gray.100",
+      padding: "4",
+      rounded: "lg",
+      overflowX: "auto",
+      fontSize: "sm",
+      lineHeight: "1.6",
+      borderWidth: "1px",
+      borderColor: "gray.700",
+      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.03)",
     },
-    isFocused: {
-      true: {
-        borderColor: "colorPalette.500",
-        boxShadow: "0 0 0 1px var(--chakra-colors-colorPalette-500)",
+    "& pre code": {
+      bg: "transparent",
+      padding: "0",
+      fontFamily: "mono",
+      color: "inherit",
+    },
+    "& blockquote": {
+      borderStartWidth: "4px",
+      borderStartColor: "border",
+      paddingStart: "4",
+      fontStyle: "italic",
+    },
+    "& ul": { paddingInlineStart: "4", listStyleType: "disc" },
+    "& ol": { paddingInlineStart: "4", listStyleType: "decimal" },
+    "& ul ul": { listStyleType: "circle" },
+    "& ul ul ul": { listStyleType: "square" },
+    "& ul[data-type='taskList'] li": {
+      listStyle: "none",
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "2",
+      "& input[type='checkbox']": {
+        accentColor: "colorPalette.solid",
+        marginTop: "1",
       },
+      "& ul[data-type='taskList']": { paddingLeft: "6" },
+    },
+    "& hr": { my: "4" },
+    "& a": { color: "fg.link", textDecoration: "underline" },
+    "& em": { fontStyle: "italic" },
+    "& p[data-placeholder]::before": {
+      content: "attr(data-placeholder)",
+      color: "fg.muted",
+      pointerEvents: "none",
+      userSelect: "none",
     },
   },
 })
 
-export const { withContext } = createRecipeContext({
-  recipe: richTextEditorRecipe,
-})
-
-export type RichTextEditorVariantProps = {
-  size?: "sm" | "md" | "lg"
-  variant?: "outline" | "filled" | "unstyled"
-  editorColorScheme?: "gray" | "blue" | "purple"
-  isDisabled?: boolean
-  isFocused?: boolean
+export function RichTextEditorRoot({
+  editor,
+  children,
+  css,
+  ...rest
+}: RichTextEditorProps) {
+  return (
+    <RichTextEditorContext.Provider value={{ editor }}>
+      <Box css={[proseMirrorBaseCss, css]} {...rest}>
+        {children}
+      </Box>
+    </RichTextEditorContext.Provider>
+  )
 }
-
-export interface RichTextEditorProps
-  extends Omit<BoxProps, "size" | "variant">,
-    RichTextEditorVariantProps {
+export interface RichTextEditorProps extends BoxProps {
   editor: Editor | null
-  children: ReactNode
 }
-
-export const RichTextEditorRoot = withContext<
-  HTMLDivElement,
-  RichTextEditorProps
->(
-  forwardRef(function RichTextEditorRoot({ editor, children, ...rest }, ref) {
-    return (
-      <RichTextEditorContext.Provider value={{ editor }}>
-        <Box ref={ref} {...rest}>
-          {children}
-        </Box>
-      </RichTextEditorContext.Provider>
-    )
-  }),
-)
 
 export interface RichTextEditorContentProps extends BoxProps {}
 
