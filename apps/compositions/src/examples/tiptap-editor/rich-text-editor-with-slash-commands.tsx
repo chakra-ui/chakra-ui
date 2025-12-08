@@ -39,7 +39,7 @@ import {
   LuStrikethrough,
 } from "react-icons/lu"
 
-export function RichTextEditorWithSlashCommands() {
+export const RichTextEditorWithSlashCommands = () => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({

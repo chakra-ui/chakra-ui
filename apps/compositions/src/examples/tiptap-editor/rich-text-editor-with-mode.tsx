@@ -13,7 +13,7 @@ import {
 import { useState } from "react"
 import { LuBold } from "react-icons/lu"
 
-export function RichTextEditorWithMode() {
+export const RichTextEditorWithMode = () => {
   const [mode, setMode] = useState("edit")
 
   const editor = useEditor({

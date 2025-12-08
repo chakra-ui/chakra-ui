@@ -42,7 +42,7 @@ import {
   LuUnderline,
 } from "react-icons/lu"
 
-export function RichTextEditorBasic() {
+export const RichTextEditorBasic = () => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ link: { openOnClick: false } }),

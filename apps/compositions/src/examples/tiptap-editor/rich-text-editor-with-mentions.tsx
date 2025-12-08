@@ -46,7 +46,7 @@ import {
   LuUser,
 } from "react-icons/lu"
 
-export function RichTextEditorWithMentions() {
+export const RichTextEditorWithMentions = () => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({

@@ -28,7 +28,7 @@ import {
   LuUnderline,
 } from "react-icons/lu"
 
-export function RichTextEditorControlled() {
+export const RichTextEditorControlled = () => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ link: { openOnClick: false } }),

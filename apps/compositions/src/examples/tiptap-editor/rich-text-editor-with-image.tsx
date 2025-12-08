@@ -34,7 +34,7 @@ import {
   LuUpload,
 } from "react-icons/lu"
 
-export function RichTextEditorWithImage() {
+export const RichTextEditorWithImage = () => {
   const editor = useEditor({
     content: `
       <h2>Dr. Stone</h2>

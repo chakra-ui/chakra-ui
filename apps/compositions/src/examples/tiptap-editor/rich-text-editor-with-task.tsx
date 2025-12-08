@@ -13,7 +13,7 @@ import {
 } from "compositions/ui/rich-text-editor"
 import { LuArrowLeft, LuArrowRight, LuListChecks, LuPlus } from "react-icons/lu"
 
-export function RichTextEditorWithTask() {
+export const RichTextEditorWithTask = () => {
   const editor = useEditor({
     extensions: [StarterKit, TaskList, TaskItem.configure({ nested: true })],
     content: `

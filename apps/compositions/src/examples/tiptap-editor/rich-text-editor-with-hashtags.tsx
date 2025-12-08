@@ -19,7 +19,7 @@ import {
   RichTextEditorRoot,
 } from "compositions/ui/rich-text-editor"
 
-export function RichTextEditorWithHashtags() {
+export const RichTextEditorWithHashtags = () => {
   const initialContent = `<p>Type #chakra or #react and press space, it becomes a tag. Try pasting: #tiptap #awesome</p>`
   const preprocessedContent = preprocessContent(initialContent, "#")
 

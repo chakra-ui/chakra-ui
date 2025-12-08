@@ -23,7 +23,7 @@ lowlight.register("css", css)
 lowlight.register("js", js)
 lowlight.register("ts", ts)
 
-export function RichTextEditorWithCode() {
+export const RichTextEditorWithCode = () => {
   const editor = useEditor({
     extensions: [StarterKit, CodeBlockLowlight.configure({ lowlight })],
     content: `<p>That’s a boring paragraph followed by a fenced code block:</p>

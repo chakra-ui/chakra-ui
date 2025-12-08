@@ -121,22 +121,44 @@ const proseMirrorBaseCss = defineStyle({
   },
 })
 
+export interface RichTextEditorProps extends BoxProps {
+  editor: Editor | null
+  isDisabled?: boolean
+}
+
 export function RichTextEditorRoot({
   editor,
   children,
   css,
+  isDisabled = false,
   ...rest
 }: RichTextEditorProps) {
   return (
     <RichTextEditorContext.Provider value={{ editor }}>
-      <Box css={[proseMirrorBaseCss, css]} {...rest}>
+      <Box
+        data-disabled={isDisabled || undefined}
+        css={[
+          proseMirrorBaseCss,
+          {
+            "&[data-disabled='true'] .ProseMirror": {
+              pointerEvents: "none",
+              opacity: 0.5,
+              cursor: "not-allowed",
+            },
+            "&[data-disabled='false'] .ProseMirror": {
+              pointerEvents: "auto",
+              opacity: 1,
+              cursor: "text",
+            },
+          },
+          css,
+        ]}
+        {...rest}
+      >
         {children}
       </Box>
     </RichTextEditorContext.Provider>
   )
-}
-export interface RichTextEditorProps extends BoxProps {
-  editor: Editor | null
 }
 
 export interface RichTextEditorContentProps extends BoxProps {}

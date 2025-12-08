@@ -22,7 +22,7 @@ import {
   LuRotateCw,
 } from "react-icons/lu"
 
-export function RichTextEditorWithMarkdown() {
+export const RichTextEditorWithMarkdown = () => {
   const [markdownContent, setMarkdownContent] = useState(
     "# Welcome!\n\n**This is Markdown Mode**",
   )
