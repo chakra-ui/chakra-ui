@@ -69,7 +69,8 @@
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "@types/fs-extra": "11.0.4",
     "@types/node": "24.10.1",
-    "@types/react": "19.2.6",
+    "@emotion/react": "11.14.0",
+    "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.48.0",
     "@typescript-eslint/parser": "8.48.0",
@@ -111,6 +112,12 @@
     "vitest": "3.2.4",
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
+    }
   },
   "packageManager": "pnpm@10.23.0",
   "engines": {
