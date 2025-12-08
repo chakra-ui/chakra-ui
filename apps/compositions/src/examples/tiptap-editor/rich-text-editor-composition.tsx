@@ -1,17 +1,14 @@
-"use client"
-
 import {
   Box,
+  Button,
   Flex,
   HStack,
+  Icon,
   IconButton,
-  Input,
-  Spacer,
   Text,
   VStack,
 } from "@chakra-ui/react"
-import { Separator } from "@chakra-ui/react"
-import { Color } from "@tiptap/extension-color"
+import Color from "@tiptap/extension-color"
 import Highlight from "@tiptap/extension-highlight"
 import Image from "@tiptap/extension-image"
 import Link from "@tiptap/extension-link"
@@ -21,210 +18,428 @@ import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
 import TextAlign from "@tiptap/extension-text-align"
 import { TextStyleKit } from "@tiptap/extension-text-style"
-import { useEditor } from "@tiptap/react"
-import { BubbleMenu } from "@tiptap/react/menus"
+import { Editor, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
+import { Avatar } from "compositions/ui/avatar"
 import {
   RichTextEditorButtonGroup,
   RichTextEditorContent,
   RichTextEditorRoot,
   createButtonControl,
   createSelectControl,
-  createSwatchControl,
 } from "compositions/ui/rich-text-editor"
 import {
+  LuChevronDown,
+  LuFileText,
+  LuLock,
+  LuMessageSquare,
+  LuSearch,
+  LuStar,
+  LuVideo,
+} from "react-icons/lu"
+import {
   LuAlignCenter,
-  LuAlignJustify,
   LuAlignLeft,
   LuAlignRight,
-  LuArrowLeft,
   LuBold,
-  LuChevronDown,
-  LuCode,
-  LuDownload,
-  LuFileText,
   LuHeading1,
   LuHeading2,
   LuHeading3,
-  LuHistory,
   LuImage,
   LuItalic,
   LuLink,
-  LuLink2Off,
   LuList,
-  LuListChecks,
   LuListOrdered,
-  LuListTree,
-  LuMail,
-  LuMenu,
-  LuMinus,
-  LuMove,
-  LuPaintBucket,
-  LuPalette,
-  LuPrinter,
-  LuQuote,
-  LuRedo,
-  // LuCloudCheck,
-  LuShare2,
-  LuStar,
+  LuRotateCcw,
+  LuRotateCw,
   LuStrikethrough,
-  LuSubscript,
-  LuSuperscript,
   LuUnderline,
-  LuUndo,
-  LuUserPlus,
-  LuUsers,
 } from "react-icons/lu"
 
-const Bold = createButtonControl({
+export const RichTextEditorComposition = () => {
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
+      TextStyleKit,
+      Color,
+      Highlight.configure({ multicolor: true }),
+      Subscript,
+      Superscript,
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      Link.configure({ openOnClick: false }),
+      Image,
+      TaskList,
+      TaskItem.configure({ nested: true }),
+    ],
+    content: `
+      <h1 id="heading-0">Legend Of X: The Complete Saga</h1>
+      <p>In a world where technology and humanity collide, the fate of civilization hangs in the balance. This is the story of those who dared to question everything they knew.</p>
+
+      <h2 id="heading-1">Chapter 1: Awakening</h2>
+      <p>The city of Neo-Tokyo stretched endlessly beneath the artificial sky. Maya Tanaka stood at the edge of the observation deck, watching the streams of data flow through the neural network that powered the megacity. She had always believed the System was infallible, that the Architects who built it had created a perfect world.</p>
+      <p>But something was wrong. The anomalies in the code were becoming more frequent, more deliberate. Someone—or something—was trying to break through.</p>
+
+      <h3 id="heading-2">Part 1: The First Glitch</h3>
+      <p>It started with small things. A flicker in the holographic displays. A delay in the transportation grid. Messages that appeared and disappeared before anyone could read them. Maya had noticed these irregularities for weeks, but she was afraid to report them. In Neo-Tokyo, questioning the System was considered treason.</p>
+      <p>One evening, as she worked late in the Neural Operations Center, the main screen went black. Then, slowly, text began to appear: "They are watching. They have always been watching. Find the Archive before it's too late."</p>
+      <p>Maya's heart raced. The Archive was a myth, a legend whispered about in underground forums. It was said to contain the truth about the world before the Great Collapse, before the Architects took control. But accessing it would mean going against everything she had been taught.</p>
+
+      <h3 id="heading-3">Part 2: The Underground</h3>
+      <p>The next day, Maya received an encrypted message directing her to an abandoned sector of the city. She knew it was dangerous, but curiosity overwhelmed her caution. The meeting place was a decrepit building, its walls covered in graffiti that depicted symbols she didn't recognize.</p>
+      <p>Inside, she found a group of people huddled around old terminals. They called themselves the Disconnected—those who had rejected the neural implants that connected everyone to the System. Their leader, a man named Kenzo, explained that the glitches were intentional.</p>
+      <p>"We're trying to wake people up," he said. "The System isn't what you think it is. The Architects didn't save humanity—they enslaved it."</p>
+
+      <h2 id="heading-4">Chapter 2: The Archive</h2>
+      <p>Maya's decision to join the Disconnected changed everything. Kenzo taught her how to navigate the hidden layers of the System, the forgotten protocols and backdoors that the Architects thought they had sealed. Together, they began their search for the Archive.</p>
+      <p>The journey took them through the darkest corners of Neo-Tokyo. They encountered other groups of rebels, each with their own theories about what the Archive contained. Some believed it held the key to shutting down the System entirely. Others thought it was a weapon that could be used to take control.</p>
+
+      <h3 id="heading-5">Part 3: Revelations</h3>
+      <p>After months of searching, they found it. The Archive wasn't a physical location—it was a fragment of code hidden in the deepest layer of the System, protected by encryption so complex that even the Architects had lost access to it.</p>
+      <p>When Maya finally broke through the encryption, what she found shocked her. The Archive contained memories—thousands of them, uploaded from the minds of people who had lived before the Great Collapse. They revealed a truth that the Architects had hidden: the Collapse had been engineered.</p>
+      <p>The Architects had created the disaster that destroyed the old world so they could rebuild it in their image. And now, they were planning to do it again.</p>
+
+      <h2 id="heading-6">Chapter 3: Resistance</h2>
+      <p>Armed with the truth, Maya and the Disconnected began spreading the Archive's contents throughout the city. The response was immediate. Some people refused to believe it, clinging to their faith in the System. Others joined the resistance, ready to fight for their freedom.</p>
+      <p>The Architects responded with force. Security drones filled the streets, hunting down anyone suspected of accessing the Archive. The city descended into chaos as the battle between the Disconnected and the System's defenders intensified.</p>
+
+      <h3 id="heading-7">Part 4: The Final Stand</h3>
+      <p>Maya knew they couldn't win through violence alone. The System was too powerful, too entrenched. Instead, she devised a plan to use the Archive itself as a weapon. If they could upload its contents directly into the neural network, everyone connected to the System would see the truth simultaneously.</p>
+      <p>The operation was risky. It required infiltrating the Central Node, the heart of the System's infrastructure. Many of the Disconnected would have to sacrifice themselves to create a distraction. But it was their only chance.</p>
+      <p>As Maya stood before the Central Node's interface, her fingers trembling over the controls, she thought about all the lives that had been lost, all the lies that had been told. With one final command, she initiated the upload.</p>
+
+      <h2 id="heading-8">Epilogue: A New Beginning</h2>
+      <p>The System didn't collapse overnight. But once people knew the truth, they began to question, to resist, to rebuild. Maya watched from a rooftop as the artificial sky flickered and went dark for the first time in decades, revealing the stars above.</p>
+      <p>The world would never be perfect. But it would be real. And that, she thought, was worth fighting for.</p>
+    `,
+  })
+
+  if (!editor) return null
+
+  return (
+    <RichTextEditorRoot
+      editor={editor}
+      shadow="sm"
+      h="100vh"
+      display="flex"
+      flexDirection="column"
+    >
+      <GoogleDocsHeader />
+      <Toolbar />
+      <HStack
+        borderTop="1px solid"
+        borderColor="border"
+        flex="1"
+        mt="4"
+        alignItems="stretch"
+        gap={0}
+        overflow="hidden"
+      >
+        <Box
+          w="280px"
+          borderRight="1px solid"
+          borderColor="border"
+          display="flex"
+          flexDirection="column"
+          overflow="hidden"
+        >
+          <SidebarOutline editor={editor} />
+        </Box>
+        <Flex flex="1" justifyContent="center" overflowY="auto">
+          <RichTextEditorContent px={16} py={12} />
+        </Flex>
+      </HStack>
+    </RichTextEditorRoot>
+  )
+}
+
+const GoogleDocsHeader = () => {
+  const menuItems = [
+    "File",
+    "Edit",
+    "View",
+    "Insert",
+    "Format",
+    "Tools",
+    "Extensions",
+    "Help",
+  ]
+
+  return (
+    <Flex px={4} py={2} alignItems="center" justifyContent="space-between">
+      <HStack gap={3} align="flex-start">
+        <Icon as={LuFileText} color="blue.500" boxSize={8} mt={1} />
+
+        <VStack align="flex-start" gap={0}>
+          <HStack gap={2}>
+            <Text fontSize="lg">Legend Of X: The Complete Saga</Text>
+            <IconButton variant="ghost" size="xs" color="gray.500">
+              <LuStar size={16} />
+            </IconButton>
+          </HStack>
+
+          <HStack gap={3}>
+            {menuItems.map((item) => (
+              <Text
+                key={item}
+                fontSize="sm"
+                cursor="pointer"
+                _hover={{ bg: "gray.100" }}
+                px={2}
+                py={1}
+                rounded="sm"
+              >
+                {item}
+              </Text>
+            ))}
+          </HStack>
+        </VStack>
+      </HStack>
+
+      <HStack gap={4}>
+        <IconButton variant="ghost">
+          <LuMessageSquare size={20} />
+        </IconButton>
+
+        <HStack gap={0}>
+          <IconButton variant="ghost">
+            <LuVideo size={20} />
+          </IconButton>
+          <IconButton variant="ghost" size="xs">
+            <LuChevronDown size={14} />
+          </IconButton>
+        </HStack>
+
+        <Button borderRadius="full" px={6} gap={2} colorPalette="blue">
+          <LuLock size={14} />
+          Share
+        </Button>
+
+        <Avatar
+          fallback={<Text fontSize="sm">SA</Text>}
+          name="Segun Adebayo"
+          src="https://bit.ly/sage-adebayo"
+        />
+      </HStack>
+    </Flex>
+  )
+}
+
+const Toolbar = () => {
+  return (
+    <Box px={4}>
+      <HStack
+        bg="bg.muted"
+        p={2}
+        gap={1}
+        rounded="50px"
+        mt="4"
+        overflowX="auto"
+      >
+        <IconButton variant="ghost" size="sm">
+          <LuSearch />
+        </IconButton>
+
+        <RichTextEditorButtonGroup>
+          <UndoBtn />
+          <RedoBtn />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup>
+          <FontFamilySelector width="140px" />
+          <FontSize width="80px" />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup>
+          <BoldBtn />
+          <ItalicBtn />
+          <UnderlineBtn />
+          <StrikeBtn />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup noSeparator>
+          <H1Btn />
+          <H2Btn />
+          <H3Btn />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup noSeparator>
+          <AlignLeftBtn />
+          <AlignCenterBtn />
+          <AlignRightBtn />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup noSeparator>
+          <BulletListBtn />
+          <OrderedListBtn />
+        </RichTextEditorButtonGroup>
+
+        <RichTextEditorButtonGroup noSeparator>
+          <LinkBtn />
+          <ImageBtn />
+        </RichTextEditorButtonGroup>
+      </HStack>
+    </Box>
+  )
+}
+
+const SidebarOutline = ({ editor }: { editor: Editor }) => {
+  if (!editor) return null
+
+  const headings = editor
+    .getJSON()
+    .content?.filter((b) => b.type === "heading")
+    .map((h, i) => ({
+      level: h.attrs?.level || 1,
+      text: h.content?.map((c) => (c as any).text).join("") || "",
+      id: `heading-${i}`,
+    }))
+
+  const getPaddingLeft = (level: number = 1) => {
+    return (level - 1) * 16 + 4
+  }
+
+  const scrollToHeading = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  return (
+    <VStack align="stretch" gap={0} h="full">
+      <HStack
+        justify="space-between"
+        align="center"
+        p={4}
+        borderBottom="1px solid"
+        borderColor="border"
+        flexShrink={0}
+      >
+        <Text fontWeight="medium" fontSize="sm">
+          Document outline
+        </Text>
+        <IconButton variant="ghost" size="xs" aria-label="Options">
+          <Icon as={LuChevronDown} />
+        </IconButton>
+      </HStack>
+
+      <VStack align="stretch" gap={1} p={2} overflowY="auto" flex="1">
+        {headings?.map((h) => (
+          <Button
+            key={h.id}
+            variant="ghost"
+            size="sm"
+            pl={`${getPaddingLeft(h.level)}px`}
+            py={2}
+            onClick={() => scrollToHeading(h.id)}
+            lineClamp="1"
+            truncate
+          >
+            <Icon
+              as={LuFileText}
+              mr={2}
+              flexShrink={0}
+              color="gray.500"
+              boxSize={4}
+            />
+            {h.text}
+          </Button>
+        ))}
+      </VStack>
+    </VStack>
+  )
+}
+
+const BoldBtn = createButtonControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => editor.chain().focus().toggleBold().run(),
   getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
 })
 
-const Italic = createButtonControl({
+const ItalicBtn = createButtonControl({
   label: "Italic",
   icon: LuItalic,
   command: (editor) => editor.chain().focus().toggleItalic().run(),
   getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
 })
 
-const Underline = createButtonControl({
+const UnderlineBtn = createButtonControl({
   label: "Underline",
   icon: LuUnderline,
   command: (editor) => editor.chain().focus().toggleUnderline().run(),
   getVariant: (editor) => (editor.isActive("underline") ? "subtle" : "ghost"),
 })
 
-const Strike = createButtonControl({
-  label: "Strikethrough",
+const StrikeBtn = createButtonControl({
+  label: "Strike",
   icon: LuStrikethrough,
   command: (editor) => editor.chain().focus().toggleStrike().run(),
   getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
 })
 
-const Code = createButtonControl({
-  label: "Code",
-  icon: LuCode,
-  command: (editor) => editor.chain().focus().toggleCode().run(),
-  getVariant: (editor) => (editor.isActive("code") ? "subtle" : "ghost"),
-})
-
-const SubscriptBtn = createButtonControl({
-  label: "Subscript",
-  icon: LuSubscript,
-  command: (editor) => editor.chain().focus().toggleSubscript().run(),
-  getVariant: (editor) => (editor.isActive("subscript") ? "subtle" : "ghost"),
-})
-
-const SuperscriptBtn = createButtonControl({
-  label: "Superscript",
-  icon: LuSuperscript,
-  command: (editor) => editor.chain().focus().toggleSuperscript().run(),
-  getVariant: (editor) => (editor.isActive("superscript") ? "subtle" : "ghost"),
-})
-
-const H1 = createButtonControl({
-  label: "Heading 1",
+const H1Btn = createButtonControl({
+  label: "H1",
   icon: LuHeading1,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
   getVariant: (editor) =>
     editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
 })
 
-const H2 = createButtonControl({
-  label: "Heading 2",
+const H2Btn = createButtonControl({
+  label: "H2",
   icon: LuHeading2,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
   getVariant: (editor) =>
     editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
 })
 
-const H3 = createButtonControl({
-  label: "Heading 3",
+const H3Btn = createButtonControl({
+  label: "H3",
   icon: LuHeading3,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
   getVariant: (editor) =>
     editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
 })
 
-const BulletList = createButtonControl({
+const BulletListBtn = createButtonControl({
   label: "Bullet List",
   icon: LuList,
   command: (editor) => editor.chain().focus().toggleBulletList().run(),
   getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
 })
 
-const OrderedList = createButtonControl({
-  label: "Numbered List",
+const OrderedListBtn = createButtonControl({
+  label: "Ordered List",
   icon: LuListOrdered,
   command: (editor) => editor.chain().focus().toggleOrderedList().run(),
   getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
 })
 
-const TaskListButton = createButtonControl({
-  label: "Task List",
-  icon: LuListChecks,
-  command: (editor) => editor.chain().focus().toggleTaskList().run(),
-  getVariant: (editor) => (editor.isActive("taskList") ? "subtle" : "ghost"),
-})
-
-const Blockquote = createButtonControl({
-  label: "Quote",
-  icon: LuQuote,
-  command: (editor) => editor.chain().focus().toggleBlockquote().run(),
-  getVariant: (editor) => (editor.isActive("blockquote") ? "subtle" : "ghost"),
-})
-
-const Hr = createButtonControl({
-  label: "Divider",
-  icon: LuMinus,
-  command: (editor) => editor.chain().focus().setHorizontalRule().run(),
-})
-
-const LinkButton = createButtonControl({
+const LinkBtn = createButtonControl({
   label: "Link",
   icon: LuLink,
   command: (editor) => {
-    const url = window.prompt("Enter URL:")
-    if (url) {
+    const url = window.prompt("Enter URL")
+    if (url)
       editor
         .chain()
         .focus()
         .extendMarkRange("link")
         .setLink({ href: url })
         .run()
-    }
   },
   getVariant: (editor) => (editor.isActive("link") ? "subtle" : "ghost"),
 })
 
-const UnlinkButton = createButtonControl({
-  label: "Remove Link",
-  icon: LuLink2Off,
-  command: (editor) => editor.chain().focus().unsetLink().run(),
-  isDisabled: (editor) => !editor.isActive("link"),
-})
-
-const ImageButton = createButtonControl({
+const ImageBtn = createButtonControl({
   label: "Image",
   icon: LuImage,
   command: (editor) => {
-    const url = window.prompt("Enter image URL:")
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
-    }
+    const url = window.prompt("Enter Image URL")
+    if (url) editor.chain().focus().setImage({ src: url }).run()
   },
 })
 
-const AlignLeft = createButtonControl({
+const AlignLeftBtn = createButtonControl({
   label: "Align Left",
   icon: LuAlignLeft,
   command: (editor) => editor.chain().focus().setTextAlign("left").run(),
@@ -232,7 +447,7 @@ const AlignLeft = createButtonControl({
     editor.isActive({ textAlign: "left" }) ? "subtle" : "ghost",
 })
 
-const AlignCenter = createButtonControl({
+const AlignCenterBtn = createButtonControl({
   label: "Align Center",
   icon: LuAlignCenter,
   command: (editor) => editor.chain().focus().setTextAlign("center").run(),
@@ -240,7 +455,7 @@ const AlignCenter = createButtonControl({
     editor.isActive({ textAlign: "center" }) ? "subtle" : "ghost",
 })
 
-const AlignRight = createButtonControl({
+const AlignRightBtn = createButtonControl({
   label: "Align Right",
   icon: LuAlignRight,
   command: (editor) => editor.chain().focus().setTextAlign("right").run(),
@@ -248,501 +463,45 @@ const AlignRight = createButtonControl({
     editor.isActive({ textAlign: "right" }) ? "subtle" : "ghost",
 })
 
-const AlignJustify = createButtonControl({
-  label: "Justify",
-  icon: LuAlignJustify,
-  command: (editor) => editor.chain().focus().setTextAlign("justify").run(),
-  getVariant: (editor) =>
-    editor.isActive({ textAlign: "justify" }) ? "subtle" : "ghost",
-})
-
-const Undo = createButtonControl({
+const UndoBtn = createButtonControl({
   label: "Undo",
-  icon: LuUndo,
+  icon: LuRotateCcw,
   command: (editor) => editor.chain().focus().undo().run(),
   isDisabled: (editor) => !editor.can().undo(),
 })
 
-const Redo = createButtonControl({
+const RedoBtn = createButtonControl({
   label: "Redo",
-  icon: LuRedo,
+  icon: LuRotateCw,
   command: (editor) => editor.chain().focus().redo().run(),
   isDisabled: (editor) => !editor.can().redo(),
 })
 
 const FontFamilySelector = createSelectControl({
-  label: "Font",
+  label: "Font Family",
   options: [
-    { value: "Arial", label: "Arial" },
-    { value: "serif", label: "Times New Roman" },
-    { value: "monospace", label: "Courier" },
-    { value: "cursive", label: "Comic Sans" },
-    { value: "Georgia", label: "Georgia" },
-    { value: "Verdana", label: "Verdana" },
+    { value: "default", label: "Default" },
+    { value: "serif", label: "Serif" },
+    { value: "mono", label: "Monospace" },
+    { value: "cursive", label: "Cursive" },
   ],
   getValue: (editor) =>
-    editor.getAttributes("textStyle")?.fontFamily || "Arial",
+    editor.getAttributes("textStyle")?.fontFamily || "default",
   command: (editor, value) =>
-    value === "Arial"
+    value === "default"
       ? editor.chain().focus().unsetFontFamily().run()
       : editor.chain().focus().setFontFamily(value).run(),
 })
 
-const FontSizeSelector = createSelectControl({
-  label: "Size",
+const FontSize = createSelectControl({
+  label: "Font Size",
   options: [
-    { value: "10px", label: "10" },
-    { value: "11px", label: "11" },
-    { value: "12px", label: "12" },
-    { value: "14px", label: "14" },
-    { value: "16px", label: "16" },
-    { value: "18px", label: "18" },
-    { value: "20px", label: "20" },
-    { value: "24px", label: "24" },
-    { value: "28px", label: "28" },
-    { value: "32px", label: "32" },
+    { value: "12px", label: "12px" },
+    { value: "14px", label: "14px" },
+    { value: "16px", label: "16px" },
+    { value: "18px", label: "18px" },
   ],
   getValue: (editor) => editor.getAttributes("textStyle")?.fontSize || "14px",
   command: (editor, value) =>
     editor.chain().focus().setMark("textStyle", { fontSize: value }).run(),
 })
-
-const StyleSelector = createSelectControl({
-  label: "Styles",
-  options: [
-    { value: "paragraph", label: "Normal text" },
-    { value: "heading1", label: "Heading 1" },
-    { value: "heading2", label: "Heading 2" },
-    { value: "heading3", label: "Heading 3" },
-  ],
-  getValue: (editor) => {
-    if (editor.isActive("heading", { level: 1 })) return "heading1"
-    if (editor.isActive("heading", { level: 2 })) return "heading2"
-    if (editor.isActive("heading", { level: 3 })) return "heading3"
-    return "paragraph"
-  },
-  command: (editor, value) => {
-    if (value === "paragraph") editor.chain().focus().setParagraph().run()
-    if (value === "heading1")
-      editor.chain().focus().toggleHeading({ level: 1 }).run()
-    if (value === "heading2")
-      editor.chain().focus().toggleHeading({ level: 2 }).run()
-    if (value === "heading3")
-      editor.chain().focus().toggleHeading({ level: 3 }).run()
-  },
-})
-
-const ZoomSelector = createSelectControl({
-  label: "Zoom",
-  options: [
-    { value: "50%", label: "50%" },
-    { value: "75%", label: "75%" },
-    { value: "100%", label: "100%" },
-    { value: "125%", label: "125%" },
-    { value: "150%", label: "150%" },
-  ],
-  getValue: () => "100%",
-  command: (editor, value) => console.log("Zoom changed to", value),
-})
-
-const TEXT_COLORS = [
-  { label: "Black", value: "#000000", color: "#000000" },
-  { label: "Dark Gray", value: "#374151", color: "#374151" },
-  { label: "Gray", value: "#6B7280", color: "#6B7280" },
-  { label: "Red", value: "#EF4444", color: "#EF4444" },
-  { label: "Orange", value: "#F97316", color: "#F97316" },
-  { label: "Yellow", value: "#EAB308", color: "#EAB308" },
-  { label: "Green", value: "#22C55E", color: "#22C55E" },
-  { label: "Blue", value: "#3B82F6", color: "#3B82F6" },
-  { label: "Purple", value: "#A855F7", color: "#A855F7" },
-  { label: "Pink", value: "#EC4899", color: "#EC4899" },
-]
-
-const TextColorPicker = createSwatchControl({
-  label: "Text Color",
-  swatches: TEXT_COLORS,
-  getValue: (editor) => editor.getAttributes("textStyle")?.color || "#000000",
-  command: (editor, color) => editor.chain().focus().setColor(color).run(),
-  icon: LuPalette,
-  onRemove: (editor) => editor.chain().focus().unsetColor().run(),
-})
-
-const DocsMenu = ({ label, children }) => (
-  <MenuRoot>
-    <MenuTrigger asChild>
-      <Box
-        as="button"
-        px="2"
-        py="1"
-        fontSize="sm"
-        rounded="sm"
-        _hover={{ bg: "gray.100" }}
-      >
-        {label}
-      </Box>
-    </MenuTrigger>
-    <MenuContent>{children}</MenuContent>
-  </MenuRoot>
-)
-
-const SidebarOutline = () => (
-  <VStack
-    w="280px"
-    h="full"
-    bg="white"
-    borderEnd="1px solid"
-    borderColor="gray.200"
-    gap="0"
-    align="stretch"
-    flexShrink={0}
-  >
-    <HStack p="4" borderBottom="1px solid" borderColor="gray.200" gap="2">
-      <LuArrowLeft size={16} cursor="pointer" />
-      <Text fontSize="md" fontWeight="semibold" color="gray.700">
-        Legend Of X
-      </Text>
-    </HStack>
-
-    <Box p="4" borderBottom="1px solid" borderColor="gray.200">
-      <HStack gap="2">
-        <LuListTree size={16} color="gray.500" />
-        <Text fontSize="sm" color="gray.600" fontWeight="medium">
-          Outline
-        </Text>
-      </HStack>
-    </Box>
-
-    <VStack align="stretch" p="4" gap="1">
-      <Text
-        fontSize="sm"
-        color="blue.600"
-        cursor="pointer"
-        _hover={{ bg: "blue.50" }}
-        px="2"
-        py="1"
-        rounded="sm"
-        fontWeight="medium"
-      >
-        — Chapter 1: Awakening
-      </Text>
-      <VStack align="stretch" pl="4" gap="1">
-        <Text fontSize="sm" color="gray.700" pl="2" py="0.5">
-          — Part 1: Androids
-        </Text>
-        <Text
-          fontSize="sm"
-          color="purple.600"
-          pl="2"
-          py="0.5"
-          cursor="pointer"
-          _hover={{ bg: "purple.50" }}
-          bg="purple.50"
-          rounded="sm"
-          fontWeight="medium"
-        >
-          — Part 2: Electric Sheeps
-        </Text>
-        <Text fontSize="sm" color="gray.700" pl="2" py="0.5">
-          — Part 3: Encounter
-        </Text>
-      </VStack>
-      <Text fontSize="sm" color="gray.700" px="2" py="1">
-        — Chapter 2: Reborn
-      </Text>
-    </VStack>
-  </VStack>
-)
-
-export const RichTextEditorComposition = () => {
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: { levels: [1, 2, 3] },
-      }),
-      TextStyleKit,
-      Color,
-      Highlight.configure({ multicolor: true }),
-      Subscript,
-      Superscript,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Link.configure({
-        openOnClick: false,
-        HTMLAttributes: { class: "text-blue-700 underline" },
-      }),
-      Image,
-      TaskList,
-      TaskItem.configure({ nested: true }),
-    ],
-    content: `
-      <h1 style="text-align: center;">Legend Of X</h1>
-      <h2>Chapter 1: Awakening</h2>
-      <p>Lorem ipsum dolor sit amet consectetur. In lorem varius non arcu eget. Odio odio placerat sit enim pretium sed risus vitae. Velit egestas montes convallis cras venenatis sed. Fermentum tristique ultrices eleifend tincidunt et. Aenean consequat congue ullamcorper vitae in cras vitae lectus malesuada cursus.</p>
-      <p>Facilisis fames commodo enim vivamus cursus eget eu. Tristique platea duis et tristique ultrices dui diam nunc. Mauris elementum senectus tristique ultrices eleifend tincidunt et. Egestas urna mauris elementum eu fames feugiat lacus platea.</p>
-      <h3>Part 1: Androids</h3>
-      <p>Lorem ipsum dolor sit amet consectetur. At feugiat ac placerat habitant nec sed ultrices. Rutrum massa ipsum bibendum ac at feugiat felis ante. Purus leo volutpat nulla ut faucibus duis at purus. Sed pretium ut at enim.</p>
-      <h3>Part 2: Electric Sheeps</h3>
-      <p>Lorem ipsum dolor sit amet consectetur. At feugiat ac placerat habitant nec sed ultrices. Rutrum massa ipsum bibendum ac at feugiat felis ante. Purus leo volutpat nulla ut faucibus duis at purus. Sed pretium ut at enim.</p>
-    `,
-    shouldRerenderOnTransaction: true,
-  })
-
-  if (!editor) return null
-
-  const docsBlue = "#1A73E8"
-
-  return (
-    <Flex w="full" h="100vh" bg="gray.50">
-      <SidebarOutline />
-
-      <VStack flex="1" align="stretch" gap="0">
-        <RichTextEditorRoot editor={editor}>
-          {editor && (
-            <BubbleMenu editor={editor}>
-              <HStack
-                shadow="lg"
-                rounded="md"
-                bg="white"
-                border="1px solid"
-                borderColor="gray.300"
-                p="1"
-                gap="0"
-              >
-                <RichTextEditorButtonGroup noSeparator>
-                  <Bold />
-                  <Italic />
-                  <Underline />
-                  <Strike />
-                </RichTextEditorButtonGroup>
-                <Separator orientation="vertical" h="6" mx="1" />
-                <RichTextEditorButtonGroup noSeparator>
-                  <TextColorPicker />
-                </RichTextEditorButtonGroup>
-                <Separator orientation="vertical" h="6" mx="1" />
-                <RichTextEditorButtonGroup noSeparator>
-                  <LinkButton />
-                </RichTextEditorButtonGroup>
-              </HStack>
-            </BubbleMenu>
-          )}
-
-          <Box
-            bg="white"
-            borderBottom="1px solid"
-            borderColor="gray.200"
-            w="full"
-            zIndex="2"
-          >
-            <HStack
-              px="4"
-              py="2"
-              gap="4"
-              borderBottom="1px solid"
-              borderColor="gray.200"
-            >
-              <HStack gap="2">
-                <LuFileText size={40} color={docsBlue} />
-                <VStack align="flex-start" gap="0">
-                  <HStack gap="2">
-                    <Input
-                      defaultValue="Untitled Document"
-                      variant="outline"
-                      fontWeight="medium"
-                      fontSize="md"
-                      w="180px"
-                      p="0"
-                    />
-                    <IconButton size="xs" variant="ghost" aria-label="Star">
-                      <LuStar size={18} />
-                    </IconButton>
-                    <IconButton size="xs" variant="ghost" aria-label="Move">
-                      <LuMove size={18} />
-                    </IconButton>
-                    <IconButton size="xs" variant="ghost" aria-label="Cloud">
-                      {/* <LuCloudCheck size={18} /> */}
-                    </IconButton>
-                  </HStack>
-                  <HStack gap="1">
-                    <DocsMenu label="File">
-                      <MenuItem value="download">
-                        <LuDownload size={16} /> Download
-                      </MenuItem>
-                      <MenuItem value="email">
-                        <LuMail size={16} /> Email
-                      </MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Edit">
-                      <MenuItem
-                        value="undo"
-                        onClick={() => editor.chain().focus().undo().run()}
-                      >
-                        Undo
-                      </MenuItem>
-                      <MenuItem
-                        value="redo"
-                        onClick={() => editor.chain().focus().redo().run()}
-                      >
-                        Redo
-                      </MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="View">
-                      <MenuItem value="outline">
-                        <LuMenu size={16} /> Show Outline
-                      </MenuItem>
-                      <MenuItem value="viewers">
-                        <LuUsers size={16} /> Viewers
-                      </MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Insert">
-                      <MenuItem value="image">Image</MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Format">
-                      <MenuItem value="text">Text</MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Tools">
-                      <MenuItem value="word">Word count</MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Extensions">
-                      <MenuItem value="addons">Add-ons</MenuItem>
-                    </DocsMenu>
-                    <DocsMenu label="Help">
-                      <MenuItem value="help">Docs Help</MenuItem>
-                    </DocsMenu>
-                  </HStack>
-                </VStack>
-              </HStack>
-              <Spacer />
-              <HStack gap="3">
-                <IconButton size="sm" variant="ghost" aria-label="History">
-                  <LuHistory size={20} />
-                </IconButton>
-                <IconButton size="sm" variant="ghost" aria-label="Add user">
-                  <LuUserPlus size={20} />
-                </IconButton>
-                <Box
-                  as="button"
-                  bg={docsBlue}
-                  color="white"
-                  px="5"
-                  py="2"
-                  rounded="full"
-                  fontSize="sm"
-                  fontWeight="medium"
-                  _hover={{ bg: "blue.700" }}
-                  shadow="sm"
-                >
-                  <HStack gap="2">
-                    <LuShare2 size={16} />
-                    <Text>Share</Text>
-                  </HStack>
-                </Box>
-              </HStack>
-            </HStack>
-
-            <HStack px="3" py="1.5" gap="1" bg="white" flexWrap="wrap">
-              <RichTextEditorButtonGroup noSeparator>
-                <Undo />
-                <Redo />
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <IconButton size="xs" variant="ghost" aria-label="Print">
-                  <LuPrinter size={18} />
-                </IconButton>
-                <IconButton
-                  size="xs"
-                  variant="ghost"
-                  aria-label="Format painter"
-                >
-                  <LuPaintBucket size={18} />
-                </IconButton>
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <Box w="90px">
-                  <ZoomSelector />
-                </Box>
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <Box w="140px">
-                  <StyleSelector />
-                </Box>
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <Box w="120px">
-                  <FontFamilySelector />
-                </Box>
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <Box w="70px">
-                  <FontSizeSelector />
-                </Box>
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <Bold />
-                <Italic />
-                <Underline />
-                <TextColorPicker />
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <LinkButton />
-                <ImageButton />
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <AlignLeft />
-                <AlignCenter />
-                <AlignRight />
-                <AlignJustify />
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <BulletList />
-                <OrderedList />
-                <TaskListButton />
-              </RichTextEditorButtonGroup>
-              <Separator orientation="vertical" height="6" mx="1" />
-
-              <RichTextEditorButtonGroup noSeparator>
-                <IconButton size="xs" variant="ghost" aria-label="More options">
-                  <LuMenu size={18} />
-                </IconButton>
-              </RichTextEditorButtonGroup>
-            </HStack>
-          </Box>
-
-          <Box w="full" h="full" overflowY="auto" bg="gray.50" pt="8" pb="16">
-            <Box
-              w="full"
-              maxW="8.5in"
-              minH="11in"
-              bg="white"
-              shadow="md"
-              mx="auto"
-              px="96px"
-              py="96px"
-              border="1px solid"
-              borderColor="gray.200"
-              style={{ fontFamily: "Arial, sans-serif" }}
-            >
-              <RichTextEditorContent minH="600px" p={0} />
-            </Box>
-          </Box>
-        </RichTextEditorRoot>
-      </VStack>
-    </Flex>
-  )
-}
