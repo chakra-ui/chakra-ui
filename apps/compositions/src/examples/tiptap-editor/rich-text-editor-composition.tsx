@@ -15,6 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import Color from "@tiptap/extension-color"
+import Heading from "@tiptap/extension-heading"
 import Highlight from "@tiptap/extension-highlight"
 import Image from "@tiptap/extension-image"
 import Link from "@tiptap/extension-link"
@@ -24,6 +25,7 @@ import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
 import TextAlign from "@tiptap/extension-text-align"
 import { TextStyleKit } from "@tiptap/extension-text-style"
+import { Plugin } from "@tiptap/pm/state"
 import { Editor, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Avatar } from "compositions/ui/avatar"
@@ -81,7 +83,8 @@ export const RichTextEditorComposition = () => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
+      StarterKit.configure({ heading: false }),
+      HeadingWithSlug.configure({ levels: [1, 2, 3] }),
       TextStyleKit,
       Color,
       Highlight.configure({ multicolor: true }),
@@ -413,14 +416,19 @@ const Toolbar = () => {
 const SidebarOutline = ({ editor }: { editor: Editor }) => {
   if (!editor) return null
 
-  const headings = editor
-    .getJSON()
-    .content?.filter((b) => b.type === "heading")
-    .map((h, i) => ({
-      level: h.attrs?.level || 1,
-      text: h.content?.map((c) => (c as any).text).join("") || "",
-      id: `heading-${i}`,
-    }))
+  const headings: { level: number; text: string; id: string }[] = []
+
+  if (editor.getJSON().content) {
+    editor.getJSON().content.forEach((node, i) => {
+      if (node.type === "heading") {
+        const { attrs = {}, content = [] } = node
+        const level = attrs.level ?? 1
+        const id = attrs.id ?? `heading-${i}`
+        const text = content.map((c: any) => c.text).join("") ?? ""
+        headings.push({ level, text, id })
+      }
+    })
+  }
 
   const getPaddingLeft = (level: number = 1) => {
     return (level - 1) * 16 + 4
@@ -845,6 +853,55 @@ const FontSize = createSelectControl({
   getValue: (editor) => editor.getAttributes("textStyle")?.fontSize || "14px",
   command: (editor, value) =>
     editor.chain().focus().setMark("textStyle", { fontSize: value }).run(),
+})
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumeric with dash
+    .replace(/^-+|-+$/g, "") // remove leading/trailing dashes
+}
+
+const HeadingWithSlug = Heading.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      id: {
+        default: null,
+        parseHTML: (element) => element.getAttribute("id"),
+        renderHTML: (attributes) => ({
+          id: attributes.id,
+        }),
+      },
+    }
+  },
+  addProseMirrorPlugins() {
+    return [
+      new Plugin({
+        appendTransaction: (_transactions, _oldState, newState) => {
+          const tr = newState.tr
+          let modified = false
+
+          newState.doc.descendants((node, pos) => {
+            if (node.type.name === "heading") {
+              const text = node.textContent
+              const slug = slugify(text)
+              if (node.attrs.id !== slug) {
+                tr.setNodeMarkup(pos, undefined, {
+                  ...node.attrs,
+                  id: slug,
+                })
+                modified = true
+              }
+            }
+          })
+
+          return modified ? tr : null
+        },
+      }),
+    ]
+  },
 })
 
 const editorContent = `
