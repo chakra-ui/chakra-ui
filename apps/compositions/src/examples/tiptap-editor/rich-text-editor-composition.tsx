@@ -359,7 +359,7 @@ const GoogleDocsHeader = () => {
           </IconButton>
         </HStack>
 
-        <Button borderRadius="full" px={6} gap={2} colorScheme="blue">
+        <Button borderRadius="full" px={6} gap={2} colorPalette="blue">
           <LuLock size={14} />
           Share
         </Button>
