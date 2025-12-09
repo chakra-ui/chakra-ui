@@ -1,10 +1,16 @@
 import {
   Box,
   Button,
+  Dialog,
+  FileUpload,
   Flex,
   HStack,
   Icon,
   IconButton,
+  Input,
+  Portal,
+  Switch,
+  Tabs,
   Text,
   VStack,
 } from "@chakra-ui/react"
@@ -22,12 +28,22 @@ import { Editor, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Avatar } from "compositions/ui/avatar"
 import {
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTrigger,
+} from "compositions/ui/popover"
+import {
+  RichTextEditorButtonControl,
   RichTextEditorButtonGroup,
   RichTextEditorContent,
+  type RichTextEditorControlProps,
   RichTextEditorRoot,
   createButtonControl,
   createSelectControl,
+  useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
+import { forwardRef, useEffect, useState } from "react"
 import {
   LuChevronDown,
   LuFileText,
@@ -35,6 +51,7 @@ import {
   LuMessageSquare,
   LuSearch,
   LuStar,
+  LuUpload,
   LuVideo,
 } from "react-icons/lu"
 import {
@@ -57,6 +74,11 @@ import {
 } from "react-icons/lu"
 
 export const RichTextEditorComposition = () => {
+  const [linkBubblePosition, setLinkBubblePosition] = useState<{
+    top: number
+    left: number
+  } | null>(null)
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
@@ -71,46 +93,27 @@ export const RichTextEditorComposition = () => {
       TaskList,
       TaskItem.configure({ nested: true }),
     ],
-    content: `
-      <h1 id="heading-0">Legend Of X: The Complete Saga</h1>
-      <p>In a world where technology and humanity collide, the fate of civilization hangs in the balance. This is the story of those who dared to question everything they knew.</p>
+    content: editorContent,
+    onSelectionUpdate: ({ editor }) => {
+      if (editor.isActive("link")) {
+        const { from } = editor.state.selection
+        const domAtPos = editor.view.domAtPos(from)
+        const node = domAtPos.node as HTMLElement
+        const linkElement =
+          node.nodeType === Node.TEXT_NODE ? node.parentElement : node
 
-      <h2 id="heading-1">Chapter 1: Awakening</h2>
-      <p>The city of Neo-Tokyo stretched endlessly beneath the artificial sky. Maya Tanaka stood at the edge of the observation deck, watching the streams of data flow through the neural network that powered the megacity. She had always believed the System was infallible, that the Architects who built it had created a perfect world.</p>
-      <p>But something was wrong. The anomalies in the code were becoming more frequent, more deliberate. Someone—or something—was trying to break through.</p>
-
-      <h3 id="heading-2">Part 1: The First Glitch</h3>
-      <p>It started with small things. A flicker in the holographic displays. A delay in the transportation grid. Messages that appeared and disappeared before anyone could read them. Maya had noticed these irregularities for weeks, but she was afraid to report them. In Neo-Tokyo, questioning the System was considered treason.</p>
-      <p>One evening, as she worked late in the Neural Operations Center, the main screen went black. Then, slowly, text began to appear: "They are watching. They have always been watching. Find the Archive before it's too late."</p>
-      <p>Maya's heart raced. The Archive was a myth, a legend whispered about in underground forums. It was said to contain the truth about the world before the Great Collapse, before the Architects took control. But accessing it would mean going against everything she had been taught.</p>
-
-      <h3 id="heading-3">Part 2: The Underground</h3>
-      <p>The next day, Maya received an encrypted message directing her to an abandoned sector of the city. She knew it was dangerous, but curiosity overwhelmed her caution. The meeting place was a decrepit building, its walls covered in graffiti that depicted symbols she didn't recognize.</p>
-      <p>Inside, she found a group of people huddled around old terminals. They called themselves the Disconnected—those who had rejected the neural implants that connected everyone to the System. Their leader, a man named Kenzo, explained that the glitches were intentional.</p>
-      <p>"We're trying to wake people up," he said. "The System isn't what you think it is. The Architects didn't save humanity—they enslaved it."</p>
-
-      <h2 id="heading-4">Chapter 2: The Archive</h2>
-      <p>Maya's decision to join the Disconnected changed everything. Kenzo taught her how to navigate the hidden layers of the System, the forgotten protocols and backdoors that the Architects thought they had sealed. Together, they began their search for the Archive.</p>
-      <p>The journey took them through the darkest corners of Neo-Tokyo. They encountered other groups of rebels, each with their own theories about what the Archive contained. Some believed it held the key to shutting down the System entirely. Others thought it was a weapon that could be used to take control.</p>
-
-      <h3 id="heading-5">Part 3: Revelations</h3>
-      <p>After months of searching, they found it. The Archive wasn't a physical location—it was a fragment of code hidden in the deepest layer of the System, protected by encryption so complex that even the Architects had lost access to it.</p>
-      <p>When Maya finally broke through the encryption, what she found shocked her. The Archive contained memories—thousands of them, uploaded from the minds of people who had lived before the Great Collapse. They revealed a truth that the Architects had hidden: the Collapse had been engineered.</p>
-      <p>The Architects had created the disaster that destroyed the old world so they could rebuild it in their image. And now, they were planning to do it again.</p>
-
-      <h2 id="heading-6">Chapter 3: Resistance</h2>
-      <p>Armed with the truth, Maya and the Disconnected began spreading the Archive's contents throughout the city. The response was immediate. Some people refused to believe it, clinging to their faith in the System. Others joined the resistance, ready to fight for their freedom.</p>
-      <p>The Architects responded with force. Security drones filled the streets, hunting down anyone suspected of accessing the Archive. The city descended into chaos as the battle between the Disconnected and the System's defenders intensified.</p>
-
-      <h3 id="heading-7">Part 4: The Final Stand</h3>
-      <p>Maya knew they couldn't win through violence alone. The System was too powerful, too entrenched. Instead, she devised a plan to use the Archive itself as a weapon. If they could upload its contents directly into the neural network, everyone connected to the System would see the truth simultaneously.</p>
-      <p>The operation was risky. It required infiltrating the Central Node, the heart of the System's infrastructure. Many of the Disconnected would have to sacrifice themselves to create a distraction. But it was their only chance.</p>
-      <p>As Maya stood before the Central Node's interface, her fingers trembling over the controls, she thought about all the lives that had been lost, all the lies that had been told. With one final command, she initiated the upload.</p>
-
-      <h2 id="heading-8">Epilogue: A New Beginning</h2>
-      <p>The System didn't collapse overnight. But once people knew the truth, they began to question, to resist, to rebuild. Maya watched from a rooftop as the artificial sky flickered and went dark for the first time in decades, revealing the stars above.</p>
-      <p>The world would never be perfect. But it would be real. And that, she thought, was worth fighting for.</p>
-    `,
+        if (linkElement && linkElement.tagName === "A") {
+          const rect = linkElement.getBoundingClientRect()
+          setLinkBubblePosition({
+            top: rect.bottom + window.scrollY + 8,
+            left: rect.left + window.scrollX + rect.width / 2,
+          })
+        }
+      } else {
+        setLinkBubblePosition(null)
+      }
+    },
+    shouldRerenderOnTransaction: true,
   })
 
   if (!editor) return null
@@ -144,11 +147,137 @@ export const RichTextEditorComposition = () => {
         >
           <SidebarOutline editor={editor} />
         </Box>
-        <Flex flex="1" justifyContent="center" overflowY="auto">
+        <Flex
+          flex="1"
+          justifyContent="center"
+          overflowY="auto"
+          position="relative"
+        >
           <RichTextEditorContent px={16} py={12} />
+          {linkBubblePosition && (
+            <LinkBubbleMenu
+              editor={editor}
+              position={linkBubblePosition}
+              onClose={() => setLinkBubblePosition(null)}
+            />
+          )}
         </Flex>
       </HStack>
     </RichTextEditorRoot>
+  )
+}
+
+const LinkBubbleMenu = ({
+  editor,
+  position,
+  onClose,
+}: {
+  editor: Editor
+  position: { top: number; left: number }
+  onClose: () => void
+}) => {
+  const [url, setUrl] = useState("")
+  const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    const attrs = editor.getAttributes("link")
+    setUrl(attrs.href || "")
+  }, [editor])
+
+  const handleSave = () => {
+    if (url.trim()) {
+      const isValid = /^https?:\/\//i.test(url.trim())
+      const finalUrl = isValid ? url.trim() : `https://${url.trim()}`
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange("link")
+        .setLink({ href: finalUrl })
+        .run()
+    }
+    setIsEditing(false)
+  }
+
+  const handleRemove = () => {
+    editor.chain().focus().unsetLink().run()
+    onClose()
+  }
+
+  return (
+    <Box
+      position="fixed"
+      top={`${position.top}px`}
+      left={`${position.left}px`}
+      transform="translateX(-50%)"
+      bg="white"
+      boxShadow="lg"
+      borderRadius="md"
+      borderWidth="1px"
+      p={3}
+      zIndex={1000}
+      minW="280px"
+    >
+      {isEditing ? (
+        <VStack gap={2} align="stretch">
+          <Input
+            size="sm"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="Enter URL"
+            autoFocus
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSave()
+              if (e.key === "Escape") setIsEditing(false)
+            }}
+          />
+          <HStack justify="flex-end" gap={2}>
+            <Button
+              size="xs"
+              variant="ghost"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </Button>
+            <Button size="xs" colorPalette="blue" onClick={handleSave}>
+              Save
+            </Button>
+          </HStack>
+        </VStack>
+      ) : (
+        <VStack gap={2} align="stretch">
+          <HStack justify="space-between">
+            <Text
+              fontSize="sm"
+              lineClamp={1}
+              truncate
+              flex="1"
+              color="blue.600"
+            >
+              {url}
+            </Text>
+          </HStack>
+          <HStack gap={2}>
+            <Button
+              size="xs"
+              variant="outline"
+              onClick={() => setIsEditing(true)}
+              flex="1"
+            >
+              Edit
+            </Button>
+            <Button
+              size="xs"
+              variant="outline"
+              colorPalette="red"
+              onClick={handleRemove}
+              flex="1"
+            >
+              Remove
+            </Button>
+          </HStack>
+        </VStack>
+      )}
+    </Box>
   )
 }
 
@@ -274,8 +403,8 @@ const Toolbar = () => {
         </RichTextEditorButtonGroup>
 
         <RichTextEditorButtonGroup noSeparator>
-          <LinkBtn />
-          <ImageBtn />
+          <LinkControl />
+          <InsertImageControl />
         </RichTextEditorButtonGroup>
       </HStack>
     </Box>
@@ -348,6 +477,244 @@ const SidebarOutline = ({ editor }: { editor: Editor }) => {
   )
 }
 
+const LinkControl = forwardRef<
+  HTMLButtonElement,
+  Omit<RichTextEditorControlProps, "icon" | "label">
+>(function LinkControl(props, ref) {
+  const { editor } = useRichTextEditorContext()
+  const [open, setOpen] = useState(false)
+  const [url, setUrl] = useState("")
+  const [external, setExternal] = useState(false)
+  const [position, setPosition] = useState<{
+    top: number
+    left: number
+  } | null>(null)
+
+  if (!editor) return null
+
+  const handleOpen = () => {
+    const markAttrs = editor.getAttributes("link")
+    setUrl(markAttrs.href ?? "")
+    setExternal(markAttrs.target === "_blank")
+
+    // Get cursor position
+    const { from } = editor.state.selection
+    const coords = editor.view.coordsAtPos(from)
+
+    console.log("coords", coords)
+    setPosition({
+      top: coords.bottom,
+      left: coords.left,
+    })
+
+    setOpen(true)
+  }
+
+  const handleApply = () => {
+    const trimmed = url.trim()
+    if (!trimmed) {
+      editor.chain().focus().unsetLink().run()
+      setOpen(false)
+      return
+    }
+
+    const isValid = /^https?:\/\//i.test(trimmed)
+    const finalUrl = isValid ? trimmed : `https://${trimmed}`
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange("link")
+      .setLink({ href: finalUrl, ...(external ? { target: "_blank" } : {}) })
+      .run()
+
+    setOpen(false)
+  }
+
+  console.log("isopen", open)
+
+  const positioning = position
+    ? {
+        strategy: "fixed" as const,
+        placement: "bottom-start" as const,
+        gutter: 8,
+        getAnchorRect: () => ({
+          x: position.left,
+          y: position.top,
+          height: 0,
+        }),
+      }
+    : undefined
+
+  return (
+    <PopoverRoot
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
+      positioning={positioning}
+    >
+      <PopoverTrigger>
+        <RichTextEditorButtonControl
+          ref={ref}
+          icon={<LuLink />}
+          variant={editor.isActive("link") ? "subtle" : "ghost"}
+          onClick={handleOpen}
+          label="Insert Link"
+          {...props}
+        />
+      </PopoverTrigger>
+      <Portal>
+        <PopoverContent p="3" minW="280px">
+          <PopoverBody>
+            <Text fontWeight="medium" mb="2">
+              Insert Link
+            </Text>
+            <Input
+              placeholder="Enter URL"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              size="sm"
+              mb="3"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleApply()
+              }}
+              autoFocus
+            />
+            <HStack mb="4" align="center">
+              <Switch.Root
+                checked={external}
+                onCheckedChange={(e) => setExternal(e.checked)}
+                size="sm"
+              >
+                <Switch.HiddenInput />
+                <Switch.Control>
+                  <Switch.Thumb />
+                </Switch.Control>
+                <Switch.Label>Open in new tab</Switch.Label>
+              </Switch.Root>
+            </HStack>
+            <HStack justify="flex-end" gap="2">
+              <Button size="sm" variant="ghost" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={handleApply}>
+                Apply
+              </Button>
+            </HStack>
+          </PopoverBody>
+        </PopoverContent>
+      </Portal>
+    </PopoverRoot>
+  )
+})
+
+function InsertImageControl() {
+  const { editor } = useRichTextEditorContext()
+  const [open, setOpen] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
+
+  if (!editor) return null
+
+  return (
+    <>
+      <RichTextEditorButtonControl
+        icon={<LuImage />}
+        label="Insert Image"
+        onClick={() => setOpen(true)}
+        variant="ghost"
+      />
+
+      <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+        <Dialog.Trigger asChild />
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content maxW="lg">
+              <Dialog.Header>
+                <Dialog.Title>Insert Image</Dialog.Title>
+              </Dialog.Header>
+
+              <Dialog.Body>
+                <Tabs.Root defaultValue="url">
+                  <Tabs.List>
+                    <Tabs.Trigger value="url">
+                      <LuLink /> Embed URL
+                    </Tabs.Trigger>
+                    <Tabs.Trigger value="upload">
+                      <LuUpload /> Upload File
+                    </Tabs.Trigger>
+                  </Tabs.List>
+
+                  <Tabs.Content value="url">
+                    <Box display="flex" gap="2" mt="4">
+                      <Input
+                        placeholder="Enter image URL"
+                        id="image-url-input"
+                      />
+                      <Button
+                        onClick={() => {
+                          const url = (
+                            document.getElementById(
+                              "image-url-input",
+                            ) as HTMLInputElement
+                          ).value
+                          if (url) {
+                            editor.chain().focus().setImage({ src: url }).run()
+                            setOpen(false)
+                          }
+                        }}
+                      >
+                        Insert
+                      </Button>
+                    </Box>
+                  </Tabs.Content>
+
+                  <Tabs.Content value="upload">
+                    <FileUpload.Root
+                      maxW="xl"
+                      alignItems="stretch"
+                      maxFiles={1}
+                      accept="image/*"
+                      onFileAccept={(accepted) => {
+                        const uploaded = accepted.files ?? []
+                        setFiles(uploaded)
+
+                        if (uploaded[0]) {
+                          const url = URL.createObjectURL(uploaded[0])
+                          editor.chain().focus().setImage({ src: url }).run()
+                          setOpen(false)
+                        }
+                      }}
+                    >
+                      <FileUpload.HiddenInput />
+                      <FileUpload.Dropzone>
+                        <Icon size="md" color="fg.muted">
+                          <LuUpload />
+                        </Icon>
+                        <FileUpload.DropzoneContent>
+                          <Box>Drag and drop a file here</Box>
+                          <Box color="fg.muted">.png, .jpg up to 5MB</Box>
+                        </FileUpload.DropzoneContent>
+                      </FileUpload.Dropzone>
+
+                      <FileUpload.List files={files} />
+                    </FileUpload.Root>
+                  </Tabs.Content>
+                </Tabs.Root>
+              </Dialog.Body>
+
+              <Dialog.Footer mt="4">
+                <Button variant="outline" onClick={() => setOpen(false)}>
+                  Cancel
+                </Button>
+              </Dialog.Footer>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
+    </>
+  )
+}
+
 const BoldBtn = createButtonControl({
   label: "Bold",
   icon: LuBold,
@@ -412,31 +779,6 @@ const OrderedListBtn = createButtonControl({
   icon: LuListOrdered,
   command: (editor) => editor.chain().focus().toggleOrderedList().run(),
   getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
-})
-
-const LinkBtn = createButtonControl({
-  label: "Link",
-  icon: LuLink,
-  command: (editor) => {
-    const url = window.prompt("Enter URL")
-    if (url)
-      editor
-        .chain()
-        .focus()
-        .extendMarkRange("link")
-        .setLink({ href: url })
-        .run()
-  },
-  getVariant: (editor) => (editor.isActive("link") ? "subtle" : "ghost"),
-})
-
-const ImageBtn = createButtonControl({
-  label: "Image",
-  icon: LuImage,
-  command: (editor) => {
-    const url = window.prompt("Enter Image URL")
-    if (url) editor.chain().focus().setImage({ src: url }).run()
-  },
 })
 
 const AlignLeftBtn = createButtonControl({
@@ -505,3 +847,37 @@ const FontSize = createSelectControl({
   command: (editor, value) =>
     editor.chain().focus().setMark("textStyle", { fontSize: value }).run(),
 })
+
+const editorContent = `
+      <h1 id="heading-0">Legend Of X: The Complete Saga</h1>
+      <p>In a world where technology and humanity collide, the fate of civilization hangs in the balance. This is the story of those who dared to question everything they knew.</p>
+
+      <h2 id="heading-1">Chapter 1: Awakening</h2>
+      <p>The city of <a href="https://example.com">Neo-Tokyo</a> stretched endlessly beneath the artificial sky. Maya Tanaka stood at the edge of the observation deck, watching the streams of data flow through the neural network that powered the megacity. She had always believed the System was infallible, that the Architects who built it had created a perfect world.</p>
+      <p>But something was wrong. The anomalies in the code were becoming more frequent, more deliberate. Someone—or something—was trying to break through.</p>
+
+      <h3 id="heading-2">Part 1: The First Glitch</h3>
+      <p>It started with small things. A flicker in the holographic displays. A delay in the transportation grid. Messages that appeared and disappeared before anyone could read them. Maya had noticed these irregularities for weeks, but she was afraid to report them. In Neo-Tokyo, questioning the System was considered treason.</p>
+      <p>One evening, as she worked late in the Neural Operations Center, the main screen went black. Then, slowly, text began to appear: "They are watching. They have always been watching. Find the Archive before it's too late."</p>
+      <h3 id="heading-3">Part 2: The Underground</h3>
+      <p>The next day, Maya received an encrypted message directing her to an abandoned sector of the city. She knew it was dangerous, but curiosity overwhelmed her caution. The meeting place was a decrepit building, its walls covered in graffiti that depicted symbols she didn't recognize.</p>
+      <p>Inside, she found a group of people huddled around old terminals. They called themselves the Disconnected—those who had rejected the neural implants that connected everyone to the System. Their leader, a man named Kenzo, explained that the glitches were intentional.</p>
+      <p>"We're trying to wake people up," he said. "The System isn't what you think it is. The Architects didn't save humanity—they enslaved it."</p>
+      <h2 id="heading-4">Chapter 2: The Archive</h2>
+      <p>Maya's decision to join the Disconnected changed everything. Kenzo taught her how to navigate the hidden layers of the System, the forgotten protocols and backdoors that the Architects thought they had sealed. Together, they began their search for the Archive.</p>
+      <p>The journey took them through the darkest corners of Neo-Tokyo. They encountered other groups of rebels, each with their own theories about what the Archive contained. Some believed it held the key to shutting down the System entirely. Others thought it was a weapon that could be used to take control.</p>
+      <h3 id="heading-5">Part 3: Revelations</h3>
+      <p>After months of searching, they found it. The Archive wasn't a physical location—it was a fragment of code hidden in the deepest layer of the System, protected by encryption so complex that even the Architects had lost access to it.</p>
+      <p>When Maya finally broke through the encryption, what she found shocked her. The Archive contained memories—thousands of them, uploaded from the minds of people who had lived before the Great Collapse. They revealed a truth that the Architects had hidden: the Collapse had been engineered.</p>
+      <p>The Architects had created the disaster that destroyed the old world so they could rebuild it in their image. And now, they were planning to do it again.</p>
+      <h2 id="heading-6">Chapter 3: Resistance</h2>
+      <p>Armed with the truth, Maya and the Disconnected began spreading the Archive's contents throughout the city. The response was immediate. Some people refused to believe it, clinging to their faith in the System. Others joined the resistance, ready to fight for their freedom.</p>
+      <p>The Architects responded with force. Security drones filled the streets, hunting down anyone suspected of accessing the Archive. The city descended into chaos as the battle between the Disconnected and the System's defenders intensified.</p>
+      <h3 id="heading-7">Part 4: The Final Stand</h3>
+      <p>Maya knew they couldn't win through violence alone. The System was too powerful, too entrenched. Instead, she devised a plan to use the Archive itself as a weapon. If they could upload its contents directly into the neural network, everyone connected to the System would see the truth simultaneously.</p>
+      <p>The operation was risky. It required infiltrating the Central Node, the heart of the System's infrastructure. Many of the Disconnected would have to sacrifice themselves to create a distraction. But it was their only chance.</p>
+      <p>As Maya stood before the Central Node's interface, her fingers trembling over the controls, she thought about all the lives that had been lost, all the lies that had been told. With one final command, she initiated the upload.</p>
+      <h2 id="heading-8">Epilogue: A New Beginning</h2>
+      <p>The System didn't collapse overnight. But once people knew the truth, they began to question, to resist, to rebuild. Maya watched from a rooftop as the artificial sky flickered and went dark for the first time in decades, revealing the stars above.</p>
+      <p>The world would never be perfect. But it would be real. And that, she thought, was worth fighting for.</p>
+    `
