@@ -308,17 +308,16 @@ const GoogleDocsHeader = () => {
 
           <HStack gap={3}>
             {menuItems.map((item) => (
-              <Text
+              <Button
                 key={item}
                 fontSize="sm"
-                cursor="pointer"
-                _hover={{ bg: "gray.100" }}
                 px={2}
                 py={1}
-                rounded="sm"
+                variant="ghost"
+                size="xs"
               >
                 {item}
-              </Text>
+              </Button>
             ))}
           </HStack>
         </VStack>
