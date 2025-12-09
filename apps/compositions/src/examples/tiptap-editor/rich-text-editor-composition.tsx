@@ -30,6 +30,12 @@ import { Editor, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Avatar } from "compositions/ui/avatar"
 import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "compositions/ui/menu"
+import {
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -48,6 +54,7 @@ import {
 import { forwardRef, useEffect, useState } from "react"
 import {
   LuChevronDown,
+  LuCircleHelp,
   LuFileText,
   LuLock,
   LuMessageSquare,
@@ -73,6 +80,14 @@ import {
   LuRotateCw,
   LuStrikethrough,
   LuUnderline,
+} from "react-icons/lu"
+import {
+  LuArrowRight,
+  LuCopy,
+  LuDownload,
+  LuFolder,
+  LuPlus,
+  LuSettings,
 } from "react-icons/lu"
 
 export const RichTextEditorComposition = () => {
@@ -285,17 +300,6 @@ const LinkBubbleMenu = ({
 }
 
 const GoogleDocsHeader = () => {
-  const menuItems = [
-    "File",
-    "Edit",
-    "View",
-    "Insert",
-    "Format",
-    "Tools",
-    "Extensions",
-    "Help",
-  ]
-
   return (
     <Flex px={4} py={2} alignItems="center" justifyContent="space-between">
       <HStack gap={3} align="flex-start">
@@ -303,24 +307,39 @@ const GoogleDocsHeader = () => {
 
         <VStack align="flex-start" gap={0}>
           <HStack gap={2}>
-            <Text fontSize="lg">Legend Of X: The Complete Saga</Text>
+            <Text fontSize="lg" fontWeight="semibold">
+              Legend Of X: The Complete Saga
+            </Text>
             <IconButton variant="ghost" size="xs" color="gray.500">
               <LuStar size={16} />
             </IconButton>
           </HStack>
 
           <HStack gap={3}>
-            {menuItems.map((item) => (
-              <Button
-                key={item}
-                fontSize="sm"
-                px={2}
-                py={1}
-                variant="ghost"
-                size="xs"
-              >
-                {item}
-              </Button>
+            {menuItems.map((menu) => (
+              <MenuRoot key={menu.label}>
+                <MenuTrigger>
+                  <Button fontSize="sm" px={2} py={1} variant="ghost" size="xs">
+                    {menu.label}
+                  </Button>
+                </MenuTrigger>
+
+                <MenuContent minW="200px" py={1}>
+                  {menu.items.map((item) => (
+                    <MenuItem
+                      value={item.label}
+                      key={item.label}
+                      gap={3}
+                      cursor="button"
+                    >
+                      <HStack gap={3} align="center">
+                        <Icon as={() => item.icon} boxSize={4} />
+                        <Text fontSize="sm">{item.label}</Text>
+                      </HStack>
+                    </MenuItem>
+                  ))}
+                </MenuContent>
+              </MenuRoot>
             ))}
           </HStack>
         </VStack>
@@ -340,7 +359,7 @@ const GoogleDocsHeader = () => {
           </IconButton>
         </HStack>
 
-        <Button borderRadius="full" px={6} gap={2} colorPalette="blue">
+        <Button borderRadius="full" px={6} gap={2} colorScheme="blue">
           <LuLock size={14} />
           Share
         </Button>
@@ -354,7 +373,6 @@ const GoogleDocsHeader = () => {
     </Flex>
   )
 }
-
 const Toolbar = () => {
   return (
     <Box px={4}>
@@ -458,27 +476,33 @@ const SidebarOutline = ({ editor }: { editor: Editor }) => {
       </HStack>
 
       <VStack align="stretch" gap={1} p={2} overflowY="auto" flex="1">
-        {headings?.map((h) => (
-          <Button
-            key={h.id}
-            variant="ghost"
-            size="sm"
-            pl={`${getPaddingLeft(h.level)}px`}
-            py={2}
-            onClick={() => scrollToHeading(h.id)}
-            lineClamp="1"
-            truncate
-          >
-            <Icon
-              as={LuFileText}
-              mr={2}
-              flexShrink={0}
-              color="gray.500"
-              boxSize={4}
-            />
-            {h.text}
-          </Button>
-        ))}
+        {headings.length === 0 ? (
+          <Text fontSize="sm" textAlign="center" p={4}>
+            Headings you add to the document will appear here
+          </Text>
+        ) : (
+          headings.map((h) => (
+            <Button
+              key={h.id}
+              variant="ghost"
+              size="sm"
+              pl={`${getPaddingLeft(h.level)}px`}
+              py={2}
+              onClick={() => scrollToHeading(h.id)}
+              lineClamp="1"
+              truncate
+            >
+              <Icon
+                as={LuFileText}
+                mr={2}
+                flexShrink={0}
+                color="gray.500"
+                boxSize={4}
+              />
+              {h.text}
+            </Button>
+          ))
+        )}
       </VStack>
     </VStack>
   )
@@ -937,3 +961,70 @@ const editorContent = `
       <p>The System didn't collapse overnight. But once people knew the truth, they began to question, to resist, to rebuild. Maya watched from a rooftop as the artificial sky flickered and went dark for the first time in decades, revealing the stars above.</p>
       <p>The world would never be perfect. But it would be real. And that, she thought, was worth fighting for.</p>
     `
+
+const menuItems = [
+  {
+    label: "File",
+    items: [
+      { label: "New", icon: <LuPlus /> },
+      { label: "Open", icon: <LuFolder /> },
+      { label: "Make a copy", icon: <LuCopy /> },
+      { label: "Download", icon: <LuDownload /> },
+    ],
+  },
+  {
+    label: "Edit",
+    items: [
+      { label: "Undo", icon: <LuArrowRight /> },
+      { label: "Redo", icon: <LuArrowRight /> },
+      { label: "Cut", icon: <LuSettings /> },
+      { label: "Copy", icon: <LuCopy /> },
+      { label: "Paste", icon: <LuArrowRight /> },
+    ],
+  },
+  {
+    label: "View",
+    items: [
+      { label: "Zoom in", icon: <LuArrowRight /> },
+      { label: "Zoom out", icon: <LuArrowRight /> },
+      { label: "Full screen", icon: <LuSettings /> },
+    ],
+  },
+  {
+    label: "Insert",
+    items: [
+      { label: "Image", icon: <LuPlus /> },
+      { label: "Table", icon: <LuSettings /> },
+      { label: "Drawing", icon: <LuFolder /> },
+    ],
+  },
+  {
+    label: "Format",
+    items: [
+      { label: "Bold", icon: <LuSettings /> },
+      { label: "Italic", icon: <LuSettings /> },
+      { label: "Underline", icon: <LuSettings /> },
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      { label: "Spelling", icon: <LuSettings /> },
+      { label: "Word count", icon: <LuSettings /> },
+    ],
+  },
+  {
+    label: "Extensions",
+    items: [
+      { label: "Add-ons", icon: <LuSettings /> },
+      { label: "Apps Script", icon: <LuSettings /> },
+    ],
+  },
+  {
+    label: "Help",
+    items: [
+      { label: "Docs Help", icon: <LuCircleHelp /> },
+      { label: "Keyboard shortcuts", icon: <LuSettings /> },
+    ],
+  },
+]
