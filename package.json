@@ -115,8 +115,8 @@
   },
   "pnpm": {
     "overrides": {
-      "react": "19.2.1",
-      "react-dom": "19.2.1"
+      "react": "19.2.2",
+      "react-dom": "19.2.2"
     }
   },
   "packageManager": "pnpm@10.23.0",
