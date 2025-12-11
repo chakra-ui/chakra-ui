@@ -5,7 +5,7 @@ import type { Tool } from "../lib/types.js"
 export const searchDocsTool: Tool = {
   name: "search_docs",
   description:
-    "Search Chakra UI documentation for components, styling guides, theming, and getting started guides. Returns matching documentation pages with their titles, descriptions, and URLs.",
+    "Use as a last resort when other tools don't provide the needed information. Search Chakra UI documentation for components, styling guides, theming, and getting started guides. Returns matching documentation pages with their titles, descriptions, and URLs.",
   exec(server, { name, description }) {
     server.tool(
       name,
