@@ -195,7 +195,12 @@ export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(
             <SliderMarker key={index} value={value}>
               <SliderMarkerIndicator />
               {label != null && (
-                <span className="chakra-slider__marker-label">{label}</span>
+                <chakra.span
+                  __css={styles.markerLabel}
+                  className="chakra-slider__marker-label"
+                >
+                  {label}
+                </chakra.span>
               )}
             </SliderMarker>
           )
