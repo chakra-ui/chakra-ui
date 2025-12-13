@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+### Added
+
+- New `search_docs` tool to search Chakra UI documentation using fuzzy search
+
 ## [2.1.1] - 2025-11-03
 
 ### Fixed

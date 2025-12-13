@@ -184,3 +184,22 @@ export async function fetchTokenCategories(): Promise<any> {
     "fetch theme customization",
   )
 }
+
+export interface SearchItem {
+  label: string
+  slug: string
+  url: string
+  description: string
+  category: string
+}
+
+/**
+ * Searches the Chakra UI documentation
+ */
+export async function searchDocs(query: string): Promise<SearchItem[]> {
+  return fetchJson<SearchItem[]>(
+    createChakraUrl(`/api/search?query=${encodeURIComponent(query)}`),
+    undefined,
+    "search docs",
+  )
+}

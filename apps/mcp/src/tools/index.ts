@@ -8,6 +8,7 @@ import { getThemeTool } from "./get-theme.js"
 import { installationTool } from "./installation.js"
 import { listComponentTemplatesTool } from "./list-component-templates.js"
 import { listComponentsTool } from "./list-components.js"
+import { searchDocsTool } from "./search-docs.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
 const tools: Tool[] = [
@@ -20,6 +21,7 @@ const tools: Tool[] = [
   listComponentTemplatesTool,
   getComponentTemplatesTool,
   installationTool,
+  searchDocsTool,
 ]
 
 const registeredToolCache = new Map<string, Tool>()
