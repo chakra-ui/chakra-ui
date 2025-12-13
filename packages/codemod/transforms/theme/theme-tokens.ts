@@ -1,5 +1,4 @@
-import type { Node } from "jscodeshift"
-import type { API, FileInfo } from "jscodeshift"
+import type { API, FileInfo, Node } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
 function wrapTokenValues(j: any, obj: Node) {

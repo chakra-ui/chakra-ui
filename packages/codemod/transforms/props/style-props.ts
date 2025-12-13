@@ -1,5 +1,4 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import type { JSXAttribute } from "jscodeshift"
+import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
 const STYLE_PROP_MAP: Record<string, string> = {
