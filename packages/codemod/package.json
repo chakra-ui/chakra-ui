@@ -1,0 +1,74 @@
+{
+  "name": "@chakra-ui/codemod",
+  "version": "1.0.0",
+  "description": "Codemods for migrating and transforming Chakra UI codebases across versions.",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/codemod"
+  },
+  "keywords": [
+    "chakra-ui",
+    "chakra",
+    "codemod",
+    "jscodeshift",
+    "migration",
+    "refactor",
+    "react",
+    "ui",
+    "design-system"
+  ],
+  "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "clean": "rimraf dist .turbo",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "typecheck": " tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.9",
+    "commander": "12.1.0",
+    "execa": "4.0.3",
+    "find-up": "4.1.0",
+    "globby": "11.0.1",
+    "is-git-clean": "1.1.0",
+    "jscodeshift": "17.0.0",
+    "picocolors": "1.0.0",
+    "prompts": "2.4.2",
+    "semver": "7.6.3",
+    "strip-ansi": "6.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "@types/jscodeshift": "^17.3.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=3"
+  },
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}
