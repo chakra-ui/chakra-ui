@@ -1,7 +1,7 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
-export default function colorPaletteTransformer(
+export default function transformer(
   file: FileInfo,
   _api: API,
   _options: Options,
@@ -9,7 +9,6 @@ export default function colorPaletteTransformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  // Find all JSXElements with colorScheme prop
   root
     .find(j.JSXAttribute, { name: { name: "colorScheme" } })
     .forEach((path) => {
