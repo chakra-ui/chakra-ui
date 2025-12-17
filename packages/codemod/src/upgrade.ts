@@ -78,7 +78,6 @@ export async function upgrade(
   ]
 
   try {
-    // Remove old packages
     console.log(
       picocolors.gray(
         `   Removing unused packages: ${packagesToRemove.join(", ")}\n`,
@@ -86,19 +85,36 @@ export async function upgrade(
     )
 
     if (!dry) {
-      const uninstallCmd =
-        packageManager === "npm"
-          ? `npm uninstall ${packagesToRemove.join(" ")}`
-          : packageManager === "yarn"
-            ? `yarn remove ${packagesToRemove.join(" ")}`
-            : `pnpm remove ${packagesToRemove.join(" ")}`
+      let installedPackages: string[] = []
 
-      execSync(uninstallCmd, { stdio: verbose ? "inherit" : "pipe" })
+      if (fs.existsSync("package.json")) {
+        const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
+        const deps = {
+          ...pkg.dependencies,
+          ...pkg.devDependencies,
+        }
+
+        installedPackages = packagesToRemove.filter(
+          (pkgName) => deps?.[pkgName],
+        )
+      }
+
+      if (installedPackages.length > 0) {
+        const uninstallCmd =
+          packageManager === "npm"
+            ? `npm uninstall ${installedPackages.join(" ")}`
+            : packageManager === "yarn"
+              ? `yarn remove ${installedPackages.join(" ")}`
+              : `pnpm remove ${installedPackages.join(" ")}`
+
+        execSync(uninstallCmd, { stdio: verbose ? "inherit" : "pipe" })
+      } else {
+        console.log(picocolors.gray("   No unused packages found to remove.\n"))
+      }
     } else {
       console.log(picocolors.yellow("   [DRY RUN] Would uninstall packages\n"))
     }
 
-    // Install new packages
     console.log(
       picocolors.gray(`   Installing: ${packagesToUpdate.join(", ")}\n`),
     )
@@ -157,7 +173,7 @@ export async function upgrade(
           ),
         )
       }
-    } catch (error) {
+    } catch {
       console.error(
         picocolors.yellow(
           "\n⚠️  Snippet installation failed. You can run it manually later:\n",
@@ -195,7 +211,6 @@ export async function upgrade(
     return
   }
 
-  // Determine target path (current directory or src/)
   const targetPaths = ["./src", "./app", "./components", "."]
     .filter((p) => fs.existsSync(p))
     .slice(0, 1)

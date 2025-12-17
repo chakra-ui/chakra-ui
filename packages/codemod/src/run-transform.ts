@@ -1,8 +1,11 @@
 import { execSync } from "child_process"
 import fs from "fs"
+import { createRequire } from "node:module"
 import picocolors from "picocolors"
 import { transforms } from "./transforms.js"
 import { isGitClean } from "./utils/git.js"
+
+const require = createRequire(import.meta.url)
 
 interface RunTransformOptions {
   dry?: boolean
@@ -64,12 +67,11 @@ export async function runTransform(
   console.log(picocolors.gray(`   ${transform.description}\n`))
 
   try {
-    const jscodeshiftBin = require.resolve(".bin/jscodeshift")
-    const transformPath = transform.path
+    const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
 
     const args = [
       "-t",
-      transformPath,
+      transform.path,
       targetPath,
       "--extensions=tsx,ts,jsx,js",
       "--parser=tsx",
@@ -86,7 +88,7 @@ export async function runTransform(
 
     const command = `${jscodeshiftBin} ${args.join(" ")}`
 
-    if (options.print) {
+    if (print) {
       console.log(picocolors.gray(`   $ ${command}\n`))
     }
 
@@ -99,9 +101,11 @@ export async function runTransform(
     console.error(
       picocolors.red(`\n❌ Transform "${transform.name}" failed.\n`),
     )
+
     if (error instanceof Error) {
       console.error(picocolors.gray(error.message))
     }
+
     process.exit(1)
   }
 }

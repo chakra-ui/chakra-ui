@@ -1,6 +1,11 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
+/**
+ * Transforms Spinner component:
+ * - thickness -> borderWidth
+ * - speed -> animationDuration
+ */
 export default function transformer(
   file: FileInfo,
   _api: API,
@@ -10,31 +15,24 @@ export default function transformer(
   const root = j(file.source)
 
   root
-    .find(j.JSXOpeningElement, { name: { name: "Spinner" } })
+    .find(j.JSXElement, {
+      openingElement: { name: { name: "Spinner" } },
+    })
     .forEach((path) => {
-      const attributes = path.node.attributes ?? []
+      const attrs = path.node.openingElement.attributes
+      if (!attrs) return
 
-      // Transform attributes
-      const newAttributes = attributes.flatMap((attr) => {
-        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-          return attr
+      attrs.forEach((attr) => {
+        if (attr.type !== "JSXAttribute") return
 
-        switch (attr.name.name) {
-          case "thickness":
-            return j.jsxAttribute(j.jsxIdentifier("borderWidth"), attr.value)
-          case "speed":
-            return j.jsxAttribute(
-              j.jsxIdentifier("animationDuration"),
-              attr.value,
-            )
-          case "colorScheme":
-            return j.jsxAttribute(j.jsxIdentifier("colorPalette"), attr.value)
-          default:
-            return attr
+        if (attr.name.name === "thickness") {
+          attr.name.name = "borderWidth"
+        }
+
+        if (attr.name.name === "speed") {
+          attr.name.name = "animationDuration"
         }
       })
-
-      path.node.attributes = newAttributes
     })
 
   return root.toSource({ quote: "single" })

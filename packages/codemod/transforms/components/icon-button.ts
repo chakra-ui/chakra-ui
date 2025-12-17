@@ -1,17 +1,11 @@
-import type {
-  API,
-  FileInfo,
-  JSXAttribute,
-  JSXElement,
-  JSXExpressionContainer,
-  JSXFragment,
-  JSXText,
-  Options,
-} from "jscodeshift"
+import type { API, FileInfo, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
-type JSXChild = JSXElement | JSXText | JSXExpressionContainer | JSXFragment
-
+/**
+ * Transforms IconButton component:
+ * - icon prop -> children
+ * - isRounded -> borderRadius="full"
+ */
 export default function transformer(
   file: FileInfo,
   _api: API,
@@ -21,59 +15,42 @@ export default function transformer(
   const root = j(file.source)
 
   root
-    .find(j.JSXOpeningElement, { name: { name: "IconButton" } })
+    .find(j.JSXElement, {
+      openingElement: { name: { name: "IconButton" } },
+    })
     .forEach((path) => {
-      const attributes = path.node.attributes ?? []
+      const attrs = path.node.openingElement.attributes
+      if (!attrs) return
 
-      let iconValue: JSXAttribute["value"] | null = null
+      let iconValue: any = null
+      const attrsToRemove: number[] = []
 
-      // Transform attributes
-      const newAttributes = attributes.flatMap((attr) => {
-        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-          return attr
+      attrs.forEach((attr, index) => {
+        if (attr.type !== "JSXAttribute") return
 
-        switch (attr.name.name) {
-          case "icon":
-            // Store icon value to inject as children
-            iconValue = attr.value
-            return []
-          case "isRounded":
-            // isRounded becomes borderRadius="full"
-            return j.jsxAttribute(
-              j.jsxIdentifier("borderRadius"),
-              j.stringLiteral("full"),
-            )
-          case "isActive":
-            return j.jsxAttribute(j.jsxIdentifier("data-active"), null)
-          case "isDisabled":
-            return j.jsxAttribute(j.jsxIdentifier("disabled"), attr.value)
-          case "isLoading":
-            return j.jsxAttribute(j.jsxIdentifier("loading"), attr.value)
-          case "colorScheme":
-            return j.jsxAttribute(j.jsxIdentifier("colorPalette"), attr.value)
-          default:
-            return attr
+        // Capture icon prop
+        if (attr.name.name === "icon") {
+          if (attr.value?.type === "JSXExpressionContainer") {
+            iconValue = attr.value.expression
+          }
+          attrsToRemove.push(index)
+        }
+
+        // isRounded -> borderRadius="full"
+        if (attr.name.name === "isRounded") {
+          attr.name.name = "borderRadius"
+          attr.value = j.stringLiteral("full")
         }
       })
 
-      path.node.attributes = newAttributes
+      // Remove icon attribute
+      attrsToRemove.reverse().forEach((index) => {
+        attrs.splice(index, 1)
+      })
 
-      // Inject icon as children
+      // Move icon to children
       if (iconValue) {
-        const parent = path.parent.node
-        if (parent.type === "JSXElement") {
-          const originalChildren = parent.children.filter((c: JSXChild) => {
-            return c.type !== "JSXText" || (c as JSXText).value.trim() !== ""
-          })
-
-          // Add icon as first child
-          const newChildren: JSXElement["children"] = [
-            j.jsxExpressionContainer(iconValue),
-            ...originalChildren,
-          ]
-
-          parent.children = newChildren
-        }
+        path.node.children = [iconValue]
       }
     })
 

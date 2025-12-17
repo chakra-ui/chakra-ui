@@ -7,6 +7,12 @@ const BOOLEAN_PROP_MAP: Record<string, string> = {
   isDisabled: "disabled",
   isInvalid: "invalid",
   isRequired: "required",
+  isChecked: "checked",
+  isIndeterminate: "indeterminate",
+  isReadOnly: "readOnly",
+  isLoading: "loading",
+  isActive: "data-active",
+  isCentered: "placement",
 }
 
 export default function transform(
@@ -24,6 +30,24 @@ export default function transform(
     const name = path.node.name
 
     if (name.type !== "JSXIdentifier") return
+
+    const attrName = path.node.name.name
+
+    // Handle isCentered specially
+    if (attrName === "isCentered") {
+      path.node.name.name = "placement"
+      // If value is true/truthy, set to "center"
+      if (
+        path.node.value?.type === "JSXExpressionContainer" &&
+        path.node.value.expression.type === "Literal" &&
+        path.node.value.expression.value === true
+      ) {
+        path.node.value = j.literal("center")
+      } else if (!path.node.value) {
+        path.node.value = j.literal("center")
+      }
+      return
+    }
 
     const newName = BOOLEAN_PROP_MAP[name.name]
     if (!newName) return
