@@ -1,5 +1,6 @@
 import { execSync } from "child_process"
 import fs from "fs"
+import ora from "ora"
 import picocolors from "picocolors"
 import prompts from "prompts"
 import semver from "semver"
@@ -78,61 +79,73 @@ export async function upgrade(
   ]
 
   try {
-    console.log(
-      picocolors.gray(
-        `   Removing unused packages: ${packagesToRemove.join(", ")}\n`,
-      ),
-    )
+    // Determine installed packages to remove
+    let installedPackages: string[] = []
 
-    if (!dry) {
-      let installedPackages: string[] = []
+    if (!dry && fs.existsSync("package.json")) {
+      const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
+      const deps = { ...pkg.dependencies, ...pkg.devDependencies }
+      installedPackages = packagesToRemove.filter((pkgName) => deps?.[pkgName])
+    }
 
-      if (fs.existsSync("package.json")) {
-        const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
-        const deps = {
-          ...pkg.dependencies,
-          ...pkg.devDependencies,
+    if (installedPackages.length > 0) {
+      const uninstallCmd =
+        packageManager === "npm"
+          ? `npm uninstall ${installedPackages.join(" ")}`
+          : packageManager === "yarn"
+            ? `yarn remove ${installedPackages.join(" ")}`
+            : `pnpm remove ${installedPackages.join(" ")}`
+
+      if (!dry) {
+        const spinner = ora(
+          `Removing unused packages: ${installedPackages.join(", ")}`,
+        ).start()
+        try {
+          execSync(uninstallCmd, { stdio: "inherit" })
+          spinner.succeed("Unused packages removed!")
+        } catch (error) {
+          spinner.fail("Failed to remove packages")
+          if (verbose && error instanceof Error) console.error(error.message)
+          process.exit(1)
         }
-
-        installedPackages = packagesToRemove.filter(
-          (pkgName) => deps?.[pkgName],
+      } else {
+        console.log(
+          picocolors.yellow(
+            `[DRY RUN] Would uninstall: ${installedPackages.join(", ")}\n`,
+          ),
         )
       }
-
-      if (installedPackages.length > 0) {
-        const uninstallCmd =
-          packageManager === "npm"
-            ? `npm uninstall ${installedPackages.join(" ")}`
-            : packageManager === "yarn"
-              ? `yarn remove ${installedPackages.join(" ")}`
-              : `pnpm remove ${installedPackages.join(" ")}`
-
-        execSync(uninstallCmd, { stdio: verbose ? "inherit" : "pipe" })
-      } else {
-        console.log(picocolors.gray("   No unused packages found to remove.\n"))
-      }
     } else {
-      console.log(picocolors.yellow("   [DRY RUN] Would uninstall packages\n"))
+      console.log(picocolors.gray("   No unused packages found to remove.\n"))
     }
 
-    console.log(
-      picocolors.gray(`   Installing: ${packagesToUpdate.join(", ")}\n`),
-    )
+    // Install new packages
+    const installCmd =
+      packageManager === "npm"
+        ? `npm install ${packagesToUpdate.join(" ")}`
+        : packageManager === "yarn"
+          ? `yarn add ${packagesToUpdate.join(" ")}`
+          : `pnpm add ${packagesToUpdate.join(" ")}`
 
     if (!dry) {
-      const installCmd =
-        packageManager === "npm"
-          ? `npm install ${packagesToUpdate.join(" ")}`
-          : packageManager === "yarn"
-            ? `yarn add ${packagesToUpdate.join(" ")}`
-            : `pnpm add ${packagesToUpdate.join(" ")}`
-
-      execSync(installCmd, { stdio: verbose ? "inherit" : "pipe" })
+      const spinner = ora(
+        `Installing packages: ${packagesToUpdate.join(", ")}`,
+      ).start()
+      try {
+        execSync(installCmd, { stdio: "inherit" })
+        spinner.succeed("Packages installed!")
+      } catch (error) {
+        spinner.fail("Failed to install packages")
+        if (verbose && error instanceof Error) console.error(error.message)
+        process.exit(1)
+      }
     } else {
-      console.log(picocolors.yellow("   [DRY RUN] Would install packages\n"))
+      console.log(
+        picocolors.yellow(
+          `[DRY RUN] Would install: ${packagesToUpdate.join(", ")}\n`,
+        ),
+      )
     }
-
-    console.log(picocolors.green("   ✅ Packages updated!\n"))
   } catch (error) {
     console.error(picocolors.red("\n❌ Failed to update packages.\n"))
     if (error instanceof Error && verbose) {
@@ -162,9 +175,7 @@ export async function upgrade(
         console.log(
           picocolors.gray("\n   Running: npx @chakra-ui/cli snippet add\n"),
         )
-        execSync("npx @chakra-ui/cli snippet add", {
-          stdio: "inherit",
-        })
+        execSync("npx @chakra-ui/cli snippet add", { stdio: "inherit" })
         console.log(picocolors.green("\n   ✅ Snippets installed!\n"))
       } else {
         console.log(
