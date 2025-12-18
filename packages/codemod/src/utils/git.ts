@@ -1,6 +1,6 @@
 import { execSync } from "child_process"
 
-export async function isGitClean(): Promise<boolean> {
+export async function isGitClean() {
   try {
     const output = execSync("git status --porcelain", {
       encoding: "utf-8",
@@ -13,7 +13,7 @@ export async function isGitClean(): Promise<boolean> {
   }
 }
 
-export function isGitRepo(): boolean {
+export function isGitRepo() {
   try {
     execSync("git rev-parse --git-dir", {
       stdio: "ignore",

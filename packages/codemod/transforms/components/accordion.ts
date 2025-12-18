@@ -9,9 +9,6 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  /**
-   * Accordion props
-   */
   root
     .find(j.JSXOpeningElement, { name: { name: "Accordion" } })
     .forEach((path) => {
@@ -49,9 +46,6 @@ export default function transformer(
       })
     })
 
-  /**
-   * Rename subcomponents
-   */
   renameComponent(j, root, "AccordionButton", "Accordion.Trigger")
   renameComponent(j, root, "AccordionIcon", "Accordion.ItemIndicator")
 

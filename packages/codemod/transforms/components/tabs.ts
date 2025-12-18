@@ -163,10 +163,6 @@ export default function transformer(
   return root.toSource({ quote: "single" })
 }
 
-/**
- * Helpers
- */
-
 function renameComponent(j: any, root: any, from: string, to: string) {
   const parts = to.split(".")
 

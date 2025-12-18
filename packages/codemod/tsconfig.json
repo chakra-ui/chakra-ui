@@ -1,11 +1,7 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "compilerOptions": {
-    "customConditions": [
-      "dev"
-    ]
+    "customConditions": ["dev"]
   }
 }
