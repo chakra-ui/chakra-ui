@@ -1,3 +1,4 @@
+import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -10,46 +11,56 @@ export interface TransformInfo {
   path: string
 }
 
-export const transforms: Record<string, TransformInfo> = {
-  button: {
-    name: "button",
-    description: "Transform Button component props",
-    path: path.join(__dirname, "../transforms/components/button.ts"),
-  },
-  "rename-boolean-props": {
-    name: "rename-boolean-props",
-    description: "Rename boolean props (isOpen -> open, etc.)",
-    path: path.join(__dirname, "../transforms/props/rename-boolean-props.ts"),
-  },
-  "color-palette": {
-    name: "color-palette",
-    description: "Transform colorScheme to colorPalette",
-    path: path.join(__dirname, "../transforms/props/color-palette.ts"),
-  },
-  "style-props": {
-    name: "style-props",
-    description: "Transform style props (noOfLines -> lineClamp, etc.)",
-    path: path.join(__dirname, "../transforms/props/style-props.ts"),
-  },
-  "gradient-props": {
-    name: "gradient-props",
-    description: "Transform gradient props",
-    path: path.join(__dirname, "../transforms/props/gradient-props.ts"),
-  },
-  "nested-styles": {
-    name: "nested-styles",
-    description: "Transform sx/__css to css prop",
-    path: path.join(__dirname, "../transforms/props/nested-styles.ts"),
-  },
+/**
+ * Root directory where all transforms live
+ * ../transforms/
+ *   ├─ components/
+ *   ├─ props/
+ *   └─ theme/
+ */
+const TRANSFORM_ROOT = path.join(__dirname, "../transforms")
+
+/**
+ * Subdirectories that contain transforms
+ */
+const TRANSFORM_DIRS = ["components", "props", "theme"]
+
+/**
+ * Convert "rename-boolean-props" → "Rename Boolean Props"
+ */
+function toTitle(input: string) {
+  return input.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
 }
 
-export const upgradeTransforms = [
-  "rename-boolean-props",
-  "color-palette",
-  "style-props",
-  "accordion",
-  "alert",
-  "button",
-  "gradient-props",
-  "nested-styles",
-]
+/**
+ * Auto-discovered transform registry
+ */
+export const transforms: Record<string, TransformInfo> = {}
+
+for (const dir of TRANSFORM_DIRS) {
+  const fullDir = path.join(TRANSFORM_ROOT, dir)
+
+  if (!fs.existsSync(fullDir)) continue
+
+  const files = fs.readdirSync(fullDir).filter((file) => file.endsWith(".ts"))
+
+  for (const file of files) {
+    const name = file.replace(/\.ts$/, "")
+    const transformPath = path.join(fullDir, file)
+
+    transforms[name] = {
+      name,
+      description:
+        dir === "components"
+          ? `Transform ${toTitle(name)} component`
+          : `Transform ${toTitle(name)}`,
+      path: transformPath,
+    }
+  }
+}
+
+/**
+ * List of transforms used for upgrades
+ * Automatically kept in sync with the filesystem
+ */
+export const upgradeTransforms = Object.keys(transforms)

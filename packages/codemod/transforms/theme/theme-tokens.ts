@@ -16,7 +16,7 @@ function wrapTokenValues(j: any, obj: Node) {
   })
 }
 
-export default function themeTransformer(file: FileInfo, _api: API) {
+export default function transformer(file: FileInfo, _api: API) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
