@@ -53,10 +53,9 @@ export default function transformer(
 
         // Find divider and spacing props
         let dividerProp: any = null
-        let dividerIndex = -1
         const otherProps: any[] = []
 
-        attributes.forEach((attr, index) => {
+        attributes.forEach((attr) => {
           if (attr.type !== "JSXAttribute") {
             otherProps.push(attr)
             return
@@ -71,7 +70,6 @@ export default function transformer(
             hasChanges = true
           } else if (name === "divider") {
             dividerProp = attr.value
-            dividerIndex = index
             hasChanges = true
           } else {
             otherProps.push(attr)
