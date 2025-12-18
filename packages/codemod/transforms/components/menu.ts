@@ -3,11 +3,6 @@ import type {
   FileInfo,
   JSXAttribute,
   JSXElement,
-  JSXExpressionContainer,
-  JSXFragment,
-  JSXSpreadChild,
-  JSXText,
-  Literal,
   Options,
 } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
@@ -302,18 +297,10 @@ function renameComponent(j: any, root: any, from: string, to: string) {
     })
 }
 
-function isJSXElementNamed(node: JSXChild, name: string): node is JSXElement {
+function isJSXElementNamed(node: any, name: string): node is JSXElement {
   return (
     node.type === "JSXElement" &&
     node.openingElement.name.type === "JSXIdentifier" &&
     node.openingElement.name.name === name
   )
 }
-
-type JSXChild =
-  | JSXElement
-  | JSXText
-  | JSXExpressionContainer
-  | JSXFragment
-  | JSXSpreadChild
-  | Literal
