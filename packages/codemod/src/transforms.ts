@@ -11,25 +11,21 @@ export interface TransformInfo {
   path: string
 }
 
-/**
- * Root directory where all transforms live
- * ../transforms/
- *   ├─ components/
- *   ├─ props/
- *   └─ theme/
- */
 const TRANSFORM_ROOT = path.join(__dirname, "../transforms")
-
-/**
- * Subdirectories that contain transforms
- */
 const TRANSFORM_DIRS = ["components", "props", "theme"]
 
-/**
- * Convert "rename-boolean-props" → "Rename Boolean Props"
- */
 function toTitle(input: string) {
-  return input.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+  const items = input.split("_")
+
+  return items
+    .map((item) => {
+      // Capitalize each dash-separated part
+      return item
+        .split("-")
+        .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+        .join("")
+    })
+    .join(", ")
 }
 
 /**
@@ -48,12 +44,15 @@ for (const dir of TRANSFORM_DIRS) {
     const name = file.replace(/\.ts$/, "")
     const transformPath = path.join(fullDir, file)
 
+    const title = toTitle(name)
+    const hasMultiple = name.includes("_")
+
     transforms[name] = {
       name,
       description:
         dir === "components"
-          ? `Transform ${toTitle(name)} component`
-          : `Transform ${toTitle(name)}`,
+          ? `Transform ${title} ${hasMultiple ? "components" : "component"}`
+          : `Transform ${title}`,
       path: transformPath,
     }
   }

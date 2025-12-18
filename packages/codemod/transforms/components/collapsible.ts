@@ -2,12 +2,7 @@ import type { API, FileInfo, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
 /**
- * Transforms Collapse to Collapsible:
- * Before: <Collapse in={isOpen} animateOpacity>Some content</Collapse>
- * After:
- * <Collapsible.Root open={isOpen}>
- *   <Collapsible.Content>Some content</Collapsible.Content>
- * </Collapsible.Root>
+ * Transforms Collapse to Collapsible
  */
 export default function transformer(
   file: FileInfo,
@@ -25,17 +20,14 @@ export default function transformer(
       const attrs = path.node.openingElement.attributes || []
       const children = path.node.children || []
 
-      // Transform props
       const newAttrs = attrs.flatMap((attr) => {
         if (attr.type !== "JSXAttribute") return attr
 
-        // in -> open
         if (attr.name.name === "in") {
           attr.name.name = "open"
           return attr
         }
 
-        // Remove animateOpacity (use keyframes instead)
         if (attr.name.name === "animateOpacity") {
           return []
         }
@@ -43,7 +35,6 @@ export default function transformer(
         return attr
       })
 
-      // Create Collapsible.Root with Collapsible.Content
       const collapsibleRoot = j.jsxElement(
         j.jsxOpeningElement(
           j.jsxMemberExpression(
