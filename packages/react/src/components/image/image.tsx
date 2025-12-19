@@ -26,8 +26,7 @@ interface ImageOptions {
 export interface ImageProps extends HTMLChakraProps<"img", ImageOptions> {}
 
 /**
- * React component that renders an image with support
- * for fallbacks
+ * React component that renders an image
  *
  * @see Docs https://www.chakra-ui.com/docs/components/image
  */
