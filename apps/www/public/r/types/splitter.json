@@ -1,0 +1,205 @@
+{
+  "Panel": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "ResizeTriggerIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ResizeTriggerSeparator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ResizeTrigger": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "id": {
+        "type": "`${string}:${string}`",
+        "isRequired": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "RootBase": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "panels": {
+        "type": "PanelData[]",
+        "isRequired": true,
+        "description": "The size constraints of the panels."
+      },
+      "defaultSize": {
+        "type": "number[]",
+        "isRequired": false,
+        "description": "The initial size of the panels when rendered.\nUse when you don't need to control the size of the panels."
+      },
+      "id": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The unique identifier of the machine."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  resizeTrigger: (id: string) => string\n  label: (id: string) => string\n  panel: (id: string | number) => string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the splitter. Useful for composition."
+      },
+      "keyboardResizeBy": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The number of pixels to resize the panel by when the keyboard is used."
+      },
+      "nonce": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The nonce for the injected splitter cursor stylesheet."
+      },
+      "onCollapse": {
+        "type": "(details: ExpandCollapseDetails) => void",
+        "isRequired": false,
+        "description": "Function called when a panel is collapsed."
+      },
+      "onExpand": {
+        "type": "(details: ExpandCollapseDetails) => void",
+        "isRequired": false,
+        "description": "Function called when a panel is expanded."
+      },
+      "onResize": {
+        "type": "(details: ResizeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the splitter is resized."
+      },
+      "onResizeEnd": {
+        "type": "(details: ResizeEndDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the splitter resize ends."
+      },
+      "onResizeStart": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the splitter resize starts."
+      },
+      "orientation": {
+        "type": "'horizontal' | 'vertical'",
+        "isRequired": false,
+        "defaultValue": "\"horizontal\"",
+        "description": "The orientation of the splitter. Can be `horizontal` or `vertical`"
+      },
+      "size": {
+        "type": "number[]",
+        "isRequired": false,
+        "description": "The controlled size data of the panels"
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProviderBase": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseSplitterReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}

@@ -1,0 +1,321 @@
+---
+title: Splitter
+description:
+  The Splitter component allows users to resize panels by dragging a handle
+  between them. It supports horizontal, vertical, multi-panel, controlled, and
+  store-driven configurations.
+links:
+  source: components/splitter
+  storybook: components-splitter--basic
+  recipe: splitter
+  ark: https://ark-ui.com/docs/components/splitter
+---
+
+<ExampleTabs name="splitter-basic" />
+
+## Usage
+
+```jsx
+import { Splitter } from "@chakra-ui/react"
+```
+
+```jsx
+<Splitter.Root>
+  <Splitter.Panel />
+  <Splitter.ResizeTrigger>
+    <Splitter.ResizeTriggerSeparator />
+    <Splitter.ResizeTriggerIndicator />
+  </Splitter.ResizeTrigger>
+  <Splitter.Panel />
+</Splitter.Root>
+```
+
+## Shortcuts
+
+The `Splitter` component provides shortcuts for common use cases.
+
+### SplitterResizeTrigger
+
+The `Splitter.ResizeTrigger` renders the `Splitter.ResizeTriggerSeparator` and
+`Splitter.ResizeTriggerIndicator` within it by default.
+
+Explicitly writing this:
+
+```jsx
+<Splitter.ResizeTrigger id="a:b" />
+```
+
+is shorthand for the following if you don't need to customize the separator or
+indicator:
+
+```jsx
+<Splitter.ResizeTrigger id="a:b">
+  <Splitter.ResizeTriggerSeparator />
+  <Splitter.ResizeTriggerIndicator />
+</Splitter.ResizeTrigger>
+```
+
+## Examples
+
+### Controlled
+
+Use `onResize` and `size` props to manage panel sizes programmatically.
+
+```tsx
+<Splitter.Root
+  panels={[{ id: "a" }, { id: "b" }]}
+  size={sizes}
+  onResize={(details) => setSizes(details.size)}
+>
+  {/* ... */}
+</Splitter.Root>
+```
+
+<ExampleTabs name="splitter-controlled" />
+
+### Store
+
+An alternative way to control the splitter is to use the `RootProvider`
+component and the `useSplitter` store hook.
+
+This way you can access the splitter state and methods from outside the
+splitter.
+
+<ExampleTabs name="splitter-with-store" />
+
+### Vertical
+
+Pass the `orientation="vertical"` prop to the `Splitter.Root` component for
+stacked panels that resize vertically.
+
+<ExampleTabs name="splitter-vertical" />
+
+### Responsive Orientation
+
+Use the `useBreakpointValue` hook to change the splitter orientation based on
+screen size. This example shows a vertical splitter on mobile devices and a
+horizontal splitter on larger screens.
+
+<ExampleTabs name="splitter-responsive-orientation" />
+
+### Multiple Panels
+
+Create layouts with more than two resizable panels by passing an array of panels
+to the `panels` prop of the `Splitter.Root` component.
+
+<ExampleTabs name="splitter-multiple-panels" />
+
+### Collapsible Panels
+
+Make the panels collapsible and snapped to a specific size by setting the
+`collapsible` and `collapsedSize` properties on a panel in the `panels` array.
+
+This allows users to snap panels to a defined minimum size.
+
+```tsx
+<Splitter.Root
+  defaultSize={[40, 60]}
+  panels={[
+    { id: "a", collapsible: true, collapsedSize: 5, minSize: 25 },
+    { id: "b", minSize: 50 },
+  ]}
+>
+  {/* ... */}
+</Splitter.Root>
+```
+
+<ExampleTabs name="splitter-collapsible" />
+
+### Min/Max Constraints
+
+Set `minSize` and `maxSize` on panels to constrain their resizable range and
+prevent resizing beyond these boundaries.
+
+<ExampleTabs name="splitter-min-max-constraints" />
+
+### Nested Panels
+
+Here's an example of how to nest splitters inside panels to create more complex
+layouts. Each nested splitter can have its own orientation, sizes, and behaviors
+independent of the parent splitter.
+
+<ExampleTabs name="splitter-nested" />
+
+### Storage
+
+Set a `defaultSize` and pair it with a storage solution, such as
+`useLocalStorage`, to save users’ panel size preferences. This ensures that
+panel layouts persist across sessions. Alternatively, you can use cookies or
+other storage mechanisms depending on your needs.
+
+<ExampleTabs name="splitter-with-storage" />
+
+### Disabled Resize
+
+Pass the `disabled` prop to the `Splitter.ResizeTrigger` to disable resize on a
+panel. This is useful if you want certain panels to remain fixed while allowing
+others to resize.
+
+```tsx
+<Splitter.ResizeTrigger disabled id="a:b" />
+```
+
+<ExampleTabs name="splitter-disabled" />
+
+### Separator Only
+
+Customize the resize trigger to show only the separator without the indicator.
+This creates a minimal, clean appearance while maintaining full resize
+functionality.
+
+```tsx
+<Splitter.ResizeTrigger id="a:b">
+  <Splitter.ResizeTriggerSeparator />
+</Splitter.ResizeTrigger>
+```
+
+<ExampleTabs name="splitter-separator-only" />
+
+### Reset on Double Click
+
+Use `Splitter.Context` to access the splitter context and add a double-click
+handler to the resize trigger. This example resets panel sizes to their default
+values when the resize handle is double-clicked.
+
+<ExampleTabs name="splitter-reset-on-double-click" />
+
+### Resize Events
+
+Track resize events using `onResizeStart`, `onResize`, and `onResizeEnd` props.
+This example logs all resize events with timestamps and panel sizes, useful for
+debugging or implementing custom resize behavior.
+
+<ExampleTabs name="splitter-resize-events" />
+
+### Keyboard Resize
+
+The `Splitter` supports keyboard-based resizing for accessibility and precise
+control:
+
+- Press Tab until the resize handle is focused.
+- Use Arrow keys to resize panels.
+- Hold Shift for larger steps.
+- Press Home / End to jump to minimum or maximum sizes.
+- Control the step size using the `keyboardResizeBy` prop.
+
+<ExampleTabs name="splitter-keyboard-resize" />
+
+### Conditional Rendering
+
+This example shows a horizontal splitter where panels can be shown or hidden
+dynamically. Use the buttons above the splitter to toggle the left and right
+panels - perfect for layouts where certain sections may not always be needed.
+
+The splitter automatically adjusts the remaining panels when one is hidden,
+keeping everything responsive. Initial panel sizes are set with `defaultSize`,
+and `minSize` ensures panels never shrink too small.
+
+<ExampleTabs name="splitter-conditional-rendering" />
+
+### Dynamic Panels
+
+Add or remove panels dynamically while maintaining relative proportions. This
+example demonstrates how to manage panel state and redistribute sizes when
+panels are added or removed.
+
+<ExampleTabs name="splitter-dynamic-panel" />
+
+### Composition
+
+A real-world VS Code-like layout demonstrating nested splitters with different
+orientations, collapsible panels, and integrated code editing.
+
+<ExampleTabs name="splitter-ide-layout" />
+
+## Guides
+
+### Splitter Context
+
+When you need to programmatically control the splitter, you can access the
+splitter context and its methods in two ways:
+
+- using the `Splitter.Context` render prop
+- using the `useSplitterContext` hook
+
+#### Splitter.Context Render Prop
+
+Use `Splitter.Context` as a render prop to access the context within the
+component tree:
+
+```tsx
+<Splitter.Root defaultSize={[50, 50]} panels={[{ id: "a" }, { id: "b" }]}>
+  <Splitter.Panel id="a">Panel A</Splitter.Panel>
+
+  <Splitter.Context>
+    {(context) => (
+      <Splitter.ResizeTrigger
+        id="a:b"
+        onDoubleClick={() => {
+          context.resetSizes()
+        }}
+      />
+    )}
+  </Splitter.Context>
+
+  <Splitter.Panel id="b">Panel B</Splitter.Panel>
+</Splitter.Root>
+```
+
+#### useSplitterContext Hook
+
+Alternatively, use the `useSplitterContext` hook in a child component:
+
+```tsx
+import { useSplitterContext } from "@chakra-ui/react"
+
+const ResetButton = () => {
+  const splitter = useSplitterContext()
+  return <button onClick={() => splitter.resetSizes()}>Reset Sizes</button>
+}
+
+const Demo = () => (
+  <Splitter.Root defaultSize={[50, 50]} panels={[{ id: "a" }, { id: "b" }]}>
+    <Splitter.Panel id="a">Panel A</Splitter.Panel>
+    <Splitter.ResizeTrigger id="a:b" />
+    <Splitter.Panel id="b">
+      <ResetButton />
+    </Splitter.Panel>
+  </Splitter.Root>
+)
+```
+
+The context object (from either method) includes:
+
+- **`resetSizes()`**: Reset all panels to their default sizes
+- **`setSize(sizes)`**: Set panel sizes programmatically
+- **`collapsePanel(id)`**: Collapse a specific panel
+- **`expandPanel(id)`**: Expand a collapsed panel
+- **`isPanelCollapsed(id)`**: Check if a panel is collapsed
+- **`getItems()`**: Get the current items (panels and handles)
+- **`size`**: Current panel sizes array
+
+## Props
+
+### Root
+
+<PropTable component="Splitter" part="Root" />
+
+### Panel
+
+<PropTable component="Splitter" part="Panel" />
+
+### ResizeTrigger
+
+<PropTable component="Splitter" part="ResizeTrigger" />
+
+## Explorer
+
+Explore the `Splitter` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="splitter-explorer-demo" />

@@ -85,6 +85,7 @@ const docsLinks: NavItem = {
             { title: "Scroll Area", url: "scroll-area" },
             { title: "Separator", url: "separator" },
             { title: "SimpleGrid", url: "simple-grid" },
+            { title: "Splitter", url: "splitter", status: "new" },
             { title: "Stack", url: "stack" },
             { title: "Wrap", url: "wrap" },
           ],

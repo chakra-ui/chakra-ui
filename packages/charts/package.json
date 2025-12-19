@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/charts",
-  "version": "3.29.0",
+  "version": "3.30.0",
   "description": "Data visualization components for Chakra UI",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -54,9 +54,9 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "recharts": "^3.3.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "recharts": "^3.4.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=3",

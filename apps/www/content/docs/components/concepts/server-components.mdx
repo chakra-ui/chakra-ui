@@ -4,14 +4,15 @@ description: Learn how to use Chakra UI with React Server Components.
 ---
 
 React Server Components is a new feature in React that allows you to build
-components that render on the server and return UI to the client without hydration.
+components that render on the server and return UI to the client without
+hydration.
 
 Client components are still server-rendered but hydrated on the client. Learn
 more about
 [Server component patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 
 Chakra UI components are client components because they rely on `useState`,
-`useRef` and `useState` which are not available in server components.
+`useRef` and `useContext` which are not available in server components.
 
 :::info
 

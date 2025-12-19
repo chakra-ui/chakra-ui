@@ -116,6 +116,112 @@ const Demo = () => {
 }
 ```
 
+## Customization
+
+:::info
+
+After customizing the recipe, run the CLI typegen command to regenerate the
+types.
+
+```bash
+npx @chakra-ui/cli typegen
+```
+
+:::
+
+### Adding a new variant
+
+Use the `defineRecipe` function to add a new variant to the button. In this
+example, we add a `pill` variant that respects the `colorPalette` prop.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
+
+const buttonRecipe = defineRecipe({
+  variants: {
+    variant: {
+      pill: {
+        borderRadius: "full",
+        px: "6",
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        _hover: {
+          bg: "colorPalette.solid/90",
+        },
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { button: buttonRecipe },
+  },
+})
+```
+
+Then use the `pill` variant in your button:
+
+```tsx
+<Button variant="pill" colorPalette="blue">
+  Pill Button
+</Button>
+```
+
+### Adding a new size
+
+Use the `defineRecipe` function to add a new size to the button.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
+
+const buttonRecipe = defineRecipe({
+  variants: {
+    size: {
+      xxl: {
+        h: "16",
+        minW: "16",
+        textStyle: "xl",
+        px: "8",
+      },
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { button: buttonRecipe },
+  },
+})
+```
+
+Then use the `xxl` size in your button:
+
+```tsx
+<Button size="xxl">XXL Button</Button>
+```
+
+### Changing the default variant
+
+Use the `defaultVariants` property to change the default size or variant.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
+
+const buttonRecipe = defineRecipe({
+  defaultVariants: {
+    size: "lg",
+    variant: "outline",
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { button: buttonRecipe },
+  },
+})
+```
+
 ## Props
 
 <PropTable component="Button" part="Button" />

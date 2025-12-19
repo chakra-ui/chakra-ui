@@ -200,7 +200,8 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLDivElement"
   },
   "Root": {
     "props": {
@@ -228,6 +229,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether to allow typing custom values in the input"
+      },
+      "alwaysSubmitOnEnter": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to always submit on Enter key press, even if popup is open.\nUseful for single-field autocomplete forms where Enter should submit the form."
       },
       "autoFocus": {
         "type": "boolean",
@@ -445,7 +452,7 @@
         "description": "Function to scroll to a specific index"
       },
       "selectionBehavior": {
-        "type": "'replace' | 'clear' | 'preserve'",
+        "type": "'clear' | 'replace' | 'preserve'",
         "isRequired": false,
         "defaultValue": "\"replace\"",
         "description": "The behavior of the combobox input when an item is selected\n\n- `replace`: The selected item string is set as the input value\n- `clear`: The input value is cleared\n- `preserve`: The input value is preserved"

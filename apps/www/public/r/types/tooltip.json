@@ -84,7 +84,7 @@
       "closeDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "500",
+        "defaultValue": "150",
         "description": "The close delay of the tooltip."
       },
       "closeOnClick": {
@@ -166,7 +166,7 @@
       "openDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1000",
+        "defaultValue": "400",
         "description": "The open delay of the tooltip."
       },
       "positioning": {

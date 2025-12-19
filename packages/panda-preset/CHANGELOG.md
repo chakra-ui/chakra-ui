@@ -1,5 +1,36 @@
 # @chakra-ui/panda-preset
 
+## 3.30.0
+
+### Minor Changes
+
+- [`503e11a`](https://github.com/chakra-ui/chakra-ui/commit/503e11ad4b2b5aa6d653e21d96b7f76a72c87d92)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ### Added
+  - **Semantic Tokens**: Add new `border` semantic token to all color palettes
+    (`gray.300`/`gray.700` for gray, `color.500`/`color.400` for colored
+    palettes) to improve outline component appearance
+
+  ### Changed
+  - **Button, Badge, Tag, Checkbox**: Update outline variants to use
+    `colorPalette.border` instead of `colorPalette.muted` or global `border`
+    token for better appearance, especially for non-gray color palettes.
+
+    > **NOTE**: All changes include CSS variable fallbacks to
+    > `colorPalette.muted` for backward compatibility.
+
+### Patch Changes
+
+- [`fd15569`](https://github.com/chakra-ui/chakra-ui/commit/fd155693546b96e390e131c85fac192711d52cef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **HoverCard,
+  Tooltip, Popover**: Fix arrow direction in RTL layouts
+
+- [`81ec4e7`](https://github.com/chakra-ui/chakra-ui/commit/81ec4e781f96ef8051607d6e970ccb61baa1c788)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **TagsInput**:
+  Fix overflow issue where very long tags would overflow the container instead
+  of truncating with ellipsis.
+  - **CheckboxGroup**: Fix type issue where `CheckboxGroupProps` could not be
+    passed to the `CheckboxGroup` component.
+
 ## 3.29.0
 
 ### Minor Changes

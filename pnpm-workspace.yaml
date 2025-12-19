@@ -4,4 +4,6 @@ packages:
   - apps/**
 
 onlyBuiltDependencies:
+  - esbuild
   - sharp
+  - unrs-resolver

@@ -69,6 +69,7 @@ export const ListboxWithDialog = () => {
                     outline="0"
                     width="full"
                     onChange={(e) => filter(e.currentTarget.value)}
+                    autoHighlight
                   />
                 </Dialog.Header>
 

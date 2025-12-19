@@ -43,6 +43,11 @@
         "defaultValue": "solid",
         "isRequired": false,
         "description": "The variant of the component"
+      },
+      "filled": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The filled of the component"
       }
     }
   }

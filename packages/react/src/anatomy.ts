@@ -15,6 +15,7 @@ import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-g
 import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/rating-group"
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
+import { splitterAnatomy as arkSplitterAnatomy } from "@ark-ui/react/splitter"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
@@ -249,6 +250,11 @@ export const codeBlockAnatomy = createAnatomy("code-block", [
   "collapseIndicator",
   "collapseText",
 ])
+
+export const splitterAnatomy = arkSplitterAnatomy.extendWith(
+  "resizeTriggerSeparator",
+  "resizeTriggerIndicator",
+)
 
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
 export { avatarAnatomy } from "@ark-ui/react/avatar"

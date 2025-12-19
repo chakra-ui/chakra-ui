@@ -317,7 +317,10 @@ export type AccordionVariantMap = {
 
 export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger" | "closeTrigger"
 
-export interface ActionBarVariant {}
+export interface ActionBarVariant {
+  /** @default "bottom" */
+  placement?: "bottom" | "bottom-start" | "bottom-end" | undefined
+}
 
 export type ActionBarVariantProps = {
   [K in keyof ActionBarVariant]?: ConditionalValue<ActionBarVariant[K]> | undefined
@@ -427,6 +430,32 @@ export type CardVariantProps = {
 
 export type CardVariantMap = {
   [K in keyof CardVariant]: Array<CardVariant[K]>
+}
+
+// Carousel
+
+export type CarouselSlot =
+  | "root"
+  | "itemGroup"
+  | "item"
+  | "control"
+  | "nextTrigger"
+  | "prevTrigger"
+  | "indicatorGroup"
+  | "indicator"
+  | "autoplayTrigger"
+  | "progressText"
+  | "progressText"
+  | "autoplayIndicator"
+
+export interface CarouselVariant {}
+
+export type CarouselVariantProps = {
+  [K in keyof CarouselVariant]?: ConditionalValue<CarouselVariant[K]> | undefined
+}
+
+export type CarouselVariantMap = {
+  [K in keyof CarouselVariant]: Array<CarouselVariant[K]>
 }
 
 // Checkbox
@@ -1134,6 +1163,20 @@ export type SliderVariantMap = {
   [K in keyof SliderVariant]: Array<SliderVariant[K]>
 }
 
+// Splitter
+
+export type SplitterSlot = "root" | "panel" | "resizeTrigger" | "resizeTriggerIndicator" | "resizeTriggerSeparator" | "resizeTriggerIndicator"
+
+export interface SplitterVariant {}
+
+export type SplitterVariantProps = {
+  [K in keyof SplitterVariant]?: ConditionalValue<SplitterVariant[K]> | undefined
+}
+
+export type SplitterVariantMap = {
+  [K in keyof SplitterVariant]: Array<SplitterVariant[K]>
+}
+
 // Stat
 
 export type StatSlot = "root" | "label" | "helpText" | "valueText" | "valueUnit" | "indicator"
@@ -1428,6 +1471,7 @@ export type TreeViewSlot =
   | "itemText"
   | "label"
   | "nodeCheckbox"
+  | "nodeRenameInput"
   | "root"
   | "tree"
 
@@ -1455,6 +1499,7 @@ export interface ConfigSlotRecipes {
   blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps, BlockquoteVariantMap>
   breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps, BreadcrumbVariantMap>
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps, CardVariantMap>
+  carousel: SystemSlotRecipeFn<CarouselSlot, CarouselVariantProps, CarouselVariantMap>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps, CheckboxVariantMap>
   checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps, CheckboxCardVariantMap>
   codeBlock: SystemSlotRecipeFn<CodeBlockSlot, CodeBlockVariantProps, CodeBlockVariantMap>
@@ -1485,6 +1530,7 @@ export interface ConfigSlotRecipes {
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
+  splitter: SystemSlotRecipeFn<SplitterSlot, SplitterVariantProps, SplitterVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
   steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps, StepsVariantMap>
   switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps, SwitchVariantMap>
@@ -1509,6 +1555,7 @@ export interface ConfigRecipeSlots {
   blockquote: BlockquoteSlot
   breadcrumb: BreadcrumbSlot
   card: CardSlot
+  carousel: CarouselSlot
   checkbox: CheckboxSlot
   checkboxCard: CheckboxCardSlot
   codeBlock: CodeBlockSlot
@@ -1539,6 +1586,7 @@ export interface ConfigRecipeSlots {
   select: SelectSlot
   combobox: ComboboxSlot
   slider: SliderSlot
+  splitter: SplitterSlot
   stat: StatSlot
   steps: StepsSlot
   switch: SwitchSlot

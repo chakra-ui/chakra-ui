@@ -38,6 +38,11 @@
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"
+      },
+      "filled": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The filled of the component"
       }
     }
   }

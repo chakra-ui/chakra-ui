@@ -8,6 +8,7 @@ export type {
 } from "./create-slot-recipe-context"
 export type {
   ConditionalValue,
+  CssProperties,
   GlobalStyleObject,
   SystemStyleObject,
   CssKeyframes,

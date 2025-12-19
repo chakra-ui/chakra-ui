@@ -33,7 +33,7 @@ export const tooltipSlotRecipe = defineSlotRecipe({
     },
     arrowTip: {
       borderTopWidth: "1px",
-      borderInlineStartWidth: "1px",
+      borderLeftWidth: "1px",
       borderColor: "var(--tooltip-bg)",
     },
   },

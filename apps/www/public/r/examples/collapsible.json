@@ -12,6 +12,31 @@
       "importPath": "import { Collapsible } from \"@chakra-ui/react\""
     },
     {
+      "name": "collapsible-controlled",
+      "content": "\"use client\"\nexport const CollapsibleControlled = () => {\n  const [open, setOpen] = useState(false)\n\n  return (\n    <Stack gap=\"4\">\n      <Box fontWeight=\"medium\">Status: {open ? \"Open\" : \"Closed\"}</Box>\n      <Collapsible.Root open={open} onOpenChange={(e) => setOpen(e.open)}>\n        <Collapsible.Trigger paddingY=\"3\">\n          Toggle Collapsible\n        </Collapsible.Trigger>\n        <Collapsible.Content>\n          <Box padding=\"4\" borderWidth=\"1px\">\n            This collapsible is controlled by external state. You can open and\n            close it using the buttons above or by clicking the trigger.\n          </Box>\n        </Collapsible.Content>\n      </Collapsible.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "collapsible-initial-open",
+      "content": "export const CollapsibleInitialOpen = () => (\n  <Collapsible.Root defaultOpen>\n    <Collapsible.Trigger\n      paddingY=\"3\"\n      display=\"flex\"\n      gap=\"2\"\n      alignItems=\"center\"\n    >\n      <Collapsible.Indicator\n        transition=\"transform 0.2s\"\n        _open={{ transform: \"rotate(90deg)\" }}\n      >\n        <LuChevronRight />\n      </Collapsible.Indicator>\n      Toggle\n    </Collapsible.Trigger>\n    <Collapsible.Content>\n      <Stack padding=\"4\" borderWidth=\"1px\">\n        <LoremIpsum p={2} />\n      </Stack>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Collapsible, Stack } from \"@chakra-ui/react\"",
+        "import { LuChevronRight } from \"react-icons/lu\"",
+        "import LoremIpsum from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-lorem-ipsum"
+      ]
+    },
+    {
       "name": "collapsible-lazy-mounted",
       "content": "export const CollapsibleLazyMounted = () => (\n  <Collapsible.Root unmountOnExit>\n    <Collapsible.Trigger paddingY=\"3\">\n      Toggle Collapse (Unmount on exit)\n    </Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        If you inspect the DOM, you'll notice that the content is unmounted when\n        collapsed. This is useful for performance reasons when you have a lot of\n        collapsible content.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
       "hasSnippet": false,
@@ -19,6 +44,43 @@
         "import { Box, Collapsible } from \"@chakra-ui/react\""
       ],
       "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "collapsible-partial-height",
+      "content": "\"use client\"\nexport const CollapsiblePartialHeight = () => (\n  <Collapsible.Root collapsedHeight=\"100px\">\n    <Collapsible.Content\n      _closed={{\n        shadow: \"inset 0 -12px 12px -12px var(--shadow-color)\",\n        shadowColor: \"blackAlpha.500\",\n      }}\n    >\n      <Stack padding=\"4\" borderWidth=\"1px\" rounded=\"l2\">\n        <LoremIpsum p={1} />\n        <LoremIpsum p={1} />\n      </Stack>\n    </Collapsible.Content>\n    <Collapsible.Trigger asChild mt=\"4\">\n      <Button variant=\"outline\" size=\"sm\">\n        <Collapsible.Context>\n          {(api) => (api.open ? \"Show Less\" : \"Show More\")}\n        </Collapsible.Context>\n        <Collapsible.Indicator\n          transition=\"transform 0.2s\"\n          _open={{ transform: \"rotate(180deg)\" }}\n        >\n          <LuChevronDown />\n        </Collapsible.Indicator>\n      </Button>\n    </Collapsible.Trigger>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Collapsible, Stack } from \"@chakra-ui/react\"",
+        "import { LuChevronDown } from \"react-icons/lu\"",
+        "import { LoremIpsum } from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons",
+        "react-lorem-ipsum"
+      ]
+    },
+    {
+      "name": "collapsible-with-disabled",
+      "content": "export const CollapsibleWithDisabled = () => (\n  <Collapsible.Root disabled>\n    <Collapsible.Trigger _disabled={{ opacity: \"0.5\" }}>\n      Toggle (Disabled)\n    </Collapsible.Trigger>\n    <Collapsible.Content>\n      <Box padding=\"4\" borderWidth=\"1px\">\n        This content cannot be toggled because the collapsible is disabled using\n        the <code>disabled</code> prop.\n      </Box>\n    </Collapsible.Content>\n  </Collapsible.Root>\n)\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Collapsible } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "collapsible-with-store",
+      "content": "\"use client\"\nexport const CollapsibleWithStore = () => {\n  const collapsible = useCollapsible()\n\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <Box fontWeight=\"medium\">\n        State: {collapsible.visible ? \"Expanded\" : \"Collapsed\"}\n      </Box>\n\n      <Button\n        size=\"sm\"\n        variant=\"subtle\"\n        onClick={() => collapsible.setOpen(!collapsible.open)}\n      >\n        Toggle\n        <Icon>{collapsible.open ? <LuChevronRight /> : <LuChevronDown />}</Icon>\n      </Button>\n\n      <Collapsible.RootProvider value={collapsible}>\n        <Collapsible.Content>\n          <Box padding=\"4\" borderWidth=\"1px\" rounded=\"l3\">\n            Using the <code>useCollapsible</code> hook and{\" \"}\n            <code>RootProvider</code> allows you to access the collapsible store\n            and control the state from anywhere in your component.\n          </Box>\n        </Collapsible.Content>\n      </Collapsible.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Button,\n  Collapsible,\n  Icon,\n  Stack,\n  useCollapsible,\n} from \"@chakra-ui/react\"",
+        "import { LuChevronDown, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Collapsible } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
     }
   ]
 }

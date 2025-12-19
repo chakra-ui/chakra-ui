@@ -13,11 +13,9 @@ export const actionBarSlotRecipe = defineSlotRecipe({
     positioner: {
       position: "fixed",
       display: "flex",
-      justifyContent: "center",
       pointerEvents: "none",
       insetInline: "0",
-      top: "unset",
-      bottom: "calc(env(safe-area-inset-bottom) + 20px)",
+      "--action-bar-offset": "spacing.4",
     },
     content: {
       bg: "bg.panel",
@@ -30,14 +28,6 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       px: "3",
       pointerEvents: "auto",
       translate: "calc(-1 * var(--scrollbar-width) / 2) 0px",
-      _open: {
-        animationName: "slide-from-bottom, fade-in",
-        animationDuration: "moderate",
-      },
-      _closed: {
-        animationName: "slide-to-bottom, fade-out",
-        animationDuration: "faster",
-      },
     },
     separator: {
       width: "1px",
@@ -56,5 +46,65 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       borderWidth: "1px",
       borderStyle: "dashed",
     },
+  },
+  variants: {
+    placement: {
+      bottom: {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "center",
+        },
+        content: {
+          _open: {
+            animationName: "slide-from-bottom, fade-in",
+            animationDuration: "moderate",
+          },
+          _closed: {
+            animationName: "slide-to-bottom, fade-out",
+            animationDuration: "faster",
+          },
+        },
+      },
+      "bottom-start": {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "flex-start",
+          ps: "var(--action-bar-offset)",
+        },
+        content: {
+          _open: {
+            animationName: "slide-from-bottom, fade-in",
+            animationDuration: "moderate",
+          },
+          _closed: {
+            animationName: "slide-to-bottom, fade-out",
+            animationDuration: "faster",
+          },
+        },
+      },
+      "bottom-end": {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "flex-end",
+          pe: "var(--action-bar-offset)",
+        },
+        content: {
+          _open: {
+            animationName: "slide-from-bottom, fade-in",
+            animationDuration: "moderate",
+          },
+          _closed: {
+            animationName: "slide-to-bottom, fade-out",
+            animationDuration: "faster",
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    placement: "bottom",
   },
 })

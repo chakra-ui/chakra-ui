@@ -1,0 +1,65 @@
+{
+  "name": "overlay",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "overlay-basic",
+      "content": "\"use client\"\n\ninterface DialogProps {\n  title: string\n  description?: string\n  content?: React.ReactNode\n}\n\nconst dialog = createOverlay<DialogProps>((props) => {\n  const { title, description, content, ...rest } = props\n  return (\n    <Dialog.Root {...rest}>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            {title && (\n              <Dialog.Header>\n                <Dialog.Title>{title}</Dialog.Title>\n              </Dialog.Header>\n            )}\n            <Dialog.Body spaceY=\"4\">\n              {description && (\n                <Dialog.Description>{description}</Dialog.Description>\n              )}\n              {content}\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n})\n\nexport const OverlayBasic = () => {\n  return (\n    <>\n      <Button\n        onClick={() => {\n          dialog.open(\"a\", {\n            title: \"Dialog Title\",\n            description: \"Dialog Description\",\n          })\n        }}\n      >\n        Open Modal\n      </Button>\n      <dialog.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Portal, createOverlay } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "overlay-with-alert",
+      "content": "\"use client\"\n\ninterface AlertProps {\n  title?: string\n  content?: React.ReactNode\n  onConfirm?: () => void\n}\n\nconst alert = createOverlay<AlertProps>((props) => {\n  const { onConfirm, content, title = \"Are you sure?\", ...rest } = props\n  const cancelRef = useRef<HTMLButtonElement | null>(null)\n  return (\n    <Dialog.Root\n      {...rest}\n      role=\"alertdialog\"\n      initialFocusEl={() => cancelRef.current}\n    >\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>{title}</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body spaceY=\"4\">{content}</Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild ref={cancelRef}>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button colorPalette=\"red\" onClick={onConfirm}>\n                Delete\n              </Button>\n            </Dialog.Footer>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n})\n\nexport const OverlayWithAlert = () => {\n  return (\n    <>\n      <Button\n        onClick={async () => {\n          alert.open(\"a\", {\n            onConfirm() {\n              console.log(\"confirmed\")\n              alert.close(\"a\")\n            },\n            content:\n              \"Remove this item will clear all the data and cannot be undone.\",\n          })\n        }}\n      >\n        Open Modal\n      </Button>\n      <alert.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { createOverlay } from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "overlay-with-drawer",
+      "content": "\"use client\"\n\ninterface DialogProps {\n  title: string\n  description?: string\n  content?: React.ReactNode\n  placement?: Drawer.RootProps[\"placement\"]\n}\n\nconst drawer = createOverlay<DialogProps>((props) => {\n  const { title, description, content, ...rest } = props\n  return (\n    <Drawer.Root {...rest}>\n      <Portal>\n        <Drawer.Backdrop />\n        <Drawer.Positioner>\n          <Drawer.Content>\n            {title && (\n              <Drawer.Header>\n                <Drawer.Title>{title}</Drawer.Title>\n              </Drawer.Header>\n            )}\n            <Drawer.Body spaceY=\"4\">\n              {description && (\n                <Drawer.Description>{description}</Drawer.Description>\n              )}\n              {content}\n            </Drawer.Body>\n          </Drawer.Content>\n        </Drawer.Positioner>\n      </Portal>\n    </Drawer.Root>\n  )\n})\n\nexport const OverlayWithDrawer = () => {\n  return (\n    <>\n      <Button\n        onClick={() => {\n          drawer.open(\"a\", {\n            title: \"Drawer Title\",\n            description: \"Drawer Description\",\n            placement: \"end\",\n          })\n        }}\n      >\n        Open Drawer\n      </Button>\n      <drawer.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Drawer, Portal, createOverlay } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "overlay-with-form",
+      "content": "\"use client\"\n\ninterface ContactFormProps {\n  title?: string\n}\n\nconst contactDialog = createOverlay<ContactFormProps>((props) => {\n  const { title, ...rest } = props\n  const [name, setName] = useState(\"\")\n\n  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n\n    alert(`Hello ${name}!`)\n\n    // Close dialog using injected `onOpenChange` prop\n    props.onOpenChange?.({ open: false })\n\n    setName(\"\")\n  }\n\n  return (\n    <Dialog.Root {...rest}>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            {title && (\n              <Dialog.Header>\n                <Dialog.Title>{title}</Dialog.Title>\n              </Dialog.Header>\n            )}\n            <Dialog.Body>\n              <form onSubmit={handleSubmit}>\n                <Stack gap=\"4\">\n                  <Input\n                    value={name}\n                    onChange={(e) => setName(e.target.value)}\n                    placeholder=\"Enter your name\"\n                  />\n                  <Button type=\"submit\">Submit</Button>\n                </Stack>\n              </form>\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n})\n\nexport const OverlayWithForm = () => {\n  return (\n    <>\n      <Button\n        onClick={() => {\n          contactDialog.open(\"form\", { title: \"Simple Form\" })\n        }}\n      >\n        Open Form\n      </Button>\n      <contactDialog.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Dialog,\n  Input,\n  Portal,\n  Stack,\n  createOverlay,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "overlay-with-return-value",
+      "content": "\"use client\"\n\ninterface DialogProps {\n  title: string\n  description: string\n  content?: React.ReactNode\n}\n\nconst dialog = createOverlay<DialogProps>((props) => {\n  const { title, description, content, ...rest } = props\n  return (\n    <Dialog.Root {...rest}>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            {title && (\n              <Dialog.Header>\n                <Dialog.Title>{title}</Dialog.Title>\n              </Dialog.Header>\n            )}\n            <Dialog.Body spaceY=\"4\">\n              {description && (\n                <Dialog.Description>{description}</Dialog.Description>\n              )}\n              {content}\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n})\n\nexport const OverlayWithReturnValue = () => {\n  return (\n    <>\n      <Button\n        onClick={async () => {\n          const returnValue = await dialog.open(\"a\", {\n            title: \"Dialog Title\",\n            description: \"Dialog Description\",\n            content: (\n              <Button\n                onClick={() => {\n                  const returnValue = { message: \"Welcome\" }\n                  dialog.close(\"a\", returnValue)\n                }}\n              >\n                Close\n              </Button>\n            ),\n          })\n\n          await dialog.waitForExit(\"a\")\n\n          dialog.open(\"b\", {\n            title: returnValue.message,\n            description: \"Next Dialog Description\",\n          })\n        }}\n      >\n        Open Modal\n      </Button>\n      <dialog.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { createOverlay } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "overlay-with-update",
+      "content": "\"use client\"\n\ninterface DialogProps {\n  title: string\n  description?: string\n  content?: React.ReactNode\n}\n\nconst dialog = createOverlay<DialogProps>((props) => {\n  const { title, description, content, ...rest } = props\n  return (\n    <Dialog.Root {...rest}>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            {title && (\n              <Dialog.Header>\n                <Dialog.Title>{title}</Dialog.Title>\n              </Dialog.Header>\n            )}\n            <Dialog.Body spaceY=\"4\">\n              {description && (\n                <Dialog.Description>{description}</Dialog.Description>\n              )}\n              {content}\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n})\n\nexport const OverlayWithUpdate = () => {\n  return (\n    <>\n      <Button\n        onClick={async () => {\n          dialog.open(\"a\", {\n            title: \"Initial Modal Title\",\n            content: (\n              <Box textStyle=\"sm\">This text will update in 2 seconds.</Box>\n            ),\n          })\n\n          setTimeout(() => {\n            dialog.update(\"a\", {\n              title: \"Updated Modal Title\",\n              content: (\n                <Box textStyle=\"sm\" color=\"fg.muted\">\n                  This is the updated content of the modal.\n                </Box>\n              ),\n            })\n          }, 2000)\n        }}\n      >\n        Open Modal\n      </Button>\n      <dialog.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Dialog, Portal } from \"@chakra-ui/react\"",
+        "import { createOverlay } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Overlay } from \"@chakra-ui/react\""
+    }
+  ]
+}

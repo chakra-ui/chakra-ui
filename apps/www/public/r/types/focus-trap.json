@@ -10,6 +10,41 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the focus trap is disabled."
+      },
+      "fallbackFocus": {
+        "type": "FocusTarget",
+        "isRequired": false,
+        "description": "By default, an error will be thrown if the focus trap contains no\nelements in its tab order. With this option you can specify a\nfallback element to programmatically receive focus if no other\ntabbable elements are found. For example, you may want a popover's\n`<div>` to receive focus if the popover's content includes no\ntabbable elements. *Make sure the fallback element has a negative\n`tabindex` so it can be programmatically focused.\n\nNOTE: If `initialFocus` is `false` (or a function that returns `false`),\nthis function will not be called when the trap is activated, and no element\nwill be initially focused. This function may still be called while the trap\nis active if things change such that there are no longer any tabbable nodes\nin the trap."
+      },
+      "initialFocus": {
+        "type": "VoidFunction | FocusTargetOrFalse",
+        "isRequired": false,
+        "description": "By default, when a focus trap is activated the first element in the\nfocus trap's tab order will receive focus. With this option you can\nspecify a different element to receive that initial focus, or use `false`\nfor no initially focused element at all.\n\nNOTE: Setting this option to `false` (or a function that returns `false`)\nwill prevent the `fallbackFocus` option from being used.\n\nSetting this option to `undefined` (or a function that returns `undefined`)\nwill result in the default behavior."
+      },
+      "onActivate": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "A function that will be called **before** sending focus to the\ntarget element upon activation."
+      },
+      "onDeactivate": {
+        "type": "VoidFunction",
+        "isRequired": false,
+        "description": "A function that will be called **before** sending focus to the\ntrigger element upon deactivation."
+      },
+      "returnFocusOnDeactivate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Default: `true`. If `false`, when the trap is deactivated,\nfocus will *not* return to the element that had focus before activation."
+      },
+      "setReturnFocus": {
+        "type": "type ONLY_FOR_FORMAT =\n  | FocusTargetValueOrFalse\n  | ((nodeFocusedBeforeActivation: HTMLElement | SVGElement) => FocusTargetValueOrFalse)",
+        "isRequired": false,
+        "description": "By default, focus trap on deactivation will return to the element\nthat was focused before activation."
       }
     }
   }

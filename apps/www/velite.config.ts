@@ -84,18 +84,6 @@ const docs = defineCollection({
     }),
 })
 
-const notes = defineCollection({
-  name: "Notes",
-  pattern: "content/notes/**/*.mdx",
-  schema: s.object({
-    title: s.string(),
-    description: s.string(),
-    metadata: s.metadata(),
-    content: s.markdown(),
-    code: s.mdx(),
-  }),
-})
-
 const showcases = defineCollection({
   name: "Showcases",
   pattern: "content/showcases.json",
@@ -176,7 +164,6 @@ export default defineConfig({
   collections: {
     docs,
     showcases,
-    notes,
     blogs,
     guides,
     guideCollections,

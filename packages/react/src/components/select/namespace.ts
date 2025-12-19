@@ -43,3 +43,9 @@ export type {
   SelectValueTextProps as ValueTextProps,
   SelectRootComponent as RootComponent,
 } from "./select"
+
+export type {
+  SelectInteractOutsideEvent as InteractOutsideEvent,
+  SelectFocusOutsideEvent as FocusOutsideEvent,
+  SelectPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/select"
