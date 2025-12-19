@@ -1,0 +1,228 @@
+---
+title: Tour
+description:
+  A guided tour that helps users understand the interface through a series of
+  interactive steps highlighting key features.
+links:
+  source: components/tour
+  storybook: components-tour--basic
+  recipe: tour
+  ark: https://ark-ui.com/docs/components/tour
+---
+
+<ExampleTabs name="tour-basic" />
+
+## Usage
+
+```jsx
+import { Tour, useTour } from "@chakra-ui/react"
+```
+
+```jsx
+
+const tour = useTour({ steps })
+
+<Tour.Root tour={tour}>
+  <Tour.Backdrop />
+  <Tour.Spotlight />
+  <Tour.Positioner>
+    <Tour.Content>
+      <Tour.Arrow>
+        <Tour.ArrowTip />
+      </Tour.Arrow>
+      <Tour.CloseTrigger />
+      <Tour.ProgressText />
+      <Tour.Title />
+      <Tour.Description />
+      <Tour.Control>
+        <Tour.ActionTriggers />
+      </Tour.Control>
+    </Tour.Content>
+  </Tour.Positioner>
+</Tour.Root>
+```
+
+## Shortcuts
+
+TourActionTriggers renders all action buttons for the current step from its
+`actions` array. Each action can be a built-in string
+(`"next" | "prev" | "dismiss"`) or a custom handler.
+
+This works (manual mapping):
+
+```jsx
+<Tour.Context>
+  {(api) =>
+    api.step?.actions?.map((action) => (
+      <Tour.ActionTrigger key={action.label} action={action}>
+        {action.label}
+      </Tour.ActionTrigger>
+    ))
+  }
+</Tour.Context>
+```
+
+This is more concise:
+
+```jsx
+<Tour.ActionTriggers />
+```
+
+## Examples
+
+### Types
+
+You can specify the type of each step using the `type` property. Depending on
+the type, the tour step behaves differently:
+
+- `dialog` – modal-like step without a target
+- `tooltip` – points to a specific target element
+- `wait` – pauses the tour until a certain condition is met
+- `floating` – a step that floats without targeting an element
+
+<ExampleTabs name="tour-types" />
+
+:::note
+
+The `type` property is optional. If no target is provided, `dialog` is used by
+default. Use `tooltip` for contextual highlights, `wait` to pause, and
+`floating` for custom floating steps.
+
+:::
+
+### Placement
+
+Control where the tooltip appears relative to its target using the `placement`
+option per step.
+
+<ExampleTabs name="tour-with-placements" />
+
+### Without Arrow
+
+Hide the tour arrow by setting `arrow: false` on a step.
+
+<ExampleTabs name="tour-without-arrow" />
+
+### Without Backdrop
+
+Disable the dimmed background by setting `backdrop: false` on a step.
+
+<ExampleTabs name="tour-without-backdrop" />
+
+### Wait Step
+
+Pause the tour until a condition is met (e.g., wait for a user click) using a
+`type: "wait"` step.
+
+<ExampleTabs name="tour-wait-step" />
+
+### Keyboard Navigation
+
+Enable keyboard navigation to allow users to navigate between steps using arrow
+keys (Left and Right). Pass `keyboardNavigation: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-with-keyboard" />
+
+### Close on Escape
+
+Close the tour when the user presses the Escape key. Pass `closeOnEscape: true`
+to the `useTour` hook.
+
+<ExampleTabs name="tour-close-on-escape" />
+
+### Close on Interact Outside
+
+Close the tour when the user clicks or interacts outside the tour content. Pass
+`closeOnInteractOutside: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-close-on-interact-outside" />
+
+### Prevent Interaction
+
+Prevent interaction with the rest of the page while the tour is active. Pass
+`preventInteraction: true` to the `useTour` hook.
+
+<ExampleTabs name="tour-prevent-interaction" />
+
+### Spotlight Offset
+
+Customize the spacing between the spotlight and target by setting the
+`spotlightOffset` property. Pass an object with `x` and `y` values to adjust the
+padding.
+
+<ExampleTabs name="tour-spotlight-offset" />
+
+### Images
+
+You can display custom images for each step in the tour by using the `meta`
+property of a step.
+
+<ExampleTabs name="tour-with-images" />
+:::info
+
+The `meta` property is a great way to add extra metadata to a step, such as
+images, icons, or any custom data you might need.
+
+:::
+
+### Routing
+
+You can create a multi-page guided tour that persists across route changes using
+React Router. Each step can navigate to a different page before showing itself,
+making it easy to guide users through complex flows spanning multiple routes.
+
+<ExampleTabs name="tour-with-routing" />
+
+## Props
+
+### Root
+
+<PropTable component="Tour" part="Root" />
+
+### Control
+
+<PropTable component="Tour" part="Control" />
+
+### Content
+
+<PropTable component="Tour" part="Content" />
+
+### Positioner
+
+<PropTable component="Tour" part="Positioner" />
+
+### Title
+
+<PropTable component="Tour" part="Title" />
+
+### ActionTrigger
+
+<PropTable component="Tour" part="ActionTrigger" />
+
+### CloseTrigger
+
+<PropTable component="Tour" part="CloseTrigger" />
+
+### ProgressText
+
+<PropTable component="Tour" part="ProgressText" />
+
+### Description
+
+<PropTable component="Tour" part="Description" />
+
+### Arrow
+
+<PropTable component="Tour" part="Arrow" />
+
+### ArrowTip
+
+<PropTable component="Tour" part="ArrowTip" />
+
+### Backdrop
+
+<PropTable component="Tour" part="Backdrop" />
+
+### Spotlight
+
+<PropTable component="Tour" part="Spotlight" />

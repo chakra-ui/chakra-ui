@@ -251,6 +251,11 @@ export const codeBlockAnatomy = createAnatomy("code-block", [
   "collapseText",
 ])
 
+export const splitterAnatomy = arkSplitterAnatomy.extendWith(
+  "resizeTriggerSeparator",
+  "resizeTriggerIndicator",
+)
+
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
@@ -264,10 +269,7 @@ export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 export { tagsInputAnatomy } from "@ark-ui/react/tags-input"
-export const splitterAnatomy = arkSplitterAnatomy.extendWith(
-  "resizeTriggerSeparator",
-  "resizeTriggerIndicator",
-)
+export { tourAnatomy } from "@ark-ui/react/tour"
 export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
