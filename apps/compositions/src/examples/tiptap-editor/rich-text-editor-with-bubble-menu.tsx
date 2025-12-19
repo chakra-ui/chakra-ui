@@ -1,3 +1,5 @@
+"use client"
+
 import { HStack, Text } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import { BubbleMenu } from "@tiptap/react/menus"

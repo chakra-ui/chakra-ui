@@ -344,6 +344,21 @@
   },
   {
     "type": "composition",
+    "id": "rich-text-editor",
+    "file": "rich-text-editor.tsx",
+    "component": "RichTextEditor",
+    "npmDependencies": [
+      "@tiptap/react",
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "compositions/ui/popover",
+      "compositions/ui/select",
+      "compositions/ui/tooltip"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "segmented-control",
     "file": "segmented-control.tsx",
     "component": "SegmentedControl",
