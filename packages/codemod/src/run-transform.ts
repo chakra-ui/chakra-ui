@@ -20,7 +20,6 @@ export async function runTransform(
 ) {
   const { dry = false, print = false, force = false } = options
 
-  // Check if transform exists
   const transform = transforms[transformName]
   if (!transform) {
     console.error(
@@ -37,13 +36,11 @@ export async function runTransform(
     process.exit(1)
   }
 
-  // Check if path exists
   if (!fs.existsSync(targetPath)) {
     console.error(picocolors.red(`\n❌ Path "${targetPath}" does not exist.\n`))
     process.exit(1)
   }
 
-  // Git safety check
   if (!force && !dry) {
     const gitClean = await isGitClean()
     if (!gitClean) {

@@ -17,7 +17,7 @@ export async function run() {
   program
     .name("@chakra-ui/codemod")
     .description("Codemods for migrating Chakra UI codebases")
-    .version(packageJson)
+    .version(packageJson.version)
 
   program
     .command("upgrade [revision]")
@@ -29,8 +29,8 @@ export async function run() {
     .action(upgrade)
 
   program
-    .argument("<transform>", "Name of transform to run")
-    .argument("<path>", "Files or directory to transform")
+    .command("transform <transform> <path>")
+    .description("Run a specific transform on files or directory")
     .option("--dry", "Do a dry-run, no code will be edited")
     .option("--print", "Print the changed output for comparison")
     .option("-f, --force", "Bypass Git safety checks and forcibly run codemods")

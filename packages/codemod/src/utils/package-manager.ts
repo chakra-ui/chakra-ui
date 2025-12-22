@@ -4,7 +4,6 @@ import path from "path"
 export type PackageManager = "npm" | "yarn" | "pnpm" | "bun"
 
 export function getPackageManager(): PackageManager {
-  // Check for lock files
   if (fs.existsSync(path.join(process.cwd(), "pnpm-lock.yaml"))) {
     return "pnpm"
   }
@@ -21,7 +20,6 @@ export function getPackageManager(): PackageManager {
     return "npm"
   }
 
-  // Check npm_config_user_agent
   const userAgent = process.env.npm_config_user_agent
 
   if (userAgent) {

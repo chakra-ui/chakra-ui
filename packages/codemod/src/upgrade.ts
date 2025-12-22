@@ -94,7 +94,9 @@ export async function upgrade(
           ? `npm uninstall ${installedPackages.join(" ")}`
           : packageManager === "yarn"
             ? `yarn remove ${installedPackages.join(" ")}`
-            : `pnpm remove ${installedPackages.join(" ")}`
+            : packageManager === "bun"
+              ? `bun remove ${installedPackages.join(" ")}`
+              : `pnpm remove ${installedPackages.join(" ")}`
 
       if (!dry) {
         const spinner = ora(
@@ -125,7 +127,9 @@ export async function upgrade(
         ? `npm install ${packagesToUpdate.join(" ")}`
         : packageManager === "yarn"
           ? `yarn add ${packagesToUpdate.join(" ")}`
-          : `pnpm add ${packagesToUpdate.join(" ")}`
+          : packageManager === "bun"
+            ? `bun add ${packagesToUpdate.join(" ")}`
+            : `pnpm add ${packagesToUpdate.join(" ")}`
 
     if (!dry) {
       const spinner = ora(
@@ -155,7 +159,7 @@ export async function upgrade(
   }
 
   // Install snippets
-  console.log(picocolors.blue("📦 Installing Chakra UI snippets...\n"))
+  console.log(picocolors.blue("\n📦 Installing Chakra UI snippets...\n"))
   console.log(
     picocolors.gray(
       "   Snippets provide pre-built component compositions to speed up development.\n",
@@ -169,13 +173,23 @@ export async function upgrade(
     initial: true,
   })
 
+  // Handle cancelled prompt (Ctrl+C)
+  if (snippetResponse.installSnippets === undefined) {
+    console.log(picocolors.gray("\nUpgrade cancelled.\n"))
+    process.exit(0)
+  }
+
   if (snippetResponse.installSnippets) {
     try {
       if (!dry) {
         console.log(
           picocolors.gray("\n   Running: npx @chakra-ui/cli snippet add\n"),
         )
-        execSync("npx @chakra-ui/cli snippet add", { stdio: "inherit" })
+        // Use 'ignore' for stdio to prevent output interference with subsequent prompts
+        execSync("npx @chakra-ui/cli snippet add", {
+          stdio: ["inherit", "pipe", "pipe"],
+          encoding: "utf8",
+        })
         console.log(picocolors.green("\n   ✅ Snippets installed!\n"))
       } else {
         console.log(
@@ -184,13 +198,16 @@ export async function upgrade(
           ),
         )
       }
-    } catch {
+    } catch (error) {
       console.error(
         picocolors.yellow(
           "\n⚠️  Snippet installation failed. You can run it manually later:\n",
         ),
       )
       console.log(picocolors.gray("   npx @chakra-ui/cli snippet add\n"))
+      if (verbose && error instanceof Error) {
+        console.error(picocolors.gray(error.message))
+      }
     }
   } else {
     console.log(
@@ -199,6 +216,9 @@ export async function upgrade(
       ),
     )
   }
+
+  // Small delay to ensure stdio is fully flushed before next prompt
+  await new Promise((resolve) => setTimeout(resolve, 100))
 
   // Ask which transforms to run
   console.log(picocolors.blue("🔄 Running codemods...\n"))
@@ -213,7 +233,14 @@ export async function upgrade(
       selected: true,
     })),
     hint: "Space to select, Enter to confirm",
+    instructions: false,
   })
+
+  // Handle cancelled prompt (Ctrl+C) or no selection
+  if (response.transforms === undefined) {
+    console.log(picocolors.gray("\nUpgrade cancelled.\n"))
+    process.exit(0)
+  }
 
   if (!response.transforms || response.transforms.length === 0) {
     console.log(

@@ -11,7 +11,7 @@ export interface TransformInfo {
   path: string
 }
 
-const TRANSFORM_ROOT = path.join(__dirname, "../transforms")
+const TRANSFORM_ROOT = path.join(__dirname, "transforms")
 const TRANSFORM_DIRS = ["components", "props", "theme"]
 
 function toTitle(input: string) {
@@ -36,12 +36,15 @@ export const transforms: Record<string, TransformInfo> = {}
 for (const dir of TRANSFORM_DIRS) {
   const fullDir = path.join(TRANSFORM_ROOT, dir)
 
-  if (!fs.existsSync(fullDir)) continue
+  if (!fs.existsSync(fullDir)) {
+    console.warn(`Transform directory not found: ${fullDir}`)
+    continue
+  }
 
-  const files = fs.readdirSync(fullDir).filter((file) => file.endsWith(".ts"))
+  const files = fs.readdirSync(fullDir).filter((file) => file.endsWith(".js"))
 
   for (const file of files) {
-    const name = file.replace(/\.ts$/, "")
+    const name = file.replace(/\.js$/, "")
     const transformPath = path.join(fullDir, file)
 
     const title = toTitle(name)

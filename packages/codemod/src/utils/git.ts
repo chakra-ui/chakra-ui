@@ -8,7 +8,6 @@ export async function isGitClean() {
     })
     return output.trim() === ""
   } catch (error) {
-    // If git is not available or not a git repository, return true
     return true
   }
 }
