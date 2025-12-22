@@ -6,15 +6,6 @@ import type {
 } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
-/**
- * Converts Chakra nested styles from sx/__css to css with ampersand (&) prefix
- *
- * Example:
- * <Box sx={{ svg: { color: 'red.500' } }} />
- * =>
- * <Box css={{ '& svg': { color: 'red.500' } }} />
- */
-
 export default function transformer(
   file: FileInfo,
   _api: API,

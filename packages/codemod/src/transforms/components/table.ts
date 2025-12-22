@@ -9,9 +9,6 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  /**
-   * Root + structural renames
-   */
   renameComponent(j, root, "Table", "Table.Root")
   renameComponent(j, root, "Thead", "Table.Header")
   renameComponent(j, root, "Tbody", "Table.Body")
@@ -22,10 +19,6 @@ export default function transformer(
   renameComponent(j, root, "TableCaption", "Table.Caption")
   renameComponent(j, root, "TableContainer", "Table.ScrollArea")
 
-  /**
-   * isNumeric → textAlign="end"
-   * Applies to ColumnHeader + Cell
-   */
   root
     .find(j.JSXOpeningElement)
     .filter((path) => {

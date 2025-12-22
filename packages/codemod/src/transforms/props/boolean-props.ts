@@ -15,6 +15,8 @@ const BOOLEAN_PROP_MAP: Record<string, string> = {
   isCentered: "placement",
 }
 
+const CHAKRA_SOURCES = ["@chakra-ui/react", "@/components/ui"]
+
 export default function transform(
   file: FileInfo,
   _api: API,
@@ -23,81 +25,94 @@ export default function transform(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
+  // 1. Identify local names for Chakra components
+  const chakraLocalNames = new Set<string>()
+  root.find(j.ImportDeclaration).forEach((path) => {
+    const source = path.node.source.value
+    if (
+      typeof source === "string" &&
+      CHAKRA_SOURCES.some((s) => source.includes(s))
+    ) {
+      path.node.specifiers?.forEach((spec) => {
+        if (spec.local) chakraLocalNames.add(spec.local.name as string)
+      })
+    }
+  })
+
+  if (chakraLocalNames.size === 0) return file.source
+
   /**
-   * JSX: <Component isOpen /> → <Component open />
+   * Helper to rename object properties (for spreads or style objects)
    */
-  root.find(j.JSXAttribute).forEach((path) => {
-    const name = path.node.name
+  const renameObjectProps = (objectNode: any) => {
+    if (objectNode.type !== "ObjectExpression") return
 
-    if (name.type !== "JSXIdentifier") return
+    objectNode.properties.forEach((prop: any) => {
+      if (prop.type === "Property" && !prop.computed) {
+        const keyName =
+          prop.key.type === "Identifier" ? prop.key.name : prop.key.value
+        const newName = BOOLEAN_PROP_MAP[keyName]
 
-    const attrName = path.node.name.name
-
-    // Handle isCentered specially
-    if (attrName === "isCentered") {
-      path.node.name.name = "placement"
-      // If value is true/truthy, set to "center"
-      if (
-        path.node.value?.type === "JSXExpressionContainer" &&
-        path.node.value.expression.type === "Literal" &&
-        path.node.value.expression.value === true
-      ) {
-        path.node.value = j.literal("center")
-      } else if (!path.node.value) {
-        path.node.value = j.literal("center")
+        if (newName) {
+          if (prop.key.type === "Identifier") {
+            prop.key.name = newName
+          } else {
+            prop.key.value = newName
+          }
+          // Fix shorthand { isActive } -> { 'data-active': isActive }
+          if (prop.shorthand) prop.shorthand = false
+        }
       }
-      return
-    }
-
-    const newName = BOOLEAN_PROP_MAP[name.name]
-    if (!newName) return
-
-    name.name = newName
-  })
+    })
+  }
 
   /**
-   * Objects: { isOpen: true } → { open: true }
-   *          { isOpen } → { open }
+   * 2. Transform JSX
    */
-  root.find(j.Property).forEach((path) => {
-    const { key, computed } = path.node
-    if (computed) return
+  root.find(j.JSXOpeningElement).forEach((path) => {
+    const nameNode = path.node.name
+    let baseName = ""
 
-    if (key.type === "Identifier") {
-      const newName = BOOLEAN_PROP_MAP[key.name]
-      if (!newName) return
-
-      key.name = newName
+    if (nameNode.type === "JSXIdentifier") {
+      baseName = nameNode.name
+    } else if (nameNode.type === "JSXMemberExpression") {
+      let current: any = nameNode
+      while (current.object) current = current.object
+      baseName = current.name
     }
 
-    if (key.type === "Literal" && typeof key.value === "string") {
-      const newName = BOOLEAN_PROP_MAP[key.value]
-      if (!newName) return
+    if (!chakraLocalNames.has(baseName)) return
 
-      key.value = newName
-    }
-  })
+    // Handle standard attributes
+    j(path)
+      .find(j.JSXAttribute)
+      .forEach((attrPath) => {
+        const name = attrPath.node.name
+        if (name.type !== "JSXIdentifier") return
 
-  /**
-   * TypeScript types & interfaces:
-   * interface Props { isDisabled?: boolean }
-   */
-  root.find(j.TSPropertySignature).forEach((path) => {
-    const key = path.node.key
+        if (name.name === "isCentered") {
+          name.name = "placement"
+          if (
+            !attrPath.node.value ||
+            (attrPath.node.value.type === "JSXExpressionContainer" &&
+              (attrPath.node.value.expression as any).value === true)
+          ) {
+            attrPath.node.value = j.literal("center")
+          }
+        } else if (BOOLEAN_PROP_MAP[name.name]) {
+          name.name = BOOLEAN_PROP_MAP[name.name]
+        }
+      })
 
-    if (key.type === "Identifier") {
-      const newName = BOOLEAN_PROP_MAP[key.name]
-      if (!newName) return
-
-      key.name = newName
-    }
-
-    if (key.type === "Literal" && typeof key.value === "string") {
-      const newName = BOOLEAN_PROP_MAP[key.value]
-      if (!newName) return
-
-      key.value = newName
-    }
+    // Handle spreads: <Button {...{ isActive: true }} />
+    j(path)
+      .find(j.JSXSpreadAttribute)
+      .forEach((spreadPath) => {
+        const arg = spreadPath.node.argument
+        if (arg.type === "ObjectExpression") {
+          renameObjectProps(arg)
+        }
+      })
   })
 
   return root.toSource({ quote: "single" })

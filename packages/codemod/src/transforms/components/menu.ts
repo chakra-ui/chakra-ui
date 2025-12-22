@@ -15,14 +15,8 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  /**
-   * Menu → Menu.Root
-   */
   renameComponent(j, root, "Menu", "Menu.Root")
 
-  /**
-   * isLazy → lazyMount + unmountOnExit
-   */
   root
     .find(j.JSXOpeningElement, {
       name: {
@@ -49,9 +43,6 @@ export default function transformer(
       })
     })
 
-  /**
-   * MenuButton → Menu.Trigger asChild
-   */
   root
     .find(j.JSXElement, {
       openingElement: {
@@ -82,9 +73,6 @@ export default function transformer(
       )
     })
 
-  /**
-   * MenuList → Portal > Menu.Positioner > Menu.Content
-   */
   root
     .find(j.JSXElement, {
       openingElement: {
@@ -139,11 +127,6 @@ export default function transformer(
       )
     })
 
-  /**
-   * MenuItem → Menu.Item
-   * onClick → onSelect
-   * add value
-   */
   let itemIndex = 0
 
   root
@@ -187,9 +170,6 @@ export default function transformer(
       )
     })
 
-  /**
-   * MenuOptionGroup → Radio / Checkbox groups
-   */
   root
     .find(j.JSXElement, {
       openingElement: {

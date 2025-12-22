@@ -109,7 +109,6 @@ export default function transformer(
       })
   })
 
-  // Update imports
   root
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/react" },

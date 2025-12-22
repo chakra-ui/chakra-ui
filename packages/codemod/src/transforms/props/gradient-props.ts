@@ -1,18 +1,6 @@
 import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
-/**
- * Converts Chakra UI bgGradient shorthand into:
- * - gradient
- * - gradientFrom
- * - gradientTo
- *
- * Example:
- * <Box bgGradient="linear(to-r, red.200, pink.500)" />
- * =>
- * <Box gradient="to-r" gradientFrom="red.200" gradientTo="pink.500" />
- */
-
 export default function transformer(
   file: FileInfo,
   _api: API,
@@ -29,7 +17,6 @@ export default function transformer(
 
       const value = attr.value.value as string
 
-      // Match "linear(to-r, red.200, pink.500)" or similar
       const match = value.match(/(\w+)\(([^,]+),\s*([^,]+),\s*([^)]+)\)/)
       if (!match) return
 
@@ -47,7 +34,6 @@ export default function transformer(
         j.jsxAttribute(j.jsxIdentifier("gradientTo"), j.literal(to.trim())),
       ]
 
-      // Remove old bgGradient with properly typed filter
       jsxElement.attributes = jsxElement.attributes.filter(
         (attrNode: JSXAttribute): attrNode is JSXAttribute => attrNode !== attr,
       )
