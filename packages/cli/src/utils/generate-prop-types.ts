@@ -6,7 +6,7 @@ export async function generatePropTypes(sys: SystemContext) {
 
   const result = [
     `
-  import type { CssProperties } from "../css.types"
+  import type { CssProperties } from "@chakra-ui/react"
   import type { Tokens } from "./token.gen"
   `,
   ]
