@@ -23,10 +23,10 @@ import {
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
 } from "compositions/ui/rich-text-editor"
 import { Tag } from "compositions/ui/tag"
 import { forwardRef, useImperativeHandle } from "react"
@@ -160,29 +160,29 @@ export const RichTextEditorWithMentions = () => {
         borderColor="border"
         flexWrap="wrap"
       >
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <Bold />
           <Italic />
           <Strike />
           <Code />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <H1 />
           <H2 />
           <H3 />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <BulletList />
           <OrderedList />
           <Blockquote />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <Undo />
           <Redo />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
       </HStack>
 
       <RichTextEditorContent minH="400px" p="4" />
@@ -309,35 +309,35 @@ const MentionList = forwardRef<MentionListRef, MentionListProps>(
 
 MentionList.displayName = "MentionList"
 
-const Bold = createButtonControl({
+const Bold = createBooleanControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => editor.chain().focus().toggleBold().run(),
   getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
 })
 
-const Italic = createButtonControl({
+const Italic = createBooleanControl({
   label: "Italic",
   icon: LuItalic,
   command: (editor) => editor.chain().focus().toggleItalic().run(),
   getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
 })
 
-const Strike = createButtonControl({
+const Strike = createBooleanControl({
   label: "Strike",
   icon: LuStrikethrough,
   command: (editor) => editor.chain().focus().toggleStrike().run(),
   getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
 })
 
-const Code = createButtonControl({
+const Code = createBooleanControl({
   label: "Code",
   icon: LuCode,
   command: (editor) => editor.chain().focus().toggleCode().run(),
   getVariant: (editor) => (editor.isActive("code") ? "subtle" : "ghost"),
 })
 
-const H1 = createButtonControl({
+const H1 = createBooleanControl({
   label: "H1",
   icon: LuHeading1,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
@@ -345,7 +345,7 @@ const H1 = createButtonControl({
     editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
 })
 
-const H2 = createButtonControl({
+const H2 = createBooleanControl({
   label: "H2",
   icon: LuHeading2,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
@@ -353,7 +353,7 @@ const H2 = createButtonControl({
     editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
 })
 
-const H3 = createButtonControl({
+const H3 = createBooleanControl({
   label: "H3",
   icon: LuHeading3,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
@@ -361,35 +361,35 @@ const H3 = createButtonControl({
     editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
 })
 
-const BulletList = createButtonControl({
+const BulletList = createBooleanControl({
   label: "Bullet List",
   icon: LuList,
   command: (editor) => editor.chain().focus().toggleBulletList().run(),
   getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
 })
 
-const OrderedList = createButtonControl({
+const OrderedList = createBooleanControl({
   label: "Ordered List",
   icon: LuListOrdered,
   command: (editor) => editor.chain().focus().toggleOrderedList().run(),
   getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
 })
 
-const Blockquote = createButtonControl({
+const Blockquote = createBooleanControl({
   label: "Blockquote",
   icon: LuQuote,
   command: (editor) => editor.chain().focus().toggleBlockquote().run(),
   getVariant: (editor) => (editor.isActive("blockquote") ? "subtle" : "ghost"),
 })
 
-const Undo = createButtonControl({
+const Undo = createBooleanControl({
   label: "Undo",
   icon: LuRotateCcw,
   command: (editor) => editor.chain().focus().undo().run(),
   isDisabled: (editor) => !editor.can().undo(),
 })
 
-const Redo = createButtonControl({
+const Redo = createBooleanControl({
   label: "Redo",
   icon: LuRotateCw,
   command: (editor) => editor.chain().focus().redo().run(),

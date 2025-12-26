@@ -10,7 +10,8 @@ import {
   Popover,
   Portal,
   Select,
-  Separator,
+  StackSeparator,
+  VStack,
   createListCollection,
   defineStyle,
 } from "@chakra-ui/react"
@@ -72,7 +73,6 @@ const proseMirrorBaseCss = defineStyle({
       borderStartWidth: "4px",
       borderStartColor: "border",
       paddingStart: "4",
-      fontStyle: "italic",
     },
     "& ul": { paddingInlineStart: "4", listStyleType: "disc" },
     "& ol": { paddingInlineStart: "4", listStyleType: "decimal" },
@@ -112,12 +112,16 @@ export interface RichTextEditorProps extends BoxProps {
   disabled?: boolean
 }
 
-export function RichTextEditorRoot(props: RichTextEditorProps) {
+export const RichTextEditorRoot = React.forwardRef<
+  HTMLDivElement,
+  RichTextEditorProps
+>(function RichTextEditorRoot(props, ref) {
   const { editor, children, css, disabled, ...rest } = props
   const contextValue = React.useMemo(() => ({ editor }), [editor])
   return (
     <RichTextEditorContext.Provider value={contextValue}>
       <Box
+        ref={ref}
         data-disabled={disabled || undefined}
         css={[proseMirrorBaseCss, css]}
         {...rest}
@@ -126,7 +130,44 @@ export function RichTextEditorRoot(props: RichTextEditorProps) {
       </Box>
     </RichTextEditorContext.Provider>
   )
+})
+
+export interface RichTextEditorToolbarProps extends StackProps {
+  sticky?: boolean
+  stickyOffset?: string
 }
+
+export const RichTextEditorToolbar = React.forwardRef<
+  HTMLDivElement,
+  RichTextEditorToolbarProps
+>(function RichTextEditorToolbar(props, ref) {
+  const { sticky, stickyOffset = "0px", ...rest } = props
+  return (
+    <HStack
+      ref={ref}
+      py="1.5"
+      px="3"
+      roundedTop="l2"
+      borderBottomWidth="1px"
+      bg="bg"
+      flexWrap="wrap"
+      data-sticky={sticky || undefined}
+      separator={<StackSeparator h="5" alignSelf="center" />}
+      {...rest}
+      style={{
+        ["--sticky-offset" as string]: stickyOffset,
+        ...rest.style,
+      }}
+      css={{
+        "&[data-sticky]": {
+          position: "sticky",
+          top: "var(--sticky-offset, 0px)",
+          zIndex: "1",
+        },
+      }}
+    />
+  )
+})
 
 export interface RichTextEditorContentProps extends BoxProps {}
 
@@ -143,34 +184,19 @@ export const RichTextEditorContent = React.forwardRef<
   )
 })
 
-export interface RichTextEditorButtonGroupProps extends StackProps {
-  noSeparator?: boolean
-}
+export interface RichTextEditorControlGroupProps extends StackProps {}
 
-export const RichTextEditorButtonGroup = React.forwardRef<
+export const RichTextEditorControlGroup = React.forwardRef<
   HTMLDivElement,
-  RichTextEditorButtonGroupProps
+  RichTextEditorControlGroupProps
 >(function RichTextEditorButtonGroup(props, ref) {
-  const { children, noSeparator = false, ...rest } = props
-  if (!children) return null
-  return (
-    <HStack ref={ref} {...rest}>
-      {children}
-      {!noSeparator && <Separator orientation="vertical" alignSelf="stretch" />}
-    </HStack>
-  )
+  return <HStack ref={ref} gap="1" {...props} />
 })
 
 export interface BaseControlConfig {
   label: string
   icon?: React.ElementType
   isDisabled?: (editor: Editor) => boolean
-}
-
-export interface ButtonControlConfig extends BaseControlConfig {
-  icon: React.ElementType
-  command: (editor: Editor) => void
-  getVariant?: (editor: Editor) => IconButtonProps["variant"]
 }
 
 export interface RichTextEditorControlProps
@@ -186,20 +212,26 @@ export const RichTextEditorButtonControl = React.forwardRef<
   const { icon, label, ...rest } = props
   return (
     <Tooltip content={label}>
-      <IconButton ref={ref} size="xs" aria-label={label} {...rest}>
+      <IconButton ref={ref} size="2xs" aria-label={label} {...rest}>
         {icon}
       </IconButton>
     </Tooltip>
   )
 })
 
-///////////////////// Button Control /////////////////////
+///////////////////// Boolean Control /////////////////////
 
-export function createButtonControl(config: ButtonControlConfig) {
+export interface BooleanControlConfig extends BaseControlConfig {
+  icon: React.ElementType
+  command: (editor: Editor) => void
+  getVariant?: (editor: Editor) => IconButtonProps["variant"]
+}
+
+export function createBooleanControl(config: BooleanControlConfig) {
   const { label, icon: Icon, isDisabled, command, getVariant } = config
 
-  const ButtonControl = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-    function ButtonControl(props, ref) {
+  const BooleanControl = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+    function BooleanControl(props, ref) {
       const { editor } = useRichTextEditorContext()
       if (!editor) return null
       const disabled = isDisabled ? isDisabled(editor) : false
@@ -218,8 +250,8 @@ export function createButtonControl(config: ButtonControlConfig) {
     },
   )
 
-  ButtonControl.displayName = `ButtonControl(${label})`
-  return ButtonControl
+  BooleanControl.displayName = `BooleanControl(${label})`
+  return BooleanControl
 }
 
 ///////////////////// Select Control (with options) /////////////////////
@@ -232,6 +264,7 @@ export interface SelectOption {
 
 export interface SelectControlConfig extends BaseControlConfig {
   options: SelectOption[]
+  width?: Select.RootProps["width"]
   getValue: (editor: Editor) => string
   command: (editor: Editor, value: string) => void
   placeholder?: string
@@ -242,6 +275,7 @@ export function createSelectControl(config: SelectControlConfig) {
   const {
     label,
     options,
+    width,
     getValue,
     command,
     placeholder = "Select",
@@ -267,38 +301,38 @@ export function createSelectControl(config: SelectControlConfig) {
         ? renderValue(currentValue, currentOption)
         : currentOption?.label || placeholder
 
-    const collection = createListCollection({
-      items: options.map((o) => ({
-        label: o.label,
-        value: o.value,
-        icon: o.icon,
-      })),
-    })
+    const collection = createListCollection({ items: options })
 
     return (
       <Select.Root
+        width={width}
         {...props}
+        size="xs"
+        variant="ghost"
         collection={collection}
         value={[currentValue]}
         onValueChange={(details) => command(editor, details.value[0])}
         disabled={disabled}
-        ids={{ control: controlId }}
+        ids={{ trigger: controlId }}
+        positioning={{ sameWidth: false }}
+        css={{
+          "--select-trigger-height": "sizes.6",
+          "--select-trigger-padding-x": "spacing.2",
+        }}
       >
         <Tooltip content={label} ids={{ trigger: controlId }}>
-          <Select.Control>
-            <Select.Trigger ref={ref}>{displayValue}</Select.Trigger>
-            <Select.IndicatorGroup>
-              <Select.Indicator />
-            </Select.IndicatorGroup>
-          </Select.Control>
+          <Select.Trigger ref={ref}>
+            <Select.ValueText>{displayValue}</Select.ValueText>
+            <Select.Indicator />
+          </Select.Trigger>
         </Tooltip>
         <Portal>
           <Select.Positioner>
-            <Select.Content>
+            <Select.Content minW="20">
               {options.map((opt) => (
                 <Select.Item key={opt.value} item={opt.value}>
                   {opt.icon && (
-                    <Box as="span" mr="2">
+                    <Box as="span" marginEnd="2">
                       {opt.icon}
                     </Box>
                   )}
@@ -327,7 +361,6 @@ export interface SwatchControlConfig extends BaseControlConfig {
   swatches: SwatchOption[]
   getValue: (editor: Editor) => string
   command: (editor: Editor, value: string) => void
-  columns?: number
   showRemove?: boolean
   onRemove?: (editor: Editor) => void
 }
@@ -338,7 +371,6 @@ export function createSwatchControl(config: SwatchControlConfig) {
     swatches,
     getValue,
     command,
-    columns = 7,
     showRemove = false,
     onRemove,
     isDisabled,
@@ -349,60 +381,54 @@ export function createSwatchControl(config: SwatchControlConfig) {
     function SwatchControl(props, ref) {
       const { editor } = useRichTextEditorContext()
       const [open, setOpen] = React.useState(false)
+      const triggerId = React.useId()
+
       if (!editor) return null
       const currentValue = getValue(editor)
       const disabled = isDisabled ? isDisabled(editor) : false
 
       return (
-        <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
-          <Popover.Trigger asChild>
-            <Box as="span">
-              <RichTextEditorButtonControl
+        <Popover.Root
+          open={open}
+          onOpenChange={(e) => setOpen(e.open)}
+          ids={{ trigger: triggerId }}
+          size="sm"
+        >
+          <Tooltip content={label} ids={{ trigger: triggerId }}>
+            <Popover.Trigger asChild>
+              <IconButton
                 ref={ref}
-                label={label}
-                icon={
-                  Icon ? (
-                    <Icon />
-                  ) : (
-                    <Box
-                      style={{ backgroundColor: currentValue }}
-                      w="100%"
-                      h="100%"
-                    />
-                  )
-                }
+                size="2xs"
+                variant="subtle"
+                aria-label={label}
                 disabled={disabled}
                 {...props}
-                style={{
-                  backgroundColor: currentValue,
-                  ...props.style,
-                }}
-              />
-            </Box>
-          </Popover.Trigger>
+              >
+                <VStack gap="1px">
+                  {Icon && <Icon />}
+                  <ColorSwatch value={currentValue} h="4px" w="100%" />
+                </VStack>
+              </IconButton>
+            </Popover.Trigger>
+          </Tooltip>
 
           <Portal>
             <Popover.Positioner>
-              <Popover.Content>
+              <Popover.Content width="auto">
                 <Popover.Body>
-                  <Box
-                    display="grid"
-                    gridTemplateColumns={`repeat(${columns}, 1fr)`}
-                    gap="1"
-                  >
-                    {swatches.map((s) => (
-                      <Tooltip key={s.value} content={s.label || s.value}>
-                        <ColorSwatch
-                          cursor="button"
-                          value={s.color}
-                          onClick={() => {
-                            command(editor, s.value)
-                            setOpen(false)
-                          }}
-                        />
-                      </Tooltip>
+                  <HStack wrap="wrap">
+                    {swatches.map((swatch) => (
+                      <ColorSwatch
+                        key={swatch.value}
+                        cursor="button"
+                        value={swatch.color}
+                        onClick={() => {
+                          command(editor, swatch.value)
+                          setOpen(false)
+                        }}
+                      />
                     ))}
-                  </Box>
+                  </HStack>
                   {showRemove && onRemove && (
                     <HStack justify="flex-end" mt="2">
                       <Popover.CloseTrigger

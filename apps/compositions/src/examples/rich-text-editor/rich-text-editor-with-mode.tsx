@@ -4,10 +4,10 @@ import { Box, HStack } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
   createSelectControl,
 } from "compositions/ui/rich-text-editor"
 import { useState } from "react"
@@ -45,20 +45,20 @@ export const RichTextEditorWithMode = () => {
         justifyContent="space-between"
       >
         {mode === "edit" ? (
-          <RichTextEditorButtonGroup>
+          <RichTextEditorControlGroup>
             <Bold />
-          </RichTextEditorButtonGroup>
+          </RichTextEditorControlGroup>
         ) : (
           <Box />
         )}
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <ModePicker
             width="120px"
             currentMode={mode}
             onModeChange={handleModeChange}
           />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
       </HStack>
 
       <RichTextEditorContent />
@@ -66,7 +66,7 @@ export const RichTextEditorWithMode = () => {
   )
 }
 
-const Bold = createButtonControl({
+const Bold = createBooleanControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => {

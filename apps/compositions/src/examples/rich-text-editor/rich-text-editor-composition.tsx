@@ -45,11 +45,11 @@ import {
 } from "compositions/ui/popover"
 import {
   RichTextEditorButtonControl,
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   type RichTextEditorControlProps,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
   createSelectControl,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
@@ -390,44 +390,44 @@ const Toolbar = () => {
           <LuSearch />
         </IconButton>
 
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <UndoBtn />
           <RedoBtn />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <FontFamilySelector width="140px" />
           <FontSize width="80px" />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <BoldBtn />
           <ItalicBtn />
           <UnderlineBtn />
           <StrikeBtn />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <H1Btn />
           <H2Btn />
           <H3Btn />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <AlignLeftBtn />
           <AlignCenterBtn />
           <AlignRightBtn />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <BulletListBtn />
           <OrderedListBtn />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
 
-        <RichTextEditorButtonGroup noSeparator>
+        <RichTextEditorControlGroup noSeparator>
           <LinkControl />
           <InsertImageControl />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
       </HStack>
     </Box>
   )
@@ -748,35 +748,35 @@ function InsertImageControl() {
   )
 }
 
-const BoldBtn = createButtonControl({
+const BoldBtn = createBooleanControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => editor.chain().focus().toggleBold().run(),
   getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
 })
 
-const ItalicBtn = createButtonControl({
+const ItalicBtn = createBooleanControl({
   label: "Italic",
   icon: LuItalic,
   command: (editor) => editor.chain().focus().toggleItalic().run(),
   getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
 })
 
-const UnderlineBtn = createButtonControl({
+const UnderlineBtn = createBooleanControl({
   label: "Underline",
   icon: LuUnderline,
   command: (editor) => editor.chain().focus().toggleUnderline().run(),
   getVariant: (editor) => (editor.isActive("underline") ? "subtle" : "ghost"),
 })
 
-const StrikeBtn = createButtonControl({
+const StrikeBtn = createBooleanControl({
   label: "Strike",
   icon: LuStrikethrough,
   command: (editor) => editor.chain().focus().toggleStrike().run(),
   getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
 })
 
-const H1Btn = createButtonControl({
+const H1Btn = createBooleanControl({
   label: "H1",
   icon: LuHeading1,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
@@ -784,7 +784,7 @@ const H1Btn = createButtonControl({
     editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
 })
 
-const H2Btn = createButtonControl({
+const H2Btn = createBooleanControl({
   label: "H2",
   icon: LuHeading2,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
@@ -792,7 +792,7 @@ const H2Btn = createButtonControl({
     editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
 })
 
-const H3Btn = createButtonControl({
+const H3Btn = createBooleanControl({
   label: "H3",
   icon: LuHeading3,
   command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
@@ -800,21 +800,21 @@ const H3Btn = createButtonControl({
     editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
 })
 
-const BulletListBtn = createButtonControl({
+const BulletListBtn = createBooleanControl({
   label: "Bullet List",
   icon: LuList,
   command: (editor) => editor.chain().focus().toggleBulletList().run(),
   getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
 })
 
-const OrderedListBtn = createButtonControl({
+const OrderedListBtn = createBooleanControl({
   label: "Ordered List",
   icon: LuListOrdered,
   command: (editor) => editor.chain().focus().toggleOrderedList().run(),
   getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
 })
 
-const AlignLeftBtn = createButtonControl({
+const AlignLeftBtn = createBooleanControl({
   label: "Align Left",
   icon: LuAlignLeft,
   command: (editor) => editor.chain().focus().setTextAlign("left").run(),
@@ -822,7 +822,7 @@ const AlignLeftBtn = createButtonControl({
     editor.isActive({ textAlign: "left" }) ? "subtle" : "ghost",
 })
 
-const AlignCenterBtn = createButtonControl({
+const AlignCenterBtn = createBooleanControl({
   label: "Align Center",
   icon: LuAlignCenter,
   command: (editor) => editor.chain().focus().setTextAlign("center").run(),
@@ -830,7 +830,7 @@ const AlignCenterBtn = createButtonControl({
     editor.isActive({ textAlign: "center" }) ? "subtle" : "ghost",
 })
 
-const AlignRightBtn = createButtonControl({
+const AlignRightBtn = createBooleanControl({
   label: "Align Right",
   icon: LuAlignRight,
   command: (editor) => editor.chain().focus().setTextAlign("right").run(),
@@ -838,14 +838,14 @@ const AlignRightBtn = createButtonControl({
     editor.isActive({ textAlign: "right" }) ? "subtle" : "ghost",
 })
 
-const UndoBtn = createButtonControl({
+const UndoBtn = createBooleanControl({
   label: "Undo",
   icon: LuRotateCcw,
   command: (editor) => editor.chain().focus().undo().run(),
   isDisabled: (editor) => !editor.can().undo(),
 })
 
-const RedoBtn = createButtonControl({
+const RedoBtn = createBooleanControl({
   label: "Redo",
   icon: LuRotateCw,
   command: (editor) => editor.chain().focus().redo().run(),

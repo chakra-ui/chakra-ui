@@ -6,18 +6,11 @@ import { CharacterCount } from "@tiptap/extensions/character-count"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
 } from "compositions/ui/rich-text-editor"
-import {
-  LuBold,
-  LuItalic,
-  LuList,
-  LuListOrdered,
-  LuStrikethrough,
-} from "react-icons/lu"
+import * as Control from "compositions/ui/rich-text-editor-control"
 
 export const RichTextEditorWithCharacterCount = () => {
   const editor = useEditor({
@@ -45,67 +38,33 @@ export const RichTextEditorWithCharacterCount = () => {
   return (
     <RichTextEditorRoot editor={editor}>
       <Box>
-        <HStack gap={1} border="1px solid" borderColor="border" p="3">
-          <RichTextEditorButtonGroup>
-            <Bold />
-            <Italic />
-            <Strikethrough />
-          </RichTextEditorButtonGroup>
+        <HStack gap="1" borderWidth="1px" p="2">
+          <RichTextEditorControlGroup>
+            <Control.Bold />
+            <Control.Italic />
+            <Control.Strike />
+          </RichTextEditorControlGroup>
 
-          <RichTextEditorButtonGroup>
-            <BulletList />
-            <OrderedList />
-          </RichTextEditorButtonGroup>
+          <RichTextEditorControlGroup>
+            <Control.BulletList />
+            <Control.OrderedList />
+          </RichTextEditorControlGroup>
         </HStack>
       </Box>
 
-      <RichTextEditorContent
-        minH="400px"
-        p={6}
-        borderX="1px solid"
-        borderColor="border"
-      />
+      <RichTextEditorContent minH="400px" borderXWidth="1px" />
 
-      <Box border="1px solid" borderColor="border" p={3} textAlign="right">
-        <Text>
-          Characters: {charCount} | Words: {wordCount}
-        </Text>
-      </Box>
+      <HStack
+        borderWidth="1px"
+        p="3"
+        textAlign="end"
+        textStyle="xs"
+        justify="flex-end"
+        gap="4"
+      >
+        <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
+        <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>
+      </HStack>
     </RichTextEditorRoot>
   )
 }
-
-const Bold = createButtonControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "solid" : "ghost"),
-})
-
-const Italic = createButtonControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "solid" : "ghost"),
-})
-
-const Strikethrough = createButtonControl({
-  label: "Strikethrough",
-  icon: LuStrikethrough,
-  command: (editor) => editor.chain().focus().toggleStrike().run(),
-  getVariant: (editor) => (editor.isActive("strike") ? "solid" : "ghost"),
-})
-
-const BulletList = createButtonControl({
-  label: "Bullet List",
-  icon: LuList,
-  command: (editor) => editor.chain().focus().toggleBulletList().run(),
-  getVariant: (editor) => (editor.isActive("bulletList") ? "solid" : "ghost"),
-})
-
-const OrderedList = createButtonControl({
-  label: "Ordered List",
-  icon: LuListOrdered,
-  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-  getVariant: (editor) => (editor.isActive("orderedList") ? "solid" : "ghost"),
-})

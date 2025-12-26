@@ -6,10 +6,10 @@ import TaskList from "@tiptap/extension-task-list"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
 } from "compositions/ui/rich-text-editor"
 import { LuArrowLeft, LuArrowRight, LuListChecks, LuPlus } from "react-icons/lu"
 
@@ -39,37 +39,37 @@ export const RichTextEditorWithTask = () => {
       rounded="md"
     >
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
-        <RichTextEditorButtonGroup>
-          <TaskListButton />
-          <IndentTaskButton />
-          <OutdentTaskButton />
-          <AddTaskButton />
-        </RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
+          <ToggleTaskList />
+          <IndentTask />
+          <OutdentTask />
+          <AddTask />
+        </RichTextEditorControlGroup>
       </HStack>
       <RichTextEditorContent p="4" minH="300px" bg="white" roundedBottom="md" />
     </RichTextEditorRoot>
   )
 }
 
-const TaskListButton = createButtonControl({
+const ToggleTaskList = createBooleanControl({
   label: "Toggle Task List",
   icon: LuListChecks,
   command: (editor) => editor.chain().focus().toggleTaskList().run(),
 })
 
-const IndentTaskButton = createButtonControl({
+const IndentTask = createBooleanControl({
   label: "Indent Task",
   icon: LuArrowRight,
   command: (editor) => editor.chain().focus().sinkListItem("taskItem").run(),
 })
 
-const OutdentTaskButton = createButtonControl({
+const OutdentTask = createBooleanControl({
   label: "Outdent Task",
   icon: LuArrowLeft,
   command: (editor) => editor.chain().focus().liftListItem("taskItem").run(),
 })
 
-const AddTaskButton = createButtonControl({
+const AddTask = createBooleanControl({
   label: "Add Task",
   icon: LuPlus,
   command: (editor) =>

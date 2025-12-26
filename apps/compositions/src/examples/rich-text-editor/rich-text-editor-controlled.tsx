@@ -1,32 +1,18 @@
 "use client"
 
-import { Center, HStack } from "@chakra-ui/react"
-import { Splitter } from "@chakra-ui/react"
+import { HStack, Splitter } from "@chakra-ui/react"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
+import { Prose } from "compositions/ui/prose"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
-  createSelectControl,
 } from "compositions/ui/rich-text-editor"
-import {
-  LuBold,
-  LuCode,
-  LuHeading1,
-  LuHeading2,
-  LuHeading3,
-  LuHeading4,
-  LuItalic,
-  LuRotateCcw,
-  LuRotateCw,
-  LuStrikethrough,
-  LuUnderline,
-} from "react-icons/lu"
+import * as Control from "compositions/ui/rich-text-editor-control"
 
 export const RichTextEditorControlled = () => {
   const editor = useEditor({
@@ -74,27 +60,23 @@ export const RichTextEditorControlled = () => {
             borderBottom="1px solid"
             borderColor="border"
           >
-            <RichTextEditorButtonGroup>
-              <FontFamily width="200px" />
-              <FontSize width="100px" />
-            </RichTextEditorButtonGroup>
-            <RichTextEditorButtonGroup>
-              <Bold />
-              <Italic />
-              <Underline />
-              <Strike />
-              <Code />
-            </RichTextEditorButtonGroup>
-            <RichTextEditorButtonGroup>
-              <H1 />
-              <H2 />
-              <H3 />
-              <H4 />
-            </RichTextEditorButtonGroup>
-            <RichTextEditorButtonGroup noSeparator>
-              <Undo />
-              <Redo />
-            </RichTextEditorButtonGroup>
+            <RichTextEditorControlGroup>
+              <Control.Bold />
+              <Control.Italic />
+              <Control.Underline />
+              <Control.Strike />
+              <Control.Code />
+            </RichTextEditorControlGroup>
+            <RichTextEditorControlGroup>
+              <Control.H1 />
+              <Control.H2 />
+              <Control.H3 />
+              <Control.H4 />
+            </RichTextEditorControlGroup>
+            <RichTextEditorControlGroup>
+              <Control.Undo />
+              <Control.Redo />
+            </RichTextEditorControlGroup>
           </HStack>
 
           <RichTextEditorContent minH="60" />
@@ -103,123 +85,14 @@ export const RichTextEditorControlled = () => {
 
       <Splitter.ResizeTrigger id="editor:preview" />
       <Splitter.Panel id="preview" p="4">
-        <Center boxSize="full">
-          <div
-            dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
-            style={{ width: "100%", textAlign: "left" }}
-          />
-        </Center>
+        <Prose
+          lineHeight="1"
+          width="full"
+          size="lg"
+          color="fg"
+          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+        />
       </Splitter.Panel>
     </Splitter.Root>
   )
 }
-
-const FontFamily = createSelectControl({
-  label: "Font Family",
-  options: [
-    { value: "default", label: "Default" },
-    { value: "serif", label: "Serif" },
-    { value: "mono", label: "Monospace" },
-    { value: "cursive", label: "Cursive" },
-  ],
-  getValue: (editor) =>
-    editor.getAttributes("textStyle")?.fontFamily || "default",
-  command: (editor, value) =>
-    value === "default"
-      ? editor.chain().focus().unsetFontFamily().run()
-      : editor.chain().focus().setFontFamily(value).run(),
-})
-
-const FontSize = createSelectControl({
-  label: "Font Size",
-  options: [
-    { value: "12px", label: "12px" },
-    { value: "14px", label: "14px" },
-    { value: "16px", label: "16px" },
-    { value: "18px", label: "18px" },
-  ],
-  getValue: (editor) => editor.getAttributes("textStyle")?.fontSize || "14px",
-  command: (editor, value) =>
-    editor.chain().focus().setMark("textStyle", { fontSize: value }).run(),
-})
-
-const Bold = createButtonControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
-})
-
-const Italic = createButtonControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
-})
-
-const Underline = createButtonControl({
-  label: "Underline",
-  icon: LuUnderline,
-  command: (editor) => editor.chain().focus().toggleUnderline().run(),
-  getVariant: (editor) => (editor.isActive("underline") ? "subtle" : "ghost"),
-})
-
-const Strike = createButtonControl({
-  label: "Strike",
-  icon: LuStrikethrough,
-  command: (editor) => editor.chain().focus().toggleStrike().run(),
-  getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
-})
-
-const Code = createButtonControl({
-  label: "Code",
-  icon: LuCode,
-  command: (editor) => editor.chain().focus().toggleCode().run(),
-  getVariant: (editor) => (editor.isActive("code") ? "subtle" : "ghost"),
-})
-
-const H1 = createButtonControl({
-  label: "H1",
-  icon: LuHeading1,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
-})
-
-const H2 = createButtonControl({
-  label: "H2",
-  icon: LuHeading2,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
-})
-
-const H3 = createButtonControl({
-  label: "H3",
-  icon: LuHeading3,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
-})
-
-const H4 = createButtonControl({
-  label: "H4",
-  icon: LuHeading4,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 4 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 4 }) ? "subtle" : "ghost",
-})
-
-const Undo = createButtonControl({
-  label: "Undo",
-  icon: LuRotateCcw,
-  command: (editor) => editor.chain().focus().undo().run(),
-  isDisabled: (editor) => !editor.can().undo(),
-})
-
-const Redo = createButtonControl({
-  label: "Redo",
-  icon: LuRotateCw,
-  command: (editor) => editor.chain().focus().redo().run(),
-  isDisabled: (editor) => !editor.can().redo(),
-})

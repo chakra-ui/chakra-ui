@@ -45,6 +45,9 @@ export const Prose = chakra("div", {
     [inWhere("& a strong")]: {
       color: "inherit",
     },
+    [inWhere("& em")]: {
+      fontStyle: "italic",
+    },
     [inWhere("& h1")]: {
       fontSize: "2.15em",
       letterSpacing: "-0.02em",
@@ -104,10 +107,12 @@ export const Prose = chakra("div", {
     },
     [inWhere("& code")]: {
       fontSize: "0.925em",
+      bg: "bg.muted",
       letterSpacing: "-0.01em",
+      lineHeight: "1",
       borderRadius: "md",
       borderWidth: "1px",
-      padding: "0.25em",
+      paddingInline: "0.25em",
     },
     [inWhere("& pre code")]: {
       fontSize: "inherit",

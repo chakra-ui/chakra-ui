@@ -5,10 +5,10 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
 } from "compositions/ui/rich-text-editor"
 import css from "highlight.js/lib/languages/css"
 import js from "highlight.js/lib/languages/javascript"
@@ -41,11 +41,11 @@ export const RichTextEditorWithCode = () => {
       rounded="md"
     >
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
-        <RichTextEditorButtonGroup>
+        <RichTextEditorControlGroup>
           <BoldButton />
           <ItalicButton />
           <CodeBlockButton />
-        </RichTextEditorButtonGroup>
+        </RichTextEditorControlGroup>
       </HStack>
       <RichTextEditorContent />
     </RichTextEditorRoot>
@@ -77,19 +77,19 @@ async function showTodos() {
 showTodos()
 `)
 
-const BoldButton = createButtonControl({
+const BoldButton = createBooleanControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => editor.chain().focus().toggleBold().run(),
 })
 
-const ItalicButton = createButtonControl({
+const ItalicButton = createBooleanControl({
   label: "Italic",
   icon: LuItalic,
   command: (editor) => editor.chain().focus().toggleItalic().run(),
 })
 
-const CodeBlockButton = createButtonControl({
+const CodeBlockButton = createBooleanControl({
   label: "Code Block",
   icon: LuCode,
   command: (editor) => editor.chain().focus().toggleCodeBlock().run(),

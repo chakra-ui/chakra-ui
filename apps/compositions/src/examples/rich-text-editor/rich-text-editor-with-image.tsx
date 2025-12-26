@@ -16,10 +16,10 @@ import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
   RichTextEditorButtonControl,
-  RichTextEditorButtonGroup,
   RichTextEditorContent,
+  RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createButtonControl,
+  createBooleanControl,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
 import { useState } from "react"
@@ -54,20 +54,20 @@ export const RichTextEditorWithImage = () => {
     >
       <Box>
         <HStack gap={1} border="1px solid" borderColor="border" p="3">
-          <RichTextEditorButtonGroup>
+          <RichTextEditorControlGroup>
             <Bold />
             <Italic />
             <Strikethrough />
-          </RichTextEditorButtonGroup>
+          </RichTextEditorControlGroup>
 
-          <RichTextEditorButtonGroup>
+          <RichTextEditorControlGroup>
             <BulletList />
             <OrderedList />
-          </RichTextEditorButtonGroup>
+          </RichTextEditorControlGroup>
 
-          <RichTextEditorButtonGroup>
+          <RichTextEditorControlGroup>
             <InsertImageControl />
-          </RichTextEditorButtonGroup>
+          </RichTextEditorControlGroup>
         </HStack>
       </Box>
 
@@ -81,35 +81,35 @@ export const RichTextEditorWithImage = () => {
   )
 }
 
-const Bold = createButtonControl({
+const Bold = createBooleanControl({
   label: "Bold",
   icon: LuBold,
   command: (editor) => editor.chain().focus().toggleBold().run(),
   getVariant: (editor) => (editor.isActive("bold") ? "solid" : "ghost"),
 })
 
-const Italic = createButtonControl({
+const Italic = createBooleanControl({
   label: "Italic",
   icon: LuItalic,
   command: (editor) => editor.chain().focus().toggleItalic().run(),
   getVariant: (editor) => (editor.isActive("italic") ? "solid" : "ghost"),
 })
 
-const Strikethrough = createButtonControl({
+const Strikethrough = createBooleanControl({
   label: "Strikethrough",
   icon: LuStrikethrough,
   command: (editor) => editor.chain().focus().toggleStrike().run(),
   getVariant: (editor) => (editor.isActive("strike") ? "solid" : "ghost"),
 })
 
-const BulletList = createButtonControl({
+const BulletList = createBooleanControl({
   label: "Bullet List",
   icon: LuList,
   command: (editor) => editor.chain().focus().toggleBulletList().run(),
   getVariant: (editor) => (editor.isActive("bulletList") ? "solid" : "ghost"),
 })
 
-const OrderedList = createButtonControl({
+const OrderedList = createBooleanControl({
   label: "Ordered List",
   icon: LuListOrdered,
   command: (editor) => editor.chain().focus().toggleOrderedList().run(),
