@@ -46,7 +46,7 @@ export const RichTextEditorWithTask = () => {
           <AddTask />
         </RichTextEditorControlGroup>
       </HStack>
-      <RichTextEditorContent p="4" minH="300px" bg="white" roundedBottom="md" />
+      <RichTextEditorContent />
     </RichTextEditorRoot>
   )
 }
