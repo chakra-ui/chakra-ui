@@ -25,6 +25,7 @@
     "@tiptap/core": "^3.11.0",
     "@tiptap/extension-code-block-lowlight": "^3.11.0",
     "@tiptap/extension-color": "^3.11.0",
+    "@tiptap/extension-drag-handle-react": "^3.14.0",
     "@tiptap/extension-heading": "3.11.0",
     "@tiptap/extension-highlight": "^3.11.0",
     "@tiptap/extension-image": "^3.11.0",

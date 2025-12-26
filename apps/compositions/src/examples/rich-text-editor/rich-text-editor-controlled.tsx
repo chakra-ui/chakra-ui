@@ -1,98 +1,65 @@
 "use client"
 
-import { HStack, Splitter } from "@chakra-ui/react"
+import { Box, Stack } from "@chakra-ui/react"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { Prose } from "compositions/ui/prose"
 import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
+  RichTextEditorToolbar,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
+import { useState } from "react"
 
 export const RichTextEditorControlled = () => {
+  const [content, setContent] = useState<string>("<p>Edit here...</p>")
+
   const editor = useEditor({
+    shouldRerenderOnTransaction: true,
     extensions: [
       StarterKit.configure({ link: { openOnClick: false } }),
       Subscript,
       Superscript,
       TextAlign.configure({ types: ["paragraph", "heading"] }),
     ],
-    content: `
-        <p>Edit here...</p>
-        <p><strong>Tip:</strong> Try selecting this sentence.</p>
-        <h2>Example Subheading</h2>
-        <p>Here's a paragraph with <em>italic</em>, <u>underline</u>, and <strong>bold</strong> text.</p>
-        <p><code>Code snippets can be inline or block-level.</code></p>
-        <ul>
-        <li>Item one</li>
-        <li>Item two</li>
-        <li>Item three</li>
-        </ul>
-        <ol>
-        <li>First numbered item</li>
-        <li>Second numbered item</li>
-        </ol>
-        <blockquote>This is a blockquote example.</blockquote>
-    `,
-    shouldRerenderOnTransaction: true,
+    content,
+    onUpdate({ editor }) {
+      setContent(editor.getHTML())
+    },
   })
 
   if (!editor) return null
 
   return (
-    <Splitter.Root
-      panels={[{ id: "editor" }, { id: "preview" }]}
-      minH="60"
-      borderWidth="1px"
-    >
-      <Splitter.Panel id="editor">
-        <RichTextEditorRoot editor={editor}>
-          <HStack
-            wrap="nowrap"
-            gap="2"
-            overflowX="auto"
-            p="2"
-            borderBottom="1px solid"
-            borderColor="border"
-          >
-            <RichTextEditorControlGroup>
-              <Control.Bold />
-              <Control.Italic />
-              <Control.Underline />
-              <Control.Strikethrough />
-              <Control.Code />
-            </RichTextEditorControlGroup>
-            <RichTextEditorControlGroup>
-              <Control.H1 />
-              <Control.H2 />
-              <Control.H3 />
-              <Control.H4 />
-            </RichTextEditorControlGroup>
-            <RichTextEditorControlGroup>
-              <Control.Undo />
-              <Control.Redo />
-            </RichTextEditorControlGroup>
-          </HStack>
+    <Stack maxW="3xl" borderWidth="1px">
+      <RichTextEditorRoot editor={editor} maxHeight="2xl">
+        <RichTextEditorToolbar>
+          <RichTextEditorControlGroup>
+            <Control.Bold />
+            <Control.Italic />
+            <Control.Underline />
+            <Control.Strikethrough />
+            <Control.Code />
+          </RichTextEditorControlGroup>
+        </RichTextEditorToolbar>
 
-          <RichTextEditorContent minH="60" />
-        </RichTextEditorRoot>
-      </Splitter.Panel>
+        <RichTextEditorContent overflow="auto" />
+      </RichTextEditorRoot>
 
-      <Splitter.ResizeTrigger id="editor:preview" />
-      <Splitter.Panel id="preview" p="4">
-        <Prose
-          lineHeight="1"
-          width="full"
-          size="lg"
-          color="fg"
-          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
-        />
-      </Splitter.Panel>
-    </Splitter.Root>
+      <Box p="4" bg="bg.muted" flex="1" borderTopWidth="1px">
+        <Box
+          as="pre"
+          textStyle="sm"
+          wordWrap="break-word"
+          whiteSpace="pre-wrap"
+        >
+          {content}
+        </Box>
+      </Box>
+    </Stack>
   )
 }

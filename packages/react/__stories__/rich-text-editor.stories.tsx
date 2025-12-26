@@ -14,7 +14,12 @@ export default {
 
 export { RichTextEditorBasic as Basic } from "compositions/examples/rich-text-editor/rich-text-editor-basic"
 export { RichTextEditorControlled as Controlled } from "compositions/examples/rich-text-editor/rich-text-editor-controlled"
+export { RichTextEditorWithPreview as Preview } from "compositions/examples/rich-text-editor/rich-text-editor-with-preview"
 export { RichTextEditorWithHighlight as Highlight } from "compositions/examples/rich-text-editor/rich-text-editor-with-highlight"
+export { RichTextEditorWithPlaceholder as Placeholder } from "compositions/examples/rich-text-editor/rich-text-editor-with-placeholder"
+export { RichTextEditorWithDragHandle as DragHandle } from "compositions/examples/rich-text-editor/rich-text-editor-with-drag-handle"
+export { RichTextEditorWithPasteHandling as PasteHandling } from "compositions/examples/rich-text-editor/rich-text-editor-with-paste-handling"
+export { RichTextEditorWithAutosave as Autosave } from "compositions/examples/rich-text-editor/rich-text-editor-with-autosave"
 export { RichTextEditorWithBubbleMenu as BubbleMenu } from "compositions/examples/rich-text-editor/rich-text-editor-with-bubble-menu"
 export { RichTextEditorWithTask as Task } from "compositions/examples/rich-text-editor/rich-text-editor-with-task"
 export { RichTextEditorWithCharacterCount as CharacterCount } from "compositions/examples/rich-text-editor/rich-text-editor-with-character-count"

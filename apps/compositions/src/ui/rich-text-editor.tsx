@@ -38,6 +38,9 @@ export function useRichTextEditorContext() {
 }
 
 const proseMirrorBaseCss = defineStyle({
+  display: "flex",
+  flexDirection: "column",
+
   "& .ProseMirror": {
     outline: "none",
     "& > * + *": { marginTop: "0.75em" },
@@ -46,10 +49,11 @@ const proseMirrorBaseCss = defineStyle({
     "& h3": { fontSize: "lg", fontWeight: "bold" },
     "& code": {
       bg: "bg.muted",
-      px: "1",
+      paddingInline: "0.25em",
       rounded: "sm",
       fontFamily: "mono",
       fontSize: "0.9em",
+      borderWidth: "1px",
     },
     "& pre": {
       bg: "gray.900",
@@ -68,6 +72,7 @@ const proseMirrorBaseCss = defineStyle({
       padding: "0",
       fontFamily: "mono",
       color: "inherit",
+      borderWidth: "0",
     },
     "& blockquote": {
       borderStartWidth: "4px",
@@ -87,16 +92,17 @@ const proseMirrorBaseCss = defineStyle({
         accentColor: "colorPalette.solid",
         marginTop: "1",
       },
-      "& ul[data-type='taskList']": { paddingLeft: "6" },
+      "& ul[data-type='taskList']": { paddingInlineStart: "6" },
     },
     "& hr": { my: "4" },
-    "& a": { color: "fg.link", textDecoration: "underline" },
+    "& a": { color: "blue.fg", textDecoration: "underline" },
     "& em": { fontStyle: "italic" },
-    "& p[data-placeholder]::before": {
+    "& p.is-editor-empty:first-of-type::before": {
       content: "attr(data-placeholder)",
       color: "fg.muted",
       pointerEvents: "none",
-      userSelect: "none",
+      float: "left",
+      height: "0",
     },
   },
 
@@ -177,6 +183,7 @@ export const RichTextEditorContent = React.forwardRef<
 >(function RichTextEditorContent(props, ref) {
   const { editor } = useRichTextEditorContext()
   if (!editor) return null
+
   return (
     <Box ref={ref} minH="300px" p="5" {...props}>
       <EditorContent editor={editor} />
