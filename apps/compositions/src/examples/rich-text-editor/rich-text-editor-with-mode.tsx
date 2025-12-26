@@ -36,7 +36,7 @@ export const RichTextEditorWithMode = () => {
       border="1px solid"
       borderColor="border"
       rounded="md"
-      isDisabled={mode !== "edit"}
+      disabled={mode !== "edit"}
     >
       <HStack
         p="2"
