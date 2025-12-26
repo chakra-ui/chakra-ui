@@ -153,7 +153,10 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
   "empty",
 )
 
-export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
+export const sliderAnatomy = arkSliderAnatomy.extendWith(
+  "markerIndicator",
+  "markerLabel",
+)
 
 export const statAnatomy = createAnatomy("stat").parts(
   "root",
