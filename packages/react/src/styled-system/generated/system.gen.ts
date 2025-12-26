@@ -61,9 +61,7 @@ export interface SystemProperties {
   animationRangeEnd?: ConditionalValue<CssProperties["animationRangeEnd"] | undefined | AnyString> | undefined
   animationRangeStart?: ConditionalValue<CssProperties["animationRangeStart"] | undefined | AnyString> | undefined
   animationTimeline?: ConditionalValue<CssProperties["animationTimeline"] | undefined | AnyString> | undefined
-  animationTimingFunction?:
-    | ConditionalValue<UtilityValues["animationTimingFunction"] | CssVars | CssProperties["animationTimingFunction"] | undefined | AnyString>
-    | undefined
+  animationTimingFunction?: ConditionalValue<UtilityValues["animationTimingFunction"] | CssVars | CssProperties["animationTimingFunction"] | undefined | AnyString> | undefined
   appearance?: ConditionalValue<CssProperties["appearance"] | undefined | AnyString> | undefined
   aspectRatio?: ConditionalValue<UtilityValues["aspectRatio"] | CssVars | CssProperties["aspectRatio"] | undefined | AnyString> | undefined
   backdropFilter?: ConditionalValue<CssProperties["backdropFilter"] | undefined | AnyString> | undefined
@@ -85,43 +83,25 @@ export interface SystemProperties {
   borderBlock?: ConditionalValue<UtilityValues["borderBlock"] | CssVars | CssProperties["borderBlock"] | undefined | AnyString> | undefined
   borderBlockColor?: ConditionalValue<CssProperties["borderBlockColor"] | undefined | AnyString> | undefined
   borderBlockEnd?: ConditionalValue<UtilityValues["borderBlockEnd"] | CssVars | CssProperties["borderBlockEnd"] | undefined | AnyString> | undefined
-  borderBlockEndColor?:
-    | ConditionalValue<UtilityValues["borderBlockEndColor"] | CssVars | CssProperties["borderBlockEndColor"] | undefined | AnyString>
-    | undefined
-  borderBlockEndStyle?:
-    | ConditionalValue<UtilityValues["borderBlockEndStyle"] | CssVars | CssProperties["borderBlockEndStyle"] | undefined | AnyString>
-    | undefined
-  borderBlockEndWidth?:
-    | ConditionalValue<UtilityValues["borderBlockEndWidth"] | CssVars | CssProperties["borderBlockEndWidth"] | undefined | AnyString>
-    | undefined
+  borderBlockEndColor?: ConditionalValue<UtilityValues["borderBlockEndColor"] | CssVars | CssProperties["borderBlockEndColor"] | undefined | AnyString> | undefined
+  borderBlockEndStyle?: ConditionalValue<UtilityValues["borderBlockEndStyle"] | CssVars | CssProperties["borderBlockEndStyle"] | undefined | AnyString> | undefined
+  borderBlockEndWidth?: ConditionalValue<UtilityValues["borderBlockEndWidth"] | CssVars | CssProperties["borderBlockEndWidth"] | undefined | AnyString> | undefined
   borderBlockStart?: ConditionalValue<UtilityValues["borderBlockStart"] | CssVars | CssProperties["borderBlockStart"] | undefined | AnyString> | undefined
-  borderBlockStartColor?:
-    | ConditionalValue<UtilityValues["borderBlockStartColor"] | CssVars | CssProperties["borderBlockStartColor"] | undefined | AnyString>
-    | undefined
-  borderBlockStartStyle?:
-    | ConditionalValue<UtilityValues["borderBlockStartStyle"] | CssVars | CssProperties["borderBlockStartStyle"] | undefined | AnyString>
-    | undefined
-  borderBlockStartWidth?:
-    | ConditionalValue<UtilityValues["borderBlockStartWidth"] | CssVars | CssProperties["borderBlockStartWidth"] | undefined | AnyString>
-    | undefined
+  borderBlockStartColor?: ConditionalValue<UtilityValues["borderBlockStartColor"] | CssVars | CssProperties["borderBlockStartColor"] | undefined | AnyString> | undefined
+  borderBlockStartStyle?: ConditionalValue<UtilityValues["borderBlockStartStyle"] | CssVars | CssProperties["borderBlockStartStyle"] | undefined | AnyString> | undefined
+  borderBlockStartWidth?: ConditionalValue<UtilityValues["borderBlockStartWidth"] | CssVars | CssProperties["borderBlockStartWidth"] | undefined | AnyString> | undefined
   borderBlockStyle?: ConditionalValue<CssProperties["borderBlockStyle"] | undefined | AnyString> | undefined
   borderBlockWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | undefined | AnyString> | undefined
   borderBottom?: ConditionalValue<UtilityValues["borderBottom"] | CssVars | CssProperties["borderBottom"] | undefined | AnyString> | undefined
   borderBottomColor?: ConditionalValue<UtilityValues["borderBottomColor"] | CssVars | CssProperties["borderBottomColor"] | undefined | AnyString> | undefined
-  borderBottomLeftRadius?:
-    | ConditionalValue<UtilityValues["borderBottomLeftRadius"] | CssVars | CssProperties["borderBottomLeftRadius"] | undefined | AnyString>
-    | undefined
-  borderBottomRightRadius?:
-    | ConditionalValue<UtilityValues["borderBottomRightRadius"] | CssVars | CssProperties["borderBottomRightRadius"] | undefined | AnyString>
-    | undefined
+  borderBottomLeftRadius?: ConditionalValue<UtilityValues["borderBottomLeftRadius"] | CssVars | CssProperties["borderBottomLeftRadius"] | undefined | AnyString> | undefined
+  borderBottomRightRadius?: ConditionalValue<UtilityValues["borderBottomRightRadius"] | CssVars | CssProperties["borderBottomRightRadius"] | undefined | AnyString> | undefined
   borderBottomStyle?: ConditionalValue<UtilityValues["borderBottomStyle"] | CssVars | CssProperties["borderBottomStyle"] | undefined | AnyString> | undefined
   borderBottomWidth?: ConditionalValue<UtilityValues["borderBottomWidth"] | CssVars | CssProperties["borderBottomWidth"] | undefined | AnyString> | undefined
   borderCollapse?: ConditionalValue<CssProperties["borderCollapse"] | undefined | AnyString> | undefined
   borderColor?: ConditionalValue<UtilityValues["borderColor"] | CssVars | CssProperties["borderColor"] | undefined | AnyString> | undefined
   borderEndEndRadius?: ConditionalValue<UtilityValues["borderEndEndRadius"] | CssVars | CssProperties["borderEndEndRadius"] | undefined | AnyString> | undefined
-  borderEndStartRadius?:
-    | ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString>
-    | undefined
+  borderEndStartRadius?: ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString> | undefined
   borderImage?: ConditionalValue<CssProperties["borderImage"] | undefined | AnyString> | undefined
   borderImageOutset?: ConditionalValue<CssProperties["borderImageOutset"] | undefined | AnyString> | undefined
   borderImageRepeat?: ConditionalValue<CssProperties["borderImageRepeat"] | undefined | AnyString> | undefined
@@ -131,25 +111,13 @@ export interface SystemProperties {
   borderInline?: ConditionalValue<UtilityValues["borderInline"] | CssVars | CssProperties["borderInline"] | undefined | AnyString> | undefined
   borderInlineColor?: ConditionalValue<CssProperties["borderInlineColor"] | undefined | AnyString> | undefined
   borderInlineEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | undefined | AnyString> | undefined
-  borderInlineEndColor?:
-    | ConditionalValue<UtilityValues["borderInlineEndColor"] | CssVars | CssProperties["borderInlineEndColor"] | undefined | AnyString>
-    | undefined
-  borderInlineEndStyle?:
-    | ConditionalValue<UtilityValues["borderInlineEndStyle"] | CssVars | CssProperties["borderInlineEndStyle"] | undefined | AnyString>
-    | undefined
-  borderInlineEndWidth?:
-    | ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | undefined | AnyString>
-    | undefined
+  borderInlineEndColor?: ConditionalValue<UtilityValues["borderInlineEndColor"] | CssVars | CssProperties["borderInlineEndColor"] | undefined | AnyString> | undefined
+  borderInlineEndStyle?: ConditionalValue<UtilityValues["borderInlineEndStyle"] | CssVars | CssProperties["borderInlineEndStyle"] | undefined | AnyString> | undefined
+  borderInlineEndWidth?: ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | undefined | AnyString> | undefined
   borderInlineStart?: ConditionalValue<UtilityValues["borderInlineStart"] | CssVars | CssProperties["borderInlineStart"] | undefined | AnyString> | undefined
-  borderInlineStartColor?:
-    | ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | undefined | AnyString>
-    | undefined
-  borderInlineStartStyle?:
-    | ConditionalValue<UtilityValues["borderInlineStartStyle"] | CssVars | CssProperties["borderInlineStartStyle"] | undefined | AnyString>
-    | undefined
-  borderInlineStartWidth?:
-    | ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | undefined | AnyString>
-    | undefined
+  borderInlineStartColor?: ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | undefined | AnyString> | undefined
+  borderInlineStartStyle?: ConditionalValue<UtilityValues["borderInlineStartStyle"] | CssVars | CssProperties["borderInlineStartStyle"] | undefined | AnyString> | undefined
+  borderInlineStartWidth?: ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | undefined | AnyString> | undefined
   borderInlineStyle?: ConditionalValue<CssProperties["borderInlineStyle"] | undefined | AnyString> | undefined
   borderInlineWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | undefined | AnyString> | undefined
   borderLeft?: ConditionalValue<UtilityValues["borderLeft"] | CssVars | CssProperties["borderLeft"] | undefined | AnyString> | undefined
@@ -171,12 +139,8 @@ export interface SystemProperties {
   borderStyle?: ConditionalValue<UtilityValues["borderStyle"] | CssVars | CssProperties["borderStyle"] | undefined | AnyString> | undefined
   borderTop?: ConditionalValue<UtilityValues["borderTop"] | CssVars | CssProperties["borderTop"] | undefined | AnyString> | undefined
   borderTopColor?: ConditionalValue<UtilityValues["borderTopColor"] | CssVars | CssProperties["borderTopColor"] | undefined | AnyString> | undefined
-  borderTopLeftRadius?:
-    | ConditionalValue<UtilityValues["borderTopLeftRadius"] | CssVars | CssProperties["borderTopLeftRadius"] | undefined | AnyString>
-    | undefined
-  borderTopRightRadius?:
-    | ConditionalValue<UtilityValues["borderTopRightRadius"] | CssVars | CssProperties["borderTopRightRadius"] | undefined | AnyString>
-    | undefined
+  borderTopLeftRadius?: ConditionalValue<UtilityValues["borderTopLeftRadius"] | CssVars | CssProperties["borderTopLeftRadius"] | undefined | AnyString> | undefined
+  borderTopRightRadius?: ConditionalValue<UtilityValues["borderTopRightRadius"] | CssVars | CssProperties["borderTopRightRadius"] | undefined | AnyString> | undefined
   borderTopStyle?: ConditionalValue<UtilityValues["borderTopStyle"] | CssVars | CssProperties["borderTopStyle"] | undefined | AnyString> | undefined
   borderTopWidth?: ConditionalValue<UtilityValues["borderTopWidth"] | CssVars | CssProperties["borderTopWidth"] | undefined | AnyString> | undefined
   borderWidth?: ConditionalValue<UtilityValues["borderWidth"] | CssVars | CssProperties["borderWidth"] | undefined | AnyString> | undefined
@@ -472,12 +436,8 @@ export interface SystemProperties {
   scrollPaddingBlock?: ConditionalValue<UtilityValues["scrollPaddingBlock"] | CssVars | CssProperties["scrollPaddingBlock"] | undefined | AnyString> | undefined
   scrollPaddingBlockEnd?: ConditionalValue<CssProperties["scrollPaddingBlockEnd"] | undefined | AnyString> | undefined
   scrollPaddingBlockStart?: ConditionalValue<CssProperties["scrollPaddingBlockStart"] | undefined | AnyString> | undefined
-  scrollPaddingBottom?:
-    | ConditionalValue<UtilityValues["scrollPaddingBottom"] | CssVars | CssProperties["scrollPaddingBottom"] | undefined | AnyString>
-    | undefined
-  scrollPaddingInline?:
-    | ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | undefined | AnyString>
-    | undefined
+  scrollPaddingBottom?: ConditionalValue<UtilityValues["scrollPaddingBottom"] | CssVars | CssProperties["scrollPaddingBottom"] | undefined | AnyString> | undefined
+  scrollPaddingInline?: ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | undefined | AnyString> | undefined
   scrollPaddingInlineEnd?: ConditionalValue<CssProperties["scrollPaddingInlineEnd"] | undefined | AnyString> | undefined
   scrollPaddingInlineStart?: ConditionalValue<CssProperties["scrollPaddingInlineStart"] | undefined | AnyString> | undefined
   scrollPaddingLeft?: ConditionalValue<UtilityValues["scrollPaddingLeft"] | CssVars | CssProperties["scrollPaddingLeft"] | undefined | AnyString> | undefined
@@ -522,9 +482,7 @@ export interface SystemProperties {
   textBoxTrim?: ConditionalValue<CssProperties["textBoxTrim"] | undefined | AnyString> | undefined
   textCombineUpright?: ConditionalValue<CssProperties["textCombineUpright"] | undefined | AnyString> | undefined
   textDecoration?: ConditionalValue<CssProperties["textDecoration"] | undefined | AnyString> | undefined
-  textDecorationColor?:
-    | ConditionalValue<UtilityValues["textDecorationColor"] | CssVars | CssProperties["textDecorationColor"] | undefined | AnyString>
-    | undefined
+  textDecorationColor?: ConditionalValue<UtilityValues["textDecorationColor"] | CssVars | CssProperties["textDecorationColor"] | undefined | AnyString> | undefined
   textDecorationLine?: ConditionalValue<CssProperties["textDecorationLine"] | undefined | AnyString> | undefined
   textDecorationSkip?: ConditionalValue<CssProperties["textDecorationSkip"] | undefined | AnyString> | undefined
   textDecorationSkipInk?: ConditionalValue<CssProperties["textDecorationSkipInk"] | undefined | AnyString> | undefined
@@ -560,9 +518,7 @@ export interface SystemProperties {
   transitionDelay?: ConditionalValue<CssProperties["transitionDelay"] | undefined | AnyString> | undefined
   transitionDuration?: ConditionalValue<UtilityValues["transitionDuration"] | CssVars | CssProperties["transitionDuration"] | undefined | AnyString> | undefined
   transitionProperty?: ConditionalValue<UtilityValues["transitionProperty"] | CssVars | CssProperties["transitionProperty"] | undefined | AnyString> | undefined
-  transitionTimingFunction?:
-    | ConditionalValue<UtilityValues["transitionTimingFunction"] | CssVars | CssProperties["transitionTimingFunction"] | undefined | AnyString>
-    | undefined
+  transitionTimingFunction?: ConditionalValue<UtilityValues["transitionTimingFunction"] | CssVars | CssProperties["transitionTimingFunction"] | undefined | AnyString> | undefined
   translate?: ConditionalValue<CssProperties["translate"] | undefined | AnyString> | undefined
   unicodeBidi?: ConditionalValue<CssProperties["unicodeBidi"] | undefined | AnyString> | undefined
   userSelect?: ConditionalValue<CssProperties["userSelect"] | undefined | AnyString> | undefined
@@ -606,47 +562,23 @@ export interface SystemProperties {
   borderEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | undefined | AnyString> | undefined
   borderX?: ConditionalValue<UtilityValues["borderInline"] | CssVars | CssProperties["borderInline"] | undefined | AnyString> | undefined
   borderY?: ConditionalValue<UtilityValues["borderBlock"] | CssVars | CssProperties["borderBlock"] | undefined | AnyString> | undefined
-  borderStartColor?:
-    | ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | undefined | AnyString>
-    | undefined
+  borderStartColor?: ConditionalValue<UtilityValues["borderInlineStartColor"] | CssVars | CssProperties["borderInlineStartColor"] | undefined | AnyString> | undefined
   borderEndColor?: ConditionalValue<UtilityValues["borderInlineEndColor"] | CssVars | CssProperties["borderInlineEndColor"] | undefined | AnyString> | undefined
-  borderStartStyle?:
-    | ConditionalValue<UtilityValues["borderInlineStartStyle"] | CssVars | CssProperties["borderInlineStartStyle"] | undefined | AnyString>
-    | undefined
+  borderStartStyle?: ConditionalValue<UtilityValues["borderInlineStartStyle"] | CssVars | CssProperties["borderInlineStartStyle"] | undefined | AnyString> | undefined
   borderEndStyle?: ConditionalValue<UtilityValues["borderInlineEndStyle"] | CssVars | CssProperties["borderInlineEndStyle"] | undefined | AnyString> | undefined
   rounded?: ConditionalValue<UtilityValues["borderRadius"] | CssVars | CssProperties["borderRadius"] | undefined | AnyString> | undefined
   roundedTopLeft?: ConditionalValue<UtilityValues["borderTopLeftRadius"] | CssVars | CssProperties["borderTopLeftRadius"] | undefined | AnyString> | undefined
-  roundedStartStart?:
-    | ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString>
-    | undefined
-  borderTopStartRadius?:
-    | ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString>
-    | undefined
-  roundedEndStart?:
-    | ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString>
-    | undefined
-  borderBottomStartRadius?:
-    | ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString>
-    | undefined
-  roundedTopRight?:
-    | ConditionalValue<UtilityValues["borderTopRightRadius"] | CssVars | CssProperties["borderTopRightRadius"] | undefined | AnyString>
-    | undefined
-  roundedStartEnd?:
-    | ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString>
-    | undefined
-  borderTopEndRadius?:
-    | ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString>
-    | undefined
+  roundedStartStart?: ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString> | undefined
+  borderTopStartRadius?: ConditionalValue<UtilityValues["borderStartStartRadius"] | CssVars | CssProperties["borderStartStartRadius"] | undefined | AnyString> | undefined
+  roundedEndStart?: ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString> | undefined
+  borderBottomStartRadius?: ConditionalValue<UtilityValues["borderEndStartRadius"] | CssVars | CssProperties["borderEndStartRadius"] | undefined | AnyString> | undefined
+  roundedTopRight?: ConditionalValue<UtilityValues["borderTopRightRadius"] | CssVars | CssProperties["borderTopRightRadius"] | undefined | AnyString> | undefined
+  roundedStartEnd?: ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString> | undefined
+  borderTopEndRadius?: ConditionalValue<UtilityValues["borderStartEndRadius"] | CssVars | CssProperties["borderStartEndRadius"] | undefined | AnyString> | undefined
   roundedEndEnd?: ConditionalValue<UtilityValues["borderEndEndRadius"] | CssVars | CssProperties["borderEndEndRadius"] | undefined | AnyString> | undefined
-  borderBottomEndRadius?:
-    | ConditionalValue<UtilityValues["borderEndEndRadius"] | CssVars | CssProperties["borderEndEndRadius"] | undefined | AnyString>
-    | undefined
-  roundedBottomLeft?:
-    | ConditionalValue<UtilityValues["borderBottomLeftRadius"] | CssVars | CssProperties["borderBottomLeftRadius"] | undefined | AnyString>
-    | undefined
-  roundedBottomRight?:
-    | ConditionalValue<UtilityValues["borderBottomRightRadius"] | CssVars | CssProperties["borderBottomRightRadius"] | undefined | AnyString>
-    | undefined
+  borderBottomEndRadius?: ConditionalValue<UtilityValues["borderEndEndRadius"] | CssVars | CssProperties["borderEndEndRadius"] | undefined | AnyString> | undefined
+  roundedBottomLeft?: ConditionalValue<UtilityValues["borderBottomLeftRadius"] | CssVars | CssProperties["borderBottomLeftRadius"] | undefined | AnyString> | undefined
+  roundedBottomRight?: ConditionalValue<UtilityValues["borderBottomRightRadius"] | CssVars | CssProperties["borderBottomRightRadius"] | undefined | AnyString> | undefined
   roundedStart?: ConditionalValue<UtilityValues["borderInlineStartRadius"] | CssVars | undefined | AnyString> | undefined
   borderStartRadius?: ConditionalValue<UtilityValues["borderInlineStartRadius"] | CssVars | undefined | AnyString> | undefined
   roundedEnd?: ConditionalValue<UtilityValues["borderInlineEndRadius"] | CssVars | undefined | AnyString> | undefined
@@ -656,9 +588,7 @@ export interface SystemProperties {
   roundedLeft?: ConditionalValue<UtilityValues["borderLeftRadius"] | CssVars | undefined | AnyString> | undefined
   roundedRight?: ConditionalValue<UtilityValues["borderRightRadius"] | CssVars | undefined | AnyString> | undefined
   borderXWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | undefined | AnyString> | undefined
-  borderStartWidth?:
-    | ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | undefined | AnyString>
-    | undefined
+  borderStartWidth?: ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | undefined | AnyString> | undefined
   borderEndWidth?: ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | undefined | AnyString> | undefined
   borderYWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | undefined | AnyString> | undefined
   shadow?: ConditionalValue<UtilityValues["boxShadow"] | CssVars | CssProperties["boxShadow"] | undefined | AnyString> | undefined
