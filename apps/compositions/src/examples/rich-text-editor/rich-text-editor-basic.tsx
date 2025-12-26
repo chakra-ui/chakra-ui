@@ -30,7 +30,7 @@ export const RichTextEditorBasic = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor} borderWidth="1px" rounded="l2">
+    <RichTextEditorRoot editor={editor}>
       <RichTextEditorToolbar>
         <RichTextEditorControlGroup>
           <Control.FontFamily />

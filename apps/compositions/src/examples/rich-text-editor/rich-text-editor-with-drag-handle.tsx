@@ -32,7 +32,7 @@ export const RichTextEditorWithDragHandle = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor} borderWidth="1px" rounded="l2">
+    <RichTextEditorRoot editor={editor}>
       <RichTextEditorToolbar>
         <RichTextEditorControlGroup>
           <Control.Bold />
@@ -69,9 +69,7 @@ export const RichTextEditorWithDragHandle = () => {
             </Icon>
           </Box>
         </DragHandle>
-        <RichTextEditorContent
-          css={{ "& .ProseMirror": { paddingInline: "2" } }}
-        />
+        <RichTextEditorContent />
       </Box>
     </RichTextEditorRoot>
   )

@@ -29,5 +29,4 @@ export { RichTextEditorWithHashtags as Hashtags } from "compositions/examples/ri
 export { RichTextEditorWithSlashCommands as SlashCommands } from "compositions/examples/rich-text-editor/rich-text-editor-with-slash-commands"
 export { RichTextEditorWithMentions as Mentions } from "compositions/examples/rich-text-editor/rich-text-editor-with-mentions"
 export { RichTextEditorWithMode as Mode } from "compositions/examples/rich-text-editor/rich-text-editor-with-mode"
-export { RichTextEditorWithMarkdown as Markdown } from "compositions/examples/rich-text-editor/rich-text-editor-with-markdown"
 export { RichTextEditorComposition as Composition } from "compositions/examples/rich-text-editor/rich-text-editor-composition"

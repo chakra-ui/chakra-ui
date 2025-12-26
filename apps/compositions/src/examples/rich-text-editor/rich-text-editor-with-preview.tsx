@@ -1,6 +1,6 @@
 "use client"
 
-import { HStack, Splitter } from "@chakra-ui/react"
+import { Splitter } from "@chakra-ui/react"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
@@ -11,6 +11,7 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
+  RichTextEditorToolbar,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 
@@ -45,21 +46,13 @@ export const RichTextEditorWithPreview = () => {
   if (!editor) return null
 
   return (
-    <Splitter.Root
-      panels={[{ id: "editor" }, { id: "preview" }]}
-      minH="60"
-      borderWidth="1px"
-    >
+    <Splitter.Root panels={[{ id: "editor" }, { id: "preview" }]} minH="60">
       <Splitter.Panel id="editor">
-        <RichTextEditorRoot editor={editor}>
-          <HStack
-            wrap="nowrap"
-            gap="2"
-            overflowX="auto"
-            p="2"
-            borderBottom="1px solid"
-            borderColor="border"
-          >
+        <RichTextEditorRoot
+          editor={editor}
+          css={{ "--content-min-height": "520px" }}
+        >
+          <RichTextEditorToolbar>
             <RichTextEditorControlGroup>
               <Control.Bold />
               <Control.Italic />
@@ -77,14 +70,14 @@ export const RichTextEditorWithPreview = () => {
               <Control.Undo />
               <Control.Redo />
             </RichTextEditorControlGroup>
-          </HStack>
+          </RichTextEditorToolbar>
 
-          <RichTextEditorContent minH="60" />
+          <RichTextEditorContent />
         </RichTextEditorRoot>
       </Splitter.Panel>
 
       <Splitter.ResizeTrigger id="editor:preview" />
-      <Splitter.Panel id="preview" p="4">
+      <Splitter.Panel id="preview" px="8" py="2">
         <Prose
           lineHeight="1"
           width="full"

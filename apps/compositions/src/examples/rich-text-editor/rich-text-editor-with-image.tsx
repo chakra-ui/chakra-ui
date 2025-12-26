@@ -5,7 +5,6 @@ import {
   Button,
   Dialog,
   FileUpload,
-  HStack,
   Icon,
   Input,
   Portal,
@@ -19,6 +18,7 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
+  RichTextEditorToolbar,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
@@ -39,36 +39,25 @@ export const RichTextEditorWithImage = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot
-      editor={editor}
-      borderBottom="1px solid"
-      borderColor="border"
-    >
-      <Box>
-        <HStack gap={1} border="1px solid" borderColor="border" p="3">
-          <RichTextEditorControlGroup>
-            <Control.Bold />
-            <Control.Italic />
-            <Control.Strikethrough />
-          </RichTextEditorControlGroup>
+    <RichTextEditorRoot editor={editor}>
+      <RichTextEditorToolbar>
+        <RichTextEditorControlGroup>
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Strikethrough />
+        </RichTextEditorControlGroup>
 
-          <RichTextEditorControlGroup>
-            <Control.BulletList />
-            <Control.OrderedList />
-          </RichTextEditorControlGroup>
+        <RichTextEditorControlGroup>
+          <Control.BulletList />
+          <Control.OrderedList />
+        </RichTextEditorControlGroup>
 
-          <RichTextEditorControlGroup>
-            <InsertImageControl />
-          </RichTextEditorControlGroup>
-        </HStack>
-      </Box>
+        <RichTextEditorControlGroup>
+          <InsertImageControl />
+        </RichTextEditorControlGroup>
+      </RichTextEditorToolbar>
 
-      <RichTextEditorContent
-        minH="400px"
-        p={6}
-        borderX="1px solid"
-        borderColor="border"
-      />
+      <RichTextEditorContent />
     </RichTextEditorRoot>
   )
 }

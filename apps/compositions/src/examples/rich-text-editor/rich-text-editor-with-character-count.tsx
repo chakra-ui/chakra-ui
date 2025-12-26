@@ -9,6 +9,7 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
+  RichTextEditorToolbar,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 
@@ -37,22 +38,20 @@ export const RichTextEditorWithCharacterCount = () => {
 
   return (
     <RichTextEditorRoot editor={editor}>
-      <Box>
-        <HStack gap="1" borderWidth="1px" p="2">
-          <RichTextEditorControlGroup>
-            <Control.Bold />
-            <Control.Italic />
-            <Control.Strikethrough />
-          </RichTextEditorControlGroup>
+      <RichTextEditorToolbar>
+        <RichTextEditorControlGroup>
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Strikethrough />
+        </RichTextEditorControlGroup>
 
-          <RichTextEditorControlGroup>
-            <Control.BulletList />
-            <Control.OrderedList />
-          </RichTextEditorControlGroup>
-        </HStack>
-      </Box>
+        <RichTextEditorControlGroup>
+          <Control.BulletList />
+          <Control.OrderedList />
+        </RichTextEditorControlGroup>
+      </RichTextEditorToolbar>
 
-      <RichTextEditorContent minH="400px" borderXWidth="1px" />
+      <RichTextEditorContent />
 
       <HStack
         borderWidth="1px"

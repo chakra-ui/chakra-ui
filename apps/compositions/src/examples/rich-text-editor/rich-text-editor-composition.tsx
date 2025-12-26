@@ -145,6 +145,10 @@ export const RichTextEditorComposition = () => {
       h="100vh"
       display="flex"
       flexDirection="column"
+      css={{
+        "--content-padding-x": "spacing.16",
+        "--content-padding-y": "spacing.12",
+      }}
     >
       <GoogleDocsHeader />
       <Toolbar />
@@ -173,7 +177,7 @@ export const RichTextEditorComposition = () => {
           overflowY="auto"
           position="relative"
         >
-          <RichTextEditorContent px={16} py={12} />
+          <RichTextEditorContent />
           {linkBubblePosition && (
             <LinkBubbleMenu
               editor={editor}

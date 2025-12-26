@@ -40,13 +40,30 @@ export function useRichTextEditorContext() {
 const proseMirrorBaseCss = defineStyle({
   display: "flex",
   flexDirection: "column",
+  borderWidth: "1px",
+  rounded: "l2",
+
+  "--content-padding-x": "spacing.5",
+  "--content-padding-y": "spacing.5",
+
+  "& .ProseMirror-selectednode": {
+    outlineWidth: "2px",
+    outlineStyle: "solid",
+    outlineColor: "blue.focusRing",
+  },
 
   "& .ProseMirror": {
     outline: "none",
+    minHeight: "var(--content-min-height)",
+    px: "var(--content-padding-x)",
+    py: "var(--content-padding-y)",
     "& > * + *": { marginTop: "0.75em" },
-    "& h1": { fontSize: "2xl", fontWeight: "bold" },
-    "& h2": { fontSize: "xl", fontWeight: "bold" },
-    "& h3": { fontSize: "lg", fontWeight: "bold" },
+    "& h1": { textStyle: "3xl", fontWeight: "semibold" },
+    "& h2": { textStyle: "2xl", fontWeight: "semibold" },
+    "& h3": { textStyle: "xl", fontWeight: "semibold" },
+    "& h4": { textStyle: "lg", fontWeight: "semibold" },
+    "& h5": { textStyle: "md", fontWeight: "medium" },
+    "& h6": { textStyle: "sm", fontWeight: "medium" },
     "& code": {
       bg: "bg.muted",
       paddingInline: "0.25em",
@@ -97,6 +114,7 @@ const proseMirrorBaseCss = defineStyle({
     "& hr": { my: "4" },
     "& a": { color: "blue.fg", textDecoration: "underline" },
     "& em": { fontStyle: "italic" },
+    "& strong": { fontWeight: "bold" },
     "& p.is-editor-empty:first-of-type::before": {
       content: "attr(data-placeholder)",
       color: "fg.muted",
@@ -175,7 +193,8 @@ export const RichTextEditorToolbar = React.forwardRef<
   )
 })
 
-export interface RichTextEditorContentProps extends BoxProps {}
+export interface RichTextEditorContentProps
+  extends Omit<React.ComponentProps<typeof EditorContent>, "editor"> {}
 
 export const RichTextEditorContent = React.forwardRef<
   HTMLDivElement,
@@ -183,12 +202,7 @@ export const RichTextEditorContent = React.forwardRef<
 >(function RichTextEditorContent(props, ref) {
   const { editor } = useRichTextEditorContext()
   if (!editor) return null
-
-  return (
-    <Box ref={ref} minH="300px" p="5" {...props}>
-      <EditorContent editor={editor} />
-    </Box>
-  )
+  return <EditorContent editor={editor} {...props} innerRef={ref} />
 })
 
 export interface RichTextEditorControlGroupProps extends StackProps {}

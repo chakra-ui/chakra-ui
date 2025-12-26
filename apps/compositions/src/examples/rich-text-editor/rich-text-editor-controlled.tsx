@@ -35,7 +35,7 @@ export const RichTextEditorControlled = () => {
   if (!editor) return null
 
   return (
-    <Stack maxW="3xl" borderWidth="1px">
+    <Stack maxW="3xl">
       <RichTextEditorRoot editor={editor} maxHeight="2xl">
         <RichTextEditorToolbar>
           <RichTextEditorControlGroup>
@@ -47,10 +47,10 @@ export const RichTextEditorControlled = () => {
           </RichTextEditorControlGroup>
         </RichTextEditorToolbar>
 
-        <RichTextEditorContent overflow="auto" />
+        <RichTextEditorContent />
       </RichTextEditorRoot>
 
-      <Box p="4" bg="bg.muted" flex="1" borderTopWidth="1px">
+      <Box p="4" bg="bg.muted" flex="1">
         <Box
           as="pre"
           textStyle="sm"
