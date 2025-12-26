@@ -41,7 +41,7 @@ export const RichTextEditorBasic = () => {
           <Control.Bold />
           <Control.Italic />
           <Control.Underline />
-          <Control.Strike />
+          <Control.Strikethrough />
           <Control.Code />
         </RichTextEditorControlGroup>
 

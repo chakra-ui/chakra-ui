@@ -19,27 +19,19 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createBooleanControl,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
 import { useState } from "react"
-import {
-  LuBold,
-  LuImage,
-  LuItalic,
-  LuLink,
-  LuList,
-  LuListOrdered,
-  LuStrikethrough,
-  LuUpload,
-} from "react-icons/lu"
+import { LuImage, LuLink, LuUpload } from "react-icons/lu"
 
 export const RichTextEditorWithImage = () => {
   const editor = useEditor({
     content: `
-      <h2>Dr. Stone</h2>
-      <p><strong>Dr. Stone</strong> is a Japanese manga and anime series that follows the story of Senku Ishigami, a scientific genius who awakens thousands of years after humanity has been petrified.</p>
-      <p>The world is in ruins, and Senku aims to rebuild civilization using the power of science.</p>
+      <h2>Jiraiya Sensei</h2>
+      <img src="https://preview.redd.it/was-jiraiya-good-looking-back-in-the-day-or-does-it-just-v0-7lcmj7gpf4we1.jpg?width=640&crop=smart&auto=webp&s=cbece8f347da1b9326d1958dbb46284d4bceb828" alt="Jiraiya Sensei" />
+      <p><strong>Jiraiya</strong> is a legendary ninja from the Naruto series, known for his wisdom, humor, and mentorship of Naruto Uzumaki.</p>
+      <p>Famed as one of the "Legendary Sannin," Jiraiya travels the world gathering knowledge and inspiring future generations.</p>
     `,
     extensions: [StarterKit, Image],
   })
@@ -55,14 +47,14 @@ export const RichTextEditorWithImage = () => {
       <Box>
         <HStack gap={1} border="1px solid" borderColor="border" p="3">
           <RichTextEditorControlGroup>
-            <Bold />
-            <Italic />
-            <Strikethrough />
+            <Control.Bold />
+            <Control.Italic />
+            <Control.Strikethrough />
           </RichTextEditorControlGroup>
 
           <RichTextEditorControlGroup>
-            <BulletList />
-            <OrderedList />
+            <Control.BulletList />
+            <Control.OrderedList />
           </RichTextEditorControlGroup>
 
           <RichTextEditorControlGroup>
@@ -81,41 +73,6 @@ export const RichTextEditorWithImage = () => {
   )
 }
 
-const Bold = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "solid" : "ghost"),
-})
-
-const Italic = createBooleanControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "solid" : "ghost"),
-})
-
-const Strikethrough = createBooleanControl({
-  label: "Strikethrough",
-  icon: LuStrikethrough,
-  command: (editor) => editor.chain().focus().toggleStrike().run(),
-  getVariant: (editor) => (editor.isActive("strike") ? "solid" : "ghost"),
-})
-
-const BulletList = createBooleanControl({
-  label: "Bullet List",
-  icon: LuList,
-  command: (editor) => editor.chain().focus().toggleBulletList().run(),
-  getVariant: (editor) => (editor.isActive("bulletList") ? "solid" : "ghost"),
-})
-
-const OrderedList = createBooleanControl({
-  label: "Ordered List",
-  icon: LuListOrdered,
-  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-  getVariant: (editor) => (editor.isActive("orderedList") ? "solid" : "ghost"),
-})
-
 function InsertImageControl() {
   const { editor } = useRichTextEditorContext()
   const [open, setOpen] = useState(false)
@@ -133,7 +90,6 @@ function InsertImageControl() {
       />
 
       <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
-        <Dialog.Trigger asChild />
         <Portal>
           <Dialog.Backdrop />
           <Dialog.Positioner>

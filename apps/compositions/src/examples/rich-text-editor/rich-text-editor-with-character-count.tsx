@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, HStack, Text } from "@chakra-ui/react"
+import { Box, HStack } from "@chakra-ui/react"
 import Image from "@tiptap/extension-image"
 import { CharacterCount } from "@tiptap/extensions/character-count"
 import { useEditor } from "@tiptap/react"
@@ -42,7 +42,7 @@ export const RichTextEditorWithCharacterCount = () => {
           <RichTextEditorControlGroup>
             <Control.Bold />
             <Control.Italic />
-            <Control.Strike />
+            <Control.Strikethrough />
           </RichTextEditorControlGroup>
 
           <RichTextEditorControlGroup>

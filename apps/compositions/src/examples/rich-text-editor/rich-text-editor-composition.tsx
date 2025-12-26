@@ -407,24 +407,24 @@ const Toolbar = () => {
           <StrikeBtn />
         </RichTextEditorControlGroup>
 
-        <RichTextEditorControlGroup noSeparator>
+        <RichTextEditorControlGroup>
           <H1Btn />
           <H2Btn />
           <H3Btn />
         </RichTextEditorControlGroup>
 
-        <RichTextEditorControlGroup noSeparator>
+        <RichTextEditorControlGroup>
           <AlignLeftBtn />
           <AlignCenterBtn />
           <AlignRightBtn />
         </RichTextEditorControlGroup>
 
-        <RichTextEditorControlGroup noSeparator>
+        <RichTextEditorControlGroup>
           <BulletListBtn />
           <OrderedListBtn />
         </RichTextEditorControlGroup>
 
-        <RichTextEditorControlGroup noSeparator>
+        <RichTextEditorControlGroup>
           <LinkControl />
           <InsertImageControl />
         </RichTextEditorControlGroup>

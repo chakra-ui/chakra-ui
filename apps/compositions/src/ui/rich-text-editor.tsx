@@ -428,25 +428,18 @@ export function createSwatchControl(config: SwatchControlConfig) {
                         }}
                       />
                     ))}
-                  </HStack>
-                  {showRemove && onRemove && (
-                    <HStack justify="flex-end" mt="2">
-                      <Popover.CloseTrigger
-                        position="absolute"
-                        top="1"
-                        insetEnd="1"
-                        asChild
-                      >
+                    {showRemove && onRemove && (
+                      <Popover.CloseTrigger asChild>
                         <CloseButton
-                          size="sm"
+                          size="2xs"
                           onClick={() => {
                             onRemove(editor)
                             setOpen(false)
                           }}
                         />
                       </Popover.CloseTrigger>
-                    </HStack>
-                  )}
+                    )}
+                  </HStack>
                 </Popover.Body>
               </Popover.Content>
             </Popover.Positioner>

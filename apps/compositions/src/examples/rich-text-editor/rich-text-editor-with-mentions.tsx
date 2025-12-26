@@ -26,25 +26,12 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createBooleanControl,
+  RichTextEditorToolbar,
 } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
 import { Tag } from "compositions/ui/tag"
-import { forwardRef, useImperativeHandle } from "react"
-import {
-  LuBold,
-  LuCode,
-  LuHeading1,
-  LuHeading2,
-  LuHeading3,
-  LuItalic,
-  LuList,
-  LuListOrdered,
-  LuQuote,
-  LuRotateCcw,
-  LuRotateCw,
-  LuStrikethrough,
-  LuUser,
-} from "react-icons/lu"
+import * as React from "react"
+import { LuUser } from "react-icons/lu"
 
 export const RichTextEditorWithMentions = () => {
   const editor = useEditor({
@@ -147,43 +134,32 @@ export const RichTextEditorWithMentions = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot
-      editor={editor}
-      border="1px solid"
-      borderColor="border"
-      rounded="sm"
-    >
-      <HStack
-        gap="1"
-        p="2"
-        borderBottom="1px solid"
-        borderColor="border"
-        flexWrap="wrap"
-      >
+    <RichTextEditorRoot editor={editor} borderWidth="1px" rounded="sm">
+      <RichTextEditorToolbar>
         <RichTextEditorControlGroup>
-          <Bold />
-          <Italic />
-          <Strike />
-          <Code />
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Strikethrough />
+          <Control.Code />
         </RichTextEditorControlGroup>
 
         <RichTextEditorControlGroup>
-          <H1 />
-          <H2 />
-          <H3 />
+          <Control.H1 />
+          <Control.H2 />
+          <Control.H3 />
         </RichTextEditorControlGroup>
 
         <RichTextEditorControlGroup>
-          <BulletList />
-          <OrderedList />
-          <Blockquote />
+          <Control.BulletList />
+          <Control.OrderedList />
+          <Control.Blockquote />
         </RichTextEditorControlGroup>
 
-        <RichTextEditorControlGroup noSeparator>
-          <Undo />
-          <Redo />
+        <RichTextEditorControlGroup>
+          <Control.Undo />
+          <Control.Redo />
         </RichTextEditorControlGroup>
-      </HStack>
+      </RichTextEditorToolbar>
 
       <RichTextEditorContent minH="400px" p="4" />
     </RichTextEditorRoot>
@@ -230,9 +206,11 @@ interface MentionListRef {
   onKeyDown: (props: { event: KeyboardEvent }) => boolean
 }
 
-const MentionList = forwardRef<MentionListRef, MentionListProps>(
-  ({ items, command, clientRect }, ref) => {
-    useImperativeHandle(ref, () => ({
+const MentionList = React.forwardRef<MentionListRef, MentionListProps>(
+  function MentionList(props, ref) {
+    const { items, command, clientRect } = props
+
+    React.useImperativeHandle(ref, () => ({
       onKeyDown: () => false,
     }))
 
@@ -306,92 +284,3 @@ const MentionList = forwardRef<MentionListRef, MentionListProps>(
     )
   },
 )
-
-MentionList.displayName = "MentionList"
-
-const Bold = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
-})
-
-const Italic = createBooleanControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
-})
-
-const Strike = createBooleanControl({
-  label: "Strike",
-  icon: LuStrikethrough,
-  command: (editor) => editor.chain().focus().toggleStrike().run(),
-  getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
-})
-
-const Code = createBooleanControl({
-  label: "Code",
-  icon: LuCode,
-  command: (editor) => editor.chain().focus().toggleCode().run(),
-  getVariant: (editor) => (editor.isActive("code") ? "subtle" : "ghost"),
-})
-
-const H1 = createBooleanControl({
-  label: "H1",
-  icon: LuHeading1,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
-})
-
-const H2 = createBooleanControl({
-  label: "H2",
-  icon: LuHeading2,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
-})
-
-const H3 = createBooleanControl({
-  label: "H3",
-  icon: LuHeading3,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
-})
-
-const BulletList = createBooleanControl({
-  label: "Bullet List",
-  icon: LuList,
-  command: (editor) => editor.chain().focus().toggleBulletList().run(),
-  getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
-})
-
-const OrderedList = createBooleanControl({
-  label: "Ordered List",
-  icon: LuListOrdered,
-  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-  getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
-})
-
-const Blockquote = createBooleanControl({
-  label: "Blockquote",
-  icon: LuQuote,
-  command: (editor) => editor.chain().focus().toggleBlockquote().run(),
-  getVariant: (editor) => (editor.isActive("blockquote") ? "subtle" : "ghost"),
-})
-
-const Undo = createBooleanControl({
-  label: "Undo",
-  icon: LuRotateCcw,
-  command: (editor) => editor.chain().focus().undo().run(),
-  isDisabled: (editor) => !editor.can().undo(),
-})
-
-const Redo = createBooleanControl({
-  label: "Redo",
-  icon: LuRotateCw,
-  command: (editor) => editor.chain().focus().redo().run(),
-  isDisabled: (editor) => !editor.can().redo(),
-})

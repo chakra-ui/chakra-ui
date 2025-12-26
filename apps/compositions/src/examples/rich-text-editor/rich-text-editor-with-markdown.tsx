@@ -10,17 +10,9 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createBooleanControl,
 } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
 import { useState } from "react"
-import {
-  LuBold,
-  LuItalic,
-  LuList,
-  LuListOrdered,
-  LuRotateCcw,
-  LuRotateCw,
-} from "react-icons/lu"
 
 export const RichTextEditorWithMarkdown = () => {
   const [markdownContent, setMarkdownContent] = useState(
@@ -54,18 +46,18 @@ export const RichTextEditorWithMarkdown = () => {
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
         <HStack gap="2" wrap="nowrap">
           <RichTextEditorControlGroup>
-            <Bold />
-            <Italic />
+            <Control.Bold />
+            <Control.Italic />
           </RichTextEditorControlGroup>
 
           <RichTextEditorControlGroup>
-            <BulletList />
-            <OrderedList />
+            <Control.BulletList />
+            <Control.OrderedList />
           </RichTextEditorControlGroup>
 
-          <RichTextEditorControlGroup noSeparator>
-            <Undo />
-            <Redo />
+          <RichTextEditorControlGroup>
+            <Control.Undo />
+            <Control.Redo />
           </RichTextEditorControlGroup>
         </HStack>
       </HStack>
@@ -111,46 +103,4 @@ const PasteMarkdown = Extension.create({
       }),
     ]
   },
-})
-
-const Bold = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
-})
-
-const Italic = createBooleanControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
-})
-
-const BulletList = createBooleanControl({
-  label: "Bullet List",
-  icon: LuList,
-  command: (editor) => editor.chain().focus().toggleBulletList().run(),
-  getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
-})
-
-const OrderedList = createBooleanControl({
-  label: "Ordered List",
-  icon: LuListOrdered,
-  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-  getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
-})
-
-const Undo = createBooleanControl({
-  label: "Undo",
-  icon: LuRotateCcw,
-  command: (editor) => editor.chain().focus().undo().run(),
-  isDisabled: (editor) => !editor.can().undo(),
-})
-
-const Redo = createBooleanControl({
-  label: "Redo",
-  icon: LuRotateCw,
-  command: (editor) => editor.chain().focus().redo().run(),
-  isDisabled: (editor) => !editor.can().redo(),
 })

@@ -8,14 +8,13 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createBooleanControl,
 } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
 import css from "highlight.js/lib/languages/css"
 import js from "highlight.js/lib/languages/javascript"
 import ts from "highlight.js/lib/languages/typescript"
 import html from "highlight.js/lib/languages/xml"
 import { all, createLowlight } from "lowlight"
-import { LuBold, LuCode, LuItalic } from "react-icons/lu"
 
 const lowlight = createLowlight(all)
 lowlight.register("html", html)
@@ -42,9 +41,9 @@ export const RichTextEditorWithCode = () => {
     >
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
         <RichTextEditorControlGroup>
-          <BoldButton />
-          <ItalicButton />
-          <CodeBlockButton />
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Code />
         </RichTextEditorControlGroup>
       </HStack>
       <RichTextEditorContent />
@@ -76,21 +75,3 @@ async function showTodos() {
 
 showTodos()
 `)
-
-const BoldButton = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-})
-
-const ItalicButton = createBooleanControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-})
-
-const CodeBlockButton = createBooleanControl({
-  label: "Code Block",
-  icon: LuCode,
-  command: (editor) => editor.chain().focus().toggleCodeBlock().run(),
-})

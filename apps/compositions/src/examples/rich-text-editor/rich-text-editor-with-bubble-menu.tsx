@@ -39,7 +39,7 @@ export const RichTextEditorWithBubbleMenu = () => {
               <Control.Bold />
               <Control.Italic />
               <Control.Underline />
-              <Control.Strike />
+              <Control.Strikethrough />
             </RichTextEditorControlGroup>
             <RichTextEditorControlGroup>
               <Control.BulletList />

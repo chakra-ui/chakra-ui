@@ -17,6 +17,7 @@ import {
   LuHeading2,
   LuHeading3,
   LuHeading4,
+  LuHighlighter,
   LuItalic,
   LuLink,
   LuLink2,
@@ -85,8 +86,8 @@ export const Underline = createBooleanControl({
   getVariant: (editor) => (editor.isActive("underline") ? "subtle" : "ghost"),
 })
 
-export const Strike = createBooleanControl({
-  label: "Strike",
+export const Strikethrough = createBooleanControl({
+  label: "Strikethrough",
   icon: LuStrikethrough,
   command: (editor) => editor.chain().focus().toggleStrike().run(),
   getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
@@ -258,6 +259,26 @@ export const TextColor = createSwatchControl({
     editor.chain().focus().setMark("textStyle", { color }).run(),
   icon: LuType,
   onRemove: (editor) => editor.chain().focus().unsetMark("textStyle").run(),
+})
+
+const HIGHLIGHT_SWATCH_OPTIONS = [
+  { label: "Yellow", value: "#FFFF00", color: "#FFFF00" },
+  { label: "Green", value: "#00FF00", color: "#00FF00" },
+  { label: "Cyan", value: "#00FFFF", color: "#00FFFF" },
+  { label: "Pink", value: "#FF69B4", color: "#FF69B4" },
+  { label: "Orange", value: "#FFA500", color: "#FFA500" },
+  { label: "Purple", value: "#DDA0DD", color: "#DDA0DD" },
+]
+
+export const Highlight = createSwatchControl({
+  label: "Highlight",
+  swatches: HIGHLIGHT_SWATCH_OPTIONS,
+  getValue: (editor) => editor.getAttributes("highlight")?.color || "",
+  command: (editor, color) =>
+    editor.chain().focus().toggleHighlight({ color }).run(),
+  icon: LuHighlighter,
+  showRemove: true,
+  onRemove: (editor) => editor.chain().focus().unsetHighlight().run(),
 })
 
 const TEXT_STYLE_OPTIONS = [

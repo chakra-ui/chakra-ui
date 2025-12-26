@@ -7,11 +7,10 @@ import {
   RichTextEditorContent,
   RichTextEditorControlGroup,
   RichTextEditorRoot,
-  createBooleanControl,
   createSelectControl,
 } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
 import { useState } from "react"
-import { LuBold } from "react-icons/lu"
 
 export const RichTextEditorWithMode = () => {
   const [mode, setMode] = useState("edit")
@@ -46,13 +45,13 @@ export const RichTextEditorWithMode = () => {
       >
         {mode === "edit" ? (
           <RichTextEditorControlGroup>
-            <Bold />
+            <Control.Bold />
           </RichTextEditorControlGroup>
         ) : (
           <Box />
         )}
 
-        <RichTextEditorControlGroup noSeparator>
+        <RichTextEditorControlGroup>
           <ModePicker
             width="120px"
             currentMode={mode}
@@ -65,16 +64,6 @@ export const RichTextEditorWithMode = () => {
     </RichTextEditorRoot>
   )
 }
-
-const Bold = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => {
-    editor.chain().focus().toggleBold().run()
-  },
-  getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
-  isDisabled: (editor) => !editor.isEditable,
-})
 
 interface ModePickerProps {
   currentMode: string

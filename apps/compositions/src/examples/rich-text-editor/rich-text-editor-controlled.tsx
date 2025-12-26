@@ -64,7 +64,7 @@ export const RichTextEditorControlled = () => {
               <Control.Bold />
               <Control.Italic />
               <Control.Underline />
-              <Control.Strike />
+              <Control.Strikethrough />
               <Control.Code />
             </RichTextEditorControlGroup>
             <RichTextEditorControlGroup>
