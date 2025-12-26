@@ -1,5 +1,6 @@
 export {
-  NumberInputControl,
+  NumberInputControl as NumberInputControl,
+  NumberInputTriggerGroup as NumberTriggerGroup,
   NumberInputDecrementTrigger,
   NumberInputIncrementTrigger,
   NumberInputInput,
@@ -14,7 +15,8 @@ export {
 } from "./number-input"
 
 export type {
-  NumberInputControlProps,
+  NumberInputControlProps as NumberInputControlProps,
+  NumberInputTriggerGroupProps as NumberInputTriggerGroupProps,
   NumberInputDecrementTriggerProps,
   NumberInputIncrementTriggerProps,
   NumberInputInputProps,

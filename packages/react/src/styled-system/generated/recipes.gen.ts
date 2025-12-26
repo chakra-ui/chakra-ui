@@ -847,7 +847,7 @@ export type NativeSelectVariantMap = {
 
 // NumberInput
 
-export type NumberInputSlot = "root" | "label" | "input" | "control" | "valueText" | "incrementTrigger" | "decrementTrigger" | "scrubber"
+export type NumberInputSlot = "root" | "label" | "input" | "control" | "valueText" | "incrementTrigger" | "decrementTrigger" | "scrubber" | "triggerGroup"
 
 export interface NumberInputVariant {
   /** @default "md" */
