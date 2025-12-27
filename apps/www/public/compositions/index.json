@@ -344,16 +344,25 @@
   },
   {
     "type": "composition",
+    "id": "rich-text-editor-control",
+    "file": "rich-text-editor-control.tsx",
+    "component": "RichTextEditorControl",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "compositions/ui/rich-text-editor"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "rich-text-editor",
     "file": "rich-text-editor.tsx",
     "component": "RichTextEditor",
     "npmDependencies": [
-      "@tiptap/react",
-      "react-icons"
+      "@tiptap/react"
     ],
     "fileDependencies": [
-      "compositions/ui/popover",
-      "compositions/ui/select",
       "compositions/ui/tooltip"
     ]
   },
