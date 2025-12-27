@@ -125,12 +125,12 @@ rendered HTML did not match the client**, and the error looks similar to:
 -<style data-emotion="css-global xxx" data-s="">
 ```
 
-This is caused by how Next.js hydrates Emotion CSS in `--turbo` mode. Please
-remove the `--turbo` flag from your `dev` script in your `package.json` file.
+This is caused by how Next.js hydrates Emotion CSS in Turbo mode. Please
+add the `--webpack` flag from your `dev` script in your `package.json` file.
 
 ```diff
-- "dev": "next dev --turbo"
-+ "dev": "next dev"
+- "dev": "next dev"
++ "dev": "next dev --webpack"
 ```
 
 When this is fixed by the `Next.js` team, we'll update this guide.
