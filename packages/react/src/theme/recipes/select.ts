@@ -147,6 +147,15 @@ export const selectSlotRecipe = defineSlotRecipe({
           bg: "bg.muted",
         },
       },
+
+      ghost: {
+        trigger: {
+          bg: "transparent",
+          _expanded: {
+            bg: "bg.muted",
+          },
+        },
+      },
     },
 
     size: {

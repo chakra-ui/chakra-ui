@@ -1,0 +1,63 @@
+"use client"
+
+import { Box, HStack } from "@chakra-ui/react"
+import Image from "@tiptap/extension-image"
+import { CharacterCount } from "@tiptap/extensions/character-count"
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
+import * as Control from "compositions/ui/rich-text-editor-control"
+
+export const RichTextEditorWithCharacterCount = () => {
+  const editor = useEditor({
+    content: `
+      <h2>Dr. Stone</h2>
+      <p><strong>Dr. Stone</strong> is a Japanese manga and anime series that follows the story of Senku Ishigami, a scientific genius who awakens thousands of years after humanity has been petrified.</p>
+      <p>The world is in ruins, and Senku aims to rebuild civilization using the power of science.</p>
+    `,
+    extensions: [
+      StarterKit,
+      Image,
+      CharacterCount.configure({
+        limit: 1000,
+        mode: "textSize",
+      }),
+    ],
+    shouldRerenderOnTransaction: true,
+  })
+
+  if (!editor) return null
+
+  const charCount = editor.storage.characterCount.characters()
+  const wordCount = editor.storage.characterCount.words()
+
+  return (
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Strikethrough />
+        </RichTextEditor.ControlGroup>
+
+        <RichTextEditor.ControlGroup>
+          <Control.BulletList />
+          <Control.OrderedList />
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
+
+      <RichTextEditor.Content />
+
+      <HStack
+        gap="4"
+        borderTopWidth="1px"
+        p="3"
+        textStyle="xs"
+        justify="flex-end"
+      >
+        <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
+        <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>
+      </HStack>
+    </RichTextEditor.Root>
+  )
+}
