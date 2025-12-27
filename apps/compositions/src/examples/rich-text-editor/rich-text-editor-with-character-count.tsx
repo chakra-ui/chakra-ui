@@ -54,12 +54,11 @@ export const RichTextEditorWithCharacterCount = () => {
       <RichTextEditorContent />
 
       <HStack
-        borderWidth="1px"
+        gap="4"
+        borderTopWidth="1px"
         p="3"
-        textAlign="end"
         textStyle="xs"
         justify="flex-end"
-        gap="4"
       >
         <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
         <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>

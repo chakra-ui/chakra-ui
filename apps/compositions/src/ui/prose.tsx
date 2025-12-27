@@ -119,6 +119,7 @@ export const Prose = chakra("div", {
       letterSpacing: "inherit",
       borderWidth: "inherit",
       padding: "0",
+      bg: "transparent",
     },
     [inWhere("& h2 code")]: {
       fontSize: "0.9em",
@@ -127,7 +128,7 @@ export const Prose = chakra("div", {
       fontSize: "0.8em",
     },
     [inWhere("& pre")]: {
-      backgroundColor: "bg.subtle",
+      backgroundColor: "bg.muted",
       marginTop: "1.6em",
       marginBottom: "1.6em",
       borderRadius: "md",
@@ -171,17 +172,21 @@ export const Prose = chakra("div", {
       marginTop: "0.5em",
       marginBottom: "0.5em",
     },
+    [inWhere("& > ol > li p")]: {
+      marginTop: "0.5em",
+      marginBottom: "0.5em",
+    },
     [inWhere("& > ul > li > p:first-of-type")]: {
-      marginTop: "1em",
+      marginTop: "0em",
     },
     [inWhere("& > ul > li > p:last-of-type")]: {
-      marginBottom: "1em",
+      marginBottom: "0em",
     },
     [inWhere("& > ol > li > p:first-of-type")]: {
-      marginTop: "1em",
+      marginTop: "0em",
     },
     [inWhere("& > ol > li > p:last-of-type")]: {
-      marginBottom: "1em",
+      marginBottom: "0em",
     },
     [inWhere("& ul ul, ul ol, ol ul, ol ol")]: {
       marginTop: "0.5em",
@@ -261,7 +266,7 @@ export const Prose = chakra("div", {
       marginTop: "0.85em",
       color: "fg.muted",
     },
-    [inWhere("& h1, h2, h3, h4")]: {
+    [inWhere("& h1, h2, h3, h4, h5, h6")]: {
       color: "fg",
       fontWeight: "600",
     },

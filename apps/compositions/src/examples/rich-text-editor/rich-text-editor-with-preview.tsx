@@ -79,7 +79,6 @@ export const RichTextEditorWithPreview = () => {
       <Splitter.ResizeTrigger id="editor:preview" />
       <Splitter.Panel id="preview" px="8" py="2">
         <Prose
-          lineHeight="1"
           width="full"
           size="lg"
           color="fg"

@@ -1,6 +1,5 @@
 "use client"
 
-import { Tag } from "@chakra-ui/react"
 import {
   Node,
   mergeAttributes,
@@ -9,7 +8,6 @@ import {
 } from "@tiptap/core"
 import {
   type NodeViewProps,
-  NodeViewWrapper,
   ReactNodeViewRenderer,
   useEditor,
 } from "@tiptap/react"
@@ -28,6 +26,7 @@ export const RichTextEditorWithHashtags = () => {
     content: preprocessedContent,
     shouldRerenderOnTransaction: true,
   })
+
   if (!editor) return null
   return (
     <RichTextEditorRoot
@@ -126,13 +125,7 @@ const Hashtag = Node.create<HashtagOptions>({
 
 function HashtagComponent({ node }: NodeViewProps) {
   const { tag } = node.attrs as HashtagAttributes
-  return (
-    <NodeViewWrapper as="span" className="inline-flex">
-      <Tag.Root colorPalette="green" size="md">
-        <Tag.Label>#{tag}</Tag.Label>
-      </Tag.Root>
-    </NodeViewWrapper>
-  )
+  return `#${tag}`
 }
 
 function preprocessContent(content: string, trigger: string = "#"): string {

@@ -42,11 +42,12 @@ const proseMirrorBaseCss = defineStyle({
   flexDirection: "column",
   borderWidth: "1px",
   rounded: "l2",
+  lineHeight: "1.5",
 
   "--content-padding-x": "spacing.5",
   "--content-padding-y": "spacing.5",
 
-  "& .ProseMirror-selectednode": {
+  "& img.ProseMirror-selectednode": {
     outlineWidth: "2px",
     outlineStyle: "solid",
     outlineColor: "blue.focusRing",
@@ -58,12 +59,40 @@ const proseMirrorBaseCss = defineStyle({
     px: "var(--content-padding-x)",
     py: "var(--content-padding-y)",
     "& > * + *": { marginTop: "0.75em" },
-    "& h1": { textStyle: "3xl", fontWeight: "semibold" },
-    "& h2": { textStyle: "2xl", fontWeight: "semibold" },
-    "& h3": { textStyle: "xl", fontWeight: "semibold" },
-    "& h4": { textStyle: "lg", fontWeight: "semibold" },
-    "& h5": { textStyle: "md", fontWeight: "medium" },
-    "& h6": { textStyle: "sm", fontWeight: "medium" },
+    "& h1": {
+      fontSize: "2.15em",
+      letterSpacing: "-0.02em",
+      lineHeight: "1.2em",
+    },
+    "& h2": {
+      fontSize: "1.4em",
+      letterSpacing: "-0.02em",
+      lineHeight: "1.4em",
+    },
+    "& h3": {
+      fontSize: "1.285em",
+      letterSpacing: "-0.01em",
+      lineHeight: "1.5em",
+    },
+    "& h4": {
+      fontSize: "1.14em",
+      letterSpacing: "-0.01em",
+      lineHeight: "1.5em",
+    },
+    "& h5": {
+      fontSize: "1em",
+      letterSpacing: "-0.01em",
+      lineHeight: "1.5em",
+    },
+    "& h6": {
+      fontSize: "0.85em",
+      letterSpacing: "-0.01em",
+      lineHeight: "1.5em",
+    },
+    "& h1, h2, h3, h4, h5, h6": {
+      color: "fg",
+      fontWeight: "600",
+    },
     "& code": {
       bg: "bg.muted",
       paddingInline: "0.25em",
@@ -96,10 +125,20 @@ const proseMirrorBaseCss = defineStyle({
       borderStartColor: "border",
       paddingStart: "4",
     },
-    "& ul": { paddingInlineStart: "4", listStyleType: "disc" },
-    "& ol": { paddingInlineStart: "4", listStyleType: "decimal" },
-    "& ul ul": { listStyleType: "circle" },
-    "& ul ul ul": { listStyleType: "square" },
+    "& ul:not([data-type='taskList'])": {
+      paddingInlineStart: "1rem",
+      listStyleType: "disc",
+    },
+    "& ol:not([data-type='taskList'])": {
+      paddingInlineStart: "1rem",
+      listStyleType: "decimal",
+    },
+    "& ul ul": {
+      listStyleType: "circle",
+    },
+    "& ul ul ul": {
+      listStyleType: "square",
+    },
     "& ul[data-type='taskList'] li": {
       listStyle: "none",
       display: "flex",
@@ -109,7 +148,6 @@ const proseMirrorBaseCss = defineStyle({
         accentColor: "colorPalette.solid",
         marginTop: "1",
       },
-      "& ul[data-type='taskList']": { paddingInlineStart: "6" },
     },
     "& hr": { my: "4" },
     "& a": { color: "blue.fg", textDecoration: "underline" },
@@ -121,6 +159,13 @@ const proseMirrorBaseCss = defineStyle({
       pointerEvents: "none",
       float: "left",
       height: "0",
+    },
+
+    "& .node-hashtag": {
+      layerStyle: "fill.surface",
+      px: "0.25em",
+      py: "2px",
+      rounded: "l1",
     },
   },
 
