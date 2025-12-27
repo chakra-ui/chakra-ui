@@ -6,9 +6,7 @@ import TaskList from "@tiptap/extension-task-list"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
+  RichTextEditor,
   createBooleanControl,
 } from "compositions/ui/rich-text-editor"
 import { LuArrowLeft, LuArrowRight, LuListChecks, LuPlus } from "react-icons/lu"
@@ -32,22 +30,22 @@ export const RichTextEditorWithTask = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot
+    <RichTextEditor.Root
       editor={editor}
       border="1px solid"
       borderColor="border"
       rounded="md"
     >
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <ToggleTaskList />
           <IndentTask />
           <OutdentTask />
           <AddTask />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
       </HStack>
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 

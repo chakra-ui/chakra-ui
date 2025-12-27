@@ -4,11 +4,7 @@ import { HStack } from "@chakra-ui/react"
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 import css from "highlight.js/lib/languages/css"
 import js from "highlight.js/lib/languages/javascript"
@@ -33,21 +29,21 @@ export const RichTextEditorWithCode = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot
+    <RichTextEditor.Root
       editor={editor}
       border="1px solid"
       borderColor="border"
       rounded="md"
     >
       <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Code />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
       </HStack>
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 

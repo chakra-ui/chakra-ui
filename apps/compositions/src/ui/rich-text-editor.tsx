@@ -518,3 +518,11 @@ export function createSwatchControl(config: SwatchControlConfig) {
   SwatchControl.displayName = `SwatchControl(${label || "Unnamed"})`
   return SwatchControl
 }
+
+export const RichTextEditor = {
+  Root: RichTextEditorRoot,
+  Toolbar: RichTextEditorToolbar,
+  Content: RichTextEditorContent,
+  ControlGroup: RichTextEditorControlGroup,
+  ButtonControl: RichTextEditorButtonControl,
+} as const

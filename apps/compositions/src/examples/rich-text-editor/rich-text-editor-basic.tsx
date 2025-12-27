@@ -6,12 +6,7 @@ import TextAlign from "@tiptap/extension-text-align"
 import { TextStyleKit } from "@tiptap/extension-text-style"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 
 export const RichTextEditorBasic = () => {
@@ -30,57 +25,57 @@ export const RichTextEditorBasic = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor}>
-      <RichTextEditorToolbar>
-        <RichTextEditorControlGroup>
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
           <Control.FontFamily />
           <Control.FontSize />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Underline />
           <Control.Strikethrough />
           <Control.Code />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.H1 />
           <Control.H2 />
           <Control.H3 />
           <Control.H4 />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.BulletList />
           <Control.OrderedList />
           <Control.Blockquote />
           <Control.Hr />
           <Control.Subscript />
           <Control.Superscript />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.TextColor />
           <Control.Link />
           <Control.Unlink />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.AlignLeft />
           <Control.AlignCenter />
           <Control.AlignJustify />
           <Control.AlignRight />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.Undo />
           <Control.Redo />
-        </RichTextEditorControlGroup>
-      </RichTextEditorToolbar>
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
 
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }

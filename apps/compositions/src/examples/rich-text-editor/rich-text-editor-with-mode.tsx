@@ -4,9 +4,7 @@ import { Box, HStack } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
+  RichTextEditor,
   createSelectControl,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
@@ -30,7 +28,7 @@ export const RichTextEditorWithMode = () => {
   }
 
   return (
-    <RichTextEditorRoot
+    <RichTextEditor.Root
       editor={editor}
       border="1px solid"
       borderColor="border"
@@ -44,24 +42,24 @@ export const RichTextEditorWithMode = () => {
         justifyContent="space-between"
       >
         {mode === "edit" ? (
-          <RichTextEditorControlGroup>
+          <RichTextEditor.ControlGroup>
             <Control.Bold />
-          </RichTextEditorControlGroup>
+          </RichTextEditor.ControlGroup>
         ) : (
           <Box />
         )}
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <ModePicker
             width="120px"
             currentMode={mode}
             onModeChange={handleModeChange}
           />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
       </HStack>
 
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 

@@ -5,12 +5,7 @@ import Image from "@tiptap/extension-image"
 import { CharacterCount } from "@tiptap/extensions/character-count"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 
 export const RichTextEditorWithCharacterCount = () => {
@@ -37,21 +32,21 @@ export const RichTextEditorWithCharacterCount = () => {
   const wordCount = editor.storage.characterCount.words()
 
   return (
-    <RichTextEditorRoot editor={editor}>
-      <RichTextEditorToolbar>
-        <RichTextEditorControlGroup>
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Strikethrough />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.BulletList />
           <Control.OrderedList />
-        </RichTextEditorControlGroup>
-      </RichTextEditorToolbar>
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
 
-      <RichTextEditorContent />
+      <RichTextEditor.Content />
 
       <HStack
         gap="4"
@@ -63,6 +58,6 @@ export const RichTextEditorWithCharacterCount = () => {
         <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
         <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>
       </HStack>
-    </RichTextEditorRoot>
+    </RichTextEditor.Root>
   )
 }

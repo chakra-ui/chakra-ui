@@ -22,12 +22,7 @@ import {
   useEditor,
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 import { Tag } from "compositions/ui/tag"
 import * as React from "react"
@@ -134,35 +129,35 @@ export const RichTextEditorWithMentions = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor} borderWidth="1px" rounded="sm">
-      <RichTextEditorToolbar>
-        <RichTextEditorControlGroup>
+    <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="sm">
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Strikethrough />
           <Control.Code />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.H1 />
           <Control.H2 />
           <Control.H3 />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.BulletList />
           <Control.OrderedList />
           <Control.Blockquote />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.Undo />
           <Control.Redo />
-        </RichTextEditorControlGroup>
-      </RichTextEditorToolbar>
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
 
-      <RichTextEditorContent minH="400px" p="4" />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 

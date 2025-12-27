@@ -44,11 +44,8 @@ import {
   PopoverTrigger,
 } from "compositions/ui/popover"
 import {
-  RichTextEditorButtonControl,
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
+  RichTextEditor,
   type RichTextEditorControlProps,
-  RichTextEditorRoot,
   createBooleanControl,
   createSelectControl,
   useRichTextEditorContext,
@@ -139,7 +136,7 @@ export const RichTextEditorComposition = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot
+    <RichTextEditor.Root
       editor={editor}
       shadow="sm"
       h="100vh"
@@ -177,7 +174,7 @@ export const RichTextEditorComposition = () => {
           overflowY="auto"
           position="relative"
         >
-          <RichTextEditorContent />
+          <RichTextEditor.Content />
           {linkBubblePosition && (
             <LinkBubbleMenu
               editor={editor}
@@ -187,7 +184,7 @@ export const RichTextEditorComposition = () => {
           )}
         </Flex>
       </HStack>
-    </RichTextEditorRoot>
+    </RichTextEditor.Root>
   )
 }
 
@@ -394,44 +391,44 @@ const Toolbar = () => {
           <LuSearch />
         </IconButton>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <UndoBtn />
           <RedoBtn />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <FontFamilySelector width="140px" />
           <FontSize width="80px" />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <BoldBtn />
           <ItalicBtn />
           <UnderlineBtn />
           <StrikeBtn />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <H1Btn />
           <H2Btn />
           <H3Btn />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <AlignLeftBtn />
           <AlignCenterBtn />
           <AlignRightBtn />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <BulletListBtn />
           <OrderedListBtn />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <LinkControl />
           <InsertImageControl />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
       </HStack>
     </Box>
   )
@@ -590,7 +587,7 @@ const LinkControl = forwardRef<
       positioning={positioning}
     >
       <PopoverTrigger>
-        <RichTextEditorButtonControl
+        <RichTextEditor.ButtonControl
           ref={ref}
           icon={<LuLink />}
           variant={editor.isActive("link") ? "subtle" : "ghost"}
@@ -653,7 +650,7 @@ function InsertImageControl() {
 
   return (
     <>
-      <RichTextEditorButtonControl
+      <RichTextEditor.ButtonControl
         icon={<LuImage />}
         label="Insert Image"
         onClick={() => setOpen(true)}

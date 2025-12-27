@@ -3,12 +3,7 @@
 import { Badge, Box, HStack, Text } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { LuCheck, LuCloud, LuLoader } from "react-icons/lu"
@@ -85,23 +80,23 @@ export const RichTextEditorWithAutosave = () => {
 
   return (
     <Box>
-      <RichTextEditorRoot editor={editor} borderWidth="1px" rounded="l2">
-        <RichTextEditorToolbar>
-          <RichTextEditorControlGroup>
+      <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="l2">
+        <RichTextEditor.Toolbar>
+          <RichTextEditor.ControlGroup>
             <Control.Bold />
             <Control.Italic />
             <Control.Underline />
-          </RichTextEditorControlGroup>
+          </RichTextEditor.ControlGroup>
 
-          <RichTextEditorControlGroup>
+          <RichTextEditor.ControlGroup>
             <Control.BulletList />
             <Control.OrderedList />
-          </RichTextEditorControlGroup>
+          </RichTextEditor.ControlGroup>
 
-          <RichTextEditorControlGroup>
+          <RichTextEditor.ControlGroup>
             <Control.Undo />
             <Control.Redo />
-          </RichTextEditorControlGroup>
+          </RichTextEditor.ControlGroup>
 
           <HStack flex="1" justify="flex-end" gap="2">
             <Badge
@@ -131,10 +126,10 @@ export const RichTextEditorWithAutosave = () => {
               </HStack>
             </Badge>
           </HStack>
-        </RichTextEditorToolbar>
+        </RichTextEditor.Toolbar>
 
-        <RichTextEditorContent />
-      </RichTextEditorRoot>
+        <RichTextEditor.Content />
+      </RichTextEditor.Root>
     </Box>
   )
 }

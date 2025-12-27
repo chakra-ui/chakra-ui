@@ -4,12 +4,7 @@ import { Box, Icon } from "@chakra-ui/react"
 import { DragHandle } from "@tiptap/extension-drag-handle-react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 import { LuGripVertical } from "react-icons/lu"
 
@@ -32,25 +27,25 @@ export const RichTextEditorWithDragHandle = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor}>
-      <RichTextEditorToolbar>
-        <RichTextEditorControlGroup>
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Underline />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.BulletList />
           <Control.OrderedList />
           <Control.Blockquote />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.Undo />
           <Control.Redo />
-        </RichTextEditorControlGroup>
-      </RichTextEditorToolbar>
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
 
       <Box position="relative">
         <DragHandle editor={editor}>
@@ -69,8 +64,8 @@ export const RichTextEditorWithDragHandle = () => {
             </Icon>
           </Box>
         </DragHandle>
-        <RichTextEditorContent />
+        <RichTextEditor.Content />
       </Box>
-    </RichTextEditorRoot>
+    </RichTextEditor.Root>
   )
 }

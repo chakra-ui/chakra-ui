@@ -14,11 +14,7 @@ import Image from "@tiptap/extension-image"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
-  RichTextEditorButtonControl,
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
+  RichTextEditor,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
@@ -39,26 +35,26 @@ export const RichTextEditorWithImage = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditorRoot editor={editor}>
-      <RichTextEditorToolbar>
-        <RichTextEditorControlGroup>
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
           <Control.Strikethrough />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <Control.BulletList />
           <Control.OrderedList />
-        </RichTextEditorControlGroup>
+        </RichTextEditor.ControlGroup>
 
-        <RichTextEditorControlGroup>
+        <RichTextEditor.ControlGroup>
           <InsertImageControl />
-        </RichTextEditorControlGroup>
-      </RichTextEditorToolbar>
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
 
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 
@@ -71,7 +67,7 @@ function InsertImageControl() {
 
   return (
     <>
-      <RichTextEditorButtonControl
+      <RichTextEditor.ButtonControl
         icon={<LuImage />}
         label="Insert Image"
         onClick={() => setOpen(true)}

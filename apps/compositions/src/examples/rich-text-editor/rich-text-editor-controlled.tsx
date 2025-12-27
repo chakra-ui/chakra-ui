@@ -6,12 +6,7 @@ import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorControlGroup,
-  RichTextEditorRoot,
-  RichTextEditorToolbar,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as Control from "compositions/ui/rich-text-editor-control"
 import { useState } from "react"
 
@@ -36,19 +31,19 @@ export const RichTextEditorControlled = () => {
 
   return (
     <Stack maxW="3xl">
-      <RichTextEditorRoot editor={editor} maxHeight="2xl">
-        <RichTextEditorToolbar>
-          <RichTextEditorControlGroup>
+      <RichTextEditor.Root editor={editor} maxHeight="2xl">
+        <RichTextEditor.Toolbar>
+          <RichTextEditor.ControlGroup>
             <Control.Bold />
             <Control.Italic />
             <Control.Underline />
             <Control.Strikethrough />
             <Control.Code />
-          </RichTextEditorControlGroup>
-        </RichTextEditorToolbar>
+          </RichTextEditor.ControlGroup>
+        </RichTextEditor.Toolbar>
 
-        <RichTextEditorContent />
-      </RichTextEditorRoot>
+        <RichTextEditor.Content />
+      </RichTextEditor.Root>
 
       <Box p="4" bg="bg.muted" flex="1">
         <Box

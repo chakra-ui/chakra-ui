@@ -12,10 +12,7 @@ import {
   useEditor,
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditorContent,
-  RichTextEditorRoot,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
 
 export const RichTextEditorWithHashtags = () => {
   const initialContent = `<p>Type #chakra or #react and press space, it becomes a tag. Try pasting: #tiptap #awesome</p>`
@@ -29,14 +26,14 @@ export const RichTextEditorWithHashtags = () => {
 
   if (!editor) return null
   return (
-    <RichTextEditorRoot
+    <RichTextEditor.Root
       editor={editor}
       border="1px solid"
       borderColor="border"
       rounded="md"
     >
-      <RichTextEditorContent />
-    </RichTextEditorRoot>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
   )
 }
 
