@@ -22,8 +22,7 @@ import {
   useEditor,
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 import { Tag } from "compositions/ui/tag"
 import * as React from "react"
 import { LuUser } from "react-icons/lu"

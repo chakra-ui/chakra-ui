@@ -526,3 +526,5 @@ export const RichTextEditor = {
   ControlGroup: RichTextEditorControlGroup,
   ButtonControl: RichTextEditorButtonControl,
 } as const
+
+export * as Control from "compositions/ui/rich-text-editor-control"

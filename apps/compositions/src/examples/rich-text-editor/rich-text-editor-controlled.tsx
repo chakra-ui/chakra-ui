@@ -6,8 +6,7 @@ import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 import { useState } from "react"
 
 export const RichTextEditorControlled = () => {

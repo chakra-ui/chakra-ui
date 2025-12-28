@@ -363,7 +363,8 @@
       "@tiptap/react"
     ],
     "fileDependencies": [
-      "compositions/ui/tooltip"
+      "compositions/ui/tooltip",
+      "compositions/ui/rich-text-editor-control"
     ]
   },
   {

@@ -17,8 +17,7 @@ import { PluginKey } from "@tiptap/pm/state"
 import { Editor, ReactRenderer, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Suggestion, type SuggestionProps } from "@tiptap/suggestion"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 import * as React from "react"
 
 export const RichTextEditorWithSlashCommands = () => {

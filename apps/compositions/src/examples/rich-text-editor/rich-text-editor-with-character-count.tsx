@@ -5,8 +5,7 @@ import Image from "@tiptap/extension-image"
 import { CharacterCount } from "@tiptap/extensions/character-count"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 
 export const RichTextEditorWithCharacterCount = () => {
   const editor = useEditor({

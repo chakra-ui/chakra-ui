@@ -4,8 +4,7 @@ import { Box, Icon } from "@chakra-ui/react"
 import { DragHandle } from "@tiptap/extension-drag-handle-react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 import { LuGripVertical } from "react-icons/lu"
 
 export const RichTextEditorWithDragHandle = () => {

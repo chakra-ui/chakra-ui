@@ -3,8 +3,7 @@
 import Highlight from "@tiptap/extension-highlight"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 
 export const RichTextEditorWithHighlight = () => {
   const editor = useEditor({

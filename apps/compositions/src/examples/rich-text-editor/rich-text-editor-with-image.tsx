@@ -14,10 +14,10 @@ import Image from "@tiptap/extension-image"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
+  Control,
   RichTextEditor,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
-import * as Control from "compositions/ui/rich-text-editor-control"
 import { useState } from "react"
 import { LuImage, LuLink, LuUpload } from "react-icons/lu"
 
