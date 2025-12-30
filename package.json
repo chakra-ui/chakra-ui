@@ -52,6 +52,7 @@
     "@changesets/types": "6.1.0",
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
+    "@emotion/react": "11.14.0",
     "@eslint/compat": "^1.3.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.29.0",
@@ -69,7 +70,6 @@
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "@types/fs-extra": "11.0.4",
     "@types/node": "24.10.1",
-    "@emotion/react": "11.14.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.50.0",
@@ -119,7 +119,7 @@
       "react-dom": "19.2.3"
     }
   },
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
     "node": ">=20.x"
   }
