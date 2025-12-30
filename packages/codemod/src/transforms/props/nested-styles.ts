@@ -14,7 +14,6 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  // Find sx or __css props
   root.find(j.JSXAttribute).forEach((path) => {
     const attr = path.node
     if (attr.name.type !== "JSXIdentifier") return
@@ -32,13 +31,15 @@ export default function transformer(
 
         const keyName =
           prop.key.type === "Identifier" ? prop.key.name : prop.key.value
-        const newKey = `& ${keyName}`
 
-        return j.objectProperty(j.stringLiteral(newKey), prop.value)
+        if (prop.value.type === "ObjectExpression") {
+          return j.objectProperty(j.stringLiteral(`& ${keyName}`), prop.value)
+        }
+
+        return prop
       }),
     )
 
-    // Replace sx/__css with css
     attr.name.name = "css"
     expr.expression = cssProps
   })

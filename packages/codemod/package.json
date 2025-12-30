@@ -49,6 +49,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
+    "@clack/prompts": "0.11.0",
     "@types/node": "^20.0.0",
     "commander": "12.1.0",
     "dotenv": "^17.2.3",

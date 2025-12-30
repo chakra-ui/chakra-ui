@@ -24,8 +24,6 @@ export default function transform(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
-
-  // 1. Identify local names for Chakra components
   const chakraLocalNames = new Set<string>()
   root.find(j.ImportDeclaration).forEach((path) => {
     const source = path.node.source.value

@@ -1,12 +1,12 @@
+import * as p from "@clack/prompts"
 import { execSync } from "child_process"
 import fs from "fs"
-import ora from "ora"
 import picocolors from "picocolors"
-import prompts from "prompts"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
 import { upgradeTransforms } from "./transforms.js"
 import { isGitClean } from "./utils/git.js"
+import { isPackageUsed } from "./utils/is-package-used.js"
 import { getPackageManager } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
@@ -22,56 +22,41 @@ export async function upgrade(
 
   console.log(picocolors.bold(picocolors.blue("\n🚀 Chakra UI Upgrade Tool\n")))
 
-  // Check Node.js version
   const nodeVersion = process.version
   if (!semver.satisfies(nodeVersion, ">=20.0.0")) {
-    console.error(
+    p.cancel(
       picocolors.red(
-        `\n❌ Node.js 20.x or higher is required. You are running ${nodeVersion}.\n`,
+        `Node.js 20.x or higher is required. You are running ${nodeVersion}.`,
       ),
     )
     process.exit(1)
   }
 
-  // Git safety check
   if (!dry) {
     const gitClean = await isGitClean()
     if (!gitClean) {
-      console.error(
-        picocolors.yellow(
-          "⚠️  Git directory is not clean. Please commit or stash your changes before upgrading.\n",
-        ),
+      p.note(
+        "Git directory is not clean. Please commit or stash your changes before upgrading.",
       )
-      const response = await prompts({
-        type: "confirm",
-        name: "continue",
+      const proceed = await p.confirm({
         message: "Do you want to continue anyway?",
-        initial: false,
+        initialValue: false,
       })
-
-      if (!response.continue) {
-        console.log(picocolors.gray("\nUpgrade cancelled.\n"))
+      if (!proceed) {
+        p.cancel("Upgrade cancelled.")
         process.exit(0)
       }
     }
   }
 
-  // Detect package manager
   const packageManager = getPackageManager()
-  console.log(
-    picocolors.gray(`   Detected package manager: ${packageManager}\n`),
-  )
-
-  // Update packages
-  console.log(picocolors.blue("📦 Updating packages...\n"))
+  p.note(`Detected package manager: ${packageManager}`)
 
   const targetVersion = revision === "latest" ? "latest" : revision
-
   const packagesToUpdate = [
     `@chakra-ui/react@${targetVersion}`,
     "@emotion/react@latest",
   ]
-
   const packagesToRemove = [
     "@emotion/styled",
     "framer-motion",
@@ -79,14 +64,21 @@ export async function upgrade(
   ]
 
   try {
-    // Determine installed packages to remove
     let installedPackages: string[] = []
-
     if (!dry && fs.existsSync("package.json")) {
       const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
       const deps = { ...pkg.dependencies, ...pkg.devDependencies }
       installedPackages = packagesToRemove.filter((pkgName) => deps?.[pkgName])
     }
+
+    installedPackages = (
+      await Promise.all(
+        installedPackages.map(async (pkg) => {
+          const used = await isPackageUsed(pkg, process.cwd())
+          return used ? null : pkg
+        }),
+      )
+    ).filter(Boolean) as string[]
 
     if (installedPackages.length > 0) {
       const uninstallCmd =
@@ -97,31 +89,26 @@ export async function upgrade(
             : packageManager === "bun"
               ? `bun remove ${installedPackages.join(" ")}`
               : `pnpm remove ${installedPackages.join(" ")}`
-
+      const spinner = p.spinner()
+      spinner.start(`Removing unused packages: ${installedPackages.join(", ")}`)
       if (!dry) {
-        const spinner = ora(
-          `Removing unused packages: ${installedPackages.join(", ")}`,
-        ).start()
         try {
-          execSync(uninstallCmd, { stdio: "inherit" })
-          spinner.succeed("Unused packages removed!")
-        } catch (error) {
-          spinner.fail("Failed to remove packages")
-          if (verbose && error instanceof Error) console.error(error.message)
+          execSync(uninstallCmd, { stdio: "ignore" })
+          spinner.stop("Unused packages removed ✅")
+        } catch (err) {
+          spinner.stop("Failed to remove packages ❌")
+          if (verbose && err instanceof Error) p.log.error(err.message)
           process.exit(1)
         }
       } else {
-        console.log(
-          picocolors.yellow(
-            `[DRY RUN] Would uninstall: ${installedPackages.join(", ")}\n`,
-          ),
+        spinner.stop(
+          `[DRY RUN] Would uninstall: ${installedPackages.join(", ")}`,
         )
       }
     } else {
-      console.log(picocolors.gray("   No unused packages found to remove.\n"))
+      p.note("No unused packages found to remove.")
     }
 
-    // Install new packages
     const installCmd =
       packageManager === "npm"
         ? `npm install ${packagesToUpdate.join(" ")}`
@@ -130,146 +117,87 @@ export async function upgrade(
           : packageManager === "bun"
             ? `bun add ${packagesToUpdate.join(" ")}`
             : `pnpm add ${packagesToUpdate.join(" ")}`
-
+    const spinner = p.spinner()
+    spinner.start(`Installing packages: ${packagesToUpdate.join(", ")}`)
     if (!dry) {
-      const spinner = ora(
-        `Installing packages: ${packagesToUpdate.join(", ")}`,
-      ).start()
       try {
-        execSync(installCmd, { stdio: "inherit" })
-        spinner.succeed("Packages installed!")
-      } catch (error) {
-        spinner.fail("Failed to install packages")
-        if (verbose && error instanceof Error) console.error(error.message)
+        execSync(installCmd, { stdio: "ignore" })
+        spinner.stop("Packages installed ✅")
+      } catch (err) {
+        spinner.stop("Failed to install packages ❌")
+        if (verbose && err instanceof Error) p.log.error(err.message)
         process.exit(1)
       }
     } else {
-      console.log(
-        picocolors.yellow(
-          `[DRY RUN] Would install: ${packagesToUpdate.join(", ")}\n`,
-        ),
-      )
+      spinner.stop(`[DRY RUN] Would install: ${packagesToUpdate.join(", ")}`)
     }
-  } catch (error) {
-    console.error(picocolors.red("\n❌ Failed to update packages.\n"))
-    if (error instanceof Error && verbose) {
-      console.error(picocolors.gray(error.message))
-    }
+  } catch (err) {
+    p.cancel("Failed to update packages ❌")
+    if (verbose && err instanceof Error) p.log.error(err.message)
     process.exit(1)
   }
 
-  // Install snippets
-  console.log(picocolors.blue("\n📦 Installing Chakra UI snippets...\n"))
-  console.log(
-    picocolors.gray(
-      "   Snippets provide pre-built component compositions to speed up development.\n",
-    ),
-  )
-
-  const snippetResponse = await prompts({
-    type: "confirm",
-    name: "installSnippets",
+  const snippetResponse = await p.confirm({
     message: "Do you want to install component snippets?",
-    initial: true,
+    initialValue: true,
   })
 
-  // Handle cancelled prompt (Ctrl+C)
-  if (snippetResponse.installSnippets === undefined) {
-    console.log(picocolors.gray("\nUpgrade cancelled.\n"))
-    process.exit(0)
-  }
-
-  if (snippetResponse.installSnippets) {
-    try {
-      if (!dry) {
-        console.log(
-          picocolors.gray("\n   Running: npx @chakra-ui/cli snippet add\n"),
-        )
-        // Use 'ignore' for stdio to prevent output interference with subsequent prompts
+  if (snippetResponse) {
+    const spinner = p.spinner()
+    spinner.start("Installing snippets...")
+    if (!dry) {
+      try {
         execSync("npx @chakra-ui/cli snippet add", {
           stdio: ["inherit", "pipe", "pipe"],
           encoding: "utf8",
         })
-        console.log(picocolors.green("\n   ✅ Snippets installed!\n"))
-      } else {
-        console.log(
-          picocolors.yellow(
-            "   [DRY RUN] Would run: npx @chakra-ui/cli snippet add\n",
-          ),
-        )
+        spinner.stop("Snippets installed ✅")
+      } catch (err) {
+        spinner.stop("Snippet installation failed ❌")
+        if (verbose && err instanceof Error) p.log.error(err.message)
+        p.note("You can run manually: npx @chakra-ui/cli snippet add")
       }
-    } catch (error) {
-      console.error(
-        picocolors.yellow(
-          "\n⚠️  Snippet installation failed. You can run it manually later:\n",
-        ),
-      )
-      console.log(picocolors.gray("   npx @chakra-ui/cli snippet add\n"))
-      if (verbose && error instanceof Error) {
-        console.error(picocolors.gray(error.message))
-      }
+    } else {
+      spinner.stop("[DRY RUN] Would run: npx @chakra-ui/cli snippet add")
     }
   } else {
-    console.log(
-      picocolors.gray(
-        "\n   Skipped. You can install snippets later with: npx @chakra-ui/cli snippet add\n",
-      ),
-    )
+    p.note("Skipped snippet installation.")
   }
 
-  // Small delay to ensure stdio is fully flushed before next prompt
-  await new Promise((resolve) => setTimeout(resolve, 100))
-
-  // Ask which transforms to run
-  console.log(picocolors.blue("🔄 Running codemods...\n"))
-
-  const response = await prompts({
-    type: "multiselect",
-    name: "transforms",
+  const response = await p.multiselect({
     message: "Select transforms to run:",
-    choices: upgradeTransforms.map((t) => ({
-      title: t,
-      value: t,
-      selected: true,
-    })),
-    hint: "Space to select, Enter to confirm",
-    instructions: false,
+    options: upgradeTransforms.map((t) => ({ label: t, value: t })),
+    initialValues: upgradeTransforms,
   })
 
-  // Handle cancelled prompt (Ctrl+C) or no selection
-  if (response.transforms === undefined) {
-    console.log(picocolors.gray("\nUpgrade cancelled.\n"))
-    process.exit(0)
-  }
-
-  if (!response.transforms || response.transforms.length === 0) {
-    console.log(
-      picocolors.gray("\nNo transforms selected. Upgrade complete!\n"),
-    )
+  if (
+    p.isCancel(response) ||
+    (Array.isArray(response) && response.length === 0)
+  ) {
+    p.cancel("No transforms selected. Upgrade complete!")
     return
   }
 
-  const targetPaths = ["./src", "./app", "./components", "."]
-    .filter((p) => fs.existsSync(p))
-    .slice(0, 1)
-
-  const targetPath = targetPaths[0] || "."
-
-  console.log(picocolors.gray(`   Target directory: ${targetPath}\n`))
-
-  // Run selected transforms
-  for (const transformName of response.transforms) {
-    await runTransform(transformName, targetPath, { dry, force: true })
+  const targetPath = process.cwd()
+  for (const transformName of response) {
+    const spinner = p.spinner()
+    spinner.start(`Running transform: ${transformName}`)
+    try {
+      await runTransform(transformName, targetPath, { dry, force: true })
+      spinner.stop(`Transform "${transformName}" completed ✅`)
+    } catch (err) {
+      spinner.stop(`Transform "${transformName}" failed ❌`)
+      if (verbose && err instanceof Error) p.log.error(err.message)
+    }
   }
 
-  console.log(picocolors.bold(picocolors.green("\n🎉 Upgrade complete!\n")))
-
-  console.log(picocolors.gray("Next steps:\n"))
+  p.note("Upgrade complete 🎉")
   console.log(
-    picocolors.gray(
-      "  1. Review the changes made by the codemods\n" +
-        "  2. Run your tests to ensure everything works\n" +
-        "  3. Check the migration guide for manual changes: https://chakra-ui.com/docs/get-started/migration\n",
-    ),
+    picocolors.gray(`
+Next steps:
+  1. Review the changes made by the codemods
+  2. Run your tests to ensure everything works
+  3. Check the migration guide for manual changes: https://chakra-ui.com/docs/get-started/migration
+`),
   )
 }
