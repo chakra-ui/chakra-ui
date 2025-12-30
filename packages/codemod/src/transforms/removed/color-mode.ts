@@ -1,15 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 
-/**
- * Codemod to migrate Chakra UI v2 color mode to v3 (next-themes)
- *
- * Transformations:
- * 1. Remove ColorModeProvider imports
- * 2. Replace useColorMode with useTheme from next-themes
- * 3. Replace useColorModeValue with conditional logic
- * 4. Replace LightMode/DarkMode with className
- * 5. Remove ColorModeScript
- */
 export default function transformer(
   file: FileInfo,
   api: API,

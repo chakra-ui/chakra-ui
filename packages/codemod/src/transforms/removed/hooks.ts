@@ -22,7 +22,6 @@ export default function transformer(
         if (spec.type === "ImportSpecifier") {
           const name = spec.imported.name as string
 
-          // If it's a removed hook, track it and filter it out
           if (REMOVED_HOOKS[name]) {
             removedHooksUsed.add(name)
             return false
@@ -65,23 +64,19 @@ export default function transformer(
         false,
       )
 
-      // Add comment before the first statement
       firstStatement.node.comments = firstStatement.node.comments || []
       firstStatement.node.comments.unshift(comment)
       hasChanges = true
     }
   }
 
-  // Special handling for useId -> React.useId migration
   root
     .find(j.CallExpression, {
       callee: { name: "useId" },
     })
     .forEach((path) => {
-      // Check if it's from Chakra (not already React.useId)
       const parent = path.parent
       if (parent.value.type === "VariableDeclarator") {
-        // Add a comment suggesting to import from React
         const comment = j.commentLine(
           " Use React.useId instead (available in React 18+)",
         )
@@ -94,13 +89,11 @@ export default function transformer(
       }
     })
 
-  // Handle useTheme -> system import
   root
     .find(j.CallExpression, {
       callee: { name: "useTheme" },
     })
     .forEach((path) => {
-      // Check if this is imported from Chakra
       const comment = j.commentLine(
         " useTheme removed: Import theme from your system or use useChakraContext",
       )

@@ -1,15 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 
-/**
- * Codemod to migrate CircularProgress to ProgressCircle
- *
- * Transformations:
- * - CircularProgress -> ProgressCircle.Root with compound components
- * - isIndeterminate={true} -> value={null}
- * - thickness -> --thickness CSS variable
- * - color -> stroke on ProgressCircle.Range
- */
-
 export default function transformer(
   file: FileInfo,
   api: API,

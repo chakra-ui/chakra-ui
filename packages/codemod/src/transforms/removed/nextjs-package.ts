@@ -1,15 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 
-/**
- * Codemod to migrate @chakra-ui/next-js package to asChild pattern
- *
- * Transformations:
- * - Remove @chakra-ui/next-js imports
- * - Replace ChakraNextImage with Box asChild pattern
- * - Replace ChakraNextLink with Link asChild pattern
- * - Update isExternal prop handling
- */
-
 export default function transformer(
   file: FileInfo,
   api: API,
@@ -24,7 +14,6 @@ export default function transformer(
   let needsNextImage = false
   let needsNextLink = false
 
-  // Track removed component usage
   const removedComponents: Record<
     string,
     { replacement: string; wrapper: string }
@@ -35,7 +24,6 @@ export default function transformer(
     NextLink: { replacement: "Link", wrapper: "Link" },
   }
 
-  // Remove @chakra-ui/next-js imports and track what was used
   root
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/next-js" },
@@ -146,7 +134,6 @@ export default function transformer(
           // Create Next Link attributes
           const nextLinkAttrs: any[] = []
 
-          // If isExternal was true, add target and rel to Next Link
           if (hasIsExternal && isExternalAttr?.type === "JSXAttribute") {
             const isExternalValue = isExternalAttr.value
             const isTrue =
@@ -168,7 +155,6 @@ export default function transformer(
             }
           }
 
-          // Move href to Next Link
           const hrefAttr = attributes.find(
             (attr) => attr.type === "JSXAttribute" && attr.name.name === "href",
           )
@@ -176,7 +162,6 @@ export default function transformer(
             nextLinkAttrs.push(hrefAttr)
           }
 
-          // Create wrapper structure
           const wrapper = j.jsxElement(
             j.jsxOpeningElement(
               j.jsxIdentifier("Link"),
@@ -244,7 +229,6 @@ export default function transformer(
       })
   }
 
-  // Add Next.js imports if needed
   if (needsNextImage) {
     const hasImageImport =
       root.find(j.ImportDeclaration, {
