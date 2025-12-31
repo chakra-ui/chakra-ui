@@ -26,6 +26,7 @@ export { RichTextEditorWithCharacterCount as CharacterCount } from "compositions
 export { RichTextEditorWithImage as Image } from "compositions/examples/rich-text-editor/rich-text-editor-with-image"
 export { RichTextEditorWithCode as Code } from "compositions/examples/rich-text-editor/rich-text-editor-with-code"
 export { RichTextEditorWithHashtags as Hashtags } from "compositions/examples/rich-text-editor/rich-text-editor-with-hashtags"
+export { RichTextEditorWithEmoji as Emoji } from "compositions/examples/rich-text-editor/rich-text-editor-with-emoji"
 export { RichTextEditorWithSlashCommands as SlashCommands } from "compositions/examples/rich-text-editor/rich-text-editor-with-slash-commands"
 export { RichTextEditorWithMentions as Mentions } from "compositions/examples/rich-text-editor/rich-text-editor-with-mentions"
 export { RichTextEditorWithMode as Mode } from "compositions/examples/rich-text-editor/rich-text-editor-with-mode"

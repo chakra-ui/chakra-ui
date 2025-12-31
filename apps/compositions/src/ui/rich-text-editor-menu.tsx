@@ -39,6 +39,15 @@ export interface HashtagItem extends SuggestionItem {
   description: string
 }
 
+export interface EmojiItem {
+  name: string
+  shortcodes: string[]
+  tags: string[]
+  group?: string
+  emoji?: string
+  fallbackImage?: string
+}
+
 export interface FloatingMenuProps<T = any> {
   items: T[]
   selectedIndex: number
@@ -124,6 +133,90 @@ function useMenuPosition(
     isPositioned: !!virtualElement,
   }
 }
+
+/* -----------------------------------------------------------------------------
+ * Shared render factory for suggestion menus
+ * -------------------------------------------------------------------------- */
+
+function createSuggestionRender<T>(
+  MenuComponent: React.ComponentType<FloatingMenuProps<T>>,
+) {
+  return () => {
+    let component: ReactRenderer<HTMLDivElement, FloatingMenuProps<T>> | null =
+      null
+    let container: HTMLDivElement | null = null
+    let selectedIndex = 0
+
+    return {
+      onStart(props: any) {
+        selectedIndex = 0
+        container = document.createElement("div")
+        document.body.appendChild(container)
+
+        component = new ReactRenderer(MenuComponent, {
+          props: {
+            items: props.items,
+            selectedIndex,
+            onSelect: (item: T) => props.command(item),
+            clientRect: props.clientRect,
+          },
+          editor: props.editor,
+        })
+
+        container.appendChild(component.element)
+      },
+
+      onUpdate(props: any) {
+        if (!component) return
+        component.updateProps({
+          items: props.items,
+          selectedIndex,
+          onSelect: (item: T) => props.command(item),
+          clientRect: props.clientRect,
+        })
+      },
+
+      onKeyDown({ event }: { event: KeyboardEvent }) {
+        if (!component) return false
+
+        const itemCount = component.props.items.length
+
+        if (event.key === "ArrowUp") {
+          selectedIndex = (selectedIndex - 1 + itemCount) % itemCount
+          component.updateProps({ ...component.props, selectedIndex })
+          return true
+        }
+
+        if (event.key === "ArrowDown") {
+          selectedIndex = (selectedIndex + 1) % itemCount
+          component.updateProps({ ...component.props, selectedIndex })
+          return true
+        }
+
+        if (event.key === "Enter") {
+          const item = component.props.items[selectedIndex]
+          if (item) component.props.onSelect(item)
+          return true
+        }
+
+        if (event.key === "Escape") return true
+
+        return false
+      },
+
+      onExit() {
+        container?.remove()
+        container = null
+        component?.destroy()
+        component = null
+      },
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Menu Components
+ * -------------------------------------------------------------------------- */
 
 export const MentionMenu = React.forwardRef<
   HTMLDivElement,
@@ -265,6 +358,74 @@ export const SuggestionMenu = React.forwardRef<
   )
 })
 
+export const EmojiMenu = React.forwardRef<
+  HTMLDivElement,
+  FloatingMenuProps<EmojiItem>
+>(function EmojiMenu(props, ref) {
+  const { items, selectedIndex, onSelect, clientRect } = props
+  const { refs, floatingStyles, isPositioned } = useMenuPosition(clientRect)
+
+  const menuRecipe = useSlotRecipe({ key: "menu" })
+  const styles = menuRecipe({ size: "md" })
+
+  const selectedRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    selectedRef.current?.scrollIntoView({ block: "nearest" })
+  }, [selectedIndex])
+
+  if (!isPositioned) return null
+
+  return (
+    <Portal>
+      <Box
+        ref={mergeRefs(refs.setFloating, ref)}
+        style={floatingStyles}
+        css={styles.content}
+        role="listbox"
+        aria-label="Emoji suggestions"
+        maxH="200px"
+      >
+        {items.length === 0 ? (
+          <Box p="3" textAlign="center">
+            <Text textStyle="sm" color="fg.muted">
+              No emojis found
+            </Text>
+          </Box>
+        ) : (
+          items.map((item, index) => (
+            <Box
+              key={item.name}
+              ref={index === selectedIndex ? selectedRef : undefined}
+              css={styles.item}
+              onPointerDown={(event) => {
+                event.preventDefault()
+                onSelect(item)
+              }}
+              data-highlighted={index === selectedIndex ? "" : undefined}
+              role="option"
+              aria-selected={index === selectedIndex}
+            >
+              <HStack gap="2.5" w="full">
+                <Circle size="8" layerStyle="fill.muted" fontSize="lg">
+                  {item.emoji || "❓"}
+                </Circle>
+                <Span textStyle="sm" fontWeight="medium">
+                  :{item.shortcodes[0]}:
+                </Span>
+              </HStack>
+            </Box>
+          ))
+        )}
+      </Box>
+    </Portal>
+  )
+})
+
+/* -----------------------------------------------------------------------------
+ * Config Factories
+ * -------------------------------------------------------------------------- */
+
 export const createMentionConfig = (users: MentionItem[]) => {
   return {
     char: "@",
@@ -273,142 +434,42 @@ export const createMentionConfig = (users: MentionItem[]) => {
       users.filter((user) =>
         user.label.toLowerCase().includes(query.toLowerCase()),
       ),
-    render: () => {
-      let component: ReactRenderer<HTMLDivElement, FloatingMenuProps> | null =
-        null
-      let container: HTMLDivElement | null = null
-      let selectedIndex = 0
-
-      return {
-        onStart(props: any) {
-          selectedIndex = 0
-          container = document.createElement("div")
-          document.body.appendChild(container)
-
-          component = new ReactRenderer(MentionMenu, {
-            props: {
-              items: props.items,
-              selectedIndex,
-              onSelect: (item: MentionItem) => props.command(item),
-              clientRect: props.clientRect,
-            },
-            editor: props.editor,
-          })
-
-          container.appendChild(component.element)
-        },
-        onUpdate(props: any) {
-          if (!component) return
-          component.updateProps({
-            items: props.items,
-            selectedIndex,
-            onSelect: (item: MentionItem) => props.command(item),
-            clientRect: props.clientRect,
-          })
-        },
-        onKeyDown({ event }: { event: KeyboardEvent }) {
-          if (!component) return false
-          if (event.key === "ArrowUp") {
-            selectedIndex =
-              (selectedIndex - 1 + component.props.items.length) %
-              component.props.items.length
-            component.updateProps({ ...component.props, selectedIndex })
-            return true
-          }
-          if (event.key === "ArrowDown") {
-            selectedIndex = (selectedIndex + 1) % component.props.items.length
-            component.updateProps({ ...component.props, selectedIndex })
-            return true
-          }
-          if (event.key === "Enter") {
-            const item = component.props.items[selectedIndex]
-            if (item) component.props.onSelect(item)
-            return true
-          }
-          if (event.key === "Escape") return true
-          return false
-        },
-        onExit() {
-          if (container) container.remove()
-          container = null
-          if (component) component.destroy()
-          component = null
-        },
-      }
-    },
+    render: createSuggestionRender(MentionMenu),
   }
 }
 
 export const createSuggestionConfig = (
   char: string,
-  getItems: (query: string) => any[],
+  getItems: (query: string) => (CommandItem | HashtagItem)[],
 ) => {
   return {
     char,
     pluginKey: new PluginKey(`suggestion-${char}`),
     items: ({ query }: { query: string }) => getItems(query),
-    render: () => {
-      let component: ReactRenderer<HTMLDivElement, FloatingMenuProps> | null =
-        null
-      let container: HTMLDivElement | null = null
-      let selectedIndex = 0
+    render: createSuggestionRender(SuggestionMenu),
+  }
+}
 
-      return {
-        onStart(props: any) {
-          selectedIndex = 0
-          container = document.createElement("div")
-          document.body.appendChild(container)
+export const createEmojiSuggestionConfig = (
+  allEmojis: EmojiItem[],
+  options?: { maxResults?: number },
+) => {
+  const maxResults = options?.maxResults ?? 10
 
-          component = new ReactRenderer(SuggestionMenu, {
-            props: {
-              items: props.items,
-              selectedIndex,
-              onSelect: (item: any) => props.command(item),
-              clientRect: props.clientRect,
-            },
-            editor: props.editor,
-          })
-
-          container.appendChild(component.element)
-        },
-        onUpdate(props: any) {
-          if (!component) return
-          component.updateProps({
-            items: props.items,
-            selectedIndex,
-            onSelect: (item: any) => props.command(item),
-            clientRect: props.clientRect,
-          })
-        },
-        onKeyDown({ event }: { event: KeyboardEvent }) {
-          if (!component) return false
-          if (event.key === "ArrowUp") {
-            selectedIndex =
-              (selectedIndex - 1 + component.props.items.length) %
-              component.props.items.length
-            component.updateProps({ ...component.props, selectedIndex })
-            return true
-          }
-          if (event.key === "ArrowDown") {
-            selectedIndex = (selectedIndex + 1) % component.props.items.length
-            component.updateProps({ ...component.props, selectedIndex })
-            return true
-          }
-          if (event.key === "Enter") {
-            const item = component.props.items[selectedIndex]
-            if (item) component.props.onSelect(item)
-            return true
-          }
-          if (event.key === "Escape") return true
-          return false
-        },
-        onExit() {
-          if (container) container.remove()
-          container = null
-          if (component) component.destroy()
-          component = null
-        },
-      }
+  return {
+    char: ":",
+    pluginKey: new PluginKey("emoji-suggestion"),
+    items: ({ query }: { query: string }) => {
+      if (!query) return allEmojis.slice(0, maxResults)
+      const lowerQuery = query.toLowerCase()
+      return allEmojis
+        .filter(
+          (emoji) =>
+            emoji.shortcodes.some((sc) => sc.includes(lowerQuery)) ||
+            emoji.tags.some((tag) => tag.includes(lowerQuery)),
+        )
+        .slice(0, maxResults)
     },
+    render: createSuggestionRender(EmojiMenu),
   }
 }
