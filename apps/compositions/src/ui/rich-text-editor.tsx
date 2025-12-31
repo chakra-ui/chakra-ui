@@ -98,11 +98,11 @@ const proseMirrorBaseCss = defineStyle({
       paddingStart: "4",
     },
     "& ul:not([data-type='taskList'])": {
-      paddingInlineStart: "1rem",
+      paddingInlineStart: "1.25rem",
       listStyleType: "disc",
     },
     "& ol:not([data-type='taskList'])": {
-      paddingInlineStart: "1rem",
+      paddingInlineStart: "1.25rem",
       listStyleType: "decimal",
     },
     "& ul ul": {

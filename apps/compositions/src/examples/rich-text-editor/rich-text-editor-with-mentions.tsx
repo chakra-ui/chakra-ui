@@ -7,20 +7,19 @@ import TextAlign from "@tiptap/extension-text-align"
 import { TextStyle } from "@tiptap/extension-text-style"
 import {
   NodeViewWrapper,
+  type ReactNodeViewProps,
   ReactNodeViewRenderer,
   useEditor,
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
 import {
-  type CommandItem,
   type HashtagItem,
   type MentionItem,
   createMentionConfig,
   createSuggestionConfig,
 } from "compositions/ui/rich-text-editor-menu"
 import { Tag } from "compositions/ui/tag"
-import { LuHash, LuSlash } from "react-icons/lu"
 
 export const RichTextEditorWithMentions = () => {
   const editor = useEditor({
@@ -40,16 +39,6 @@ export const RichTextEditorWithMentions = () => {
         },
         suggestion: createMentionConfig(MENTION_USERS),
       }),
-      SlashCommand.configure({
-        HTMLAttributes: {
-          class: "slash-command",
-        },
-        suggestion: createSuggestionConfig("/", (query) =>
-          SLASH_COMMANDS.filter((command) =>
-            command.label.toLowerCase().includes(query.toLowerCase()),
-          ),
-        ),
-      }),
       HashtagMention.configure({
         HTMLAttributes: {
           class: "hashtag",
@@ -61,7 +50,7 @@ export const RichTextEditorWithMentions = () => {
         ),
       }),
     ],
-    content: `<h1>Rich Text Editor</h1><p>Type <strong>@</strong> for mentions, <strong>/</strong> for commands, or <strong>#</strong> for hashtags</p>`,
+    content: `<h1>Rich Text Editor with Mentions</h1><p>Type <strong>@</strong> for mentions or <strong>#</strong> for hashtags</p>`,
     shouldRerenderOnTransaction: true,
   })
 
@@ -100,9 +89,9 @@ export const RichTextEditorWithMentions = () => {
   )
 }
 
-const MentionComponent = (props: any) => {
+const MentionComponent = (props: ReactNodeViewProps) => {
   return (
-    <NodeViewWrapper as="span" style={{ display: "inline" }}>
+    <NodeViewWrapper as="span">
       <Tag size="lg" colorPalette="orange" mr="1">
         @{props.node.attrs.label ?? props.node.attrs.id}
       </Tag>
@@ -116,27 +105,12 @@ const CustomMention = Mention.extend({
   },
 })
 
-const SlashCommand = Mention.extend({
-  name: "slashCommand",
-  addNodeView() {
-    return ReactNodeViewRenderer((props: any) => (
-      <NodeViewWrapper as="span" style={{ display: "inline" }}>
-        <Tag size="lg" colorPalette="blue" mr="1">
-          /{props.node.attrs.label ?? props.node.attrs.id}
-        </Tag>
-      </NodeViewWrapper>
-    ))
-  },
-})
-
 const HashtagMention = Mention.extend({
   name: "hashtag",
   addNodeView() {
-    return ReactNodeViewRenderer((props: any) => (
-      <NodeViewWrapper as="span" style={{ display: "inline" }}>
-        <Tag size="lg" colorPalette="green" mr="1">
-          #{props.node.attrs.label ?? props.node.attrs.id}
-        </Tag>
+    return ReactNodeViewRenderer((props) => (
+      <NodeViewWrapper as="span">
+        #{props.node.attrs.label ?? props.node.attrs.id}
       </NodeViewWrapper>
     ))
   },
@@ -151,45 +125,6 @@ const MENTION_USERS: MentionItem[] = [
   { id: "6", label: "Fiona Martinez", email: "fiona@example.com" },
   { id: "7", label: "George Anderson", email: "george@example.com" },
   { id: "8", label: "Hannah Taylor", email: "hannah@example.com" },
-]
-
-const SLASH_COMMANDS: CommandItem[] = [
-  {
-    id: "heading1",
-    label: "Heading 1",
-    description: "Large section heading",
-    icon: LuHash,
-  },
-  {
-    id: "heading2",
-    label: "Heading 2",
-    description: "Medium section heading",
-    icon: LuHash,
-  },
-  {
-    id: "heading3",
-    label: "Heading 3",
-    description: "Small section heading",
-    icon: LuHash,
-  },
-  {
-    id: "bullet",
-    label: "Bullet List",
-    description: "Create a bullet list",
-    icon: LuSlash,
-  },
-  {
-    id: "numbered",
-    label: "Numbered List",
-    description: "Create a numbered list",
-    icon: LuSlash,
-  },
-  {
-    id: "quote",
-    label: "Quote",
-    description: "Add a blockquote",
-    icon: LuSlash,
-  },
 ]
 
 const HASHTAGS: HashtagItem[] = [

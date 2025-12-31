@@ -1,25 +1,20 @@
 "use client"
 
-import {
-  Box,
-  Combobox as ChakraCombobox,
-  HStack,
-  Portal,
-  Text,
-  VStack,
-  createListCollection,
-} from "@chakra-ui/react"
 import { Extension } from "@tiptap/core"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { TextStyle } from "@tiptap/extension-text-style"
 import { PluginKey } from "@tiptap/pm/state"
-import { Editor, ReactRenderer, useEditor } from "@tiptap/react"
+import { ReactRenderer, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import { Suggestion, type SuggestionProps } from "@tiptap/suggestion"
+import { Suggestion } from "@tiptap/suggestion"
 import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
-import * as React from "react"
+import {
+  type FloatingMenuProps,
+  SuggestionMenu,
+} from "compositions/ui/rich-text-editor-menu"
+import { LuCode, LuHash, LuList, LuListOrdered, LuQuote } from "react-icons/lu"
 
 export const RichTextEditorWithSlashCommands = () => {
   const editor = useEditor({
@@ -43,7 +38,7 @@ export const RichTextEditorWithSlashCommands = () => {
 
   return (
     <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="sm">
-      <HStack gap="1" p="2" borderBottomWidth="1px" flexWrap="wrap">
+      <RichTextEditor.Toolbar>
         <RichTextEditor.ControlGroup>
           <Control.Bold />
           <Control.Italic />
@@ -67,7 +62,7 @@ export const RichTextEditorWithSlashCommands = () => {
           <Control.Undo />
           <Control.Redo />
         </RichTextEditor.ControlGroup>
-      </HStack>
+      </RichTextEditor.Toolbar>
 
       <RichTextEditor.Content />
     </RichTextEditor.Root>
@@ -75,17 +70,19 @@ export const RichTextEditorWithSlashCommands = () => {
 }
 
 interface SlashCommand {
-  title: string
+  id: string
+  label: string
   description: string
-  icon: string
-  command: (props: { editor: Editor; range: any }) => void
+  icon: any
+  command: (props: { editor: any; range: any }) => void
 }
 
 const SLASH_COMMANDS: SlashCommand[] = [
   {
-    title: "Heading 1",
+    id: "heading1",
+    label: "Heading 1",
     description: "Large section heading",
-    icon: "H₁",
+    icon: LuHash,
     command: ({ editor, range }) => {
       editor
         .chain()
@@ -96,9 +93,10 @@ const SLASH_COMMANDS: SlashCommand[] = [
     },
   },
   {
-    title: "Heading 2",
+    id: "heading2",
+    label: "Heading 2",
     description: "Medium section heading",
-    icon: "H₂",
+    icon: LuHash,
     command: ({ editor, range }) => {
       editor
         .chain()
@@ -109,9 +107,10 @@ const SLASH_COMMANDS: SlashCommand[] = [
     },
   },
   {
-    title: "Heading 3",
+    id: "heading3",
+    label: "Heading 3",
     description: "Small section heading",
-    icon: "H₃",
+    icon: LuHash,
     command: ({ editor, range }) => {
       editor
         .chain()
@@ -122,145 +121,50 @@ const SLASH_COMMANDS: SlashCommand[] = [
     },
   },
   {
-    title: "Paragraph",
-    description: "Regular text",
-    icon: "¶",
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).setNode("paragraph").run()
-    },
-  },
-  {
-    title: "Bullet List",
-    description: "Simple bullet list",
-    icon: "•",
+    id: "bullet",
+    label: "Bullet List",
+    description: "Create a bullet list",
+    icon: LuList,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleBulletList().run()
     },
   },
   {
-    title: "Ordered List",
-    description: "Numbered list",
-    icon: "1.",
+    id: "numbered",
+    label: "Numbered List",
+    description: "Create a numbered list",
+    icon: LuListOrdered,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleOrderedList().run()
     },
   },
   {
-    title: "Block Quote",
-    description: "Quote block",
-    icon: "❝",
+    id: "quote",
+    label: "Quote",
+    description: "Add a blockquote",
+    icon: LuQuote,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleBlockquote().run()
     },
   },
   {
-    title: "Code Block",
-    description: "Code block",
-    icon: "</>",
+    id: "code",
+    label: "Code Block",
+    description: "Add a code block",
+    icon: LuCode,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleCodeBlock().run()
     },
   },
 ]
 
-interface SlashMenuListProps {
-  items: SlashCommand[]
-  command: (item: SlashCommand) => void
-  selectedIndex: number
-  clientRect?: (() => DOMRect | null) | null
-}
-
-interface SlashMenuListRef {
-  onKeyDown: (props: { event: KeyboardEvent }) => boolean
-}
-
-const SlashMenuList = React.forwardRef<SlashMenuListRef, SlashMenuListProps>(
-  function SlashMenuList(props, ref) {
-    const { items, command, clientRect } = props
-
-    React.useImperativeHandle(ref, () => ({
-      onKeyDown: () => false,
-    }))
-
-    const rect = clientRect?.()
-    const positioning = rect
-      ? {
-          strategy: "fixed" as const,
-          placement: "bottom-start" as const,
-          gutter: 8,
-          getAnchorRect: () => ({
-            x: rect.left,
-            y: rect.bottom,
-            width: rect.width,
-            height: 0,
-          }),
-        }
-      : undefined
-
-    const collection = createListCollection({
-      items: items.map((i) => ({ value: i.title, label: i.title })),
-    })
-
-    return (
-      <ChakraCombobox.Root
-        open
-        collection={collection}
-        positioning={positioning}
-        autoFocus={false}
-      >
-        <Portal>
-          <ChakraCombobox.Positioner>
-            <ChakraCombobox.Content
-              p="1"
-              minW="280px"
-              maxH="360px"
-              overflowY="auto"
-            >
-              {items.map((item, index) => (
-                <ChakraCombobox.Item
-                  key={index}
-                  item={{ value: item.title, label: item.title }}
-                  onPointerDown={(event) => {
-                    event.preventDefault()
-                    command(item)
-                  }}
-                  cursor="button"
-                >
-                  <HStack gap="2.5" w="full">
-                    <Box fontSize="lg" w="5" flexShrink={0} textAlign="center">
-                      {item.icon}
-                    </Box>
-
-                    <VStack align="start" gap="0" flex="1" minW="0">
-                      <Text fontSize="sm" fontWeight="medium">
-                        {item.title}
-                      </Text>
-
-                      {item.description && (
-                        <Text fontSize="xs" color="fg.muted">
-                          {item.description}
-                        </Text>
-                      )}
-                    </VStack>
-                  </HStack>
-                </ChakraCombobox.Item>
-              ))}
-            </ChakraCombobox.Content>
-          </ChakraCombobox.Positioner>
-        </Portal>
-      </ChakraCombobox.Root>
-    )
-  },
-)
-
-SlashMenuList.displayName = "SlashMenuList"
-
 const SlashCommandsExtension = Extension.create({
   name: "slashCommands",
 
-  addOptions() {
-    return {
-      suggestion: {
+  addProseMirrorPlugins() {
+    return [
+      Suggestion({
+        editor: this.editor,
         char: "/",
         pluginKey: new PluginKey("slashCommands"),
 
@@ -269,7 +173,7 @@ const SlashCommandsExtension = Extension.create({
           range,
           props,
         }: {
-          editor: Editor
+          editor: any
           range: any
           props: SlashCommand
         }) => {
@@ -277,30 +181,29 @@ const SlashCommandsExtension = Extension.create({
         },
 
         items: ({ query }: { query: string }) =>
-          SLASH_COMMANDS.filter((item) =>
-            item.title.toLowerCase().includes(query.toLowerCase()),
+          SLASH_COMMANDS.filter((command) =>
+            command.label.toLowerCase().includes(query.toLowerCase()),
           ),
 
         render: () => {
           let component: ReactRenderer<
-            SlashMenuListRef,
-            SlashMenuListProps
+            HTMLDivElement,
+            FloatingMenuProps
           > | null = null
           let container: HTMLDivElement | null = null
           let selectedIndex = 0
 
           return {
-            onStart(props: SuggestionProps<SlashCommand>) {
+            onStart(props) {
               selectedIndex = 0
-
               container = document.createElement("div")
               document.body.appendChild(container)
 
-              component = new ReactRenderer(SlashMenuList, {
+              component = new ReactRenderer(SuggestionMenu, {
                 props: {
                   items: props.items,
                   selectedIndex,
-                  command: (item: SlashCommand) => props.command(item),
+                  onSelect: (item: SlashCommand) => props.command(item),
                   clientRect: props.clientRect,
                 },
                 editor: props.editor,
@@ -309,18 +212,17 @@ const SlashCommandsExtension = Extension.create({
               container.appendChild(component.element)
             },
 
-            onUpdate(props: SuggestionProps<SlashCommand>) {
+            onUpdate(props) {
               if (!component) return
-
               component.updateProps({
                 items: props.items,
                 selectedIndex,
-                command: (item: SlashCommand) => props.command(item),
+                onSelect: (item: SlashCommand) => props.command(item),
                 clientRect: props.clientRect,
               })
             },
 
-            onKeyDown({ event }: { event: KeyboardEvent }) {
+            onKeyDown({ event }) {
               if (!component) return false
 
               if (event.key === "ArrowUp") {
@@ -340,7 +242,7 @@ const SlashCommandsExtension = Extension.create({
 
               if (event.key === "Enter") {
                 const item = component.props.items[selectedIndex]
-                if (item) component.props.command(item)
+                if (item) component.props.onSelect(item)
                 return true
               }
 
@@ -357,15 +259,6 @@ const SlashCommandsExtension = Extension.create({
             },
           }
         },
-      },
-    }
-  },
-
-  addProseMirrorPlugins() {
-    return [
-      Suggestion({
-        editor: this.editor,
-        ...this.options.suggestion,
       }),
     ]
   },
