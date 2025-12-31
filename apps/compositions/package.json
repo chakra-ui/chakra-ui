@@ -60,6 +60,7 @@
     "react-lorem-ipsum": "1.4.10",
     "react-markdown": "10.1.0",
     "react-payment-inputs": "1.2.0",
+    "react-router-dom": "^7.9.4",
     "react-spinners": "0.17.0",
     "react-use": "17.6.0",
     "recharts": "^3.4.1",

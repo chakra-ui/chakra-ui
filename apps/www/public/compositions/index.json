@@ -514,5 +514,13 @@
     "component": "Tooltip",
     "npmDependencies": [],
     "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "tour",
+    "file": "tour.tsx",
+    "component": "Tour",
+    "npmDependencies": [],
+    "fileDependencies": []
   }
 ]

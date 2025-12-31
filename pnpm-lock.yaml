@@ -345,6 +345,9 @@ importers:
       react-payment-inputs:
         specifier: 1.2.0
         version: 1.2.0(react@19.2.3)(styled-components@6.1.15(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
+      react-router-dom:
+        specifier: ^7.9.4
+        version: 7.9.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-spinners:
         specifier: 0.17.0
         version: 0.17.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -9629,11 +9632,28 @@ packages:
       react: 19.2.3
       react-dom: 19.2.3
 
+  react-router-dom@7.9.4:
+    resolution: {integrity: sha512-f30P6bIkmYvnHHa5Gcu65deIXoA2+r3Eb6PJIAddvsT9aGlchMatJ51GgpU470aSqRRbFX22T70yQNUGuW3DfA==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: 19.2.3
+      react-dom: 19.2.3
+
   react-router@6.30.0:
     resolution: {integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: 19.2.3
+
+  react-router@7.9.4:
+    resolution: {integrity: sha512-SD3G8HKviFHg9xj7dNODUKDFgpG4xqD5nhyd0mYoB5iISepuZAvzSr8ywxgxKJ52yRzf/HWtVHc9AWwoTbljvA==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: 19.2.3
+      react-dom: 19.2.3
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
 
   react-router@7.9.6:
     resolution: {integrity: sha512-Y1tUp8clYRXpfPITyuifmSoE2vncSME18uVLgaqyxh9H35JWpIfzHo+9y3Fzh5odk/jxPW29IgLgzcdwxGqyNA==}
@@ -21247,10 +21267,24 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
       react-router: 6.30.0(react@19.2.3)
 
+  react-router-dom@7.9.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-router: 7.9.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
   react-router@6.30.0(react@19.2.3):
     dependencies:
       '@remix-run/router': 1.23.0
       react: 19.2.3
+
+  react-router@7.9.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      cookie: 1.0.2
+      react: 19.2.3
+      set-cookie-parser: 2.7.0
+    optionalDependencies:
+      react-dom: 19.2.3(react@19.2.3)
 
   react-router@7.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
