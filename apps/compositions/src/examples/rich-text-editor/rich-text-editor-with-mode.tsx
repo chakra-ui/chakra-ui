@@ -3,11 +3,8 @@
 import { Box, HStack } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  Control,
-  RichTextEditor,
-  createSelectControl,
-} from "compositions/ui/rich-text-editor"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
+import { createSelectControl } from "compositions/ui/rich-text-editor-core"
 import { useState } from "react"
 
 export const RichTextEditorWithMode = () => {

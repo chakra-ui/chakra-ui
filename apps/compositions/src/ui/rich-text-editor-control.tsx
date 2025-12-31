@@ -5,7 +5,7 @@ import {
   createBooleanControl,
   createSelectControl,
   createSwatchControl,
-} from "compositions/ui/rich-text-editor"
+} from "compositions/ui/rich-text-editor-core"
 import {
   LuAlignCenter,
   LuAlignJustify,

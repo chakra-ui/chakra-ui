@@ -5,10 +5,8 @@ import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
-import {
-  RichTextEditor,
-  createBooleanControl,
-} from "compositions/ui/rich-text-editor"
+import { RichTextEditor } from "compositions/ui/rich-text-editor"
+import { createBooleanControl } from "compositions/ui/rich-text-editor-core"
 import { LuArrowLeft, LuArrowRight, LuListChecks, LuPlus } from "react-icons/lu"
 
 export const RichTextEditorWithTask = () => {
