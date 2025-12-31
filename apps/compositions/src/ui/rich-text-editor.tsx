@@ -37,17 +37,17 @@ const proseMirrorBaseCss = defineStyle({
       lineHeight: "1.2em",
     },
     "& h2": {
-      fontSize: "1.4em",
+      fontSize: "1.65em",
       letterSpacing: "-0.02em",
-      lineHeight: "1.4em",
+      lineHeight: "1.3em",
     },
     "& h3": {
-      fontSize: "1.285em",
+      fontSize: "1.35em",
       letterSpacing: "-0.01em",
-      lineHeight: "1.5em",
+      lineHeight: "1.4em",
     },
     "& h4": {
-      fontSize: "1.14em",
+      fontSize: "1.15em",
       letterSpacing: "-0.01em",
       lineHeight: "1.5em",
     },
@@ -57,7 +57,7 @@ const proseMirrorBaseCss = defineStyle({
       lineHeight: "1.5em",
     },
     "& h6": {
-      fontSize: "0.85em",
+      fontSize: "0.875em",
       letterSpacing: "-0.01em",
       lineHeight: "1.5em",
     },

@@ -56,18 +56,18 @@ export const Prose = chakra("div", {
       lineHeight: "1.2em",
     },
     [inWhere("& h2")]: {
-      fontSize: "1.4em",
+      fontSize: "1.65em",
       letterSpacing: "-0.02em",
       marginTop: "1.6em",
       marginBottom: "0.8em",
-      lineHeight: "1.4em",
+      lineHeight: "1.3em",
     },
     [inWhere("& h3")]: {
-      fontSize: "1.285em",
+      fontSize: "1.35em",
       letterSpacing: "-0.01em",
       marginTop: "1.5em",
       marginBottom: "0.4em",
-      lineHeight: "1.5em",
+      lineHeight: "1.4em",
     },
     [inWhere("& h4")]: {
       marginTop: "1.4em",
@@ -103,7 +103,7 @@ export const Prose = chakra("div", {
       fontFamily: "inherit",
       color: "fg.muted",
       "--shadow": "colors.border",
-      boxShadow: "0 0 0 1px var(--shadow),0 1px 0 1px var(--shadow)",
+      boxShadow: "0 0 0 1px var(--shadow), 0 1px 0 1px var(--shadow)",
     },
     [inWhere("& code")]: {
       fontSize: "0.925em",
