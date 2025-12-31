@@ -1,13 +1,13 @@
 import {
   Box,
-  Center,
+  Circle,
   HStack,
   Portal,
   Span,
   Stack,
   Text,
-  VStack,
   mergeRefs,
+  useSlotRecipe,
 } from "@chakra-ui/react"
 import {
   autoUpdate,
@@ -21,28 +21,28 @@ import { ReactRenderer } from "@tiptap/react"
 import * as React from "react"
 import { LuHash, LuUser } from "react-icons/lu"
 
-interface BaseSuggestionItem {
+interface SuggestionItem {
   id: string
   label: string
 }
 
-export interface MentionItem extends BaseSuggestionItem {
+export interface MentionItem extends SuggestionItem {
   email: string
 }
 
-export interface CommandItem extends BaseSuggestionItem {
+export interface CommandItem extends SuggestionItem {
   description: string
   icon: typeof LuHash
 }
 
-export interface HashtagItem extends BaseSuggestionItem {
+export interface HashtagItem extends SuggestionItem {
   description: string
 }
 
-export interface FloatingMenuProps {
-  items: any[]
+export interface FloatingMenuProps<T = any> {
+  items: T[]
   selectedIndex: number
-  onSelect: (item: any) => void
+  onSelect: (item: T) => void
   clientRect?: (() => DOMRect | null) | null | undefined
 }
 
@@ -125,93 +125,15 @@ function useMenuPosition(
   }
 }
 
-export const MentionMenu = React.forwardRef<HTMLDivElement, FloatingMenuProps>(
-  function MentionMenu(props, ref) {
-    const { items, selectedIndex, onSelect, clientRect } = props
-    const { refs, floatingStyles, isPositioned } = useMenuPosition(clientRect)
-
-    const selectedRef = React.useRef<HTMLDivElement | null>(null)
-
-    React.useEffect(() => {
-      selectedRef.current?.scrollIntoView({ block: "nearest" })
-    }, [selectedIndex])
-
-    if (!isPositioned) return null
-
-    return (
-      <Portal>
-        <Box
-          ref={mergeRefs(refs.setFloating, ref)}
-          style={floatingStyles}
-          bg="white"
-          borderWidth="1px"
-          borderColor="border"
-          rounded="lg"
-          shadow="lg"
-          minW="280px"
-          maxH="360px"
-          overflowY="auto"
-          zIndex={1000}
-          p="1"
-          role="listbox"
-          aria-label="User mentions"
-        >
-          {items.length === 0 ? (
-            <Box p="3" textAlign="center">
-              <Text textStyle="sm" color="fg.muted">
-                No users found
-              </Text>
-            </Box>
-          ) : (
-            items.map((item: MentionItem, index) => (
-              <Box
-                key={item.id}
-                ref={index === selectedIndex ? selectedRef : undefined}
-                onPointerDown={(event) => {
-                  event.preventDefault()
-                  onSelect(item)
-                }}
-                cursor="pointer"
-                p="2"
-                rounded="md"
-                bg={index === selectedIndex ? "bg.emphasized" : "transparent"}
-                _hover={{ bg: "bg.emphasized" }}
-                role="option"
-                aria-selected={index === selectedIndex}
-              >
-                <HStack gap="2.5" w="full">
-                  <Center
-                    boxSize="8"
-                    rounded="full"
-                    bg="gray.200"
-                    color="gray.700"
-                  >
-                    <LuUser size={16} />
-                  </Center>
-                  <Stack align="start" gap="0" flex="1" minW="0">
-                    <Span textStyle="sm" fontWeight="medium">
-                      {item.label}
-                    </Span>
-                    <Span textStyle="xs" color="fg.muted">
-                      {item.email}
-                    </Span>
-                  </Stack>
-                </HStack>
-              </Box>
-            ))
-          )}
-        </Box>
-      </Portal>
-    )
-  },
-)
-
-export const SuggestionMenu = React.forwardRef<
+export const MentionMenu = React.forwardRef<
   HTMLDivElement,
-  FloatingMenuProps
->(function SuggestionMenu(props, ref) {
+  FloatingMenuProps<MentionItem>
+>(function MentionMenu(props, ref) {
   const { items, selectedIndex, onSelect, clientRect } = props
   const { refs, floatingStyles, isPositioned } = useMenuPosition(clientRect)
+
+  const menuRecipe = useSlotRecipe({ key: "menu" })
+  const styles = menuRecipe({ size: "md" })
 
   const selectedRef = React.useRef<HTMLDivElement | null>(null)
 
@@ -226,15 +148,74 @@ export const SuggestionMenu = React.forwardRef<
       <Box
         ref={mergeRefs(refs.setFloating, ref)}
         style={floatingStyles}
-        bg="white"
-        borderWidth="1px"
-        rounded="lg"
-        shadow="lg"
-        minW="280px"
-        maxH="360px"
-        overflowY="auto"
-        zIndex="dropdown"
-        p="1"
+        css={styles.content}
+        role="listbox"
+        aria-label="User mentions"
+      >
+        {items.length === 0 ? (
+          <Box p="3" textAlign="center">
+            <Text textStyle="sm" color="fg.muted">
+              No users found
+            </Text>
+          </Box>
+        ) : (
+          items.map((item, index) => (
+            <Box
+              key={item.id}
+              ref={index === selectedIndex ? selectedRef : undefined}
+              css={styles.item}
+              onPointerDown={(event) => {
+                event.preventDefault()
+                onSelect(item)
+              }}
+              data-highlighted={index === selectedIndex ? "" : undefined}
+              role="option"
+              aria-selected={index === selectedIndex}
+            >
+              <HStack gap="2.5" w="full">
+                <Circle size="8" layerStyle="fill.muted">
+                  <LuUser size={16} />
+                </Circle>
+                <Stack align="start" gap="0" flex="1" minW="0">
+                  <Span textStyle="sm" fontWeight="medium">
+                    {item.label}
+                  </Span>
+                  <Span textStyle="xs" color="fg.muted">
+                    {item.email}
+                  </Span>
+                </Stack>
+              </HStack>
+            </Box>
+          ))
+        )}
+      </Box>
+    </Portal>
+  )
+})
+
+export const SuggestionMenu = React.forwardRef<
+  HTMLDivElement,
+  FloatingMenuProps<CommandItem | HashtagItem>
+>(function SuggestionMenu(props, ref) {
+  const { items, selectedIndex, onSelect, clientRect } = props
+  const { refs, floatingStyles, isPositioned } = useMenuPosition(clientRect)
+
+  const selectedRef = React.useRef<HTMLDivElement | null>(null)
+  const menuRecipe = useSlotRecipe({ key: "menu" })
+  const styles = menuRecipe({ size: "md" })
+
+  React.useEffect(() => {
+    selectedRef.current?.scrollIntoView({ block: "nearest" })
+  }, [selectedIndex])
+
+  if (!isPositioned) return null
+
+  return (
+    <Portal>
+      <Box
+        ref={mergeRefs(refs.setFloating, ref)}
+        style={floatingStyles}
+        css={styles.content}
         role="listbox"
         aria-label="Suggestions"
       >
@@ -253,35 +234,27 @@ export const SuggestionMenu = React.forwardRef<
               <Box
                 key={item.id}
                 ref={index === selectedIndex ? selectedRef : undefined}
+                css={styles.item}
                 onPointerDown={(event) => {
                   event.preventDefault()
                   onSelect(item)
                 }}
-                cursor="pointer"
-                p="2"
-                rounded="md"
-                bg={index === selectedIndex ? "bg.emphasized" : "transparent"}
-                _hover={{ bg: "bg.emphasized" }}
+                data-highlighted={index === selectedIndex ? "" : undefined}
                 role="option"
                 aria-selected={index === selectedIndex}
               >
                 <HStack gap="2.5" w="full">
-                  <Center
-                    boxSize="8"
-                    rounded="full"
-                    bg="gray.200"
-                    color="gray.700"
-                  >
+                  <Circle size="8" layerStyle="fill.muted">
                     <Icon size={16} />
-                  </Center>
-                  <VStack align="start" gap="0" flex="1" minW="0">
+                  </Circle>
+                  <Stack align="start" gap="0" flex="1" minW="0">
                     <Span textStyle="sm" fontWeight="medium">
                       {isCommand ? item.label : `#${item.label}`}
                     </Span>
                     <Span textStyle="xs" color="fg.muted">
                       {item.description}
                     </Span>
-                  </VStack>
+                  </Stack>
                 </HStack>
               </Box>
             )
