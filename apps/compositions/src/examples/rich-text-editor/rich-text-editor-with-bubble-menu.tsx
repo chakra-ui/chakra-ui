@@ -1,6 +1,5 @@
 "use client"
 
-import { HStack, StackSeparator } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import { BubbleMenu } from "@tiptap/react/menus"
 import StarterKit from "@tiptap/starter-kit"
@@ -19,28 +18,24 @@ export const RichTextEditorWithBubbleMenu = () => {
     <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="lg">
       {editor && (
         <BubbleMenu editor={editor}>
-          <HStack
-            shadow="md"
-            rounded="l2"
-            bg="bg.panel"
-            p="2"
-            gap="1"
-            separator={<StackSeparator />}
-          >
-            <RichTextEditor.ControlGroup>
-              <Control.TextStyle />
-            </RichTextEditor.ControlGroup>
+          <RichTextEditor.Toolbar variant="floating">
             <RichTextEditor.ControlGroup>
               <Control.Bold />
               <Control.Italic />
               <Control.Underline />
               <Control.Strikethrough />
             </RichTextEditor.ControlGroup>
+
+            <RichTextEditor.ControlGroup>
+              <Control.Hr />
+              <Control.Code />
+            </RichTextEditor.ControlGroup>
+
             <RichTextEditor.ControlGroup>
               <Control.BulletList />
               <Control.OrderedList />
             </RichTextEditor.ControlGroup>
-          </HStack>
+          </RichTextEditor.Toolbar>
         </BubbleMenu>
       )}
       <RichTextEditor.Content />

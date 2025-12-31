@@ -1,6 +1,6 @@
 "use client"
 
-import type { BoxProps, StackProps } from "@chakra-ui/react"
+import type { BoxProps, StackProps, SystemStyleObject } from "@chakra-ui/react"
 import { Box, HStack, StackSeparator, defineStyle } from "@chakra-ui/react"
 import { Editor, EditorContent } from "@tiptap/react"
 import {
@@ -173,39 +173,59 @@ export const RichTextEditorRoot = React.forwardRef<
   )
 })
 
+type RichTextEditorToolbarVariant = "sticky" | "floating" | "fixed"
+
 export interface RichTextEditorToolbarProps extends StackProps {
-  sticky?: boolean
+  variant?: RichTextEditorToolbarVariant
   stickyOffset?: string
+}
+
+const toolbarStylesMap: Record<
+  RichTextEditorToolbarVariant,
+  SystemStyleObject
+> = {
+  sticky: {
+    bg: "bg",
+    position: "sticky",
+    top: "var(--sticky-offset, 0px)",
+    zIndex: "1",
+    py: "1.5",
+    px: "3",
+  },
+  fixed: {
+    bg: "bg",
+    roundedTop: "l2",
+    borderBottomWidth: "1px",
+    py: "1.5",
+    px: "3",
+  },
+  floating: {
+    shadow: "md",
+    roundedTop: "l2",
+    bg: "bg.panel",
+    px: "1.5",
+    py: "1.5",
+  },
 }
 
 export const RichTextEditorToolbar = React.forwardRef<
   HTMLDivElement,
   RichTextEditorToolbarProps
 >(function RichTextEditorToolbar(props, ref) {
-  const { sticky, stickyOffset = "0px", ...rest } = props
+  const { variant = "fixed", stickyOffset = "0px", ...rest } = props
+  const variantStyles = toolbarStylesMap[variant]
+
   return (
     <HStack
       ref={ref}
-      py="1.5"
-      px="3"
-      roundedTop="l2"
-      borderBottomWidth="1px"
-      bg="bg"
       flexWrap="wrap"
-      data-sticky={sticky || undefined}
       separator={<StackSeparator h="5" alignSelf="center" />}
       {...rest}
       style={{
         ["--sticky-offset" as string]: stickyOffset,
         ...rest.style,
       }}
-      css={{
-        "&[data-sticky]": {
-          position: "sticky",
-          top: "var(--sticky-offset, 0px)",
-          zIndex: "1",
-        },
-      }}
+      css={[variantStyles, rest.css]}
     />
   )
 })
