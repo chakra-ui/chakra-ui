@@ -13,7 +13,6 @@ export default function transformer(
   if (chakraLocalNames.size === 0) return file.source
   let hasChanges = false
 
-  // Update imports
   root
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/react" },
@@ -33,7 +32,6 @@ export default function transformer(
       path.node.specifiers = specifiers
     })
 
-  // Transform CircularProgress JSX
   root
     .find(j.JSXElement, {
       openingElement: { name: { name: "CircularProgress" } },
@@ -43,7 +41,6 @@ export default function transformer(
       const openingElement = path.node.openingElement
       const attributes = openingElement.attributes || []
 
-      // Extract props
       let value: any = null
       let thickness: any = null
       let color: any = null
@@ -71,11 +68,9 @@ export default function transformer(
             if (expr.type === "BooleanLiteral") {
               isIndeterminate = expr.value === true
             } else {
-              // If it's not a literal, default to true (or handle differently)
               isIndeterminate = true
             }
           } else {
-            // JSXAttribute without value (e.g., <Comp isIndeterminate />)
             isIndeterminate = true
           }
         } else {
@@ -83,12 +78,10 @@ export default function transformer(
         }
       })
 
-      // Handle isIndeterminate -> value={null}
       if (isIndeterminate) {
         value = j.jsxExpressionContainer(j.identifier("null"))
       }
 
-      // Build new structure
       const rootProps = [
         j.jsxAttribute(
           j.jsxIdentifier("value"),
@@ -97,7 +90,6 @@ export default function transformer(
         ...otherProps,
       ]
 
-      // Build Circle props with CSS variable for thickness
       const circleProps = []
       if (thickness) {
         const thicknessValue =
@@ -117,13 +109,11 @@ export default function transformer(
         )
       }
 
-      // Build Range props with stroke for color
       const rangeProps = []
       if (color) {
         rangeProps.push(j.jsxAttribute(j.jsxIdentifier("stroke"), color))
       }
 
-      // Create the new structure
       const newElement = j.jsxElement(
         j.jsxOpeningElement(
           j.jsxMemberExpression(

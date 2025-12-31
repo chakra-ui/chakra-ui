@@ -51,7 +51,6 @@ export default function transformer(
         const openingElement = path.node.openingElement
         const attributes = openingElement.attributes || []
 
-        // Find divider and spacing props
         let dividerProp: any = null
         const otherProps: any[] = []
 
@@ -63,7 +62,6 @@ export default function transformer(
 
           const name = attr.name.name
 
-          // Transform spacing to gap
           if (name === "spacing") {
             attr.name.name = "gap"
             otherProps.push(attr)
@@ -76,20 +74,15 @@ export default function transformer(
           }
         })
 
-        // If divider prop found, transform the children
         if (dividerProp) {
-          // Update attributes (remove divider)
           openingElement.attributes = otherProps
 
-          // Get divider element
           let dividerElement: any = null
           if (dividerProp.type === "JSXExpressionContainer") {
             const expr = dividerProp.expression
             if (expr.type === "JSXElement") {
-              // Extract props from StackDivider
               const dividerAttrs = expr.openingElement.attributes || []
 
-              // Create Stack.Separator with same props
               dividerElement = j.jsxElement(
                 j.jsxOpeningElement(
                   j.jsxMemberExpression(
@@ -104,8 +97,6 @@ export default function transformer(
               )
             }
           }
-
-          // If we couldn't extract divider element, create a default one
           if (!dividerElement) {
             dividerElement = j.jsxElement(
               j.jsxOpeningElement(
@@ -120,12 +111,8 @@ export default function transformer(
               [],
             )
           }
-
-          // Insert separators between children
           const children = path.node.children || []
           const newChildren: any[] = []
-
-          // Filter out empty text nodes and JSXText with only whitespace
           const meaningfulChildren = children.filter((child) => {
             if (child.type === "JSXText") {
               return child.value.trim().length > 0
@@ -137,23 +124,17 @@ export default function transformer(
           })
 
           meaningfulChildren.forEach((child, index) => {
-            // Add the child
             newChildren.push(child)
-
-            // Add separator after each child except the last
             if (index < meaningfulChildren.length - 1) {
               newChildren.push(j.jsxText("\n  "))
               newChildren.push(dividerElement)
             }
           })
-
-          // Update children
           path.node.children = newChildren
         }
       })
   })
 
-  // Ensure Stack is imported if Stack.Separator is used
   const hasStackSeparator =
     root.find(j.JSXMemberExpression, {
       object: { name: "Stack" },

@@ -29,9 +29,6 @@ export default function transform(
   const { chakraLocalNames } = collectChakraLocalNames(j, root)
   if (chakraLocalNames.size === 0) return file.source
 
-  /**
-   * Helper to rename object properties (for spreads or style objects)
-   */
   const renameObjectProps = (objectNode: any) => {
     if (objectNode.type !== "ObjectExpression") return
 
@@ -47,22 +44,17 @@ export default function transform(
           } else {
             prop.key.value = newName
           }
-          // Fix shorthand { isActive } -> { 'data-active': isActive }
           if (prop.shorthand) prop.shorthand = false
         }
       }
     })
   }
 
-  /**
-   * 2. Transform JSX
-   */
   root.find(j.JSXOpeningElement).forEach((path) => {
     const nameNode = path.node.name
     const baseName = getJsxBaseName(nameNode)
     if (!chakraLocalNames.has(baseName)) return
 
-    // Handle standard attributes
     j(path)
       .find(j.JSXAttribute)
       .forEach((attrPath) => {
@@ -83,7 +75,6 @@ export default function transform(
         }
       })
 
-    // Handle spreads: <Button {...{ isActive: true }} />
     j(path)
       .find(j.JSXSpreadAttribute)
       .forEach((spreadPath) => {

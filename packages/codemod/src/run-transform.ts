@@ -1,16 +1,13 @@
-import * as p from "@clack/prompts"
-import { execSync } from "child_process"
+import { spawn } from "child_process"
 import fs from "fs"
 import { createRequire } from "node:module"
 import { transforms } from "./transforms.js"
-import { isGitClean } from "./utils/git.js"
 
 const require = createRequire(import.meta.url)
 
 interface RunTransformOptions {
   dry?: boolean
   print?: boolean
-  force?: boolean
 }
 
 export async function runTransform(
@@ -18,69 +15,36 @@ export async function runTransform(
   targetPath: string,
   options: RunTransformOptions = {},
 ) {
-  const { dry = false, print = false, force = false } = options
+  const { dry = false, print = false } = options
   const transform = transforms[transformName]
-  if (!transform) {
-    p.cancel(`Transform "${transformName}" not found.`)
-    const list = Object.keys(transforms)
-      .map((key) => `- ${key} (${transforms[key].description})`)
-      .join("\n")
-    p.note(`Available transforms:\n${list}`)
-    process.exit(1)
-  }
 
-  if (!fs.existsSync(targetPath)) {
-    p.cancel(`Path "${targetPath}" does not exist.`)
-    process.exit(1)
-  }
+  if (!transform) throw new Error(`Transform "${transformName}" not found.`)
+  if (!fs.existsSync(targetPath))
+    throw new Error(`Path "${targetPath}" not found.`)
 
-  if (!force && !dry) {
-    const gitClean = await isGitClean()
-    if (!gitClean) {
-      p.note(
-        "Git directory is not clean. Commit or stash your changes before running codemods.",
-      )
-      p.note("You can bypass this check with the --force flag.")
-      process.exit(1)
-    }
-  }
+  const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
+  const args = [
+    "-t",
+    transform.path,
+    targetPath,
+    "--extensions=tsx,ts,jsx,js",
+    "--parser=tsx",
+    "--jobs=1",
+    "--ignore-pattern=node_modules",
+  ]
 
-  p.intro(`Running transform: ${transform.name}`)
-  if (transform.description) p.note(transform.description)
+  if (dry) args.push("--dry")
+  if (print) args.push("--print")
 
-  try {
-    const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
+  return new Promise<void>((resolve, reject) => {
+    const child = spawn(process.execPath, [jscodeshiftBin, ...args], {
+      stdio: "ignore", // Keeps terminal clean for the main spinner
+      env: process.env,
+    })
 
-    const args = [
-      "-t",
-      transform.path,
-      targetPath,
-      "--extensions=tsx,ts,jsx,js",
-      "--parser=tsx",
-    ]
-
-    if (dry) {
-      args.push("--dry")
-      p.note("Running in dry-run mode")
-    }
-
-    if (print) {
-      args.push("--print")
-    }
-
-    const command = `${jscodeshiftBin} ${args.join(" ")}`
-
-    const spinner = p.spinner()
-    spinner.start(`Executing: ${transform.name}`)
-    if (print) p.note(`$ ${command}`)
-
-    execSync(command, { stdio: "inherit" })
-
-    spinner.stop(`Transform "${transform.name}" completed`)
-    p.outro("Done")
-  } catch (error) {
-    if (error instanceof Error) p.log.error(error.message)
-    p.cancel(`Transform "${transform.name}" failed.`)
-    process.exit(1)
-  }
+    child.on("error", reject)
+    child.on("close", (code) => {
+      code === 0 ? resolve() : reject(new Error(`Failed with code ${code}`))
+    })
+  })
 }

@@ -1,14 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 
-/**
- * Codemod to migrate Chakra UI Storybook addon to @storybook/addon-themes
- *
- * Transformations:
- * 1. Remove @chakra-ui/storybook-addon imports
- * 2. Add @storybook/addon-themes imports
- * 3. Transform decorator from Chakra's to withThemeByClassName
- */
-
 export default function transformer(
   file: FileInfo,
   api: API,
@@ -18,7 +9,6 @@ export default function transformer(
   const root = j(file.source)
   let hasChanges = false
 
-  // Only process .storybook files
   if (!file.path.includes(".storybook")) {
     return file.source
   }
@@ -26,7 +16,6 @@ export default function transformer(
   let needsStorybookImports = false
   let hasStorybookImports = false
 
-  // Remove Chakra Storybook addon imports
   root
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/storybook-addon" },
@@ -37,7 +26,6 @@ export default function transformer(
       hasChanges = true
     })
 
-  // Check for existing Storybook imports
   root
     .find(j.ImportDeclaration, {
       source: { value: "@storybook/addon-themes" },
@@ -46,7 +34,6 @@ export default function transformer(
       hasStorybookImports = true
     })
 
-  // Transform preview configuration
   root
     .find(j.VariableDeclarator, {
       id: { name: "preview" },
@@ -55,7 +42,6 @@ export default function transformer(
       if (path.node.init?.type === "ObjectExpression") {
         const properties = path.node.init.properties
 
-        // Find decorators array
         const decoratorsProp = properties.find(
           (prop) =>
             prop.type === "Property" &&
@@ -68,7 +54,6 @@ export default function transformer(
           decoratorsProp.type === "Property" &&
           decoratorsProp.value.type === "ArrayExpression"
         ) {
-          // Check if there's a Chakra decorator to replace
           const hasChakraDecorator = decoratorsProp.value.elements.some(
             (elem) =>
               elem?.type === "CallExpression" || elem?.type === "Identifier",
@@ -76,10 +61,7 @@ export default function transformer(
 
           if (hasChakraDecorator) {
             needsStorybookImports = true
-
-            // Create new decorators array with withThemeByClassName
             const newDecorators = j.arrayExpression([
-              // Add withThemeByClassName
               j.callExpression(j.identifier("withThemeByClassName"), [
                 j.objectExpression([
                   j.property(
@@ -101,10 +83,8 @@ export default function transformer(
                   ),
                 ]),
               ]),
-              // Keep ChakraProvider wrapper if it exists
               ...decoratorsProp.value.elements.filter((elem) => {
                 if (!elem) return false
-                // Keep arrow functions that wrap ChakraProvider
                 if (elem.type === "ArrowFunctionExpression") {
                   return true
                 }
@@ -119,15 +99,12 @@ export default function transformer(
       }
     })
 
-  // Add necessary imports
   if (needsStorybookImports && !hasStorybookImports) {
-    // Add withThemeByClassName import
     const withThemeImport = j.importDeclaration(
       [j.importSpecifier(j.identifier("withThemeByClassName"))],
       j.literal("@storybook/addon-themes"),
     )
 
-    // Add type imports
     const typeImports = j.importDeclaration(
       [
         j.importSpecifier(j.identifier("Preview")),
@@ -137,7 +114,6 @@ export default function transformer(
     )
     typeImports.importKind = "type"
 
-    // Insert imports
     const firstImport = root.find(j.ImportDeclaration).at(0)
     if (firstImport.length > 0) {
       firstImport.insertBefore(withThemeImport)
@@ -150,7 +126,6 @@ export default function transformer(
     hasChanges = true
   }
 
-  // Add a comment with migration instructions if changes were made
   if (hasChanges) {
     const comment = j.commentBlock(
       `\n` +

@@ -42,7 +42,6 @@ export default function transformer(
       hasChanges = true
     })
 
-  // Check for next/image and next/link imports
   root
     .find(j.ImportDeclaration, {
       source: { value: "next/image" },
@@ -59,7 +58,6 @@ export default function transformer(
       needsNextLink = true
     })
 
-  // Transform ChakraNextImage -> Box asChild with Next Image
   Object.keys(removedComponents).forEach((componentName) => {
     root
       .find(j.JSXElement, {
@@ -73,12 +71,10 @@ export default function transformer(
         const attributes = openingElement.attributes || []
         const children = path.node.children || []
 
-        // For images
         if (isImage) {
           needsBox = true
           needsNextImage = true
 
-          // Create wrapper Box with asChild
           const wrapper = j.jsxElement(
             j.jsxOpeningElement(
               j.jsxIdentifier("Box"),
@@ -109,12 +105,10 @@ export default function transformer(
           hasChanges = true
         }
 
-        // For links
         if (isLink) {
           needsLink = true
           needsNextLink = true
 
-          // Check for isExternal prop
           const isExternalAttr = attributes.find(
             (attr) =>
               attr.type === "JSXAttribute" && attr.name.name === "isExternal",
@@ -122,16 +116,13 @@ export default function transformer(
 
           const hasIsExternal = !!isExternalAttr
 
-          // Filter out isExternal from wrapper Link
           const wrapperAttrs = attributes.filter(
             (attr) =>
               attr.type === "JSXAttribute" && attr.name.name !== "isExternal",
           )
 
-          // Add asChild prop
           wrapperAttrs.push(j.jsxAttribute(j.jsxIdentifier("asChild"), null))
 
-          // Create Next Link attributes
           const nextLinkAttrs: any[] = []
 
           if (hasIsExternal && isExternalAttr?.type === "JSXAttribute") {
@@ -196,7 +187,6 @@ export default function transformer(
       })
   })
 
-  // Add necessary imports
   if (needsBox || needsLink) {
     root
       .find(j.ImportDeclaration, {

@@ -42,9 +42,7 @@ export default function transformer(
       }
     })
 
-  // Add comments for removed hooks with suggested alternatives
   if (removedHooksUsed.size > 0) {
-    // Find the first line of code in the file
     const firstStatement = root.find(j.Program).get("body", 0)
 
     if (firstStatement) {
