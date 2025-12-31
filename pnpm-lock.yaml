@@ -559,6 +559,9 @@ importers:
       '@clack/prompts':
         specifier: 0.11.0
         version: 0.11.0
+      '@emotion/is-prop-valid':
+        specifier: ^1.4.0
+        version: 1.4.0
       '@types/node':
         specifier: ^20.0.0
         version: 20.19.27
@@ -574,9 +577,6 @@ importers:
       jscodeshift:
         specifier: 17.0.0
         version: 17.0.0
-      ora:
-        specifier: ^9.0.0
-        version: 9.0.0
       picocolors:
         specifier: 1.0.0
         version: 1.0.0
