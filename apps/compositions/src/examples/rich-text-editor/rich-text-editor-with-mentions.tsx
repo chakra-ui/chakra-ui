@@ -3,11 +3,12 @@
 import {
   Box,
   Center,
-  Menu as ChakraMenu,
+  Combobox as ChakraCombobox,
   HStack,
   Portal,
   Text,
   VStack,
+  createListCollection,
 } from "@chakra-ui/react"
 import Mention from "@tiptap/extension-mention"
 import Subscript from "@tiptap/extension-subscript"
@@ -223,11 +224,20 @@ const MentionList = React.forwardRef<MentionListRef, MentionListProps>(
         }
       : undefined
 
+    const collection = createListCollection({
+      items: items.map((i) => ({ value: i.id, label: i.label })),
+    })
+
     return (
-      <ChakraMenu.Root open positioning={positioning}>
+      <ChakraCombobox.Root
+        open
+        collection={collection}
+        positioning={positioning}
+        autoFocus={false}
+      >
         <Portal>
-          <ChakraMenu.Positioner>
-            <ChakraMenu.Content
+          <ChakraCombobox.Positioner>
+            <ChakraCombobox.Content
               p="1"
               minW="280px"
               maxH="360px"
@@ -241,14 +251,14 @@ const MentionList = React.forwardRef<MentionListRef, MentionListProps>(
                 </Box>
               ) : (
                 items.map((item) => (
-                  <ChakraMenu.Item
+                  <ChakraCombobox.Item
                     key={item.id}
-                    value={item.label}
+                    item={{ value: item.id, label: item.label }}
                     onPointerDown={(event) => {
                       event.preventDefault()
                       command(item)
                     }}
-                    cursor="pointer"
+                    cursor="button"
                   >
                     <HStack gap="2.5" w="full">
                       <Center
@@ -268,13 +278,13 @@ const MentionList = React.forwardRef<MentionListRef, MentionListProps>(
                         </Text>
                       </VStack>
                     </HStack>
-                  </ChakraMenu.Item>
+                  </ChakraCombobox.Item>
                 ))
               )}
-            </ChakraMenu.Content>
-          </ChakraMenu.Positioner>
+            </ChakraCombobox.Content>
+          </ChakraCombobox.Positioner>
         </Portal>
-      </ChakraMenu.Root>
+      </ChakraCombobox.Root>
     )
   },
 )

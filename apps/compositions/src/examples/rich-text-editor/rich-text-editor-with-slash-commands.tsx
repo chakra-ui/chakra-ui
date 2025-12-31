@@ -2,11 +2,12 @@
 
 import {
   Box,
-  Menu as ChakraMenu,
+  Combobox as ChakraCombobox,
   HStack,
   Portal,
   Text,
   VStack,
+  createListCollection,
 } from "@chakra-ui/react"
 import { Extension } from "@tiptap/core"
 import Subscript from "@tiptap/extension-subscript"
@@ -196,20 +197,29 @@ const SlashMenuList = React.forwardRef<SlashMenuListRef, SlashMenuListProps>(
         }
       : undefined
 
+    const collection = createListCollection({
+      items: items.map((i) => ({ value: i.title, label: i.title })),
+    })
+
     return (
-      <ChakraMenu.Root open positioning={positioning}>
+      <ChakraCombobox.Root
+        open
+        collection={collection}
+        positioning={positioning}
+        autoFocus={false}
+      >
         <Portal>
-          <ChakraMenu.Positioner>
-            <ChakraMenu.Content
+          <ChakraCombobox.Positioner>
+            <ChakraCombobox.Content
               p="1"
               minW="280px"
               maxH="360px"
               overflowY="auto"
             >
               {items.map((item, index) => (
-                <ChakraMenu.Item
+                <ChakraCombobox.Item
                   key={index}
-                  value={item.title}
+                  item={{ value: item.title, label: item.title }}
                   onPointerDown={(event) => {
                     event.preventDefault()
                     command(item)
@@ -233,12 +243,12 @@ const SlashMenuList = React.forwardRef<SlashMenuListRef, SlashMenuListProps>(
                       )}
                     </VStack>
                   </HStack>
-                </ChakraMenu.Item>
+                </ChakraCombobox.Item>
               ))}
-            </ChakraMenu.Content>
-          </ChakraMenu.Positioner>
+            </ChakraCombobox.Content>
+          </ChakraCombobox.Positioner>
         </Portal>
-      </ChakraMenu.Root>
+      </ChakraCombobox.Root>
     )
   },
 )
