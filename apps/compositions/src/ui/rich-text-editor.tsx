@@ -214,7 +214,7 @@ export const RichTextEditorFooter = React.forwardRef<
   HTMLDivElement,
   StackProps
 >(function RichTextEditorFooter(props, ref) {
-  return <HStack ref={ref} gap="1" {...props} />
+  return <HStack ref={ref} gap="1" borderTopWidth="1px" p="3" {...props} />
 })
 
 export interface RichTextEditorContentProps
@@ -246,7 +246,6 @@ export const RichTextEditor = {
   Footer: RichTextEditorFooter,
 } as const
 
-export * from "compositions/ui/rich-text-editor-core"
 export * as Control from "compositions/ui/rich-text-editor-control"
 
 export {

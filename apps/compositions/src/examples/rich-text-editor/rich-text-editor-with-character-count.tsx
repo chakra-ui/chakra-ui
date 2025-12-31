@@ -47,12 +47,7 @@ export const RichTextEditorWithCharacterCount = () => {
 
       <RichTextEditor.Content />
 
-      <RichTextEditor.Footer
-        justify="flex-end"
-        borderTopWidth="1px"
-        p="3"
-        textStyle="xs"
-      >
+      <RichTextEditor.Footer justify="flex-end" textStyle="xs">
         <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
         <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>
       </RichTextEditor.Footer>

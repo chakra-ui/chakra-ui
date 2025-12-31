@@ -51,16 +51,16 @@ export interface BaseControlConfig {
   isDisabled?: (editor: Editor) => boolean
 }
 
-export interface RichTextEditorControlProps
+export interface ButtonControlProps
   extends Omit<IconButtonProps, "aria-label"> {
   icon: React.ReactNode
   label: string
 }
 
-export const RichTextEditorButtonControl = React.forwardRef<
+export const ButtonControl = React.forwardRef<
   HTMLButtonElement,
-  RichTextEditorControlProps
->(function RichTextEditorButtonControl(props, ref) {
+  ButtonControlProps
+>(function ButtonControl(props, ref) {
   const { icon, label, ...rest } = props
   return (
     <Tooltip content={label}>
@@ -89,7 +89,7 @@ export function createBooleanControl(config: BooleanControlConfig) {
       const disabled = isDisabled ? isDisabled(editor) : false
       const variant = getVariant ? getVariant(editor) : {}
       return (
-        <RichTextEditorButtonControl
+        <ButtonControl
           ref={ref}
           label={label}
           icon={<Icon />}

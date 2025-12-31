@@ -22,66 +22,6 @@ import {
 import { Tag } from "compositions/ui/tag"
 import { LuHash, LuSlash } from "react-icons/lu"
 
-// Data definitions with proper types
-const MENTION_USERS: MentionItem[] = [
-  { id: "1", label: "Alice Johnson", email: "alice@example.com" },
-  { id: "2", label: "Bob Smith", email: "bob@example.com" },
-  { id: "3", label: "Charlie Davis", email: "charlie@example.com" },
-  { id: "4", label: "Diana Wilson", email: "diana@example.com" },
-  { id: "5", label: "Ethan Brown", email: "ethan@example.com" },
-  { id: "6", label: "Fiona Martinez", email: "fiona@example.com" },
-  { id: "7", label: "George Anderson", email: "george@example.com" },
-  { id: "8", label: "Hannah Taylor", email: "hannah@example.com" },
-]
-
-const SLASH_COMMANDS: CommandItem[] = [
-  {
-    id: "heading1",
-    label: "Heading 1",
-    description: "Large section heading",
-    icon: LuHash,
-  },
-  {
-    id: "heading2",
-    label: "Heading 2",
-    description: "Medium section heading",
-    icon: LuHash,
-  },
-  {
-    id: "heading3",
-    label: "Heading 3",
-    description: "Small section heading",
-    icon: LuHash,
-  },
-  {
-    id: "bullet",
-    label: "Bullet List",
-    description: "Create a bullet list",
-    icon: LuSlash,
-  },
-  {
-    id: "numbered",
-    label: "Numbered List",
-    description: "Create a numbered list",
-    icon: LuSlash,
-  },
-  {
-    id: "quote",
-    label: "Quote",
-    description: "Add a blockquote",
-    icon: LuSlash,
-  },
-]
-
-const HASHTAGS: HashtagItem[] = [
-  { id: "react", label: "react", description: "React.js framework" },
-  { id: "typescript", label: "typescript", description: "TypeScript language" },
-  { id: "nextjs", label: "nextjs", description: "Next.js framework" },
-  { id: "chakra", label: "chakra", description: "Chakra UI library" },
-  { id: "javascript", label: "javascript", description: "JavaScript language" },
-  { id: "css", label: "css", description: "CSS styling" },
-]
-
 export const RichTextEditorWithMentions = () => {
   const editor = useEditor({
     extensions: [
@@ -201,3 +141,62 @@ const HashtagMention = Mention.extend({
     ))
   },
 })
+
+const MENTION_USERS: MentionItem[] = [
+  { id: "1", label: "Alice Johnson", email: "alice@example.com" },
+  { id: "2", label: "Bob Smith", email: "bob@example.com" },
+  { id: "3", label: "Charlie Davis", email: "charlie@example.com" },
+  { id: "4", label: "Diana Wilson", email: "diana@example.com" },
+  { id: "5", label: "Ethan Brown", email: "ethan@example.com" },
+  { id: "6", label: "Fiona Martinez", email: "fiona@example.com" },
+  { id: "7", label: "George Anderson", email: "george@example.com" },
+  { id: "8", label: "Hannah Taylor", email: "hannah@example.com" },
+]
+
+const SLASH_COMMANDS: CommandItem[] = [
+  {
+    id: "heading1",
+    label: "Heading 1",
+    description: "Large section heading",
+    icon: LuHash,
+  },
+  {
+    id: "heading2",
+    label: "Heading 2",
+    description: "Medium section heading",
+    icon: LuHash,
+  },
+  {
+    id: "heading3",
+    label: "Heading 3",
+    description: "Small section heading",
+    icon: LuHash,
+  },
+  {
+    id: "bullet",
+    label: "Bullet List",
+    description: "Create a bullet list",
+    icon: LuSlash,
+  },
+  {
+    id: "numbered",
+    label: "Numbered List",
+    description: "Create a numbered list",
+    icon: LuSlash,
+  },
+  {
+    id: "quote",
+    label: "Quote",
+    description: "Add a blockquote",
+    icon: LuSlash,
+  },
+]
+
+const HASHTAGS: HashtagItem[] = [
+  { id: "react", label: "react", description: "React.js framework" },
+  { id: "typescript", label: "typescript", description: "TypeScript language" },
+  { id: "nextjs", label: "nextjs", description: "Next.js framework" },
+  { id: "chakra", label: "chakra", description: "Chakra UI library" },
+  { id: "javascript", label: "javascript", description: "JavaScript language" },
+  { id: "css", label: "css", description: "CSS styling" },
+]

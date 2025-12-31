@@ -67,7 +67,7 @@ function InsertImageControl() {
 
   return (
     <>
-      <RichTextEditor.ButtonControl
+      <Control.ButtonControl
         icon={<LuImage />}
         label="Insert Image"
         onClick={() => setOpen(true)}

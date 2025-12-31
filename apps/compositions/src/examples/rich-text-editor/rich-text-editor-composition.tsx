@@ -44,13 +44,14 @@ import {
   PopoverTrigger,
 } from "compositions/ui/popover"
 import {
+  Control,
   RichTextEditor,
-  type RichTextEditorControlProps,
   createBooleanControl,
   createSelectControl,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
-import { forwardRef, useEffect, useState } from "react"
+import { Tooltip } from "compositions/ui/tooltip"
+import { forwardRef, useEffect, useId, useState } from "react"
 import {
   LuChevronDown,
   LuCircleHelp,
@@ -513,7 +514,7 @@ const SidebarOutline = ({ editor }: { editor: Editor }) => {
 
 const LinkControl = forwardRef<
   HTMLButtonElement,
-  Omit<RichTextEditorControlProps, "icon" | "label">
+  Omit<Control.ButtonControlProps, "icon" | "label">
 >(function LinkControl(props, ref) {
   const { editor } = useRichTextEditorContext()
   const [open, setOpen] = useState(false)
@@ -523,6 +524,8 @@ const LinkControl = forwardRef<
     top: number
     left: number
   } | null>(null)
+
+  const triggerId = useId()
 
   if (!editor) return null
 
@@ -565,8 +568,6 @@ const LinkControl = forwardRef<
     setOpen(false)
   }
 
-  console.log("isopen", open)
-
   const positioning = position
     ? {
         strategy: "fixed" as const,
@@ -585,17 +586,22 @@ const LinkControl = forwardRef<
       open={open}
       onOpenChange={(e) => setOpen(e.open)}
       positioning={positioning}
+      ids={{ trigger: triggerId }}
     >
-      <PopoverTrigger>
-        <RichTextEditor.ButtonControl
-          ref={ref}
-          icon={<LuLink />}
-          variant={editor.isActive("link") ? "subtle" : "ghost"}
-          onClick={handleOpen}
-          label="Insert Link"
-          {...props}
-        />
-      </PopoverTrigger>
+      <Tooltip content="Insert Link" ids={{ trigger: triggerId }}>
+        <PopoverTrigger asChild>
+          <IconButton
+            ref={ref}
+            size="2xs"
+            aria-label="Insert Link"
+            onClick={handleOpen}
+            variant={editor.isActive("link") ? "subtle" : "ghost"}
+            {...props}
+          >
+            <LuLink />
+          </IconButton>
+        </PopoverTrigger>
+      </Tooltip>
       <Portal>
         <PopoverContent p="3" minW="280px">
           <PopoverBody>
@@ -650,7 +656,7 @@ function InsertImageControl() {
 
   return (
     <>
-      <RichTextEditor.ButtonControl
+      <Control.ButtonControl
         icon={<LuImage />}
         label="Insert Image"
         onClick={() => setOpen(true)}
