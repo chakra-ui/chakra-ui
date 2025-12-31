@@ -4,10 +4,9 @@ import type { BoxProps, StackProps } from "@chakra-ui/react"
 import { Box, HStack, StackSeparator, defineStyle } from "@chakra-ui/react"
 import { Editor, EditorContent } from "@tiptap/react"
 import {
-  RichTextEditorButtonControl,
   RichTextEditorContext,
   useRichTextEditorContext,
-} from "compositions/ui/rich-text-editor-core"
+} from "compositions/ui/rich-text-editor-context"
 import * as React from "react"
 
 const proseMirrorBaseCss = defineStyle({
@@ -244,9 +243,16 @@ export const RichTextEditor = {
   Toolbar: RichTextEditorToolbar,
   Content: RichTextEditorContent,
   ControlGroup: RichTextEditorControlGroup,
-  ButtonControl: RichTextEditorButtonControl,
   Footer: RichTextEditorFooter,
 } as const
 
 export * from "compositions/ui/rich-text-editor-core"
 export * as Control from "compositions/ui/rich-text-editor-control"
+
+export {
+  createBooleanControl,
+  createSelectControl,
+  createSwatchControl,
+} from "compositions/ui/rich-text-editor-control"
+
+export { useRichTextEditorContext } from "compositions/ui/rich-text-editor-context"

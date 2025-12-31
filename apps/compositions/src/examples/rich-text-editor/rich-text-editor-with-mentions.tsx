@@ -1,32 +1,86 @@
 "use client"
 
-import {
-  Box,
-  Center,
-  Combobox as ChakraCombobox,
-  HStack,
-  Portal,
-  Text,
-  VStack,
-  createListCollection,
-} from "@chakra-ui/react"
 import Mention from "@tiptap/extension-mention"
 import Subscript from "@tiptap/extension-subscript"
 import Superscript from "@tiptap/extension-superscript"
 import TextAlign from "@tiptap/extension-text-align"
 import { TextStyle } from "@tiptap/extension-text-style"
-import { PluginKey } from "@tiptap/pm/state"
 import {
   NodeViewWrapper,
   ReactNodeViewRenderer,
-  ReactRenderer,
   useEditor,
 } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
+import {
+  type CommandItem,
+  type HashtagItem,
+  type MentionItem,
+  createMentionConfig,
+  createSuggestionConfig,
+} from "compositions/ui/rich-text-editor-menu"
 import { Tag } from "compositions/ui/tag"
-import * as React from "react"
-import { LuUser } from "react-icons/lu"
+import { LuHash, LuSlash } from "react-icons/lu"
+
+// Data definitions with proper types
+const MENTION_USERS: MentionItem[] = [
+  { id: "1", label: "Alice Johnson", email: "alice@example.com" },
+  { id: "2", label: "Bob Smith", email: "bob@example.com" },
+  { id: "3", label: "Charlie Davis", email: "charlie@example.com" },
+  { id: "4", label: "Diana Wilson", email: "diana@example.com" },
+  { id: "5", label: "Ethan Brown", email: "ethan@example.com" },
+  { id: "6", label: "Fiona Martinez", email: "fiona@example.com" },
+  { id: "7", label: "George Anderson", email: "george@example.com" },
+  { id: "8", label: "Hannah Taylor", email: "hannah@example.com" },
+]
+
+const SLASH_COMMANDS: CommandItem[] = [
+  {
+    id: "heading1",
+    label: "Heading 1",
+    description: "Large section heading",
+    icon: LuHash,
+  },
+  {
+    id: "heading2",
+    label: "Heading 2",
+    description: "Medium section heading",
+    icon: LuHash,
+  },
+  {
+    id: "heading3",
+    label: "Heading 3",
+    description: "Small section heading",
+    icon: LuHash,
+  },
+  {
+    id: "bullet",
+    label: "Bullet List",
+    description: "Create a bullet list",
+    icon: LuSlash,
+  },
+  {
+    id: "numbered",
+    label: "Numbered List",
+    description: "Create a numbered list",
+    icon: LuSlash,
+  },
+  {
+    id: "quote",
+    label: "Quote",
+    description: "Add a blockquote",
+    icon: LuSlash,
+  },
+]
+
+const HASHTAGS: HashtagItem[] = [
+  { id: "react", label: "react", description: "React.js framework" },
+  { id: "typescript", label: "typescript", description: "TypeScript language" },
+  { id: "nextjs", label: "nextjs", description: "Next.js framework" },
+  { id: "chakra", label: "chakra", description: "Chakra UI library" },
+  { id: "javascript", label: "javascript", description: "JavaScript language" },
+  { id: "css", label: "css", description: "CSS styling" },
+]
 
 export const RichTextEditorWithMentions = () => {
   const editor = useEditor({
@@ -44,85 +98,30 @@ export const RichTextEditorWithMentions = () => {
         HTMLAttributes: {
           class: "mention",
         },
-        suggestion: {
-          char: "@",
-          pluginKey: new PluginKey("mention"),
-          items: ({ query }) =>
-            MENTION_USERS.filter((user) =>
-              user.label.toLowerCase().includes(query.toLowerCase()),
-            ),
-          render: () => {
-            let component: ReactRenderer<
-              MentionListRef,
-              MentionListProps
-            > | null = null
-            let container: HTMLDivElement | null = null
-            let selectedIndex = 0
-
-            return {
-              onStart(props) {
-                selectedIndex = 0
-                container = document.createElement("div")
-                document.body.appendChild(container)
-
-                component = new ReactRenderer(MentionList, {
-                  props: {
-                    items: props.items,
-                    selectedIndex,
-                    command: (item: any) => props.command(item),
-                    clientRect: props.clientRect,
-                  },
-                  editor: props.editor,
-                })
-
-                container.appendChild(component.element)
-              },
-              onUpdate(props) {
-                if (!component) return
-                component.updateProps({
-                  items: props.items,
-                  selectedIndex,
-                  command: (item: any) => props.command(item),
-                  clientRect: props.clientRect,
-                })
-              },
-
-              onKeyDown({ event }: { event: KeyboardEvent }) {
-                if (!component) return false
-                if (event.key === "ArrowUp") {
-                  selectedIndex =
-                    (selectedIndex - 1 + component.props.items.length) %
-                    component.props.items.length
-                  component.updateProps({ ...component.props, selectedIndex })
-                  return true
-                }
-                if (event.key === "ArrowDown") {
-                  selectedIndex =
-                    (selectedIndex + 1) % component.props.items.length
-                  component.updateProps({ ...component.props, selectedIndex })
-                  return true
-                }
-                if (event.key === "Enter") {
-                  const item = component.props.items[selectedIndex]
-                  if (item) component.props.command(item)
-                  return true
-                }
-                if (event.key === "Escape") return true
-                return false
-              },
-
-              onExit() {
-                if (container) container.remove()
-                container = null
-                if (component) component.destroy()
-                component = null
-              },
-            }
-          },
+        suggestion: createMentionConfig(MENTION_USERS),
+      }),
+      SlashCommand.configure({
+        HTMLAttributes: {
+          class: "slash-command",
         },
+        suggestion: createSuggestionConfig("/", (query) =>
+          SLASH_COMMANDS.filter((command) =>
+            command.label.toLowerCase().includes(query.toLowerCase()),
+          ),
+        ),
+      }),
+      HashtagMention.configure({
+        HTMLAttributes: {
+          class: "hashtag",
+        },
+        suggestion: createSuggestionConfig("#", (query) =>
+          HASHTAGS.filter((hashtag) =>
+            hashtag.label.toLowerCase().includes(query.toLowerCase()),
+          ),
+        ),
       }),
     ],
-    content: `<h1>Rich Text Editor</h1><p>Type <strong>@</strong> to mention someone</p>`,
+    content: `<h1>Rich Text Editor</h1><p>Type <strong>@</strong> for mentions, <strong>/</strong> for commands, or <strong>#</strong> for hashtags</p>`,
     shouldRerenderOnTransaction: true,
   })
 
@@ -161,19 +160,6 @@ export const RichTextEditorWithMentions = () => {
   )
 }
 
-const MENTION_USERS = [
-  { id: "1", label: "Alice Johnson", email: "alice@example.com" },
-  { id: "2", label: "Bob Smith", email: "bob@example.com" },
-  { id: "3", label: "Charlie Davis", email: "charlie@example.com" },
-  { id: "4", label: "Diana Wilson", email: "diana@example.com" },
-  { id: "5", label: "Ethan Brown", email: "ethan@example.com" },
-  { id: "6", label: "Fiona Martinez", email: "fiona@example.com" },
-  { id: "7", label: "George Anderson", email: "george@example.com" },
-  { id: "8", label: "Hannah Taylor", email: "hannah@example.com" },
-]
-
-type MentionUser = (typeof MENTION_USERS)[number]
-
 const MentionComponent = (props: any) => {
   return (
     <NodeViewWrapper as="span" style={{ display: "inline" }}>
@@ -190,101 +176,28 @@ const CustomMention = Mention.extend({
   },
 })
 
-interface MentionListProps {
-  items: MentionUser[]
-  command: (item: MentionUser) => void
-  selectedIndex: number
-  clientRect?: (() => DOMRect | null) | null
-}
-
-interface MentionListRef {
-  onKeyDown: (props: { event: KeyboardEvent }) => boolean
-}
-
-const MentionList = React.forwardRef<MentionListRef, MentionListProps>(
-  function MentionList(props, ref) {
-    const { items, command, clientRect } = props
-
-    React.useImperativeHandle(ref, () => ({
-      onKeyDown: () => false,
-    }))
-
-    const rect = clientRect?.()
-    const positioning = rect
-      ? {
-          strategy: "fixed" as const,
-          placement: "bottom-start" as const,
-          gutter: 8,
-          getAnchorRect: () => ({
-            x: rect.left,
-            y: rect.bottom,
-            width: rect.width,
-            height: 0,
-          }),
-        }
-      : undefined
-
-    const collection = createListCollection({
-      items: items.map((i) => ({ value: i.id, label: i.label })),
-    })
-
-    return (
-      <ChakraCombobox.Root
-        open
-        collection={collection}
-        positioning={positioning}
-        autoFocus={false}
-      >
-        <Portal>
-          <ChakraCombobox.Positioner>
-            <ChakraCombobox.Content
-              p="1"
-              minW="280px"
-              maxH="360px"
-              overflowY="auto"
-            >
-              {items.length === 0 ? (
-                <Box p="3" textAlign="center">
-                  <Text fontSize="sm" color="fg.muted">
-                    No results found
-                  </Text>
-                </Box>
-              ) : (
-                items.map((item) => (
-                  <ChakraCombobox.Item
-                    key={item.id}
-                    item={{ value: item.id, label: item.label }}
-                    onPointerDown={(event) => {
-                      event.preventDefault()
-                      command(item)
-                    }}
-                    cursor="button"
-                  >
-                    <HStack gap="2.5" w="full">
-                      <Center
-                        boxSize="8"
-                        rounded="full"
-                        bg="gray.200"
-                        color="gray.700"
-                      >
-                        <LuUser size={16} />
-                      </Center>
-                      <VStack align="start" gap="0" flex="1" minW="0">
-                        <Text fontSize="sm" fontWeight="medium">
-                          {item.label}
-                        </Text>
-                        <Text fontSize="xs" color="fg.muted">
-                          {item.email}
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </ChakraCombobox.Item>
-                ))
-              )}
-            </ChakraCombobox.Content>
-          </ChakraCombobox.Positioner>
-        </Portal>
-      </ChakraCombobox.Root>
-    )
+const SlashCommand = Mention.extend({
+  name: "slashCommand",
+  addNodeView() {
+    return ReactNodeViewRenderer((props: any) => (
+      <NodeViewWrapper as="span" style={{ display: "inline" }}>
+        <Tag size="lg" colorPalette="blue" mr="1">
+          /{props.node.attrs.label ?? props.node.attrs.id}
+        </Tag>
+      </NodeViewWrapper>
+    ))
   },
-)
+})
+
+const HashtagMention = Mention.extend({
+  name: "hashtag",
+  addNodeView() {
+    return ReactNodeViewRenderer((props: any) => (
+      <NodeViewWrapper as="span" style={{ display: "inline" }}>
+        <Tag size="lg" colorPalette="green" mr="1">
+          #{props.node.attrs.label ?? props.node.attrs.id}
+        </Tag>
+      </NodeViewWrapper>
+    ))
+  },
+})

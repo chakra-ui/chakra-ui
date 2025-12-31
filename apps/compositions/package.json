@@ -19,6 +19,7 @@
   "dependencies": {
     "@chakra-ui/charts": "workspace:*",
     "@chakra-ui/react": "workspace:*",
+    "@floating-ui/react": "^0.27.16",
     "@hookform/resolvers": "5.2.2",
     "@tanstack/react-table": "8.21.3",
     "@tanstack/react-virtual": "3.13.12",
