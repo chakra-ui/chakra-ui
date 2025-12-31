@@ -1,4 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -8,6 +9,8 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
   renameComponent(j, root, "Table", "Table.Root")
   renameComponent(j, root, "Thead", "Table.Header")
@@ -22,6 +25,12 @@ export default function transformer(
   root
     .find(j.JSXOpeningElement)
     .filter((path) => {
+      const baseName =
+        path.node.name.type === "JSXMemberExpression" &&
+        path.node.name.object.type === "JSXIdentifier"
+          ? path.node.name.object.name
+          : null
+      if (!baseName || !chakraLocalNames.has(baseName)) return false
       const name = path.node.name
       return (
         name.type === "JSXMemberExpression" &&

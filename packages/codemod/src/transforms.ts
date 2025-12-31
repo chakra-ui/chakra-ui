@@ -12,7 +12,7 @@ export interface TransformInfo {
 }
 
 const TRANSFORM_ROOT = path.join(__dirname, "transforms")
-const TRANSFORM_DIRS = ["components", "props", "theme"]
+const TRANSFORM_DIRS = ["theme", "props", "components", "removed"]
 
 function toTitle(input: string) {
   const items = input.split("_")
@@ -65,4 +65,55 @@ for (const dir of TRANSFORM_DIRS) {
  * List of transforms used for upgrades
  * Automatically kept in sync with the filesystem
  */
-export const upgradeTransforms = Object.keys(transforms)
+const PRIORITY: Record<string, number> = {
+  // theme/props first
+  "gradient-props": 10,
+  "color-palette": 10,
+  "nested-styles": 10,
+  "boolean-props": 10,
+  "spacing-props": 10,
+  "color-transform": 10,
+  // structural early
+  button: 20,
+  divider: 20,
+  "show-hide": 20,
+  // components next (default 30)
+  // removed last
+  "circular-progress": 40,
+}
+
+function getPriority(name: string, dir: string) {
+  if (PRIORITY[name] != null) return PRIORITY[name]
+  if (dir === "theme" || dir === "props") return 10
+  if (dir === "components") return 30
+  if (dir === "removed") return 40
+  return 50
+}
+
+export const upgradeTransforms = Object.entries(transforms)
+  .map(([name, info]) => ({ name, info }))
+  .sort((a, b) => {
+    const dirA = a.info.path.includes("/theme/")
+      ? "theme"
+      : a.info.path.includes("/props/")
+        ? "props"
+        : a.info.path.includes("/components/")
+          ? "components"
+          : a.info.path.includes("/removed/")
+            ? "removed"
+            : "other"
+    const dirB = b.info.path.includes("/theme/")
+      ? "theme"
+      : b.info.path.includes("/props/")
+        ? "props"
+        : b.info.path.includes("/components/")
+          ? "components"
+          : b.info.path.includes("/removed/")
+            ? "removed"
+            : "other"
+    const pA = getPriority(a.name, dirA)
+    const pB = getPriority(b.name, dirB)
+    if (pA !== pB) return pA - pB
+    return a.name.localeCompare(b.name)
+  })
+  .map((x) => x.name)

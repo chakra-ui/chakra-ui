@@ -1,4 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -8,10 +9,13 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
   root
     .find(j.JSXOpeningElement, { name: { name: "Accordion" } })
     .forEach((path) => {
+      if (!chakraLocalNames.has("Accordion")) return
       const attrs = path.node.attributes ?? []
 
       path.node.attributes = attrs.flatMap((attr) => {
@@ -38,7 +42,10 @@ export default function transformer(
             )
 
           case "onChange":
-            return j.jsxAttribute(j.jsxIdentifier("onValueChange"), attr.value)
+            return j.jsxAttribute(
+              j.jsxIdentifier("onValueChange"),
+              wrapOnChange(j, attr.value),
+            )
 
           default:
             return attr
@@ -93,4 +100,18 @@ function normalizeIndexValue(j: any, value: any) {
   }
 
   return value
+}
+
+function wrapOnChange(j: any, value: any) {
+  if (!value || value.type !== "JSXExpressionContainer") return value
+  return j.jsxExpressionContainer(
+    j.arrowFunctionExpression(
+      [
+        j.objectPattern([
+          j.property("init", j.identifier("value"), j.identifier("value")),
+        ]),
+      ],
+      j.callExpression(value.expression, [j.identifier("value")]),
+    ),
+  )
 }

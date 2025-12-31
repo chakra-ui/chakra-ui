@@ -16,25 +16,18 @@ export default function transformer(
   const { chakraLocalNames } = collectChakraLocalNames(j, root)
   if (chakraLocalNames.size === 0) return file.source
 
-  root
-    .find(j.JSXElement)
-    .filter((path) => {
-      const baseName = getJsxBaseName(path.node.openingElement.name)
-      return chakraLocalNames.has(baseName)
-    })
-    .forEach((path) => {
-      path.node.openingElement.attributes?.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") return
+  root.find(j.JSXElement).forEach((elPath) => {
+    const opening = elPath.node.openingElement
+    const baseName = getJsxBaseName(opening.name)
+    if (!chakraLocalNames.has(baseName)) return
+    if (baseName !== "Divider") return
 
-        if (attr.name.name === "spacing") {
-          attr.name.name = "gap"
-        }
-
-        if (attr.name.name === "divider") {
-          attr.name.name = "separator"
-        }
-      })
-    })
+    const newName = j.jsxIdentifier("Separator")
+    opening.name = newName
+    if (elPath.node.closingElement) {
+      elPath.node.closingElement.name = newName
+    }
+  })
 
   return root.toSource({ quote: "single" })
 }

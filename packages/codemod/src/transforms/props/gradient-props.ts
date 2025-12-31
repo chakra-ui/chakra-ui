@@ -1,4 +1,8 @@
 import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  isTrackedJsx,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -9,36 +13,39 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  root
-    .find(j.JSXAttribute, { name: { name: "bgGradient" } })
-    .forEach((path) => {
-      const attr = path.node
-      if (!attr.value || attr.value.type !== "Literal") return
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
-      const value = attr.value.value as string
+  root.find(j.JSXElement).forEach((elPath) => {
+    const opening = elPath.node.openingElement
+    if (!isTrackedJsx(opening, chakraLocalNames)) return
+    const attrs = opening.attributes || []
+    const bgAttrIndex = attrs.findIndex(
+      (a) =>
+        a.type === "JSXAttribute" &&
+        a.name.type === "JSXIdentifier" &&
+        a.name.name === "bgGradient",
+    )
+    if (bgAttrIndex === -1) return
+    const attr = attrs[bgAttrIndex] as JSXAttribute
+    if (!attr.value || attr.value.type !== "Literal") return
 
-      const match = value.match(/(\w+)\(([^,]+),\s*([^,]+),\s*([^)]+)\)/)
-      if (!match) return
+    const value = attr.value.value as string
 
-      const [, _type, direction, from, to] = match
+    const match = value.match(/(\w+)\(([^,]+),\s*([^,]+),\s*([^)]+)\)/)
+    if (!match) return
 
-      const jsxElement = path.parent.node
-      if (jsxElement.type !== "JSXOpeningElement") return
+    const [, _type, direction, from, to] = match
 
-      const newAttributes: JSXAttribute[] = [
-        j.jsxAttribute(
-          j.jsxIdentifier("gradient"),
-          j.literal(direction.trim()),
-        ),
-        j.jsxAttribute(j.jsxIdentifier("gradientFrom"), j.literal(from.trim())),
-        j.jsxAttribute(j.jsxIdentifier("gradientTo"), j.literal(to.trim())),
-      ]
+    const newAttributes: JSXAttribute[] = [
+      j.jsxAttribute(j.jsxIdentifier("gradient"), j.literal(direction.trim())),
+      j.jsxAttribute(j.jsxIdentifier("gradientFrom"), j.literal(from.trim())),
+      j.jsxAttribute(j.jsxIdentifier("gradientTo"), j.literal(to.trim())),
+    ]
 
-      jsxElement.attributes = jsxElement.attributes.filter(
-        (attrNode: JSXAttribute): attrNode is JSXAttribute => attrNode !== attr,
-      )
-      jsxElement.attributes.push(...newAttributes)
-    })
+    opening.attributes = attrs.filter((a) => a !== attr)
+    opening.attributes.push(...newAttributes)
+  })
 
   return root.toSource({ quote: "single" })
 }

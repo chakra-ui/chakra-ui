@@ -1,4 +1,8 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -9,6 +13,9 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
+
   let needsStackImport = false
 
   root
@@ -18,6 +25,8 @@ export default function transformer(
       },
     })
     .forEach((path) => {
+      const baseName = getJsxBaseName(path.node.openingElement.name)
+      if (!chakraLocalNames.has(baseName)) return
       const attributes = path.node.openingElement.attributes
       attributes?.forEach((attr) => {
         if (attr.type !== "JSXAttribute") return
@@ -29,6 +38,7 @@ export default function transformer(
   root
     .find(j.JSXElement, { openingElement: { name: { name: "StackDivider" } } })
     .forEach((path) => {
+      if (!chakraLocalNames.has("Stack")) return
       path.node.openingElement.name = j.jsxMemberExpression(
         j.jsxIdentifier("Stack"),
         j.jsxIdentifier("Separator"),

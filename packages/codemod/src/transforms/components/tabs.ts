@@ -1,4 +1,8 @@
 import type { API, FileInfo, JSXElement, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -8,11 +12,26 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
+    j,
+    root,
+  )
+  if (chakraLocalNames.size === 0) return file.source
 
   /**
    * Rename <Tabs> → <Tabs.Root> and props
    */
-  root.find(j.JSXOpeningElement, { name: { name: "Tabs" } }).forEach((path) => {
+  root.find(j.JSXOpeningElement).forEach((path) => {
+    const baseName = getJsxBaseName(path.node.name)
+    const isChakra =
+      chakraLocalNames.has(baseName) ||
+      (componentAliases.has(baseName) &&
+        chakraLocalNames.has(componentAliases.get(baseName) as string))
+    if (
+      !isChakra ||
+      !(baseName === "Tabs" || componentAliases.get(baseName) === "Tabs")
+    )
+      return
     path.node.name = j.jsxMemberExpression(
       j.jsxIdentifier("Tabs"),
       j.jsxIdentifier("Root"),
@@ -48,7 +67,9 @@ export default function transformer(
   /**
    * Closing </Tabs> → </Tabs.Root>
    */
-  root.find(j.JSXClosingElement, { name: { name: "Tabs" } }).forEach((path) => {
+  root.find(j.JSXClosingElement).forEach((path) => {
+    const nameNode = path.node.name
+    if (nameNode.type !== "JSXIdentifier" || nameNode.name !== "Tabs") return
     path.node.name = j.jsxMemberExpression(
       j.jsxIdentifier("Tabs"),
       j.jsxIdentifier("Root"),

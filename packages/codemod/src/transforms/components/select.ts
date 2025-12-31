@@ -1,4 +1,5 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 /**
@@ -23,12 +24,15 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
   root
     .find(j.JSXElement, {
       openingElement: { name: { name: "Select" } },
     })
     .forEach((path) => {
+      if (!chakraLocalNames.has("Select")) return
       const attrs = path.node.openingElement.attributes || []
       const children = path.node.children || []
 
@@ -40,6 +44,16 @@ export default function transformer(
         return true
       })
 
+      const hasIndicator = children.some(
+        (c) =>
+          c.type === "JSXElement" &&
+          c.openingElement.name.type === "JSXMemberExpression" &&
+          c.openingElement.name.object.type === "JSXIdentifier" &&
+          c.openingElement.name.object.name === "NativeSelect" &&
+          c.openingElement.name.property.type === "JSXIdentifier" &&
+          c.openingElement.name.property.name === "Indicator",
+      )
+
       // Create NativeSelect.Root with NativeSelect.Field and NativeSelect.Indicator
       const nativeSelectRoot = j.jsxElement(
         j.jsxOpeningElement(
@@ -47,7 +61,7 @@ export default function transformer(
             j.jsxIdentifier("NativeSelect"),
             j.jsxIdentifier("Root"),
           ),
-          regularAttrs,
+          [],
         ),
         j.jsxClosingElement(
           j.jsxMemberExpression(
@@ -63,7 +77,7 @@ export default function transformer(
                 j.jsxIdentifier("NativeSelect"),
                 j.jsxIdentifier("Field"),
               ),
-              [],
+              regularAttrs,
             ),
             j.jsxClosingElement(
               j.jsxMemberExpression(
@@ -74,16 +88,20 @@ export default function transformer(
             children,
           ),
           j.jsxText("\n  "),
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("NativeSelect"),
-                j.jsxIdentifier("Indicator"),
-              ),
-              [],
-              true,
-            ),
-          ),
+          ...(hasIndicator
+            ? []
+            : [
+                j.jsxElement(
+                  j.jsxOpeningElement(
+                    j.jsxMemberExpression(
+                      j.jsxIdentifier("NativeSelect"),
+                      j.jsxIdentifier("Indicator"),
+                    ),
+                    [],
+                    true,
+                  ),
+                ),
+              ]),
           j.jsxText("\n"),
         ],
       )

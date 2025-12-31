@@ -5,6 +5,10 @@ import type {
   JSXElement,
   Options,
 } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -15,7 +19,25 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  renameComponent(j, root, "Menu", "Menu.Root")
+  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
+    j,
+    root,
+  )
+  if (chakraLocalNames.size === 0) return file.source
+
+  root.find(j.JSXOpeningElement).forEach((path) => {
+    const baseName = getJsxBaseName(path.node.name)
+    const isChakra = chakraLocalNames.has(baseName)
+    const resolvesToMenu =
+      baseName === "Menu" ||
+      (componentAliases.has(baseName) &&
+        componentAliases.get(baseName) === "Menu")
+    if (!isChakra || !resolvesToMenu) return
+    path.node.name = j.jsxMemberExpression(
+      j.jsxIdentifier("Menu"),
+      j.jsxIdentifier("Root"),
+    )
+  })
 
   root
     .find(j.JSXOpeningElement, {
@@ -51,6 +73,11 @@ export default function transformer(
     })
     .forEach((path) => {
       const button = path.node
+      // Only transform if Menu is Chakra
+      const hasChakraMenu =
+        chakraLocalNames.has("Menu") ||
+        Array.from(componentAliases.values()).includes("Menu")
+      if (!hasChakraMenu) return
 
       path.replace(
         j.jsxElement(
@@ -80,6 +107,10 @@ export default function transformer(
       },
     })
     .forEach((path) => {
+      const hasChakraMenu =
+        chakraLocalNames.has("Menu") ||
+        Array.from(componentAliases.values()).includes("Menu")
+      if (!hasChakraMenu) return
       const list = path.node
 
       path.replace(
@@ -134,6 +165,10 @@ export default function transformer(
       name: { type: "JSXIdentifier", name: "MenuItem" },
     })
     .forEach((path) => {
+      const hasChakraMenu =
+        chakraLocalNames.has("Menu") ||
+        Array.from(componentAliases.values()).includes("Menu")
+      if (!hasChakraMenu) return
       path.node.name = j.jsxMemberExpression(
         j.jsxIdentifier("Menu"),
         j.jsxIdentifier("Item"),
@@ -164,6 +199,10 @@ export default function transformer(
       name: { type: "JSXIdentifier", name: "MenuItem" },
     })
     .forEach((path) => {
+      const hasChakraMenu =
+        chakraLocalNames.has("Menu") ||
+        Array.from(componentAliases.values()).includes("Menu")
+      if (!hasChakraMenu) return
       path.node.name = j.jsxMemberExpression(
         j.jsxIdentifier("Menu"),
         j.jsxIdentifier("Item"),
@@ -177,6 +216,10 @@ export default function transformer(
       },
     })
     .forEach((path) => {
+      const hasChakraMenu =
+        chakraLocalNames.has("Menu") ||
+        Array.from(componentAliases.values()).includes("Menu")
+      if (!hasChakraMenu) return
       const attrs = path.node.openingElement.attributes ?? []
 
       const typeAttr = attrs.find(
@@ -246,36 +289,39 @@ export default function transformer(
       )
     })
 
+  // Ensure Portal import exists if Portal is used
+  const usesPortal = root.find(j.JSXIdentifier, { name: "Portal" }).size() > 0
+  if (usesPortal) {
+    const imports = root.find(j.ImportDeclaration, {
+      source: { value: "@chakra-ui/react" },
+    })
+    if (imports.size() > 0) {
+      imports.forEach((imp) => {
+        const specs = imp.node.specifiers || []
+        const hasPortal = specs.some(
+          (s) => s.type === "ImportSpecifier" && s.imported.name === "Portal",
+        )
+        if (!hasPortal) {
+          specs.push(j.importSpecifier(j.identifier("Portal")))
+          imp.node.specifiers = specs
+        }
+      })
+    } else {
+      root
+        .get()
+        .node.program.body.unshift(
+          j.importDeclaration(
+            [j.importSpecifier(j.identifier("Portal"))],
+            j.stringLiteral("@chakra-ui/react"),
+          ),
+        )
+    }
+  }
+
   return root.toSource({ quote: "single" })
 }
 
-function renameComponent(j: any, root: any, from: string, to: string) {
-  const parts = to.split(".")
-
-  const newName =
-    parts.length === 1
-      ? j.jsxIdentifier(parts[0])
-      : j.jsxMemberExpression(
-          j.jsxIdentifier(parts[0]),
-          j.jsxIdentifier(parts[1]),
-        )
-
-  root
-    .find(j.JSXOpeningElement, {
-      name: { type: "JSXIdentifier", name: from },
-    })
-    .forEach((p: any) => {
-      p.node.name = newName
-    })
-
-  root
-    .find(j.JSXClosingElement, {
-      name: { type: "JSXIdentifier", name: from },
-    })
-    .forEach((p: any) => {
-      p.node.name = newName
-    })
-}
+// helper removed: we now perform guarded renames inline using tracker
 
 function isJSXElementNamed(node: any, name: string): node is JSXElement {
   return (

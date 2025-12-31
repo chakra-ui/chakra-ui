@@ -1,4 +1,5 @@
 import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
@@ -8,6 +9,8 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
   /**
    * Checkbox → compound
@@ -15,6 +18,7 @@ export default function transformer(
   root
     .find(j.JSXElement, { openingElement: { name: { name: "Checkbox" } } })
     .forEach((path) => {
+      if (!chakraLocalNames.has("Checkbox")) return
       const oldAttrs = path.node.openingElement.attributes ?? []
       const children = path.node.children ?? []
 
@@ -146,6 +150,7 @@ export default function transformer(
   root
     .find(j.JSXElement, { openingElement: { name: { name: "RadioGroup" } } })
     .forEach((path) => {
+      if (!chakraLocalNames.has("RadioGroup")) return
       const oldAttrs = path.node.openingElement.attributes ?? []
       const children = path.node.children ?? []
 

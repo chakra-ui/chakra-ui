@@ -1,4 +1,8 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 const BOOLEAN_PROP_MAP: Record<string, string> = {
@@ -15,8 +19,6 @@ const BOOLEAN_PROP_MAP: Record<string, string> = {
   isCentered: "placement",
 }
 
-const CHAKRA_SOURCES = ["@chakra-ui/react", "@/components/ui"]
-
 export default function transform(
   file: FileInfo,
   _api: API,
@@ -24,19 +26,7 @@ export default function transform(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
-  const chakraLocalNames = new Set<string>()
-  root.find(j.ImportDeclaration).forEach((path) => {
-    const source = path.node.source.value
-    if (
-      typeof source === "string" &&
-      CHAKRA_SOURCES.some((s) => source.includes(s))
-    ) {
-      path.node.specifiers?.forEach((spec) => {
-        if (spec.local) chakraLocalNames.add(spec.local.name as string)
-      })
-    }
-  })
-
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
   if (chakraLocalNames.size === 0) return file.source
 
   /**
@@ -69,16 +59,7 @@ export default function transform(
    */
   root.find(j.JSXOpeningElement).forEach((path) => {
     const nameNode = path.node.name
-    let baseName = ""
-
-    if (nameNode.type === "JSXIdentifier") {
-      baseName = nameNode.name
-    } else if (nameNode.type === "JSXMemberExpression") {
-      let current: any = nameNode
-      while (current.object) current = current.object
-      baseName = current.name
-    }
-
+    const baseName = getJsxBaseName(nameNode)
     if (!chakraLocalNames.has(baseName)) return
 
     // Handle standard attributes

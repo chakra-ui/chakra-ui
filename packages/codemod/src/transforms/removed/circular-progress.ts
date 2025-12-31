@@ -1,12 +1,16 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
+import { createParserFromPath } from "../../utils/parser"
 
 export default function transformer(
   file: FileInfo,
-  api: API,
+  _api: API,
   _options: Options,
 ) {
-  const j = api.jscodeshift
+  const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
   let hasChanges = false
 
   // Update imports
@@ -35,6 +39,7 @@ export default function transformer(
       openingElement: { name: { name: "CircularProgress" } },
     })
     .forEach((path) => {
+      if (!chakraLocalNames.has("CircularProgress")) return
       const openingElement = path.node.openingElement
       const attributes = openingElement.attributes || []
 

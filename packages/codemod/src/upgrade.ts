@@ -20,7 +20,7 @@ export async function upgrade(
 ) {
   const { verbose = false, dry = false } = options
 
-  console.log(picocolors.bold(picocolors.blue("\n🚀 Chakra UI Upgrade Tool\n")))
+  p.intro("Chakra UI Upgrade Tool")
 
   const nodeVersion = process.version
   if (!semver.satisfies(nodeVersion, ">=20.0.0")) {
@@ -94,15 +94,15 @@ export async function upgrade(
       if (!dry) {
         try {
           execSync(uninstallCmd, { stdio: "ignore" })
-          spinner.stop("Unused packages removed ✅")
+          spinner.stop("Unused packages removed")
         } catch (err) {
-          spinner.stop("Failed to remove packages ❌")
+          spinner.stop("Failed to remove packages")
           if (verbose && err instanceof Error) p.log.error(err.message)
           process.exit(1)
         }
       } else {
         spinner.stop(
-          `[DRY RUN] Would uninstall: ${installedPackages.join(", ")}`,
+          `[DRY RUN] Would uninstall: ${installedPackages.join(" ")}`,
         )
       }
     } else {
@@ -122,9 +122,9 @@ export async function upgrade(
     if (!dry) {
       try {
         execSync(installCmd, { stdio: "ignore" })
-        spinner.stop("Packages installed ✅")
+        spinner.stop("Packages installed")
       } catch (err) {
-        spinner.stop("Failed to install packages ❌")
+        spinner.stop("Failed to install packages")
         if (verbose && err instanceof Error) p.log.error(err.message)
         process.exit(1)
       }
@@ -132,7 +132,7 @@ export async function upgrade(
       spinner.stop(`[DRY RUN] Would install: ${packagesToUpdate.join(", ")}`)
     }
   } catch (err) {
-    p.cancel("Failed to update packages ❌")
+    p.cancel("Failed to update packages")
     if (verbose && err instanceof Error) p.log.error(err.message)
     process.exit(1)
   }
@@ -151,9 +151,9 @@ export async function upgrade(
           stdio: ["inherit", "pipe", "pipe"],
           encoding: "utf8",
         })
-        spinner.stop("Snippets installed ✅")
+        spinner.stop("Snippets installed")
       } catch (err) {
-        spinner.stop("Snippet installation failed ❌")
+        spinner.stop("Snippet installation failed")
         if (verbose && err instanceof Error) p.log.error(err.message)
         p.note("You can run manually: npx @chakra-ui/cli snippet add")
       }
@@ -184,20 +184,15 @@ export async function upgrade(
     spinner.start(`Running transform: ${transformName}`)
     try {
       await runTransform(transformName, targetPath, { dry, force: true })
-      spinner.stop(`Transform "${transformName}" completed ✅`)
+      spinner.stop(`Transform "${transformName}" completed`)
     } catch (err) {
-      spinner.stop(`Transform "${transformName}" failed ❌`)
+      spinner.stop(`Transform "${transformName}" failed`)
       if (verbose && err instanceof Error) p.log.error(err.message)
     }
   }
 
-  p.note("Upgrade complete 🎉")
-  console.log(
-    picocolors.gray(`
-Next steps:
-  1. Review the changes made by the codemods
-  2. Run your tests to ensure everything works
-  3. Check the migration guide for manual changes: https://chakra-ui.com/docs/get-started/migration
-`),
+  p.outro("Upgrade complete")
+  p.note(
+    "Next steps:\n1. Review the changes made by the codemods\n2. Run your tests\n3. Check the migration guide: https://chakra-ui.com/docs/get-started/migration",
   )
 }

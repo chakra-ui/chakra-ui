@@ -1,4 +1,8 @@
-import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import type { API, FileInfo, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  isTrackedJsx,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 const STYLE_PROP_MAP: Record<string, string> = {
@@ -18,28 +22,28 @@ export default function transformer(
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  root.find(j.JSXAttribute).forEach((path) => {
-    const attr = path.node
-    if (attr.name.type !== "JSXIdentifier") return
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
-    const oldName = attr.name.name
+  root.find(j.JSXElement).forEach((elementPath) => {
+    const openingElement = elementPath.node.openingElement
+    if (!isTrackedJsx(openingElement, chakraLocalNames)) return
+    const attrs = openingElement.attributes || []
+    attrs.forEach((attr) => {
+      if (attr.type !== "JSXAttribute") return
+      if (attr.name.type !== "JSXIdentifier") return
+      const oldName = attr.name.name
 
-    // Remove 'apply' prop
-    if (oldName === "apply") {
-      const jsxElement = path.parent.node
-      if (jsxElement.type === "JSXOpeningElement") {
-        jsxElement.attributes = jsxElement.attributes.filter(
-          (a: JSXAttribute): a is JSXAttribute => a !== attr,
-        )
+      if (oldName === "apply") {
+        openingElement.attributes = attrs.filter((a) => a !== attr)
+        return
       }
-      return
-    }
 
-    // Rename style props based on the map
-    const newName = STYLE_PROP_MAP[oldName]
-    if (!newName) return
+      const newName = STYLE_PROP_MAP[oldName]
+      if (!newName) return
 
-    attr.name.name = newName
+      attr.name.name = newName
+    })
   })
 
   return root.toSource({ quote: "single" })

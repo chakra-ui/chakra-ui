@@ -1,7 +1,7 @@
+import * as p from "@clack/prompts"
 import { execSync } from "child_process"
 import fs from "fs"
 import { createRequire } from "node:module"
-import picocolors from "picocolors"
 import { transforms } from "./transforms.js"
 import { isGitClean } from "./utils/git.js"
 
@@ -19,49 +19,34 @@ export async function runTransform(
   options: RunTransformOptions = {},
 ) {
   const { dry = false, print = false, force = false } = options
-
   const transform = transforms[transformName]
   if (!transform) {
-    console.error(
-      picocolors.red(
-        `\n❌ Transform "${transformName}" not found. Available transforms:\n`,
-      ),
-    )
-    Object.keys(transforms).forEach((key) => {
-      console.log(
-        picocolors.cyan(`  - ${key}`),
-        picocolors.gray(`(${transforms[key].description})`),
-      )
-    })
+    p.cancel(`Transform "${transformName}" not found.`)
+    const list = Object.keys(transforms)
+      .map((key) => `- ${key} (${transforms[key].description})`)
+      .join("\n")
+    p.note(`Available transforms:\n${list}`)
     process.exit(1)
   }
 
   if (!fs.existsSync(targetPath)) {
-    console.error(picocolors.red(`\n❌ Path "${targetPath}" does not exist.\n`))
+    p.cancel(`Path "${targetPath}" does not exist.`)
     process.exit(1)
   }
 
   if (!force && !dry) {
     const gitClean = await isGitClean()
     if (!gitClean) {
-      console.error(
-        picocolors.yellow(
-          "\n⚠️  Git directory is not clean. Please commit or stash your changes before running codemods.\n",
-        ),
+      p.note(
+        "Git directory is not clean. Commit or stash your changes before running codemods.",
       )
-      console.log(
-        picocolors.gray("You can bypass this check with the --force flag.\n"),
-      )
+      p.note("You can bypass this check with the --force flag.")
       process.exit(1)
     }
   }
 
-  console.log(
-    picocolors.blue(
-      `\n🔄 Running transform: ${picocolors.bold(transform.name)}\n`,
-    ),
-  )
-  console.log(picocolors.gray(`   ${transform.description}\n`))
+  p.intro(`Running transform: ${transform.name}`)
+  if (transform.description) p.note(transform.description)
 
   try {
     const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
@@ -76,7 +61,7 @@ export async function runTransform(
 
     if (dry) {
       args.push("--dry")
-      console.log(picocolors.yellow("   🔍 Running in dry-run mode\n"))
+      p.note("Running in dry-run mode")
     }
 
     if (print) {
@@ -85,24 +70,17 @@ export async function runTransform(
 
     const command = `${jscodeshiftBin} ${args.join(" ")}`
 
-    if (print) {
-      console.log(picocolors.gray(`   $ ${command}\n`))
-    }
+    const spinner = p.spinner()
+    spinner.start(`Executing: ${transform.name}`)
+    if (print) p.note(`$ ${command}`)
 
     execSync(command, { stdio: "inherit" })
 
-    console.log(
-      picocolors.green(`\n✅ Transform "${transform.name}" completed!\n`),
-    )
+    spinner.stop(`Transform "${transform.name}" completed`)
+    p.outro("Done")
   } catch (error) {
-    console.error(
-      picocolors.red(`\n❌ Transform "${transform.name}" failed.\n`),
-    )
-
-    if (error instanceof Error) {
-      console.error(picocolors.gray(error.message))
-    }
-
+    if (error instanceof Error) p.log.error(error.message)
+    p.cancel(`Transform "${transform.name}" failed.`)
     process.exit(1)
   }
 }

@@ -1,4 +1,8 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
 
 /**
@@ -18,12 +22,16 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  if (chakraLocalNames.size === 0) return file.source
 
   root
     .find(j.JSXElement, {
       openingElement: { name: { name: "Progress" } },
     })
     .forEach((path) => {
+      const baseName = getJsxBaseName(path.node.openingElement.name)
+      if (!chakraLocalNames.has(baseName) || baseName !== "Progress") return
       const attrs = path.node.openingElement.attributes || []
       const newAttrs: any[] = []
 
