@@ -211,6 +211,13 @@ export const RichTextEditorToolbar = React.forwardRef<
   )
 })
 
+export const RichTextEditorFooter = React.forwardRef<
+  HTMLDivElement,
+  StackProps
+>(function RichTextEditorFooter(props, ref) {
+  return <HStack ref={ref} gap="1" {...props} />
+})
+
 export interface RichTextEditorContentProps
   extends Omit<React.ComponentProps<typeof EditorContent>, "editor"> {}
 
@@ -238,6 +245,7 @@ export const RichTextEditor = {
   Content: RichTextEditorContent,
   ControlGroup: RichTextEditorControlGroup,
   ButtonControl: RichTextEditorButtonControl,
+  Footer: RichTextEditorFooter,
 } as const
 
 export {

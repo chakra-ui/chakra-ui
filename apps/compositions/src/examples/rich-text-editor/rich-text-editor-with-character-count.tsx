@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, HStack } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import Image from "@tiptap/extension-image"
 import { CharacterCount } from "@tiptap/extensions/character-count"
 import { useEditor } from "@tiptap/react"
@@ -47,16 +47,15 @@ export const RichTextEditorWithCharacterCount = () => {
 
       <RichTextEditor.Content />
 
-      <HStack
-        gap="4"
+      <RichTextEditor.Footer
+        justify="flex-end"
         borderTopWidth="1px"
         p="3"
         textStyle="xs"
-        justify="flex-end"
       >
         <Box fontVariantNumeric="tabular-nums">Characters: {charCount}</Box>
         <Box fontVariantNumeric="tabular-nums">Words: {wordCount}</Box>
-      </HStack>
+      </RichTextEditor.Footer>
     </RichTextEditor.Root>
   )
 }
