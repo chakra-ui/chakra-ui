@@ -248,9 +248,5 @@ export const RichTextEditor = {
   Footer: RichTextEditorFooter,
 } as const
 
-export {
-  useRichTextEditorContext,
-  RichTextEditorContext,
-} from "compositions/ui/rich-text-editor-core"
-
+export * from "compositions/ui/rich-text-editor-core"
 export * as Control from "compositions/ui/rich-text-editor-control"

@@ -43,13 +43,13 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "compositions/ui/popover"
-import { RichTextEditor } from "compositions/ui/rich-text-editor"
 import {
+  RichTextEditor,
   type RichTextEditorControlProps,
   createBooleanControl,
   createSelectControl,
   useRichTextEditorContext,
-} from "compositions/ui/rich-text-editor-core"
+} from "compositions/ui/rich-text-editor"
 import { forwardRef, useEffect, useState } from "react"
 import {
   LuChevronDown,
