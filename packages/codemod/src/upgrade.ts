@@ -113,8 +113,8 @@ export async function upgrade(
   const preset = await p.select({
     message: "Upgrade depth:",
     options: [
-      { label: "Safe (recommended)", value: "safe" },
-      { label: "Full migration", value: "full" },
+      { label: "Safe", value: "safe" },
+      { label: "Full migration (recommended)", value: "full" },
     ],
   })
 
