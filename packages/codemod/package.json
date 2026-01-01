@@ -3,18 +3,12 @@
   "version": "1.0.0",
   "description": "Codemods for migrating and transforming Chakra UI codebases across versions.",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
+  "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "chakra-codemod": "bin/index.js"
-  },
-  "files": [
+   "files": [
     "dist",
-    "bin",
-    "src",
-    "transforms",
-    "utils"
+    "bin"
   ],
   "sideEffects": false,
   "publishConfig": {
@@ -39,6 +33,9 @@
     "ui",
     "design-system"
   ],
+  "bin": {
+    "chakra-codemod": "bin/index.js"
+  },
   "scripts": {
     "prepack": "tsx ../../scripts/conditions.ts",
     "postpack": "tsx ../../scripts/conditions.ts --restore",
@@ -53,7 +50,6 @@
     "@emotion/is-prop-valid": "^1.4.0",
     "@types/node": "^20.0.0",
     "commander": "12.1.0",
-    "dotenv": "^17.2.3",
     "is-git-clean": "1.1.0",
     "jscodeshift": "17.0.0",
     "picocolors": "1.0.0",
@@ -78,5 +74,8 @@
       }
     },
     "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

@@ -1,6 +1,6 @@
 import jscodeshift from "jscodeshift"
 import { describe, expect, it } from "vitest"
-import transformer from "../transforms/props/as-props"
+import transformer from "../src/transforms/props/as-props"
 
 const runTransform = (source: string) => {
   const j = jscodeshift.withParser("tsx")
@@ -8,7 +8,7 @@ const runTransform = (source: string) => {
 
   const result = transformer(
     {
-      path: "test.tsx", // Just a virtual path for the parser
+      path: "test.tsx",
       source: sourceWithImport,
     },
     { j, jscodeshift: j, report: () => {}, stats: () => {} },
@@ -52,7 +52,6 @@ describe('Chakra v3 "as" to "asChild" Transformer', () => {
     it('handles aliased destructuring: { as: Tag = "div" }', () => {
       const input = `const Comp = ({ as = 'div' }: Props) => <Box as={as} />`
       const output = runTransform(input)
-      // It should rename 'as' and internal usage
       expect(output).toContain("({ asChild }: Props)")
       expect(output).toContain("<Box asChild />")
     })

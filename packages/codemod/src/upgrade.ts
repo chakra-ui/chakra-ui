@@ -138,7 +138,7 @@ export async function upgrade(
     for (const name of transformsToRun) {
       s.message(`Transforming: ${name}`)
       try {
-        await runTransform(name, process.cwd(), { dry })
+        await runTransform(name, process.cwd(), { dry, upgrade: true })
       } catch (err) {
         p.log.error(`Failed: ${name}`)
       }
