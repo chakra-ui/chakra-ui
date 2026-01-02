@@ -5,7 +5,6 @@ export const splitterSlotRecipe = defineSlotRecipe({
     "root",
     "panel",
     "resizeTrigger",
-    "resizeTriggerIndicator",
     "resizeTriggerSeparator",
     "resizeTriggerIndicator",
   ],
@@ -22,11 +21,14 @@ export const splitterSlotRecipe = defineSlotRecipe({
       display: "grid",
       placeItems: "center",
       position: "relative",
+      _disabled: {
+        cursor: "default!",
+      },
       _focus: {
         "--splitter-border-color": "colors.border.emphasized",
         "--splitter-thumb-color": "colors.colorPalette.subtle",
       },
-      _dragging: {
+      _active: {
         "--splitter-thumb-color": "colors.colorPalette.focusRing",
       },
       _horizontal: {

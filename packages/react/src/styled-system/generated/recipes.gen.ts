@@ -1082,7 +1082,7 @@ export type SelectSlot =
 
 export interface SelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | undefined
+  variant?: "outline" | "subtle" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | undefined
 }
