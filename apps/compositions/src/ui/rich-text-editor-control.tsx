@@ -14,6 +14,7 @@ import {
   createListCollection,
 } from "@chakra-ui/react"
 import { Editor } from "@tiptap/react"
+import { useRichTextEditorContext } from "compositions/ui/rich-text-editor-context"
 import { Tooltip } from "compositions/ui/tooltip"
 import * as React from "react"
 import {
@@ -43,7 +44,6 @@ import {
   LuType,
   LuUnderline,
 } from "react-icons/lu"
-import { useRichTextEditorContext } from "./rich-text-editor-context"
 
 export interface BaseControlConfig {
   label: string

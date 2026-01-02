@@ -22,6 +22,7 @@ export const RichTextEditorWithHashtags = () => {
     extensions: [StarterKit, Hashtag],
     content: preprocessedContent,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

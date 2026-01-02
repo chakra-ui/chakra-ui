@@ -25,6 +25,7 @@ export const RichTextEditorWithTask = () => {
       <p>Keep adding tasks to track your progress!</p>
     `,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

@@ -1,0 +1,852 @@
+---
+title: Rich Text Editor
+description:
+  A rich text editor component based on Tiptap with support for markdown, HTML,
+  and JSON content types.
+links:
+  storybook: rich-text-editor-tiptap--basic
+---
+
+## Overview
+
+A powerful and flexible rich text editor component built on
+[Tiptap](https://tiptap.dev/) and styled with Chakra UI. This component provides
+a modular, extension-driven approach to building rich text editing experiences
+with support for markdown, HTML, and JSON content types.
+
+## Installation
+
+### Install Core Dependencies
+
+First, install the essential Tiptap packages:
+
+```bash
+npm install @tiptap/react @tiptap/starter-kit
+```
+
+### Install Feature Extensions
+
+Add extensions based on the features you need in your editor:
+
+**Text Formatting & Styles:**
+
+```bash
+npm install @tiptap/extension-text-style @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align
+```
+
+**Interactive Features:**
+
+```bash
+npm install @tiptap/extension-placeholder @tiptap/extension-link @tiptap/extension-color @tiptap/extension-highlight
+```
+
+**Code Highlighting:**
+
+```bash
+npm install @tiptap/extension-code-block-lowlight lowlight
+```
+
+**Advanced Menus:**
+
+```bash
+npm install @tiptap/extension-mention @tiptap/suggestion @tiptap/extension-emoji
+```
+
+**Media & Tasks:**
+
+```bash
+npm install @tiptap/extension-image @tiptap/extension-task-item @tiptap/extension-task-list @tiptap/extension-drag-handle-react @tiptap/extensions
+```
+
+### Add Component Files
+
+Run the CLI command to add the rich text editor components to your project:
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor
+```
+
+This will add the following files to your project:
+
+- `rich-text-editor.tsx` - Main editor component and layout
+- `rich-text-editor-control.tsx` - Toolbar controls and factories
+- `rich-text-editor-context.tsx` - Context provider for editor instance
+- `rich-text-editor-menu.tsx` - Advanced menu components (mentions, suggestions,
+  emoji)
+
+## Basic Usage
+
+Import the components and create a simple editor:
+
+```tsx
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
+import { Control, RichTextEditor } from "compositions/ui/rich-text-editor"
+
+function MyEditor() {
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: "<p>Start typing...</p>",
+    immediatelyRender: false,
+  })
+
+  if (!editor) return null
+
+  return (
+    <RichTextEditor.Root editor={editor}>
+      <RichTextEditor.Toolbar>
+        <RichTextEditor.ControlGroup>
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Underline />
+        </RichTextEditor.ControlGroup>
+      </RichTextEditor.Toolbar>
+      <RichTextEditor.Content />
+    </RichTextEditor.Root>
+  )
+}
+```
+
+## Understanding Rendering Behavior
+
+The editor provides two important configuration options that control how content
+is rendered:
+
+### immediatelyRender
+
+Controls whether the editor renders its initial DOM immediately or waits until
+it's ready. **Always set this to `false` when using Next.js or any SSR
+framework** to avoid hydration mismatches.
+
+```tsx
+const editor = useEditor({
+  extensions: [StarterKit],
+  content: "<p>Hello world</p>",
+  immediatelyRender: false, // Prevents hydration issues
+})
+```
+
+### shouldRerenderOnTransaction
+
+Controls whether React re-renders the component after each Tiptap transaction
+(content change). Enable this when you need React to reflect editor state
+changes in the UI, such as:
+
+- Updating toolbar button states (active/inactive)
+- Displaying character or word counts
+- Showing real-time previews
+- Conditional rendering based on editor content
+
+```tsx
+const editor = useEditor({
+  extensions: [StarterKit],
+  content: "<p>Hello world</p>",
+  shouldRerenderOnTransaction: true, // Enable React updates
+})
+```
+
+For large documents, disabling `shouldRerenderOnTransaction` can improve
+performance by reducing unnecessary React renders. The editor will continue to
+work; you just won't see React-driven UI updates.
+
+## Examples
+
+### Full-Featured Editor
+
+A complete editor with all common formatting options:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-basic" />
+
+This example demonstrates a production-ready editor with font controls, text
+formatting, headings, lists, colors, links, and text alignment options.
+
+### Bubble Menu
+
+Add a floating toolbar that appears when text is selected:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-bubble-menu" />
+
+The bubble menu provides contextual formatting options that appear only when
+relevant, keeping the main toolbar clean and focused.
+
+### Slash Commands
+
+Implement a command palette triggered by typing `/`:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-slash-commands" />
+
+Slash commands provide a keyboard-driven way to insert blocks like headings,
+lists, quotes, and code blocks. Users can quickly format content without
+reaching for toolbar buttons.
+
+### Mentions System
+
+Add @mentions with autocomplete suggestions:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mentions" />
+
+The mentions system supports user mentions with `@` and hashtags with `#`. The
+suggestion menu appears automatically as users type, showing filtered results
+based on their input. Each mention can include additional metadata like email
+addresses.
+
+### Emoji Picker
+
+Enable emoji insertion with `:` trigger:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-emoji" />
+
+Users can type `:` followed by an emoji name to see suggestions. The picker
+supports both shortcodes (like `:smile:`) and emoticons (like `:)` converting to
+🙂).
+
+### Image Uploads
+
+Support image embedding via URL or file upload:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-image" />
+
+The image control opens a dialog with two options: paste an image URL or upload
+a file from your device. Images are inserted directly into the editor content.
+
+### Task Lists
+
+Create interactive task lists with checkboxes:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-task" />
+
+Task lists support nested items, indentation controls, and interactive
+checkboxes. Perfect for todo lists, project planning, and task tracking.
+
+### Text Highlighting
+
+Add colorful text highlights:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-highlight" />
+
+Users can select text and apply different highlight colors from a predefined
+palette. Useful for marking important passages or color-coding content.
+
+### Code Blocks
+
+Syntax-highlighted code blocks:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-code" />
+
+Code blocks support multiple languages with syntax highlighting powered by
+Lowlight. Users can specify the language and the code will be highlighted
+accordingly.
+
+### Placeholder Text
+
+Show placeholder text in empty editors:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-placeholder" />
+
+The placeholder appears when the editor is empty and disappears as soon as users
+start typing. Helps guide users on what to write.
+
+### Character Counter
+
+Display character and word counts:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-character-count" />
+
+The character count extension tracks both character and word counts in
+real-time. You can also set limits and show warnings when approaching the
+maximum.
+
+### Controlled Mode
+
+Control editor content from React state:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-controlled" />
+
+In controlled mode, the editor content is synchronized with React state. Any
+changes in the editor update the state, and any external state updates are
+reflected in the editor. This enables real-time previews and content
+manipulation from outside the editor.
+
+### View/Edit Modes
+
+Toggle between editing and read-only viewing:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mode" />
+
+Switch between edit and view modes to control whether users can modify content.
+In view mode, the editor displays content without allowing edits, perfect for
+previewing or displaying published content.
+
+### Drag Handle
+
+Reorder blocks with drag and drop:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-drag-handle" />
+
+Each block displays a drag handle on hover, allowing users to reorder
+paragraphs, lists, and other content blocks. The drag handle appears on the left
+side and provides a visual indicator during dragging.
+
+### Live Preview
+
+Side-by-side editor and preview:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-preview" />
+
+A split view showing the editor on one side and the rendered HTML output on the
+other. The preview updates in real-time as users type, perfect for seeing how
+content will look when published.
+
+### Complete Composition
+
+A full-featured editor combining multiple extensions:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-composition" />
+
+This example demonstrates how to combine multiple extensions to create a
+comprehensive editing experience with all features enabled.
+
+## Component API
+
+### RichTextEditor.Root
+
+The root container component that provides context for all child components.
+
+**Props:**
+
+- `editor` (Editor | null) - The Tiptap editor instance from `useEditor`
+- `disabled` (boolean) - Disables all editor interactions and applies disabled
+  styling
+- All standard Chakra Box props (styling, layout, etc.)
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  disabled={isReadOnly}
+  borderWidth="1px"
+  rounded="md"
+>
+  {/* Child components */}
+</RichTextEditor.Root>
+```
+
+### RichTextEditor.Toolbar
+
+The toolbar container for editor controls. Supports different positioning
+variants.
+
+**Props:**
+
+- `variant` ("sticky" | "floating" | "fixed") - Controls toolbar positioning and
+  style
+  - `sticky` - Sticks to top of viewport when scrolling
+  - `fixed` - Fixed at top of editor
+  - `floating` - Elevated appearance with shadow
+- `stickyOffset` (string) - CSS offset when using sticky variant (e.g., "64px")
+- All standard Chakra Stack props
+
+```tsx
+<RichTextEditor.Toolbar variant="sticky" stickyOffset="64px">
+  {/* Control groups */}
+</RichTextEditor.Toolbar>
+```
+
+### RichTextEditor.Content
+
+Renders the editable ProseMirror content area. This is where users type and edit
+content.
+
+```tsx
+<RichTextEditor.Content />
+```
+
+No props needed - automatically connects to the editor from context.
+
+### RichTextEditor.ControlGroup
+
+Layout container for grouping related controls horizontally. Groups are
+separated by dividers.
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.Bold />
+  <Control.Italic />
+  <Control.Underline />
+</RichTextEditor.ControlGroup>
+```
+
+### RichTextEditor.Footer
+
+Footer area for displaying metadata like character counts, save status, or other
+information.
+
+**Props:**
+
+- All standard Chakra Stack props
+
+```tsx
+<RichTextEditor.Footer justify="space-between">
+  <Text>Last saved: 2 minutes ago</Text>
+  <Text>Words: 456</Text>
+</RichTextEditor.Footer>
+```
+
+## Built-in Controls
+
+The component exports a `Control` object with pre-built controls for common
+editing operations.
+
+### Text Formatting
+
+Basic text formatting controls:
+
+- `Control.Bold` - Toggle bold text
+- `Control.Italic` - Toggle italic text
+- `Control.Underline` - Toggle underline
+- `Control.Strikethrough` - Toggle strikethrough
+- `Control.Code` - Toggle inline code formatting
+- `Control.Subscript` - Toggle subscript (H₂O)
+- `Control.Superscript` - Toggle superscript (E=mc²)
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.Bold />
+  <Control.Italic />
+  <Control.Code />
+</RichTextEditor.ControlGroup>
+```
+
+### Headings
+
+Heading level controls:
+
+- `Control.H1` - Heading 1 (largest)
+- `Control.H2` - Heading 2
+- `Control.H3` - Heading 3
+- `Control.H4` - Heading 4
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.H1 />
+  <Control.H2 />
+  <Control.H3 />
+</RichTextEditor.ControlGroup>
+```
+
+### Lists & Blocks
+
+List and block element controls:
+
+- `Control.BulletList` - Toggle bullet list
+- `Control.OrderedList` - Toggle numbered list
+- `Control.Blockquote` - Toggle blockquote
+- `Control.Hr` - Insert horizontal rule
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.BulletList />
+  <Control.OrderedList />
+  <Control.Blockquote />
+</RichTextEditor.ControlGroup>
+```
+
+### Text Alignment
+
+Alignment controls:
+
+- `Control.AlignLeft` - Align text left
+- `Control.AlignCenter` - Center text
+- `Control.AlignRight` - Align text right
+- `Control.AlignJustify` - Justify text
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.AlignLeft />
+  <Control.AlignCenter />
+  <Control.AlignRight />
+</RichTextEditor.ControlGroup>
+```
+
+### Links
+
+Link management controls:
+
+- `Control.Link` - Insert or edit link (prompts for URL)
+- `Control.Unlink` - Remove link from selected text
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.Link />
+  <Control.Unlink />
+</RichTextEditor.ControlGroup>
+```
+
+### History
+
+Undo/redo controls:
+
+- `Control.Undo` - Undo last action
+- `Control.Redo` - Redo last undone action
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.Undo />
+  <Control.Redo />
+</RichTextEditor.ControlGroup>
+```
+
+### Select Controls
+
+Dropdown select controls for choosing options:
+
+- `Control.FontFamily` - Select font family (Default, Serif, Monospace, Cursive)
+- `Control.FontSize` - Select font size (12px, 14px, 16px, 18px)
+- `Control.TextStyle` - Select text style (Paragraph, Heading 1-3, Quote,
+  Divider)
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.FontFamily />
+  <Control.FontSize />
+  <Control.TextStyle />
+</RichTextEditor.ControlGroup>
+```
+
+### Color Controls
+
+Color picker controls:
+
+- `Control.TextColor` - Pick text color from palette
+- `Control.Highlight` - Pick highlight color from palette
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.TextColor />
+  <Control.Highlight />
+</RichTextEditor.ControlGroup>
+```
+
+## Creating Custom Controls
+
+The component provides factory functions for creating your own controls with
+full TypeScript support.
+
+### Boolean Control
+
+Use `createBooleanControl` for toggle-style controls (on/off states):
+
+```tsx
+import { createBooleanControl } from "compositions/ui/rich-text-editor"
+import { LuMessageSquare } from "react-icons/lu"
+
+const ToggleComment = createBooleanControl({
+  label: "Toggle Comment",
+  icon: LuMessageSquare,
+  command: (editor) => editor.chain().focus().toggleComment().run(),
+  getVariant: (editor) =>
+    editor.isActive("comment") ? "subtle" : "ghost",
+  isDisabled: (editor) => !editor.can().toggleComment(),
+})
+
+// Use in toolbar
+<RichTextEditor.ControlGroup>
+  <ToggleComment />
+</RichTextEditor.ControlGroup>
+```
+
+**Configuration Options:**
+
+- `label` (string) - Accessibility label and tooltip text
+- `icon` (React.ElementType) - Icon component to display
+- `command` (function) - Editor command to execute on click
+- `getVariant` (optional function) - Return button variant based on editor state
+- `isDisabled` (optional function) - Return true to disable the control
+
+### Select Control
+
+Use `createSelectControl` for dropdown selection controls:
+
+```tsx
+import { createSelectControl } from "compositions/ui/rich-text-editor"
+
+const LineHeight = createSelectControl({
+  label: "Line Height",
+  width: "100px",
+  options: [
+    { value: "normal", label: "Normal" },
+    { value: "1.5", label: "1.5" },
+    { value: "2", label: "Double" },
+  ],
+  getValue: (editor) =>
+    editor.getAttributes("paragraph").lineHeight || "normal",
+  command: (editor, value) =>
+    editor.chain().focus().setParagraph({ lineHeight: value }).run(),
+  placeholder: "Line Height",
+})
+```
+
+**Configuration Options:**
+
+- `label` (string) - Accessibility label and tooltip text
+- `options` (array) - Array of `{ value, label, icon? }` objects
+- `width` (optional string) - Control width (defaults to auto)
+- `getValue` (function) - Get current value from editor
+- `command` (function) - Execute command with selected value
+- `placeholder` (optional string) - Placeholder text when no value selected
+- `renderValue` (optional function) - Custom render function for selected value
+- `isDisabled` (optional function) - Return true to disable the control
+
+### Swatch Control
+
+Use `createSwatchControl` for color picker controls:
+
+```tsx
+import { createSwatchControl } from "compositions/ui/rich-text-editor"
+import { LuPaintbrush } from "react-icons/lu"
+
+const BackgroundColor = createSwatchControl({
+  label: "Background Color",
+  icon: LuPaintbrush,
+  swatches: [
+    { value: "#ffffff", color: "#ffffff", label: "White" },
+    { value: "#f0f0f0", color: "#f0f0f0", label: "Light Gray" },
+    { value: "#000000", color: "#000000", label: "Black" },
+  ],
+  getValue: (editor) =>
+    editor.getAttributes("textStyle").backgroundColor || "#ffffff",
+  command: (editor, color) =>
+    editor
+      .chain()
+      .focus()
+      .setMark("textStyle", { backgroundColor: color })
+      .run(),
+  showRemove: true,
+  onRemove: (editor) => editor.chain().focus().unsetMark("textStyle").run(),
+})
+```
+
+**Configuration Options:**
+
+- `label` (string) - Accessibility label and tooltip text
+- `icon` (optional React.ElementType) - Icon to display on button
+- `swatches` (array) - Array of `{ value, color, label? }` objects
+- `getValue` (function) - Get current color value from editor
+- `command` (function) - Apply color command
+- `showRemove` (optional boolean) - Show remove/reset button
+- `onRemove` (optional function) - Command to clear color
+- `isDisabled` (optional function) - Return true to disable the control
+
+## Styling & Customization
+
+### Editor Content Styles
+
+The editor content area uses ProseMirror's editable div with custom CSS. All
+content styles are defined in `rich-text-editor.tsx`:
+
+```tsx
+const proseMirrorBaseCss = defineStyle({
+  "& .ProseMirror": {
+    outline: "none",
+    minHeight: "var(--content-min-height)",
+    px: "var(--content-padding-x)",
+    py: "var(--content-padding-y)",
+
+    // Customize typography
+    "& h1": { fontSize: "2.15em", fontWeight: "600" },
+    "& h2": { fontSize: "1.65em", fontWeight: "600" },
+    "& p": { lineHeight: "1.5" },
+
+    // Customize elements
+    "& code": { bg: "bg.muted", px: "0.25em", rounded: "sm" },
+    "& blockquote": { borderStartWidth: "4px", ps: "4" },
+
+    // Add your custom styles...
+  },
+})
+```
+
+### Custom Content Padding
+
+Control the editor's internal padding with CSS variables:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "--content-padding-x": "spacing.8",
+    "--content-padding-y": "spacing.6",
+    "--content-min-height": "400px",
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Toolbar Variants
+
+The toolbar comes with three built-in variants, each with distinct positioning
+and styling:
+
+```tsx
+// Fixed at top of editor (default)
+<RichTextEditor.Toolbar variant="fixed">
+
+// Sticky - follows user as they scroll
+<RichTextEditor.Toolbar variant="sticky" stickyOffset="64px">
+
+// Floating - elevated appearance with shadow
+<RichTextEditor.Toolbar variant="floating">
+```
+
+### Custom Toolbar Styles
+
+Override toolbar styles using the `css` prop:
+
+```tsx
+<RichTextEditor.Toolbar
+  css={{
+    bg: "purple.50",
+    borderColor: "purple.200",
+    gap: "4",
+    px: "6",
+  }}
+>
+  {/* controls */}
+</RichTextEditor.Toolbar>
+```
+
+### Custom Control Styling
+
+Individual controls can be styled through props:
+
+```tsx
+<Control.Bold
+  colorPalette="purple"
+  size="sm"
+/>
+
+<Control.FontSize
+  width="120px"
+  variant="outline"
+/>
+```
+
+### Dark Mode Support
+
+The editor automatically adapts to Chakra UI's color mode:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "& .ProseMirror": {
+      bg: { base: "white", _dark: "gray.900" },
+      color: { base: "gray.900", _dark: "white" },
+    },
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+## Accessibility
+
+The Rich Text Editor follows accessibility best practices:
+
+### Keyboard Navigation
+
+- **Tab/Shift+Tab**: Navigate between toolbar controls
+- **Enter/Space**: Activate focused control
+- **Arrow Keys**: Navigate through select menus and suggestions
+- **Escape**: Close open menus and suggestions
+- **Cmd/Ctrl + B, I, U**: Standard text formatting shortcuts
+- **Cmd/Ctrl + Z, Shift+Z**: Undo and redo
+
+### ARIA Labels
+
+All controls have appropriate `aria-label` attributes:
+
+```tsx
+<Control.Bold /> // aria-label="Bold"
+<Control.Link /> // aria-label="Link"
+```
+
+Custom controls inherit this behavior:
+
+```tsx
+const MyControl = createBooleanControl({
+  label: "Add Comment", // Used as aria-label
+  icon: LuMessageSquare,
+  command: (editor) => editor.chain().focus().toggleComment().run(),
+})
+```
+
+### Best Practices for Accessibility
+
+1. Always provide descriptive `label` props for custom controls
+2. Use semantic HTML in editor content
+3. Ensure sufficient color contrast in custom styles
+4. Test keyboard navigation in your implementation
+5. Provide alternative text for images
+6. Use heading hierarchy correctly (H1 → H2 → H3)
+
+## Best Practices
+
+### Rendering Configuration
+
+Always use these settings for Next.js and SSR frameworks:
+
+```tsx
+const editor = useEditor({
+  extensions: [StarterKit],
+  content: "<p>Hello</p>",
+  immediatelyRender: false, // Prevents hydration errors
+  shouldRerenderOnTransaction: true, // Enable if you need UI updates
+})
+```
+
+### Performance Optimization
+
+For large documents, optimize rendering:
+
+```tsx
+const editor = useEditor({
+  extensions: [StarterKit],
+  content: largeDocument,
+  immediatelyRender: false,
+  shouldRerenderOnTransaction: false, // Reduce React renders
+})
+```
+
+The editor will still work perfectly; you just won't get React-driven UI updates
+like toolbar button states changing. Though you can configure changes with
+`useRichEditorContext` hook.
+
+### Error Handling
+
+Always check if editor is ready before rendering:
+
+```tsx
+function MyEditor() {
+  const editor = useEditor({
+    /* config */
+  })
+
+  if (!editor) {
+    return <Skeleton height="400px" /> // or loading state
+  }
+
+  return <RichTextEditor.Root editor={editor}>...</RichTextEditor.Root>
+}
+```
+
+## Additional Resources
+
+- [Tiptap Documentation](https://tiptap.dev/docs) - Official Tiptap docs
+- [Chakra UI Documentation](https://chakra-ui.com/docs) - Chakra UI component
+  library
+- [ProseMirror Documentation](https://prosemirror.net/docs/) - Underlying editor
+  framework
+
+For questions, issues, or feature requests, please refer to the Chakra UI
+community channels or the Tiptap discussion forums.

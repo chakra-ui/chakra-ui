@@ -132,6 +132,7 @@ export const RichTextEditorComposition = () => {
       }
     },
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null
