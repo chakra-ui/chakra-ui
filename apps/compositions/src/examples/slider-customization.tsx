@@ -10,7 +10,7 @@ export const SliderCustomization = () => {
         <Slider.Track bg="red.100">
           <Slider.Range bg="tomato" />
         </Slider.Track>
-        <Slider.Thumb index={0} boxSize={6} borderColor="tomato" shadow="md">
+        <Slider.Thumb index={0} boxSize={6} borderColor="tomato">
           <Box color="tomato" as={MdGraphicEq} />
         </Slider.Thumb>
       </Slider.Control>

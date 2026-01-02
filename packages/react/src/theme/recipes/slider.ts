@@ -60,12 +60,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
       outline: 0,
       zIndex: "2",
       borderRadius: "full",
+      transition: "shadow",
 
       _focusVisible: {
-        ring: "2px",
-        ringColor: "colorPalette.focusRing",
-        ringOffset: "2px",
-        ringOffsetColor: "bg",
+        ring: "3px",
+        ringColor: "colorPalette.focusRing/50",
       },
     },
   },
