@@ -145,7 +145,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           height: "100%",
           minWidth: "var(--slider-thumb-size)",
-          "&[data-has-mark-label], &:has(.chakra-slider__marker-label)": {
+          "&:has(.chakra-slider__markerLabel)": {
             marginEnd: "4",
           },
         },
@@ -169,7 +169,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "row",
           width: "100%",
           minHeight: "var(--slider-thumb-size)",
-          "&[data-has-mark-label], &:has(.chakra-slider__marker-label)": {
+          "&:has(.chakra-slider__markerLabel)": {
             marginBottom: "4",
           },
         },
