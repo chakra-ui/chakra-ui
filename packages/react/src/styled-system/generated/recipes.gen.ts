@@ -832,7 +832,7 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain" | undefined
+  variant?: "outline" | "subtle" | "plain" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
@@ -1145,6 +1145,7 @@ export type SliderSlot =
   | "marker"
   | "draggingIndicator"
   | "markerIndicator"
+  | "markerLabel"
 
 export interface SliderVariant {
   /** @default "md" */
