@@ -85,7 +85,7 @@ const docsLinks: NavItem = {
             { title: "Scroll Area", url: "scroll-area" },
             { title: "Separator", url: "separator" },
             { title: "SimpleGrid", url: "simple-grid" },
-            { title: "Splitter", url: "splitter", status: "new" },
+            { title: "Splitter", url: "splitter" },
             { title: "Stack", url: "stack" },
             { title: "Wrap", url: "wrap" },
           ],
@@ -152,7 +152,7 @@ const docsLinks: NavItem = {
             { title: "Combobox", url: "combobox" },
             { title: "Listbox", url: "listbox" },
             { title: "Select", url: "select" },
-            { title: "Tree View", url: "tree-view", status: "beta" },
+            { title: "Tree View", url: "tree-view" },
           ],
         },
         {
@@ -174,7 +174,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Accordion", url: "accordion" },
             { title: "Breadcrumb", url: "breadcrumb" },
-            { title: "Carousel", url: "carousel", status: "new" },
+            { title: "Carousel", url: "carousel" },
             { title: "Collapsible", url: "collapsible" },
             { title: "Pagination", url: "pagination" },
             { title: "Steps", url: "steps" },
