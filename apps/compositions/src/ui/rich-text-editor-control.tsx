@@ -49,6 +49,7 @@ export interface BaseControlConfig {
   label: string
   icon?: React.ElementType
   isDisabled?: (editor: Editor) => boolean
+  getProps?: (editor: Editor) => Record<string, any>
 }
 
 export interface ButtonControlProps
@@ -80,14 +81,24 @@ export interface BooleanControlConfig extends BaseControlConfig {
 }
 
 export function createBooleanControl(config: BooleanControlConfig) {
-  const { label, icon: Icon, isDisabled, command, getVariant } = config
+  const {
+    label,
+    icon: Icon,
+    isDisabled,
+    command,
+    getVariant,
+    getProps,
+  } = config
 
   const BooleanControl = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     function BooleanControl(props, ref) {
       const { editor } = useRichTextEditorContext()
       if (!editor) return null
       const disabled = isDisabled ? isDisabled(editor) : false
-      const variant = getVariant ? getVariant(editor) : {}
+      const dynamicProps = getProps ? getProps(editor) : {}
+      const variant =
+        getVariant && !getProps ? getVariant(editor) : dynamicProps.variant
+
       return (
         <ButtonControl
           ref={ref}
@@ -133,6 +144,7 @@ export function createSelectControl(config: SelectControlConfig) {
     placeholder = "Select",
     renderValue,
     isDisabled,
+    getProps,
   } = config
 
   const SelectControl = React.forwardRef<
@@ -154,6 +166,7 @@ export function createSelectControl(config: SelectControlConfig) {
         : currentOption?.label || placeholder
 
     const collection = createListCollection({ items: options })
+    const dynamicProps = getProps ? getProps(editor) : {}
 
     return (
       <Select.Root
@@ -171,6 +184,7 @@ export function createSelectControl(config: SelectControlConfig) {
           "--select-trigger-height": "sizes.6",
           "--select-trigger-padding-x": "spacing.2",
         }}
+        {...dynamicProps}
       >
         <Tooltip content={label} ids={{ trigger: controlId }}>
           <Select.Trigger ref={ref}>
@@ -227,6 +241,7 @@ export function createSwatchControl(config: SwatchControlConfig) {
     onRemove,
     isDisabled,
     icon: Icon,
+    getProps,
   } = config
 
   const SwatchControl = React.forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -238,6 +253,7 @@ export function createSwatchControl(config: SwatchControlConfig) {
       if (!editor) return null
       const currentValue = getValue(editor)
       const disabled = isDisabled ? isDisabled(editor) : false
+      const dynamicProps = getProps ? getProps(editor) : {}
 
       return (
         <Popover.Root
@@ -251,9 +267,9 @@ export function createSwatchControl(config: SwatchControlConfig) {
               <IconButton
                 ref={ref}
                 size="2xs"
-                variant="subtle"
                 aria-label={label}
                 disabled={disabled}
+                {...dynamicProps}
                 {...props}
               >
                 <VStack gap="1px">
@@ -442,6 +458,7 @@ export const Hr = createBooleanControl({
   label: "Horizontal Rule",
   icon: LuMinus,
   command: (editor) => editor.chain().focus().setHorizontalRule().run(),
+  getVariant: (editor) => (editor.isActive("blockquote") ? "subtle" : "ghost"),
 })
 
 export const Link = createBooleanControl({
@@ -464,6 +481,7 @@ export const Unlink = createBooleanControl({
   label: "Unlink",
   icon: LuLink2,
   command: (editor) => editor.chain().focus().unsetLink().run(),
+  getVariant: (editor) => (editor.isActive("link") ? "subtle" : "ghost"),
 })
 
 export const AlignLeft = createBooleanControl({
@@ -503,6 +521,7 @@ export const Undo = createBooleanControl({
   icon: LuRotateCcw,
   command: (editor) => editor.chain().focus().undo().run(),
   isDisabled: (editor) => !editor.can().undo(),
+  getVariant: (editor) => (editor.isActive("link") ? "subtle" : "ghost"),
 })
 
 export const Redo = createBooleanControl({
@@ -510,6 +529,7 @@ export const Redo = createBooleanControl({
   icon: LuRotateCw,
   command: (editor) => editor.chain().focus().redo().run(),
   isDisabled: (editor) => !editor.can().redo(),
+  getVariant: (editor) => (editor.isActive("link") ? "subtle" : "ghost"),
 })
 
 const SWATCH_OPTIONS = [
@@ -525,7 +545,13 @@ const SWATCH_OPTIONS = [
 export const TextColor = createSwatchControl({
   label: "Text Color",
   swatches: SWATCH_OPTIONS,
-  getValue: (editor) => editor.getAttributes("textStyle")?.color || "#000000",
+  getValue: (editor) => {
+    const color = editor.getAttributes("textStyle")?.color
+    return color || ""
+  },
+  getProps: (editor) => ({
+    variant: editor.getAttributes("textStyle")?.color ? "subtle" : "ghost",
+  }),
   command: (editor, color) =>
     editor.chain().focus().setMark("textStyle", { color }).run(),
   icon: LuType,
@@ -544,7 +570,13 @@ const HIGHLIGHT_SWATCH_OPTIONS = [
 export const Highlight = createSwatchControl({
   label: "Highlight",
   swatches: HIGHLIGHT_SWATCH_OPTIONS,
-  getValue: (editor) => editor.getAttributes("highlight")?.color || "",
+  getValue: (editor) => {
+    const color = editor.getAttributes("highlight")?.color
+    return color || ""
+  },
+  getProps: (editor) => ({
+    variant: editor.getAttributes("highlight")?.color ? "subtle" : "ghost",
+  }),
   command: (editor, color) =>
     editor.chain().focus().toggleHighlight({ color }).run(),
   icon: LuHighlighter,
