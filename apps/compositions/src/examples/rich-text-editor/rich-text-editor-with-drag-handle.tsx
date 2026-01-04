@@ -27,6 +27,7 @@ export const RichTextEditorWithDragHandle = () => {
       <blockquote>Blockquotes work too!</blockquote>
     `,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

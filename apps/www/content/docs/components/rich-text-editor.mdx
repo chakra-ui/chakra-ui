@@ -1,0 +1,282 @@
+---
+title: Rich Text Editor
+description: A rich text editor built on Tiptap and styled with Chakra UI.
+links:
+  storybook: rich-text-editor-tiptap--basic
+---
+
+## Overview
+
+`RichTextEditor` is a composable rich text editor built on
+[Tiptap](https://tiptap.dev/) and styled with Chakra UI. It follows Chakra’s
+compositional pattern, providing modular subcomponents:
+
+- `RichTextEditor.Root` – the main container that manages editor state.
+- `RichTextEditor.Toolbar` – configurable toolbar (sticky, floating, or fixed).
+- `RichTextEditor.Content` – the editable content area.
+- `RichTextEditor.ControlGroup` – a container for grouped controls.
+- `RichTextEditor.Footer` – optional footer for additional actions.
+
+This design gives you full control over the editor via Tiptap's
+[useEditor](https://tiptap.dev/api/use-editor) hook while keeping styling
+consistent with your Chakra UI theme.
+
+## Getting Started
+
+::::steps
+
+### Add the Rich Text Editor snippet
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor
+```
+
+This command will:
+
+- Add the `RichTextEditor` composition and its subcomponents.
+- Automatically import built-in controls and the editor context.
+- Install the required Tiptap dependency (`@tiptap/react`).
+
+### Install Tiptap StarterKit
+
+To get started with the editor feel, you can install the
+[Tiptap StarterKit](https://tiptap.dev/docs/editor/extensions/functionality/starterkit).
+
+:::code-group
+
+```bash [npm]
+npm install @tiptap/starter-kit
+```
+
+```bash [yarn]
+yarn add @tiptap/starter-kit
+```
+
+```bash [pnpm]
+pnpm add @tiptap/starter-kit
+```
+
+```bash [bun]
+bun add @tiptap/starter-kit
+```
+
+:::
+
+### Import and Use the Rich Text Editor
+
+```jsx
+import { RichTextEditor } from "@/components/ui/rich-text-editor"
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
+```
+
+```tsx
+const editor = useEditor({
+  extensions: [StarterKit],
+  content: "<p>Hello, world!</p>",
+})
+
+<RichTextEditor.Root editor={editor}>
+  <RichTextEditor.Toolbar>
+    <RichTextEditor.ControlGroup />
+  </RichTextEditor.Toolbar>
+  <RichTextEditor.Content />
+  <RichTextEditor.Footer />
+</RichTextEditor.Root>
+```
+
+### Adding Controls
+
+`RichTextEditor` ships with a set of built-in controls that can be composed
+inside `RichTextEditor.ControlGroup`.
+
+```jsx
+import { Controls } from "@/components/ui/rich-text-editor"
+```
+
+```jsx
+<RichTextEditor.ControlGroup>
+  <Control.Bold />
+  <Control.Italic />
+  <Control.Strike />
+</RichTextEditor.ControlGroup>
+```
+
+::::
+
+## Examples
+
+### Basic
+
+The basic example demonstrates a fully featured toolbar built using the provided
+`RichTextEditor` controls.
+
+It includes support for:
+
+- Headings and lists
+- Text formatting (bold, italic, underline, code)
+- Text alignment
+- Links and text color
+- Subscript and superscript
+- Undo and redo
+
+This example requires a few additional Tiptap extensions beyond `StarterKit`.
+
+:::code-group
+
+```bash [npm]
+npm install @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align @tiptap/extension-text-style
+```
+
+```bash [yarn]
+yarn add @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align @tiptap/extension-text-style
+```
+
+```bash [pnpm]
+pnpm add @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align @tiptap/extension-text-style
+```
+
+```bash [bun]
+bun add @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align @tiptap/extension-text-style
+```
+
+:::
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-basic" />
+
+:::note You only need to install extensions for the controls you use. Controls
+can be freely added or removed based on your editor configuration. :::
+
+### Controlled
+
+Use the editor’s `onUpdate` method to control its behavior.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-controlled" />
+
+### Mode
+
+Control the editor’s mode to enable editing or view-only behavior using
+`editable` prop.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mode" />
+
+### Placeholder
+
+Add a placeholder to the editor using
+[@tiptap/extension-placeholder](https://www.npmjs.com/package/@tiptap/extension-placeholder).
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-placeholder" />
+
+### Task List
+
+Add interactive task lists to your editor using Tiptap’s
+[@tiptap/extension-task-item](https://www.npmjs.com/package/@tiptap/extension-task-item)
+and
+[@tiptap/extension-task-list](https://www.npmjs.com/package/@tiptap/extension-task-list)
+extensions.
+
+:::code-group
+
+```bash [npm]
+npm install @tiptap/extension-task-item @tiptap/extension-task-list
+```
+
+```bash [yarn]
+yarn add @tiptap/extension-task-item @tiptap/extension-task-list
+```
+
+```bash [pnpm]
+pnpm add @tiptap/extension-task-item @tiptap/extension-task-list
+```
+
+```bash [bun]
+bun add @tiptap/extension-task-item @tiptap/extension-task-list
+```
+
+:::
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-task" />
+
+### Drag Handle
+
+You can add drag-and-drop reordering to your editor using
+[@tiptap/extension-drag-handle-react](https://www.npmjs.com/package/@tiptap/extension-drag-handle-react).
+This extension enables draggable handles for each block, letting users easily
+reorder content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-drag-handle" />
+
+### Code Blocks
+
+Add syntax-highlighted code blocks using
+[@tiptap/extension-code-block-lowlight](https://www.npmjs.com/package/@tiptap/extension-code-block-lowlight)
+and `lowlight` to highlight your favorite languages.
+
+:::code-group
+
+```bash [npm]
+npm install @tiptap/extension-code-block-lowlight lowlight highlight.js
+```
+
+```bash [yarn]
+yarn add @tiptap/extension-code-block-lowlight lowlight highlight.js
+```
+
+```bash [pnpm]
+pnpm add @tiptap/extension-code-block-lowlight lowlight highlight.js
+```
+
+```bash [bun]
+bun add @tiptap/extension-code-block-lowlight lowlight highlight.js
+```
+
+:::
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-code" />
+
+### Character Count
+
+You can display live character and word counts in the editor using
+[@tiptap/extensions/character-count](https://www.npmjs.com/package/@tiptap/extensions/character-count).
+This is useful for editors with limits or word-count requirements.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-character-count" />
+
+### Bubble Menu
+
+You can use the `BubbleMenu` component from Tiptap with any `RichTextEditor`
+controls. The menu will appear near a text selection, providing contextual
+formatting options.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-bubble-menu" />
+
+### Autosave
+
+You can implement an autosave feature by using the editor's `onUpdate` method.
+This allows you to handle content changes and save them to a server, local
+storage, or any other persistence layer.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-autosave" />
+
+### Live Preview
+
+Use the editor's `getHTML()` method to retrieve content and display it in a
+read-only panel.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-preview" />
+
+### Text Highlight
+
+You can add text highlighting to the editor using Tiptap's
+`@tiptap/extension-highlight`. The editor supports multicolor highlights and
+integrates seamlessly with `RichTextEditor.Control.Highlight`.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-highlight" />
+
+:::note
+
+- The `<Control.Highlight />` button lets users pick or cycle through highlight
+  colors.
+- Works alongside other formatting controls like bold, italic, underline, and
+  strikethrough.
+- No extra setup is needed beyond importing the `Highlight` extension. :::

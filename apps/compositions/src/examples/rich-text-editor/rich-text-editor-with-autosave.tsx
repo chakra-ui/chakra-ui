@@ -44,6 +44,7 @@ export const RichTextEditorWithAutosave = () => {
       `<p>Start typing... your content will be automatically saved.</p>
        <p>Try making some changes and watch the save indicator.</p>`,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       // Debounce autosave
       if (saveTimeoutRef.current) {

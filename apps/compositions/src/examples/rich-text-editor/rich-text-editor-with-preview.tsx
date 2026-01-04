@@ -35,6 +35,7 @@ export const RichTextEditorWithPreview = () => {
         <blockquote>This is a blockquote example.</blockquote>
     `,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

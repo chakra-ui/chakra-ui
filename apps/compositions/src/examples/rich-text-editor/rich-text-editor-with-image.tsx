@@ -30,6 +30,7 @@ export const RichTextEditorWithImage = () => {
       <p>Famed as one of the "Legendary Sannin," Jiraiya travels the world gathering knowledge and inspiring future generations.</p>
     `,
     extensions: [StarterKit, Image],
+    immediatelyRender: false,
   })
 
   if (!editor) return null

@@ -14,6 +14,7 @@ export const RichTextEditorControlled = () => {
 
   const editor = useEditor({
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({ link: { openOnClick: false } }),
       Subscript,

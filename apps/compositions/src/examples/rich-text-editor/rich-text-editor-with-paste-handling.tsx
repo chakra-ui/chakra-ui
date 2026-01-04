@@ -19,6 +19,7 @@ export const RichTextEditorWithPasteHandling = () => {
       <p>The editor will clean up the formatting while preserving the essential structure.</p>
     `,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
     editorProps: {
       transformPastedText,
       transformPastedHTML,

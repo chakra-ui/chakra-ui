@@ -23,6 +23,7 @@ export const RichTextEditorWithCharacterCount = () => {
       }),
     ],
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

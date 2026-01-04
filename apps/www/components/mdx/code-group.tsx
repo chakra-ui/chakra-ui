@@ -23,7 +23,7 @@ export const CodeGroup: React.FC<CodeGroupProps> = (props) => {
     )
     contents.push(
       <Tabs.Content
-        key={title}
+        key={`content-${title}-${index}`}
         value={title}
         mt="-2"
         css={{

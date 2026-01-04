@@ -344,15 +344,40 @@
   },
   {
     "type": "composition",
+    "id": "rich-text-editor-context",
+    "file": "rich-text-editor-context.tsx",
+    "component": "RichTextEditorContext",
+    "npmDependencies": [
+      "@tiptap/react"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "rich-text-editor-control",
     "file": "rich-text-editor-control.tsx",
     "component": "RichTextEditorControl",
     "npmDependencies": [
+      "@tiptap/react",
       "react-icons"
     ],
     "fileDependencies": [
-      "compositions/ui/rich-text-editor"
+      "compositions/ui/tooltip",
+      "compositions/ui/rich-text-editor-context"
     ]
+  },
+  {
+    "type": "composition",
+    "id": "rich-text-editor-menu",
+    "file": "rich-text-editor-menu.tsx",
+    "component": "RichTextEditorMenu",
+    "npmDependencies": [
+      "@floating-ui/react",
+      "@tiptap",
+      "@tiptap/react",
+      "react-icons"
+    ],
+    "fileDependencies": []
   },
   {
     "type": "composition",
@@ -363,7 +388,7 @@
       "@tiptap/react"
     ],
     "fileDependencies": [
-      "compositions/ui/tooltip",
+      "compositions/ui/rich-text-editor-context",
       "compositions/ui/rich-text-editor-control"
     ]
   },
