@@ -142,6 +142,23 @@ Use the `_open` and `_close` conditional props to animate the tabs.
 
 <ExampleTabs name="tabs-with-animation" />
 
+## Guide
+
+### Styling active tab
+
+Use the `_selected` condition to style the active tab's text and background.
+
+```tsx
+<Tabs.Trigger
+  _selected={{
+    bg: "blue.500",
+    color: "white",
+  }}
+>
+  Tab
+</Tabs.Trigger>
+```
+
 ## Props
 
 ### Root

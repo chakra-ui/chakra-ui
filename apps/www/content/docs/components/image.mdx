@@ -54,11 +54,16 @@ the image component.
 Use the `asChild` prop to render the image as a child of the `Image` component.
 
 ```jsx
-import NextImage from "next/image"
+import { Image } from "@chakra-ui/react";
+import NextImage from "next/image";
 
-;<Image asChild>
-  <NextImage src="..." alt="..." />
-</Image>
+const Demo = () => {
+  return (
+    <Image asChild>
+      <NextImage src="..." alt="..." />
+    </Image>
+  );
+};
 ```
 
 ## Props

@@ -236,6 +236,33 @@ This means a code like this will not work:
 For this cases, we recommend rendering multiple versions of the component with
 different breakpoints, then hide/show as needed.
 
+## Using Semantic Tokens
+
+Semantic tokens from your theme are available in recipes. Reference them by
+name.
+
+```tsx title="button.recipe.ts"
+import { defineRecipe } from "@chakra-ui/react"
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    bg: "bg.muted", // semantic token
+    color: "fg", // semantic token
+    borderRadius: "l2", // semantic radius
+  },
+  variants: {
+    variant: {
+      primary: {
+        bg: "colorPalette.solid", // virtual color
+        color: "colorPalette.contrast",
+      },
+    },
+  },
+})
+```
+
+Common tokens: `bg`, `fg`, `border`, `colorPalette.*`
+
 ## Theme Usage
 
 To use the recipe in a reusable manner, move it to the system theme and add it

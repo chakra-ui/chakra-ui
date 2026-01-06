@@ -25,23 +25,18 @@ export const TagsInputWithCombobox = () => {
     filter: contains,
   })
 
-  const inputId = useId()
+  const uid = useId()
   const controlRef = useRef<HTMLDivElement | null>(null)
 
   const tags = useTagsInput({
-    ids: { input: inputId },
+    ids: { input: `input_${uid}`, control: `control_${uid}` },
   })
 
   const comobobox = useCombobox({
-    ids: { input: inputId },
+    ids: { input: `input_${uid}`, control: `control_${uid}` },
     collection,
     onInputValueChange(e) {
       filter(e.inputValue)
-    },
-    positioning: {
-      getAnchorRect() {
-        return controlRef.current!.getBoundingClientRect()
-      },
     },
     value: [],
     allowCustomValue: true,
@@ -71,7 +66,6 @@ export const TagsInputWithCombobox = () => {
 
         <Combobox.Positioner>
           <Combobox.Content>
-            <Combobox.Empty>No tags found</Combobox.Empty>
             {collection.items.map((item) => (
               <Combobox.Item item={item} key={item}>
                 <Combobox.ItemText>{item}</Combobox.ItemText>

@@ -13,11 +13,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
-    "@types/react": "19.2.6",
+    "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@chakra-ui/react": "workspace:*",
     "@storybook/addon-links": "9.1.16",

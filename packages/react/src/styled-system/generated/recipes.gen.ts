@@ -317,7 +317,10 @@ export type AccordionVariantMap = {
 
 export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger" | "closeTrigger"
 
-export interface ActionBarVariant {}
+export interface ActionBarVariant {
+  /** @default "bottom" */
+  placement?: "bottom" | "bottom-start" | "bottom-end" | undefined
+}
 
 export type ActionBarVariantProps = {
   [K in keyof ActionBarVariant]?: ConditionalValue<ActionBarVariant[K]> | undefined
@@ -829,7 +832,7 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain" | undefined
+  variant?: "outline" | "subtle" | "plain" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
@@ -1079,7 +1082,7 @@ export type SelectSlot =
 
 export interface SelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | undefined
+  variant?: "outline" | "subtle" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | undefined
 }
@@ -1142,6 +1145,7 @@ export type SliderSlot =
   | "marker"
   | "draggingIndicator"
   | "markerIndicator"
+  | "markerLabel"
 
 export interface SliderVariant {
   /** @default "md" */

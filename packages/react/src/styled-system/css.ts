@@ -38,13 +38,13 @@ export function createCssFn(context: CssFnOptions) {
     const result: Dict = createEmptyObject()
 
     walkObject(normalized, (value, paths) => {
-      const important = isImportant(value)
       if (value == null) return
 
       const [prop, ...selectors] = conditions
         .sort(paths)
         .map(conditions.resolve)
 
+      const important = isImportant(value)
       if (important) {
         value = withoutImportant(value)
       }

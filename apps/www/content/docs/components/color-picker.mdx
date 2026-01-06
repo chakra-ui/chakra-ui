@@ -186,6 +186,13 @@ Here's an example of how to display an inline version of the color picker.
 
 <ExampleTabs name="color-picker-inline" />
 
+### Within Dialog
+
+To use the color picker within a dialog, avoid portalling the
+`ColorPicker.Positioner` to the document's body.
+
+<ExampleTabs name="color-picker-in-dialog" />
+
 ### Disabled
 
 Pass the `disabled` prop to disable the color picker.
@@ -233,6 +240,43 @@ Here's how to compose a swatch with an input.
 Here's how to compose a swatch with a trigger.
 
 <ExampleTabs name="color-picker-with-swatch-and-input" />
+
+## Guide
+
+### Getting the hex code
+
+Use the `onValueChange` callback to get the color value. The `value` object has
+a `toString()` method that accepts different format options.
+
+```tsx
+<ColorPicker.Root
+  onValueChange={(details) => {
+    console.log(details.value.toString("hex")) // "#ff0000"
+    console.log(details.value.toString("hexa")) // "#ff0000ff" (with alpha)
+    console.log(details.value.toString("rgb")) // "rgb(255, 0, 0)"
+    console.log(details.value.toString("css")) // CSS color string
+  }}
+>
+  {/* ... */}
+</ColorPicker.Root>
+```
+
+You can also access it from the store:
+
+```tsx
+const picker = useColorPicker() // or useColorPickerContext()
+const hexValue = picker.value.toString("hex") // "#ff0000"
+```
+
+The same `toString()` method is available when using `parseColor`:
+
+```tsx
+import { parseColor } from "@chakra-ui/react"
+
+const color = parseColor("#ff0000")
+console.log(color.toString("hex")) // "#ff0000"
+console.log(color.toString("rgba")) // "rgba(255, 0, 0, 1)"
+```
 
 ## Props
 

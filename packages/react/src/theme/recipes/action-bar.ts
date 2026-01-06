@@ -8,11 +8,9 @@ export const actionBarSlotRecipe = defineSlotRecipe({
     positioner: {
       position: "fixed",
       display: "flex",
-      justifyContent: "center",
       pointerEvents: "none",
       insetInline: "0",
-      top: "unset",
-      bottom: "calc(env(safe-area-inset-bottom) + 20px)",
+      "--action-bar-offset": "spacing.4",
     },
 
     content: {
@@ -58,5 +56,37 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       borderWidth: "1px",
       borderStyle: "dashed",
     },
+  },
+
+  variants: {
+    placement: {
+      bottom: {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "center",
+        },
+      },
+      "bottom-start": {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "flex-start",
+          ps: "var(--action-bar-offset)",
+        },
+      },
+      "bottom-end": {
+        positioner: {
+          bottom:
+            "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
+          justifyContent: "flex-end",
+          pe: "var(--action-bar-offset)",
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    placement: "bottom",
   },
 })

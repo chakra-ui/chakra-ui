@@ -151,6 +151,17 @@ export const SliderMarkerIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SliderMarkerLabelProps
+  extends HTMLChakraProps<"span">,
+    UnstyledProp {}
+
+export const SliderMarkerLabel = withContext<
+  HTMLSpanElement,
+  SliderMarkerLabelProps
+>("span", "markerLabel")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SliderDraggingIndicatorProps
   extends HTMLChakraProps<"div", ArkSlider.DraggingIndicatorBaseProps>,
     UnstyledProp {}
@@ -194,9 +205,7 @@ export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(
           return (
             <SliderMarker key={index} value={value}>
               <SliderMarkerIndicator />
-              {label != null && (
-                <span className="chakra-slider__marker-label">{label}</span>
-              )}
+              {label != null && <SliderMarkerLabel>{label}</SliderMarkerLabel>}
             </SliderMarker>
           )
         })}
