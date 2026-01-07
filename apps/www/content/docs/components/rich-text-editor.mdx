@@ -279,4 +279,625 @@ integrates seamlessly with `RichTextEditor.Control.Highlight`.
   colors.
 - Works alongside other formatting controls like bold, italic, underline, and
   strikethrough.
-- No extra setup is needed beyond importing the `Highlight` extension. :::
+- No extra setup is needed beyond importing the `Highlight` extension.
+
+:::
+
+### Images
+
+Instead of shipping a one-size-fits-all image button, the editor exposes the
+current `Tiptap` instance through the
+[useRichTextEditorContext](#rich-text-editor-context) hook. This lets you design
+an image workflow that matches your product needs—whether that’s embedding URLs,
+uploading files, or integrating with a custom media service. To enable image
+support, you must also install and register Tiptap’s Image extension.
+
+:::code-group
+
+```bash [npm]
+npm install @tiptap/extension-image
+```
+
+```bash [yarn]
+yarn add @tiptap/extension-image
+```
+
+```bash [pnpm]
+pnpm add @tiptap/extension-image
+```
+
+```bash [bun]
+bun add @tiptap/extension-image
+```
+
+:::
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-image" />
+
+### Hashtags
+
+You can support hashtags in the editor by creating a custom
+[Tiptap node](https://tiptap.dev/docs/editor/extensions/nodes), which allows
+hashtags to be parsed, rendered, and handled as structured inline content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-hashtags" />
+
+### Mentions
+
+Before adding mentions, you can scaffold the menu system by running:
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor-menu
+```
+
+This snippet creates a file that provides the foundation for
+[floating suggestion menus](#suggestions), including support for
+[mentions](#mentions), [commands](#suggestions), and [emojis](#emojis). It sets
+up all necessary imports, hooks, and menu components so you can easily integrate
+interactive suggestions into your editor.
+
+Once set up, you can add [mentions](#mentions) by creating a Tiptap extension
+that triggers on `@` and renders a suggestion menu using the provided menu
+components. This allows users to select from a list of users, navigate via
+keyboard, and insert structured mention nodes into the editor content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mentions" />
+
+### Emojis
+
+You can enhance your editor with [emoji suggestions](#emoji-menu) by using
+Tiptap’s Emoji extension. Emojis can be triggered by typing `:` or using common
+emoticons like `:)` or `<3`. The editor will display a floating suggestion menu,
+allowing you to search, navigate with the keyboard, and insert emoji characters
+directly into the content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-emoji" />
+
+### Slash Commands
+
+You can enable slash commands in your editor by creating a Tiptap extension that
+triggers on `/`. This displays a floating suggestion menu with a list of
+actions, such as adding headings, lists, blockquotes, or code blocks.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-slash-commands" />
+
+### Composition
+
+A real-world Google Docs–like layout demonstrating a full-page editor with a
+collapsible document outline, sticky toolbar, floating link menus, and
+integrated controls for headings, lists, links, images, and text formatting.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-composition" />
+
+## Styling the Editor
+
+The `RichTextEditor` is built to be fully customizable. You can modify styles at
+multiple levels: component-level CSS overrides, Chakra UI theme integration, and
+ProseMirror content styling.
+
+### Component-Level Styling
+
+Every `RichTextEditor` component accepts standard Chakra UI style props (`css`,
+etc.) for quick customizations:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    borderRadius: "xl",
+    borderColor: "purple.500",
+    borderWidth: "2px",
+  }}
+>
+  <RichTextEditor.Toolbar
+    css={{
+      bg: "purple.50",
+      borderBottomColor: "purple.200",
+    }}
+  >
+    <RichTextEditor.ControlGroup />
+  </RichTextEditor.Toolbar>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Customizing Content Padding
+
+The editor uses CSS custom properties for content padding:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "--content-padding-x": "spacing.8",
+    "--content-padding-y": "spacing.6",
+    "--content-min-height": "sizes.96",
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Styling ProseMirror Content
+
+The `.ProseMirror` class targets the editable content area. You can override
+styles for headings, lists, code blocks, and more:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "& .ProseMirror": {
+      // Custom heading styles
+      "& h1": {
+        fontSize: "3xl",
+        color: "purple.600",
+        fontWeight: "black",
+      },
+      // Custom link styles
+      "& a": {
+        color: "teal.500",
+        textDecoration: "none",
+        borderBottom: "2px solid",
+        borderColor: "teal.200",
+      },
+      // Custom code block styles
+      "& pre": {
+        bg: "gray.800",
+        color: "green.200",
+        fontFamily: "'Fira Code', monospace",
+      },
+    },
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Toolbar Variants and Positioning
+
+The toolbar supports three variants with different visual treatments:
+
+```tsx
+// Sticky toolbar (stays at top while scrolling)
+<RichTextEditor.Toolbar variant="sticky" stickyOffset="64px">
+  <RichTextEditor.ControlGroup />
+</RichTextEditor.Toolbar>
+
+// Floating toolbar (elevated with shadow)
+<RichTextEditor.Toolbar variant="floating">
+  <RichTextEditor.ControlGroup />
+</RichTextEditor.Toolbar>
+
+// Fixed toolbar (default, attached to editor)
+<RichTextEditor.Toolbar variant="fixed">
+  <RichTextEditor.ControlGroup />
+</RichTextEditor.Toolbar>
+```
+
+### Customizing Control Appearance
+
+Built-in controls inherit button styling and can be customized:
+
+```tsx
+<RichTextEditor.ControlGroup>
+  <Control.Bold colorPalette="purple" size="sm" />
+  <Control.Italic
+    css={{
+      _hover: { bg: "yellow.100" },
+    }}
+  />
+</RichTextEditor.ControlGroup>
+```
+
+### Replacing the Base Styles
+
+For complete control, you can replace the `proseMirrorBaseCss` definition in
+your local snippet. The editor's base styles are defined in
+`rich-text-editor.tsx`:
+
+```tsx
+// In your local rich-text-editor.tsx file
+const proseMirrorBaseCss = defineStyle({
+  // Replace with your custom base styles
+  display: "flex",
+  flexDirection: "column",
+  borderWidth: "2px",
+  borderColor: "brand.500",
+  rounded: "2xl",
+  bg: "white",
+
+  "& .ProseMirror": {
+    // Your custom content styles
+    fontFamily: "body",
+    fontSize: "md",
+    color: "gray.800",
+  },
+})
+```
+
+### Dark Mode Support
+
+The editor respects color mode tokens automatically:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    bg: { base: "white", _dark: "gray.900" },
+    borderColor: { base: "gray.200", _dark: "gray.700" },
+
+    "& .ProseMirror": {
+      color: { base: "gray.900", _dark: "gray.100" },
+      "& a": {
+        color: { base: "blue.600", _dark: "blue.300" },
+      },
+    },
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Custom Node Styling
+
+Style custom Tiptap nodes by targeting their class names:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "& .ProseMirror": {
+      // Style custom hashtag nodes
+      "& .node-hashtag": {
+        color: "blue.600",
+        fontWeight: "semibold",
+        bg: "blue.50",
+        px: "2",
+        py: "1",
+        rounded: "md",
+      },
+      // Style custom mention nodes
+      "& .mention": {
+        color: "purple.600",
+        bg: "purple.50",
+        px: "1",
+        rounded: "sm",
+      },
+    },
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+## Custom Controls
+
+The `RichTextEditor` provides three factory functions for creating custom
+controls that integrate seamlessly with the editor: `createBooleanControl`,
+`createSelectControl`, and `createSwatchControl`.
+
+### Boolean Controls
+
+Boolean controls toggle editor states (bold, italic, etc.) and are the most
+common control type:
+
+```tsx
+import { createBooleanControl } from "@/components/ui/rich-text-editor"
+import { LuSparkles } from "react-icons/lu"
+
+export const CustomHighlight = createBooleanControl({
+  label: "Highlight Important",
+  icon: LuSparkles,
+  command: (editor) => {
+    editor
+      .chain()
+      .focus()
+      .toggleMark("textStyle", {
+        backgroundColor: "#fef08a",
+        fontWeight: "bold"
+      })
+      .run()
+  },
+  getVariant: (editor) => {
+    const attrs = editor.getAttributes("textStyle")
+    return attrs.backgroundColor === "#fef08a" ? "subtle" : "ghost"
+  },
+  isDisabled: (editor) => !editor.can().toggleMark("textStyle")
+})
+
+// Use it in your toolbar
+<RichTextEditor.ControlGroup>
+  <CustomHighlight />
+</RichTextEditor.ControlGroup>
+```
+
+#### Boolean Control Options
+
+```typescript
+interface BooleanControlConfig {
+  label: string // Tooltip text
+  icon: React.ElementType // Icon component
+  command: (editor: Editor) => void // Editor command to execute
+  getVariant?: (editor: Editor) => string // Control appearance based on state
+  isDisabled?: (editor: Editor) => boolean // Whether control is disabled
+  getProps?: (editor: Editor) => Record<string, any> // Dynamic props
+}
+```
+
+### Select Controls
+
+Select controls provide dropdown menus for choosing between multiple options:
+
+```tsx
+import { createSelectControl } from "@/components/ui/rich-text-editor"
+
+export const LineHeight = createSelectControl({
+  label: "Line Height",
+  width: "100px",
+  placeholder: "Normal",
+  options: [
+    { value: "normal", label: "Normal" },
+    { value: "1.5", label: "1.5" },
+    { value: "2", label: "Double" },
+    { value: "2.5", label: "2.5" },
+  ],
+  getValue: (editor) => {
+    return editor.getAttributes("textStyle")?.lineHeight || "normal"
+  },
+  command: (editor, value) => {
+    if (value === "normal") {
+      editor.chain().focus().unsetMark("textStyle").run()
+    } else {
+      editor.chain().focus().setMark("textStyle", { lineHeight: value }).run()
+    }
+  },
+  renderValue: (value, option) => {
+    return <Box fontWeight="medium">{option?.label || "Normal"}</Box>
+  },
+})
+```
+
+#### Select Control Options
+
+```typescript
+interface SelectControlConfig {
+  label: string // Tooltip text
+  options: SelectOption[] // Dropdown options
+  width?: string // Dropdown width
+  placeholder?: string // Placeholder text
+  getValue: (editor: Editor) => string // Current selected value
+  command: (editor: Editor, value: string) => void // Handle selection
+  renderValue?: (value: string, option?: SelectOption) => React.ReactNode
+  isDisabled?: (editor: Editor) => boolean
+  getProps?: (editor: Editor) => Record<string, any>
+}
+
+interface SelectOption {
+  value: string
+  label: string
+  icon?: React.ReactNode
+}
+```
+
+### Swatch Controls
+
+Swatch controls provide color picker interfaces with predefined color swatches:
+
+```tsx
+import { createSwatchControl } from "@/components/ui/rich-text-editor"
+import { LuPaintbrush } from "react-icons/lu"
+
+export const BackgroundColor = createSwatchControl({
+  label: "Background Color",
+  icon: LuPaintbrush,
+  swatches: [
+    { value: "#fef3c7", color: "#fef3c7", label: "Yellow" },
+    { value: "#dbeafe", color: "#dbeafe", label: "Blue" },
+    { value: "#dcfce7", color: "#dcfce7", label: "Green" },
+    { value: "#fce7f3", color: "#fce7f3", label: "Pink" },
+  ],
+  getValue: (editor) => {
+    return editor.getAttributes("textStyle")?.backgroundColor || ""
+  },
+  command: (editor, color) => {
+    editor
+      .chain()
+      .focus()
+      .setMark("textStyle", { backgroundColor: color })
+      .run()
+  },
+  getProps: (editor) => ({
+    variant: editor.getAttributes("textStyle")?.backgroundColor
+      ? "subtle"
+      : "ghost",
+  }),
+  showRemove: true,
+  onRemove: (editor) => {
+    editor
+      .chain()
+      .focus()
+      .updateAttributes("textStyle", { backgroundColor: null })
+      .run()
+  },
+})
+```
+
+#### Swatch Control Options
+
+```typescript
+interface SwatchControlConfig {
+  label: string // Tooltip text
+  icon?: React.ElementType // Icon component
+  swatches: SwatchOption[] // Color options
+  getValue: (editor: Editor) => string // Current color value
+  command: (editor: Editor, value: string) => void // Handle color selection
+  showRemove?: boolean // Show remove button
+  onRemove?: (editor: Editor) => void // Handle color removal
+  isDisabled?: (editor: Editor) => boolean
+  getProps?: (editor: Editor) => Record<string, any>
+}
+
+interface SwatchOption {
+  value: string // Value to pass to command
+  color: string // Visual color to display
+  label?: string // Accessible label
+}
+```
+
+### Advanced Custom Control Example
+
+Create a complex control that combines multiple editor operations:
+
+```tsx
+import { createBooleanControl } from "@/components/ui/rich-text-editor"
+import { LuMessageSquare } from "react-icons/lu"
+
+export const InsertCallout = createBooleanControl({
+  label: "Insert Callout",
+  icon: LuMessageSquare,
+  command: (editor) => {
+    // Complex multi-step operation
+    editor
+      .chain()
+      .focus()
+      .insertContent({
+        type: "paragraph",
+        attrs: { class: "callout" },
+        content: [
+          {
+            type: "text",
+            marks: [
+              {
+                type: "textStyle",
+                attrs: {
+                  backgroundColor: "#dbeafe",
+                  color: "#1e40af",
+                },
+              },
+            ],
+            text: "💡 Note: ",
+          },
+          { type: "text", text: "Add your callout text here..." },
+        ],
+      })
+      .run()
+  },
+  getVariant: () => "ghost",
+})
+```
+
+### Using Editor Context Directly
+
+For controls that need more flexibility than the factory functions provide,
+access the editor directly:
+
+```tsx
+import { useRichTextEditorContext } from "@/components/ui/rich-text-editor"
+import { IconButton } from "@chakra-ui/react"
+import { LuImage } from "react-icons/lu"
+
+export function CustomImageUpload() {
+  const { editor } = useRichTextEditorContext()
+
+  const handleImageUpload = async () => {
+    if (!editor) return
+
+    const input = document.createElement("input")
+    input.type = "file"
+    input.accept = "image/*"
+
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+
+      // Upload to your service
+      const url = await uploadImage(file)
+
+      // Insert into editor
+      editor.chain().focus().setImage({ src: url }).run()
+    }
+
+    input.click()
+  }
+
+  return (
+    <IconButton
+      size="2xs"
+      aria-label="Upload Image"
+      onClick={handleImageUpload}
+    >
+      <LuImage />
+    </IconButton>
+  )
+}
+```
+
+### Composing Custom Controls
+
+Combine custom controls with built-in ones for a tailored experience:
+
+```tsx
+import { Control, RichTextEditor } from "@/components/ui/rich-text-editor"
+import { BackgroundColor, CustomHighlight, LineHeight } from "./custom-controls"
+
+;<RichTextEditor.Root editor={editor}>
+  <RichTextEditor.Toolbar>
+    {/* Built-in controls */}
+    <RichTextEditor.ControlGroup>
+      <Control.Bold />
+      <Control.Italic />
+      <Control.Underline />
+    </RichTextEditor.ControlGroup>
+
+    {/* Custom controls */}
+    <RichTextEditor.ControlGroup>
+      <CustomHighlight />
+      <BackgroundColor />
+    </RichTextEditor.ControlGroup>
+
+    {/* Mix of both */}
+    <RichTextEditor.ControlGroup>
+      <Control.TextStyle />
+      <LineHeight />
+    </RichTextEditor.ControlGroup>
+  </RichTextEditor.Toolbar>
+
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Control State Management
+
+Controls automatically reflect editor state through the `getVariant` and
+`getProps` functions:
+
+```tsx
+export const SmartBold = createBooleanControl({
+  label: "Bold",
+  icon: LuBold,
+  command: (editor) => editor.chain().focus().toggleBold().run(),
+
+  // Visual feedback based on editor state
+  getVariant: (editor) => {
+    return editor.isActive("bold") ? "subtle" : "ghost"
+  },
+
+  // Disable when bold cannot be applied
+  isDisabled: (editor) => {
+    return !editor.can().toggleBold()
+  },
+
+  // Dynamic props based on context
+  getProps: (editor) => {
+    const isBold = editor.isActive("bold")
+    return {
+      colorPalette: isBold ? "blue" : "gray",
+      "aria-pressed": isBold,
+    }
+  },
+})
+```
+
+This modular approach ensures your custom controls feel native to the editor
+while giving you complete flexibility over behavior and appearance.
