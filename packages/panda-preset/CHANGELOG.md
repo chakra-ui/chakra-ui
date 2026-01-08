@@ -1,5 +1,21 @@
 # @chakra-ui/panda-preset
 
+## 3.31.0
+
+### Minor Changes
+
+- [`756b385`](https://github.com/chakra-ui/chakra-ui/commit/756b3858b6c6758ca175ccc9746d559e12aee035)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **ActionBar**
+  - Add `placement` variant to configure bar position: `bottom`, `bottom-start`,
+    `bottom-end`
+  - Add `--action-bar-offset` CSS variable to configure offset from edges
+
+### Patch Changes
+
+- [`cac7cb0`](https://github.com/chakra-ui/chakra-ui/commit/cac7cb011caee9141b372be4fe323f304c850171)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix menu content
+  background not rendering by using full token path for CSS variable
+
 ## 3.30.0
 
 ### Minor Changes
