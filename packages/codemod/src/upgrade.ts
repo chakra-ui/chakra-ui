@@ -10,7 +10,6 @@ import { isPackageUsed } from "./utils/is-package-used.js"
 import { getPackageManager } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
-  verbose?: boolean
   dry?: boolean
 }
 
@@ -22,7 +21,8 @@ export async function upgrade(
 
   p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI Upgrade Tool ")))
 
-  section("Preflight checks")
+  section("Preflight Checks")
+
   const nodeVersion = process.version
   if (!semver.satisfies(nodeVersion, ">=20.0.0")) {
     p.cancel(picocolors.red(`Node.js 20+ required (current: ${nodeVersion})`))
@@ -38,9 +38,9 @@ export async function upgrade(
   }
 
   const packageManager = getPackageManager()
-  p.log.success(`Ready using ${packageManager}`)
+  p.log.success(`Using package manager: ${packageManager}`)
 
-  section("Dependency analysis")
+  section("Dependency Analysis")
   const packagesToInstall = [
     `@chakra-ui/react@${revision}`,
     "@emotion/react@latest",
@@ -52,55 +52,64 @@ export async function upgrade(
   ]
 
   let packagesToRemove: string[] = []
+
   if (fs.existsSync("package.json")) {
     const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
     const deps = { ...pkg.dependencies, ...pkg.devDependencies }
     const installed = removalCandidates.filter((name) => deps[name])
+
     const unused = await Promise.all(
       installed.map(async (name) =>
         (await isPackageUsed(name, process.cwd())) ? null : name,
       ),
     )
+
     packagesToRemove = unused.filter(Boolean) as string[]
   }
 
-  section("Upgrade plan")
-  p.log.info(`Install: ${packagesToInstall.join(", ")}`)
-  if (packagesToRemove.length > 0)
-    p.log.info(`Remove: ${packagesToRemove.join(", ")}`)
+  p.log.info(`Packages to install: ${packagesToInstall.join(", ")}`)
+  if (packagesToRemove.length > 0) {
+    p.log.info(`Packages to remove: ${packagesToRemove.join(", ")}`)
+  }
 
-  const proceed = await p.confirm({ message: "Proceed with changes?" })
-  if (!proceed) return p.cancel("Cancelled")
+  const proceedChanges = await p.confirm({
+    message: "Proceed with these changes?",
+  })
+  if (!proceedChanges) return p.cancel("Upgrade cancelled")
 
-  section("Applying dependency changes")
+  section("Applying Dependency Changes")
   if (!dry) {
     const s = p.spinner()
     s.start("Updating packages...")
+
     if (packagesToRemove.length > 0) {
       await runCommand(
         `${packageManager} ${packageManager === "npm" ? "uninstall" : "remove"} ${packagesToRemove.join(" ")}`,
-        false,
         true,
       )
     }
+
     await runCommand(
       `${packageManager} ${packageManager === "npm" ? "install" : "add"} ${packagesToInstall.join(" ")}`,
-      false,
       true,
     )
+
     s.stop("Dependencies updated")
+  } else {
+    p.log.info("[dry-run] Skipping package installation/removal")
   }
 
-  section("Component snippets")
+  section("Component Snippets")
   const installSnippets = await p.confirm({
-    message: "Install Chakra snippets?",
+    message: "Install Chakra component snippets?",
     initialValue: true,
   })
+
   if (installSnippets && !dry) {
     const s = p.spinner()
     s.start("Installing snippets...")
     try {
-      await runCommand("npx @chakra-ui/cli snippet add", false, true)
+      await runCommand("npx @chakra-ui/cli snippet add", true)
       s.stop("Snippets installed")
     } catch {
       s.stop(
@@ -109,7 +118,7 @@ export async function upgrade(
     }
   }
 
-  section("Code transforms")
+  section("Code Transforms")
   const preset = await p.select({
     message: "Upgrade depth:",
     options: [
@@ -140,9 +149,10 @@ export async function upgrade(
       try {
         await runTransform(name, process.cwd(), { dry, upgrade: true })
       } catch (err) {
-        p.log.error(`Failed: ${name}`)
+        p.log.error(`Failed transform: ${name}`)
       }
     }
+
     s.stop("All transforms completed")
   }
 
@@ -151,18 +161,16 @@ export async function upgrade(
   )
 }
 
-async function runCommand(
-  cmd: string,
-  _verbose: boolean,
-  silent: boolean = false,
-) {
+async function runCommand(cmd: string, silent: boolean = false) {
   return new Promise<void>((resolve, reject) => {
     const child = spawn(cmd, {
       shell: true,
       stdio: silent ? "ignore" : "inherit",
       env: process.env,
     })
-    child.on("close", (code) => (code === 0 ? resolve() : reject()))
+    child.on("close", (code) =>
+      code === 0 ? resolve() : reject(new Error(`Failed with code ${code}`)),
+    )
   })
 }
 

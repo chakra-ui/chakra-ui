@@ -13,6 +13,10 @@ interface RunTransformOptions {
   upgrade?: boolean
 }
 
+/**
+ * Runs a codemod transform in a friendly, interactive terminal flow.
+ * Includes spinners, colored logging, dry-run support, and safe error handling.
+ */
 export async function runTransform(
   transformName: string,
   targetPath: string,
@@ -21,9 +25,13 @@ export async function runTransform(
   const { dry = false, print = false, upgrade = false } = options
   const transform = transforms[transformName]
 
-  if (!transform) throw new Error(`Transform "${transformName}" not found.`)
-  if (!fs.existsSync(targetPath))
-    throw new Error(`Path "${targetPath}" not found.`)
+  if (!transform) {
+    throw new Error(color.red(`Transform "${transformName}" not found.`))
+  }
+
+  if (!fs.existsSync(targetPath)) {
+    throw new Error(color.red(`Target path "${targetPath}" not found.`))
+  }
 
   const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
   const args = [
@@ -42,39 +50,47 @@ export async function runTransform(
   let s: ReturnType<typeof p.spinner> | undefined
 
   if (!upgrade) {
-    p.intro(color.bgCyan(color.black(" chakra-codemod ")))
-
+    p.intro(color.bgCyan(color.black(" ✨ Chakra Codemod ")))
     p.note(
-      `Running ${color.cyan(transformName)} on ${color.dim(targetPath)}`,
-      "Transforming Theme",
+      `Preparing to run ${color.cyan(transformName)} on ${color.dim(targetPath)}`,
     )
-
-    s = p.spinner()
-    s.start(`Applying AST transformations via jscodeshift`)
+    if (dry) {
+      p.log.info(color.yellow("[dry-run] No changes will be applied"))
+    }
   }
 
   return new Promise<void>((resolve, reject) => {
-    const child = spawn(process.execPath, [jscodeshiftBin, ...args], {
-      stdio: upgrade ? "inherit" : "ignore",
-      env: process.env,
-    })
+    try {
+      s = p.spinner()
+      s.start(`Running codemod: ${transformName}`)
 
-    child.on("error", (err) => {
-      if (s) s.stop(color.red("Failed to start process"))
-      reject(err)
-    })
+      const child = spawn(process.execPath, [jscodeshiftBin, ...args], {
+        stdio: upgrade || dry ? "inherit" : "pipe",
+        env: process.env,
+      })
 
-    child.on("close", (code) => {
-      if (code === 0) {
-        if (!upgrade && s) {
-          s.stop(color.green("Transformations complete"))
-          p.outro(`${color.cyan("Done!")} Your theme has been migrated to v3.`)
+      child.on("error", (err) => {
+        if (s) s.stop(color.red("Failed to start process"))
+        reject(err)
+      })
+
+      child.on("close", (code) => {
+        if (code === 0) {
+          if (!upgrade && s) {
+            s.stop(color.green("Transformations complete"))
+            p.outro(`${color.cyan("Done!")} Your theme/code has been migrated.`)
+          }
+          resolve()
+        } else {
+          if (s) s.stop(color.red("Transformation failed"))
+          reject(
+            new Error(`Transform "${transformName}" failed with code ${code}`),
+          )
         }
-        resolve()
-      } else {
-        if (s) s.stop(color.red("Transformation failed"))
-        reject(new Error(`Failed with code ${code}`))
-      }
-    })
+      })
+    } catch (err) {
+      if (s) s.stop(color.red("Unexpected error during transformation"))
+      reject(err)
+    }
   })
 }

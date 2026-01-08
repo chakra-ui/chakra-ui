@@ -5,16 +5,12 @@ export default function transformer(file: FileInfo, _api: API) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
 
-  // --- 1. CONFIGURATION & UTILS ---
   const CHAKRA_PACKAGES = ["@chakra-ui/react", "@chakra-ui/core"]
   const transformedNodes = new Set()
 
   const isObject = (node: any) => node?.type === "ObjectExpression"
   const isIdentifier = (node: any) => node?.type === "Identifier"
 
-  /**
-   * Wraps a value in { value: x } if not already wrapped.
-   */
   function wrapValue(path: any) {
     if (!path.value || transformedNodes.has(path.value)) return
     const node = path.value
@@ -30,9 +26,6 @@ export default function transformer(file: FileInfo, _api: API) {
     transformedNodes.add(path.value)
   }
 
-  /**
-   * Recursively traverses an object and follows Identifiers to their declarations.
-   */
   function transformThemeObject(objPath: any) {
     if (!objPath || !isObject(objPath.value)) return
 
@@ -40,7 +33,6 @@ export default function transformer(file: FileInfo, _api: API) {
       const keyName = prop.value.key?.name
       const valuePath = prop.get("value")
 
-      // Skip non-token top-level keys
       if (["styles", "components", "variants", "baseStyle"].includes(keyName))
         return
 
@@ -66,14 +58,12 @@ export default function transformer(file: FileInfo, _api: API) {
     })
   }
 
-  // --- 2. TRANSFORM CALL SITES (The "Heavy Lifting") ---
   root
     .find(j.CallExpression, { callee: { name: "extendTheme" } })
     .forEach((path) => {
       const argPath = path.get("arguments", 0)
       let targetObjectPath = argPath
 
-      // Follow variable if extendTheme(variable)
       if (isIdentifier(argPath.value)) {
         const varName = argPath.value.name
         root
@@ -105,13 +95,11 @@ export default function transformer(file: FileInfo, _api: API) {
       )
     })
 
-  // --- 3. CLEAN UP IMPORTS ---
   root.find(j.ImportDeclaration).forEach((path) => {
     const source = path.node.source.value as string
     if (CHAKRA_PACKAGES.includes(source) || source.startsWith("@chakra-ui/")) {
       path.node.source.value = "@chakra-ui/react"
 
-      // Filter out extendTheme from imports
       path.node.specifiers = path.node.specifiers?.filter(
         (s) =>
           !(s.type === "ImportSpecifier" && s.imported.name === "extendTheme"),
@@ -129,14 +117,12 @@ export default function transformer(file: FileInfo, _api: API) {
         )
       }
 
-      // If the import is now empty (only extendTheme was there), remove the whole line
       if (path.node.specifiers?.length === 0) {
         j(path).remove()
       }
     }
   })
 
-  // --- 4. RENAME THEME VARIABLE & PROVIDER PROP ---
   root.find(j.VariableDeclarator, { id: { name: "theme" } }).forEach((path) => {
     path.get("id").replace(j.identifier("system"))
   })
@@ -163,8 +149,6 @@ export default function transformer(file: FileInfo, _api: API) {
       })
     })
 
-  // --- 5. FINAL SAFETY: REMOVE ANY REMAINING extendTheme DECLARATIONS ---
-  // This handles cases where extendTheme might have been aliased or declared locally
   root.find(j.VariableDeclarator, { id: { name: "extendTheme" } }).remove()
   root.find(j.FunctionDeclaration, { id: { name: "extendTheme" } }).remove()
 
