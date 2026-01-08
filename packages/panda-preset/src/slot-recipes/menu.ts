@@ -22,7 +22,8 @@ export const menuSlotRecipe = defineSlotRecipe({
   base: {
     content: {
       outline: 0,
-      bg: "bg.panel",
+      "--menu-bg": "colors.bg.panel",
+      bg: "var(--menu-bg)",
       boxShadow: "lg",
       color: "fg",
       maxHeight: "var(--available-height)",
@@ -94,6 +95,14 @@ export const menuSlotRecipe = defineSlotRecipe({
       bg: "bg.muted",
       my: "1",
       mx: "-1",
+    },
+    arrow: {
+      "--arrow-size": "sizes.3",
+      "--arrow-background": "var(--menu-bg)",
+    },
+    arrowTip: {
+      borderTopWidth: "1px",
+      borderLeftWidth: "1px",
     },
   },
   variants: {
