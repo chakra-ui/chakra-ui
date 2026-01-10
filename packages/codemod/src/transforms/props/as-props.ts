@@ -31,12 +31,20 @@ export default function transformer(
     return node
   }
 
-  // ✅ DOM-element checker
   const isDOMElementName = (node: any): boolean => {
     if (node.type === "JSXIdentifier") {
       return node.name === node.name.toLowerCase()
     }
     return false
+  }
+
+  const isElementTypeVariable = (node: any): boolean => {
+    if (node.type !== "Identifier") return false
+    return node.name[0] === node.name[0].toLowerCase()
+  }
+
+  const alwaysForwardToChild = (name: string): boolean => {
+    return name === "ref" || name.startsWith("on")
   }
 
   root.find(j.JSXElement).forEach((path) => {
@@ -64,8 +72,13 @@ export default function transformer(
       asValue = asValue.expression
     }
 
+    if (asValue?.type === "Literal" || asValue?.type === "StringLiteral") {
+      asValue = asValue
+    }
+
     const innerTagName = toJsxName(asValue)
     const isDOM = isDOMElementName(innerTagName)
+    const isElementType = isElementTypeVariable(asValue)
 
     const childAttributes: any[] = []
     const parentAttributes: any[] = []
@@ -73,22 +86,34 @@ export default function transformer(
     opening.attributes?.forEach((attr, idx) => {
       if (idx === asAttrIndex) return
 
+      if (attr.type === "JSXSpreadAttribute") {
+        parentAttributes.push(attr)
+        return
+      }
+
       if (attr.type !== "JSXAttribute" || typeof attr.name.name !== "string") {
-        childAttributes.push(attr)
+        parentAttributes.push(attr)
         return
       }
 
       const name = attr.name.name
 
-      // always forward refs & event handlers
-      if (name === "ref" || name.startsWith("on")) {
+      if (alwaysForwardToChild(name)) {
         childAttributes.push(attr)
         return
       }
 
-      // only forward DOM-valid props if the child is a DOM element
-      if (isDOM && isPropValid(name)) {
-        childAttributes.push(attr)
+      if (isElementType) {
+        parentAttributes.push(attr)
+        return
+      }
+
+      if (isDOM) {
+        if (isPropValid(name)) {
+          childAttributes.push(attr)
+        } else {
+          parentAttributes.push(attr)
+        }
         return
       }
 
@@ -97,14 +122,21 @@ export default function transformer(
 
     const isSelfClosing = !path.node.children || path.node.children.length === 0
 
-    // ✅ Handle ElementType variables safely for Icon / dynamic components
     let innerElementNode: any
-    if (asValue.type === "Identifier") {
-      // Wrap the variable in JSXExpressionContainer
+    if (isElementType && asValue.type === "Identifier") {
+      const CapitalizedComponent =
+        asValue.name.charAt(0).toUpperCase() + asValue.name.slice(1)
+
       innerElementNode = j.jsxElement(
-        j.jsxOpeningElement(j.jsxIdentifier("span"), [], false),
-        j.jsxClosingElement(j.jsxIdentifier("span")),
-        [j.jsxExpressionContainer(asValue)],
+        j.jsxOpeningElement(
+          j.jsxIdentifier(CapitalizedComponent),
+          childAttributes,
+          isSelfClosing,
+        ),
+        isSelfClosing
+          ? null
+          : j.jsxClosingElement(j.jsxIdentifier(CapitalizedComponent)),
+        path.node.children || [],
       )
     } else {
       innerElementNode = j.jsxElement(
@@ -146,6 +178,31 @@ export default function transformer(
           prop.value.left.type === "Identifier"
         ) {
           prop.value.left.name = "asChild"
+        }
+      }
+    })
+  })
+
+  root.find(j.VariableDeclarator).forEach((path) => {
+    if (path.node.id.type !== "ObjectPattern") return
+
+    path.node.id.properties.forEach((prop) => {
+      if (
+        prop.type === "Property" &&
+        prop.key.type === "Identifier" &&
+        prop.value.type === "Identifier" &&
+        prop.shorthand
+      ) {
+        const varName = prop.key.name
+        if (
+          varName.toLowerCase().includes("icon") ||
+          varName.toLowerCase().includes("component") ||
+          varName === "as"
+        ) {
+          const capitalizedName =
+            varName.charAt(0).toUpperCase() + varName.slice(1)
+          prop.shorthand = false
+          prop.value = j.identifier(capitalizedName)
         }
       }
     })
