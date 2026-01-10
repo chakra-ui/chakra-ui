@@ -30,19 +30,25 @@ const triggerStyle = defineStyle({
 
 export const numberInputSlotRecipe = defineSlotRecipe({
   className: "chakra-number-input",
-  slots: numberInputAnatomy.keys(),
+  slots: numberInputAnatomy.extendWith("triggerGroup").keys(),
   base: {
     root: {
-      position: "relative",
+      pos: "relative",
       zIndex: "0",
       isolation: "isolate",
+      display: "flex",
+      flexDirection: "column",
+      gap: "1.5",
     },
     input: {
       ...inputRecipe.base,
       verticalAlign: "top",
-      pe: "calc(var(--stepper-width) + 0.5rem)",
+      pe: "calc(var(--stepper-width) + 0.5rem)!",
     },
     control: {
+      pos: "relative",
+    },
+    triggerGroup: {
       display: "flex",
       flexDirection: "column",
       position: "absolute",
@@ -63,6 +69,14 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       ...triggerStyle,
       borderBottomEndRadius: "var(--stepper-radius)",
     },
+    label: {
+      fontWeight: "medium",
+      userSelect: "none",
+      textStyle: "sm",
+      _disabled: {
+        layerStyle: "disabled",
+      },
+    },
     valueText: {
       fontWeight: "medium",
       fontFeatureSettings: "pnum",
@@ -72,31 +86,39 @@ export const numberInputSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       xs: {
-        input: inputRecipe.variants!.size.xs,
-        control: {
-          fontSize: "2xs",
+        root: {
           "--stepper-width": "sizes.4",
+        },
+        input: inputRecipe.variants!.size.xs,
+        triggerGroup: {
+          fontSize: "2xs",
         },
       },
       sm: {
-        input: inputRecipe.variants!.size.sm,
-        control: {
-          fontSize: "xs",
+        root: {
           "--stepper-width": "sizes.5",
+        },
+        input: inputRecipe.variants!.size.sm,
+        triggerGroup: {
+          fontSize: "xs",
         },
       },
       md: {
-        input: inputRecipe.variants!.size.md,
-        control: {
-          fontSize: "sm",
+        root: {
           "--stepper-width": "sizes.6",
+        },
+        input: inputRecipe.variants!.size.md,
+        triggerGroup: {
+          fontSize: "sm",
         },
       },
       lg: {
+        root: {
+          "--stepper-width": "sizes.7",
+        },
         input: inputRecipe.variants!.size.lg,
-        control: {
+        triggerGroup: {
           fontSize: "sm",
-          "--stepper-width": "sizes.6",
         },
       },
     },
