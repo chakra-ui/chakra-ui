@@ -124,40 +124,40 @@ export const keyframes = defineKeyframes({
   },
 
   // slide from
-  "slide-from-top": {
-    "0%": { translate: "0 -0.5rem" },
-    to: { translate: "0" },
-  },
-  "slide-from-bottom": {
-    "0%": { translate: "0 0.5rem" },
-    to: { translate: "0" },
-  },
-  "slide-from-left": {
-    "0%": { translate: "-0.5rem 0" },
-    to: { translate: "0" },
-  },
-  "slide-from-right": {
-    "0%": { translate: "0.5rem 0" },
-    to: { translate: "0" },
-  },
+	'slide-from-top': {
+		'0%': { translate: '0 calc(var(--slide-from-top-distance, 0.5rem) * -1)' },
+		to: { translate: '0' },
+	},
+	'slide-from-bottom': {
+		'0%': { translate: '0 var(--slide-from-bottom-distance, 0.5rem)' },
+		to: { translate: '0' },
+	},
+	'slide-from-left': {
+		'0%': { translate: 'calc(var(--slide-from-left-distance, 0.5rem) * -1) 0' },
+		to: { translate: '0' },
+	},
+	'slide-from-right': {
+		'0%': { translate: 'var(--slide-from-right-distance, 0.5rem) 0' },
+		to: { translate: '0' },
+	},
 
-  // slide to
-  "slide-to-top": {
-    "0%": { translate: "0" },
-    to: { translate: "0 -0.5rem" },
-  },
-  "slide-to-bottom": {
-    "0%": { translate: "0" },
-    to: { translate: "0 0.5rem" },
-  },
-  "slide-to-left": {
-    "0%": { translate: "0" },
-    to: { translate: "-0.5rem 0" },
-  },
-  "slide-to-right": {
-    "0%": { translate: "0" },
-    to: { translate: "0.5rem 0" },
-  },
+	// slide to
+	'slide-to-top': {
+		'0%': { translate: '0' },
+		to: { translate: '0 calc(var(--slide-to-top-distance, 0.5rem) * -1)' },
+	},
+	'slide-to-bottom': {
+		'0%': { translate: '0' },
+		to: { translate: '0 var(--slide-to-bottom-distance, 0.5rem)' },
+	},
+	'slide-to-left': {
+		'0%': { translate: '0' },
+		to: { translate: 'calc(var(--slide-to-left-distance, 0.5rem) * -1) 0' },
+	},
+	'slide-to-right': {
+		'0%': { translate: '0' },
+		to: { translate: '0 var(--slide-to-right-distance, 0.5rem)' },
+	},
 
   // scale
   "scale-in": {
