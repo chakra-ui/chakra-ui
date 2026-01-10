@@ -13,10 +13,6 @@ interface RunTransformOptions {
   upgrade?: boolean
 }
 
-/**
- * Runs a codemod transform in a friendly, interactive terminal flow.
- * Includes spinners, colored logging, dry-run support, and safe error handling.
- */
 export async function runTransform(
   transformName: string,
   targetPath: string,

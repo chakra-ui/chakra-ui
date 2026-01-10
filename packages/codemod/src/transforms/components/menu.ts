@@ -73,11 +73,36 @@ export default function transformer(
     })
     .forEach((path) => {
       const button = path.node
-      // Only transform if Menu is Chakra
       const hasChakraMenu =
         chakraLocalNames.has("Menu") ||
         Array.from(componentAliases.values()).includes("Menu")
       if (!hasChakraMenu) return
+
+      const attrs = button.openingElement.attributes ?? []
+
+      let rightIcon: JSXElement | null = null
+      let leftIcon: JSXElement | null = null
+      const filteredAttrs = attrs.filter((attr) => {
+        if (
+          attr.type === "JSXAttribute" &&
+          attr.value?.type === "JSXExpressionContainer"
+        ) {
+          if (attr.name.name === "rightIcon") {
+            rightIcon = attr.value.expression as JSXElement
+            return false
+          }
+          if (attr.name.name === "leftIcon") {
+            leftIcon = attr.value.expression as JSXElement
+            return false
+          }
+        }
+        return true
+      })
+
+      const children: any[] = []
+      if (leftIcon) children.push(leftIcon)
+      children.push(...(button.children ?? []))
+      if (rightIcon) children.push(rightIcon)
 
       path.replace(
         j.jsxElement(
@@ -95,7 +120,17 @@ export default function transformer(
               j.jsxIdentifier("Trigger"),
             ),
           ),
-          button.children ?? [],
+          [
+            j.jsxElement(
+              j.jsxOpeningElement(
+                j.jsxIdentifier("Button"),
+                filteredAttrs,
+                false,
+              ),
+              j.jsxClosingElement(j.jsxIdentifier("Button")),
+              children,
+            ),
+          ],
         ),
       )
     })
@@ -320,8 +355,6 @@ export default function transformer(
 
   return root.toSource({ quote: "single" })
 }
-
-// helper removed: we now perform guarded renames inline using tracker
 
 function isJSXElementNamed(node: any, name: string): node is JSXElement {
   return (

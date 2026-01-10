@@ -25,9 +25,18 @@ export default function transformer(
         toJsxName(node.property),
       )
     }
-    if (node.type === "Literal" || node.type === "StringLiteral")
+    if (node.type === "Literal" || node.type === "StringLiteral") {
       return j.jsxIdentifier(node.value)
+    }
     return node
+  }
+
+  // ✅ DOM-element checker
+  const isDOMElementName = (node: any): boolean => {
+    if (node.type === "JSXIdentifier") {
+      return node.name === node.name.toLowerCase()
+    }
+    return false
   }
 
   root.find(j.JSXElement).forEach((path) => {
@@ -48,34 +57,44 @@ export default function transformer(
         asValue.expression.type === "Identifier" &&
         asValue.expression.name === "as"
       ) {
-        if (!opening.attributes) return
-        opening.attributes.splice(asAttrIndex, 1)
-        opening.attributes.push(j.jsxAttribute(j.jsxIdentifier("asChild")))
+        opening.attributes!.splice(asAttrIndex, 1)
+        opening.attributes!.push(j.jsxAttribute(j.jsxIdentifier("asChild")))
         return
       }
       asValue = asValue.expression
     }
+
+    const innerTagName = toJsxName(asValue)
+    const isDOM = isDOMElementName(innerTagName)
 
     const childAttributes: any[] = []
     const parentAttributes: any[] = []
 
     opening.attributes?.forEach((attr, idx) => {
       if (idx === asAttrIndex) return
-      if (attr.type === "JSXAttribute" && typeof attr.name.name === "string") {
-        const name = attr.name.name
-        if (name === "ref" || name.startsWith("on")) {
-          childAttributes.push(attr)
-        } else if (isPropValid(name)) {
-          childAttributes.push(attr)
-        } else {
-          parentAttributes.push(attr)
-        }
-      } else {
+
+      if (attr.type !== "JSXAttribute" || typeof attr.name.name !== "string") {
         childAttributes.push(attr)
+        return
       }
+
+      const name = attr.name.name
+
+      // always forward refs & event handlers
+      if (name === "ref" || name.startsWith("on")) {
+        childAttributes.push(attr)
+        return
+      }
+
+      // only forward DOM-valid props if the child is a DOM element
+      if (isDOM && isPropValid(name)) {
+        childAttributes.push(attr)
+        return
+      }
+
+      parentAttributes.push(attr)
     })
 
-    const innerTagName = toJsxName(asValue)
     const isSelfClosing = !path.node.children || path.node.children.length === 0
 
     const innerElement = j.jsxElement(
@@ -96,8 +115,9 @@ export default function transformer(
 
   root.find(j.TSPropertySignature, { key: { name: "as" } }).forEach((path) => {
     path.node.key = j.identifier("asChild")
-    if (path.node.typeAnnotation)
+    if (path.node.typeAnnotation) {
       path.node.typeAnnotation.typeAnnotation = j.tsBooleanKeyword()
+    }
   })
 
   root.find(j.ObjectPattern).forEach((path) => {
