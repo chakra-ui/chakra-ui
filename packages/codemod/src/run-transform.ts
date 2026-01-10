@@ -21,13 +21,10 @@ export async function runTransform(
   const { dry = false, print = false, upgrade = false } = options
   const transform = transforms[transformName]
 
-  if (!transform) {
+  if (!transform)
     throw new Error(color.red(`Transform "${transformName}" not found.`))
-  }
-
-  if (!fs.existsSync(targetPath)) {
+  if (!fs.existsSync(targetPath))
     throw new Error(color.red(`Target path "${targetPath}" not found.`))
-  }
 
   const jscodeshiftBin = require.resolve("jscodeshift/bin/jscodeshift.js")
   const args = [
@@ -50,9 +47,7 @@ export async function runTransform(
     p.note(
       `Preparing to run ${color.cyan(transformName)} on ${color.dim(targetPath)}`,
     )
-    if (dry) {
-      p.log.info(color.yellow("[dry-run] No changes will be applied"))
-    }
+    if (dry) p.log.info(color.yellow("[dry-run] No changes will be applied"))
   }
 
   return new Promise<void>((resolve, reject) => {
@@ -61,12 +56,30 @@ export async function runTransform(
       s.start(`Running codemod: ${transformName}`)
 
       const child = spawn(process.execPath, [jscodeshiftBin, ...args], {
-        stdio: upgrade || dry ? "inherit" : "pipe",
+        stdio: "pipe",
         env: process.env,
       })
 
+      let stderrBuffer = ""
+      child.stdout.on("data", (data) => {
+        const lines = data.toString().split("\n")
+        for (const line of lines) {
+          // Filter verbose lines
+          if (
+            !/Sending \d+ files to free worker/.test(line) &&
+            line.trim() !== ""
+          ) {
+            s?.message(line)
+          }
+        }
+      })
+
+      child.stderr.on("data", (data) => {
+        stderrBuffer += data.toString()
+      })
+
       child.on("error", (err) => {
-        if (s) s.stop(color.red("Failed to start process"))
+        s?.stop(color.red("Failed to start process"))
         reject(err)
       })
 
@@ -78,14 +91,21 @@ export async function runTransform(
           }
           resolve()
         } else {
-          if (s) s.stop(color.red("Transformation failed"))
+          s?.stop(color.red("Transformation failed"))
+          // Extract concise error line (first meaningful line)
+          const firstLine = stderrBuffer
+            .split("\n")
+            .find((l) => l.includes("SyntaxError") || l.includes("Error"))
           reject(
-            new Error(`Transform "${transformName}" failed with code ${code}`),
+            new Error(
+              firstLine ||
+                `Transform "${transformName}" failed with code ${code}`,
+            ),
           )
         }
       })
     } catch (err) {
-      if (s) s.stop(color.red("Unexpected error during transformation"))
+      s?.stop(color.red("Unexpected error during transformation"))
       reject(err)
     }
   })

@@ -97,18 +97,29 @@ export default function transformer(
 
     const isSelfClosing = !path.node.children || path.node.children.length === 0
 
-    const innerElement = j.jsxElement(
-      j.jsxOpeningElement(innerTagName, childAttributes, isSelfClosing),
-      isSelfClosing ? null : j.jsxClosingElement(innerTagName),
-      path.node.children || [],
-    )
+    // ✅ Handle ElementType variables safely for Icon / dynamic components
+    let innerElementNode: any
+    if (asValue.type === "Identifier") {
+      // Wrap the variable in JSXExpressionContainer
+      innerElementNode = j.jsxElement(
+        j.jsxOpeningElement(j.jsxIdentifier("span"), [], false),
+        j.jsxClosingElement(j.jsxIdentifier("span")),
+        [j.jsxExpressionContainer(asValue)],
+      )
+    } else {
+      innerElementNode = j.jsxElement(
+        j.jsxOpeningElement(innerTagName, childAttributes, isSelfClosing),
+        isSelfClosing ? null : j.jsxClosingElement(innerTagName),
+        path.node.children || [],
+      )
+    }
 
     opening.attributes = [
       ...parentAttributes,
       j.jsxAttribute(j.jsxIdentifier("asChild")),
     ]
 
-    path.node.children = [innerElement]
+    path.node.children = [innerElementNode]
     path.node.openingElement.selfClosing = false
     path.node.closingElement = j.jsxClosingElement(opening.name)
   })

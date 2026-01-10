@@ -4,7 +4,7 @@ import fs from "fs"
 import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
-import { upgradeTransforms } from "./transforms.js"
+import { transforms, upgradeTransforms } from "./transforms.js"
 import { isGitClean } from "./utils/git.js"
 import { isPackageUsed } from "./utils/is-package-used.js"
 import { getPackageManager } from "./utils/package-manager.js"
@@ -20,9 +20,7 @@ export async function upgrade(
   const { dry = false } = options
 
   p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI Upgrade Tool ")))
-
   section("Preflight Checks")
-
   const nodeVersion = process.version
   if (!semver.satisfies(nodeVersion, ">=20.0.0")) {
     p.cancel(picocolors.red(`Node.js 20+ required (current: ${nodeVersion})`))
@@ -82,19 +80,25 @@ export async function upgrade(
     const s = p.spinner()
     s.start("Updating packages...")
 
-    if (packagesToRemove.length > 0) {
+    try {
+      if (packagesToRemove.length > 0) {
+        await runCommand(
+          `${packageManager} ${packageManager === "npm" ? "uninstall" : "remove"} ${packagesToRemove.join(" ")}`,
+          true,
+        )
+      }
+
       await runCommand(
-        `${packageManager} ${packageManager === "npm" ? "uninstall" : "remove"} ${packagesToRemove.join(" ")}`,
+        `${packageManager} ${packageManager === "npm" ? "install" : "add"} ${packagesToInstall.join(" ")}`,
         true,
       )
+
+      s.stop("Dependencies updated")
+    } catch (err) {
+      s.stop(picocolors.red("Failed to update dependencies"))
+      p.log.error(err instanceof Error ? err.message : String(err))
+      return
     }
-
-    await runCommand(
-      `${packageManager} ${packageManager === "npm" ? "install" : "add"} ${packagesToInstall.join(" ")}`,
-      true,
-    )
-
-    s.stop("Dependencies updated")
   } else {
     p.log.info("[dry-run] Skipping package installation/removal")
   }
@@ -124,21 +128,39 @@ export async function upgrade(
     options: [
       { label: "Safe", value: "safe" },
       { label: "Full migration (recommended)", value: "full" },
+      { label: "Custom (select transforms manually)", value: "custom" },
     ],
   })
 
   if (p.isCancel(preset)) return p.outro("Finished without transforms")
 
-  const transformsToRun =
-    preset === "safe"
-      ? [
-          "boolean-props",
-          "spacing-props",
-          "style-props",
-          "theme-tokens",
-          "color-palette",
-        ]
-      : upgradeTransforms
+  let transformsToRun: string[] = []
+
+  if (preset === "safe") {
+    transformsToRun = [
+      "boolean-props",
+      "spacing-props",
+      "style-props",
+      "theme-tokens",
+      "color-palette",
+    ]
+  } else if (preset === "full") {
+    transformsToRun = upgradeTransforms
+  } else if (preset === "custom") {
+    const customSelection = await p.multiselect({
+      message: "Choose the transforms to run:",
+      options: Object.keys(transforms).map((name, i) => ({
+        label: `${(i + 1).toString().padStart(2, "0")}-${name}`,
+        value: name,
+      })),
+    })
+
+    if (p.isCancel(customSelection) || customSelection.length === 0) {
+      return p.outro("No transforms selected. Upgrade finished.")
+    }
+
+    transformsToRun = customSelection
+  }
 
   if (transformsToRun.length > 0) {
     const s = p.spinner()
@@ -149,7 +171,8 @@ export async function upgrade(
       try {
         await runTransform(name, process.cwd(), { dry, upgrade: true })
       } catch (err) {
-        p.log.error(`Failed transform: ${name}`)
+        const msg = err instanceof Error ? err.message : String(err)
+        p.log.error(`Failed transform ${name}: ${msg}`)
       }
     }
 
