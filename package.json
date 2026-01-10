@@ -119,7 +119,7 @@
       "react-dom": "19.2.3"
     }
   },
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.28.0",
   "engines": {
     "node": ">=20.x"
   }
