@@ -113,12 +113,19 @@ export async function upgrade(
     const s = p.spinner()
     s.start("Installing snippets...")
     try {
-      await runCommand("npx @chakra-ui/cli snippet add", true)
+      // Determine the correct executor based on the package manager
+      const executor =
+        packageManager === "pnpm"
+          ? "pnpm dlx"
+          : packageManager === "bun"
+            ? "bunx"
+            : "npx --yes"
+
+      await runCommand(`${executor} @chakra-ui/cli snippet add`, true)
       s.stop("Snippets installed")
-    } catch {
-      s.stop(
-        "Snippet installation failed (manual: npx @chakra-ui/cli snippet add)",
-      )
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      s.stop(`Snippet installation failed: ${msg}`)
     }
   }
 
@@ -188,12 +195,25 @@ async function runCommand(cmd: string, silent: boolean = false) {
   return new Promise<void>((resolve, reject) => {
     const child = spawn(cmd, {
       shell: true,
-      stdio: silent ? "ignore" : "inherit",
+      stdio: silent ? ["ignore", "ignore", "pipe"] : "inherit",
       env: process.env,
     })
-    child.on("close", (code) =>
-      code === 0 ? resolve() : reject(new Error(`Failed with code ${code}`)),
-    )
+
+    let stderr = ""
+    if (child.stderr) {
+      child.stderr.on("data", (data) => {
+        stderr += data.toString()
+      })
+    }
+
+    child.on("close", (code) => {
+      if (code === 0) {
+        resolve()
+      } else {
+        const errorMsg = stderr ? `\nStderr: ${stderr}` : ""
+        reject(new Error(`Failed with code ${code}${errorMsg}`))
+      }
+    })
   })
 }
 

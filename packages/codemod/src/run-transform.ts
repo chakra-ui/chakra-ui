@@ -39,6 +39,7 @@ export async function runTransform(
 
   if (dry) args.push("--dry")
   if (print) args.push("--print")
+  if (upgrade) args.push("--silent")
 
   let s: ReturnType<typeof p.spinner> | undefined
 
@@ -52,16 +53,19 @@ export async function runTransform(
 
   return new Promise<void>((resolve, reject) => {
     try {
-      s = p.spinner()
-      s.start(`Running codemod: ${transformName}`)
+      if (!upgrade) {
+        s = p.spinner()
+        s.start(`Running codemod: ${transformName}`)
+      }
 
       const child = spawn(process.execPath, [jscodeshiftBin, ...args], {
-        stdio: "pipe",
+        stdio: ["ignore", "pipe", "pipe"],
         env: process.env,
       })
 
       let stderrBuffer = ""
       child.stdout.on("data", (data) => {
+        if (upgrade) return
         const lines = data.toString().split("\n")
         for (const line of lines) {
           // Filter verbose lines
