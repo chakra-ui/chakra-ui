@@ -8,6 +8,7 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+
   const chakraLinkNames: string[] = []
 
   root
@@ -16,7 +17,8 @@ export default function transformer(
       path.node.specifiers?.forEach((spec) => {
         if (
           spec.type === "ImportSpecifier" &&
-          spec.imported.name === "Link" &&
+          (spec.imported.name === "Link" ||
+            spec.imported.name === "LinkOverlay") &&
           spec.local?.name
         ) {
           chakraLinkNames.push(spec.local.name as string)
@@ -24,7 +26,9 @@ export default function transformer(
       })
     })
 
-  if (chakraLinkNames.length === 0) return root.toSource({ quote: "single" })
+  if (chakraLinkNames.length === 0) {
+    return root.toSource({ quote: "single" })
+  }
 
   root
     .find(j.JSXElement, {
@@ -55,6 +59,7 @@ export default function transformer(
         const hasTarget = attrs.some(
           (attr) => attr.type === "JSXAttribute" && attr.name.name === "target",
         )
+
         if (!hasTarget) {
           attrs.push(
             j.jsxAttribute(
@@ -67,6 +72,7 @@ export default function transformer(
         const hasRel = attrs.some(
           (attr) => attr.type === "JSXAttribute" && attr.name.name === "rel",
         )
+
         if (!hasRel) {
           attrs.push(
             j.jsxAttribute(

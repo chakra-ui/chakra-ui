@@ -16,6 +16,7 @@ export default function transformer(
   const { chakraLocalNames } = collectChakraLocalNames(j, root)
 
   if (chakraLocalNames.size === 0) return file.source
+  const elementTypeRenames = new Map<string, string>()
 
   const toJsxName = (node: any): any => {
     if (node.type === "Identifier") return j.jsxIdentifier(node.name)
@@ -72,10 +73,6 @@ export default function transformer(
       asValue = asValue.expression
     }
 
-    if (asValue?.type === "Literal" || asValue?.type === "StringLiteral") {
-      asValue = asValue
-    }
-
     const innerTagName = toJsxName(asValue)
     const isDOM = isDOMElementName(innerTagName)
     const isElementType = isElementTypeVariable(asValue)
@@ -126,6 +123,8 @@ export default function transformer(
     if (isElementType && asValue.type === "Identifier") {
       const CapitalizedComponent =
         asValue.name.charAt(0).toUpperCase() + asValue.name.slice(1)
+
+      elementTypeRenames.set(asValue.name, CapitalizedComponent)
 
       innerElementNode = j.jsxElement(
         j.jsxOpeningElement(
@@ -183,30 +182,28 @@ export default function transformer(
     })
   })
 
-  root.find(j.VariableDeclarator).forEach((path) => {
-    if (path.node.id.type !== "ObjectPattern") return
+  if (elementTypeRenames.size > 0) {
+    root.find(j.VariableDeclarator).forEach((path) => {
+      if (path.node.id.type !== "ObjectPattern") return
 
-    path.node.id.properties.forEach((prop) => {
-      if (
-        prop.type === "Property" &&
-        prop.key.type === "Identifier" &&
-        prop.value.type === "Identifier" &&
-        prop.shorthand
-      ) {
-        const varName = prop.key.name
+      path.node.id.properties.forEach((prop) => {
         if (
-          varName.toLowerCase().includes("icon") ||
-          varName.toLowerCase().includes("component") ||
-          varName === "as"
+          prop.type === "Property" &&
+          prop.key.type === "Identifier" &&
+          prop.value.type === "Identifier" &&
+          prop.shorthand
         ) {
-          const capitalizedName =
-            varName.charAt(0).toUpperCase() + varName.slice(1)
-          prop.shorthand = false
-          prop.value = j.identifier(capitalizedName)
+          const oldName = prop.key.name
+          const newName = elementTypeRenames.get(oldName)
+
+          if (newName) {
+            prop.shorthand = false
+            prop.value = j.identifier(newName)
+          }
         }
-      }
+      })
     })
-  })
+  }
 
   return root.toSource({ quote: "single" })
 }
