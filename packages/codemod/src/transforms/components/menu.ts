@@ -324,7 +324,6 @@ export default function transformer(
       )
     })
 
-  // Ensure Portal import exists if Portal is used
   const usesPortal = root.find(j.JSXIdentifier, { name: "Portal" }).size() > 0
   if (usesPortal) {
     const imports = root.find(j.ImportDeclaration, {

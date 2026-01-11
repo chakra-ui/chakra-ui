@@ -59,19 +59,6 @@ export default function transformer(
     return name === "ref" || name.startsWith("on")
   }
 
-  const shouldKeepPropOnParent = (
-    propName: string,
-    parentName: any,
-    _childName: any,
-  ): boolean => {
-    const parentStr = getTagNameString(parentName)
-
-    if (propName === "href" && parentStr === "Link") {
-      return true
-    }
-    return false
-  }
-
   root.find(j.JSXElement).forEach((path) => {
     const opening = path.node.openingElement
     if (!isTrackedJsx(opening, chakraLocalNames)) return
@@ -105,6 +92,7 @@ export default function transformer(
     const childAttributes: any[] = []
     const parentAttributes: any[] = []
     const parentName = opening.name
+    const parentStr = getTagNameString(parentName)
 
     opening.attributes?.forEach((attr, idx) => {
       if (idx === asAttrIndex) return
@@ -121,9 +109,15 @@ export default function transformer(
 
       const name = attr.name.name
 
-      if (shouldKeepPropOnParent(name, parentName, innerTagName)) {
-        parentAttributes.push(attr)
-        return
+      if (name === "href") {
+        if (parentStr === "LinkOverlay" || tagNameStr === "Link") {
+          childAttributes.push(attr)
+          return
+        }
+        if (parentStr === "Link") {
+          parentAttributes.push(attr)
+          return
+        }
       }
 
       if (alwaysForwardToChild(name)) {
@@ -136,13 +130,8 @@ export default function transformer(
         return
       }
 
-      if (name === "href") {
-        childAttributes.push(attr)
-        return
-      }
-
       if (isDOM && tagNameStr) {
-        if (shouldForwardPropToChild(name, tagNameStr, true)) {
+        if (shouldForwardPropToChild(name, tagNameStr)) {
           childAttributes.push(attr)
         } else {
           parentAttributes.push(attr)
@@ -221,6 +210,7 @@ export default function transformer(
   if (elementTypeRenames.size > 0) {
     root.find(j.VariableDeclarator).forEach((path) => {
       if (path.node.id.type !== "ObjectPattern") return
+
       path.node.id.properties.forEach((prop) => {
         if (
           prop.type === "Property" &&
@@ -241,37 +231,26 @@ export default function transformer(
   return root.toSource({ quote: "single" })
 }
 
-const isSVGElement = (tagName: string): boolean => {
-  const lower = tagName.toLowerCase()
-  return ["svg", "path", "circle", "rect", "g", "line", "text"].includes(lower)
-}
-
-const shouldForwardPropToChild = (
-  propName: string,
-  tagName: string,
-  isDOM: boolean,
-): boolean => {
-  if (propName === "ref" || propName.startsWith("on")) return true
-  if (!isDOM) return false
+function shouldForwardPropToChild(propName: string, tagName: string): boolean {
+  const lowerTag = tagName.toLowerCase()
+  const lowerProp = propName.toLowerCase()
 
   if (propName.startsWith("data-") || propName.startsWith("aria-")) return true
 
-  if (GLOBAL_ATTRIBUTES.has(propName)) return true
+  if (GLOBAL_ATTRIBUTES.has(propName) || GLOBAL_ATTRIBUTES.has(lowerProp))
+    return true
 
-  const lowerTag = tagName.toLowerCase()
-
-  if (isSVGElement(lowerTag)) {
+  if (
+    ["svg", "path", "circle", "rect", "g", "line", "text"].includes(lowerTag)
+  ) {
     return isPropValid(propName)
   }
 
   const validAttributes = htmlElementAttributes[lowerTag]
-  const lowerProp = propName.toLowerCase()
-
-  if (
-    validAttributes &&
-    (validAttributes.includes(propName) || validAttributes.includes(lowerProp))
-  ) {
-    return true
+  if (validAttributes) {
+    return (
+      validAttributes.includes(propName) || validAttributes.includes(lowerProp)
+    )
   }
 
   return false
