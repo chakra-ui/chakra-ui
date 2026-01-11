@@ -32,6 +32,19 @@ export default function transformer(
     return node
   }
 
+  const getTagNameString = (node: any): string | null => {
+    if (node.type === "JSXIdentifier") {
+      return node.name
+    }
+    if (node.type === "Identifier") {
+      return node.name
+    }
+    if (node.type === "Literal" || node.type === "StringLiteral") {
+      return node.value
+    }
+    return null
+  }
+
   const isDOMElementName = (node: any): boolean => {
     if (node.type === "JSXIdentifier") {
       return node.name === node.name.toLowerCase()
@@ -46,6 +59,25 @@ export default function transformer(
 
   const alwaysForwardToChild = (name: string): boolean => {
     return name === "ref" || name.startsWith("on")
+  }
+
+  const shouldKeepPropOnParent = (
+    propName: string,
+    parentName: any,
+    childName: any,
+  ): boolean => {
+    const parentStr = getTagNameString(parentName)
+    const childStr = getTagNameString(childName)
+
+    // For Link -> LinkOverlay, keep href on Link (parent) so it has priority
+    if (
+      propName === "href" &&
+      parentStr === "Link" &&
+      childStr === "LinkOverlay"
+    ) {
+      return true
+    }
+    return false
   }
 
   root.find(j.JSXElement).forEach((path) => {
@@ -74,11 +106,13 @@ export default function transformer(
     }
 
     const innerTagName = toJsxName(asValue)
+    const tagNameStr = getTagNameString(innerTagName)
     const isDOM = isDOMElementName(innerTagName)
     const isElementType = isElementTypeVariable(asValue)
 
     const childAttributes: any[] = []
     const parentAttributes: any[] = []
+    const parentName = opening.name
 
     opening.attributes?.forEach((attr, idx) => {
       if (idx === asAttrIndex) return
@@ -95,6 +129,11 @@ export default function transformer(
 
       const name = attr.name.name
 
+      if (shouldKeepPropOnParent(name, parentName, innerTagName)) {
+        parentAttributes.push(attr)
+        return
+      }
+
       if (alwaysForwardToChild(name)) {
         childAttributes.push(attr)
         return
@@ -105,8 +144,8 @@ export default function transformer(
         return
       }
 
-      if (isDOM) {
-        if (isPropValid(name)) {
+      if (isDOM && tagNameStr) {
+        if (shouldForwardPropToChild(name, tagNameStr, true)) {
           childAttributes.push(attr)
         } else {
           parentAttributes.push(attr)
@@ -206,4 +245,32 @@ export default function transformer(
   }
 
   return root.toSource({ quote: "single" })
+}
+
+const isSVGElement = (tagName: string): boolean => {
+  return tagName.toLowerCase() === "svg"
+}
+
+const shouldForwardPropToChild = (
+  propName: string,
+  tagName: string,
+  isDOM: boolean,
+): boolean => {
+  // Always forward ref and event handlers
+  if (propName === "ref" || propName.startsWith("on")) {
+    return true
+  }
+
+  // If it's not a DOM element (component), keep everything on parent
+  if (!isDOM) {
+    return false
+  }
+
+  // For SVG elements, be permissive - allow all props through
+  if (isSVGElement(tagName)) {
+    return true
+  }
+
+  // For regular DOM elements, use isPropValid
+  return isPropValid(propName)
 }

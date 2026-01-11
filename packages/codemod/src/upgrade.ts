@@ -205,12 +205,6 @@ export async function upgrade(
   }
 
   if (transformsToRun.length > 0) {
-    p.log.info(
-      `Execution order:\n${transformsToRun
-        .map((t, i) => `   ${i + 1}. ${t}`)
-        .join("\n")}`,
-    )
-
     const s = p.spinner()
     s.start(`Running ${transformsToRun.length} transforms...`)
 
