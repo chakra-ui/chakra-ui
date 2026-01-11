@@ -1,10 +1,13 @@
 import isPropValid from "@emotion/is-prop-valid"
+import { htmlElementAttributes } from "html-element-attributes"
 import type { API, FileInfo, Options } from "jscodeshift"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
+
+const GLOBAL_ATTRIBUTES = new Set([...(htmlElementAttributes["*"] || [])])
 
 export default function transformer(
   file: FileInfo,
@@ -33,15 +36,10 @@ export default function transformer(
   }
 
   const getTagNameString = (node: any): string | null => {
-    if (node.type === "JSXIdentifier") {
-      return node.name
-    }
-    if (node.type === "Identifier") {
-      return node.name
-    }
-    if (node.type === "Literal" || node.type === "StringLiteral") {
+    if (node.type === "JSXIdentifier") return node.name
+    if (node.type === "Identifier") return node.name
+    if (node.type === "Literal" || node.type === "StringLiteral")
       return node.value
-    }
     return null
   }
 
@@ -64,17 +62,11 @@ export default function transformer(
   const shouldKeepPropOnParent = (
     propName: string,
     parentName: any,
-    childName: any,
+    _childName: any,
   ): boolean => {
     const parentStr = getTagNameString(parentName)
-    const childStr = getTagNameString(childName)
 
-    // For Link -> LinkOverlay, keep href on Link (parent) so it has priority
-    if (
-      propName === "href" &&
-      parentStr === "Link" &&
-      childStr === "LinkOverlay"
-    ) {
+    if (propName === "href" && parentStr === "Link") {
       return true
     }
     return false
@@ -141,6 +133,11 @@ export default function transformer(
 
       if (isElementType) {
         parentAttributes.push(attr)
+        return
+      }
+
+      if (name === "href") {
+        childAttributes.push(attr)
         return
       }
 
@@ -224,7 +221,6 @@ export default function transformer(
   if (elementTypeRenames.size > 0) {
     root.find(j.VariableDeclarator).forEach((path) => {
       if (path.node.id.type !== "ObjectPattern") return
-
       path.node.id.properties.forEach((prop) => {
         if (
           prop.type === "Property" &&
@@ -232,9 +228,7 @@ export default function transformer(
           prop.value.type === "Identifier" &&
           prop.shorthand
         ) {
-          const oldName = prop.key.name
-          const newName = elementTypeRenames.get(oldName)
-
+          const newName = elementTypeRenames.get(prop.key.name)
           if (newName) {
             prop.shorthand = false
             prop.value = j.identifier(newName)
@@ -248,7 +242,8 @@ export default function transformer(
 }
 
 const isSVGElement = (tagName: string): boolean => {
-  return tagName.toLowerCase() === "svg"
+  const lower = tagName.toLowerCase()
+  return ["svg", "path", "circle", "rect", "g", "line", "text"].includes(lower)
 }
 
 const shouldForwardPropToChild = (
@@ -256,21 +251,28 @@ const shouldForwardPropToChild = (
   tagName: string,
   isDOM: boolean,
 ): boolean => {
-  // Always forward ref and event handlers
-  if (propName === "ref" || propName.startsWith("on")) {
+  if (propName === "ref" || propName.startsWith("on")) return true
+  if (!isDOM) return false
+
+  if (propName.startsWith("data-") || propName.startsWith("aria-")) return true
+
+  if (GLOBAL_ATTRIBUTES.has(propName)) return true
+
+  const lowerTag = tagName.toLowerCase()
+
+  if (isSVGElement(lowerTag)) {
+    return isPropValid(propName)
+  }
+
+  const validAttributes = htmlElementAttributes[lowerTag]
+  const lowerProp = propName.toLowerCase()
+
+  if (
+    validAttributes &&
+    (validAttributes.includes(propName) || validAttributes.includes(lowerProp))
+  ) {
     return true
   }
 
-  // If it's not a DOM element (component), keep everything on parent
-  if (!isDOM) {
-    return false
-  }
-
-  // For SVG elements, be permissive - allow all props through
-  if (isSVGElement(tagName)) {
-    return true
-  }
-
-  // For regular DOM elements, use isPropValid
-  return isPropValid(propName)
+  return false
 }
