@@ -15,6 +15,7 @@ export const RichTextEditorWithPlaceholder = () => {
     ],
     content: "",
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

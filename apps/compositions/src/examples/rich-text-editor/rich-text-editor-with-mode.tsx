@@ -18,6 +18,7 @@ export const RichTextEditorWithMode = () => {
     content: `<p>Edit this text...</p>`,
     editable: mode === "edit",
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

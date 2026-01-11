@@ -10,6 +10,7 @@ export const RichTextEditorWithBubbleMenu = () => {
     extensions: [StarterKit],
     content: sampleContent,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null
