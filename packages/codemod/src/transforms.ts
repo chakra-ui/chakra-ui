@@ -12,7 +12,7 @@ export interface TransformInfo {
 }
 
 const TRANSFORM_ROOT = path.join(__dirname, "transforms")
-const TRANSFORM_DIRS = ["theme", "props", "components", "removed", "types"]
+const TRANSFORM_DIRS = ["removed", "theme", "props", "components", "types"]
 
 function toTitle(input: string) {
   const items = input.split("_")
@@ -41,10 +41,12 @@ for (const dir of TRANSFORM_DIRS) {
     continue
   }
 
-  const files = fs.readdirSync(fullDir).filter((file) => file.endsWith(".js"))
+  const files = fs
+    .readdirSync(fullDir)
+    .filter((file) => file.endsWith(".js") || file.endsWith(".ts"))
 
   for (const file of files) {
-    const name = file.replace(/\.js$/, "")
+    const name = file.replace(/\.(js|ts)$/, "")
     const transformPath = path.join(fullDir, file)
 
     const title = toTitle(name)
@@ -61,59 +63,16 @@ for (const dir of TRANSFORM_DIRS) {
   }
 }
 
-/**
- * List of transforms used for upgrades
- * Automatically kept in sync with the filesystem
- */
-const PRIORITY: Record<string, number> = {
-  // theme/props first
-  "gradient-props": 10,
-  "color-palette": 10,
-  "nested-styles": 10,
-  "boolean-props": 10,
-  "spacing-props": 10,
-  "color-transform": 10,
-  // structural early
-  button: 20,
-  divider: 20,
-  "show-hide": 20,
-  // components next (default 30)
-  // removed last
-  "circular-progress": 40,
-}
-
-function getPriority(name: string, dir: string) {
-  if (PRIORITY[name] != null) return PRIORITY[name]
-  if (dir === "theme" || dir === "props") return 10
-  if (dir === "components") return 30
-  if (dir === "removed") return 40
-  return 50
-}
-
 export const upgradeTransforms = Object.entries(transforms)
   .map(([name, info]) => ({ name, info }))
   .sort((a, b) => {
-    const dirA = a.info.path.includes("/theme/")
-      ? "theme"
-      : a.info.path.includes("/props/")
-        ? "props"
-        : a.info.path.includes("/components/")
-          ? "components"
-          : a.info.path.includes("/removed/")
-            ? "removed"
-            : "other"
-    const dirB = b.info.path.includes("/theme/")
-      ? "theme"
-      : b.info.path.includes("/props/")
-        ? "props"
-        : b.info.path.includes("/components/")
-          ? "components"
-          : b.info.path.includes("/removed/")
-            ? "removed"
-            : "other"
-    const pA = getPriority(a.name, dirA)
-    const pB = getPriority(b.name, dirB)
-    if (pA !== pB) return pA - pB
+    const getDirIndex = (info: TransformInfo) => {
+      const dir = TRANSFORM_DIRS.find((d) => info.path.includes(`/${d}/`))
+      return dir ? TRANSFORM_DIRS.indexOf(dir) : 99
+    }
+    const idxA = getDirIndex(a.info)
+    const idxB = getDirIndex(b.info)
+    if (idxA !== idxB) return idxA - idxB
     return a.name.localeCompare(b.name)
   })
   .map((x) => x.name)

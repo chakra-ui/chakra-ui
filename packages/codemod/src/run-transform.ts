@@ -13,6 +13,11 @@ interface RunTransformOptions {
   upgrade?: boolean
 }
 
+process.once("SIGINT", () => {
+  p.cancel("Upgrade cancelled.")
+  process.exit(0)
+})
+
 export async function runTransform(
   transformName: string,
   targetPath: string,

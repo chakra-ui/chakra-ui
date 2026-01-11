@@ -13,6 +13,16 @@ interface UpgradeOptions {
   dry?: boolean
 }
 
+process.once("SIGINT", () => {
+  p.cancel("Upgrade cancelled.")
+  process.exit(0)
+})
+
+function abort(message = "Upgrade cancelled.") {
+  p.cancel(message)
+  return
+}
+
 export async function upgrade(
   revision: string = "latest",
   options: UpgradeOptions = {},
@@ -20,7 +30,9 @@ export async function upgrade(
   const { dry = false } = options
 
   p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI Upgrade Tool ")))
+
   section("Preflight Checks")
+
   const nodeVersion = process.version
   if (!semver.satisfies(nodeVersion, ">=20.0.0")) {
     p.cancel(picocolors.red(`Node.js 20+ required (current: ${nodeVersion})`))
@@ -32,17 +44,22 @@ export async function upgrade(
       message: "Git tree is dirty. Continue?",
       initialValue: false,
     })
-    if (!proceed) return p.cancel("Upgrade cancelled")
+
+    if (p.isCancel(proceed) || !proceed) {
+      return abort()
+    }
   }
 
   const packageManager = getPackageManager()
   p.log.success(`Using package manager: ${packageManager}`)
 
   section("Dependency Analysis")
+
   const packagesToInstall = [
     `@chakra-ui/react@${revision}`,
     "@emotion/react@latest",
   ]
+
   const removalCandidates = [
     "@emotion/styled",
     "framer-motion",
@@ -73,9 +90,13 @@ export async function upgrade(
   const proceedChanges = await p.confirm({
     message: "Proceed with these changes?",
   })
-  if (!proceedChanges) return p.cancel("Upgrade cancelled")
+
+  if (p.isCancel(proceedChanges) || !proceedChanges) {
+    return abort()
+  }
 
   section("Applying Dependency Changes")
+
   if (!dry) {
     const s = p.spinner()
     s.start("Updating packages...")
@@ -83,13 +104,17 @@ export async function upgrade(
     try {
       if (packagesToRemove.length > 0) {
         await runCommand(
-          `${packageManager} ${packageManager === "npm" ? "uninstall" : "remove"} ${packagesToRemove.join(" ")}`,
+          `${packageManager} ${
+            packageManager === "npm" ? "uninstall" : "remove"
+          } ${packagesToRemove.join(" ")}`,
           true,
         )
       }
 
       await runCommand(
-        `${packageManager} ${packageManager === "npm" ? "install" : "add"} ${packagesToInstall.join(" ")}`,
+        `${packageManager} ${
+          packageManager === "npm" ? "install" : "add"
+        } ${packagesToInstall.join(" ")}`,
         true,
       )
 
@@ -97,23 +122,28 @@ export async function upgrade(
     } catch (err) {
       s.stop(picocolors.red("Failed to update dependencies"))
       p.log.error(err instanceof Error ? err.message : String(err))
-      return
+      return abort()
     }
   } else {
     p.log.info("[dry-run] Skipping package installation/removal")
   }
 
   section("Component Snippets")
+
   const installSnippets = await p.confirm({
     message: "Install Chakra component snippets?",
     initialValue: true,
   })
 
+  if (p.isCancel(installSnippets)) {
+    return abort()
+  }
+
   if (installSnippets && !dry) {
     const s = p.spinner()
     s.start("Installing snippets...")
+
     try {
-      // Determine the correct executor based on the package manager
       const executor =
         packageManager === "pnpm"
           ? "pnpm dlx"
@@ -124,36 +154,29 @@ export async function upgrade(
       await runCommand(`${executor} @chakra-ui/cli snippet add`, true)
       s.stop("Snippets installed")
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err)
-      s.stop(`Snippet installation failed: ${msg}`)
+      s.stop("Snippet installation failed")
     }
   }
 
   section("Code Transforms")
+
   const preset = await p.select({
     message: "Upgrade depth:",
     options: [
-      { label: "Safe", value: "safe" },
       { label: "Full migration (recommended)", value: "full" },
       { label: "Custom (select transforms manually)", value: "custom" },
     ],
   })
 
-  if (p.isCancel(preset)) return p.outro("Finished without transforms")
+  if (p.isCancel(preset)) {
+    return abort()
+  }
 
   let transformsToRun: string[] = []
 
-  if (preset === "safe") {
-    transformsToRun = [
-      "boolean-props",
-      "spacing-props",
-      "style-props",
-      "theme-tokens",
-      "color-palette",
-    ]
-  } else if (preset === "full") {
+  if (preset === "full") {
     transformsToRun = upgradeTransforms
-  } else if (preset === "custom") {
+  } else {
     const customSelection = await p.multiselect({
       message: "Choose the transforms to run:",
       options: Object.keys(transforms).map((name, i) => ({
@@ -163,13 +186,19 @@ export async function upgrade(
     })
 
     if (p.isCancel(customSelection) || customSelection.length === 0) {
-      return p.outro("No transforms selected. Upgrade finished.")
+      return abort("No transforms selected. Upgrade cancelled.")
     }
 
     transformsToRun = customSelection
   }
 
   if (transformsToRun.length > 0) {
+    p.log.info(
+      `Execution order:\n${transformsToRun
+        .map((t, i) => `   ${i + 1}. ${t}`)
+        .join("\n")}`,
+    )
+
     const s = p.spinner()
     s.start(`Running ${transformsToRun.length} transforms...`)
 
@@ -191,7 +220,7 @@ export async function upgrade(
   )
 }
 
-async function runCommand(cmd: string, silent: boolean = false) {
+async function runCommand(cmd: string, silent = false) {
   return new Promise<void>((resolve, reject) => {
     const child = spawn(cmd, {
       shell: true,
@@ -200,19 +229,13 @@ async function runCommand(cmd: string, silent: boolean = false) {
     })
 
     let stderr = ""
-    if (child.stderr) {
-      child.stderr.on("data", (data) => {
-        stderr += data.toString()
-      })
-    }
+    child.stderr?.on("data", (data) => {
+      stderr += data.toString()
+    })
 
     child.on("close", (code) => {
-      if (code === 0) {
-        resolve()
-      } else {
-        const errorMsg = stderr ? `\nStderr: ${stderr}` : ""
-        reject(new Error(`Failed with code ${code}${errorMsg}`))
-      }
+      if (code === 0) resolve()
+      else reject(new Error(stderr || `Failed with code ${code}`))
     })
   })
 }
