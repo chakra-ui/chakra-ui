@@ -20,7 +20,7 @@ process.once("SIGINT", () => {
 
 function abort(message = "Upgrade cancelled.") {
   p.cancel(message)
-  return
+  process.exit(0)
 }
 
 export async function upgrade(
@@ -29,7 +29,7 @@ export async function upgrade(
 ) {
   const { dry = false } = options
 
-  p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI Upgrade Tool ")))
+  p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI ")))
 
   section("Preflight Checks")
 
@@ -45,7 +45,11 @@ export async function upgrade(
       initialValue: false,
     })
 
-    if (p.isCancel(proceed) || !proceed) {
+    if (p.isCancel(proceed)) {
+      return abort()
+    }
+
+    if (!proceed) {
       return abort()
     }
   }
@@ -91,7 +95,11 @@ export async function upgrade(
     message: "Proceed with these changes?",
   })
 
-  if (p.isCancel(proceedChanges) || !proceedChanges) {
+  if (p.isCancel(proceedChanges)) {
+    return abort()
+  }
+
+  if (!proceedChanges) {
     return abort()
   }
 
@@ -185,7 +193,11 @@ export async function upgrade(
       })),
     })
 
-    if (p.isCancel(customSelection) || customSelection.length === 0) {
+    if (p.isCancel(customSelection)) {
+      return abort()
+    }
+
+    if (customSelection.length === 0) {
       return abort("No transforms selected. Upgrade cancelled.")
     }
 
