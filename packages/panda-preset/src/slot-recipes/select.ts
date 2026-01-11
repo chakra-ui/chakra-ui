@@ -74,7 +74,8 @@ export const selectSlotRecipe = defineSlotRecipe({
       background: "bg.panel",
       display: "flex",
       flexDirection: "column",
-      zIndex: "dropdown",
+      "--select-z-index": "zIndex.popover",
+      zIndex: "calc(var(--select-z-index) + var(--layer-index, 0))",
       borderRadius: "l2",
       outline: 0,
       maxH: "96",
@@ -164,6 +165,14 @@ export const selectSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "transparent",
           bg: "bg.muted",
+        },
+      },
+      ghost: {
+        trigger: {
+          bg: "transparent",
+          _expanded: {
+            bg: "bg.muted",
+          },
         },
       },
     },

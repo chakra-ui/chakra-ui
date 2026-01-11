@@ -80,6 +80,14 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           focusRingWidth: "2px",
         },
       },
+      ghost: {
+        field: {
+          bg: "transparent",
+          _expanded: {
+            bg: "bg.muted",
+          },
+        },
+      },
     },
     size: {
       xs: {
