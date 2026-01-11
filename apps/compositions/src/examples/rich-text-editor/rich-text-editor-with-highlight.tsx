@@ -18,6 +18,7 @@ export const RichTextEditorWithHighlight = () => {
       <p>Select some text and click the highlight button to <mark data-color="#00FFFF" style="background-color: #00FFFF">apply a highlight color</mark>.</p>
     `,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

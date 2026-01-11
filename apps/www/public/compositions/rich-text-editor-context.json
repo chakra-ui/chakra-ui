@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [
+    "@tiptap/react"
+  ],
+  "fileDependencies": [],
+  "id": "rich-text-editor-context",
+  "file": {
+    "name": "rich-text-editor-context.tsx",
+    "content": "\"use client\"\n\nimport { Editor } from \"@tiptap/react\"\nimport * as React from \"react\"\n\nexport interface RichTextEditorContextValue {\n  editor: Editor | null\n}\n\nexport const RichTextEditorContext =\n  React.createContext<RichTextEditorContextValue | null>(null)\n\nRichTextEditorContext.displayName = \"RichTextEditorContext\"\n\nexport function useRichTextEditorContext() {\n  const context = React.useContext(RichTextEditorContext)\n  if (!context) {\n    throw new Error(\n      \"useRichTextEditorContext must be used within a RichTextEditorRoot\",\n    )\n  }\n  return context\n}\n"
+  },
+  "component": "RichTextEditorContext"
+}

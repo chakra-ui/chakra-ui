@@ -23,6 +23,8 @@ export const RichTextEditorWithCode = () => {
     content: `<p>That’s a boring paragraph followed by a fenced code block:</p>
 <pre><code class="language-javascript">${code}</code></pre>
 <p>Press Command/Ctrl + Enter to leave the fenced code block and continue typing in boring paragraphs.</p>`,
+    shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null
