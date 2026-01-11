@@ -1,5 +1,41 @@
 # @chakra-ui/react
 
+## 3.31.0
+
+### Minor Changes
+
+- [`756b385`](https://github.com/chakra-ui/chakra-ui/commit/756b3858b6c6758ca175ccc9746d559e12aee035)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **ActionBar**
+  - Add `placement` variant to configure bar position: `bottom`, `bottom-start`,
+    `bottom-end`
+  - Add `--action-bar-offset` CSS variable to configure offset from edges
+
+### Patch Changes
+
+- [`4fcf302`](https://github.com/chakra-ui/chakra-ui/commit/4fcf302e60cf1e6f397ea2a85d59b59da47de650)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **ColorPicker,
+  Select, Combobox**: Fix z-index stacking when used inside dialogs
+  - **Theme**: Export the `listboxSlotRecipe` slot recipe
+
+- [#10512](https://github.com/chakra-ui/chakra-ui/pull/10512)
+  [`cc0d202`](https://github.com/chakra-ui/chakra-ui/commit/cc0d202fa2355cc17d7b7f8f4c6adaeeaf120654)
+  Thanks [@teunlao](https://github.com/teunlao)! - **cva**: Normalize base
+  styles to prevent shorthand properties from overwriting variant styles
+
+- [`cac7cb0`](https://github.com/chakra-ui/chakra-ui/commit/cac7cb011caee9141b372be4fe323f304c850171)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix menu content
+  background not rendering by using full token path for CSS variable
+
+- [`4364995`](https://github.com/chakra-ui/chakra-ui/commit/436499514239bfdaa81784e6e2195787ea729d06)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix `SkeletonText`
+  duplicating children when `loading` is set to `false`
+
+- [`1cc185d`](https://github.com/chakra-ui/chakra-ui/commit/1cc185deac96311004a824a6588954b7592c6c0c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Slider**
+  - Add `markerLabel` to component anatomy for theming marker labels
+  - Export `Slider.MarkerLabel` component for custom marker label rendering
+  - Improve focus ring styles for `Slider.Thumb`
+
 ## 3.30.0
 
 ### Minor Changes

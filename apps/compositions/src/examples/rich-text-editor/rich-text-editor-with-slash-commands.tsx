@@ -32,6 +32,7 @@ export const RichTextEditorWithSlashCommands = () => {
     ],
     content: `<h1>Slash Commands Editor</h1><p>Type <strong>/</strong> to see commands</p>`,
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null

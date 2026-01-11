@@ -5,6 +5,36 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.31.0](./#3.31.0) - 2026-01-10
+
+### Added
+
+- **ActionBar**
+  - Add `placement` variant to configure bar position: `bottom`, `bottom-start`,
+    `bottom-end`
+  - Add `--action-bar-offset` CSS variable to configure offset from edges
+
+- **Slider**
+  - Add `markerLabel` to component anatomy for theming marker labels
+  - Export `Slider.MarkerLabel` component for custom marker label rendering
+
+- **Theme**: Export the `listboxSlotRecipe` slot recipe
+
+### Fixed
+
+- **ColorPicker, Select, Combobox**: Fix z-index stacking when used inside
+  dialogs
+
+- **cva**: Normalize base styles to prevent shorthand properties from
+  overwriting variant styles
+
+- **Menu**: Fix content background not rendering by using full token path for
+  CSS variable
+
+- **Slider**: Improve focus ring styles for `Slider.Thumb`
+
+- **SkeletonText**: Fix duplicating children when `loading` is set to `false`
+
 ## [3.30.0](./#3.30.0) - 2025-11-22
 
 ### Added

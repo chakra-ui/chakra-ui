@@ -7,7 +7,7 @@ export const menuSlotRecipe = defineSlotRecipe({
   base: {
     content: {
       outline: 0,
-      "--menu-bg": "bg.panel",
+      "--menu-bg": "colors.bg.panel",
       bg: "var(--menu-bg)",
       boxShadow: "lg",
       color: "fg",

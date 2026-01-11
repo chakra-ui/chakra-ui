@@ -46,8 +46,6 @@ import {
 import {
   Control,
   RichTextEditor,
-  createBooleanControl,
-  createSelectControl,
   useRichTextEditorContext,
 } from "compositions/ui/rich-text-editor"
 import { Tooltip } from "compositions/ui/tooltip"
@@ -63,24 +61,7 @@ import {
   LuUpload,
   LuVideo,
 } from "react-icons/lu"
-import {
-  LuAlignCenter,
-  LuAlignLeft,
-  LuAlignRight,
-  LuBold,
-  LuHeading1,
-  LuHeading2,
-  LuHeading3,
-  LuImage,
-  LuItalic,
-  LuLink,
-  LuList,
-  LuListOrdered,
-  LuRotateCcw,
-  LuRotateCw,
-  LuStrikethrough,
-  LuUnderline,
-} from "react-icons/lu"
+import { LuImage, LuLink } from "react-icons/lu"
 import {
   LuArrowRight,
   LuCopy,
@@ -132,6 +113,7 @@ export const RichTextEditorComposition = () => {
       }
     },
     shouldRerenderOnTransaction: true,
+    immediatelyRender: false,
   })
 
   if (!editor) return null
@@ -393,37 +375,37 @@ const Toolbar = () => {
         </IconButton>
 
         <RichTextEditor.ControlGroup>
-          <UndoBtn />
-          <RedoBtn />
+          <Control.Undo />
+          <Control.Redo />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
-          <FontFamilySelector width="140px" />
-          <FontSize width="80px" />
+          <Control.FontFamily width="140px" />
+          <Control.FontSize width="80px" />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
-          <BoldBtn />
-          <ItalicBtn />
-          <UnderlineBtn />
-          <StrikeBtn />
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Underline />
+          <Control.Strikethrough />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
-          <H1Btn />
-          <H2Btn />
-          <H3Btn />
+          <Control.H1 />
+          <Control.H2 />
+          <Control.H3 />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
-          <AlignLeftBtn />
-          <AlignCenterBtn />
-          <AlignRightBtn />
+          <Control.AlignLeft />
+          <Control.AlignCenter />
+          <Control.AlignRight />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
-          <BulletListBtn />
-          <OrderedListBtn />
+          <Control.BulletList />
+          <Control.OrderedList />
         </RichTextEditor.ControlGroup>
 
         <RichTextEditor.ControlGroup>
@@ -754,139 +736,6 @@ function InsertImageControl() {
     </>
   )
 }
-
-const BoldBtn = createBooleanControl({
-  label: "Bold",
-  icon: LuBold,
-  command: (editor) => editor.chain().focus().toggleBold().run(),
-  getVariant: (editor) => (editor.isActive("bold") ? "subtle" : "ghost"),
-})
-
-const ItalicBtn = createBooleanControl({
-  label: "Italic",
-  icon: LuItalic,
-  command: (editor) => editor.chain().focus().toggleItalic().run(),
-  getVariant: (editor) => (editor.isActive("italic") ? "subtle" : "ghost"),
-})
-
-const UnderlineBtn = createBooleanControl({
-  label: "Underline",
-  icon: LuUnderline,
-  command: (editor) => editor.chain().focus().toggleUnderline().run(),
-  getVariant: (editor) => (editor.isActive("underline") ? "subtle" : "ghost"),
-})
-
-const StrikeBtn = createBooleanControl({
-  label: "Strike",
-  icon: LuStrikethrough,
-  command: (editor) => editor.chain().focus().toggleStrike().run(),
-  getVariant: (editor) => (editor.isActive("strike") ? "subtle" : "ghost"),
-})
-
-const H1Btn = createBooleanControl({
-  label: "H1",
-  icon: LuHeading1,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 1 }) ? "subtle" : "ghost",
-})
-
-const H2Btn = createBooleanControl({
-  label: "H2",
-  icon: LuHeading2,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 2 }) ? "subtle" : "ghost",
-})
-
-const H3Btn = createBooleanControl({
-  label: "H3",
-  icon: LuHeading3,
-  command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-  getVariant: (editor) =>
-    editor.isActive("heading", { level: 3 }) ? "subtle" : "ghost",
-})
-
-const BulletListBtn = createBooleanControl({
-  label: "Bullet List",
-  icon: LuList,
-  command: (editor) => editor.chain().focus().toggleBulletList().run(),
-  getVariant: (editor) => (editor.isActive("bulletList") ? "subtle" : "ghost"),
-})
-
-const OrderedListBtn = createBooleanControl({
-  label: "Ordered List",
-  icon: LuListOrdered,
-  command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-  getVariant: (editor) => (editor.isActive("orderedList") ? "subtle" : "ghost"),
-})
-
-const AlignLeftBtn = createBooleanControl({
-  label: "Align Left",
-  icon: LuAlignLeft,
-  command: (editor) => editor.chain().focus().setTextAlign("left").run(),
-  getVariant: (editor) =>
-    editor.isActive({ textAlign: "left" }) ? "subtle" : "ghost",
-})
-
-const AlignCenterBtn = createBooleanControl({
-  label: "Align Center",
-  icon: LuAlignCenter,
-  command: (editor) => editor.chain().focus().setTextAlign("center").run(),
-  getVariant: (editor) =>
-    editor.isActive({ textAlign: "center" }) ? "subtle" : "ghost",
-})
-
-const AlignRightBtn = createBooleanControl({
-  label: "Align Right",
-  icon: LuAlignRight,
-  command: (editor) => editor.chain().focus().setTextAlign("right").run(),
-  getVariant: (editor) =>
-    editor.isActive({ textAlign: "right" }) ? "subtle" : "ghost",
-})
-
-const UndoBtn = createBooleanControl({
-  label: "Undo",
-  icon: LuRotateCcw,
-  command: (editor) => editor.chain().focus().undo().run(),
-  isDisabled: (editor) => !editor.can().undo(),
-})
-
-const RedoBtn = createBooleanControl({
-  label: "Redo",
-  icon: LuRotateCw,
-  command: (editor) => editor.chain().focus().redo().run(),
-  isDisabled: (editor) => !editor.can().redo(),
-})
-
-const FontFamilySelector = createSelectControl({
-  label: "Font Family",
-  options: [
-    { value: "default", label: "Default" },
-    { value: "serif", label: "Serif" },
-    { value: "mono", label: "Monospace" },
-    { value: "cursive", label: "Cursive" },
-  ],
-  getValue: (editor) =>
-    editor.getAttributes("textStyle")?.fontFamily || "default",
-  command: (editor, value) =>
-    value === "default"
-      ? editor.chain().focus().unsetFontFamily().run()
-      : editor.chain().focus().setFontFamily(value).run(),
-})
-
-const FontSize = createSelectControl({
-  label: "Font Size",
-  options: [
-    { value: "12px", label: "12px" },
-    { value: "14px", label: "14px" },
-    { value: "16px", label: "16px" },
-    { value: "18px", label: "18px" },
-  ],
-  getValue: (editor) => editor.getAttributes("textStyle")?.fontSize || "14px",
-  command: (editor, value) =>
-    editor.chain().focus().setMark("textStyle", { fontSize: value }).run(),
-})
 
 function slugify(text: string) {
   return text
