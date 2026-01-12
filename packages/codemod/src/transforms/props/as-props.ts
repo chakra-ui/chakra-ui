@@ -56,7 +56,11 @@ export default function transformer(
   }
 
   const alwaysForwardToChild = (name: string): boolean => {
-    return name === "ref" || name.startsWith("on")
+    return (
+      name === "ref" ||
+      name === "dangerouslySetInnerHTML" ||
+      name.startsWith("on")
+    )
   }
 
   root.find(j.JSXElement).forEach((path) => {

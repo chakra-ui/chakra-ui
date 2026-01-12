@@ -18,6 +18,8 @@ export default function transformer(
 
   const disclosureNames = new Set<string>()
 
+  let didTransformDrawer = false
+
   root.find(j.VariableDeclarator).forEach((path) => {
     const init = path.node.init
     if (
@@ -79,6 +81,8 @@ export default function transformer(
 
     if (!chakraLocalNames.has(baseName) || !componentMap[baseName]) return
 
+    didTransformDrawer = true
+
     const newTagName = j.jsxMemberExpression(
       j.jsxIdentifier("Drawer"),
       j.jsxIdentifier(componentMap[baseName]),
@@ -110,6 +114,7 @@ export default function transformer(
       })
     }
 
+    // Wrap DrawerContent with <Drawer.Positioner> and <Portal>
     if (baseName === "DrawerContent") {
       const parent = elPath.parentPath.node
       const isAlreadyWrapped =
@@ -143,29 +148,32 @@ export default function transformer(
     }
   })
 
-  root.find(j.ImportDeclaration).forEach((path) => {
-    if (path.node.source.value !== "@chakra-ui/react") return
-    const specifiers = path.node.specifiers || []
-    let hasDrawer = false
-    let hasPortal = specifiers.some(
-      (s) => s.type === "ImportSpecifier" && s.imported.name === "Portal",
-    )
+  if (didTransformDrawer) {
+    root.find(j.ImportDeclaration).forEach((path) => {
+      if (path.node.source.value !== "@chakra-ui/react") return
 
-    const filtered = specifiers.filter((spec) => {
-      if (spec.type !== "ImportSpecifier") return true
-      const name = spec.imported.name
-      if (name === "Drawer") {
-        hasDrawer = true
-        return true
-      }
-      return !componentMap[name as string]
+      const specifiers = path.node.specifiers || []
+      let hasDrawer = false
+      let hasPortal = specifiers.some(
+        (s) => s.type === "ImportSpecifier" && s.imported.name === "Portal",
+      )
+
+      const filtered = specifiers.filter((spec) => {
+        if (spec.type !== "ImportSpecifier") return true
+        const name = spec.imported.name
+        if (name === "Drawer") {
+          hasDrawer = true
+          return true
+        }
+        return !componentMap[name as string]
+      })
+
+      if (!hasDrawer) filtered.push(j.importSpecifier(j.identifier("Drawer")))
+      if (!hasPortal) filtered.push(j.importSpecifier(j.identifier("Portal")))
+
+      path.node.specifiers = filtered
     })
-
-    if (!hasDrawer) filtered.push(j.importSpecifier(j.identifier("Drawer")))
-    if (!hasPortal) filtered.push(j.importSpecifier(j.identifier("Portal")))
-
-    path.node.specifiers = filtered
-  })
+  }
 
   return root.toSource({ quote: "single" })
 }
