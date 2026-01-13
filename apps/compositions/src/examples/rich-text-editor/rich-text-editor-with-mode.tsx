@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, HStack } from "@chakra-ui/react"
+import { HStack } from "@chakra-ui/react"
 import { useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import {
@@ -11,12 +11,12 @@ import {
 import { useState } from "react"
 
 export const RichTextEditorWithMode = () => {
-  const [mode, setMode] = useState("edit")
+  const [editable, setEditable] = useState(true)
 
   const editor = useEditor({
     extensions: [StarterKit],
     content: `<p>Edit this text...</p>`,
-    editable: mode === "edit",
+    editable,
     shouldRerenderOnTransaction: true,
     immediatelyRender: false,
   })
@@ -24,36 +24,27 @@ export const RichTextEditorWithMode = () => {
   if (!editor) return null
 
   const handleModeChange = (newMode: string) => {
-    setMode(newMode)
+    setEditable(newMode === "edit")
     editor.setEditable(newMode === "edit")
   }
 
   return (
-    <RichTextEditor.Root
-      editor={editor}
-      border="1px solid"
-      borderColor="border"
-      rounded="md"
-      disabled={mode !== "edit"}
-    >
-      <HStack
-        p="2"
-        borderBottom="1px solid"
-        borderColor="border"
-        justifyContent="space-between"
-      >
-        {mode === "edit" ? (
-          <RichTextEditor.ControlGroup>
-            <Control.Bold />
-          </RichTextEditor.ControlGroup>
-        ) : (
-          <Box />
-        )}
-
+    <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="md">
+      <HStack p="2" borderBottomWidth="1px" justify="space-between">
+        <RichTextEditor.ControlGroup
+          inert={!editable}
+          opacity={!editable ? 0.5 : 1}
+        >
+          <Control.Bold />
+          <Control.Italic />
+          <Control.Underline />
+          <Control.Strikethrough />
+          <Control.Code />
+        </RichTextEditor.ControlGroup>
         <RichTextEditor.ControlGroup>
           <ModePicker
             width="120px"
-            currentMode={mode}
+            currentMode={editable ? "edit" : "view"}
             onModeChange={handleModeChange}
           />
         </RichTextEditor.ControlGroup>
@@ -70,11 +61,9 @@ interface ModePickerProps {
   width?: string
 }
 
-const ModePicker = ({
-  currentMode,
-  onModeChange,
-  ...props
-}: ModePickerProps) => {
+const ModePicker = (props: ModePickerProps) => {
+  const { currentMode, onModeChange, ...rest } = props
+
   const SelectControl = createSelectControl({
     label: "Mode",
     options: [
@@ -87,5 +76,5 @@ const ModePicker = ({
     },
   })
 
-  return <SelectControl {...props} />
+  return <SelectControl {...rest} />
 }

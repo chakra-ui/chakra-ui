@@ -46,33 +46,6 @@ export const RichTextEditorBasic = () => {
           <Control.H3 />
           <Control.H4 />
         </RichTextEditor.ControlGroup>
-
-        <RichTextEditor.ControlGroup>
-          <Control.BulletList />
-          <Control.OrderedList />
-          <Control.Blockquote />
-          <Control.Hr />
-          <Control.Subscript />
-          <Control.Superscript />
-        </RichTextEditor.ControlGroup>
-
-        <RichTextEditor.ControlGroup>
-          <Control.TextColor />
-          <Control.Link />
-          <Control.Unlink />
-        </RichTextEditor.ControlGroup>
-
-        <RichTextEditor.ControlGroup>
-          <Control.AlignLeft />
-          <Control.AlignCenter />
-          <Control.AlignJustify />
-          <Control.AlignRight />
-        </RichTextEditor.ControlGroup>
-
-        <RichTextEditor.ControlGroup>
-          <Control.Undo />
-          <Control.Redo />
-        </RichTextEditor.ControlGroup>
       </RichTextEditor.Toolbar>
 
       <RichTextEditor.Content />
