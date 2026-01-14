@@ -1,0 +1,59 @@
+{
+  "name": "@chakra-ui/system-core",
+  "version": "0.0.0",
+  "description": "Framework-agnostic core system utilities for Chakra UI",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/core/system-core"
+  },
+  "keywords": [
+    "chakra-ui",
+    "design-system",
+    "style-system",
+    "css-in-js",
+    "framework-agnostic"
+  ],
+  "scripts": {
+    "prepack": "tsx ../../../scripts/conditions.ts",
+    "postpack": "tsx ../../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../../scripts/build/main.ts",
+    "build": "tsx ../../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  },
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

@@ -629,6 +629,12 @@ importers:
         specifier: workspace:*
         version: link:../react
 
+  packages/core/system-core:
+    devDependencies:
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.10.1)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.29.2)(terser@5.43.1)(tsx@4.20.6)(yaml@2.8.1)
+
   packages/panda-preset:
     dependencies:
       '@pandacss/types':
