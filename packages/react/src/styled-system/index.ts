@@ -1,3 +1,52 @@
+// Re-export framework-agnostic utilities from system-core
+export {
+  // Prop utilities
+  compact,
+  createSplitProps,
+  extractThemingProps,
+  filterObject,
+  htmlProps,
+  isHtmlProp,
+  omit,
+  omitThemingProps,
+  pick,
+  splitProps,
+  themingPropKeys,
+  // Style resolution
+  createShouldForwardProp,
+  createSimpleRecipe,
+  deepMergeStyles,
+  mergeStyles,
+  resolveProps,
+  runIfFn,
+  // Style config resolution
+  get,
+  getStyleConfigDefaultProps,
+  isSlotStyleConfig,
+  mergeStyleConfigs,
+  resolveComponentStyleConfig,
+  resolveSlotStyleConfig,
+  resolveStyleConfig,
+} from "@chakra-ui/system-core"
+
+export type {
+  // Types from system-core
+  CssFn,
+  Dict,
+  PropPredicate,
+  RecipeFn,
+  ResolvedPropsResult,
+  ResolvePropsOptions,
+  ResolveStyleConfigOptions,
+  ResolveStylesOptions,
+  SlotStyleConfig,
+  SplitPropsResult,
+  StyleConfig,
+  StyleResolverContext,
+  SystemStyleObject as SystemCoreStyleObject,
+  ThemingProps,
+} from "@chakra-ui/system-core"
+
 export * from "./config"
 export { createRecipeContext } from "./create-recipe-context"
 export { createSlotRecipeContext } from "./create-slot-recipe-context"

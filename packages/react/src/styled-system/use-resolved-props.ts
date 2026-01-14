@@ -1,23 +1,25 @@
+import {
+  isHtmlProp as isHtmlPropCore,
+  resolveProps,
+} from "@chakra-ui/system-core"
 import { useMemo } from "react"
-import { splitProps } from "../utils"
 import { useChakraContext } from "./provider"
 
-const htmlProps = new Set([
-  "htmlWidth",
-  "htmlHeight",
-  "htmlSize",
-  "htmlTranslate",
-])
-
-export function isHtmlProp(prop: unknown) {
-  return typeof prop === "string" && htmlProps.has(prop)
-}
+// Re-export isHtmlProp from system-core for backward compatibility
+export const isHtmlProp = isHtmlPropCore
 
 interface ResolvedPropsResult {
   styles: Record<string, any>
   props: Record<string, any>
 }
 
+/**
+ * React hook that wraps the framework-agnostic resolveProps function
+ * with React-specific memoization.
+ *
+ * This hook uses @chakra-ui/system-core for the core resolution logic,
+ * ensuring consistency with other framework implementations (Vue, etc).
+ */
 export function useResolvedProps(
   inProps: any,
   cvaRecipe: any,
@@ -25,59 +27,13 @@ export function useResolvedProps(
 ): ResolvedPropsResult {
   const { css, isValidProperty } = useChakraContext()
 
-  const { children, ...props } = inProps
-
-  const result = useMemo(() => {
-    const [forwardedProps, restProps_B] = splitProps(props, (key) =>
-      shouldForwardProps(key, cvaRecipe.variantKeys),
-    )
-
-    const [variantProps, restProps_C] = splitProps(
-      restProps_B,
-      cvaRecipe.variantKeys,
-    )
-
-    const [styleProps, elementProps] = splitProps(restProps_C, isValidProperty)
-
-    return {
-      forwardedProps,
-      variantProps,
-      styleProps,
-      elementProps,
-    }
-  }, [cvaRecipe.variantKeys, shouldForwardProps, props, isValidProperty])
-
-  const { css: cssStyles, ...propStyles } = result.styleProps
-
-  const cvaStyles = useMemo(() => {
-    const variantProps = { ...result.variantProps }
-    const hasColorPalette = cvaRecipe.variantKeys.includes("colorPalette")
-    const hasOrientation = cvaRecipe.variantKeys.includes("orientation")
-
-    if (!hasColorPalette) {
-      variantProps.colorPalette = props.colorPalette
-    }
-    if (!hasOrientation) {
-      variantProps.orientation = props.orientation
-    }
-    return cvaRecipe(variantProps)
-  }, [cvaRecipe, result.variantProps, props.colorPalette, props.orientation])
-
-  const styles = useMemo((): any => {
-    return css(cvaStyles, ...toArray(cssStyles), propStyles)
-  }, [css, cvaStyles, cssStyles, propStyles])
-
-  return {
-    styles,
-    props: {
-      ...result.forwardedProps,
-      ...result.elementProps,
-      children,
-    },
-  }
-}
-
-const toArray = (val: any) => {
-  const res = Array.isArray(val) ? val : [val]
-  return res.filter(Boolean).flat()
+  return useMemo(() => {
+    return resolveProps({
+      props: inProps,
+      recipe: cvaRecipe,
+      shouldForwardProp: shouldForwardProps,
+      css,
+      isValidProperty,
+    })
+  }, [inProps, cvaRecipe, shouldForwardProps, css, isValidProperty])
 }
