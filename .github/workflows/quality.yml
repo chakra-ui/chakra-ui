@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      # TODO: Remove when feature/chakra-ui-vue-3 branch is merged/deleted
+      - feature/chakra-ui-vue-3
   pull_request:
     branches:
       - main
+      # TODO: Remove when feature/chakra-ui-vue-3 branch is merged/deleted
+      - feature/chakra-ui-vue-3
 
 jobs:
   build:
