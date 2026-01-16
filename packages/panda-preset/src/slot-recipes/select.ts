@@ -38,6 +38,8 @@ export const selectSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       userSelect: "none",
       textAlign: "start",
+      "--focus-color": "colors.colorPalette.focusRing",
+      "--error-color": "colors.border.error",
       focusVisibleRing: "inside",
       _placeholderShown: {
         color: "fg.muted/80",
@@ -46,7 +48,8 @@ export const selectSlotRecipe = defineSlotRecipe({
         layerStyle: "disabled",
       },
       _invalid: {
-        borderColor: "border.error",
+        focusRingColor: "var(--error-color)",
+        borderColor: "var(--error-color)",
       },
     },
     indicatorGroup: {
@@ -100,9 +103,6 @@ export const selectSlotRecipe = defineSlotRecipe({
       flex: "1",
       textAlign: "start",
       borderRadius: "l1",
-      _highlighted: {
-        bg: "bg.emphasized/60",
-      },
       _disabled: {
         pointerEvents: "none",
         opacity: "0.5",
@@ -154,8 +154,14 @@ export const selectSlotRecipe = defineSlotRecipe({
           bg: "transparent",
           borderWidth: "1px",
           borderColor: "border",
+          focusRingColor: "var(--focus-color)",
           _expanded: {
-            borderColor: "border.emphasized",
+            borderColor: "colorPalette.border",
+          },
+        },
+        item: {
+          _highlighted: {
+            bg: "colorPalette.muted/60",
           },
         },
       },
@@ -163,7 +169,13 @@ export const selectSlotRecipe = defineSlotRecipe({
         trigger: {
           borderWidth: "1px",
           borderColor: "transparent",
-          bg: "bg.muted",
+          bg: "colorPalette.subtle",
+          focusRingColor: "var(--focus-color)",
+        },
+        item: {
+          _highlighted: {
+            bg: "colorPalette.muted/60",
+          },
         },
       },
     },

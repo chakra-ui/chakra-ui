@@ -34,3 +34,4 @@ export { SelectWithPositioning as Positioning } from "compositions/examples/sele
 export { SelectWithSizes as Sizes } from "compositions/examples/select-with-sizes"
 export { SelectWithVariants as Variants } from "compositions/examples/select-with-variants"
 export { SelectVirtualized as Virtualized } from "compositions/examples/select-virtualized"
+export { SelectWithColorPalettes as ColorPalettes } from "compositions/examples/select-with-color-palettes"
