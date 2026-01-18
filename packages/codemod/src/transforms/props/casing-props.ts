@@ -26,11 +26,8 @@ export default function transformer(
       path.node.openingElement.attributes?.forEach((attr) => {
         if (attr.type !== "JSXAttribute") return
 
-        if (attr.name.name === "spacing") {
-          attr.name.name = "gap"
-        }
-        if (attr.name.name === "divider") {
-          attr.name.name = "separator"
+        if (attr.name.name === "casing") {
+          attr.name.name = "textTransform"
         }
       })
     })
@@ -40,13 +37,12 @@ export default function transformer(
       if (
         prop.type === "Property" &&
         prop.key.type === "Identifier" &&
-        prop.key.name === "spacing" &&
+        prop.key.name === "casing" &&
         prop.value.type === "Identifier" &&
-        prop.value.name === "spacing" &&
+        prop.value.name === "casing" &&
         prop.shorthand
       ) {
-        // Change shorthand { spacing } to { gap: spacing }
-        prop.key.name = "gap"
+        prop.key.name = "textTransform"
         prop.shorthand = false
       }
     })
@@ -54,7 +50,7 @@ export default function transformer(
 
   root
     .find(j.TSIndexedAccessType, {
-      indexType: { literal: { value: "spacing" } },
+      indexType: { literal: { value: "casing" } },
     })
     .forEach((path) => {
       const objectType = path.node.objectType
@@ -67,27 +63,7 @@ export default function transformer(
           path.node.indexType.type === "TSLiteralType" &&
           path.node.indexType.literal.type === "StringLiteral"
         ) {
-          path.node.indexType.literal.value = "gap"
-        }
-      }
-    })
-
-  root
-    .find(j.TSIndexedAccessType, {
-      indexType: { literal: { value: "divider" } },
-    })
-    .forEach((path) => {
-      const objectType = path.node.objectType
-      if (
-        objectType.type === "TSTypeReference" &&
-        objectType.typeName.type === "Identifier" &&
-        chakraLocalNames.has(objectType.typeName.name.replace("Props", ""))
-      ) {
-        if (
-          path.node.indexType.type === "TSLiteralType" &&
-          path.node.indexType.literal.type === "StringLiteral"
-        ) {
-          path.node.indexType.literal.value = "separator"
+          path.node.indexType.literal.value = "textTransform"
         }
       }
     })

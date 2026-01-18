@@ -95,7 +95,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Blockquote", url: "blockquote" },
             { title: "Code", url: "code" },
-            { title: "Code Block", url: "code-block", status: "beta" },
+            { title: "Code Block", url: "code-block" },
             { title: "Em", url: "em" },
             { title: "Heading", url: "heading" },
             { title: "Highlight", url: "highlight" },
@@ -105,6 +105,11 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
+            {
+              title: "Rich Text Editor",
+              url: "rich-text-editor",
+              status: "new",
+            },
             { title: "Text", url: "text" },
           ],
         },

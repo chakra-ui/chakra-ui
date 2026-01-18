@@ -1,7 +1,6 @@
 import type {
   API,
   FileInfo,
-  JSXAttribute,
   JSXElement,
   JSXExpressionContainer,
   JSXFragment,
@@ -41,8 +40,8 @@ export default function transformer(
 
     const attributes = path.node.attributes ?? []
 
-    let leftIconValue: JSXAttribute["value"] | null = null
-    let rightIconValue: JSXAttribute["value"] | null = null
+    let leftIconValue: any = null
+    let rightIconValue: any = null
 
     // Transform attributes
     const newAttributes = attributes.flatMap((attr) => {
@@ -73,7 +72,6 @@ export default function transformer(
 
     path.node.attributes = newAttributes
 
-    // Inject leftIcon / rightIcon as children
     if (leftIconValue || rightIconValue) {
       const parent = path.parent.node
       if (parent.type === "JSXElement") {
@@ -83,11 +81,33 @@ export default function transformer(
 
         const newChildren: JSXElement["children"] = []
 
-        if (leftIconValue)
-          newChildren.push(j.jsxExpressionContainer(leftIconValue))
+        if (leftIconValue) {
+          if (leftIconValue.type === "JSXExpressionContainer") {
+            newChildren.push(leftIconValue)
+          } else if (
+            leftIconValue.type === "Literal" ||
+            leftIconValue.type === "StringLiteral"
+          ) {
+            newChildren.push(j.jsxExpressionContainer(leftIconValue))
+          } else {
+            newChildren.push(j.jsxExpressionContainer(leftIconValue))
+          }
+        }
+
         newChildren.push(...originalChildren)
-        if (rightIconValue)
-          newChildren.push(j.jsxExpressionContainer(rightIconValue))
+
+        if (rightIconValue) {
+          if (rightIconValue.type === "JSXExpressionContainer") {
+            newChildren.push(rightIconValue)
+          } else if (
+            rightIconValue.type === "Literal" ||
+            rightIconValue.type === "StringLiteral"
+          ) {
+            newChildren.push(j.jsxExpressionContainer(rightIconValue))
+          } else {
+            newChildren.push(j.jsxExpressionContainer(rightIconValue))
+          }
+        }
 
         parent.children = newChildren
       }

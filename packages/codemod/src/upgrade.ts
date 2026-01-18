@@ -5,6 +5,7 @@ import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
 import { transforms, upgradeTransforms } from "./transforms.js"
+import { getProjectInfo } from "./utils/get-project-info.js"
 import { isGitClean } from "./utils/git.js"
 import { isPackageUsed } from "./utils/is-package-used.js"
 import { getPackageManager } from "./utils/package-manager.js"
@@ -208,10 +209,16 @@ export async function upgrade(
     const s = p.spinner()
     s.start(`Running ${transformsToRun.length} transforms...`)
 
+    const { componentsDir } = getProjectInfo(process.cwd())
+
     for (const name of transformsToRun) {
       s.message(`Transforming: ${name}`)
       try {
-        await runTransform(name, process.cwd(), { dry, upgrade: true })
+        await runTransform(name, process.cwd(), {
+          dry,
+          upgrade: true,
+          ignorePattern: ["node_modules", componentsDir],
+        })
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err)
         p.log.error(`Failed transform ${name}: ${msg}`)

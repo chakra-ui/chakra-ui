@@ -11,6 +11,7 @@ interface RunTransformOptions {
   dry?: boolean
   print?: boolean
   upgrade?: boolean
+  ignorePattern?: string[]
 }
 
 process.once("SIGINT", () => {
@@ -23,7 +24,12 @@ export async function runTransform(
   targetPath: string,
   options: RunTransformOptions = {},
 ) {
-  const { dry = false, print = false, upgrade = false } = options
+  const {
+    dry = false,
+    print = false,
+    upgrade = false,
+    ignorePattern = ["node_modules"],
+  } = options
   const transform = transforms[transformName]
 
   if (!transform)
@@ -39,7 +45,7 @@ export async function runTransform(
     "--extensions=tsx,ts,jsx,js",
     "--parser=tsx",
     "--jobs=1",
-    "--ignore-pattern=node_modules",
+    ...ignorePattern.map((pattern) => `--ignore-pattern=${pattern}`),
   ]
 
   if (dry) args.push("--dry")

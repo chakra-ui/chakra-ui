@@ -31,13 +31,8 @@ export const RichTextEditorWithTask = () => {
   if (!editor) return null
 
   return (
-    <RichTextEditor.Root
-      editor={editor}
-      border="1px solid"
-      borderColor="border"
-      rounded="md"
-    >
-      <HStack gap="2" p="2" borderBottom="1px solid" borderColor="border">
+    <RichTextEditor.Root editor={editor} borderWidth="1px" rounded="md">
+      <HStack gap="2" p="2" borderBottomWidth="1px">
         <RichTextEditor.ControlGroup>
           <ToggleTaskList />
           <IndentTask />
@@ -54,18 +49,21 @@ const ToggleTaskList = createBooleanControl({
   label: "Toggle Task List",
   icon: LuListChecks,
   command: (editor) => editor.chain().focus().toggleTaskList().run(),
+  getVariant: (editor) => (editor.isActive("taskList") ? "subtle" : "ghost"),
 })
 
 const IndentTask = createBooleanControl({
   label: "Indent Task",
   icon: LuArrowRight,
   command: (editor) => editor.chain().focus().sinkListItem("taskItem").run(),
+  getVariant: (editor) => (editor.isActive("taskItem") ? "subtle" : "ghost"),
 })
 
 const OutdentTask = createBooleanControl({
   label: "Outdent Task",
   icon: LuArrowLeft,
   command: (editor) => editor.chain().focus().liftListItem("taskItem").run(),
+  getVariant: (editor) => (editor.isActive("taskItem") ? "subtle" : "ghost"),
 })
 
 const AddTask = createBooleanControl({
@@ -79,4 +77,5 @@ const AddTask = createBooleanControl({
         `<li data-type="taskItem" data-checked="false">New task</li>`,
       )
       .run(),
+  getVariant: (editor) => (editor.isActive("taskItem") ? "subtle" : "ghost"),
 })

@@ -1,3 +1,4 @@
+import { defaultSystem } from "@chakra-ui/react"
 import isPropValid from "@emotion/is-prop-valid"
 import { htmlElementAttributes } from "html-element-attributes"
 import type { API, FileInfo, Options } from "jscodeshift"
@@ -8,6 +9,13 @@ import {
 import { createParserFromPath } from "../../utils/parser"
 
 const GLOBAL_ATTRIBUTES = new Set([...(htmlElementAttributes["*"] || [])])
+
+let chakraProperties = new Set(Object.keys(defaultSystem.properties || {}))
+
+function isValidChakraProp(propName: string): boolean {
+  const props = chakraProperties
+  return props.has(propName) || propName.startsWith("_") || propName === "css"
+}
 
 export default function transformer(
   file: FileInfo,
@@ -46,6 +54,20 @@ export default function transformer(
   const isDOMElementName = (node: any): boolean => {
     if (node.type === "JSXIdentifier") {
       return node.name === node.name.toLowerCase()
+    }
+    return false
+  }
+
+  const isReactComponent = (node: any): boolean => {
+    if (node.type === "Identifier") {
+      // React components start with uppercase
+      return node.name[0] === node.name[0].toUpperCase()
+    }
+    if (node.type === "JSXIdentifier") {
+      return node.name[0] === node.name[0].toUpperCase()
+    }
+    if (node.type === "MemberExpression") {
+      return true // e.g., React.Component
     }
     return false
   }
@@ -91,6 +113,7 @@ export default function transformer(
     const innerTagName = toJsxName(asValue)
     const tagNameStr = getTagNameString(innerTagName)
     const isDOM = isDOMElementName(innerTagName)
+    const isComponent = isReactComponent(asValue)
     const isElementType = isElementTypeVariable(asValue)
 
     const childAttributes: any[] = []
@@ -131,6 +154,15 @@ export default function transformer(
 
       if (isElementType) {
         parentAttributes.push(attr)
+        return
+      }
+
+      if (isComponent) {
+        if (isValidChakraProp(name)) {
+          parentAttributes.push(attr)
+        } else {
+          childAttributes.push(attr)
+        }
         return
       }
 

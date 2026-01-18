@@ -16,7 +16,7 @@ export default function transformer(
   const { chakraLocalNames } = collectChakraLocalNames(j, root)
   if (chakraLocalNames.size === 0) return file.source
 
-  let needsStackImport = false
+  let needsStackSeparatorImport = false
 
   root
     .find(j.JSXElement, {
@@ -27,29 +27,96 @@ export default function transformer(
     .forEach((path) => {
       const baseName = getJsxBaseName(path.node.openingElement.name)
       if (!chakraLocalNames.has(baseName)) return
+
       const attributes = path.node.openingElement.attributes
-      attributes?.forEach((attr) => {
+      if (!attributes) return
+
+      let dividerElement: any = null
+      let dividerAttrIndex = -1
+
+      attributes.forEach((attr, index) => {
         if (attr.type !== "JSXAttribute") return
-        if (attr.name.name === "spacing") attr.name.name = "gap"
-        if (attr.name.name === "divider") attr.name.name = "separator"
+
+        if (attr.name.name === "spacing") {
+          attr.name.name = "gap"
+        }
+
+        if (attr.name.name === "divider") {
+          dividerAttrIndex = index
+
+          if (attr.value?.type === "JSXExpressionContainer") {
+            dividerElement = attr.value.expression
+          }
+        }
       })
+
+      // Transform divider prop to separator
+      if (dividerAttrIndex !== -1 && dividerElement) {
+        // Check if divider is a StackDivider element
+        if (
+          dividerElement.type === "JSXElement" &&
+          dividerElement.openingElement.name.name === "StackDivider"
+        ) {
+          // Get the props from StackDivider
+          const stackDividerProps =
+            dividerElement.openingElement.attributes || []
+
+          // Create StackSeparator element with the props
+          const separatorElement = j.jsxElement(
+            j.jsxOpeningElement(
+              j.jsxIdentifier("StackSeparator"),
+              stackDividerProps,
+              true, // self-closing
+            ),
+            null,
+            [],
+          )
+
+          // Replace divider prop with separator prop
+          attributes[dividerAttrIndex] = j.jsxAttribute(
+            j.jsxIdentifier("separator"),
+            j.jsxExpressionContainer(separatorElement),
+          )
+
+          needsStackSeparatorImport = true
+        } else {
+          // If it's not a StackDivider, just rename the prop
+          attributes[dividerAttrIndex] = j.jsxAttribute(
+            j.jsxIdentifier("separator"),
+            (attributes[dividerAttrIndex] as any).value,
+          )
+        }
+      }
     })
 
+  // Transform standalone StackDivider usage (not inside divider prop)
   root
     .find(j.JSXElement, { openingElement: { name: { name: "StackDivider" } } })
     .forEach((path) => {
       if (!chakraLocalNames.has("Stack")) return
-      path.node.openingElement.name = j.jsxMemberExpression(
-        j.jsxIdentifier("Stack"),
-        j.jsxIdentifier("Separator"),
-      )
-      if (path.node.closingElement) {
-        path.node.closingElement.name = j.jsxMemberExpression(
-          j.jsxIdentifier("Stack"),
-          j.jsxIdentifier("Separator"),
-        )
+
+      // Check if this StackDivider is inside a divider prop (already handled above)
+      let parent = path.parent
+      let isInsideDividerProp = false
+
+      while (parent) {
+        if (
+          parent.node.type === "JSXAttribute" &&
+          parent.node.name?.name === "divider"
+        ) {
+          isInsideDividerProp = true
+          break
+        }
+        parent = parent.parent
       }
-      needsStackImport = true
+
+      if (!isInsideDividerProp) {
+        path.node.openingElement.name = j.jsxIdentifier("StackSeparator")
+        if (path.node.closingElement) {
+          path.node.closingElement.name = j.jsxIdentifier("StackSeparator")
+        }
+        needsStackSeparatorImport = true
+      }
     })
 
   root
@@ -58,11 +125,14 @@ export default function transformer(
       property: { name: "StackDivider" },
     })
     .forEach((path) => {
-      path.node.property.name = "Separator"
-      if (path.node.object.type === "JSXIdentifier") {
-        path.node.object.name = path.node.object.name
+      // Replace the member expression with a simple identifier
+      const parentPath = path.parent
+      if (parentPath.node.type === "JSXOpeningElement") {
+        parentPath.node.name = j.jsxIdentifier("StackSeparator")
+      } else if (parentPath.node.type === "JSXClosingElement") {
+        parentPath.node.name = j.jsxIdentifier("StackSeparator")
       }
-      needsStackImport = true
+      needsStackSeparatorImport = true
     })
 
   const chakraImports = root.find(j.ImportDeclaration, {
@@ -80,26 +150,29 @@ export default function transformer(
       )
 
       if (
-        needsStackImport &&
-        !specifiers.some(
+        needsStackSeparatorImport &&
+        !path.node.specifiers.some(
           (spec) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === "Stack",
+            spec.type === "ImportSpecifier" &&
+            spec.imported.name === "StackSeparator",
         )
       ) {
-        path.node.specifiers.push(j.importSpecifier(j.identifier("Stack")))
-        needsStackImport = false
+        path.node.specifiers.push(
+          j.importSpecifier(j.identifier("StackSeparator")),
+        )
+        needsStackSeparatorImport = false
       }
     })
-  } else if (needsStackImport) {
+  } else if (needsStackSeparatorImport) {
     root
       .get()
       .node.program.body.unshift(
         j.importDeclaration(
-          [j.importSpecifier(j.identifier("Stack"))],
+          [j.importSpecifier(j.identifier("StackSeparator"))],
           j.stringLiteral("@chakra-ui/react"),
         ),
       )
-    needsStackImport = false
+    needsStackSeparatorImport = false
   }
 
   return root.toSource({ quote: "single" })
