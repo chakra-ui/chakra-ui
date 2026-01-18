@@ -30,6 +30,10 @@ export async function upgrade(
 ) {
   const { dry = false } = options
 
+  if (revision === "latest") {
+    revision = "^3.0.0"
+  }
+
   p.intro(picocolors.bgCyan(picocolors.black(" ✨ Chakra UI ")))
 
   section("Preflight Checks")
@@ -62,7 +66,7 @@ export async function upgrade(
 
   const packagesToInstall = [
     `@chakra-ui/react@${revision}`,
-    "@emotion/react@latest",
+    "@emotion/react@^11",
   ]
 
   const removalCandidates = [

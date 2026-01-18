@@ -1,4 +1,8 @@
+import { execSync } from "child_process"
+import fs from "fs"
 import type { API, FileInfo, Options } from "jscodeshift"
+import path from "path"
+import { getProjectInfo } from "../../utils/get-project-info"
 
 export default function transformer(
   file: FileInfo,
@@ -8,8 +12,16 @@ export default function transformer(
   const j = api.jscodeshift
   const root = j(file.source)
   let hasChanges = false
-  let needsUseTheme = false
-  let hasNextThemesImport = false
+  const removedSpecifiers: { imported: string; local: string }[] = []
+
+  // Detect usage of ColorMode features that require the snippet
+  const colorModeFeatures = [
+    "useColorMode",
+    "ColorModeProvider",
+    "LightMode",
+    "DarkMode",
+    "useColorModeValue",
+  ]
 
   root
     .find(j.ImportDeclaration, {
@@ -18,178 +30,87 @@ export default function transformer(
     .forEach((path) => {
       const specifiers = path.node.specifiers?.filter((spec) => {
         if (spec.type === "ImportSpecifier") {
-          const removedComponents = [
-            "ColorModeProvider",
-            "LightMode",
-            "DarkMode",
-            "ColorModeScript",
-            "useColorMode",
-            "useColorModeValue",
-          ]
+          const importedName = (spec.imported as any).name as string
+          const localName = (spec.local as any)?.name || importedName
 
-          const name = spec.imported.name as string
-          return !removedComponents.includes(name)
+          if (colorModeFeatures.includes(importedName)) {
+            removedSpecifiers.push({ imported: importedName, local: localName })
+            return false // Remove from @chakra-ui/react
+          }
+
+          const removedComponents = ["ColorModeScript"]
+          return !removedComponents.includes(importedName)
         }
         return true
       })
 
-      if (specifiers && specifiers.length > 0) {
+      if (specifiers && specifiers.length !== path.node.specifiers?.length) {
         path.node.specifiers = specifiers
         hasChanges = true
-      } else {
+      }
+
+      if (path.node.specifiers?.length === 0) {
         j(path).remove()
         hasChanges = true
       }
     })
 
-  root
-    .find(j.CallExpression, {
-      callee: { name: "useColorMode" },
-    })
-    .forEach((path) => {
-      // Replace with useTheme
-      path.node.callee = j.identifier("useTheme")
-      needsUseTheme = true
-      hasChanges = true
-
-      // If assigned to a variable, we need to update destructuring
-      const parent = path.parent
-      if (parent.node.type === "VariableDeclarator") {
-        const id = parent.node.id
-        if (id.type === "ObjectPattern") {
-          // Map old properties to new ones
-          id.properties = id.properties.map((prop: any) => {
-            if (prop.type === "Property" && prop.key.type === "Identifier") {
-              if (prop.key.name === "colorMode") {
-                return j.property(
-                  "init",
-                  j.identifier("theme"),
-                  j.identifier("theme"),
-                )
-              }
-              if (prop.key.name === "setColorMode") {
-                return j.property(
-                  "init",
-                  j.identifier("setTheme"),
-                  j.identifier("setTheme"),
-                )
-              }
-              if (prop.key.name === "toggleColorMode") {
-                // toggleColorMode needs custom implementation
-                return j.property(
-                  "init",
-                  j.identifier("setTheme"),
-                  j.identifier("setTheme"),
-                )
-              }
-            }
-            return prop
-          })
-        }
-      }
-    })
-
-  root
-    .find(j.CallExpression, {
-      callee: { name: "useColorModeValue" },
-    })
-    .forEach((path) => {
-      const args = path.node.arguments.filter(
-        (arg) => arg.type !== "SpreadElement",
-      )
-
-      if (args.length === 2) {
-        const lightValue = args[0]
-        const darkValue = args[1]
-
-        const replacement = j.conditionalExpression(
-          j.binaryExpression("===", j.identifier("theme"), j.literal("light")),
-          lightValue,
-          darkValue,
-        )
-
-        j(path).replaceWith(replacement)
-        needsUseTheme = true
-        hasChanges = true
-      }
-    })
-
+  // Remove ColorModeScript
   root
     .find(j.JSXElement, {
-      openingElement: {
-        name: { name: "LightMode" },
-      },
-    })
-    .forEach((path) => {
-      const children = path.node.children
-      if (children && children.length > 0) {
-        const div = j.jsxElement(
-          j.jsxOpeningElement(j.jsxIdentifier("div"), [
-            j.jsxAttribute(j.jsxIdentifier("className"), j.literal("light")),
-          ]),
-          j.jsxClosingElement(j.jsxIdentifier("div")),
-          children,
-        )
-        j(path).replaceWith(div)
-        hasChanges = true
-      }
-    })
-
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: { name: "DarkMode" },
-      },
-    })
-    .forEach((path) => {
-      const children = path.node.children
-      if (children && children.length > 0) {
-        const div = j.jsxElement(
-          j.jsxOpeningElement(j.jsxIdentifier("div"), [
-            j.jsxAttribute(j.jsxIdentifier("className"), j.literal("dark")),
-          ]),
-          j.jsxClosingElement(j.jsxIdentifier("div")),
-          children,
-        )
-        j(path).replaceWith(div)
-        hasChanges = true
-      }
-    })
-
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: { name: "ColorModeScript" },
-      },
+      openingElement: { name: { name: "ColorModeScript" } },
     })
     .forEach((path) => {
       j(path).remove()
       hasChanges = true
     })
 
-  if (needsUseTheme) {
-    root
-      .find(j.ImportDeclaration, {
-        source: { value: "next-themes" },
-      })
-      .forEach(() => {
-        hasNextThemesImport = true
-      })
+  if (removedSpecifiers.length > 0) {
+    const { componentsDir } = getProjectInfo(process.cwd())
+    const componentName = "color-mode"
 
-    if (!hasNextThemesImport) {
-      const newImport = j.importDeclaration(
-        [j.importSpecifier(j.identifier("useTheme"))],
-        j.literal("next-themes"),
-      )
+    // Check if snippet exists (simple check for .tsx, .jsx, .ts, .js)
+    const extensions = [".tsx", ".jsx", ".ts", ".js"]
+    const snippetExists = extensions.some((ext) =>
+      fs.existsSync(path.join(componentsDir, `${componentName}${ext}`)),
+    )
 
-      const firstImport = root.find(j.ImportDeclaration).at(0)
-      if (firstImport.length > 0) {
-        firstImport.insertAfter(newImport)
-      } else {
-        root.get().node.program.body.unshift(newImport)
+    if (!snippetExists) {
+      try {
+        // Install snippet
+        execSync("npx @chakra-ui/cli snippet add color-mode --yes", {
+          stdio: "inherit",
+        })
+      } catch (e) {
+        console.error("Failed to install color-mode snippet", e)
       }
-      hasChanges = true
     }
+
+    // Add import from snippet
+    const snippetPath = `${componentsDir}/color-mode`
+    let relativeImportPath = path.relative(
+      path.dirname(file.path),
+      path.join(process.cwd(), snippetPath),
+    )
+    if (!relativeImportPath.startsWith(".")) {
+      relativeImportPath = "./" + relativeImportPath
+    }
+    relativeImportPath = relativeImportPath.split(path.sep).join("/")
+
+    const newImport = j.importDeclaration(
+      removedSpecifiers.map((s) =>
+        j.importSpecifier(j.identifier(s.imported), j.identifier(s.local)),
+      ),
+      j.literal(relativeImportPath),
+    )
+
+    const firstImport = root.find(j.ImportDeclaration).at(0)
+    if (firstImport.length > 0) {
+      firstImport.insertAfter(newImport)
+    } else {
+      root.get().node.program.body.unshift(newImport)
+    }
+    hasChanges = true
   }
 
   return hasChanges ? root.toSource() : file.source

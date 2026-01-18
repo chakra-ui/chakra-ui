@@ -127,6 +127,5 @@ const REMOVED_HOOKS: Record<string, string> = {
   useSafeLayoutEffect: "useLayoutEffect",
   useTheme: "Import from system or use useChakraContext",
   useTimeout: "react-use: useTimeout",
-  useToken: "Import tokens from theme system",
   useUpdateEffect: "react-use: useUpdateEffect",
 }

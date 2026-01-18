@@ -42,13 +42,28 @@ export default function transformer(
 
     let leftIconValue: any = null
     let rightIconValue: any = null
+    let hasUnstyledVariant = false
 
-    // Transform attributes
     const newAttributes = attributes.flatMap((attr) => {
       if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
         return attr
 
       switch (attr.name.name) {
+        case "variant":
+          if (
+            attr.value?.type === "Literal" &&
+            attr.value.value === "unstyled"
+          ) {
+            hasUnstyledVariant = true
+            return []
+          } else if (
+            attr.value?.type === "StringLiteral" &&
+            attr.value.value === "unstyled"
+          ) {
+            hasUnstyledVariant = true
+            return [] // remove variant prop
+          }
+          return attr
         case "isActive":
           return j.jsxAttribute(j.jsxIdentifier("data-active"), null)
         case "isDisabled":
@@ -69,6 +84,10 @@ export default function transformer(
           return attr
       }
     })
+
+    if (hasUnstyledVariant) {
+      newAttributes.push(j.jsxAttribute(j.jsxIdentifier("unstyled"), null))
+    }
 
     path.node.attributes = newAttributes
 
