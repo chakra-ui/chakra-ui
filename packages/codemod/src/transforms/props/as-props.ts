@@ -57,6 +57,7 @@ function shouldGoToChild(
   tagName: string | null,
   isComponent: boolean,
   isElementType: boolean,
+  _isDOM: boolean,
 ): boolean {
   // Always forward these to child
   if (ALWAYS_CHILD_PROPS.has(propName)) return true
@@ -256,7 +257,9 @@ export default function transformer(
       }
 
       // Determine where this prop should go
-      if (shouldGoToChild(name, tagNameStr, isComponent, isElementType)) {
+      if (
+        shouldGoToChild(name, tagNameStr, isComponent, isElementType, isDOM)
+      ) {
         childAttributes.push(attr)
       } else {
         parentAttributes.push(attr)
