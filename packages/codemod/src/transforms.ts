@@ -12,7 +12,7 @@ export interface TransformInfo {
 }
 
 const TRANSFORM_ROOT = path.join(__dirname, "transforms")
-const TRANSFORM_DIRS = ["removed", "theme", "props", "components", "types"]
+const TRANSFORM_DIRS = ["removed", "theme", "components", "props", "types"]
 
 function toTitle(input: string) {
   const items = input.split("_")
