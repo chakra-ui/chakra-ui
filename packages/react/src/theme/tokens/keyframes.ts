@@ -168,4 +168,12 @@ export const keyframes = defineKeyframes({
     from: { scale: "1" },
     to: { scale: "0.95" },
   },
+  marqueeX: {
+    from: { transform: "translateX(10%)" },
+    to: { transform: "translateX(var(--marquee-translate))" },
+  },
+  marqueeY: {
+    from: { transform: "translateY(0%)" },
+    to: { transform: "translateY(var(--marquee-translate))" },
+  },
 })

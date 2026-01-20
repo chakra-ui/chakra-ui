@@ -23,6 +23,7 @@ import { fileUploadSlotRecipe } from "./recipes/file-upload"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
 import { listboxSlotRecipe } from "./recipes/listbox"
+import { marqueeSlotRecipe } from "./recipes/marquee"
 import { menuSlotRecipe } from "./recipes/menu"
 import { nativeSelectSlotRecipe } from "./recipes/native-select"
 import { numberInputSlotRecipe } from "./recipes/number-input"
@@ -106,4 +107,5 @@ export const slotRecipes = {
   colorPicker: colorPickerSlotRecipe,
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
+  marquee: marqueeSlotRecipe,
 }
