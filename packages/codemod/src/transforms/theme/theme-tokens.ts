@@ -31,95 +31,198 @@ export default function transformer(file: FileInfo, _api: API) {
     }
   })
 
-  function wrapValue(path: any) {
-    if (!path.value || transformedNodes.has(path.value)) return
-    const node = path.value
-    if (isObject(node)) {
-      const hasValue = node.properties.some((p: any) => p.key?.name === "value")
-      if (hasValue) return
+  function shouldNotWrapInValue(keyName: string, ancestors: string[]): boolean {
+    // textStyles should never use {value} syntax
+    if (ancestors.includes("textStyles")) return true
+
+    // Responsive values (base, md, lg, etc.) inside textStyles
+    const responsiveKeys = ["base", "sm", "md", "lg", "xl", "2xl"]
+    if (responsiveKeys.includes(keyName) && ancestors.includes("textStyles")) {
+      return true
     }
-    path.replace(
-      j.objectExpression([j.property("init", j.identifier("value"), node)]),
-    )
-    transformedNodes.add(path.value)
+
+    // Keys that should be skipped from transformation entirely
+    const skipKeys = [
+      "mdx",
+      "layerStyles",
+      "components",
+      "variants",
+      "baseStyle",
+    ]
+    if (skipKeys.includes(keyName)) return true
+
+    return false
   }
 
-  function extractGlobalStyles(objPath: any): any {
-    if (!objPath || !isObject(objPath.value)) return null
+  function transformThemeObject(objNode: any, ancestors: string[] = []) {
+    if (!isObject(objNode)) return
 
-    const properties = objPath.value.properties
-    const stylesIndex = properties.findIndex(
-      (p: any) => p.key?.name === "styles",
-    )
+    objNode.properties.forEach((prop: any) => {
+      const keyName = prop.key?.name
+      const value = prop.value
 
-    if (stylesIndex === -1) return null
+      // Skip certain keys entirely
+      const skipKeys = [
+        "styles",
+        "components",
+        "variants",
+        "baseStyle",
+        "mdx",
+        "layerStyles",
+      ]
+      if (skipKeys.includes(keyName)) return
 
-    const stylesProp = properties[stylesIndex]
-    if (!isObject(stylesProp.value)) return null
+      const currentAncestors = [...ancestors, keyName]
 
-    const globalProp = stylesProp.value.properties.find(
-      (p: any) => p.key?.name === "global",
-    )
-    if (!globalProp) return null
+      if (isObject(value)) {
+        const isLeafMap = value.properties.every((p: any) => !isObject(p.value))
 
-    // Remove styles property from the object
-    properties.splice(stylesIndex, 1)
-
-    return globalProp.value
-  }
-
-  function transformThemeObject(objPath: any) {
-    if (!objPath || !isObject(objPath.value)) return
-    objPath.get("properties").each((prop: any) => {
-      const keyName = prop.value.key?.name
-      const valuePath = prop.get("value")
-      if (["styles", "components", "variants", "baseStyle"].includes(keyName))
-        return
-      if (isObject(valuePath.value)) {
-        const isLeafMap = valuePath.value.properties.every(
-          (p: any) => !isObject(p.value),
-        )
         if (isLeafMap) {
-          valuePath.get("properties").each((childProp: any) => {
-            wrapValue(childProp.get("value"))
+          value.properties.forEach((childProp: any) => {
+            const childKey = childProp.key?.name
+
+            // Don't wrap responsive values in textStyles or other excluded cases
+            if (!shouldNotWrapInValue(childKey, currentAncestors)) {
+              if (childProp.value && !transformedNodes.has(childProp.value)) {
+                const node = childProp.value
+                const hasValue =
+                  isObject(node) &&
+                  node.properties.some((p: any) => p.key?.name === "value")
+                if (!hasValue) {
+                  childProp.value = j.objectExpression([
+                    j.property("init", j.identifier("value"), node),
+                  ])
+                  transformedNodes.add(childProp.value)
+                }
+              }
+            }
           })
         } else {
-          transformThemeObject(valuePath)
+          transformThemeObject(value, currentAncestors)
         }
-      } else if (isIdentifier(valuePath.value)) {
-        const varName = valuePath.value.name
+      } else if (isIdentifier(value)) {
+        const varName = value.name
         root
           .find(j.VariableDeclarator, { id: { name: varName } })
           .forEach((decl) => {
-            transformThemeObject(decl.get("init"))
+            transformThemeObject(decl.node.init, currentAncestors)
           })
       }
     })
+  }
+
+  // Transform semantic tokens to use nested value syntax
+  function transformSemanticTokens(semanticTokensNode: any) {
+    if (!isObject(semanticTokensNode)) return
+
+    function processSemanticToken(prop: any) {
+      const value = prop.value
+      if (!value) return
+
+      if (!isObject(value)) {
+        // Handle Literal values: 'teal.500' -> { value: 'teal.500' }
+        prop.value = j.objectExpression([
+          j.property("init", j.identifier("value"), value),
+        ])
+        return
+      }
+
+      const properties = value.properties
+      const hasConditions = properties.some(
+        (p: any) => p.key?.name === "default" || p.key?.name?.startsWith("_"),
+      )
+
+      if (hasConditions) {
+        // Transform: { default: 'teal.500', _dark: 'teal.300' }
+        // To: { value: { base: 'teal.500', _dark: 'teal.300' } }
+        const transformedProps = properties.map((p: any) => {
+          const condKey = p.key.name
+          const newKey = condKey === "default" ? "base" : condKey
+          return j.property("init", j.identifier(newKey), p.value)
+        })
+
+        prop.value = j.objectExpression([
+          j.property(
+            "init",
+            j.identifier("value"),
+            j.objectExpression(transformedProps),
+          ),
+        ])
+      } else {
+        // Nested object, recurse
+        properties.forEach((childProp: any) => {
+          processSemanticToken(childProp)
+        })
+      }
+    }
+
+    semanticTokensNode.properties.forEach((categoryProp: any) => {
+      const categoryValue = categoryProp.value
+      if (isObject(categoryValue)) {
+        categoryValue.properties.forEach((tokenProp: any) => {
+          processSemanticToken(tokenProp)
+        })
+      }
+    })
+  }
+
+  // Fix nested selectors in global styles by adding & prefix
+  function fixGlobalStyleSelectors(globalStylesNode: any) {
+    if (!globalStylesNode || !isObject(globalStylesNode)) return
+
+    function processStyleObject(node: any, depth: number = 0) {
+      if (!isObject(node)) return
+
+      node.properties.forEach((prop: any) => {
+        if (prop.type === "Property" && prop.key?.type === "Literal") {
+          const key = prop.key.value as string
+
+          // Only fix selectors at depth > 0 (nested selectors)
+          if (depth > 0) {
+            // Check if it's a class/element selector that doesn't already have &
+            const needsAmpersand =
+              (key.startsWith(".") || /^[a-z]/i.test(key)) &&
+              !key.startsWith("& ") &&
+              !key.startsWith("&:") &&
+              !key.startsWith("&[") &&
+              !key.startsWith("&.") &&
+              !key.startsWith("*") &&
+              !key.startsWith(":") && // pseudo-selectors like :hover don't need &
+              !key.includes(",") // compound selectors like 'html, body' don't need &
+
+            if (needsAmpersand) {
+              prop.key.value = `& ${key}`
+            }
+          }
+        }
+
+        // Recursively process nested objects with increased depth
+        if (isObject(prop.value)) {
+          processStyleObject(prop.value, depth + 1)
+        }
+      })
+    }
+
+    processStyleObject(globalStylesNode)
   }
 
   // First pass: Find all extendTheme calls and track variable names
   root
     .find(j.CallExpression, { callee: { name: "extendTheme" } })
     .forEach((path) => {
-      // Check if this extendTheme call is assigned to a variable or exported
       const parent = path.parent
 
       if (
         parent.value.type === "VariableDeclarator" &&
         parent.value.id.type === "Identifier"
       ) {
-        // const theme = extendTheme(...)
         const varName = parent.value.id.name
         themeVariableNames.add(varName)
       } else if (parent.value.type === "ExportDefaultDeclaration") {
-        // export default extendTheme(...)
-        // In this case, track imports of this file in other files would use their import name
-        // For now, we'll track 'theme' and 'system' as common names
         themeVariableNames.add("theme")
         themeVariableNames.add("system")
       }
 
-      // Also check if the argument is a variable reference
       const argPath = path.get("arguments", 0)
       if (isIdentifier(argPath.value)) {
         const themeVarName = argPath.value.name
@@ -135,43 +238,173 @@ export default function transformer(file: FileInfo, _api: API) {
       let targetObjectPath = argPath
       let themeVarName: string | null = null
 
+      // Handle case where argument is a variable reference
       if (isIdentifier(argPath.value)) {
         themeVarName = argPath.value.name
-        root
-          .find(j.VariableDeclarator, { id: { name: themeVarName as string } })
-          .forEach((decl) => {
+        const declPath = root.find(j.VariableDeclarator, {
+          id: { name: themeVarName as string },
+        })
+
+        if (declPath.length > 0) {
+          declPath.forEach((decl) => {
             targetObjectPath = decl.get("init")
-            // Remove the theme variable declaration
             j(decl.parent).remove()
           })
+        }
       }
 
-      // Extract global styles before transformation
-      const globalStyles = extractGlobalStyles(targetObjectPath)
+      // Ensure we have an object to work with
+      if (!isObject(targetObjectPath.value)) {
+        return
+      }
 
-      // Transform the rest of the theme object
-      transformThemeObject(targetObjectPath)
+      const properties = targetObjectPath.value.properties as any[]
 
-      // Build the createSystem config object
-      const configProperties = []
+      // 1. Extract and fix global styles
+      const stylesIndex = properties.findIndex((p) => p.key?.name === "styles")
+      let globalStyles = null
+      if (stylesIndex !== -1) {
+        const stylesProp = properties[stylesIndex]
+        if (isObject(stylesProp.value)) {
+          const globalProp = stylesProp.value.properties.find(
+            (p: any) => p.key?.name === "global",
+          )
+          if (globalProp) {
+            globalStyles = globalProp.value
+            fixGlobalStyleSelectors(globalStyles)
+          }
+        }
+        properties.splice(stylesIndex, 1)
+      }
 
-      // Add globalCss if we have global styles
+      // 2. Extract textStyles
+      const textStylesIndex = properties.findIndex(
+        (p) => p.key?.name === "textStyles",
+      )
+      let textStyles = null
+      if (textStylesIndex !== -1) {
+        textStyles = properties[textStylesIndex].value
+        properties.splice(textStylesIndex, 1)
+      }
+
+      // 3. Extract layerStyles
+      const layerStylesIndex = properties.findIndex(
+        (p) => p.key?.name === "layerStyles",
+      )
+      let layerStyles = null
+      if (layerStylesIndex !== -1) {
+        layerStyles = properties[layerStylesIndex].value
+        properties.splice(layerStylesIndex, 1)
+      }
+
+      // 4. Extract and transform semanticTokens
+      const semanticTokensIndex = properties.findIndex(
+        (p) => p.key?.name === "semanticTokens",
+      )
+      let semanticTokens = null
+      if (semanticTokensIndex !== -1) {
+        semanticTokens = properties[semanticTokensIndex].value
+        // Transform semantic tokens
+        transformSemanticTokens(semanticTokens)
+        properties.splice(semanticTokensIndex, 1)
+      }
+
+      // 5. Remove config
+      const configIndex = properties.findIndex((p) => p.key?.name === "config")
+      if (configIndex !== -1) {
+        properties.splice(configIndex, 1)
+      }
+
+      // 6. Identify regular tokens vs custom keys
+      const standardTokenKeys = [
+        "colors",
+        "space",
+        "fonts",
+        "fontSizes",
+        "fontWeights",
+        "lineHeights",
+        "letterSpacings",
+        "sizes",
+        "borders",
+        "borderStyles",
+        "borderWidths",
+        "radii",
+        "shadows",
+        "zIndices",
+        "breakpoints",
+      ]
+
+      const tokenProperties: any[] = []
+      const customProperties: any[] = []
+
+      properties.forEach((prop) => {
+        const name = prop.key?.name
+        if (standardTokenKeys.includes(name)) {
+          tokenProperties.push(prop)
+        } else {
+          customProperties.push(prop)
+        }
+      })
+
+      // Transform regular tokens
+      if (tokenProperties.length > 0) {
+        const tempObj = j.objectExpression(tokenProperties)
+        transformThemeObject(tempObj)
+      }
+
+      // 7. Build the createSystem config object
+      const themeProperties: any[] = []
+
+      if (tokenProperties.length > 0) {
+        themeProperties.push(
+          j.property(
+            "init",
+            j.identifier("tokens"),
+            j.objectExpression(tokenProperties),
+          ),
+        )
+      }
+
+      if (semanticTokens) {
+        themeProperties.push(
+          j.property("init", j.identifier("semanticTokens"), semanticTokens),
+        )
+      }
+
+      if (textStyles) {
+        themeProperties.push(
+          j.property("init", j.identifier("textStyles"), textStyles),
+        )
+      }
+
+      if (layerStyles) {
+        themeProperties.push(
+          j.property("init", j.identifier("layerStyles"), layerStyles),
+        )
+      }
+
+      const configProperties: any[] = []
+
       if (globalStyles) {
         configProperties.push(
           j.property("init", j.identifier("globalCss"), globalStyles),
         )
       }
 
-      // Add theme.tokens
-      configProperties.push(
-        j.property(
-          "init",
-          j.identifier("theme"),
-          j.objectExpression([
-            j.property("init", j.identifier("tokens"), targetObjectPath.value),
-          ]),
-        ),
-      )
+      if (themeProperties.length > 0) {
+        configProperties.push(
+          j.property(
+            "init",
+            j.identifier("theme"),
+            j.objectExpression(themeProperties),
+          ),
+        )
+      }
+
+      // Add custom properties (like mdx) to the top level
+      customProperties.forEach((prop) => {
+        configProperties.push(prop)
+      })
 
       path.replace(
         j.callExpression(j.identifier("createSystem"), [
@@ -214,10 +447,8 @@ export default function transformer(file: FileInfo, _api: API) {
   }
 
   // Track default imports that might be theme/system
-  // Look for imports where the source exports a createSystem call
   root.find(j.ImportDefaultSpecifier).forEach((path) => {
     const localName = path.value.local?.name
-    // Add common theme variable names
     if (localName === "theme" || localName === "system") {
       themeVariableNames.add(localName)
     }
@@ -227,7 +458,6 @@ export default function transformer(file: FileInfo, _api: API) {
   root.find(j.VariableDeclarator).forEach((path) => {
     if (path.value.id.type === "Identifier") {
       const varName = path.value.id.name
-      // If the variable is named 'theme' or 'system', track it
       if (varName === "theme" || varName === "system") {
         themeVariableNames.add(varName)
       }
@@ -236,7 +466,6 @@ export default function transformer(file: FileInfo, _api: API) {
 
   // Rename theme variables to system
   root.find(j.VariableDeclarator, { id: { name: "theme" } }).forEach((path) => {
-    // Check if this is a createSystem call (already transformed)
     const init = path.value.init
     const isCreateSystemCall =
       init?.type === "CallExpression" &&
@@ -244,7 +473,6 @@ export default function transformer(file: FileInfo, _api: API) {
       init.callee.name === "createSystem"
 
     if (!isCreateSystemCall) {
-      // Only rename if it's not the createSystem result
       return
     }
 
@@ -254,7 +482,7 @@ export default function transformer(file: FileInfo, _api: API) {
     path.get("id").replace(j.identifier(newName))
   })
 
-  // Update standalone 'theme' identifiers to 'system' (but not in member expressions or properties)
+  // Update standalone 'theme' identifiers to 'system'
   root.find(j.Identifier, { name: "theme" }).forEach((path) => {
     const parent = path.parent.node
     if (parent.type !== "Property" || parent.value === path.node) {
@@ -299,7 +527,6 @@ export default function transformer(file: FileInfo, _api: API) {
       } else if (current.property.type === "Literal") {
         parts.unshift(String(current.property.value))
       } else if (current.property.type === "Identifier" && current.computed) {
-        // Dynamic key, can't transform statically
         return []
       }
       current = current.object
@@ -324,21 +551,16 @@ export default function transformer(file: FileInfo, _api: API) {
     const node = path.node
     const rootName = getRootIdentifier(node)
 
-    // Check if this is accessing a tracked theme variable
     if (!rootName || !themeVariableNames.has(rootName)) {
       return
     }
 
-    // Build the full token path
     const parts = buildTokenPath(node)
     if (parts.length === 0) return
 
-    // Check if this looks like a token access (e.g., colors.gray.200, fontSizes.xl)
-    // Token accesses typically have at least 2 parts
     if (parts.length >= 2) {
       const tokenPath = parts.join(".")
 
-      // Replace with rootName.token("path")
       path.replace(
         j.callExpression(
           j.memberExpression(j.identifier(rootName), j.identifier("token")),
