@@ -128,17 +128,41 @@ export default function transformer(file: FileInfo, _api: API) {
       }
 
       const properties = value.properties
-      const hasConditions = properties.some(
-        (p: any) => p.key?.name === "default" || p.key?.name?.startsWith("_"),
+      // Check if it's already wrapped in { value: ... }
+      const hasValue = properties.some(
+        (p: any) =>
+          (p.key?.type === "Identifier" && p.key?.name === "value") ||
+          (p.key?.type === "Literal" && p.key?.value === "value"),
       )
+
+      if (hasValue) return
+
+      const hasConditions = properties.some((p: any) => {
+        const name = p.key?.name || p.key?.value
+        return (
+          name === "default" ||
+          (typeof name === "string" && name.startsWith("_"))
+        )
+      })
 
       if (hasConditions) {
         // Transform: { default: 'teal.500', _dark: 'teal.300' }
         // To: { value: { base: 'teal.500', _dark: 'teal.300' } }
         const transformedProps = properties.map((p: any) => {
-          const condKey = p.key.name
+          const condKey = p.key?.name || p.key?.value
           const newKey = condKey === "default" ? "base" : condKey
-          return j.property("init", j.identifier(newKey), p.value)
+
+          let val = p.value
+          // Flatten if already wrapped in { value: ... }
+          if (isObject(val) && val.properties.length === 1) {
+            const subProp = val.properties[0]
+            const subKey = subProp.key?.name || subProp.key?.value
+            if (subKey === "value") {
+              val = subProp.value
+            }
+          }
+
+          return j.property("init", j.identifier(newKey), val)
         })
 
         prop.value = j.objectExpression([
@@ -174,24 +198,21 @@ export default function transformer(file: FileInfo, _api: API) {
       if (!isObject(node)) return
 
       node.properties.forEach((prop: any) => {
-        if (prop.type === "Property" && prop.key?.type === "Literal") {
-          const key = prop.key.value as string
+        const key = prop.key?.name || prop.key?.value
 
-          // Only fix selectors at depth > 0 (nested selectors)
+        if (typeof key === "string" && isObject(prop.value)) {
+          // Only fix selectors at depth > 0 (nested inside an element selector like 'body')
           if (depth > 0) {
             // Check if it's a class/element selector that doesn't already have &
             const needsAmpersand =
               (key.startsWith(".") || /^[a-z]/i.test(key)) &&
-              !key.startsWith("& ") &&
-              !key.startsWith("&:") &&
-              !key.startsWith("&[") &&
-              !key.startsWith("&.") &&
+              !key.startsWith("&") &&
               !key.startsWith("*") &&
               !key.startsWith(":") && // pseudo-selectors like :hover don't need &
               !key.includes(",") // compound selectors like 'html, body' don't need &
 
             if (needsAmpersand) {
-              prop.key.value = `& ${key}`
+              prop.key = j.literal(`& ${key}`)
             }
           }
         }

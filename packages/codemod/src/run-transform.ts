@@ -24,12 +24,20 @@ export async function runTransform(
   targetPath: string,
   options: RunTransformOptions = {},
 ) {
-  const {
-    dry = false,
-    print = false,
-    upgrade = false,
-    ignorePattern = ["node_modules"],
-  } = options
+  const { dry = false, print = false, upgrade = false } = options
+  const defaultIgnore = [
+    "node_modules",
+    ".git",
+    ".next",
+    ".turbo",
+    "dist",
+    "build",
+    "out",
+    "coverage",
+  ]
+  const ignorePattern = [
+    ...new Set([...defaultIgnore, ...(options.ignorePattern || [])]),
+  ]
   const transform = transforms[transformName]
 
   if (!transform)
