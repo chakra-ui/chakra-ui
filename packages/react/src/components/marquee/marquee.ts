@@ -21,7 +21,7 @@ const {
 
 export { useMarqueeStyles }
 
-////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 export interface MarqueeRootProviderBaseProps
   extends Assign<ArkMarquee.RootProviderBaseProps, SlotRecipeProps<"marquee">>,
@@ -43,6 +43,7 @@ export interface MarqueeRootBaseProps
 
 export interface MarqueeRootProps extends MarqueeRootBaseProps {
   children: React.ReactNode
+  style?: React.CSSProperties
 }
 
 export const MarqueeRoot = withProvider<HTMLDivElement, MarqueeRootProps>(
@@ -116,7 +117,9 @@ export const MarqueeItem = withContext<HTMLDivElement, MarqueeItemProps>(
 
 export interface MarqueeEdgeProps
   extends HTMLChakraProps<"div">,
-    Assign<ArkMarquee.EdgeBaseProps, UnstyledProp> {}
+    Assign<ArkMarquee.EdgeBaseProps, UnstyledProp> {
+  side: "start" | "end" | "top" | "bottom"
+}
 
 export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
   ArkMarquee.Edge,
@@ -125,10 +128,41 @@ export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export { useMarquee, useMarqueeContext } from "@ark-ui/react/marquee"
+export interface MarqueeHeaderProps
+  extends HTMLChakraProps<"header">,
+    UnstyledProp {}
 
-export type {
-  UseMarqueeProps,
-  UseMarqueeReturn,
-  UseMarqueeContext,
-} from "@ark-ui/react/marquee"
+export const MarqueeHeader = withContext<HTMLElement, MarqueeHeaderProps>(
+  "header",
+  "header",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+export interface MarqueeLabelProps
+  extends HTMLChakraProps<"label">,
+    UnstyledProp {}
+
+export const MarqueeLabel = withContext<HTMLLabelElement, MarqueeLabelProps>(
+  "label",
+  "label",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface MarqueeDescriptionProps
+  extends HTMLChakraProps<"p">,
+    UnstyledProp {}
+
+export const MarqueeDescription = withContext<
+  HTMLParagraphElement,
+  MarqueeDescriptionProps
+>("p", "description")
+
+export interface MarqueeControlProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const MarqueeControl = withContext<HTMLDivElement, MarqueeControlProps>(
+  "div",
+  "control",
+)

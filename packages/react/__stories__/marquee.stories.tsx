@@ -20,4 +20,3 @@ export { MarqueePauseOnInteraction as PauseOnInteraction } from "compositions/ex
 export { MarqueeProgrammaticControl as ProgrammaticControl } from "compositions/examples/marquee-programatic-control"
 export { MarqueeFiniteLoops as FiniteLoops } from "compositions/examples/marquee-finite-loop"
 export { MarqueeWithEdges as WithEdges } from "compositions/examples/marquee-edge-gradient"
-export { MarqueeBranding as Branding } from "compositions/examples/marquee-branding"

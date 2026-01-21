@@ -7,12 +7,20 @@ export const marqueeSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-      // width: "100%",
-      // maxWidth: "100%",
+      width: "100%",
+      maxWidth: "100%",
+      "&[data-paused]": {
+        animationPlayState: "paused !important",
+        "& *": {
+          animationPlayState: "paused !important",
+        },
+      },
     },
     viewport: {
       overflow: "hidden",
       display: "flex",
+      width: "100%",
+      height: "100%",
     },
     content: {
       display: "flex",
@@ -25,77 +33,85 @@ export const marqueeSlotRecipe = defineSlotRecipe({
       "@media (prefers-reduced-motion: reduce)": {
         animation: "none !important",
       },
+      _motionReduce: {
+        animation: "none !important",
+      },
+      "&[data-side='start'], &[data-side='end']": {
+        animationName: "marqueeX",
+      },
+      "&[data-side='top'], &[data-side='bottom']": {
+        animationName: "marqueeY",
+      },
+      "&[data-reverse]": {
+        animationDirection: "reverse",
+      },
+      "&[data-orientation='horizontal']": {
+        flexDirection: "row",
+      },
+      "&[data-orientation='vertical']": {
+        flexDirection: "column",
+      },
     },
     edge: {
       position: "absolute",
       zIndex: 10,
       pointerEvents: "none",
+      "&[data-side='start']": {
+        width: "20%",
+        insetY: "0",
+        insetInlineStart: "0",
+        background:
+          "linear-gradient(to right, var(--chakra-colors-bg, white), transparent)",
+        _rtl: {
+          background:
+            "linear-gradient(to left, var(--chakra-colors-bg, white), transparent)",
+        },
+      },
+      "&[data-side='end']": {
+        width: "20%",
+        insetY: "0",
+        insetInlineEnd: "0",
+        background:
+          "linear-gradient(to left, var(--chakra-colors-bg, white), transparent)",
+        _rtl: {
+          background:
+            "linear-gradient(to right, var(--chakra-colors-bg, white), transparent)",
+        },
+      },
+      "&[data-side='top']": {
+        height: "20%",
+        insetX: "0",
+        top: "0",
+        background:
+          "linear-gradient(to bottom, var(--chakra-colors-bg, white), transparent)",
+      },
+      "&[data-side='bottom']": {
+        height: "20%",
+        insetX: "0",
+        bottom: "0",
+        background:
+          "linear-gradient(to top, var(--chakra-colors-bg, white), transparent)",
+      },
     },
   },
   variants: {
-    orientation: {
-      horizontal: {
-        content: { flexDirection: "row" },
-      },
-      vertical: {
-        content: { flexDirection: "column" },
-      },
-    },
-    side: {
-      start: {
-        content: { animationName: "marqueeX" },
-        edge: {
-          width: "10%",
-          background: "linear-gradient(to right, white, transparent)",
-          _rtl: {
-            background: "linear-gradient(to left, white, transparent)",
+    pauseOnInteraction: {
+      true: {
+        content: {
+          _hover: {
+            animationPlayState: "paused",
+          },
+          _focus: {
+            animationPlayState: "paused",
+          },
+          _focusVisible: {
+            animationPlayState: "paused",
           },
         },
       },
-      end: {
-        content: { animationName: "marqueeX" },
-        edge: {
-          width: "10%",
-          background: "linear-gradient(to left, white, transparent)",
-          _rtl: {
-            background: "linear-gradient(to right, white, transparent)",
-          },
-        },
-      },
-
-      top: {
-        content: { animationName: "marqueeY" },
-        edge: {
-          height: "20%",
-          background: "linear-gradient(to bottom, white, transparent)",
-        },
-      },
-      bottom: {
-        content: { animationName: "marqueeY" },
-        edge: {
-          height: "20%",
-          background: "linear-gradient(to top, white, transparent)",
-        },
-      },
     },
-    reverse: {
-      true: {
-        content: { animationDirection: "reverse" },
-      },
-    },
-    paused: {
-      true: {
-        // CSS applies this to Root and Children (*).
-        // Applying to both here ensures coverage.
-        root: { animationPlayState: "paused !important" },
-        content: { animationPlayState: "paused !important" },
-      },
-    },
-    // 'rtl' variant removed in favor of _rtl selector in 'side' variant
-    // to match [dir='rtl'] CSS logic.
   },
   defaultVariants: {
-    orientation: "horizontal",
-    side: "start",
+    pauseOnInteraction: false,
   },
 })
