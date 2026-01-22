@@ -15,8 +15,14 @@ import {
   IoLogoVimeo,
   IoLogoVue,
 } from "react-icons/io5"
+import type { IconType } from "react-icons/lib"
 
-const items = [
+interface Item {
+  icon: IconType
+  color: string
+}
+
+const items: Item[] = [
   { icon: IoLogoBehance, color: "#1769ff" },
   { icon: IoLogoFigma, color: "#F24E1E" },
   { icon: IoLogoTwitter, color: "#1da1f2" },
@@ -36,27 +42,23 @@ const items = [
 export const MarqueeMultiple = () => {
   return (
     <Stack gap="8" py="8">
-      <MarqueeRow items={items.slice(0, 7)} />
-      <MarqueeRow items={items.slice(7)} reverse />
+      <MarqueeRow items={items} />
+      <MarqueeRow items={items} reverse />
     </Stack>
   )
 }
 
-const MarqueeRow = ({
-  items,
-  reverse = false,
-}: {
-  items: any[]
+interface MarqueeRowProps {
+  items: Item[]
   reverse?: boolean
-}) => {
+}
+
+const MarqueeRow = (props: MarqueeRowProps) => {
+  const { items, reverse = false } = props
   return (
-    <Marquee.Root
-      style={reverse ? ({ "--marquee-direction": "reverse" } as any) : {}}
-    >
+    <Marquee.Root reverse={reverse}>
       <Marquee.Viewport>
-        <Marquee.Content
-          style={{ animationDirection: reverse ? "reverse" : "normal" }}
-        >
+        <Marquee.Content>
           {items.map((item, i) => (
             <Marquee.Item key={i} style={{ padding: "0 2rem" }}>
               <item.icon size="3rem" color={item.color} />

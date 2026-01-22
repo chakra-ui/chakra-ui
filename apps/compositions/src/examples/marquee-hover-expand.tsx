@@ -40,16 +40,22 @@ export const MarqueeHoverExpand = () => {
         <Marquee.Viewport>
           <Marquee.Content>
             {logos.map((src, i) => (
-              <Marquee.Item key={i} style={{ padding: "2rem" }}>
+              <Marquee.Item
+                key={i}
+                height={"140px"}
+                display={"flex"}
+                alignItems="center"
+                justifyContent="center"
+              >
                 <Center
                   boxSize="100px"
                   bg="gray.100"
                   borderRadius="xl"
                   cursor="pointer"
-                  transition="all 0.3s ease"
+                  transition="transform 0.3s ease"
                   _hover={{
                     transform: "scale(1.2)",
-                    boxShadow: "xl",
+                    boxShadow: "sm",
                     zIndex: 10,
                     bg: "white",
                   }}

@@ -94,24 +94,6 @@ export const marqueeSlotRecipe = defineSlotRecipe({
       },
     },
   },
-  variants: {
-    pauseOnInteraction: {
-      true: {
-        content: {
-          _hover: {
-            animationPlayState: "paused",
-          },
-          _focus: {
-            animationPlayState: "paused",
-          },
-          _focusVisible: {
-            animationPlayState: "paused",
-          },
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    pauseOnInteraction: false,
-  },
+  variants: {},
+  defaultVariants: {},
 })

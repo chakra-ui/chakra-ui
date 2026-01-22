@@ -12,7 +12,6 @@ import {
 ////////////////////////////////////////////////////////////////////////////////////
 
 const {
-  withRootProvider,
   withContext,
   useStyles: useMarqueeStyles,
   PropsProvider,
@@ -31,9 +30,10 @@ export interface MarqueeRootProviderProps extends MarqueeRootProviderBaseProps {
   children: React.ReactNode
 }
 
-export const MarqueeRootProvider = withRootProvider<MarqueeRootProviderProps>(
-  ArkMarquee.RootProvider,
-)
+export const MarqueeRootProvider = withProvider<
+  HTMLDivElement,
+  MarqueeRootProviderProps
+>(ArkMarquee.RootProvider, "root")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,10 +41,8 @@ export interface MarqueeRootBaseProps
   extends Assign<ArkMarquee.RootBaseProps, SlotRecipeProps<"marquee">>,
     UnstyledProp {}
 
-export interface MarqueeRootProps extends MarqueeRootBaseProps {
-  children: React.ReactNode
-  style?: React.CSSProperties
-}
+export interface MarqueeRootProps
+  extends HTMLChakraProps<"div", MarqueeRootBaseProps> {}
 
 export const MarqueeRoot = withProvider<HTMLDivElement, MarqueeRootProps>(
   ArkMarquee.Root,
@@ -70,30 +68,8 @@ export const MarqueeContent = withContext<HTMLDivElement, MarqueeContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface MarqueeFooterProps
-  extends HTMLChakraProps<"footer">,
-    UnstyledProp {}
-
-export const MarqueeFooter = withContext<HTMLDivElement, MarqueeFooterProps>(
-  "footer",
-  "footer",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export interface MarqueeBodyProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
-
-export const MarqueeBody = withContext<HTMLDivElement, MarqueeBodyProps>(
-  "div",
-  "body",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface MarqueeViewportProps
-  extends HTMLChakraProps<"div">,
+  extends HTMLChakraProps<"div", ArkMarquee.ViewportBaseProps>,
     UnstyledProp {}
 
 export const MarqueeViewport = withContext<
@@ -104,7 +80,7 @@ export const MarqueeViewport = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MarqueeItemProps
-  extends HTMLChakraProps<"div">,
+  extends HTMLChakraProps<"div", ArkMarquee.ItemBaseProps>,
     UnstyledProp {}
 
 export const MarqueeItem = withContext<HTMLDivElement, MarqueeItemProps>(
@@ -117,9 +93,7 @@ export const MarqueeItem = withContext<HTMLDivElement, MarqueeItemProps>(
 
 export interface MarqueeEdgeProps
   extends HTMLChakraProps<"div">,
-    Assign<ArkMarquee.EdgeBaseProps, UnstyledProp> {
-  side: "start" | "end" | "top" | "bottom"
-}
+    Assign<ArkMarquee.EdgeBaseProps, UnstyledProp> {}
 
 export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
   ArkMarquee.Edge,
@@ -127,36 +101,6 @@ export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-export interface MarqueeHeaderProps
-  extends HTMLChakraProps<"header">,
-    UnstyledProp {}
-
-export const MarqueeHeader = withContext<HTMLElement, MarqueeHeaderProps>(
-  "header",
-  "header",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-export interface MarqueeLabelProps
-  extends HTMLChakraProps<"label">,
-    UnstyledProp {}
-
-export const MarqueeLabel = withContext<HTMLLabelElement, MarqueeLabelProps>(
-  "label",
-  "label",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export interface MarqueeDescriptionProps
-  extends HTMLChakraProps<"p">,
-    UnstyledProp {}
-
-export const MarqueeDescription = withContext<
-  HTMLParagraphElement,
-  MarqueeDescriptionProps
->("p", "description")
 
 export interface MarqueeControlProps
   extends HTMLChakraProps<"div">,

@@ -7,16 +7,16 @@ export const MarqueeVelocity = () => {
       <Text textAlign="center" mb="10" color="gray.500">
         Scroll down quickly to see effect
       </Text>
-      <VelocityRow baseSpeed={1}>Vanilla React Velocity</VelocityRow>
+      <VelocityRow baseSpeed={0.1}>Vanilla React Velocity</VelocityRow>
 
-      <VelocityRow baseSpeed={-1}>Performance Optimized</VelocityRow>
+      <VelocityRow baseSpeed={-0.1}>Performance Optimized</VelocityRow>
     </Box>
   )
 }
 
 const VelocityRow = ({
   children,
-  baseSpeed = 2,
+  baseSpeed = 0.1,
 }: {
   children: string
   baseSpeed: number

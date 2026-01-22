@@ -1,7 +1,5 @@
 export {
-  MarqueeBody,
   MarqueeContent,
-  MarqueeFooter,
   MarqueePropsProvider,
   MarqueeRoot,
   MarqueeRootProvider,
@@ -12,9 +10,7 @@ export {
 } from "./marquee"
 
 export type {
-  MarqueeBodyProps,
   MarqueeContentProps,
-  MarqueeFooterProps,
   MarqueeRootProps,
   MarqueeRootProviderProps,
   MarqueeViewportProps,

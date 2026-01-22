@@ -34,7 +34,7 @@ const items = [
 ]
 
 export const MarqueeVertical = () => (
-  <Marquee.Root side="bottom" style={{ height: "100px" }}>
+  <Marquee.Root side="bottom" height="300px">
     <Marquee.Viewport>
       <Marquee.Content>
         {items.map((item, i) => (

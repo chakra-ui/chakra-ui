@@ -24,5 +24,6 @@ export { MarqueeMultiple as Multiple } from "compositions/examples/marquee-multi
 export { MarqueeHoverExpand as HoverExpand } from "compositions/examples/marquee-hover-expand"
 export { MarqueeParallax as Parallax } from "compositions/examples/marquee-parallax"
 export { MarqueeDiagonal as Diagonal } from "compositions/examples/marquee-diagonal"
-export { MarqueeNewsTicker as NewTickles } from "compositions/examples/marquee-new-tickles"
+export { MarqueeNewsTicker as NewsTicker } from "compositions/examples/marquee-new-tickles"
+export { MarqueeTestimonials as Testimonials } from "compositions/examples/marquee-testimonials"
 export { MarqueeVelocity as Velocity } from "compositions/examples/marquee-velocity"

@@ -1,4 +1,4 @@
-import { Button, Marquee, useMarquee } from "@chakra-ui/react"
+import { Button, HStack, Marquee, useMarquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,
   IoLogoAndroid,
@@ -40,11 +40,7 @@ export const MarqueeProgrammaticControl = () => {
     <>
       <Marquee.RootProvider value={marquee}>
         <Marquee.Viewport>
-          <Marquee.Content
-            style={{
-              animationPlayState: marquee.paused ? "paused" : "running",
-            }}
-          >
+          <Marquee.Content>
             {items.map((item, i) => (
               <Marquee.Item key={i} style={{ padding: "0 2rem" }}>
                 {item.icon && (
@@ -60,22 +56,22 @@ export const MarqueeProgrammaticControl = () => {
         </Marquee.Viewport>
       </Marquee.RootProvider>
 
-      <div style={{ marginTop: "1rem", display: "flex", gap: "0.5rem" }}>
+      <HStack marginTop="1rem">
         <Button
-          colorScheme="red"
-          variant="solid"
+          variant="outline"
+          hidden={marquee.paused}
           onClick={() => marquee.pause()}
         >
           Pause
         </Button>
         <Button
-          colorScheme="green"
-          variant="solid"
+          variant="outline"
+          hidden={!marquee.paused}
           onClick={() => marquee.resume()}
         >
           Resume
         </Button>
-      </div>
+      </HStack>
     </>
   )
 }

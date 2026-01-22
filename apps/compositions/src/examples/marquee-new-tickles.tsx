@@ -11,40 +11,44 @@ const newsItems = [
 
 export const MarqueeNewsTicker = () => {
   return (
-    <Box bg="red.600" color="white" borderY="2px solid" borderColor="red.800">
-      <Flex align="center">
-        <Box
-          bg="red.800"
-          px="4"
-          py="2"
-          fontWeight="bold"
-          zIndex={2}
-          boxShadow="5px 0 10px rgba(0,0,0,0.2)"
-        >
-          LATEST NEWS
-        </Box>
+    <Flex
+      align="center"
+      bg="red.600"
+      color="white"
+      borderY="2px solid"
+      borderColor="red.800"
+    >
+      <Box
+        bg="red.800"
+        px="4"
+        py="2"
+        fontWeight="bold"
+        zIndex={2}
+        boxShadow="5px 0 10px rgba(0,0,0,0.2)"
+      >
+        LATEST NEWS
+      </Box>
 
-        <Marquee.Root style={{ "--marquee-duration": "40s" } as any}>
-          <Marquee.Viewport>
-            <Marquee.Content>
-              {newsItems.map((item, i) => (
-                <Marquee.Item key={i} style={{ padding: "0 2rem" }}>
-                  <Flex align="center" gap="3">
-                    <Text
-                      fontWeight="medium"
-                      fontFamily="mono"
-                      textTransform="uppercase"
-                    >
-                      {item}
-                    </Text>
-                    <Box as={IoEllipse} color="red.200" />
-                  </Flex>
-                </Marquee.Item>
-              ))}
-            </Marquee.Content>
-          </Marquee.Viewport>
-        </Marquee.Root>
-      </Flex>
-    </Box>
+      <Marquee.Root style={{ "--marquee-duration": "40s" } as any}>
+        <Marquee.Viewport>
+          <Marquee.Content>
+            {newsItems.map((item, i) => (
+              <Marquee.Item key={i} padding="0 2rem">
+                <Flex align="center" gap="3">
+                  <Text
+                    fontWeight="medium"
+                    fontFamily="mono"
+                    textTransform="uppercase"
+                  >
+                    {item}
+                  </Text>
+                  <Box as={IoEllipse} color="red.200" />
+                </Flex>
+              </Marquee.Item>
+            ))}
+          </Marquee.Content>
+        </Marquee.Viewport>
+      </Marquee.Root>
+    </Flex>
   )
 }
