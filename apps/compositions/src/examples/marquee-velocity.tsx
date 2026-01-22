@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Marquee, Text } from "@chakra-ui/react"
 import { useEffect, useRef } from "react"
 
 export const MarqueeVelocity = () => {
@@ -7,21 +7,20 @@ export const MarqueeVelocity = () => {
       <Text textAlign="center" mb="10" color="gray.500">
         Scroll down quickly to see effect
       </Text>
-      <VelocityRow baseSpeed={0.1}>Vanilla React Velocity</VelocityRow>
-
-      <VelocityRow baseSpeed={-0.1}>Performance Optimized</VelocityRow>
+      <VelocityRow baseSpeed={0.05}>Chakra-UI Velocity</VelocityRow>
+      <VelocityRow baseSpeed={-0.05}>Marquee Component Velocity</VelocityRow>
     </Box>
   )
 }
 
 const VelocityRow = ({
   children,
-  baseSpeed = 0.1,
+  baseSpeed = 0.05,
 }: {
   children: string
   baseSpeed: number
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   const position = useRef(0)
   const scrollVelocity = useRef(0)
@@ -38,20 +37,17 @@ const VelocityRow = ({
     }
 
     const animate = () => {
-      if (!containerRef.current) return
-
+      if (!contentRef.current) return
       scrollVelocity.current *= 0.95
-
       let moveBy = baseSpeed + scrollVelocity.current
-
       position.current += moveBy
-
       if (position.current <= -50) {
         position.current = 0
       } else if (position.current >= 0) {
         position.current = -50
       }
-      containerRef.current.style.transform = `translate3d(${position.current}%, 0, 0)`
+
+      contentRef.current.style.transform = `translate3d(${position.current}%, 0, 0)`
 
       rafId.current = requestAnimationFrame(animate)
     }
@@ -66,23 +62,40 @@ const VelocityRow = ({
   }, [baseSpeed])
 
   return (
-    <Box overflow="hidden" whiteSpace="nowrap" mb={4}>
-      <Flex ref={containerRef} width="200%" style={{ willChange: "transform" }}>
-        {[...Array(4)].map((_, i) => (
-          <Text
-            key={i}
-            flexShrink={0}
-            width="25%"
-            fontSize="8xl"
-            fontWeight="900"
-            textTransform="uppercase"
-            lineHeight="0.8"
-            px={4}
-          >
-            {children}
-          </Text>
-        ))}
-      </Flex>
-    </Box>
+    <Marquee.Root>
+      <Marquee.Viewport>
+        <Marquee.Content
+          ref={contentRef}
+          style={{
+            animation: "none",
+            width: "200%",
+            display: "flex",
+          }}
+        >
+          {[...Array(4)].map((_, i) => (
+            <Marquee.Item
+              key={i}
+              style={{
+                width: "25%", // Each item is 1/4 of the 200% container
+                flexShrink: 0,
+                padding: "0 2rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                fontSize="8xl"
+                fontWeight="900"
+                textTransform="uppercase"
+                lineHeight="0.8"
+                whiteSpace="nowrap"
+              >
+                {children}
+              </Text>
+            </Marquee.Item>
+          ))}
+        </Marquee.Content>
+      </Marquee.Viewport>
+    </Marquee.Root>
   )
 }
