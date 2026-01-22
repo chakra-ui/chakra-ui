@@ -33,4 +33,5 @@ export { SelectWithOverflow as Overflow } from "compositions/examples/select-wit
 export { SelectWithPositioning as Positioning } from "compositions/examples/select-with-positioning"
 export { SelectWithSizes as Sizes } from "compositions/examples/select-with-sizes"
 export { SelectWithVariants as Variants } from "compositions/examples/select-with-variants"
+export { SelectWithColorPalette as ColorPalette } from "compositions/examples/select-with-color-palette"
 export { SelectVirtualized as Virtualized } from "compositions/examples/select-virtualized"
