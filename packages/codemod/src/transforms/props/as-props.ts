@@ -9,8 +9,47 @@ import {
 import { createParserFromPath } from "../../utils/parser"
 
 const GLOBAL_ATTRIBUTES = new Set([...(htmlElementAttributes["*"] || [])])
-
 const chakraProperties = new Set(Object.keys(defaultSystem.properties || {}))
+
+export default function transformer(
+  file: FileInfo,
+  _api: API,
+  _options: Options,
+) {
+  const j = createParserFromPath(file.path)
+  const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+
+  if (chakraLocalNames.size === 0) return file.source
+
+  const nextLinkNames = collectNextLinkImports(j, root)
+  const elementTypeRenames = new Map<string, string>()
+
+  root.find(j.JSXElement).forEach((path) => {
+    const opening = path.node.openingElement
+    if (!isTrackedJsx(opening, chakraLocalNames)) return
+
+    const asAttrIndex = opening.attributes?.findIndex(
+      (a) => a.type === "JSXAttribute" && a.name.name === "as",
+    )
+
+    if (asAttrIndex === undefined || asAttrIndex === -1) return
+
+    transformAsToAsChild(
+      j,
+      path,
+      asAttrIndex,
+      nextLinkNames,
+      elementTypeRenames,
+    )
+  })
+
+  updateTypeScriptSignatures(j, root)
+  updateObjectDestructuring(j, root)
+  updateElementTypeDestructuring(j, root, elementTypeRenames)
+
+  return root.toSource({ quote: "single" })
+}
 
 const ALWAYS_CHILD_PROPS = new Set([
   "ref",
@@ -27,6 +66,41 @@ const ALWAYS_PARENT_PROPS = new Set([
   "apply",
 ])
 
+const SVG_ELEMENTS = new Set([
+  "svg",
+  "path",
+  "circle",
+  "rect",
+  "g",
+  "line",
+  "text",
+  "ellipse",
+  "polygon",
+  "polyline",
+  "defs",
+  "use",
+])
+
+// Component type classifications
+enum ComponentType {
+  DOM,
+  Component,
+  ElementType,
+  Unknown,
+}
+
+interface PropDistribution {
+  child: any[]
+  parent: any[]
+}
+
+interface ComponentMetadata {
+  tagName: string | null
+  type: ComponentType
+  isNextLink: boolean
+  parentName: string | null
+}
+
 function isEventHandler(propName: string): boolean {
   return (
     propName.startsWith("on") &&
@@ -40,86 +114,27 @@ function isDataOrAria(propName: string): boolean {
 }
 
 function isValidChakraProp(propName: string): boolean {
-  // Underscore props are Chakra pseudo props
-  if (propName.startsWith("_")) return true
-
-  // Check if it's in the system properties
-  if (chakraProperties.has(propName)) return true
-
-  // Check other Chakra-specific props
-  if (ALWAYS_PARENT_PROPS.has(propName)) return true
-
-  return false
-}
-
-function shouldGoToChild(
-  propName: string,
-  tagName: string | null,
-  isComponent: boolean,
-  isElementType: boolean,
-  _isDOM: boolean,
-): boolean {
-  // Always forward these to child
-  if (ALWAYS_CHILD_PROPS.has(propName)) return true
-  if (isEventHandler(propName)) return true
-
-  // Never forward these to child
-  if (ALWAYS_PARENT_PROPS.has(propName)) return false
-
-  // For element type variables (e.g., `as={motion.div}`), keep all props on parent
-  // since we can't know what's valid
-  if (isElementType) return false
-
-  // For React components
-  if (isComponent) {
-    // If it's a valid Chakra prop, keep on parent
-    if (isValidChakraProp(propName)) return false
-    // Otherwise, forward to child component
-    return true
-  }
-
-  // For DOM elements
-  if (tagName) {
-    return isValidDOMProp(propName, tagName)
-  }
-
-  // Default: keep on parent
-  return false
+  return (
+    propName.startsWith("_") ||
+    chakraProperties.has(propName) ||
+    ALWAYS_PARENT_PROPS.has(propName)
+  )
 }
 
 function isValidDOMProp(propName: string, tagName: string): boolean {
+  if (isDataOrAria(propName)) return true
+
   const lowerTag = tagName.toLowerCase()
   const lowerProp = propName.toLowerCase()
 
-  // Data and ARIA attributes are always valid
-  if (isDataOrAria(propName)) return true
-
-  // Global HTML attributes
   if (GLOBAL_ATTRIBUTES.has(propName) || GLOBAL_ATTRIBUTES.has(lowerProp)) {
     return true
   }
 
-  // SVG elements
-  if (
-    [
-      "svg",
-      "path",
-      "circle",
-      "rect",
-      "g",
-      "line",
-      "text",
-      "ellipse",
-      "polygon",
-      "polyline",
-      "defs",
-      "use",
-    ].includes(lowerTag)
-  ) {
+  if (SVG_ELEMENTS.has(lowerTag)) {
     return isPropValid(propName)
   }
 
-  // Check element-specific attributes
   const validAttributes = htmlElementAttributes[lowerTag]
   if (validAttributes) {
     return (
@@ -127,201 +142,307 @@ function isValidDOMProp(propName: string, tagName: string): boolean {
     )
   }
 
-  // Use emotion's isPropValid as fallback for standard DOM props
   return isPropValid(propName)
 }
 
+function classifyComponentType(node: any): ComponentType {
+  if (!node) return ComponentType.Unknown
+
+  if (node.type === "JSXIdentifier" || node.type === "Identifier") {
+    const firstChar = node.name[0]
+    const isLowerCase = firstChar === firstChar.toLowerCase()
+
+    if (node.type === "JSXIdentifier" && isLowerCase) {
+      return ComponentType.DOM
+    }
+
+    return isLowerCase ? ComponentType.ElementType : ComponentType.Component
+  }
+
+  if (node.type === "MemberExpression") {
+    return ComponentType.Component
+  }
+
+  return ComponentType.Unknown
+}
+
 function getTagNameString(node: any): string | null {
-  if (node.type === "JSXIdentifier") return node.name
-  if (node.type === "Identifier") return node.name
-  if (node.type === "Literal" || node.type === "StringLiteral")
+  if (!node) return null
+
+  if (node.type === "JSXIdentifier" || node.type === "Identifier") {
+    return node.name
+  }
+
+  if (node.type === "Literal" || node.type === "StringLiteral") {
     return node.value
+  }
+
   return null
 }
 
 function toJsxName(j: any, node: any): any {
-  if (node.type === "Identifier") return j.jsxIdentifier(node.name)
+  if (node.type === "Identifier") {
+    return j.jsxIdentifier(node.name)
+  }
+
   if (node.type === "MemberExpression") {
     return j.jsxMemberExpression(
       toJsxName(j, node.object),
       toJsxName(j, node.property),
     )
   }
+
   if (node.type === "Literal" || node.type === "StringLiteral") {
     return j.jsxIdentifier(node.value)
   }
+
   return node
 }
 
-function isDOMElementName(node: any): boolean {
-  if (node.type === "JSXIdentifier") {
-    return node.name === node.name.toLowerCase()
+function extractAsValue(asAttr: any): any {
+  let asValue = asAttr.value
+
+  if (asValue?.type === "JSXExpressionContainer") {
+    asValue = asValue.expression
   }
-  return false
+
+  return asValue
 }
 
-function isReactComponent(node: any): boolean {
-  if (node.type === "Identifier") {
-    return node.name[0] === node.name[0].toUpperCase()
+function getComponentMetadata(
+  asAttr: any,
+  parentName: any,
+  nextLinkNames: Set<string>,
+  j: any,
+): ComponentMetadata {
+  const asValue = extractAsValue(asAttr)
+  const innerTagName = toJsxName(j, asValue)
+  const tagName = getTagNameString(innerTagName)
+  const type = classifyComponentType(asValue)
+  const isNextLink = tagName ? nextLinkNames.has(tagName) : false
+  const parentNameStr = getTagNameString(parentName)
+
+  return {
+    tagName,
+    type,
+    isNextLink,
+    parentName: parentNameStr,
   }
-  if (node.type === "JSXIdentifier") {
-    return node.name[0] === node.name[0].toUpperCase()
-  }
-  if (node.type === "MemberExpression") {
-    return true // e.g., motion.div, React.Component
-  }
-  return false
 }
 
-function isElementTypeVariable(node: any): boolean {
-  if (node.type !== "Identifier") return false
-  return node.name[0] === node.name[0].toLowerCase()
-}
+function shouldPropGoToChild(
+  propName: string,
+  metadata: ComponentMetadata,
+): boolean {
+  // Always forward these to child
+  if (ALWAYS_CHILD_PROPS.has(propName) || isEventHandler(propName)) {
+    return true
+  }
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  // Never forward these to child
+  if (ALWAYS_PARENT_PROPS.has(propName)) {
+    return false
+  }
 
-  if (chakraLocalNames.size === 0) return file.source
-
-  const elementTypeRenames = new Map<string, string>()
-
-  root.find(j.JSXElement).forEach((path) => {
-    const opening = path.node.openingElement
-    if (!isTrackedJsx(opening, chakraLocalNames)) return
-
-    const asAttrIndex = opening.attributes?.findIndex(
-      (a) => a.type === "JSXAttribute" && a.name.name === "as",
+  // Special Link handling
+  if (propName === "href") {
+    return (
+      metadata.parentName === "LinkOverlay" ||
+      metadata.tagName === "a" ||
+      metadata.isNextLink
     )
+  }
 
-    if (asAttrIndex === undefined || asAttrIndex === -1) return
+  if (propName === "passHref" && metadata.isNextLink) {
+    return true
+  }
 
-    const asAttr = opening.attributes![asAttrIndex] as any
-    let asValue = asAttr.value
+  // For element type variables, keep all props on parent
+  if (metadata.type === ComponentType.ElementType) {
+    return false
+  }
 
-    if (asValue?.type === "JSXExpressionContainer") {
-      // Handle `as={as}` pattern - just rename to asChild
-      if (
-        asValue.expression.type === "Identifier" &&
-        asValue.expression.name === "as"
-      ) {
-        opening.attributes!.splice(asAttrIndex, 1)
-        opening.attributes!.push(j.jsxAttribute(j.jsxIdentifier("asChild")))
-        return
-      }
-      asValue = asValue.expression
+  // For React components
+  if (metadata.type === ComponentType.Component) {
+    return !isValidChakraProp(propName)
+  }
+
+  // For DOM elements
+  if (metadata.type === ComponentType.DOM && metadata.tagName) {
+    return isValidDOMProp(propName, metadata.tagName)
+  }
+
+  return false
+}
+
+function distributeProps(
+  attributes: any[],
+  asAttrIndex: number,
+  metadata: ComponentMetadata,
+): PropDistribution {
+  const result: PropDistribution = { child: [], parent: [] }
+
+  attributes.forEach((attr, idx) => {
+    if (idx === asAttrIndex) return
+
+    // Spread attributes stay on parent
+    if (attr.type === "JSXSpreadAttribute") {
+      result.parent.push(attr)
+      return
     }
 
-    const innerTagName = toJsxName(j, asValue)
-    const tagNameStr = getTagNameString(innerTagName)
-    const isDOM = isDOMElementName(innerTagName)
-    const isComponent = isReactComponent(asValue)
-    const isElementType = isElementTypeVariable(asValue)
+    if (attr.type !== "JSXAttribute" || typeof attr.name.name !== "string") {
+      result.parent.push(attr)
+      return
+    }
 
-    const childAttributes: any[] = []
-    const parentAttributes: any[] = []
-    const parentName = opening.name
-    const parentStr = getTagNameString(parentName)
+    const target = shouldPropGoToChild(attr.name.name, metadata)
+      ? result.child
+      : result.parent
 
-    opening.attributes?.forEach((attr, idx) => {
-      if (idx === asAttrIndex) return
+    target.push(attr)
+  })
 
-      // Spread attributes stay on parent (we can't analyze them)
-      if (attr.type === "JSXSpreadAttribute") {
-        parentAttributes.push(attr)
-        return
-      }
+  return result
+}
 
-      if (attr.type !== "JSXAttribute" || typeof attr.name.name !== "string") {
-        parentAttributes.push(attr)
-        return
-      }
+function collectNextLinkImports(j: any, root: any): Set<string> {
+  const nextLinkNames = new Set<string>(["NextLink"])
 
-      const name = attr.name.name
-
-      // Special case: href handling for Link components
-      if (name === "href") {
-        if (parentStr === "LinkOverlay" || tagNameStr === "a") {
-          childAttributes.push(attr)
-          return
+  root
+    .find(j.ImportDeclaration, { source: { value: "next/link" } })
+    .forEach((path: any) => {
+      path.node.specifiers?.forEach((spec: any) => {
+        if (spec.local?.type === "Identifier") {
+          nextLinkNames.add(spec.local.name)
         }
-        if (parentStr === "Link") {
-          parentAttributes.push(attr)
-          return
-        }
-      }
-
-      // Determine where this prop should go
-      if (
-        shouldGoToChild(name, tagNameStr, isComponent, isElementType, isDOM)
-      ) {
-        childAttributes.push(attr)
-      } else {
-        parentAttributes.push(attr)
-      }
+      })
     })
 
-    const isSelfClosing = !path.node.children || path.node.children.length === 0
+  return nextLinkNames
+}
 
-    let innerElementNode: any
+function capitalizeElementType(
+  asValue: any,
+  j: any,
+  elementTypeRenames: Map<string, string>,
+): { name: any; capitalized: boolean } {
+  if (asValue.type === "Identifier") {
+    const capitalizedName =
+      asValue.name.charAt(0).toUpperCase() + asValue.name.slice(1)
 
-    // Handle element type variables (lowercase identifiers) by capitalizing them
-    if (isElementType && asValue.type === "Identifier") {
-      const capitalizedName =
-        asValue.name.charAt(0).toUpperCase() + asValue.name.slice(1)
-      elementTypeRenames.set(asValue.name, capitalizedName)
+    elementTypeRenames.set(asValue.name, capitalizedName)
 
-      innerElementNode = j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxIdentifier(capitalizedName),
-          childAttributes,
-          isSelfClosing,
-        ),
-        isSelfClosing
-          ? null
-          : j.jsxClosingElement(j.jsxIdentifier(capitalizedName)),
-        path.node.children || [],
-      )
-    } else {
-      innerElementNode = j.jsxElement(
-        j.jsxOpeningElement(innerTagName, childAttributes, isSelfClosing),
-        isSelfClosing ? null : j.jsxClosingElement(innerTagName),
-        path.node.children || [],
+    return {
+      name: j.jsxIdentifier(capitalizedName),
+      capitalized: true,
+    }
+  }
+
+  return { name: null, capitalized: false }
+}
+
+function createInnerElement(
+  j: any,
+  asAttr: any,
+  childAttributes: any[],
+  children: any[],
+  metadata: ComponentMetadata,
+  elementTypeRenames: Map<string, string>,
+): any {
+  const asValue = extractAsValue(asAttr)
+  const isSelfClosing = children.length === 0
+
+  // Handle element type variables
+  if (metadata.type === ComponentType.ElementType) {
+    const { name, capitalized } = capitalizeElementType(
+      asValue,
+      j,
+      elementTypeRenames,
+    )
+
+    if (capitalized && name) {
+      return j.jsxElement(
+        j.jsxOpeningElement(name, childAttributes, isSelfClosing),
+        isSelfClosing ? null : j.jsxClosingElement(name),
+        children,
       )
     }
+  }
 
-    opening.attributes = [
-      ...parentAttributes,
-      j.jsxAttribute(j.jsxIdentifier("asChild")),
-    ]
+  const innerTagName = toJsxName(j, asValue)
 
-    path.node.children = [innerElementNode]
-    path.node.openingElement.selfClosing = false
-    path.node.closingElement = j.jsxClosingElement(opening.name)
-  })
+  return j.jsxElement(
+    j.jsxOpeningElement(innerTagName, childAttributes, isSelfClosing),
+    isSelfClosing ? null : j.jsxClosingElement(innerTagName),
+    children,
+  )
+}
 
-  // Update TypeScript property signatures
-  root.find(j.TSPropertySignature, { key: { name: "as" } }).forEach((path) => {
-    path.node.key = j.identifier("asChild")
-    if (path.node.typeAnnotation) {
-      path.node.typeAnnotation.typeAnnotation = j.tsBooleanKeyword()
-    }
-  })
+function transformAsToAsChild(
+  j: any,
+  path: any,
+  asAttrIndex: number,
+  nextLinkNames: Set<string>,
+  elementTypeRenames: Map<string, string>,
+): void {
+  const opening = path.node.openingElement
+  const asAttr = opening.attributes[asAttrIndex]
+  const asValue = extractAsValue(asAttr)
 
-  // Update object destructuring patterns
-  root.find(j.ObjectPattern).forEach((path) => {
-    path.node.properties.forEach((prop) => {
+  // Handle `as={as}` pattern - just rename to asChild
+  if (asValue.type === "Identifier" && asValue.name === "as") {
+    opening.attributes.splice(asAttrIndex, 1)
+    opening.attributes.push(j.jsxAttribute(j.jsxIdentifier("asChild")))
+    return
+  }
+
+  const metadata = getComponentMetadata(asAttr, opening.name, nextLinkNames, j)
+
+  const { child, parent } = distributeProps(
+    opening.attributes,
+    asAttrIndex,
+    metadata,
+  )
+
+  const innerElement = createInnerElement(
+    j,
+    asAttr,
+    child,
+    path.node.children || [],
+    metadata,
+    elementTypeRenames,
+  )
+
+  // Update parent element
+  opening.attributes = [...parent, j.jsxAttribute(j.jsxIdentifier("asChild"))]
+
+  path.node.children = [innerElement]
+  path.node.openingElement.selfClosing = false
+  path.node.closingElement = j.jsxClosingElement(opening.name)
+}
+
+function updateTypeScriptSignatures(j: any, root: any): void {
+  root
+    .find(j.TSPropertySignature, { key: { name: "as" } })
+    .forEach((path: any) => {
+      path.node.key = j.identifier("asChild")
+      if (path.node.typeAnnotation) {
+        path.node.typeAnnotation.typeAnnotation = j.tsBooleanKeyword()
+      }
+    })
+}
+
+function updateObjectDestructuring(j: any, root: any): void {
+  root.find(j.ObjectPattern).forEach((path: any) => {
+    path.node.properties.forEach((prop: any) => {
       if (
         prop.type === "Property" &&
         prop.key.type === "Identifier" &&
         prop.key.name === "as"
       ) {
         prop.key.name = "asChild"
+
         if (prop.value.type === "Identifier" && prop.value.name === "as") {
           prop.value.name = "asChild"
         } else if (
@@ -333,28 +454,31 @@ export default function transformer(
       }
     })
   })
+}
 
-  // Update variable declarations where element types are destructured
-  if (elementTypeRenames.size > 0) {
-    root.find(j.VariableDeclarator).forEach((path) => {
-      if (path.node.id.type !== "ObjectPattern") return
+function updateElementTypeDestructuring(
+  j: any,
+  root: any,
+  elementTypeRenames: Map<string, string>,
+): void {
+  if (elementTypeRenames.size === 0) return
 
-      path.node.id.properties.forEach((prop) => {
-        if (
-          prop.type === "Property" &&
-          prop.key.type === "Identifier" &&
-          prop.value.type === "Identifier" &&
-          prop.shorthand
-        ) {
-          const newName = elementTypeRenames.get(prop.key.name)
-          if (newName) {
-            prop.shorthand = false
-            prop.value = j.identifier(newName)
-          }
+  root.find(j.VariableDeclarator).forEach((path: any) => {
+    if (path.node.id.type !== "ObjectPattern") return
+
+    path.node.id.properties.forEach((prop: any) => {
+      if (
+        prop.type === "Property" &&
+        prop.key.type === "Identifier" &&
+        prop.value.type === "Identifier" &&
+        prop.shorthand
+      ) {
+        const newName = elementTypeRenames.get(prop.key.name)
+        if (newName) {
+          prop.shorthand = false
+          prop.value = j.identifier(newName)
         }
-      })
+      }
     })
-  }
-
-  return root.toSource({ quote: "single" })
+  })
 }
