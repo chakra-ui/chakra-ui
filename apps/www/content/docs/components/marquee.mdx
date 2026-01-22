@@ -28,82 +28,114 @@ import { Marquee } from "@chakra-ui/react"
 </Marquee.Root>
 ```
 
-## Guide
-
-### Anatomy
-
-The Marquee component is composed of several parts:
-
-- **Root**: The main container for the marquee.
-- **Viewport**: The visible area through which the content scrolls.
-- **Content**: The scrolling content inside the marquee.
-- **Item**: Each item or child inside the marquee content.
-- **Edge**: Optional gradient edge for visual effect.
-- **Control**: Optional controls for programmatic interaction.
-
-### Tips & Best Practices
-
-- Use the `autoFill` prop to automatically repeat items for seamless scrolling.
-- Use the `reverse` or `side` prop for direction/orientation.
-- Use `pauseOnInteraction` to pause on hover or focus.
-- Use `Edge` for gradient fade effects at the start/end.
-- Use `loopCount` and event handlers for finite or controlled loops.
-
----
+## Examples
 
 ### Reverse Direction
+
+Set the <code>direction?: "normal" | "reverse"</code> prop on
+
+<code>Marquee.Root</code> to <code>"reverse"</code> to animate content in the
+opposite direction.
 
 <ExampleTabs name="marquee-reverse-direction" />
 
 ### Vertical Orientation
 
+Set the <code>orientation?: "horizontal" | "vertical"</code> prop on
+
+<code>Marquee.Root</code> to <code>"vertical"</code> to animate content along
+the Y axis.
+
 <ExampleTabs name="marquee-vertical-orientation" />
 
 ### Custom Speed
+
+Control the animation speed by passing a numeric <code>speed?: number</code>
+prop (pixels per second) to <code>Marquee.Root</code>.
 
 <ExampleTabs name="marquee-custom-speed" />
 
 ### Pause On Interaction
 
+Enable <code>pauseOnHover?: boolean</code> and/or <code>pauseOnFocus?:
+boolean</code> on <code>Marquee.Root</code> to pause animation when hovered or
+focused.
+
 <ExampleTabs name="marquee-pause-interactions" />
 
 ### Programmatic Control
+
+Set <code>paused?: boolean</code> on <code>Marquee.Root</code> to control
+animation state, or use a ref to call imperative methods for advanced control.
 
 <ExampleTabs name="marquee-programmatic-control" />
 
 ### Finite Loops
 
+Specify <code>loop?: number</code> on <code>Marquee.Root</code> to define a
+finite number of animation cycles before stopping.
+
 <ExampleTabs name="marquee-finite-loop" />
 
 ### Edge Gradient
+
+Apply an edge fade by setting <code>edgeGradient?: boolean |
+EdgeGradientProps</code> on <code>Marquee.Root</code>.
 
 <ExampleTabs name="marquee-edge-gradient" />
 
 ### Multiple Marquees
 
+Render multiple <code>Marquee.Root</code> components in parallel, each with
+independent prop configurations, to display several marquees simultaneously.
+
 <ExampleTabs name="marquee-multiple" />
 
 ### Hover Expand
+
+Combine <code>pauseOnHover</code> with custom CSS transitions on
+
+<code>Marquee.Viewport</code> or <code>Marquee.Content</code> to implement
+hover-based expansion effects.
 
 <ExampleTabs name="marquee-hover-expand" />
 
 ### Parallax
 
+Stack multiple <code>Marquee.Root</code> components with distinct
+
+<code>speed</code> prop values to achieve a parallax scrolling effect.
+
 <ExampleTabs name="marquee-parallax" />
 
 ### Diagonal
+
+Combine <code>direction</code>, <code>orientation</code>, and custom CSS
+transforms on <code>Marquee.Content</code> to animate content diagonally.
 
 <ExampleTabs name="marquee-diagonal" />
 
 ### News Ticker
 
+Implement a news ticker by passing a list of items as <code>Marquee.Item</code>
+children and configuring <code>speed</code> and <code>pauseOnHover</code> on
+
+<code>Marquee.Root</code>.
+
 <ExampleTabs name="marquee-news-ticker" />
 
 ### Testimonials
 
+Display testimonials by mapping testimonial data to <code>Marquee.Item</code>
+children and controlling animation with <code>speed</code> and <code>loop</code>
+props.
+
 <ExampleTabs name="marquee-testimonials" />
 
 ### Velocity
+
+Fine-tune animation velocity by adjusting the <code>speed?: number</code> prop
+on <code>Marquee.Root</code>.
 
 <ExampleTabs name="marquee-velocity" />
 
