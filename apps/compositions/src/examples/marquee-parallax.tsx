@@ -1,3 +1,4 @@
+"use client"
 import { Marquee, Stack, Text } from "@chakra-ui/react"
 
 const words = ["DESIGN", "DEVELOP", "SHIP", "SCALE", "ITERATE"]

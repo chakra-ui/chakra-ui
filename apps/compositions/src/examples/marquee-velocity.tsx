@@ -1,9 +1,10 @@
+"use client"
 import { Box, Marquee, Text } from "@chakra-ui/react"
 import { useEffect, useRef } from "react"
 
 export const MarqueeVelocity = () => {
   return (
-    <Box height="200vh" pt="10">
+    <Box height="30vh" pt="10">
       <Text textAlign="center" mb="10" color="gray.500">
         Scroll down quickly to see effect
       </Text>

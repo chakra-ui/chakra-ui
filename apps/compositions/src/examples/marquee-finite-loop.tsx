@@ -1,3 +1,4 @@
+"use client"
 import { Marquee } from "@chakra-ui/react"
 import { useState } from "react"
 import {
@@ -34,7 +35,7 @@ const items = [
   { icon: IoLogoAndroid, label: "Android", color: "#3ddc84" },
 ]
 
-export const MarqueeFiniteLoops = () => {
+export const MarqueeFiniteLoop = () => {
   const [loopCount, setLoopCount] = useState(0)
   const [completedCount, setCompletedCount] = useState(0)
 

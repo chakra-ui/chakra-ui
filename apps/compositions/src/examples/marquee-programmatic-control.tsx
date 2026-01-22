@@ -1,4 +1,5 @@
-import { Marquee } from "@chakra-ui/react"
+"use client"
+import { Button, HStack, Marquee, useMarquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,
   IoLogoAndroid,
@@ -33,22 +34,45 @@ const items = [
   { icon: IoLogoAndroid, label: "Android", color: "#3ddc84" },
 ]
 
-export const MarqueeVertical = () => (
-  <Marquee.Root side="bottom" height="300px">
-    <Marquee.Viewport>
-      <Marquee.Content>
-        {items.map((item, i) => (
-          <Marquee.Item key={i} style={{ padding: "0 2rem" }}>
-            {item.icon && (
-              <item.icon
-                size="3rem"
-                aria-label={item.label}
-                color={item.color}
-              />
-            )}
-          </Marquee.Item>
-        ))}
-      </Marquee.Content>
-    </Marquee.Viewport>
-  </Marquee.Root>
-)
+export const MarqueeProgrammaticControl = () => {
+  const marquee = useMarquee()
+
+  return (
+    <>
+      <Marquee.RootProvider value={marquee}>
+        <Marquee.Viewport>
+          <Marquee.Content>
+            {items.map((item, i) => (
+              <Marquee.Item key={i} style={{ padding: "0 2rem" }}>
+                {item.icon && (
+                  <item.icon
+                    size="3rem"
+                    aria-label={item.label}
+                    color={item.color}
+                  />
+                )}
+              </Marquee.Item>
+            ))}
+          </Marquee.Content>
+        </Marquee.Viewport>
+      </Marquee.RootProvider>
+
+      <HStack marginTop="1rem">
+        <Button
+          variant="outline"
+          hidden={marquee.paused}
+          onClick={() => marquee.pause()}
+        >
+          Pause
+        </Button>
+        <Button
+          variant="outline"
+          hidden={!marquee.paused}
+          onClick={() => marquee.resume()}
+        >
+          Resume
+        </Button>
+      </HStack>
+    </>
+  )
+}

@@ -1,3 +1,4 @@
+"use client"
 import { Marquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,
@@ -33,7 +34,7 @@ const items = [
   { icon: IoLogoAndroid, label: "Android", color: "#3ddc84" },
 ]
 
-export const MarqueeWithEdges = () => (
+export const MarqueeEdgeGradient = () => (
   <Marquee.Root>
     <Marquee.Edge side="start" />
     <Marquee.Viewport>

@@ -1,3 +1,4 @@
+"use client"
 import { Avatar, Box, HStack, Marquee, Stack, Text } from "@chakra-ui/react"
 import { IoStar } from "react-icons/io5"
 
@@ -45,7 +46,7 @@ const testimonials = [
 ]
 
 export const MarqueeTestimonials = () => (
-  <Box py="10" bg="gray.50">
+  <Box py="10">
     <Marquee.Root pauseOnInteraction>
       <Marquee.Edge side="start" />
       <Marquee.Viewport>

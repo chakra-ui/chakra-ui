@@ -1,3 +1,4 @@
+"use client"
 import { Box, Flex, Marquee, Text } from "@chakra-ui/react"
 import { IoEllipse } from "react-icons/io5"
 

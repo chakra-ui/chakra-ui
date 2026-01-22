@@ -1,3 +1,4 @@
+"use client"
 import { Box, Center, Marquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,

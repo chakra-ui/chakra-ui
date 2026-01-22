@@ -1,3 +1,4 @@
+"use client"
 import { Marquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,
@@ -33,7 +34,7 @@ const items = [
   { icon: IoLogoAndroid, label: "Android", color: "#3ddc84" },
 ]
 
-export const MarqueeSpeed = () => (
+export const MarqueeCustomSpeed = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
     <div>
       <h3>Slow (25px/s)</h3>

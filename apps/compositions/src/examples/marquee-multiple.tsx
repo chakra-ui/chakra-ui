@@ -1,3 +1,4 @@
+"use client"
 import { Marquee, Stack } from "@chakra-ui/react"
 import {
   IoLogoAmazon,

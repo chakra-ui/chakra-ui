@@ -1,3 +1,4 @@
+"use client"
 import { Marquee } from "@chakra-ui/react"
 import {
   IoLogoAmazon,
@@ -32,7 +33,7 @@ const items = [
   { icon: IoLogoJavascript, label: "JavaScript", color: "#f7df1e" },
   { icon: IoLogoAndroid, label: "Android", color: "#3ddc84" },
 ]
-export const MarqueePauseOnInteraction = () => (
+export const MarqueePauseInteractions = () => (
   <Marquee.Root pauseOnInteraction>
     <Marquee.Viewport>
       <Marquee.Content>

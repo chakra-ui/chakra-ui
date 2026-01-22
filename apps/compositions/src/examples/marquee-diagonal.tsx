@@ -1,3 +1,4 @@
+"use client"
 import { Box, Marquee, Text } from "@chakra-ui/react"
 
 export const MarqueeDiagonal = () => {

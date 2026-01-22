@@ -1,0 +1,114 @@
+---
+title: Marquee
+description:
+  Animate content horizontally or vertically with a customizable, accessible
+  marquee component.
+links:
+  source: components/marquee
+  storybook: components-marquee--auto-fill
+  recipe: marquee
+  ark: https://ark-ui.com/docs/components/marquee
+---
+
+<ExampleTabs name="marquee-auto-fill" />
+
+## Usage
+
+```js
+import { Marquee } from "@chakra-ui/react"
+```
+
+```jsx
+<Marquee.Root>
+  <Marquee.Viewport>
+    <Marquee.Content>
+      <Marquee.Item></Marquee.Item>
+    </Marquee.Content>
+  </Marquee.Viewport>
+</Marquee.Root>
+```
+
+## Guide
+
+### Anatomy
+
+The Marquee component is composed of several parts:
+
+- **Root**: The main container for the marquee.
+- **Viewport**: The visible area through which the content scrolls.
+- **Content**: The scrolling content inside the marquee.
+- **Item**: Each item or child inside the marquee content.
+- **Edge**: Optional gradient edge for visual effect.
+- **Control**: Optional controls for programmatic interaction.
+
+### Tips & Best Practices
+
+- Use the `autoFill` prop to automatically repeat items for seamless scrolling.
+- Use the `reverse` or `side` prop for direction/orientation.
+- Use `pauseOnInteraction` to pause on hover or focus.
+- Use `Edge` for gradient fade effects at the start/end.
+- Use `loopCount` and event handlers for finite or controlled loops.
+
+---
+
+### Reverse Direction
+
+<ExampleTabs name="marquee-reverse-direction" />
+
+### Vertical Orientation
+
+<ExampleTabs name="marquee-vertical-orientation" />
+
+### Custom Speed
+
+<ExampleTabs name="marquee-custom-speed" />
+
+### Pause On Interaction
+
+<ExampleTabs name="marquee-pause-interactions" />
+
+### Programmatic Control
+
+<ExampleTabs name="marquee-programmatic-control" />
+
+### Finite Loops
+
+<ExampleTabs name="marquee-finite-loop" />
+
+### Edge Gradient
+
+<ExampleTabs name="marquee-edge-gradient" />
+
+### Multiple Marquees
+
+<ExampleTabs name="marquee-multiple" />
+
+### Hover Expand
+
+<ExampleTabs name="marquee-hover-expand" />
+
+### Parallax
+
+<ExampleTabs name="marquee-parallax" />
+
+### Diagonal
+
+<ExampleTabs name="marquee-diagonal" />
+
+### News Ticker
+
+<ExampleTabs name="marquee-news-ticker" />
+
+### Testimonials
+
+<ExampleTabs name="marquee-testimonials" />
+
+### Velocity
+
+<ExampleTabs name="marquee-velocity" />
+
+## Props
+
+<PropTable component="Marquee" part="Marquee" />
+
+---
