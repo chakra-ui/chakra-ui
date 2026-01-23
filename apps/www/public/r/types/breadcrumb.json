@@ -71,14 +71,6 @@
   },
   "Root": {
     "props": {
-      "separator": {
-        "type": "React.ReactNode",
-        "isRequired": false
-      },
-      "separatorGap": {
-        "type": "SystemStyleObject[\"gap\"]",
-        "isRequired": false
-      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,

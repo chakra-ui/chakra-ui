@@ -1,0 +1,135 @@
+---
+title: Date Picker
+description: Used to display  Date Picker
+links:
+  source: components/date-picker
+  storybook: components-date-picker--basic
+  recipe: date-picker
+---
+
+<ExampleTabs name="date-picker-basic" />
+
+## Usage
+
+```tsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+```tsx
+<DatePicker.Root>
+  {data.map((item) => (
+    <DatePicker.Item key={item.label}>
+      <DatePicker.ItemLabel>{item.label}</DatePicker.ItemLabel>
+      <DatePicker.ItemValue>{item.value}</DatePicker.ItemValue>
+    </DatePicker.Item>
+  ))}
+</DatePicker.Root>
+```
+
+## Examples
+
+## Basic Usage
+
+A simple date picker allowing the user to select a single date.
+
+<ExampleTabs name="date-picker-basic" />
+
+## Controlled
+
+A controlled date picker where the selected value is managed by React state.
+
+<ExampleTabs name="date-picker-controlled" />
+
+## Default Value
+
+Date picker with a pre-selected default date.
+
+<ExampleTabs name="date-picker-default-value" />
+
+## Default View
+
+Date picker that opens with a specific view (e.g., month or year) by default.
+
+<ExampleTabs name="date-picker-default-view" />
+
+## Format & Parse
+
+Date picker with custom date formatting and parsing logic.
+
+<ExampleTabs name="date-picker-format-parse" />
+
+## Inline
+
+Date picker displayed inline, rather than in a popover.
+
+<ExampleTabs name="date-picker-inline" />
+
+## Locale
+
+Date picker with localization support for different languages and regions.
+
+<ExampleTabs name="date-picker-locale" />
+
+## Min & Max
+
+Date picker with minimum and maximum selectable dates.
+
+<ExampleTabs name="date-picker-min-max" />
+
+## Month Range
+
+Date picker allowing selection of a range of months.
+
+<ExampleTabs name="date-picker-month-range" />
+
+## Multi Selection
+
+Date picker that supports selecting multiple dates.
+
+<ExampleTabs name="date-picker-multi-selection" />
+
+## Multiple Months
+
+Date picker displaying multiple months at once for easier navigation.
+
+<ExampleTabs name="date-picker-multiple-months" />
+
+## Presets
+
+Date picker with preset date ranges for quick selection.
+
+<ExampleTabs name="date-picker-presets" />
+
+## Range Selection
+
+Date picker that allows users to select a range of dates.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+## Root Provider
+
+Date picker example using a root provider for context management.
+
+<ExampleTabs name="date-picker-root-provider" />
+
+## Unavailable
+
+Date picker with certain dates marked as unavailable or disabled.
+
+<ExampleTabs name="date-picker-unavailable" />
+
+## Year Picker Range
+
+Date picker allowing selection of a range of years.
+
+<ExampleTabs name="date-picker-year-picker-range" />
+
+## Year Picker
+
+Date picker focused on selecting a single year.
+
+<ExampleTabs name="date-picker-year-picker" />
+
+## Props
+
+<PropTable component="DatePicker" part="Root" />
