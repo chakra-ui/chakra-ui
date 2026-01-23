@@ -10,31 +10,31 @@ export default function transformer(
   let hasChanges = false
 
   let needsBox = false
-  let needsLink = false
+  let needsChakraLink = false
   let needsNextImage = false
   let needsNextLink = false
 
-  const removedComponents: Record<
-    string,
-    { replacement: string; wrapper: string }
-  > = {
-    ChakraNextImage: { replacement: "Image", wrapper: "Box" },
-    ChakraNextLink: { replacement: "Link", wrapper: "Link" },
-    NextImage: { replacement: "Image", wrapper: "Box" },
-    NextLink: { replacement: "Link", wrapper: "Link" },
-  }
+  // Track which local names are used for components from @chakra-ui/next-js
+  const nextJsLinkNames = new Set<string>()
+  const nextJsImageNames = new Set<string>()
 
+  // Find and remove @chakra-ui/next-js imports, tracking the local names
   root
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/next-js" },
     })
     .forEach((path) => {
       path.node.specifiers?.forEach((spec) => {
-        if (spec.type === "ImportSpecifier") {
-          const name = spec.imported.name as string
-          if (removedComponents[name]) {
-            if (name.includes("Image")) needsBox = true
-            if (name.includes("Link")) needsLink = true
+        if (spec.type === "ImportSpecifier" && spec.local) {
+          const importedName = spec.imported.name
+          const localName = spec.local.name
+
+          if (importedName === "Link" || importedName === "NextLink") {
+            nextJsLinkNames.add(localName as string)
+            needsChakraLink = true
+          } else if (importedName === "Image" || importedName === "NextImage") {
+            nextJsImageNames.add(localName as string)
+            needsBox = true
           }
         }
       })
@@ -42,6 +42,12 @@ export default function transformer(
       hasChanges = true
     })
 
+  // If no components from @chakra-ui/next-js were found, return early
+  if (nextJsLinkNames.size === 0 && nextJsImageNames.size === 0) {
+    return file.source
+  }
+
+  // Check if next/image and next/link imports already exist
   root
     .find(j.ImportDeclaration, {
       source: { value: "next/image" },
@@ -58,141 +64,170 @@ export default function transformer(
       needsNextLink = true
     })
 
-  Object.keys(removedComponents).forEach((componentName) => {
+  // Transform Image components from @chakra-ui/next-js
+  nextJsImageNames.forEach((componentName) => {
     root
       .find(j.JSXElement, {
         openingElement: { name: { name: componentName } },
       })
       .forEach((path) => {
-        const isImage = componentName.includes("Image")
-        const isLink = componentName.includes("Link")
+        needsBox = true
+        needsNextImage = true
+
+        const openingElement = path.node.openingElement
+        const attributes = openingElement.attributes || []
+
+        const wrapper = j.jsxElement(
+          j.jsxOpeningElement(
+            j.jsxIdentifier("Box"),
+            [j.jsxAttribute(j.jsxIdentifier("asChild"), null)],
+            false,
+          ),
+          j.jsxClosingElement(j.jsxIdentifier("Box")),
+          [
+            j.jsxText("\n  "),
+            j.jsxElement(
+              j.jsxOpeningElement(
+                j.jsxIdentifier("Image"),
+                attributes.filter(
+                  (attr) =>
+                    attr.type === "JSXAttribute" &&
+                    attr.name.name !== "asChild",
+                ),
+                true,
+              ),
+              null,
+              [],
+            ),
+            j.jsxText("\n"),
+          ],
+        )
+
+        j(path).replaceWith(wrapper)
+        hasChanges = true
+      })
+  })
+
+  // Transform Link components from @chakra-ui/next-js
+  nextJsLinkNames.forEach((componentName) => {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: componentName } },
+      })
+      .forEach((path) => {
+        needsChakraLink = true
+        needsNextLink = true
 
         const openingElement = path.node.openingElement
         const attributes = openingElement.attributes || []
         const children = path.node.children || []
 
-        if (isImage) {
-          needsBox = true
-          needsNextImage = true
+        // Props that belong on NextLink, not Chakra Link
+        const nextLinkPropNames = new Set([
+          "href",
+          "replace",
+          "scroll",
+          "shallow",
+          "locale",
+          "prefetch",
+          "passHref", // This should be removed entirely (not needed with asChild)
+        ])
 
-          const wrapper = j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxIdentifier("Box"),
-              [j.jsxAttribute(j.jsxIdentifier("asChild"), null)],
-              false,
-            ),
-            j.jsxClosingElement(j.jsxIdentifier("Box")),
-            [
-              j.jsxText("\n  "),
-              j.jsxElement(
-                j.jsxOpeningElement(
-                  j.jsxIdentifier("Image"),
-                  attributes.filter(
-                    (attr) =>
-                      attr.type === "JSXAttribute" &&
-                      !["asChild"].includes(attr.name.name as string),
-                  ),
-                  true,
-                ),
-                null,
-                [],
-              ),
-              j.jsxText("\n"),
-            ],
-          )
+        // Separate attributes for Chakra Link wrapper vs NextLink child
+        const chakraLinkAttrs: any[] = []
+        const nextLinkAttrs: any[] = []
+        let isExternal = false
 
-          j(path).replaceWith(wrapper)
-          hasChanges = true
-        }
+        attributes.forEach((attr) => {
+          if (attr.type !== "JSXAttribute") {
+            // Spread attributes go to Chakra Link
+            chakraLinkAttrs.push(attr)
+            return
+          }
 
-        if (isLink) {
-          needsLink = true
-          needsNextLink = true
+          const attrName = attr.name.name as string
 
-          const isExternalAttr = attributes.find(
-            (attr) =>
-              attr.type === "JSXAttribute" && attr.name.name === "isExternal",
-          )
+          // Handle isExternal
+          if (attrName === "isExternal") {
+            const attrValue = attr.value
+            const isTrueValue =
+              !attrValue ||
+              (attrValue.type === "JSXExpressionContainer" &&
+                attrValue.expression.type === "Literal" &&
+                attrValue.expression.value === true) ||
+              (attrValue.type === "JSXExpressionContainer" &&
+                attrValue.expression.type === "BooleanLiteral" &&
+                attrValue.expression.value === true)
 
-          const hasIsExternal = !!isExternalAttr
-
-          const wrapperAttrs = attributes.filter(
-            (attr) =>
-              attr.type === "JSXAttribute" && attr.name.name !== "isExternal",
-          )
-
-          wrapperAttrs.push(j.jsxAttribute(j.jsxIdentifier("asChild"), null))
-
-          const nextLinkAttrs: any[] = []
-
-          if (hasIsExternal && isExternalAttr?.type === "JSXAttribute") {
-            const isExternalValue = isExternalAttr.value
-            const isTrue =
-              !isExternalValue ||
-              (isExternalValue.type === "JSXExpressionContainer" &&
-                isExternalValue.expression.type === "Literal" &&
-                isExternalValue.expression.value === true)
-
-            if (isTrue) {
-              nextLinkAttrs.push(
-                j.jsxAttribute(j.jsxIdentifier("target"), j.literal("_blank")),
-              )
-              nextLinkAttrs.push(
-                j.jsxAttribute(
-                  j.jsxIdentifier("rel"),
-                  j.literal("noopener noreferrer"),
-                ),
-              )
+            if (isTrueValue) {
+              isExternal = true
             }
+            // Don't add isExternal to either component
+            return
           }
 
-          const hrefAttr = attributes.find(
-            (attr) => attr.type === "JSXAttribute" && attr.name.name === "href",
+          // Skip passHref entirely (deprecated with asChild)
+          if (attrName === "passHref") {
+            return
+          }
+
+          // Distribute props
+          if (nextLinkPropNames.has(attrName)) {
+            nextLinkAttrs.push(attr)
+          } else {
+            chakraLinkAttrs.push(attr)
+          }
+        })
+
+        // Add asChild to Chakra Link
+        chakraLinkAttrs.push(j.jsxAttribute(j.jsxIdentifier("asChild"), null))
+
+        // If isExternal was true, add target and rel to NextLink
+        if (isExternal) {
+          nextLinkAttrs.push(
+            j.jsxAttribute(j.jsxIdentifier("target"), j.literal("_blank")),
           )
-          if (hrefAttr) {
-            nextLinkAttrs.push(hrefAttr)
-          }
-
-          const wrapper = j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxIdentifier("Link"),
-              wrapperAttrs,
-              children.length === 0,
+          nextLinkAttrs.push(
+            j.jsxAttribute(
+              j.jsxIdentifier("rel"),
+              j.literal("noopener noreferrer"),
             ),
-            children.length === 0
-              ? null
-              : j.jsxClosingElement(j.jsxIdentifier("Link")),
-            children.length === 0
-              ? []
-              : [
-                  j.jsxText("\n  "),
-                  j.jsxElement(
-                    j.jsxOpeningElement(
-                      j.jsxIdentifier("NextLink"),
-                      nextLinkAttrs,
-                      children.length === 0,
-                    ),
-                    children.length === 0
-                      ? null
-                      : j.jsxClosingElement(j.jsxIdentifier("NextLink")),
-                    children.length === 0 ? [] : children,
-                  ),
-                  j.jsxText("\n"),
-                ],
           )
-
-          j(path).replaceWith(wrapper)
-          hasChanges = true
         }
+
+        const wrapper = j.jsxElement(
+          j.jsxOpeningElement(j.jsxIdentifier("Link"), chakraLinkAttrs, false),
+          j.jsxClosingElement(j.jsxIdentifier("Link")),
+          [
+            j.jsxText("\n  "),
+            j.jsxElement(
+              j.jsxOpeningElement(
+                j.jsxIdentifier("NextLink"),
+                nextLinkAttrs,
+                children.length === 0,
+              ),
+              children.length === 0
+                ? null
+                : j.jsxClosingElement(j.jsxIdentifier("NextLink")),
+              children,
+            ),
+            j.jsxText("\n"),
+          ],
+        )
+
+        j(path).replaceWith(wrapper)
+        hasChanges = true
       })
   })
 
-  if (needsBox || needsLink) {
-    root
-      .find(j.ImportDeclaration, {
-        source: { value: "@chakra-ui/react" },
-      })
-      .forEach((path) => {
+  // Add necessary imports to @chakra-ui/react
+  if (needsBox || needsChakraLink) {
+    const chakraImport = root.find(j.ImportDeclaration, {
+      source: { value: "@chakra-ui/react" },
+    })
+
+    if (chakraImport.length > 0) {
+      chakraImport.forEach((path) => {
         const specifiers = path.node.specifiers || []
 
         if (needsBox) {
@@ -205,7 +240,7 @@ export default function transformer(
           }
         }
 
-        if (needsLink) {
+        if (needsChakraLink) {
           const hasLink = specifiers.some(
             (spec) =>
               spec.type === "ImportSpecifier" && spec.imported.name === "Link",
@@ -217,47 +252,60 @@ export default function transformer(
 
         path.node.specifiers = specifiers
       })
-  }
+    } else {
+      // Create @chakra-ui/react import if it doesn't exist
+      const newSpecifiers = []
+      if (needsBox) newSpecifiers.push(j.importSpecifier(j.identifier("Box")))
+      if (needsChakraLink)
+        newSpecifiers.push(j.importSpecifier(j.identifier("Link")))
 
-  if (needsNextImage) {
-    const hasImageImport =
-      root.find(j.ImportDeclaration, {
-        source: { value: "next/image" },
-      }).length > 0
-
-    if (!hasImageImport) {
-      const imageImport = j.importDeclaration(
-        [j.importDefaultSpecifier(j.identifier("Image"))],
-        j.literal("next/image"),
+      const chakraImportDeclaration = j.importDeclaration(
+        newSpecifiers,
+        j.literal("@chakra-ui/react"),
       )
 
       const firstImport = root.find(j.ImportDeclaration).at(0)
       if (firstImport.length > 0) {
-        firstImport.insertBefore(imageImport)
+        firstImport.insertBefore(chakraImportDeclaration)
       } else {
-        root.get().node.program.body.unshift(imageImport)
+        root.get().node.program.body.unshift(chakraImportDeclaration)
       }
     }
   }
 
-  if (needsNextLink) {
-    const hasLinkImport =
-      root.find(j.ImportDeclaration, {
-        source: { value: "next/link" },
-      }).length > 0
+  // Add next/image import if needed
+  if (
+    needsNextImage &&
+    !root.find(j.ImportDeclaration, { source: { value: "next/image" } }).length
+  ) {
+    const imageImport = j.importDeclaration(
+      [j.importDefaultSpecifier(j.identifier("Image"))],
+      j.literal("next/image"),
+    )
 
-    if (!hasLinkImport) {
-      const linkImport = j.importDeclaration(
-        [j.importDefaultSpecifier(j.identifier("NextLink"))],
-        j.literal("next/link"),
-      )
+    const firstImport = root.find(j.ImportDeclaration).at(0)
+    if (firstImport.length > 0) {
+      firstImport.insertBefore(imageImport)
+    } else {
+      root.get().node.program.body.unshift(imageImport)
+    }
+  }
 
-      const firstImport = root.find(j.ImportDeclaration).at(0)
-      if (firstImport.length > 0) {
-        firstImport.insertBefore(linkImport)
-      } else {
-        root.get().node.program.body.unshift(linkImport)
-      }
+  // Add next/link import if needed
+  if (
+    needsNextLink &&
+    !root.find(j.ImportDeclaration, { source: { value: "next/link" } }).length
+  ) {
+    const linkImport = j.importDeclaration(
+      [j.importDefaultSpecifier(j.identifier("NextLink"))],
+      j.literal("next/link"),
+    )
+
+    const firstImport = root.find(j.ImportDeclaration).at(0)
+    if (firstImport.length > 0) {
+      firstImport.insertBefore(linkImport)
+    } else {
+      root.get().node.program.body.unshift(linkImport)
     }
   }
 

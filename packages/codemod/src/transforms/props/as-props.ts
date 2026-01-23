@@ -244,17 +244,26 @@ function shouldPropGoToChild(
     return false
   }
 
-  // Special Link handling
-  if (propName === "href") {
-    return (
-      metadata.parentName === "LinkOverlay" ||
-      metadata.tagName === "a" ||
-      metadata.isNextLink
-    )
+  if (metadata.isNextLink) {
+    if (propName === "passHref") {
+      return false // This will cause it to be filtered out
+    }
+
+    // href should go to NextLink child
+    if (propName === "href") {
+      return true
+    }
+
+    if (
+      ["replace", "scroll", "shallow", "locale", "prefetch"].includes(propName)
+    ) {
+      return true
+    }
   }
 
-  if (propName === "passHref" && metadata.isNextLink) {
-    return true
+  // Special handling for href on LinkOverlay or <a> tags
+  if (propName === "href") {
+    return metadata.parentName === "LinkOverlay" || metadata.tagName === "a"
   }
 
   // For element type variables, keep all props on parent
@@ -296,6 +305,11 @@ function distributeProps(
       return
     }
 
+    // Special handling: remove passHref for Next.js Links
+    if (metadata.isNextLink && attr.name.name === "passHref") {
+      return // Don't add to either parent or child
+    }
+
     const target = shouldPropGoToChild(attr.name.name, metadata)
       ? result.child
       : result.parent
@@ -307,13 +321,22 @@ function distributeProps(
 }
 
 function collectNextLinkImports(j: any, root: any): Set<string> {
-  const nextLinkNames = new Set<string>(["NextLink"])
+  const nextLinkNames = new Set<string>()
 
   root
     .find(j.ImportDeclaration, { source: { value: "next/link" } })
     .forEach((path: any) => {
       path.node.specifiers?.forEach((spec: any) => {
-        if (spec.local?.type === "Identifier") {
+        if (
+          spec.type === "ImportDefaultSpecifier" &&
+          spec.local?.type === "Identifier"
+        ) {
+          nextLinkNames.add(spec.local.name)
+        }
+        if (
+          spec.type === "ImportSpecifier" &&
+          spec.local?.type === "Identifier"
+        ) {
           nextLinkNames.add(spec.local.name)
         }
       })
