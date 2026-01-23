@@ -275,3 +275,4 @@ export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
 export const listboxAnatomy = arkListboxAnatomy
+export { marqueeAnatomy } from "@ark-ui/react/marquee"
