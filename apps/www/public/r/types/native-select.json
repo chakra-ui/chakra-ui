@@ -31,7 +31,7 @@
         "description": "The color palette of the component"
       },
       "variant": {
-        "type": "\"outline\" | \"subtle\" | \"plain\"",
+        "type": "\"outline\" | \"subtle\" | \"plain\" | \"ghost\"",
         "defaultValue": "outline",
         "isRequired": false,
         "description": "The variant of the component"

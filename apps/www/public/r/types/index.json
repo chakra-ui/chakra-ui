@@ -62,6 +62,7 @@
     "loader",
     "locale",
     "mark",
+    "marquee",
     "menu",
     "native-select",
     "number-input",
