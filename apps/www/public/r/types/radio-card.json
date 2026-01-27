@@ -16,34 +16,6 @@
   },
   "Item": {
     "props": {
-      "icon": {
-        "type": "React.ReactElement",
-        "isRequired": false
-      },
-      "label": {
-        "type": "React.ReactNode",
-        "isRequired": false
-      },
-      "description": {
-        "type": "React.ReactNode",
-        "isRequired": false
-      },
-      "addon": {
-        "type": "React.ReactNode",
-        "isRequired": false
-      },
-      "indicator": {
-        "type": "React.ReactNode | null",
-        "isRequired": false
-      },
-      "indicatorPlacement": {
-        "type": "\"start\" | \"end\" | \"inside\"",
-        "isRequired": false
-      },
-      "inputProps": {
-        "type": "React.InputHTMLAttributes<HTMLInputElement>",
-        "isRequired": false
-      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,

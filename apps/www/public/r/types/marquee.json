@@ -1,0 +1,190 @@
+{
+  "Content": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "autoFill": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to automatically duplicate content to fill the container."
+      },
+      "defaultPaused": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether the marquee is paused by default."
+      },
+      "delay": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The delay before the animation starts (in seconds)."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; viewport: string; content: (index: number) => string }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the marquee. Useful for composition."
+      },
+      "loopCount": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "0",
+        "description": "The number of times to loop the animation (0 = infinite)."
+      },
+      "onComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the marquee completes all loops and stops.\nOnly fires for finite loops (loopCount > 0)."
+      },
+      "onLoopComplete": {
+        "type": "() => void",
+        "isRequired": false,
+        "description": "Function called when the marquee completes one loop iteration."
+      },
+      "onPauseChange": {
+        "type": "(details: PauseStatusDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the pause status changes."
+      },
+      "paused": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the marquee is paused."
+      },
+      "pauseOnInteraction": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to pause the marquee on user interaction (hover, focus)."
+      },
+      "reverse": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to reverse the animation direction."
+      },
+      "side": {
+        "type": "Side",
+        "isRequired": false,
+        "defaultValue": "\"start\"",
+        "description": "The side/direction the marquee scrolls towards."
+      },
+      "spacing": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "\"1rem\"",
+        "description": "The spacing between marquee items."
+      },
+      "speed": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "50",
+        "description": "The speed of the marquee animation in pixels per second."
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The localized messages to use."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "UseMarqueeReturn",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Viewport": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Edge": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "side": {
+        "type": "Side",
+        "isRequired": true,
+        "description": "The side where the edge gradient should appear."
+      }
+    },
+    "element": "HTMLDivElement"
+  }
+}
