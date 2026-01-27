@@ -26,6 +26,13 @@ export {
   DatePickerViewControl,
   DatePickerViewTrigger,
   DatePickerYearSelect,
+  DatePickerIndicatorGroup,
+  DatePickerClearIndicator,
+  DatePickerIndicator,
+  DatePickerHeader,
+  DatePickerDayView,
+  DatePickerMonthView,
+  DatePickerYearView,
   useDatePickerStyles,
 } from "./date-picker"
 
@@ -61,6 +68,13 @@ export type {
   DatePickerViewProps,
   DatePickerViewTriggerProps,
   DatePickerYearSelectProps,
+  DatePickerHeaderProps,
+  DatePickerIndicatorGroupProps,
+  DatePickerClearIndicatorProps,
+  DatePickerIndicatorProps,
+  DatePickerDayViewProps,
+  DatePickerMonthViewProps,
+  DatePickerYearViewProps,
 } from "./date-picker"
 
 export {

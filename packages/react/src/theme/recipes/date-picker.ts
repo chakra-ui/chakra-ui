@@ -23,32 +23,37 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       width: "full",
+      position: "relative",
     },
     input: {
       flex: "1",
       minWidth: "0",
-      height: "10",
-      px: "3",
+      height: "var(--datepicker-input-height)",
+      px: "var(--datepicker-input-px)",
       textStyle: "sm",
       background: "transparent",
       borderWidth: "1px",
       borderColor: "border",
       borderRadius: "l2",
+      outline: "0",
+      appearance: "none",
       color: "fg",
-      outline: "none",
       transitionDuration: "normal",
       transitionProperty: "border-color, box-shadow",
+      "--focus-color": "colors.colorPalette.focusRing",
+      "--error-color": "colors.border.error",
       _placeholder: {
         color: "fg.muted",
       },
       _focus: {
-        borderColor: "colorPalette.solid",
+        borderColor: "var(--focus-color)",
         boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
       },
+      focusVisibleRing: "inside",
       _invalid: {
-        borderColor: "fg.error",
+        borderColor: "var(--error-color)",
         _focus: {
-          borderColor: "fg.error",
+          borderColor: "var(--error-color)",
           boxShadow: "0 0 0 1px var(--colors-fg-error)",
         },
       },
@@ -210,6 +215,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
     },
     tableHeader: {
       py: "2",
+      px: "1.5",
       textStyle: "xs",
       fontWeight: "medium",
       color: "fg.muted",
@@ -226,8 +232,8 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       width: "full",
-      height: "9", // 2.25rem
-      textStyle: "sm", // 0.8125rem -> close to sm
+      height: "9",
+      textStyle: "sm",
       fontWeight: "regular",
       background: "transparent",
       borderRadius: "l2",
@@ -253,7 +259,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           background: "colorPalette.solid",
         },
       },
-      // Range Selection Logic
       "&[data-in-range]": {
         background: "colorPalette.subtle",
         color: "colorPalette.fg",
@@ -284,7 +289,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         _hover: { background: "transparent" },
       },
     },
-    // Styles for Month/Year grid views
     monthSelect: {
       height: "8",
       px: "2",
@@ -340,6 +344,9 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
+      width: "10",
+      height: "10",
+      flexShrink: 0,
       p: "2",
       textStyle: "xs",
       fontWeight: "medium",
@@ -358,24 +365,152 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
       },
     },
+    indicatorGroup: {
+      position: "absolute",
+      right: "0.5rem",
+      top: "50%",
+      transform: "translateY(-50%)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5",
+      height: "fit-content",
+      pointerEvents: "auto",
+    },
+    indicator: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "6",
+      height: "6",
+      flexShrink: 0,
+      background: "transparent",
+      borderWidth: "0px",
+      borderColor: "transparent",
+      borderRadius: "l1",
+      color: "fg.muted",
+      outline: "none",
+      transitionDuration: "normal",
+      transitionProperty: "background, color",
+      cursor: "pointer",
+      _hover: {
+        color: "fg",
+        background: "transparent",
+      },
+      _focusVisible: {
+        color: "colorPalette.solid",
+        outline: "1px solid var(--colors-color-palette-solid)",
+      },
+      _disabled: {
+        opacity: 0.5,
+        filter: "grayscale(100%)",
+        pointerEvents: "none",
+      },
+      _icon: {
+        width: "4",
+        height: "4",
+      },
+    },
+    clearIndicator: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "6",
+      height: "6",
+      flexShrink: 0,
+      p: "0",
+      textStyle: "xs",
+      fontWeight: "medium",
+      background: "transparent",
+      borderWidth: "0px",
+      borderColor: "transparent",
+      borderRadius: "l1",
+      color: "fg.muted",
+      cursor: "pointer",
+      _hover: {
+        background: "transparent",
+        color: "fg",
+      },
+      _focusVisible: {
+        color: "colorPalette.solid",
+        outline: "1px solid var(--colors-color-palette-solid)",
+      },
+      _disabled: {
+        opacity: 0.5,
+        filter: "grayscale(100%)",
+        pointerEvents: "none",
+      },
+      _icon: {
+        width: "4",
+        height: "4",
+      },
+    },
   },
   variants: {
     size: {
       sm: {
-        input: { h: "9", px: "2.5", textStyle: "sm" },
-        trigger: { h: "9", w: "9" },
+        root: {
+          "--datepicker-input-height": "sizes.9",
+          "--datepicker-input-px": "sizes.2.5",
+        },
       },
       md: {
-        input: { h: "10", px: "3", textStyle: "sm" },
-        trigger: { h: "10", w: "10" },
+        root: {
+          "--datepicker-input-height": "sizes.10",
+          "--datepicker-input-px": "sizes.3",
+        },
       },
       lg: {
-        input: { h: "11", px: "3.5", textStyle: "md" },
-        trigger: { h: "11", w: "11" },
+        root: {
+          "--datepicker-input-height": "sizes.11",
+          "--datepicker-input-px": "sizes.4",
+        },
+      },
+    },
+    variant: {
+      outline: {
+        input: {
+          borderWidth: "1px",
+          borderColor: "border",
+          background: "transparent",
+        },
+      },
+      subtle: {
+        input: {
+          borderWidth: "0px",
+          borderColor: "transparent",
+          background: "bg.subtle",
+          _focus: {
+            background: "bg.muted",
+            boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
+          },
+        },
+      },
+      unstyled: {
+        input: {
+          borderWidth: "0px",
+          borderColor: "transparent",
+          background: "transparent",
+          boxShadow: "none",
+          color: "inherit",
+          _focus: {},
+        },
+      },
+      filled: {
+        input: {
+          borderWidth: "0px",
+          background: "bg.muted",
+          color: "fg",
+          _focus: {
+            background: "bg.subtle",
+            boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
+          },
+        },
       },
     },
   },
   defaultVariants: {
     size: "md",
+    variant: "outline",
   },
 })

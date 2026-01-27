@@ -26,6 +26,13 @@ export {
   DatePickerViewControl as ViewControl,
   DatePickerViewTrigger as ViewTrigger,
   DatePickerYearSelect as YearSelect,
+  DatePickerIndicatorGroup as IndicatorGroup,
+  DatePickerClearIndicator as ClearIndicator,
+  DatePickerIndicator as Indicator,
+  DatePickerHeader as Header,
+  DatePickerDayView as DayView,
+  DatePickerMonthView as MonthView,
+  DatePickerYearView as YearView,
   useDatePickerStyles,
 } from "./date-picker"
 
@@ -61,4 +68,11 @@ export type {
   DatePickerViewProps as ViewProps,
   DatePickerViewTriggerProps as ViewTriggerProps,
   DatePickerYearSelectProps as YearSelectProps,
+  DatePickerIndicatorGroupProps as IndicatorGroupProps,
+  DatePickerClearIndicatorProps as ClearIndicatorProps,
+  DatePickerIndicatorProps as IndicatorProps,
+  DatePickerHeaderProps as HeaderProps,
+  DatePickerDayViewProps as DayViewProps,
+  DatePickerMonthViewProps as MonthViewProps,
+  DatePickerYearViewProps as YearViewProps,
 } from "./date-picker"

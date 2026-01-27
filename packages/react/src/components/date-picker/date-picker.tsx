@@ -1,7 +1,10 @@
 "use client"
 
 import { type Assign } from "@ark-ui/react"
-import { DatePicker as ArkDatePicker } from "@ark-ui/react/date-picker"
+import {
+  DatePicker as ArkDatePicker,
+  useDatePickerContext,
+} from "@ark-ui/react/date-picker"
 import type React from "react"
 import {
   type HTMLChakraProps,
@@ -46,12 +49,21 @@ export interface DatePickerRootBaseProps
     UnstyledProp {}
 
 export interface DatePickerRootProps
-  extends HTMLChakraProps<"div", DatePickerRootBaseProps> {}
+  extends HTMLChakraProps<"div", DatePickerRootBaseProps> {
+  size?: "sm" | "md" | "lg"
+  variant?: "outline" | "subtle" | "filled" | "unstyled"
+}
 
 export const DatePickerRoot = withProvider<HTMLDivElement, DatePickerRootProps>(
   ArkDatePicker.Root,
   "root",
-  { forwardAsChild: true },
+  {
+    forwardAsChild: true,
+    defaultProps: {
+      size: "md",
+      variant: "outline",
+    },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -331,6 +343,41 @@ export const DatePickerYearSelect = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface DatePickerIndicatorGroupProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const DatePickerIndicatorGroup = withContext<
+  HTMLDivElement,
+  DatePickerIndicatorGroupProps
+>("div", "indicatorGroup")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface DatePickerClearIndicatorProps
+  extends HTMLChakraProps<"button">,
+    UnstyledProp {}
+
+export const DatePickerClearIndicator = withContext<
+  HTMLButtonElement,
+  DatePickerClearIndicatorProps
+>(ArkDatePicker.ClearTrigger, "clearIndicator", {
+  forwardAsChild: true,
+  defaultProps: { children: <CloseIcon /> },
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface DatePickerIndicatorProps
+  extends HTMLChakraProps<"button">,
+    UnstyledProp {}
+
+export const DatePickerIndicator = withContext<
+  HTMLButtonElement,
+  DatePickerIndicatorProps
+>(ArkDatePicker.Trigger, "indicator", { forwardAsChild: true })
+////////////////////////////////////////////////////////////////////////////////////
+
 export const DatePickerContext = ArkDatePicker.Context
 
 export interface DatePickerValueChangeDetails
@@ -344,3 +391,125 @@ export interface DatePickerFocusChangeDetails
 
 export interface DatePickerViewChangeDetails
   extends ArkDatePicker.ViewChangeDetails {}
+
+export interface DatePickerHeaderProps extends DatePickerViewControlProps {}
+export const DatePickerHeader = (props: DatePickerHeaderProps) => {
+  return (
+    <DatePickerViewControl {...props}>
+      <DatePickerPrevTrigger />
+      <DatePickerViewTrigger>
+        <DatePickerRangeText />
+      </DatePickerViewTrigger>
+      <DatePickerNextTrigger />
+    </DatePickerViewControl>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+export interface DatePickerDayViewProps
+  extends Omit<DatePickerViewProps, "view"> {
+  offset?: number
+}
+
+export const DatePickerDayView = (props: DatePickerDayViewProps) => {
+  const datePicker = useDatePickerContext()
+  const { offset, ...rest } = props
+  const offsetDays = offset
+    ? datePicker.getOffset({ months: offset })
+    : undefined
+  const weeks = offsetDays ? offsetDays.weeks : datePicker.weeks
+  return (
+    <DatePickerView {...rest} view="day">
+      <DatePickerTable>
+        <DatePickerTableHead>
+          <DatePickerTableRow>
+            {datePicker.weekDays.map((weekDay, id) => (
+              <DatePickerTableHeader key={id}>
+                {weekDay.short}
+              </DatePickerTableHeader>
+            ))}
+          </DatePickerTableRow>
+        </DatePickerTableHead>
+        <DatePickerTableBody>
+          {weeks.map((week, id) => (
+            <DatePickerTableRow key={id}>
+              {week.map((day, id) => (
+                <DatePickerTableCell
+                  key={id}
+                  value={day}
+                  visibleRange={offsetDays?.visibleRange}
+                >
+                  <DatePickerTableCellTrigger>
+                    {day.day}
+                  </DatePickerTableCellTrigger>
+                </DatePickerTableCell>
+              ))}
+            </DatePickerTableRow>
+          ))}
+        </DatePickerTableBody>
+      </DatePickerTable>
+    </DatePickerView>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+export interface DatePickerMonthViewProps
+  extends Omit<DatePickerViewProps, "view"> {
+  columns?: number
+  format?: "short" | "long"
+}
+export const DatePickerMonthView = (props: DatePickerMonthViewProps) => {
+  const datePicker = useDatePickerContext()
+  const { columns = 4, format = "short", ...rest } = props
+
+  return (
+    <DatePickerView {...rest} view="month">
+      <DatePickerTable>
+        <DatePickerTableBody>
+          {datePicker.getMonthsGrid({ columns, format }).map((months, id) => (
+            <DatePickerTableRow key={id}>
+              {months.map((month, id) => (
+                <DatePickerTableCell key={id} value={month.value}>
+                  <DatePickerTableCellTrigger>
+                    {month.label}
+                  </DatePickerTableCellTrigger>
+                </DatePickerTableCell>
+              ))}
+            </DatePickerTableRow>
+          ))}
+        </DatePickerTableBody>
+      </DatePickerTable>
+    </DatePickerView>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+export interface DatePickerYearViewProps
+  extends Omit<DatePickerViewProps, "view"> {
+  columns?: number
+}
+export const DatePickerYearView = (props: DatePickerYearViewProps) => {
+  const datePicker = useDatePickerContext()
+  const { columns = 4, ...rest } = props
+  return (
+    <DatePickerView {...rest} view="year">
+      <DatePickerTable>
+        <DatePickerTableBody>
+          {datePicker.getYearsGrid({ columns }).map((years, id) => (
+            <DatePickerTableRow key={id}>
+              {years.map((year, id) => (
+                <DatePickerTableCell key={id} value={year.value}>
+                  <DatePickerTableCellTrigger>
+                    {year.label}
+                  </DatePickerTableCellTrigger>
+                </DatePickerTableCell>
+              ))}
+            </DatePickerTableRow>
+          ))}
+        </DatePickerTableBody>
+      </DatePickerTable>
+    </DatePickerView>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////

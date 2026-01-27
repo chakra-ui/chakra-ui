@@ -1,21 +1,20 @@
 "use client"
 
-import { DatePicker, Portal, parseDate } from "@chakra-ui/react"
-import { useState } from "react"
+import { DatePicker, Portal } from "@chakra-ui/react"
 import { LuCalendar } from "react-icons/lu"
 
-export const DatePickerControlled = () => {
-  const [value, setValue] = useState([parseDate("2026-01-26")])
-
+export const DatePickerInside = () => {
   return (
-    <DatePicker.Root value={value} onValueChange={(e) => setValue(e.value)}>
+    <DatePicker.Root>
       <DatePicker.Label>Label</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Indicator>
+            <LuCalendar />
+          </DatePicker.Indicator>
+          <DatePicker.ClearIndicator />
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>
