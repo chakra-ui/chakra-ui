@@ -2,7 +2,7 @@
   "type": "composition",
   "npmDependencies": [
     "@floating-ui/react",
-    "@tiptap",
+    "@tiptap/pm",
     "@tiptap/react",
     "react-icons"
   ],
