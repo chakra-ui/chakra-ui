@@ -62,43 +62,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         filter: "grayscale(100%)",
       },
     },
-    button: {
-      flex: "1",
-      minWidth: "0",
-      height: "var(--datepicker-input-height)",
-      px: "var(--datepicker-input-px)",
-      textStyle: "sm",
-      background: "transparent",
-      borderWidth: "1px",
-      borderColor: "border",
-      borderRadius: "l2",
-      outline: "0",
-      appearance: "none",
-      color: "fg",
-      transitionDuration: "normal",
-      transitionProperty: "border-color, box-shadow",
-      "--focus-color": "colors.colorPalette.focusRing",
-      "--error-color": "colors.border.error",
-      _placeholder: {
-        color: "fg.muted",
-      },
-      _focus: {
-        borderColor: "var(--focus-color)",
-        boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-      },
-      focusVisibleRing: "inside",
-      _invalid: {
-        borderColor: "var(--error-color)",
-        _focus: {
-          borderColor: "var(--error-color)",
-          boxShadow: "0 0 0 1px var(--colors-fg-error)",
-        },
-      },
-      _disabled: {
-        opacity: 0.5,
-        filter: "grayscale(100%)",
-      },
-    },
     trigger: {
       display: "inline-flex",
       alignItems: "center",
