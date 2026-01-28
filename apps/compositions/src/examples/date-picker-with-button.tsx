@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, DatePicker, Portal, Text } from "@chakra-ui/react"
-import { LuCalendar, LuChevronDown } from "react-icons/lu"
+import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerWithButton = () => {
   return (
@@ -10,30 +10,22 @@ export const DatePickerWithButton = () => {
       <DatePicker.Control>
         <DatePicker.Context>
           {(ctx) => (
-            <DatePicker.Trigger asChild>
-              <Button
-                variant="outline"
-                p={1}
-                width="100%"
-                height="auto"
-                justifyContent="flex-start"
-                leftIcon={<LuCalendar size={20} />}
-                rightIcon={<LuChevronDown size={20} />}
-              >
-                <Text color={ctx.value.length ? "inherit" : "gray.400"}>
+            <DatePicker.Trigger asChild unstyled>
+              <Button variant="outline" width="full">
+                <Text
+                  color={ctx.value.length ? "inherit" : "gray.400"}
+                  textAlign="left"
+                  flex="1"
+                >
                   {ctx.value.length
                     ? ctx.value[0].toDate("UTC").toLocaleDateString()
                     : "Select date"}
                 </Text>
+                <LuCalendar />
               </Button>
             </DatePicker.Trigger>
           )}
         </DatePicker.Context>
-        <DatePicker.IndicatorGroup>
-          <DatePicker.Trigger>
-            <LuCalendar />
-          </DatePicker.Trigger>
-        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>
