@@ -12,7 +12,7 @@ import { LuCalendar } from "react-icons/lu"
 export const DatePickerRootProvider = () => {
   const datePicker = useDatePicker()
   return (
-    <Stack gap={4} align="flex-start">
+    <Stack gap={4} align="flex-start" maxWidth="24rem">
       <Button
         variant="outline"
         size="sm"
@@ -22,13 +22,14 @@ export const DatePickerRootProvider = () => {
       </Button>
 
       <DatePicker.RootProvider value={datePicker}>
-        <DatePicker.Label>Label</DatePicker.Label>
+        <DatePicker.Label>Select range</DatePicker.Label>
         <DatePicker.Control>
           <DatePicker.Input />
-          <DatePicker.Trigger>
-            <LuCalendar />
-          </DatePicker.Trigger>
-          <DatePicker.ClearTrigger />
+          <DatePicker.IndicatorGroup>
+            <DatePicker.Trigger>
+              <LuCalendar />
+            </DatePicker.Trigger>
+          </DatePicker.IndicatorGroup>
         </DatePicker.Control>
         <Portal>
           <DatePicker.Positioner>

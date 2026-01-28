@@ -3,18 +3,15 @@
 import { DatePicker, Portal } from "@chakra-ui/react"
 import { LuCalendar } from "react-icons/lu"
 
-export const DatePickerInside = () => {
+export const DatePickerWithOutsideIcon = () => {
   return (
-    <DatePicker.Root>
-      <DatePicker.Label>Label</DatePicker.Label>
+    <DatePicker.Root maxWidth="24rem">
+      <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.IndicatorGroup>
-          <DatePicker.Indicator>
-            <LuCalendar />
-          </DatePicker.Indicator>
-          <DatePicker.ClearIndicator />
-        </DatePicker.IndicatorGroup>
+        <DatePicker.Trigger asChild>
+          <LuCalendar />
+        </DatePicker.Trigger>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

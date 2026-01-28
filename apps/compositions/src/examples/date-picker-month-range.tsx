@@ -13,15 +13,17 @@ export const DatePickerMonthRange = () => {
       format={format}
       parse={parse}
       placeholder="mm/yyyy"
+      maxWidth="24rem"
     >
-      <DatePicker.Label>Label</DatePicker.Label>
+      <DatePicker.Label>Select range</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input index={0} />
         <DatePicker.Input index={1} />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

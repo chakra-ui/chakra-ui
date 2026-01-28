@@ -5,14 +5,15 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerLocale = () => {
   return (
-    <DatePicker.Root locale="de-DE" startOfWeek={1}>
+    <DatePicker.Root locale="de-DE" startOfWeek={1} maxWidth="24rem">
       <DatePicker.Label>Datum auswählen</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

@@ -1,42 +1,49 @@
 "use client"
 
-import { DatePicker, Portal } from "@chakra-ui/react"
+import { DatePicker, Portal, Tag, Wrap } from "@chakra-ui/react"
 import type { DateValue } from "@internationalized/date"
-import { LuCalendar, LuX } from "react-icons/lu"
+import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerMultiSelection = () => {
   return (
-    <DatePicker.Root selectionMode="multiple">
-      <DatePicker.Label>Label</DatePicker.Label>
-      <DatePicker.Control>
+    <DatePicker.Root selectionMode="multiple" maxWidth="24rem">
+      <DatePicker.Label>Select dates</DatePicker.Label>
+      <DatePicker.Control pr={4}>
         <DatePicker.Context>
           {(datePicker) => (
-            <div>
+            <Wrap>
               {datePicker.value.length === 0 ? (
                 <span>Select dates...</span>
               ) : (
                 datePicker.value.map((date, index) => (
-                  <span key={index}>
-                    {formatWithDay(date)}
-                    <button
-                      onClick={() =>
-                        datePicker.setValue(
-                          datePicker.value.filter((_, i) => i !== index),
-                        )
-                      }
-                    >
-                      <LuX />
-                    </button>
-                  </span>
+                  <Tag.Root
+                    key={index}
+                    size="md"
+                    variant="outline"
+                    colorScheme="blue"
+                  >
+                    <Tag.Label>{formatWithDay(date)}</Tag.Label>
+                    <Tag.EndElement>
+                      <Tag.CloseTrigger
+                        aria-label="Remove date"
+                        onClick={() =>
+                          datePicker.setValue(
+                            datePicker.value.filter((_, i) => i !== index),
+                          )
+                        }
+                      />
+                    </Tag.EndElement>
+                  </Tag.Root>
                 ))
               )}
-            </div>
+            </Wrap>
           )}
         </DatePicker.Context>
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

@@ -4,7 +4,7 @@ import { DatePicker } from "@chakra-ui/react"
 
 export const DatePickerInline = () => {
   return (
-    <DatePicker.Root inline>
+    <DatePicker.Root inline maxWidth="24rem">
       <DatePicker.Content>
         <DatePicker.Header />
         <DatePicker.DayView />

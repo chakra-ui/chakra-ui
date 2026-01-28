@@ -12,21 +12,21 @@ export const DatePickerYearPicker = () => {
       defaultView="year"
       minView="year"
       placeholder="yyyy"
+      maxWidth="24rem"
     >
-      <DatePicker.Label>Label</DatePicker.Label>
+      <DatePicker.Label>Select year</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>
           <DatePicker.Content>
             <DatePicker.Header />
-            <DatePicker.DayView />
-            <DatePicker.MonthView />
             <DatePicker.YearView />
           </DatePicker.Content>
         </DatePicker.Positioner>

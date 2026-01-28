@@ -5,14 +5,20 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerFormatParse = () => {
   return (
-    <DatePicker.Root format={format} parse={parse} placeholder="dd/mm/yy">
+    <DatePicker.Root
+      format={format}
+      parse={parse}
+      placeholder="dd/mm/yy"
+      maxWidth="24rem"
+    >
       <DatePicker.Label>Label</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

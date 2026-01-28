@@ -5,14 +5,15 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerMultipleMonths = () => {
   return (
-    <DatePicker.Root numOfMonths={2}>
-      <DatePicker.Label>Label</DatePicker.Label>
+    <DatePicker.Root numOfMonths={2} maxWidth="24rem">
+      <DatePicker.Label>Select months</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input index={0} />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <DatePicker.Positioner>
         <DatePicker.Content>

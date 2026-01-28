@@ -5,19 +5,17 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerRangeSelection = () => {
   return (
-    <DatePicker.Root selectionMode="range">
-      <DatePicker.Label>Label</DatePicker.Label>
+    <DatePicker.Root selectionMode="range" maxWidth="24rem">
+      <DatePicker.Label>Select range</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input index={0} />
         <DatePicker.Input index={1} />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
-      <DatePicker.PresetTrigger value="last7Days">
-        Last 7 days
-      </DatePicker.PresetTrigger>
       <Portal>
         <DatePicker.Positioner>
           <DatePicker.Content>

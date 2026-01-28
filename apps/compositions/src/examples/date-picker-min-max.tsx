@@ -8,14 +8,16 @@ export const DatePickerMinMax = () => {
     <DatePicker.Root
       min={parseDate("2025-03-05")}
       max={parseDate("2025-03-31")}
+      maxWidth="24rem"
     >
-      <DatePicker.Label>Label</DatePicker.Label>
+      <DatePicker.Label>Date of creation</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

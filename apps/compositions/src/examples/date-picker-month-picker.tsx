@@ -12,14 +12,16 @@ export const DatePickerMonthPicker = () => {
       defaultView="month"
       minView="month"
       placeholder="mm/yyyy"
+      maxWidth="24rem"
     >
-      <DatePicker.Label>Label</DatePicker.Label>
+      <DatePicker.Label>Select month</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
-        <DatePicker.ClearTrigger />
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>

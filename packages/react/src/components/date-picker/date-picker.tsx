@@ -8,10 +8,12 @@ import {
 import type React from "react"
 import {
   type HTMLChakraProps,
+  type RecipeProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import type { ButtonLoadingProps } from "../button/button"
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -49,20 +51,13 @@ export interface DatePickerRootBaseProps
     UnstyledProp {}
 
 export interface DatePickerRootProps
-  extends HTMLChakraProps<"div", DatePickerRootBaseProps> {
-  size?: "sm" | "md" | "lg"
-  variant?: "outline" | "subtle" | "filled" | "unstyled"
-}
+  extends HTMLChakraProps<"div", DatePickerRootBaseProps> {}
 
 export const DatePickerRoot = withProvider<HTMLDivElement, DatePickerRootProps>(
   ArkDatePicker.Root,
   "root",
   {
     forwardAsChild: true,
-    defaultProps: {
-      size: "md",
-      variant: "outline",
-    },
   },
 )
 
@@ -354,30 +349,6 @@ export const DatePickerIndicatorGroup = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DatePickerClearIndicatorProps
-  extends HTMLChakraProps<"button">,
-    UnstyledProp {}
-
-export const DatePickerClearIndicator = withContext<
-  HTMLButtonElement,
-  DatePickerClearIndicatorProps
->(ArkDatePicker.ClearTrigger, "clearIndicator", {
-  forwardAsChild: true,
-  defaultProps: { children: <CloseIcon /> },
-})
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export interface DatePickerIndicatorProps
-  extends HTMLChakraProps<"button">,
-    UnstyledProp {}
-
-export const DatePickerIndicator = withContext<
-  HTMLButtonElement,
-  DatePickerIndicatorProps
->(ArkDatePicker.Trigger, "indicator", { forwardAsChild: true })
-////////////////////////////////////////////////////////////////////////////////////
-
 export const DatePickerContext = ArkDatePicker.Context
 
 export interface DatePickerValueChangeDetails
@@ -404,6 +375,7 @@ export const DatePickerHeader = (props: DatePickerHeaderProps) => {
     </DatePickerViewControl>
   )
 }
+////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////
 export interface DatePickerDayViewProps

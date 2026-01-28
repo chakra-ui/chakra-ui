@@ -13,14 +13,17 @@ export const DatePickerYearPickerRange = () => {
       format={format}
       parse={parse}
       placeholder="yyyy"
+      maxWidth="24rem"
     >
-      <DatePicker.Label>Label</DatePicker.Label>
+      <DatePicker.Label>Select year range</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input index={0} />
         <DatePicker.Input index={1} />
-        <DatePicker.Trigger>
-          <LuCalendar />
-        </DatePicker.Trigger>
+        <DatePicker.IndicatorGroup>
+          <DatePicker.Trigger>
+            <LuCalendar />
+          </DatePicker.Trigger>
+        </DatePicker.IndicatorGroup>
         <DatePicker.ClearTrigger />
       </DatePicker.Control>
       <Portal>
