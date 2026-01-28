@@ -9,7 +9,7 @@ import {
   useListCollection,
 } from "@chakra-ui/react"
 
-export const ComboboxInPopover = () => {
+export const ComboboxOpenFromPopover = () => {
   return (
     <Popover.Root size="xs">
       <Popover.Trigger asChild>

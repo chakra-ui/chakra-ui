@@ -3,7 +3,7 @@
 import { Button, Dialog, Menu, Portal } from "@chakra-ui/react"
 import Lorem from "react-lorem-ipsum"
 
-export const MenuWithinDialog = () => {
+export const MenuOpenFromDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>

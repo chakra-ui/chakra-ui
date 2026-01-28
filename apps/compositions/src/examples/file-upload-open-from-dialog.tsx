@@ -1,7 +1,7 @@
 import { Button, Dialog, FileUpload, Icon, Portal } from "@chakra-ui/react"
 import { LuUpload } from "react-icons/lu"
 
-export const FileUploadInDialog = () => {
+export const FileUploadOpenFromDialog = () => {
   return (
     <Dialog.Root size="sm" placement="center">
       <Dialog.Trigger asChild>

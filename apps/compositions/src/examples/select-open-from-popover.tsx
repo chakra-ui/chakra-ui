@@ -8,7 +8,7 @@ import {
   createListCollection,
 } from "@chakra-ui/react"
 
-export const SelectInPopover = () => {
+export const SelectOpenFromPopover = () => {
   return (
     <Popover.Root size="xs">
       <Popover.Trigger asChild>

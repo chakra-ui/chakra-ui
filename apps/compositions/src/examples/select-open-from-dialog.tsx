@@ -9,7 +9,7 @@ import {
   createListCollection,
 } from "@chakra-ui/react"
 
-export const SelectInDialog = () => {
+export const SelectOpenFromDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
