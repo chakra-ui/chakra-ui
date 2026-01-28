@@ -27,7 +27,7 @@
     },
     {
       "name": "close-button-with-sizes",
-      "content": "export const CloseButtonWithSizes = () => {\n  return (\n    <HStack gap=\"4\" wrap=\"wrap\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => <CloseButton variant=\"outline\" size={size} />}\n      </For>\n    </HStack>\n  )\n}\n",
+      "content": "export const CloseButtonWithSizes = () => {\n  return (\n    <HStack gap=\"4\" wrap=\"wrap\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => <CloseButton key={size} variant=\"outline\" size={size} />}\n      </For>\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { CloseButton, For, HStack } from \"@chakra-ui/react\""
