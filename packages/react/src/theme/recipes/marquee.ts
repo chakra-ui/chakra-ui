@@ -8,7 +8,8 @@ export const marqueeSlotRecipe = defineSlotRecipe({
     root: {
       position: "relative",
       width: "100%",
-      maxWidth: "100%",
+      "--marquee-edge-color": "colors.bg",
+      "--marquee-edge-size": "20%",
       "&[data-paused]": {
         animationPlayState: "paused !important",
         "& *": {
@@ -30,9 +31,6 @@ export const marqueeSlotRecipe = defineSlotRecipe({
       animationDuration: "var(--marquee-duration)",
       animationDelay: "var(--marquee-delay)",
       animationIterationCount: "var(--marquee-loop-count)",
-      "@media (prefers-reduced-motion: reduce)": {
-        animation: "none !important",
-      },
       _motionReduce: {
         animation: "none !important",
       },
@@ -54,46 +52,45 @@ export const marqueeSlotRecipe = defineSlotRecipe({
     },
     edge: {
       position: "absolute",
-      zIndex: 10,
+      zIndex: "1",
       pointerEvents: "none",
+
       "&[data-side='start']": {
-        width: "20%",
+        width: "var(--marquee-edge-size)",
         insetY: "0",
         insetInlineStart: "0",
         background:
-          "linear-gradient(to right, var(--chakra-colors-bg, white), transparent)",
+          "linear-gradient(to right, var(--marquee-edge-color, white), transparent)",
         _rtl: {
           background:
-            "linear-gradient(to left, var(--chakra-colors-bg, white), transparent)",
+            "linear-gradient(to left, var(--marquee-edge-color, white), transparent)",
         },
       },
       "&[data-side='end']": {
-        width: "20%",
+        width: "var(--marquee-edge-size)",
         insetY: "0",
         insetInlineEnd: "0",
         background:
-          "linear-gradient(to left, var(--chakra-colors-bg, white), transparent)",
+          "linear-gradient(to left, var(--marquee-edge-color, white), transparent)",
         _rtl: {
           background:
-            "linear-gradient(to right, var(--chakra-colors-bg, white), transparent)",
+            "linear-gradient(to right, var(--marquee-edge-color, white), transparent)",
         },
       },
       "&[data-side='top']": {
-        height: "20%",
+        height: "var(--marquee-edge-size)",
         insetX: "0",
         top: "0",
         background:
-          "linear-gradient(to bottom, var(--chakra-colors-bg, white), transparent)",
+          "linear-gradient(to bottom, var(--marquee-edge-color, white), transparent)",
       },
       "&[data-side='bottom']": {
-        height: "20%",
+        height: "var(--marquee-edge-size)",
         insetX: "0",
         bottom: "0",
         background:
-          "linear-gradient(to top, var(--chakra-colors-bg, white), transparent)",
+          "linear-gradient(to top, var(--marquee-edge-color, white), transparent)",
       },
     },
   },
-  variants: {},
-  defaultVariants: {},
 })

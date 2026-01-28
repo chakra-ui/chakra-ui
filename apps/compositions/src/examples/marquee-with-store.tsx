@@ -1,7 +1,12 @@
 "use client"
 
-import { Marquee, Stack } from "@chakra-ui/react"
-import { useState } from "react"
+import {
+  Button,
+  ButtonGroup,
+  Marquee,
+  Stack,
+  useMarquee,
+} from "@chakra-ui/react"
 import {
   IoLogoFigma,
   IoLogoGitlab,
@@ -10,18 +15,14 @@ import {
   IoLogoTwitter,
   IoLogoVimeo,
 } from "react-icons/io5"
+import { LuPause, LuPlay } from "react-icons/lu"
 
-export const MarqueeFiniteLoop = () => {
-  const [loopCount, setLoopCount] = useState(0)
-  const [completedCount, setCompletedCount] = useState(0)
+export const MarqueeWithStore = () => {
+  const marquee = useMarquee()
 
   return (
-    <>
-      <Marquee.Root
-        loopCount={3}
-        onLoopComplete={() => setLoopCount((prev) => prev + 1)}
-        onComplete={() => setCompletedCount((prev) => prev + 1)}
-      >
+    <Stack gap="8">
+      <Marquee.RootProvider value={marquee}>
         <Marquee.Viewport>
           <Marquee.Content>
             {items.map((item, i) => (
@@ -37,13 +38,18 @@ export const MarqueeFiniteLoop = () => {
             ))}
           </Marquee.Content>
         </Marquee.Viewport>
-      </Marquee.Root>
+      </Marquee.RootProvider>
 
-      <Stack m="4" textStyle="sm">
-        <p>Loop completed: {loopCount} times</p>
-        <p>Animation completed: {completedCount} times</p>
-      </Stack>
-    </>
+      <ButtonGroup size="sm" variant="outline">
+        <Button hidden={marquee.paused} onClick={() => marquee.pause()}>
+          <LuPause /> Pause
+        </Button>
+        <Button hidden={!marquee.paused} onClick={() => marquee.resume()}>
+          <LuPlay />
+          Resume
+        </Button>
+      </ButtonGroup>
+    </Stack>
   )
 }
 

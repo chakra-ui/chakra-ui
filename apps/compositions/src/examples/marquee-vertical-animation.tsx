@@ -9,8 +9,8 @@ import {
   IoLogoVimeo,
 } from "react-icons/io5"
 
-export const MarqueePauseInteractions = () => (
-  <Marquee.Root pauseOnInteraction>
+export const MarqueeVerticalAnimation = () => (
+  <Marquee.Root side="bottom" height="300px" spacing="2rem">
     <Marquee.Viewport>
       <Marquee.Content>
         {items.map((item, i) => (
