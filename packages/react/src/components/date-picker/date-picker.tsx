@@ -8,12 +8,11 @@ import {
 import type React from "react"
 import {
   type HTMLChakraProps,
-  type RecipeProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import type { ButtonLoadingProps } from "../button/button"
+import { Button } from "../button/button"
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -349,21 +348,7 @@ export const DatePickerIndicatorGroup = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DatePickerValueProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
-
-export const DatePickerValue = withContext<
-  HTMLDivElement,
-  DatePickerValueProps
->("div", "value")
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export const DatePickerContext = ArkDatePicker.Context
-
-export interface DatePickerValueChangeDetails
-  extends ArkDatePicker.ValueChangeDetails {}
 
 export interface DatePickerOpenChangeDetails
   extends ArkDatePicker.OpenChangeDetails {}
@@ -492,6 +477,33 @@ export const DatePickerYearView = (props: DatePickerYearViewProps) => {
         </DatePickerTableBody>
       </DatePickerTable>
     </DatePickerView>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface DatePickerValueProps
+  extends Omit<DatePickerTriggerProps, "children"> {
+  placeholder?: string
+}
+
+export const DatePickerValue = (props: DatePickerValueProps) => {
+  const { placeholder, value, ...rest } = props
+  const ctx = useDatePickerContext()
+
+  return (
+    <DatePickerTrigger asChild unstyled {...rest}>
+      <Button
+        variant="outline"
+        width="full"
+        justifyContent="flex-start"
+        textAlign="start"
+      >
+        {ctx.value.length
+          ? ctx.value[0].toDate("UTC").toLocaleDateString()
+          : (placeholder ?? "Select date")}
+      </Button>
+    </DatePickerTrigger>
   )
 }
 

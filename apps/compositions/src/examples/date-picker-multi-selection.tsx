@@ -1,3 +1,4 @@
+// Reusable component for displaying selected dates as tags
 "use client"
 
 import { DatePicker, Portal, Tag } from "@chakra-ui/react"
@@ -9,18 +10,15 @@ export const DatePickerMultiSelection = () => {
     <DatePicker.Root selectionMode="multiple" maxWidth="24rem">
       <DatePicker.Label>Select dates</DatePicker.Label>
       <DatePicker.Control pr={4}>
-        <DatePicker.Context>
-          <DatePicker.Value placeholder="Select date">
-            {({ value, index, onRemove }) => (
-              <Tag.Root size="md" variant="outline" colorScheme="blue">
-                <Tag.Label>{formatWithDay(value!)}</Tag.Label>
-                <Tag.EndElement>
-                  <Tag.CloseTrigger onClick={() => onRemove(index)} />
-                </Tag.EndElement>
-              </Tag.Root>
-            )}
-          </DatePicker.Value>
-        </DatePicker.Context>
+        {/* <DatePicker.Value placeholder="Select date">
+          {({ value, index, onRemove }) => (
+            <Tag.Root size="md" variant="outline" colorScheme="blue">
+              <Tag.Label>{formatWithDay(value!)}</Tag.Label>
+              <Tag.EndElement>
+                <Tag.CloseTrigger onClick={() => onRemove(index)} />
+              </Tag.EndElement>
+            </Tag.Root>
+          )} */}
         <DatePicker.IndicatorGroup>
           <DatePicker.Trigger>
             <LuCalendar />

@@ -61,7 +61,6 @@ export type {
   DatePickerTableProps,
   DatePickerTableRowProps,
   DatePickerTriggerProps,
-  DatePickerValueChangeDetails,
   DatePickerViewChangeDetails,
   DatePickerViewControlProps,
   DatePickerViewProps,
