@@ -8,7 +8,8 @@ export async function generateSystemTypes(sys: SystemContext) {
   )
   const propTypes = sys.utility.getTypes()
 
-  const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
+  const shouldImportTypeWithEscapeHatch =
+    sys._config.strictTokens || sys._config.strictPropertyValues
   const shouldImportOnlyKnown = sys._config.strictPropertyValues
 
   const result = `
@@ -85,6 +86,10 @@ const strictPropertyList = new Set<string>([])
 const restrict = (key: string, value: string, sys: SystemContext) => {
   const { _config: config } = sys
 
+  // NOTE: strictPropertyList currently operates on shorthand property keys (e.g., 'mt'),
+  // while the 'key' parameter here receives expanded keys (e.g., 'marginTop').
+  // This may cause shorthand properties to bypass strictPropertyValues enforcement
+  // until key normalization is standardized.
   if (config.strictPropertyValues && strictPropertyList.has(key)) {
     return `ConditionalValue<WithEscapeHatch<OnlyKnown<${value}>>>`
   }

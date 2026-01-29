@@ -132,7 +132,8 @@ The Button component is built with accessibility in mind:
 - When using icon-only buttons, provide an `aria-label` for screen readers
 - Use the `disabled` prop instead of `aria-disabled` when possible for proper
   keyboard handling
-- For loading states, the button automatically includes `aria-busy="true"`
+- For loading states, the button is disabled and marked with `data-loading`; add
+  `aria-busy="true"` manually if needed for your use case
 
 ### Button as Link
 

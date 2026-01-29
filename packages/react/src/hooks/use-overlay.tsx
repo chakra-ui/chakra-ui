@@ -176,8 +176,8 @@ export function createOverlay<T extends Dict>(
       <>
         {overlays.map((props, index) =>
           React.createElement(Component, {
-            key: index,
             ...(props as T & CreateOverlayProps),
+            key: index,
           }),
         )}
       </>
