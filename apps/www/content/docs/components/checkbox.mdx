@@ -180,6 +180,34 @@ Here's how to use the it
 <Checkbox>Accept terms and conditions</Checkbox>
 ```
 
+## Accessibility
+
+The Checkbox component follows the
+[WAI-ARIA Checkbox Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).
+
+### Keyboard Support
+
+- `Tab` - Moves focus to the checkbox or the next checkbox in a group
+- `Shift + Tab` - Moves focus to the previous interactive element
+- `Space` - Toggles the checkbox state between checked and unchecked
+
+### Best Practices
+
+- Always provide a visible label for the checkbox
+- For checkbox groups, use `Fieldset.Root` with `Fieldset.Legend` instead of
+  `Field.Root`
+- Use the `indeterminate` state to indicate partial selection in hierarchical
+  lists
+- Ensure sufficient color contrast (3:1 minimum) for the checkbox indicator
+
+### ARIA Attributes
+
+- The checkbox input has `role="checkbox"` (implicit from input type)
+- The `aria-checked` attribute reflects the current state: `true`, `false`, or
+  `mixed` (for indeterminate)
+- When disabled, `aria-disabled="true"` is applied
+- For checkbox groups, the fieldset provides proper grouping semantics
+
 ## Guides
 
 ### CheckboxGroup + Field vs Fieldset

@@ -363,6 +363,40 @@ that don't exist in the list. It uses the `useCombobox` and
 
 <ExampleTabs name="combobox-with-createable" />
 
+## Accessibility
+
+The Combobox component follows the
+[WAI-ARIA Combobox Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
+
+### Keyboard Support
+
+- `Enter` or `Space` - Opens the combobox menu (when trigger is focused)
+- `ArrowDown` - Opens the menu (if closed) and moves focus to the next option
+- `ArrowUp` - Opens the menu (if closed) and moves focus to the previous option
+- `Home` - Moves focus to the first option
+- `End` - Moves focus to the last option
+- `Esc` - Closes the combobox menu and clears the input (when `clearOnEscape` is
+  true)
+- `Tab` - Closes the menu and moves focus to the next interactive element
+- Typing - Filters the options based on the input value
+
+### Focus Management
+
+- When the combobox menu opens, focus remains on the input field
+- Arrow keys navigate through filtered options while typing
+- When the menu closes, focus returns to the input field
+- Use `loopFocus` prop to enable circular navigation through options
+
+### ARIA Attributes
+
+- The input has `role="combobox"`, `aria-autocomplete="list"`, and
+  `aria-expanded` set to `true` or `false`
+- The input uses `aria-controls` to reference the listbox
+- The listbox has `role="listbox"` and `aria-labelledby` pointing to the label
+- Each option has `role="option"` and `aria-selected` set to `true` or `false`
+- When filtering returns no results, the empty state is announced to screen
+  readers
+
 ## Props
 
 ### Root

@@ -116,6 +116,29 @@ const Demo = () => {
 }
 ```
 
+## Accessibility
+
+The Button component is built with accessibility in mind:
+
+### Keyboard Support
+
+- `Tab` - Moves focus to the button
+- `Shift + Tab` - Moves focus to the previous interactive element
+- `Enter` or `Space` - Activates the button
+
+### Best Practices
+
+- Use descriptive button text that clearly indicates the action
+- When using icon-only buttons, provide an `aria-label` for screen readers
+- Use the `disabled` prop instead of `aria-disabled` when possible for proper
+  keyboard handling
+- For loading states, the button automatically includes `aria-busy="true"`
+
+### Button as Link
+
+When using `asChild` to render a button as a link, ensure proper keyboard
+navigation is maintained. Links should navigate, buttons should perform actions.
+
 ## Customization
 
 :::info

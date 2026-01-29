@@ -9,13 +9,14 @@ export async function generateSystemTypes(sys: SystemContext) {
   const propTypes = sys.utility.getTypes()
 
   const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
+  const shouldImportOnlyKnown = sys._config.strictPropertyValues
 
   const result = `
   import type { ConditionalValue, CssProperties } from "../css.types"
   ${
     shouldImportTypeWithEscapeHatch
-      ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
-      : `import type { UtilityValues } from "./prop-types.gen"`
+      ? `import type { UtilityValues, WithEscapeHatch${shouldImportOnlyKnown ? ", OnlyKnown" : ""} } from "./prop-types.gen"`
+      : `import type { UtilityValues${shouldImportOnlyKnown ? ", OnlyKnown" : ""} } from "./prop-types.gen"`
   }
   import type { Token } from "./token.gen"
   type AnyString = (string & {})
@@ -77,15 +78,16 @@ export async function generateSystemTypes(sys: SystemContext) {
   return pretty(result)
 }
 
-// TODO: Update when we support strictPropertyValues
+// List of properties that should enforce strict values when strictPropertyValues is enabled
+// Add property keys here to enforce OnlyKnown type constraints for those properties
 const strictPropertyList = new Set<string>([])
 
-const restrict = (_key: string, value: string, sys: SystemContext) => {
+const restrict = (key: string, value: string, sys: SystemContext) => {
   const { _config: config } = sys
 
-  // if (config.strictPropertyValues && strictPropertyList.has(key)) {
-  //   return `ConditionalValue<WithEscapeHatch<OnlyKnown<"${key}", ${value}>>>`
-  // }
+  if (config.strictPropertyValues && strictPropertyList.has(key)) {
+    return `ConditionalValue<WithEscapeHatch<OnlyKnown<${value}>>>`
+  }
 
   if (config.strictTokens) return `ConditionalValue<WithEscapeHatch<${value}>>`
   return `ConditionalValue<${value} | AnyString>`

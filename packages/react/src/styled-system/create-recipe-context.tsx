@@ -35,9 +35,8 @@ export function createRecipeContext<K extends RecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemRecipeFn<{}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
-      () => recipe.splitVariantProps(restProps),
+      () => recipe.splitVariantProps(restProps) as [any, any],
       [recipe, restProps],
     )
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
@@ -74,8 +73,8 @@ export function createRecipeContext<K extends RecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 

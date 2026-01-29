@@ -83,8 +83,7 @@ export const GuideSearchInput = () => {
 
   return (
     <ComboboxRoot
-      //@ts-expect-error fix later
-      collection={collection}
+      collection={collection as any}
       navigate={({ value }) => {
         requestAnimationFrame(() => {
           router.push(`/${value}`)

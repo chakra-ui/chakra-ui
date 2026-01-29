@@ -194,6 +194,38 @@ Here's an example of how to trigger the select component with an `IconButton`.
 
 <ExampleTabs name="select-with-icon-button" />
 
+## Accessibility
+
+The Select component follows the
+[WAI-ARIA Listbox Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/).
+
+### Keyboard Support
+
+- `Enter` or `Space` - Opens the select menu
+- `ArrowDown` - Moves focus to the next option (opens menu if closed)
+- `ArrowUp` - Moves focus to the previous option (opens menu if closed)
+- `Home` - Moves focus to the first option
+- `End` - Moves focus to the last option
+- `Esc` - Closes the select menu
+- `A-Z` - Typing characters moves focus to the next option starting with those
+  characters
+
+### Focus Management
+
+- When the select menu opens, focus moves to the selected option or the first
+  option if none is selected
+- Focus is trapped within the select menu while it's open
+- When the menu closes, focus returns to the trigger
+
+### ARIA Attributes
+
+- The select trigger has `role="combobox"`, `aria-haspopup="listbox"`, and
+  `aria-expanded` set to `true` or `false`
+- The select content has `role="listbox"`
+- Each select option has `role="option"` and `aria-selected` set to `true` or
+  `false`
+- The trigger uses `aria-controls` to reference the listbox
+
 ## Props
 
 ### Root

@@ -57,8 +57,7 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
     )
 
     function svaFn(props: Dict) {
-      //@ts-ignore
-      const result = slots.map(([slot, cvaFn]) => [slot, cvaFn(props)])
+      const result = slots.map(([slot, cvaFn]) => [slot, (cvaFn as any)(props)])
       return Object.fromEntries(result)
     }
 

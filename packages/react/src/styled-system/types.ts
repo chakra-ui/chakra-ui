@@ -339,6 +339,7 @@ export interface SystemConfig extends PreflightConfig {
   utilities?: UtilityConfig | undefined
   conditions?: Dict | undefined
   strictTokens?: boolean | undefined
+  strictPropertyValues?: boolean | undefined
 }
 
 interface CompositionQuery {

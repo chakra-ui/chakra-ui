@@ -183,6 +183,45 @@ const toaster = createToaster({
 })
 ```
 
+## Accessibility
+
+The Toast component follows accessibility best practices for notifications:
+
+### Keyboard Support
+
+- `Tab` - Moves focus between interactive elements within the toast (action
+  buttons, close button)
+- `Shift + Tab` - Moves focus backward through interactive elements
+- `Enter` or `Space` - Activates the focused button
+- `Esc` - Closes the toast (when the close trigger is present)
+
+### Screen Reader Support
+
+- Toasts use `role="status"` by default for non-critical notifications
+  (automatically announced)
+- For error or critical messages, toasts use `role="alert"` for immediate
+  announcement
+- The toast content is automatically announced to screen readers when it appears
+- Toasts with actions remain visible until dismissed, allowing sufficient time
+  for interaction
+
+### Focus Management
+
+- Toast notifications do not steal focus by default, allowing users to continue
+  their current task
+- When a toast contains interactive elements (action buttons), users can tab to
+  them
+- Focus is not trapped within the toast, maintaining natural page flow
+
+### Best Practices
+
+- Keep toast messages concise and actionable
+- Provide sufficient time for users to read and act on toast messages (default:
+  5 seconds)
+- For critical information requiring action, use `type="error"` or increase the
+  `duration`
+- Ensure action button labels are descriptive and clear
+
 ## Props
 
 ### Toaster

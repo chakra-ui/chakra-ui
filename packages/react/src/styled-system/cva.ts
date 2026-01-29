@@ -123,8 +123,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
     return result
   }
 
-  //@ts-expect-error
-  return cva
+  return cva as any
 }
 
 function mergeCva(opts: Options) {

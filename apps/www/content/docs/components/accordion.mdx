@@ -148,6 +148,28 @@ const Demo = () => (
 )
 ```
 
+## Accessibility
+
+The Accordion component follows the
+[WAI-ARIA Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+
+### Keyboard Support
+
+- `Tab` - Moves focus to the next accordion trigger
+- `Shift + Tab` - Moves focus to the previous accordion trigger
+- `Enter` or `Space` - Toggles the accordion panel
+- `Home` - Moves focus to the first accordion trigger (when focus is on a
+  trigger)
+- `End` - Moves focus to the last accordion trigger (when focus is on a trigger)
+
+### ARIA Attributes
+
+- The accordion trigger has `role="button"` and `aria-expanded` set to `true` or
+  `false` based on the open state
+- The accordion panel has `role="region"` and is labelled by its trigger using
+  `aria-labelledby`
+- The trigger uses `aria-controls` to reference its associated panel
+
 ## Props
 
 ### Root

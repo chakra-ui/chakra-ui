@@ -201,6 +201,37 @@ If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
 
 <ExampleTabs name="menu-open-from-dialog" />
 
+## Accessibility
+
+The Menu component follows the
+[WAI-ARIA Menu Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menu/).
+
+### Keyboard Support
+
+- `Enter` or `Space` - Opens the menu and focuses the first menu item
+- `ArrowDown` - Moves focus to the next menu item
+- `ArrowUp` - Moves focus to the previous menu item
+- `Home` - Moves focus to the first menu item
+- `End` - Moves focus to the last menu item
+- `Esc` - Closes the menu and returns focus to the trigger
+- `Tab` - Closes the menu and moves focus to the next interactive element
+
+### Focus Management
+
+- When the menu opens, focus moves to the first menu item by default
+- Focus is trapped within the menu while it's open
+- Typing a character moves focus to the next menu item starting with that
+  character
+
+### ARIA Attributes
+
+- The menu trigger has `aria-haspopup="menu"` and `aria-expanded` set to `true`
+  or `false`
+- The menu container has `role="menu"`
+- Each menu item has `role="menuitem"`, `role="menuitemcheckbox"`, or
+  `role="menuitemradio"`
+- The trigger uses `aria-controls` to reference the menu
+
 ## Guide
 
 ### Styling highlighted items

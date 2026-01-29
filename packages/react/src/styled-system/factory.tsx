@@ -9,7 +9,6 @@
 import emotionIsPropValid from "@emotion/is-prop-valid"
 import { ThemeContext, withEmotionCache } from "@emotion/react"
 import { serializeStyles } from "@emotion/serialize"
-//@ts-ignore
 import { useInsertionEffectAlwaysWithSyncFallback } from "@emotion/use-insertion-effect-with-fallbacks"
 import {
   getRegisteredStyles,

@@ -181,6 +181,35 @@ component.
 
 <ExampleTabs name="dialog-with-datalist" />
 
+## Accessibility
+
+The Dialog component follows the
+[WAI-ARIA Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+### Keyboard Support
+
+- `Tab` - Moves focus to the next focusable element inside the dialog
+- `Shift + Tab` - Moves focus to the previous focusable element inside the
+  dialog
+- `Esc` - Closes the dialog (when `closeOnEscape` is true)
+- `Enter` - Activates the focused button or element
+
+### Focus Management
+
+- When the dialog opens, focus moves to the first focusable element (or the
+  element specified by `initialFocusEl`)
+- Focus is trapped within the dialog while it's open
+- When the dialog closes, focus returns to the element that triggered it
+
+### ARIA Attributes
+
+- The dialog container has `role="dialog"` (or `role="alertdialog"` when
+  specified)
+- The dialog is labeled using `aria-labelledby` pointing to the `Dialog.Title`
+- The dialog content is described using `aria-describedby` pointing to the
+  `Dialog.Body`
+- The backdrop has `aria-hidden="true"` to hide it from screen readers
+
 ## Props
 
 ### Root

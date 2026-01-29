@@ -691,8 +691,7 @@ export const defaultBaseConfig = defineConfig({
     maxBlockSize: { values: "sizes" },
     hideFrom: {
       values: "breakpoints",
-      //@ts-ignore
-      transform: (value, { raw, token }) => {
+      transform: (value: any, { raw, token }: any) => {
         const bp = token.raw(`breakpoints.${raw}`)
         const media = bp
           ? `@breakpoint ${raw}`
@@ -704,8 +703,7 @@ export const defaultBaseConfig = defineConfig({
     },
     hideBelow: {
       values: "breakpoints",
-      //@ts-ignore
-      transform(value, { raw, token }) {
+      transform(value: any, { raw, token }: any) {
         const bp = token.raw(`breakpoints.${raw}`)
         const media = bp
           ? `@breakpoint ${raw}Down`

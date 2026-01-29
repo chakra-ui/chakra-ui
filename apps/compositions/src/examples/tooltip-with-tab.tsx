@@ -11,13 +11,10 @@ export const TooltipWithTab = () => {
           ids={{ trigger: "members" }}
           content="This is the tooltip content"
         >
-          {/* TODO: Remove this once Zag.js is fixed */}
-          <span>
-            <Tabs.Trigger value="members">
-              <LuUser />
-              Members
-            </Tabs.Trigger>
-          </span>
+          <Tabs.Trigger value="members">
+            <LuUser />
+            Members
+          </Tabs.Trigger>
         </Tooltip>
         <Tabs.Trigger value="projects">
           <LuFolder />

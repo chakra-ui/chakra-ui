@@ -224,6 +224,39 @@ command:
 npx @chakra-ui/cli snippet add slider
 ```
 
+## Accessibility
+
+The Slider component follows the
+[WAI-ARIA Slider Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+
+### Keyboard Support
+
+#### Horizontal Orientation (default)
+
+- `Tab` - Moves focus to the slider thumb
+- `ArrowRight` - Increases the slider value by one step
+- `ArrowLeft` - Decreases the slider value by one step
+- `ArrowUp` - Increases the slider value by one step
+- `ArrowDown` - Decreases the slider value by one step
+- `Home` - Sets the slider to its minimum value
+- `End` - Sets the slider to its maximum value
+- `PageUp` - Increases the slider value by a larger step (typically 10%)
+- `PageDown` - Decreases the slider value by a larger step (typically 10%)
+
+#### Vertical Orientation
+
+All keyboard interactions are the same, with `ArrowUp` increasing and
+`ArrowDown` decreasing the value.
+
+### ARIA Attributes
+
+- The slider thumb has `role="slider"`
+- The thumb has `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` attributes
+- The thumb uses `aria-orientation` set to `horizontal` or `vertical`
+- When a label is present, the slider uses `aria-labelledby` to reference it
+- For multi-thumb sliders, each thumb is properly labeled and has distinct ARIA
+  attributes
+
 ## Props
 
 <PropTable component="Slider" part="Root" />

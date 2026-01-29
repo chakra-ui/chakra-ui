@@ -71,9 +71,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemSlotRecipeFn<string, {}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
-      () => slotRecipe.splitVariantProps(restProps),
+      () => slotRecipe.splitVariantProps(restProps) as [any, any],
       [restProps, slotRecipe],
     )
     const styles = useMemo(
@@ -111,8 +110,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     }
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 
@@ -151,8 +150,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       return options?.wrapElement?.(element, props as P) ?? element
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
 
     return StyledComponent as any
   }
@@ -181,8 +180,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 

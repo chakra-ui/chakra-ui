@@ -88,32 +88,26 @@ export function createOverlay<T extends Dict>(
   }
 
   const open = (id: string, props: T) => {
-    const overlayProps = {
-      ...options?.props,
-      ...props,
-      open: true,
-      onOpenChange: (e: { open: boolean }) => {
-        if (!e.open) close(id)
-      },
-      onExitComplete: () => {
-        const overlay = get(id) as T & CreateOverlayProps
-        if (overlay.setExitComplete) {
-          overlay.setExitComplete()
-          overlay.setExitComplete = undefined
-        }
-        remove(id)
-      },
-      setReturnValue: undefined,
-      setExitComplete: undefined,
-    }
-
-    map.set(id, overlayProps as T)
-
     const prom = new Promise<any>((resolve) => {
-      map.set(id, {
-        ...overlayProps,
+      const overlayProps = {
+        ...options?.props,
+        ...props,
+        open: true,
+        onOpenChange: (e: { open: boolean }) => {
+          if (!e.open) close(id)
+        },
+        onExitComplete: () => {
+          const overlay = get(id) as T & CreateOverlayProps
+          if (overlay.setExitComplete) {
+            overlay.setExitComplete()
+          }
+          remove(id)
+        },
         setReturnValue: resolve,
-      } as T)
+        setExitComplete: undefined,
+      }
+
+      map.set(id, overlayProps as T)
     })
 
     publish()
@@ -123,13 +117,12 @@ export function createOverlay<T extends Dict>(
 
   const close = (id: string, value?: any) => {
     const prevProps = get(id) as T & CreateOverlayProps
-    map.set(id, { ...prevProps, open: false })
 
     if (prevProps.setReturnValue) {
       prevProps.setReturnValue(value)
-      prevProps.setReturnValue = undefined
     }
 
+    map.set(id, { ...prevProps, open: false, setReturnValue: undefined })
     publish()
 
     const exitPromise = new Promise<void>((resolve) => {
@@ -181,10 +174,12 @@ export function createOverlay<T extends Dict>(
     )
     return (
       <>
-        {overlays.map((props, index) => (
-          // @ts-expect-error - TODO: fix this
-          <Component key={index} {...props} />
-        ))}
+        {overlays.map((props, index) =>
+          React.createElement(Component, {
+            key: index,
+            ...(props as T & CreateOverlayProps),
+          }),
+        )}
       </>
     )
   }

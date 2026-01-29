@@ -142,6 +142,42 @@ Use the `_open` and `_close` conditional props to animate the tabs.
 
 <ExampleTabs name="tabs-with-animation" />
 
+## Accessibility
+
+The Tabs component follows the
+[WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+### Keyboard Support
+
+#### Horizontal Orientation (default)
+
+- `Tab` - Moves focus into and out of the tab list
+- `ArrowLeft` - Moves focus to the previous tab (and activates it by default)
+- `ArrowRight` - Moves focus to the next tab (and activates it by default)
+- `Home` - Moves focus to the first tab
+- `End` - Moves focus to the last tab
+
+#### Vertical Orientation
+
+- `Tab` - Moves focus into and out of the tab list
+- `ArrowUp` - Moves focus to the previous tab
+- `ArrowDown` - Moves focus to the next tab
+- `Home` - Moves focus to the first tab
+- `End` - Moves focus to the last tab
+
+### Manual Activation
+
+When `activationBehavior="manual"` is set, arrow keys only move focus. Press
+`Enter` or `Space` to activate the focused tab.
+
+### ARIA Attributes
+
+- The tab list has `role="tablist"` and `aria-orientation` set to `horizontal`
+  or `vertical`
+- Each tab has `role="tab"`, `aria-selected` set to `true` or `false`, and
+  `aria-controls` pointing to its panel
+- Each tab panel has `role="tabpanel"` and `aria-labelledby` pointing to its tab
+
 ## Guide
 
 ### Styling active tab

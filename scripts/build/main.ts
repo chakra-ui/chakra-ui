@@ -1,4 +1,4 @@
-import { resolve } from "path/posix"
+import { resolve } from "node:path"
 import { buildProject } from "./build.js"
 
 async function main() {
