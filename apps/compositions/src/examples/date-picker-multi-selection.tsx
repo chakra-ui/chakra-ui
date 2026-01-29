@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker, Portal, Tag, Wrap } from "@chakra-ui/react"
+import { DatePicker, Portal, Tag } from "@chakra-ui/react"
 import type { DateValue } from "@internationalized/date"
 import { LuCalendar } from "react-icons/lu"
 
@@ -10,34 +10,16 @@ export const DatePickerMultiSelection = () => {
       <DatePicker.Label>Select dates</DatePicker.Label>
       <DatePicker.Control pr={4}>
         <DatePicker.Context>
-          {(datePicker) => (
-            <Wrap>
-              {datePicker.value.length === 0 ? (
-                <span>Select dates...</span>
-              ) : (
-                datePicker.value.map((date, index) => (
-                  <Tag.Root
-                    key={index}
-                    size="md"
-                    variant="outline"
-                    colorScheme="blue"
-                  >
-                    <Tag.Label>{formatWithDay(date)}</Tag.Label>
-                    <Tag.EndElement>
-                      <Tag.CloseTrigger
-                        aria-label="Remove date"
-                        onClick={() =>
-                          datePicker.setValue(
-                            datePicker.value.filter((_, i) => i !== index),
-                          )
-                        }
-                      />
-                    </Tag.EndElement>
-                  </Tag.Root>
-                ))
-              )}
-            </Wrap>
-          )}
+          <DatePicker.Value placeholder="Select date">
+            {({ value, index, onRemove }) => (
+              <Tag.Root size="md" variant="outline" colorScheme="blue">
+                <Tag.Label>{formatWithDay(value!)}</Tag.Label>
+                <Tag.EndElement>
+                  <Tag.CloseTrigger onClick={() => onRemove(index)} />
+                </Tag.EndElement>
+              </Tag.Root>
+            )}
+          </DatePicker.Value>
         </DatePicker.Context>
         <DatePicker.IndicatorGroup>
           <DatePicker.Trigger>

@@ -349,6 +349,17 @@ export const DatePickerIndicatorGroup = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface DatePickerValueProps
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
+
+export const DatePickerValue = withContext<
+  HTMLDivElement,
+  DatePickerValueProps
+>("div", "value")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export const DatePickerContext = ArkDatePicker.Context
 
 export interface DatePickerValueChangeDetails
