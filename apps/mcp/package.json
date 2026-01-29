@@ -45,7 +45,7 @@
     "@tsconfig/node24": "^24.0.0",
     "@types/express": "^5.0.5",
     "@types/fs-extra": "^11.0.4",
-    "release-it": "19.0.6",
+    "release-it": "19.2.4",
     "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "typescript": "5.9.3"
