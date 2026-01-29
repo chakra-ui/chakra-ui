@@ -1,11 +1,18 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useState } from "react"
 
-export function usePrevious<T>(value: T) {
-  const ref = useRef<T | undefined>(undefined)
-  useEffect(() => {
-    ref.current = value
-  }, [value])
-  return ref.current
+/**
+ * @see https://react.dev/reference/react/useState#storing-information-from-previous-renders
+ */
+export function usePrevious<Value>(value: Value) {
+  const [prevTrackedVal, setPrevTrackedVal] = useState<Value | undefined>()
+  const [prevVal, setPrevVal] = useState<Value | undefined>()
+
+  if (value !== prevTrackedVal) {
+    setPrevTrackedVal(value)
+    setPrevVal(prevTrackedVal)
+  }
+
+  return prevVal
 }
