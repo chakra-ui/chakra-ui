@@ -1,19 +1,31 @@
 ---
 title: Date Picker
-description: Used to display  Date Picker
+description:
+  A flexible date picker component for selecting single or multiple dates with
+  support for formatting, localization, and custom styling.
 links:
   source: components/date-picker
   storybook: components-date-picker--basic
   recipe: date-picker
 ---
 
-<ExampleTabs name="date-picker-basic" />
+## Overview
 
-## Usage
+The Date Picker component provides a user-friendly interface for selecting
+dates. It supports various configurations including inline display, custom
+formatting, localization, and date availability constraints.
+
+## Installation
 
 ```tsx
 import { DatePicker } from "@chakra-ui/react"
 ```
+
+## Basic Usage
+
+A simple date picker that allows users to select a single date.
+
+<ExampleTabs name="date-picker-basic" />
 
 ```tsx
 <DatePicker.Root>
@@ -26,44 +38,55 @@ import { DatePicker } from "@chakra-ui/react"
 </DatePicker.Root>
 ```
 
-## Examples
+## Features
 
-## Basic Usage
+### Format & Parse
 
-A simple date picker allowing the user to select a single date.
-
-<ExampleTabs name="date-picker-basic" />
-
-## Format & Parse
-
-Date picker with custom date formatting and parsing logic.
+Customize how dates are displayed and parsed using your own formatting logic.
 
 <ExampleTabs name="date-picker-format-parse" />
 
-## Inline
+### Inline Display
 
-Date picker displayed inline, rather than in a popover.
+Display the date picker inline within your page layout instead of within a
+popover.
 
 <ExampleTabs name="date-picker-inline" />
 
-## Locale
+### Localization
 
-Date picker with localization support for different languages and regions.
+Support different languages and regional date formats with built-in
+localization.
 
 <ExampleTabs name="date-picker-locale" />
 
-## Root Provider
+### Root Provider
 
-Date picker example using a root provider for context management.
+Use a root provider to manage context and configuration across multiple date
+picker instances.
 
 <ExampleTabs name="date-picker-root-provider" />
 
-## Unavailable
+### Unavailable Dates
 
-Date picker with certain dates marked as unavailable or disabled.
+Mark specific dates as unavailable or disabled to prevent user selection.
 
 <ExampleTabs name="date-picker-unavailable" />
 
-## Props
+## API Reference
+
+### DatePicker.Root
 
 <PropTable component="DatePicker" part="Root" />
+
+### DatePicker.Item
+
+<PropTable component="DatePicker" part="Item" />
+
+### DatePicker.ItemLabel
+
+<PropTable component="DatePicker" part="ItemLabel" />
+
+### DatePicker.ItemValue
+
+<PropTable component="DatePicker" part="ItemValue" />

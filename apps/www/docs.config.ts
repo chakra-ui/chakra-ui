@@ -129,7 +129,7 @@ const docsLinks: NavItem = {
           title: "Date Pickers",
           items: [
             { title: "Date Picker", url: "date-picker" },
-            { title: "Controlled Date Picker", url: "date-picker-controlled" },
+            { title: "Controlled", url: "date-picker-controlled" },
             { title: "Range Selection", url: "date-picker-range-selection" },
             { title: "Multi Selection", url: "date-picker-multi-selection" },
           ],
