@@ -244,7 +244,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       _selected: {
         background: "colorPalette.solid",
         color: "colorPalette.contrast",
-        margin: "2px",
+        my: "2px",
         fontWeight: "medium",
         _hover: {
           background: "colorPalette.solid",
