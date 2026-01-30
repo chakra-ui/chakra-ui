@@ -31,8 +31,7 @@ export {
   DatePickerDayView,
   DatePickerMonthView,
   DatePickerYearView,
-  DatePickerValue,
-  DatePickerListValue,
+  DatePickerValueText,
   useDatePickerStyles,
 } from "./date-picker"
 
@@ -72,8 +71,7 @@ export type {
   DatePickerDayViewProps,
   DatePickerMonthViewProps,
   DatePickerYearViewProps,
-  DatePickerValueProps,
-  DatePickerListValueProps,
+  DatePickerValueTextProps,
 } from "./date-picker"
 
 export {

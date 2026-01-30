@@ -10,16 +10,16 @@ export const DatePickerMultiSelection = () => {
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control pr={4}>
         <Wrap gap="2">
-          <DatePicker.ListValue placeholder="Select dates...">
-            {(date, index, remove) => (
+          <DatePicker.ValueText placeholder="Select dates...">
+            {({ value, index, remove }) => (
               <Tag.Root key={index} variant="outline">
-                <Tag.Label>{formatWithDay(date)}</Tag.Label>
+                <Tag.Label>{formatWithDay(value)}</Tag.Label>
                 <Tag.EndElement>
                   <Tag.CloseTrigger onClick={remove} />
                 </Tag.EndElement>
               </Tag.Root>
             )}
-          </DatePicker.ListValue>
+          </DatePicker.ValueText>
         </Wrap>
         <DatePicker.IndicatorGroup>
           <DatePicker.Trigger>

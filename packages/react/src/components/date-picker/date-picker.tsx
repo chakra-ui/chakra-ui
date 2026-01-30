@@ -7,10 +7,12 @@ import {
   useDatePickerContext,
 } from "@ark-ui/react/date-picker"
 import type React from "react"
+import { Fragment, forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
 import { Button } from "../button/button"
@@ -510,34 +512,106 @@ export const DatePickerValue = (props: DatePickerValueProps) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DatePickerListValueProps {
-  placeholder?: string
-  children?: (
-    date: DateValue,
-    index: number,
-    remove: () => void,
-  ) => React.ReactNode
+// export interface DatePickerValueTextProps
+//   extends Omit<DatePickerTriggerProps, "children"> {
+//   placeholder?: string
+//   children?: (
+//     value: DateValue,
+//     index: number,
+//     valueAsString: string,
+//     remove: () => void,
+//   ) => React.ReactNode
+// }
+
+// export const DatePickerValueText = (props: DatePickerValueTextProps) => {
+//   const { placeholder, children, ...rest } = props
+//   const datePicker = useDatePickerContext()
+//   const hasValue = datePicker.value.length > 0
+
+//   return (
+//     <span {...rest}>
+//         {hasValue
+//           ? datePicker.value.map((value, index) => (
+//               <div key={index}>
+//                 {children({
+//                   value,
+//                   index,
+//                   valueAsString: datePicker.valueAsString[index],
+//                   remove: () => {
+//                     datePicker.setValue(datePicker.value.filter((_, i) => i !== index))
+//                   },
+//                 })}
+//               </div>
+//             ))
+//           : placeholder}
+//     </span>
+//   )
+// }
+
+export interface DatePickerValueTextRenderProps {
+  value: DateValue
+  index: number
+  valueAsString: string
+  remove: () => void
 }
 
-export const DatePickerListValue = (props: DatePickerListValueProps) => {
-  const { placeholder, children, ...rest } = props
-  return (
-    <DatePickerContext {...rest}>
-      {(datePicker) =>
-        datePicker.value.length === 0 ? (
-          <DatePickerLabel>{placeholder}</DatePickerLabel>
-        ) : (
-          datePicker.value.map((date, index) =>
-            children
-              ? children(date, index, () =>
-                  datePicker.setValue(
-                    datePicker.value.filter((_, i) => i !== index),
-                  ),
-                )
-              : null,
-          )
-        )
-      }
-    </DatePickerContext>
-  )
+export interface DatePickerValueTextBaseProps {
+  /**
+   * Text to display when no date is selected.
+   */
+  placeholder?: string | undefined
+  /**
+   * A function to render each selected date value.
+   * When provided, each date in the selection will be rendered using this function.
+   */
+  children?:
+    | ((props: DatePickerValueTextRenderProps) => React.ReactNode)
+    | undefined
+  /**
+   * The separator to use between multiple date values when using default rendering.
+   * @default ", "
+   */
+  separator?: string | undefined
 }
+
+export interface DatePickerValueTextProps
+  extends Assign<HTMLChakraProps<"span">, DatePickerValueTextBaseProps> {}
+
+export const DatePickerValueText = forwardRef<
+  HTMLSpanElement,
+  DatePickerValueTextProps
+>((props, ref) => {
+  const { children, placeholder, separator = ", ", ...localProps } = props
+  const datePicker = useDatePickerContext()
+
+  const hasValue = datePicker.value.length > 0
+
+  if (typeof children === "function") {
+    return (
+      <Fragment>
+        {hasValue
+          ? datePicker.value.map((value, index) => (
+              <Fragment key={index}>
+                {children({
+                  value,
+                  index,
+                  valueAsString: datePicker.valueAsString[index],
+                  remove: () => {
+                    datePicker.setValue(
+                      datePicker.value.filter((_, i) => i !== index),
+                    )
+                  },
+                })}
+              </Fragment>
+            ))
+          : placeholder}
+      </Fragment>
+    )
+  }
+
+  return (
+    <chakra.span {...localProps} ref={ref}>
+      {hasValue ? datePicker.valueAsString.join(separator) : placeholder}
+    </chakra.span>
+  )
+})
