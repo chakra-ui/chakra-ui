@@ -87,8 +87,6 @@ export const datePickerAnatomy = arkDatePickerAnatomy.extendWith(
   "clearTrigger",
   "positioner",
   "indicatorGroup",
-  "indicator",
-  "clearIndicator",
 )
 
 export const dialogAnatomy = arkDialogAnatomy.extendWith(

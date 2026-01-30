@@ -3,6 +3,7 @@
 import { type Assign } from "@ark-ui/react"
 import {
   DatePicker as ArkDatePicker,
+  type DateValue,
   useDatePickerContext,
 } from "@ark-ui/react/date-picker"
 import type React from "react"
@@ -508,3 +509,35 @@ export const DatePickerValue = (props: DatePickerValueProps) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+export interface DatePickerListValueProps {
+  placeholder?: string
+  children?: (
+    date: DateValue,
+    index: number,
+    remove: () => void,
+  ) => React.ReactNode
+}
+
+export const DatePickerListValue = (props: DatePickerListValueProps) => {
+  const { placeholder, children, ...rest } = props
+  return (
+    <DatePickerContext {...rest}>
+      {(datePicker) =>
+        datePicker.value.length === 0 ? (
+          <DatePickerLabel>{placeholder}</DatePickerLabel>
+        ) : (
+          datePicker.value.map((date, index) =>
+            children
+              ? children(date, index, () =>
+                  datePicker.setValue(
+                    datePicker.value.filter((_, i) => i !== index),
+                  ),
+                )
+              : null,
+          )
+        )
+      }
+    </DatePickerContext>
+  )
+}
