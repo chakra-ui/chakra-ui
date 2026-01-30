@@ -1,339 +1,254 @@
 ---
-title: Date Picker
+title: DatePicker Component
 description:
-  A flexible date picker component for selecting single or multiple dates with
-  support for formatting, localization, range and custom styling.
+  A comprehensive guide to using the flexible DatePicker component for selecting
+  single or multiple dates with advanced features including formatting,
+  localization, range selection, and custom styling.
 links:
   source: components/date-picker
   storybook: components-date-picker--basic
   recipe: date-picker
 ---
 
-## Overview
+<ExampleTabs name="date-picker-basic" />
 
-The Date Picker component provides a user-friendly interface for selecting
-dates. It supports various configurations including inline display, custom
-formatting, localization, range and date availability constraints.
-
-## Installation
+## Usage
 
 ```tsx
 import { DatePicker } from "@chakra-ui/react"
 ```
 
-## Basic Usage
-
-A simple date picker that allows users to select a single date.
-
-<ExampleTabs name="date-picker-basic" />
-
 ```tsx
 <DatePicker.Root>
-  {data.map((item) => (
-    <DatePicker.Item key={item.label}>
-      <DatePicker.ItemLabel>{item.label}</DatePicker.ItemLabel>
-      <DatePicker.ItemValue>{item.value}</DatePicker.ItemValue>
-    </DatePicker.Item>
-  ))}
+  <DatePicker.Label />
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.IndicatorGroup>
+      <DatePicker.Trigger>
+        <LuCalendar />
+      </DatePicker.Trigger>
+    </DatePicker.IndicatorGroup>
+  </DatePicker.Control>
+  <Portal>
+    <DatePicker.Positioner>
+      <DatePicker.Content>
+        <DatePicker.Header />
+        <DatePicker.DayView />
+        <DatePicker.MonthView />
+        <DatePicker.YearView />
+      </DatePicker.Content>
+    </DatePicker.Positioner>
+  </Portal>
 </DatePicker.Root>
 ```
 
-## Features
-
-### All Examples
-
-#### Basic
+The simplest implementation of DatePicker allows users to select a single date
+with minimal configuration.
 
 <ExampleTabs name="date-picker-basic" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+## Examples
 
-#### With Button
+### Button
+
+Replace the default trigger with a styled custom button for better UI
+integration.
 
 <ExampleTabs name="date-picker-with-button" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root>
-  <DatePicker.Trigger asChild>
-    <button>Pick a date</button>
-  </DatePicker.Trigger>
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Why use `asChild`?** The `asChild` prop allows you to pass your own button
+component while preserving DatePicker's functionality. This is useful when you
+want to match your design system's button styles.
 
-#### With Clear
+---
+
+### Clear Icon
+
+Allow users to easily reset their selection with a clear trigger.
 
 <ExampleTabs name="date-picker-with-clear" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.ClearTrigger />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Benefits:**
 
-#### Controlled
+- Improves user experience by providing a quick reset option
+- Reduces the need to manually delete entered dates
+
+---
+
+### Controlled
+
+Use 'Datepicker context' to control the date picker value programmatically.
 
 <ExampleTabs name="date-picker-controlled" />
-```tsx import {DatePicker} from "@chakra-ui/react" import {useState} from
-"react"
 
-const [value, setValue] = useState([])
+**Why use controlled components?**
 
-<DatePicker.Root value={value} onValueChange={setValue}>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+- Sync date selection with other form fields
+- Trigger side effects when dates change
+- Implement custom validation logic
+- Reset or update dates programmatically
 
-#### Default Value
+---
+
+### Default Value
+
+Pre-populate the date picker with an initial date value.
 
 <ExampleTabs name="date-picker-default-value" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root defaultValue={["2026-01-30"]}>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Date Format:** Dates must be in ISO 8601 format (`YYYY-MM-DD`) for proper
+parsing.
 
-#### Default View
+---
+
+### Default View
+
+Set the initial view that displays when the calendar opens (day, month, or
+year).
 
 <ExampleTabs name="date-picker-default-view" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root defaultView="year">
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Available views:**
 
-#### Form
+- `"day"` (default) - Shows individual days in a calendar grid
+- `"month"` - Shows 12 months for year selection
+- `"year"` - Shows a range of years for selection
+
+---
+
+### Form
+
+Integrate DatePicker within react-hook form for native form submission.
 
 <ExampleTabs name="date-picker-form" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<form>
-  <DatePicker.Root name="date">
-    <DatePicker.Value placeholder="Select date" />
-    <DatePicker.Content />
-  </DatePicker.Root>
-  <button type="submit">Submit</button>
-</form>
-```
+### Formatting & Parsing
 
-#### Format & Parse
+Control how dates are displayed and interpreted.
 
 <ExampleTabs name="date-picker-format-parse" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root
-  formatDate={(date) => date.toLocaleDateString("en-GB")}
-  parseDate={(str) => new Date(str)}
->
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Common format options:**
 
-#### Inline
+### Inline Display
+
+Display the calendar inline without a popup, always visible on the page.
 
 <ExampleTabs name="date-picker-inline" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root inline>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Localization
 
-#### Locale
+Display the calendar in different languages with locale-specific formatting.
 
 <ExampleTabs name="date-picker-locale" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root locale="fr">
-  <DatePicker.Value placeholder="Sélectionner une date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Min/Max
 
-#### Min Max
+Restrict date selection to a specific date range.
 
 <ExampleTabs name="date-picker-min-max" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root min="2026-01-01" max="2026-12-31">
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Month Inline Range
 
-#### Month Range
+Allow users to select a specific inline calendar range.
+
+<ExampleTabs name="date-picker-inline-range-selection" />
+
+### Month Range Selection
+
+Allow users to select a specific month rather than a single day.
 
 <ExampleTabs name="date-picker-month-range" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root view="month" min="2026-01" max="2026-12">
-  <DatePicker.Value placeholder="Select month" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+**Date format for months:** Use `YYYY-MM` format (e.g., `"2026-01"` for January
+2026).
 
-#### Multi Selection
+### Multiple Inline Date Selection
+
+Allow users to select inline multiple dates, not a range.
+
+<ExampleTabs name="date-picker-inline-multi-selection" />
+### Multiple Date Selection
+
+Allow users to select multiple individual dates, not a range.
 
 <ExampleTabs name="date-picker-multi-selection" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root selectionMode="multiple">
-  <DatePicker.Value placeholder="Select dates" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Display Multiple Months
 
-#### Multiple Months
+Show 2 or more months simultaneously for easier date range selection.
 
 <ExampleTabs name="date-picker-multiple-months" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root numberOfMonths={2}>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Date Range Selection
 
-#### With Outside Icon
-
-<ExampleTabs name="date-picker-with-outside-icon" />
-```tsx import {DatePicker} from "@chakra-ui/react" import {CalendarIcon} from
-"@chakra-ui/icons"
-
-<DatePicker.Root>
-  <DatePicker.Trigger asChild>
-    <button>
-      <CalendarIcon /> Pick a date
-    </button>
-  </DatePicker.Trigger>
-  <DatePicker.Content />
-</DatePicker.Root>
-```
-
-#### Presets
-
-<ExampleTabs name="date-picker-presets" />
-```tsx import {DatePicker} from "@chakra-ui/react"
-
-<DatePicker.Root>
-  <DatePicker.PresetTrigger value="2026-01-01">
-    New Year
-  </DatePicker.PresetTrigger>
-  <DatePicker.PresetTrigger value="2026-12-25">
-    Christmas
-  </DatePicker.PresetTrigger>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
-
-#### Range Selection
+Allow users to select a start and end date.
 
 <ExampleTabs name="date-picker-range-selection" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root selectionMode="range">
-  <DatePicker.Value placeholder="Select date range" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Outside Icon
 
-#### Root Provider
+Create a custom button trigger with an icon.
 
-<ExampleTabs name="date-picker-root-provider" />
-```tsx import {DatePicker} from "@chakra-ui/react"
+<ExampleTabs name="date-picker-with-outside-icon" />
 
-<DatePicker.RootProvider locale="en">
-  <DatePicker.Root>
-    <DatePicker.Value placeholder="Select date" />
-    <DatePicker.Content />
-  </DatePicker.Root>
-</DatePicker.RootProvider>
-```
+### Quick Select Presets
 
-#### With Sizes
+Provide preset date options for quick selection.
 
-<ExampleTabs name="date-picker-with-sizes" />
-```tsx import {DatePicker} from "@chakra-ui/react"
+<ExampleTabs name="date-picker-presets" />
 
-<DatePicker.Root size="lg">
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Unavailable Dates
 
-#### Unavailable
+Disable specific dates that cannot be selected (e.g., weekends, holidays).
 
 <ExampleTabs name="date-picker-unavailable" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root isDateUnavailable={(date) => date.getDay() === 0}>
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Sizes
 
-#### With Variants
+Pass the `size` prop to the `DatePicker.Root` to change the size of the date
+picker.
+
+<ExampleTabs name="date-picker-with-sizes" />
+
+### Visual Variants
+
+Pass the `variant` prop to the `DatePicker.Root` to change the appearance of the
+date picker.
 
 <ExampleTabs name="date-picker-with-variants" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root variant="outline">
-  <DatePicker.Value placeholder="Select date" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Year Picker
 
-#### Year Picker Range
-
-<ExampleTabs name="date-picker-year-picker-range" />
-```tsx import {DatePicker} from "@chakra-ui/react"
-
-<DatePicker.Root view="year" min="2020" max="2030">
-  <DatePicker.Value placeholder="Select year" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
-
-#### Year Picker
+Allow users to select a year from a range.
 
 <ExampleTabs name="date-picker-year-picker" />
-```tsx import {DatePicker} from "@chakra-ui/react"
 
-<DatePicker.Root view="year">
-  <DatePicker.Value placeholder="Select year" />
-  <DatePicker.Content />
-</DatePicker.Root>
-```
+### Year Range Selection
 
-## API Reference
+Select a year within a specific range.
 
-### DatePicker.Root
+<ExampleTabs name="date-picker-year-picker-range" />
+
+### Provider Configuration
+
+Set global configuration for all DatePickers within a subtree.
+
+<ExampleTabs name="date-picker-root-provider" />
+
+## Props
+
+### Root
 
 <PropTable component="DatePicker" part="Root" />
 
-### DatePicker.Item
+### Item
 
 <PropTable component="DatePicker" part="Item" />
 
-### DatePicker.ItemLabel
+## Explorer
 
-<PropTable component="DatePicker" part="ItemLabel" />
+Explore the `DatePicker` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
 
-### DatePicker.ItemValue
-
-<PropTable component="DatePicker" part="ItemValue" />
+<Explorer name="date-picker-explorer-demo" />
