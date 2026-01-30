@@ -1,0 +1,72 @@
+---
+title: Date Picker - Controlled
+description:
+  Manage date picker state with React, including default values and custom
+  views.
+links:
+  storybook: date-picker--controlled
+---
+
+## Overview
+
+A controlled date picker component where the selected date value is managed by
+React state. This gives you full control over the picker's behavior and allows
+you to synchronize it with your application's state management.
+
+## Installation
+
+```tsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+## Basic Usage
+
+```tsx
+<DatePicker.Root>
+  {data.map((item) => (
+    <DatePicker.Item key={item.label}>
+      <DatePicker.ItemLabel>{item.label}</DatePicker.ItemLabel>
+      <DatePicker.ItemValue>{item.value}</DatePicker.ItemValue>
+    </DatePicker.Item>
+  ))}
+</DatePicker.Root>
+```
+
+## Examples
+
+### Controlled State
+
+Manage the selected date value using React state for complete control over the
+picker's behavior.
+
+<ExampleTabs name="date-picker-controlled" />
+
+### Default Value
+
+Pre-select a date by providing a default value to the date picker.
+
+<ExampleTabs name="date-picker-default-value" />
+
+### Default View
+
+Specify which view (month, year, etc.) the date picker opens to by default.
+
+<ExampleTabs name="date-picker-default-view" />
+
+## API Reference
+
+### DatePicker.Root
+
+<PropTable component="DatePicker" part="Root" />
+
+### DatePicker.Item
+
+<PropTable component="DatePicker" part="Item" />
+
+### DatePicker.ItemLabel
+
+<PropTable component="DatePicker" part="ItemLabel" />
+
+### DatePicker.ItemValue
+
+<PropTable component="DatePicker" part="ItemValue" />

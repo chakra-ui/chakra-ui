@@ -1,0 +1,94 @@
+---
+title: Date Picker - Range Selection
+description:
+  Select a range of dates with support for presets, constraints, and various
+  selection granularities (date, month, year).
+links:
+  storybook: date-picker--range-selection
+---
+
+## Overview
+
+A date picker component designed for selecting date ranges. It supports various
+selection granularities including full date ranges, month ranges, and year
+ranges. Features like min/max constraints, preset ranges, and multiple selection
+modes make it flexible for different use cases such as booking periods,
+reporting intervals, or event date ranges.
+
+## Installation
+
+```tsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+## Basic Usage
+
+```tsx
+<DatePicker.Root>
+  {data.map((item) => (
+    <DatePicker.Item key={item.label}>
+      <DatePicker.ItemLabel>{item.label}</DatePicker.ItemLabel>
+      <DatePicker.ItemValue>{item.value}</DatePicker.ItemValue>
+    </DatePicker.Item>
+  ))}
+</DatePicker.Root>
+```
+
+## Examples
+
+### Range Selection
+
+Allow users to select a continuous range of dates by choosing a start and end
+date.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+### Min & Max Constraints
+
+Restrict the selectable date range by setting minimum and maximum dates.
+
+<ExampleTabs name="date-picker-min-max" />
+
+### Preset Ranges
+
+Provide quick-select preset options for common date ranges (e.g., "Last 7 days",
+"This month").
+
+<ExampleTabs name="date-picker-presets" />
+
+### Month Range
+
+Allow users to select a range spanning multiple months instead of individual
+dates.
+
+<ExampleTabs name="date-picker-month-range" />
+
+### Year Picker Range
+
+Enable selection of a range of years for long-term date selection.
+
+<ExampleTabs name="date-picker-year-picker-range" />
+
+### Year Picker
+
+Focused picker for selecting a single year without date or month granularity.
+
+<ExampleTabs name="date-picker-year-picker" />
+
+## API Reference
+
+### DatePicker.Root
+
+<PropTable component="DatePicker" part="Root" />
+
+### DatePicker.Item
+
+<PropTable component="DatePicker" part="Item" />
+
+### DatePicker.ItemLabel
+
+<PropTable component="DatePicker" part="ItemLabel" />
+
+### DatePicker.ItemValue
+
+<PropTable component="DatePicker" part="ItemValue" />
