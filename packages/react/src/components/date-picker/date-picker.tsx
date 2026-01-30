@@ -615,3 +615,4 @@ export const DatePickerValueText = forwardRef<
     </chakra.span>
   )
 })
+DatePickerValueText.displayName = "DatePickerValueText"
