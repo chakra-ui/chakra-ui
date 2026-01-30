@@ -20,7 +20,12 @@ export function useBreakpoint(options: UseBreakpointOptions = {}) {
   const sys = useChakraContext()
 
   let fallbackPassed = false
-  const allBreakpoints = sys.breakpoints.values
+
+  // Prepend a synthetic "base" breakpoint (always matches, no min-width)
+  const allBreakpoints = [
+    { name: "base", min: "0px" },
+    ...sys.breakpoints.values.map((bp) => ({ name: bp.name, min: bp.min! })),
+  ]
 
   const breakpoints = allBreakpoints
     .map(({ min, name: breakpoint }) => {

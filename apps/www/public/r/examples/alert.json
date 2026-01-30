@@ -104,7 +104,7 @@
     },
     {
       "name": "alert-with-variants",
-      "content": "export const AlertWithVariants = () => {\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root status=\"success\" variant=\"subtle\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"solid\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"surface\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n    </Stack>\n  )\n}\n",
+      "content": "export const AlertWithVariants = () => {\n  return (\n    <Stack gap=\"4\">\n      <Alert.Root status=\"success\" variant=\"subtle\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"solid\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"outline\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n\n      <Alert.Root status=\"success\" variant=\"surface\">\n        <Alert.Indicator />\n        <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>\n      </Alert.Root>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Alert, Stack } from \"@chakra-ui/react\""

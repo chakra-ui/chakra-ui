@@ -10,7 +10,7 @@ import {
   parseColor,
 } from "@chakra-ui/react"
 
-export const ColorPickerInDialog = () => {
+export const ColorPickerOpenFromDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>

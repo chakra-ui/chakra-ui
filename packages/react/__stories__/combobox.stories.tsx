@@ -21,7 +21,7 @@ export { ComboboxMinCharacter as MinCharacter } from "compositions/examples/comb
 export { ComboboxWithDisabled as Disabled } from "compositions/examples/combobox-with-disabled"
 export { ComboboxWithDisabledItem as DisabledItem } from "compositions/examples/combobox-with-disabled-item"
 export { ComboboxWithAsyncContent as Async } from "compositions/examples/combobox-with-async-content"
-export { ComboboxInPopover as WithinPopover } from "compositions/examples/combobox-in-popover"
+export { ComboboxOpenFromPopover as OpenFromPopover } from "compositions/examples/combobox-open-from-popover"
 export { ComboboxRehydrateValue as RehydrateValue } from "compositions/examples/combobox-rehydrate-value"
 export { ComboboxWithCustomItem as CustomItem } from "compositions/examples/combobox-with-custom-item"
 export { ComboboxOpenControlled as OpenControlled } from "compositions/examples/combobox-open-controlled"

@@ -1,0 +1,124 @@
+---
+title: Marquee
+description:
+  Create a continuous scrolling display of logos, images, or text horizontally
+  or vertically.
+links:
+  source: components/marquee
+  storybook: components-marquee--auto-fill
+  recipe: marquee
+  ark: https://ark-ui.com/docs/components/marquee
+---
+
+<ExampleTabs name="marquee-auto-fill" />
+
+## Usage
+
+```js
+import { Marquee } from "@chakra-ui/react"
+```
+
+```jsx
+<Marquee.Root>
+  <Marquee.Viewport>
+    <Marquee.Content>
+      <Marquee.Item />
+    </Marquee.Content>
+  </Marquee.Viewport>
+</Marquee.Root>
+```
+
+## Examples
+
+### Reversed
+
+Use the reverse prop on the `Marquee.Root` component to reverse the direction of
+the marquee.
+
+<ExampleTabs name="marquee-reverse-direction" />
+
+### Vertical Animation
+
+To animate content along the Y axis, use the `side` prop and set it to `bottom`.
+
+<ExampleTabs name="marquee-vertical-animation" />
+
+### Speed
+
+Use the `speed` prop to control the animation speed in pixels per second.
+
+<ExampleTabs name="marquee-with-speed" />
+
+### Pause On Interaction
+
+Use the `pauseOnInteraction` prop to pause the animation when the user hovers or
+focuses the marquee.
+
+<ExampleTabs name="marquee-pause-interactions" />
+
+### Store
+
+Use the `Marquee.RootProvider` and `useMarquee` hook to provide the marquee
+instance to the component and control the animation state programmatically.
+
+<ExampleTabs name="marquee-with-store" />
+
+### Finite Loops
+
+To loop the marquee a finite number of times, set the `loopCount` prop on
+`Marquee.Root`. Alternatively, use the `onLoopComplete` and `onComplete`
+callbacks to track the number of completed loops or when the animation fully
+finishes.
+
+```tsx
+<Marquee.Root
+  loopCount={3}
+  onLoopComplete={() => {
+    /* handle loop completion */
+  }}
+  onComplete={() => {
+    /* handle animation end */
+  }}
+>
+  {/* Marquee.Item elements */}
+</Marquee.Root>
+```
+
+<ExampleTabs name="marquee-finite-loop" />
+
+### Edge Gradient
+
+Render the `Marquee.Edge` component to apply an edge fade.
+
+<ExampleTabs name="marquee-edge-gradient" />
+
+### Multiple
+
+Here's an example of how to render alternating marquee components.
+
+<ExampleTabs name="marquee-multiple" />
+
+### Diagonal
+
+Here's an example of how to animate content diagonally using the marquee
+component.
+
+<ExampleTabs name="marquee-diagonal" />
+
+### News Ticker
+
+Here's an example of how to implement a news ticker with the marquee component.
+
+<ExampleTabs name="marquee-news-ticker" />
+
+### Testimonials
+
+You can display testimonials with the marquee component.
+
+<ExampleTabs name="marquee-with-testimonials" />
+
+## Props
+
+<PropTable component="Marquee" part="Root" />
+
+---

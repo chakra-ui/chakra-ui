@@ -28,6 +28,14 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       px: "3",
       pointerEvents: "auto",
       translate: "calc(-1 * var(--scrollbar-width) / 2) 0px",
+      _open: {
+        animationName: "slide-from-bottom, fade-in",
+        animationDuration: "moderate",
+      },
+      _closed: {
+        animationName: "slide-to-bottom, fade-out",
+        animationDuration: "faster",
+      },
     },
     separator: {
       width: "1px",
@@ -55,16 +63,6 @@ export const actionBarSlotRecipe = defineSlotRecipe({
             "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
           justifyContent: "center",
         },
-        content: {
-          _open: {
-            animationName: "slide-from-bottom, fade-in",
-            animationDuration: "moderate",
-          },
-          _closed: {
-            animationName: "slide-to-bottom, fade-out",
-            animationDuration: "faster",
-          },
-        },
       },
       "bottom-start": {
         positioner: {
@@ -73,16 +71,6 @@ export const actionBarSlotRecipe = defineSlotRecipe({
           justifyContent: "flex-start",
           ps: "var(--action-bar-offset)",
         },
-        content: {
-          _open: {
-            animationName: "slide-from-bottom, fade-in",
-            animationDuration: "moderate",
-          },
-          _closed: {
-            animationName: "slide-to-bottom, fade-out",
-            animationDuration: "faster",
-          },
-        },
       },
       "bottom-end": {
         positioner: {
@@ -90,16 +78,6 @@ export const actionBarSlotRecipe = defineSlotRecipe({
             "calc(env(safe-area-inset-bottom) + var(--action-bar-offset))",
           justifyContent: "flex-end",
           pe: "var(--action-bar-offset)",
-        },
-        content: {
-          _open: {
-            animationName: "slide-from-bottom, fade-in",
-            animationDuration: "moderate",
-          },
-          _closed: {
-            animationName: "slide-to-bottom, fade-out",
-            animationDuration: "faster",
-          },
         },
       },
     },

@@ -44,7 +44,7 @@
     },
     {
       "name": "slider-customization",
-      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\" shadow=\"md\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Box, Slider } from \"@chakra-ui/react\"",

@@ -12,7 +12,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       boxShadow: "lg",
       color: "fg",
       maxHeight: "var(--available-height)",
-      "--menu-z-index": "zIndex.dropdown",
+      "--menu-z-index": "zIndex.popover",
       zIndex: "calc(var(--menu-z-index) + var(--layer-index, 0))",
       borderRadius: "l2",
       overflow: "hidden",

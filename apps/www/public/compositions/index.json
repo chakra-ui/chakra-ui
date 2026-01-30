@@ -362,8 +362,8 @@
       "react-icons"
     ],
     "fileDependencies": [
-      "compositions/ui/tooltip",
-      "compositions/ui/rich-text-editor-context"
+      "compositions/ui/rich-text-editor-context",
+      "compositions/ui/tooltip"
     ]
   },
   {
@@ -373,7 +373,7 @@
     "component": "RichTextEditorMenu",
     "npmDependencies": [
       "@floating-ui/react",
-      "@tiptap",
+      "@tiptap/pm",
       "@tiptap/react",
       "react-icons"
     ],

@@ -35,11 +35,18 @@ function isFileDependency(_import: string) {
 }
 
 function resolveDependency(specifier: string, dependencies: string[]) {
-  let result = dependencies.find((dependency) => specifier === dependency)
-  if (result) return result
-  const matches = Array.from(specifier.matchAll(/(.+?)\//g))
-  if (matches.length) result = matches[0][1]
-  return result
+  const exact = dependencies.find((dep) => specifier === dep)
+  if (exact) return exact
+  // Prefer the longest matching dependency from the list (e.g. @tiptap/pm for @tiptap/pm/state).
+  // The previous regex fallback returned @tiptap for @tiptap/pm/state, which is invalid
+  // since @tiptap is a scope, not an installable package (pnpm expects package-name@range).
+  const prefixMatches = dependencies.filter(
+    (dep) => specifier === dep || specifier.startsWith(dep + "/"),
+  )
+  if (prefixMatches.length) {
+    return prefixMatches.sort((a, b) => b.length - a.length)[0]
+  }
+  return undefined
 }
 
 function getDependencies(imports: Set<string>, dependencies: string[]) {
@@ -49,7 +56,7 @@ function getDependencies(imports: Set<string>, dependencies: string[]) {
   for (const _import of Array.from(imports)) {
     if (isNpmDependency(dependencies, _import)) {
       const resolved = resolveDependency(_import, dependencies)
-      npmDependencies.add(resolved!)
+      if (resolved) npmDependencies.add(resolved)
     } else if (isFileDependency(_import)) {
       fileDependencies.add(_import)
     }

@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 
-export const PopoverInDialog = () => {
+export const PopoverOpenFromDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>

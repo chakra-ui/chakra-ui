@@ -12,6 +12,9 @@ export const carouselSlotRecipe = defineSlotRecipe({
     "indicatorGroup",
     "indicator",
     "autoplayTrigger",
+    "progressText",
+    "progressText",
+    "autoplayIndicator",
   ],
   base: {
     root: {

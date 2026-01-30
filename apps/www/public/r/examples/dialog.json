@@ -40,6 +40,29 @@
       ]
     },
     {
+      "name": "dialog-open-from-popover",
+      "content": "\"use client\"\nexport const DialogOpenFromPopover = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button variant=\"outline\">Open Popover</Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Title fontWeight=\"medium\">Popover Title</Popover.Title>\n              <Text my=\"4\">\n                This popover contains a button that opens a dialog. The dialog\n                should appear above the popover.\n              </Text>\n              <PopoverDialog />\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n\nfunction PopoverDialog() {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button size=\"sm\" variant=\"solid\" colorPalette=\"blue\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton />\n            </Dialog.CloseTrigger>\n            <Dialog.Header>\n              <Dialog.Title>Dialog from Popover</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <Text>\n                This dialog was opened from within a popover. It should appear\n                above the popover thanks to the unified z-index system.\n              </Text>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button colorPalette=\"blue\">Save</Button>\n            </Dialog.Footer>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Popover,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "dialog-open-from-menu",
+      "content": "\"use client\"\nexport const DialogOpenFromMenu = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <>\n      <Menu.Root>\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\">\n            Actions <LuChevronDown />\n          </Button>\n        </Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              <Menu.Item value=\"edit\">Edit</Menu.Item>\n              <Menu.Item value=\"duplicate\">Duplicate</Menu.Item>\n              <Menu.Separator />\n              <Menu.Item value=\"delete\" onClick={() => setOpen(true)}>\n                Delete...\n              </Menu.Item>\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.Root>\n\n      <Dialog.Root\n        role=\"alertdialog\"\n        open={open}\n        size=\"sm\"\n        onOpenChange={(e) => setOpen(e.open)}\n      >\n        <Portal>\n          <Dialog.Backdrop />\n          <Dialog.Positioner>\n            <Dialog.Content>\n              <Dialog.CloseTrigger asChild>\n                <CloseButton />\n              </Dialog.CloseTrigger>\n              <Dialog.Header>\n                <Dialog.Title>Confirm Delete</Dialog.Title>\n              </Dialog.Header>\n              <Dialog.Body>\n                <Text>\n                  Are you sure you want to delete this item? This action cannot\n                  be undone.\n                </Text>\n              </Dialog.Body>\n              <Dialog.Footer>\n                <Button variant=\"outline\" onClick={() => setOpen(false)}>\n                  Cancel\n                </Button>\n                <Button colorPalette=\"red\">Delete</Button>\n              </Dialog.Footer>\n            </Dialog.Content>\n          </Dialog.Positioner>\n        </Portal>\n      </Dialog.Root>\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Menu,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuChevronDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
       "name": "dialog-non-modal",
       "content": "export const DialogNonModal = () => {\n  return (\n    <Dialog.Root closeOnInteractOutside={false} modal={false}>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Dialog\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Positioner pointerEvents=\"none\">\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Dialog Title</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <p>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do\n                eiusmod tempor incididunt ut labore et dolore magna aliqua.\n              </p>\n            </Dialog.Body>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
       "hasSnippet": false,

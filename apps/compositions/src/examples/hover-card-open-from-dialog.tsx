@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 
-export const HoverCardInDialog = () => {
+export const HoverCardOpenFromDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
