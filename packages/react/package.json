@@ -54,8 +54,8 @@
   "devDependencies": {
     "@emotion/react": "11.14.0",
     "fast-safe-stringify": "^2.1.1",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-frame-component": "5.2.7"
   },
   "scripts": {
