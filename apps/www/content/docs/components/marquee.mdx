@@ -111,11 +111,54 @@ Here's an example of how to implement a news ticker with the marquee component.
 
 <ExampleTabs name="marquee-news-ticker" />
 
+### Image Gallery
+
+Here's an example of a 3D perspective image gallery with multiple vertical
+marquees scrolling in alternating directions.
+
+<ExampleTabs name="marquee-image-gallery" />
+
 ### Testimonials
 
 You can display testimonials with the marquee component.
 
 <ExampleTabs name="marquee-with-testimonials" />
+
+### RTL Support
+
+The marquee component supports RTL (right-to-left) layouts. Wrap the component
+with `LocaleProvider` to enable RTL mode.
+
+<ExampleTabs name="marquee-rtl" />
+
+## Guide
+
+### CSS Variables
+
+The marquee component exposes CSS variables that can be used to customize its
+behavior and appearance.
+
+```tsx
+<Marquee.Root
+  css={{
+    "--marquee-duration": "30s",
+    "--marquee-delay": "0s",
+    "--marquee-loop-count": "infinite",
+    "--marquee-edge-color": "colors.bg",
+    "--marquee-edge-size": "20%",
+  }}
+>
+  {/* ... */}
+</Marquee.Root>
+```
+
+| Variable               | Description                         | Default     |
+| ---------------------- | ----------------------------------- | ----------- |
+| `--marquee-duration`   | Animation duration                  | Computed    |
+| `--marquee-delay`      | Animation delay before starting     | `0s`        |
+| `--marquee-loop-count` | Number of animation iterations      | `infinite`  |
+| `--marquee-edge-color` | Color for the edge gradient overlay | `colors.bg` |
+| `--marquee-edge-size`  | Size of the edge gradient           | `20%`       |
 
 ## Props
 
