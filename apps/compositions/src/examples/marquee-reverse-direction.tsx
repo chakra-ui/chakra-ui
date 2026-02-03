@@ -10,7 +10,7 @@ import {
 } from "react-icons/io5"
 
 export const MarqueeReverseDirection = () => (
-  <Marquee.Root reverse>
+  <Marquee.Root reverse autoFill>
     <Marquee.Viewport>
       <Marquee.Content>
         {items.map((item, i) => (
