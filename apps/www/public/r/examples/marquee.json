@@ -52,6 +52,15 @@
       ]
     },
     {
+      "name": "marquee-image-gallery",
+      "content": "\"use client\"\nexport const MarqueeImageGallery = () => (\n  <Box height=\"500px\" overflow=\"hidden\" perspective=\"500px\">\n    <HStack\n      gap=\"4\"\n      height=\"700px\"\n      transform=\"rotateX(20deg)\"\n      transformOrigin=\"center top\"\n    >\n      <Marquee.Root side=\"top\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn1} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n\n      <Marquee.Root side=\"bottom\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn2} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n\n      <Marquee.Root side=\"top\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn3} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n    </HStack>\n  </Box>\n)\n\nconst MarqueeItems = (props: { images: string[] }) => {\n  return (\n    <>\n      {props.images.map((src, i) => (\n        <Marquee.Item key={i} py=\"2\">\n          <Image\n            src={src}\n            alt={`Gallery image ${i + 1}`}\n            width=\"full\"\n            height=\"200px\"\n            objectFit=\"cover\"\n            rounded=\"lg\"\n            shadow=\"md\"\n          />\n        </Marquee.Item>\n      ))}\n    </>\n  )\n}\n\nconst imagesColumn1 = [\n  \"https://picsum.photos/seed/img1/280/200\",\n  \"https://picsum.photos/seed/img2/280/200\",\n  \"https://picsum.photos/seed/img3/280/200\",\n  \"https://picsum.photos/seed/img4/280/200\",\n]\n\nconst imagesColumn2 = [\n  \"https://picsum.photos/seed/img5/280/200\",\n  \"https://picsum.photos/seed/img6/280/200\",\n  \"https://picsum.photos/seed/img7/280/200\",\n  \"https://picsum.photos/seed/img8/280/200\",\n]\n\nconst imagesColumn3 = [\n  \"https://picsum.photos/seed/img9/280/200\",\n  \"https://picsum.photos/seed/img10/280/200\",\n  \"https://picsum.photos/seed/img11/280/200\",\n  \"https://picsum.photos/seed/img12/280/200\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, HStack, Image, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
+    },
+    {
       "name": "marquee-multiple",
       "content": "\"use client\"\n\ninterface Item {\n  icon: IconType\n  color: string\n}\n\nconst items: Item[] = [\n  { icon: IoLogoFigma, color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, color: \"#0077b5\" },\n  { icon: IoLogoGitlab, color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, color: \"#f7df1e\" },\n]\n\nexport const MarqueeMultiple = () => {\n  return (\n    <Stack gap=\"8\" py=\"8\">\n      <MarqueeRow items={items} />\n      <MarqueeRow items={items} reverse />\n    </Stack>\n  )\n}\n\ninterface MarqueeRowProps {\n  items: Item[]\n  reverse?: boolean\n}\n\nconst MarqueeRow = (props: MarqueeRowProps) => {\n  const { items, reverse = false } = props\n  return (\n    <Marquee.Root reverse={reverse} autoFill>\n      <Marquee.Viewport>\n        <Marquee.Content>\n          {items.map((item, i) => (\n            <Marquee.Item key={i} px=\"2rem\">\n              <item.icon size=\"3rem\" color={item.color} />\n            </Marquee.Item>\n          ))}\n        </Marquee.Content>\n      </Marquee.Viewport>\n    </Marquee.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -89,7 +98,7 @@
     },
     {
       "name": "marquee-reverse-direction",
-      "content": "\"use client\"\nexport const MarqueeReverseDirection = () => (\n  <Marquee.Root reverse>\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "content": "\"use client\"\nexport const MarqueeReverseDirection = () => (\n  <Marquee.Root reverse autoFill>\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Marquee } from \"@chakra-ui/react\"",
@@ -99,6 +108,15 @@
       "npmDependencies": [
         "react-icons"
       ]
+    },
+    {
+      "name": "marquee-rtl",
+      "content": "\"use client\"\nexport const MarqueeRtl = () => (\n  <LocaleProvider locale=\"ar-AE\">\n    <Marquee.Root>\n      <Marquee.Viewport>\n        <Marquee.Content>\n          {items.map((item, i) => (\n            <Marquee.Item key={i} ps=\"8\">\n              <HStack gap=\"8\" textStyle=\"xl\" fontWeight=\"medium\">\n                <Box>{item}</Box>\n                <Circle size=\"1.5\" bg=\"fg.muted\" />\n              </HStack>\n            </Marquee.Item>\n          ))}\n        </Marquee.Content>\n      </Marquee.Viewport>\n    </Marquee.Root>\n  </LocaleProvider>\n)\n\nconst items = [\n  \"مرحبا بكم\",\n  \"تصميم جميل\",\n  \"سهل الاستخدام\",\n  \"مكونات قابلة للوصول\",\n  \"أداء عالي\",\n  \"تجربة مستخدم رائعة\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, HStack, LocaleProvider, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
     },
     {
       "name": "marquee-vertical-animation",
