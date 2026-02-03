@@ -5,6 +5,46 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.32.0](./#3.32.0) - 2026-02-03
+
+### Added
+
+- **Codemod [NEW]**: Add `@chakra-ui/codemod` package to automate v2 to v3
+  migration
+
+  ```bash
+  npx @chakra-ui/codemod upgrade
+  npx @chakra-ui/codemod upgrade --dry
+  ```
+
+- **Marquee [NEW]**: Add `Marquee` component for scrolling content animations
+
+  ```tsx
+  <Marquee.Root>
+    <Marquee.Viewport>
+      <Marquee.Content>
+        <Marquee.Item>Item 1</Marquee.Item>
+        <Marquee.Item>Item 2</Marquee.Item>
+      </Marquee.Content>
+    </Marquee.Viewport>
+  </Marquee.Root>
+  ```
+
+### Fixed
+
+- **Collapsible**: Fix `collapse-width` keyframe animating `height` instead of
+  `width`
+
+- **Dialog, Drawer, Menu, HoverCard**: Fix z-index stacking when `Dialog` is
+  triggered from within a `Popover`
+
+- **Styled System**: Fix backdrop blur not applying with `backdropFilter="auto"`
+
+- **useBreakpointValue**: Fix `base` value not respected during SSR
+
+- **Radio Card**: Fix disabled state looking inconsistent when using
+  `variant="solid"`
+
 ## [3.31.0](./#3.31.0) - 2026-01-10
 
 ### Added
