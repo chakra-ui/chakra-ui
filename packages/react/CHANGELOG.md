@@ -1,5 +1,41 @@
 # @chakra-ui/react
 
+## 3.32.0
+
+### Minor Changes
+
+- [#10590](https://github.com/chakra-ui/chakra-ui/pull/10590)
+  [`4b65195`](https://github.com/chakra-ui/chakra-ui/commit/4b651950cc34fb195378e5872e166ee5c417631f)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - Add new Marquee
+  component
+
+### Patch Changes
+
+- [`0b15d10`](https://github.com/chakra-ui/chakra-ui/commit/0b15d10c34f3ed8e51ad66121429d3afc5b5ee92)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Styled
+  System**: Fixed backdrop blur not applying when using `backdropFilter="auto"`
+  with `backdropBlur`. This now works as expected:
+
+  ```tsx
+  <Dialog.Backdrop backdropFilter="auto" backdropBlur="md" />
+  ```
+
+- [`7f30a7b`](https://github.com/chakra-ui/chakra-ui/commit/7f30a7b7eebae236b55fe639a202bbf354677143)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where
+  `useBreakpointValue` does not respect `base` value during SSR.
+
+- [`11c2004`](https://github.com/chakra-ui/chakra-ui/commit/11c2004a67857fd0084c04035a46bd2da3651fef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed
+  collapse-width keyframe animating `height` instead of `width`. The keyframe
+  now correctly animates the width property for horizontal collapse transitions.
+
+- [`a871bc5`](https://github.com/chakra-ui/chakra-ui/commit/a871bc5d70cd66f4f7df16b581afdd26d6bcfd0f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `Dialog` appears below `Popover` when triggered from within it.
+
+  Unified z-index for overlay components (`Dialog`, `Drawer`, `Menu`,
+  `HoverCard`) to use `zIndex.popover` and `--layer-index` for proper stacking.
+
 ## 3.31.0
 
 ### Minor Changes
