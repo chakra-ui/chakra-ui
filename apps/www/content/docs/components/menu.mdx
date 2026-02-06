@@ -201,6 +201,13 @@ If you have set `scrollBehavior="inside"` on the `Dialog`, you need to:
 
 <ExampleTabs name="menu-open-from-dialog" />
 
+### Open from Dialog (Nested)
+
+When a `Menu` item opens a `Dialog` that contains another `Menu`, use
+`createOverlay` to avoid unexpected close behavior caused by event bubbling.
+
+<ExampleTabs name="overlay-with-menu-item" />
+
 ## Guide
 
 ### Styling highlighted items
