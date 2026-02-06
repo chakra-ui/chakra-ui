@@ -3,7 +3,6 @@
 import {
   FileUpload,
   Float,
-  HStack,
   Input,
   type InputProps,
   useFileUploadContext,
@@ -25,7 +24,7 @@ const FilePasteInput = (props: InputProps) => {
 const FileImageList = () => {
   const fileUpload = useFileUploadContext()
   return (
-    <HStack wrap="wrap" gap="3">
+    <FileUpload.ItemGroup display="flex" flexWrap="wrap" gap="3">
       {fileUpload.acceptedFiles.map((file) => (
         <FileUpload.Item
           p="2"
@@ -51,7 +50,7 @@ const FileImageList = () => {
           />
         </FileUpload.Item>
       ))}
-    </HStack>
+    </FileUpload.ItemGroup>
   )
 }
 
