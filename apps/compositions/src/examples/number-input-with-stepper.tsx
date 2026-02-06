@@ -4,6 +4,7 @@ import { LuMinus, LuPlus } from "react-icons/lu"
 export const NumberInputWithStepper = () => {
   return (
     <NumberInput.Root defaultValue="3" unstyled spinOnPress={false}>
+      <NumberInput.Input hidden />
       <HStack gap="2">
         <NumberInput.DecrementTrigger asChild>
           <IconButton variant="outline" size="sm">

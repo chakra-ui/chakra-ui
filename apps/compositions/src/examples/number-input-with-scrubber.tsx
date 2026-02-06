@@ -4,7 +4,7 @@ import { LuArrowRightLeft } from "react-icons/lu"
 export const NumberInputWithScrubber = () => {
   return (
     <NumberInput.Root defaultValue="10" width="200px">
-      <NumberInput.Control />
+      <NumberInput.TriggerGroup />
       <InputGroup
         startElementProps={{ pointerEvents: "auto" }}
         startElement={

@@ -805,10 +805,12 @@ After
 
 ```tsx
 <NumberInput.Root>
-  <NumberInput.Input />
   <NumberInput.Control>
-    <NumberInput.IncrementTrigger />
-    <NumberInput.DecrementTrigger />
+    <NumberInput.Input />
+    <NumberInput.TriggerGroup>
+      <NumberInput.IncrementTrigger />
+      <NumberInput.DecrementTrigger />
+    </NumberInput.TriggerGroup>
   </NumberInput.Control>
 </NumberInput.Root>
 ```
