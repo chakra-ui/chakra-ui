@@ -719,6 +719,7 @@ Custom stepper components are not affected:
 import { Stepper } from "./custom-stepper"
 
 // This will NOT be transformed
+
 ;<Stepper>
   <Step>Custom</Step>
 </Stepper>

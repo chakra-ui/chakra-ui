@@ -30,7 +30,7 @@ export default function transformer(
       const specifiers = path.node.specifiers || []
       path.node.specifiers = specifiers.filter((spec) => {
         if (spec.type !== "ImportSpecifier") return true
-        return !oldStatComponents.includes(spec.imported.name)
+        return !oldStatComponents.includes(spec.imported.name as string)
       })
     })
 
@@ -132,7 +132,7 @@ export default function transformer(
     // Remove the type attribute
     path.node.openingElement.attributes =
       path.node.openingElement.attributes?.filter(
-        (attr) =>
+        (attr: any) =>
           !(
             attr.type === "JSXAttribute" &&
             attr.name.type === "JSXIdentifier" &&

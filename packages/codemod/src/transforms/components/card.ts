@@ -122,7 +122,7 @@ export default function transformer(
       // Remove old component names
       path.node.specifiers = specifiers.filter((spec) => {
         if (spec.type !== "ImportSpecifier") return true
-        return !cardComponentsToRemove.includes(spec.imported.name)
+        return !cardComponentsToRemove.includes(spec.imported.name as string)
       })
 
       // Ensure Card is imported if any card component was used

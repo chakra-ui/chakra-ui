@@ -487,6 +487,7 @@ Custom stat components are not affected:
 import { Stat } from "./custom-stats"
 
 // This will NOT be transformed
+
 ;<Stat>
   <StatLabel>Custom</StatLabel>
 </Stat>

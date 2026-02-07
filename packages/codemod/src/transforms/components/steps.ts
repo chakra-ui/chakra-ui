@@ -1,4 +1,10 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import type {
+  API,
+  FileInfo,
+  JSXAttribute,
+  JSXSpreadAttribute,
+  Options,
+} from "jscodeshift"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
@@ -87,7 +93,7 @@ export default function transformer(
 
       const filteredSpecifiers = specifiers.filter((spec) => {
         if (spec.type !== "ImportSpecifier") return true
-        return !oldStepsComponents.includes(spec.imported.name)
+        return !oldStepsComponents.includes(spec.imported.name as string)
       })
 
       // Check if Steps import already exists
@@ -190,7 +196,10 @@ export default function transformer(
       return attr
     })
 
-    path.node.attributes = newAttrs.filter(Boolean)
+    path.node.attributes = newAttrs.filter(Boolean) as (
+      | JSXAttribute
+      | JSXSpreadAttribute
+    )[]
   })
 
   // Transform useSteps hook calls: index -> defaultStep, activeStep -> value

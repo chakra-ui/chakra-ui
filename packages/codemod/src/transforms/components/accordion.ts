@@ -138,7 +138,6 @@ export default function transformer(
       const attrs = openingElement.attributes ?? []
       let hasValue = false
       let hasId = false
-      let idValue: any = null
 
       // Transform props
       openingElement.attributes = attrs.flatMap((attr) => {
@@ -152,7 +151,6 @@ export default function transformer(
 
           case "id":
             hasId = true
-            idValue = attr.value
             // Transform id → value
             return j.jsxAttribute(j.jsxIdentifier("value"), attr.value)
 

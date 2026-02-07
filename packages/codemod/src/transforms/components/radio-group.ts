@@ -1,4 +1,10 @@
-import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import type {
+  API,
+  FileInfo,
+  JSXAttribute,
+  JSXSpreadAttribute,
+  Options,
+} from "jscodeshift"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
@@ -31,7 +37,7 @@ export default function transformer(
       const itemAttrs: JSXAttribute[] = []
       let inputPropsAttr: JSXAttribute | null = null
 
-      radioAttrs.forEach((attr) => {
+      radioAttrs.forEach((attr: any) => {
         if (
           attr.type !== "JSXAttribute" ||
           attr.name.type !== "JSXIdentifier"
@@ -144,7 +150,7 @@ export default function transformer(
       const children = path.node.children ?? []
 
       // Transform RadioGroup props
-      const rootAttrs: JSXAttribute[] = []
+      const rootAttrs: (JSXAttribute | JSXSpreadAttribute)[] = []
 
       oldAttrs.forEach((attr) => {
         if (

@@ -1,11 +1,7 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import { createParserFromPath } from "../../utils/parser"
-import {
-  processDialogProps,
-  renameToMemberExpression,
-  updateDialogImports,
-} from "./dialog-utils"
+import { processDialogProps, renameToMemberExpression } from "./dialog-utils"
 
 /**
  * Transforms Drawer components to v3 Drawer compound component API

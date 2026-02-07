@@ -101,7 +101,7 @@ export default function transformer(
     .forEach((path) => {
       path.node.specifiers?.forEach((spec) => {
         if (spec.type === "ImportSpecifier") {
-          usedChakraIcons.add(spec.imported.name)
+          usedChakraIcons.add(spec.imported.name as string)
         }
       })
     })
@@ -185,7 +185,7 @@ function updateIconImports(
       .find(j.ImportDeclaration, {
         source: { value: "@chakra-ui/react" },
       })
-      .forEach((path) => {
+      .forEach((path: any) => {
         const specifiers = path.node.specifiers || []
         hasIconImport = specifiers.some(
           (spec: any) =>
@@ -219,7 +219,7 @@ function updateIconImports(
     .find(j.ImportDeclaration, {
       source: { value: "@chakra-ui/icons" },
     })
-    .forEach((path) => {
+    .forEach((path: any) => {
       j(path).remove()
     })
 

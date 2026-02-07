@@ -98,7 +98,7 @@ export default function transformer(
 /**
  * Transform Image/Img component props
  */
-function transformImageProps(j: any, path: any) {
+function transformImageProps(_j: any, path: any) {
   const attrs = path.node.openingElement.attributes || []
 
   path.node.openingElement.attributes = attrs.flatMap((attr: any) => {

@@ -549,6 +549,7 @@ Custom tooltip components are not affected:
 import { Tooltip } from "./custom-tooltip"
 
 // This will NOT be transformed
+
 ;<Tooltip label="Custom">Content</Tooltip>
 ```
 

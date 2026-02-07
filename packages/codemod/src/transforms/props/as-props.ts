@@ -152,7 +152,7 @@ function isValidChakraProp(propName: string): boolean {
   )
 }
 
-function isValidDOMProp(propName: string, tagName: string): boolean {
+export function isValidDOMProp(propName: string, tagName: string): boolean {
   if (isDataOrAria(propName)) return true
 
   const lowerTag = tagName.toLowerCase()

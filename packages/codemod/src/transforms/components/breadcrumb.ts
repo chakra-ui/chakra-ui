@@ -280,7 +280,6 @@ function createSeparator(j: any, separatorProp: any) {
  */
 function transformBreadcrumbItem(j: any, path: any) {
   const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
 
   const newAttrs = attrs.flatMap((attr: any) => {
     if (attr.type !== "JSXAttribute") return attr

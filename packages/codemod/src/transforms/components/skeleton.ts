@@ -84,7 +84,7 @@ export default function transformer(
 
     // Add or merge CSS properties
     if (cssProps.length > 0) {
-      const cssAttr = opening.attributes.find(
+      const cssAttr = opening.attributes!.find(
         (a: any) =>
           a.type === "JSXAttribute" &&
           a.name.type === "JSXIdentifier" &&
@@ -104,7 +104,7 @@ export default function transformer(
           })
         }
       } else {
-        opening.attributes.push(
+        opening.attributes!.push(
           j.jsxAttribute(
             j.jsxIdentifier("css"),
             j.jsxExpressionContainer(

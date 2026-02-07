@@ -123,6 +123,7 @@ export default function transformer(
             // Transform to finalFocusEl function
             if (attr.value?.type === "JSXExpressionContainer") {
               const expr = attr.value.expression
+              if (expr.type === "JSXEmptyExpression") break
               // Create arrow function: () => ref.current
               const arrowFunc = j.arrowFunctionExpression(
                 [],

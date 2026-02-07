@@ -583,7 +583,7 @@ export default function transformer(
       const specs = imp.node.specifiers || []
       imp.node.specifiers = specs.filter((spec) => {
         if (spec.type !== "ImportSpecifier") return true
-        const importedName = spec.imported.name
+        const importedName = spec.imported.name as string
         return !oldMenuComponents.includes(importedName)
       })
     })

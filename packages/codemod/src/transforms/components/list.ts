@@ -204,7 +204,7 @@ export default function transformer(
       // Remove old component names
       path.node.specifiers = specifiers.filter((spec) => {
         if (spec.type !== "ImportSpecifier") return true
-        return !listComponentsToRemove.includes(spec.imported.name)
+        return !listComponentsToRemove.includes(spec.imported.name as string)
       })
 
       // Ensure List is imported if any list component was used
