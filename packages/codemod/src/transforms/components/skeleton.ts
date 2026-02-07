@@ -23,11 +23,16 @@ export default function transformer(
     if (baseName !== "Skeleton") return
 
     const attrs = opening.attributes || []
+
+    // Collect CSS properties to add
+    const cssProps: Array<[string, any]> = []
+
     opening.attributes = attrs
       .map((attr) => {
         if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
           return attr
         const name = attr.name.name
+
         if (name === "isLoaded") {
           attr.name.name = "loading"
           if (!attr.value) {
@@ -42,103 +47,80 @@ export default function transformer(
           }
           return attr
         }
+
         if (name === "startColor") {
-          // move to css var
-          // add/merge css prop with --start-color
-          const cssAttr = attrs.find(
-            (a) =>
-              a.type === "JSXAttribute" &&
-              a.name.type === "JSXIdentifier" &&
-              a.name.name === "css",
-          ) as any
           const colorValue =
-            attr.value?.type === "Literal"
+            attr.value?.type === "Literal" ||
+            attr.value?.type === "StringLiteral"
               ? attr.value.value
               : attr.value?.type === "JSXExpressionContainer"
                 ? (attr.value.expression as any)
                 : null
-          if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
-            const expr = cssAttr.value.expression
-            if (expr.type === "ObjectExpression") {
-              expr.properties.push(
-                j.objectProperty(
-                  j.stringLiteral("--start-color"),
-                  typeof colorValue === "string"
-                    ? j.literal(colorValue)
-                    : colorValue,
-                ),
-              )
-            }
-          } else {
-            opening.attributes = opening.attributes || []
-            opening.attributes.push(
-              j.jsxAttribute(
-                j.jsxIdentifier("css"),
-                j.jsxExpressionContainer(
-                  j.objectExpression([
-                    j.objectProperty(
-                      j.stringLiteral("--start-color"),
-                      typeof colorValue === "string"
-                        ? j.literal(colorValue)
-                        : (colorValue as any),
-                    ),
-                  ]),
-                ),
-              ),
-            )
+
+          if (colorValue) {
+            cssProps.push(["--start-color", colorValue])
           }
           return null as any
         }
+
         if (name === "endColor") {
-          opening.attributes = opening.attributes || []
-          const cssAttr = opening.attributes.find(
-            (a) =>
-              a &&
-              a.type === "JSXAttribute" &&
-              a.name.type === "JSXIdentifier" &&
-              a.name.name === "css",
-          ) as any
           const colorValue =
-            attr.value?.type === "Literal"
+            attr.value?.type === "Literal" ||
+            attr.value?.type === "StringLiteral"
               ? attr.value.value
               : attr.value?.type === "JSXExpressionContainer"
                 ? (attr.value.expression as any)
                 : null
-          if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
-            const expr = cssAttr.value.expression
-            if (expr.type === "ObjectExpression") {
-              expr.properties.push(
-                j.objectProperty(
-                  j.stringLiteral("--end-color"),
-                  typeof colorValue === "string"
-                    ? j.literal(colorValue)
-                    : colorValue,
-                ),
-              )
-            }
-          } else {
-            opening.attributes = opening.attributes || []
-            opening.attributes.push(
-              j.jsxAttribute(
-                j.jsxIdentifier("css"),
-                j.jsxExpressionContainer(
-                  j.objectExpression([
-                    j.objectProperty(
-                      j.stringLiteral("--end-color"),
-                      typeof colorValue === "string"
-                        ? j.literal(colorValue)
-                        : (colorValue as any),
-                    ),
-                  ]),
-                ),
-              ),
-            )
+
+          if (colorValue) {
+            cssProps.push(["--end-color", colorValue])
           }
           return null as any
         }
+
         return attr
       })
       .filter(Boolean) as any
+
+    // Add or merge CSS properties
+    if (cssProps.length > 0) {
+      const cssAttr = opening.attributes.find(
+        (a: any) =>
+          a.type === "JSXAttribute" &&
+          a.name.type === "JSXIdentifier" &&
+          a.name.name === "css",
+      ) as any
+
+      if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
+        const expr = cssAttr.value.expression
+        if (expr.type === "ObjectExpression") {
+          cssProps.forEach(([key, value]) => {
+            expr.properties.push(
+              j.objectProperty(
+                j.stringLiteral(key),
+                typeof value === "string" ? j.literal(value) : value,
+              ),
+            )
+          })
+        }
+      } else {
+        opening.attributes.push(
+          j.jsxAttribute(
+            j.jsxIdentifier("css"),
+            j.jsxExpressionContainer(
+              j.objectExpression(
+                cssProps.map(([key, value]) =>
+                  j.objectProperty(
+                    j.stringLiteral(key),
+                    typeof value === "string" ? j.literal(value) : value,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      }
+    }
   })
 
   return root.toSource({ quote: "single" })

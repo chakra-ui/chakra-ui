@@ -32,6 +32,91 @@ export default function transformer(
   root.find(j.JSXOpeningElement).forEach((path) => {
     const baseName = getJsxBaseName(path.node.name)
     const isChakra = chakraLocalNames.has(baseName)
+
+    // Handle ButtonGroup
+    const resolvesToButtonGroup =
+      baseName === "ButtonGroup" ||
+      (componentAliases.has(baseName) &&
+        componentAliases.get(baseName) === "ButtonGroup")
+
+    if (isChakra && resolvesToButtonGroup) {
+      const attributes = path.node.attributes ?? []
+      let hasIsDisabled = false
+      let isDisabledValue: any = null
+
+      // Check if isDisabled is present
+      attributes.forEach((attr) => {
+        if (
+          attr.type === "JSXAttribute" &&
+          attr.name.type === "JSXIdentifier" &&
+          attr.name.name === "isDisabled"
+        ) {
+          hasIsDisabled = true
+          isDisabledValue = attr.value
+        }
+      })
+
+      const newAttributes = attributes.flatMap((attr) => {
+        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
+          return attr
+
+        switch (attr.name.name) {
+          case "isAttached":
+            return j.jsxAttribute(j.jsxIdentifier("attached"), attr.value)
+          case "isDisabled":
+            return [] // Remove from ButtonGroup, will propagate to children
+          default:
+            return attr
+        }
+      })
+
+      path.node.attributes = newAttributes
+
+      // If isDisabled was present, propagate to Button children
+      if (hasIsDisabled) {
+        const parent = path.parent.node
+        if (parent.type === "JSXElement") {
+          const children = parent.children || []
+
+          children.forEach((child: any) => {
+            if (child.type === "JSXElement") {
+              const childBaseName = getJsxBaseName(child.openingElement.name)
+              const isButton =
+                childBaseName === "Button" ||
+                childBaseName === "IconButton" ||
+                (componentAliases.has(childBaseName) &&
+                  (componentAliases.get(childBaseName) === "Button" ||
+                    componentAliases.get(childBaseName) === "IconButton"))
+
+              if (isButton) {
+                const childAttrs = child.openingElement.attributes || []
+                const hasDisabled = childAttrs.some(
+                  (attr: any) =>
+                    attr.type === "JSXAttribute" &&
+                    attr.name.type === "JSXIdentifier" &&
+                    attr.name.name === "disabled",
+                )
+
+                // Only add disabled if not already present
+                if (!hasDisabled) {
+                  child.openingElement.attributes = [
+                    ...childAttrs,
+                    j.jsxAttribute(
+                      j.jsxIdentifier("disabled"),
+                      isDisabledValue || null,
+                    ),
+                  ]
+                }
+              }
+            }
+          })
+        }
+      }
+
+      return
+    }
+
+    // Handle Button
     const resolvesToButton =
       baseName === "Button" ||
       (componentAliases.has(baseName) &&
@@ -43,6 +128,19 @@ export default function transformer(
     let leftIconValue: any = null
     let rightIconValue: any = null
     let hasUnstyledVariant = false
+    let iconSpacingValue: any = null
+    let hasGapProp = false
+
+    // First pass: check if gap prop exists
+    attributes.forEach((attr) => {
+      if (
+        attr.type === "JSXAttribute" &&
+        attr.name.type === "JSXIdentifier" &&
+        attr.name.name === "gap"
+      ) {
+        hasGapProp = true
+      }
+    })
 
     const newAttributes = attributes.flatMap((attr) => {
       if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
@@ -62,6 +160,22 @@ export default function transformer(
           ) {
             hasUnstyledVariant = true
             return [] // remove variant prop
+          } else if (
+            attr.value?.type === "Literal" &&
+            attr.value.value === "link"
+          ) {
+            return j.jsxAttribute(
+              j.jsxIdentifier("variant"),
+              j.literal("plain"),
+            )
+          } else if (
+            attr.value?.type === "StringLiteral" &&
+            attr.value.value === "link"
+          ) {
+            return j.jsxAttribute(
+              j.jsxIdentifier("variant"),
+              j.stringLiteral("plain"),
+            )
           }
           return attr
         case "isActive":
@@ -79,7 +193,12 @@ export default function transformer(
           rightIconValue = attr.value
           return []
         case "iconSpacing":
-          return [] // remove
+          iconSpacingValue = attr.value
+          // If gap doesn't exist, transform to gap; otherwise remove
+          if (!hasGapProp && iconSpacingValue) {
+            return j.jsxAttribute(j.jsxIdentifier("gap"), iconSpacingValue)
+          }
+          return []
         default:
           return attr
       }
@@ -102,7 +221,15 @@ export default function transformer(
 
         if (leftIconValue) {
           if (leftIconValue.type === "JSXExpressionContainer") {
-            newChildren.push(leftIconValue)
+            // Extract the expression from the container
+            const expr = leftIconValue.expression
+            // If it's a JSXElement, push it directly without wrapping
+            if (expr.type === "JSXElement" || expr.type === "JSXFragment") {
+              newChildren.push(expr)
+            } else {
+              // For other expressions (variables, function calls), keep the container
+              newChildren.push(leftIconValue)
+            }
           } else if (
             leftIconValue.type === "Literal" ||
             leftIconValue.type === "StringLiteral"
@@ -117,7 +244,15 @@ export default function transformer(
 
         if (rightIconValue) {
           if (rightIconValue.type === "JSXExpressionContainer") {
-            newChildren.push(rightIconValue)
+            // Extract the expression from the container
+            const expr = rightIconValue.expression
+            // If it's a JSXElement, push it directly without wrapping
+            if (expr.type === "JSXElement" || expr.type === "JSXFragment") {
+              newChildren.push(expr)
+            } else {
+              // For other expressions (variables, function calls), keep the container
+              newChildren.push(rightIconValue)
+            }
           } else if (
             rightIconValue.type === "Literal" ||
             rightIconValue.type === "StringLiteral"
