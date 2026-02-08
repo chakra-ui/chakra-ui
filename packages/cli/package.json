@@ -55,7 +55,7 @@
     "globby": "14.1.0",
     "chokidar": "3.6.0",
     "cli-table": "^0.3.11",
-    "commander": "12.1.0",
+    "commander": "14.0.3",
     "debug": "^4.4.3",
     "dotenv": "^17.2.3",
     "https-proxy-agent": "^7.0.6",

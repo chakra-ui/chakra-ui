@@ -51,7 +51,7 @@
     "@clack/prompts": "0.11.0",
     "@emotion/is-prop-valid": "^1.4.0",
     "@types/node": "^20.0.0",
-    "commander": "12.1.0",
+    "commander": "14.0.3",
     "html-element-attributes": "3.5.0",
     "is-git-clean": "1.1.0",
     "jscodeshift": "17.0.0",
