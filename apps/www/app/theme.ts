@@ -4,8 +4,8 @@ export const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: "var(--font-inter)" },
-        body: { value: "var(--font-inter)" },
+        heading: { value: "var(--font-wix-madefor)" },
+        body: { value: "var(--font-wix-madefor)" },
       },
     },
   },
