@@ -32,14 +32,14 @@ export { useDatePickerStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerRootProviderBaseProps
-  extends Assign<
-      ArkDatePicker.RootProviderBaseProps,
-      SlotRecipeProps<"datePicker">
-    >,
+  extends
+    Assign<ArkDatePicker.RootProviderBaseProps, SlotRecipeProps<"datePicker">>,
     UnstyledProp {}
 
-export interface DatePickerRootProviderProps
-  extends HTMLChakraProps<"div", DatePickerRootProviderBaseProps> {}
+export interface DatePickerRootProviderProps extends HTMLChakraProps<
+  "div",
+  DatePickerRootProviderBaseProps
+> {}
 
 export const DatePickerRootProvider = withProvider<
   HTMLDivElement,
@@ -49,11 +49,14 @@ export const DatePickerRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerRootBaseProps
-  extends Assign<ArkDatePicker.RootBaseProps, SlotRecipeProps<"datePicker">>,
+  extends
+    Assign<ArkDatePicker.RootBaseProps, SlotRecipeProps<"datePicker">>,
     UnstyledProp {}
 
-export interface DatePickerRootProps
-  extends HTMLChakraProps<"div", DatePickerRootBaseProps> {}
+export interface DatePickerRootProps extends HTMLChakraProps<
+  "div",
+  DatePickerRootBaseProps
+> {}
 
 export const DatePickerRoot = withProvider<HTMLDivElement, DatePickerRootProps>(
   ArkDatePicker.Root,
@@ -71,7 +74,8 @@ export const DatePickerPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerClearTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.ClearTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.ClearTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerClearTrigger = withContext<
@@ -87,7 +91,8 @@ export const DatePickerClearTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerContentProps
-  extends HTMLChakraProps<"div", ArkDatePicker.ContentBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkDatePicker.ContentBaseProps>,
     UnstyledProp {}
 
 export const DatePickerContent = withContext<
@@ -98,7 +103,8 @@ export const DatePickerContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerControlProps
-  extends HTMLChakraProps<"div", ArkDatePicker.ControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkDatePicker.ControlBaseProps>,
     UnstyledProp {}
 
 export const DatePickerControl = withContext<
@@ -109,7 +115,8 @@ export const DatePickerControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerInputProps
-  extends HTMLChakraProps<"input", ArkDatePicker.InputBaseProps>,
+  extends
+    HTMLChakraProps<"input", ArkDatePicker.InputBaseProps>,
     UnstyledProp {}
 
 export const DatePickerInput = withContext<
@@ -120,7 +127,8 @@ export const DatePickerInput = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerLabelProps
-  extends HTMLChakraProps<"label", ArkDatePicker.LabelBaseProps>,
+  extends
+    HTMLChakraProps<"label", ArkDatePicker.LabelBaseProps>,
     UnstyledProp {}
 
 export const DatePickerLabel = withContext<
@@ -131,7 +139,8 @@ export const DatePickerLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerMonthSelectProps
-  extends HTMLChakraProps<"select", ArkDatePicker.MonthSelectBaseProps>,
+  extends
+    HTMLChakraProps<"select", ArkDatePicker.MonthSelectBaseProps>,
     UnstyledProp {}
 
 export const DatePickerMonthSelect = withContext<
@@ -142,7 +151,8 @@ export const DatePickerMonthSelect = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerNextTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.NextTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.NextTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerNextTrigger = withContext<
@@ -157,7 +167,8 @@ export const DatePickerNextTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerPositionerProps
-  extends HTMLChakraProps<"div", ArkDatePicker.PositionerBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkDatePicker.PositionerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerPositioner = withContext<
@@ -168,7 +179,8 @@ export const DatePickerPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerPresetTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.PresetTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.PresetTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerPresetTrigger = withContext<
@@ -179,7 +191,8 @@ export const DatePickerPresetTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerPrevTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.PrevTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.PrevTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerPrevTrigger = withContext<
@@ -195,7 +208,8 @@ export const DatePickerPrevTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerRangeTextProps
-  extends HTMLChakraProps<"div", ArkDatePicker.RangeTextBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkDatePicker.RangeTextBaseProps>,
     UnstyledProp {}
 
 export const DatePickerRangeText = withContext<
@@ -206,7 +220,8 @@ export const DatePickerRangeText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableProps
-  extends HTMLChakraProps<"table", ArkDatePicker.TableBaseProps>,
+  extends
+    HTMLChakraProps<"table", ArkDatePicker.TableBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTable = withContext<
@@ -217,7 +232,8 @@ export const DatePickerTable = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableBodyProps
-  extends HTMLChakraProps<"tbody", ArkDatePicker.TableBodyBaseProps>,
+  extends
+    HTMLChakraProps<"tbody", ArkDatePicker.TableBodyBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableBody = withContext<
@@ -228,7 +244,8 @@ export const DatePickerTableBody = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableCellProps
-  extends HTMLChakraProps<"td", ArkDatePicker.TableCellBaseProps>,
+  extends
+    HTMLChakraProps<"td", ArkDatePicker.TableCellBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableCell = withContext<
@@ -239,7 +256,8 @@ export const DatePickerTableCell = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableCellTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.TableCellTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.TableCellTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableCellTrigger = withContext<
@@ -250,7 +268,8 @@ export const DatePickerTableCellTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableHeadProps
-  extends HTMLChakraProps<"thead", ArkDatePicker.TableHeadBaseProps>,
+  extends
+    HTMLChakraProps<"thead", ArkDatePicker.TableHeadBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableHead = withContext<
@@ -261,7 +280,8 @@ export const DatePickerTableHead = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableHeaderProps
-  extends HTMLChakraProps<"th", ArkDatePicker.TableHeaderBaseProps>,
+  extends
+    HTMLChakraProps<"th", ArkDatePicker.TableHeaderBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableHeader = withContext<
@@ -272,7 +292,8 @@ export const DatePickerTableHeader = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTableRowProps
-  extends HTMLChakraProps<"tr", ArkDatePicker.TableRowBaseProps>,
+  extends
+    HTMLChakraProps<"tr", ArkDatePicker.TableRowBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTableRow = withContext<
@@ -283,7 +304,8 @@ export const DatePickerTableRow = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.TriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.TriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerTrigger = withContext<
@@ -296,8 +318,7 @@ export const DatePickerTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerViewProps
-  extends HTMLChakraProps<"div", ArkDatePicker.ViewBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkDatePicker.ViewBaseProps>, UnstyledProp {}
 
 export const DatePickerView = withContext<HTMLDivElement, DatePickerViewProps>(
   ArkDatePicker.View,
@@ -308,7 +329,8 @@ export const DatePickerView = withContext<HTMLDivElement, DatePickerViewProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerViewControlProps
-  extends HTMLChakraProps<"div", ArkDatePicker.ViewControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkDatePicker.ViewControlBaseProps>,
     UnstyledProp {}
 
 export const DatePickerViewControl = withContext<
@@ -319,7 +341,8 @@ export const DatePickerViewControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerViewTriggerProps
-  extends HTMLChakraProps<"button", ArkDatePicker.ViewTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDatePicker.ViewTriggerBaseProps>,
     UnstyledProp {}
 
 export const DatePickerViewTrigger = withContext<
@@ -330,7 +353,8 @@ export const DatePickerViewTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerYearSelectProps
-  extends HTMLChakraProps<"select", ArkDatePicker.YearSelectBaseProps>,
+  extends
+    HTMLChakraProps<"select", ArkDatePicker.YearSelectBaseProps>,
     UnstyledProp {}
 
 export const DatePickerYearSelect = withContext<
@@ -341,8 +365,7 @@ export const DatePickerYearSelect = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerIndicatorGroupProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const DatePickerIndicatorGroup = withContext<
   HTMLDivElement,
@@ -377,12 +400,11 @@ export const DatePickerHeader = (props: DatePickerHeaderProps) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////
-export interface DatePickerDayViewProps
-  extends Omit<DatePickerViewProps, "view"> {
+export interface DatePickerDayTableProps extends DatePickerTableProps {
   offset?: number
 }
 
-export const DatePickerDayView = (props: DatePickerDayViewProps) => {
+export const DatePickerDayTable = (props: DatePickerDayTableProps) => {
   const datePicker = useDatePickerContext()
   const { offset, ...rest } = props
   const offsetDays = offset
@@ -390,103 +412,99 @@ export const DatePickerDayView = (props: DatePickerDayViewProps) => {
     : undefined
   const weeks = offsetDays ? offsetDays.weeks : datePicker.weeks
   return (
-    <DatePickerView {...rest} view="day">
-      <DatePickerTable>
-        <DatePickerTableHead>
-          <DatePickerTableRow>
-            {datePicker.weekDays.map((weekDay, id) => (
-              <DatePickerTableHeader key={id}>
-                {weekDay.short}
-              </DatePickerTableHeader>
+    <DatePickerTable {...rest}>
+      <DatePickerTableHead>
+        <DatePickerTableRow>
+          {datePicker.weekDays.map((weekDay, id) => (
+            <DatePickerTableHeader key={id}>
+              {weekDay.narrow}
+            </DatePickerTableHeader>
+          ))}
+        </DatePickerTableRow>
+      </DatePickerTableHead>
+      <DatePickerTableBody>
+        {weeks.map((week, id) => (
+          <DatePickerTableRow key={id}>
+            {week.map((day, id) => (
+              <DatePickerTableCell
+                key={id}
+                value={day}
+                visibleRange={offsetDays?.visibleRange}
+              >
+                <DatePickerTableCellTrigger>
+                  {day.day}
+                </DatePickerTableCellTrigger>
+              </DatePickerTableCell>
             ))}
           </DatePickerTableRow>
-        </DatePickerTableHead>
-        <DatePickerTableBody>
-          {weeks.map((week, id) => (
-            <DatePickerTableRow key={id}>
-              {week.map((day, id) => (
-                <DatePickerTableCell
-                  key={id}
-                  value={day}
-                  visibleRange={offsetDays?.visibleRange}
-                >
-                  <DatePickerTableCellTrigger>
-                    {day.day}
-                  </DatePickerTableCellTrigger>
-                </DatePickerTableCell>
-              ))}
-            </DatePickerTableRow>
-          ))}
-        </DatePickerTableBody>
-      </DatePickerTable>
-    </DatePickerView>
+        ))}
+      </DatePickerTableBody>
+    </DatePickerTable>
   )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-export interface DatePickerMonthViewProps
-  extends Omit<DatePickerViewProps, "view"> {
+export interface DatePickerMonthTableProps extends DatePickerTableProps {
   columns?: number
   format?: "short" | "long"
 }
-export const DatePickerMonthView = (props: DatePickerMonthViewProps) => {
+
+export const DatePickerMonthTable = (props: DatePickerMonthTableProps) => {
   const datePicker = useDatePickerContext()
   const { columns = 4, format = "short", ...rest } = props
 
   return (
-    <DatePickerView {...rest} view="month">
-      <DatePickerTable>
-        <DatePickerTableBody>
-          {datePicker.getMonthsGrid({ columns, format }).map((months, id) => (
-            <DatePickerTableRow key={id}>
-              {months.map((month, id) => (
-                <DatePickerTableCell key={id} value={month.value}>
-                  <DatePickerTableCellTrigger>
-                    {month.label}
-                  </DatePickerTableCellTrigger>
-                </DatePickerTableCell>
-              ))}
-            </DatePickerTableRow>
-          ))}
-        </DatePickerTableBody>
-      </DatePickerTable>
-    </DatePickerView>
+    <DatePickerTable {...rest}>
+      <DatePickerTableBody>
+        {datePicker.getMonthsGrid({ columns, format }).map((months, id) => (
+          <DatePickerTableRow key={id}>
+            {months.map((month, id) => (
+              <DatePickerTableCell key={id} value={month.value}>
+                <DatePickerTableCellTrigger>
+                  {month.label}
+                </DatePickerTableCellTrigger>
+              </DatePickerTableCell>
+            ))}
+          </DatePickerTableRow>
+        ))}
+      </DatePickerTableBody>
+    </DatePickerTable>
   )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-export interface DatePickerYearViewProps
-  extends Omit<DatePickerViewProps, "view"> {
+export interface DatePickerYearTableProps extends DatePickerTableProps {
   columns?: number
 }
-export const DatePickerYearView = (props: DatePickerYearViewProps) => {
+
+export const DatePickerYearTable = (props: DatePickerYearTableProps) => {
   const datePicker = useDatePickerContext()
   const { columns = 4, ...rest } = props
   return (
-    <DatePickerView {...rest} view="year">
-      <DatePickerTable>
-        <DatePickerTableBody>
-          {datePicker.getYearsGrid({ columns }).map((years, id) => (
-            <DatePickerTableRow key={id}>
-              {years.map((year, id) => (
-                <DatePickerTableCell key={id} value={year.value}>
-                  <DatePickerTableCellTrigger>
-                    {year.label}
-                  </DatePickerTableCellTrigger>
-                </DatePickerTableCell>
-              ))}
-            </DatePickerTableRow>
-          ))}
-        </DatePickerTableBody>
-      </DatePickerTable>
-    </DatePickerView>
+    <DatePickerTable {...rest}>
+      <DatePickerTableBody>
+        {datePicker.getYearsGrid({ columns }).map((years, id) => (
+          <DatePickerTableRow key={id}>
+            {years.map((year, id) => (
+              <DatePickerTableCell key={id} value={year.value}>
+                <DatePickerTableCellTrigger>
+                  {year.label}
+                </DatePickerTableCellTrigger>
+              </DatePickerTableCell>
+            ))}
+          </DatePickerTableRow>
+        ))}
+      </DatePickerTableBody>
+    </DatePickerTable>
   )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DatePickerValueProps
-  extends Omit<DatePickerTriggerProps, "children"> {
+export interface DatePickerValueProps extends Omit<
+  DatePickerTriggerProps,
+  "children"
+> {
   placeholder?: string
 }
 
@@ -511,42 +529,6 @@ export const DatePickerValue = (props: DatePickerValueProps) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-// export interface DatePickerValueTextProps
-//   extends Omit<DatePickerTriggerProps, "children"> {
-//   placeholder?: string
-//   children?: (
-//     value: DateValue,
-//     index: number,
-//     valueAsString: string,
-//     remove: () => void,
-//   ) => React.ReactNode
-// }
-
-// export const DatePickerValueText = (props: DatePickerValueTextProps) => {
-//   const { placeholder, children, ...rest } = props
-//   const datePicker = useDatePickerContext()
-//   const hasValue = datePicker.value.length > 0
-
-//   return (
-//     <span {...rest}>
-//         {hasValue
-//           ? datePicker.value.map((value, index) => (
-//               <div key={index}>
-//                 {children({
-//                   value,
-//                   index,
-//                   valueAsString: datePicker.valueAsString[index],
-//                   remove: () => {
-//                     datePicker.setValue(datePicker.value.filter((_, i) => i !== index))
-//                   },
-//                 })}
-//               </div>
-//             ))
-//           : placeholder}
-//     </span>
-//   )
-// }
 
 export interface DatePickerValueTextRenderProps {
   value: DateValue
@@ -574,8 +556,10 @@ export interface DatePickerValueTextBaseProps {
   separator?: string | undefined
 }
 
-export interface DatePickerValueTextProps
-  extends Assign<HTMLChakraProps<"span">, DatePickerValueTextBaseProps> {}
+export interface DatePickerValueTextProps extends Assign<
+  HTMLChakraProps<"span">,
+  DatePickerValueTextBaseProps
+> {}
 
 export const DatePickerValueText = forwardRef<
   HTMLSpanElement,

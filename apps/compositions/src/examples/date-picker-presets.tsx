@@ -53,10 +53,18 @@ export const DatePickerPresets = () => {
                 </DatePicker.PresetTrigger>
               </VStack>
               <Flex direction="column" flex="1" minW={0}>
-                <DatePicker.Header />
-                <DatePicker.DayView />
-                <DatePicker.MonthView />
-                <DatePicker.YearView />
+                <DatePicker.View view="day">
+                  <DatePicker.Header />
+                  <DatePicker.DayTable />
+                </DatePicker.View>
+                <DatePicker.View view="month">
+                  <DatePicker.Header />
+                  <DatePicker.MonthTable />
+                </DatePicker.View>
+                <DatePicker.View view="year">
+                  <DatePicker.Header />
+                  <DatePicker.YearTable />
+                </DatePicker.View>
               </Flex>
             </Flex>
           </DatePicker.Content>

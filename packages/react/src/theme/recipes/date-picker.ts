@@ -1,5 +1,47 @@
 import { datePickerAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { defineSlotRecipe, defineStyle } from "../../styled-system"
+
+// PrevTrigger, NextTrigger
+const navTriggerStyle = defineStyle({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxSize: "8",
+  borderRadius: "l2",
+  color: "fg",
+  transitionDuration: "normal",
+  transitionProperty: "bg, border-color",
+  focusVisibleRing: "inside",
+  _hover: {
+    bg: "colorPalette.subtle",
+  },
+  _focusVisible: {
+    bg: "colorPalette.subtle",
+    boxShadow: "0 0 0 2px var(--colors-color-palette-focus-ring)",
+  },
+  _disabled: {
+    opacity: 0.5,
+  },
+  _icon: {
+    width: "4",
+    height: "4",
+  },
+})
+
+// MonthSelect, YearSelect
+const selectStyle = defineStyle({
+  height: "8",
+  px: "2",
+  textStyle: "sm",
+  bg: "bg.subtle",
+  borderWidth: "1px",
+  borderRadius: "l1",
+  outline: "none",
+  _focusVisible: {
+    borderColor: "colorPalette.solid",
+    boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
+  },
+})
 
 export const datePickerSlotRecipe = defineSlotRecipe({
   className: "date-picker",
@@ -10,14 +52,27 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "1.5",
       width: "full",
-      // maxWidth: "24rem",
+      _disabled: {
+        opacity: 0.5,
+      },
     },
+
     label: {
       textStyle: "sm",
       fontWeight: "medium",
-      color: "fg",
-      userSelect: "none",
     },
+
+    indicatorGroup: {
+      position: "absolute",
+      insetEnd: "3",
+      top: "50%",
+      transform: "translateY(-50%)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "1",
+    },
+
     control: {
       display: "flex",
       alignItems: "center",
@@ -25,15 +80,16 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       width: "full",
       position: "relative",
     },
+
     input: {
       flex: "1",
       minWidth: "0",
       height: "var(--datepicker-input-height)",
+      "--input-height": "var(--datepicker-input-height)",
       px: "var(--datepicker-input-px)",
       textStyle: "sm",
-      background: "transparent",
+      bg: "transparent",
       borderWidth: "1px",
-      borderColor: "border",
       borderRadius: "l2",
       outline: "0",
       appearance: "none",
@@ -57,11 +113,8 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           boxShadow: "0 0 0 1px var(--colors-fg-error)",
         },
       },
-      _disabled: {
-        opacity: 0.5,
-        filter: "grayscale(100%)",
-      },
     },
+
     trigger: {
       display: "inline-flex",
       alignItems: "center",
@@ -75,27 +128,25 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         color: "fg",
       },
       focusVisibleRing: "inside",
-      _disabled: {
-        opacity: 0.5,
-        filter: "grayscale(100%)",
-      },
+      focusRingWidth: "2px",
       _icon: {
-        width: "4",
-        height: "4",
+        boxSize: "4",
       },
     },
+
     content: {
       display: "flex",
       flexDirection: "column",
       gap: "3",
-      p: "4",
-      minWidth: "17.5rem",
-      background: "bg.panel",
-      borderWidth: "1px",
-      borderColor: "border",
-      borderRadius: "l3",
-      boxShadow: "md",
-      zIndex: "dropdown",
+      p: "3",
+      minWidth: "xs",
+      bg: "bg.panel",
+      borderRadius: "l2",
+      boxShadow: "lg",
+      color: "fg",
+      maxHeight: "var(--available-height)",
+      "--date-picker-z-index": "zIndex.popover",
+      zIndex: "calc(var(--date-picker-z-index) + var(--layer-index, 0))",
       outline: "none",
       _open: {
         animationStyle: "scale-fade-in",
@@ -106,20 +157,21 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         animationDuration: "faster",
       },
     },
+
     view: {
       display: "flex",
       flexDirection: "column",
       gap: "3",
-      _hidden: {
-        display: "none",
-      },
     },
+
     viewControl: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       gap: "2",
+      height: "var(--table-cell-size)",
     },
+
     viewTrigger: {
       display: "inline-flex",
       flex: "1",
@@ -130,145 +182,90 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       px: "2",
       textStyle: "sm",
       fontWeight: "semibold",
-      background: "transparent",
-      borderRadius: "l1",
-      color: "fg",
-      transition: "background 0.15s ease",
-      _hover: {
-        background: "bg.subtle",
-      },
-      _focusVisible: {
-        background: "bg.subtle",
-        outline: "2px solid var(--colors-color-palette-focus-ring)",
-      },
-    },
-    prevTrigger: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "8",
-      height: "8",
       borderRadius: "l2",
-      color: "fg",
-      transitionDuration: "normal",
-      transitionProperty: "background, border-color",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
       _hover: {
-        background: "bg.subtle",
-      },
-      _focusVisible: {
-        background: "bg.subtle",
-        boxShadow: "0 0 0 2px var(--colors-color-palette-focus-ring)",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-      _icon: {
-        width: "4",
-        height: "4",
+        bg: "colorPalette.subtle",
       },
     },
-    nextTrigger: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "8",
-      height: "8",
-      borderRadius: "l2",
-      color: "fg",
-      transitionDuration: "normal",
-      transitionProperty: "background, border-color",
-      _hover: {
-        background: "bg.subtle",
-      },
-      _focusVisible: {
-        background: "bg.subtle",
-        boxShadow: "0 0 0 2px var(--colors-color-palette-focus-ring)",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-      _icon: {
-        width: "4",
-        height: "4",
-      },
-    },
+
+    prevTrigger: navTriggerStyle,
+    nextTrigger: navTriggerStyle,
+
     rangeText: {
       textStyle: "sm",
       fontWeight: "semibold",
-      color: "fg",
     },
+
     table: {
-      width: "full",
       borderCollapse: "separate",
       borderSpacing: "0",
+      "--table-cell-size": "sizes.10",
     },
+
     tableHeader: {
+      width: "var(--table-cell-size)",
       py: "2",
-      px: "1.5",
       textStyle: "xs",
       fontWeight: "medium",
       color: "fg.muted",
       textAlign: "center",
       textTransform: "uppercase",
-      letterSpacing: "wider",
     },
-    tableCell: {
-      p: "0",
-      textAlign: "center",
-    },
+
     tableCellTrigger: {
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      width: "8",
-      height: "8",
+      minWidth: "var(--table-cell-size)",
+      minHeight: "var(--table-cell-size)",
+      width: "full",
       textStyle: "sm",
-      background: "transparent",
       borderRadius: "l2",
-      color: "fg",
-      userSelect: "none",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      focusRingOffset: "0px",
+      cursor: "default",
+      position: "relative",
       _hover: {
-        background: "bg.subtle",
-      },
-      _focusVisible: {
-        outline: "2px solid var(--colors-color-palette-solid)",
-        outlineOffset: "-2px",
-        zIndex: "1",
+        bg: "colorPalette.subtle",
       },
       _today: {
-        fontWeight: "semibold",
         color: "colorPalette.fg",
+        fontWeight: "semibold",
+        textDecoration: "underline",
+        textUnderlineOffset: "3px",
+        textDecorationThickness: "2px",
       },
       _selected: {
-        background: "colorPalette.solid",
+        bg: "colorPalette.solid",
         color: "colorPalette.contrast",
-        my: "2px",
-        fontWeight: "medium",
         _hover: {
-          background: "colorPalette.solid",
+          bg: "colorPalette.solid",
         },
       },
       "&[data-in-range]": {
-        background: "colorPalette.subtle",
+        bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         borderRadius: "0",
-        _hover: { background: "colorPalette.subtle" },
+        _hover: {
+          bg: "colorPalette.subtle",
+        },
       },
       "&[data-range-start]": {
-        background: "colorPalette.solid",
+        bg: "colorPalette.solid",
         color: "colorPalette.contrast",
         borderRadius: "0",
         borderStartRadius: "l2",
-        _hover: { background: "colorPalette.solid" },
+        _hover: { bg: "colorPalette.solid" },
       },
       "&[data-range-end]": {
-        background: "colorPalette.solid",
+        bg: "colorPalette.solid",
         color: "colorPalette.contrast",
         borderRadius: "0",
         borderEndRadius: "l2",
-        _hover: { background: "colorPalette.solid" },
+        _hover: { bg: "colorPalette.solid" },
       },
       "&[data-range-start][data-range-end]": {
         borderRadius: "l2",
@@ -277,37 +274,13 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         color: "fg.muted",
         opacity: 0.4,
         cursor: "not-allowed",
-        _hover: { background: "transparent" },
+        _hover: { bg: "transparent" },
       },
     },
-    monthSelect: {
-      height: "8",
-      px: "2",
-      textStyle: "sm",
-      background: "bg.subtle",
-      borderWidth: "1px",
-      borderColor: "border",
-      borderRadius: "l1",
-      outline: "none",
-      _focusVisible: {
-        borderColor: "colorPalette.solid",
-        boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-      },
-    },
-    yearSelect: {
-      height: "8",
-      px: "2",
-      textStyle: "sm",
-      background: "bg.subtle",
-      borderWidth: "1px",
-      borderColor: "border",
-      borderRadius: "l1",
-      outline: "none",
-      _focusVisible: {
-        borderColor: "colorPalette.solid",
-        boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-      },
-    },
+
+    monthSelect: selectStyle,
+    yearSelect: selectStyle,
+
     clearTrigger: {
       display: "inline-flex",
       alignItems: "center",
@@ -327,19 +300,8 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         height: "4",
       },
     },
-    indicatorGroup: {
-      position: "absolute",
-      right: "0.5rem",
-      top: "50%",
-      transform: "translateY(-50%)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "0.5",
-      height: "fit-content",
-      pointerEvents: "auto",
-    },
   },
+
   variants: {
     size: {
       xs: {
@@ -373,21 +335,20 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     variant: {
       outline: {
         input: {
           borderWidth: "1px",
-          borderColor: "border",
-          background: "transparent",
+          bg: "transparent",
         },
       },
       subtle: {
         input: {
           borderWidth: "0px",
-          borderColor: "transparent",
-          background: "bg.subtle",
+          bg: "bg.subtle",
           _focus: {
-            background: "bg.muted",
+            bg: "bg.muted",
             boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
           },
         },
@@ -411,6 +372,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   defaultVariants: {
     size: "md",
     variant: "outline",

@@ -26,8 +26,10 @@ export const DatePickerYearPicker = () => {
       <Portal>
         <DatePicker.Positioner>
           <DatePicker.Content>
-            <DatePicker.Header />
-            <DatePicker.YearView />
+            <DatePicker.View view="year">
+              <DatePicker.Header />
+              <DatePicker.YearTable />
+            </DatePicker.View>
           </DatePicker.Content>
         </DatePicker.Positioner>
       </Portal>

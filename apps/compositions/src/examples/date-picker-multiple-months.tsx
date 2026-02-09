@@ -17,11 +17,21 @@ export const DatePickerMultipleMonths = () => {
       </DatePicker.Control>
       <DatePicker.Positioner>
         <DatePicker.Content>
-          <DatePicker.Header />
-          <Flex gap="4">
-            <DatePicker.DayView />
-            <DatePicker.DayView offset={1} />
-          </Flex>
+          <DatePicker.View view="day">
+            <DatePicker.Header />
+            <Flex gap="4">
+              <DatePicker.DayTable />
+              <DatePicker.DayTable offset={1} />
+            </Flex>
+          </DatePicker.View>
+          <DatePicker.View view="month">
+            <DatePicker.Header />
+            <DatePicker.MonthTable />
+          </DatePicker.View>
+          <DatePicker.View view="year">
+            <DatePicker.Header />
+            <DatePicker.YearTable />
+          </DatePicker.View>
         </DatePicker.Content>
       </DatePicker.Positioner>
     </DatePicker.Root>

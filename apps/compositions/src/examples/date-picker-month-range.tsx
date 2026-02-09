@@ -28,9 +28,14 @@ export const DatePickerMonthRange = () => {
       <Portal>
         <DatePicker.Positioner>
           <DatePicker.Content>
-            <DatePicker.Header />
-            <DatePicker.MonthView />
-            <DatePicker.YearView />
+            <DatePicker.View view="month">
+              <DatePicker.Header />
+              <DatePicker.MonthTable />
+            </DatePicker.View>
+            <DatePicker.View view="year">
+              <DatePicker.Header />
+              <DatePicker.YearTable />
+            </DatePicker.View>
           </DatePicker.Content>
         </DatePicker.Positioner>
       </Portal>
