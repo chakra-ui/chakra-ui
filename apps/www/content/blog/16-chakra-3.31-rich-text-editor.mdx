@@ -1,0 +1,91 @@
+---
+title: Hello, Rich Text Editor!
+description:
+  "Introducing the Rich Text Editor composition, component improvements, and bug
+  fixes"
+type: release
+version: "3.31"
+authors: ["esther"]
+publishedAt: "2026-01-17"
+---
+
+Chakra UI v3.31 is out, and the headliner is one of the most requested features
+we've seen: a full **[Rich Text Editor](/docs/components/rich-text-editor)**
+composition. We also shipped ActionBar placement variants, Slider anatomy
+improvements, and a round of important bug fixes.
+
+## Rich Text Editor
+
+Building a rich text editor from scratch is hard. Wiring up toolbars, handling
+keyboard shortcuts, managing extensions, and making it all look consistent with
+your design system—that's a lot of work before you even get to the actual
+content.
+
+That's why we built a complete
+[Rich Text Editor](/docs/components/rich-text-editor) composition on top of
+[Tiptap](https://tiptap.dev). It ships as a composition rather than a built-in
+primitive, which means you get full source code you can customize however you
+need.
+
+<ExampleTabs name="rich-text-editor-basic" />
+
+### Controlled Mode
+
+Sync the editor's HTML output with your app state. The `onUpdate` callback gives
+you the current content whenever it changes—handy for forms, autosave, or
+previewing output alongside the editor.
+
+<ExampleTabs name="rich-text-editor-controlled" />
+
+### Bubble Menu
+
+A floating toolbar that appears when users select text. Great for quick
+formatting without reaching for the main toolbar.
+
+<ExampleTabs name="rich-text-editor-with-bubble-menu" />
+
+### Mentions and Hashtags
+
+Type `@` to trigger a mention picker or `#` for hashtags. The suggestion menus
+are fully customizable and built with Chakra UI components.
+
+<ExampleTabs name="rich-text-editor-with-mentions" />
+
+Beyond what's shown above, the composition includes text formatting, headings,
+font controls, text alignment, lists, image insertion, code blocks, emoji, drag
+handles, mode switching, autosave, and more.
+
+## ActionBar Placement
+
+The ActionBar component now supports a `placement` variant so you can position
+it at `bottom`, `bottom-start`, or `bottom-end`. There's also a new
+`--action-bar-offset` CSS variable if you need finer control over the offset
+from edges.
+
+## Slider Improvements
+
+- Added `markerLabel` to the component anatomy for theming marker labels
+- New `Slider.MarkerLabel` component for custom marker label rendering
+- Improved focus ring styles on `Slider.Thumb`
+
+## Bug Fixes
+
+- **ColorPicker, Select, Combobox**: Fixed z-index stacking when used inside
+  dialogs
+- **cva**: Normalized base styles to prevent shorthand properties from
+  overwriting variant styles
+- **Menu**: Fixed content background not rendering by using full token path for
+  CSS variable
+- **SkeletonText**: Fixed duplicating children when `loading` is set to `false`
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+Everything in this release is backward compatible—no breaking changes or
+migration needed. Just upgrade and start building.
+
+Share what you build with us on [Twitter](https://twitter.com/chakra_ui) or in
+our [Discord](https://chakra-ui.com/discord).
