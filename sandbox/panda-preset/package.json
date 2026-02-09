@@ -17,7 +17,7 @@
     "@chakra-ui/panda-preset": "workspace:*",
     "@eslint/js": "^9.29.0",
     "@pandacss/dev": "^1.4.2",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9.29.0",

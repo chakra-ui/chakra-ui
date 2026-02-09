@@ -51,13 +51,13 @@
     "@clack/prompts": "0.11.0",
     "@emotion/is-prop-valid": "^1.4.0",
     "@types/node": "^20.0.0",
-    "commander": "12.1.0",
+    "commander": "14.0.3",
     "html-element-attributes": "3.5.0",
     "is-git-clean": "1.1.0",
-    "jscodeshift": "17.0.0",
-    "picocolors": "1.0.0",
+    "jscodeshift": "17.3.0",
+    "picocolors": "1.1.1",
     "prompts": "2.4.2",
-    "semver": "7.6.3"
+    "semver": "7.7.4"
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
