@@ -1,5 +1,13 @@
 # @chakra-ui/codemod
 
+## 3.33.0
+
+### Patch Changes
+
+- [`113bc55`](https://github.com/chakra-ui/chakra-ui/commit/113bc557225f9892313c195fba747aafc3af3150)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor codemod to
+  support more component props
+
 ## 3.32.0
 
 ### Minor Changes
