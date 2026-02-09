@@ -13,6 +13,8 @@ export default {
 } satisfies Meta
 
 export { MenuBasic as Basic } from "compositions/examples/menu-basic"
+export { MenuControlled as Controlled } from "compositions/examples/menu-controlled"
+export { MenuWithStore as WithStore } from "compositions/examples/menu-with-store"
 export { MenuWithAnchorRect as AnchorRect } from "compositions/examples/menu-with-anchor-rect"
 export { MenuWithAvatar as WithAvatar } from "compositions/examples/menu-with-avatar"
 export { MenuWithCheckboxItems as CheckboxItems } from "compositions/examples/menu-with-checkbox-items"

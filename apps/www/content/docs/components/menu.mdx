@@ -46,6 +46,21 @@ import { Menu } from "@chakra-ui/react"
 
 ## Examples
 
+### Controlled
+
+Use the `open` and `onOpenChange` prop to control the visibility of the menu.
+
+<ExampleTabs name="menu-controlled" />
+
+### Store
+
+An alternative way to control the menu is to use the `RootProvider` component
+and the `useMenu` store hook.
+
+This way you can access the menu state and methods from outside the menu.
+
+<ExampleTabs name="menu-with-store" />
+
 ### Command
 
 Use the `Menu.ItemCommand` component to display a command in the menu.
