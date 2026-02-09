@@ -1,12 +1,12 @@
 import type { API, FileInfo, Options } from "jscodeshift"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 import {
   processDialogProps,
   renameToMemberExpression,
   transformDialogContent,
   updateDialogImports,
-} from "./dialog-utils"
+} from "../../utils/dialog-utils"
+import { createParserFromPath } from "../../utils/parser"
 
 /**
  * Transforms AlertDialog components to v3 Dialog compound component API
