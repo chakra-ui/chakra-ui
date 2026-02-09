@@ -23,11 +23,14 @@ export { useQrCodeStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodeRootBaseProps
-  extends Assign<ArkQrCode.RootBaseProps, SlotRecipeProps<"qrCode">>,
+  extends
+    Assign<ArkQrCode.RootBaseProps, SlotRecipeProps<"qrCode">>,
     UnstyledProp {}
 
-export interface QrCodeRootProps
-  extends HTMLChakraProps<"div", QrCodeRootBaseProps> {}
+export interface QrCodeRootProps extends HTMLChakraProps<
+  "div",
+  QrCodeRootBaseProps
+> {}
 
 export const QrCodeRoot = withProvider<HTMLDivElement, QrCodeRootProps>(
   ArkQrCode.Root,
@@ -38,11 +41,14 @@ export const QrCodeRoot = withProvider<HTMLDivElement, QrCodeRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodeRootProviderBaseProps
-  extends Assign<ArkQrCode.RootProviderBaseProps, SlotRecipeProps<"qrCode">>,
+  extends
+    Assign<ArkQrCode.RootProviderBaseProps, SlotRecipeProps<"qrCode">>,
     UnstyledProp {}
 
-export interface QrCodeRootProviderProps
-  extends HTMLChakraProps<"div", QrCodeRootProviderBaseProps> {}
+export interface QrCodeRootProviderProps extends HTMLChakraProps<
+  "div",
+  QrCodeRootProviderBaseProps
+> {}
 
 export const QrCodeRootProvider = withProvider<
   HTMLDivElement,
@@ -57,8 +63,7 @@ export const QrCodePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodePatternProps
-  extends HTMLChakraProps<"path">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"path">, UnstyledProp {}
 
 export const QrCodePattern = withContext<SVGPathElement, QrCodePatternProps>(
   ArkQrCode.Pattern,
@@ -69,8 +74,7 @@ export const QrCodePattern = withContext<SVGPathElement, QrCodePatternProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodeFrameProps
-  extends HTMLChakraProps<"svg">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"svg">, UnstyledProp {}
 
 export const QrCodeFrame = withContext<SVGSVGElement, QrCodeFrameProps>(
   ArkQrCode.Frame,
@@ -84,8 +88,7 @@ export const QrCodeFrame = withContext<SVGSVGElement, QrCodeFrameProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodeOverlayProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const QrCodeOverlay = withContext<HTMLDivElement, QrCodeOverlayProps>(
   ArkQrCode.Overlay,
@@ -96,7 +99,8 @@ export const QrCodeOverlay = withContext<HTMLDivElement, QrCodeOverlayProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface QrCodeDownloadTriggerProps
-  extends HTMLChakraProps<"button", ArkQrCode.DownloadTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkQrCode.DownloadTriggerBaseProps>,
     UnstyledProp {}
 
 export const QrCodeDownloadTrigger = withContext<

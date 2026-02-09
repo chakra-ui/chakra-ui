@@ -25,14 +25,14 @@ export { useClipboardStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardRootProviderBaseProps
-  extends Assign<
-      ArkClipboard.RootProviderBaseProps,
-      SlotRecipeProps<"clipboard">
-    >,
+  extends
+    Assign<ArkClipboard.RootProviderBaseProps, SlotRecipeProps<"clipboard">>,
     UnstyledProp {}
 
-export interface ClipboardRootProviderProps
-  extends HTMLChakraProps<"div", ClipboardRootProviderBaseProps> {}
+export interface ClipboardRootProviderProps extends HTMLChakraProps<
+  "div",
+  ClipboardRootProviderBaseProps
+> {}
 
 export const ClipboardRootProvider = withProvider<
   HTMLDivElement,
@@ -42,11 +42,14 @@ export const ClipboardRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardRootBaseProps
-  extends Assign<ArkClipboard.RootBaseProps, SlotRecipeProps<"clipboard">>,
+  extends
+    Assign<ArkClipboard.RootBaseProps, SlotRecipeProps<"clipboard">>,
     UnstyledProp {}
 
-export interface ClipboardRootProps
-  extends HTMLChakraProps<"div", ClipboardRootBaseProps> {}
+export interface ClipboardRootProps extends HTMLChakraProps<
+  "div",
+  ClipboardRootBaseProps
+> {}
 
 export const ClipboardRoot = withProvider<HTMLDivElement, ClipboardRootProps>(
   ArkClipboard.Root,
@@ -62,8 +65,7 @@ export const ClipboardPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardTriggerProps
-  extends HTMLChakraProps<"button", ArkClipboard.TriggerProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkClipboard.TriggerProps>, UnstyledProp {}
 
 export const ClipboardTrigger = withContext<
   HTMLButtonElement,
@@ -73,8 +75,7 @@ export const ClipboardTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardControlProps
-  extends HTMLChakraProps<"div", ArkClipboard.ControlProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkClipboard.ControlProps>, UnstyledProp {}
 
 export const ClipboardControl = withContext<
   HTMLDivElement,
@@ -84,8 +85,7 @@ export const ClipboardControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardIndicatorProps
-  extends HTMLChakraProps<"div", ArkClipboard.IndicatorProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkClipboard.IndicatorProps>, UnstyledProp {}
 
 export const ClipboardIndicator = withContext<
   HTMLDivElement,
@@ -101,8 +101,7 @@ export const ClipboardIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardInputProps
-  extends HTMLChakraProps<"input", ArkClipboard.InputProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"input", ArkClipboard.InputProps>, UnstyledProp {}
 
 export const ClipboardInput = withContext<
   HTMLInputElement,
@@ -112,8 +111,7 @@ export const ClipboardInput = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardLabelProps
-  extends HTMLChakraProps<"label", ArkClipboard.LabelProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkClipboard.LabelProps>, UnstyledProp {}
 
 export const ClipboardLabel = withContext<
   HTMLLabelElement,
@@ -130,8 +128,7 @@ export interface ClipboardCopyStatusDetails
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ClipboardValueTextProps
-  extends HTMLChakraProps<"div", ArkClipboard.ValueTextProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkClipboard.ValueTextProps>, UnstyledProp {}
 
 export const ClipboardValueText = withContext<
   HTMLDivElement,

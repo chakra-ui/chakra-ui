@@ -12,8 +12,7 @@ import {
 import { dataAttr } from "../../utils"
 
 export interface CheckmarkProps
-  extends HTMLChakraProps<"svg", RecipeProps<"checkmark">>,
-    UnstyledProp {
+  extends HTMLChakraProps<"svg", RecipeProps<"checkmark">>, UnstyledProp {
   /**
    * Whether the checkmark is checked
    */

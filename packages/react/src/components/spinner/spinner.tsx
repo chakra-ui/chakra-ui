@@ -12,9 +12,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface SpinnerProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp,
-    RecipeProps<"spinner"> {}
+  extends HTMLChakraProps<"span">, UnstyledProp, RecipeProps<"spinner"> {}
 
 export const Spinner = withContext<HTMLSpanElement, SpinnerProps>("span")
 

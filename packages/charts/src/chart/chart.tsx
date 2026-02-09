@@ -190,8 +190,9 @@ export function ChartLegend(props: ChartLegendProps) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ChartTooltipProps
-  extends Partial<TooltipContentProps<string | number, string>> {
+export interface ChartTooltipProps extends Partial<
+  TooltipContentProps<string | number, string>
+> {
   hideLabel?: boolean
   hideIndicator?: boolean
   hideSeriesLabel?: boolean

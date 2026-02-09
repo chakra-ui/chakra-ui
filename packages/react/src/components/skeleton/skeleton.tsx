@@ -17,9 +17,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface SkeletonProps
-  extends HTMLChakraProps<"div">,
-    RecipeProps<"skeleton">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, RecipeProps<"skeleton">, UnstyledProp {}
 
 export const Skeleton = withContext<HTMLDivElement, SkeletonProps>("div")
 

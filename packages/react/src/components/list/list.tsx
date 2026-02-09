@@ -21,11 +21,12 @@ export { useListStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListRootBaseProps
-  extends SlotRecipeProps<"list">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"list">, UnstyledProp {}
 
-export interface ListRootProps
-  extends HTMLChakraProps<"ul", ListRootBaseProps> {}
+export interface ListRootProps extends HTMLChakraProps<
+  "ul",
+  ListRootBaseProps
+> {}
 
 export const ListRoot = withProvider<HTMLUListElement, ListRootProps>(
   "ul",
@@ -45,8 +46,7 @@ export const ListItem = withContext<HTMLLIElement, ListItemProps>("li", "item")
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListIndicatorProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const ListIndicator = withContext<HTMLSpanElement, ListIndicatorProps>(
   "span",

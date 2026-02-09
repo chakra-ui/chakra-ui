@@ -31,14 +31,17 @@ export { useRatingGroupStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkRatingGroup.RootProviderBaseProps,
       SlotRecipeProps<"ratingGroup">
     >,
     UnstyledProp {}
 
-export interface RatingGroupRootProviderProps
-  extends HTMLChakraProps<"div", RatingGroupRootProviderBaseProps> {}
+export interface RatingGroupRootProviderProps extends HTMLChakraProps<
+  "div",
+  RatingGroupRootProviderBaseProps
+> {}
 
 export const RatingGroupRootProvider = withProvider<
   HTMLDivElement,
@@ -48,11 +51,14 @@ export const RatingGroupRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupRootBaseProps
-  extends Assign<ArkRatingGroup.RootBaseProps, SlotRecipeProps<"ratingGroup">>,
+  extends
+    Assign<ArkRatingGroup.RootBaseProps, SlotRecipeProps<"ratingGroup">>,
     UnstyledProp {}
 
-export interface RatingGroupRootProps
-  extends HTMLChakraProps<"div", RatingGroupRootBaseProps> {}
+export interface RatingGroupRootProps extends HTMLChakraProps<
+  "div",
+  RatingGroupRootBaseProps
+> {}
 
 export const RatingGroupRoot = withProvider<
   HTMLDivElement,
@@ -67,8 +73,7 @@ export const RatingGroupPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupLabelProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRatingGroup.LabelBaseProps>, UnstyledProp {}
 
 export const RatingGroupLabel = withContext<
   HTMLDivElement,
@@ -78,8 +83,7 @@ export const RatingGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupItemProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRatingGroup.ItemBaseProps>, UnstyledProp {}
 
 export const RatingGroupItem = withContext<
   HTMLDivElement,
@@ -123,8 +127,10 @@ export const RatingGroupItemIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RatingGroupItemsProps
-  extends Omit<RatingGroupItemProps, "index"> {}
+export interface RatingGroupItemsProps extends Omit<
+  RatingGroupItemProps,
+  "index"
+> {}
 
 export const RatingGroupItems = (props: RatingGroupItemsProps) => {
   const api = useRatingGroupContext()
@@ -142,7 +148,8 @@ export const RatingGroupItems = (props: RatingGroupItemsProps) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RatingGroupControlProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkRatingGroup.ControlBaseProps>,
     UnstyledProp {}
 
 export const RatingGroupControl = withContext<

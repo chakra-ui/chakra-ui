@@ -23,14 +23,17 @@ export { useProgressCircleStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkProgress.RootProviderBaseProps,
       SlotRecipeProps<"progressCircle">
     >,
     UnstyledProp {}
 
-export interface ProgressCircleRootProviderProps
-  extends HTMLChakraProps<"div", ProgressCircleRootProviderBaseProps> {}
+export interface ProgressCircleRootProviderProps extends HTMLChakraProps<
+  "div",
+  ProgressCircleRootProviderBaseProps
+> {}
 
 export const ProgressCircleRootProvider = withProvider<
   HTMLDivElement,
@@ -40,11 +43,14 @@ export const ProgressCircleRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleRootBaseProps
-  extends Assign<ArkProgress.RootBaseProps, SlotRecipeProps<"progressCircle">>,
+  extends
+    Assign<ArkProgress.RootBaseProps, SlotRecipeProps<"progressCircle">>,
     UnstyledProp {}
 
-export interface ProgressCircleRootProps
-  extends HTMLChakraProps<"div", ProgressCircleRootBaseProps> {}
+export interface ProgressCircleRootProps extends HTMLChakraProps<
+  "div",
+  ProgressCircleRootBaseProps
+> {}
 
 export const ProgressCircleRoot = withProvider<
   HTMLDivElement,
@@ -59,8 +65,7 @@ export const ProgressCirclePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleLabelProps
-  extends HTMLChakraProps<"div", ArkProgress.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkProgress.LabelBaseProps>, UnstyledProp {}
 
 export const ProgressCircleLabel = withContext<
   HTMLDivElement,
@@ -70,8 +75,7 @@ export const ProgressCircleLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleCircleProps
-  extends HTMLChakraProps<"svg", ArkProgress.CircleBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"svg", ArkProgress.CircleBaseProps>, UnstyledProp {}
 
 export const ProgressCircleCircle = withContext<
   SVGSVGElement,
@@ -81,8 +85,7 @@ export const ProgressCircleCircle = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleTrackProps
-  extends HTMLChakraProps<"circle", ArkProgress.TrackBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"circle", ArkProgress.TrackBaseProps>, UnstyledProp {}
 
 export const ProgressCircleTrack = withContext<
   SVGCircleElement,
@@ -92,8 +95,7 @@ export const ProgressCircleTrack = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleRangeProps
-  extends HTMLChakraProps<"circle", ArkProgress.RangeBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"circle", ArkProgress.RangeBaseProps>, UnstyledProp {}
 
 export const ProgressCircleRange = withContext<
   SVGCircleElement,
@@ -103,7 +105,8 @@ export const ProgressCircleRange = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressCircleValueTextProps
-  extends HTMLChakraProps<"div", ArkProgress.ValueTextBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkProgress.ValueTextBaseProps>,
     UnstyledProp {}
 
 export const ProgressCircleValueText = withContext<

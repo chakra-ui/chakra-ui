@@ -22,11 +22,12 @@ export { useBlockquoteStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BlockquoteRootBaseProps
-  extends SlotRecipeProps<"blockquote">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"blockquote">, UnstyledProp {}
 
-export interface BlockquoteRootProps
-  extends HTMLChakraProps<"figure", BlockquoteRootBaseProps> {}
+export interface BlockquoteRootProps extends HTMLChakraProps<
+  "figure",
+  BlockquoteRootBaseProps
+> {}
 
 export const BlockquoteRoot = withProvider<HTMLElement, BlockquoteRootProps>(
   "figure",
@@ -41,8 +42,7 @@ export const BlockquotePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BlockquoteContentProps
-  extends HTMLChakraProps<"blockquote">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"blockquote">, UnstyledProp {}
 
 export const BlockquoteContent = withContext<
   HTMLElement,
@@ -52,8 +52,7 @@ export const BlockquoteContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BlockquoteCaptionProps
-  extends HTMLChakraProps<"figcaption">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"figcaption">, UnstyledProp {}
 
 export const BlockquoteCaption = withContext<
   HTMLElement,
@@ -63,8 +62,7 @@ export const BlockquoteCaption = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BlockquoteIconProps
-  extends HTMLChakraProps<"svg">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"svg">, UnstyledProp {}
 
 export const BlockquoteIcon = withContext<SVGElement, BlockquoteIconProps>(
   QuoteIcon,

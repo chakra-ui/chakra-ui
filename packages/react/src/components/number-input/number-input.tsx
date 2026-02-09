@@ -24,14 +24,17 @@ export { useNumberInputStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkNumberInput.RootProviderBaseProps,
       SlotRecipeProps<"numberInput">
     >,
     UnstyledProp {}
 
-export interface NumberInputRootProviderProps
-  extends HTMLChakraProps<"div", NumberInputRootProviderBaseProps> {}
+export interface NumberInputRootProviderProps extends HTMLChakraProps<
+  "div",
+  NumberInputRootProviderBaseProps
+> {}
 
 export const NumberInputRootProvider = withProvider<
   HTMLDivElement,
@@ -41,11 +44,14 @@ export const NumberInputRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputRootBaseProps
-  extends Assign<ArkNumberInput.RootBaseProps, SlotRecipeProps<"numberInput">>,
+  extends
+    Assign<ArkNumberInput.RootBaseProps, SlotRecipeProps<"numberInput">>,
     UnstyledProp {}
 
-export interface NumberInputRootProps
-  extends HTMLChakraProps<"div", NumberInputRootBaseProps> {}
+export interface NumberInputRootProps extends HTMLChakraProps<
+  "div",
+  NumberInputRootBaseProps
+> {}
 
 export const NumberInputRoot = withProvider<
   HTMLDivElement,
@@ -60,7 +66,8 @@ export const NumberInputPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputLabelProps
-  extends HTMLChakraProps<"label", ArkNumberInput.LabelBaseProps>,
+  extends
+    HTMLChakraProps<"label", ArkNumberInput.LabelBaseProps>,
     UnstyledProp {}
 
 export const NumberInputLabel = withContext<
@@ -71,7 +78,8 @@ export const NumberInputLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputInputProps
-  extends HTMLChakraProps<"input", ArkNumberInput.InputBaseProps>,
+  extends
+    HTMLChakraProps<"input", ArkNumberInput.InputBaseProps>,
     UnstyledProp {}
 
 export const NumberInputInput = withContext<
@@ -82,7 +90,8 @@ export const NumberInputInput = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputIncrementTriggerProps
-  extends HTMLChakraProps<"button", ArkNumberInput.IncrementTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkNumberInput.IncrementTriggerBaseProps>,
     UnstyledProp {}
 
 export const NumberInputIncrementTrigger = withContext<
@@ -96,7 +105,8 @@ export const NumberInputIncrementTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputDecrementTriggerProps
-  extends HTMLChakraProps<"button", ArkNumberInput.DecrementTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkNumberInput.DecrementTriggerBaseProps>,
     UnstyledProp {}
 
 export const NumberInputDecrementTrigger = withContext<
@@ -110,7 +120,8 @@ export const NumberInputDecrementTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputControlProps
-  extends HTMLChakraProps<"div", ArkNumberInput.ControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkNumberInput.ControlBaseProps>,
     UnstyledProp {}
 
 export const NumberInputControl = withContext<
@@ -131,7 +142,8 @@ export const NumberInputControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputScrubberProps
-  extends HTMLChakraProps<"div", ArkNumberInput.ScrubberBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkNumberInput.ScrubberBaseProps>,
     UnstyledProp {}
 
 export const NumberInputScrubber = withContext<
@@ -142,7 +154,8 @@ export const NumberInputScrubber = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NumberInputValueTextProps
-  extends HTMLChakraProps<"span", ArkNumberInput.ValueTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkNumberInput.ValueTextBaseProps>,
     UnstyledProp {}
 
 export const NumberInputValueText = withContext<

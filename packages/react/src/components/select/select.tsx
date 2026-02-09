@@ -25,11 +25,13 @@ export { useSelectStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectRootProviderBaseProps<T extends CollectionItem = any>
-  extends Assign<ArkSelect.RootProviderBaseProps<T>, SlotRecipeProps<"select">>,
+  extends
+    Assign<ArkSelect.RootProviderBaseProps<T>, SlotRecipeProps<"select">>,
     UnstyledProp {}
 
-export interface SelectRootProviderProps<T extends CollectionItem = any>
-  extends HTMLChakraProps<"div", SelectRootProviderBaseProps<T>> {}
+export interface SelectRootProviderProps<
+  T extends CollectionItem = any,
+> extends HTMLChakraProps<"div", SelectRootProviderBaseProps<T>> {}
 
 interface SelectRootProviderComponent {
   <T extends CollectionItem>(props: SelectRootProviderProps<T>): JSX.Element
@@ -45,11 +47,13 @@ export const SelectRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectRootBaseProps<T extends CollectionItem = any>
-  extends Assign<ArkSelect.RootBaseProps<T>, SlotRecipeProps<"select">>,
+  extends
+    Assign<ArkSelect.RootBaseProps<T>, SlotRecipeProps<"select">>,
     UnstyledProp {}
 
-export interface SelectRootProps<T extends CollectionItem = any>
-  extends HTMLChakraProps<"div", SelectRootBaseProps<T>> {}
+export interface SelectRootProps<
+  T extends CollectionItem = any,
+> extends HTMLChakraProps<"div", SelectRootBaseProps<T>> {}
 
 export interface SelectRootComponent {
   <T extends CollectionItem>(
@@ -74,8 +78,7 @@ export const SelectPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectTriggerProps
-  extends HTMLChakraProps<"button", ArkSelect.TriggerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkSelect.TriggerBaseProps>, UnstyledProp {}
 
 export const SelectTrigger = withContext<HTMLButtonElement, SelectTriggerProps>(
   ArkSelect.Trigger,
@@ -86,8 +89,7 @@ export const SelectTrigger = withContext<HTMLButtonElement, SelectTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectPositionerProps
-  extends HTMLChakraProps<"div", ArkSelect.PositionerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.PositionerBaseProps>, UnstyledProp {}
 
 export const SelectPositioner = withContext<
   HTMLDivElement,
@@ -97,8 +99,7 @@ export const SelectPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectContentProps
-  extends HTMLChakraProps<"div", ArkSelect.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.ContentBaseProps>, UnstyledProp {}
 
 export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
   ArkSelect.Content,
@@ -109,8 +110,7 @@ export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectValueTextProps
-  extends HTMLChakraProps<"span", ArkSelect.ValueTextBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkSelect.ValueTextBaseProps>, UnstyledProp {}
 
 export const SelectValueText = withContext<
   HTMLSpanElement,
@@ -120,7 +120,8 @@ export const SelectValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectClearTriggerProps
-  extends HTMLChakraProps<"button", ArkSelect.ClearTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkSelect.ClearTriggerBaseProps>,
     UnstyledProp {}
 
 export const SelectClearTrigger = withContext<
@@ -134,8 +135,7 @@ export const SelectClearTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemGroupProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemGroupBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemGroupBaseProps>, UnstyledProp {}
 
 export const SelectItemGroup = withContext<
   HTMLDivElement,
@@ -145,7 +145,8 @@ export const SelectItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemGroupLabelProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemGroupLabelBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkSelect.ItemGroupLabelBaseProps>,
     UnstyledProp {}
 
 export const SelectItemGroupLabel = withContext<
@@ -156,8 +157,7 @@ export const SelectItemGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemBaseProps>, UnstyledProp {}
 
 export const SelectItem = withContext<HTMLDivElement, SelectItemProps>(
   ArkSelect.Item,
@@ -168,8 +168,7 @@ export const SelectItem = withContext<HTMLDivElement, SelectItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemTextProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemTextBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemTextBaseProps>, UnstyledProp {}
 
 export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
   ArkSelect.ItemText,
@@ -180,7 +179,8 @@ export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps>,
     UnstyledProp {}
 
 export const SelectItemIndicator = withContext<
@@ -196,8 +196,7 @@ export const SelectItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectIndicatorGroupProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const SelectIndicatorGroup = withContext<
   HTMLDivElement,
@@ -207,7 +206,8 @@ export const SelectIndicatorGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectIndicatorProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps>,
     UnstyledProp {}
 
 export const SelectIndicator = withContext<
@@ -223,8 +223,7 @@ export const SelectIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectControlProps
-  extends HTMLChakraProps<"div", ArkSelect.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSelect.ControlBaseProps>, UnstyledProp {}
 
 export const SelectControl = withContext<HTMLDivElement, SelectControlProps>(
   ArkSelect.Control,
@@ -235,8 +234,7 @@ export const SelectControl = withContext<HTMLDivElement, SelectControlProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectLabelProps
-  extends HTMLChakraProps<"label", ArkSelect.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkSelect.LabelBaseProps>, UnstyledProp {}
 
 export const SelectLabel = withContext<HTMLLabelElement, SelectLabelProps>(
   ArkSelect.Label,
@@ -250,10 +248,12 @@ export const SelectContext = ArkSelect.Context
 export const SelectHiddenSelect = ArkSelect.HiddenSelect
 export const SelectItemContext = ArkSelect.ItemContext
 
-export interface SelectHighlightChangeDetails<T extends CollectionItem = any>
-  extends ArkSelect.HighlightChangeDetails<T> {}
+export interface SelectHighlightChangeDetails<
+  T extends CollectionItem = any,
+> extends ArkSelect.HighlightChangeDetails<T> {}
 
-export interface SelectValueChangeDetails<T extends CollectionItem = any>
-  extends ArkSelect.ValueChangeDetails<T> {}
+export interface SelectValueChangeDetails<
+  T extends CollectionItem = any,
+> extends ArkSelect.ValueChangeDetails<T> {}
 
 export interface SelectOpenChangeDetails extends ArkSelect.OpenChangeDetails {}

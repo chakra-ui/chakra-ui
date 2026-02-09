@@ -13,8 +13,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface TextProps
-  extends Assign<HTMLChakraProps<"p">, RecipeProps<"text">>,
-    UnstyledProp {}
+  extends Assign<HTMLChakraProps<"p">, RecipeProps<"text">>, UnstyledProp {}
 
 export const Text = withContext<HTMLParagraphElement, TextProps>("p")
 

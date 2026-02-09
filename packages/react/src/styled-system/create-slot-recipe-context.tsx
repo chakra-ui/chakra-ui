@@ -25,8 +25,7 @@ export interface WithRootProviderOptions<P> extends WrapElementProps<P> {
 }
 
 export interface WithProviderOptions<P>
-  extends JsxFactoryOptions<P>,
-    WrapElementProps<P> {}
+  extends JsxFactoryOptions<P>, WrapElementProps<P> {}
 
 export interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
 
