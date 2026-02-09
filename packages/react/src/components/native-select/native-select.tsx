@@ -40,12 +40,15 @@ export { useNativeSelectStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NativeSelectRootBaseProps
-  extends SlotRecipeProps<"nativeSelect">,
+  extends
+    SlotRecipeProps<"nativeSelect">,
     UnstyledProp,
     NativeSelectBaseProps {}
 
-export interface NativeSelectRootProps
-  extends HTMLChakraProps<"div", NativeSelectRootBaseProps> {}
+export interface NativeSelectRootProps extends HTMLChakraProps<
+  "div",
+  NativeSelectRootBaseProps
+> {}
 
 export const NativeSelectRoot = withProvider<
   HTMLDivElement,
@@ -76,8 +79,7 @@ export const NativeSelectPropsProvider =
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface NativeSelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted>,
-    UnstyledProp {
+  extends Omit<HTMLChakraProps<"select">, Omitted>, UnstyledProp {
   placeholder?: string | undefined
 }
 
@@ -111,8 +113,7 @@ export const NativeSelectField = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NativeSelectIndicatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
   const { unstyled, ...restProps } = props

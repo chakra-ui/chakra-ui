@@ -11,9 +11,7 @@ import {
 } from "../../styled-system"
 
 export interface InputAddonProps
-  extends HTMLChakraProps<"div">,
-    RecipeProps<"inputAddon">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, RecipeProps<"inputAddon">, UnstyledProp {}
 
 export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
   function InputAddon({ unstyled, ...props }, ref) {

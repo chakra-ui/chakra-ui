@@ -12,8 +12,7 @@ import { cx } from "../../utils"
 const { useRecipeResult, PropsProvider } = createRecipeContext({ key: "icon" })
 
 export interface IconProps
-  extends HTMLChakraProps<"svg">,
-    RecipeProps<"icon"> {}
+  extends HTMLChakraProps<"svg">, RecipeProps<"icon"> {}
 
 /**
  * The Icon component renders as an svg element to help define your own custom components.

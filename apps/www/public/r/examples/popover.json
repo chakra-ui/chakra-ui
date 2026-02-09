@@ -23,15 +23,6 @@
       "importPath": "import { Popover } from \"@chakra-ui/react\""
     },
     {
-      "name": "popover-open-from-dialog",
-      "content": "\"use client\"\nexport const PopoverOpenFromDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton />\n            </Dialog.CloseTrigger>\n            <Dialog.Header>\n              <Dialog.Title>Popover in Dialog</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <DialogPopover />\n            </Dialog.Body>\n            <Dialog.Footer />\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nfunction DialogPopover() {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Popover.Positioner>\n        <Popover.Content>\n          <Popover.Arrow />\n          <Popover.Body>\n            <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n            <Text my=\"4\">\n              Naruto is a Japanese manga series written and illustrated by\n              Masashi Kishimoto.\n            </Text>\n          </Popover.Body>\n        </Popover.Content>\n      </Popover.Positioner>\n    </Popover.Root>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Popover,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { Popover } from \"@chakra-ui/react\""
-    },
-    {
       "name": "popover-lazy-mounted",
       "content": "export const PopoverLazyMounted = () => {\n  return (\n    <Popover.Root lazyMount unmountOnExit>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n              <Text my=\"4\">\n                Naruto is a Japanese manga series written and illustrated by\n                Masashi Kishimoto.\n              </Text>\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -46,6 +37,15 @@
       "hasSnippet": false,
       "importPaths": [
         "import { Button, Popover, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "popover-open-from-dialog",
+      "content": "\"use client\"\nexport const PopoverOpenFromDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton />\n            </Dialog.CloseTrigger>\n            <Dialog.Header>\n              <Dialog.Title>Popover in Dialog</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body>\n              <DialogPopover />\n            </Dialog.Body>\n            <Dialog.Footer />\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nfunction DialogPopover() {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Popover.Positioner>\n        <Popover.Content>\n          <Popover.Arrow />\n          <Popover.Body>\n            <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n            <Text my=\"4\">\n              Naruto is a Japanese manga series written and illustrated by\n              Masashi Kishimoto.\n            </Text>\n          </Popover.Body>\n        </Popover.Content>\n      </Popover.Positioner>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  CloseButton,\n  Dialog,\n  Popover,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\""
       ],
       "importPath": "import { Popover } from \"@chakra-ui/react\""
     },

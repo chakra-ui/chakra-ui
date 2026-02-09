@@ -23,4 +23,6 @@ export { MarqueeEdgeGradient as Edges } from "compositions/examples/marquee-edge
 export { MarqueeMultiple as Multiple } from "compositions/examples/marquee-multiple"
 export { MarqueeDiagonal as Diagonal } from "compositions/examples/marquee-diagonal"
 export { MarqueeNewsTicker as NewsTicker } from "compositions/examples/marquee-news-ticker"
+export { MarqueeImageGallery as ImageGallery } from "compositions/examples/marquee-image-gallery"
 export { MarqueeWithTestimonials as Testimonials } from "compositions/examples/marquee-with-testimonials"
+export { MarqueeRtl as Rtl } from "compositions/examples/marquee-rtl"

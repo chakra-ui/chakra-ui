@@ -15,11 +15,14 @@ const { withProvider, withContext } = createSlotRecipeContext({
 })
 
 interface FieldsetRootBaseProps
-  extends Assign<Fieldset.RootBaseProps, SlotRecipeProps<"fieldset">>,
+  extends
+    Assign<Fieldset.RootBaseProps, SlotRecipeProps<"fieldset">>,
     UnstyledProp {}
 
-export interface FieldsetRootProps
-  extends HTMLChakraProps<"fieldset", FieldsetRootBaseProps> {}
+export interface FieldsetRootProps extends HTMLChakraProps<
+  "fieldset",
+  FieldsetRootBaseProps
+> {}
 
 export const FieldsetRoot = withProvider<
   HTMLFieldSetElement,
@@ -27,8 +30,7 @@ export const FieldsetRoot = withProvider<
 >(Fieldset.Root, "root")
 
 export interface FieldsetErrorTextProps
-  extends HTMLChakraProps<"span", Fieldset.ErrorTextBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", Fieldset.ErrorTextBaseProps>, UnstyledProp {}
 
 export const FieldsetErrorText = withContext<
   HTMLSpanElement,
@@ -36,8 +38,7 @@ export const FieldsetErrorText = withContext<
 >(Fieldset.ErrorText, "errorText")
 
 export interface FieldsetHelperTextProps
-  extends HTMLChakraProps<"span", Fieldset.HelperTextBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", Fieldset.HelperTextBaseProps>, UnstyledProp {}
 
 export const FieldsetHelperText = withContext<
   HTMLSpanElement,
@@ -45,8 +46,7 @@ export const FieldsetHelperText = withContext<
 >(Fieldset.HelperText, "helperText")
 
 export interface FieldsetLegendProps
-  extends HTMLChakraProps<"legend", Fieldset.LegendBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"legend", Fieldset.LegendBaseProps>, UnstyledProp {}
 
 export const FieldsetLegend = withContext<
   HTMLLegendElement,
@@ -54,8 +54,7 @@ export const FieldsetLegend = withContext<
 >(Fieldset.Legend, "legend")
 
 export interface FieldsetContentProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const FieldsetContent = withContext<
   HTMLDivElement,

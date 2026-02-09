@@ -1,24 +1,41 @@
 import type { API, FileInfo, Options } from "jscodeshift"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
+  processDialogProps,
+  renameToMemberExpression,
+  transformDialogContent,
+  updateDialogImports,
+} from "../../utils/dialog-utils"
 import { createParserFromPath } from "../../utils/parser"
 
 /**
- * Transforms Modal to Dialog component:
- * - Modal -> Dialog.Root
- * - ModalOverlay -> Dialog.Backdrop
- * - ModalContent -> Dialog.Content (with Dialog.Positioner wrapper)
- * - ModalHeader -> Dialog.Header
- * - ModalBody -> Dialog.Body
- * - ModalFooter -> Dialog.Footer
- * - ModalCloseButton -> Dialog.CloseTrigger
- * - isOpen -> open
- * - onClose -> onOpenChange
- * - isCentered -> placement="center"
+ * Transforms Modal components to v3 Dialog compound component API
+ *
+ * @example
+ * // Before
+ * <Modal isOpen={isOpen} onClose={onClose}>
+ *   <ModalOverlay />
+ *   <ModalContent>
+ *     <ModalHeader>Title</ModalHeader>
+ *     <ModalCloseButton />
+ *     <ModalBody>Body</ModalBody>
+ *   </ModalContent>
+ * </Modal>
+ *
+ * // After
+ * <Dialog.Root open={isOpen} onOpenChange={(e) => { if (!e.open) onClose() }}>
+ *   <Portal>
+ *     <Dialog.Backdrop />
+ *     <Dialog.Positioner>
+ *       <Dialog.Content>
+ *         <Dialog.Header>Title</Dialog.Header>
+ *         <Dialog.CloseTrigger />
+ *         <Dialog.Body>Body</Dialog.Body>
+ *       </Dialog.Content>
+ *     </Dialog.Positioner>
+ *   </Portal>
+ * </Dialog.Root>
  */
-
 export default function transformer(
   file: FileInfo,
   _api: API,
@@ -26,137 +43,145 @@ export default function transformer(
 ) {
   const j = createParserFromPath(file.path)
   const root = j(file.source)
+  const { chakraLocalNames } = collectChakraLocalNames(j, root)
 
-  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
-    j,
-    root,
-  )
   if (chakraLocalNames.size === 0) return file.source
 
-  const isChakraModalBase = (baseName: string) => {
-    return (
-      baseName === "Modal" ||
-      (componentAliases.has(baseName) &&
-        componentAliases.get(baseName) === "Modal")
+  const transformedComponents = new Set<string>()
+
+  // Transform Modal
+  if (chakraLocalNames.has("Modal")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "Modal" } },
+      })
+      .forEach((path) => {
+        transformModal(j, path)
+        transformedComponents.add("Modal")
+      })
+  }
+
+  // Transform ModalOverlay
+  if (chakraLocalNames.has("ModalOverlay")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalOverlay" } },
+      })
+      .forEach((path) => {
+        renameToMemberExpression(j, path, "Dialog", "Backdrop")
+        transformedComponents.add("ModalOverlay")
+      })
+  }
+
+  // Transform ModalContent
+  if (chakraLocalNames.has("ModalContent")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalContent" } },
+      })
+      .forEach((path) => {
+        transformDialogContent(j, path, "Dialog")
+        transformedComponents.add("ModalContent")
+      })
+  }
+
+  // Transform ModalHeader
+  if (chakraLocalNames.has("ModalHeader")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalHeader" } },
+      })
+      .forEach((path) => {
+        renameToMemberExpression(j, path, "Dialog", "Header")
+        transformedComponents.add("ModalHeader")
+      })
+  }
+
+  // Transform ModalBody
+  if (chakraLocalNames.has("ModalBody")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalBody" } },
+      })
+      .forEach((path) => {
+        renameToMemberExpression(j, path, "Dialog", "Body")
+        transformedComponents.add("ModalBody")
+      })
+  }
+
+  // Transform ModalFooter
+  if (chakraLocalNames.has("ModalFooter")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalFooter" } },
+      })
+      .forEach((path) => {
+        renameToMemberExpression(j, path, "Dialog", "Footer")
+        transformedComponents.add("ModalFooter")
+      })
+  }
+
+  // Transform ModalCloseButton
+  if (chakraLocalNames.has("ModalCloseButton")) {
+    root
+      .find(j.JSXElement, {
+        openingElement: { name: { name: "ModalCloseButton" } },
+      })
+      .forEach((path) => {
+        renameToMemberExpression(j, path, "Dialog", "CloseTrigger")
+        transformedComponents.add("ModalCloseButton")
+      })
+  }
+
+  // Update imports
+  if (transformedComponents.size > 0) {
+    const modalComponentNames = [
+      "Modal",
+      "ModalOverlay",
+      "ModalContent",
+      "ModalHeader",
+      "ModalBody",
+      "ModalFooter",
+      "ModalCloseButton",
+    ]
+    updateDialogImports(j, root, transformedComponents, modalComponentNames)
+  }
+
+  return root.toSource({ quote: "single" })
+}
+
+/**
+ * Transform Modal to Dialog.Root and wrap children in Portal
+ */
+function transformModal(j: any, path: any) {
+  const attrs = path.node.openingElement.attributes || []
+  const children = path.node.children || []
+
+  const newAttrs = processDialogProps(j, attrs, { componentType: "modal" })
+
+  // Update component name to Dialog.Root
+  path.node.openingElement.name = j.jsxMemberExpression(
+    j.jsxIdentifier("Dialog"),
+    j.jsxIdentifier("Root"),
+  )
+
+  if (path.node.closingElement) {
+    path.node.closingElement.name = j.jsxMemberExpression(
+      j.jsxIdentifier("Dialog"),
+      j.jsxIdentifier("Root"),
     )
   }
 
-  // Rename Modal and parts to Dialog.*
-  root.find(j.JSXElement).forEach((path) => {
-    const opening = path.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
-    if (isChakraModalBase(baseName)) {
-      opening.name = j.jsxMemberExpression(
-        j.jsxIdentifier("Dialog"),
-        j.jsxIdentifier("Root"),
-      )
-      if (path.node.closingElement) {
-        path.node.closingElement.name = j.jsxMemberExpression(
-          j.jsxIdentifier("Dialog"),
-          j.jsxIdentifier("Root"),
-        )
-      }
-      const attrs = opening.attributes || []
-      attrs.forEach((attr) => {
-        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-          return
-        const name = attr.name.name
-        if (name === "isOpen") attr.name.name = "open"
-        if (name === "onClose") attr.name.name = "onOpenChange"
-        if (name === "isCentered") {
-          attr.name.name = "placement"
-          attr.value = j.stringLiteral("center")
-        }
-        if (name === "closeOnOverlayClick")
-          attr.name.name = "closeOnInteractOutside"
-        if (name === "closeOnEsc") attr.name.name = "closeOnEscape"
-        if (name === "blockScrollOnMount") attr.name.name = "preventScroll"
-        if (name === "returnFocusOnClose") attr.name.name = "restoreFocus"
-      })
-      return
-    }
-    // Parts remap
-    const partsMap: Record<string, { ns: string; part: string }> = {
-      ModalOverlay: { ns: "Dialog", part: "Backdrop" },
-      ModalContent: { ns: "Dialog", part: "Content" },
-      ModalHeader: { ns: "Dialog", part: "Header" },
-      ModalBody: { ns: "Dialog", part: "Body" },
-      ModalFooter: { ns: "Dialog", part: "Footer" },
-      ModalCloseButton: { ns: "Dialog", part: "CloseTrigger" },
-    }
-    if (partsMap[baseName]) {
-      const { ns, part } = partsMap[baseName]
-      opening.name = j.jsxMemberExpression(
-        j.jsxIdentifier(ns),
-        j.jsxIdentifier(part),
-      )
-      if (path.node.closingElement) {
-        path.node.closingElement.name = j.jsxMemberExpression(
-          j.jsxIdentifier(ns),
-          j.jsxIdentifier(part),
-        )
-      }
-      // Special handling: wrap Content inside Positioner
-      if (baseName === "ModalContent") {
-        const contentEl = path.node
-        const positionerName = j.jsxMemberExpression(
-          j.jsxIdentifier("Dialog"),
-          j.jsxIdentifier("Positioner"),
-        )
-        const wrapped = j.jsxElement(
-          j.jsxOpeningElement(positionerName, [], false),
-          j.jsxClosingElement(positionerName),
-          [contentEl],
-        )
-        j(path).replaceWith(wrapped)
-      }
-    }
-  })
+  path.node.openingElement.attributes = newAttrs
 
-  // Update imports: replace Modal-related imports with Dialog
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((impPath) => {
-      const specs = impPath.node.specifiers || []
-      let needsDialog = false
-      const modalNames = new Set([
-        "Modal",
-        "ModalOverlay",
-        "ModalContent",
-        "ModalHeader",
-        "ModalBody",
-        "ModalFooter",
-        "ModalCloseButton",
-      ])
-      const filtered = specs.filter((spec) => {
-        if (spec.type === "ImportSpecifier") {
-          const importedName =
-            (spec.imported as any)?.name ?? (spec.imported as any)
-          if (
-            typeof importedName === "string" &&
-            modalNames.has(importedName)
-          ) {
-            needsDialog = true
-            return false
-          }
-        }
-        return true
-      })
-      impPath.node.specifiers = filtered
-      if (needsDialog) {
-        const hasDialog = filtered.some(
-          (s) => s.type === "ImportSpecifier" && s.imported.name === "Dialog",
-        )
-        if (!hasDialog) {
-          impPath.node.specifiers.push(
-            j.importSpecifier(j.identifier("Dialog")),
-          )
-        }
-      }
-    })
-
-  return root.toSource({ quote: "single" })
+  // Wrap children in Portal (mimicking v2 behavior)
+  // In v2, Modal automatically rendered backdrop/content in a portal
+  if (children.length > 0) {
+    const portalElement = j.jsxElement(
+      j.jsxOpeningElement(j.jsxIdentifier("Portal"), []),
+      j.jsxClosingElement(j.jsxIdentifier("Portal")),
+      [j.jsxText("\n    "), ...children, j.jsxText("\n  ")],
+    )
+    path.node.children = [j.jsxText("\n  "), portalElement, j.jsxText("\n")]
+  }
 }

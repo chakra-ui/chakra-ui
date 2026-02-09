@@ -23,11 +23,14 @@ export { useToggleStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToggleRootProviderBaseProps
-  extends Assign<ArkToggle.RootBaseProps, SlotRecipeProps<"toggle">>,
+  extends
+    Assign<ArkToggle.RootBaseProps, SlotRecipeProps<"toggle">>,
     UnstyledProp {}
 
-export interface ToggleRootProviderProps
-  extends HTMLChakraProps<"button", ToggleRootProviderBaseProps> {}
+export interface ToggleRootProviderProps extends HTMLChakraProps<
+  "button",
+  ToggleRootProviderBaseProps
+> {}
 
 export const ToggleRootProvider = withProvider<
   HTMLButtonElement,
@@ -37,11 +40,14 @@ export const ToggleRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToggleRootBaseProps
-  extends Assign<ArkToggle.RootBaseProps, SlotRecipeProps<"toggle">>,
+  extends
+    Assign<ArkToggle.RootBaseProps, SlotRecipeProps<"toggle">>,
     UnstyledProp {}
 
-export interface ToggleRootProps
-  extends HTMLChakraProps<"button", ToggleRootBaseProps> {}
+export interface ToggleRootProps extends HTMLChakraProps<
+  "button",
+  ToggleRootBaseProps
+> {}
 
 export const ToggleRoot = withProvider<HTMLButtonElement, ToggleRootProps>(
   ArkToggle.Root,
@@ -57,8 +63,7 @@ export const TogglePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToggleIndicatorProps
-  extends HTMLChakraProps<"div", ArkToggle.IndicatorBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkToggle.IndicatorBaseProps>, UnstyledProp {}
 
 export const ToggleIndicator = withContext<
   HTMLButtonElement,

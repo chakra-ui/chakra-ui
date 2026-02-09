@@ -12,11 +12,12 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface ContainerBaseProps
-  extends RecipeProps<"container">,
-    UnstyledProp {}
+  extends RecipeProps<"container">, UnstyledProp {}
 
-export interface ContainerProps
-  extends HTMLChakraProps<"div", ContainerBaseProps> {}
+export interface ContainerProps extends HTMLChakraProps<
+  "div",
+  ContainerBaseProps
+> {}
 
 export const Container = withContext<HTMLDivElement, ContainerProps>("div")
 

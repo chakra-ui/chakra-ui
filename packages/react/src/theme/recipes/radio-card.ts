@@ -23,8 +23,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         bg: "colorPalette.muted/20",
       },
       _disabled: {
-        opacity: "0.8",
-        borderColor: "border.disabled",
+        opacity: "0.5",
       },
       _checked: {
         zIndex: "1",
@@ -168,6 +167,11 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
             borderColor: "colorPalette.solid",
+          },
+        },
+        itemControl: {
+          _disabled: {
+            bg: "unset",
           },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.inverted,

@@ -29,14 +29,14 @@ export { useCheckboxStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxRootProviderBaseProps
-  extends Assign<
-      ArkCheckbox.RootProviderBaseProps,
-      SlotRecipeProps<"checkbox">
-    >,
+  extends
+    Assign<ArkCheckbox.RootProviderBaseProps, SlotRecipeProps<"checkbox">>,
     UnstyledProp {}
 
-export interface CheckboxRootProviderProps
-  extends HTMLChakraProps<"div", CheckboxRootProviderBaseProps> {}
+export interface CheckboxRootProviderProps extends HTMLChakraProps<
+  "div",
+  CheckboxRootProviderBaseProps
+> {}
 
 export const CheckboxRootProvider = withProvider<
   HTMLDivElement,
@@ -46,11 +46,14 @@ export const CheckboxRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxRootBaseProps
-  extends Assign<ArkCheckbox.RootBaseProps, SlotRecipeProps<"checkbox">>,
+  extends
+    Assign<ArkCheckbox.RootBaseProps, SlotRecipeProps<"checkbox">>,
     UnstyledProp {}
 
-export interface CheckboxRootProps
-  extends HTMLChakraProps<"label", CheckboxRootBaseProps> {}
+export interface CheckboxRootProps extends HTMLChakraProps<
+  "label",
+  CheckboxRootBaseProps
+> {}
 
 export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
   ArkCheckbox.Root,
@@ -64,8 +67,7 @@ export const CheckboxPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxLabelProps
-  extends HTMLChakraProps<"span", ArkCheckbox.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkCheckbox.LabelBaseProps>, UnstyledProp {}
 
 export const CheckboxLabel = withContext<HTMLElement, CheckboxLabelProps>(
   ArkCheckbox.Label,
@@ -131,8 +133,7 @@ export const CheckboxIndicator = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxControlProps
-  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps>, UnstyledProp {}
 
 export const CheckboxControl = withContext<HTMLElement, CheckboxControlProps>(
   ArkCheckbox.Control,
@@ -145,8 +146,10 @@ export const CheckboxControl = withContext<HTMLElement, CheckboxControlProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxGroupProps
-  extends HTMLChakraProps<"div", ArkCheckbox.GroupBaseProps> {}
+export interface CheckboxGroupProps extends HTMLChakraProps<
+  "div",
+  ArkCheckbox.GroupBaseProps
+> {}
 
 export const CheckboxGroup = chakra(
   ArkCheckbox.Group,

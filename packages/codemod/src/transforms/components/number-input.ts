@@ -21,93 +21,248 @@ export default function transformer(
     const baseName = getJsxBaseName(opening.name)
     if (!chakraLocalNames.has(baseName)) return
 
-    const renamePart = (from: string, to: string) => {
-      if (
-        opening.name.type === "JSXMemberExpression" &&
-        opening.name.object.type === "JSXIdentifier" &&
-        opening.name.object.name === "NumberInput" &&
-        opening.name.property.type === "JSXIdentifier" &&
-        opening.name.property.name === from
-      ) {
-        opening.name.property.name = to
-        if (elPath.node.closingElement?.name?.type === "JSXMemberExpression") {
-          const closing = elPath.node.closingElement.name
-          if (
-            closing.object.type === "JSXIdentifier" &&
-            closing.object.name === "NumberInput" &&
-            closing.property.type === "JSXIdentifier" &&
-            closing.property.name === from
-          ) {
-            closing.property.name = to
-          }
-        }
+    // Handle NumberInput -> NumberInput.Root
+    if (baseName === "NumberInput") {
+      const newName = j.jsxMemberExpression(
+        j.jsxIdentifier("NumberInput"),
+        j.jsxIdentifier("Root"),
+      )
+      opening.name = newName
+      if (elPath.node.closingElement) {
+        elPath.node.closingElement.name = newName
       }
     }
 
-    renamePart("NumberInputStepper", "Control")
-    renamePart("NumberIncrementStepper", "IncrementTrigger")
-    renamePart("NumberDecrementStepper", "DecrementTrigger")
+    // Handle NumberInputField -> NumberInput.Input
+    if (baseName === "NumberInputField") {
+      const newName = j.jsxMemberExpression(
+        j.jsxIdentifier("NumberInput"),
+        j.jsxIdentifier("Input"),
+      )
+      opening.name = newName
+      if (elPath.node.closingElement) {
+        elPath.node.closingElement.name = newName
+      }
+    }
 
-    // Rename props on NumberInput.* elements
+    // Handle NumberInputStepper -> NumberInput.Control
+    if (baseName === "NumberInputStepper") {
+      const newName = j.jsxMemberExpression(
+        j.jsxIdentifier("NumberInput"),
+        j.jsxIdentifier("Control"),
+      )
+      opening.name = newName
+      if (elPath.node.closingElement) {
+        elPath.node.closingElement.name = newName
+      }
+    }
+
+    // Handle NumberIncrementStepper -> NumberInput.IncrementTrigger
+    if (baseName === "NumberIncrementStepper") {
+      const newName = j.jsxMemberExpression(
+        j.jsxIdentifier("NumberInput"),
+        j.jsxIdentifier("IncrementTrigger"),
+      )
+      opening.name = newName
+      if (elPath.node.closingElement) {
+        elPath.node.closingElement.name = newName
+      }
+    }
+
+    // Handle NumberDecrementStepper -> NumberInput.DecrementTrigger
+    if (baseName === "NumberDecrementStepper") {
+      const newName = j.jsxMemberExpression(
+        j.jsxIdentifier("NumberInput"),
+        j.jsxIdentifier("DecrementTrigger"),
+      )
+      opening.name = newName
+      if (elPath.node.closingElement) {
+        elPath.node.closingElement.name = newName
+      }
+    }
+
+    // Transform props
     const attrs = opening.attributes || []
+    const newAttributes: any[] = []
+
     attrs.forEach((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
+      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier") {
+        newAttributes.push(attr)
         return
+      }
+
       const name = attr.name.name
-      if (name === "onChange") {
-        attr.name.name = "onValueChange"
-      }
-      if (name === "onInvalid") {
-        attr.name.name = "onValueInvalid"
-      }
-      if (name === "focusBorderColor" || name === "errorBorderColor") {
-        // Move to css var
-        const varName =
-          name === "focusBorderColor" ? "--focus-color" : "--error-color"
-        const cssAttr = attrs.find(
-          (a) =>
-            a.type === "JSXAttribute" &&
-            a.name.type === "JSXIdentifier" &&
-            a.name.name === "css",
-        ) as any
-        const val =
-          attr.value?.type === "Literal"
-            ? attr.value.value
-            : attr.value?.type === "JSXExpressionContainer"
-              ? (attr.value.expression as any)
-              : null
-        if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
-          const expr = cssAttr.value.expression
-          if (expr.type === "ObjectExpression") {
-            expr.properties.push(
-              j.objectProperty(
-                j.stringLiteral(varName),
-                typeof val === "string" ? j.literal(val) : (val as any),
+      switch (name) {
+        case "value":
+        case "defaultValue":
+          // Convert numeric values to strings
+          if (attr.value?.type === "JSXExpressionContainer") {
+            const expr = attr.value.expression
+            // Check for numeric literal (can be "Literal" or "NumericLiteral")
+            if (
+              (expr.type === "Literal" || expr.type === "NumericLiteral") &&
+              typeof (expr as any).value === "number"
+            ) {
+              // Convert number to string literal: defaultValue={15} -> defaultValue="15"
+              newAttributes.push(
+                j.jsxAttribute(
+                  j.jsxIdentifier(name),
+                  j.literal(String((expr as any).value)),
+                ),
+              )
+            } else if (
+              expr.type === "Literal" &&
+              typeof (expr as any).value === "string"
+            ) {
+              // Already a string literal, keep as-is
+              newAttributes.push(attr)
+            } else if (expr.type !== "JSXEmptyExpression") {
+              // It's an expression (variable, function call, etc.)
+              // Wrap in String() to ensure runtime conversion: value={val} -> value={String(val)}
+              newAttributes.push(
+                j.jsxAttribute(
+                  j.jsxIdentifier(name),
+                  j.jsxExpressionContainer(
+                    j.callExpression(j.identifier("String"), [expr as any]),
+                  ),
+                ),
+              )
+            } else {
+              newAttributes.push(attr)
+            }
+          } else {
+            // Keep string literals and other values as-is
+            newAttributes.push(attr)
+          }
+          break
+        case "isDisabled":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("disabled"), attr.value),
+          )
+          break
+        case "isInvalid":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("invalid"), attr.value),
+          )
+          break
+        case "isReadOnly":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("readOnly"), attr.value),
+          )
+          break
+        case "isRequired":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("required"), attr.value),
+          )
+          break
+        case "onChange":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("onValueChange"), attr.value),
+          )
+          break
+        case "onInvalid":
+          newAttributes.push(
+            j.jsxAttribute(j.jsxIdentifier("onValueInvalid"), attr.value),
+          )
+          break
+        case "keepWithinRange":
+          // Convert to allowOverflow (inverse boolean)
+          if (attr.value?.type === "JSXExpressionContainer") {
+            const expr = attr.value.expression
+            if (expr.type === "JSXEmptyExpression") {
+              // Skip empty expressions
+              break
+            }
+            if (
+              (expr.type === "Literal" && typeof expr.value === "boolean") ||
+              expr.type === "BooleanLiteral"
+            ) {
+              const boolValue = (expr as any).value
+              // keepWithinRange={false} -> allowOverflow={true}
+              // keepWithinRange={true} -> allowOverflow={false}
+              newAttributes.push(
+                j.jsxAttribute(
+                  j.jsxIdentifier("allowOverflow"),
+                  j.jsxExpressionContainer(j.booleanLiteral(!boolValue)),
+                ),
+              )
+            } else {
+              // keepWithinRange={variable} -> allowOverflow={!variable}
+              newAttributes.push(
+                j.jsxAttribute(
+                  j.jsxIdentifier("allowOverflow"),
+                  j.jsxExpressionContainer(
+                    j.unaryExpression("!", expr as any, true),
+                  ),
+                ),
+              )
+            }
+          } else if (!attr.value) {
+            // keepWithinRange (no value, true by default) -> allowOverflow={false}
+            newAttributes.push(
+              j.jsxAttribute(
+                j.jsxIdentifier("allowOverflow"),
+                j.jsxExpressionContainer(j.booleanLiteral(false)),
               ),
             )
           }
-        } else {
-          opening.attributes = opening.attributes || []
-          opening.attributes.push(
-            j.jsxAttribute(
-              j.jsxIdentifier("css"),
-              j.jsxExpressionContainer(
-                j.objectExpression([
+          break
+        case "isValidCharacter":
+          // Remove this prop
+          break
+        case "focusBorderColor":
+        case "errorBorderColor":
+          // Move to css var
+          const varName =
+            name === "focusBorderColor" ? "--focus-color" : "--error-color"
+          const cssAttr = newAttributes.find(
+            (a) =>
+              a.type === "JSXAttribute" &&
+              a.name.type === "JSXIdentifier" &&
+              a.name.name === "css",
+          ) as any
+          const val =
+            attr.value?.type === "Literal"
+              ? attr.value.value
+              : attr.value?.type === "JSXExpressionContainer"
+                ? (attr.value.expression as any)
+                : null
+
+          // Only process if we have a valid value
+          if (val !== null) {
+            if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
+              const expr = cssAttr.value.expression
+              if (expr.type === "ObjectExpression") {
+                expr.properties.push(
                   j.objectProperty(
                     j.stringLiteral(varName),
                     typeof val === "string" ? j.literal(val) : (val as any),
                   ),
-                ]),
-              ),
-            ),
-          )
-        }
-        // remove original
-        opening.attributes = (opening.attributes || []).filter(
-          (a) => a !== attr,
-        )
+                )
+              }
+            } else {
+              newAttributes.push(
+                j.jsxAttribute(
+                  j.jsxIdentifier("css"),
+                  j.jsxExpressionContainer(
+                    j.objectExpression([
+                      j.objectProperty(
+                        j.stringLiteral(varName),
+                        typeof val === "string" ? j.literal(val) : (val as any),
+                      ),
+                    ]),
+                  ),
+                ),
+              )
+            }
+          }
+          break
+        default:
+          newAttributes.push(attr)
       }
     })
+
+    opening.attributes = newAttributes
   })
 
   return root.toSource({ quote: "single" })

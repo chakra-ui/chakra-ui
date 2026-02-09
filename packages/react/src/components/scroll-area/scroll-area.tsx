@@ -23,14 +23,14 @@ export { useScrollAreaStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaRootProviderBaseProps
-  extends Assign<
-      ArkScrollArea.RootProviderBaseProps,
-      SlotRecipeProps<"scrollArea">
-    >,
+  extends
+    Assign<ArkScrollArea.RootProviderBaseProps, SlotRecipeProps<"scrollArea">>,
     UnstyledProp {}
 
-export interface ScrollAreaRootProviderProps
-  extends HTMLChakraProps<"div", ScrollAreaRootProviderBaseProps> {}
+export interface ScrollAreaRootProviderProps extends HTMLChakraProps<
+  "div",
+  ScrollAreaRootProviderBaseProps
+> {}
 
 export const ScrollAreaRootProvider = withProvider<
   HTMLDivElement,
@@ -40,11 +40,14 @@ export const ScrollAreaRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaRootBaseProps
-  extends Assign<ArkScrollArea.RootBaseProps, SlotRecipeProps<"scrollArea">>,
+  extends
+    Assign<ArkScrollArea.RootBaseProps, SlotRecipeProps<"scrollArea">>,
     UnstyledProp {}
 
-export interface ScrollAreaRootProps
-  extends HTMLChakraProps<"div", ScrollAreaRootBaseProps> {}
+export interface ScrollAreaRootProps extends HTMLChakraProps<
+  "div",
+  ScrollAreaRootBaseProps
+> {}
 
 export const ScrollAreaRoot = withProvider<HTMLDivElement, ScrollAreaRootProps>(
   ArkScrollArea.Root,
@@ -60,7 +63,8 @@ export const ScrollAreaPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaViewportProps
-  extends HTMLChakraProps<"div", ArkScrollArea.ViewportBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkScrollArea.ViewportBaseProps>,
     UnstyledProp {}
 
 export const ScrollAreaViewport = withContext<
@@ -71,7 +75,8 @@ export const ScrollAreaViewport = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaContentProps
-  extends HTMLChakraProps<"div", ArkScrollArea.ContentBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkScrollArea.ContentBaseProps>,
     UnstyledProp {}
 
 export const ScrollAreaContent = withContext<
@@ -82,8 +87,7 @@ export const ScrollAreaContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaThumbProps
-  extends HTMLChakraProps<"div", ArkScrollArea.ThumbBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkScrollArea.ThumbBaseProps>, UnstyledProp {}
 
 export const ScrollAreaThumb = withContext<
   HTMLDivElement,
@@ -93,7 +97,8 @@ export const ScrollAreaThumb = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaScrollbarProps
-  extends HTMLChakraProps<"div", ArkScrollArea.ScrollbarBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkScrollArea.ScrollbarBaseProps>,
     UnstyledProp {}
 
 export const ScrollAreaScrollbar = withContext<
@@ -109,8 +114,7 @@ export const ScrollAreaScrollbar = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ScrollAreaCornerProps
-  extends HTMLChakraProps<"div", ArkScrollArea.CornerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkScrollArea.CornerBaseProps>, UnstyledProp {}
 
 export const ScrollAreaCorner = withContext<
   HTMLDivElement,

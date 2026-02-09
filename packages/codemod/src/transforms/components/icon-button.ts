@@ -54,7 +54,27 @@ export default function transformer(
 
       // Move icon to children
       if (iconValue) {
-        path.node.children = [iconValue]
+        // Ensure the opening element is not self-closing
+        path.node.openingElement.selfClosing = false
+
+        // Wrap non-JSX expressions in JSXExpressionContainer
+        let childNode = iconValue
+        if (
+          iconValue.type !== "JSXElement" &&
+          iconValue.type !== "JSXFragment"
+        ) {
+          childNode = j.jsxExpressionContainer(iconValue)
+        }
+
+        // Set the icon as children
+        path.node.children = [childNode]
+
+        // Ensure closing element exists
+        if (!path.node.closingElement) {
+          path.node.closingElement = j.jsxClosingElement(
+            j.jsxIdentifier("IconButton"),
+          )
+        }
       }
     })
 

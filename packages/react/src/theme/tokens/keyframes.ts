@@ -73,8 +73,8 @@ export const keyframes = defineKeyframes({
     to: { width: "var(--width)" },
   },
   "collapse-width": {
-    from: { height: "var(--width)" },
-    to: { height: "var(--collapsed-width, 0)" },
+    from: { width: "var(--width)" },
+    to: { width: "var(--collapsed-width, 0)" },
   },
 
   // fade

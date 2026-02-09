@@ -39,6 +39,28 @@ export default function transformer(
 
     const attrs = path.node.attributes ?? []
 
+    let hasUnmountOnExit = false
+    let variantValue: any = null
+
+    // First pass: check for lazyBehavior
+    attrs.forEach((attr) => {
+      if (attr.type === "JSXAttribute" && attr.name.type === "JSXIdentifier") {
+        if (attr.name.name === "lazyBehavior") {
+          if (
+            attr.value?.type === "Literal" &&
+            attr.value.value === "unmount"
+          ) {
+            hasUnmountOnExit = true
+          } else if (
+            attr.value?.type === "StringLiteral" &&
+            attr.value.value === "unmount"
+          ) {
+            hasUnmountOnExit = true
+          }
+        }
+      }
+    })
+
     path.node.attributes = attrs.flatMap((attr) => {
       if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
         return attr
@@ -53,11 +75,81 @@ export default function transformer(
             j.jsxIdentifier("onValueChange"),
             wrapOnChange(j, attr.value),
           )
+        case "isManual":
+          // if true, set activationMode='manual'
+          return j.jsxAttribute(
+            j.jsxIdentifier("activationMode"),
+            j.stringLiteral("manual"),
+          )
         case "isLazy":
-          return [
-            j.jsxAttribute(j.jsxIdentifier("lazyMount")),
-            j.jsxAttribute(j.jsxIdentifier("unmountOnExit")),
-          ]
+          // Only add lazyMount
+          return j.jsxAttribute(j.jsxIdentifier("lazyMount"), attr.value)
+        case "lazyBehavior":
+          // If "unmount", unmountOnExit is added separately
+          return hasUnmountOnExit
+            ? [j.jsxAttribute(j.jsxIdentifier("unmountOnExit"))]
+            : []
+        case "isFitted":
+          return j.jsxAttribute(j.jsxIdentifier("fitted"), attr.value)
+        case "align":
+          // Map align to justifyContent
+          if (attr.value?.type === "Literal") {
+            const alignMap: Record<string, string> = {
+              start: "flex-start",
+              end: "flex-end",
+              center: "center",
+            }
+            const newValue = alignMap[attr.value.value as string]
+            if (newValue) {
+              return j.jsxAttribute(
+                j.jsxIdentifier("justifyContent"),
+                j.stringLiteral(newValue),
+              )
+            }
+          } else if (attr.value?.type === "StringLiteral") {
+            const alignMap: Record<string, string> = {
+              start: "flex-start",
+              end: "flex-end",
+              center: "center",
+            }
+            const newValue = alignMap[attr.value.value]
+            if (newValue) {
+              return j.jsxAttribute(
+                j.jsxIdentifier("justifyContent"),
+                j.stringLiteral(newValue),
+              )
+            }
+          }
+          return attr
+        case "variant":
+          // Map v2 variants to v3 variants
+          if (attr.value?.type === "Literal") {
+            variantValue = attr.value.value
+          } else if (attr.value?.type === "StringLiteral") {
+            variantValue = attr.value.value
+          }
+
+          if (variantValue === "unstyled") {
+            // unstyled variant becomes unstyled boolean prop
+            return [j.jsxAttribute(j.jsxIdentifier("unstyled"))]
+          }
+
+          const variantMap: Record<string, string> = {
+            line: "line",
+            enclosed: "enclosed",
+            "enclosed-colored": "enclosed",
+            "soft-rounded": "subtle",
+            "solid-rounded": "outline",
+          }
+
+          const newVariant = variantMap[variantValue]
+          if (newVariant) {
+            return j.jsxAttribute(
+              j.jsxIdentifier("variant"),
+              j.stringLiteral(newVariant),
+            )
+          }
+          return attr
         default:
           return attr
       }

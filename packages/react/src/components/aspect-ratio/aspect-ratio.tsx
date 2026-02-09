@@ -9,8 +9,10 @@ import {
 } from "../../styled-system"
 import { cx, mapObject } from "../../utils"
 
-export interface AspectRatioProps
-  extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {
+export interface AspectRatioProps extends Omit<
+  HTMLChakraProps<"div">,
+  "aspectRatio"
+> {
   /**
    * The aspect ratio of the Box. Common values are:
    *

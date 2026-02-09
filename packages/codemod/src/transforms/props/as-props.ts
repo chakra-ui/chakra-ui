@@ -81,6 +81,37 @@ const SVG_ELEMENTS = new Set([
   "use",
 ])
 
+// Simple presentational DOM elements that can use `as` prop directly (no asChild needed)
+const SIMPLE_DOM_ELEMENTS = new Set([
+  "div",
+  "span",
+  "p",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "section",
+  "article",
+  "main",
+  "aside",
+  "header",
+  "footer",
+  "nav",
+  "ul",
+  "ol",
+  "li",
+  "dl",
+  "dt",
+  "dd",
+  "pre",
+  "code",
+  "blockquote",
+  "figure",
+  "figcaption",
+])
+
 // Component type classifications
 enum ComponentType {
   DOM,
@@ -121,7 +152,7 @@ function isValidChakraProp(propName: string): boolean {
   )
 }
 
-function isValidDOMProp(propName: string, tagName: string): boolean {
+export function isValidDOMProp(propName: string, tagName: string): boolean {
   if (isDataOrAria(propName)) return true
 
   const lowerTag = tagName.toLowerCase()
@@ -161,6 +192,16 @@ function classifyComponentType(node: any): ComponentType {
 
   if (node.type === "MemberExpression") {
     return ComponentType.Component
+  }
+
+  // Handle string literals like as="div" or as="a"
+  if (node.type === "Literal" || node.type === "StringLiteral") {
+    const value = node.value
+    if (typeof value === "string") {
+      const firstChar = value[0]
+      const isLowerCase = firstChar === firstChar.toLowerCase()
+      return isLowerCase ? ComponentType.DOM : ComponentType.Component
+    }
   }
 
   return ComponentType.Unknown
@@ -230,6 +271,224 @@ function getComponentMetadata(
   }
 }
 
+// Element-specific props that should move to child elements
+
+// Link elements: <a>, <Link>, <NextLink>
+const LINK_PROPS = new Set([
+  "href",
+  "target",
+  "rel",
+  "download",
+  "hreflang",
+  "referrerPolicy",
+  "type",
+  // Next.js Link props
+  "replace",
+  "scroll",
+  "shallow",
+  "locale",
+  "prefetch",
+  "legacyBehavior",
+  // React Router / TanStack Router Link props
+  "to",
+  "state",
+  "preventScrollReset",
+  "relative",
+  "reloadDocument",
+  "unstable_viewTransition",
+  "params",
+  "search",
+  "hash",
+  "resetScroll",
+  "preload",
+  "preloadDelay",
+])
+
+// Input elements: <input>
+const INPUT_PROPS = new Set([
+  "type",
+  "value",
+  "defaultValue",
+  "placeholder",
+  "disabled",
+  "required",
+  "readOnly",
+  "autoFocus",
+  "autoComplete",
+  "min",
+  "max",
+  "step",
+  "pattern",
+  "minLength",
+  "maxLength",
+  "size",
+  "accept",
+  "multiple",
+  "checked",
+  "defaultChecked",
+  "name",
+  "form",
+  "list",
+  "inputMode",
+])
+
+// Button elements: <button>
+const BUTTON_PROPS = new Set([
+  "type",
+  "disabled",
+  "form",
+  "formAction",
+  "formEnctype",
+  "formMethod",
+  "formNoValidate",
+  "formTarget",
+  "name",
+  "value",
+])
+
+// Textarea elements: <textarea>
+const TEXTAREA_PROPS = new Set([
+  "value",
+  "defaultValue",
+  "placeholder",
+  "disabled",
+  "required",
+  "readOnly",
+  "autoFocus",
+  "rows",
+  "cols",
+  "wrap",
+  "minLength",
+  "maxLength",
+  "name",
+  "form",
+])
+
+// Select elements: <select>
+const SELECT_PROPS = new Set([
+  "value",
+  "defaultValue",
+  "disabled",
+  "required",
+  "autoFocus",
+  "multiple",
+  "size",
+  "name",
+  "form",
+])
+
+// Time elements: <time>
+const TIME_PROPS = new Set(["datetime", "dateTime"])
+
+// Form elements: <form>
+const FORM_PROPS = new Set([
+  "action",
+  "method",
+  "enctype",
+  "target",
+  "noValidate",
+  "autoComplete",
+  "acceptCharset",
+])
+
+// Image elements: <img>
+const IMG_PROPS = new Set([
+  "src",
+  "alt",
+  "srcSet",
+  "sizes",
+  "loading",
+  "decoding",
+  "crossOrigin",
+  "referrerPolicy",
+  "width",
+  "height",
+  "useMap",
+  "isMap",
+])
+
+// Video/Audio elements: <video>, <audio>
+const MEDIA_PROPS = new Set([
+  "src",
+  "autoplay",
+  "controls",
+  "loop",
+  "muted",
+  "preload",
+  "poster",
+  "playsInline",
+  "crossOrigin",
+  "width",
+  "height",
+])
+
+// Label elements: <label>
+const LABEL_PROPS = new Set(["htmlFor", "form"])
+
+// Option elements: <option>
+const OPTION_PROPS = new Set(["value", "selected", "disabled", "label"])
+
+// Iframe elements: <iframe>
+const IFRAME_PROPS = new Set([
+  "src",
+  "srcdoc",
+  "name",
+  "sandbox",
+  "allow",
+  "allowFullScreen",
+  "width",
+  "height",
+  "loading",
+  "referrerPolicy",
+])
+
+// Dialog elements: <dialog>
+const DIALOG_PROPS = new Set(["open"])
+
+// Details elements: <details>
+const DETAILS_PROPS = new Set(["open"])
+
+// Meter elements: <meter>
+const METER_PROPS = new Set(["value", "min", "max", "low", "high", "optimum"])
+
+// Progress elements: <progress>
+const PROGRESS_PROPS = new Set(["value", "max"])
+
+// Track elements: <track> (for video/audio)
+const TRACK_PROPS = new Set(["src", "kind", "srclang", "label", "default"])
+
+// Source elements: <source> (for video/audio/picture)
+const SOURCE_PROPS = new Set(["src", "srcset", "type", "media", "sizes"])
+
+// Canvas elements: <canvas>
+const CANVAS_PROPS = new Set(["width", "height"])
+
+// Map tag name to its specific props
+const ELEMENT_PROPS_MAP: Record<string, Set<string>> = {
+  a: LINK_PROPS,
+  Link: LINK_PROPS,
+  NextLink: LINK_PROPS,
+  input: INPUT_PROPS,
+  button: BUTTON_PROPS,
+  textarea: TEXTAREA_PROPS,
+  select: SELECT_PROPS,
+  option: OPTION_PROPS,
+  time: TIME_PROPS,
+  form: FORM_PROPS,
+  img: IMG_PROPS,
+  video: MEDIA_PROPS,
+  audio: MEDIA_PROPS,
+  label: LABEL_PROPS,
+  iframe: IFRAME_PROPS,
+  dialog: DIALOG_PROPS,
+  details: DETAILS_PROPS,
+  meter: METER_PROPS,
+  progress: PROGRESS_PROPS,
+  track: TRACK_PROPS,
+  source: SOURCE_PROPS,
+  canvas: CANVAS_PROPS,
+}
+
 function shouldPropGoToChild(
   propName: string,
   metadata: ComponentMetadata,
@@ -244,26 +503,31 @@ function shouldPropGoToChild(
     return false
   }
 
-  if (metadata.isNextLink) {
-    if (propName === "passHref") {
-      return false // This will cause it to be filtered out
-    }
-
-    // href should go to NextLink child
-    if (propName === "href") {
-      return true
-    }
-
-    if (
-      ["replace", "scroll", "shallow", "locale", "prefetch"].includes(propName)
-    ) {
-      return true
-    }
+  // Chakra style props always stay on parent
+  if (isValidChakraProp(propName)) {
+    return false
   }
 
-  // Special handling for href on LinkOverlay or <a> tags
-  if (propName === "href") {
-    return metadata.parentName === "LinkOverlay" || metadata.tagName === "a"
+  // Check if this is a link element (a, Link, or anything ending with "Link")
+  const isLinkElement =
+    metadata.tagName === "a" ||
+    metadata.tagName === "Link" ||
+    (metadata.tagName && metadata.tagName.endsWith("Link"))
+
+  if (isLinkElement && LINK_PROPS.has(propName)) {
+    // Filter out passHref for Next.js Links
+    if (metadata.isNextLink && propName === "passHref") {
+      return false
+    }
+    return true
+  }
+
+  // Check if this prop should move based on element type
+  if (metadata.tagName) {
+    const elementProps = ELEMENT_PROPS_MAP[metadata.tagName]
+    if (elementProps && elementProps.has(propName)) {
+      return true
+    }
   }
 
   // For element type variables, keep all props on parent
@@ -271,16 +535,8 @@ function shouldPropGoToChild(
     return false
   }
 
-  // For React components
-  if (metadata.type === ComponentType.Component) {
-    return !isValidChakraProp(propName)
-  }
-
-  // For DOM elements
-  if (metadata.type === ComponentType.DOM && metadata.tagName) {
-    return isValidDOMProp(propName, metadata.tagName)
-  }
-
+  // For everything else, keep props on parent by default
+  // This is conservative - only move props we explicitly whitelisted above
   return false
 }
 
@@ -413,14 +669,31 @@ function transformAsToAsChild(
   const asAttr = opening.attributes[asAttrIndex]
   const asValue = extractAsValue(asAttr)
 
-  // Handle `as={as}` pattern - just rename to asChild
-  if (asValue.type === "Identifier" && asValue.name === "as") {
-    opening.attributes.splice(asAttrIndex, 1)
-    opening.attributes.push(j.jsxAttribute(j.jsxIdentifier("asChild")))
-    return
+  // Skip transformation for dynamic expressions like as={as} or as={component}
+  // We can't know at build time what these will be, so leave them as-is
+  if (asValue.type === "Identifier") {
+    // Only transform if it's a known component name (starts with uppercase)
+    // or a known element name (lowercase string literal would have been caught earlier)
+    const firstChar = asValue.name[0]
+    const isComponent = firstChar === firstChar.toUpperCase()
+
+    // If it's a lowercase identifier (like 'as', 'elem', 'component'), skip transformation
+    if (!isComponent) {
+      return
+    }
   }
 
   const metadata = getComponentMetadata(asAttr, opening.name, nextLinkNames, j)
+
+  // Skip transformation for simple presentational DOM elements - they can use `as` prop directly
+  // Interactive/semantic elements like <a>, <button>, <time> still need asChild for proper prop handling
+  if (
+    metadata.type === ComponentType.DOM &&
+    metadata.tagName &&
+    SIMPLE_DOM_ELEMENTS.has(metadata.tagName)
+  ) {
+    return
+  }
 
   const { child, parent } = distributeProps(
     opening.attributes,

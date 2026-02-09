@@ -1,4 +1,4 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
@@ -23,6 +23,49 @@ export default function transformer(
 
     // RangeSlider root → Slider.Root
     if (baseName === "RangeSlider") {
+      const oldAttrs = opening.attributes ?? []
+      const newAttrs: JSXAttribute[] = []
+
+      // Transform props
+      oldAttrs.forEach((attr: any) => {
+        if (
+          attr.type !== "JSXAttribute" ||
+          attr.name.type !== "JSXIdentifier"
+        ) {
+          newAttrs.push(attr)
+          return
+        }
+
+        switch (attr.name.name) {
+          case "colorScheme":
+            // colorScheme -> colorPalette
+            newAttrs.push(
+              j.jsxAttribute(j.jsxIdentifier("colorPalette"), attr.value),
+            )
+            break
+          case "onChange":
+            // onChange -> onValueChange
+            newAttrs.push(
+              j.jsxAttribute(j.jsxIdentifier("onValueChange"), attr.value),
+            )
+            break
+          case "onChangeEnd":
+            // onChangeEnd -> onValueChangeEnd
+            newAttrs.push(
+              j.jsxAttribute(j.jsxIdentifier("onValueChangeEnd"), attr.value),
+            )
+            break
+          case "focusThumbOnChange":
+          case "reversed":
+            // Remove these props
+            break
+          default:
+            newAttrs.push(attr)
+        }
+      })
+
+      opening.attributes = newAttrs
+
       const newName = j.jsxMemberExpression(
         j.jsxIdentifier("Slider"),
         j.jsxIdentifier("Root"),
@@ -32,19 +75,44 @@ export default function transformer(
         elPath.node.closingElement.name = newName
       }
 
+      // Restructure children: separate track and thumbs, wrap in Control
       const children = elPath.node.children ?? []
-      const thumbChildren: any[] = []
+      const trackElements: any[] = []
+      const thumbElements: any[] = []
       const otherChildren: any[] = []
+
       children.forEach((c) => {
-        if (
-          c.type === "JSXElement" &&
-          c.openingElement.name.type === "JSXMemberExpression" &&
-          c.openingElement.name.object.type === "JSXIdentifier" &&
-          c.openingElement.name.object.name === "RangeSlider" &&
-          c.openingElement.name.property.type === "JSXIdentifier" &&
-          c.openingElement.name.property.name === "Thumb"
+        if (c.type !== "JSXElement") {
+          otherChildren.push(c)
+          return
+        }
+
+        const childName = getJsxBaseName(c.openingElement.name)
+
+        if (childName === "RangeSliderTrack" || childName === "Slider.Track") {
+          // Transform track and add to trackElements
+          trackElements.push(c)
+        } else if (
+          childName === "RangeSliderThumb" ||
+          childName === "Slider.Thumb"
         ) {
-          const thumbEl = j.jsxElement(
+          // Add HiddenInput to each thumb
+          const thumbChildren = c.children ?? []
+          const hiddenInput = j.jsxElement(
+            j.jsxOpeningElement(
+              j.jsxMemberExpression(
+                j.jsxIdentifier("Slider"),
+                j.jsxIdentifier("HiddenInput"),
+              ),
+              [],
+              true,
+            ),
+            null,
+            [],
+          )
+
+          // Create new thumb with HiddenInput as first child
+          const newThumb = j.jsxElement(
             j.jsxOpeningElement(
               j.jsxMemberExpression(
                 j.jsxIdentifier("Slider"),
@@ -59,19 +127,22 @@ export default function transformer(
                 j.jsxIdentifier("Thumb"),
               ),
             ),
-            c.children ?? [],
+            [hiddenInput, ...thumbChildren],
           )
-          thumbChildren.push(thumbEl)
+          thumbElements.push(newThumb)
         } else {
           otherChildren.push(c)
         }
       })
-      if (thumbChildren.length > 0) {
-        const thumbsContainer = j.jsxElement(
+
+      // Create Control wrapper with Track and Thumbs
+      const controlChildren = [...trackElements, ...thumbElements]
+      if (controlChildren.length > 0) {
+        const controlElement = j.jsxElement(
           j.jsxOpeningElement(
             j.jsxMemberExpression(
               j.jsxIdentifier("Slider"),
-              j.jsxIdentifier("Thumbs"),
+              j.jsxIdentifier("Control"),
             ),
             [],
             false,
@@ -79,37 +150,33 @@ export default function transformer(
           j.jsxClosingElement(
             j.jsxMemberExpression(
               j.jsxIdentifier("Slider"),
-              j.jsxIdentifier("Thumbs"),
+              j.jsxIdentifier("Control"),
             ),
           ),
-          thumbChildren,
+          controlChildren,
         )
-        elPath.node.children = [...otherChildren, thumbsContainer]
+        elPath.node.children = [...otherChildren, controlElement]
       }
     }
 
-    // Parts
-    if (
-      opening.name.type === "JSXMemberExpression" &&
-      opening.name.object.type === "JSXIdentifier" &&
-      opening.name.object.name === "RangeSlider" &&
-      opening.name.property.type === "JSXIdentifier"
-    ) {
-      const prop = opening.name.property.name
-      const map: Record<string, string> = {
+    // Transform RangeSlider sub-components
+    if (opening.name.type === "JSXIdentifier") {
+      const componentMap: Record<string, string> = {
         RangeSliderTrack: "Track",
         RangeSliderFilledTrack: "Range",
         RangeSliderThumb: "Thumb",
       }
-      if (map[prop]) {
+
+      const newComponent = componentMap[baseName]
+      if (newComponent) {
         opening.name = j.jsxMemberExpression(
           j.jsxIdentifier("Slider"),
-          j.jsxIdentifier(map[prop]),
+          j.jsxIdentifier(newComponent),
         )
-        if (elPath.node.closingElement?.name?.type === "JSXMemberExpression") {
+        if (elPath.node.closingElement) {
           elPath.node.closingElement.name = j.jsxMemberExpression(
             j.jsxIdentifier("Slider"),
-            j.jsxIdentifier(map[prop]),
+            j.jsxIdentifier(newComponent),
           )
         }
       }

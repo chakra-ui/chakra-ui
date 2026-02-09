@@ -102,8 +102,7 @@ export interface JsxFactoryOptions<TProps> {
 }
 
 export interface JsxStyleProps
-  extends SystemProperties,
-    MinimalNested<SystemStyleObject> {
+  extends SystemProperties, MinimalNested<SystemStyleObject> {
   css?:
     | SystemStyleObject
     | undefined

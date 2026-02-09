@@ -33,14 +33,14 @@ export { useRadioCardStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardRootProviderBaseProps
-  extends Assign<
-      ArkRadioGroup.RootProviderBaseProps,
-      SlotRecipeProps<"radioCard">
-    >,
+  extends
+    Assign<ArkRadioGroup.RootProviderBaseProps, SlotRecipeProps<"radioCard">>,
     UnstyledProp {}
 
-export interface RadioCardRootProviderProps
-  extends HTMLChakraProps<"div", RadioCardRootProviderBaseProps> {}
+export interface RadioCardRootProviderProps extends HTMLChakraProps<
+  "div",
+  RadioCardRootProviderBaseProps
+> {}
 
 export const RadioCardRootProvider = withProvider<
   HTMLDivElement,
@@ -50,11 +50,14 @@ export const RadioCardRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardRootBaseProps
-  extends Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioCard">>,
+  extends
+    Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioCard">>,
     UnstyledProp {}
 
-export interface RadioCardRootProps
-  extends HTMLChakraProps<"div", RadioCardRootBaseProps> {}
+export interface RadioCardRootProps extends HTMLChakraProps<
+  "div",
+  RadioCardRootBaseProps
+> {}
 
 export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   ArkRadioGroup.Root,
@@ -70,8 +73,7 @@ export const RadioCardPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardLabelProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRadioGroup.LabelBaseProps>, UnstyledProp {}
 
 export const RadioCardLabel = withContext<HTMLDivElement, RadioCardLabelProps>(
   ArkRadioGroup.Label,
@@ -82,8 +84,7 @@ export const RadioCardLabel = withContext<HTMLDivElement, RadioCardLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRadioGroup.ItemBaseProps>, UnstyledProp {}
 
 export const RadioCardItem = withContext<HTMLDivElement, RadioCardItemProps>(
   ArkRadioGroup.Item,
@@ -94,7 +95,8 @@ export const RadioCardItem = withContext<HTMLDivElement, RadioCardItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemTextProps
-  extends HTMLChakraProps<"span", ArkRadioGroup.ItemTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkRadioGroup.ItemTextBaseProps>,
     UnstyledProp {}
 
 export const RadioCardItemText = withContext<
@@ -105,8 +107,7 @@ export const RadioCardItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemDescriptionProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const RadioCardItemDescription = withContext<
   HTMLSpanElement,
@@ -115,8 +116,10 @@ export const RadioCardItemDescription = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioCardItemControlProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps> {}
+export interface RadioCardItemControlProps extends HTMLChakraProps<
+  "div",
+  ArkRadioGroup.ItemControlBaseProps
+> {}
 
 export const RadioCardItemControl = forwardRef<
   HTMLDivElement,
@@ -142,8 +145,7 @@ export const RadioCardItemControl = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemContentProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const RadioCardItemContent = withContext<
   HTMLDivElement,
@@ -153,8 +155,7 @@ export const RadioCardItemContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioCardItemAddonProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const RadioCardItemAddon = withContext<
   HTMLElement,

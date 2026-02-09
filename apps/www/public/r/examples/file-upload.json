@@ -56,19 +56,6 @@
       ]
     },
     {
-      "name": "file-upload-open-from-dialog",
-      "content": "export const FileUploadOpenFromDialog = () => {\n  return (\n    <Dialog.Root size=\"sm\" placement=\"center\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Upload File</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body pb=\"6\">\n              <Dialog.Description mb=\"4\">\n                Here's a dialog with a file dropzone component.\n              </Dialog.Description>\n              <FileUpload.Root>\n                <FileUpload.HiddenInput />\n                <FileUpload.Dropzone width=\"full\">\n                  <Icon size=\"xl\" color=\"fg.muted\">\n                    <LuUpload />\n                  </Icon>\n                  <FileUpload.DropzoneContent>\n                    Drag and drop files here\n                  </FileUpload.DropzoneContent>\n                </FileUpload.Dropzone>\n                <FileUpload.List />\n              </FileUpload.Root>\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Button, Dialog, FileUpload, Icon, Portal } from \"@chakra-ui/react\"",
-        "import { LuUpload } from \"react-icons/lu\""
-      ],
-      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
-      "npmDependencies": [
-        "react-icons"
-      ]
-    },
-    {
       "name": "file-upload-media-capture",
       "content": "export const FileUploadMediaCapture = () => {\n  return (\n    <FileUpload.Root capture=\"environment\">\n      <FileUpload.HiddenInput />\n      <FileUpload.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          <HiCamera /> Open Camera\n        </Button>\n      </FileUpload.Trigger>\n      <FileUpload.List />\n    </FileUpload.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -88,6 +75,19 @@
       "importPaths": [
         "import { Button, FileUpload } from \"@chakra-ui/react\"",
         "import { HiUpload } from \"react-icons/hi\""
+      ],
+      "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "file-upload-open-from-dialog",
+      "content": "export const FileUploadOpenFromDialog = () => {\n  return (\n    <Dialog.Root size=\"sm\" placement=\"center\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Open Dialog</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Upload File</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body pb=\"6\">\n              <Dialog.Description mb=\"4\">\n                Here's a dialog with a file dropzone component.\n              </Dialog.Description>\n              <FileUpload.Root>\n                <FileUpload.HiddenInput />\n                <FileUpload.Dropzone width=\"full\">\n                  <Icon size=\"xl\" color=\"fg.muted\">\n                    <LuUpload />\n                  </Icon>\n                  <FileUpload.DropzoneContent>\n                    Drag and drop files here\n                  </FileUpload.DropzoneContent>\n                </FileUpload.Dropzone>\n                <FileUpload.List />\n              </FileUpload.Root>\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, FileUpload, Icon, Portal } from \"@chakra-ui/react\"",
+        "import { LuUpload } from \"react-icons/lu\""
       ],
       "importPath": "import { FileUpload } from \"@chakra-ui/react\"",
       "npmDependencies": [

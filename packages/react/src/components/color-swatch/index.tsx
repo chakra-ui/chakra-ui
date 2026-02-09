@@ -17,13 +17,14 @@ const { withPropsProvider, useRecipeResult } = createRecipeContext({
 })
 
 export interface ColorSwatchBaseProps
-  extends UnstyledProp,
-    RecipeProps<"colorSwatch"> {
+  extends UnstyledProp, RecipeProps<"colorSwatch"> {
   value: string
 }
 
-export interface ColorSwatchProps
-  extends Assign<HTMLChakraProps<"span">, ColorSwatchBaseProps> {}
+export interface ColorSwatchProps extends Assign<
+  HTMLChakraProps<"span">,
+  ColorSwatchBaseProps
+> {}
 
 export const ColorSwatch = forwardRef<HTMLSpanElement, ColorSwatchProps>(
   function ColorSwatch(props, ref) {

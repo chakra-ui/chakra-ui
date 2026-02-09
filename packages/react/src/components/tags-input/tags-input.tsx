@@ -28,14 +28,14 @@ export { useTagsInputStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputRootProviderBaseProps
-  extends Assign<
-      ArkTagsInput.RootProviderBaseProps,
-      SlotRecipeProps<"tagsInput">
-    >,
+  extends
+    Assign<ArkTagsInput.RootProviderBaseProps, SlotRecipeProps<"tagsInput">>,
     UnstyledProp {}
 
-export interface TagsInputRootProviderProps
-  extends HTMLChakraProps<"div", TagsInputRootProviderBaseProps> {}
+export interface TagsInputRootProviderProps extends HTMLChakraProps<
+  "div",
+  TagsInputRootProviderBaseProps
+> {}
 
 export const TagsInputRootProvider = withProvider<
   HTMLDivElement,
@@ -45,11 +45,14 @@ export const TagsInputRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputRootBaseProps
-  extends Assign<ArkTagsInput.RootBaseProps, SlotRecipeProps<"tagsInput">>,
+  extends
+    Assign<ArkTagsInput.RootBaseProps, SlotRecipeProps<"tagsInput">>,
     UnstyledProp {}
 
-export interface TagsInputRootProps
-  extends HTMLChakraProps<"div", TagsInputRootBaseProps> {}
+export interface TagsInputRootProps extends HTMLChakraProps<
+  "div",
+  TagsInputRootBaseProps
+> {}
 
 export const TagsInputRoot = withProvider<HTMLDivElement, TagsInputRootProps>(
   ArkTagsInput.Root,
@@ -63,8 +66,7 @@ export const TagsInputPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputLabelProps
-  extends HTMLChakraProps<"label", ArkTagsInput.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkTagsInput.LabelBaseProps>, UnstyledProp {}
 
 export const TagsInputLabel = withContext<
   HTMLLabelElement,
@@ -74,8 +76,7 @@ export const TagsInputLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputControlProps
-  extends HTMLChakraProps<"div", ArkTagsInput.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTagsInput.ControlBaseProps>, UnstyledProp {}
 
 export const TagsInputControl = withContext<
   HTMLDivElement,
@@ -85,8 +86,7 @@ export const TagsInputControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputInputProps
-  extends HTMLChakraProps<"input", ArkTagsInput.InputBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"input", ArkTagsInput.InputBaseProps>, UnstyledProp {}
 
 export const TagsInputInput = withContext<
   HTMLInputElement,
@@ -96,8 +96,7 @@ export const TagsInputInput = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputItemProps
-  extends HTMLChakraProps<"div", ArkTagsInput.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTagsInput.ItemBaseProps>, UnstyledProp {}
 
 export const TagsInputItem = withContext<HTMLDivElement, TagsInputItemProps>(
   ArkTagsInput.Item,
@@ -108,7 +107,8 @@ export const TagsInputItem = withContext<HTMLDivElement, TagsInputItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputItemTextProps
-  extends HTMLChakraProps<"span", ArkTagsInput.ItemTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkTagsInput.ItemTextBaseProps>,
     UnstyledProp {}
 
 export const TagsInputItemText = withContext<
@@ -119,7 +119,8 @@ export const TagsInputItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputItemDeleteTriggerProps
-  extends HTMLChakraProps<"button", ArkTagsInput.ItemDeleteTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkTagsInput.ItemDeleteTriggerBaseProps>,
     UnstyledProp {}
 
 export const TagsInputItemDeleteTrigger = withContext<
@@ -133,7 +134,8 @@ export const TagsInputItemDeleteTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputItemPreviewProps
-  extends HTMLChakraProps<"div", ArkTagsInput.ItemPreviewBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTagsInput.ItemPreviewBaseProps>,
     UnstyledProp {}
 
 export const TagsInputItemPreview = withContext<
@@ -144,7 +146,8 @@ export const TagsInputItemPreview = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputItemInputProps
-  extends HTMLChakraProps<"input", ArkTagsInput.ItemInputBaseProps>,
+  extends
+    HTMLChakraProps<"input", ArkTagsInput.ItemInputBaseProps>,
     UnstyledProp {}
 
 export const TagsInputItemInput = withContext<
@@ -155,7 +158,8 @@ export const TagsInputItemInput = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagsInputClearTriggerProps
-  extends HTMLChakraProps<"button", ArkTagsInput.ClearTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkTagsInput.ClearTriggerBaseProps>,
     UnstyledProp {}
 
 export const TagsInputClearTrigger = withContext<
@@ -168,8 +172,10 @@ export const TagsInputClearTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TagsInputItemsProps
-  extends Omit<TagsInputItemProps, "value" | "index"> {}
+export interface TagsInputItemsProps extends Omit<
+  TagsInputItemProps,
+  "value" | "index"
+> {}
 
 export const TagsInputItems = (props: TagsInputItemsProps) => {
   const api = useTagsInputContext()

@@ -28,14 +28,17 @@ export { useTreeViewStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkTreeView.RootProviderBaseProps<TreeNode>,
       SlotRecipeProps<"treeView">
     >,
     UnstyledProp {}
 
-export interface TreeViewRootProviderProps
-  extends HTMLChakraProps<"div", TreeViewRootProviderBaseProps> {}
+export interface TreeViewRootProviderProps extends HTMLChakraProps<
+  "div",
+  TreeViewRootProviderBaseProps
+> {}
 
 export const TreeViewRootProvider = withProvider<
   HTMLDivElement,
@@ -45,14 +48,14 @@ export const TreeViewRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewRootBaseProps
-  extends Assign<
-      ArkTreeView.RootBaseProps<TreeNode>,
-      SlotRecipeProps<"treeView">
-    >,
+  extends
+    Assign<ArkTreeView.RootBaseProps<TreeNode>, SlotRecipeProps<"treeView">>,
     UnstyledProp {}
 
-export interface TreeViewRootProps
-  extends HTMLChakraProps<"div", TreeViewRootBaseProps> {}
+export interface TreeViewRootProps extends HTMLChakraProps<
+  "div",
+  TreeViewRootBaseProps
+> {}
 
 export const TreeViewRoot = withProvider<HTMLDivElement, TreeViewRootProps>(
   ArkTreeView.Root,
@@ -69,8 +72,7 @@ export const TreeViewPropsProvider = PropsProvider as React.Provider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchProps
-  extends HTMLChakraProps<"div", ArkTreeView.BranchBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTreeView.BranchBaseProps>, UnstyledProp {}
 
 export const TreeViewBranch = withContext<HTMLDivElement, TreeViewBranchProps>(
   ArkTreeView.Branch,
@@ -81,7 +83,8 @@ export const TreeViewBranch = withContext<HTMLDivElement, TreeViewBranchProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchContentProps
-  extends HTMLChakraProps<"div", ArkTreeView.BranchContentBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.BranchContentBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchContent = withContext<
@@ -92,7 +95,8 @@ export const TreeViewBranchContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchControlProps
-  extends HTMLChakraProps<"div", ArkTreeView.BranchControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.BranchControlBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchControl = withContext<
@@ -103,7 +107,8 @@ export const TreeViewBranchControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchTriggerProps
-  extends HTMLChakraProps<"button", ArkTreeView.BranchTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkTreeView.BranchTriggerBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchTrigger = withContext<
@@ -114,7 +119,8 @@ export const TreeViewBranchTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchIndicatorProps
-  extends HTMLChakraProps<"div", ArkTreeView.BranchIndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.BranchIndicatorBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchIndicator = withContext<
@@ -125,7 +131,8 @@ export const TreeViewBranchIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchTextProps
-  extends HTMLChakraProps<"span", ArkTreeView.BranchTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkTreeView.BranchTextBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchText = withContext<
@@ -136,7 +143,8 @@ export const TreeViewBranchText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewBranchIndentGuideProps
-  extends HTMLChakraProps<"div", ArkTreeView.BranchIndentGuideBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.BranchIndentGuideBaseProps>,
     UnstyledProp {}
 
 export const TreeViewBranchIndentGuide = withContext<
@@ -147,8 +155,7 @@ export const TreeViewBranchIndentGuide = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewItemProps
-  extends HTMLChakraProps<"div", ArkTreeView.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTreeView.ItemBaseProps>, UnstyledProp {}
 
 export const TreeViewItem = withContext<HTMLDivElement, TreeViewItemProps>(
   ArkTreeView.Item,
@@ -159,7 +166,8 @@ export const TreeViewItem = withContext<HTMLDivElement, TreeViewItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkTreeView.ItemIndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.ItemIndicatorBaseProps>,
     UnstyledProp {}
 
 export const TreeViewItemIndicator = withContext<
@@ -170,7 +178,8 @@ export const TreeViewItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewItemTextProps
-  extends HTMLChakraProps<"span", ArkTreeView.ItemTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkTreeView.ItemTextBaseProps>,
     UnstyledProp {}
 
 export const TreeViewItemText = withContext<
@@ -181,8 +190,7 @@ export const TreeViewItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewLabelProps
-  extends HTMLChakraProps<"label", ArkTreeView.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkTreeView.LabelBaseProps>, UnstyledProp {}
 
 export const TreeViewLabel = withContext<HTMLLabelElement, TreeViewLabelProps>(
   ArkTreeView.Label,
@@ -193,8 +201,7 @@ export const TreeViewLabel = withContext<HTMLLabelElement, TreeViewLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewTreeProps
-  extends HTMLChakraProps<"div", ArkTreeView.TreeBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTreeView.TreeBaseProps>, UnstyledProp {}
 
 export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
   ArkTreeView.Tree,
@@ -205,7 +212,8 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TreeViewNodeCheckboxProps
-  extends HTMLChakraProps<"div", ArkTreeView.NodeCheckboxBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkTreeView.NodeCheckboxBaseProps>,
     UnstyledProp {}
 
 export const TreeViewNodeCheckbox = withContext<

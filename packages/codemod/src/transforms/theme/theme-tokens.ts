@@ -31,24 +31,9 @@ export default function transformer(file: FileInfo, _api: API) {
     }
   })
 
-  function shouldNotWrapInValue(keyName: string, ancestors: string[]): boolean {
-    // textStyles should never use {value} syntax
-    if (ancestors.includes("textStyles")) return true
-
-    // Responsive values (base, md, lg, etc.) inside textStyles
-    const responsiveKeys = ["base", "sm", "md", "lg", "xl", "2xl"]
-    if (responsiveKeys.includes(keyName) && ancestors.includes("textStyles")) {
-      return true
-    }
-
+  function shouldNotWrapInValue(keyName: string): boolean {
     // Keys that should be skipped from transformation entirely
-    const skipKeys = [
-      "mdx",
-      "layerStyles",
-      "components",
-      "variants",
-      "baseStyle",
-    ]
+    const skipKeys = ["mdx", "components", "variants", "baseStyle"]
     if (skipKeys.includes(keyName)) return true
 
     return false
@@ -62,14 +47,7 @@ export default function transformer(file: FileInfo, _api: API) {
       const value = prop.value
 
       // Skip certain keys entirely
-      const skipKeys = [
-        "styles",
-        "components",
-        "variants",
-        "baseStyle",
-        "mdx",
-        "layerStyles",
-      ]
+      const skipKeys = ["styles", "components", "variants", "baseStyle", "mdx"]
       if (skipKeys.includes(keyName)) return
 
       const currentAncestors = [...ancestors, keyName]
@@ -82,7 +60,7 @@ export default function transformer(file: FileInfo, _api: API) {
             const childKey = childProp.key?.name
 
             // Don't wrap responsive values in textStyles or other excluded cases
-            if (!shouldNotWrapInValue(childKey, currentAncestors)) {
+            if (!shouldNotWrapInValue(childKey)) {
               if (childProp.value && !transformedNodes.has(childProp.value)) {
                 const node = childProp.value
                 const hasValue =
@@ -107,6 +85,60 @@ export default function transformer(file: FileInfo, _api: API) {
           .forEach((decl) => {
             transformThemeObject(decl.node.init, currentAncestors)
           })
+      }
+    })
+  }
+
+  // Transform textStyles/layerStyles to wrap each style in { value: ... }
+  function transformStyleObject(styleNode: any) {
+    if (!isObject(styleNode)) return
+
+    styleNode.properties.forEach((styleProp: any) => {
+      const styleValue = styleProp.value
+
+      // Skip if not an object (shouldn't happen in valid styles)
+      if (!isObject(styleValue)) return
+
+      // Check if already wrapped in { value: ... }
+      const hasValue = styleValue.properties.some(
+        (p: any) => p.key?.name === "value" || p.key?.value === "value",
+      )
+
+      if (hasValue) return
+
+      // Check if this is a style definition (has CSS properties) or has description
+      const hasDescription = styleValue.properties.some(
+        (p: any) => p.key?.name === "description",
+      )
+
+      const cssProperties = styleValue.properties.filter(
+        (p: any) => p.key?.name !== "description",
+      )
+
+      // If we have CSS properties, wrap them in { value: ... }
+      if (cssProperties.length > 0) {
+        const newProperties: any[] = []
+
+        // Preserve description if it exists
+        if (hasDescription) {
+          const descProp = styleValue.properties.find(
+            (p: any) => p.key?.name === "description",
+          )
+          if (descProp) {
+            newProperties.push(descProp)
+          }
+        }
+
+        // Wrap CSS properties in value
+        newProperties.push(
+          j.property(
+            "init",
+            j.identifier("value"),
+            j.objectExpression(cssProperties),
+          ),
+        )
+
+        styleProp.value = j.objectExpression(newProperties)
       }
     })
   }
@@ -298,23 +330,27 @@ export default function transformer(file: FileInfo, _api: API) {
         properties.splice(stylesIndex, 1)
       }
 
-      // 2. Extract textStyles
+      // 2. Extract and transform textStyles
       const textStylesIndex = properties.findIndex(
         (p) => p.key?.name === "textStyles",
       )
       let textStyles = null
       if (textStylesIndex !== -1) {
         textStyles = properties[textStylesIndex].value
+        // Transform textStyles to wrap values in { value: ... }
+        transformStyleObject(textStyles)
         properties.splice(textStylesIndex, 1)
       }
 
-      // 3. Extract layerStyles
+      // 3. Extract and transform layerStyles
       const layerStylesIndex = properties.findIndex(
         (p) => p.key?.name === "layerStyles",
       )
       let layerStyles = null
       if (layerStylesIndex !== -1) {
         layerStyles = properties[layerStylesIndex].value
+        // Transform layerStyles to wrap values in { value: ... }
+        transformStyleObject(layerStyles)
         properties.splice(layerStylesIndex, 1)
       }
 
