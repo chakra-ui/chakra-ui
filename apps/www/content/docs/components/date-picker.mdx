@@ -32,10 +32,18 @@ import { DatePicker } from "@chakra-ui/react"
   <Portal>
     <DatePicker.Positioner>
       <DatePicker.Content>
-        <DatePicker.Header />
-        <DatePicker.DayView />
-        <DatePicker.MonthView />
-        <DatePicker.YearView />
+        <DatePicker.View view="day">
+          <DatePicker.Header />
+          <DatePicker.DayTable />
+        </DatePicker.View>
+        <DatePicker.View view="month">
+          <DatePicker.Header />
+          <DatePicker.MonthTable />
+        </DatePicker.View>
+        <DatePicker.View view="year">
+          <DatePicker.Header />
+          <DatePicker.YearTable />
+        </DatePicker.View>
       </DatePicker.Content>
     </DatePicker.Positioner>
   </Portal>
@@ -118,9 +126,17 @@ year).
 
 ### Form
 
-Integrate DatePicker within react-hook form for native form submission.
+Integrate DatePicker with native form validation and unavailable dates.
 
 <ExampleTabs name="date-picker-form" />
+
+---
+
+### React Hook Form
+
+Integrate DatePicker with React Hook Form using the Controller pattern.
+
+<ExampleTabs name="date-picker-with-hook-form" />
 
 ### Formatting & Parsing
 
@@ -198,6 +214,15 @@ Provide preset date options for quick selection.
 
 <ExampleTabs name="date-picker-presets" />
 
+---
+
+### Presets Sidebar
+
+A task-management style date picker with presets sidebar and calendar side by
+side.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
 ### Unavailable Dates
 
 Disable specific dates that cannot be selected (e.g., weekends, holidays).
@@ -217,6 +242,48 @@ Pass the `variant` prop to the `DatePicker.Root` to change the appearance of the
 date picker.
 
 <ExampleTabs name="date-picker-with-variants" />
+
+### Header Layout
+
+Customize the header layout by placing the range text first, followed by
+navigation buttons.
+
+<ExampleTabs name="date-picker-with-header-layout" />
+
+---
+
+### Month and Year Select
+
+Use dropdown selects for quick month/year navigation, useful for date of birth
+selection.
+
+<ExampleTabs name="date-picker-with-month-year-select" />
+
+---
+
+### With Time
+
+Combine date selection with a time input for datetime picking.
+
+<ExampleTabs name="date-picker-with-time" />
+
+---
+
+### Today Button
+
+Add a footer button to quickly select today's date.
+
+<ExampleTabs name="date-picker-with-today-button" />
+
+---
+
+### Input Group
+
+Integrate with InputGroup for custom input layouts with start/end elements.
+
+<ExampleTabs name="date-picker-with-input-group" />
+
+---
 
 ### Year Picker
 

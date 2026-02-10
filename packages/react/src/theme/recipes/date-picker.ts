@@ -23,24 +23,20 @@ const navTriggerStyle = defineStyle({
     opacity: 0.5,
   },
   _icon: {
-    width: "4",
-    height: "4",
+    boxSize: "4",
   },
 })
 
 // MonthSelect, YearSelect
 const selectStyle = defineStyle({
   height: "8",
-  px: "2",
+  ps: "2",
+  pe: "4",
   textStyle: "sm",
-  bg: "bg.subtle",
   borderWidth: "1px",
   borderRadius: "l1",
   outline: "none",
-  _focusVisible: {
-    borderColor: "colorPalette.solid",
-    boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-  },
+  focusVisibleRing: "inside",
 })
 
 export const datePickerSlotRecipe = defineSlotRecipe({
