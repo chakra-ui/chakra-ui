@@ -2684,7 +2684,7 @@ const Demo = () => (
 
 The `AccordionItem` render prop pattern (`{({ isExpanded }) => ...}`) has been
 replaced. Use the `Accordion.ItemContext` component or the
-`useAccordionItemContext` hook instead. The `isExpanded` property is now `open`.
+`useAccordionItemContext` hook instead. The `isExpanded` property is now `expanded`.
 
 Before:
 
@@ -2709,13 +2709,13 @@ After:
 ```tsx
 <Accordion.Item value="section-1">
   <Accordion.ItemContext>
-    {({ open }) => (
+    {({ expanded }) => (
       <>
         <Accordion.ItemTrigger>
           <Box flex="1" textAlign="left">
             Section title
           </Box>
-          {open ? <LuMinus /> : <LuPlus />}
+          {expanded ? <LuMinus /> : <LuPlus />}
         </Accordion.ItemTrigger>
         <Accordion.ItemContent>
           <Accordion.ItemBody>Content</Accordion.ItemBody>
