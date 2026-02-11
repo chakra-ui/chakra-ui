@@ -5,6 +5,60 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.33.0](./#3.33.0) - 2026-02-11
+
+### Added
+
+- **Scroll Area**: Add overflow CSS variables for scroll fade effects
+  (`--scroll-area-overflow-{x,y}-{start,end}`)
+
+- **Slider**: Add `thumbCollisionBehavior` prop to control collision handling
+  between thumbs (none, push, swap)
+
+- **Steps**: Add validation support with `isStepValid`, `isStepSkippable`, and
+  `onStepInvalid` props
+
+- **Tags Input**: Add `placeholder` prop that shows when no tags exist
+
+- **Tooltip**: Add `data-instant` attribute for instant animations when
+  switching between multiple tooltip triggers
+
+### Fixed
+
+- **Checkbox**: Fix individual checkbox props being overridden by
+  `CheckboxGroup` when rendering
+
+- **CodeBlock**: Fix overlay and floating elements scrolling out of view when
+  horizontally scrolling long code lines
+
+- **Color Picker**: Fix color not updating when selecting black shades in
+  controlled mode
+
+- **Dialog/Popover**: Fix issue where closing nested dialogs/popovers would
+  incorrectly close parent layers
+
+- **Menu**: Fix glitchy submenu behavior when hovering between trigger items
+  quickly
+
+- **Number Input**: Fix cursor positioning issues after clicking label or
+  scrubbing
+
+- **Pagination**: Fix next trigger not being disabled when count is 0
+
+- **Slider**: Fix thumb drag behavior from edge in `thumbAlignment="contain"`
+  mode
+
+- **Switch**: Fix `api.toggleChecked()` not working
+
+- **Textarea**: Fix change event not being emitted after clearing controlled
+  textarea
+
+- **Tree View**: Fix initial focus when first node/branch is disabled
+
+### Changed
+
+- **Codemod**: Refactor codemod to support more component props
+
 ## [3.32.0](./#3.32.0) - 2026-02-03
 
 ### Added
