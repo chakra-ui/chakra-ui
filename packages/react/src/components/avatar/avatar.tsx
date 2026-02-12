@@ -29,14 +29,11 @@ export { useAvatarStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarRootProviderBaseProps
-  extends
-    Assign<ArkAvatar.RootProviderBaseProps, SlotRecipeProps<"avatar">>,
+  extends Assign<ArkAvatar.RootProviderBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
 
-export interface AvatarRootProviderProps extends HTMLChakraProps<
-  "div",
-  AvatarRootProviderBaseProps
-> {}
+export interface AvatarRootProviderProps
+  extends HTMLChakraProps<"div", AvatarRootProviderBaseProps> {}
 
 export const AvatarRootProvider = withProvider<
   HTMLDivElement,
@@ -46,14 +43,11 @@ export const AvatarRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarRootBaseProps
-  extends
-    Assign<ArkAvatar.RootBaseProps, SlotRecipeProps<"avatar">>,
+  extends Assign<ArkAvatar.RootBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
 
-export interface AvatarRootProps extends HTMLChakraProps<
-  "div",
-  AvatarRootBaseProps
-> {}
+export interface AvatarRootProps
+  extends HTMLChakraProps<"div", AvatarRootBaseProps> {}
 
 export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   ArkAvatar.Root,
@@ -68,10 +62,8 @@ export const AvatarPropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AvatarFallbackProps extends HTMLChakraProps<
-  "div",
-  ArkAvatar.FallbackProps
-> {
+export interface AvatarFallbackProps
+  extends HTMLChakraProps<"div", ArkAvatar.FallbackProps> {
   /**
    * The name to derive the initials from.
    * If not provided, the fallback will display a generic icon.
@@ -105,7 +97,7 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
       <StyledFallback
         ref={ref}
         {...rest}
-        className={cx(props.className, classNames.fallback)}
+        className={cx(props.className, classNames?.fallback)}
         css={[styles.fallback, props.css]}
       >
         {getFallbackChildren(props)}
@@ -116,7 +108,8 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarImageProps
-  extends HTMLChakraProps<"img", ArkAvatar.ImageProps>, UnstyledProp {}
+  extends HTMLChakraProps<"img", ArkAvatar.ImageProps>,
+    UnstyledProp {}
 
 export const AvatarImage = withContext<HTMLImageElement, AvatarImageProps>(
   ArkAvatar.Image,
@@ -163,7 +156,8 @@ export interface AvatarStatusChangeDetails
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarGroupProps
-  extends GroupProps, SlotRecipeProps<"avatar"> {}
+  extends GroupProps,
+    SlotRecipeProps<"avatar"> {}
 
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {

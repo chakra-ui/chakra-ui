@@ -40,15 +40,12 @@ export { useNativeSelectStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NativeSelectRootBaseProps
-  extends
-    SlotRecipeProps<"nativeSelect">,
+  extends SlotRecipeProps<"nativeSelect">,
     UnstyledProp,
     NativeSelectBaseProps {}
 
-export interface NativeSelectRootProps extends HTMLChakraProps<
-  "div",
-  NativeSelectRootBaseProps
-> {}
+export interface NativeSelectRootProps
+  extends HTMLChakraProps<"div", NativeSelectRootBaseProps> {}
 
 export const NativeSelectRoot = withProvider<
   HTMLDivElement,
@@ -79,7 +76,8 @@ export const NativeSelectPropsProvider =
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface NativeSelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted>, UnstyledProp {
+  extends Omit<HTMLChakraProps<"select">, Omitted>,
+    UnstyledProp {
   placeholder?: string | undefined
 }
 
@@ -91,17 +89,17 @@ export const NativeSelectField = forwardRef<
 >(function NativeSelectField(props, ref) {
   const { children, placeholder, unstyled, ...restProps } = props
 
-  const { disabled, invalid } = useNativeSelectBaseProps()
+  const baseProps = useNativeSelectBaseProps()
   const styles = useNativeSelectStyles()
   const classNames = useClassNames()
 
   return (
     <StyledSelect
-      disabled={disabled}
-      data-invalid={dataAttr(invalid)}
+      disabled={baseProps?.disabled}
+      data-invalid={dataAttr(baseProps?.invalid)}
       {...(restProps as any)}
       ref={ref}
-      className={cx(classNames.field, props.className)}
+      className={cx(classNames?.field, props.className)}
       css={[!unstyled ? styles.field : undefined, props.css]}
     >
       {placeholder && <option value="">{placeholder}</option>}
@@ -113,19 +111,20 @@ export const NativeSelectField = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface NativeSelectIndicatorProps
-  extends HTMLChakraProps<"div">, UnstyledProp {}
+  extends HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
   const { unstyled, ...restProps } = props
   const styles = useNativeSelectStyles()
-  const { disabled, invalid } = useNativeSelectBaseProps()
+  const baseProps = useNativeSelectBaseProps()
   const classNames = useClassNames()
   return (
     <chakra.div
       {...restProps}
-      data-disabled={dataAttr(disabled)}
-      data-invalid={dataAttr(invalid)}
-      className={cx(classNames.indicator, props.className)}
+      data-disabled={dataAttr(baseProps?.disabled)}
+      data-invalid={dataAttr(baseProps?.invalid)}
+      className={cx(classNames?.indicator, props.className)}
       css={[!unstyled ? styles.indicator : undefined, props.css]}
     >
       {props.children ?? <ChevronDownIcon />}

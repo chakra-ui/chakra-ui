@@ -146,8 +146,7 @@ const RootBase = forwardRef<HTMLDivElement, RootBaseProps>(
 )
 
 export interface CodeBlockRootBaseProps
-  extends
-    Assign<
+  extends Assign<
       Omit<HTMLChakraProps<"div">, "lang" | keyof SharedRootProps>,
       SlotRecipeProps<"codeBlock">
     >,
@@ -236,8 +235,8 @@ const CodeText = forwardRef<HTMLElement, CodeBlockCodeTextProps>(
   function CodeText(props: any, ref) {
     const { code, language, meta } = useCodeBlockContext()
 
-    const { highlight } = useCodeBlockAdapterContext()
-    const highlighted = highlight?.({ code, language, meta })
+    const adapterContext = useCodeBlockAdapterContext()
+    const highlighted = adapterContext?.highlight?.({ code, language, meta })
 
     const codeContentProps = highlighted?.highlighted
       ? { dangerouslySetInnerHTML: { __html: highlighted.code } }
@@ -297,10 +296,8 @@ interface BaseCopyIndicatorBaseProps {
   children?: React.ReactNode
 }
 
-interface BaseCopyIndicatorProps extends Assign<
-  HTMLArkProps<"span">,
-  BaseCopyIndicatorBaseProps
-> {}
+interface BaseCopyIndicatorProps
+  extends Assign<HTMLArkProps<"span">, BaseCopyIndicatorBaseProps> {}
 
 const BaseCopyIndicator = forwardRef<HTMLDivElement, BaseCopyIndicatorProps>(
   function BaseCopyIndicator(props, ref) {
@@ -315,10 +312,8 @@ const BaseCopyIndicator = forwardRef<HTMLDivElement, BaseCopyIndicatorProps>(
   },
 )
 
-export interface CodeBlockCopyIndicatorProps extends Assign<
-  HTMLChakraProps<"span">,
-  BaseCopyIndicatorBaseProps
-> {}
+export interface CodeBlockCopyIndicatorProps
+  extends Assign<HTMLChakraProps<"span">, BaseCopyIndicatorBaseProps> {}
 
 export const CodeBlockCopyIndicator = withContext<
   HTMLDivElement,
@@ -361,7 +356,8 @@ const BaseCollapseTrigger = forwardRef<
   )
 })
 
-export interface CodeBlockCollapseTriggerProps extends HTMLChakraProps<"button"> {}
+export interface CodeBlockCollapseTriggerProps
+  extends HTMLChakraProps<"button"> {}
 
 export const CodeBlockCollapseTrigger = withContext<
   HTMLButtonElement,
@@ -388,10 +384,8 @@ const BaseCollapseIndicator = forwardRef<
   )
 })
 
-export interface CodeBlockCollapseIndicatorProps extends Assign<
-  HTMLChakraProps<"span">,
-  BaseCollapseIndicatorBaseProps
-> {}
+export interface CodeBlockCollapseIndicatorProps
+  extends Assign<HTMLChakraProps<"span">, BaseCollapseIndicatorBaseProps> {}
 
 export const CodeBlockCollapseIndicator = withContext<
   HTMLDivElement,
