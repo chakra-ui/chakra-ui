@@ -5,6 +5,9 @@ import {
   useContext as useReactContext,
 } from "react"
 
+function getErrorMessage(hook: string, provider: string) {
+  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within ${provider}`
+}
 export interface CreateContextOptions<T> {
   strict?: boolean | undefined
   hookName?: string | undefined
@@ -12,10 +15,6 @@ export interface CreateContextOptions<T> {
   errorMessage?: string | undefined
   name?: string | undefined
   defaultValue?: T | undefined
-}
-
-function getErrorMessage(hook: string, provider: string) {
-  return `${hook} returned \`undefined\`. Seems you forgot to wrap component within ${provider}`
 }
 
 type CreateContextReturn<T, HasValue extends boolean> = [
