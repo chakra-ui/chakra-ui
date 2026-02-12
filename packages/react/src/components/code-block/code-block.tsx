@@ -235,8 +235,8 @@ const CodeText = forwardRef<HTMLElement, CodeBlockCodeTextProps>(
   function CodeText(props: any, ref) {
     const { code, language, meta } = useCodeBlockContext()
 
-    const adapterContext = useCodeBlockAdapterContext()
-    const highlighted = adapterContext?.highlight?.({ code, language, meta })
+    const { highlight } = useCodeBlockAdapterContext()
+    const highlighted = highlight?.({ code, language, meta })
 
     const codeContentProps = highlighted?.highlighted
       ? { dangerouslySetInnerHTML: { __html: highlighted.code } }
