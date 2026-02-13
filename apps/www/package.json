@@ -18,7 +18,8 @@
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "generate:theme": "pnpm tsx scripts/generate-theme.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
-    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme"
+    "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme",
+    "typegen": "pnpm exec chakra typegen ./app/theme.ts --outdir ./typings"
   },
   "dependencies": {
     "@ark-ui/react": "5.31.0",
@@ -50,6 +51,7 @@
     "velite": "0.3.1"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "workspace:*",
     "@svgr/core": "8.1.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^24",
