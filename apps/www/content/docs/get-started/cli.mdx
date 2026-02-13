@@ -74,6 +74,65 @@ chakra typegen src/theme.ts --watch
 chakra typegen src/theme.ts --strict
 ```
 
+### When to run typegen
+
+The `typegen` command works in both **development** and **CI/CD**. It is not
+limited to local use—run it everywhere your project is built or installed so
+generated types stay up to date.
+
+### Workflow integration
+
+Add `typegen` to the `postinstall` or `prepare` script of the frontend
+application that uses Chakra UI. This ensures types are generated:
+
+- After `npm install` / `pnpm install` / `bun install` (local development)
+- During CI/CD when dependencies are installed before build
+- In production builds when running `npm ci` or similar
+
+```json
+{
+  "scripts": {
+    "postinstall": "chakra typegen src/theme.ts",
+    "prepare": "chakra typegen src/theme.ts"
+  }
+}
+```
+
+:::tip
+
+Use `postinstall` if you want types generated after every install. Use `prepare`
+if you also need it to run when the package is packed (e.g. for publishing). Use
+one or the other to avoid running typegen twice.
+
+:::
+
+### Monorepo setup
+
+In a monorepo (e.g. pnpm workspaces), run `typegen` **in the package that
+depends on Chakra UI**—typically your frontend application—not at the monorepo
+root.
+
+1. Install `@chakra-ui/cli` as a dev dependency in the frontend package.
+2. Add the `postinstall` or `prepare` script to that package's `package.json`.
+
+```json
+// packages/frontend/package.json
+{
+  "scripts": {
+    "postinstall": "chakra typegen src/theme.ts"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "..."
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "..."
+  }
+}
+```
+
+When you run `pnpm install` at the root, the frontend package's `postinstall`
+runs and generates types in the correct package.
+
 ## `chakra snippet`
 
 Generates useful component compositions that boost your development speed.
@@ -150,7 +209,7 @@ To use Pro blocks, you need a Chakra UI Pro subscription and API key:
 
 ## `chakra eject`
 
-Generated the file(s) that contain the default theme tokens and recipes so you
+Generates the file(s) that contain the default theme tokens and recipes so you
 can have full control over them.
 
 ```bash
@@ -159,6 +218,12 @@ chakra eject --outdir src/theme
 ```
 
 ## FAQ
+
+### Is typegen only for local development?
+
+No. The `typegen` command works in both development and CI/CD. Add it to
+`postinstall` or `prepare` so it runs after installs—locally and in your CI
+pipeline.
 
 ### Autocomplete for custom tokens not working?
 
