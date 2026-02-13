@@ -341,6 +341,7 @@
   "field-closed-component",
   "field-horizontal",
   "field-with-disabled",
+  "field-with-error-icon",
   "field-with-error-text",
   "field-with-helper-text",
   "field-with-native-select",
