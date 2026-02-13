@@ -63,7 +63,9 @@ const config = defineConfig({
 export default createSystem(defaultConfig, config)
 ```
 
-After updating the theme, run this command to generate the animations.
+After updating the theme, run the `typegen` command to generate the animation
+types. See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to run
+typegen in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./theme.ts

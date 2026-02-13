@@ -40,14 +40,15 @@ export default createSystem(defaultConfig, config)
 
 ## Using Semantic Tokens
 
-After defining semantic tokens, we recommend using the Chakra CLI to generate
-theme typings for your tokens.
+After defining semantic tokens, run the Chakra CLI to generate theme typings.
+See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to run typegen
+in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./src/theme.ts
 ```
 
-This will provide autocompletion for your tokens in your editor.
+This provides autocompletion for your tokens in the editor
 
 ```tsx
 <Box color="danger">Hello World</Box>
