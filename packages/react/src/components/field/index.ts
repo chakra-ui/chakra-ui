@@ -1,21 +1,21 @@
 export {
-  FieldRoot,
-  FieldPropsProvider,
-  FieldLabel,
-  FieldHelperText,
-  FieldErrorText,
   FieldErrorIcon,
+  FieldErrorText,
+  FieldHelperText,
+  FieldLabel,
+  FieldPropsProvider,
   FieldRequiredIndicator,
+  FieldRoot,
   useFieldStyles,
 } from "./field"
 
 export type {
-  FieldRootProps,
-  FieldLabelProps,
-  FieldHelperTextProps,
-  FieldErrorTextProps,
   FieldErrorIconProps,
+  FieldErrorTextProps,
+  FieldHelperTextProps,
+  FieldLabelProps,
   FieldRequiredIndicatorProps,
+  FieldRootProps,
 } from "./field"
 
 export { useFieldContext } from "@ark-ui/react/field"

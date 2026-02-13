@@ -17,6 +17,8 @@ export { FieldHorizontal as Horizontal } from "compositions/examples/field-horiz
 export { FieldWithDisabled as Disabled } from "compositions/examples/field-with-disabled"
 export { FieldWithErrorText as ErrorText } from "compositions/examples/field-with-error-text"
 export { FieldWithHelperText as HelperText } from "compositions/examples/field-with-helper-text"
+export { FieldWithIcon as ErrorIcon } from "compositions/examples/field-with-icon"
+export { FieldWithIconSizes as ErrorIconSizes } from "compositions/examples/field-with-icon-sizes"
 export { FieldWithNativeSelect as NativeSelect } from "compositions/examples/field-with-native-select"
 export { FieldWithOptional as Optional } from "compositions/examples/field-with-optional"
 export { FieldWithRequired as Required } from "compositions/examples/field-with-required"
