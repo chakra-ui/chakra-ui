@@ -69,14 +69,14 @@
     "@testing-library/user-event": "14.6.1",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "24.10.12",
-    "@types/react": "19.2.13",
+    "@types/node": "24.10.13",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.54.0",
     "@typescript-eslint/parser": "8.54.0",
     "consola": "^3.4.2",
     "cross-env": "7.0.3",
-    "dotenv": "17.2.3",
+    "dotenv": "17.3.1",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-react": "1.1.7",
@@ -119,7 +119,7 @@
       "react-dom": "19.2.4"
     }
   },
-  "packageManager": "pnpm@10.29.2",
+  "packageManager": "pnpm@10.29.3",
   "engines": {
     "node": ">=20.x"
   }
