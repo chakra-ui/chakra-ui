@@ -1,0 +1,86 @@
+---
+title: Chakra UI v3.32 - Marquee and Codemod
+description:
+  "Chakra UI v3.32 introduces the Marquee component and a codemod package for
+  automated v2 to v3 migration"
+type: release
+version: "3.32"
+authors: ["esther"]
+publishedAt: "2026-02-09"
+---
+
+We just shipped Chakra UI v3.32, and we're really excited about this one.
+
+This release adds the **[Marquee](/docs/components/marquee)** component—a
+long-awaited way to build smooth, infinitely scrolling content—and introduces
+**[@chakra-ui/codemod](/docs/get-started/migration)**, a brand-new package that
+automates the migration from Chakra UI v2 to v3.
+
+We also landed a handful of important bug fixes for backdrop blur, collapse
+animations, z-index stacking, and SSR breakpoints. Here's everything you need to
+know.
+
+## Marquee
+
+If you've ever needed a scrolling ticker for client logos, testimonials, or
+announcements, you know how fiddly it can be to get right. The new
+[Marquee](/docs/components/marquee) component takes care of all of that—infinite
+scrolling, speed, direction, auto-fill, pause on hover—so you can focus on the
+content.
+
+<ExampleTabs name="marquee-auto-fill" />
+
+### Testimonials
+
+You can also pair Marquee with Cards to get a scrolling testimonial wall. Set
+`pauseOnInteraction` so users can hover to read.
+
+<ExampleTabs name="marquee-with-testimonials" />
+
+## Codemod: v2 → v3 in One Command
+
+So, you've been putting off migrating from Chakra UI v2 to v3? Well, this one is
+for you! We shipped `@chakra-ui/codemod`—a new package with **50+ automated
+transforms** that does the heavy lifting for you.
+
+```bash
+npx @chakra-ui/codemod upgrade
+```
+
+Here's what it covers:
+
+- **Components** — renames, restructured APIs, and changed props across 30+
+  components (Accordion, Alert, Button, Dialog, Drawer, Menu, Select, Tabs, and
+  many more)
+- **Removed APIs** — swaps `forwardRef`, `useColorMode`, `StyleConfig`,
+  `CircularProgress`, and `StackDivider` for their v3 equivalents
+- **Props** — migrates `colorScheme` → `colorPalette`, boolean props, casing,
+  gradients, spacing, and `as` prop patterns
+- **Theme** — converts `extendTheme` to the new `createSystem` API
+- **Types** — updates TypeScript system-type imports
+
+It runs interactively, checks for a clean git tree, and supports `--dry` mode so
+you can preview changes before committing.
+
+## Bug Fixes
+
+- **Backdrop Blur**: `backdropFilter="auto"` with `backdropBlur` now works on
+  `Dialog.Backdrop`
+- **Collapse Width**: the `collapse-width` keyframe was animating `height`
+  instead of `width`—fixed
+- **Z-Index Stacking**: `Dialog`, `Drawer`, `Menu`, and `HoverCard` now share a
+  unified z-index so they stack correctly when nested
+- **SSR Breakpoints**: `useBreakpointValue` now respects the `base` value during
+  server-side rendering
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+Everything in this release is backward compatible—no breaking changes or
+migration needed. Just upgrade and start building.
+
+Share what you build with us on [Twitter](https://twitter.com/chakra_ui) or in
+our [Discord](https://chakra-ui.com/discord).

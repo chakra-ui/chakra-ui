@@ -11,10 +11,10 @@ Custom breakpoints are defined in the `breakpoints` property of your theme.
 const config = defineConfig({
   theme: {
     breakpoints: {
-      xl: "80em" ,
-      "2xl": "96em" ,
-      "3xl": "120em" ,
-      "4xl": "160em" ,
+      xl: "80em",
+      "2xl": "96em",
+      "3xl": "120em",
+      "4xl": "160em",
     },
   },
 })
@@ -43,10 +43,12 @@ export function Provider(props: ColorModeProviderProps) {
 }
 ```
 
-Next, you run the CLI `typegen` command to generate the types.
+Next, run the CLI typegen command to generate the types. See the
+[CLI docs](/docs/get-started/cli#chakra-typegen) for how to run typegen in
+postinstall, CI, and monorepos.
 
 ```bash
-npx chakra typegen ./components/theme.ts
+npx @chakra-ui/cli typegen ./components/theme.ts
 ```
 
 > Note: You might need to restart your TypeScript server for the types to be

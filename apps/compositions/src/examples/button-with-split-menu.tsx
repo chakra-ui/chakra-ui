@@ -1,15 +1,21 @@
 import { Button, Group, IconButton, Menu, Portal } from "@chakra-ui/react"
 import { LuChevronDown } from "react-icons/lu"
 
-export const ButtonWithMenu = () => {
+const menuItems = [
+  { label: "Save as Draft", value: "draft" },
+  { label: "Save & Publish", value: "publish" },
+  { label: "Save & Schedule", value: "schedule" },
+]
+
+export const ButtonWithSplitMenu = () => {
   return (
     <Menu.Root positioning={{ placement: "bottom-end" }}>
       <Group attached>
-        <Button size="sm" variant="outline">
-          Accept
+        <Button variant="outline" size="sm">
+          Save
         </Button>
         <Menu.Trigger asChild>
-          <IconButton size="sm" variant="outline">
+          <IconButton variant="outline" size="sm">
             <LuChevronDown />
           </IconButton>
         </Menu.Trigger>
@@ -17,8 +23,11 @@ export const ButtonWithMenu = () => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item value="all">Accept All</Menu.Item>
-            <Menu.Item value="selected">Accept Selected</Menu.Item>
+            {menuItems.map((item) => (
+              <Menu.Item key={item.value} value={item.value}>
+                {item.label}
+              </Menu.Item>
+            ))}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>

@@ -212,16 +212,16 @@ export default createSystem(defaultConfig, config)
 
 ## TypeScript
 
-When you configure the system properties (like `colors`, `space`, `fonts`,
-etc.), the CLI can be used to generate type definitions for them.
+When you configure the system (colors, space, fonts, etc.), the CLI generates
+type definitions to keep your theme in sync with `@chakra-ui/react`. This
+provides a type-safe API and autocompletion.
+
+See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to run typegen
+in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./theme.ts
 ```
-
-This will update the internal types in the `@chakra-ui/react` package, and make
-sure they are in sync with the theme. Providing a type-safe API and delightful
-experience for developers.
 
 ## System
 
