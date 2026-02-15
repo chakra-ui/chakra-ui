@@ -1,5 +1,7 @@
 # @chakra-ui/codemod
 
+## 3.33.1
+
 ## 3.33.0
 
 ### Patch Changes

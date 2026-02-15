@@ -1,5 +1,14 @@
 # @chakra-ui/react
 
+## 3.33.1
+
+### Patch Changes
+
+- [`59bf8f6`](https://github.com/chakra-ui/chakra-ui/commit/59bf8f6a63ba70481160556f16113deb143c34f5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix
+  `Field.ErrorIcon` default size so it stays aligned with error text instead of
+  expanding when the error area is full width.
+
 ## 3.33.0
 
 ### Minor Changes
