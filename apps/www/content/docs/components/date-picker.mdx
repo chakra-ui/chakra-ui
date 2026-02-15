@@ -1,0 +1,321 @@
+---
+title: DatePicker Component
+description:
+  A comprehensive guide to using the flexible DatePicker component for selecting
+  single or multiple dates with advanced features including formatting,
+  localization, range selection, and custom styling.
+links:
+  source: components/date-picker
+  storybook: components-date-picker--basic
+  recipe: date-picker
+---
+
+<ExampleTabs name="date-picker-basic" />
+
+## Usage
+
+```tsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+```tsx
+<DatePicker.Root>
+  <DatePicker.Label />
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.IndicatorGroup>
+      <DatePicker.Trigger>
+        <LuCalendar />
+      </DatePicker.Trigger>
+    </DatePicker.IndicatorGroup>
+  </DatePicker.Control>
+  <Portal>
+    <DatePicker.Positioner>
+      <DatePicker.Content>
+        <DatePicker.View view="day">
+          <DatePicker.Header />
+          <DatePicker.DayTable />
+        </DatePicker.View>
+        <DatePicker.View view="month">
+          <DatePicker.Header />
+          <DatePicker.MonthTable />
+        </DatePicker.View>
+        <DatePicker.View view="year">
+          <DatePicker.Header />
+          <DatePicker.YearTable />
+        </DatePicker.View>
+      </DatePicker.Content>
+    </DatePicker.Positioner>
+  </Portal>
+</DatePicker.Root>
+```
+
+The simplest implementation of DatePicker allows users to select a single date
+with minimal configuration.
+
+<ExampleTabs name="date-picker-basic" />
+
+## Examples
+
+### Button
+
+Replace the default trigger with a styled custom button for better UI
+integration.
+
+<ExampleTabs name="date-picker-with-button" />
+
+**Why use `asChild`?** The `asChild` prop allows you to pass your own button
+component while preserving DatePicker's functionality. This is useful when you
+want to match your design system's button styles.
+
+---
+
+### Clear Icon
+
+Allow users to easily reset their selection with a clear trigger.
+
+<ExampleTabs name="date-picker-with-clear" />
+
+**Benefits:**
+
+- Improves user experience by providing a quick reset option
+- Reduces the need to manually delete entered dates
+
+---
+
+### Controlled
+
+Use 'Datepicker context' to control the date picker value programmatically.
+
+<ExampleTabs name="date-picker-controlled" />
+
+**Why use controlled components?**
+
+- Sync date selection with other form fields
+- Trigger side effects when dates change
+- Implement custom validation logic
+- Reset or update dates programmatically
+
+---
+
+### Default Value
+
+Pre-populate the date picker with an initial date value.
+
+<ExampleTabs name="date-picker-default-value" />
+
+**Date Format:** Dates must be in ISO 8601 format (`YYYY-MM-DD`) for proper
+parsing.
+
+---
+
+### Default View
+
+Set the initial view that displays when the calendar opens (day, month, or
+year).
+
+<ExampleTabs name="date-picker-default-view" />
+
+**Available views:**
+
+- `"day"` (default) - Shows individual days in a calendar grid
+- `"month"` - Shows 12 months for year selection
+- `"year"` - Shows a range of years for selection
+
+---
+
+### Form
+
+Integrate DatePicker with native form validation and unavailable dates.
+
+<ExampleTabs name="date-picker-form" />
+
+---
+
+### React Hook Form
+
+Integrate DatePicker with React Hook Form using the Controller pattern.
+
+<ExampleTabs name="date-picker-with-hook-form" />
+
+### Formatting & Parsing
+
+Control how dates are displayed and interpreted.
+
+<ExampleTabs name="date-picker-format-parse" />
+
+**Common format options:**
+
+### Inline Display
+
+Display the calendar inline without a popup, always visible on the page.
+
+<ExampleTabs name="date-picker-inline" />
+
+### Localization
+
+Display the calendar in different languages with locale-specific formatting.
+
+<ExampleTabs name="date-picker-locale" />
+
+### Min/Max
+
+Restrict date selection to a specific date range.
+
+<ExampleTabs name="date-picker-min-max" />
+
+### Month Inline Range
+
+Allow users to select a specific inline calendar range.
+
+<ExampleTabs name="date-picker-inline-range-selection" />
+
+### Month Range Selection
+
+Allow users to select a specific month rather than a single day.
+
+<ExampleTabs name="date-picker-month-range" />
+
+**Date format for months:** Use `YYYY-MM` format (e.g., `"2026-01"` for January
+2026).
+
+### Multiple Inline Date Selection
+
+Allow users to select inline multiple dates, not a range.
+
+<ExampleTabs name="date-picker-inline-multi-selection" />
+### Multiple Date Selection
+
+Allow users to select multiple individual dates, not a range.
+
+<ExampleTabs name="date-picker-multi-selection" />
+
+### Display Multiple Months
+
+Show 2 or more months simultaneously for easier date range selection.
+
+<ExampleTabs name="date-picker-multiple-months" />
+
+### Date Range Selection
+
+Allow users to select a start and end date.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+### Outside Icon
+
+Create a custom button trigger with an icon.
+
+<ExampleTabs name="date-picker-with-outside-icon" />
+
+### Quick Select Presets
+
+Provide preset date options for quick selection.
+
+<ExampleTabs name="date-picker-presets" />
+
+---
+
+### Presets Sidebar
+
+A task-management style date picker with presets sidebar and calendar side by
+side.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
+### Unavailable Dates
+
+Disable specific dates that cannot be selected (e.g., weekends, holidays).
+
+<ExampleTabs name="date-picker-unavailable" />
+
+### Sizes
+
+Pass the `size` prop to the `DatePicker.Root` to change the size of the date
+picker.
+
+<ExampleTabs name="date-picker-with-sizes" />
+
+### Visual Variants
+
+Pass the `variant` prop to the `DatePicker.Root` to change the appearance of the
+date picker.
+
+<ExampleTabs name="date-picker-with-variants" />
+
+### Header Layout
+
+Customize the header layout by placing the range text first, followed by
+navigation buttons.
+
+<ExampleTabs name="date-picker-with-header-layout" />
+
+---
+
+### Month and Year Select
+
+Use dropdown selects for quick month/year navigation, useful for date of birth
+selection.
+
+<ExampleTabs name="date-picker-with-month-year-select" />
+
+---
+
+### With Time
+
+Combine date selection with a time input for datetime picking.
+
+<ExampleTabs name="date-picker-with-time" />
+
+---
+
+### Today Button
+
+Add a footer button to quickly select today's date.
+
+<ExampleTabs name="date-picker-with-today-button" />
+
+---
+
+### Input Group
+
+Integrate with InputGroup for custom input layouts with start/end elements.
+
+<ExampleTabs name="date-picker-with-input-group" />
+
+---
+
+### Year Picker
+
+Allow users to select a year from a range.
+
+<ExampleTabs name="date-picker-year-picker" />
+
+### Year Range Selection
+
+Select a year within a specific range.
+
+<ExampleTabs name="date-picker-year-picker-range" />
+
+### Provider Configuration
+
+Set global configuration for all DatePickers within a subtree.
+
+<ExampleTabs name="date-picker-root-provider" />
+
+## Props
+
+### Root
+
+<PropTable component="DatePicker" part="Root" />
+
+### Item
+
+<PropTable component="DatePicker" part="Item" />
+
+## Explorer
+
+Explore the `DatePicker` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="date-picker-explorer-demo" />

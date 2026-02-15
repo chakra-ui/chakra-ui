@@ -1,5 +1,10 @@
-import type { Node, ObjectExpression, Property } from "jscodeshift"
-import type { API, FileInfo } from "jscodeshift"
+import type {
+  API,
+  FileInfo,
+  Node,
+  ObjectExpression,
+  Property,
+} from "jscodeshift"
 import { createParserFromPath } from "../../utils/parser"
 
 function isObjectExpression(node: Node): node is ObjectExpression {
