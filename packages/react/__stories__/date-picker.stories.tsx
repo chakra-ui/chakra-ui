@@ -50,3 +50,4 @@ export { DatePickerWithHeaderLayout as HeaderLayout } from "compositions/example
 export { DatePickerWithTodayButton as TodayButton } from "compositions/examples/date-picker-with-today-button"
 export { DatePickerWithInputGroup as InputGroup } from "compositions/examples/date-picker-with-input-group"
 export { DatePickerWithPresetsSidebar as PresetsSidebar } from "compositions/examples/date-picker-with-presets-sidebar"
+export { DatePickerWithTimeGrid as TimeGrid } from "compositions/examples/date-picker-with-time-grid"
