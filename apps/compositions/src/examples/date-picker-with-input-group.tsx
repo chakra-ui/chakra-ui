@@ -5,7 +5,7 @@ import { LuCalendar, LuChevronsUpDown } from "react-icons/lu"
 
 export const DatePickerWithInputGroup = () => {
   return (
-    <DatePicker.Root maxWidth="24rem">
+    <DatePicker.Root maxWidth="20rem">
       <DatePicker.Label>Date</DatePicker.Label>
       <InputGroup
         as={DatePicker.Control}

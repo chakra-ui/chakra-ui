@@ -13,7 +13,7 @@ export const DatePickerYearPickerRange = () => {
       format={format}
       parse={parse}
       placeholder="yyyy"
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Select year range</DatePicker.Label>
       <DatePicker.Control>

@@ -5,17 +5,18 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerWithSizes = () => {
   return (
-    <Stack gap={4} maxWidth="24rem">
+    <Stack gap={4} maxWidth="20rem">
       <For each={["xs", "sm", "md", "lg", "xl"]}>
         {(size) => (
           <DatePicker.Root key={size} size={size}>
             <DatePicker.Label>Select date - {size}</DatePicker.Label>
             <DatePicker.Control>
               <DatePicker.Input />
-              <DatePicker.Trigger>
-                <LuCalendar />
-              </DatePicker.Trigger>
-              <DatePicker.ClearTrigger />
+              <DatePicker.IndicatorGroup>
+                <DatePicker.Trigger>
+                  <LuCalendar />
+                </DatePicker.Trigger>
+              </DatePicker.IndicatorGroup>
             </DatePicker.Control>
             <Portal>
               <DatePicker.Positioner>

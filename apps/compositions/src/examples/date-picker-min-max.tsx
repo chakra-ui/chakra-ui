@@ -8,7 +8,7 @@ export const DatePickerMinMax = () => {
     <DatePicker.Root
       min={parseDate("2025-03-05")}
       max={parseDate("2025-03-31")}
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Date of creation</DatePicker.Label>
       <DatePicker.Control>

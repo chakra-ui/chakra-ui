@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerWithPlacement = () => {
   return (
-    <DatePicker.Root positioning={{ placement: "top-start" }} maxWidth="24rem">
+    <DatePicker.Root positioning={{ placement: "top-start" }} maxWidth="20rem">
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />

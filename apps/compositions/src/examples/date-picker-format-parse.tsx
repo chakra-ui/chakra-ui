@@ -9,7 +9,7 @@ export const DatePickerFormatParse = () => {
       format={format}
       parse={parse}
       placeholder="dd/mm/yy"
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Label</DatePicker.Label>
       <DatePicker.Control>

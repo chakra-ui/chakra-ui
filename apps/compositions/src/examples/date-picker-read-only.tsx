@@ -8,7 +8,7 @@ export const DatePickerReadOnly = () => {
     <DatePicker.Root
       readOnly
       defaultValue={[parseDate("2025-03-15")]}
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>

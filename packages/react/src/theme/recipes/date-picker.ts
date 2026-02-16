@@ -9,8 +9,6 @@ const navTriggerStyle = defineStyle({
   boxSize: "8",
   borderRadius: "l2",
   color: "fg",
-  transitionDuration: "normal",
-  transitionProperty: "bg, border-color",
   focusVisibleRing: "inside",
   _hover: {
     bg: "colorPalette.subtle",
@@ -85,15 +83,12 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       px: "var(--datepicker-input-px)",
       textStyle: "sm",
       bg: "transparent",
-      borderWidth: "1px",
       borderRadius: "l2",
       outline: "0",
       appearance: "none",
       color: "fg",
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
-      focusVisibleRing: "inside",
-      focusRingColor: "var(--focus-color)",
       _placeholder: {
         color: "fg.muted",
       },
@@ -258,6 +253,12 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       "&[data-range-start][data-range-end]": {
         borderRadius: "l2",
       },
+      "&[data-selected][data-in-range]": {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        borderRadius: "l2",
+        _hover: { bg: "colorPalette.solid" },
+      },
       _disabled: {
         opacity: 0.4,
       },
@@ -337,6 +338,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           bg: "transparent",
           borderWidth: "1px",
           borderColor: "border",
+          focusVisibleRing: "inside",
           focusRingColor: "var(--focus-color)",
         },
       },
@@ -345,6 +347,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "transparent",
           bg: "bg.muted",
+          focusVisibleRing: "inside",
           focusRingColor: "var(--focus-color)",
         },
       },
@@ -363,6 +366,9 @@ export const datePickerSlotRecipe = defineSlotRecipe({
               boxShadow: "0px 1px 0px 0px var(--error-color)",
             },
           },
+        },
+        indicatorGroup: {
+          insetEnd: "0",
         },
       },
     },

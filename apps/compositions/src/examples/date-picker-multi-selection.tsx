@@ -6,7 +6,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerMultiSelection = () => {
   return (
-    <DatePicker.Root selectionMode="multiple" maxWidth="24rem">
+    <DatePicker.Root selectionMode="multiple" maxWidth="20rem">
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control pr={4}>
         <Wrap gap="2">

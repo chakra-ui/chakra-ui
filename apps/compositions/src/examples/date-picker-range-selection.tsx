@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerRangeSelection = () => {
   return (
-    <DatePicker.Root selectionMode="range" maxWidth="24rem">
+    <DatePicker.Root selectionMode="range" maxWidth="20rem">
       <DatePicker.Label>Select range</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input index={0} />

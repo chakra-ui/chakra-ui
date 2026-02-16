@@ -9,7 +9,7 @@ export const DatePickerWithField = () => {
   const toggleInvalid = () => setInvalid((prev) => !prev)
 
   return (
-    <Stack gap="6" align="flex-start" maxWidth="24rem">
+    <Stack gap="6" align="flex-start" maxWidth="20rem">
       <Button onClick={toggleInvalid} variant="outline" size="sm">
         Toggle Invalid
       </Button>

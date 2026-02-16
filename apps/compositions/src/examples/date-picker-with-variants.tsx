@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerWithVariants = () => {
   return (
-    <Stack gap={4} maxWidth="24rem">
+    <Stack gap={4} maxWidth="20rem">
       <For each={["outline", "subtle", "flushed"]}>
         {(variant) => (
           <DatePicker.Root key={variant} variant={variant}>

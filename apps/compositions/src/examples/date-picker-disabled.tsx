@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerDisabled = () => {
   return (
-    <DatePicker.Root disabled maxWidth="24rem">
+    <DatePicker.Root disabled maxWidth="20rem">
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />

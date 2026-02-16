@@ -55,7 +55,7 @@ export const DatePickerWithTime = () => {
       value={value}
       onValueChange={onDateChange}
       closeOnSelect={false}
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Date and time</DatePicker.Label>
       <DatePicker.Control>

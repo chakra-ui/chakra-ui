@@ -12,7 +12,7 @@ export const DatePickerMonthPicker = () => {
       defaultView="month"
       minView="month"
       placeholder="mm/yyyy"
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Select month</DatePicker.Label>
       <DatePicker.Control>

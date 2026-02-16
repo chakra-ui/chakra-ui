@@ -6,7 +6,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerUnavailable = () => {
   return (
-    <DatePicker.Root isDateUnavailable={isWeekend} maxWidth="24rem">
+    <DatePicker.Root isDateUnavailable={isWeekend} maxWidth="20rem">
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Input />

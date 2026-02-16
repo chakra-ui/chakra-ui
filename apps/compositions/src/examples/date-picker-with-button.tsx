@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerWithButton = () => {
   return (
-    <DatePicker.Root maxWidth="24rem">
+    <DatePicker.Root maxWidth="20rem">
       <DatePicker.Label>Date of birth</DatePicker.Label>
       <DatePicker.Control>
         <DatePicker.Trigger asChild unstyled>

@@ -12,7 +12,7 @@ export const DatePickerYearPicker = () => {
       defaultView="year"
       minView="year"
       placeholder="yyyy"
-      maxWidth="24rem"
+      maxWidth="20rem"
     >
       <DatePicker.Label>Select year</DatePicker.Label>
       <DatePicker.Control>
