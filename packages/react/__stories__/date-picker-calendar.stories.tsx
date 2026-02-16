@@ -13,6 +13,7 @@ export default {
 } satisfies Meta
 
 export { DatePickerInline as Inline } from "compositions/examples/date-picker-inline"
+export { DatePickerInlineHideOutsideDays as HideOutsideDays } from "compositions/examples/date-picker-inline-hide-outside-days"
 export { DatePickerInlineControlled as Controlled } from "compositions/examples/date-picker-inline-controlled"
 export { DatePickerInlineDefaultValue as DefaultValue } from "compositions/examples/date-picker-inline-default-value"
 export { DatePickerInlineRangeSelection as RangeSelection } from "compositions/examples/date-picker-inline-range-selection"

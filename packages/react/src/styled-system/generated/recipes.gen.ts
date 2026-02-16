@@ -610,6 +610,7 @@ export interface DatePickerVariant {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
   /** @default "outline" */
   variant?: "outline" | "subtle" | "flushed" | undefined
+  hideOutsideDays?: boolean | undefined
 }
 
 export type DatePickerVariantProps = {

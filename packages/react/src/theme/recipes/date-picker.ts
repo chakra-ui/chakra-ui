@@ -90,24 +90,16 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       outline: "0",
       appearance: "none",
       color: "fg",
-      transitionDuration: "normal",
-      transitionProperty: "border-color, box-shadow",
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
+      focusVisibleRing: "inside",
+      focusRingColor: "var(--focus-color)",
       _placeholder: {
         color: "fg.muted",
       },
-      _focus: {
-        borderColor: "var(--focus-color)",
-        boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-      },
-      focusVisibleRing: "inside",
       _invalid: {
+        focusRingColor: "var(--error-color)",
         borderColor: "var(--error-color)",
-        _focus: {
-          borderColor: "var(--error-color)",
-          boxShadow: "0 0 0 1px var(--colors-fg-error)",
-        },
       },
     },
 
@@ -267,10 +259,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         borderRadius: "l2",
       },
       _disabled: {
-        color: "fg.muted",
         opacity: 0.4,
-        cursor: "not-allowed",
-        _hover: { bg: "transparent" },
       },
     },
 
@@ -332,21 +321,31 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       },
     },
 
+    hideOutsideDays: {
+      true: {
+        tableCellTrigger: {
+          "&[data-outside-range]": {
+            visibility: "hidden",
+          },
+        },
+      },
+    },
+
     variant: {
       outline: {
         input: {
-          borderWidth: "1px",
           bg: "transparent",
+          borderWidth: "1px",
+          borderColor: "border",
+          focusRingColor: "var(--focus-color)",
         },
       },
       subtle: {
         input: {
-          borderWidth: "0px",
-          bg: "bg.subtle",
-          _focus: {
-            bg: "bg.muted",
-            boxShadow: "0 0 0 1px var(--colors-color-palette-solid)",
-          },
+          borderWidth: "1px",
+          borderColor: "transparent",
+          bg: "bg.muted",
+          focusRingColor: "var(--focus-color)",
         },
       },
       flushed: {

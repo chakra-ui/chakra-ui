@@ -83,6 +83,18 @@ Use the `variant` prop to change the visual style of the date picker.
 
 <ExampleTabs name="date-picker-with-variants" />
 
+### Disabled
+
+Use the `disabled` prop to prevent user interaction with the date picker.
+
+<ExampleTabs name="date-picker-disabled" />
+
+### Read Only
+
+Use the `readOnly` prop to prevent modification while keeping the value visible.
+
+<ExampleTabs name="date-picker-read-only" />
+
 ### Controlled
 
 Use the `value` and `onValueChange` props to control the selected date.
@@ -201,6 +213,12 @@ Add a clear trigger to reset the selection.
 
 <ExampleTabs name="date-picker-with-clear" />
 
+### Placement
+
+Use the `positioning` prop to control the placement of the calendar popover.
+
+<ExampleTabs name="date-picker-with-placement" />
+
 ### Header Layout
 
 Here's an example of customizing the header layout with `RangeText` and
@@ -261,12 +279,27 @@ pattern.
 
 <ExampleTabs name="date-picker-with-hook-form" />
 
+### Field
+
+The `DatePicker` does not natively integrate with the `Field` component yet. Use
+`Field.Context` to wire up the field state manually. Native support will be
+added in a future version.
+
+<ExampleTabs name="date-picker-with-field" />
+
 ## Calendar
 
 The inline mode renders the calendar directly on the page without a popup. Add
 the `inline` prop to `DatePicker.Root`.
 
 <ExampleTabs name="date-picker-inline" />
+
+### Hide Outside Days
+
+Set the `hideOutsideDays` prop to hide dates that fall outside the current
+month.
+
+<ExampleTabs name="date-picker-inline-hide-outside-days" />
 
 ### Controlled
 
