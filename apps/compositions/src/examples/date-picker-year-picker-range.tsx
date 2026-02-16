@@ -24,7 +24,6 @@ export const DatePickerYearPickerRange = () => {
             <LuCalendar />
           </DatePicker.Trigger>
         </DatePicker.IndicatorGroup>
-        <DatePicker.ClearTrigger />
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>
@@ -46,7 +45,7 @@ const parse = (string: string) => {
   const fullRegex = /^(\d{4})$/
   const fullMatch = string.match(fullRegex)
   if (fullMatch) {
-    const [_, year] = fullMatch.map(Number)
+    const [, year] = fullMatch.map(Number)
     return new CalendarDate(year, 1, 1)
   }
 }

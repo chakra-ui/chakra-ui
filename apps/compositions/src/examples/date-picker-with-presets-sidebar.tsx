@@ -16,22 +16,34 @@ export const DatePickerWithPresetsSidebar = () => {
       <Flex>
         <Stack gap="0" minW="2xs" borderEndWidth="1px" py="2">
           {presets.map((preset) => (
-            <DatePicker.PresetTrigger
-              key={preset.label}
-              value={[preset.value]}
-              height="10"
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              px="4"
-              textStyle="sm"
-              gap="1"
-            >
-              <Span>{preset.label}</Span>
-              <Span color="fg.muted" textStyle="sm">
-                {formatShortDate(preset.value, preset.display)}
-              </Span>
-            </DatePicker.PresetTrigger>
+            <DatePicker.Context key={preset.label}>
+              {(ctx) => (
+                <DatePicker.PresetTrigger
+                  value={[preset.value]}
+                  height="10"
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  px="4"
+                  textStyle="sm"
+                  gap="1"
+                  data-selected={
+                    ctx.value.length > 0 &&
+                    preset.value.compare(ctx.value[0]) === 0
+                      ? ""
+                      : undefined
+                  }
+                  _selected={{
+                    layerStyle: "fill.subtle",
+                  }}
+                >
+                  <Span>{preset.label}</Span>
+                  <Span color="fg.muted" textStyle="sm">
+                    {formatShortDate(preset.value, preset.display)}
+                  </Span>
+                </DatePicker.PresetTrigger>
+              )}
+            </DatePicker.Context>
           ))}
         </Stack>
 

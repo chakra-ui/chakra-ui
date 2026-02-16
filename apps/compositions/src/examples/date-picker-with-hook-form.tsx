@@ -52,6 +52,7 @@ export const DatePickerWithHookForm = () => {
                 onValueChange={(e) =>
                   field.onChange(e.value[0]?.toString() ?? "")
                 }
+                invalid={!!errors.dob}
               >
                 <DatePicker.Label>Date of birth</DatePicker.Label>
                 <DatePicker.Control>
