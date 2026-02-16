@@ -1,4 +1,4 @@
-"Use client"
+"use client"
 
 import { DatePicker, Portal } from "@chakra-ui/react"
 import { CalendarDate, type DateValue } from "@internationalized/date"
