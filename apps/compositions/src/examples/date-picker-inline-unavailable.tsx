@@ -5,8 +5,8 @@ import type { DateValue } from "@internationalized/date"
 
 export const DatePickerInlineUnavailable = () => {
   return (
-    <DatePicker.Root isDateUnavailable={isWeekend} inline maxWidth="24rem">
-      <DatePicker.Content>
+    <DatePicker.Root isDateUnavailable={isWeekend} inline width="fit-content">
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

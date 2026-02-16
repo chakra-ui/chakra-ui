@@ -7,9 +7,9 @@ export const DatePickerInlineDefaultValue = () => {
     <DatePicker.Root
       defaultValue={[parseDate("2025-03-15")]}
       inline
-      maxWidth="24rem"
+      width="fit-content"
     >
-      <DatePicker.Content>
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

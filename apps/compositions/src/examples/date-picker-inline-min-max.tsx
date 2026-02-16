@@ -8,9 +8,9 @@ export const DatePickerInlineMinMax = () => {
       min={parseDate("2025-03-05")}
       max={parseDate("2025-03-25")}
       inline
-      maxWidth="24rem"
+      width="fit-content"
     >
-      <DatePicker.Content>
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

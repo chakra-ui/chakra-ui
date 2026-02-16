@@ -55,7 +55,7 @@ export const DatePickerWithTimeGrid = () => {
         borderEndWidth={{ md: "1px" }}
         borderBottomWidth={{ base: "1px", md: "0" }}
       >
-        <Stack gap="0" px="5" pt="5" pb="3">
+        <Stack gap="0" px="5" py="5">
           <Text fontWeight="semibold" textStyle="lg">
             Select a Date
           </Text>
@@ -75,28 +75,12 @@ export const DatePickerWithTimeGrid = () => {
         >
           <DatePicker.Content unstyled px="3" pb="4">
             <DatePicker.View view="day">
-              <HStack justify="space-between" gap="0" px="2" pb="2">
+              <HStack justify="space-between" gap="0">
                 <DatePicker.PrevTrigger />
                 <DatePicker.RangeText fontWeight="medium" textStyle="sm" />
                 <DatePicker.NextTrigger />
               </HStack>
               <DatePicker.DayTable />
-            </DatePicker.View>
-            <DatePicker.View view="month">
-              <HStack justify="space-between" gap="0" px="2" pb="2">
-                <DatePicker.PrevTrigger />
-                <DatePicker.RangeText fontWeight="medium" textStyle="sm" />
-                <DatePicker.NextTrigger />
-              </HStack>
-              <DatePicker.MonthTable />
-            </DatePicker.View>
-            <DatePicker.View view="year">
-              <HStack justify="space-between" gap="0" px="2" pb="2">
-                <DatePicker.PrevTrigger />
-                <DatePicker.RangeText fontWeight="medium" textStyle="sm" />
-                <DatePicker.NextTrigger />
-              </HStack>
-              <DatePicker.YearTable />
             </DatePicker.View>
           </DatePicker.Content>
         </DatePicker.Root>

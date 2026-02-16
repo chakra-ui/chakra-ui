@@ -4,8 +4,8 @@ import { DatePicker } from "@chakra-ui/react"
 
 export const DatePickerInlineMultiSelection = () => {
   return (
-    <DatePicker.Root selectionMode="multiple" inline maxWidth="24rem">
-      <DatePicker.Content>
+    <DatePicker.Root selectionMode="multiple" inline width="fit-content">
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

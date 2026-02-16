@@ -8,9 +8,9 @@ export const DatePickerInlineMultipleMonths = () => {
       numOfMonths={2}
       selectionMode="range"
       inline
-      maxWidth="48rem"
+      width="fit-content"
     >
-      <DatePicker.Content>
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <Flex gap="4">

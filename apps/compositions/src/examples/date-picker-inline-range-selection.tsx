@@ -2,8 +2,8 @@ import { DatePicker } from "@chakra-ui/react"
 
 export const DatePickerInlineRangeSelection = () => {
   return (
-    <DatePicker.Root selectionMode="range" inline maxWidth="24rem">
-      <DatePicker.Content>
+    <DatePicker.Root selectionMode="range" inline width="fit-content">
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

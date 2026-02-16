@@ -4,8 +4,8 @@ import { DatePicker } from "@chakra-ui/react"
 
 export const DatePickerInlineLocale = () => {
   return (
-    <DatePicker.Root locale="de-DE" startOfWeek={1} inline maxWidth="24rem">
-      <DatePicker.Content>
+    <DatePicker.Root locale="de-DE" startOfWeek={1} inline width="fit-content">
+      <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
           <DatePicker.DayTable />

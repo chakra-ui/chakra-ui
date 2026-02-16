@@ -15,9 +15,9 @@ export const DatePickerInlineControlled = () => {
         value={value}
         onValueChange={(e) => setValue(e.value)}
         inline
-        maxWidth="24rem"
+        width="fit-content"
       >
-        <DatePicker.Content>
+        <DatePicker.Content unstyled>
           <DatePicker.View view="day">
             <DatePicker.Header />
             <DatePicker.DayTable />
