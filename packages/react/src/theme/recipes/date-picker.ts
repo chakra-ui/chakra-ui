@@ -26,15 +26,23 @@ const navTriggerStyle = defineStyle({
 })
 
 // MonthSelect, YearSelect
+const chevronDownSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`
+
 const selectStyle = defineStyle({
   height: "8",
   ps: "2",
-  pe: "4",
+  pe: "8",
   textStyle: "sm",
   borderWidth: "1px",
-  borderRadius: "l1",
+  borderRadius: "l2",
   outline: "none",
   focusVisibleRing: "inside",
+  appearance: "none",
+  fieldSizing: "content",
+  backgroundImage: chevronDownSvg,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right 0.375rem center",
+  backgroundSize: "1.25em",
 })
 
 export const datePickerSlotRecipe = defineSlotRecipe({
