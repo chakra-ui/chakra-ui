@@ -1,9 +1,8 @@
 ---
-title: DatePicker Component
+title: Date Picker
 description:
-  A comprehensive guide to using the flexible DatePicker component for selecting
-  single or multiple dates with advanced features including formatting,
-  localization, range selection, and custom styling.
+  Used to select dates or date ranges from a calendar, with support for
+  formatting, localization, and inline calendar modes.
 links:
   source: components/date-picker
   storybook: components-date-picker--basic
@@ -11,6 +10,23 @@ links:
 ---
 
 <ExampleTabs name="date-picker-basic" />
+
+## Features
+
+- Single date, multiple dates, or date range selection
+- Day, month, and year views for intuitive navigation
+- Localization and locale-specific formatting
+- Min/max constraints and unavailable dates
+- Inline calendar mode for embedded experiences
+- Fully keyboard navigable and accessible
+
+:::note
+
+Date values are powered by
+[`@internationalized/date`](https://react-aria.adobe.com/internationalized/date/)
+for timezone-safe, locale-aware date handling.
+
+:::
 
 ## Usage
 
@@ -50,93 +66,94 @@ import { DatePicker } from "@chakra-ui/react"
 </DatePicker.Root>
 ```
 
-The simplest implementation of DatePicker allows users to select a single date
-with minimal configuration.
+## Picker
 
-<ExampleTabs name="date-picker-basic" />
+The popup mode renders the calendar in a dropdown triggered by an input or
+button.
 
-## Examples
+### Button Trigger
 
-### Button
-
-Replace the default trigger with a styled custom button for better UI
-integration.
+Replace the default trigger with a styled custom button.
 
 <ExampleTabs name="date-picker-with-button" />
 
-**Why use `asChild`?** The `asChild` prop allows you to pass your own button
-component while preserving DatePicker's functionality. This is useful when you
-want to match your design system's button styles.
+### Outside Icon
 
----
+Place the trigger icon outside the input field.
+
+<ExampleTabs name="date-picker-with-outside-icon" />
+
+### Input Group
+
+Integrate with InputGroup for custom input layouts with start/end elements.
+
+<ExampleTabs name="date-picker-with-input-group" />
 
 ### Clear Icon
 
-Allow users to easily reset their selection with a clear trigger.
+Add a clear trigger to reset the selection.
 
 <ExampleTabs name="date-picker-with-clear" />
 
-**Benefits:**
-
-- Improves user experience by providing a quick reset option
-- Reduces the need to manually delete entered dates
-
----
-
 ### Controlled
 
-Use 'Datepicker context' to control the date picker value programmatically.
+Control the selected date programmatically with `value` and `onValueChange`.
 
 <ExampleTabs name="date-picker-controlled" />
 
-**Why use controlled components?**
-
-- Sync date selection with other form fields
-- Trigger side effects when dates change
-- Implement custom validation logic
-- Reset or update dates programmatically
-
----
-
 ### Default Value
 
-Pre-populate the date picker with an initial date value.
+Pre-populate the picker with an initial date in ISO 8601 format (`YYYY-MM-DD`).
 
 <ExampleTabs name="date-picker-default-value" />
 
-**Date Format:** Dates must be in ISO 8601 format (`YYYY-MM-DD`) for proper
-parsing.
-
----
-
 ### Default View
 
-Set the initial view that displays when the calendar opens (day, month, or
-year).
+Set the initial view when the calendar opens: `"day"`, `"month"`, or `"year"`.
 
 <ExampleTabs name="date-picker-default-view" />
 
-**Available views:**
+### Range Selection
 
-- `"day"` (default) - Shows individual days in a calendar grid
-- `"month"` - Shows 12 months for year selection
-- `"year"` - Shows a range of years for selection
+Allow users to select a start and end date.
 
----
+<ExampleTabs name="date-picker-range-selection" />
 
-### Form
+### Multiple Selection
 
-Integrate DatePicker with native form validation and unavailable dates.
+Select multiple individual dates.
 
-<ExampleTabs name="date-picker-form" />
+<ExampleTabs name="date-picker-multi-selection" />
 
----
+### Month Range
 
-### React Hook Form
+Select a month rather than a single day.
 
-Integrate DatePicker with React Hook Form using the Controller pattern.
+<ExampleTabs name="date-picker-month-range" />
 
-<ExampleTabs name="date-picker-with-hook-form" />
+### Year Picker
+
+Select a year from a range.
+
+<ExampleTabs name="date-picker-year-picker" />
+
+### Year Range
+
+Select a year range.
+
+<ExampleTabs name="date-picker-year-picker-range" />
+
+### Min/Max
+
+Restrict date selection to a specific range.
+
+<ExampleTabs name="date-picker-min-max" />
+
+### Unavailable Dates
+
+Disable specific dates using a custom function (e.g., weekends, holidays).
+
+<ExampleTabs name="date-picker-unavailable" />
 
 ### Formatting & Parsing
 
@@ -144,113 +161,29 @@ Control how dates are displayed and interpreted.
 
 <ExampleTabs name="date-picker-format-parse" />
 
-**Common format options:**
-
-### Inline Display
-
-Display the calendar inline without a popup, always visible on the page.
-
-<ExampleTabs name="date-picker-inline" />
-
 ### Localization
 
 Display the calendar in different languages with locale-specific formatting.
 
 <ExampleTabs name="date-picker-locale" />
 
-### Min/Max
-
-Restrict date selection to a specific date range.
-
-<ExampleTabs name="date-picker-min-max" />
-
-### Month Inline Range
-
-Allow users to select a specific inline calendar range.
-
-<ExampleTabs name="date-picker-inline-range-selection" />
-
-### Month Range Selection
-
-Allow users to select a specific month rather than a single day.
-
-<ExampleTabs name="date-picker-month-range" />
-
-**Date format for months:** Use `YYYY-MM` format (e.g., `"2026-01"` for January
-2026).
-
-### Multiple Inline Date Selection
-
-Allow users to select inline multiple dates, not a range.
-
-<ExampleTabs name="date-picker-inline-multi-selection" />
-### Multiple Date Selection
-
-Allow users to select multiple individual dates, not a range.
-
-<ExampleTabs name="date-picker-multi-selection" />
-
-### Display Multiple Months
-
-Show 2 or more months simultaneously for easier date range selection.
-
-<ExampleTabs name="date-picker-multiple-months" />
-
-### Date Range Selection
-
-Allow users to select a start and end date.
-
-<ExampleTabs name="date-picker-range-selection" />
-
-### Outside Icon
-
-Create a custom button trigger with an icon.
-
-<ExampleTabs name="date-picker-with-outside-icon" />
-
-### Quick Select Presets
-
-Provide preset date options for quick selection.
-
-<ExampleTabs name="date-picker-presets" />
-
----
-
-### Presets Sidebar
-
-A task-management style date picker with presets sidebar and calendar side by
-side.
-
-<ExampleTabs name="date-picker-with-presets-sidebar" />
-
-### Unavailable Dates
-
-Disable specific dates that cannot be selected (e.g., weekends, holidays).
-
-<ExampleTabs name="date-picker-unavailable" />
-
 ### Sizes
 
-Pass the `size` prop to the `DatePicker.Root` to change the size of the date
-picker.
+Pass the `size` prop to change the size of the date picker.
 
 <ExampleTabs name="date-picker-with-sizes" />
 
-### Visual Variants
+### Variants
 
-Pass the `variant` prop to the `DatePicker.Root` to change the appearance of the
-date picker.
+Pass the `variant` prop to change the visual style.
 
 <ExampleTabs name="date-picker-with-variants" />
 
 ### Header Layout
 
-Customize the header layout by placing the range text first, followed by
-navigation buttons.
+Customize the header layout with range text and navigation buttons.
 
 <ExampleTabs name="date-picker-with-header-layout" />
-
----
 
 ### Month and Year Select
 
@@ -259,7 +192,29 @@ selection.
 
 <ExampleTabs name="date-picker-with-month-year-select" />
 
----
+### Multiple Months
+
+Show 2 or more months side by side for easier range selection.
+
+<ExampleTabs name="date-picker-multiple-months" />
+
+### Presets
+
+Provide preset date options for quick selection.
+
+<ExampleTabs name="date-picker-presets" />
+
+### Presets Sidebar
+
+A task-management style picker with presets sidebar and calendar side by side.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
+### Today Button
+
+Add a footer button to quickly jump to today's date.
+
+<ExampleTabs name="date-picker-with-today-button" />
 
 ### With Time
 
@@ -267,51 +222,85 @@ Combine date selection with a time input for datetime picking.
 
 <ExampleTabs name="date-picker-with-time" />
 
----
+### Form
 
-### Booking Time Grid
+Integrate with native form validation.
 
-A Calendly-style booking interface with an inline calendar and a scrollable time
-slot grid. Pick a date to reveal available times, then click a slot to select
-and confirm.
+<ExampleTabs name="date-picker-form" />
 
-<ExampleTabs name="date-picker-with-time-grid" />
+### React Hook Form
 
----
+Integrate with React Hook Form using the Controller pattern.
 
-### Today Button
+<ExampleTabs name="date-picker-with-hook-form" />
 
-Add a footer button to quickly select today's date.
-
-<ExampleTabs name="date-picker-with-today-button" />
-
----
-
-### Input Group
-
-Integrate with InputGroup for custom input layouts with start/end elements.
-
-<ExampleTabs name="date-picker-with-input-group" />
-
----
-
-### Year Picker
-
-Allow users to select a year from a range.
-
-<ExampleTabs name="date-picker-year-picker" />
-
-### Year Range Selection
-
-Select a year within a specific range.
-
-<ExampleTabs name="date-picker-year-picker-range" />
-
-### Provider Configuration
+### Provider
 
 Set global configuration for all DatePickers within a subtree.
 
 <ExampleTabs name="date-picker-root-provider" />
+
+## Calendar
+
+The inline mode renders the calendar directly on the page without a popup. Add
+the `inline` prop to `DatePicker.Root`.
+
+<ExampleTabs name="date-picker-inline" />
+
+### Controlled
+
+Control the inline calendar with `value` and `onValueChange`.
+
+<ExampleTabs name="date-picker-inline-controlled" />
+
+### Default Value
+
+Pre-select a date when the calendar first renders.
+
+<ExampleTabs name="date-picker-inline-default-value" />
+
+### Range Selection
+
+Select a start and end date in the inline calendar.
+
+<ExampleTabs name="date-picker-inline-range-selection" />
+
+### Multi Selection
+
+Select multiple individual dates.
+
+<ExampleTabs name="date-picker-inline-multi-selection" />
+
+### Min and Max
+
+Restrict the selectable date range.
+
+<ExampleTabs name="date-picker-inline-min-max" />
+
+### Unavailable Dates
+
+Disable specific dates based on custom logic.
+
+<ExampleTabs name="date-picker-inline-unavailable" />
+
+### Multiple Months
+
+Display two or more months side by side.
+
+<ExampleTabs name="date-picker-inline-multiple-months" />
+
+### Locale
+
+Customize for different languages and regional formats.
+
+<ExampleTabs name="date-picker-inline-locale" />
+
+### Booking Time Grid
+
+A Calendly-style booking interface with an inline calendar and a scrollable time
+slot grid. Pick a date to reveal available times, then click a slot to select.
+
+<ExampleTabs name="date-picker-with-time-grid" />
 
 ## Props
 
@@ -319,9 +308,21 @@ Set global configuration for all DatePickers within a subtree.
 
 <PropTable component="DatePicker" part="Root" />
 
-### Item
+### Input
 
-<PropTable component="DatePicker" part="Item" />
+<PropTable component="DatePicker" part="Input" />
+
+### View
+
+<PropTable component="DatePicker" part="View" />
+
+### TableCell
+
+<PropTable component="DatePicker" part="TableCell" />
+
+### PresetTrigger
+
+<PropTable component="DatePicker" part="PresetTrigger" />
 
 ## Explorer
 
