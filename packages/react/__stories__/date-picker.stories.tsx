@@ -2,7 +2,7 @@ import type { Meta } from "@storybook/react-vite"
 import { Box } from "../src"
 
 export default {
-  title: "Components / Date Picker / Picker",
+  title: "Components / Date Picker",
   decorators: [
     (Story) => (
       <Box p="10">
