@@ -2,7 +2,7 @@
 
 import { Badge, DatePicker, For, Stack } from "@chakra-ui/react"
 
-export const DatePickerInlineWithSizes = () => {
+export const DatePickerCalendarWithSizes = () => {
   return (
     <Stack gap={8} direction="row" flexWrap="wrap">
       <For each={["xs", "sm", "md", "lg", "xl"]}>

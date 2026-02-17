@@ -1,10 +1,11 @@
 "use client"
 
 import { DatePicker } from "@chakra-ui/react"
+import { isWeekend } from "@internationalized/date"
 
-export const DatePickerInlineMultiSelection = () => {
+export const DatePickerCalendarUnavailable = () => {
   return (
-    <DatePicker.Root selectionMode="multiple" inline width="fit-content">
+    <DatePicker.Root isDateUnavailable={isWeekend} inline width="fit-content">
       <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />

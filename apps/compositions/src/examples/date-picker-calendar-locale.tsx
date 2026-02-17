@@ -1,8 +1,10 @@
+"use client"
+
 import { DatePicker } from "@chakra-ui/react"
 
-export const DatePickerInlineRangeSelection = () => {
+export const DatePickerCalendarLocale = () => {
   return (
-    <DatePicker.Root selectionMode="range" inline width="fit-content">
+    <DatePicker.Root locale="de-DE" startOfWeek={1} inline width="fit-content">
       <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />

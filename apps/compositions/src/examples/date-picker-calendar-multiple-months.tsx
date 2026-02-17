@@ -1,15 +1,22 @@
 "use client"
 
-import { DatePicker } from "@chakra-ui/react"
-import type { DateValue } from "@internationalized/date"
+import { DatePicker, Flex } from "@chakra-ui/react"
 
-export const DatePickerInlineUnavailable = () => {
+export const DatePickerCalendarMultipleMonths = () => {
   return (
-    <DatePicker.Root isDateUnavailable={isWeekend} inline width="fit-content">
+    <DatePicker.Root
+      numOfMonths={2}
+      selectionMode="range"
+      inline
+      width="fit-content"
+    >
       <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
-          <DatePicker.DayTable />
+          <Flex gap="4">
+            <DatePicker.DayTable />
+            <DatePicker.DayTable offset={1} />
+          </Flex>
         </DatePicker.View>
         <DatePicker.View view="month">
           <DatePicker.Header />
@@ -22,9 +29,4 @@ export const DatePickerInlineUnavailable = () => {
       </DatePicker.Content>
     </DatePicker.Root>
   )
-}
-
-const isWeekend = (date: DateValue) => {
-  const dayOfWeek = date.toDate("UTC").getDay()
-  return dayOfWeek === 0 || dayOfWeek === 6
 }

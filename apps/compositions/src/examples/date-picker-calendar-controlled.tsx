@@ -3,7 +3,7 @@
 import { DatePicker, Text, VStack, parseDate } from "@chakra-ui/react"
 import { useState } from "react"
 
-export const DatePickerInlineControlled = () => {
+export const DatePickerCalendarControlled = () => {
   const [value, setValue] = useState([parseDate("2025-03-15")])
 
   return (

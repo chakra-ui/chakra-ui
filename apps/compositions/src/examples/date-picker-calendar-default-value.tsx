@@ -2,11 +2,10 @@
 
 import { DatePicker, parseDate } from "@chakra-ui/react"
 
-export const DatePickerInlineMinMax = () => {
+export const DatePickerCalendarDefaultValue = () => {
   return (
     <DatePicker.Root
-      min={parseDate("2025-03-05")}
-      max={parseDate("2025-03-25")}
+      defaultValue={[parseDate("2025-03-15")]}
       inline
       width="fit-content"
     >

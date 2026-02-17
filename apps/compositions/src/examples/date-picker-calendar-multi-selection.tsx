@@ -2,9 +2,9 @@
 
 import { DatePicker } from "@chakra-ui/react"
 
-export const DatePickerInlineLocale = () => {
+export const DatePickerCalendarMultiSelection = () => {
   return (
-    <DatePicker.Root locale="de-DE" startOfWeek={1} inline width="fit-content">
+    <DatePicker.Root selectionMode="multiple" inline width="fit-content">
       <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />

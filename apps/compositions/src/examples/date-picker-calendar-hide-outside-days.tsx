@@ -1,22 +1,19 @@
 "use client"
 
-import { DatePicker, Flex } from "@chakra-ui/react"
+import { DatePicker, parseDate } from "@chakra-ui/react"
 
-export const DatePickerInlineMultipleMonths = () => {
+export const DatePickerCalendarHideOutsideDays = () => {
   return (
     <DatePicker.Root
-      numOfMonths={2}
-      selectionMode="range"
+      hideOutsideDays
       inline
       width="fit-content"
+      defaultValue={[parseDate("2025-03-15")]}
     >
       <DatePicker.Content unstyled>
         <DatePicker.View view="day">
           <DatePicker.Header />
-          <Flex gap="4">
-            <DatePicker.DayTable />
-            <DatePicker.DayTable offset={1} />
-          </Flex>
+          <DatePicker.DayTable />
         </DatePicker.View>
         <DatePicker.View view="month">
           <DatePicker.Header />
