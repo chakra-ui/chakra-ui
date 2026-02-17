@@ -6,7 +6,7 @@ const navTriggerStyle = defineStyle({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  boxSize: "8",
+  boxSize: "var(--datepicker-nav-trigger-size)",
   borderRadius: "l2",
   color: "fg",
   focusVisibleRing: "inside",
@@ -29,7 +29,7 @@ const navTriggerStyle = defineStyle({
 const chevronDownSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`
 
 const selectStyle = defineStyle({
-  height: "8",
+  height: "var(--datepicker-select-height)",
   ps: "2",
   pe: "8",
   textStyle: "sm",
@@ -54,6 +54,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "1.5",
       width: "full",
+      "--datepicker-indicators-offset": "sizes.3",
       _disabled: {
         opacity: 0.5,
       },
@@ -66,7 +67,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
 
     indicatorGroup: {
       position: "absolute",
-      insetEnd: "3",
+      insetEnd: "var(--datepicker-indicators-offset)",
       top: "50%",
       transform: "translateY(-50%)",
       display: "flex",
@@ -130,7 +131,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "3",
       p: "3",
-      minWidth: "xs",
+      minW: "18rem",
       bg: "bg.panel",
       borderRadius: "l2",
       boxShadow: "lg",
@@ -160,7 +161,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "space-between",
       gap: "2",
-      height: "var(--table-cell-size)",
+      height: "var(--datepicker-nav-trigger-size)",
     },
 
     viewTrigger: {
@@ -192,7 +193,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
     table: {
       borderCollapse: "separate",
       borderSpacing: "0",
-      "--table-cell-size": "sizes.10",
     },
 
     tableHeader: {
@@ -205,13 +205,16 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       textTransform: "uppercase",
     },
 
+    tableCell: {
+      py: "0.5",
+    },
+
     tableCellTrigger: {
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
       minWidth: "var(--table-cell-size)",
       minHeight: "var(--table-cell-size)",
-      width: "full",
       textStyle: "sm",
       borderRadius: "l2",
       focusVisibleRing: "inside",
@@ -221,6 +224,9 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       position: "relative",
       _hover: {
         bg: "colorPalette.subtle",
+      },
+      "[data-view=month] &, [data-view=year] &": {
+        width: "calc(var(--table-cell-size) * 1.75)",
       },
       _today: {
         color: "colorPalette.fg",
@@ -302,12 +308,24 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         root: {
           "--datepicker-input-height": "sizes.8",
           "--datepicker-input-px": "sizes.2",
+          "--datepicker-indicators-offset": "sizes.2",
+        },
+        view: {
+          "--table-cell-size": "sizes.8",
+          "--datepicker-nav-trigger-size": "sizes.7",
+          "--datepicker-select-height": "sizes.8",
         },
       },
       sm: {
         root: {
           "--datepicker-input-height": "sizes.9",
           "--datepicker-input-px": "sizes.2.5",
+          "--datepicker-indicators-offset": "sizes.2.5",
+        },
+        view: {
+          "--table-cell-size": "sizes.9",
+          "--datepicker-nav-trigger-size": "sizes.8",
+          "--datepicker-select-height": "sizes.9",
         },
       },
       md: {
@@ -315,17 +333,32 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           "--datepicker-input-height": "sizes.10",
           "--datepicker-input-px": "sizes.3",
         },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.8",
+          "--datepicker-select-height": "sizes.10",
+        },
       },
       lg: {
         root: {
           "--datepicker-input-height": "sizes.11",
           "--datepicker-input-px": "sizes.4",
         },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.9",
+          "--datepicker-select-height": "sizes.10",
+        },
       },
       xl: {
         root: {
           "--datepicker-input-height": "sizes.12",
           "--datepicker-input-px": "sizes.4.5",
+        },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.9",
+          "--datepicker-select-height": "sizes.10",
         },
       },
     },
