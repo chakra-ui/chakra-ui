@@ -101,13 +101,3 @@ export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
   ArkMarquee.Edge,
   "edge",
 )
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export interface MarqueeControlProps
-  extends HTMLChakraProps<"div">, UnstyledProp {}
-
-export const MarqueeControl = withContext<HTMLDivElement, MarqueeControlProps>(
-  "div",
-  "control",
-)
