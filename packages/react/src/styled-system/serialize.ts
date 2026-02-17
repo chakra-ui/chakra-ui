@@ -1,4 +1,4 @@
-import { type Dict, isObject, walkObject } from "../utils"
+import { type Dict, isObject, memo, walkObject } from "../utils"
 import type { SystemContext } from "./types"
 
 export function createSerializeFn(
@@ -6,12 +6,21 @@ export function createSerializeFn(
 ) {
   const { conditions, isValidProperty } = options
 
+  const isSelectorLike = memo((prop: string, valueKeys: string): boolean => {
+    if (!isValidProperty(prop)) return true
+    return !valueKeys
+      .split(",")
+      .every((key) => key === "base" || conditions.has(key))
+  })
+
   return function serialize(styles: Dict) {
     return walkObject(styles, (value) => value, {
       getKey: (prop, value) => {
         if (!isObject(value)) return prop
 
-        if (!conditions.has(prop) && !isValidProperty(prop)) {
+        if (conditions.has(prop)) return prop
+
+        if (isSelectorLike(prop, Object.keys(value).join(","))) {
           return parseSelectors(prop)
             .map((s) => {
               const selector = s.startsWith("&") ? s.slice(1) : s
