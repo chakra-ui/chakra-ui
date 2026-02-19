@@ -1492,6 +1492,20 @@ export type TreeViewVariantMap = {
   [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
 }
 
+// Marquee
+
+export type MarqueeSlot = "root" | "viewport" | "content" | "edge" | "item"
+
+export interface MarqueeVariant {}
+
+export type MarqueeVariantProps = {
+  [K in keyof MarqueeVariant]?: ConditionalValue<MarqueeVariant[K]> | undefined
+}
+
+export type MarqueeVariantMap = {
+  [K in keyof MarqueeVariant]: Array<MarqueeVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1546,6 +1560,7 @@ export interface ConfigSlotRecipes {
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
+  marquee: SystemSlotRecipeFn<MarqueeSlot, MarqueeVariantProps, MarqueeVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1602,6 +1617,7 @@ export interface ConfigRecipeSlots {
   colorPicker: ColorPickerSlot
   qrCode: QrCodeSlot
   treeView: TreeViewSlot
+  marquee: MarqueeSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
