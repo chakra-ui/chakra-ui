@@ -69,6 +69,19 @@
       ]
     },
     {
+      "name": "accordion-with-context",
+      "content": "export const AccordionWithContext = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item) => (\n        <Accordion.Item key={item.value} value={item.value}>\n          {item.useContext ? (\n            <ItemWithContext item={item} />\n          ) : (\n            <ItemBasic item={item} />\n          )}\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nfunction ItemBasic({ item }: { item: (typeof items)[0] }) {\n  return (\n    <>\n      <Accordion.ItemTrigger>\n        <Box flex=\"1\">{item.title}</Box>\n        <Accordion.ItemIndicator />\n      </Accordion.ItemTrigger>\n      <Accordion.ItemContent>\n        <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n      </Accordion.ItemContent>\n    </>\n  )\n}\n\nfunction ItemWithContext({ item }: { item: (typeof items)[0] }) {\n  const { expanded } = useAccordionItemContext()\n\n  return (\n    <>\n      <Accordion.ItemTrigger>\n        <Box flex=\"1\">{item.title}</Box>\n        {expanded ? <LuMinus /> : <LuPlus />}\n      </Accordion.ItemTrigger>\n      <Accordion.ItemContent>\n        <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n      </Accordion.ItemContent>\n    </>\n  )\n}\n\nconst items = [\n  {\n    value: \"a\",\n    title: \"First Item (Standard)\",\n    text: \"This item uses the standard ItemIndicator component.\",\n    useContext: false,\n  },\n  {\n    value: \"b\",\n    title: \"Second Item (Custom Icons)\",\n    text: \"This item uses useAccordionItemContext to show custom +/- icons based on open state.\",\n    useContext: true,\n  },\n  {\n    value: \"c\",\n    title: \"Third Item (Standard)\",\n    text: \"This item uses the standard ItemIndicator component.\",\n    useContext: false,\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Accordion, Box, useAccordionItemContext } from \"@chakra-ui/react\"",
+        "import { LuMinus, LuPlus } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Accordion } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
       "name": "accordion-with-disabled-item",
       "content": "export const AccordionWithDisabledItem = () => {\n  return (\n    <Accordion.Root collapsible defaultValue={[\"b\"]}>\n      {items.map((item, index) => (\n        <Accordion.Item key={index} value={item.value} disabled={item.disabled}>\n          <Accordion.ItemTrigger>\n            <Span flex=\"1\">{item.title}</Span>\n            <Accordion.ItemIndicator />\n          </Accordion.ItemTrigger>\n          <Accordion.ItemContent>\n            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>\n          </Accordion.ItemContent>\n        </Accordion.Item>\n      ))}\n    </Accordion.Root>\n  )\n}\n\nconst items = [\n  { value: \"a\", title: \"First Item\", text: \"Some value 1...\" },\n  { value: \"b\", title: \"Second Item\", text: \"Some value 2...\" },\n  { value: \"c\", title: \"Third Item\", text: \"Some value 3...\", disabled: true },\n]\n",
       "hasSnippet": false,
