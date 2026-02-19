@@ -363,6 +363,27 @@ that don't exist in the list. It uses the `useCombobox` and
 
 <ExampleTabs name="combobox-with-createable" />
 
+## Guides
+
+### Controlling the value
+
+Use `value` and `onValueChange` for controlled mode. When changing the value
+externally (e.g. form reset, sync) with filtering enabled, the input can show
+empty if the selected item is filtered out. Call `reset()` before updating:
+
+```tsx
+const { collection, filter, reset } = useListCollection({
+  initialItems: items,
+  filter: contains,
+})
+
+// When changing value externally, reset the filter first
+const setValueWithReset = (v: string[]) => {
+  reset()
+  setValue(v)
+}
+```
+
 ## Props
 
 ### Root
