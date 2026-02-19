@@ -75,6 +75,9 @@ export default function transformer(
     "StepTitle",
   ]
 
+  // Track if we've added Steps to avoid adding to every import when file has multiple @chakra-ui/react imports
+  let stepsAddedToFile = false
+
   root
     .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
     .forEach((path) => {
@@ -96,17 +99,18 @@ export default function transformer(
         return !oldStepsComponents.includes(spec.imported.name as string)
       })
 
-      // Check if Steps import already exists
+      // Check if Steps import already exists in this import
       const hasStepsImport = filteredSpecifiers.some(
         (spec) =>
           spec.type === "ImportSpecifier" && spec.imported.name === "Steps",
       )
 
-      // Add Steps import if not present
-      if (!hasStepsImport) {
+      // Add Steps import only once per file (avoids duplicate when multiple @chakra-ui/react imports exist)
+      if (!hasStepsImport && !stepsAddedToFile) {
         filteredSpecifiers.unshift(
           j.importSpecifier(j.identifier("Steps"), j.identifier("Steps")),
         )
+        stepsAddedToFile = true
       }
 
       path.node.specifiers = filteredSpecifiers

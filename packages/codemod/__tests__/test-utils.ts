@@ -43,3 +43,23 @@ export async function applyTransform(
     return result
   }
 }
+
+/**
+ * Run a transform multiple times to test idempotency.
+ * Useful for verifying that running a codemod twice doesn't produce different output.
+ */
+export async function applyTransformMultiple(
+  transform: (
+    file: FileInfo,
+    api: API,
+    options: any,
+  ) => string | null | undefined,
+  source: string,
+  times = 2,
+): Promise<string> {
+  let result = source
+  for (let i = 0; i < times; i++) {
+    result = await applyTransform(transform, result)
+  }
+  return result
+}

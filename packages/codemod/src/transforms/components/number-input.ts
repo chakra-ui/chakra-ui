@@ -95,6 +95,11 @@ export default function transformer(
       switch (name) {
         case "value":
         case "defaultValue":
+          // Only convert numeric values to strings for NumberInput - never wrap system/context values (e.g. ChakraProvider value={defaultSystem})
+          if (baseName !== "NumberInput") {
+            newAttributes.push(attr)
+            break
+          }
           // Convert numeric values to strings
           if (attr.value?.type === "JSXExpressionContainer") {
             const expr = attr.value.expression

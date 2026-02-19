@@ -186,7 +186,34 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('role="alertdialog"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Dialog, Portal } from '@chakra-ui/react'
+
+        export default function App() {
+          const cancelRef = React.useRef()
+          return (
+            <Dialog.Root
+              open={isOpen}
+              initialFocusEl={() => cancelRef.current}
+              role="alertdialog"
+              onOpenChange={(e) => {
+                if (!e.open) {
+                  onClose()
+                }
+              }}
+            >
+              <Portal>
+                <Dialog.Positioner>
+                  <Dialog.Content>
+                    <Dialog.Body>Content</Dialog.Body>
+                  </Dialog.Content>
+                </Dialog.Positioner>
+              </Portal>
+            </Dialog.Root>
+          )
+        }
+        "
+      `)
     })
   })
 
