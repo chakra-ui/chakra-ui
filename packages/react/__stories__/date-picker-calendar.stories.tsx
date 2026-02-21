@@ -24,3 +24,5 @@ export { DatePickerCalendarUnavailable as UnavailableDates } from "compositions/
 export { DatePickerCalendarMultipleMonths as MultipleMonths } from "compositions/examples/date-picker-calendar-multiple-months"
 export { DatePickerCalendarLocale as Locale } from "compositions/examples/date-picker-calendar-locale"
 export { DatePickerWithTimeGrid as TimeGrid } from "compositions/examples/date-picker-with-time-grid"
+export { DatePickerCalendarMaxSelected as MaxSelected } from "compositions/examples/date-picker-calendar-max-selected"
+export { DatePickerCalendarWeekNumbers as WeekNumbers } from "compositions/examples/date-picker-calendar-week-numbers"

@@ -374,18 +374,54 @@ export const DatePickerIndicatorGroup = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const DatePickerContext = ArkDatePicker.Context
+export interface DatePickerWeekNumberHeaderCellProps
+  extends
+    HTMLChakraProps<"th", ArkDatePicker.WeekNumberHeaderCellBaseProps>,
+    UnstyledProp {}
 
-export interface DatePickerOpenChangeDetails
-  extends ArkDatePicker.OpenChangeDetails {}
+export const DatePickerWeekNumberHeaderCell = withContext<
+  HTMLTableCellElement,
+  DatePickerWeekNumberHeaderCellProps
+>(ArkDatePicker.WeekNumberHeaderCell, "tableHeader", {
+  forwardAsChild: true,
+  defaultProps: {
+    "data-type": "week-number",
+  },
+})
 
-export interface DatePickerFocusChangeDetails
-  extends ArkDatePicker.FocusChangeDetails {}
+////////////////////////////////////////////////////////////////////////////////////
 
-export interface DatePickerViewChangeDetails
-  extends ArkDatePicker.ViewChangeDetails {}
+export interface DatePickerWeekNumberCellProps
+  extends
+    HTMLChakraProps<"td", ArkDatePicker.WeekNumberCellBaseProps>,
+    UnstyledProp {}
+
+export const DatePickerWeekNumberCell = withContext<
+  HTMLTableCellElement,
+  DatePickerWeekNumberCellProps
+>(ArkDatePicker.WeekNumberCell, "tableCell", {
+  forwardAsChild: true,
+  defaultProps: {
+    "data-type": "week-number",
+  },
+})
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface DatePickerWeekNumberCellTextProps
+  extends HTMLChakraProps<"span">, UnstyledProp {}
+
+export const DatePickerWeekNumberCellText = withContext<
+  HTMLSpanElement,
+  DatePickerWeekNumberCellTextProps
+>("span", "tableCellTrigger", {
+  forwardAsChild: true,
+})
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerHeaderProps extends DatePickerViewControlProps {}
+
 export const DatePickerHeader = (props: DatePickerHeaderProps) => {
   return (
     <DatePickerViewControl {...props}>
@@ -399,23 +435,29 @@ export const DatePickerHeader = (props: DatePickerHeaderProps) => {
 }
 ////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////////
 export interface DatePickerDayTableProps extends DatePickerTableProps {
   offset?: number
+  weekNumberLabel?: string
 }
 
 export const DatePickerDayTable = (props: DatePickerDayTableProps) => {
-  const datePicker = useDatePickerContext()
-  const { offset, ...rest } = props
-  const offsetDays = offset
-    ? datePicker.getOffset({ months: offset })
-    : undefined
-  const weeks = offsetDays ? offsetDays.weeks : datePicker.weeks
+  const { offset, weekNumberLabel = "#", ...rest } = props
+
+  const ctx = useDatePickerContext()
+
+  const offsetDays = offset ? ctx.getOffset({ months: offset }) : undefined
+  const weeks = offsetDays ? offsetDays.weeks : ctx.weeks
+
   return (
     <DatePickerTable {...rest}>
       <DatePickerTableHead>
         <DatePickerTableRow>
-          {datePicker.weekDays.map((weekDay, id) => (
+          {ctx.showWeekNumbers && (
+            <DatePickerWeekNumberHeaderCell>
+              {weekNumberLabel}
+            </DatePickerWeekNumberHeaderCell>
+          )}
+          {ctx.weekDays.map((weekDay, id) => (
             <DatePickerTableHeader key={id}>
               {weekDay.narrow}
             </DatePickerTableHeader>
@@ -423,8 +465,15 @@ export const DatePickerDayTable = (props: DatePickerDayTableProps) => {
         </DatePickerTableRow>
       </DatePickerTableHead>
       <DatePickerTableBody>
-        {weeks.map((week, id) => (
-          <DatePickerTableRow key={id}>
+        {weeks.map((week, weekIndex) => (
+          <DatePickerTableRow key={weekIndex}>
+            {ctx.showWeekNumbers && (
+              <DatePickerWeekNumberCell weekIndex={weekIndex} week={week}>
+                <DatePickerWeekNumberCellText>
+                  {ctx.getWeekNumber(week)}
+                </DatePickerWeekNumberCellText>
+              </DatePickerWeekNumberCell>
+            )}
             {week.map((day, id) => (
               <DatePickerTableCell
                 key={id}
@@ -444,6 +493,7 @@ export const DatePickerDayTable = (props: DatePickerDayTableProps) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
+
 export interface DatePickerMonthTableProps extends DatePickerTableProps {
   columns?: number
   format?: "short" | "long"
@@ -473,6 +523,7 @@ export const DatePickerMonthTable = (props: DatePickerMonthTableProps) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
+
 export interface DatePickerYearTableProps extends DatePickerTableProps {
   columns?: number
 }
@@ -566,24 +617,22 @@ export const DatePickerValueText = forwardRef<
   DatePickerValueTextProps
 >((props, ref) => {
   const { children, placeholder, separator = ", ", ...localProps } = props
-  const datePicker = useDatePickerContext()
 
-  const hasValue = datePicker.value.length > 0
+  const ctx = useDatePickerContext()
+  const hasValue = ctx.value.length > 0
 
   if (typeof children === "function") {
     return (
       <Fragment>
         {hasValue
-          ? datePicker.value.map((value, index) => (
+          ? ctx.value.map((value, index) => (
               <Fragment key={index}>
                 {children({
                   value,
                   index,
-                  valueAsString: datePicker.valueAsString[index],
+                  valueAsString: ctx.valueAsString[index],
                   remove: () => {
-                    datePicker.setValue(
-                      datePicker.value.filter((_, i) => i !== index),
-                    )
+                    ctx.setValue(ctx.value.filter((_, i) => i !== index))
                   },
                 })}
               </Fragment>
@@ -595,8 +644,9 @@ export const DatePickerValueText = forwardRef<
 
   return (
     <chakra.span {...localProps} ref={ref}>
-      {hasValue ? datePicker.valueAsString.join(separator) : placeholder}
+      {hasValue ? ctx.valueAsString.join(separator) : placeholder}
     </chakra.span>
   )
 })
+
 DatePickerValueText.displayName = "DatePickerValueText"

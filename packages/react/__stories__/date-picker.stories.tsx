@@ -46,3 +46,5 @@ export { DatePickerWithTime as WithTime } from "compositions/examples/date-picke
 export { DatePickerForm as Form } from "compositions/examples/date-picker-form"
 export { DatePickerWithHookForm as HookForm } from "compositions/examples/date-picker-with-hook-form"
 export { DatePickerWithField as Field } from "compositions/examples/date-picker-with-field"
+export { DatePickerFixedWeeks as FixedWeeks } from "compositions/examples/date-picker-fixed-weeks"
+export { DatePickerOpenOnClick as OpenOnClick } from "compositions/examples/date-picker-open-on-click"

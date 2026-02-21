@@ -10,11 +10,11 @@ const navTriggerStyle = defineStyle({
   borderRadius: "l2",
   color: "fg",
   focusVisibleRing: "inside",
+  focusRingWidth: "2px",
   _hover: {
     bg: "colorPalette.subtle",
   },
   _focusVisible: {
-    bg: "colorPalette.subtle",
     boxShadow: "0 0 0 2px var(--colors-color-palette-focus-ring)",
   },
   _disabled: {
@@ -203,10 +203,17 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       color: "fg.muted",
       textAlign: "center",
       textTransform: "uppercase",
+
+      "&[data-type='week-number']": {
+        color: "fg.subtle",
+      },
     },
 
     tableCell: {
       py: "0.5",
+      "&[data-type='week-number']": {
+        color: "fg.subtle",
+      },
     },
 
     tableCellTrigger: {

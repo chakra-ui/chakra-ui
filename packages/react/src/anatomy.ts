@@ -79,15 +79,8 @@ export const dataListAnatomy = createAnatomy("data-list").parts(
   "itemLabel",
   "itemValue",
 )
-export const datePickerAnatomy = arkDatePickerAnatomy.extendWith(
-  "label",
-  "control",
-  "input",
-  "trigger",
-  "clearTrigger",
-  "positioner",
-  "indicatorGroup",
-)
+export const datePickerAnatomy =
+  arkDatePickerAnatomy.extendWith("indicatorGroup")
 
 export const dialogAnatomy = arkDialogAnatomy.extendWith(
   "header",
