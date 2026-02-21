@@ -1,8 +1,6 @@
 ---
 title: Date Picker
-description:
-  Used to select dates or date ranges from a calendar, with support for
-  formatting, localization, and inline calendar modes.
+description: Used to select dates or date ranges from a calendar.
 links:
   source: components/date-picker
   storybook: components-date-picker--basic
@@ -85,6 +83,19 @@ Use the `readOnly` prop to prevent modification while keeping the value visible.
 
 <ExampleTabs name="date-picker-read-only" />
 
+### Default View
+
+Use the `defaultView` prop to set the initial calendar view to `"day"`,
+`"month"`, or `"year"`.
+
+<ExampleTabs name="date-picker-default-view" />
+
+### Default Value
+
+Use the `defaultValue` prop to set the initially selected date.
+
+<ExampleTabs name="date-picker-default-value" />
+
 ### Controlled
 
 Use the `value` and `onValueChange` props to control the selected date.
@@ -97,19 +108,6 @@ An alternative way to control the date picker is to use the `RootProvider`
 component and the `useDatePicker` store hook.
 
 <ExampleTabs name="date-picker-root-provider" />
-
-### Default Value
-
-Use the `defaultValue` prop to set the initially selected date.
-
-<ExampleTabs name="date-picker-default-value" />
-
-### Default View
-
-Use the `defaultView` prop to set the initial calendar view to `"day"`,
-`"month"`, or `"year"`.
-
-<ExampleTabs name="date-picker-default-view" />
 
 ### Range Selection
 
