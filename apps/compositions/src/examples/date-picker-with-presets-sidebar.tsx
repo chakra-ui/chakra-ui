@@ -1,9 +1,9 @@
 "use client"
 
 import { DatePicker, Flex, HStack, Spacer, Span, Stack } from "@chakra-ui/react"
+import type { DateValue } from "@chakra-ui/react"
 import {
   DateFormatter,
-  type DateValue,
   getLocalTimeZone,
   isSameDay,
   isToday,
@@ -39,7 +39,7 @@ export const DatePickerWithPresetsSidebar = () => {
                 >
                   <Span>{preset.label}</Span>
                   <Span color="fg.muted" textStyle="sm">
-                    {formatShortDate(preset.value, preset.display)}
+                    {formatShortDate(preset.value, preset.value.toDate(tz))}
                   </Span>
                 </DatePicker.PresetTrigger>
               )}
@@ -63,44 +63,13 @@ export const DatePickerWithPresetsSidebar = () => {
 
 const tz = getLocalTimeZone()
 const now = today(tz)
-const tomorrow = now.add({ days: 1 })
 
 const presets = [
-  { label: "Today", value: now, display: now.toDate(tz) },
-  {
-    label: "Tomorrow",
-    value: now.add({ days: 1 }),
-    display: now.add({ days: 1 }).toDate(tz),
-  },
-  {
-    label: "This weekend",
-    value: now.add({ days: (6 - now.toDate(tz).getDay()) % 7 }),
-    display: now.add({ days: (6 - now.toDate(tz).getDay()) % 7 }).toDate(tz),
-  },
-  {
-    label: "Next week",
-    value: now.add({ weeks: 1 }),
-    display: now.add({ weeks: 1 }).toDate(tz),
-  },
-  {
-    label: "Next weekend",
-    value: now.add({
-      days: ((6 - now.toDate(tz).getDay()) % 7) + 7,
-    }),
-    display: now
-      .add({ days: ((6 - now.toDate(tz).getDay()) % 7) + 7 })
-      .toDate(tz),
-  },
-  {
-    label: "2 weeks",
-    value: now.add({ weeks: 2 }),
-    display: now.add({ weeks: 2 }).toDate(tz),
-  },
-  {
-    label: "4 weeks",
-    value: now.add({ weeks: 4 }),
-    display: now.add({ weeks: 4 }).toDate(tz),
-  },
+  { label: "Today", value: now },
+  { label: "Tomorrow", value: now.add({ days: 1 }) },
+  { label: "Next week", value: now.add({ weeks: 1 }) },
+  { label: "2 weeks", value: now.add({ weeks: 2 }) },
+  { label: "4 weeks", value: now.add({ weeks: 4 }) },
 ]
 
 const weekdayFormatter = new DateFormatter("en-US", { weekday: "short" })
@@ -109,6 +78,7 @@ const shortDateFormatter = new DateFormatter("en-US", {
   month: "short",
 })
 
+const tomorrow = now.add({ days: 1 })
 const formatShortDate = (value: DateValue, display: Date) => {
   if (isToday(value, tz)) return weekdayFormatter.format(display)
   if (isSameDay(value, tomorrow)) return weekdayFormatter.format(display)

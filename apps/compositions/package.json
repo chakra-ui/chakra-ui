@@ -21,7 +21,7 @@
     "@chakra-ui/react": "workspace:*",
     "@floating-ui/react": "^0.27.16",
     "@hookform/resolvers": "5.2.2",
-    "@internationalized/date": "3.10.0",
+    "@internationalized/date": "3.11.0",
     "@tanstack/react-table": "8.21.3",
     "@tanstack/react-virtual": "3.13.18",
     "@tiptap/core": "^3.11.0",

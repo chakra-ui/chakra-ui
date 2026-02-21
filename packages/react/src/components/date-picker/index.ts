@@ -81,6 +81,13 @@ export {
 } from "@ark-ui/react/date-picker"
 
 export type {
+  DatePickerDateRangePreset,
+  DatePickerDateView,
+  DatePickerSelectionMode,
+  DatePickerValueChangeDetails,
+  DatePickerVisibleRangeChangeDetails,
+  DateValue,
+  UseDatePickerContext,
   UseDatePickerProps,
   UseDatePickerReturn,
 } from "@ark-ui/react/date-picker"

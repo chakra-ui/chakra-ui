@@ -73,3 +73,15 @@ export type {
   DatePickerYearTableProps as YearTableProps,
   DatePickerValueTextProps as ValueTextProps,
 } from "./date-picker"
+
+export type {
+  DatePickerDateRangePreset as DateRangePreset,
+  DatePickerDateView as DateView,
+  DatePickerSelectionMode as SelectionMode,
+  DatePickerValueChangeDetails as ValueChangeDetails,
+  DatePickerVisibleRangeChangeDetails as VisibleRangeChangeDetails,
+  DateValue,
+  UseDatePickerContext,
+  UseDatePickerProps,
+  UseDatePickerReturn,
+} from "@ark-ui/react/date-picker"
