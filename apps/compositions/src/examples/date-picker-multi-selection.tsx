@@ -1,7 +1,7 @@
 "use client"
 
-import { DatePicker, Portal, Tag, Wrap, type WrapProps } from "@chakra-ui/react"
-import type { DateValue } from "@internationalized/date"
+import { DatePicker, Portal, Tag, Wrap } from "@chakra-ui/react"
+import type { DateValue, WrapProps } from "@chakra-ui/react"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerMultiSelection = () => {

@@ -16,7 +16,6 @@ import {
   getLocalTimeZone,
   isToday,
   isWeekend,
-  today,
 } from "@internationalized/date"
 import { useState } from "react"
 import { LuGlobe } from "react-icons/lu"
@@ -68,8 +67,6 @@ export const DatePickerWithTimeGrid = () => {
           inline
           value={selectedDate}
           onValueChange={handleDateChange}
-          fixedWeeks
-          min={today(tz)}
           isDateUnavailable={(date) => isWeekend(date, "en-US")}
           width="fit-content"
         >

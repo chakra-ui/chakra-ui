@@ -1,7 +1,8 @@
 "use client"
 
 import { DatePicker, Portal } from "@chakra-ui/react"
-import { CalendarDate, type DateValue } from "@internationalized/date"
+import type { DateValue } from "@chakra-ui/react"
+import { CalendarDate } from "@internationalized/date"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerMonthRange = () => {
@@ -53,7 +54,7 @@ const parse = (string: string) => {
   const fullRegex = /^(\d{1,2})\/(\d{4})$/
   const fullMatch = string.match(fullRegex)
   if (fullMatch) {
-    const [_, month, year] = fullMatch.map(Number)
+    const [, month, year] = fullMatch.map(Number)
     return new CalendarDate(year, month, 1)
   }
 }
