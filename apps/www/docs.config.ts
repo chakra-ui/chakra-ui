@@ -105,11 +105,7 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
-            {
-              title: "Rich Text Editor",
-              url: "rich-text-editor",
-              status: "new",
-            },
+            { title: "Rich Text Editor", url: "rich-text-editor" },
             { title: "Text", url: "text" },
           ],
         },
@@ -127,7 +123,8 @@ const docsLinks: NavItem = {
         },
         {
           title: "Date and Time",
-          items: [{ title: "Date Picker", url: "date-picker", status: "new" }],
+          status: "new",
+          items: [{ title: "Date Picker", url: "date-picker" }],
         },
         {
           title: "Forms",
