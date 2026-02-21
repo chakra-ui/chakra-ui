@@ -210,7 +210,7 @@ const docsLinks: NavItem = {
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
             { title: "Icon", url: "icon" },
-            { title: "Marquee", url: "marquee", status: "new" },
+            { title: "Marquee", url: "marquee" },
             { title: "QR Code", url: "qr-code" },
             { title: "Stat", url: "stat" },
             { title: "Table", url: "table" },
