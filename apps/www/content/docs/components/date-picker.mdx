@@ -11,23 +11,6 @@ links:
 
 <ExampleTabs name="date-picker-basic" />
 
-## Features
-
-- Single date, multiple dates, or date range selection
-- Day, month, and year views for intuitive navigation
-- Localization and locale-specific formatting
-- Min/max constraints and unavailable dates
-- Inline calendar mode for embedded experiences
-- Fully keyboard navigable and accessible
-
-:::note
-
-Date values are powered by
-[`@internationalized/date`](https://react-aria.adobe.com/internationalized/date/)
-for timezone-safe, locale-aware date handling.
-
-:::
-
 ## Usage
 
 ```tsx
@@ -65,6 +48,16 @@ import { DatePicker } from "@chakra-ui/react"
   </Portal>
 </DatePicker.Root>
 ```
+
+## Date Value
+
+Date values are provided using objects from
+[`@internationalized/date`](https://react-aria.adobe.com/internationalized/date/),
+which handles timezone-safe, locale-aware date handling.
+
+This will be replaced by the
+[Temporal API](https://tc39.es/proposal-temporal/docs/) when it's widely
+supported in browsers.
 
 ## Picker
 
