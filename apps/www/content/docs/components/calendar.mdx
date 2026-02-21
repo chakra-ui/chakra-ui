@@ -1,0 +1,130 @@
+---
+title: Calendar
+description:
+  Used to display an inline calendar for selecting dates or date ranges, without
+  a popup or input field.
+links:
+  source: components/date-picker
+  storybook: components-date-picker--basic
+  recipe: date-picker
+---
+
+<ExampleTabs name="date-picker-calendar-basic" />
+
+## Usage
+
+The calendar is an inline variant of the `DatePicker` component. Set the
+`inline` prop on `DatePicker.Root` to render the calendar directly on the page
+without the input, positioner, and content parts.
+
+```tsx
+import { DatePicker } from "@chakra-ui/react"
+```
+
+```tsx
+<DatePicker.Root inline>
+  <DatePicker.View view="day">
+    <DatePicker.Header />
+    <DatePicker.DayTable />
+  </DatePicker.View>
+  <DatePicker.View view="month">
+    <DatePicker.Header />
+    <DatePicker.MonthTable />
+  </DatePicker.View>
+  <DatePicker.View view="year">
+    <DatePicker.Header />
+    <DatePicker.YearTable />
+  </DatePicker.View>
+</DatePicker.Root>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to control the calendar cell and control sizes.
+
+<ExampleTabs name="date-picker-calendar-with-sizes" />
+
+### Hide Outside Days
+
+Set the `hideOutsideDays` prop to hide dates that fall outside the current
+month.
+
+<ExampleTabs name="date-picker-calendar-hide-outside-days" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the inline calendar.
+
+<ExampleTabs name="date-picker-calendar-controlled" />
+
+### Default Value
+
+Use the `defaultValue` prop to set the initially selected date.
+
+<ExampleTabs name="date-picker-calendar-default-value" />
+
+### Range Selection
+
+Set the `selectionMode` prop to `"range"` to allow selecting a date range.
+
+<ExampleTabs name="date-picker-calendar-range-selection" />
+
+### Multi Selection
+
+Set the `selectionMode` prop to `"multiple"` to allow selecting multiple dates.
+
+<ExampleTabs name="date-picker-calendar-multi-selection" />
+
+### Min and Max
+
+Use the `min` and `max` props to restrict the selectable date range.
+
+<ExampleTabs name="date-picker-calendar-min-max" />
+
+### Unavailable Dates
+
+Use the `isDateUnavailable` prop to disable specific dates based on custom
+logic.
+
+<ExampleTabs name="date-picker-calendar-unavailable" />
+
+### Multiple Months
+
+Use the `numOfMonths` prop to display multiple months side by side.
+
+<ExampleTabs name="date-picker-calendar-multiple-months" />
+
+### Locale
+
+Use the `locale` prop to customize for different languages and regional formats.
+
+<ExampleTabs name="date-picker-calendar-locale" />
+
+### Max Selected Dates
+
+Use the `maxSelectedDates` prop with `selectionMode="multiple"` to limit the
+number of dates that can be selected.
+
+<ExampleTabs name="date-picker-calendar-max-selected" />
+
+### Week Numbers
+
+Use the `showWeekNumbers` prop to display ISO week numbers alongside the
+calendar rows.
+
+<ExampleTabs name="date-picker-calendar-week-numbers" />
+
+### Booking Time Grid
+
+Here's an example of a Calendly-style booking interface with an inline calendar
+and a scrollable time slot grid.
+
+<ExampleTabs name="date-picker-with-time-grid" />
+
+## Props
+
+The Calendar shares the same props and anatomy as the
+[DatePicker](/docs/components/date-picker). Refer to the DatePicker docs for the
+full prop reference.

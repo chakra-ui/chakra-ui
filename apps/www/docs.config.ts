@@ -124,7 +124,10 @@ const docsLinks: NavItem = {
         {
           title: "Date and Time",
           status: "new",
-          items: [{ title: "Date Picker", url: "date-picker" }],
+          items: [
+            { title: "Calendar", url: "calendar" },
+            { title: "Date Picker", url: "date-picker" },
+          ],
         },
         {
           title: "Forms",
