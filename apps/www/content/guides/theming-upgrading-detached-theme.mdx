@@ -1,191 +1,87 @@
 ---
 title: Upgrading with a detached theme
 description:
-  Learn how to upgrade Chakra UI when you've forked or copied the theme folder
-  into your project.
+  Learn how to upgrade Chakra UI when you've ejected the theme into your
+  project.
 publishedAt: "2025-02-22"
 collection: theming
 ---
 
-## Context
+## What's a Detached Theme?
 
-If you forked/copied the Chakra theme folder into your project and customized
-it, you'll need a strategy for upgrading the Chakra package without losing your
-customizations.
+When you run `npx @chakra-ui/cli eject`, the CLI copies the entire Chakra theme
+into your project so you can customize it directly. This gives you full control,
+but it also means you're on your own when it comes to keeping up with upstream
+changes.
 
----
+## Upgrading the Package
 
-## Can I Upgrade the Chakra Package Alone?
+You can safely upgrade `@chakra-ui/react` to the latest version — the package
+will work fine. But your ejected theme stays frozen at the version you copied it
+from.
 
-**Yes, but with caveats.**
+Here's what that means in practice:
 
-You can safely upgrade `@chakra-ui/react`. The package itself will work.
-However, if you've detached the theme, your custom theme will remain frozen at
-the version you copied it from. This means:
+- **New component recipes** won't exist in your theme unless you add them
+- **Token updates** (new semantic tokens, adjusted values) won't apply
+- **Styled-system bug fixes** will still apply automatically since they live in
+  the package, not in your theme files
 
-- **New components** added after your copy (Carousel, TagsInput, Splitter,
-  Marquee) won't have recipes in your theme unless you add them.
-- **Visual refinements** (focus ring contrast improvements, new `border`
-  semantic tokens for outline variants) won't apply automatically.
-- **Bug fixes** to the styled-system internals (CVA normalization, bracket
-  syntax) **will** apply since those live in the package code, not the theme
-  files.
+The runtime upgrades, but your theme data stays behind.
 
-In short: the runtime engine upgrades, but your theme data stays behind.
+## Upgrade Strategies
 
----
+### Minimal Upgrade
 
-## Theme Changes Between v3.27.0 and v3.33.0
+If you just want to move fast and fix what's broken:
 
-### 1. New `border` Semantic Token (v3.30.0)
+1. Upgrade the package: `pnpm add @chakra-ui/react@latest`
+2. Run your app and check for visual regressions
+3. Add missing tokens or recipes only if something isn't rendering correctly
 
-A `border` token was added to every color palette in
-`semantic-tokens/colors.ts`:
+### Full Sync
 
-```ts
-// Gray palette
-border: { _light: "{colors.gray.200}", _dark: "{colors.gray.800}" }
+If you want to stay close to upstream for long-term maintenance:
 
-// Colored palettes (red, blue, green, etc.)
-border: { _light: "{colors.<color>.500}", _dark: "{colors.<color>.400}" }
+1. Upgrade the package: `pnpm add @chakra-ui/react@latest`
+2. Diff your theme against the
+   [current source](https://github.com/chakra-ui/chakra-ui/tree/main/packages/react/src/theme)
+3. Cherry-pick the changes you need — new tokens, updated values, new recipes
+4. Run your app and visually verify everything looks right
+
+### Switch to Overrides (Recommended)
+
+If your theme has drifted far from upstream, or you'd rather stop syncing
+manually, this is the way to go.
+
+Instead of maintaining a full copy of the theme, use `createSystem()` with the
+default config as a base and only override what you need:
+
+```tsx
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      // your token overrides only
+    },
+    semanticTokens: {
+      // your semantic token overrides only
+    },
+    recipes: {
+      // your recipe overrides only
+    },
+  },
+})
 ```
 
-**Impact:** Outline variants of Button, Badge, Tag, and Checkbox now reference
-`colorPalette.border` instead of `colorPalette.muted`. There is a CSS variable
-fallback for backward compatibility, but adding this token is recommended.
-
-### 2. Focus Ring Color Adjustments (v3.30.0)
-
-Focus ring colors shifted from the `.400` shade to `.500` for better contrast:
-
-```ts
-// Before (v3.27.0)
-focusRing: { _light: "{colors.blue.400}", _dark: "{colors.blue.400}" }
-
-// After (v3.30.0)
-focusRing: { _light: "{colors.blue.500}", _dark: "{colors.blue.500}" }
-```
-
-This applies to all colored palettes (red, orange, green, blue, yellow, teal,
-purple, pink, cyan).
-
-### 3. New `label` Text Style (v3.27.1)
-
-A new text style was added to `text-styles.ts`:
-
-```ts
-label: { fontSize: "sm", lineHeight: "1.25rem", fontWeight: "medium" }
-```
-
-### 4. Letter Spacing Adjustments (v3.27.x)
-
-Heading letter spacing tightened from `-0.02em` to `-0.025em`.
-
-### 5. New Component Recipes
-
-| Component     | Version | Type        |
-| ------------- | ------- | ----------- |
-| **Carousel**  | v3.29.0 | Slot recipe |
-| **TagsInput** | v3.28.0 | Slot recipe |
-| **Splitter**  | v3.30.0 | Slot recipe |
-| **Marquee**   | v3.32.0 | Recipe      |
-
-These are entirely new files. If you don't use these components, you can skip
-them.
-
-### 6. New Exported Slot Recipe (v3.31.0)
-
-`listboxSlotRecipe` was added to public theme exports.
-
-### 7. Expanded Text & Layer Style Properties (v3.27.0)
-
-The set of CSS properties allowed in `textStyles` and `layerStyles` was
-significantly expanded (e.g., `textWrap`, `textOverflow`, `aspectRatio`,
-`mixBlendMode`, and many more). This lives in the styled-system code, not the
-theme files, so it **applies automatically** on upgrade.
-
----
-
-## Does a Detached Theme Require Manual Syncing?
-
-**Yes.** A detached theme is, by definition, a fork. Chakra cannot auto-update
-files you own. You are responsible for pulling in changes you want.
-
-However, the good news:
-
-- **No breaking structural changes** were introduced. The theme shape and API
-  are the same.
-- **Most changes are additive** (new tokens, new recipes, new text styles).
-- **Styled-system improvements** (CVA fixes, bracket syntax) live in the
-  package, not the theme, so those come free with the upgrade.
-
----
-
-## Recommended Upgrade Path
-
-### Option A: Minimal Upgrade (Low Effort)
-
-1. **Upgrade the package:** `pnpm add @chakra-ui/react@latest`
-2. **Add the `border` semantic token** to your color palettes if you use outline
-   variants of Button, Badge, Tag, or Checkbox.
-3. **Skip the rest** unless you need the new components or visual tweaks.
-
-This is safe because there are no breaking changes to the theme structure.
-
-### Option B: Full Sync (Recommended for Long-Term Maintenance)
-
-1. **Upgrade the package:** `pnpm add @chakra-ui/react@latest`
-2. **Diff your theme against the current source.** Use the Chakra repo as
-   reference:
-   ```
-   packages/react/src/theme/
-   ```
-3. **Cherry-pick changes** into your custom theme:
-   - Add `border` semantic token to `semantic-tokens/colors.ts`
-   - Update focus ring colors (`.400` to `.500`)
-   - Add `label` text style
-   - Add recipe files for new components you plan to use
-4. **Run your app and visually verify** focus rings and outline variants look
-   correct.
-
-### Option C: Re-merge Strategy (For Major Drift)
-
-If your theme has diverged significantly:
-
-1. Use `createSystem()` with the default theme as a base and override only what
-   you need:
-
-   ```tsx
-   import { createSystem, defaultConfig } from "@chakra-ui/react"
-
-   const system = createSystem(defaultConfig, {
-     theme: {
-       tokens: {
-         // your token overrides only
-       },
-       semanticTokens: {
-         // your semantic token overrides only
-       },
-       recipes: {
-         // your recipe overrides only
-       },
-     },
-   })
-   ```
-
-2. This way you inherit upstream changes automatically and only maintain your
-   deltas.
-
-**This is the most maintainable approach going forward** and eliminates the need
-for manual syncing entirely.
-
----
+You inherit upstream changes automatically and only maintain your deltas. This
+is the most maintainable approach and eliminates manual syncing entirely.
 
 ## Summary
 
-| Question                             | Answer                                                                 |
-| ------------------------------------ | ---------------------------------------------------------------------- |
-| Can I upgrade the package alone?     | Yes, it will work. Your frozen theme just won't have new additions.    |
-| Were there breaking theme changes?   | No structural breaks. Additive changes only.                           |
-| Do I need to manually sync my theme? | Yes, for new tokens/recipes/styles. Styled-system fixes are automatic. |
-| What's the best long-term strategy?  | Use `createSystem()` with overrides instead of a full theme fork.      |
+| Question                          | Answer                                                            |
+| --------------------------------- | ----------------------------------------------------------------- |
+| Can I upgrade the package alone?  | Yes. Your frozen theme just won't have new additions.             |
+| Do I need to manually sync?       | Yes, for new tokens/recipes/styles. Runtime fixes are automatic.  |
+| What's the best long-term option? | Use `createSystem()` with overrides instead of a full theme fork. |
