@@ -80,10 +80,22 @@ The `typegen` command works in both **development** and **CI/CD**. It is not
 limited to local use—run it everywhere your project is built or installed so
 generated types stay up to date.
 
+### Is typegen required?
+
+Run `typegen` if all of these are true:
+
+- You use TypeScript
+- You customize the Chakra system (tokens, semantic tokens, recipes, slot
+  recipes, etc.)
+- You want type-safe autocompletion and strict token validation
+
+If you're using JavaScript only, or TypeScript without custom Chakra theme
+types, `typegen` is optional.
+
 ### Workflow integration
 
 Add `typegen` to the `postinstall` or `prepare` script of the frontend
-application that uses Chakra UI. This ensures types are generated:
+application that uses Chakra UI. This keeps types generated:
 
 - After `npm install` / `pnpm install` / `bun install` (local development)
 - During CI/CD when dependencies are installed before build
@@ -100,11 +112,27 @@ application that uses Chakra UI. This ensures types are generated:
 
 :::tip
 
-Use `postinstall` if you want types generated after every install. Use `prepare`
-if you also need it to run when the package is packed (e.g. for publishing). Use
-one or the other to avoid running typegen twice.
+Use `postinstall` if you want types after every install. Use `prepare` if you
+also want it to run when the package is packed (for publishing). Pick one to
+avoid running `typegen` twice.
 
 :::
+
+### CI/CD strategy
+
+Run `typegen` before type-checking and build steps in CI.
+
+```json
+{
+  "scripts": {
+    "typegen": "chakra typegen src/theme.ts",
+    "typecheck": "npm run typegen && tsc --noEmit",
+    "build": "npm run typegen && your-build-command"
+  }
+}
+```
+
+This prevents CI failures caused by stale or missing Chakra types.
 
 ### Monorepo setup
 
@@ -130,8 +158,18 @@ root.
 }
 ```
 
-When you run `pnpm install` at the root, the frontend package's `postinstall`
-runs and generates types in the correct package.
+When you run `pnpm install` at the root, that frontend package's `postinstall`
+runs and generates types in the right place.
+
+### Should generated types be committed?
+
+By default, no. The CLI writes generated files to Chakra's installed package
+types directory (`node_modules/@chakra-ui/react/types/styled-system/generated`),
+which should not be committed.
+
+If you use a custom `--outdir` inside your repository, follow your team's
+codegen policy. In most cases, regenerating in CI is better than committing
+generated files.
 
 ## `chakra snippet`
 
@@ -224,6 +262,11 @@ chakra eject --outdir src/theme
 No. The `typegen` command works in both development and CI/CD. Add it to
 `postinstall` or `prepare` so it runs after installs—locally and in your CI
 pipeline.
+
+### Does strictTokens require typegen?
+
+Yes. If you enable `strictTokens`, run `typegen` in local and CI workflows so
+token types stay in sync with your theme.
 
 ### Autocomplete for custom tokens not working?
 
