@@ -1,16 +1,22 @@
 import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 
-export async function generatePropTypes(sys: SystemContext) {
+export function generatePropTypesImports(isDefaultOutdir: boolean) {
+  const result = []
+
+  result.push(
+    `import type { CssProperties } from "${isDefaultOutdir ? "../css.types" : "@chakra-ui/react"}"`,
+  )
+  if (isDefaultOutdir) {
+    result.push(`import type { Tokens } from "./token.gen"`)
+  }
+
+  return result.join("\n")
+}
+
+export function generatePropTypesResult(sys: SystemContext) {
   const { utility } = sys
-
-  const result = [
-    `
-  import type { CssProperties } from "../css.types"
-  import type { Tokens } from "./token.gen"
-  `,
-  ]
-
+  const result = []
   result.push(`
   type WithColorOpacityModifier<T> = T extends string ? \`$\{T}/\${string}\` : T
   type ImportantMark = "!" | "!important"
@@ -36,5 +42,15 @@ export async function generatePropTypes(sys: SystemContext) {
 
   result.push("}", "\n")
 
-  return pretty(result.join("\n"))
+  return result.join("\n")
+}
+
+export async function generatePropTypes(
+  sys: SystemContext,
+  isDefaultOutdir: boolean,
+) {
+  const imports = generatePropTypesImports(isDefaultOutdir)
+  const propTypesResult = generatePropTypesResult(sys)
+
+  return pretty([imports, propTypesResult].join("\n"))
 }

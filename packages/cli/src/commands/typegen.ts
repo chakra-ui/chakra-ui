@@ -9,6 +9,7 @@ import { generateCondition } from "../utils/generate-conditions"
 import { generatePropTypes } from "../utils/generate-prop-types"
 import { generateRecipe } from "../utils/generate-recipe"
 import { generateSystemTypes } from "../utils/generate-system-types"
+import { generateThemeAugmentationTypes } from "../utils/generate-theme-augmentation-types"
 import { generateTokens } from "../utils/generate-tokens"
 import * as io from "../utils/io"
 import { tasks } from "../utils/tasks"
@@ -29,7 +30,12 @@ const getDefaultBasePath = () => {
   return join(root, "styled-system", "generated")
 }
 
-interface CodegenFlags {
+function checkIsDefaultOutdir(outdir: string) {
+  const defaultPath = getDefaultBasePath()
+  return outdir === defaultPath
+}
+
+export interface CodegenFlags {
   strict?: boolean
   format?: boolean
   watch?: string
@@ -96,45 +102,71 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
   io.ensureDir(flags.outdir)
   debug("writing codegen to", flags.outdir)
 
-  return tasks([
-    {
-      title: "Generating conditions types...",
-      task: async () => {
-        await io.write(flags.outdir, "conditions.gen", generateCondition(sys))
-        return "✅ Generated conditions typings"
+  const isDefaultOutdir = checkIsDefaultOutdir(flags.outdir)
+
+  if (isDefaultOutdir) {
+    return tasks([
+      {
+        title: "Generating conditions types...",
+        task: async () => {
+          await io.write(flags.outdir, "conditions.gen", generateCondition(sys))
+          return "✅ Generated conditions typings"
+        },
       },
-    },
-    {
-      title: "Generating recipe types...",
-      task: async () => {
-        await io.write(
-          flags.outdir,
-          "recipes.gen",
-          generateRecipe(sys, flags.strict),
-        )
-        return "✅ Generated recipe typings"
+      {
+        title: "Generating recipe types...",
+        task: async () => {
+          await io.write(
+            flags.outdir,
+            "recipes.gen",
+            generateRecipe(sys, flags.strict, isDefaultOutdir),
+          )
+          return "✅ Generated recipe typings"
+        },
       },
-    },
-    {
-      title: "Generating utility types...",
-      task: async () => {
-        await io.write(flags.outdir, "prop-types.gen", generatePropTypes(sys))
-        return "✅ Generated utility typings"
+      {
+        title: "Generating utility types...",
+        task: async () => {
+          await io.write(
+            flags.outdir,
+            "prop-types.gen",
+            generatePropTypes(sys, isDefaultOutdir),
+          )
+          return "✅ Generated utility typings"
+        },
       },
-    },
-    {
-      title: "Generating token types...",
-      task: async () => {
-        await io.write(flags.outdir, "token.gen", generateTokens(sys))
-        return "✅ Generated token typings"
+      {
+        title: "Generating token types...",
+        task: async () => {
+          await io.write(flags.outdir, "token.gen", generateTokens(sys))
+          return "✅ Generated token typings"
+        },
       },
-    },
-    {
-      title: "Generating system types...",
-      task: async () => {
-        await io.write(flags.outdir, "system.gen", generateSystemTypes(sys))
-        return "✅ Generated system types"
+      {
+        title: "Generating system types...",
+        task: async () => {
+          await io.write(
+            flags.outdir,
+            "system.gen",
+            generateSystemTypes(sys, isDefaultOutdir),
+          )
+          return "✅ Generated system types"
+        },
       },
-    },
-  ])
+    ])
+  } else {
+    return tasks([
+      {
+        title: "Generating theme augmentation types...",
+        task: async () => {
+          await io.write(
+            flags.outdir,
+            "theme-typings",
+            generateThemeAugmentationTypes(sys, flags),
+          )
+          return "✅ Generated theme augmentation types"
+        },
+      },
+    ])
+  }
 }

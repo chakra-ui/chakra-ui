@@ -498,6 +498,9 @@ importers:
         specifier: 0.3.1
         version: 0.3.1
     devDependencies:
+      '@chakra-ui/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
       '@svgr/core':
         specifier: 8.1.0
         version: 8.1.0(typescript@5.9.3)
