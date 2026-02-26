@@ -25,6 +25,7 @@ export function createRecipeContext<K extends RecipeKey>(
     strict: false,
     name: `${contextName}PropsContext`,
     providerName: `${contextName}PropsContext`,
+    defaultValue: {},
   })
 
   function useRecipeResult(props: any) {
