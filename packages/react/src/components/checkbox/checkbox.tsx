@@ -151,6 +151,10 @@ export interface CheckboxGroupProps extends HTMLChakraProps<
   ArkCheckbox.GroupBaseProps
 > {}
 
+export type CheckboxGroupComponent = React.ForwardRefExoticComponent<
+  CheckboxGroupProps & React.RefAttributes<HTMLDivElement>
+>
+
 export const CheckboxGroup = chakra(
   ArkCheckbox.Group,
   {
@@ -161,7 +165,7 @@ export const CheckboxGroup = chakra(
     },
   },
   { forwardAsChild: true },
-) as React.FC<CheckboxGroupProps>
+) as CheckboxGroupComponent
 
 ////////////////////////////////////////////////////////////////////////////////////
 

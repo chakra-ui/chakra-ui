@@ -927,6 +927,34 @@ function App() {
         "
       `)
     })
+
+    it("should NOT wrap ChakraProvider value in String() - system is the engine", async () => {
+      const input = `
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+
+function App() {
+  return (
+    <ChakraProvider value={defaultSystem}>
+      <div>App</div>
+    </ChakraProvider>
+  )
+}
+      `
+
+      const output = await applyTransform(transform, input)
+      expect(output).toMatchInlineSnapshot(`
+        "import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+
+        function App() {
+          return (
+            <ChakraProvider value={defaultSystem}>
+              <div>App</div>
+            </ChakraProvider>
+          )
+        }
+        "
+      `)
+    })
   })
 
   describe("edge cases", () => {

@@ -48,6 +48,31 @@ delegate the heavy lifting to these projects.
 
 :::
 
+### Security
+
+**Reporting vulnerabilities:** Do not report in public issues. Report privately
+via
+[GitHub Security Advisories](https://github.com/chakra-ui/chakra-ui/security/advisories/new).
+Include the type of issue, affected package and version, steps to reproduce, and
+impact.
+
+See [SECURITY.md](https://github.com/chakra-ui/chakra-ui/blob/main/SECURITY.md)
+for the full policy.
+
+**Supported versions:** We release security updates for the latest major
+version.
+
+**Security posture:**
+
+- We don't use `dangerouslySetInnerHTML` internally—everything renders through
+  React's JSX. If you pass raw HTML (e.g. `Prose` or `CodeBlock` with user
+  content), sanitize it first.
+- **CodeBlock**: When rendering user-provided code, make sure your syntax
+  highlighter escapes HTML.
+- **CSP**: Emotion injects styles via `<style>` tags. With strict CSP, add
+  `style-src 'unsafe-inline'` or use a nonce (Emotion supports it).
+- **Storage**: We don't use `localStorage`, `sessionStorage`, or cookies.
+
 ### Filing Issues
 
 The mindset for filing issues on Chakra v3.x works like this:

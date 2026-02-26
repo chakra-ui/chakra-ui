@@ -1,0 +1,87 @@
+---
+title: Upgrading with a detached theme
+description:
+  Learn how to upgrade Chakra UI when you've ejected the theme into your
+  project.
+publishedAt: "2025-02-22"
+collection: theming
+---
+
+## What's a Detached Theme?
+
+When you run `npx @chakra-ui/cli eject`, the CLI copies the entire Chakra theme
+into your project so you can customize it directly. This gives you full control,
+but it also means you're on your own when it comes to keeping up with upstream
+changes.
+
+## Upgrading the Package
+
+You can safely upgrade `@chakra-ui/react` to the latest version — the package
+will work fine. But your ejected theme stays frozen at the version you copied it
+from.
+
+Here's what that means in practice:
+
+- **New component recipes** won't exist in your theme unless you add them
+- **Token updates** (new semantic tokens, adjusted values) won't apply
+- **Styled-system bug fixes** will still apply automatically since they live in
+  the package, not in your theme files
+
+The runtime upgrades, but your theme data stays behind.
+
+## Upgrade Strategies
+
+### Minimal Upgrade
+
+If you just want to move fast and fix what's broken:
+
+1. Upgrade the package: `pnpm add @chakra-ui/react@latest`
+2. Run your app and check for visual regressions
+3. Add missing tokens or recipes only if something isn't rendering correctly
+
+### Full Sync
+
+If you want to stay close to upstream for long-term maintenance:
+
+1. Upgrade the package: `pnpm add @chakra-ui/react@latest`
+2. Diff your theme against the
+   [current source](https://github.com/chakra-ui/chakra-ui/tree/main/packages/react/src/theme)
+3. Cherry-pick the changes you need — new tokens, updated values, new recipes
+4. Run your app and visually verify everything looks right
+
+### Switch to Overrides (Recommended)
+
+If your theme has drifted far from upstream, or you'd rather stop syncing
+manually, this is the way to go.
+
+Instead of maintaining a full copy of the theme, use `createSystem()` with the
+default config as a base and only override what you need:
+
+```tsx
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      // your token overrides only
+    },
+    semanticTokens: {
+      // your semantic token overrides only
+    },
+    recipes: {
+      // your recipe overrides only
+    },
+  },
+})
+```
+
+You inherit upstream changes automatically and only maintain your deltas. This
+is the most maintainable approach and eliminates manual syncing entirely.
+
+## Summary
+
+| Question                          | Answer                                                            |
+| --------------------------------- | ----------------------------------------------------------------- |
+| Can I upgrade the package alone?  | Yes. Your frozen theme just won't have new additions.             |
+| Do I need to manually sync?       | Yes, for new tokens/recipes/styles. Runtime fixes are automatic.  |
+| What's the best long-term option? | Use `createSystem()` with overrides instead of a full theme fork. |
