@@ -33,9 +33,11 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       fontSize: "sm",
       position: "relative",
       color: "fg",
+      cursor: "switch",
       borderRadius: "var(--segment-radius)",
       _disabled: {
         opacity: "0.5",
+        cursor: 'not-allowed',
       },
       "&:has(input:focus-visible)": {
         focusRing: "outside",
