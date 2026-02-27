@@ -1,6 +1,0 @@
----
-"@chakra-ui/react": patch
----
-
-- **Field**: Fix `Field.ErrorIcon` default size so it stays aligned with error
-  text instead of expanding when the error area is full width.

@@ -1,5 +1,47 @@
 # @chakra-ui/react
 
+## 3.34.0
+
+### Minor Changes
+
+- [#10597](https://github.com/chakra-ui/chakra-ui/pull/10597)
+  [`f11219d`](https://github.com/chakra-ui/chakra-ui/commit/f11219da7f20a9c0fce062a5d2d49b87313c43c5)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - - **[New]
+  DatePicker**: Add new datepicker component for date selection
+
+### Patch Changes
+
+- [`94517fa`](https://github.com/chakra-ui/chakra-ui/commit/94517fa02e817d4bc8f58e5f859bedfaecf77462)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix export gaps for
+  Ark UI components:
+  - **Select**: Expose `Select.List` component (for virtualization support)
+  - **Combobox**: Export `ComboboxSelectionDetails` type (as
+    `Combobox.SelectionDetails` in namespace)
+  - **Listbox**: Export `ListboxScrollToIndexDetails`,
+    `ListboxSelectionDetails`, `ListboxSelectionMode` types (as
+    `Listbox.ScrollToIndexDetails`, `Listbox.SelectionDetails`,
+    `Listbox.SelectionMode` in namespace)
+  - **Menu**: Export `MenuValueChangeDetails` type (as `Menu.ValueChangeDetails`
+    in namespace)
+
+- [`be18f13`](https://github.com/chakra-ui/chakra-ui/commit/be18f13c10c5c776ace35b3c4af11af7e5463140)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TypeScript
+  error when passing `ref` to `CheckboxGroup`.
+
+- [`0aa89d0`](https://github.com/chakra-ui/chakra-ui/commit/0aa89d059b2577dc46c9d135158e226f329bfdca)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix `globalCss`
+  silently ignoring element selectors that match utility shorthands (e.g. `p`,
+  `m`, `h`, `w`).
+
+  Previously, `p: { margin: '0 0 1em' }` in `globalCss` was treated as the
+  `padding` utility instead of a `<p>` element selector, causing the styles to
+  be silently dropped.
+
+- [`59bf8f6`](https://github.com/chakra-ui/chakra-ui/commit/59bf8f6a63ba70481160556f16113deb143c34f5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Field**: Fix
+  `Field.ErrorIcon` default size so it stays aligned with error text instead of
+  expanding when the error area is full width.
+
 ## 3.33.0
 
 ### Minor Changes
