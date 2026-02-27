@@ -567,6 +567,59 @@ export type DataListVariantMap = {
   [K in keyof DataListVariant]: Array<DataListVariant[K]>
 }
 
+// DatePicker
+
+export type DatePickerSlot =
+  | "clearTrigger"
+  | "content"
+  | "control"
+  | "input"
+  | "label"
+  | "monthSelect"
+  | "nextTrigger"
+  | "positioner"
+  | "presetTrigger"
+  | "prevTrigger"
+  | "rangeText"
+  | "root"
+  | "table"
+  | "tableBody"
+  | "tableCell"
+  | "tableCellTrigger"
+  | "tableHead"
+  | "tableHeader"
+  | "tableRow"
+  | "trigger"
+  | "view"
+  | "viewControl"
+  | "viewTrigger"
+  | "yearSelect"
+  | "view"
+  | "valueText"
+  | "label"
+  | "control"
+  | "input"
+  | "trigger"
+  | "clearTrigger"
+  | "positioner"
+  | "indicatorGroup"
+
+export interface DatePickerVariant {
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
+  hideOutsideDays?: boolean | undefined
+  /** @default "outline" */
+  variant?: "outline" | "subtle" | "flushed" | undefined
+}
+
+export type DatePickerVariantProps = {
+  [K in keyof DatePickerVariant]?: ConditionalValue<DatePickerVariant[K]> | undefined
+}
+
+export type DatePickerVariantMap = {
+  [K in keyof DatePickerVariant]: Array<DatePickerVariant[K]>
+}
+
 // Dialog
 
 export type DialogSlot =
@@ -1520,6 +1573,7 @@ export interface ConfigSlotRecipes {
   codeBlock: SystemSlotRecipeFn<CodeBlockSlot, CodeBlockVariantProps, CodeBlockVariantMap>
   collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps, CollapsibleVariantMap>
   dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps, DataListVariantMap>
+  datePicker: SystemSlotRecipeFn<DatePickerSlot, DatePickerVariantProps, DatePickerVariantMap>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps, DialogVariantMap>
   drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps, DrawerVariantMap>
   editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps, EditableVariantMap>
@@ -1577,6 +1631,7 @@ export interface ConfigRecipeSlots {
   codeBlock: CodeBlockSlot
   collapsible: CollapsibleSlot
   dataList: DataListSlot
+  datePicker: DatePickerSlot
   dialog: DialogSlot
   drawer: DrawerSlot
   editable: EditableSlot

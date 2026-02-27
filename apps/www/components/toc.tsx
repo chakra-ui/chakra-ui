@@ -28,15 +28,17 @@ const TocLink = chakra(Link, {
 
 export const Toc = (props: Props) => {
   const { items } = props
-  const activeItem = useScrollSpy(items.map((entry) => entry.url))
+  const activeIds = useScrollSpy(items.map((entry) => entry.url))
 
   useEffect(() => {
-    const activeLink = document.querySelector("[data-toc][aria-current='page']")
+    const activeLinks = document.querySelectorAll(
+      "[data-toc][aria-current='page']",
+    )
     const toc = document.getElementById("toc")
-    if (toc && activeLink) {
-      scrollIntoView(toc, activeLink as HTMLElement, 120)
+    if (toc && activeLinks.length > 0) {
+      scrollIntoView(toc, activeLinks[0] as HTMLElement, 120)
     }
-  }, [activeItem])
+  }, [activeIds])
 
   if (!items.length) {
     return <div />
@@ -52,7 +54,7 @@ export const Toc = (props: Props) => {
             id={item.url}
             key={index}
             href={item.url}
-            aria-current={item.url === activeItem ? "page" : undefined}
+            aria-current={activeIds.has(item.url) ? "page" : undefined}
             css={{ "--toc-depth": item.depth }}
           >
             {item.title}

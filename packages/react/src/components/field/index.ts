@@ -18,6 +18,6 @@ export type {
   FieldRequiredIndicatorProps,
 } from "./field"
 
-export { useFieldContext } from "@ark-ui/react/field"
+export { useFieldContext, FieldContext } from "@ark-ui/react/field"
 
 export * as Field from "./namespace"

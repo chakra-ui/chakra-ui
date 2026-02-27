@@ -23,6 +23,7 @@ const ComboboxRoot = chakra(Combobox.Root, {
     gap: "1",
   },
 })
+
 const ComboboxControl = chakra(Combobox.Control)
 const ComboboxInput = chakra(Combobox.Input, {}, { forwardAsChild: true })
 const ComboboxContent = chakra(Combobox.Content, {
@@ -39,7 +40,7 @@ const ComboboxItem = chakra(Combobox.Item, {
       bg: "gray.subtle",
       cursor: "pointer",
     },
-    _selected: {
+    _highlighted: {
       bg: "gray.subtle",
     },
   },
@@ -85,7 +86,7 @@ export const CommandMenu = (props: Props) => {
           placeholder="Search the docs"
           selectionBehavior="clear"
           loopFocus={false}
-          collection={collection}
+          collection={collection as any}
           onValueChange={(e) => {
             setOpen(false)
             router.push(`/${e.value}`)

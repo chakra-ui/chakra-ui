@@ -1,0 +1,429 @@
+import { datePickerAnatomy } from "../../anatomy"
+import { defineSlotRecipe, defineStyle } from "../../styled-system"
+
+// PrevTrigger, NextTrigger
+const navTriggerStyle = defineStyle({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxSize: "var(--datepicker-nav-trigger-size)",
+  borderRadius: "l2",
+  color: "fg",
+  focusVisibleRing: "inside",
+  focusRingWidth: "2px",
+  _hover: {
+    bg: "colorPalette.subtle",
+  },
+  _focusVisible: {
+    boxShadow: "0 0 0 2px var(--colors-color-palette-focus-ring)",
+  },
+  _disabled: {
+    opacity: 0.5,
+  },
+  _icon: {
+    boxSize: "4",
+  },
+})
+
+// MonthSelect, YearSelect
+const chevronDownSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`
+
+const selectStyle = defineStyle({
+  height: "var(--datepicker-select-height)",
+  ps: "2",
+  pe: "8",
+  textStyle: "sm",
+  borderWidth: "1px",
+  borderRadius: "l2",
+  outline: "none",
+  focusVisibleRing: "inside",
+  appearance: "none",
+  fieldSizing: "content",
+  backgroundImage: chevronDownSvg,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right 0.375rem center",
+  backgroundSize: "1.25em",
+})
+
+export const datePickerSlotRecipe = defineSlotRecipe({
+  className: "date-picker",
+  slots: datePickerAnatomy.keys(),
+  base: {
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "1.5",
+      width: "full",
+      "--datepicker-indicators-offset": "sizes.3",
+      _disabled: {
+        opacity: 0.5,
+      },
+    },
+
+    label: {
+      textStyle: "sm",
+      fontWeight: "medium",
+    },
+
+    indicatorGroup: {
+      position: "absolute",
+      insetEnd: "var(--datepicker-indicators-offset)",
+      top: "50%",
+      transform: "translateY(-50%)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "1",
+    },
+
+    control: {
+      display: "flex",
+      alignItems: "center",
+      gap: "2",
+      width: "full",
+      position: "relative",
+    },
+
+    input: {
+      flex: "1",
+      minWidth: "0",
+      height: "var(--datepicker-input-height)",
+      "--input-height": "var(--datepicker-input-height)",
+      px: "var(--datepicker-input-px)",
+      textStyle: "sm",
+      bg: "transparent",
+      borderRadius: "l2",
+      outline: "0",
+      appearance: "none",
+      color: "fg",
+      "--focus-color": "colors.colorPalette.focusRing",
+      "--error-color": "colors.border.error",
+      _placeholder: {
+        color: "fg.muted",
+      },
+      _invalid: {
+        focusRingColor: "var(--error-color)",
+        borderColor: "var(--error-color)",
+      },
+    },
+
+    trigger: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "6",
+      height: "6",
+      borderRadius: "l1",
+      color: "fg.muted",
+      outline: "none",
+      _hover: {
+        color: "fg",
+      },
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      _icon: {
+        boxSize: "4",
+      },
+    },
+
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "3",
+      p: "3",
+      minW: "18rem",
+      bg: "bg.panel",
+      borderRadius: "l2",
+      boxShadow: "lg",
+      color: "fg",
+      maxHeight: "var(--available-height)",
+      "--date-picker-z-index": "zIndex.popover",
+      zIndex: "calc(var(--date-picker-z-index) + var(--layer-index, 0))",
+      outline: "none",
+      _open: {
+        animationStyle: "scale-fade-in",
+        animationDuration: "fast",
+      },
+      _closed: {
+        animationStyle: "scale-fade-out",
+        animationDuration: "faster",
+      },
+    },
+
+    view: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "3",
+    },
+
+    viewControl: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "2",
+      height: "var(--datepicker-nav-trigger-size)",
+    },
+
+    viewTrigger: {
+      display: "inline-flex",
+      flex: "1",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "1",
+      py: "1.5",
+      px: "2",
+      textStyle: "sm",
+      fontWeight: "semibold",
+      borderRadius: "l2",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      _hover: {
+        bg: "colorPalette.subtle",
+      },
+    },
+
+    prevTrigger: navTriggerStyle,
+    nextTrigger: navTriggerStyle,
+
+    rangeText: {
+      textStyle: "sm",
+      fontWeight: "semibold",
+    },
+
+    table: {
+      borderCollapse: "separate",
+      borderSpacing: "0",
+    },
+
+    tableHeader: {
+      width: "var(--table-cell-size)",
+      py: "2",
+      textStyle: "xs",
+      fontWeight: "medium",
+      color: "fg.muted",
+      textAlign: "center",
+      textTransform: "uppercase",
+
+      "&[data-type='week-number']": {
+        color: "fg.subtle",
+      },
+    },
+
+    tableCell: {
+      py: "0.5",
+      "&[data-type='week-number']": {
+        color: "fg.subtle",
+      },
+    },
+
+    tableCellTrigger: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minWidth: "var(--table-cell-size)",
+      minHeight: "var(--table-cell-size)",
+      textStyle: "sm",
+      borderRadius: "l2",
+      focusVisibleRing: "inside",
+      focusRingWidth: "2px",
+      focusRingOffset: "0px",
+      cursor: "default",
+      position: "relative",
+      _hover: {
+        bg: "colorPalette.subtle",
+      },
+      "[data-view=month] &, [data-view=year] &": {
+        width: "calc(var(--table-cell-size) * 1.75)",
+      },
+      _today: {
+        color: "colorPalette.fg",
+        fontWeight: "semibold",
+        textDecoration: "underline",
+        textUnderlineOffset: "3px",
+        textDecorationThickness: "2px",
+      },
+      _selected: {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        _hover: {
+          bg: "colorPalette.solid",
+        },
+      },
+      "&[data-in-range]": {
+        bg: "colorPalette.subtle",
+        color: "colorPalette.fg",
+        borderRadius: "0",
+        _hover: {
+          bg: "colorPalette.subtle",
+        },
+      },
+      "&[data-range-start]": {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        borderRadius: "0",
+        borderStartRadius: "l2",
+        _hover: { bg: "colorPalette.solid" },
+      },
+      "&[data-range-end]": {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        borderRadius: "0",
+        borderEndRadius: "l2",
+        _hover: { bg: "colorPalette.solid" },
+      },
+      "&[data-range-start][data-range-end]": {
+        borderRadius: "l2",
+      },
+      "&[data-selected][data-in-range]": {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        borderRadius: "l2",
+        _hover: { bg: "colorPalette.solid" },
+      },
+      _disabled: {
+        opacity: 0.4,
+      },
+    },
+
+    monthSelect: selectStyle,
+    yearSelect: selectStyle,
+
+    clearTrigger: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "6",
+      height: "6",
+      flexShrink: 0,
+      textStyle: "xs",
+      borderRadius: "l2",
+      color: "fg.muted",
+      _hover: {
+        color: "fg",
+      },
+      focusVisibleRing: "inside",
+      _icon: {
+        width: "4",
+        height: "4",
+      },
+    },
+  },
+
+  variants: {
+    size: {
+      xs: {
+        root: {
+          "--datepicker-input-height": "sizes.8",
+          "--datepicker-input-px": "sizes.2",
+          "--datepicker-indicators-offset": "sizes.2",
+        },
+        view: {
+          "--table-cell-size": "sizes.8",
+          "--datepicker-nav-trigger-size": "sizes.7",
+          "--datepicker-select-height": "sizes.8",
+        },
+      },
+      sm: {
+        root: {
+          "--datepicker-input-height": "sizes.9",
+          "--datepicker-input-px": "sizes.2.5",
+          "--datepicker-indicators-offset": "sizes.2.5",
+        },
+        view: {
+          "--table-cell-size": "sizes.9",
+          "--datepicker-nav-trigger-size": "sizes.8",
+          "--datepicker-select-height": "sizes.9",
+        },
+      },
+      md: {
+        root: {
+          "--datepicker-input-height": "sizes.10",
+          "--datepicker-input-px": "sizes.3",
+        },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.8",
+          "--datepicker-select-height": "sizes.10",
+        },
+      },
+      lg: {
+        root: {
+          "--datepicker-input-height": "sizes.11",
+          "--datepicker-input-px": "sizes.4",
+        },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.9",
+          "--datepicker-select-height": "sizes.10",
+        },
+      },
+      xl: {
+        root: {
+          "--datepicker-input-height": "sizes.12",
+          "--datepicker-input-px": "sizes.4.5",
+        },
+        view: {
+          "--table-cell-size": "sizes.10",
+          "--datepicker-nav-trigger-size": "sizes.9",
+          "--datepicker-select-height": "sizes.10",
+        },
+      },
+    },
+
+    hideOutsideDays: {
+      true: {
+        tableCellTrigger: {
+          "&[data-outside-range]": {
+            visibility: "hidden",
+          },
+        },
+      },
+    },
+
+    variant: {
+      outline: {
+        input: {
+          bg: "transparent",
+          borderWidth: "1px",
+          borderColor: "border",
+          focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
+        },
+      },
+      subtle: {
+        input: {
+          borderWidth: "1px",
+          borderColor: "transparent",
+          bg: "bg.muted",
+          focusVisibleRing: "inside",
+          focusRingColor: "var(--focus-color)",
+        },
+      },
+      flushed: {
+        input: {
+          bg: "transparent",
+          borderBottomWidth: "1px",
+          borderBottomColor: "border",
+          borderRadius: "0",
+          px: "0",
+          _focusVisible: {
+            borderColor: "var(--focus-color)",
+            boxShadow: "0px 1px 0px 0px var(--focus-color)",
+            _invalid: {
+              borderColor: "var(--error-color)",
+              boxShadow: "0px 1px 0px 0px var(--error-color)",
+            },
+          },
+        },
+        indicatorGroup: {
+          insetEnd: "0",
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "md",
+    variant: "outline",
+  },
+})

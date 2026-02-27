@@ -105,11 +105,7 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
-            {
-              title: "Rich Text Editor",
-              url: "rich-text-editor",
-              status: "new",
-            },
+            { title: "Rich Text Editor", url: "rich-text-editor" },
             { title: "Text", url: "text" },
           ],
         },
@@ -125,6 +121,14 @@ const docsLinks: NavItem = {
             },
           ],
         },
+        // {
+        //   title: "Date and Time",
+        //   status: "new",
+        //   items: [
+        //     { title: "Date Picker", url: "date-picker" },
+        //     { title: "Calendar", url: "calendar" },
+        //   ],
+        // },
         {
           title: "Forms",
           items: [
@@ -209,7 +213,7 @@ const docsLinks: NavItem = {
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
             { title: "Icon", url: "icon" },
-            { title: "Marquee", url: "marquee", status: "new" },
+            { title: "Marquee", url: "marquee" },
             { title: "QR Code", url: "qr-code" },
             { title: "Stat", url: "stat" },
             { title: "Table", url: "table" },
