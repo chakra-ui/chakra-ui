@@ -1,18 +1,9 @@
 "use client"
 
 import { Button, DatePicker, Portal, Stack } from "@chakra-ui/react"
-import { getLocalTimeZone, isWeekend, today } from "@internationalized/date"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerForm = () => {
-  const now = today(getLocalTimeZone())
-
-  const disabledRanges = [
-    [now, now.add({ days: 5 })],
-    [now.add({ days: 14 }), now.add({ days: 16 })],
-    [now.add({ days: 23 }), now.add({ days: 24 })],
-  ]
-
   return (
     <form
       onSubmit={(e) => {
@@ -22,18 +13,7 @@ export const DatePickerForm = () => {
       }}
     >
       <Stack gap="4" align="flex-start" maxW="sm">
-        <DatePicker.Root
-          name="date"
-          min={now}
-          isDateUnavailable={(date) =>
-            isWeekend(date, "en") ||
-            disabledRanges.some(
-              (interval) =>
-                date.compare(interval[0]) >= 0 &&
-                date.compare(interval[1]) <= 0,
-            )
-          }
-        >
+        <DatePicker.Root name="date">
           <DatePicker.Label>Appointment date</DatePicker.Label>
           <DatePicker.Control>
             <DatePicker.Input required />
