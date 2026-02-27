@@ -121,14 +121,14 @@ const docsLinks: NavItem = {
             },
           ],
         },
-        {
-          title: "Date and Time",
-          status: "new",
-          items: [
-            { title: "Date Picker", url: "date-picker" },
-            { title: "Calendar", url: "calendar" },
-          ],
-        },
+        // {
+        //   title: "Date and Time",
+        //   status: "new",
+        //   items: [
+        //     { title: "Date Picker", url: "date-picker" },
+        //     { title: "Calendar", url: "calendar" },
+        //   ],
+        // },
         {
           title: "Forms",
           items: [
