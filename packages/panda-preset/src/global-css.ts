@@ -1,5 +1,28 @@
 import { defineGlobalStyles } from "./def"
 
+const defaultColorPalette = {
+  "--colors-color-palette": "{colors.gray.500}",
+  "--colors-color-palette-50": "{colors.gray.50}",
+  "--colors-color-palette-100": "{colors.gray.100}",
+  "--colors-color-palette-200": "{colors.gray.200}",
+  "--colors-color-palette-300": "{colors.gray.300}",
+  "--colors-color-palette-400": "{colors.gray.400}",
+  "--colors-color-palette-500": "{colors.gray.500}",
+  "--colors-color-palette-600": "{colors.gray.600}",
+  "--colors-color-palette-700": "{colors.gray.700}",
+  "--colors-color-palette-800": "{colors.gray.800}",
+  "--colors-color-palette-900": "{colors.gray.900}",
+  "--colors-color-palette-950": "{colors.gray.950}",
+  "--colors-color-palette-contrast": "{colors.gray.contrast}",
+  "--colors-color-palette-fg": "{colors.gray.fg}",
+  "--colors-color-palette-subtle": "{colors.gray.subtle}",
+  "--colors-color-palette-muted": "{colors.gray.muted}",
+  "--colors-color-palette-emphasized": "{colors.gray.emphasized}",
+  "--colors-color-palette-solid": "{colors.gray.solid}",
+  "--colors-color-palette-focus-ring": "{colors.gray.focusRing}",
+  "--colors-color-palette-border": "{colors.gray.border}",
+}
+
 export const globalCss = defineGlobalStyles({
   "*": {
     fontFeatureSettings: '"cv11"',
@@ -35,6 +58,7 @@ export const globalCss = defineGlobalStyles({
     bg: "bg",
     lineHeight: "1.5",
     colorPalette: "gray",
+    ...defaultColorPalette,
   },
   "*::placeholder, *[data-placeholder]": {
     color: "fg.muted/80",
