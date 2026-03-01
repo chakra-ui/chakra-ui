@@ -27,7 +27,7 @@
     "@chakra-ui/cli": "workspace:*",
     "@react-router/dev": "^7.9.6",
     "@types/node": "^24",
-    "@types/react": "19.2.13",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "react-router-devtools": "^6.0.0",
     "typescript": "^5.9.3",
