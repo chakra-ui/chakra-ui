@@ -50,7 +50,7 @@
     "@babel/parser": "^7.26.0",
     "@babel/plugin-transform-typescript": "^7.26.0",
     "@clack/prompts": "1.0.1",
-    "@pandacss/is-valid-prop": "1.8.1",
+    "@pandacss/is-valid-prop": "1.8.2",
     "@types/babel__core": "^7.20.5",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
