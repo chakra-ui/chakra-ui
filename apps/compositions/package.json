@@ -48,7 +48,7 @@
     "@tiptap/starter-kit": "^3.11.0",
     "@tiptap/suggestion": "^3.11.0",
     "check-password-strength": "^3.0.0",
-    "emojibase-data": "^16.0.3",
+    "emojibase-data": "^17.0.0",
     "es-toolkit": "1.44.0",
     "highlight.js": "11.11.1",
     "lowlight": "^3.3.0",
