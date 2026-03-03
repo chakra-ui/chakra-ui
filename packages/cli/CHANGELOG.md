@@ -1,5 +1,25 @@
 # @chakra-ui/cli
 
+## 3.34.0
+
+### Patch Changes
+
+- [`ba23d64`](https://github.com/chakra-ui/chakra-ui/commit/ba23d641b2015a7b37e13ee4ec2597674e20c13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `--tsconfig`
+  flag to `chakra typegen` and automatic tsconfig resolution using `tsconfck`.
+
+  This fixes an issue where `typegen` failed in projects with solution-style
+  tsconfig setups (e.g. Vite's default `tsconfig.json` with `references`),
+  because path aliases like `@/*` couldn't be resolved.
+
+  ```bash
+  # Auto-resolves (works with Vite's default setup)
+  chakra typegen lib/theme/theme.ts
+
+  # Explicit tsconfig
+  chakra typegen lib/theme/theme.ts --tsconfig tsconfig.app.json
+  ```
+
 ## 3.33.0
 
 ## 3.32.0
