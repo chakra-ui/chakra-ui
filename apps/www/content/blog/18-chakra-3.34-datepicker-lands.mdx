@@ -17,7 +17,7 @@ formatting, range selection, unavailable dates, multiple calendar views,
 positioning, and form integration all add up fast. DatePicker gives you these
 behaviors out of the box, with an API that fits the rest of Chakra UI.
 
-## What's New in DatePicker
+## DatePicker Features
 
 - Single-date, range, and multiple-date selection
 - Day, month, and year views
@@ -45,6 +45,20 @@ has you covered with presets and time input support.
 Need time precision too? Pair it with time input for datetime workflows.
 
 <ExampleTabs name="date-picker-with-time" />
+
+## Also in v3.34
+
+Alongside DatePicker, we shipped a round of important fixes and DX improvements:
+
+- **Ark UI exports**: Closed export gaps across Select, Combobox, Listbox, and
+  Menu (including missing types and `Select.List` for virtualization).
+- **CheckboxGroup**: Fixed a TypeScript error when passing `ref`.
+- **globalCss**: Fixed element selectors like `p`, `m`, `h`, and `w` being
+  incorrectly treated as utility shorthands and dropped.
+- **Field**: Fixed `Field.ErrorIcon` default sizing so it stays aligned with
+  error text.
+- **CLI typegen**: Added `--tsconfig` and automatic tsconfig resolution to fix
+  solution-style tsconfig setups.
 
 ## Upgrading
 
