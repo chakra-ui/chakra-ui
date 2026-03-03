@@ -5,6 +5,57 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.34.0](./#3.34.0) - 2026-03-03
+
+### Added
+
+- **DatePicker [NEW]**: Add new datepicker component for date selection
+
+- **CLI**: Add `--tsconfig` flag to `chakra typegen` and automatic tsconfig
+  resolution using `tsconfck`. This fixes an issue where `typegen` failed in
+  projects with solution-style tsconfig setups (e.g. Vite's default
+  `tsconfig.json` with `references`).
+
+  ```bash
+  # Auto-resolves (works with Vite's default setup)
+  chakra typegen lib/theme/theme.ts
+
+  # Explicit tsconfig
+  chakra typegen lib/theme/theme.ts --tsconfig tsconfig.app.json
+  ```
+
+- **Combobox**: Export `ComboboxSelectionDetails` type (as
+  `Combobox.SelectionDetails` in namespace)
+
+- **Listbox**: Export `ListboxScrollToIndexDetails`, `ListboxSelectionDetails`,
+  `ListboxSelectionMode` types
+
+- **Menu**: Export `MenuValueChangeDetails` type (as `Menu.ValueChangeDetails`
+  in namespace)
+
+- **Select**: Expose `Select.List` component for virtualization support
+
+### Fixed
+
+- **Checkbox Group**: Fix TypeScript error when passing `ref` to `CheckboxGroup`
+
+- **Codemod**
+  - Fix issue where `Steps` was added to the import list
+  - Fix issue where `ChakraProvider value={defaultSystem}` was wrapped in
+    `String()`
+
+- **Field**: Fix `Field.ErrorIcon` default size so it stays aligned with error
+  text instead of expanding when the error area is full width
+
+- **Global CSS**: Fix `globalCss` silently ignoring element selectors that match
+  utility shorthands (e.g. `p`, `m`, `h`, `w`)
+
+### Changed
+
+- **Charts**: Upgrade recharts to 3.7.0 and prefer `responsive` prop over
+  `ResponsiveContainer` when using `Chart.Root`. The `responsive` prop avoids
+  React 19 compatibility issues that `ResponsiveContainer` can trigger.
+
 ## [3.33.0](./#3.33.0) - 2026-02-11
 
 ### Added

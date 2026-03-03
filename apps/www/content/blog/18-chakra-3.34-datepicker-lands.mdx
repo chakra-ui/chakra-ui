@@ -1,0 +1,60 @@
+---
+title: DatePicker Lands
+description:
+  "Chakra UI v3.34 introduces DatePicker for single, range, and multi-date
+  selection"
+type: release
+version: "3.34"
+authors: ["sage"]
+publishedAt: "2026-03-03"
+---
+
+Today we're shipping Chakra UI v3.34 with one of the most requested additions:
+**[DatePicker](/docs/components/date-picker)**.
+
+Date inputs look simple until you build them. Keyboard navigation, locale-aware
+formatting, range selection, unavailable dates, multiple calendar views,
+positioning, and form integration all add up fast. DatePicker gives you these
+behaviors out of the box, with an API that fits the rest of Chakra UI.
+
+## What's New in DatePicker
+
+- Single-date, range, and multiple-date selection
+- Day, month, and year views
+- Built-in support for unavailable dates, min/max constraints, and locale
+- Presets for quick picks like "Last 7 days"
+- Date + time workflows for datetime input
+- Form-friendly API for controlled and uncontrolled usage
+
+<ExampleTabs name="date-picker-basic" />
+
+## Range Selection
+
+For booking flows, analytics filters, and reporting dashboards, set
+`selectionMode="range"`.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+## Presets and Time Selection
+
+When you need "Last 7 days"-style shortcuts or datetime workflows, DatePicker
+has you covered with presets and time input support.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
+Need time precision too? Pair it with time input for datetime workflows.
+
+<ExampleTabs name="date-picker-with-time" />
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+This release is backward compatible, so you can upgrade and start using
+DatePicker right away.
+
+Try it out and tell us what you build in
+[Discord](https://chakra-ui.com/discord) or on
+[Twitter](https://twitter.com/chakra_ui).
