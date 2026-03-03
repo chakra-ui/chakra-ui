@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/codemod",
-  "version": "3.33.0",
+  "version": "3.34.0",
   "description": "Codemods for migrating and transforming Chakra UI codebases across versions.",
   "type": "module",
   "main": "dist/esm/index.js",
