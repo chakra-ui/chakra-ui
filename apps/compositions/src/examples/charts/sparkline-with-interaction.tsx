@@ -51,6 +51,7 @@ export const SparklineWithInteraction = () => {
           data={chart.data}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
+          responsive
         >
           <Tooltip
             cursor={{ stroke: chart.color("teal.solid"), strokeWidth: 2 }}

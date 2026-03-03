@@ -24,7 +24,7 @@ export const ScatterChartBasic = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <ScatterChart>
+      <ScatterChart responsive>
         <XAxis
           type="number"
           dataKey={chart.key("temperature")}

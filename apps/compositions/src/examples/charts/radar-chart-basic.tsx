@@ -23,7 +23,7 @@ export const RadarChartBasic = () => {
 
   return (
     <Chart.Root maxW="sm" chart={chart} mx="auto">
-      <RadarChart data={chart.data}>
+      <RadarChart data={chart.data} responsive>
         <PolarGrid stroke={chart.color("border")} />
         <PolarAngleAxis dataKey={chart.key("month")} />
         <PolarRadiusAxis />

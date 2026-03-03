@@ -15,7 +15,7 @@ export const PieChartBasic = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Pie
           isAnimationActive={false}
           data={chart.data}

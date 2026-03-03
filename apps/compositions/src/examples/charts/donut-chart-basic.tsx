@@ -15,7 +15,7 @@ export const DonutChartBasic = () => {
 
   return (
     <Chart.Root boxSize="200px" chart={chart} mx="auto">
-      <PieChart>
+      <PieChart responsive>
         <Tooltip
           cursor={false}
           animationDuration={100}

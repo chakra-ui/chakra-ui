@@ -19,7 +19,7 @@ export const BarChartFillWithValue = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <BarChart data={chart.data} margin={{ top: 30 }}>
+      <BarChart data={chart.data} margin={{ top: 30 }} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         {chart.series.map((item) => (
           <Bar

@@ -28,6 +28,7 @@ export const AreaChartWithAxisLabel = () => {
         accessibilityLayer
         data={chart.data}
         margin={{ bottom: 24, left: 24 }}
+        responsive
       >
         <XAxis
           dataKey={chart.key("month")}

@@ -19,7 +19,7 @@ export const SparklineBarChart = () => {
 
   return (
     <Chart.Root width="28" height="12" chart={chart}>
-      <BarChart data={chart.data} barSize={8}>
+      <BarChart data={chart.data} barSize={8} responsive>
         <Bar
           isAnimationActive={false}
           dataKey={chart.key("value")}

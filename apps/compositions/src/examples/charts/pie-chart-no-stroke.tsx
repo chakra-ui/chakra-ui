@@ -15,7 +15,7 @@ export const PieChartNoStroke = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Tooltip
           cursor={false}
           animationDuration={100}

@@ -35,6 +35,7 @@ export const LineChartBiaxial = () => {
       <LineChart
         data={chart.data}
         margin={{ left: 20, bottom: 20, right: 20, top: 20 }}
+        responsive
       >
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis

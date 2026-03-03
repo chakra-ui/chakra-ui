@@ -14,7 +14,7 @@ export const PieChartWithLegend = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Legend content={<Chart.Legend />} />
         <Pie
           isAnimationActive={false}

@@ -3,13 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:content": "velite --watch",
-    "dev:next": "next dev",
-    "dev": "run-p dev:*",
+    "dev": "next dev",
     "predev": "pnpm build:react",
-    "build:content": "velite --clean",
-    "build:next": "next build",
-    "build": "run-s build:*",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
@@ -35,7 +31,7 @@
     "next": "15.5.12",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
-    "recharts": "^3.4.1",
+    "recharts": "^3.7.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-icons": "5.5.0",
@@ -60,7 +56,6 @@
     "eslint-config-next": "15.5.12",
     "typescript": "^5",
     "ts-morph": "27.0.2",
-    "npm-run-all": "^4.1.5",
     "markdown-table": "^3.0.4"
   }
 }

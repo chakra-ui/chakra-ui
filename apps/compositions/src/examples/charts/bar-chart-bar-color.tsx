@@ -15,7 +15,7 @@ export const BarChartBarColor = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <BarChart data={chart.data}>
+      <BarChart data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
         <YAxis

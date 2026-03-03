@@ -15,7 +15,7 @@ export const RadialChartBasic = () => {
 
   return (
     <Chart.Root maxW="sm" chart={chart} mx="auto">
-      <RadialBarChart data={chart.data} barSize={20}>
+      <RadialBarChart data={chart.data} barSize={20} responsive>
         <Tooltip cursor={false} content={<Chart.Tooltip nameKey="month" />} />
         <RadialBar
           isAnimationActive={false}

@@ -34,7 +34,7 @@ export const AreaChartWithReferenceArea = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <AreaChart data={chart.data}>
+      <AreaChart data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <YAxis stroke={chart.color("border")} />
         <XAxis
