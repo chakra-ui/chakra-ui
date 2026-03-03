@@ -5,8 +5,8 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
   ErrorBar,
+  Rectangle,
   XAxis,
   YAxis,
 } from "recharts"
@@ -39,17 +39,15 @@ export const BarChartCandlestick = () => {
           barSize={40}
           dataKey={chart.key("open_close")}
           fill={chart.color("teal.solid")}
+          shape={(props) => {
+            const entry = props.payload
+            const fill =
+              entry?.open_close[0] > entry?.open_close[1]
+                ? chart.color("red.solid")
+                : chart.color("green.solid")
+            return <Rectangle {...props} fill={fill} />
+          }}
         >
-          {data.map((item) => (
-            <Cell
-              key={item.date}
-              fill={
-                item.open_close[0] > item.open_close[1]
-                  ? chart.color("red.solid")
-                  : chart.color("green.solid")
-              }
-            />
-          ))}
           <ErrorBar
             dataKey={(obj) => [
               obj.open_close[0] - obj.high_low[0],

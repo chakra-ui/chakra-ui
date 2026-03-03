@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, RadialBar, RadialBarChart } from "recharts"
+import { RadialBar, RadialBarChart, Sector } from "recharts"
 
 export const RadialChartWithLabel = () => {
   const chart = useChart({
@@ -19,24 +19,27 @@ export const RadialChartWithLabel = () => {
         data={chart.data}
         innerRadius={30}
         outerRadius={100}
+        startAngle={90}
+        endAngle={-270}
         responsive
       >
         <RadialBar
           isAnimationActive={false}
           dataKey={chart.key("value")}
           background
-          startAngle={90}
-          endAngle={-270}
           label={{
             position: "insideStart",
             fill: "white",
             fontSize: "12px",
           }}
-        >
-          {chart.data.map(({ color }) => (
-            <Cell key={color} fill={chart.color(color)} stroke="none" />
-          ))}
-        </RadialBar>
+          shape={(props: any) => (
+            <Sector
+              {...props}
+              fill={chart.color(props.payload!.color)}
+              stroke="none"
+            />
+          )}
+        />
       </RadialBarChart>
     </Chart.Root>
   )

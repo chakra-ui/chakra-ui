@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import { Pie, PieChart, Sector, Tooltip } from "recharts"
 
 export const PieChartWithPointLabel = () => {
   const chart = useChart({
@@ -30,11 +30,10 @@ export const PieChartWithPointLabel = () => {
             fill: chart.color("fg.muted"),
             style: { fontWeight: "600" },
           }}
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

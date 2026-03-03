@@ -13,15 +13,13 @@ links:
 
 ```tsx
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart } from "recharts"
+import { Pie, PieChart, Sector } from "recharts"
 ```
 
 ```tsx
-<Chart.Root>
+<Chart.Root chart={chart}>
   <PieChart>
-    <Pie>
-      <Cell />
-    </Pie>
+    <Pie shape={(props) => <Sector {...props} />} />
   </PieChart>
 </Chart.Root>
 ```

@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Legend, RadialBar, RadialBarChart, Tooltip } from "recharts"
+import { Legend, RadialBar, RadialBarChart, Sector, Tooltip } from "recharts"
 
 export const RadialChartWithLegend = () => {
   const chart = useChart({
@@ -15,20 +15,27 @@ export const RadialChartWithLegend = () => {
 
   return (
     <Chart.Root maxW="sm" chart={chart} mx="auto">
-      <RadialBarChart data={chart.data} barSize={20} responsive>
+      <RadialBarChart
+        data={chart.data}
+        barSize={20}
+        startAngle={90}
+        endAngle={-270}
+        responsive
+      >
         <Tooltip cursor={false} content={<Chart.Tooltip nameKey="month" />} />
         <Legend content={<Chart.Legend nameKey="month" />} />
         <RadialBar
           isAnimationActive={false}
           dataKey={chart.key("value")}
           background
-          startAngle={90}
-          endAngle={-270}
-        >
-          {chart.data.map(({ color }) => (
-            <Cell key={color} fill={chart.color(color)} stroke="none" />
-          ))}
-        </RadialBar>
+          shape={(props: any) => (
+            <Sector
+              {...props}
+              fill={chart.color(props.payload!.color)}
+              stroke="none"
+            />
+          )}
+        />
       </RadialBarChart>
     </Chart.Root>
   )

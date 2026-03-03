@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Bar, BarChart, Cell } from "recharts"
+import { Bar, BarChart, Rectangle } from "recharts"
 
 export const SparklineBarChart = () => {
   const chart = useChart({
@@ -25,11 +25,10 @@ export const SparklineBarChart = () => {
           dataKey={chart.key("value")}
           fill={chart.color("teal.solid")}
           stroke=""
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.value} fill={chart.color(item.fill)} />
-          ))}
-        </Bar>
+          shape={(props) => (
+            <Rectangle {...props} fill={chart.color(props.payload!.fill)} />
+          )}
+        />
       </BarChart>
     </Chart.Root>
   )

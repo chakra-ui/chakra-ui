@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Sector, Tooltip } from "recharts"
+import { Pie, PieChart, Sector, Tooltip } from "recharts"
 
 export const DonutChartWithDetachedSegment = () => {
   const chart = useChart({
@@ -30,11 +30,10 @@ export const DonutChartWithDetachedSegment = () => {
           nameKey={chart.key("name")}
           activeShape={<Sector outerRadius={120} />}
           strokeWidth={5}
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

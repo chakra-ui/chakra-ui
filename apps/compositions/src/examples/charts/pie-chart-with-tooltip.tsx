@@ -1,9 +1,9 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import { Pie, PieChart, Sector, Tooltip } from "recharts"
 
-export const PieChartBasic = () => {
+export const PieChartWithTooltip = () => {
   const chart = useChart({
     data: [
       { name: "windows", value: 400, color: "blue.solid" },
@@ -20,11 +20,10 @@ export const PieChartBasic = () => {
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
         <Tooltip
           cursor={false}
           animationDuration={100}
