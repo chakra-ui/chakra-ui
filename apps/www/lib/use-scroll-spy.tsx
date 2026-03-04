@@ -1,10 +1,13 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 export const useScrollSpy = (selectors: string[]) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stableSelectors = useMemo(() => selectors, [JSON.stringify(selectors)])
+
   const [activeIds, setActiveIds] = useState<Set<string>>(
-    () => new Set(selectors[0] ? [selectors[0]] : []),
+    () => new Set(stableSelectors[0] ? [stableSelectors[0]] : []),
   )
   const observer = useRef<IntersectionObserver | null>(null)
   const visibleIds = useRef<Set<string>>(new Set())
@@ -12,7 +15,7 @@ export const useScrollSpy = (selectors: string[]) => {
   useEffect(() => {
     visibleIds.current = new Set()
 
-    const elements = selectors.map((selector) =>
+    const elements = stableSelectors.map((selector) =>
       document.querySelector(`[id='${selector.replace("#", "")}']`),
     )
 
@@ -38,7 +41,7 @@ export const useScrollSpy = (selectors: string[]) => {
       if (element) observer.current?.observe(element)
     }
     return () => observer.current?.disconnect()
-  }, [selectors])
+  }, [stableSelectors])
 
   return activeIds
 }
