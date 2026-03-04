@@ -1,10 +1,23 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+
+const useStableSelectors = (selectors: string[]): string[] => {
+  const ref = useRef<string[]>(selectors)
+  const prev = ref.current
+
+  if (
+    prev.length !== selectors.length ||
+    prev.some((value, index) => value !== selectors[index])
+  ) {
+    ref.current = selectors
+  }
+
+  return ref.current
+}
 
 export const useScrollSpy = (selectors: string[]) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const stableSelectors = useMemo(() => selectors, [JSON.stringify(selectors)])
+  const stableSelectors = useStableSelectors(selectors)
 
   const [activeIds, setActiveIds] = useState<Set<string>>(
     () => new Set(stableSelectors[0] ? [stableSelectors[0]] : []),
