@@ -42,7 +42,7 @@ export interface CreateOverlayReturn<
   /** The root component for the overlay */
   Viewport: React.ElementType
   /** Opens a new overlay with the given id and props */
-  open: (id: string, props?: TProps | undefined) => Promise<TReturn>
+  open: (id: string, props?: TProps | undefined) => Promise<TReturn | undefined>
   /** Closes the overlay with the given id and returns the value */
   close: (id: string, value?: TReturn | undefined) => Promise<void>
   /** Updates the props of the overlay with the given id */
