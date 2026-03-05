@@ -40,6 +40,31 @@ export function generateTokensResult(sys: SystemContext) {
   return Array.from(set).join("\n\n")
 }
 
+/**
+ * Generates token types for module augmentation.
+ * Only emits the Tokens interface (which TypeScript can merge).
+ * Skips Token union, ColorPalette, and category token type aliases.
+ */
+export function generateTokensResultForAugmentation(sys: SystemContext) {
+  const { allTokens, categoryMap } = sys.tokens
+
+  const isTokenEmpty = allTokens.length === 0
+
+  const result = new Set<string>(["export interface Tokens {"])
+
+  if (isTokenEmpty) {
+    result.add("[token: string]: string")
+  } else {
+    for (const [key, value] of categoryMap.entries()) {
+      result.add(`\t\t${key}: ${unionType(value.keys())}`)
+    }
+  }
+
+  result.add("}")
+
+  return Array.from(result).join("\n")
+}
+
 export async function generateTokens(sys: SystemContext) {
   return pretty(generateTokensResult(sys))
 }

@@ -12,7 +12,6 @@ export type {
   GlobalStyleObject,
   SystemStyleObject,
   CssKeyframes,
-  CssProperties,
 } from "./css.types"
 export type {
   AnimationStyle,

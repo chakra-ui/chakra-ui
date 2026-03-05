@@ -104,6 +104,63 @@ export function generateSystemTypesResult(sys: SystemContext) {
   return result
 }
 
+/**
+ * Generates system types for module augmentation.
+ * Only emits the SystemProperties interface (which TypeScript can merge).
+ * Skips CssVarProperties and helper type aliases.
+ */
+export function generateSystemTypesResultForAugmentation(sys: SystemContext) {
+  const props = new Set(
+    allCssProperties.concat(sys.utility.keys()).filter(Boolean),
+  )
+  const propTypes = sys.utility.getTypes()
+
+  const result = `
+  export interface SystemProperties {
+    ${Array.from(props)
+      .map((key) => {
+        const prop = sys.utility.shorthands.get(key) ?? key
+        const union = []
+        const cssFallback = allCssProperties.includes(prop)
+          ? `CssProperties["${prop}"]`
+          : ""
+        if (propTypes.has(prop)) {
+          const utilityValue = `UtilityValues["${prop}"]`
+          if (strictPropertyList.has(key)) {
+            union.push([utilityValue, "CssVars"].join(" | "))
+          } else {
+            union.push(
+              [
+                utilityValue,
+                "CssVars",
+                sys._config.strictTokens ? "" : cssFallback,
+              ]
+                .filter(Boolean)
+                .join(" | "),
+            )
+          }
+        } else {
+          union.push(
+            [strictPropertyList.has(key) ? "CssVars" : "", cssFallback]
+              .filter(Boolean)
+              .join(" | "),
+          )
+        }
+        const filtered = union.filter(Boolean)
+        if (!filtered.length) {
+          filtered.push("string | number")
+        }
+        filtered.push("undefined")
+        const value = filtered.filter(Boolean).join(" | ")
+        return `${key}?: ${restrict(prop, value, sys)} | undefined`
+      })
+      .join("\n")}
+  }
+      `
+
+  return result
+}
+
 export async function generateSystemTypes(
   sys: SystemContext,
   isDefaultOutdir: boolean,
