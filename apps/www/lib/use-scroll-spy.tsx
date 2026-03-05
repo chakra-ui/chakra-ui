@@ -2,9 +2,25 @@
 
 import { useEffect, useRef, useState } from "react"
 
+const useStableSelectors = (selectors: string[]): string[] => {
+  const ref = useRef<string[]>(selectors)
+  const prev = ref.current
+
+  if (
+    prev.length !== selectors.length ||
+    prev.some((value, index) => value !== selectors[index])
+  ) {
+    ref.current = selectors
+  }
+
+  return ref.current
+}
+
 export const useScrollSpy = (selectors: string[]) => {
+  const stableSelectors = useStableSelectors(selectors)
+
   const [activeIds, setActiveIds] = useState<Set<string>>(
-    () => new Set(selectors[0] ? [selectors[0]] : []),
+    () => new Set(stableSelectors[0] ? [stableSelectors[0]] : []),
   )
   const observer = useRef<IntersectionObserver | null>(null)
   const visibleIds = useRef<Set<string>>(new Set())
@@ -12,7 +28,7 @@ export const useScrollSpy = (selectors: string[]) => {
   useEffect(() => {
     visibleIds.current = new Set()
 
-    const elements = selectors.map((selector) =>
+    const elements = stableSelectors.map((selector) =>
       document.querySelector(`[id='${selector.replace("#", "")}']`),
     )
 
@@ -38,7 +54,7 @@ export const useScrollSpy = (selectors: string[]) => {
       if (element) observer.current?.observe(element)
     }
     return () => observer.current?.disconnect()
-  }, [selectors])
+  }, [stableSelectors])
 
   return activeIds
 }
