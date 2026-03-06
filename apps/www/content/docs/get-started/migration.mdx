@@ -313,6 +313,49 @@ Common icon mappings: `AddIcon` → `LuPlus`, `CloseIcon` → `LuX`, `CheckIcon`
 `InfoIcon` → `LuInfo`, `ExternalLinkIcon` → `LuExternalLink`, `StarIcon` →
 `LuStar`
 
+### Custom SVG Icons
+
+In v2, `<Icon>` rendered an `<svg>` wrapper and you passed SVG children (like
+`<path>`) directly. In v3, when using custom SVGs, use the `asChild` prop so the
+`Icon` merges its styles onto your `<svg>` element.
+
+Before:
+
+```tsx
+import { Icon } from "@chakra-ui/react"
+
+;<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
+  <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
+</Icon>
+```
+
+After:
+
+```tsx
+import { Icon } from "@chakra-ui/react"
+
+;<Icon color="red.500" size="md" asChild>
+  <svg viewBox="0 0 24 24">
+    <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
+  </svg>
+</Icon>
+```
+
+Alternatively, use `createIcon` to define reusable custom icons:
+
+```tsx
+import { createIcon } from "@chakra-ui/react"
+
+const TriangleIcon = createIcon({
+  displayName: "TriangleIcon",
+  viewBox: "0 0 24 24",
+  path: <path d="M12 2L2 22h20L12 2z" fill="currentColor" />,
+})
+
+// Usage
+<TriangleIcon size="lg" color="red.500" />
+```
+
 ### Storybook Addon
 
 We're removed the storybook addon in favor of using `@storybook/addon-themes`
@@ -2684,7 +2727,8 @@ const Demo = () => (
 
 The `AccordionItem` render prop pattern (`{({ isExpanded }) => ...}`) has been
 replaced. Use the `Accordion.ItemContext` component or the
-`useAccordionItemContext` hook instead. The `isExpanded` property is now `expanded`.
+`useAccordionItemContext` hook instead. The `isExpanded` property is now
+`expanded`.
 
 Before:
 
