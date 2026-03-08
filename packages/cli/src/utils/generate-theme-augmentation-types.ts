@@ -1,17 +1,24 @@
 import type { SystemContext } from "@chakra-ui/react"
 import type { CodegenFlags } from "../commands/typegen.js"
-import { generateConditionResult } from "./generate-conditions.js"
-import { generatePropTypesResultForAugmentation } from "./generate-prop-types.js"
+import { generateConditionBodyForRegister } from "./generate-conditions.js"
+import { generatePropTypesBodyForRegister } from "./generate-prop-types.js"
 import {
-  generateRecipeResultForAugmentation,
-  generateSlotRecipeResultForAugmentation,
+  generateRecipeConfigBodyForRegister,
+  generateRecipeSlotsBodyForRegister,
+  generateRecipeVariantInterfacesForRegister,
+  generateSlotRecipeConfigBodyForRegister,
+  generateSlotRecipeVariantInterfacesForRegister,
 } from "./generate-recipe.js"
-import { generateSystemTypesResultForAugmentation } from "./generate-system-types.js"
-import { generateTokensResultForAugmentation } from "./generate-tokens.js"
+import { generateSystemTypesBodyForRegister } from "./generate-system-types.js"
+import {
+  generateColorPaletteForRegister,
+  generateTokenUnionForRegister,
+  generateTokensBodyForRegister,
+} from "./generate-tokens.js"
 import { pretty } from "./pretty.js"
 
 export function generateThemeAugmentationImports() {
-  return `import type { ConditionalValue, CssProperties, SystemRecipeFn, SystemSlotRecipeFn } from "@chakra-ui/react"`
+  return `import type { AnyString, ConditionalValue, CssProperties, CssVars, SystemRecipeFn, SystemSlotRecipeFn } from "@chakra-ui/react"`
 }
 
 export function generateThemeAugmentationTypes(
@@ -22,12 +29,34 @@ export function generateThemeAugmentationTypes(
       ${generateThemeAugmentationImports()}
 
       declare module '@chakra-ui/react' {
-        ${generateConditionResult(sys)}
-        ${generateRecipeResultForAugmentation(sys)}
-        ${generateSlotRecipeResultForAugmentation(sys, flags.strict)}
-        ${generateTokensResultForAugmentation(sys)}
-        ${generatePropTypesResultForAugmentation(sys)}
-        ${generateSystemTypesResultForAugmentation(sys)}
+        ${generateRecipeVariantInterfacesForRegister(sys)}
+        ${generateSlotRecipeVariantInterfacesForRegister(sys, flags.strict)}
+
+        export interface Register {
+          conditions: {
+            ${generateConditionBodyForRegister(sys)}
+          }
+          configRecipes: {
+            ${generateRecipeConfigBodyForRegister(sys)}
+          }
+          configSlotRecipes: {
+            ${generateSlotRecipeConfigBodyForRegister(sys)}
+          }
+          configRecipeSlots: {
+            ${generateRecipeSlotsBodyForRegister(sys)}
+          }
+          tokens: {
+            ${generateTokensBodyForRegister(sys)}
+          }
+          token: ${generateTokenUnionForRegister(sys)}
+          colorPalette: ${generateColorPaletteForRegister(sys)}
+          utilityValues: {
+            ${generatePropTypesBodyForRegister(sys)}
+          }
+          systemProperties: {
+            ${generateSystemTypesBodyForRegister(sys)}
+          }
+        }
       }
       `
   return pretty(result)

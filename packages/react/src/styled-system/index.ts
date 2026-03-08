@@ -41,11 +41,30 @@ export type {
   PatchHtmlProps,
   StyledFactoryFn,
 } from "./factory.types"
+export type { AnyString, AnyNumber } from "./escape-hatch.types"
+export type {
+  CssVars,
+  CssVarValue,
+  CssVarKey,
+  CssVarProperties,
+} from "./css-var.types"
 export type * from "./generated/conditions.gen"
 export type * from "./generated/prop-types.gen"
 export type * from "./generated/recipes.gen"
 export type * from "./generated/system.gen"
 export type * from "./generated/token.gen"
+export type {
+  Register,
+  Conditions,
+  UtilityValues,
+  ConfigRecipes,
+  ConfigSlotRecipes,
+  ConfigRecipeSlots,
+  SystemProperties,
+  Tokens,
+  Token,
+  ColorPalette,
+} from "./register"
 export * from "./provider"
 export * from "./recipe-props"
 export type * from "./recipe.types"

@@ -62,6 +62,18 @@ export function generatePropTypesResultForAugmentation(sys: SystemContext) {
   return result.join("\n")
 }
 
+export function generatePropTypesBodyForRegister(sys: SystemContext) {
+  const { utility } = sys
+  const result = []
+  const types = utility.getTypes()
+
+  for (const [prop, values] of types.entries()) {
+    result.push(`\t${prop}: ${values.join(" | ")};`)
+  }
+
+  return result.join("\n")
+}
+
 export async function generatePropTypes(sys: SystemContext) {
   const imports = generatePropTypesImports()
   const propTypesResult = generatePropTypesResult(sys)

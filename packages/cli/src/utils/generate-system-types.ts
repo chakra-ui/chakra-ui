@@ -23,13 +23,16 @@ export function generateSystemTypesImports(sys: SystemContext) {
   result.push(
     `import type { ConditionalValue, CssProperties } from "../css.types"`,
   )
+  result.push(
+    `import type { AnyString } from "../escape-hatch.types"`,
+    `import type { CssVars } from "../css-var.types"`,
+  )
 
   result.push(
     shouldImportTypeWithEscapeHatch
       ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
       : `import type { UtilityValues } from "./prop-types.gen"`,
   )
-  result.push(`import type { Token } from "./token.gen"`)
 
   return result.join("\n")
 }
@@ -41,14 +44,8 @@ export function generateSystemTypesResult(sys: SystemContext) {
   const propTypes = sys.utility.getTypes()
 
   const result = `
-  type AnyString = (string & {})
-  type AnyNumber = (number & {})
-  type CssVars = \`var(--\${string})\`
-  type CssVarValue = ConditionalValue<Token | CssVars | AnyString | AnyNumber>
-  type CssVarKey = \`--\${string}\`
-  export type CssVarProperties = {
-      [key in CssVarKey]?: CssVarValue | undefined
-  }
+  export { type AnyString } from "../escape-hatch.types"
+  export { type CssVarProperties, type CssVars } from "../css-var.types"
 
   export interface SystemProperties {
     ${Array.from(props)
@@ -154,6 +151,52 @@ export function generateSystemTypesResultForAugmentation(sys: SystemContext) {
       `
 
   return result
+}
+
+export function generateSystemTypesBodyForRegister(sys: SystemContext) {
+  const props = new Set(
+    allCssProperties.concat(sys.utility.keys()).filter(Boolean),
+  )
+  const propTypes = sys.utility.getTypes()
+
+  return Array.from(props)
+    .map((key) => {
+      const prop = sys.utility.shorthands.get(key) ?? key
+      const union = []
+      const cssFallback = allCssProperties.includes(prop)
+        ? `CssProperties["${prop}"]`
+        : ""
+      if (propTypes.has(prop)) {
+        const utilityValue = `UtilityValues["${prop}"]`
+        if (strictPropertyList.has(key)) {
+          union.push([utilityValue, "CssVars"].join(" | "))
+        } else {
+          union.push(
+            [
+              utilityValue,
+              "CssVars",
+              sys._config.strictTokens ? "" : cssFallback,
+            ]
+              .filter(Boolean)
+              .join(" | "),
+          )
+        }
+      } else {
+        union.push(
+          [strictPropertyList.has(key) ? "CssVars" : "", cssFallback]
+            .filter(Boolean)
+            .join(" | "),
+        )
+      }
+      const filtered = union.filter(Boolean)
+      if (!filtered.length) {
+        filtered.push("string | number")
+      }
+      filtered.push("undefined")
+      const value = filtered.filter(Boolean).join(" | ")
+      return `${key}?: ${restrict(prop, value, sys)} | undefined`
+    })
+    .join("\n")
 }
 
 export async function generateSystemTypes(sys: SystemContext) {

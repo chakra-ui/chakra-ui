@@ -65,6 +65,35 @@ export function generateTokensResultForAugmentation(sys: SystemContext) {
   return Array.from(result).join("\n")
 }
 
+export function generateTokensBodyForRegister(sys: SystemContext) {
+  const { allTokens, categoryMap } = sys.tokens
+  const isTokenEmpty = allTokens.length === 0
+
+  const members: string[] = []
+  if (isTokenEmpty) {
+    members.push("[token: string]: string")
+  } else {
+    for (const [key, value] of categoryMap.entries()) {
+      members.push(`\t\t${key}: ${unionType(value.keys())}`)
+    }
+  }
+
+  return members.join("\n")
+}
+
+export function generateTokenUnionForRegister(sys: SystemContext) {
+  const { allTokens, tokenMap } = sys.tokens
+  return allTokens.length === 0
+    ? "string"
+    : unionType(Array.from(tokenMap.keys()))
+}
+
+export function generateColorPaletteForRegister(sys: SystemContext) {
+  const { colorPaletteMap } = sys.tokens
+  const keys = Array.from(colorPaletteMap.keys())
+  return keys.length ? unionType(keys) : "string"
+}
+
 export async function generateTokens(sys: SystemContext) {
   return pretty(generateTokensResult(sys))
 }

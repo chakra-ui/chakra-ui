@@ -20,6 +20,19 @@ export function generateConditionResult(sys: SystemContext) {
   return result
 }
 
+export function generateConditionBodyForRegister(sys: SystemContext) {
+  const keys = sys.conditions.keys().concat("base")
+  return keys
+    .map((key) => {
+      if (key === "base") {
+        return `/** The base (=no conditions) styles to apply  */\n${key}: string`
+      }
+      const value = sys.conditions.resolve(key)
+      return `/** \`${value}\` */\n'${key}': string`
+    })
+    .join("\n")
+}
+
 export function generateCondition(sys: SystemContext) {
   return pretty(generateConditionResult(sys))
 }
