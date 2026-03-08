@@ -1,5 +1,7 @@
 # @chakra-ui/cli
 
+## 3.34.1
+
 ## 3.34.0
 
 ### Patch Changes
