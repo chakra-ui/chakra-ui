@@ -64,6 +64,9 @@ export type {
   Tokens,
   Token,
   ColorPalette,
+  RecipeProps,
+  SlotRecipeProps,
+  SlotRecipeRecord,
 } from "./register"
 export * from "./provider"
 export * from "./recipe-props"

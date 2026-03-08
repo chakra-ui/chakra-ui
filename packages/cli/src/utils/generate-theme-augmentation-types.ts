@@ -5,9 +5,7 @@ import { generatePropTypesBodyForRegister } from "./generate-prop-types.js"
 import {
   generateRecipeConfigBodyForRegister,
   generateRecipeSlotsBodyForRegister,
-  generateRecipeVariantInterfacesForRegister,
   generateSlotRecipeConfigBodyForRegister,
-  generateSlotRecipeVariantInterfacesForRegister,
 } from "./generate-recipe.js"
 import { generateSystemTypesBodyForRegister } from "./generate-system-types.js"
 import {
@@ -29,9 +27,6 @@ export function generateThemeAugmentationTypes(
       ${generateThemeAugmentationImports()}
 
       declare module '@chakra-ui/react' {
-        ${generateRecipeVariantInterfacesForRegister(sys)}
-        ${generateSlotRecipeVariantInterfacesForRegister(sys, flags.strict)}
-
         export interface Register {
           conditions: {
             ${generateConditionBodyForRegister(sys)}
@@ -40,7 +35,7 @@ export function generateThemeAugmentationTypes(
             ${generateRecipeConfigBodyForRegister(sys)}
           }
           configSlotRecipes: {
-            ${generateSlotRecipeConfigBodyForRegister(sys)}
+            ${generateSlotRecipeConfigBodyForRegister(sys, flags.strict)}
           }
           configRecipeSlots: {
             ${generateRecipeSlotsBodyForRegister(sys)}

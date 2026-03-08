@@ -3,7 +3,7 @@ import { pretty } from "./pretty.js"
 import { capitalize, isBooleanValue, unionType } from "./shared.js"
 
 export function generateRecipeImports() {
-  return `import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
+  return `import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
        import type { ConditionalValue } from "../css.types"`
 }
 
@@ -145,22 +145,6 @@ export function generateSlotRecipeResult(sys: SystemContext, strict = true) {
   return slotRecipeResult
 }
 
-export function generateRecipeHelperTypes() {
-  return `
-      export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
-        ? Record<ConfigRecipeSlots[T], K>
-        : Record<string, K>
-
-      export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
-        ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
-        : { recipe?: SlotRecipeDefinition | undefined }
-
-      export type RecipeProps<T> = T extends keyof ConfigRecipes
-        ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
-        : { recipe?: RecipeDefinition | undefined }
-      `
-}
-
 /**
  * Generates recipe types for module augmentation.
  * Only emits interfaces (which TypeScript can merge) and inlines
@@ -292,80 +276,6 @@ export function generateSlotRecipeResultForAugmentation(
   return [slotRecipes.join("\n"), slotRecipeRecord].join("\n")
 }
 
-/**
- * Generates standalone per-recipe variant interfaces for Register augmentation.
- * These must be declared outside Register since they're referenced by config types.
- */
-export function generateRecipeVariantInterfacesForRegister(sys: SystemContext) {
-  const theme = sys._config.theme ?? {}
-  const sysRecipes = theme.recipes ?? {}
-
-  return Object.keys(sysRecipes)
-    .map((key) => {
-      const recipe = sysRecipes[key]
-      const variantKeyMap = sys.cva(recipe).variantMap
-      const upperName = capitalize(key)
-
-      return `
-        export interface ${upperName}Variant {
-          ${Object.keys(variantKeyMap)
-            .map((key) => {
-              const def = Reflect.get(recipe.defaultVariants ?? {}, key)
-              const jsDoc =
-                def !== undefined
-                  ? `/** @default ${JSON.stringify(def)} */\n`
-                  : ""
-              const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: boolean | undefined`
-              }
-              return `${jsDoc}${key}?: ${unionType(values)} | undefined`
-            })
-            .join("\n")}
-        }
-        `
-    })
-    .join("\n")
-}
-
-/**
- * Generates standalone per-slot-recipe variant interfaces for Register augmentation.
- */
-export function generateSlotRecipeVariantInterfacesForRegister(
-  sys: SystemContext,
-  strict = true,
-) {
-  const theme = sys._config.theme ?? {}
-  const sysSlotRecipes = theme.slotRecipes ?? {}
-
-  return Object.keys(sysSlotRecipes)
-    .map((key) => {
-      const recipe = sysSlotRecipes[key]
-      const variantKeyMap = sys.sva(recipe).variantMap
-      const upperName = capitalize(key)
-
-      return `
-        export interface ${upperName}Variant {
-          ${Object.keys(variantKeyMap)
-            .map((key) => {
-              const def = Reflect.get(recipe.defaultVariants ?? {}, key)
-              const jsDoc =
-                def !== undefined
-                  ? `/** @default ${JSON.stringify(def)} */\n`
-                  : ""
-              const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: boolean | undefined`
-              }
-              return `${jsDoc}${key}?: ${unionType(values, !strict)} | undefined`
-            })
-            .join("\n")}
-        }
-        `
-    })
-    .join("\n")
-}
-
 /** Returns just the members for ConfigRecipes (no interface wrapper). */
 export function generateRecipeConfigBodyForRegister(sys: SystemContext) {
   const theme = sys._config.theme ?? {}
@@ -376,14 +286,36 @@ export function generateRecipeConfigBodyForRegister(sys: SystemContext) {
 
   return recipeKeys
     .map((key) => {
-      const upperName = capitalize(key)
-      return `${key}: SystemRecipeFn<{ [K in keyof ${upperName}Variant]?: ConditionalValue<${upperName}Variant[K]> | undefined }, { [K in keyof ${upperName}Variant]: Array<${upperName}Variant[K]> }>`
+      const recipe = sysRecipes[key]
+      const variantKeyMap = sys.cva(recipe).variantMap
+      const vpBody = Object.keys(variantKeyMap)
+        .map((k) => {
+          const values = variantKeyMap[k]
+          const valType = values.every(isBooleanValue)
+            ? "boolean"
+            : unionType(values)
+          return `${k}?: ConditionalValue<${valType} | undefined> | undefined`
+        })
+        .join("; ")
+      const vmBody = Object.keys(variantKeyMap)
+        .map((k) => {
+          const values = variantKeyMap[k]
+          const valType = values.every(isBooleanValue)
+            ? "boolean"
+            : unionType(values)
+          return `${k}: Array<${valType} | undefined>`
+        })
+        .join("; ")
+      return `${key}: SystemRecipeFn<{ ${vpBody} }, { ${vmBody} }>`
     })
     .join("\n")
 }
 
 /** Returns just the members for ConfigSlotRecipes (no interface wrapper). */
-export function generateSlotRecipeConfigBodyForRegister(sys: SystemContext) {
+export function generateSlotRecipeConfigBodyForRegister(
+  sys: SystemContext,
+  strict = true,
+) {
   const theme = sys._config.theme ?? {}
   const sysSlotRecipes = theme.slotRecipes ?? {}
   const slotRecipeKeys = Object.keys(sysSlotRecipes)
@@ -394,9 +326,27 @@ export function generateSlotRecipeConfigBodyForRegister(sys: SystemContext) {
   return slotRecipeKeys
     .map((key) => {
       const recipe = sysSlotRecipes[key]
-      const upperName = capitalize(key)
+      const variantKeyMap = sys.sva(recipe).variantMap
       const slotUnion = unionType(recipe.slots ?? [])
-      return `${key}: SystemSlotRecipeFn<${slotUnion}, { [K in keyof ${upperName}Variant]?: ConditionalValue<${upperName}Variant[K]> | undefined }, { [K in keyof ${upperName}Variant]: Array<${upperName}Variant[K]> }>`
+      const vpBody = Object.keys(variantKeyMap)
+        .map((k) => {
+          const values = variantKeyMap[k]
+          const valType = values.every(isBooleanValue)
+            ? "boolean"
+            : unionType(values, !strict)
+          return `${k}?: ConditionalValue<${valType} | undefined> | undefined`
+        })
+        .join("; ")
+      const vmBody = Object.keys(variantKeyMap)
+        .map((k) => {
+          const values = variantKeyMap[k]
+          const valType = values.every(isBooleanValue)
+            ? "boolean"
+            : unionType(values, !strict)
+          return `${k}: Array<${valType} | undefined>`
+        })
+        .join("; ")
+      return `${key}: SystemSlotRecipeFn<${slotUnion}, { ${vpBody} }, { ${vmBody} }>`
     })
     .join("\n")
 }
@@ -421,9 +371,6 @@ export async function generateRecipe(sys: SystemContext, strict = true) {
   const imports = generateRecipeImports()
   const recipeResult = generateRecipeResult(sys)
   const slotRecipeResult = generateSlotRecipeResult(sys, strict)
-  const recipeHelperTypes = generateRecipeHelperTypes()
 
-  return pretty(
-    [imports, recipeResult, slotRecipeResult, recipeHelperTypes].join("\n"),
-  )
+  return pretty([imports, recipeResult, slotRecipeResult].join("\n"))
 }
