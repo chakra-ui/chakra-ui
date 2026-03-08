@@ -1,17 +1,9 @@
 import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./pretty.js"
 
-export function generatePropTypesImports(isDefaultOutdir: boolean) {
-  const result = []
-
-  result.push(
-    `import type { CssProperties } from "${isDefaultOutdir ? "../css.types" : "@chakra-ui/react"}"`,
-  )
-  if (isDefaultOutdir) {
-    result.push(`import type { Tokens } from "./token.gen"`)
-  }
-
-  return result.join("\n")
+export function generatePropTypesImports() {
+  return `import type { CssProperties } from "../css.types"
+  import type { Tokens } from "./token.gen"\n`
 }
 
 export function generatePropTypesResult(sys: SystemContext) {
@@ -70,11 +62,8 @@ export function generatePropTypesResultForAugmentation(sys: SystemContext) {
   return result.join("\n")
 }
 
-export async function generatePropTypes(
-  sys: SystemContext,
-  isDefaultOutdir: boolean,
-) {
-  const imports = generatePropTypesImports(isDefaultOutdir)
+export async function generatePropTypes(sys: SystemContext) {
+  const imports = generatePropTypesImports()
   const propTypesResult = generatePropTypesResult(sys)
 
   return pretty([imports, propTypesResult].join("\n"))

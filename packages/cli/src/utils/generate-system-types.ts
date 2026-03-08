@@ -16,25 +16,20 @@ const restrict = (_key: string, value: string, sys: SystemContext) => {
   return `ConditionalValue<${value} | AnyString>`
 }
 
-export function generateSystemTypesImports(
-  sys: SystemContext,
-  isDefaultOutdir: boolean,
-) {
+export function generateSystemTypesImports(sys: SystemContext) {
   const result = []
   const shouldImportTypeWithEscapeHatch = sys._config.strictTokens
 
   result.push(
-    `import type { ConditionalValue, CssProperties } from "${isDefaultOutdir ? "../css.types" : "@chakra-ui/react"}"`,
+    `import type { ConditionalValue, CssProperties } from "../css.types"`,
   )
 
-  if (isDefaultOutdir) {
-    result.push(
-      shouldImportTypeWithEscapeHatch
-        ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
-        : `import type { UtilityValues } from "./prop-types.gen"`,
-    )
-    result.push(`import type { Token } from "./token.gen"`)
-  }
+  result.push(
+    shouldImportTypeWithEscapeHatch
+      ? `import type { UtilityValues, WithEscapeHatch } from "./prop-types.gen"`
+      : `import type { UtilityValues } from "./prop-types.gen"`,
+  )
+  result.push(`import type { Token } from "./token.gen"`)
 
   return result.join("\n")
 }
@@ -161,14 +156,10 @@ export function generateSystemTypesResultForAugmentation(sys: SystemContext) {
   return result
 }
 
-export async function generateSystemTypes(
-  sys: SystemContext,
-  isDefaultOutdir: boolean,
-) {
+export async function generateSystemTypes(sys: SystemContext) {
   return pretty(
-    [
-      generateSystemTypesImports(sys, isDefaultOutdir),
-      generateSystemTypesResult(sys),
-    ].join("\n"),
+    [generateSystemTypesImports(sys), generateSystemTypesResult(sys)].join(
+      "\n",
+    ),
   )
 }

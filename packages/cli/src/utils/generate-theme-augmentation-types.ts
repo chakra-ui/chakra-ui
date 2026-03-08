@@ -11,7 +11,7 @@ import { generateTokensResultForAugmentation } from "./generate-tokens.js"
 import { pretty } from "./pretty.js"
 
 export function generateThemeAugmentationImports() {
-  return `import type { ConditionalValue, CssProperties, RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "@chakra-ui/react"`
+  return `import type { ConditionalValue, CssProperties, SystemRecipeFn, SystemSlotRecipeFn } from "@chakra-ui/react"`
 }
 
 export function generateThemeAugmentationTypes(

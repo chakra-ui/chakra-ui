@@ -596,12 +596,6 @@ export type DatePickerSlot =
   | "yearSelect"
   | "view"
   | "valueText"
-  | "label"
-  | "control"
-  | "input"
-  | "trigger"
-  | "clearTrigger"
-  | "positioner"
   | "indicatorGroup"
 
 export interface DatePickerVariant {
