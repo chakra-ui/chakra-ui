@@ -77,7 +77,7 @@
     "consola": "^3.4.2",
     "cross-env": "10.1.0",
     "dotenv": "17.2.3",
-    "eslint": "9.39.3",
+    "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-react": "1.1.7",
     "eslint-plugin-import": "2.32.0",
