@@ -1,4 +1,4 @@
-import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
+import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
 import type { ConditionalValue } from "../css.types"
 
 export interface BadgeVariant {
@@ -596,12 +596,6 @@ export type DatePickerSlot =
   | "yearSelect"
   | "view"
   | "valueText"
-  | "label"
-  | "control"
-  | "input"
-  | "trigger"
-  | "clearTrigger"
-  | "positioner"
   | "indicatorGroup"
 
 export interface DatePickerVariant {
@@ -1674,13 +1668,3 @@ export interface ConfigRecipeSlots {
   treeView: TreeViewSlot
   marquee: MarqueeSlot
 }
-
-export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
-
-export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
-  ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition | undefined }
-  : { recipe?: SlotRecipeDefinition | undefined }
-
-export type RecipeProps<T> = T extends keyof ConfigRecipes
-  ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition | undefined }
-  : { recipe?: RecipeDefinition | undefined }
