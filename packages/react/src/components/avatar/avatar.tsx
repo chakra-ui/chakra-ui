@@ -42,6 +42,7 @@ export const AvatarRootProvider = withProvider<
   HTMLDivElement,
   AvatarRootProviderProps
 >(ArkAvatar.RootProvider, "root", { forwardAsChild: true })
+AvatarRootProvider.displayName = "AvatarRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,6 +61,7 @@ export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   "root",
   { forwardAsChild: true },
 )
+AvatarRoot.displayName = "AvatarRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,6 +115,7 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
     )
   },
 )
+AvatarFallback.displayName = "AvatarFallback"
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AvatarImageProps
@@ -129,6 +132,7 @@ export const AvatarImage = withContext<HTMLImageElement, AvatarImageProps>(
     },
   },
 )
+AvatarImage.displayName = "AvatarImage"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -152,6 +156,7 @@ export const AvatarIcon = forwardRef<SVGElement, AvatarIconProps>(
     )
   },
 )
+AvatarIcon.displayName = "AvatarIcon"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -179,3 +184,4 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     )
   },
 )
+AvatarGroup.displayName = "AvatarGroup"

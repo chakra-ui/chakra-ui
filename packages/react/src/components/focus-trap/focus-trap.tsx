@@ -10,3 +10,4 @@ export interface FocusTrapProps
   extends HTMLChakraProps<"div">, FocusTrapBaseProps {}
 
 export const FocusTrap = chakra(FocusTrapPrimitive)
+FocusTrap.displayName = "FocusTrap"

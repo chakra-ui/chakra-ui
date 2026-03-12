@@ -40,6 +40,7 @@ export const NumberInputRootProvider = withProvider<
   HTMLDivElement,
   NumberInputRootProviderProps
 >(ArkNumberInput.RootProvider, "root", { forwardAsChild: true })
+NumberInputRootProvider.displayName = "NumberInputRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,7 @@ export const NumberInputRoot = withProvider<
   HTMLDivElement,
   NumberInputRootProps
 >(ArkNumberInput.Root, "root", { forwardAsChild: true })
+NumberInputRoot.displayName = "NumberInputRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +76,7 @@ export const NumberInputLabel = withContext<
   HTMLLabelElement,
   NumberInputLabelProps
 >(ArkNumberInput.Label, "label", { forwardAsChild: true })
+NumberInputLabel.displayName = "NumberInputLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +89,7 @@ export const NumberInputInput = withContext<
   HTMLInputElement,
   NumberInputInputProps
 >(ArkNumberInput.Input, "input", { forwardAsChild: true })
+NumberInputInput.displayName = "NumberInputInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,6 +105,7 @@ export const NumberInputIncrementTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <ChevronUpIcon /> },
 })
+NumberInputIncrementTrigger.displayName = "NumberInputIncrementTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -116,6 +121,7 @@ export const NumberInputDecrementTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <ChevronDownIcon /> },
 })
+NumberInputDecrementTrigger.displayName = "NumberInputDecrementTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,6 +144,7 @@ export const NumberInputControl = withContext<
     ),
   },
 })
+NumberInputControl.displayName = "NumberInputControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -150,6 +157,7 @@ export const NumberInputScrubber = withContext<
   HTMLDivElement,
   NumberInputScrubberProps
 >(ArkNumberInput.Scrubber, "scrubber", { forwardAsChild: true })
+NumberInputScrubber.displayName = "NumberInputScrubber"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -162,6 +170,7 @@ export const NumberInputValueText = withContext<
   HTMLSpanElement,
   NumberInputValueTextProps
 >(ArkNumberInput.ValueText, "valueText", { forwardAsChild: true })
+NumberInputValueText.displayName = "NumberInputValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -13,3 +13,4 @@ export interface PresenceProps extends Assign<
 > {}
 
 export const Presence = chakra(ArkPresence)
+Presence.displayName = "Presence"

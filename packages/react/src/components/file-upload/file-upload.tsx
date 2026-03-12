@@ -43,6 +43,7 @@ export const FileUploadRootProvider = withProvider<
   HTMLDivElement,
   FileUploadRootProviderProps
 >(ArkFileUpload.RootProvider, "root", { forwardAsChild: true })
+FileUploadRootProvider.displayName = "FileUploadRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,6 +62,7 @@ export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
   "root",
   { forwardAsChild: true },
 )
+FileUploadRoot.displayName = "FileUploadRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +78,7 @@ export const FileUploadClearTrigger = withContext<
   HTMLButtonElement,
   FileUploadClearTriggerProps
 >(ArkFileUpload.ClearTrigger, "clearTrigger", { forwardAsChild: true })
+FileUploadClearTrigger.displayName = "FileUploadClearTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,6 +91,7 @@ export const FileUploadDropzone = withContext<
   HTMLDivElement,
   FileUploadDropzoneProps
 >(ArkFileUpload.Dropzone, "dropzone", { forwardAsChild: true })
+FileUploadDropzone.displayName = "FileUploadDropzone"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -98,6 +102,7 @@ export const FileUploadDropzoneContent = withContext<
   HTMLDivElement,
   FileUploadDropzoneContentProps
 >("div", "dropzoneContent")
+FileUploadDropzoneContent.displayName = "FileUploadDropzoneContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -109,6 +114,7 @@ export const FileUploadItem = withContext<HTMLLIElement, FileUploadItemProps>(
   "item",
   { forwardAsChild: true },
 )
+FileUploadItem.displayName = "FileUploadItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +125,7 @@ export const FileUploadItemContent = withContext<
   HTMLDivElement,
   FileUploadItemContentProps
 >("div", "itemContent")
+FileUploadItemContent.displayName = "FileUploadItemContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,6 +143,7 @@ export const FileUploadItemDeleteTrigger = withContext<
     children: <CloseIcon />,
   },
 })
+FileUploadItemDeleteTrigger.displayName = "FileUploadItemDeleteTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,6 +156,7 @@ export const FileUploadItemGroup = withContext<
   HTMLUListElement,
   FileUploadItemGroupProps
 >(ArkFileUpload.ItemGroup, "itemGroup", { forwardAsChild: true })
+FileUploadItemGroup.displayName = "FileUploadItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +169,7 @@ export const FileUploadItemName = withContext<
   HTMLSpanElement,
   FileUploadItemNameProps
 >(ArkFileUpload.ItemName, "itemName", { forwardAsChild: true })
+FileUploadItemName.displayName = "FileUploadItemName"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -177,6 +187,7 @@ export const FileUploadItemPreview = withContext<
     children: <FileIcon />,
   },
 })
+FileUploadItemPreview.displayName = "FileUploadItemPreview"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -189,6 +200,7 @@ export const FileUploadItemPreviewImage = withContext<
   HTMLImageElement,
   FileUploadItemPreviewImageProps
 >(ArkFileUpload.ItemPreviewImage, "itemPreviewImage", { forwardAsChild: true })
+FileUploadItemPreviewImage.displayName = "FileUploadItemPreviewImage"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -201,6 +213,7 @@ export const FileUploadItemSizeText = withContext<
   HTMLSpanElement,
   FileUploadItemSizeTextProps
 >(ArkFileUpload.ItemSizeText, "itemSizeText", { forwardAsChild: true })
+FileUploadItemSizeText.displayName = "FileUploadItemSizeText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -213,6 +226,7 @@ export const FileUploadLabel = withContext<
   HTMLLabelElement,
   FileUploadLabelProps
 >(ArkFileUpload.Label, "label", { forwardAsChild: true })
+FileUploadLabel.displayName = "FileUploadLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -225,6 +239,7 @@ export const FileUploadTrigger = withContext<
   HTMLButtonElement,
   FileUploadTriggerProps
 >(ArkFileUpload.Trigger, "trigger", { forwardAsChild: true })
+FileUploadTrigger.displayName = "FileUploadTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -260,6 +275,7 @@ export const FileUploadItems = (props: FileUploadItemsProps) => {
     </For>
   )
 }
+FileUploadItems.displayName = "FileUploadItems"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -279,6 +295,7 @@ export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
     )
   },
 )
+FileUploadList.displayName = "FileUploadList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -320,11 +337,13 @@ export const FileUploadFileText = forwardRef<
     </Span>
   )
 })
+FileUploadFileText.displayName = "FileUploadFileText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const FileUploadContext = ArkFileUpload.Context
 export const FileUploadHiddenInput = ArkFileUpload.HiddenInput
+FileUploadHiddenInput.displayName = "FileUploadHiddenInput"
 
 export interface FileUploadFileAcceptDetails
   extends ArkFileUpload.FileAcceptDetails {}

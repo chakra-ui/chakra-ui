@@ -33,6 +33,7 @@ export const TimelineRoot = withProvider<HTMLDivElement, TimelineRootProps>(
   "root",
   { defaultProps: { role: "list" } },
 )
+TimelineRoot.displayName = "TimelineRoot"
 
 export const TimelineRootPropsProvider =
   PropsProvider as React.Provider<TimelineRootBaseProps>
@@ -47,6 +48,7 @@ export const TimelineItem = withContext<HTMLDivElement, TimelineItemProps>(
   "item",
   { defaultProps: { role: "listitem" } },
 )
+TimelineItem.displayName = "TimelineItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +59,7 @@ export const TimelineSeparator = withContext<
   HTMLDivElement,
   TimelineSeparatorProps
 >("div", "separator")
+TimelineSeparator.displayName = "TimelineSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,6 +70,7 @@ export const TimelineIndicator = withContext<
   HTMLDivElement,
   TimelineIndicatorProps
 >("div", "indicator")
+TimelineIndicator.displayName = "TimelineIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -77,6 +81,7 @@ export const TimelineContent = withContext<
   HTMLDivElement,
   TimelineContentProps
 >("div", "content")
+TimelineContent.displayName = "TimelineContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +92,7 @@ export const TimelineTitle = withContext<HTMLDivElement, TimelineTitleProps>(
   "div",
   "title",
 )
+TimelineTitle.displayName = "TimelineTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +103,7 @@ export const TimelineDescription = withContext<
   HTMLDivElement,
   TimelineDescriptionProps
 >("div", "description")
+TimelineDescription.displayName = "TimelineDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,3 +114,4 @@ export const TimelineConnector = withContext<
   HTMLDivElement,
   TimelineConnectorProps
 >("div", "connector")
+TimelineConnector.displayName = "TimelineConnector"

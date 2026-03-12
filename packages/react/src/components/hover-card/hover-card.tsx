@@ -33,6 +33,7 @@ export interface HoverCardRootProviderProps extends HoverCardRootProviderBasePro
 
 export const HoverCardRootProvider =
   withRootProvider<HoverCardRootProviderProps>(ArkHoverCard.RootProvider)
+HoverCardRootProvider.displayName = "HoverCardRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +49,7 @@ export interface HoverCardRootProps extends HoverCardRootBaseProps {
 export const HoverCardRoot = withRootProvider<HoverCardRootProps>(
   ArkHoverCard.Root,
 )
+HoverCardRoot.displayName = "HoverCardRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +67,7 @@ export const HoverCardTrigger = withContext<
   HTMLButtonElement,
   HoverCardTriggerProps
 >(ArkHoverCard.Trigger, "trigger", { forwardAsChild: true })
+HoverCardTrigger.displayName = "HoverCardTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -77,6 +80,7 @@ export const HoverCardPositioner = withContext<
   HTMLDivElement,
   HoverCardPositionerProps
 >(ArkHoverCard.Positioner, "positioner", { forwardAsChild: true })
+HoverCardPositioner.displayName = "HoverCardPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,6 +93,7 @@ export const HoverCardContent = withContext<
   HTMLDivElement,
   HoverCardContentProps
 >(ArkHoverCard.Content, "content", { forwardAsChild: true })
+HoverCardContent.displayName = "HoverCardContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,6 +106,7 @@ export const HoverCardArrowTip = withContext<
   HTMLDivElement,
   HoverCardArrowTipProps
 >(ArkHoverCard.ArrowTip, "arrowTip", { forwardAsChild: true })
+HoverCardArrowTip.displayName = "HoverCardArrowTip"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,6 +121,7 @@ export const HoverCardArrow = withContext<HTMLDivElement, HoverCardArrowProps>(
     defaultProps: { children: <HoverCardArrowTip /> },
   },
 )
+HoverCardArrow.displayName = "HoverCardArrow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -35,6 +35,7 @@ export interface MenuRootProviderProps extends MenuRootProviderBaseProps {
 export const MenuRootProvider = withRootProvider<MenuRootProviderProps>(
   ArkMenu.RootProvider,
 )
+MenuRootProvider.displayName = "MenuRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,6 +51,7 @@ export interface MenuRootProps extends MenuRootBaseProps {
 export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root, {
   defaultProps: { lazyMount: true, unmountOnExit: true },
 })
+MenuRoot.displayName = "MenuRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,6 +68,7 @@ export const MenuTrigger = withContext<HTMLButtonElement, MenuTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+MenuTrigger.displayName = "MenuTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -78,6 +81,7 @@ export const MenuContextTrigger = withContext<
   HTMLElement,
   MenuContextTriggerProps
 >(ArkMenu.ContextTrigger, "contextTrigger", { forwardAsChild: true })
+MenuContextTrigger.displayName = "MenuContextTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,6 +93,7 @@ export const MenuPositioner = withContext<HTMLDivElement, MenuPositionerProps>(
   "positioner",
   { forwardAsChild: true },
 )
+MenuPositioner.displayName = "MenuPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,6 +105,7 @@ export const MenuSeparator = withContext<HTMLDivElement, MenuSeparatorProps>(
   "separator",
   { forwardAsChild: true },
 )
+MenuSeparator.displayName = "MenuSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,6 +117,7 @@ export const MenuContent = withContext<HTMLDivElement, MenuContentProps>(
   "content",
   { forwardAsChild: true },
 )
+MenuContent.displayName = "MenuContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -122,6 +129,7 @@ export const MenuArrowTip = withContext<HTMLDivElement, MenuArrowTipProps>(
   "arrowTip",
   { forwardAsChild: true },
 )
+MenuArrowTip.displayName = "MenuArrowTip"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -133,6 +141,7 @@ export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
   "arrow",
   { forwardAsChild: true, defaultProps: { children: <MenuArrowTip /> } },
 )
+MenuArrow.displayName = "MenuArrow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -144,6 +153,7 @@ export const MenuIndicator = withContext<HTMLDivElement, MenuIndicatorProps>(
   "indicator",
   { forwardAsChild: true },
 )
+MenuIndicator.displayName = "MenuIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -155,6 +165,7 @@ export const MenuItemGroup = withContext<HTMLDivElement, MenuItemGroupProps>(
   "itemGroup",
   { forwardAsChild: true },
 )
+MenuItemGroup.displayName = "MenuItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -167,6 +178,7 @@ export const MenuItemGroupLabel = withContext<
   HTMLDivElement,
   MenuItemGroupLabelProps
 >(ArkMenu.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
+MenuItemGroupLabel.displayName = "MenuItemGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,6 +190,7 @@ export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
   "item",
   { forwardAsChild: true },
 )
+MenuItem.displayName = "MenuItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -188,6 +201,7 @@ export const MenuTriggerItem = withContext<
   HTMLDivElement,
   MenuTriggerItemProps
 >(ArkMenu.TriggerItem, "item", { forwardAsChild: true })
+MenuTriggerItem.displayName = "MenuTriggerItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -199,6 +213,7 @@ export const MenuItemText = withContext<HTMLDivElement, MenuItemTextProps>(
   "itemText",
   { forwardAsChild: true },
 )
+MenuItemText.displayName = "MenuItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -209,6 +224,7 @@ export const MenuItemCommand = withContext<HTMLElement, MenuItemCommandProps>(
   "kbd",
   "itemCommand",
 )
+MenuItemCommand.displayName = "MenuItemCommand"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,6 +240,7 @@ export const MenuItemIndicator = withContext<
   forwardAsChild: true,
   defaultProps: { children: <CheckIcon boxSize="4" /> },
 })
+MenuItemIndicator.displayName = "MenuItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -234,6 +251,7 @@ export const MenuCheckboxItem = withContext<
   HTMLDivElement,
   MenuCheckboxItemProps
 >(ArkMenu.CheckboxItem, "item", { forwardAsChild: true })
+MenuCheckboxItem.displayName = "MenuCheckboxItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -246,6 +264,7 @@ export const MenuRadioItemGroup = withContext<
   HTMLDivElement,
   MenuRadioItemGroupProps
 >(ArkMenu.RadioItemGroup, "itemGroup", { forwardAsChild: true })
+MenuRadioItemGroup.displayName = "MenuRadioItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -257,6 +276,7 @@ export const MenuRadioItem = withContext<HTMLDivElement, MenuRadioItemProps>(
   "item",
   { forwardAsChild: true },
 )
+MenuRadioItem.displayName = "MenuRadioItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

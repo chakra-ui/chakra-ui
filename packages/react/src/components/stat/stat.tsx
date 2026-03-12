@@ -36,6 +36,7 @@ export const StatRoot = withProvider<HTMLDListElement, StatRootProps>(
   "dl",
   "root",
 )
+StatRoot.displayName = "StatRoot"
 
 export const StatPropsProvider =
   PropsProvider as React.Provider<StatRootBaseProps>
@@ -45,6 +46,7 @@ export const StatPropsProvider =
 export interface StatLabelProps extends HTMLChakraProps<"dt">, UnstyledProp {}
 
 export const StatLabel = withContext<HTMLElement, StatLabelProps>("dt", "label")
+StatLabel.displayName = "StatLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,7 @@ export const StatValueText = withContext<HTMLElement, StatValueTextProps>(
   "dd",
   "valueText",
 )
+StatValueText.displayName = "StatValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +68,7 @@ export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
   "span",
   "helpText",
 )
+StatHelpText.displayName = "StatHelpText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,6 +79,7 @@ export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
   "span",
   "valueUnit",
 )
+StatValueUnit.displayName = "StatValueUnit"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +96,7 @@ export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
     },
   },
 )
+StatUpIndicator.displayName = "StatUpIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +112,7 @@ export const StatDownIndicator = withContext<
     children: <ArrowDownIcon />,
   },
 })
+StatDownIndicator.displayName = "StatDownIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,3 +141,4 @@ export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
     )
   },
 )
+StatGroup.displayName = "StatGroup"

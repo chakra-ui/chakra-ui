@@ -36,6 +36,7 @@ export const ToggleRootProvider = withProvider<
   HTMLButtonElement,
   ToggleRootProviderProps
 >(ArkToggle.Root, "root", { forwardAsChild: true })
+ToggleRootProvider.displayName = "ToggleRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export const ToggleRoot = withProvider<HTMLButtonElement, ToggleRootProps>(
   "root",
   { forwardAsChild: true },
 )
+ToggleRoot.displayName = "ToggleRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -72,6 +74,7 @@ export const ToggleIndicator = withContext<
   forwardAsChild: true,
   defaultProps: { _empty: { display: "none" } },
 })
+ToggleIndicator.displayName = "ToggleIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

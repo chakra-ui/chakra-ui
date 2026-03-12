@@ -42,6 +42,7 @@ export const CheckboxRootProvider = withProvider<
   HTMLDivElement,
   CheckboxRootProviderProps
 >(ArkCheckbox.RootProvider, "root", { forwardAsChild: true })
+CheckboxRootProvider.displayName = "CheckboxRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,6 +61,7 @@ export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
   "root",
   { forwardAsChild: true },
 )
+CheckboxRoot.displayName = "CheckboxRoot"
 
 export const CheckboxPropsProvider =
   PropsProvider as React.Provider<CheckboxRootBaseProps>
@@ -74,6 +76,7 @@ export const CheckboxLabel = withContext<HTMLElement, CheckboxLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+CheckboxLabel.displayName = "CheckboxLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -129,6 +132,7 @@ export const CheckboxIndicator = forwardRef<
     />
   )
 })
+CheckboxIndicator.displayName = "CheckboxIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -143,6 +147,7 @@ export const CheckboxControl = withContext<HTMLElement, CheckboxControlProps>(
     defaultProps: { children: <CheckboxIndicator /> },
   },
 )
+CheckboxControl.displayName = "CheckboxControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -166,11 +171,13 @@ export const CheckboxGroup = chakra(
   },
   { forwardAsChild: true },
 ) as CheckboxGroupComponent
+;(CheckboxGroup as any).displayName = "CheckboxGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const CheckboxContext = ArkCheckbox.Context
 export const CheckboxHiddenInput = ArkCheckbox.HiddenInput
+CheckboxHiddenInput.displayName = "CheckboxHiddenInput"
 
 export interface CheckboxCheckedChangeDetails
   extends ArkCheckbox.CheckedChangeDetails {}

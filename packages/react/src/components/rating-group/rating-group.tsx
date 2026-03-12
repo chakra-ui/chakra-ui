@@ -47,6 +47,7 @@ export const RatingGroupRootProvider = withProvider<
   HTMLDivElement,
   RatingGroupRootProviderProps
 >(ArkRatingGroup.RootProvider, "root", { forwardAsChild: true })
+RatingGroupRootProvider.displayName = "RatingGroupRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +65,7 @@ export const RatingGroupRoot = withProvider<
   HTMLDivElement,
   RatingGroupRootProps
 >(ArkRatingGroup.Root, "root", { forwardAsChild: true })
+RatingGroupRoot.displayName = "RatingGroupRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -79,6 +81,7 @@ export const RatingGroupLabel = withContext<
   HTMLDivElement,
   RatingGroupLabelProps
 >(ArkRatingGroup.Label, "label", { forwardAsChild: true })
+RatingGroupLabel.displayName = "RatingGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,6 +92,7 @@ export const RatingGroupItem = withContext<
   HTMLDivElement,
   RatingGroupItemProps
 >(ArkRatingGroup.Item, "item", { forwardAsChild: true })
+RatingGroupItem.displayName = "RatingGroupItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,6 +128,7 @@ export const RatingGroupItemIndicator = forwardRef<
     </chakra.span>
   )
 })
+RatingGroupItemIndicator.displayName = "RatingGroupItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -144,6 +149,7 @@ export const RatingGroupItems = (props: RatingGroupItemsProps) => {
     </For>
   )
 }
+RatingGroupItems.displayName = "RatingGroupItems"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -159,12 +165,14 @@ export const RatingGroupControl = withContext<
   forwardAsChild: true,
   defaultProps: { children: <RatingGroupItems /> },
 })
+RatingGroupControl.displayName = "RatingGroupControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const RatingGroupContext = ArkRatingGroup.Context
 export const RatingGroupItemContext = ArkRatingGroup.ItemContext
 export const RatingGroupHiddenInput = ArkRatingGroup.HiddenInput
+RatingGroupHiddenInput.displayName = "RatingGroupHiddenInput"
 
 export interface RatingGroupValueChangeDetails
   extends ArkRatingGroup.ValueChangeDetails {}

@@ -35,6 +35,7 @@ export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
     )
   },
 )
+LinkOverlay.displayName = "LinkOverlay"
 
 export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
 
@@ -67,3 +68,4 @@ export const LinkBox = forwardRef<HTMLDivElement, LinkBoxProps>(
     )
   },
 )
+LinkBox.displayName = "LinkBox"

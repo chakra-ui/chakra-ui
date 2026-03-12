@@ -41,6 +41,7 @@ export const ColorSwatch = forwardRef<HTMLSpanElement, ColorSwatchProps>(
     )
   },
 )
+ColorSwatch.displayName = "ColorSwatch"
 
 export const ColorSwatchPropsProvider = withPropsProvider<ColorSwatchProps>()
 
@@ -80,3 +81,4 @@ export const ColorSwatchMix = (props: ColorSwatchMixProps) => {
     </ColorSwatch>
   )
 }
+ColorSwatchMix.displayName = "ColorSwatchMix"

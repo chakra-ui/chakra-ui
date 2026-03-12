@@ -32,6 +32,7 @@ export const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
   "div",
   "root",
 )
+CardRoot.displayName = "CardRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +47,7 @@ export const CardBody = withContext<HTMLDivElement, CardBodyProps>(
   "div",
   "body",
 )
+CardBody.displayName = "CardBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,7 @@ export const CardHeader = withContext<HTMLDivElement, CardHeaderProps>(
   "div",
   "header",
 )
+CardHeader.displayName = "CardHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +67,7 @@ export const CardFooter = withContext<HTMLDivElement, CardFooterProps>(
   "div",
   "footer",
 )
+CardFooter.displayName = "CardFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +77,7 @@ export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
   "h3",
   "title",
 )
+CardTitle.displayName = "CardTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,3 +88,4 @@ export const CardDescription = withContext<
   HTMLParagraphElement,
   CardDescriptionProps
 >("p", "description")
+CardDescription.displayName = "CardDescription"

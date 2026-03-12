@@ -41,6 +41,7 @@ export const TagsInputRootProvider = withProvider<
   HTMLDivElement,
   TagsInputRootProviderProps
 >(ArkTagsInput.RootProvider, "root", { forwardAsChild: true })
+TagsInputRootProvider.displayName = "TagsInputRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,6 +60,7 @@ export const TagsInputRoot = withProvider<HTMLDivElement, TagsInputRootProps>(
   "root",
   { forwardAsChild: true, defaultProps: { editable: false } },
 )
+TagsInputRoot.displayName = "TagsInputRoot"
 
 export const TagsInputPropsProvider =
   PropsProvider as React.Provider<TagsInputRootBaseProps>
@@ -72,6 +74,7 @@ export const TagsInputLabel = withContext<
   HTMLLabelElement,
   TagsInputLabelProps
 >(ArkTagsInput.Label, "label", { forwardAsChild: true })
+TagsInputLabel.displayName = "TagsInputLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,6 +85,7 @@ export const TagsInputControl = withContext<
   HTMLDivElement,
   TagsInputControlProps
 >(ArkTagsInput.Control, "control", { forwardAsChild: true })
+TagsInputControl.displayName = "TagsInputControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,6 +96,7 @@ export const TagsInputInput = withContext<
   HTMLInputElement,
   TagsInputInputProps
 >(ArkTagsInput.Input, "input", { forwardAsChild: true })
+TagsInputInput.displayName = "TagsInputInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +108,7 @@ export const TagsInputItem = withContext<HTMLDivElement, TagsInputItemProps>(
   "item",
   { forwardAsChild: true },
 )
+TagsInputItem.displayName = "TagsInputItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,6 +121,7 @@ export const TagsInputItemText = withContext<
   HTMLSpanElement,
   TagsInputItemTextProps
 >(ArkTagsInput.ItemText, "itemText", { forwardAsChild: true })
+TagsInputItemText.displayName = "TagsInputItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -130,6 +137,7 @@ export const TagsInputItemDeleteTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <CloseIcon /> },
 })
+TagsInputItemDeleteTrigger.displayName = "TagsInputItemDeleteTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -142,6 +150,7 @@ export const TagsInputItemPreview = withContext<
   HTMLDivElement,
   HTMLChakraProps<"div", ArkTagsInput.ItemPreviewBaseProps> & UnstyledProp
 >(ArkTagsInput.ItemPreview, "itemPreview", { forwardAsChild: true })
+TagsInputItemPreview.displayName = "TagsInputItemPreview"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -154,6 +163,7 @@ export const TagsInputItemInput = withContext<
   HTMLInputElement,
   TagsInputItemInputProps
 >(ArkTagsInput.ItemInput, "itemInput", { forwardAsChild: true })
+TagsInputItemInput.displayName = "TagsInputItemInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -169,6 +179,7 @@ export const TagsInputClearTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <CloseIcon /> },
 })
+TagsInputClearTrigger.displayName = "TagsInputClearTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -193,11 +204,13 @@ export const TagsInputItems = (props: TagsInputItemsProps) => {
     </For>
   )
 }
+TagsInputItems.displayName = "TagsInputItems"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const TagsInputContext = ArkTagsInput.Context
 export const TagsInputHiddenInput = ArkTagsInput.HiddenInput
+TagsInputHiddenInput.displayName = "TagsInputHiddenInput"
 export const TagsInputItemContext = ArkTagsInput.ItemContext
 
 export interface TagsInputValueChangeDetails

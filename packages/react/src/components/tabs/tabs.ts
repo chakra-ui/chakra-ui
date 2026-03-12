@@ -36,6 +36,7 @@ export const TabsRootProvider = withProvider<
   HTMLDivElement,
   TabsRootProviderProps
 >(ArkTabs.RootProvider, "root", { forwardAsChild: true })
+TabsRootProvider.displayName = "TabsRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(
   "root",
   { forwardAsChild: true },
 )
+TabsRoot.displayName = "TabsRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +72,7 @@ export const TabsTrigger = withContext<HTMLButtonElement, TabsTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+TabsTrigger.displayName = "TabsTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,6 +84,7 @@ export const TabsContent = withContext<HTMLDivElement, TabsContentProps>(
   "content",
   { forwardAsChild: true },
 )
+TabsContent.displayName = "TabsContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +95,7 @@ export const TabsContentGroup = withContext<
   HTMLDivElement,
   TabsContentGroupProps
 >("div", "contentGroup")
+TabsContentGroup.displayName = "TabsContentGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -102,6 +107,7 @@ export const TabsList = withContext<HTMLDivElement, TabsListProps>(
   "list",
   { forwardAsChild: true },
 )
+TabsList.displayName = "TabsList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,3 +119,4 @@ export const TabsIndicator = withContext<HTMLDivElement, TabsIndicatorProps>(
   "indicator",
   { forwardAsChild: true },
 )
+TabsIndicator.displayName = "TabsIndicator"

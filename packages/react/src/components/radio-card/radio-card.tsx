@@ -46,6 +46,7 @@ export const RadioCardRootProvider = withProvider<
   HTMLDivElement,
   RadioCardRootProviderProps
 >(ArkRadioGroup.RootProvider, "root", { forwardAsChild: true })
+RadioCardRootProvider.displayName = "RadioCardRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +65,7 @@ export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   "root",
   { forwardAsChild: true },
 )
+RadioCardRoot.displayName = "RadioCardRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +82,7 @@ export const RadioCardLabel = withContext<HTMLDivElement, RadioCardLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+RadioCardLabel.displayName = "RadioCardLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +94,7 @@ export const RadioCardItem = withContext<HTMLDivElement, RadioCardItemProps>(
   "item",
   { forwardAsChild: true },
 )
+RadioCardItem.displayName = "RadioCardItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +107,7 @@ export const RadioCardItemText = withContext<
   HTMLSpanElement,
   RadioCardItemTextProps
 >(ArkRadioGroup.ItemText, "itemText", { forwardAsChild: true })
+RadioCardItemText.displayName = "RadioCardItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,6 +118,7 @@ export const RadioCardItemDescription = withContext<
   HTMLSpanElement,
   RadioCardItemDescriptionProps
 >("div", "itemDescription", { forwardAsChild: true })
+RadioCardItemDescription.displayName = "RadioCardItemDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -141,6 +147,7 @@ export const RadioCardItemControl = forwardRef<
     />
   )
 })
+RadioCardItemControl.displayName = "RadioCardItemControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +158,7 @@ export const RadioCardItemContent = withContext<
   HTMLDivElement,
   RadioCardItemContentProps
 >("div", "itemContent")
+RadioCardItemContent.displayName = "RadioCardItemContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -161,6 +169,7 @@ export const RadioCardItemAddon = withContext<
   HTMLElement,
   RadioCardItemAddonProps
 >("div", "itemAddon")
+RadioCardItemAddon.displayName = "RadioCardItemAddon"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -202,6 +211,7 @@ export const RadioCardItemIndicator = forwardRef<
     />
   )
 })
+RadioCardItemIndicator.displayName = "RadioCardItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,6 +234,7 @@ export const RadioCardItemContext: React.FC<RadioCardItemContextProps> =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const RadioCardItemHiddenInput = ArkRadioGroup.ItemHiddenInput
+RadioCardItemHiddenInput.displayName = "RadioCardItemHiddenInput"
 
 export interface RadioCardValueChangeDetails
   extends ArkRadioGroup.ValueChangeDetails {}

@@ -36,6 +36,7 @@ export const PinInputRootProvider = withProvider<
   HTMLDivElement,
   PinInputRootProviderProps
 >(ArkPinInput.RootProvider, "root", { forwardAsChild: true })
+PinInputRootProvider.displayName = "PinInputRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export const PinInputRoot = withProvider<HTMLDivElement, PinInputRootProps>(
   "root",
   { forwardProps: ["mask"], forwardAsChild: true },
 )
+PinInputRoot.displayName = "PinInputRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,6 +71,7 @@ export const PinInputControl = withContext<
   HTMLDivElement,
   PinInputControlProps
 >(ArkPinInput.Control, "control", { forwardAsChild: true })
+PinInputControl.displayName = "PinInputControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +83,7 @@ export const PinInputInput = withContext<HTMLInputElement, PinInputInputProps>(
   "input",
   { forwardAsChild: true },
 )
+PinInputInput.displayName = "PinInputInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,11 +95,13 @@ export const PinInputLabel = withContext<HTMLLabelElement, PinInputLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+PinInputLabel.displayName = "PinInputLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const PinInputContext = ArkPinInput.Context
 export const PinInputHiddenInput = ArkPinInput.HiddenInput
+PinInputHiddenInput.displayName = "PinInputHiddenInput"
 
 export interface PinInputValueChangeDetails
   extends ArkPinInput.ValueChangeDetails {}

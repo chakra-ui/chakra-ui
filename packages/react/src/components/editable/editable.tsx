@@ -42,6 +42,7 @@ export const EditableRootProvider = withProvider<
   HTMLDivElement,
   EditableRootProviderProps
 >(ArkEditable.RootProvider, "root", { forwardAsChild: true })
+EditableRootProvider.displayName = "EditableRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,6 +61,7 @@ export const EditableRoot = withProvider<HTMLDivElement, EditableRootProps>(
   "root",
   { forwardAsChild: true },
 )
+EditableRoot.displayName = "EditableRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,6 +77,7 @@ export const EditablePreview = withContext<
   HTMLSpanElement,
   EditablePreviewProps
 >(ArkEditable.Preview, "preview", { forwardAsChild: true })
+EditablePreview.displayName = "EditablePreview"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +89,7 @@ export const EditableLabel = withContext<HTMLLabelElement, EditableLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+EditableLabel.displayName = "EditableLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +101,7 @@ export const EditableInput = withContext<HTMLInputElement, EditableInputProps>(
   "input",
   { forwardAsChild: true },
 )
+EditableInput.displayName = "EditableInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +123,7 @@ export const EditableTextarea = withContext<
   HTMLInputElement,
   EditableTextareaProps
 >(ArkEditableTextarea, "input", { forwardAsChild: true })
+EditableTextarea.displayName = "EditableTextarea"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -128,6 +134,7 @@ export const EditableControl = withContext<
   HTMLDivElement,
   EditableControlProps
 >(ArkEditable.Control, "control", { forwardAsChild: true })
+EditableControl.displayName = "EditableControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,6 +146,7 @@ export const EditableArea = withContext<HTMLDivElement, EditableAreaProps>(
   "area",
   { forwardAsChild: true },
 )
+EditableArea.displayName = "EditableArea"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +159,7 @@ export const EditableEditTrigger = withContext<
   HTMLButtonElement,
   EditableEditTriggerProps
 >(ArkEditable.EditTrigger, "editTrigger", { forwardAsChild: true })
+EditableEditTrigger.displayName = "EditableEditTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -163,6 +172,7 @@ export const EditableSubmitTrigger = withContext<
   HTMLButtonElement,
   EditableSubmitTriggerProps
 >(ArkEditable.SubmitTrigger, "submitTrigger", { forwardAsChild: true })
+EditableSubmitTrigger.displayName = "EditableSubmitTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -175,6 +185,7 @@ export const EditableCancelTrigger = withContext<
   HTMLButtonElement,
   EditableCancelTriggerProps
 >(ArkEditable.CancelTrigger, "cancelTrigger", { forwardAsChild: true })
+EditableCancelTrigger.displayName = "EditableCancelTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

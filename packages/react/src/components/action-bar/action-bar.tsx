@@ -36,6 +36,7 @@ export const ActionBarRootProvider =
       unmountOnExit: true,
     },
   })
+ActionBarRootProvider.displayName = "ActionBarRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,6 +62,7 @@ export const ActionBarRoot = withRootProvider<ActionBarRootProps>(
     },
   },
 )
+ActionBarRoot.displayName = "ActionBarRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +78,7 @@ export const ActionBarPositioner = withContext<
   HTMLDivElement,
   ActionBarPositionerProps
 >("div", "positioner", { forwardAsChild: true })
+ActionBarPositioner.displayName = "ActionBarPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +89,7 @@ export const ActionBarContent = withContext<
   HTMLDivElement,
   ActionBarContentProps
 >(ArkPopover.Content, "content", { forwardAsChild: true })
+ActionBarContent.displayName = "ActionBarContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +100,7 @@ export const ActionBarSeparator = withContext<
   HTMLDivElement,
   ActionBarSeparatorProps
 >("div", "separator")
+ActionBarSeparator.displayName = "ActionBarSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +111,7 @@ export const ActionBarSelectionTrigger = withContext<
   HTMLButtonElement,
   ActionBarSelectionTriggerProps
 >("button", "selectionTrigger")
+ActionBarSelectionTrigger.displayName = "ActionBarSelectionTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +124,7 @@ export const ActionBarCloseTrigger = withContext<
   HTMLButtonElement,
   ActionBarCloseTriggerProps
 >(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+ActionBarCloseTrigger.displayName = "ActionBarCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -42,6 +42,7 @@ export const CheckboxCardRootProvider = withProvider<
   HTMLLabelElement,
   CheckboxCardRootProviderProps
 >(ArkCheckbox.RootProvider, "root", { forwardAsChild: true })
+CheckboxCardRootProvider.displayName = "CheckboxCardRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,6 +60,7 @@ export const CheckboxCardRoot = withProvider<
   HTMLLabelElement,
   CheckboxCardRootProps
 >(ArkCheckbox.Root, "root", { forwardAsChild: true })
+CheckboxCardRoot.displayName = "CheckboxCardRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +76,7 @@ export const CheckboxCardLabel = withContext<
   HTMLElement,
   CheckboxCardLabelProps
 >(ArkCheckbox.Label, "label", { forwardAsChild: true })
+CheckboxCardLabel.displayName = "CheckboxCardLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +100,7 @@ export const CheckboxCardDescription = forwardRef<
     />
   )
 })
+CheckboxCardDescription.displayName = "CheckboxCardDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +111,7 @@ export const CheckboxCardControl = withContext<
   HTMLDivElement,
   CheckboxCardControlProps
 >(ArkCheckbox.Control, "control", { forwardAsChild: true })
+CheckboxCardControl.displayName = "CheckboxCardControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +122,7 @@ export const CheckboxCardContent = withContext<
   HTMLDivElement,
   CheckboxCardContentProps
 >("div", "content")
+CheckboxCardContent.displayName = "CheckboxCardContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -143,6 +149,7 @@ export const CheckboxCardIndicator = forwardRef<
     />
   )
 })
+CheckboxCardIndicator.displayName = "CheckboxCardIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -153,11 +160,13 @@ export const CheckboxCardAddon = withContext<
   HTMLElement,
   CheckboxCardAddonProps
 >("div", "addon")
+CheckboxCardAddon.displayName = "CheckboxCardAddon"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const CheckboxCardContext = ArkCheckbox.Context
 export const CheckboxCardHiddenInput = ArkCheckbox.HiddenInput
+CheckboxCardHiddenInput.displayName = "CheckboxCardHiddenInput"
 
 export interface CheckboxCardCheckedChangeDetails
   extends ArkCheckbox.CheckedChangeDetails {}
