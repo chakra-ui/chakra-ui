@@ -48,6 +48,7 @@ export const ColorPickerRootProvider = withProvider<
   HTMLDivElement,
   ColorPickerRootProviderProps
 >(ArkColorPicker.RootProvider, "root", { forwardAsChild: true })
+ColorPickerRootProvider.displayName = "ColorPickerRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +66,7 @@ export const ColorPickerRoot = withProvider<
   HTMLDivElement,
   ColorPickerRootProps
 >(ArkColorPicker.Root, "root", { forwardAsChild: true })
+ColorPickerRoot.displayName = "ColorPickerRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,6 +84,7 @@ export const ColorPickerLabel = withContext<
   HTMLLabelElement,
   ColorPickerLabelProps
 >(ArkColorPicker.Label, "label", { forwardAsChild: true })
+ColorPickerLabel.displayName = "ColorPickerLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +97,7 @@ export const ColorPickerControl = withContext<
   HTMLDivElement,
   ColorPickerControlProps
 >(ArkColorPicker.Control, "control", { forwardAsChild: true })
+ColorPickerControl.displayName = "ColorPickerControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +110,7 @@ export const ColorPickerValueSwatch = withContext<
   HTMLDivElement,
   ColorPickerValueSwatchProps
 >(ArkColorPicker.ValueSwatch, "swatch", { forwardAsChild: true })
+ColorPickerValueSwatch.displayName = "ColorPickerValueSwatch"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -123,6 +128,7 @@ export const ColorPickerTrigger = withContext<
     children: <ColorPickerValueSwatch />,
   },
 })
+ColorPickerTrigger.displayName = "ColorPickerTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -135,6 +141,7 @@ export const ColorPickerPositioner = withContext<
   HTMLDivElement,
   ColorPickerPositionerProps
 >(ArkColorPicker.Positioner, "positioner", { forwardAsChild: true })
+ColorPickerPositioner.displayName = "ColorPickerPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,6 +154,7 @@ export const ColorPickerContent = withContext<
   HTMLDivElement,
   ColorPickerContentProps
 >(ArkColorPicker.Content, "content", { forwardAsChild: true })
+ColorPickerContent.displayName = "ColorPickerContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -159,6 +167,7 @@ export const ColorPickerAreaBackground = withContext<
   HTMLDivElement,
   ColorPickerAreaBackgroundProps
 >(ArkColorPicker.AreaBackground, "areaBackground", { forwardAsChild: true })
+ColorPickerAreaBackground.displayName = "ColorPickerAreaBackground"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -171,6 +180,7 @@ export const ColorPickerAreaThumb = withContext<
   HTMLDivElement,
   ColorPickerAreaThumbProps
 >(ArkColorPicker.AreaThumb, "areaThumb", { forwardAsChild: true })
+ColorPickerAreaThumb.displayName = "ColorPickerAreaThumb"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -191,6 +201,7 @@ export const ColorPickerArea = withContext<
     ),
   },
 })
+ColorPickerArea.displayName = "ColorPickerArea"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -205,6 +216,7 @@ export const ColorPickerChannelSliderTrack = withContext<
 >(ArkColorPicker.ChannelSliderTrack, "channelSliderTrack", {
   forwardAsChild: true,
 })
+ColorPickerChannelSliderTrack.displayName = "ColorPickerChannelSliderTrack"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -219,6 +231,7 @@ export const ColorPickerChannelSliderThumb = withContext<
 >(ArkColorPicker.ChannelSliderThumb, "channelSliderThumb", {
   forwardAsChild: true,
 })
+ColorPickerChannelSliderThumb.displayName = "ColorPickerChannelSliderThumb"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -231,6 +244,7 @@ export const ColorPickerTransparencyGrid = withContext<
   HTMLDivElement,
   ColorPickerTransparencyGridProps
 >(ArkColorPicker.TransparencyGrid, "transparencyGrid", { forwardAsChild: true })
+ColorPickerTransparencyGrid.displayName = "ColorPickerTransparencyGrid"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -254,6 +268,7 @@ export const ColorPickerChannelSlider = withContext<
     ),
   },
 })
+ColorPickerChannelSlider.displayName = "ColorPickerChannelSlider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -267,6 +282,7 @@ export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
     )
   },
 )
+ColorPickerSliders.displayName = "ColorPickerSliders"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -279,6 +295,7 @@ export const ColorPickerChannelInput = withContext<
   HTMLInputElement,
   ColorPickerChannelInputProps
 >(ArkColorPicker.ChannelInput, "channelInput", { forwardAsChild: true })
+ColorPickerChannelInput.displayName = "ColorPickerChannelInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -288,6 +305,7 @@ export const ColorPickerInput = forwardRef<
 >(function ColorHexInput(props, ref) {
   return <ColorPickerChannelInput channel="hex" ref={ref} {...props} />
 })
+ColorPickerInput.displayName = "ColorPickerInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -300,6 +318,7 @@ export const ColorPickerSwatchGroup = withContext<
   HTMLDivElement,
   ColorPickerSwatchGroupProps
 >(ArkColorPicker.SwatchGroup, "swatchGroup", { forwardAsChild: true })
+ColorPickerSwatchGroup.displayName = "ColorPickerSwatchGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -312,6 +331,7 @@ export const ColorPickerSwatchTrigger = withContext<
   HTMLButtonElement,
   ColorPickerSwatchTriggerProps
 >(ArkColorPicker.SwatchTrigger, "swatchTrigger", { forwardAsChild: true })
+ColorPickerSwatchTrigger.displayName = "ColorPickerSwatchTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -324,6 +344,7 @@ export const ColorPickerSwatch = withContext<
   HTMLDivElement,
   ColorPickerSwatchProps
 >(ArkColorPicker.Swatch, "swatch", { forwardAsChild: true })
+ColorPickerSwatch.displayName = "ColorPickerSwatch"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -336,6 +357,7 @@ export const ColorPickerSwatchIndicator = withContext<
   HTMLDivElement,
   ColorPickerSwatchIndicatorProps
 >(ArkColorPicker.SwatchIndicator, "swatchIndicator", { forwardAsChild: true })
+ColorPickerSwatchIndicator.displayName = "ColorPickerSwatchIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -348,6 +370,7 @@ export const ColorPickerValueText = withContext<
   HTMLDivElement,
   ColorPickerValueTextProps
 >(ArkColorPicker.ValueText, "valueText", { forwardAsChild: true })
+ColorPickerValueText.displayName = "ColorPickerValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -358,6 +381,7 @@ export const ColorPickerView = withContext<
   HTMLDivElement,
   ColorPickerViewProps
 >(ArkColorPicker.View, "view", { forwardAsChild: true })
+ColorPickerView.displayName = "ColorPickerView"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -370,6 +394,7 @@ export const ColorPickerFormatTrigger = withContext<
   HTMLButtonElement,
   ColorPickerFormatTriggerProps
 >(ArkColorPicker.FormatTrigger, "formatTrigger", { forwardAsChild: true })
+ColorPickerFormatTrigger.displayName = "ColorPickerFormatTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -382,6 +407,7 @@ export const ColorPickerFormatSelect = withContext<
   HTMLSelectElement,
   ColorPickerFormatSelectProps
 >(ArkColorPicker.FormatSelect, "formatSelect", { forwardAsChild: true })
+ColorPickerFormatSelect.displayName = "ColorPickerFormatSelect"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -394,6 +420,7 @@ export const ColorPickerEyeDropperTrigger = withContext<
 >(ArkColorPicker.EyeDropperTrigger, "eyeDropperTrigger", {
   forwardAsChild: true,
 })
+ColorPickerEyeDropperTrigger.displayName = "ColorPickerEyeDropperTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -412,6 +439,7 @@ export const ColorPickerEyeDropper = forwardRef<
     </IconButton>
   )
 })
+ColorPickerEyeDropper.displayName = "ColorPickerEyeDropper"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -426,6 +454,8 @@ export const ColorPickerChannelSliderValueText = withContext<
 >(ArkColorPicker.ChannelSliderValueText, "channelSliderValueText", {
   forwardAsChild: true,
 })
+ColorPickerChannelSliderValueText.displayName =
+  "ColorPickerChannelSliderValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -440,6 +470,7 @@ export const ColorPickerChannelSliderLabel = withContext<
 >(ArkColorPicker.ChannelSliderLabel, "channelSliderLabel", {
   forwardAsChild: true,
 })
+ColorPickerChannelSliderLabel.displayName = "ColorPickerChannelSliderLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -449,6 +480,7 @@ export const ColorPickerHiddenInput = forwardRef<
 >(function ColorPickerHiddenInput(props, ref) {
   return <ArkColorPicker.HiddenInput tabIndex={-1} ref={ref} {...props} />
 })
+ColorPickerHiddenInput.displayName = "ColorPickerHiddenInput"
 
 export const ColorPickerContext = ArkColorPicker.Context
 
@@ -466,6 +498,7 @@ export const ColorPickerChannelText = withContext<
 >("span", "channelText", {
   forwardAsChild: true,
 })
+ColorPickerChannelText.displayName = "ColorPickerChannelText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

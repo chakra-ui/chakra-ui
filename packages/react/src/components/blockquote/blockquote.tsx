@@ -33,6 +33,7 @@ export const BlockquoteRoot = withProvider<HTMLElement, BlockquoteRootProps>(
   "figure",
   "root",
 )
+BlockquoteRoot.displayName = "BlockquoteRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +49,7 @@ export const BlockquoteContent = withContext<
   HTMLElement,
   BlockquoteContentProps
 >("blockquote", "content")
+BlockquoteContent.displayName = "BlockquoteContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,6 +60,7 @@ export const BlockquoteCaption = withContext<
   HTMLElement,
   BlockquoteCaptionProps
 >("figcaption", "caption")
+BlockquoteCaption.displayName = "BlockquoteCaption"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,3 +71,4 @@ export const BlockquoteIcon = withContext<SVGElement, BlockquoteIconProps>(
   QuoteIcon,
   "icon",
 )
+BlockquoteIcon.displayName = "BlockquoteIcon"

@@ -39,6 +39,7 @@ export const DialogRootProvider = withRootProvider<DialogRootProviderProps>(
     defaultProps: { unmountOnExit: true, lazyMount: true },
   },
 )
+DialogRootProvider.displayName = "DialogRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export interface DialogRootProps extends DialogRootBaseProps {
 export const DialogRoot = withRootProvider<DialogRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
+DialogRoot.displayName = "DialogRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +72,7 @@ export const DialogTrigger = withContext<HTMLButtonElement, DialogTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+DialogTrigger.displayName = "DialogTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +83,7 @@ export const DialogPositioner = withContext<
   HTMLDivElement,
   DialogPositionerProps
 >(ArkDialog.Positioner, "positioner", { forwardAsChild: true })
+DialogPositioner.displayName = "DialogPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +97,7 @@ export const DialogContent = withContext<HTMLDivElement, DialogContentProps>(
   "content",
   { forwardAsChild: true },
 )
+DialogContent.displayName = "DialogContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +108,7 @@ export const DialogDescription = withContext<
   HTMLDivElement,
   DialogDescriptionProps
 >(ArkDialog.Description, "description", { forwardAsChild: true })
+DialogDescription.displayName = "DialogDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,6 +120,7 @@ export const DialogTitle = withContext<HTMLDivElement, DialogTitleProps>(
   "title",
   { forwardAsChild: true },
 )
+DialogTitle.displayName = "DialogTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -126,6 +133,7 @@ export const DialogCloseTrigger = withContext<
   HTMLButtonElement,
   DialogCloseTriggerProps
 >(ArkDialog.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+DialogCloseTrigger.displayName = "DialogCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,6 +148,7 @@ export const DialogActionTrigger = forwardRef<
     <chakra.button {...props} ref={ref} onClick={() => dialog.setOpen(false)} />
   )
 })
+DialogActionTrigger.displayName = "DialogActionTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +160,7 @@ export const DialogBackdrop = withContext<HTMLDivElement, DialogBackdropProps>(
   "backdrop",
   { forwardAsChild: true },
 )
+DialogBackdrop.displayName = "DialogBackdrop"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +170,7 @@ export const DialogBody = withContext<HTMLDivElement, DialogBodyProps>(
   "div",
   "body",
 )
+DialogBody.displayName = "DialogBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -170,6 +181,7 @@ export const DialogFooter = withContext<HTMLDivElement, DialogFooterProps>(
   "div",
   "footer",
 )
+DialogFooter.displayName = "DialogFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -180,6 +192,7 @@ export const DialogHeader = withContext<HTMLDivElement, DialogHeaderProps>(
   "div",
   "header",
 )
+DialogHeader.displayName = "DialogHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

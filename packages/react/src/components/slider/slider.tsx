@@ -38,6 +38,7 @@ export const SliderRootProvider = withProvider<
   HTMLDivElement,
   SliderRootProviderProps
 >(ArkSlider.RootProvider, "root", { forwardAsChild: true })
+SliderRootProvider.displayName = "SliderRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +57,7 @@ export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
   "root",
   { forwardAsChild: true },
 )
+SliderRoot.displayName = "SliderRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -72,6 +74,7 @@ export const SliderTrack = withContext<HTMLDivElement, SliderTrackProps>(
   "track",
   { forwardAsChild: true },
 )
+SliderTrack.displayName = "SliderTrack"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +86,7 @@ export const SliderRange = withContext<HTMLDivElement, SliderRangeProps>(
   "range",
   { forwardAsChild: true },
 )
+SliderRange.displayName = "SliderRange"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +98,7 @@ export const SliderThumb = withContext<HTMLDivElement, SliderThumbProps>(
   "thumb",
   { forwardAsChild: true },
 )
+SliderThumb.displayName = "SliderThumb"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +109,7 @@ export const SliderValueText = withContext<
   HTMLDivElement,
   SliderValueTextProps
 >(ArkSlider.ValueText, "valueText", { forwardAsChild: true })
+SliderValueText.displayName = "SliderValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,6 +121,7 @@ export const SliderLabel = withContext<HTMLLabelElement, SliderLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+SliderLabel.displayName = "SliderLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +134,7 @@ export const SliderMarkerGroup = withContext<
   HTMLDivElement,
   SliderMarkerGroupProps
 >(ArkSlider.MarkerGroup, "markerGroup", { forwardAsChild: true })
+SliderMarkerGroup.displayName = "SliderMarkerGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,6 +146,7 @@ export const SliderMarker = withContext<HTMLDivElement, SliderMarkerProps>(
   "marker",
   { forwardAsChild: true },
 )
+SliderMarker.displayName = "SliderMarker"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,6 +157,7 @@ export const SliderMarkerIndicator = withContext<
   HTMLDivElement,
   SliderMarkerIndicatorProps
 >("div", "markerIndicator")
+SliderMarkerIndicator.displayName = "SliderMarkerIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,6 +168,7 @@ export const SliderMarkerLabel = withContext<
   HTMLSpanElement,
   SliderMarkerLabelProps
 >("span", "markerLabel")
+SliderMarkerLabel.displayName = "SliderMarkerLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -170,6 +181,7 @@ export const SliderDraggingIndicator = withContext<
   HTMLDivElement,
   SliderDraggingIndicatorProps
 >(ArkSlider.DraggingIndicator, "draggingIndicator", { forwardAsChild: true })
+SliderDraggingIndicator.displayName = "SliderDraggingIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -185,6 +197,7 @@ export const SliderThumbs = (props: Omit<SliderThumbProps, "index">) => {
     </For>
   )
 }
+SliderThumbs.displayName = "SliderThumbs"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -213,6 +226,7 @@ export const SliderMarks = forwardRef<HTMLDivElement, SliderMarksProps>(
     )
   },
 )
+SliderMarks.displayName = "SliderMarks"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,11 +238,13 @@ export const SliderControl = withContext<HTMLDivElement, SliderControlProps>(
   "control",
   { forwardAsChild: true },
 )
+SliderControl.displayName = "SliderControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const SliderContext = ArkSlider.Context
 export const SliderHiddenInput = ArkSlider.HiddenInput
+SliderHiddenInput.displayName = "SliderHiddenInput"
 
 export interface SliderValueChangeDetails
   extends ArkSlider.ValueChangeDetails {}

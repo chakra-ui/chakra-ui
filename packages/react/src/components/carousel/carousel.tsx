@@ -44,6 +44,7 @@ export const CarouselRootProvider = withProvider<
 >(ArkCarousel.RootProvider, "root", {
   forwardAsChild: true,
 })
+CarouselRootProvider.displayName = "CarouselRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,6 +69,7 @@ export const CarouselRoot = withProvider<HTMLDivElement, CarouselRootProps>(
     },
   },
 )
+CarouselRoot.displayName = "CarouselRoot"
 
 export const CarouselPropsProvider =
   PropsProvider as React.Provider<CarouselRootBaseProps>
@@ -83,6 +85,7 @@ export const CarouselItemGroup = withContext<
   HTMLDivElement,
   CarouselItemGroupProps
 >(ArkCarousel.ItemGroup, "itemGroup", { forwardAsChild: true })
+CarouselItemGroup.displayName = "CarouselItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +97,7 @@ export const CarouselItem = withContext<HTMLDivElement, CarouselItemProps>(
   "item",
   { forwardAsChild: true },
 )
+CarouselItem.displayName = "CarouselItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +108,7 @@ export const CarouselControl = withContext<
   HTMLDivElement,
   CarouselControlProps
 >(ArkCarousel.Control, "control", { forwardAsChild: true })
+CarouselControl.displayName = "CarouselControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +124,7 @@ export const CarouselPrevTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <ChevronLeftIcon /> },
 })
+CarouselPrevTrigger.displayName = "CarouselPrevTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +140,7 @@ export const CarouselNextTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <ChevronRightIcon /> },
 })
+CarouselNextTrigger.displayName = "CarouselNextTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 export interface CarouselIndicatorsProps extends Omit<
@@ -154,6 +161,7 @@ export const CarouselIndicators = forwardRef<
     </CarouselIndicatorGroup>
   )
 })
+CarouselIndicators.displayName = "CarouselIndicators"
 
 //////////////////////////////////////////////////////////////////////
 
@@ -169,6 +177,7 @@ export const CarouselAutoplayIndicator = ({
   const api = useCarouselContext()
   return <>{api.isPlaying ? paused : play}</>
 }
+CarouselAutoplayIndicator.displayName = "CarouselAutoplayIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -186,6 +195,7 @@ export const CarouselProgressText = forwardRef<
     </Box>
   )
 })
+CarouselProgressText.displayName = "CarouselProgressText"
 
 export interface CarouselAutoplayTriggerProps
   extends
@@ -196,6 +206,7 @@ export const CarouselAutoplayTrigger = withContext<
   HTMLButtonElement,
   CarouselAutoplayTriggerProps
 >(ArkCarousel.AutoplayTrigger, "autoplayTrigger", { forwardAsChild: true })
+CarouselAutoplayTrigger.displayName = "CarouselAutoplayTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +219,7 @@ export const CarouselIndicatorGroup = withContext<
   HTMLDivElement,
   CarouselIndicatorGroupProps
 >(ArkCarousel.IndicatorGroup, "indicatorGroup", { forwardAsChild: true })
+CarouselIndicatorGroup.displayName = "CarouselIndicatorGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -220,6 +232,7 @@ export const CarouselIndicator = withContext<
   HTMLButtonElement,
   CarouselIndicatorProps
 >(ArkCarousel.Indicator, "indicator", { forwardAsChild: true })
+CarouselIndicator.displayName = "CarouselIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

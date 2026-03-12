@@ -163,6 +163,7 @@ export const CodeBlockRoot = withProvider<HTMLDivElement, CodeBlockRootProps>(
   "root",
   { forwardAsChild: true, forwardProps: ["maxLines"] },
 )
+CodeBlockRoot.displayName = "CodeBlockRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -195,6 +196,7 @@ export const CodeBlockContent = withContext<
   HTMLDivElement,
   CodeBlockContentProps
 >(ContentBase, "content", { forwardAsChild: true })
+CodeBlockContent.displayName = "CodeBlockContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -204,6 +206,7 @@ export const CodeBlockTitle = withContext<HTMLDivElement, CodeBlockTitleProps>(
   "div",
   "title",
 )
+CodeBlockTitle.displayName = "CodeBlockTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -213,6 +216,7 @@ export const CodeBlockHeader = withContext<
   HTMLDivElement,
   CodeBlockHeaderProps
 >("header", "header")
+CodeBlockHeader.displayName = "CodeBlockHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -227,6 +231,7 @@ export const CodeBlockCode = withContext<HTMLPreElement, CodeBlockCodeProps>(
     },
   },
 )
+CodeBlockCode.displayName = "CodeBlockCode"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -265,6 +270,7 @@ export const CodeBlockCodeText = withContext<
   HTMLElement,
   CodeBlockCodeTextProps
 >(CodeText, "codeText", { forwardAsChild: true })
+CodeBlockCodeText.displayName = "CodeBlockCodeText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -289,6 +295,7 @@ export const CodeBlockCopyTrigger = withContext<
   HTMLButtonElement,
   CodeBlockCopyTriggerProps
 >(BaseCopyTrigger, "copyTrigger", { forwardAsChild: true })
+CodeBlockCopyTrigger.displayName = "CodeBlockCopyTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -330,6 +337,7 @@ export const CodeBlockCopyIndicator = withContext<
     children: <CopyIcon boxSize="1em" />,
   },
 })
+CodeBlockCopyIndicator.displayName = "CodeBlockCopyIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -367,6 +375,7 @@ export const CodeBlockCollapseTrigger = withContext<
   HTMLButtonElement,
   CodeBlockCollapseTriggerProps
 >(BaseCollapseTrigger, "collapseTrigger", { forwardAsChild: true })
+CodeBlockCollapseTrigger.displayName = "CodeBlockCollapseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -403,6 +412,7 @@ export const CodeBlockCollapseIndicator = withContext<
     children: <ChevronUpIcon boxSize="1em" />,
   },
 })
+CodeBlockCollapseIndicator.displayName = "CodeBlockCollapseIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -418,6 +428,7 @@ export const CodeBlockCollapseText = forwardRef<
     </CodeBlockCollapseIndicator>
   )
 })
+CodeBlockCollapseText.displayName = "CodeBlockCollapseText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -427,6 +438,7 @@ export const CodeBlockFooter = withContext<
   HTMLDivElement,
   CodeBlockFooterProps
 >("footer", "footer")
+CodeBlockFooter.displayName = "CodeBlockFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -436,6 +448,7 @@ export const CodeBlockControl = withContext<
   HTMLDivElement,
   CodeBlockControlProps
 >("div", "control")
+CodeBlockControl.displayName = "CodeBlockControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -458,6 +471,7 @@ export const CodeBlockOverlay = withContext<
   HTMLDivElement,
   CodeBlockOverlayProps
 >(BaseOverlay, "overlay", { forwardAsChild: true })
+CodeBlockOverlay.displayName = "CodeBlockOverlay"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

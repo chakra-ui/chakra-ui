@@ -68,6 +68,7 @@ export const NativeSelectRoot = withProvider<
     )
   },
 })
+NativeSelectRoot.displayName = "NativeSelectRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -109,6 +110,7 @@ export const NativeSelectField = forwardRef<
     </StyledSelect>
   )
 })
+NativeSelectField.displayName = "NativeSelectField"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

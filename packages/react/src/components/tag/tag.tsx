@@ -33,6 +33,7 @@ export const TagRoot = withProvider<HTMLSpanElement, TagRootProps>(
   "div",
   "root",
 )
+TagRoot.displayName = "TagRoot"
 
 export const TagRootPropsProvider =
   PropsProvider as React.Provider<TagRootBaseProps>
@@ -45,6 +46,7 @@ export const TagLabel = withContext<HTMLSpanElement, TagLabelProps>(
   "span",
   "label",
 )
+TagLabel.displayName = "TagLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,7 @@ export const TagCloseTrigger = withContext<
   HTMLButtonElement,
   TagCloseTriggerProps
 >("button", "closeTrigger", { defaultProps: { children: <CloseIcon /> } })
+TagCloseTrigger.displayName = "TagCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +68,7 @@ export const TagStartElement = withContext<
   HTMLSpanElement,
   TagStartElementProps
 >("span", "startElement")
+TagStartElement.displayName = "TagStartElement"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,3 +79,4 @@ export const TagEndElement = withContext<HTMLSpanElement, TagEndElementProps>(
   "span",
   "endElement",
 )
+TagEndElement.displayName = "TagEndElement"

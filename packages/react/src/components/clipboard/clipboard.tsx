@@ -38,6 +38,7 @@ export const ClipboardRootProvider = withProvider<
   HTMLDivElement,
   ClipboardRootProviderProps
 >(ArkClipboard.RootProvider, "root", { forwardAsChild: true })
+ClipboardRootProvider.displayName = "ClipboardRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +57,7 @@ export const ClipboardRoot = withProvider<HTMLDivElement, ClipboardRootProps>(
   "root",
   { forwardAsChild: true },
 )
+ClipboardRoot.displayName = "ClipboardRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +73,7 @@ export const ClipboardTrigger = withContext<
   HTMLButtonElement,
   ClipboardTriggerProps
 >(ArkClipboard.Trigger, "trigger", { forwardAsChild: true })
+ClipboardTrigger.displayName = "ClipboardTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,6 +84,7 @@ export const ClipboardControl = withContext<
   HTMLDivElement,
   ClipboardControlProps
 >(ArkClipboard.Control, "control", { forwardAsChild: true })
+ClipboardControl.displayName = "ClipboardControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +101,7 @@ export const ClipboardIndicator = withContext<
     children: <CopyIcon boxSize="1em" />,
   },
 })
+ClipboardIndicator.displayName = "ClipboardIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +112,7 @@ export const ClipboardInput = withContext<
   HTMLInputElement,
   ClipboardInputProps
 >(ArkClipboard.Input, "input", { forwardAsChild: true })
+ClipboardInput.displayName = "ClipboardInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +123,7 @@ export const ClipboardLabel = withContext<
   HTMLLabelElement,
   ClipboardLabelProps
 >(ArkClipboard.Label, "label", { forwardAsChild: true })
+ClipboardLabel.displayName = "ClipboardLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +141,7 @@ export const ClipboardValueText = withContext<
   HTMLDivElement,
   ClipboardValueTextProps
 >(ArkClipboard.ValueText, "valueText", { forwardAsChild: true })
+ClipboardValueText.displayName = "ClipboardValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,3 +155,4 @@ export const ClipboardCopyText = forwardRef<
     </ClipboardIndicator>
   )
 })
+ClipboardCopyText.displayName = "ClipboardCopyText"

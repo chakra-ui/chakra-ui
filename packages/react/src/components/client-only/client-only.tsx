@@ -31,3 +31,4 @@ export const ClientOnly = (props: ClientOnlyProps) => {
     </Show>
   )
 }
+ClientOnly.displayName = "ClientOnly"

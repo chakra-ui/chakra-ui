@@ -36,6 +36,7 @@ export const BreadcrumbRoot = withProvider<HTMLElement, BreadcrumbRootProps>(
     defaultProps: { "aria-label": "breadcrumb" },
   },
 )
+BreadcrumbRoot.displayName = "BreadcrumbRoot"
 
 export const BreadcrumbPropsProvider =
   PropsProvider as React.Provider<BreadcrumbRootBaseProps>
@@ -49,6 +50,7 @@ export const BreadcrumbList = withContext<HTMLElement, BreadcrumbListProps>(
   "ol",
   "list",
 )
+BreadcrumbList.displayName = "BreadcrumbList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,6 +61,7 @@ export const BreadcrumbItem = withContext<HTMLElement, BreadcrumbItemProps>(
   "li",
   "item",
 )
+BreadcrumbItem.displayName = "BreadcrumbItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,6 +72,7 @@ export const BreadcrumbLink = withContext<
   HTMLAnchorElement,
   BreadcrumbLinkProps
 >("a", "link")
+BreadcrumbLink.displayName = "BreadcrumbLink"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,6 +88,7 @@ export const BreadcrumbCurrentLink = withContext<
     "aria-current": "page",
   },
 })
+BreadcrumbCurrentLink.displayName = "BreadcrumbCurrentLink"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -99,6 +104,7 @@ export const BreadcrumbSeparator = withContext<
     children: <ChevronRightIcon />,
   },
 })
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,3 +121,4 @@ export const BreadcrumbEllipsis = withContext<
     children: <EllpsisIcon />,
   },
 })
+BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis"

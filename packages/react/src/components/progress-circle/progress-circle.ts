@@ -39,6 +39,7 @@ export const ProgressCircleRootProvider = withProvider<
   HTMLDivElement,
   ProgressCircleRootProviderProps
 >(ArkProgress.RootProvider, "root", { forwardAsChild: true })
+ProgressCircleRootProvider.displayName = "ProgressCircleRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +57,7 @@ export const ProgressCircleRoot = withProvider<
   HTMLDivElement,
   ProgressCircleRootProps
 >(ArkProgress.Root, "root", { forwardAsChild: true })
+ProgressCircleRoot.displayName = "ProgressCircleRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +73,7 @@ export const ProgressCircleLabel = withContext<
   HTMLDivElement,
   ProgressCircleLabelProps
 >(ArkProgress.Label, "label", { forwardAsChild: true })
+ProgressCircleLabel.displayName = "ProgressCircleLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,6 +84,7 @@ export const ProgressCircleCircle = withContext<
   SVGSVGElement,
   ProgressCircleCircleProps
 >(ArkProgress.Circle, "circle", { forwardAsChild: true })
+ProgressCircleCircle.displayName = "ProgressCircleCircle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +95,7 @@ export const ProgressCircleTrack = withContext<
   SVGCircleElement,
   ProgressCircleTrackProps
 >(ArkProgress.CircleTrack, "circleTrack", { forwardAsChild: true })
+ProgressCircleTrack.displayName = "ProgressCircleTrack"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,6 +106,7 @@ export const ProgressCircleRange = withContext<
   SVGCircleElement,
   ProgressCircleRangeProps
 >(ArkProgress.CircleRange, "circleRange", { forwardAsChild: true })
+ProgressCircleRange.displayName = "ProgressCircleRange"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,6 +119,7 @@ export const ProgressCircleValueText = withContext<
   HTMLDivElement,
   ProgressCircleValueTextProps
 >(ArkProgress.ValueText, "valueText", { forwardAsChild: true })
+ProgressCircleValueText.displayName = "ProgressCircleValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

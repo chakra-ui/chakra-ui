@@ -47,6 +47,7 @@ export const PaginationRootProvider = withProvider<
   forwardAsChild: true,
   forwardProps: ["page"],
 })
+PaginationRootProvider.displayName = "PaginationRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +66,7 @@ export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   "root",
   { forwardAsChild: true, forwardProps: ["page"] },
 )
+PaginationRoot.displayName = "PaginationRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,6 +84,7 @@ export const PaginationEllipsis = withContext<
   HTMLDivElement,
   PaginationEllipsisProps
 >(ArkPagination.Ellipsis, "ellipsis", { forwardAsChild: true })
+PaginationEllipsis.displayName = "PaginationEllipsis"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +97,7 @@ export const PaginationItem = withContext<
   HTMLButtonElement,
   PaginationItemProps
 >(ArkPagination.Item, "item", { forwardAsChild: true })
+PaginationItem.displayName = "PaginationItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +110,7 @@ export const PaginationNextTrigger = withContext<
   HTMLButtonElement,
   PaginationNextTriggerProps
 >(ArkPagination.NextTrigger, "nextTrigger", { forwardAsChild: true })
+PaginationNextTrigger.displayName = "PaginationNextTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +123,7 @@ export const PaginationPrevTrigger = withContext<
   HTMLButtonElement,
   PaginationPrevTriggerProps
 >(ArkPagination.PrevTrigger, "prevTrigger", { forwardAsChild: true })
+PaginationPrevTrigger.displayName = "PaginationPrevTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -153,6 +159,7 @@ export const PaginationPageText = forwardRef<
     </Box>
   )
 })
+PaginationPageText.displayName = "PaginationPageText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -194,3 +201,4 @@ export const PaginationItems = (props: PaginationItemsProps) => {
     </For>
   )
 }
+PaginationItems.displayName = "PaginationItems"

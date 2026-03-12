@@ -37,6 +37,7 @@ export const AccordionRootProvider = withProvider<
   HTMLDivElement,
   AccordionRootProviderProps
 >(ArkAccordion.RootProvider, "root", { forwardAsChild: true })
+AccordionRootProvider.displayName = "AccordionRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +56,7 @@ export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
   "root",
   { forwardAsChild: true },
 )
+AccordionRoot.displayName = "AccordionRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +73,7 @@ export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
   "item",
   { forwardAsChild: true },
 )
+AccordionItem.displayName = "AccordionItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +86,7 @@ export const AccordionItemContent = withContext<
   HTMLDivElement,
   AccordionItemContentProps
 >(ArkAccordion.ItemContent, "itemContent", { forwardAsChild: true })
+AccordionItemContent.displayName = "AccordionItemContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +97,7 @@ export const AccordionItemBody = withContext<
   HTMLDivElement,
   AccordionItemBodyProps
 >("div", "itemBody")
+AccordionItemBody.displayName = "AccordionItemBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +110,7 @@ export const AccordionItemTrigger = withContext<
   HTMLButtonElement,
   AccordionItemTriggerProps
 >(ArkAccordion.ItemTrigger, "itemTrigger", { forwardAsChild: true })
+AccordionItemTrigger.displayName = "AccordionItemTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -122,6 +128,7 @@ export const AccordionItemIndicator = withContext<
     children: <ChevronDownIcon />,
   },
 })
+AccordionItemIndicator.displayName = "AccordionItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

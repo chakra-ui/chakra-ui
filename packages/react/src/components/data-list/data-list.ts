@@ -32,6 +32,7 @@ export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(
   "dl",
   "root",
 )
+DataListRoot.displayName = "DataListRoot"
 
 export const DataListPropsProvider =
   PropsProvider as React.Provider<DataListRootBaseProps>
@@ -45,6 +46,7 @@ export const DataListItem = withContext<HTMLDivElement, DataListItemProps>(
   "div",
   "item",
 )
+DataListItem.displayName = "DataListItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,7 @@ export const DataListItemLabel = withContext<
   HTMLDivElement,
   DataListItemLabelProps
 >("dt", "itemLabel")
+DataListItemLabel.displayName = "DataListItemLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,3 +68,4 @@ export const DataListItemValue = withContext<
   HTMLDivElement,
   DataListItemValueProps
 >("dd", "itemValue")
+DataListItemValue.displayName = "DataListItemValue"

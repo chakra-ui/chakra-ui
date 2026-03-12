@@ -34,6 +34,7 @@ export interface PopoverRootProviderProps extends PopoverRootProviderBaseProps {
 export const PopoverRootProvider = withRootProvider<PopoverRootProviderProps>(
   ArkPopover.RootProvider,
 )
+PopoverRootProvider.displayName = "PopoverRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,6 +48,7 @@ export interface PopoverRootProps extends PopoverRootBaseProps {
 }
 
 export const PopoverRoot = withRootProvider<PopoverRootProps>(ArkPopover.Root)
+PopoverRoot.displayName = "PopoverRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +66,7 @@ export const PopoverTrigger = withContext<
   HTMLButtonElement,
   PopoverTriggerProps
 >(ArkPopover.Trigger, "trigger", { forwardAsChild: true })
+PopoverTrigger.displayName = "PopoverTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +79,7 @@ export const PopoverPositioner = withContext<
   HTMLDivElement,
   PopoverPositionerProps
 >(ArkPopover.Positioner, "positioner", { forwardAsChild: true })
+PopoverPositioner.displayName = "PopoverPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +91,7 @@ export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
   "content",
   { forwardAsChild: true },
 )
+PopoverContent.displayName = "PopoverContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +102,7 @@ export const PopoverArrowTip = withContext<
   HTMLDivElement,
   PopoverArrowTipProps
 >(ArkPopover.ArrowTip, "arrowTip", { forwardAsChild: true })
+PopoverArrowTip.displayName = "PopoverArrowTip"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,6 +117,7 @@ export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
     defaultProps: { children: <PopoverArrowTip /> },
   },
 )
+PopoverArrow.displayName = "PopoverArrow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -123,6 +130,7 @@ export const PopoverCloseTrigger = withContext<
   HTMLButtonElement,
   PopoverCloseTriggerProps
 >(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+PopoverCloseTrigger.displayName = "PopoverCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -133,6 +141,7 @@ export const PopoverIndicator = withContext<
   HTMLDivElement,
   PopoverIndicatorProps
 >(ArkPopover.Indicator, "indicator", { forwardAsChild: true })
+PopoverIndicator.displayName = "PopoverIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -144,6 +153,7 @@ export const PopoverTitle = withContext<HTMLDivElement, PopoverTitleProps>(
   "title",
   { forwardAsChild: true },
 )
+PopoverTitle.displayName = "PopoverTitle"
 
 // description
 
@@ -156,6 +166,7 @@ export const PopoverDescription = withContext<
   HTMLDivElement,
   PopoverDescriptionProps
 >(ArkPopover.Description, "description", { forwardAsChild: true })
+PopoverDescription.displayName = "PopoverDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -166,6 +177,7 @@ export const PopoverFooter = withContext<HTMLDivElement, PopoverFooterProps>(
   "footer",
   "footer",
 )
+PopoverFooter.displayName = "PopoverFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -176,6 +188,7 @@ export const PopoverHeader = withContext<HTMLDivElement, PopoverHeaderProps>(
   "header",
   "header",
 )
+PopoverHeader.displayName = "PopoverHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -186,6 +199,7 @@ export const PopoverBody = withContext<HTMLDivElement, PopoverBodyProps>(
   "div",
   "body",
 )
+PopoverBody.displayName = "PopoverBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -197,6 +211,7 @@ export const PopoverAnchor = withContext<HTMLDivElement, PopoverAnchorProps>(
   undefined,
   { forwardAsChild: true },
 )
+PopoverAnchor.displayName = "PopoverAnchor"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

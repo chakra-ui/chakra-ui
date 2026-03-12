@@ -19,3 +19,4 @@ export const DownloadTrigger = withContext<
   HTMLButtonElement,
   DownloadTriggerProps
 >(ArkDownloadTrigger, { forwardAsChild: true })
+DownloadTrigger.displayName = "DownloadTrigger"

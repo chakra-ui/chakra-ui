@@ -35,6 +35,7 @@ export const MarqueeRootProvider = withProvider<
   HTMLDivElement,
   MarqueeRootProviderProps
 >(ArkMarquee.RootProvider, "root")
+MarqueeRootProvider.displayName = "MarqueeRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,6 +53,7 @@ export const MarqueeRoot = withProvider<HTMLDivElement, MarqueeRootProps>(
   ArkMarquee.Root,
   "root",
 )
+MarqueeRoot.displayName = "MarqueeRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,6 +70,7 @@ export const MarqueeContent = withContext<HTMLDivElement, MarqueeContentProps>(
   "content",
   { forwardAsChild: true },
 )
+MarqueeContent.displayName = "MarqueeContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -78,6 +81,7 @@ export const MarqueeViewport = withContext<
   HTMLDivElement,
   MarqueeViewportProps
 >(ArkMarquee.Viewport, "viewport", { forwardAsChild: true })
+MarqueeViewport.displayName = "MarqueeViewport"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,6 +93,7 @@ export const MarqueeItem = withContext<HTMLDivElement, MarqueeItemProps>(
   "item",
   { forwardAsChild: true },
 )
+MarqueeItem.displayName = "MarqueeItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,3 +106,4 @@ export const MarqueeEdge = withContext<HTMLDivElement, MarqueeEdgeProps>(
   ArkMarquee.Edge,
   "edge",
 )
+MarqueeEdge.displayName = "MarqueeEdge"

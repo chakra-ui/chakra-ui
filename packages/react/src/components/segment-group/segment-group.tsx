@@ -41,6 +41,7 @@ export const SegmentGroupRootProvider = withProvider<
   HTMLDivElement,
   SegmentGroupRootProviderProps
 >(ArkSegmentGroup.RootProvider, "root", { forwardAsChild: true })
+SegmentGroupRootProvider.displayName = "SegmentGroupRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +65,7 @@ export const SegmentGroupRoot = withProvider<
     orientation: "horizontal",
   },
 })
+SegmentGroupRoot.displayName = "SegmentGroupRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,6 +83,7 @@ export const SegmentGroupItem = withContext<
   HTMLLabelElement,
   SegmentGroupItemProps
 >(ArkSegmentGroup.Item, "item", { forwardAsChild: true })
+SegmentGroupItem.displayName = "SegmentGroupItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +96,7 @@ export const SegmentGroupItemText = withContext<
   HTMLSpanElement,
   SegmentGroupItemTextProps
 >(ArkSegmentGroup.ItemText, "itemText", { forwardAsChild: true })
+SegmentGroupItemText.displayName = "SegmentGroupItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +109,7 @@ export const SegmentGroupIndicator = withContext<
   HTMLSpanElement,
   SegmentGroupIndicatorProps
 >(ArkSegmentGroup.Indicator, "indicator", { forwardAsChild: true })
+SegmentGroupIndicator.displayName = "SegmentGroupIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,10 +152,12 @@ export const SegmentGroupItems = (props: SegmentGroupItemsProps) => {
     </For>
   )
 }
+SegmentGroupItems.displayName = "SegmentGroupItems"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const SegmentGroupItemHiddenInput = ArkSegmentGroup.ItemHiddenInput
+SegmentGroupItemHiddenInput.displayName = "SegmentGroupItemHiddenInput"
 
 export const SegmentGroupContext = ArkSegmentGroup.Context
 export const SegmentGroupItemContext = ArkSegmentGroup.ItemContext

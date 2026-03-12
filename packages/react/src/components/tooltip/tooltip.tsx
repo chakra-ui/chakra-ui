@@ -34,6 +34,7 @@ export interface TooltipRootProviderProps extends TooltipRootProviderBaseProps {
 export const TooltipRootProvider = withRootProvider<TooltipRootProviderProps>(
   ArkTooltip.RootProvider,
 )
+TooltipRootProvider.displayName = "TooltipRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -49,6 +50,7 @@ export interface TooltipRootProps extends TooltipRootBaseProps {
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root, {
   defaultProps: { lazyMount: true, unmountOnExit: true },
 })
+TooltipRoot.displayName = "TooltipRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +66,7 @@ export const TooltipTrigger = withContext<
   HTMLButtonElement,
   TooltipTriggerProps
 >(ArkTooltip.Trigger, "trigger", { forwardAsChild: true })
+TooltipTrigger.displayName = "TooltipTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +77,7 @@ export const TooltipPositioner = withContext<
   HTMLDivElement,
   TooltipPositionerProps
 >(ArkTooltip.Positioner, "positioner", { forwardAsChild: true })
+TooltipPositioner.displayName = "TooltipPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,6 +89,7 @@ export const TooltipContent = withContext<HTMLDivElement, TooltipContentProps>(
   "content",
   { forwardAsChild: true },
 )
+TooltipContent.displayName = "TooltipContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +100,7 @@ export const TooltipArrowTip = withContext<
   HTMLDivElement,
   TooltipArrowTipProps
 >(ArkTooltip.ArrowTip, "arrowTip", { forwardAsChild: true })
+TooltipArrowTip.displayName = "TooltipArrowTip"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +112,7 @@ export const TooltipArrow = withContext<HTMLDivElement, TooltipArrowProps>(
   "arrow",
   { forwardAsChild: true, defaultProps: { children: <TooltipArrowTip /> } },
 )
+TooltipArrow.displayName = "TooltipArrow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

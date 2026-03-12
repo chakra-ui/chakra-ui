@@ -32,6 +32,7 @@ export const EmptyStateRoot = withProvider<HTMLDivElement, EmptyStateRootProps>(
   "div",
   "root",
 )
+EmptyStateRoot.displayName = "EmptyStateRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +47,7 @@ export const EmptyStateContent = withContext<
   HTMLDivElement,
   EmptyStateContentProps
 >("div", "content")
+EmptyStateContent.displayName = "EmptyStateContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,7 @@ export const EmptyStateIndicator = withContext<
   HTMLDivElement,
   EmptyStateIndicatorProps
 >("div", "indicator")
+EmptyStateIndicator.displayName = "EmptyStateIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +67,7 @@ export const EmptyStateTitle = withContext<
   HTMLHeadingElement,
   EmptyStateTitleProps
 >("h3", "title")
+EmptyStateTitle.displayName = "EmptyStateTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,3 +77,4 @@ export const EmptyStateDescription = withContext<
   HTMLParagraphElement,
   EmptyStateDescriptionProps
 >("p", "description")
+EmptyStateDescription.displayName = "EmptyStateDescription"

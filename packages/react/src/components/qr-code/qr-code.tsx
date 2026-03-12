@@ -37,6 +37,7 @@ export const QrCodeRoot = withProvider<HTMLDivElement, QrCodeRootProps>(
   "root",
   { forwardAsChild: true },
 )
+QrCodeRoot.displayName = "QrCodeRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export const QrCodeRootProvider = withProvider<
   HTMLDivElement,
   QrCodeRootProviderProps
 >(ArkQrCode.RootProvider, "root", { forwardAsChild: true })
+QrCodeRootProvider.displayName = "QrCodeRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +72,7 @@ export const QrCodePattern = withContext<SVGPathElement, QrCodePatternProps>(
   "pattern",
   { forwardAsChild: true },
 )
+QrCodePattern.displayName = "QrCodePattern"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,6 +87,7 @@ export const QrCodeFrame = withContext<SVGSVGElement, QrCodeFrameProps>(
     defaultProps: { children: <QrCodePattern /> },
   },
 )
+QrCodeFrame.displayName = "QrCodeFrame"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +99,7 @@ export const QrCodeOverlay = withContext<HTMLDivElement, QrCodeOverlayProps>(
   "overlay",
   { forwardAsChild: true },
 )
+QrCodeOverlay.displayName = "QrCodeOverlay"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,3 +112,4 @@ export const QrCodeDownloadTrigger = withContext<
   HTMLButtonElement,
   QrCodeDownloadTriggerProps
 >(ArkQrCode.DownloadTrigger, "downloadTrigger", { forwardAsChild: true })
+QrCodeDownloadTrigger.displayName = "QrCodeDownloadTrigger"

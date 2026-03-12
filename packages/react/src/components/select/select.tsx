@@ -43,6 +43,7 @@ export const SelectRootProvider = withProvider<
 >(ArkSelect.RootProvider, "root", {
   forwardAsChild: true,
 }) as SelectRootProviderComponent
+;(SelectRootProvider as any).displayName = "SelectRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,6 +70,7 @@ export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
     defaultProps: { positioning: { sameWidth: true } },
   },
 ) as SelectRootComponent
+;(SelectRoot as any).displayName = "SelectRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,6 +87,7 @@ export const SelectTrigger = withContext<HTMLButtonElement, SelectTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+SelectTrigger.displayName = "SelectTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +98,7 @@ export const SelectPositioner = withContext<
   HTMLDivElement,
   SelectPositionerProps
 >(ArkSelect.Positioner, "positioner", { forwardAsChild: true })
+SelectPositioner.displayName = "SelectPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +110,7 @@ export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
   "content",
   { forwardAsChild: true },
 )
+SelectContent.displayName = "SelectContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +122,7 @@ export const SelectList = withContext<HTMLDivElement, SelectListProps>(
   "list",
   { forwardAsChild: true },
 )
+SelectList.displayName = "SelectList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +133,7 @@ export const SelectValueText = withContext<
   HTMLSpanElement,
   SelectValueTextProps
 >(ArkSelect.ValueText, "valueText", { forwardAsChild: true })
+SelectValueText.displayName = "SelectValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -142,6 +149,7 @@ export const SelectClearTrigger = withContext<
   forwardAsChild: true,
   defaultProps: { children: <CloseIcon boxSize="1em" /> },
 })
+SelectClearTrigger.displayName = "SelectClearTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -152,6 +160,7 @@ export const SelectItemGroup = withContext<
   HTMLDivElement,
   SelectItemGroupProps
 >(ArkSelect.ItemGroup, "itemGroup", { forwardAsChild: true })
+SelectItemGroup.displayName = "SelectItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -164,6 +173,7 @@ export const SelectItemGroupLabel = withContext<
   HTMLDivElement,
   SelectItemGroupLabelProps
 >(ArkSelect.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
+SelectItemGroupLabel.displayName = "SelectItemGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -175,6 +185,7 @@ export const SelectItem = withContext<HTMLDivElement, SelectItemProps>(
   "item",
   { forwardAsChild: true },
 )
+SelectItem.displayName = "SelectItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -186,6 +197,7 @@ export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
   "itemText",
   { forwardAsChild: true },
 )
+SelectItemText.displayName = "SelectItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,6 +215,7 @@ export const SelectItemIndicator = withContext<
     children: <CheckIcon />,
   },
 })
+SelectItemIndicator.displayName = "SelectItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -213,6 +226,7 @@ export const SelectIndicatorGroup = withContext<
   HTMLDivElement,
   SelectIndicatorGroupProps
 >("div", "indicatorGroup")
+SelectIndicatorGroup.displayName = "SelectIndicatorGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -230,6 +244,7 @@ export const SelectIndicator = withContext<
     children: <ChevronDownIcon />,
   },
 })
+SelectIndicator.displayName = "SelectIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -241,6 +256,7 @@ export const SelectControl = withContext<HTMLDivElement, SelectControlProps>(
   "control",
   { forwardAsChild: true },
 )
+SelectControl.displayName = "SelectControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -252,11 +268,13 @@ export const SelectLabel = withContext<HTMLLabelElement, SelectLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+SelectLabel.displayName = "SelectLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const SelectContext = ArkSelect.Context
 export const SelectHiddenSelect = ArkSelect.HiddenSelect
+SelectHiddenSelect.displayName = "SelectHiddenSelect"
 export const SelectItemContext = ArkSelect.ItemContext
 
 export interface SelectHighlightChangeDetails<
