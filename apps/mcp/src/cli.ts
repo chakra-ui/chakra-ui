@@ -171,21 +171,23 @@ const formatOutput = (result: unknown, asJson: boolean) => {
     return
   }
 
-  for (const item of content) {
+  content.forEach((item, index) => {
     if (asJson) {
       try {
         const parsed = JSON.parse(item.text)
         console.log(JSON.stringify(parsed, null, 2))
-        continue
+        return
       } catch {
-        console.warn("Unable to parse response as JSON. Showing raw text.")
+        console.warn(
+          `Unable to parse response item ${index + 1} as JSON. Showing raw text.`,
+        )
       }
     }
 
     if (item?.text) {
       console.log(item.text)
     }
-  }
+  })
 }
 
 async function main() {
@@ -226,7 +228,9 @@ async function main() {
     if (!validatedArgs.success) {
       console.error("Invalid arguments:")
       for (const issue of validatedArgs.error.issues) {
-        console.error(` - ${issue.path.join(".") || "value"}: ${issue.message}`)
+        console.error(
+          ` - ${issue.path.join(".") || "(root)"}: ${issue.message}`,
+        )
       }
       process.exit(1)
     }
