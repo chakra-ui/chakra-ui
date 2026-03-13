@@ -78,6 +78,24 @@ pnpm build
 pnpm dev
 ```
 
+## CLI usage
+
+All tools exposed by the MCP server are also available directly from the CLI:
+
+```bash
+# List available tools
+chakra-ui-mcp-cli list
+
+# Run a tool with arguments
+chakra-ui-mcp-cli get_component_props --component Button --json true
+chakra-ui-mcp-cli search_docs --query modal
+
+# Pass your Chakra Pro key for Pro-only tools
+chakra-ui-mcp-cli list_component_templates --api-key $CHAKRA_PRO_API_KEY
+```
+
+Use `--json true` to pretty-print JSON responses.
+
 ## License
 
 MIT @ Chakra Systems

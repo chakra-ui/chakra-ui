@@ -18,13 +18,14 @@
     "directory": "apps/mcp"
   },
   "scripts": {
-    "build": "tsup && chmod 755 dist/stdio.js",
+    "build": "tsup && chmod 755 dist/stdio.js dist/cli.js",
     "dev": "tsup --watch",
     "serve": "tsx --watch src/http.ts",
     "release": "scripts/release.sh"
   },
   "bin": {
-    "chakra-ui-mcp": "./dist/stdio.js"
+    "chakra-ui-mcp": "./dist/stdio.js",
+    "chakra-ui-mcp-cli": "./dist/cli.js"
   },
   "keywords": [
     "chakra-ui",

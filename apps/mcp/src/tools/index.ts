@@ -11,7 +11,7 @@ import { listComponentsTool } from "./list-components.js"
 import { searchDocsTool } from "./search-docs.js"
 import { v2ToV3MigrationTool } from "./v2-to-v3-migration.js"
 
-const tools: Tool[] = [
+export const tools: Tool[] = [
   getComponentExampleTool,
   getComponentPropsTool,
   getThemeTool,
