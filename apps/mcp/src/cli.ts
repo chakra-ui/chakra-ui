@@ -28,7 +28,7 @@ type ToolRegistrar = {
   ) => void
 }
 
-const RESERVED_FLAGS = new Set(["api-key", "json", "help"])
+const RESERVED_OPTIONS = new Set(["api-key", "json", "help"])
 
 const isZodSchema = (schema: unknown): schema is ZodTypeAny => {
   return Boolean(
@@ -171,15 +171,15 @@ const formatOutput = (result: unknown, asJson: boolean) => {
     return
   }
 
-  content.forEach((item, index) => {
+  for (const [index, item] of content.entries()) {
     if (asJson) {
       try {
         const parsed = JSON.parse(item.text)
         console.log(JSON.stringify(parsed, null, 2))
-        return
+        continue
       } catch {
         console.warn(
-          `Unable to parse response item ${index + 1} as JSON. The response may not be JSON-formatted. Showing raw text instead.`,
+          `Unable to parse response item ${index + 1} as JSON. The response may not be JSON-formatted. Attempting to show raw text.`,
         )
       }
     }
@@ -187,7 +187,7 @@ const formatOutput = (result: unknown, asJson: boolean) => {
     if (item?.text) {
       console.log(item.text)
     }
-  })
+  }
 }
 
 async function main() {
@@ -217,7 +217,7 @@ async function main() {
 
   const schema = normalizeSchema(runner.schema)
   const toolArgs = Object.fromEntries(
-    Object.entries(options).filter(([key]) => !RESERVED_FLAGS.has(key)),
+    Object.entries(options).filter(([key]) => !RESERVED_OPTIONS.has(key)),
   )
 
   let params: Record<string, unknown> = toolArgs
