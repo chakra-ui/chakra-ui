@@ -13,7 +13,7 @@ type ToolRunner = {
 
 type ParsedArgs = {
   toolName?: string
-  options: Record<string, string>
+  options: Record<string, string | boolean>
 }
 
 type ToolContent = { text: string }
@@ -57,7 +57,7 @@ const normalizeSchema = (schema: unknown): ZodTypeAny | null => {
 
 const parseArgs = (argv: string[]): ParsedArgs => {
   const [toolName, ...rest] = argv
-  const options: Record<string, string> = {}
+  const options: Record<string, string | boolean> = {}
 
   for (let i = 0; i < rest.length; i++) {
     const arg = rest[i]
@@ -68,7 +68,7 @@ const parseArgs = (argv: string[]): ParsedArgs => {
         options[key] = next
         i++
       } else {
-        options[key] = "true"
+        options[key] = true
       }
     }
   }
@@ -179,7 +179,7 @@ const formatOutput = (result: unknown, asJson: boolean) => {
         continue
       } catch {
         console.warn(
-          `Unable to parse content item ${index + 1} as JSON. The response may not be JSON-formatted. Attempting to show raw text.`,
+          `Unable to parse content item ${index + 1} as JSON. The response may not be JSON-formatted. Showing raw text instead.`,
         )
       }
     }
@@ -192,8 +192,12 @@ const formatOutput = (result: unknown, asJson: boolean) => {
 
 async function main() {
   const { toolName, options } = parseArgs(process.argv.slice(2))
-  const apiKey = options["api-key"] ?? process.env.CHAKRA_PRO_API_KEY
-  const asJson = options["json"] === "true"
+  const apiKeyValue = options["api-key"]
+  const apiKey =
+    typeof apiKeyValue === "string"
+      ? apiKeyValue
+      : process.env.CHAKRA_PRO_API_KEY
+  const asJson = options["json"] === true || options["json"] === "true"
 
   const enabledToolDefs = tools.filter((tool) => !tool.disabled?.({ apiKey }))
 
@@ -241,8 +245,9 @@ async function main() {
   try {
     const result = await runner.handler(params)
     formatOutput(result, asJson)
-    if ((result as ToolResult | undefined)?.isError) {
-      process.exitCode = 1
+    const resultMeta = result as ToolResult | undefined
+    if (resultMeta?.isError) {
+      process.exit(1)
     }
   } catch (error) {
     console.error(
