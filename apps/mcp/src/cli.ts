@@ -179,7 +179,7 @@ const formatOutput = (result: unknown, asJson: boolean) => {
         return
       } catch {
         console.warn(
-          `Unable to parse response item ${index + 1} as JSON. Showing raw text.`,
+          `Unable to parse response item ${index + 1} as JSON. The response may not be JSON-formatted. Showing raw text instead.`,
         )
       }
     }
@@ -256,7 +256,7 @@ async function main() {
 
 main().catch((error) => {
   console.error(
-    `Unexpected error while running chakra-ui-mcp-cli: ${
+    `Fatal error during CLI initialization: ${
       error instanceof Error ? error.message : "Unknown error"
     }`,
   )
