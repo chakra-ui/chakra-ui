@@ -16,7 +16,7 @@ type ParsedArgs = {
   options: Record<string, string>
 }
 
-type ToolContent = { text?: string }
+type ToolContent = { text: string }
 type ToolResult = { content?: ToolContent[]; isError?: boolean }
 
 type ToolRegistrar = {
@@ -44,7 +44,7 @@ const normalizeSchema = (schema: unknown): ZodTypeAny | null => {
     const entries = Object.entries(schema as Record<string, unknown>)
 
     if (entries.length === 0) {
-      return z.object({})
+      return null
     }
 
     if (entries.every(([, value]) => isZodSchema(value))) {
@@ -195,9 +195,14 @@ async function main() {
 
   const enabledToolDefs = tools.filter((tool) => !tool.disabled?.({ apiKey }))
 
-  if (!toolName || toolName === "list" || options.help === "true") {
+  if (!toolName) {
     printHelp(enabledToolDefs)
-    process.exit(toolName ? 0 : 1)
+    process.exit(1)
+  }
+
+  if (toolName === "list" || options.help === "true") {
+    printHelp(enabledToolDefs)
+    process.exit(0)
   }
 
   const runners = await buildToolRunners({ apiKey }, toolName)
