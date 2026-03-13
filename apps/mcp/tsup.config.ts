@@ -3,7 +3,7 @@ import { defineConfig } from "tsup"
 export default defineConfig([
   // STDIO build
   {
-    entry: { stdio: "src/stdio.ts" },
+    entry: { stdio: "src/stdio.ts", cli: "src/cli.ts" },
     format: "esm",
     outDir: "dist",
     treeshake: "safest",
