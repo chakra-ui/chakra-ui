@@ -16,6 +16,18 @@ type ParsedArgs = {
   options: Record<string, string>
 }
 
+type ToolContent = { text?: string }
+type ToolResult = { content?: ToolContent[]; isError?: boolean }
+
+type ToolRegistrar = {
+  tool: (
+    name: string,
+    description: string,
+    schemaOrHandler: unknown,
+    maybeHandler?: unknown,
+  ) => void
+}
+
 const RESERVED_FLAGS = new Set(["api-key", "json", "help"])
 
 const isZodSchema = (schema: unknown): schema is ZodTypeAny => {
@@ -99,7 +111,7 @@ const buildToolRunners = async (
 
       const ctx = await tool.ctx?.()
 
-      const stubServer = {
+      const stubServer: ToolRegistrar = {
         tool(
           name: string,
           description: string,
@@ -124,7 +136,7 @@ const buildToolRunners = async (
         },
       }
 
-      await tool.exec(stubServer as any, {
+      await tool.exec(stubServer, {
         ctx,
         name: tool.name,
         description: tool.description,
@@ -136,9 +148,25 @@ const buildToolRunners = async (
   return runners
 }
 
-const formatOutput = (result: any, asJson: boolean) => {
-  const content = result?.content
-  if (!Array.isArray(content) || content.length === 0) {
+const isToolContent = (value: unknown): value is ToolContent => {
+  return Boolean(
+    value &&
+    typeof value === "object" &&
+    "text" in value &&
+    typeof (value as ToolContent).text === "string",
+  )
+}
+
+const getContent = (value: unknown): ToolContent[] | null => {
+  if (!value || typeof value !== "object") return null
+  const content = (value as ToolResult).content
+  if (!Array.isArray(content)) return null
+  return content.filter(isToolContent)
+}
+
+const formatOutput = (result: unknown, asJson: boolean) => {
+  const content = getContent(result)
+  if (!content || content.length === 0) {
     console.log("No content returned.")
     return
   }
@@ -150,7 +178,7 @@ const formatOutput = (result: any, asJson: boolean) => {
         console.log(JSON.stringify(parsed, null, 2))
         continue
       } catch {
-        // Fall through to raw text if parsing fails
+        console.warn("Unable to parse response as JSON. Showing raw text.")
       }
     }
 
@@ -185,24 +213,26 @@ async function main() {
     Object.entries(options).filter(([key]) => !RESERVED_FLAGS.has(key)),
   )
 
-  const validatedArgs = schema
-    ? schema.safeParse(toolArgs)
-    : { success: true, data: toolArgs }
+  let params: Record<string, unknown> = toolArgs
 
-  if (schema && !validatedArgs.success) {
-    console.error("Invalid arguments:")
-    for (const issue of validatedArgs.error.issues) {
-      console.error(` - ${issue.path.join(".") || "value"}: ${issue.message}`)
+  if (schema) {
+    const validatedArgs = schema.safeParse(toolArgs)
+
+    if (!validatedArgs.success) {
+      console.error("Invalid arguments:")
+      for (const issue of validatedArgs.error.issues) {
+        console.error(` - ${issue.path.join(".") || "value"}: ${issue.message}`)
+      }
+      process.exit(1)
     }
-    process.exit(1)
+
+    params = validatedArgs.data
   }
 
-  const params = schema ? (validatedArgs as any).data : toolArgs
-
   try {
-    const result = await runner.handler(params as Record<string, unknown>)
+    const result = await runner.handler(params)
     formatOutput(result, asJson)
-    if (result?.isError) {
+    if ((result as ToolResult | undefined)?.isError) {
       process.exitCode = 1
     }
   } catch (error) {
