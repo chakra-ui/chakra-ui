@@ -77,13 +77,13 @@ const parseArgs = (argv: string[]): ParsedArgs => {
 }
 
 const printHelp = (
-  toolEntries: Iterable<{ name: string; description: string }>,
+  toolDefs: Iterable<{ name: string; description: string }>,
 ) => {
   console.log("Chakra UI MCP CLI")
   console.log("Usage: chakra-ui-mcp-cli <tool-name> [--option value]")
   console.log("")
   console.log("Available tools:")
-  for (const runner of toolEntries) {
+  for (const runner of toolDefs) {
     console.log(`  - ${runner.name}: ${runner.description}`)
   }
   console.log("")
@@ -199,7 +199,7 @@ async function main() {
 
   if (!toolName) {
     printHelp(enabledToolDefs)
-    process.exit(1)
+    process.exit(0)
   }
 
   if (toolName === "list" || options.help === "true") {
@@ -254,4 +254,11 @@ async function main() {
   }
 }
 
-main()
+main().catch((error) => {
+  console.error(
+    `Unexpected error while running chakra-ui-mcp-cli: ${
+      error instanceof Error ? error.message : "Unknown error"
+    }`,
+  )
+  process.exit(1)
+})
