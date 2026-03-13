@@ -179,7 +179,7 @@ const formatOutput = (result: unknown, asJson: boolean) => {
         continue
       } catch {
         console.warn(
-          `Unable to parse response item ${index + 1} as JSON. The response may not be JSON-formatted. Attempting to show raw text.`,
+          `Unable to parse content item ${index + 1} as JSON. The response may not be JSON-formatted. Attempting to show raw text.`,
         )
       }
     }
