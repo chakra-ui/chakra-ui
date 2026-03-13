@@ -199,12 +199,12 @@ async function main() {
 
   if (!toolName) {
     printHelp(enabledToolDefs)
-    process.exit(0)
+    return
   }
 
   if (toolName === "list" || options.help === "true") {
     printHelp(enabledToolDefs)
-    process.exit(0)
+    return
   }
 
   const runners = await buildToolRunners({ apiKey }, toolName)
