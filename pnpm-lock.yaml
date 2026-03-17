@@ -311,8 +311,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       emojibase-data:
-        specifier: ^16.0.3
-        version: 16.0.3(emojibase@16.0.0)
+        specifier: ^17.0.0
+        version: 17.0.0(emojibase@16.0.0)
       es-toolkit:
         specifier: 1.44.0
         version: 1.44.0
@@ -6472,8 +6472,8 @@ packages:
     peerDependencies:
       emojibase: '*'
 
-  emojibase-data@16.0.3:
-    resolution: {integrity: sha512-MopInVCDZeXvqBMPJxnvYUyKw9ImJZqIDr2sABo6acVSPev5IDYX+mf+0tsu96JJyc3INNvgIf06Eso7bdTX2Q==}
+  emojibase-data@17.0.0:
+    resolution: {integrity: sha512-Yvgb5AWoHViHV/gq1qr5ZAarcBip+B27/ZLRsUJkbgAEaLlZ/fof9g882LTpmEpyhBNEC0m2SEmItljHsTygjA==}
     peerDependencies:
       emojibase: '*'
 
@@ -17325,7 +17325,7 @@ snapshots:
     dependencies:
       emojibase: 16.0.0
 
-  emojibase-data@16.0.3(emojibase@16.0.0):
+  emojibase-data@17.0.0(emojibase@16.0.0):
     dependencies:
       emojibase: 16.0.0
 
