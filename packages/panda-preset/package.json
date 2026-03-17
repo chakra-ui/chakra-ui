@@ -63,6 +63,6 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
-    "globby": "14.1.0"
+    "globby": "16.1.1"
   }
 }
