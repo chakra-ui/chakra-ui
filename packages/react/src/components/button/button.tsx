@@ -68,6 +68,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         data-loading={dataAttr(loading)}
         disabled={loading || rest.disabled}
+        aria-busy={loading}
+        aria-live="polite"
         className={cx(result.className, props.className)}
         css={[result.styles, props.css]}
       >

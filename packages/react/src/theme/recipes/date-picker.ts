@@ -274,12 +274,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       "&[data-range-start][data-range-end]": {
         borderRadius: "l2",
       },
-      "&[data-selected][data-in-range]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "l2",
-        _hover: { bg: "colorPalette.solid" },
-      },
       _disabled: {
         opacity: 0.4,
       },
