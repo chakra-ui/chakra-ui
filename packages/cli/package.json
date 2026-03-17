@@ -61,7 +61,7 @@
     "debug": "^4.4.3",
     "dotenv": "^17.2.3",
     "esbuild": "^0.27.3",
-    "globby": "14.1.0",
+    "globby": "16.1.1",
     "https-proxy-agent": "^7.0.6",
     "look-it-up": "2.1.0",
     "node-fetch": "3.3.2",
