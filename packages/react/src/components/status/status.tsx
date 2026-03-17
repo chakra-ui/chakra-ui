@@ -32,6 +32,7 @@ export const StatusRoot = withProvider<HTMLDivElement, StatusRootProps>(
   "div",
   "root",
 )
+StatusRoot.displayName = "StatusRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,3 +48,4 @@ export const StatusIndicator = withContext<
   HTMLDivElement,
   StatusIndicatorProps
 >("div", "indicator")
+StatusIndicator.displayName = "StatusIndicator"

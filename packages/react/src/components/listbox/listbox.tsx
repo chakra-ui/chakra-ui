@@ -43,6 +43,7 @@ export const ListboxRootProvider = withProvider<
 >(ArkListbox.RootProvider, "root", {
   forwardAsChild: true,
 }) as ListboxRootProviderComponent
+;(ListboxRootProvider as any).displayName = "ListboxRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,6 +69,7 @@ export const ListboxRoot = withProvider<HTMLDivElement, ListboxRootProps>(
     forwardAsChild: true,
   },
 ) as ListboxRootComponent
+;(ListboxRoot as any).displayName = "ListboxRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,6 +86,7 @@ export const ListboxInput = withContext<HTMLInputElement, ListboxInputProps>(
   "input",
   { forwardAsChild: true },
 )
+ListboxInput.displayName = "ListboxInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +98,7 @@ export const ListboxContent = withContext<HTMLDivElement, ListboxContentProps>(
   "content",
   { forwardAsChild: true },
 )
+ListboxContent.displayName = "ListboxContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +111,7 @@ export const ListboxValueText = withContext<
   HTMLSpanElement,
   ListboxValueTextProps
 >(ArkListbox.ValueText, "valueText", { forwardAsChild: true })
+ListboxValueText.displayName = "ListboxValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +122,7 @@ export const ListboxItemGroup = withContext<
   HTMLDivElement,
   ListboxItemGroupProps
 >(ArkListbox.ItemGroup, "itemGroup", { forwardAsChild: true })
+ListboxItemGroup.displayName = "ListboxItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -129,6 +135,7 @@ export const ListboxItemGroupLabel = withContext<
   HTMLDivElement,
   ListboxItemGroupLabelProps
 >(ArkListbox.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
+ListboxItemGroupLabel.displayName = "ListboxItemGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,6 +147,7 @@ export const ListboxItem = withContext<HTMLDivElement, ListboxItemProps>(
   "item",
   { forwardAsChild: true },
 )
+ListboxItem.displayName = "ListboxItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -150,6 +158,7 @@ export const ListboxItemText = withContext<
   HTMLDivElement,
   ListboxItemTextProps
 >(ArkListbox.ItemText, "itemText", { forwardAsChild: true })
+ListboxItemText.displayName = "ListboxItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -167,6 +176,7 @@ export const ListboxItemIndicator = withContext<
     children: <CheckIcon />,
   },
 })
+ListboxItemIndicator.displayName = "ListboxItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,6 +188,7 @@ export const ListboxLabel = withContext<HTMLLabelElement, ListboxLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+ListboxLabel.displayName = "ListboxLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -189,6 +200,7 @@ export const ListboxEmpty = withContext<HTMLDivElement, ListboxEmptyProps>(
   "empty",
   { forwardAsChild: true },
 )
+ListboxEmpty.displayName = "ListboxEmpty"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

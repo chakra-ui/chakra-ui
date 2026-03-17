@@ -59,6 +59,7 @@ export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
     },
   },
 )
+AlertRoot.displayName = "AlertRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +74,7 @@ export const AlertTitle = withContext<HTMLDivElement, AlertTitleProps>(
   "div",
   "title",
 )
+AlertTitle.displayName = "AlertTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +85,7 @@ export const AlertDescription = withContext<
   HTMLDivElement,
   AlertDescriptionProps
 >("div", "description")
+AlertDescription.displayName = "AlertDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +96,7 @@ export const AlertContent = withContext<HTMLDivElement, AlertContentProps>(
   "div",
   "content",
 )
+AlertContent.displayName = "AlertContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -121,3 +125,4 @@ export const AlertIndicator = forwardRef<SVGSVGElement, AlertIndicatorProps>(
     )
   },
 )
+AlertIndicator.displayName = "AlertIndicator"

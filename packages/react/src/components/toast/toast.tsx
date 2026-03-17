@@ -42,6 +42,7 @@ export const Toaster = chakra(
   {},
   { forwardAsChild: true },
 ) as React.FC<ToasterProps>
+;(Toaster as any).displayName = "Toaster"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,6 +61,7 @@ export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
   "root",
   { forwardAsChild: true },
 )
+ToastRoot.displayName = "ToastRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,6 +77,7 @@ export const ToastCloseTrigger = withContext<
     children: <CloseIcon />,
   },
 })
+ToastCloseTrigger.displayName = "ToastCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +89,7 @@ export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
   "title",
   { forwardAsChild: true },
 )
+ToastTitle.displayName = "ToastTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +100,7 @@ export const ToastDescription = withContext<
   HTMLDivElement,
   ToastDescriptionProps
 >(ArkToast.Description, "description", { forwardAsChild: true })
+ToastDescription.displayName = "ToastDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,6 +113,7 @@ export const ToastActionTrigger = withContext<
   HTMLButtonElement,
   ToastActionTriggerProps
 >(ArkToast.ActionTrigger, "actionTrigger", { forwardAsChild: true })
+ToastActionTrigger.displayName = "ToastActionTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,3 +144,4 @@ export const ToastIndicator = forwardRef<HTMLSpanElement, ToastIndicatorProps>(
     )
   },
 )
+ToastIndicator.displayName = "ToastIndicator"

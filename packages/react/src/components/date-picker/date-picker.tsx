@@ -45,6 +45,7 @@ export const DatePickerRootProvider = withProvider<
   HTMLDivElement,
   DatePickerRootProviderProps
 >(ArkDatePicker.RootProvider, "root", { forwardAsChild: true })
+DatePickerRootProvider.displayName = "DatePickerRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +66,7 @@ export const DatePickerRoot = withProvider<HTMLDivElement, DatePickerRootProps>(
     forwardAsChild: true,
   },
 )
+DatePickerRoot.displayName = "DatePickerRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +89,7 @@ export const DatePickerClearTrigger = withContext<
     children: <CloseIcon />,
   },
 })
+DatePickerClearTrigger.displayName = "DatePickerClearTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -99,6 +102,7 @@ export const DatePickerContent = withContext<
   HTMLDivElement,
   DatePickerContentProps
 >(ArkDatePicker.Content, "content", { forwardAsChild: true })
+DatePickerContent.displayName = "DatePickerContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,6 +115,7 @@ export const DatePickerControl = withContext<
   HTMLDivElement,
   DatePickerControlProps
 >(ArkDatePicker.Control, "control", { forwardAsChild: true })
+DatePickerControl.displayName = "DatePickerControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -123,6 +128,7 @@ export const DatePickerInput = withContext<
   HTMLInputElement,
   DatePickerInputProps
 >(ArkDatePicker.Input, "input", { forwardAsChild: true })
+DatePickerInput.displayName = "DatePickerInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -135,6 +141,7 @@ export const DatePickerLabel = withContext<
   HTMLLabelElement,
   DatePickerLabelProps
 >(ArkDatePicker.Label, "label", { forwardAsChild: true })
+DatePickerLabel.displayName = "DatePickerLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,6 +154,7 @@ export const DatePickerMonthSelect = withContext<
   HTMLSelectElement,
   DatePickerMonthSelectProps
 >(ArkDatePicker.MonthSelect, "monthSelect", { forwardAsChild: true })
+DatePickerMonthSelect.displayName = "DatePickerMonthSelect"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -164,6 +172,7 @@ export const DatePickerNextTrigger = withContext<
     children: <ChevronRightIcon />,
   },
 })
+DatePickerNextTrigger.displayName = "DatePickerNextTrigger"
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerPositionerProps
@@ -175,6 +184,7 @@ export const DatePickerPositioner = withContext<
   HTMLDivElement,
   DatePickerPositionerProps
 >(ArkDatePicker.Positioner, "positioner", { forwardAsChild: true })
+DatePickerPositioner.displayName = "DatePickerPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -187,6 +197,7 @@ export const DatePickerPresetTrigger = withContext<
   HTMLButtonElement,
   DatePickerPresetTriggerProps
 >(ArkDatePicker.PresetTrigger, "presetTrigger", { forwardAsChild: true })
+DatePickerPresetTrigger.displayName = "DatePickerPresetTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -204,6 +215,7 @@ export const DatePickerPrevTrigger = withContext<
     children: <ChevronLeftIcon />,
   },
 })
+DatePickerPrevTrigger.displayName = "DatePickerPrevTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -216,6 +228,7 @@ export const DatePickerRangeText = withContext<
   HTMLDivElement,
   DatePickerRangeTextProps
 >(ArkDatePicker.RangeText, "rangeText", { forwardAsChild: true })
+DatePickerRangeText.displayName = "DatePickerRangeText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -228,6 +241,7 @@ export const DatePickerTable = withContext<
   HTMLTableElement,
   DatePickerTableProps
 >(ArkDatePicker.Table, "table", { forwardAsChild: true })
+DatePickerTable.displayName = "DatePickerTable"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -240,6 +254,7 @@ export const DatePickerTableBody = withContext<
   HTMLTableSectionElement,
   DatePickerTableBodyProps
 >(ArkDatePicker.TableBody, "tableBody", { forwardAsChild: true })
+DatePickerTableBody.displayName = "DatePickerTableBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -252,6 +267,7 @@ export const DatePickerTableCell = withContext<
   HTMLTableCellElement,
   DatePickerTableCellProps
 >(ArkDatePicker.TableCell, "tableCell", { forwardAsChild: true })
+DatePickerTableCell.displayName = "DatePickerTableCell"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -264,6 +280,7 @@ export const DatePickerTableCellTrigger = withContext<
   HTMLButtonElement,
   DatePickerTableCellTriggerProps
 >(ArkDatePicker.TableCellTrigger, "tableCellTrigger", { forwardAsChild: true })
+DatePickerTableCellTrigger.displayName = "DatePickerTableCellTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -276,6 +293,7 @@ export const DatePickerTableHead = withContext<
   HTMLTableSectionElement,
   DatePickerTableHeadProps
 >(ArkDatePicker.TableHead, "tableHead", { forwardAsChild: true })
+DatePickerTableHead.displayName = "DatePickerTableHead"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -288,6 +306,7 @@ export const DatePickerTableHeader = withContext<
   HTMLTableCellElement,
   DatePickerTableHeaderProps
 >(ArkDatePicker.TableHeader, "tableHeader", { forwardAsChild: true })
+DatePickerTableHeader.displayName = "DatePickerTableHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -300,6 +319,7 @@ export const DatePickerTableRow = withContext<
   HTMLTableRowElement,
   DatePickerTableRowProps
 >(ArkDatePicker.TableRow, "tableRow", { forwardAsChild: true })
+DatePickerTableRow.displayName = "DatePickerTableRow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -314,6 +334,7 @@ export const DatePickerTrigger = withContext<
 >(ArkDatePicker.Trigger, "trigger", {
   forwardAsChild: true,
 })
+DatePickerTrigger.displayName = "DatePickerTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -325,6 +346,7 @@ export const DatePickerView = withContext<HTMLDivElement, DatePickerViewProps>(
   "view",
   { forwardAsChild: true },
 )
+DatePickerView.displayName = "DatePickerView"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -337,6 +359,7 @@ export const DatePickerViewControl = withContext<
   HTMLDivElement,
   DatePickerViewControlProps
 >(ArkDatePicker.ViewControl, "viewControl", { forwardAsChild: true })
+DatePickerViewControl.displayName = "DatePickerViewControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -349,6 +372,7 @@ export const DatePickerViewTrigger = withContext<
   HTMLButtonElement,
   DatePickerViewTriggerProps
 >(ArkDatePicker.ViewTrigger, "viewTrigger", { forwardAsChild: true })
+DatePickerViewTrigger.displayName = "DatePickerViewTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -361,6 +385,7 @@ export const DatePickerYearSelect = withContext<
   HTMLSelectElement,
   DatePickerYearSelectProps
 >(ArkDatePicker.YearSelect, "yearSelect", { forwardAsChild: true })
+DatePickerYearSelect.displayName = "DatePickerYearSelect"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -371,6 +396,7 @@ export const DatePickerIndicatorGroup = withContext<
   HTMLDivElement,
   DatePickerIndicatorGroupProps
 >("div", "indicatorGroup")
+DatePickerIndicatorGroup.displayName = "DatePickerIndicatorGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -388,6 +414,7 @@ export const DatePickerWeekNumberHeaderCell = withContext<
     "data-type": "week-number",
   },
 })
+DatePickerWeekNumberHeaderCell.displayName = "DatePickerWeekNumberHeaderCell"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -405,6 +432,7 @@ export const DatePickerWeekNumberCell = withContext<
     "data-type": "week-number",
   },
 })
+DatePickerWeekNumberCell.displayName = "DatePickerWeekNumberCell"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -417,6 +445,7 @@ export const DatePickerWeekNumberCellText = withContext<
 >("span", "tableCellTrigger", {
   forwardAsChild: true,
 })
+DatePickerWeekNumberCellText.displayName = "DatePickerWeekNumberCellText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -433,6 +462,7 @@ export const DatePickerHeader = (props: DatePickerHeaderProps) => {
     </DatePickerViewControl>
   )
 }
+DatePickerHeader.displayName = "DatePickerHeader"
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DatePickerDayTableProps extends DatePickerTableProps {
@@ -491,6 +521,7 @@ export const DatePickerDayTable = (props: DatePickerDayTableProps) => {
     </DatePickerTable>
   )
 }
+DatePickerDayTable.displayName = "DatePickerDayTable"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -521,6 +552,7 @@ export const DatePickerMonthTable = (props: DatePickerMonthTableProps) => {
     </DatePickerTable>
   )
 }
+DatePickerMonthTable.displayName = "DatePickerMonthTable"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -549,6 +581,7 @@ export const DatePickerYearTable = (props: DatePickerYearTableProps) => {
     </DatePickerTable>
   )
 }
+DatePickerYearTable.displayName = "DatePickerYearTable"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -578,6 +611,7 @@ export const DatePickerValue = (props: DatePickerValueProps) => {
     </DatePickerTrigger>
   )
 }
+DatePickerValue.displayName = "DatePickerValue"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

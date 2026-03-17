@@ -39,6 +39,7 @@ export const StepsRootProvider = withProvider<
   HTMLDivElement,
   StepsRootProviderProps
 >(ArkSteps.RootProvider, "root", { forwardAsChild: true })
+StepsRootProvider.displayName = "StepsRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,7 @@ export const StepsRoot = withProvider<HTMLDivElement, StepsRootProps>(
   "root",
   { forwardAsChild: true },
 )
+StepsRoot.displayName = "StepsRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +75,7 @@ export const StepsList = withContext<HTMLDivElement, StepsListProps>(
   "list",
   { forwardAsChild: true },
 )
+StepsList.displayName = "StepsList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,6 +87,7 @@ export const StepsItem = withContext<HTMLDivElement, StepsItemProps>(
   "item",
   { forwardAsChild: true },
 )
+StepsItem.displayName = "StepsItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +99,7 @@ export const StepsTrigger = withContext<HTMLButtonElement, StepsTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+StepsTrigger.displayName = "StepsTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +111,7 @@ export const StepsContent = withContext<HTMLDivElement, StepsContentProps>(
   "content",
   { forwardAsChild: true },
 )
+StepsContent.displayName = "StepsContent"
 
 export interface StepsCompletedContentProps
   extends HTMLChakraProps<"div">, UnstyledProp {}
@@ -114,6 +120,7 @@ export const StepsCompletedContent = withContext<
   HTMLDivElement,
   StepsCompletedContentProps
 >(ArkSteps.CompletedContent, "content")
+StepsCompletedContent.displayName = "StepsCompletedContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -132,6 +139,7 @@ export const StepsNumber = forwardRef<HTMLDivElement, StepsNumberProps>(
     )
   },
 )
+StepsNumber.displayName = "StepsNumber"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -141,6 +149,7 @@ export const StepsTitle = withContext<HTMLDivElement, StepsTitleProps>(
   "div",
   "title",
 )
+StepsTitle.displayName = "StepsTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +160,7 @@ export const StepsDescription = withContext<
   HTMLDivElement,
   StepsDescriptionProps
 >("div", "description")
+StepsDescription.displayName = "StepsDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -162,6 +172,7 @@ export const StepsSeparator = withContext<HTMLDivElement, StepsSeparatorProps>(
   "separator",
   { forwardAsChild: true },
 )
+StepsSeparator.displayName = "StepsSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -182,6 +193,7 @@ export const StepsStatus = (props: StepsStatusProps) => {
     </ArkSteps.ItemContext>
   )
 }
+StepsStatus.displayName = "StepsStatus"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -200,6 +212,7 @@ export const StepsIndicator = withContext<HTMLDivElement, StepsIndicatorProps>(
     },
   },
 )
+StepsIndicator.displayName = "StepsIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -212,6 +225,7 @@ export const StepsNextTrigger = withContext<
   HTMLButtonElement,
   StepsNextTriggerProps
 >(ArkSteps.NextTrigger, "nextTrigger", { forwardAsChild: true })
+StepsNextTrigger.displayName = "StepsNextTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,6 +238,7 @@ export const StepsPrevTrigger = withContext<
   HTMLButtonElement,
   StepsPrevTriggerProps
 >(ArkSteps.PrevTrigger, "prevTrigger", { forwardAsChild: true })
+StepsPrevTrigger.displayName = "StepsPrevTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

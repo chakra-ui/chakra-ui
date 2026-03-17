@@ -71,6 +71,7 @@ export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
     )
   },
 )
+TableRoot.displayName = "TableRoot"
 
 export const TableRootPropsProvider =
   PropsProvider as React.Provider<TableRootBaseProps>
@@ -83,6 +84,7 @@ export const TableRow = withContext<HTMLTableRowElement, TableRowProps>(
   "tr",
   "row",
 )
+TableRow.displayName = "TableRow"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +99,7 @@ export const TableScrollArea = chakra("div", {
     maxWidth: "100%",
   },
 })
+TableScrollArea.displayName = "TableScrollArea"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +110,7 @@ export const TableHeader = withContext<
   HTMLTableSectionElement,
   TableHeaderProps
 >("thead", "header")
+TableHeader.displayName = "TableHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +121,7 @@ export const TableFooter = withContext<
   HTMLTableSectionElement,
   TableFooterProps
 >("tfoot", "footer")
+TableFooter.displayName = "TableFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +132,7 @@ export const TableColumnHeader = withContext<
   HTMLTableCellElement,
   TableColumnHeaderProps
 >("th", "columnHeader")
+TableColumnHeader.displayName = "TableColumnHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,6 +142,7 @@ export const TableCell = withContext<HTMLTableCellElement, TableCellProps>(
   "td",
   "cell",
 )
+TableCell.displayName = "TableCell"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -150,6 +157,7 @@ export const TableCaption = withContext<
     captionSide: "bottom",
   },
 })
+TableCaption.displayName = "TableCaption"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +168,7 @@ export const TableBody = withContext<HTMLTableSectionElement, TableBodyProps>(
   "tbody",
   "body",
 )
+TableBody.displayName = "TableBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -170,6 +179,7 @@ export const TableColumnGroup = withContext<
   HTMLTableColElement,
   TableColumnGroupProps
 >("colgroup")
+TableColumnGroup.displayName = "TableColumnGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -179,3 +189,4 @@ export interface TableColumnProps
 export const TableColumn = withContext<HTMLTableColElement, TableColumnProps>(
   "col",
 )
+TableColumn.displayName = "TableColumn"

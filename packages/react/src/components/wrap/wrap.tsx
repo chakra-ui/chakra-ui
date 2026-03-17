@@ -58,3 +58,4 @@ export const WrapItem = forwardRef<HTMLDivElement, WrapItemProps>(
     )
   },
 )
+WrapItem.displayName = "WrapItem"

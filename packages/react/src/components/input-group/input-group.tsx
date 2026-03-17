@@ -106,3 +106,4 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
     )
   },
 )
+InputGroup.displayName = "InputGroup"

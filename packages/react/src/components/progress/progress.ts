@@ -36,6 +36,7 @@ export const ProgressRootProvider = withProvider<
   HTMLDivElement,
   ProgressRootProviderProps
 >(ArkProgress.RootProvider, "root", { forwardAsChild: true })
+ProgressRootProvider.displayName = "ProgressRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,6 +54,7 @@ export const ProgressRoot = withProvider<HTMLDivElement, ProgressRootProps>(
   ArkProgress.Root,
   "root",
 )
+ProgressRoot.displayName = "ProgressRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,6 +71,7 @@ export const ProgressLabel = withContext<HTMLDivElement, ProgressLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+ProgressLabel.displayName = "ProgressLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +83,7 @@ export const ProgressTrack = withContext<HTMLDivElement, ProgressTrackProps>(
   "track",
   { forwardAsChild: true },
 )
+ProgressTrack.displayName = "ProgressTrack"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +95,7 @@ export const ProgressRange = withContext<HTMLDivElement, ProgressRangeProps>(
   "range",
   { forwardAsChild: true },
 )
+ProgressRange.displayName = "ProgressRange"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +108,7 @@ export const ProgressValueText = withContext<
   HTMLDivElement,
   ProgressValueTextProps
 >(ArkProgress.ValueText, "valueText", { forwardAsChild: true })
+ProgressValueText.displayName = "ProgressValueText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

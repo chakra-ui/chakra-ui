@@ -43,6 +43,7 @@ export const RadioGroupRootProvider = withProvider<
   HTMLDivElement,
   RadioGroupRootProviderProps
 >(ArkRadioGroup.RootProvider, "root", { forwardAsChild: true })
+RadioGroupRootProvider.displayName = "RadioGroupRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,6 +62,7 @@ export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(
   "root",
   { forwardAsChild: true },
 )
+RadioGroupRoot.displayName = "RadioGroupRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +78,7 @@ export const RadioGroupLabel = withContext<
   HTMLDivElement,
   RadioGroupLabelProps
 >(ArkRadioGroup.Label, "label", { forwardAsChild: true })
+RadioGroupLabel.displayName = "RadioGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +90,7 @@ export const RadioGroupItem = withContext<HTMLDivElement, RadioGroupItemProps>(
   "item",
   { forwardAsChild: true },
 )
+RadioGroupItem.displayName = "RadioGroupItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -99,6 +103,7 @@ export const RadioGroupItemText = withContext<
   HTMLSpanElement,
   RadioGroupItemTextProps
 >(ArkRadioGroup.ItemText, "itemText", { forwardAsChild: true })
+RadioGroupItemText.displayName = "RadioGroupItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,6 +116,7 @@ export const RadioGroupItemControl = withContext<
   HTMLDivElement,
   RadioGroupItemControlProps
 >(ArkRadioGroup.ItemControl, "itemControl", { forwardAsChild: true })
+RadioGroupItemControl.displayName = "RadioGroupItemControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,6 +144,7 @@ export const RadioGroupItemIndicator = forwardRef<
     </ArkRadioGroup.ItemContext>
   )
 })
+RadioGroupItemIndicator.displayName = "RadioGroupItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +167,7 @@ export const RadioGroupItemContext: React.FC<RadioGroupItemContextProps> =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const RadioGroupItemHiddenInput = ArkRadioGroup.ItemHiddenInput
+RadioGroupItemHiddenInput.displayName = "RadioGroupItemHiddenInput"
 
 export interface RadioGroupValueChangeDetails
   extends ArkRadioGroup.ValueChangeDetails {}

@@ -28,6 +28,7 @@ export const FieldsetRoot = withProvider<
   HTMLFieldSetElement,
   FieldsetRootProps
 >(Fieldset.Root, "root")
+FieldsetRoot.displayName = "FieldsetRoot"
 
 export interface FieldsetErrorTextProps
   extends HTMLChakraProps<"span", Fieldset.ErrorTextBaseProps>, UnstyledProp {}
@@ -36,6 +37,7 @@ export const FieldsetErrorText = withContext<
   HTMLSpanElement,
   FieldsetErrorTextProps
 >(Fieldset.ErrorText, "errorText")
+FieldsetErrorText.displayName = "FieldsetErrorText"
 
 export interface FieldsetHelperTextProps
   extends HTMLChakraProps<"span", Fieldset.HelperTextBaseProps>, UnstyledProp {}
@@ -44,6 +46,7 @@ export const FieldsetHelperText = withContext<
   HTMLSpanElement,
   FieldsetHelperTextProps
 >(Fieldset.HelperText, "helperText")
+FieldsetHelperText.displayName = "FieldsetHelperText"
 
 export interface FieldsetLegendProps
   extends HTMLChakraProps<"legend", Fieldset.LegendBaseProps>, UnstyledProp {}
@@ -52,6 +55,7 @@ export const FieldsetLegend = withContext<
   HTMLLegendElement,
   FieldsetLegendProps
 >(Fieldset.Legend, "legend")
+FieldsetLegend.displayName = "FieldsetLegend"
 
 export interface FieldsetContentProps
   extends HTMLChakraProps<"div">, UnstyledProp {}
@@ -60,5 +64,6 @@ export const FieldsetContent = withContext<
   HTMLDivElement,
   FieldsetContentProps
 >(ark.div, "content")
+FieldsetContent.displayName = "FieldsetContent"
 
 export const FieldsetContext = Fieldset.Context

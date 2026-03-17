@@ -44,6 +44,7 @@ export const TreeViewRootProvider = withProvider<
   HTMLDivElement,
   TreeViewRootProviderProps
 >(ArkTreeView.RootProvider, "root", { forwardAsChild: true })
+TreeViewRootProvider.displayName = "TreeViewRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -62,6 +63,7 @@ export const TreeViewRoot = withProvider<HTMLDivElement, TreeViewRootProps>(
   "root",
   { forwardAsChild: true },
 )
+TreeViewRoot.displayName = "TreeViewRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -79,6 +81,7 @@ export const TreeViewBranch = withContext<HTMLDivElement, TreeViewBranchProps>(
   "branch",
   { forwardAsChild: true },
 )
+TreeViewBranch.displayName = "TreeViewBranch"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +94,7 @@ export const TreeViewBranchContent = withContext<
   HTMLDivElement,
   TreeViewBranchContentProps
 >(ArkTreeView.BranchContent, "branchContent", { forwardAsChild: true })
+TreeViewBranchContent.displayName = "TreeViewBranchContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +107,7 @@ export const TreeViewBranchControl = withContext<
   HTMLDivElement,
   TreeViewBranchControlProps
 >(ArkTreeView.BranchControl, "branchControl", { forwardAsChild: true })
+TreeViewBranchControl.displayName = "TreeViewBranchControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,6 +120,7 @@ export const TreeViewBranchTrigger = withContext<
   HTMLDivElement,
   TreeViewBranchTriggerProps
 >(ArkTreeView.BranchTrigger, "branchTrigger", { forwardAsChild: true })
+TreeViewBranchTrigger.displayName = "TreeViewBranchTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +133,7 @@ export const TreeViewBranchIndicator = withContext<
   HTMLDivElement,
   TreeViewBranchIndicatorProps
 >(ArkTreeView.BranchIndicator, "branchIndicator", { forwardAsChild: true })
+TreeViewBranchIndicator.displayName = "TreeViewBranchIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,6 +146,7 @@ export const TreeViewBranchText = withContext<
   HTMLSpanElement,
   TreeViewBranchTextProps
 >(ArkTreeView.BranchText, "branchText", { forwardAsChild: true })
+TreeViewBranchText.displayName = "TreeViewBranchText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +159,7 @@ export const TreeViewBranchIndentGuide = withContext<
   HTMLDivElement,
   TreeViewBranchIndentGuideProps
 >(ArkTreeView.BranchIndentGuide, "branchIndentGuide", { forwardAsChild: true })
+TreeViewBranchIndentGuide.displayName = "TreeViewBranchIndentGuide"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -162,6 +171,7 @@ export const TreeViewItem = withContext<HTMLDivElement, TreeViewItemProps>(
   "item",
   { forwardAsChild: true },
 )
+TreeViewItem.displayName = "TreeViewItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -174,6 +184,7 @@ export const TreeViewItemIndicator = withContext<
   HTMLDivElement,
   TreeViewItemIndicatorProps
 >(ArkTreeView.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+TreeViewItemIndicator.displayName = "TreeViewItemIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -186,6 +197,7 @@ export const TreeViewItemText = withContext<
   HTMLSpanElement,
   TreeViewItemTextProps
 >(ArkTreeView.ItemText, "itemText", { forwardAsChild: true })
+TreeViewItemText.displayName = "TreeViewItemText"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -197,6 +209,7 @@ export const TreeViewLabel = withContext<HTMLLabelElement, TreeViewLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+TreeViewLabel.displayName = "TreeViewLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +221,7 @@ export const TreeViewTree = withContext<HTMLDivElement, TreeViewTreeProps>(
   "tree",
   { forwardAsChild: true },
 )
+TreeViewTree.displayName = "TreeViewTree"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -220,6 +234,7 @@ export const TreeViewNodeCheckbox = withContext<
   HTMLDivElement,
   TreeViewNodeCheckboxProps
 >(ArkTreeView.NodeCheckbox, "nodeCheckbox", { forwardAsChild: true })
+TreeViewNodeCheckbox.displayName = "TreeViewNodeCheckbox"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

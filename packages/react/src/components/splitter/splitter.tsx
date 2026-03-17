@@ -36,6 +36,7 @@ export const SplitterRootProvider = withProvider<
   HTMLDivElement,
   SplitterRootProviderProps
 >(ArkSplitter.RootProvider, "root", { forwardAsChild: true })
+SplitterRootProvider.displayName = "SplitterRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +57,7 @@ export const SplitterRoot = withProvider<HTMLDivElement, SplitterRootProps>(
     forwardAsChild: true,
   },
 )
+SplitterRoot.displayName = "SplitterRoot"
 
 export const SplitterPropsProvider =
   PropsProvider as React.Provider<SplitterRootBaseProps>
@@ -70,6 +72,7 @@ export const SplitterPanel = withContext<HTMLDivElement, SplitterPanelProps>(
   "panel",
   { forwardAsChild: true },
 )
+SplitterPanel.displayName = "SplitterPanel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +83,7 @@ export const SplitterResizeTriggerSeparator = withContext<
   HTMLDivElement,
   SplitterResizeTriggerSeparatorProps
 >("div", "resizeTriggerSeparator")
+SplitterResizeTriggerSeparator.displayName = "SplitterResizeTriggerSeparator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,6 +94,7 @@ export const SplitterResizeTriggerIndicator = withContext<
   HTMLDivElement,
   SplitterResizeTriggerIndicatorProps
 >(ArkSplitter.ResizeTriggerIndicator, "resizeTriggerIndicator")
+SplitterResizeTriggerIndicator.displayName = "SplitterResizeTriggerIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,6 +118,7 @@ export const SplitterResizeTrigger = withContext<
     ),
   },
 })
+SplitterResizeTrigger.displayName = "SplitterResizeTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

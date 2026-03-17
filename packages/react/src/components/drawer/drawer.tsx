@@ -39,6 +39,7 @@ export const DrawerRootProvider = withRootProvider<DrawerRootProviderProps>(
     defaultProps: { unmountOnExit: true, lazyMount: true },
   },
 )
+DrawerRootProvider.displayName = "DrawerRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export interface DrawerRootProps extends DrawerRootBaseProps {
 export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
+DrawerRoot.displayName = "DrawerRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +72,7 @@ export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
   "trigger",
   { forwardAsChild: true },
 )
+DrawerTrigger.displayName = "DrawerTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +83,7 @@ export const DrawerPositioner = withContext<
   HTMLDivElement,
   DrawerPositionerProps
 >(ArkDialog.Positioner, "positioner", { forwardAsChild: true })
+DrawerPositioner.displayName = "DrawerPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +97,7 @@ export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
   "content",
   { forwardAsChild: true },
 )
+DrawerContent.displayName = "DrawerContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,6 +108,7 @@ export const DrawerDescription = withContext<
   HTMLDivElement,
   DrawerDescriptionProps
 >(ArkDialog.Description, "description", { forwardAsChild: true })
+DrawerDescription.displayName = "DrawerDescription"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,6 +120,7 @@ export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
   "title",
   { forwardAsChild: true },
 )
+DrawerTitle.displayName = "DrawerTitle"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -126,6 +133,7 @@ export const DrawerCloseTrigger = withContext<
   HTMLButtonElement,
   DrawerCloseTriggerProps
 >(ArkDialog.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+DrawerCloseTrigger.displayName = "DrawerCloseTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,6 +148,7 @@ export const DrawerActionTrigger = forwardRef<
     <chakra.button {...props} ref={ref} onClick={() => drawer.setOpen(false)} />
   )
 })
+DrawerActionTrigger.displayName = "DrawerActionTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +160,7 @@ export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
   "backdrop",
   { forwardAsChild: true },
 )
+DrawerBackdrop.displayName = "DrawerBackdrop"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +170,7 @@ export const DrawerBody = withContext<HTMLDivElement, DrawerBodyProps>(
   "div",
   "body",
 )
+DrawerBody.displayName = "DrawerBody"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -170,6 +181,7 @@ export const DrawerFooter = withContext<HTMLDivElement, DrawerFooterProps>(
   "div",
   "footer",
 )
+DrawerFooter.displayName = "DrawerFooter"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -180,6 +192,7 @@ export const DrawerHeader = withContext<HTMLDivElement, DrawerHeaderProps>(
   "div",
   "header",
 )
+DrawerHeader.displayName = "DrawerHeader"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -27,3 +27,4 @@ export const InputElement = chakra("div", {
     },
   },
 })
+InputElement.displayName = "InputElement"

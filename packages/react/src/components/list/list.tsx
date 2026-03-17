@@ -33,6 +33,7 @@ export const ListRoot = withProvider<HTMLUListElement, ListRootProps>(
   "root",
   { defaultProps: { role: "list" } },
 )
+ListRoot.displayName = "ListRoot"
 
 export const ListRootPropsProvider =
   PropsProvider as React.Provider<ListRootBaseProps>
@@ -42,6 +43,7 @@ export const ListRootPropsProvider =
 export interface ListItemProps extends HTMLChakraProps<"li">, UnstyledProp {}
 
 export const ListItem = withContext<HTMLLIElement, ListItemProps>("li", "item")
+ListItem.displayName = "ListItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,3 +54,4 @@ export const ListIndicator = withContext<HTMLSpanElement, ListIndicatorProps>(
   "span",
   "indicator",
 )
+ListIndicator.displayName = "ListIndicator"

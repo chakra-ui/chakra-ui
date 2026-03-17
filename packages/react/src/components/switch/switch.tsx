@@ -39,6 +39,7 @@ export const SwitchRootProvider = withProvider<
   HTMLLabelElement,
   SwitchRootProviderProps
 >(ArkSwitch.RootProvider, "root", { forwardAsChild: true })
+SwitchRootProvider.displayName = "SwitchRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,7 @@ export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   "root",
   { forwardAsChild: true },
 )
+SwitchRoot.displayName = "SwitchRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +75,7 @@ export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+SwitchLabel.displayName = "SwitchLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,6 +87,7 @@ export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
   "thumb",
   { forwardAsChild: true },
 )
+SwitchThumb.displayName = "SwitchThumb"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -98,6 +102,7 @@ export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
     defaultProps: { children: <SwitchThumb /> },
   },
 )
+SwitchControl.displayName = "SwitchControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,6 +129,7 @@ export const SwitchIndicator = forwardRef<
     </chakra.span>
   )
 })
+SwitchIndicator.displayName = "SwitchIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -143,11 +149,13 @@ export const SwitchThumbIndicator = forwardRef<
     </chakra.span>
   )
 })
+SwitchThumbIndicator.displayName = "SwitchThumbIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const SwitchContext = ArkSwitch.Context
 export const SwitchHiddenInput = ArkSwitch.HiddenInput
+SwitchHiddenInput.displayName = "SwitchHiddenInput"
 
 export interface SwitchCheckedChangeDetails
   extends ArkSwitch.CheckedChangeDetails {}

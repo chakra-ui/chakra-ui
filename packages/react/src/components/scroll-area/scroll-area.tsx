@@ -36,6 +36,7 @@ export const ScrollAreaRootProvider = withProvider<
   HTMLDivElement,
   ScrollAreaRootProviderProps
 >(ArkScrollArea.RootProvider, "root", { forwardAsChild: true })
+ScrollAreaRootProvider.displayName = "ScrollAreaRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +55,7 @@ export const ScrollAreaRoot = withProvider<HTMLDivElement, ScrollAreaRootProps>(
   "root",
   { forwardAsChild: true },
 )
+ScrollAreaRoot.displayName = "ScrollAreaRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +73,7 @@ export const ScrollAreaViewport = withContext<
   HTMLDivElement,
   ScrollAreaViewportProps
 >(ArkScrollArea.Viewport, "viewport", { forwardAsChild: true })
+ScrollAreaViewport.displayName = "ScrollAreaViewport"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +86,7 @@ export const ScrollAreaContent = withContext<
   HTMLDivElement,
   ScrollAreaContentProps
 >(ArkScrollArea.Content, "content", { forwardAsChild: true })
+ScrollAreaContent.displayName = "ScrollAreaContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +97,7 @@ export const ScrollAreaThumb = withContext<
   HTMLDivElement,
   ScrollAreaThumbProps
 >(ArkScrollArea.Thumb, "thumb", { forwardAsChild: true })
+ScrollAreaThumb.displayName = "ScrollAreaThumb"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,6 +115,7 @@ export const ScrollAreaScrollbar = withContext<
     children: <ScrollAreaThumb />,
   },
 })
+ScrollAreaScrollbar.displayName = "ScrollAreaScrollbar"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,6 +126,7 @@ export const ScrollAreaCorner = withContext<
   HTMLDivElement,
   ScrollAreaCornerProps
 >(ArkScrollArea.Corner, "corner", { forwardAsChild: true })
+ScrollAreaCorner.displayName = "ScrollAreaCorner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

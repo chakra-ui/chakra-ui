@@ -41,6 +41,7 @@ export const ComboboxRootProvider = withProvider<
 >(ArkCombobox.RootProvider, "root", {
   forwardAsChild: true,
 }) as ComboboxRootProviderComponent
+;(ComboboxRootProvider as any).displayName = "ComboboxRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +65,7 @@ export const ComboboxRoot = withProvider<HTMLDivElement, ComboboxRootProps>(
   "root",
   { forwardAsChild: true },
 ) as ComboboxRootComponent
+;(ComboboxRoot as any).displayName = "ComboboxRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +89,7 @@ export const ComboboxTrigger = withContext<
     children: <ChevronDownIcon />,
   },
 })
+ComboboxTrigger.displayName = "ComboboxTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -99,6 +102,7 @@ export const ComboboxPositioner = withContext<
   HTMLDivElement,
   ComboboxPositionerProps
 >(ArkCombobox.Positioner, "positioner", { forwardAsChild: true })
+ComboboxPositioner.displayName = "ComboboxPositioner"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -109,6 +113,7 @@ export const ComboboxContent = withContext<
   HTMLDivElement,
   ComboboxContentProps
 >(ArkCombobox.Content, "content", { forwardAsChild: true })
+ComboboxContent.displayName = "ComboboxContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,6 +125,7 @@ export const ComboboxList = withContext<HTMLDivElement, ComboboxListProps>(
   "list",
   { forwardAsChild: true },
 )
+ComboboxList.displayName = "ComboboxList"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -131,6 +137,7 @@ export const ComboboxInput = withContext<HTMLInputElement, ComboboxInputProps>(
   "input",
   { forwardAsChild: true },
 )
+ComboboxInput.displayName = "ComboboxInput"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,6 +155,7 @@ export const ComboboxClearTrigger = withContext<
     children: <CloseIcon />,
   },
 })
+ComboboxClearTrigger.displayName = "ComboboxClearTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,6 +166,7 @@ export const ComboboxIndicatorGroup = withContext<
   HTMLDivElement,
   ComboboxIndicatorGroupProps
 >("div", "indicatorGroup")
+ComboboxIndicatorGroup.displayName = "ComboboxIndicatorGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -170,6 +179,7 @@ export const ComboboxItemGroup = withContext<
   HTMLDivElement,
   ComboboxItemGroupProps
 >(ArkCombobox.ItemGroup, "itemGroup", { forwardAsChild: true })
+ComboboxItemGroup.displayName = "ComboboxItemGroup"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -182,6 +192,7 @@ export const ComboboxItemGroupLabel = withContext<
   HTMLDivElement,
   ComboboxItemGroupLabelProps
 >(ArkCombobox.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
+ComboboxItemGroupLabel.displayName = "ComboboxItemGroupLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -193,6 +204,7 @@ export const ComboboxItem = withContext<HTMLDivElement, ComboboxItemProps>(
   "item",
   { forwardAsChild: true },
 )
+ComboboxItem.displayName = "ComboboxItem"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,6 +215,7 @@ export const ComboboxItemText = withContext<
   HTMLDivElement,
   ComboboxItemTextProps
 >(ArkCombobox.ItemText, "itemText", { forwardAsChild: true })
+ComboboxItemText.displayName = "ComboboxItemText"
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxItemIndicatorProps
@@ -219,6 +232,7 @@ export const ComboboxItemIndicator = withContext<
     children: <CheckIcon />,
   },
 })
+ComboboxItemIndicator.displayName = "ComboboxItemIndicator"
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ComboboxControlProps
@@ -228,6 +242,7 @@ export const ComboboxControl = withContext<
   HTMLDivElement,
   ComboboxControlProps
 >(ArkCombobox.Control, "control", { forwardAsChild: true })
+ComboboxControl.displayName = "ComboboxControl"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -239,6 +254,7 @@ export const ComboboxLabel = withContext<HTMLLabelElement, ComboboxLabelProps>(
   "label",
   { forwardAsChild: true },
 )
+ComboboxLabel.displayName = "ComboboxLabel"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -250,6 +266,7 @@ export const ComboboxEmpty = withContext<HTMLDivElement, ComboboxEmptyProps>(
   "empty",
   { forwardAsChild: true },
 )
+ComboboxEmpty.displayName = "ComboboxEmpty"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

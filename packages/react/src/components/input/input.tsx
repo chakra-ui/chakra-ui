@@ -17,5 +17,6 @@ export interface InputBaseProps extends RecipeProps<"input">, UnstyledProp {}
 export interface InputProps extends HTMLChakraProps<"input", InputBaseProps> {}
 
 export const Input = withContext<HTMLInputElement, InputProps>(ArkField.Input)
+Input.displayName = "Input"
 
 export const InputPropsProvider = PropsProvider as React.Provider<InputProps>

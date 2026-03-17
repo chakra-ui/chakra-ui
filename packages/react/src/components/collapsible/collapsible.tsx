@@ -39,6 +39,7 @@ export const CollapsibleRootProvider = withProvider<
   HTMLDivElement,
   CollapsibleRootProviderProps
 >(ArkCollapsible.RootProvider, "root", { forwardAsChild: true })
+CollapsibleRootProvider.displayName = "CollapsibleRootProvider"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +57,7 @@ export const CollapsibleRoot = withProvider<
   HTMLDivElement,
   CollapsibleRootProps
 >(ArkCollapsible.Root, "root", { forwardAsChild: true })
+CollapsibleRoot.displayName = "CollapsibleRoot"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +75,7 @@ export const CollapsibleTrigger = withContext<
   HTMLButtonElement,
   CollapsibleTriggerProps
 >(ArkCollapsible.Trigger, "trigger", { forwardAsChild: true })
+CollapsibleTrigger.displayName = "CollapsibleTrigger"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,6 +88,7 @@ export const CollapsibleContent = withContext<
   HTMLDivElement,
   CollapsibleContentProps
 >(ArkCollapsible.Content, "content", { forwardAsChild: true })
+CollapsibleContent.displayName = "CollapsibleContent"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +101,7 @@ export const CollapsibleIndicator = withContext<
   HTMLDivElement,
   CollapsibleIndicatorProps
 >(ArkCollapsible.Indicator, "indicator", { forwardAsChild: true })
+CollapsibleIndicator.displayName = "CollapsibleIndicator"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
