@@ -105,7 +105,7 @@ export const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
       <StyledFallback
         ref={ref}
         {...rest}
-        className={cx(props.className, classNames.fallback)}
+        className={cx(props.className, classNames?.fallback)}
         css={[styles.fallback, props.css]}
       >
         {getFallbackChildren(props)}
