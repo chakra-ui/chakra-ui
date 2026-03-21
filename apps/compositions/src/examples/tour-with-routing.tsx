@@ -3,12 +3,7 @@
 import {
   Box,
   Button,
-  Card,
-  DataList,
   HStack,
-  Image,
-  Input,
-  SimpleGrid,
   Stack,
   Text,
   Tour,
@@ -25,7 +20,7 @@ import {
 } from "react-router-dom"
 
 export const TourWithRouting = () => (
-  <MemoryRouter initialEntries={["/"]} initialIndex={0}>
+  <MemoryRouter initialEntries={["/"]}>
     <TourContent />
   </MemoryRouter>
 )
@@ -37,41 +32,39 @@ const TourContent = () => {
   const steps: TourStep[] = tourSteps.map((step) => ({
     ...step,
     effect: ({ show }) => {
-      const targetPath = stepToPageMap[step.id]
-      if (targetPath && location.pathname !== targetPath) navigate(targetPath)
+      const path = stepToPage[step.id]
+      if (path && location.pathname !== path) navigate(path)
       show()
       return () => {}
     },
   }))
 
   const tour = useTour({ steps })
-
   const isActive = (path: string) => location.pathname === path
 
   return (
-    <Box py={6} maxW="2xl" mx="auto">
-      <Button onClick={() => tour.start()} mb={4}>
-        Start Tour
-      </Button>
-
-      <HStack gap={2} mb={4}>
-        {navItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            style={{ textDecoration: "none" }}
+    <Stack gap="4">
+      <HStack gap="2">
+        {pages.map((p) => (
+          <Button
+            key={p.path}
+            size="sm"
+            variant={isActive(p.path) ? "solid" : "outline"}
+            asChild
           >
-            <Button variant={isActive(item.path) ? "solid" : "outline"}>
-              {item.label}
-            </Button>
-          </Link>
+            <Link to={p.path}>{p.label}</Link>
+          </Button>
         ))}
       </HStack>
 
+      <Button size="sm" variant="outline" onClick={() => tour.start()}>
+        Start Tour
+      </Button>
+
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/activity" element={<ActivityPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
 
       <Tour.Root tour={tour}>
@@ -85,154 +78,84 @@ const TourContent = () => {
             <Tour.CloseTrigger />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control justifyContent="flex-end" gap="2">
+            <Tour.Control>
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>
       </Tour.Root>
-    </Box>
+    </Stack>
   )
 }
 
-const LoginPage = () => (
-  <Box p={4} borderWidth="1px" borderRadius="lg">
-    <Text fontSize="xl" fontWeight="bold" mb={4}>
-      Login
+const HomePage = () => (
+  <Box id="page-home" p="4" borderWidth="1px" borderRadius="md">
+    <Text fontWeight="medium">Home</Text>
+    <Text textStyle="sm" color="fg.muted">
+      Welcome back! Here is your recent activity.
     </Text>
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-      }}
-    >
-      <Stack gap={3}>
-        <Input name="username" placeholder="Username" />
-        <Input name="password" type="password" placeholder="Password" />
-        <Button type="submit">Submit</Button>
-      </Stack>
-    </form>
   </Box>
 )
 
-const WelcomePage = () => (
-  <Box p={4} borderWidth="1px" borderRadius="lg" id="welcome-page">
-    <Text fontSize="xl" fontWeight="bold" mb={2}>
-      Welcome, Sage!
+const SettingsPage = () => (
+  <Box id="page-settings" p="4" borderWidth="1px" borderRadius="md">
+    <Text fontWeight="medium">Settings</Text>
+    <Text textStyle="sm" color="fg.muted">
+      Configure your notification and privacy preferences.
     </Text>
-    <Text mb={3}>Here's a quick summary of your profile:</Text>
-    <DataList.Root size="md">
-      <DataList.Item>
-        <DataList.ItemLabel>Username</DataList.ItemLabel>
-        <DataList.ItemValue>Sage</DataList.ItemValue>
-      </DataList.Item>
-      <DataList.Item>
-        <DataList.ItemLabel>Email</DataList.ItemLabel>
-        <DataList.ItemValue>sage@chakra.com</DataList.ItemValue>
-      </DataList.Item>
-      <DataList.Item>
-        <DataList.ItemLabel>Role</DataList.ItemLabel>
-        <DataList.ItemValue>Admin</DataList.ItemValue>
-      </DataList.Item>
-    </DataList.Root>
   </Box>
 )
 
-const ActivityPage = () => (
-  <Stack gap={4} id="activity-page">
-    <Text fontSize="xl" fontWeight="bold">
-      Recent Activities
+const ProfilePage = () => (
+  <Box id="page-profile" p="4" borderWidth="1px" borderRadius="md">
+    <Text fontWeight="medium">Profile</Text>
+    <Text textStyle="sm" color="fg.muted">
+      Your name, email, and avatar settings.
     </Text>
-    <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
-      {activities.map((activity, index) => (
-        <CardWithImage
-          key={index}
-          title={activity.title}
-          description={activity.description}
-          image={activity.image}
-        />
-      ))}
-    </SimpleGrid>
-  </Stack>
+  </Box>
 )
 
-const CardWithImage = ({
-  title,
-  description,
-  image,
-}: {
-  title: string
-  description: string
-  image: string
-}) => (
-  <Card.Root maxW="sm" overflow="hidden">
-    <Image src={image} alt={title} />
-    <Card.Body>
-      <Text fontWeight="bold">{title}</Text>
-      <Text fontSize="sm">{description}</Text>
-    </Card.Body>
-    <Card.Footer>
-      <Button variant="solid" size="sm">
-        View
-      </Button>
-    </Card.Footer>
-  </Card.Root>
-)
-
-const navItems = [
-  { label: "Login", path: "/" },
-  { label: "Welcome", path: "/welcome" },
-  { label: "Activity", path: "/activity" },
+const pages = [
+  { label: "Home", path: "/" },
+  { label: "Settings", path: "/settings" },
+  { label: "Profile", path: "/profile" },
 ]
 
-const stepToPageMap: Record<string, string> = {
-  login: "/",
-  welcome: "/welcome",
-  activity: "/activity",
+const stepToPage: Record<string, string> = {
+  home: "/",
+  settings: "/settings",
+  profile: "/profile",
 }
 
 const tourSteps: Omit<TourStep, "effect">[] = [
   {
-    id: "login",
-    type: "dialog",
-    title: "Login Page",
-    description: "Submit your username and password to start.",
+    id: "home",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#page-home"),
+    title: "Home Page",
+    description: "This is your home page with recent activity.",
     actions: [{ label: "Next", action: "next" }],
   },
   {
-    id: "welcome",
+    id: "settings",
     type: "tooltip",
-    target: () => document.querySelector("#welcome-page"),
-    title: "Profile Overview",
-    description: "See your profile information.",
+    target: () => document.querySelector<HTMLElement>("#page-settings"),
+    title: "Settings Page",
+    description: "Manage your account preferences here.",
     actions: [
-      { label: "Back", action: "prev" },
+      { label: "Prev", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
   {
-    id: "activity",
+    id: "profile",
     type: "tooltip",
-    target: () => document.querySelector("#activity-page"),
-    title: "Activity Dashboard",
-    description: "Here's your activity.",
+    target: () => document.querySelector<HTMLElement>("#page-profile"),
+    title: "Profile Page",
+    description: "View and edit your profile information.",
     actions: [
-      { label: "Back", action: "prev" },
-      { label: "Finish", action: "dismiss" },
+      { label: "Prev", action: "prev" },
+      { label: "Done", action: "dismiss" },
     ],
-  },
-]
-
-const activities = [
-  {
-    title: "New Project Launch",
-    description: "Check out the details of our latest project launch.",
-    image:
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Team Meetup",
-    description: "Our team had a successful meetup in the city.",
-    image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ]

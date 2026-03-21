@@ -8,20 +8,27 @@ import {
   VStack,
   useTour,
 } from "@chakra-ui/react"
-import { LuSave, LuSparkles, LuUpload } from "react-icons/lu"
-import { MdMoreHoriz } from "react-icons/md"
 
 export const TourWithKeyboard = () => {
   const tour = useTour({ steps, keyboardNavigation: true })
 
   return (
     <VStack gap="4" alignItems="flex-start">
-      <Button onClick={() => tour.start()}>
-        <LuSparkles />
-        Begin Tour
+      <Button size="sm" onClick={() => tour.start()}>
+        Start Tour
       </Button>
 
-      <ActionButtons />
+      <HStack gap="3">
+        <Button id="step-one" variant="outline" size="sm">
+          One
+        </Button>
+        <Button id="step-two" variant="outline" size="sm">
+          Two
+        </Button>
+        <Button id="step-three" variant="outline" size="sm">
+          Three
+        </Button>
+      </HStack>
 
       <Tour.Root tour={tour}>
         <Tour.Backdrop />
@@ -32,10 +39,9 @@ export const TourWithKeyboard = () => {
               <Tour.ArrowTip />
             </Tour.Arrow>
             <Tour.CloseTrigger />
-            <Tour.ProgressText />
             <Tour.Title />
             <Tour.Description />
-            <Tour.Control justifyContent="flex-end" gap="4">
+            <Tour.Control>
               <Tour.ActionTriggers />
             </Tour.Control>
           </Tour.Content>
@@ -45,69 +51,35 @@ export const TourWithKeyboard = () => {
   )
 }
 
-export const ActionButtons = () => {
-  return (
-    <HStack gap={3}>
-      {buttons.map((btn) => (
-        <Button
-          key={btn.id}
-          id={btn.id}
-          variant="outline"
-          colorScheme={btn.colorScheme}
-        >
-          {btn.icon} {btn.label}
-        </Button>
-      ))}
-    </HStack>
-  )
-}
-
-const buttons = [
-  { id: "btn-upload", label: "Upload", icon: <LuUpload /> },
-  { id: "btn-save", label: "Save", icon: <LuSave />, colorScheme: "blue" },
-  { id: "btn-more", label: "More", icon: <MdMoreHoriz /> },
-]
-
 const steps: TourStep[] = [
   {
-    id: "welcome",
-    type: "dialog",
-    title: "Keyboard Navigation",
-    description:
-      "Use arrow keys to navigate between steps. Press Right to continue or Escape to close.",
-    actions: [{ label: "Start", action: "next" }],
+    id: "one",
+    type: "tooltip",
+    target: () => document.querySelector<HTMLElement>("#step-one"),
+    title: "Step One",
+    description: "Use the left and right arrow keys to navigate between steps.",
+    actions: [{ label: "Next", action: "next" }],
   },
   {
-    id: "upload",
+    id: "two",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#btn-upload"),
-    title: "Upload",
-    description: "Try using arrow keys to move between steps.",
+    target: () => document.querySelector<HTMLElement>("#step-two"),
+    title: "Step Two",
+    description: "Press Escape to close the tour at any time.",
     actions: [
-      { label: "Back", action: "prev" },
+      { label: "Prev", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
   {
-    id: "save",
+    id: "three",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#btn-save"),
-    title: "Save",
-    description: "Right arrow key goes to the next step.",
+    target: () => document.querySelector<HTMLElement>("#step-three"),
+    title: "Step Three",
+    description: "Keyboard navigation makes tours accessible.",
     actions: [
-      { label: "Back", action: "prev" },
-      { label: "Next", action: "next" },
-    ],
-  },
-  {
-    id: "more",
-    type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#btn-more"),
-    title: "More Actions",
-    description: "Left arrow key goes to the previous step.",
-    actions: [
-      { label: "Back", action: "prev" },
-      { label: "Finish", action: "dismiss" },
+      { label: "Prev", action: "prev" },
+      { label: "Done", action: "dismiss" },
     ],
   },
 ]

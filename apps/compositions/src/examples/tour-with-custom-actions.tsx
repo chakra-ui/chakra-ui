@@ -9,7 +9,7 @@ import {
   useTour,
 } from "@chakra-ui/react"
 
-export const TourWithoutBackdrop = () => {
+export const TourWithCustomActions = () => {
   const tour = useTour({ steps })
 
   return (
@@ -19,15 +19,16 @@ export const TourWithoutBackdrop = () => {
       </Button>
 
       <HStack gap="3">
-        <Button id="step-a" variant="outline" size="sm">
-          Upload
+        <Button id="step-inbox" variant="outline" size="sm">
+          Inbox
         </Button>
-        <Button id="step-b" variant="outline" size="sm">
-          Save
+        <Button id="step-settings" variant="outline" size="sm">
+          Settings
         </Button>
       </HStack>
 
       <Tour.Root tour={tour}>
+        <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
@@ -49,21 +50,33 @@ export const TourWithoutBackdrop = () => {
 
 const steps: TourStep[] = [
   {
-    id: "a",
+    id: "inbox",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#step-a"),
-    title: "Upload",
-    description: "This tour has no backdrop overlay.",
-    actions: [{ label: "Next", action: "next" }],
+    target: () => document.querySelector<HTMLElement>("#step-inbox"),
+    title: "Inbox",
+    description: "This is your inbox. Confirm to continue.",
+    actions: [
+      {
+        label: "Confirm & Continue",
+        action: (actionMap) => {
+          console.log("User confirmed inbox step")
+          actionMap.next()
+        },
+      },
+    ],
   },
   {
-    id: "b",
+    id: "settings",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#step-b"),
-    title: "Save",
-    description: "The page remains fully interactive.",
+    target: () => document.querySelector<HTMLElement>("#step-settings"),
+    title: "Settings",
+    description: "Manage your preferences here.",
     actions: [
       { label: "Prev", action: "prev" },
+      {
+        label: "Skip to End",
+        action: (actionMap) => actionMap.dismiss(),
+      },
       { label: "Done", action: "dismiss" },
     ],
   },

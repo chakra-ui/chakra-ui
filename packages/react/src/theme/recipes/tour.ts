@@ -5,6 +5,25 @@ export const tourSlotRecipe = defineSlotRecipe({
   slots: tourAnatomy.keys(),
   className: "tour",
   base: {
+    positioner: {
+      "&[data-type=dialog], &[data-type=floating]": {
+        display: "flex",
+        width: "100dvw",
+        height: "100dvh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        zIndex: "calc(var(--tour-z-index, 1400) + 1)",
+        justifyContent: "center",
+        alignItems: "center",
+        pointerEvents: "none",
+      },
+      "&[data-type=floating]": {
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        p: "4",
+      },
+    },
     backdrop: {
       bg: "blackAlpha.500",
       zIndex: "var(--tour-z-index, 1400)",
@@ -28,6 +47,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       gap: "2",
       zIndex: "calc(var(--tour-z-index, 1400) + 1)",
       boxShadow: "lg",
+      pointerEvents: "auto",
       _open: {
         animationDuration: "moderate",
       },

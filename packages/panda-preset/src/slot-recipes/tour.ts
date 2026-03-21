@@ -2,21 +2,40 @@ import { defineSlotRecipe } from "../def"
 
 export const tourSlotRecipe = defineSlotRecipe({
   slots: [
-    "control",
     "content",
-    "positioner",
-    "title",
     "actionTrigger",
     "closeTrigger",
     "progressText",
+    "title",
     "description",
+    "positioner",
     "arrow",
     "arrowTip",
     "backdrop",
     "spotlight",
+    "control",
   ],
   className: "tour",
   base: {
+    positioner: {
+      "&[data-type=dialog], &[data-type=floating]": {
+        display: "flex",
+        width: "100dvw",
+        height: "100dvh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        zIndex: "calc(var(--tour-z-index, 1400) + 1)",
+        justifyContent: "center",
+        alignItems: "center",
+        pointerEvents: "none",
+      },
+      "&[data-type=floating]": {
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        p: "4",
+      },
+    },
     backdrop: {
       bg: "blackAlpha.500",
       zIndex: "var(--tour-z-index, 1400)",
@@ -35,11 +54,12 @@ export const tourSlotRecipe = defineSlotRecipe({
       borderRadius: "l3",
       p: "6",
       display: "flex",
-      width: "100%",
+      width: "sm",
       flexDirection: "column",
       gap: "2",
       zIndex: "calc(var(--tour-z-index, 1400) + 1)",
       boxShadow: "lg",
+      pointerEvents: "auto",
       _open: {
         animationDuration: "moderate",
       },
@@ -82,12 +102,17 @@ export const tourSlotRecipe = defineSlotRecipe({
       right: "3",
       top: "3",
       cursor: "button",
-      _icon: { boxSize: "4" },
+      _icon: {
+        boxSize: "4",
+      },
     },
     arrow: {
       "--arrow-size": "sizes.3",
       "--arrow-background": "colors.bg.panel",
     },
-    arrowTip: { borderTopWidth: "1px", borderInlineStartWidth: "1px" },
+    arrowTip: {
+      borderTopWidth: "1px",
+      borderInlineStartWidth: "1px",
+    },
   },
 })

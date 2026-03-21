@@ -9,7 +9,7 @@ import {
   useTour,
 } from "@chakra-ui/react"
 
-export const TourWithoutBackdrop = () => {
+export const TourWithPlacement = () => {
   const tour = useTour({ steps })
 
   return (
@@ -19,15 +19,19 @@ export const TourWithoutBackdrop = () => {
       </Button>
 
       <HStack gap="3">
-        <Button id="step-a" variant="outline" size="sm">
-          Upload
+        <Button id="step-top" variant="outline" size="sm">
+          Top
         </Button>
-        <Button id="step-b" variant="outline" size="sm">
-          Save
+        <Button id="step-bottom" variant="outline" size="sm">
+          Bottom
+        </Button>
+        <Button id="step-right" variant="outline" size="sm">
+          Right
         </Button>
       </HStack>
 
       <Tour.Root tour={tour}>
+        <Tour.Backdrop />
         <Tour.Spotlight />
         <Tour.Positioner>
           <Tour.Content>
@@ -49,19 +53,33 @@ export const TourWithoutBackdrop = () => {
 
 const steps: TourStep[] = [
   {
-    id: "a",
+    id: "top",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#step-a"),
-    title: "Upload",
-    description: "This tour has no backdrop overlay.",
+    placement: "top",
+    target: () => document.querySelector<HTMLElement>("#step-top"),
+    title: "Top Placement",
+    description: "This tooltip appears above the target element.",
     actions: [{ label: "Next", action: "next" }],
   },
   {
-    id: "b",
+    id: "bottom",
     type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#step-b"),
-    title: "Save",
-    description: "The page remains fully interactive.",
+    placement: "bottom",
+    target: () => document.querySelector<HTMLElement>("#step-bottom"),
+    title: "Bottom Placement",
+    description: "This tooltip appears below the target element.",
+    actions: [
+      { label: "Prev", action: "prev" },
+      { label: "Next", action: "next" },
+    ],
+  },
+  {
+    id: "right",
+    type: "tooltip",
+    placement: "right",
+    target: () => document.querySelector<HTMLElement>("#step-right"),
+    title: "Right Placement",
+    description: "This tooltip appears to the right of the target element.",
     actions: [
       { label: "Prev", action: "prev" },
       { label: "Done", action: "dismiss" },
