@@ -1,6 +1,7 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
+import { useLocaleContext } from "@ark-ui/react/locale"
 import {
   Pagination as ArkPagination,
   usePaginationContext,
@@ -131,21 +132,58 @@ export interface PaginationPageSizeChangeDetails
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface PaginationPageTextDetails {
+  format: "short" | "compact" | "long"
+  page: number
+  totalPages: number
+  pageRange: { start: number; end: number }
+  count: number
+  locale: string
+  formattedPage: string
+  formattedTotalPages: string
+  formattedRangeStart: string
+  formattedRangeEnd: string
+  formattedCount: string
+}
+
 export interface PaginationPageTextProps extends BoxProps {
   format?: "short" | "compact" | "long" | undefined
+  formatText?: ((details: PaginationPageTextDetails) => string) | undefined
 }
 
 export const PaginationPageText = forwardRef<
   HTMLParagraphElement,
   PaginationPageTextProps
 >(function PaginationPageText(props, ref) {
-  const { format = "compact", ...rest } = props
+  const { format = "compact", formatText, ...rest } = props
   const { page, totalPages, pageRange, count } = usePaginationContext()
+  const { locale } = useLocaleContext()
   const content = useMemo(() => {
-    if (format === "short") return `${page} / ${totalPages}`
-    if (format === "compact") return `${page} of ${totalPages}`
-    return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`
-  }, [format, page, totalPages, pageRange, count])
+    const nf = new Intl.NumberFormat(locale)
+    const details = {
+      format,
+      page,
+      totalPages,
+      pageRange,
+      count,
+      locale,
+      formattedPage: nf.format(page),
+      formattedTotalPages: nf.format(totalPages),
+      formattedRangeStart: nf.format(pageRange.start + 1),
+      formattedRangeEnd: nf.format(Math.min(pageRange.end, count)),
+      formattedCount: nf.format(count),
+    } satisfies PaginationPageTextDetails
+
+    if (formatText) return formatText(details)
+    if (format === "short") {
+      return `${details.formattedPage} / ${details.formattedTotalPages}`
+    }
+    if (format === "compact") {
+      return `${details.formattedPage} of ${details.formattedTotalPages}`
+    }
+
+    return `${details.formattedRangeStart} - ${details.formattedRangeEnd} of ${details.formattedCount}`
+  }, [count, format, formatText, locale, page, pageRange, totalPages])
 
   return (
     <Box fontWeight="medium" ref={ref} {...rest}>
