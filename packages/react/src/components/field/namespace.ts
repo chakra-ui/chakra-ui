@@ -16,3 +16,5 @@ export type {
   FieldErrorIconProps as ErrorIconProps,
   FieldRequiredIndicatorProps as RequiredIndicatorProps,
 } from "./field"
+
+export { FieldContext as Context } from "@ark-ui/react/field"

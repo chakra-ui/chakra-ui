@@ -12,8 +12,9 @@ export const compositionFileSchema = z.object({
   fileDependencies: z.array(z.string()),
 })
 
-export interface CompositionFile
-  extends z.infer<typeof compositionFileSchema> {}
+export interface CompositionFile extends z.infer<
+  typeof compositionFileSchema
+> {}
 
 export const compositionIndexSchema = z.array(
   z.object({
@@ -42,5 +43,6 @@ export const addCommandFlagsSchema = z.object({
   tsx: z.boolean().optional(),
 })
 
-export interface AddCommandFlags
-  extends z.infer<typeof addCommandFlagsSchema> {}
+export interface AddCommandFlags extends z.infer<
+  typeof addCommandFlagsSchema
+> {}

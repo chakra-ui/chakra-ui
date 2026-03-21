@@ -26,11 +26,14 @@ export { useStepsStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsRootProviderBaseProps
-  extends Assign<ArkSteps.RootProviderBaseProps, SlotRecipeProps<"steps">>,
+  extends
+    Assign<ArkSteps.RootProviderBaseProps, SlotRecipeProps<"steps">>,
     UnstyledProp {}
 
-export interface StepsRootProviderProps
-  extends HTMLChakraProps<"div", StepsRootProviderBaseProps> {}
+export interface StepsRootProviderProps extends HTMLChakraProps<
+  "div",
+  StepsRootProviderBaseProps
+> {}
 
 export const StepsRootProvider = withProvider<
   HTMLDivElement,
@@ -40,11 +43,14 @@ export const StepsRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsRootBaseProps
-  extends Assign<ArkSteps.RootBaseProps, SlotRecipeProps<"steps">>,
+  extends
+    Assign<ArkSteps.RootBaseProps, SlotRecipeProps<"steps">>,
     UnstyledProp {}
 
-export interface StepsRootProps
-  extends HTMLChakraProps<"div", StepsRootBaseProps> {}
+export interface StepsRootProps extends HTMLChakraProps<
+  "div",
+  StepsRootBaseProps
+> {}
 
 export const StepsRoot = withProvider<HTMLDivElement, StepsRootProps>(
   ArkSteps.Root,
@@ -60,8 +66,7 @@ export const StepsPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsListProps
-  extends HTMLChakraProps<"div", ArkSteps.ListBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSteps.ListBaseProps>, UnstyledProp {}
 
 export const StepsList = withContext<HTMLDivElement, StepsListProps>(
   ArkSteps.List,
@@ -72,8 +77,7 @@ export const StepsList = withContext<HTMLDivElement, StepsListProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsItemProps
-  extends HTMLChakraProps<"div", ArkSteps.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSteps.ItemBaseProps>, UnstyledProp {}
 
 export const StepsItem = withContext<HTMLDivElement, StepsItemProps>(
   ArkSteps.Item,
@@ -84,8 +88,7 @@ export const StepsItem = withContext<HTMLDivElement, StepsItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsTriggerProps
-  extends HTMLChakraProps<"button", ArkSteps.TriggerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkSteps.TriggerBaseProps>, UnstyledProp {}
 
 export const StepsTrigger = withContext<HTMLButtonElement, StepsTriggerProps>(
   ArkSteps.Trigger,
@@ -96,8 +99,7 @@ export const StepsTrigger = withContext<HTMLButtonElement, StepsTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsContentProps
-  extends HTMLChakraProps<"div", ArkSteps.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSteps.ContentBaseProps>, UnstyledProp {}
 
 export const StepsContent = withContext<HTMLDivElement, StepsContentProps>(
   ArkSteps.Content,
@@ -106,8 +108,7 @@ export const StepsContent = withContext<HTMLDivElement, StepsContentProps>(
 )
 
 export interface StepsCompletedContentProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const StepsCompletedContent = withContext<
   HTMLDivElement,
@@ -144,8 +145,7 @@ export const StepsTitle = withContext<HTMLDivElement, StepsTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsDescriptionProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const StepsDescription = withContext<
   HTMLDivElement,
@@ -155,8 +155,7 @@ export const StepsDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsSeparatorProps
-  extends HTMLChakraProps<"div", ArkSteps.SeparatorBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSteps.SeparatorBaseProps>, UnstyledProp {}
 
 export const StepsSeparator = withContext<HTMLDivElement, StepsSeparatorProps>(
   ArkSteps.Separator,
@@ -187,8 +186,7 @@ export const StepsStatus = (props: StepsStatusProps) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsIndicatorProps
-  extends HTMLChakraProps<"div", ArkSteps.IndicatorBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSteps.IndicatorBaseProps>, UnstyledProp {}
 
 export const StepsIndicator = withContext<HTMLDivElement, StepsIndicatorProps>(
   ArkSteps.Indicator,
@@ -206,7 +204,8 @@ export const StepsIndicator = withContext<HTMLDivElement, StepsIndicatorProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsNextTriggerProps
-  extends HTMLChakraProps<"button", ArkSteps.NextTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkSteps.NextTriggerBaseProps>,
     UnstyledProp {}
 
 export const StepsNextTrigger = withContext<
@@ -217,7 +216,8 @@ export const StepsNextTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StepsPrevTriggerProps
-  extends HTMLChakraProps<"button", ArkSteps.PrevTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkSteps.PrevTriggerBaseProps>,
     UnstyledProp {}
 
 export const StepsPrevTrigger = withContext<

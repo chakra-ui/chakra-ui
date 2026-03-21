@@ -55,4 +55,5 @@ export type {
   MenuInteractOutsideEvent as InteractOutsideEvent,
   MenuFocusOutsideEvent as FocusOutsideEvent,
   MenuPointerDownOutsideEvent as PointerDownOutsideEvent,
+  MenuValueChangeDetails as ValueChangeDetails,
 } from "@ark-ui/react/menu"

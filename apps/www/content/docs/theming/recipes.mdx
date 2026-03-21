@@ -111,8 +111,7 @@ import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>
 
-export interface ButtonProps
-  extends React.PropsWithChildren<ButtonVariantProps> {}
+export interface ButtonProps extends React.PropsWithChildren<ButtonVariantProps> {}
 ```
 
 ### Creating a component
@@ -285,7 +284,9 @@ export default createSystem(defaultConfig, config)
 
 ### TypeScript
 
-Use the CLI to generate the types for the recipe.
+Use the CLI to generate types for the recipe, then import them in your
+component. See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to
+run `typegen` in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./theme.ts
@@ -299,8 +300,7 @@ import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>
 
-export interface ButtonProps
-  extends React.PropsWithChildren<ButtonVariantProps> {}
+export interface ButtonProps extends React.PropsWithChildren<ButtonVariantProps> {}
 ```
 
 ### Update code

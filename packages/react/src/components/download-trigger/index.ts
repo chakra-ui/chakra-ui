@@ -13,8 +13,7 @@ const { withContext } = createRecipeContext({ key: "downloadTrigger" })
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DownloadTriggerProps
-  extends HTMLChakraProps<"button">,
-    DownloadTriggerBaseProps {}
+  extends HTMLChakraProps<"button">, DownloadTriggerBaseProps {}
 
 export const DownloadTrigger = withContext<
   HTMLButtonElement,

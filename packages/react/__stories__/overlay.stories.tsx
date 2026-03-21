@@ -18,3 +18,4 @@ export { OverlayWithReturnValue as ReturnValue } from "compositions/examples/ove
 export { OverlayWithUpdate as Update } from "compositions/examples/overlay-with-update"
 export { OverlayWithDrawer as Drawer } from "compositions/examples/overlay-with-drawer"
 export { OverlayWithForm as Form } from "compositions/examples/overlay-with-form"
+export { OverlayWithMenuItem as MenuItem } from "compositions/examples/overlay-with-menu-item"

@@ -14,6 +14,7 @@ export default {
 
 export { SliderBasic as Basic } from "compositions/examples/slider-basic"
 export { SliderChangeEnd as ChangeEnd } from "compositions/examples/slider-change-end"
+export { SliderWithCollisionBehavior as CollisionBehavior } from "compositions/examples/slider-with-collision-behavior"
 export { SliderControlled as Controlled } from "compositions/examples/slider-controlled"
 export { SliderCustomization as Customization } from "compositions/examples/slider-customization"
 export { SliderDisabled as Disabled } from "compositions/examples/slider-disabled"

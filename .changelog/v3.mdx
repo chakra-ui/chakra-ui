@@ -5,6 +5,130 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.33.0](./#3.33.0) - 2026-02-11
+
+### Added
+
+- **Scroll Area**: Add overflow CSS variables for scroll fade effects
+  (`--scroll-area-overflow-{x,y}-{start,end}`)
+
+- **Slider**: Add `thumbCollisionBehavior` prop to control collision handling
+  between thumbs (none, push, swap)
+
+- **Steps**: Add validation support with `isStepValid`, `isStepSkippable`, and
+  `onStepInvalid` props
+
+- **Tags Input**: Add `placeholder` prop that shows when no tags exist
+
+- **Tooltip**: Add `data-instant` attribute for instant animations when
+  switching between multiple tooltip triggers
+
+### Fixed
+
+- **Checkbox**: Fix individual checkbox props being overridden by
+  `CheckboxGroup` when rendering
+
+- **CodeBlock**: Fix overlay and floating elements scrolling out of view when
+  horizontally scrolling long code lines
+
+- **Color Picker**: Fix color not updating when selecting black shades in
+  controlled mode
+
+- **Dialog/Popover**: Fix issue where closing nested dialogs/popovers would
+  incorrectly close parent layers
+
+- **Menu**: Fix glitchy submenu behavior when hovering between trigger items
+  quickly
+
+- **Number Input**: Fix cursor positioning issues after clicking label or
+  scrubbing
+
+- **Pagination**: Fix next trigger not being disabled when count is 0
+
+- **Slider**: Fix thumb drag behavior from edge in `thumbAlignment="contain"`
+  mode
+
+- **Switch**: Fix `api.toggleChecked()` not working
+
+- **Textarea**: Fix change event not being emitted after clearing controlled
+  textarea
+
+- **Tree View**: Fix initial focus when first node/branch is disabled
+
+### Changed
+
+- **Codemod**: Refactor codemod to support more component props
+
+## [3.32.0](./#3.32.0) - 2026-02-03
+
+### Added
+
+- **Codemod [NEW]**: Add `@chakra-ui/codemod` package to automate v2 to v3
+  migration
+
+  ```bash
+  npx @chakra-ui/codemod upgrade
+  npx @chakra-ui/codemod upgrade --dry
+  ```
+
+- **Marquee [NEW]**: Add `Marquee` component for scrolling content animations
+
+  ```tsx
+  <Marquee.Root>
+    <Marquee.Viewport>
+      <Marquee.Content>
+        <Marquee.Item>Item 1</Marquee.Item>
+        <Marquee.Item>Item 2</Marquee.Item>
+      </Marquee.Content>
+    </Marquee.Viewport>
+  </Marquee.Root>
+  ```
+
+### Fixed
+
+- **Collapsible**: Fix `collapse-width` keyframe animating `height` instead of
+  `width`
+
+- **Dialog, Drawer, Menu, HoverCard**: Fix z-index stacking when `Dialog` is
+  triggered from within a `Popover`
+
+- **Styled System**: Fix backdrop blur not applying with `backdropFilter="auto"`
+
+- **useBreakpointValue**: Fix `base` value not respected during SSR
+
+- **Radio Card**: Fix disabled state looking inconsistent when using
+  `variant="solid"`
+
+## [3.31.0](./#3.31.0) - 2026-01-10
+
+### Added
+
+- **ActionBar**
+  - Add `placement` variant to configure bar position: `bottom`, `bottom-start`,
+    `bottom-end`
+  - Add `--action-bar-offset` CSS variable to configure offset from edges
+
+- **Slider**
+  - Add `markerLabel` to component anatomy for theming marker labels
+  - Export `Slider.MarkerLabel` component for custom marker label rendering
+
+- **Theme**: Export the `listboxSlotRecipe` slot recipe
+
+### Fixed
+
+- **ColorPicker, Select, Combobox**: Fix z-index stacking when used inside
+  dialogs
+
+- **cva**: Normalize base styles to prevent shorthand properties from
+  overwriting variant styles
+
+- **Menu**: Fix content background not rendering by using full token path for
+  CSS variable
+
+- **Slider**: Improve focus ring styles for `Slider.Thumb`
+
+- **SkeletonText**: Fix duplicating children when `loading` is set to `false`
+
 ## [3.30.0](./#3.30.0) - 2025-11-22
 
 ### Added

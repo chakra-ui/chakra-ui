@@ -36,11 +36,22 @@ async function getArkComponentProps() {
   return Object.fromEntries(entries)
 }
 
+// Components where Root doesn't render a DOM node (uses withRootProvider)
+const rootWithoutColorPalette = new Set([
+  "menu",
+  "popover",
+  "dialog",
+  "tooltip",
+  "drawer",
+  "hover-card",
+  "action-bar",
+])
+
 async function getRecipeProps() {
   const componentDirs = await getComponentList()
   const entries = componentDirs.map((dir) => {
     const recipeKey = camelCase(dir)
-    const props = getRecipeTypes(defaultSystem, recipeKey)
+    let props = getRecipeTypes(defaultSystem, recipeKey)
 
     if (defaultSystem.isRecipe(recipeKey)) {
       return [
@@ -50,6 +61,11 @@ async function getRecipeProps() {
     }
 
     if (defaultSystem.isSlotRecipe(recipeKey)) {
+      // Filter out colorPalette for components where Root doesn't render a DOM node
+      if (rootWithoutColorPalette.has(dir)) {
+        const { colorPalette, ...rest } = props
+        props = rest
+      }
       return [kebabCase(dir), filterEmpty({ Root: { props } })]
     }
 

@@ -26,11 +26,14 @@ export { useSwitchStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchRootProviderBaseProps
-  extends Assign<ArkSwitch.RootProviderBaseProps, SlotRecipeProps<"switch">>,
+  extends
+    Assign<ArkSwitch.RootProviderBaseProps, SlotRecipeProps<"switch">>,
     UnstyledProp {}
 
-export interface SwitchRootProviderProps
-  extends HTMLChakraProps<"label", SwitchRootProviderBaseProps> {}
+export interface SwitchRootProviderProps extends HTMLChakraProps<
+  "label",
+  SwitchRootProviderBaseProps
+> {}
 
 export const SwitchRootProvider = withProvider<
   HTMLLabelElement,
@@ -40,11 +43,14 @@ export const SwitchRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchRootBaseProps
-  extends Assign<ArkSwitch.RootBaseProps, SlotRecipeProps<"switch">>,
+  extends
+    Assign<ArkSwitch.RootBaseProps, SlotRecipeProps<"switch">>,
     UnstyledProp {}
 
-export interface SwitchRootProps
-  extends HTMLChakraProps<"label", SwitchRootBaseProps> {}
+export interface SwitchRootProps extends HTMLChakraProps<
+  "label",
+  SwitchRootBaseProps
+> {}
 
 export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   ArkSwitch.Root,
@@ -60,8 +66,7 @@ export const SwitchPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchLabelProps
-  extends HTMLChakraProps<"span", ArkSwitch.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkSwitch.LabelBaseProps>, UnstyledProp {}
 
 export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
   ArkSwitch.Label,
@@ -72,8 +77,7 @@ export const SwitchLabel = withContext<HTMLSpanElement, SwitchLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchThumbProps
-  extends HTMLChakraProps<"span", ArkSwitch.ThumbBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkSwitch.ThumbBaseProps>, UnstyledProp {}
 
 export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
   ArkSwitch.Thumb,
@@ -84,8 +88,7 @@ export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchControlProps
-  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkSwitch.ControlBaseProps>, UnstyledProp {}
 
 export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
   ArkSwitch.Control,
@@ -99,8 +102,7 @@ export const SwitchControl = withContext<HTMLSpanElement, SwitchControlProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SwitchIndicatorProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {
+  extends HTMLChakraProps<"span">, UnstyledProp {
   fallback?: React.ReactNode | undefined
 }
 

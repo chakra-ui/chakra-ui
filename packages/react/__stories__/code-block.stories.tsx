@@ -29,6 +29,7 @@ export { CodeBlockWithFloatingCopyButton as FloatingCopyButton } from "compositi
 export { CodeBlockWithThemes as Themes } from "compositions/examples/code-block-with-themes"
 export { CodeBlockPlainText as PlainText } from "compositions/examples/code-block-plain-text"
 export { CodeBlockWithHorizontalOverflow as HorizontalOverflow } from "compositions/examples/code-block-with-horizontal-overflow"
+export { CodeBlockWithOverflowAndOverlay as OverflowAndOverlay } from "compositions/examples/code-block-with-overflow-and-overlay"
 
 export { CodeBlockWithHighlightJs as HighlightJs } from "compositions/examples/code-block-with-highlight-js"
 

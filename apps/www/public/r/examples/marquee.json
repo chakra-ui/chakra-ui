@@ -1,0 +1,175 @@
+{
+  "name": "marquee",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "marquee-auto-fill",
+      "content": "\"use client\"\nexport const MarqueeAutoFill = () => (\n  <Marquee.Root autoFill spacing=\"2rem\">\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-diagonal",
+      "content": "export const MarqueeDiagonal = () => {\n  return (\n    <Marquee.Root\n      position=\"relative\"\n      top=\"25%\"\n      overflow=\"hidden\"\n      transform=\"rotate(-2deg)\"\n      bg=\"bg.emphasized\"\n      py=\"4\"\n    >\n      <Marquee.Viewport>\n        <Marquee.Content>\n          {[...Array(10)].map((_, i) => (\n            <Marquee.Item key={i} pr=\"4\">\n              <HStack gap=\"8\" textStyle=\"3xl\" fontWeight=\"medium\">\n                Chakra Conf 2026\n                <Circle size=\"1.5\" bg=\"colorPalette.solid\" />\n              </HStack>\n            </Marquee.Item>\n          ))}\n        </Marquee.Content>\n      </Marquee.Viewport>\n    </Marquee.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Circle, HStack, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "marquee-edge-gradient",
+      "content": "\"use client\"\nexport const MarqueeEdgeGradient = () => (\n  <Marquee.Root>\n    <Marquee.Edge side=\"start\" />\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n    <Marquee.Edge side=\"end\" />\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-finite-loop",
+      "content": "\"use client\"\nexport const MarqueeFiniteLoop = () => {\n  const [loopCount, setLoopCount] = useState(0)\n  const [completedCount, setCompletedCount] = useState(0)\n\n  return (\n    <>\n      <Marquee.Root\n        loopCount={3}\n        onLoopComplete={() => setLoopCount((prev) => prev + 1)}\n        onComplete={() => setCompletedCount((prev) => prev + 1)}\n      >\n        <Marquee.Viewport>\n          <Marquee.Content>\n            {items.map((item, i) => (\n              <Marquee.Item key={i} px=\"2rem\">\n                {item.icon && (\n                  <item.icon\n                    size=\"3rem\"\n                    aria-label={item.label}\n                    color={item.color}\n                  />\n                )}\n              </Marquee.Item>\n            ))}\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n\n      <Stack m=\"4\" textStyle=\"sm\">\n        <p>Loop completed: {loopCount} times</p>\n        <p>Animation completed: {completedCount} times</p>\n      </Stack>\n    </>\n  )\n}\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-image-gallery",
+      "content": "\"use client\"\nexport const MarqueeImageGallery = () => (\n  <Box height=\"500px\" overflow=\"hidden\" perspective=\"500px\">\n    <HStack\n      gap=\"4\"\n      height=\"700px\"\n      transform=\"rotateX(20deg)\"\n      transformOrigin=\"center top\"\n    >\n      <Marquee.Root side=\"top\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn1} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n\n      <Marquee.Root side=\"bottom\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn2} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n\n      <Marquee.Root side=\"top\" flex=\"1\" autoFill>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            <MarqueeItems images={imagesColumn3} />\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n    </HStack>\n  </Box>\n)\n\nconst MarqueeItems = (props: { images: string[] }) => {\n  return (\n    <>\n      {props.images.map((src, i) => (\n        <Marquee.Item key={i} py=\"2\">\n          <Image\n            src={src}\n            alt={`Gallery image ${i + 1}`}\n            width=\"full\"\n            height=\"200px\"\n            objectFit=\"cover\"\n            rounded=\"lg\"\n            shadow=\"md\"\n          />\n        </Marquee.Item>\n      ))}\n    </>\n  )\n}\n\nconst imagesColumn1 = [\n  \"https://picsum.photos/seed/img1/280/200\",\n  \"https://picsum.photos/seed/img2/280/200\",\n  \"https://picsum.photos/seed/img3/280/200\",\n  \"https://picsum.photos/seed/img4/280/200\",\n]\n\nconst imagesColumn2 = [\n  \"https://picsum.photos/seed/img5/280/200\",\n  \"https://picsum.photos/seed/img6/280/200\",\n  \"https://picsum.photos/seed/img7/280/200\",\n  \"https://picsum.photos/seed/img8/280/200\",\n]\n\nconst imagesColumn3 = [\n  \"https://picsum.photos/seed/img9/280/200\",\n  \"https://picsum.photos/seed/img10/280/200\",\n  \"https://picsum.photos/seed/img11/280/200\",\n  \"https://picsum.photos/seed/img12/280/200\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, HStack, Image, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "marquee-multiple",
+      "content": "\"use client\"\n\ninterface Item {\n  icon: IconType\n  color: string\n}\n\nconst items: Item[] = [\n  { icon: IoLogoFigma, color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, color: \"#0077b5\" },\n  { icon: IoLogoGitlab, color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, color: \"#f7df1e\" },\n]\n\nexport const MarqueeMultiple = () => {\n  return (\n    <Stack gap=\"8\" py=\"8\">\n      <MarqueeRow items={items} />\n      <MarqueeRow items={items} reverse />\n    </Stack>\n  )\n}\n\ninterface MarqueeRowProps {\n  items: Item[]\n  reverse?: boolean\n}\n\nconst MarqueeRow = (props: MarqueeRowProps) => {\n  const { items, reverse = false } = props\n  return (\n    <Marquee.Root reverse={reverse} autoFill>\n      <Marquee.Viewport>\n        <Marquee.Content>\n          {items.map((item, i) => (\n            <Marquee.Item key={i} px=\"2rem\">\n              <item.icon size=\"3rem\" color={item.color} />\n            </Marquee.Item>\n          ))}\n        </Marquee.Content>\n      </Marquee.Viewport>\n    </Marquee.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee, Stack } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\"",
+        "import type { IconType } from \"react-icons/lib\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-news-ticker",
+      "content": "\"use client\"\nconst newsItems = [\n  \"Bitcoin hits all-time high\",\n  \"New React version released\",\n  \"SpaceX successfully lands rocket\",\n  \"Global markets rally today\",\n  \"AI regulation talks begin in EU\",\n]\n\nexport const MarqueeNewsTicker = () => {\n  return (\n    <Flex align=\"center\" bg=\"bg.muted\">\n      <Box\n        bg=\"teal.solid\"\n        color=\"teal.contrast\"\n        px=\"4\"\n        py=\"2\"\n        whiteSpace=\"nowrap\"\n        textStyle=\"sm\"\n        fontWeight=\"medium\"\n      >\n        LATEST NEWS\n      </Box>\n\n      <Marquee.Root css={{ \"--marquee-duration\": \"40s\" }}>\n        <Marquee.Viewport>\n          <Marquee.Content textStyle=\"sm\">\n            {newsItems.map((item, i) => (\n              <Marquee.Item key={i} pr=\"4\">\n                <HStack\n                  align=\"center\"\n                  gap=\"8\"\n                  fontWeight=\"medium\"\n                  textTransform=\"uppercase\"\n                >\n                  {item}\n                  <Circle size=\"1\" bg=\"colorPalette.solid\" />\n                </HStack>\n              </Marquee.Item>\n            ))}\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.Root>\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, Flex, HStack, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "marquee-pause-interactions",
+      "content": "\"use client\"\nexport const MarqueePauseInteractions = () => (\n  <Marquee.Root pauseOnInteraction>\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-reverse-direction",
+      "content": "\"use client\"\nexport const MarqueeReverseDirection = () => (\n  <Marquee.Root reverse autoFill>\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-rtl",
+      "content": "\"use client\"\nexport const MarqueeRtl = () => (\n  <LocaleProvider locale=\"ar-AE\">\n    <Marquee.Root>\n      <Marquee.Viewport>\n        <Marquee.Content>\n          {items.map((item, i) => (\n            <Marquee.Item key={i} ps=\"8\">\n              <HStack gap=\"8\" textStyle=\"xl\" fontWeight=\"medium\">\n                <Box>{item}</Box>\n                <Circle size=\"1.5\" bg=\"fg.muted\" />\n              </HStack>\n            </Marquee.Item>\n          ))}\n        </Marquee.Content>\n      </Marquee.Viewport>\n    </Marquee.Root>\n  </LocaleProvider>\n)\n\nconst items = [\n  \"مرحبا بكم\",\n  \"تصميم جميل\",\n  \"سهل الاستخدام\",\n  \"مكونات قابلة للوصول\",\n  \"أداء عالي\",\n  \"تجربة مستخدم رائعة\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Circle, HStack, LocaleProvider, Marquee } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "marquee-vertical-animation",
+      "content": "\"use client\"\nexport const MarqueeVerticalAnimation = () => (\n  <Marquee.Root side=\"bottom\" height=\"300px\" spacing=\"2rem\">\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {items.map((item, i) => (\n          <Marquee.Item key={i} px=\"2rem\">\n            {item.icon && (\n              <item.icon\n                size=\"3rem\"\n                aria-label={item.label}\n                color={item.color}\n              />\n            )}\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n  </Marquee.Root>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Marquee } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-with-speed",
+      "content": "\"use client\"\nconst speeds = [\n  { value: 25, label: \"Slow (25px/s)\" },\n  { value: 50, label: \"Normal (50px/s)\" },\n  { value: 100, label: \"Fast (100px/s)\" },\n]\n\nexport const MarqueeWithSpeed = () => (\n  <Stack gap=\"12\">\n    <For each={speeds}>\n      {(speed) => (\n        <Stack key={speed.value} gap=\"4\">\n          <Span fontWeight=\"medium\" textStyle=\"sm\">\n            {speed.label}\n          </Span>\n          <Marquee.Root speed={speed.value}>\n            <Marquee.Viewport>\n              <Marquee.Content>\n                {items.map((item, i) => (\n                  <Marquee.Item key={i} px=\"2rem\">\n                    {item.icon && (\n                      <item.icon\n                        size=\"3rem\"\n                        aria-label={item.label}\n                        color={item.color}\n                      />\n                    )}\n                  </Marquee.Item>\n                ))}\n              </Marquee.Content>\n            </Marquee.Viewport>\n          </Marquee.Root>\n        </Stack>\n      )}\n    </For>\n  </Stack>\n)\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, Marquee, Span, Stack } from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-with-store",
+      "content": "\"use client\"\nexport const MarqueeWithStore = () => {\n  const marquee = useMarquee()\n\n  return (\n    <Stack gap=\"8\">\n      <Marquee.RootProvider value={marquee}>\n        <Marquee.Viewport>\n          <Marquee.Content>\n            {items.map((item, i) => (\n              <Marquee.Item key={i} px=\"2rem\">\n                {item.icon && (\n                  <item.icon\n                    size=\"3rem\"\n                    aria-label={item.label}\n                    color={item.color}\n                  />\n                )}\n              </Marquee.Item>\n            ))}\n          </Marquee.Content>\n        </Marquee.Viewport>\n      </Marquee.RootProvider>\n\n      <ButtonGroup size=\"sm\" variant=\"outline\">\n        <Button hidden={marquee.paused} onClick={() => marquee.pause()}>\n          <LuPause /> Pause\n        </Button>\n        <Button hidden={!marquee.paused} onClick={() => marquee.resume()}>\n          <LuPlay />\n          Resume\n        </Button>\n      </ButtonGroup>\n    </Stack>\n  )\n}\n\nconst items = [\n  { icon: IoLogoFigma, label: \"Figma\", color: \"#F24E1E\" },\n  { icon: IoLogoTwitter, label: \"Twitter\", color: \"#1da1f2\" },\n  { icon: IoLogoLinkedin, label: \"LinkedIn\", color: \"#0077b5\" },\n  { icon: IoLogoGitlab, label: \"GitLab\", color: \"#fc6d26\" },\n  { icon: IoLogoVimeo, label: \"Vimeo\", color: \"#1ab7ea\" },\n  { icon: IoLogoJavascript, label: \"JavaScript\", color: \"#f7df1e\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  ButtonGroup,\n  Marquee,\n  Stack,\n  useMarquee,\n} from \"@chakra-ui/react\"",
+        "import {\n  IoLogoFigma,\n  IoLogoGitlab,\n  IoLogoJavascript,\n  IoLogoLinkedin,\n  IoLogoTwitter,\n  IoLogoVimeo,\n} from \"react-icons/io5\"",
+        "import { LuPause, LuPlay } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "marquee-with-testimonials",
+      "content": "\"use client\"\nexport const MarqueeWithTestimonials = () => (\n  <Marquee.Root pauseOnInteraction py=\"10\">\n    <Marquee.Edge side=\"start\" />\n    <Marquee.Viewport>\n      <Marquee.Content>\n        {testimonials.map((item, i) => (\n          <Marquee.Item key={i} px=\"1rem\">\n            <TestimonialCard item={item} />\n          </Marquee.Item>\n        ))}\n      </Marquee.Content>\n    </Marquee.Viewport>\n    <Marquee.Edge side=\"end\" />\n  </Marquee.Root>\n)\n\nconst TestimonialCard = ({ item }: { item: Testimonial }) => {\n  return (\n    <Card.Root maxW=\"sm\" h=\"full\">\n      <Card.Body>\n        <Stack gap=\"3\">\n          <HStack gap=\"1\">\n            {[...Array(5)].map((_, i) => (\n              <Box as={IoStar} key={i} color=\"orange.solid\" />\n            ))}\n          </HStack>\n\n          <Card.Description color=\"fg.muted\" textStyle=\"md\" minH=\"16\">\n            \"{item.content}\"\n          </Card.Description>\n\n          <HStack gap=\"3\" mt=\"1\">\n            <Avatar.Root size=\"sm\">\n              <Avatar.Image src={item.avatar} />\n              <Avatar.Fallback name={item.name} />\n            </Avatar.Root>\n            <Box textStyle=\"sm\">\n              <Box fontWeight=\"medium\" color=\"fg\">\n                {item.name}\n              </Box>\n              <Box color=\"fg.muted\">{item.role}</Box>\n            </Box>\n          </HStack>\n        </Stack>\n      </Card.Body>\n    </Card.Root>\n  )\n}\n\ninterface Testimonial {\n  name: string\n  role: string\n  rating: number\n  avatar: string\n  content: string\n}\n\nconst testimonials: Testimonial[] = [\n  {\n    name: \"Sarah Chen\",\n    role: \"Product Designer\",\n    rating: 5,\n    avatar: \"https://i.pravatar.cc/150?u=a042581f4e29026024d\",\n    content:\n      \"This library saved me weeks of work. The components are accessible and easy to customize.\",\n  },\n  {\n    name: \"Michael Torres\",\n    role: \"Frontend Dev\",\n    rating: 4,\n    avatar: \"https://i.pravatar.cc/150?u=a042581f4e29026704d\",\n    content:\n      \"The animations are buttery smooth. I love how easy it is to implement the marquee.\",\n  },\n  {\n    name: \"Emily Wang\",\n    role: \"CTO\",\n    rating: 5,\n    avatar: \"https://i.pravatar.cc/150?u=a04258114e29026302d\",\n    content:\n      \"Scalable, reliable, and beautiful. Highly recommended for any modern web project.\",\n  },\n  {\n    name: \"David Smith\",\n    role: \"Marketing Lead\",\n    rating: 5,\n    avatar: \"https://i.pravatar.cc/150?u=a042581f4e29026024d\",\n    content:\n      \"Our conversion rates increased by 15% after switching to this UI system.\",\n  },\n  {\n    name: \"Jessica Lee\",\n    role: \"Indie Hacker\",\n    rating: 4,\n    avatar: \"https://i.pravatar.cc/150?u=a04258a2462d826712d\",\n    content:\n      \"Documentation is top-notch. I was able to build my MVP in a single weekend.\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Avatar, Box, Card, HStack, Marquee, Stack } from \"@chakra-ui/react\"",
+        "import { IoStar } from \"react-icons/io5\""
+      ],
+      "importPath": "import { Marquee } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

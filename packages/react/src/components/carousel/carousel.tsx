@@ -29,14 +29,14 @@ export { useCarouselStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselRootProviderBaseProps
-  extends Assign<
-      ArkCarousel.RootProviderBaseProps,
-      SlotRecipeProps<"carousel">
-    >,
+  extends
+    Assign<ArkCarousel.RootProviderBaseProps, SlotRecipeProps<"carousel">>,
     UnstyledProp {}
 
-export interface CarouselRootProviderProps
-  extends HTMLChakraProps<"div", CarouselRootProviderBaseProps> {}
+export interface CarouselRootProviderProps extends HTMLChakraProps<
+  "div",
+  CarouselRootProviderBaseProps
+> {}
 
 export const CarouselRootProvider = withProvider<
   HTMLDivElement,
@@ -48,11 +48,14 @@ export const CarouselRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselRootBaseProps
-  extends Assign<ArkCarousel.RootBaseProps, SlotRecipeProps<"carousel">>,
+  extends
+    Assign<ArkCarousel.RootBaseProps, SlotRecipeProps<"carousel">>,
     UnstyledProp {}
 
-export interface CarouselRootProps
-  extends HTMLChakraProps<"div", CarouselRootBaseProps> {}
+export interface CarouselRootProps extends HTMLChakraProps<
+  "div",
+  CarouselRootBaseProps
+> {}
 
 export const CarouselRoot = withProvider<HTMLDivElement, CarouselRootProps>(
   ArkCarousel.Root,
@@ -72,7 +75,8 @@ export const CarouselPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselItemGroupProps
-  extends HTMLChakraProps<"div", ArkCarousel.ItemGroupBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkCarousel.ItemGroupBaseProps>,
     UnstyledProp {}
 
 export const CarouselItemGroup = withContext<
@@ -83,8 +87,7 @@ export const CarouselItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselItemProps
-  extends HTMLChakraProps<"div", ArkCarousel.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCarousel.ItemBaseProps>, UnstyledProp {}
 
 export const CarouselItem = withContext<HTMLDivElement, CarouselItemProps>(
   ArkCarousel.Item,
@@ -95,8 +98,7 @@ export const CarouselItem = withContext<HTMLDivElement, CarouselItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselControlProps
-  extends HTMLChakraProps<"div", ArkCarousel.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCarousel.ControlBaseProps>, UnstyledProp {}
 
 export const CarouselControl = withContext<
   HTMLDivElement,
@@ -106,7 +108,8 @@ export const CarouselControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselPrevTriggerProps
-  extends HTMLChakraProps<"button", ArkCarousel.PrevTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkCarousel.PrevTriggerBaseProps>,
     UnstyledProp {}
 
 export const CarouselPrevTrigger = withContext<
@@ -120,7 +123,8 @@ export const CarouselPrevTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselNextTriggerProps
-  extends HTMLChakraProps<"button", ArkCarousel.NextTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkCarousel.NextTriggerBaseProps>,
     UnstyledProp {}
 
 export const CarouselNextTrigger = withContext<
@@ -132,8 +136,10 @@ export const CarouselNextTrigger = withContext<
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
-export interface CarouselIndicatorsProps
-  extends Omit<CarouselIndicatorProps, "index"> {}
+export interface CarouselIndicatorsProps extends Omit<
+  CarouselIndicatorProps,
+  "index"
+> {}
 
 export const CarouselIndicators = forwardRef<
   HTMLDivElement,
@@ -167,8 +173,7 @@ export const CarouselAutoplayIndicator = ({
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselProgressTextProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const CarouselProgressText = forwardRef<
   HTMLDivElement,
@@ -183,7 +188,8 @@ export const CarouselProgressText = forwardRef<
 })
 
 export interface CarouselAutoplayTriggerProps
-  extends HTMLChakraProps<"button", ArkCarousel.AutoplayTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkCarousel.AutoplayTriggerBaseProps>,
     UnstyledProp {}
 
 export const CarouselAutoplayTrigger = withContext<
@@ -194,7 +200,8 @@ export const CarouselAutoplayTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselIndicatorGroupProps
-  extends HTMLChakraProps<"div", ArkCarousel.IndicatorGroupBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkCarousel.IndicatorGroupBaseProps>,
     UnstyledProp {}
 
 export const CarouselIndicatorGroup = withContext<
@@ -205,7 +212,8 @@ export const CarouselIndicatorGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CarouselIndicatorProps
-  extends HTMLChakraProps<"button", ArkCarousel.IndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkCarousel.IndicatorBaseProps>,
     UnstyledProp {}
 
 export const CarouselIndicator = withContext<

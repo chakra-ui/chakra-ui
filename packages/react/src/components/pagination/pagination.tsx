@@ -31,14 +31,14 @@ export { usePaginationStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationRootProviderBaseProps
-  extends Assign<
-      ArkPagination.RootProviderBaseProps,
-      SlotRecipeProps<"pagination">
-    >,
+  extends
+    Assign<ArkPagination.RootProviderBaseProps, SlotRecipeProps<"pagination">>,
     UnstyledProp {}
 
-export interface PaginationRootProviderProps
-  extends HTMLChakraProps<"div", PaginationRootProviderBaseProps> {}
+export interface PaginationRootProviderProps extends HTMLChakraProps<
+  "div",
+  PaginationRootProviderBaseProps
+> {}
 
 export const PaginationRootProvider = withProvider<
   HTMLDivElement,
@@ -51,11 +51,14 @@ export const PaginationRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationRootBaseProps
-  extends Assign<ArkPagination.RootBaseProps, SlotRecipeProps<"pagination">>,
+  extends
+    Assign<ArkPagination.RootBaseProps, SlotRecipeProps<"pagination">>,
     UnstyledProp {}
 
-export interface PaginationRootProps
-  extends HTMLChakraProps<"div", PaginationRootBaseProps> {}
+export interface PaginationRootProps extends HTMLChakraProps<
+  "div",
+  PaginationRootBaseProps
+> {}
 
 export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   ArkPagination.Root,
@@ -71,7 +74,8 @@ export const PaginationPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationEllipsisProps
-  extends HTMLChakraProps<"div", ArkPagination.EllipsisBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkPagination.EllipsisBaseProps>,
     UnstyledProp {}
 
 export const PaginationEllipsis = withContext<
@@ -82,7 +86,8 @@ export const PaginationEllipsis = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationItemProps
-  extends HTMLChakraProps<"button", ArkPagination.ItemBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkPagination.ItemBaseProps>,
     UnstyledProp {}
 
 export const PaginationItem = withContext<
@@ -93,7 +98,8 @@ export const PaginationItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationNextTriggerProps
-  extends HTMLChakraProps<"button", ArkPagination.NextTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkPagination.NextTriggerBaseProps>,
     UnstyledProp {}
 
 export const PaginationNextTrigger = withContext<
@@ -104,7 +110,8 @@ export const PaginationNextTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PaginationPrevTriggerProps
-  extends HTMLChakraProps<"button", ArkPagination.PrevTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkPagination.PrevTriggerBaseProps>,
     UnstyledProp {}
 
 export const PaginationPrevTrigger = withContext<
@@ -149,8 +156,7 @@ export const PaginationPageText = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface PaginationItemsProps
-  extends React.HTMLAttributes<HTMLElement> {
+export interface PaginationItemsProps extends React.HTMLAttributes<HTMLElement> {
   render: (page: { type: "page"; value: number }) => React.ReactNode
   ellipsis?: React.ReactElement | undefined
 }

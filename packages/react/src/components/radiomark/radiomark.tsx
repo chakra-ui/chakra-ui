@@ -12,8 +12,7 @@ import {
 import { dataAttr } from "../../utils"
 
 export interface RadiomarkProps
-  extends HTMLChakraProps<"span", RecipeProps<"radiomark">>,
-    UnstyledProp {
+  extends HTMLChakraProps<"span", RecipeProps<"radiomark">>, UnstyledProp {
   /**
    * Whether the checkmark is checked
    */

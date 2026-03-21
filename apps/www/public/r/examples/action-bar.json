@@ -18,6 +18,20 @@
       ]
     },
     {
+      "name": "action-bar-placement",
+      "content": "\"use client\"\nexport const ActionBarPlacement = () => {\n  const [placement, setPlacement] = useState<\n    \"bottom\" | \"bottom-start\" | \"bottom-end\"\n  >(\"bottom\")\n  const [open, setOpen] = useState(false)\n\n  return (\n    <VStack gap=\"6\" align=\"flex-start\">\n      <VStack gap=\"3\" align=\"flex-start\">\n        <Text fontWeight=\"medium\">Placement:</Text>\n        <SegmentGroup.Root\n          size=\"sm\"\n          value={placement}\n          onValueChange={(e) =>\n            setPlacement(e.value as \"bottom\" | \"bottom-start\" | \"bottom-end\")\n          }\n        >\n          <SegmentGroup.Indicator />\n          <SegmentGroup.Items\n            items={[\n              { value: \"bottom-start\", label: \"Bottom Start\" },\n              { value: \"bottom\", label: \"Bottom\" },\n              { value: \"bottom-end\", label: \"Bottom End\" },\n            ]}\n          />\n        </SegmentGroup.Root>\n      </VStack>\n\n      <Button onClick={() => setOpen(!open)}>\n        {open ? \"Hide\" : \"Show\"} Action Bar\n      </Button>\n\n      <ActionBar.Root open={open} placement={placement}>\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                3 selected\n              </ActionBar.SelectionTrigger>\n              <ActionBar.Separator />\n              <Button variant=\"outline\" size=\"sm\">\n                <LuTrash2 />\n                Delete\n              </Button>\n              <Button variant=\"outline\" size=\"sm\">\n                <LuShare />\n                Share\n              </Button>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </VStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  ActionBar,\n  Button,\n  Portal,\n  SegmentGroup,\n  Text,\n  VStack,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuShare, LuTrash2 } from \"react-icons/lu\""
+      ],
+      "importPath": "import { ActionBar } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
       "name": "action-bar-with-close-trigger",
       "content": "\"use client\"\nexport const ActionBarWithCloseTrigger = () => {\n  const [checked, setChecked] = useState(false)\n  return (\n    <>\n      <Checkbox.Root\n        checked={checked}\n        onCheckedChange={(e) => setChecked(!!e.checked)}\n      >\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Show Action bar</Checkbox.Label>\n      </Checkbox.Root>\n\n      <ActionBar.Root\n        open={checked}\n        onOpenChange={(e) => setChecked(e.open)}\n        closeOnInteractOutside={false}\n      >\n        <Portal>\n          <ActionBar.Positioner>\n            <ActionBar.Content>\n              <ActionBar.SelectionTrigger>\n                2 selected\n              </ActionBar.SelectionTrigger>\n              <ActionBar.Separator />\n              <Button variant=\"outline\" size=\"sm\">\n                <LuTrash2 />\n                Delete\n              </Button>\n              <Button variant=\"outline\" size=\"sm\">\n                <LuShare />\n                Share\n              </Button>\n              <ActionBar.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </ActionBar.CloseTrigger>\n            </ActionBar.Content>\n          </ActionBar.Positioner>\n        </Portal>\n      </ActionBar.Root>\n    </>\n  )\n}\n",
       "hasSnippet": false,

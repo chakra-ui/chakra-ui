@@ -23,14 +23,14 @@ export { useSplitterStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterRootProviderBaseProps
-  extends Assign<
-      ArkSplitter.RootProviderBaseProps,
-      SlotRecipeProps<"splitter">
-    >,
+  extends
+    Assign<ArkSplitter.RootProviderBaseProps, SlotRecipeProps<"splitter">>,
     UnstyledProp {}
 
-export interface SplitterRootProviderProps
-  extends HTMLChakraProps<"div", SplitterRootProviderBaseProps> {}
+export interface SplitterRootProviderProps extends HTMLChakraProps<
+  "div",
+  SplitterRootProviderBaseProps
+> {}
 
 export const SplitterRootProvider = withProvider<
   HTMLDivElement,
@@ -40,11 +40,14 @@ export const SplitterRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterRootBaseProps
-  extends Assign<ArkSplitter.RootBaseProps, SlotRecipeProps<"splitter">>,
+  extends
+    Assign<ArkSplitter.RootBaseProps, SlotRecipeProps<"splitter">>,
     UnstyledProp {}
 
-export interface SplitterRootProps
-  extends HTMLChakraProps<"div", SplitterRootBaseProps> {}
+export interface SplitterRootProps extends HTMLChakraProps<
+  "div",
+  SplitterRootBaseProps
+> {}
 
 export const SplitterRoot = withProvider<HTMLDivElement, SplitterRootProps>(
   ArkSplitter.Root,
@@ -60,8 +63,7 @@ export const SplitterPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterPanelProps
-  extends HTMLChakraProps<"div", ArkSplitter.PanelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkSplitter.PanelBaseProps>, UnstyledProp {}
 
 export const SplitterPanel = withContext<HTMLDivElement, SplitterPanelProps>(
   ArkSplitter.Panel,
@@ -72,8 +74,7 @@ export const SplitterPanel = withContext<HTMLDivElement, SplitterPanelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterResizeTriggerSeparatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const SplitterResizeTriggerSeparator = withContext<
   HTMLDivElement,
@@ -83,8 +84,7 @@ export const SplitterResizeTriggerSeparator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterResizeTriggerIndicatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const SplitterResizeTriggerIndicator = withContext<
   HTMLDivElement,
@@ -94,7 +94,8 @@ export const SplitterResizeTriggerIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SplitterResizeTriggerProps
-  extends HTMLChakraProps<"button", ArkSplitter.ResizeTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkSplitter.ResizeTriggerBaseProps>,
     UnstyledProp {}
 
 export const SplitterResizeTrigger = withContext<

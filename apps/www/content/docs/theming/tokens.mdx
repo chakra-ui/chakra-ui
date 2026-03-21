@@ -50,14 +50,16 @@ export const system = createSystem(defaultConfig, config)
 
 ## Using Tokens
 
-After defining tokens, we recommend using the Chakra CLI to generate theme
-typings for your tokens.
+After defining tokens, run the Chakra CLI to generate theme typings. This
+provides autocompletion for your tokens in the editor. See the
+[CLI docs](/docs/get-started/cli#chakra-typegen) for how to run typegen in
+postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./src/theme.ts
 ```
 
-This will provide autocompletion for your tokens in your editor.
+Here's an example of using the tokens in a component.
 
 ```tsx
 <Box color="primary" fontFamily="body">

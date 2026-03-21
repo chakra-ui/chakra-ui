@@ -25,7 +25,13 @@ const preview: Preview = {
     options: {
       storySort: {
         method: "alphabetical",
-        order: ["Layout", "Typography", "Components"],
+        order: [
+          "Layout",
+          "Typography",
+          "Components",
+          "Charts",
+          "Rich Text Editor",
+        ],
       },
     },
     actions: { disable: true },

@@ -1,7 +1,13 @@
 import { ProAdBanner } from "@/components/pro-banner"
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
-import { Figtree, Inter, Outfit, Roboto } from "next/font/google"
+import {
+  Figtree,
+  Inter,
+  Outfit,
+  Roboto,
+  Wix_Madefor_Text,
+} from "next/font/google"
 import localFont from "next/font/local"
 import Script from "next/script"
 import { Provider } from "./provider"
@@ -27,6 +33,11 @@ const roboto = Roboto({
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+})
+
+const wixMadeforText = Wix_Madefor_Text({
+  subsets: ["latin"],
+  variable: "--font-wix-madefor",
 })
 
 const geistSans = localFont({
@@ -66,6 +77,7 @@ export default function RootLayout({
         figTree.variable,
         roboto.variable,
         outfit.variable,
+        wixMadeforText.variable,
         geistSans.variable,
         geistMono.variable,
       ].join(" ")}

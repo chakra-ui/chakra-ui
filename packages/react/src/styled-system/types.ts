@@ -20,8 +20,7 @@ export type CssVarProperties = {
 }
 
 export interface CssProperties
-  extends PropertiesFallback<String | Number>,
-    CssVarProperties {}
+  extends PropertiesFallback<String | Number>, CssVarProperties {}
 
 interface Recursive<T> {
   [key: string]: T | Recursive<T>

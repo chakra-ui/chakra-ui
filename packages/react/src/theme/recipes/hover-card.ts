@@ -15,7 +15,8 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       boxShadow: "lg",
       maxWidth: "80",
       borderRadius: "l3",
-      zIndex: "popover",
+      "--hover-card-z-index": "zIndex.popover",
+      zIndex: "calc(var(--hover-card-z-index) + var(--layer-index, 0))",
       transformOrigin: "var(--transform-origin)",
       outline: "0",
       _open: {

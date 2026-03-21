@@ -21,11 +21,12 @@ export { useCardStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CardRootBaseProps
-  extends SlotRecipeProps<"card">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"card">, UnstyledProp {}
 
-export interface CardRootProps
-  extends HTMLChakraProps<"div", CardRootBaseProps> {}
+export interface CardRootProps extends HTMLChakraProps<
+  "div",
+  CardRootBaseProps
+> {}
 
 export const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
   "div",
@@ -76,8 +77,7 @@ export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CardDescriptionProps
-  extends HTMLChakraProps<"p">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"p">, UnstyledProp {}
 
 export const CardDescription = withContext<
   HTMLParagraphElement,

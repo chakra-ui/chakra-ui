@@ -3,6 +3,7 @@ export {
   ComboboxContent,
   ComboboxContext,
   ComboboxControl,
+  ComboboxList,
   ComboboxIndicatorGroup,
   ComboboxInput,
   ComboboxItem,
@@ -25,6 +26,7 @@ export type {
   ComboboxClearTriggerProps,
   ComboboxContentProps,
   ComboboxControlProps,
+  ComboboxListProps,
   ComboboxHighlightChangeDetails,
   ComboboxInputProps,
   ComboboxInputValueChangeDetails,
@@ -54,6 +56,9 @@ export type {
   ComboboxInteractOutsideEvent,
   ComboboxFocusOutsideEvent,
   ComboboxPointerDownOutsideEvent,
+  ComboboxSelectionDetails,
+  UseComboboxProps,
+  UseComboboxReturn,
 } from "@ark-ui/react/combobox"
 
 export * as Combobox from "./namespace"

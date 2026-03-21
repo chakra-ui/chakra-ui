@@ -85,7 +85,7 @@ const docsLinks: NavItem = {
             { title: "Scroll Area", url: "scroll-area" },
             { title: "Separator", url: "separator" },
             { title: "SimpleGrid", url: "simple-grid" },
-            { title: "Splitter", url: "splitter", status: "new" },
+            { title: "Splitter", url: "splitter" },
             { title: "Stack", url: "stack" },
             { title: "Wrap", url: "wrap" },
           ],
@@ -95,7 +95,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Blockquote", url: "blockquote" },
             { title: "Code", url: "code" },
-            { title: "Code Block", url: "code-block", status: "beta" },
+            { title: "Code Block", url: "code-block" },
             { title: "Em", url: "em" },
             { title: "Heading", url: "heading" },
             { title: "Highlight", url: "highlight" },
@@ -105,6 +105,7 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
+            { title: "Rich Text Editor", url: "rich-text-editor" },
             { title: "Text", url: "text" },
           ],
         },
@@ -120,6 +121,14 @@ const docsLinks: NavItem = {
             },
           ],
         },
+        // {
+        //   title: "Date and Time",
+        //   status: "new",
+        //   items: [
+        //     { title: "Date Picker", url: "date-picker" },
+        //     { title: "Calendar", url: "calendar" },
+        //   ],
+        // },
         {
           title: "Forms",
           items: [
@@ -152,7 +161,7 @@ const docsLinks: NavItem = {
             { title: "Combobox", url: "combobox" },
             { title: "Listbox", url: "listbox" },
             { title: "Select", url: "select" },
-            { title: "Tree View", url: "tree-view", status: "beta" },
+            { title: "Tree View", url: "tree-view" },
           ],
         },
         {
@@ -174,7 +183,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Accordion", url: "accordion" },
             { title: "Breadcrumb", url: "breadcrumb" },
-            { title: "Carousel", url: "carousel", status: "new" },
+            { title: "Carousel", url: "carousel" },
             { title: "Collapsible", url: "collapsible" },
             { title: "Pagination", url: "pagination" },
             { title: "Steps", url: "steps" },
@@ -204,6 +213,7 @@ const docsLinks: NavItem = {
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
             { title: "Icon", url: "icon" },
+            { title: "Marquee", url: "marquee" },
             { title: "QR Code", url: "qr-code" },
             { title: "Stat", url: "stat" },
             { title: "Table", url: "table" },

@@ -13,12 +13,12 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface TextareaBaseProps
-  extends RecipeProps<"textarea">,
-    Field.TextareaBaseProps,
-    UnstyledProp {}
+  extends RecipeProps<"textarea">, Field.TextareaBaseProps, UnstyledProp {}
 
-export interface TextareaProps
-  extends HTMLChakraProps<"textarea", TextareaBaseProps> {}
+export interface TextareaProps extends HTMLChakraProps<
+  "textarea",
+  TextareaBaseProps
+> {}
 
 export const Textarea = withContext<HTMLTextAreaElement, TextareaProps>(
   Field.Textarea,

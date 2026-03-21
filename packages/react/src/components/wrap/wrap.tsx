@@ -6,15 +6,14 @@ import type { HTMLChakraProps, SystemStyleObject } from "../../styled-system"
 import { chakra, defineStyle } from "../../styled-system"
 import { cx } from "../../utils"
 
-export interface WrapProps
-  extends Assign<
-    HTMLChakraProps<"div">,
-    {
-      justify?: SystemStyleObject["justifyContent"] | undefined
-      align?: SystemStyleObject["alignItems"] | undefined
-      direction?: SystemStyleObject["flexDirection"] | undefined
-    }
-  > {}
+export interface WrapProps extends Assign<
+  HTMLChakraProps<"div">,
+  {
+    justify?: SystemStyleObject["justifyContent"] | undefined
+    align?: SystemStyleObject["alignItems"] | undefined
+    direction?: SystemStyleObject["flexDirection"] | undefined
+  }
+> {}
 
 export const Wrap = forwardRef<HTMLDivElement, WrapProps>(
   function Wrap(props, ref) {

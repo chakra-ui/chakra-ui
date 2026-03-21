@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Announcement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/splitter">
+          <Link href="/docs/components/marquee">
             <LuWandSparkles />
-            [New] Splitter Component
+            [New] Marquee Component
             <HiArrowRight />
           </Link>
         </Announcement>

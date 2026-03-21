@@ -21,11 +21,12 @@ export { useDataListStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DataListRootBaseProps
-  extends SlotRecipeProps<"dataList">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"dataList">, UnstyledProp {}
 
-export interface DataListRootProps
-  extends HTMLChakraProps<"dl", DataListRootBaseProps> {}
+export interface DataListRootProps extends HTMLChakraProps<
+  "dl",
+  DataListRootBaseProps
+> {}
 
 export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(
   "dl",
@@ -38,8 +39,7 @@ export const DataListPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DataListItemProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const DataListItem = withContext<HTMLDivElement, DataListItemProps>(
   "div",
@@ -49,8 +49,7 @@ export const DataListItem = withContext<HTMLDivElement, DataListItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DataListItemLabelProps
-  extends HTMLChakraProps<"dt">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"dt">, UnstyledProp {}
 
 export const DataListItemLabel = withContext<
   HTMLDivElement,
@@ -60,8 +59,7 @@ export const DataListItemLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DataListItemValueProps
-  extends HTMLChakraProps<"dd">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"dd">, UnstyledProp {}
 
 export const DataListItemValue = withContext<
   HTMLDivElement,

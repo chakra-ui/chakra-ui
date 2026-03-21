@@ -3,11 +3,15 @@
 import { useEffect, useRef, useState } from "react"
 
 export const useScrollSpy = (selectors: string[]) => {
-  const [activeId, setActiveId] = useState<string | null>(selectors[0])
-  const [previousId, setPreviousId] = useState<string | null>()
+  const [activeIds, setActiveIds] = useState<Set<string>>(
+    () => new Set(selectors[0] ? [selectors[0]] : []),
+  )
   const observer = useRef<IntersectionObserver | null>(null)
+  const visibleIds = useRef<Set<string>>(new Set())
 
   useEffect(() => {
+    visibleIds.current = new Set()
+
     const elements = selectors.map((selector) =>
       document.querySelector(`[id='${selector.replace("#", "")}']`),
     )
@@ -16,17 +20,15 @@ export const useScrollSpy = (selectors: string[]) => {
       (entries) => {
         for (const entry of entries) {
           const id = `#${entry.target.getAttribute("id")}`
-          if (entry?.isIntersecting) {
-            setPreviousId(activeId)
-            setActiveId(id)
+          if (entry.isIntersecting) {
+            visibleIds.current.add(id)
           } else {
-            if (id === previousId) {
-              setPreviousId(null)
-            }
-            if (activeId === id && previousId) {
-              setActiveId(previousId)
-            }
+            visibleIds.current.delete(id)
           }
+        }
+
+        if (visibleIds.current.size > 0) {
+          setActiveIds(new Set(visibleIds.current))
         }
       },
       { rootMargin: "-30% 0px" },
@@ -36,7 +38,7 @@ export const useScrollSpy = (selectors: string[]) => {
       if (element) observer.current?.observe(element)
     }
     return () => observer.current?.disconnect()
-  }, [selectors, previousId, activeId])
+  }, [selectors])
 
-  return activeId
+  return activeIds
 }

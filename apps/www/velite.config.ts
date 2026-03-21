@@ -56,6 +56,7 @@ const docs = defineCollection({
           recipe: s.string().optional(),
           ark: s.string().optional(),
           recharts: s.string().optional(),
+          tiptap: s.string().optional(),
         })
         .optional(),
     })

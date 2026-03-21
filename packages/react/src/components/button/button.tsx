@@ -38,12 +38,12 @@ export interface ButtonLoadingProps {
 }
 
 export interface ButtonBaseProps
-  extends RecipeProps<"button">,
-    UnstyledProp,
-    ButtonLoadingProps {}
+  extends RecipeProps<"button">, UnstyledProp, ButtonLoadingProps {}
 
-export interface ButtonProps
-  extends HTMLChakraProps<"button", ButtonBaseProps> {}
+export interface ButtonProps extends HTMLChakraProps<
+  "button",
+  ButtonBaseProps
+> {}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(inProps, ref) {

@@ -21,8 +21,7 @@ interface SimpleGridBaseProps {
 }
 
 export interface SimpleGridProps
-  extends Omit<GridProps, "columns">,
-    SimpleGridBaseProps {}
+  extends Omit<GridProps, "columns">, SimpleGridBaseProps {}
 
 /**
  * SimpleGrid

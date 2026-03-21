@@ -95,6 +95,20 @@ vertically.
 
 <ExampleTabs name="radio-card-without-indicator-vertical" />
 
+### Responsive Orientation
+
+Use `useBreakpointValue` for responsive orientation — the `orientation` prop
+doesn't support responsive object notation.
+
+:::note
+
+Alternatively, render two `RadioCard.Root` instances (one horizontal, one
+vertical) and show/hide based on breakpoint using CSS `display`.
+
+:::
+
+<ExampleTabs name="radio-card-with-responsive-orientation" />
+
 ### Centered
 
 Here's an example of a radio card with centered text.

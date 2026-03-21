@@ -23,14 +23,11 @@ export { useActionBarStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarRootProviderBaseProps
-  extends Assign<
-      ArkPopover.RootProviderBaseProps,
-      SlotRecipeProps<"actionBar">
-    >,
+  extends
+    Assign<ArkPopover.RootProviderBaseProps, SlotRecipeProps<"actionBar">>,
     UnstyledProp {}
 
-export interface ActionBarRootProviderProps
-  extends ActionBarRootProviderBaseProps {}
+export interface ActionBarRootProviderProps extends ActionBarRootProviderBaseProps {}
 
 export const ActionBarRootProvider =
   withRootProvider<ActionBarRootProviderBaseProps>(ArkPopover.RootProvider, {
@@ -43,11 +40,14 @@ export const ActionBarRootProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarRootBaseProps
-  extends Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"actionBar">>,
+  extends
+    Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"actionBar">>,
     UnstyledProp {}
 
-export interface ActionBarRootProps
-  extends Omit<ActionBarRootBaseProps, "positioning"> {
+export interface ActionBarRootProps extends Omit<
+  ActionBarRootBaseProps,
+  "positioning"
+> {
   children: React.ReactNode
 }
 
@@ -70,8 +70,7 @@ export const ActionBarPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarPositionerProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const ActionBarPositioner = withContext<
   HTMLDivElement,
@@ -81,8 +80,7 @@ export const ActionBarPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarContentProps
-  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps>, UnstyledProp {}
 
 export const ActionBarContent = withContext<
   HTMLDivElement,
@@ -92,8 +90,7 @@ export const ActionBarContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarSeparatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const ActionBarSeparator = withContext<
   HTMLDivElement,
@@ -103,8 +100,7 @@ export const ActionBarSeparator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarSelectionTriggerProps
-  extends HTMLChakraProps<"button">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button">, UnstyledProp {}
 
 export const ActionBarSelectionTrigger = withContext<
   HTMLButtonElement,
@@ -114,7 +110,8 @@ export const ActionBarSelectionTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ActionBarCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerProps>,
+  extends
+    HTMLChakraProps<"button", ArkPopover.CloseTriggerProps>,
     UnstyledProp {}
 
 export const ActionBarCloseTrigger = withContext<

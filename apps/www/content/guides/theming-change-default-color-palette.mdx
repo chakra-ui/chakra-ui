@@ -9,6 +9,15 @@ By default, Chakra UI uses the `gray` color palette for various UI elements like
 selection backgrounds and hover states. You can customize this default behavior
 by modifying the global CSS configuration.
 
+## What "default color" means
+
+In Chakra, "default color" usually means:
+
+- Global palette used by `colorPalette.*` tokens
+- Component-level palette set with `colorPalette` prop
+
+Set a global default first, then override per component when needed.
+
 ## Customizing the default color palette
 
 Use the `createSystem` method to override the default color palette in your
@@ -52,6 +61,12 @@ application, including:
 - Default hover states
 - Focus states
 - Other interactive elements that use the default color palette
+
+You can still override a specific component:
+
+```tsx
+<Button colorPalette="red">Delete</Button>
+```
 
 ## Using custom color palettes
 

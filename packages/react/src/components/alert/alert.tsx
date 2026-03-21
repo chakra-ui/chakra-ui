@@ -37,11 +37,12 @@ export { useAlertStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AlertRootBaseProps
-  extends SlotRecipeProps<"alert">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"alert">, UnstyledProp {}
 
-export interface AlertRootProps
-  extends HTMLChakraProps<"div", AlertRootBaseProps> {}
+export interface AlertRootProps extends HTMLChakraProps<
+  "div",
+  AlertRootBaseProps
+> {}
 
 export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
   "div",
@@ -76,8 +77,7 @@ export const AlertTitle = withContext<HTMLDivElement, AlertTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AlertDescriptionProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const AlertDescription = withContext<
   HTMLDivElement,
@@ -87,8 +87,7 @@ export const AlertDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AlertContentProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const AlertContent = withContext<HTMLDivElement, AlertContentProps>(
   "div",

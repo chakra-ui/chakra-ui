@@ -44,7 +44,7 @@
     },
     {
       "name": "slider-customization",
-      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\" shadow=\"md\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Box, Slider } from \"@chakra-ui/react\"",
@@ -79,6 +79,15 @@
       "hasSnippet": false,
       "importPaths": [
         "import { Slider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "slider-with-collision-behavior",
+      "content": "export const SliderWithCollisionBehavior = () => {\n  return (\n    <Stack gap=\"4\" width=\"300px\">\n      <Slider.Root defaultValue={[30, 70]} thumbCollisionBehavior=\"push\">\n        <Slider.Label>Price Range</Slider.Label>\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.Root>\n      <Text color=\"fg.muted\" textStyle=\"sm\">\n        Try dragging the thumbs together to see them push each other\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider, Stack, Text } from \"@chakra-ui/react\""
       ],
       "importPath": "import { Slider } from \"@chakra-ui/react\""
     },

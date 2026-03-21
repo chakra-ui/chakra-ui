@@ -9,8 +9,7 @@ import {
 } from "../../styled-system"
 
 export interface SkipNavLinkProps
-  extends HTMLChakraProps<"a">,
-    RecipeProps<"skipNavLink"> {}
+  extends HTMLChakraProps<"a">, RecipeProps<"skipNavLink"> {}
 
 export const fallbackId = "chakra-skip-nav"
 

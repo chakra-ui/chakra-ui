@@ -1,4 +1,4 @@
-import { createSystem } from "../src"
+import { createSystem, defaultConfig } from "../src"
 
 describe("serialize - top-level selector handling", () => {
   describe("regular selectors", () => {
@@ -512,6 +512,140 @@ describe("serialize - top-level selector handling", () => {
           "@layer base": {
             "&::part(button)": {
               "color": "blue",
+            },
+          },
+        }
+      `)
+    })
+  })
+
+  describe("element selectors matching utility shorthands", () => {
+    test("p element should be treated as selector, not padding", () => {
+      const sys = createSystem({
+        globalCss: {
+          p: {
+            margin: "0 0 1em",
+          },
+        },
+      })
+
+      expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
+        {
+          "@layer base": {
+            "&p": {
+              "margin": "0 0 1em",
+            },
+          },
+        }
+      `)
+    })
+
+    test("multiple element selectors matching shorthands", () => {
+      const sys = createSystem({
+        globalCss: {
+          p: {
+            margin: "0 0 1em",
+          },
+          h1: {
+            fontSize: "2em",
+          },
+        },
+      })
+
+      expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
+        {
+          "@layer base": {
+            "&h1": {
+              "fontSize": "2em",
+            },
+            "&p": {
+              "margin": "0 0 1em",
+            },
+          },
+        }
+      `)
+    })
+
+    test("compound selector with utility shorthand element should work", () => {
+      const sys = createSystem({
+        globalCss: {
+          "p, h1, h2, h3": {
+            margin: "0 0 1em",
+          },
+        },
+      })
+
+      expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
+        {
+          "@layer base": {
+            "&p, &h1, &h2, &h3": {
+              "margin": "0 0 1em",
+            },
+          },
+        }
+      `)
+    })
+
+    test("responsive utility value should still work (not confused for selector)", () => {
+      const sys = createSystem(defaultConfig, {
+        globalCss: {
+          body: {
+            p: { base: "4", md: "8" },
+          },
+        },
+      })
+
+      const result = sys.getGlobalCss()
+      expect(result["@layer base"]["&body"]).toMatchInlineSnapshot(`
+        {
+          "@media screen and (min-width: 48rem)": {
+            "padding": "var(--chakra-spacing-8)",
+          },
+          "padding": "var(--chakra-spacing-4)",
+        }
+      `)
+    })
+
+    test("element selector with nested pseudo condition", () => {
+      const sys = createSystem({
+        globalCss: {
+          p: {
+            color: "black",
+            _hover: {
+              color: "blue",
+            },
+          },
+        },
+      })
+
+      expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
+        {
+          "@layer base": {
+            "&p": {
+              "_hover": {
+                "color": "blue",
+              },
+              "color": "black",
+            },
+          },
+        }
+      `)
+    })
+
+    test("is(p) workaround should still work", () => {
+      const sys = createSystem({
+        globalCss: {
+          ":is(p)": {
+            margin: "0 0 1em",
+          },
+        },
+      })
+
+      expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
+        {
+          "@layer base": {
+            "&:is(p)": {
+              "margin": "0 0 1em",
             },
           },
         }

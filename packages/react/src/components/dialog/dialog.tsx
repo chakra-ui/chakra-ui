@@ -25,7 +25,8 @@ export { useDialogStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogRootProviderBaseProps
-  extends Assign<ArkDialog.RootProviderProps, SlotRecipeProps<"dialog">>,
+  extends
+    Assign<ArkDialog.RootProviderProps, SlotRecipeProps<"dialog">>,
     UnstyledProp {}
 
 export interface DialogRootProviderProps extends DialogRootProviderBaseProps {
@@ -42,7 +43,8 @@ export const DialogRootProvider = withRootProvider<DialogRootProviderProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogRootBaseProps
-  extends Assign<ArkDialog.RootProps, SlotRecipeProps<"dialog">>,
+  extends
+    Assign<ArkDialog.RootProps, SlotRecipeProps<"dialog">>,
     UnstyledProp {}
 
 export interface DialogRootProps extends DialogRootBaseProps {
@@ -61,8 +63,7 @@ export const DialogPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps>, UnstyledProp {}
 
 export const DialogTrigger = withContext<HTMLButtonElement, DialogTriggerProps>(
   ArkDialog.Trigger,
@@ -73,8 +74,7 @@ export const DialogTrigger = withContext<HTMLButtonElement, DialogTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogPositionerProps
-  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps>, UnstyledProp {}
 
 export const DialogPositioner = withContext<
   HTMLDivElement,
@@ -84,7 +84,8 @@ export const DialogPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogContentProps
-  extends HTMLChakraProps<"section", ArkDialog.ContentBaseProps>,
+  extends
+    HTMLChakraProps<"section", ArkDialog.ContentBaseProps>,
     UnstyledProp {}
 
 export const DialogContent = withContext<HTMLDivElement, DialogContentProps>(
@@ -96,8 +97,7 @@ export const DialogContent = withContext<HTMLDivElement, DialogContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogDescriptionProps
-  extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps>, UnstyledProp {}
 
 export const DialogDescription = withContext<
   HTMLDivElement,
@@ -107,8 +107,7 @@ export const DialogDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogTitleProps
-  extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps>, UnstyledProp {}
 
 export const DialogTitle = withContext<HTMLDivElement, DialogTitleProps>(
   ArkDialog.Title,
@@ -119,7 +118,8 @@ export const DialogTitle = withContext<HTMLDivElement, DialogTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps>,
     UnstyledProp {}
 
 export const DialogCloseTrigger = withContext<
@@ -144,8 +144,7 @@ export const DialogActionTrigger = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogBackdropProps
-  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps>, UnstyledProp {}
 
 export const DialogBackdrop = withContext<HTMLDivElement, DialogBackdropProps>(
   ArkDialog.Backdrop,
@@ -165,8 +164,7 @@ export const DialogBody = withContext<HTMLDivElement, DialogBodyProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogFooterProps
-  extends HTMLChakraProps<"footer">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"footer">, UnstyledProp {}
 
 export const DialogFooter = withContext<HTMLDivElement, DialogFooterProps>(
   "div",
@@ -176,8 +174,7 @@ export const DialogFooter = withContext<HTMLDivElement, DialogFooterProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DialogHeaderProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const DialogHeader = withContext<HTMLDivElement, DialogHeaderProps>(
   "div",

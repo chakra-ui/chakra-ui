@@ -19,8 +19,8 @@ https://chakra-ui.com
 
 ## Installing Chakra UI
 
-⚡️Chakra UI is made up of multiple components and tools which you can import
-one by one. All you need to do is install the `@chakra-ui/react` package:
+⚡️Chakra UI is made up of multiple components and tools which you can import one
+by one. All you need to do is install the `@chakra-ui/react` package:
 
 ```sh
 $ yarn add @chakra-ui/react

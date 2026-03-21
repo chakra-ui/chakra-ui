@@ -13,6 +13,29 @@
       "importPath": "import { Menu } from \"@chakra-ui/react\""
     },
     {
+      "name": "menu-controlled",
+      "content": "\"use client\"\nexport const MenuControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <Code>open: {String(open)}</Code>\n      <Menu.Root open={open} onOpenChange={(e) => setOpen(e.open)}>\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n              <Menu.Item value=\"new-file\">New File...</Menu.Item>\n              <Menu.Item value=\"new-win\">New Window</Menu.Item>\n              <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n              <Menu.Item value=\"export\">Export</Menu.Item>\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Code, Menu, Portal, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "menu-open-from-dialog",
+      "content": "\"use client\"\nexport const MenuOpenFromDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Welcome to the menu</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body spaceY=\"4\">\n              <DialogMenu />\n              <Lorem p={1} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst DialogMenu = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Menu\n        </Button>\n      </Menu.Trigger>\n      <Menu.Positioner>\n        <Menu.Content>\n          <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n          <Menu.Item value=\"new-file\">New File...</Menu.Item>\n          <Menu.Item value=\"new-win\">New Window</Menu.Item>\n          <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n          <Menu.Item value=\"export\">Export</Menu.Item>\n        </Menu.Content>\n      </Menu.Positioner>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Dialog, Menu, Portal } from \"@chakra-ui/react\"",
+        "import Lorem from \"react-lorem-ipsum\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-lorem-ipsum"
+      ]
+    },
+    {
       "name": "menu-with-anchor-rect",
       "content": "\"use client\"\nexport const MenuWithAnchorRect = () => {\n  const ref = useRef<HTMLDivElement | null>(null)\n  const getAnchorRect = () => ref.current!.getBoundingClientRect()\n\n  return (\n    <Menu.Root positioning={{ getAnchorRect }}>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Menu.Trigger>\n      <Box layerStyle=\"fill.subtle\" p=\"4\" ref={ref} mt=\"4\">\n        Anchor\n      </Box>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n            <Menu.Item value=\"new-file\">New File...</Menu.Item>\n            <Menu.Item value=\"new-win\">New Window</Menu.Item>\n            <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n            <Menu.Item value=\"export\">Export</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -166,6 +189,15 @@
       ]
     },
     {
+      "name": "menu-with-store",
+      "content": "\"use client\"\nexport const MenuWithStore = () => {\n  const menu = useMenu()\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <Code>open: {String(menu.api.open)}</Code>\n      <Menu.RootProvider value={menu}>\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n              <Menu.Item value=\"new-file\">New File...</Menu.Item>\n              <Menu.Item value=\"new-win\">New Window</Menu.Item>\n              <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n              <Menu.Item value=\"export\">Export</Menu.Item>\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Code, Menu, Portal, Stack, useMenu } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
       "name": "menu-with-submenu-dynamic",
       "content": "\"use client\"\n\ninterface Item {\n  value: string\n  label: string\n  children?: Item[]\n}\n\nconst items: Item[] = [\n  { value: \"new-txt\", label: \"New Text File\" },\n  { value: \"new-file\", label: \"New File...\" },\n  {\n    value: \"open-recent\",\n    label: \"Open Recent\",\n    children: [\n      { value: \"panda\", label: \"Panda\" },\n      { value: \"ark\", label: \"Ark UI\" },\n      {\n        value: \"chakra\",\n        label: \"Chakra v3\",\n        children: [\n          { value: \"chakra-1\", label: \"Chakra v3.1\" },\n          { value: \"chakra-2\", label: \"Chakra v3.2\" },\n        ],\n      },\n    ],\n  },\n  { value: \"open-file\", label: \"Open File...\" },\n  { value: \"export\", label: \"Export\" },\n]\n\nconst MenuItem = ({ item }: { item: Item }) => {\n  if (!item.children) {\n    return <Menu.Item value={item.value}>{item.label}</Menu.Item>\n  }\n\n  return (\n    <Menu.Root positioning={{ placement: \"right-start\", gutter: 2 }}>\n      <Menu.TriggerItem>\n        {item.label} <LuChevronRight />\n      </Menu.TriggerItem>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {item.children.map((child) => (\n              <MenuItem key={child.value} item={child} />\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n\nexport const MenuWithSubmenuDynamic = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\">Nested</Button>\n      </Menu.Trigger>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {items.map((item) => (\n              <MenuItem key={item.value} item={item} />\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -189,19 +221,6 @@
       "importPath": "import { Menu } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "react-icons"
-      ]
-    },
-    {
-      "name": "menu-within-dialog",
-      "content": "\"use client\"\nexport const MenuWithinDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Welcome to the menu</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body spaceY=\"4\">\n              <DialogMenu />\n              <Lorem p={1} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst DialogMenu = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Menu\n        </Button>\n      </Menu.Trigger>\n      <Menu.Positioner>\n        <Menu.Content>\n          <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n          <Menu.Item value=\"new-file\">New File...</Menu.Item>\n          <Menu.Item value=\"new-win\">New Window</Menu.Item>\n          <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n          <Menu.Item value=\"export\">Export</Menu.Item>\n        </Menu.Content>\n      </Menu.Positioner>\n    </Menu.Root>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Button, Dialog, Menu, Portal } from \"@chakra-ui/react\"",
-        "import Lorem from \"react-lorem-ipsum\""
-      ],
-      "importPath": "import { Menu } from \"@chakra-ui/react\"",
-      "npmDependencies": [
-        "react-lorem-ipsum"
       ]
     }
   ]

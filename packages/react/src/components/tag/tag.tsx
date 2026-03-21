@@ -22,11 +22,12 @@ export { useTagStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagRootBaseProps
-  extends SlotRecipeProps<"tag">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"tag">, UnstyledProp {}
 
-export interface TagRootProps
-  extends HTMLChakraProps<"span", TagRootBaseProps> {}
+export interface TagRootProps extends HTMLChakraProps<
+  "span",
+  TagRootBaseProps
+> {}
 
 export const TagRoot = withProvider<HTMLSpanElement, TagRootProps>(
   "div",
@@ -48,8 +49,7 @@ export const TagLabel = withContext<HTMLSpanElement, TagLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagCloseTriggerProps
-  extends HTMLChakraProps<"button">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button">, UnstyledProp {}
 
 export const TagCloseTrigger = withContext<
   HTMLButtonElement,
@@ -59,8 +59,7 @@ export const TagCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagStartElementProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const TagStartElement = withContext<
   HTMLSpanElement,
@@ -70,8 +69,7 @@ export const TagStartElement = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TagEndElementProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const TagEndElement = withContext<HTMLSpanElement, TagEndElementProps>(
   "span",

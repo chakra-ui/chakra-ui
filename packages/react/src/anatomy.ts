@@ -3,6 +3,7 @@ import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion
 import { createAnatomy } from "@ark-ui/react/anatomy"
 import { clipboardAnatomy as arkClipboardAnatomy } from "@ark-ui/react/clipboard"
 import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
+import { datePickerAnatomy as arkDatePickerAnatomy } from "@ark-ui/react/date-picker"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
@@ -78,6 +79,8 @@ export const dataListAnatomy = createAnatomy("data-list").parts(
   "itemLabel",
   "itemValue",
 )
+export const datePickerAnatomy =
+  arkDatePickerAnatomy.extendWith("indicatorGroup")
 
 export const dialogAnatomy = arkDialogAnatomy.extendWith(
   "header",
@@ -153,7 +156,10 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
   "empty",
 )
 
-export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
+export const sliderAnatomy = arkSliderAnatomy.extendWith(
+  "markerIndicator",
+  "markerLabel",
+)
 
 export const statAnatomy = createAnatomy("stat").parts(
   "root",
@@ -274,3 +280,4 @@ export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
 export const listboxAnatomy = arkListboxAnatomy
+export { marqueeAnatomy } from "@ark-ui/react/marquee"

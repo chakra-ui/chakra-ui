@@ -23,7 +23,8 @@ export { useTooltipStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipRootProviderBaseProps
-  extends Assign<ArkTooltip.RootProviderBaseProps, SlotRecipeProps<"tooltip">>,
+  extends
+    Assign<ArkTooltip.RootProviderBaseProps, SlotRecipeProps<"tooltip">>,
     UnstyledProp {}
 
 export interface TooltipRootProviderProps extends TooltipRootProviderBaseProps {
@@ -37,7 +38,8 @@ export const TooltipRootProvider = withRootProvider<TooltipRootProviderProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipRootBaseProps
-  extends Assign<ArkTooltip.RootBaseProps, SlotRecipeProps<"tooltip">>,
+  extends
+    Assign<ArkTooltip.RootBaseProps, SlotRecipeProps<"tooltip">>,
     UnstyledProp {}
 
 export interface TooltipRootProps extends TooltipRootBaseProps {
@@ -56,8 +58,7 @@ export const TooltipPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipTriggerProps
-  extends HTMLChakraProps<"button", ArkTooltip.TriggerProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkTooltip.TriggerProps>, UnstyledProp {}
 
 export const TooltipTrigger = withContext<
   HTMLButtonElement,
@@ -67,8 +68,7 @@ export const TooltipTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipPositionerProps
-  extends HTMLChakraProps<"div", ArkTooltip.PositionerProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTooltip.PositionerProps>, UnstyledProp {}
 
 export const TooltipPositioner = withContext<
   HTMLDivElement,
@@ -78,8 +78,7 @@ export const TooltipPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipContentProps
-  extends HTMLChakraProps<"section", ArkTooltip.ContentProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"section", ArkTooltip.ContentProps>, UnstyledProp {}
 
 export const TooltipContent = withContext<HTMLDivElement, TooltipContentProps>(
   ArkTooltip.Content,
@@ -90,8 +89,7 @@ export const TooltipContent = withContext<HTMLDivElement, TooltipContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipArrowTipProps
-  extends HTMLChakraProps<"div", ArkTooltip.ArrowTipProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTooltip.ArrowTipProps>, UnstyledProp {}
 
 export const TooltipArrowTip = withContext<
   HTMLDivElement,
@@ -101,8 +99,7 @@ export const TooltipArrowTip = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TooltipArrowProps
-  extends HTMLChakraProps<"div", ArkTooltip.ArrowProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTooltip.ArrowProps>, UnstyledProp {}
 
 export const TooltipArrow = withContext<HTMLDivElement, TooltipArrowProps>(
   ArkTooltip.Arrow,

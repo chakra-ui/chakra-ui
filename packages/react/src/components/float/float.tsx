@@ -44,8 +44,7 @@ export interface FloatOptions {
 }
 
 export interface FloatProps
-  extends Omit<HTMLChakraProps<"div">, keyof FloatOptions>,
-    FloatOptions {}
+  extends Omit<HTMLChakraProps<"div">, keyof FloatOptions>, FloatOptions {}
 
 export const Float = forwardRef<HTMLDivElement, FloatProps>(
   function Float(props, ref) {

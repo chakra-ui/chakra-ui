@@ -33,6 +33,7 @@ export const exampleOnlyComponents = [
   "prose",
   "radio",
   "rating",
+  "rich-text-editor",
   "segmented-control",
   "theme",
   "toaster",
@@ -207,7 +208,8 @@ export class ProjectSdk {
   getExamples(component: string): Promise<string[]> {
     const ignore = excludeSet.get(component) ?? []
     const chartDir = isChartComponent(component) ? "charts/" : ""
-    return glob(`${chartDir}${component}-*.tsx`, {
+    const rteDir = component === "rich-text-editor" ? "rich-text-editor/" : ""
+    return glob(`${chartDir}${rteDir}${component}-*.tsx`, {
       cwd: this.examplesDir,
       ignore: ignore.concat("*-table.tsx", "*-explorer-demo.tsx"),
     })

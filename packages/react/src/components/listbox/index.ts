@@ -41,6 +41,12 @@ export {
   useListboxItemContext,
 } from "@ark-ui/react/listbox"
 
-export type { UseListboxProps, UseListboxReturn } from "@ark-ui/react/listbox"
+export type {
+  UseListboxProps,
+  UseListboxReturn,
+  ListboxScrollToIndexDetails,
+  ListboxSelectionDetails,
+  ListboxSelectionMode,
+} from "@ark-ui/react/listbox"
 
 export * as Listbox from "./namespace"
