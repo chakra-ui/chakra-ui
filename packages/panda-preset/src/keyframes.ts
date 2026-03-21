@@ -86,10 +86,10 @@ export const keyframes = {
   },
   "collapse-width": {
     from: {
-      height: "var(--width)",
+      width: "var(--width)",
     },
     to: {
-      height: "var(--collapsed-width, 0)",
+      width: "var(--collapsed-width, 0)",
     },
   },
   "fade-in": {
@@ -250,6 +250,22 @@ export const keyframes = {
     },
     to: {
       scale: "0.95",
+    },
+  },
+  marqueeX: {
+    from: {
+      transform: "translateX(0%)",
+    },
+    to: {
+      transform: "translateX(var(--marquee-translate))",
+    },
+  },
+  marqueeY: {
+    from: {
+      transform: "translateY(0%)",
+    },
+    to: {
+      transform: "translateY(var(--marquee-translate))",
     },
   },
 }

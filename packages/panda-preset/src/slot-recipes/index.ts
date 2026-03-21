@@ -13,6 +13,7 @@ import { collapsibleSlotRecipe } from "./collapsible"
 import { colorPickerSlotRecipe } from "./color-picker"
 import { comboboxSlotRecipe } from "./combobox"
 import { dataListSlotRecipe } from "./data-list"
+import { datePickerSlotRecipe } from "./date-picker"
 import { dialogSlotRecipe } from "./dialog"
 import { drawerSlotRecipe } from "./drawer"
 import { editableSlotRecipe } from "./editable"
@@ -23,6 +24,7 @@ import { fileUploadSlotRecipe } from "./file-upload"
 import { hoverCardSlotRecipe } from "./hover-card"
 import { listSlotRecipe } from "./list"
 import { listboxSlotRecipe } from "./listbox"
+import { marqueeSlotRecipe } from "./marquee"
 import { menuSlotRecipe } from "./menu"
 import { nativeSelectSlotRecipe } from "./native-select"
 import { numberInputSlotRecipe } from "./number-input"
@@ -50,6 +52,7 @@ import { tagsInputSlotRecipe } from "./tags-input"
 import { timelineSlotRecipe } from "./timeline"
 import { toastSlotRecipe } from "./toast"
 import { tooltipSlotRecipe } from "./tooltip"
+import { tourSlotRecipe } from "./tour"
 import { treeViewSlotRecipe } from "./tree-view"
 
 export const slotRecipes = {
@@ -66,6 +69,7 @@ export const slotRecipes = {
   codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
+  datePicker: datePickerSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
   editable: editableSlotRecipe,
@@ -101,9 +105,11 @@ export const slotRecipes = {
   tagsInput: tagsInputSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
+  tour: tourSlotRecipe,
   status: statusSlotRecipe,
   timeline: timelineSlotRecipe,
   colorPicker: colorPickerSlotRecipe,
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
+  marquee: marqueeSlotRecipe,
 }
