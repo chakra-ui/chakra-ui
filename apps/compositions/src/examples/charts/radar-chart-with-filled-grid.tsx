@@ -17,7 +17,7 @@ export const RadarChartWithFilledGrid = () => {
 
   return (
     <Chart.Root maxW="sm" chart={chart} mx="auto">
-      <RadarChart data={chart.data}>
+      <RadarChart data={chart.data} responsive>
         <PolarGrid
           stroke="none"
           style={{ fill: chart.color("teal.solid"), fillOpacity: 0.1 }}

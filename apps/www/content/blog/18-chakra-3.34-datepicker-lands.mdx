@@ -1,0 +1,74 @@
+---
+title: DatePicker Lands
+description:
+  "Chakra UI v3.34 introduces DatePicker for single, range, and multi-date
+  selection"
+type: release
+version: "3.34"
+authors: ["sage"]
+publishedAt: "2026-03-03"
+---
+
+Today we're shipping Chakra UI v3.34 with one of the most requested additions:
+**[DatePicker](/docs/components/date-picker)**.
+
+Date inputs look simple until you build them. Keyboard navigation, locale-aware
+formatting, range selection, unavailable dates, multiple calendar views,
+positioning, and form integration all add up fast. DatePicker gives you these
+behaviors out of the box, with an API that fits the rest of Chakra UI.
+
+## DatePicker Features
+
+- Single-date, range, and multiple-date selection
+- Day, month, and year views
+- Built-in support for unavailable dates, min/max constraints, and locale
+- Presets for quick picks like "Last 7 days"
+- Date + time workflows for datetime input
+- Form-friendly API for controlled and uncontrolled usage
+
+<ExampleTabs name="date-picker-basic" />
+
+## Range Selection
+
+For booking flows, analytics filters, and reporting dashboards, set
+`selectionMode="range"`.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+## Presets and Time Selection
+
+When you need "Last 7 days"-style shortcuts or datetime workflows, DatePicker
+has you covered with presets and time input support.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
+Need time precision too? Pair it with time input for datetime workflows.
+
+<ExampleTabs name="date-picker-with-time" />
+
+## Also in v3.34
+
+Alongside DatePicker, we shipped a round of important fixes and DX improvements:
+
+- **Ark UI exports**: Closed export gaps across Select, Combobox, Listbox, and
+  Menu (including missing types and `Select.List` for virtualization).
+- **CheckboxGroup**: Fixed a TypeScript error when passing `ref`.
+- **globalCss**: Fixed element selectors like `p`, `m`, `h`, and `w` being
+  incorrectly treated as utility shorthands and dropped.
+- **Field**: Fixed `Field.ErrorIcon` default sizing so it stays aligned with
+  error text.
+- **CLI typegen**: Added `--tsconfig` and automatic tsconfig resolution to fix
+  solution-style tsconfig setups.
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+This release is backward compatible, so you can upgrade and start using
+DatePicker right away.
+
+Try it out and tell us what you build in
+[Discord](https://chakra-ui.com/discord) or on
+[Twitter](https://twitter.com/chakra_ui).

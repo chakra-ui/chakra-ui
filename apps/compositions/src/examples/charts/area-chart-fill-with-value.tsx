@@ -34,7 +34,7 @@ export const AreaChartFillWithValue = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <AreaChart data={chart.data}>
+      <AreaChart data={chart.data} responsive>
         <CartesianGrid strokeDasharray="3 3" stroke={chart.color("border")} />
         <XAxis
           axisLine={false}

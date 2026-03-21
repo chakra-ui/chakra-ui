@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import { Pie, PieChart, Sector, Tooltip } from "recharts"
 
 export const PieChartNoStroke = () => {
   const chart = useChart({
@@ -15,7 +15,7 @@ export const PieChartNoStroke = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Tooltip
           cursor={false}
           animationDuration={100}
@@ -27,11 +27,10 @@ export const PieChartNoStroke = () => {
           dataKey={chart.key("value")}
           nameKey="name"
           stroke="none"
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

@@ -16,7 +16,7 @@ export const BarChartRounded = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <BarChart data={chart.data} barSize={40}>
+      <BarChart data={chart.data} barSize={40} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis axisLine={false} tickLine={false} dataKey={chart.key("type")} />
         <YAxis

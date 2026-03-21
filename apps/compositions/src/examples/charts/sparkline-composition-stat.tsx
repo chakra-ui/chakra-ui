@@ -39,6 +39,7 @@ const SparkLine = () => {
       <AreaChart
         data={chart.data}
         margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+        responsive
       >
         {chart.series.map((item) => (
           <Area

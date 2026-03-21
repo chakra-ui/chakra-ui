@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Label, Pie, PieChart, Tooltip } from "recharts"
+import { Label, Pie, PieChart, Sector, Tooltip } from "recharts"
 
 export const DonutChartWithCenteredText = () => {
   const chart = useChart({
@@ -15,7 +15,7 @@ export const DonutChartWithCenteredText = () => {
 
   return (
     <Chart.Root boxSize="200px" chart={chart} mx="auto">
-      <PieChart>
+      <PieChart responsive>
         <Tooltip
           cursor={false}
           animationDuration={100}
@@ -28,6 +28,9 @@ export const DonutChartWithCenteredText = () => {
           data={chart.data}
           dataKey={chart.key("value")}
           nameKey="name"
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
         >
           <Label
             content={({ viewBox }) => (
@@ -38,9 +41,6 @@ export const DonutChartWithCenteredText = () => {
               />
             )}
           />
-          {chart.data.map((item) => (
-            <Cell key={item.color} fill={chart.color(item.color)} />
-          ))}
         </Pie>
       </PieChart>
     </Chart.Root>

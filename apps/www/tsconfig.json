@@ -49,7 +49,7 @@
     ".velite",
     ".next/types/**/*.ts",
     "../compositions",
-    "next.config.ts"
+    "next.config.mjs"
   ],
   "exclude": [
     "node_modules"

@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Legend, Pie, PieChart } from "recharts"
+import { Legend, Pie, PieChart, Sector } from "recharts"
 
 export const PieChartWithLegend = () => {
   const chart = useChart({
@@ -14,18 +14,17 @@ export const PieChartWithLegend = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Legend content={<Chart.Legend />} />
         <Pie
           isAnimationActive={false}
           data={chart.data}
           dataKey={chart.key("value")}
           nameKey="name"
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

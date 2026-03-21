@@ -98,3 +98,60 @@ formatting the x, y axis labels and tooltips.
 // format the y-axis labels
 <YAxis tickFormatter={chart.formatNumber({ maximumFractionDigits: 1 })} />
 ```
+
+## FAQ
+
+### "lanes" is read-only error with React 19
+
+This error occurs when using recharts 3.6+ with React 19 due to a bug in
+[immer](https://github.com/immerjs/immer) 11.0.0, which recharts uses via Redux.
+The fix is to ensure immer is resolved to version 11.0.1 or above.
+
+Add an override to your `package.json`:
+
+:::code-group
+
+```json [pnpm]
+{
+  "pnpm": {
+    "overrides": {
+      "immer": ">=11.0.1"
+    }
+  }
+}
+```
+
+```json [npm]
+{
+  "overrides": {
+    "immer": ">=11.0.1"
+  }
+}
+```
+
+```json [yarn]
+{
+  "resolutions": {
+    "immer": ">=11.0.1"
+  }
+}
+```
+
+:::
+
+Then run your package manager's install command to apply the change.
+
+### ResponsiveContainer vs responsive prop
+
+Use the `responsive` prop on the chart component instead of wrapping it in
+`ResponsiveContainer`. The `responsive` prop (available in recharts 3.3+) is the
+recommended approach and avoids React 19 compatibility issues that
+`ResponsiveContainer` can trigger due to its resize-based state updates.
+
+```tsx
+<Chart.Root chart={chart}>
+  <BarChart data={chart.data} responsive>
+    {/* ... */}
+  </BarChart>
+</Chart.Root>
+```

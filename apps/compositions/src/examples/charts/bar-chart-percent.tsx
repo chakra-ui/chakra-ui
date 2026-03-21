@@ -32,7 +32,7 @@ export const BarChartPercent = () => {
 
   return (
     <Chart.Root maxH="md" chart={chart}>
-      <BarChart stackOffset="expand" data={chart.data}>
+      <BarChart stackOffset="expand" data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
           axisLine={false}
