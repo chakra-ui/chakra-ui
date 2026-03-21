@@ -23,7 +23,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       top: 0,
       w: "100vw",
       h: "100dvh",
-      zIndex: "overlay",
+      zIndex: "var(--z-index)",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
@@ -40,7 +40,8 @@ export const drawerSlotRecipe = defineSlotRecipe({
       position: "fixed",
       insetInlineStart: 0,
       top: 0,
-      zIndex: "modal",
+      "--drawer-z-index": "zIndex.popover",
+      zIndex: "calc(var(--drawer-z-index) + var(--layer-index, 0))",
       overscrollBehaviorY: "none",
     },
     content: {
@@ -49,7 +50,8 @@ export const drawerSlotRecipe = defineSlotRecipe({
       position: "relative",
       width: "100%",
       outline: 0,
-      zIndex: "modal",
+      "--drawer-z-index": "zIndex.popover",
+      zIndex: "calc(var(--drawer-z-index) + var(--layer-index, 0))",
       textStyle: "sm",
       maxH: "100dvh",
       color: "inherit",
