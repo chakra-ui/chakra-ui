@@ -8,56 +8,45 @@ export interface UseMediaQueryOptions {
   getWindow?(): typeof window
 }
 
-class MediaQueryStore {
-  private queries: string[]
-  private getWindow?: () => typeof window
-  private cache: boolean[]
-  private listeners = new Set<() => void>()
+function createMediaQueryStore(
+  queries: string[],
+  fallback: boolean[],
+  getWindow?: () => typeof window,
+) {
+  const getWin = () => getWindow?.() ?? window
+  const listeners = new Set<() => void>()
+  let cache: boolean[] = queries.map((_, i) => !!fallback[i])
 
-  constructor(
-    queries: string[],
-    fallback: boolean[],
-    getWindow?: () => typeof window,
-  ) {
-    this.queries = queries
-    this.getWindow = getWindow
-    this.cache = queries.map((_, i) => !!fallback[i])
+  const notify = () => {
+    for (const cb of listeners) cb()
   }
 
-  private getWin = () => {
-    return this.getWindow?.() ?? window
-  }
-
-  private notify = () => {
-    for (const cb of this.listeners) cb()
-  }
-
-  subscribe = (callback: () => void) => {
-    this.listeners.add(callback)
-    const win = this.getWin()
-    const mqls = this.queries.map((q) => win.matchMedia(q))
-    mqls.forEach((mql) => mql.addEventListener("change", this.notify))
+  const subscribe = (callback: () => void) => {
+    listeners.add(callback)
+    const win = getWin()
+    const mqls = queries.map((q) => win.matchMedia(q))
+    mqls.forEach((mql) => mql.addEventListener("change", notify))
     return () => {
-      this.listeners.delete(callback)
-      mqls.forEach((mql) => mql.removeEventListener("change", this.notify))
+      listeners.delete(callback)
+      mqls.forEach((mql) => mql.removeEventListener("change", notify))
     }
   }
 
-  getSnapshot = (): boolean[] => {
-    if (typeof document === "undefined") return this.cache
-    const win = this.getWin()
-    const next = this.queries.map((q) => win.matchMedia(q).matches)
-    const prev = this.cache
+  const getSnapshot = (): boolean[] => {
+    if (typeof document === "undefined") return cache
+    const win = getWin()
+    const next = queries.map((q) => win.matchMedia(q).matches)
+    const prev = cache
     if (prev.length === next.length && prev.every((v, i) => v === next[i])) {
       return prev
     }
-    this.cache = next
+    cache = next
     return next
   }
 
-  getServerSnapshot = (): boolean[] => {
-    return this.cache
-  }
+  const getServerSnapshot = (): boolean[] => cache
+
+  return { subscribe, getSnapshot, getServerSnapshot }
 }
 
 export function useMediaQuery(
@@ -71,14 +60,14 @@ export function useMediaQuery(
 
   const queryKey = queries.join("\0")
 
-  const [store, setStore] = useState(
-    () => new MediaQueryStore(queries, fallback, getWindow),
+  const [store, setStore] = useState(() =>
+    createMediaQueryStore(queries, fallback, getWindow),
   )
 
   const [prevQueryKey, setPrevQueryKey] = useState(queryKey)
 
   if (queryKey !== prevQueryKey) {
-    setStore(new MediaQueryStore(queries, fallback, getWindow))
+    setStore(createMediaQueryStore(queries, fallback, getWindow))
     setPrevQueryKey(queryKey)
   }
 
