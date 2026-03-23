@@ -53,6 +53,7 @@ export * from "./recipe-props"
 export type * from "./recipe.types"
 export { createSystem, isValidSystem } from "./system"
 export type {
+  BreakpointName,
   SystemConfig,
   SystemContext,
   Token as TokenInterface,
