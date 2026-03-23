@@ -1,19 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useCallbackRef } from "./use-callback-ref"
-
-type MediaQueryCallback = (event: MediaQueryListEvent) => void
-
-function listen(query: MediaQueryList, callback: MediaQueryCallback) {
-  try {
-    query.addEventListener("change", callback)
-    return () => query.removeEventListener("change", callback)
-  } catch (e) {
-    query.addListener(callback)
-    return () => query.removeListener(callback)
-  }
-}
+import { useState, useSyncExternalStore } from "react"
 
 export interface UseMediaQueryOptions {
   fallback?: boolean[] | undefined
@@ -21,59 +8,72 @@ export interface UseMediaQueryOptions {
   getWindow?(): typeof window
 }
 
+function createMediaQueryStore(
+  queries: string[],
+  fallback: boolean[],
+  getWindow?: () => typeof window,
+) {
+  const getWin = () => getWindow?.() ?? window
+  const listeners = new Set<() => void>()
+  let cache: boolean[] = queries.map((_, i) => !!fallback[i])
+
+  const notify = () => {
+    for (const cb of listeners) cb()
+  }
+
+  const subscribe = (callback: () => void) => {
+    listeners.add(callback)
+    const win = getWin()
+    const mqls = queries.map((q) => win.matchMedia(q))
+    mqls.forEach((mql) => mql.addEventListener("change", notify))
+    return () => {
+      listeners.delete(callback)
+      mqls.forEach((mql) => mql.removeEventListener("change", notify))
+    }
+  }
+
+  const getSnapshot = (): boolean[] => {
+    if (typeof document === "undefined") return cache
+    const win = getWin()
+    const next = queries.map((q) => win.matchMedia(q).matches)
+    const prev = cache
+    if (prev.length === next.length && prev.every((v, i) => v === next[i])) {
+      return prev
+    }
+    cache = next
+    return next
+  }
+
+  const getServerSnapshot = (): boolean[] => cache
+
+  return { subscribe, getSnapshot, getServerSnapshot }
+}
+
 export function useMediaQuery(
   query: string[],
   options: UseMediaQueryOptions = {},
 ): boolean[] {
-  const { fallback: _fallback = [], ssr = true, getWindow } = options
-  const getWin = useCallbackRef(getWindow)
+  const { fallback: _fallback = [], getWindow } = options
 
   const queries = Array.isArray(query) ? query : [query]
-
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
-  const [value, setValue] = useState(() => {
-    return queries.map((query, index) => {
-      if (!ssr) {
-        const { media, matches } = (getWindow?.() ?? window).matchMedia(query)
-        return { media, matches }
-      }
-      return { media: query, matches: !!fallback[index] }
-    })
-  })
+  const queryKey = queries.join("\0")
 
-  useEffect(() => {
-    const win = getWin() ?? window
-    setValue((prev) => {
-      const current = queries.map((query) => {
-        const { media, matches } = win.matchMedia(query)
-        return { media, matches }
-      })
+  const [store, setStore] = useState(() =>
+    createMediaQueryStore(queries, fallback, getWindow),
+  )
 
-      return prev.every(
-        (v, i) =>
-          v.matches === current[i].matches && v.media === current[i].media,
-      )
-        ? prev
-        : current
-    })
+  const [prevQueryKey, setPrevQueryKey] = useState(queryKey)
 
-    const mql = queries.map((query) => win.matchMedia(query))
+  if (queryKey !== prevQueryKey) {
+    setStore(createMediaQueryStore(queries, fallback, getWindow))
+    setPrevQueryKey(queryKey)
+  }
 
-    const handler = (evt: MediaQueryListEvent) => {
-      setValue((prev) => {
-        return prev.slice().map((item) => {
-          if (item.media === evt.media) return { ...item, matches: evt.matches }
-          return item
-        })
-      })
-    }
-
-    const cleanups = mql.map((v) => listen(v, handler))
-    return () => cleanups.forEach((fn) => fn())
-
-    // eslint-disable-next-line
-  }, [getWin])
-
-  return value.map((item) => item.matches)
+  return useSyncExternalStore(
+    store.subscribe,
+    store.getSnapshot,
+    store.getServerSnapshot,
+  )
 }
