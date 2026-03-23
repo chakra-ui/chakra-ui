@@ -1,12 +1,17 @@
 "use client"
 
-import type { ButtonProps, TextProps } from "@chakra-ui/react"
+import type {
+  ButtonProps,
+  PaginationPageTextDetails,
+  TextProps,
+} from "@chakra-ui/react"
 import {
   Button,
   Pagination as ChakraPagination,
   IconButton,
   Text,
   createContext,
+  useLocaleContext,
   usePaginationContext,
 } from "@chakra-ui/react"
 import * as React from "react"
@@ -35,8 +40,10 @@ const [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({
   name: "RootPropsProvider",
 })
 
-export interface PaginationRootProps
-  extends Omit<ChakraPagination.RootProps, "type"> {
+export interface PaginationRootProps extends Omit<
+  ChakraPagination.RootProps,
+  "type"
+> {
   size?: ButtonProps["size"]
   variant?: PaginationVariant
   getHref?: (page: number) => string
@@ -186,19 +193,39 @@ export const PaginationItems = (props: React.HTMLAttributes<HTMLElement>) => {
 
 interface PageTextProps extends TextProps {
   format?: "short" | "compact" | "long"
+  formatText?: ((details: PaginationPageTextDetails) => string) | undefined
 }
 
 export const PaginationPageText = React.forwardRef<
   HTMLParagraphElement,
   PageTextProps
 >(function PaginationPageText(props, ref) {
-  const { format = "compact", ...rest } = props
+  const { format = "compact", formatText, ...rest } = props
   const { page, totalPages, pageRange, count } = usePaginationContext()
+  const { locale } = useLocaleContext()
   const content = React.useMemo(() => {
-    if (format === "short") return `${page} / ${totalPages}`
-    if (format === "compact") return `${page} of ${totalPages}`
-    return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`
-  }, [format, page, totalPages, pageRange, count])
+    const nf = new Intl.NumberFormat(locale)
+    const details = {
+      format,
+      page,
+      totalPages,
+      pageRange,
+      count,
+      locale,
+      formattedPage: nf.format(page),
+      formattedTotalPages: nf.format(totalPages),
+      formattedRangeStart: nf.format(pageRange.start + 1),
+      formattedRangeEnd: nf.format(Math.min(pageRange.end, count)),
+      formattedCount: nf.format(count),
+    }
+
+    if (formatText) return formatText(details)
+    if (format === "short")
+      return `${details.formattedPage} / ${details.formattedTotalPages}`
+    if (format === "compact")
+      return `${details.formattedPage} of ${details.formattedTotalPages}`
+    return `${details.formattedRangeStart} - ${details.formattedRangeEnd} of ${details.formattedCount}`
+  }, [count, format, formatText, locale, page, pageRange, totalPages])
 
   return (
     <Text fontWeight="medium" ref={ref} {...rest}>

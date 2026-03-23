@@ -20,6 +20,7 @@ export type {
   PaginationRootProviderProps as RootProviderProps,
   PaginationPageChangeDetails as PageChangeDetails,
   PaginationPageSizeChangeDetails as PageSizeChangeDetails,
+  PaginationPageTextDetails as PageTextDetails,
   PaginationPageTextProps as PageTextProps,
   PaginationItemsProps as ItemsProps,
 } from "./pagination"
