@@ -1,5 +1,44 @@
 # @chakra-ui/react
 
+## 3.34.1
+
+### Patch Changes
+
+- [`3da73c3`](https://github.com/chakra-ui/chakra-ui/commit/3da73c35b6eb4dcef919967d9e654682603dcd89)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Export missing
+  `datePickerSlotRecipe` from slot recipes
+
+- [#10721](https://github.com/chakra-ui/chakra-ui/pull/10721)
+  [`d2b7dec`](https://github.com/chakra-ui/chakra-ui/commit/d2b7decc32f3c99ebda1492731f7e72c6189f11b)
+  Thanks [@isBatak](https://github.com/isBatak)! - Improve `useBreakpoint` and
+  `useBreakpointValue` types with `BreakpointName`
+
+- [`5f30ddb`](https://github.com/chakra-ui/chakra-ui/commit/5f30ddb61ddf6bce324ea06ba640fe97e6b1e61d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Hooks**: Fix
+  `usePrevious` to use a React 19-safe state-based implementation and compare
+  values with `Object.is` for correct `NaN`/`-0` behavior.
+
+- [#10675](https://github.com/chakra-ui/chakra-ui/pull/10675)
+  [`a98e042`](https://github.com/chakra-ui/chakra-ui/commit/a98e042f1b549b00272daa7289a16007e02526c9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Theme /
+  KeyFrames**: Add CSS variable overrides for slide keyframe distances
+  (`slide-from-*` and `slide-to-*`), for example:
+
+  ```tsx
+  <Box
+    css={{
+      animation: "slide-from-top 200ms ease-out",
+      "--slide-from-top-distance": "1rem",
+    }}
+  />
+  ```
+
+- [`c53f298`](https://github.com/chakra-ui/chakra-ui/commit/c53f298296437596182193c369c92966a2dcc52e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System / Global
+  CSS**: Fix an issue where responsive array values in `globalCss` selector
+  rules (for example `#id` or `.class`) were serialized incorrectly instead of
+  generating responsive breakpoint styles.
+
 ## 3.34.0
 
 ### Minor Changes
