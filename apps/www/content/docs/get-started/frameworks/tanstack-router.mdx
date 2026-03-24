@@ -1,0 +1,180 @@
+---
+title: Using Chakra in TanStack Router
+description: A guide for installing Chakra UI with TanStack Router projects
+---
+
+## Templates
+
+Use the TanStack Router template below to get started quickly.
+
+:::card-group
+
+<ResourceCard
+  type="github"
+  title="TanStack Router template"
+  url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/tanstack-router"
+/>
+
+:::
+
+## Installation
+
+> The minimum node version required is Node.20.x
+
+:::steps
+
+### Create a new project
+
+Use the TanStack Router Vite template to create a new project, or add TanStack
+Router to an existing Vite project.
+
+```bash
+npm create vite@latest my-app -- --template react-ts
+cd my-app
+```
+
+### Install dependencies
+
+```bash
+npm i @chakra-ui/react @emotion/react @tanstack/react-router
+npm i -D @tanstack/router-plugin @tanstack/router-devtools
+```
+
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli snippet add
+```
+
+### Update tsconfig
+
+If you're using TypeScript, in the `tsconfig.app.json` file, make sure the
+`compilerOptions` includes the following:
+
+```json title="tsconfig.app.json"
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+### Setup Vite config
+
+Add the TanStack Router Vite plugin and enable tsconfig path resolution.
+
+```ts title="vite.config.ts"
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+
+export default defineConfig({
+  plugins: [TanStackRouterVite({ autoCodeSplitting: true }), react()],
+  resolve: {
+    tsconfigPaths: true,
+  },
+})
+```
+
+If you're using Vite 7 or lower, install the `vite-tsconfig-paths` plugin
+instead of using `resolve.tsconfigPaths`.
+
+```bash
+npm i -D vite-tsconfig-paths
+```
+
+```ts title="vite.config.ts"
+import tsconfigPaths from "vite-tsconfig-paths"
+
+export default defineConfig({
+  plugins: [
+    TanStackRouterVite({ autoCodeSplitting: true }),
+    react(),
+    tsconfigPaths(),
+  ],
+})
+```
+
+### Setup root route
+
+Create a root route that wraps your application with the Chakra `Provider`.
+
+```tsx title="src/routes/__root.tsx"
+import { Provider } from "@/components/ui/provider"
+import { Outlet, createRootRoute } from "@tanstack/react-router"
+
+export const Route = createRootRoute({
+  component: RootComponent,
+})
+
+function RootComponent() {
+  return (
+    <Provider>
+      <Outlet />
+    </Provider>
+  )
+}
+```
+
+### Setup entry point
+
+Create the router instance and render it with `RouterProvider`.
+
+```tsx title="src/main.tsx"
+import { RouterProvider, createRouter } from "@tanstack/react-router"
+import React from "react"
+import ReactDOM from "react-dom/client"
+import { routeTree } from "./routeTree.gen"
+
+const router = createRouter({ routeTree })
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router
+  }
+}
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>,
+)
+```
+
+### Create your first route
+
+Create a file-based route to start building your UI.
+
+```tsx title="src/routes/index.tsx"
+import { Button, HStack } from "@chakra-ui/react"
+import { createFileRoute } from "@tanstack/react-router"
+
+export const Route = createFileRoute("/")({
+  component: HomePage,
+})
+
+function HomePage() {
+  return (
+    <HStack>
+      <Button>Click me</Button>
+      <Button>Click me</Button>
+    </HStack>
+  )
+}
+```
+
+### Enjoy!
+
+With the power of the snippets and the primitive components from Chakra UI, you
+can build your UI faster with file-based routing from TanStack Router.
+
+:::

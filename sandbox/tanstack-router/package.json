@@ -1,7 +1,8 @@
 {
-  "name": "vite-ts",
+  "name": "tanstack-router-ts",
   "private": true,
-  "version": "1.0.2",
+  "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -9,12 +10,16 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "react-icons": "5.5.0",
-    "react": "^19.2.1",
+    "@tanstack/react-router": "^1.120.2",
+    "@tanstack/router-devtools": "^1.120.2",
     "next-themes": "^0.4.6",
-    "react-dom": "^19.2.1"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "workspace:*",
+    "@tanstack/router-plugin": "^1.120.2",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
