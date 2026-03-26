@@ -277,9 +277,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       "&[data-selected][data-in-range]": {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
-        borderRadius: "0",
-        borderStartRadius: "l2",
-        borderEndRadius: "l2",
         _hover: { bg: "colorPalette.solid" },
       },
       _disabled: {
