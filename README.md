@@ -27,6 +27,7 @@
   </a>
   <a href="https://discord.gg/chakra-ui">
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
+[![Stack Health](https://indiestack.ai/api/badge/health/chakra-ui/chakra-ui.svg)](https://indiestack.ai/audit?repo=chakra-ui/chakra-ui)
   </a>
 </p>
 
