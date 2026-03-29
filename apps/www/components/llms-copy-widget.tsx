@@ -30,7 +30,11 @@ export const LLMSCopyWidget = (props: { data: Docs }) => {
         mx="-1px"
         zIndex="1"
       />
-      <ActionMenu data={data} borderStartRadius="0">
+      <ActionMenu
+        data={data}
+        borderStartRadius="0"
+        aria-label="More Markdown options"
+      >
         <LuChevronDown />
       </ActionMenu>
     </ButtonGroup>
