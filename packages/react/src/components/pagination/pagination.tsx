@@ -137,8 +137,25 @@ export interface PaginationPageSizeChangeDetails
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface PaginationPageTextFormatDetails {
+  page: number
+  totalPages: number
+  pageRange: { start: number; end: number }
+  count: number
+}
+
+export type PaginationPageTextFormatFn = (
+  details: PaginationPageTextFormatDetails,
+) => string
+
+export type PaginationPageTextFormat =
+  | "short"
+  | "compact"
+  | "long"
+  | PaginationPageTextFormatFn
+
 export interface PaginationPageTextProps extends BoxProps {
-  format?: "short" | "compact" | "long" | undefined
+  format?: PaginationPageTextFormat | undefined
 }
 
 export const PaginationPageText = forwardRef<
@@ -148,6 +165,9 @@ export const PaginationPageText = forwardRef<
   const { format = "compact", ...rest } = props
   const { page, totalPages, pageRange, count } = usePaginationContext()
   const content = useMemo(() => {
+    if (typeof format === "function") {
+      return format({ page, totalPages, pageRange, count })
+    }
     if (format === "short") return `${page} / ${totalPages}`
     if (format === "compact") return `${page} of ${totalPages}`
     return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`

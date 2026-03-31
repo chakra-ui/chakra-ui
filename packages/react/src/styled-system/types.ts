@@ -6,6 +6,7 @@ import type {
   Nested,
   SystemStyleObject,
 } from "./css.types"
+import type { Tokens } from "./generated/token.gen"
 import type {
   RecipeCreatorFn,
   RecipeDefinition,
@@ -221,6 +222,8 @@ export interface Utility {
 /* -----------------------------------------------------------------------------
  * Breakpoints
  * -----------------------------------------------------------------------------*/
+
+export type BreakpointName = Tokens["breakpoints"] | "base"
 
 export interface BreakpointEntry {
   name: string

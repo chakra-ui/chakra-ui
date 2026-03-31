@@ -4,3 +4,4 @@ coverage
 .next
 *.hbs
 generated
+routeTree.gen.ts

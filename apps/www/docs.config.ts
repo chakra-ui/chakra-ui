@@ -39,6 +39,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
+            { title: "TanStack Router", url: "tanstack-router", status: "new" },
             { title: "Vite", url: "vite" },
           ],
         },
