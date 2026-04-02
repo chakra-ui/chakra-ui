@@ -75,14 +75,6 @@ const SearchFooter = ({ query }: { query: string }) => (
         <Text>Close</Text>
       </HStack>
     </HStack>
-    <Link
-      href={query ? `/search?q=${encodeURIComponent(query)}` : "/search"}
-      fontSize="xs"
-      color="fg.muted"
-      _hover={{ color: "fg" }}
-    >
-      Advanced search →
-    </Link>
   </HStack>
 )
 
