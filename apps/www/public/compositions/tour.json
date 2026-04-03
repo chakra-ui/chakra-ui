@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "tour",
+  "file": {
+    "name": "tour.tsx",
+    "content": "\"use client\"\n\nimport { Tour as ChakraTour } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport const TourRoot = ChakraTour.Root\nexport const TourBackdrop = ChakraTour.Backdrop\nexport const TourSpotlight = ChakraTour.Spotlight\nexport const TourPositioner = ChakraTour.Positioner\nexport const TourTitle = ChakraTour.Title\nexport const TourDescription = ChakraTour.Description\nexport const TourControl = ChakraTour.Control\nexport const TourProgressText = ChakraTour.ProgressText\nexport const TourCloseTrigger = ChakraTour.CloseTrigger\nexport const TourActionTrigger = ChakraTour.ActionTrigger\nexport const TourContext = ChakraTour.Context\nexport const TourRootProvider = ChakraTour.RootProvider\n\ninterface TourContentProps extends ChakraTour.ContentProps {\n  showArrow?: boolean\n}\n\nexport const TourContent = React.forwardRef<HTMLDivElement, TourContentProps>(\n  function TourContent(props, ref) {\n    const { children, showArrow = true, ...rest } = props\n    return (\n      <ChakraTour.Positioner>\n        <ChakraTour.Content ref={ref} {...rest}>\n          {showArrow && (\n            <ChakraTour.Arrow>\n              <ChakraTour.ArrowTip />\n            </ChakraTour.Arrow>\n          )}\n          <ChakraTour.CloseTrigger />\n          {children}\n        </ChakraTour.Content>\n      </ChakraTour.Positioner>\n    )\n  },\n)"
+  },
+  "component": "Tour"
+}

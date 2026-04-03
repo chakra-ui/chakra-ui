@@ -1,0 +1,267 @@
+---
+title: Tour
+description:
+  A guided tour that helps users understand the interface through a series of
+  interactive steps highlighting key features.
+links:
+  source: components/tour
+  storybook: components-tour--basic
+  recipe: tour
+  ark: https://ark-ui.com/docs/components/tour
+---
+
+<ExampleTabs name="tour-basic" />
+
+## Usage
+
+```jsx
+import { Tour, useTour } from "@chakra-ui/react"
+```
+
+```jsx
+const tour = useTour({ steps })
+
+<Tour.Root tour={tour}>
+  <Tour.Backdrop />
+  <Tour.Spotlight />
+  <Tour.Positioner>
+    <Tour.Content>
+      <Tour.Arrow>
+        <Tour.ArrowTip />
+      </Tour.Arrow>
+      <Tour.CloseTrigger />
+      <Tour.Title />
+      <Tour.Description />
+      <Tour.Control>
+        <Tour.ActionTriggers />
+      </Tour.Control>
+    </Tour.Content>
+  </Tour.Positioner>
+</Tour.Root>
+```
+
+## Shortcuts
+
+`Tour.ActionTriggers` renders all action buttons for the current step from its
+`actions` array. Each action can be a built-in string
+(`"next" | "prev" | "dismiss"`) or a custom handler.
+
+This works (manual mapping):
+
+```jsx
+<Tour.Context>
+  {(api) =>
+    api.step?.actions?.map((action) => (
+      <Tour.ActionTrigger key={action.label} action={action}>
+        {action.label}
+      </Tour.ActionTrigger>
+    ))
+  }
+</Tour.Context>
+```
+
+This is more concise:
+
+```jsx
+<Tour.ActionTriggers />
+```
+
+## Examples
+
+### Step Types
+
+Each step can be one of four types:
+
+- `dialog` - centered modal, not attached to any element
+- `tooltip` - points to a specific target element
+- `floating` - fixed position on screen, no target
+- `wait` - invisible step that pauses until a condition is met
+
+<ExampleTabs name="tour-with-step-types" />
+
+### Placement
+
+Control where the tooltip appears relative to its target using the `placement`
+property per step.
+
+<ExampleTabs name="tour-with-placement" />
+
+### Custom Actions
+
+Step actions can use custom functions instead of built-in strings. The function
+receives an action map with `next`, `prev`, `dismiss`, `skip`, and `goto`
+methods.
+
+<ExampleTabs name="tour-with-custom-actions" />
+
+### Callbacks
+
+Use `onStepChange` and `onStatusChange` callbacks to track tour progress. Status
+values include `started`, `completed`, `dismissed`, and `skipped`.
+
+<ExampleTabs name="tour-with-callbacks" />
+
+### Progress
+
+Use `Tour.ProgressText` to display the current step count. Access
+`getProgressPercent()` via `Tour.Context` for a percentage value.
+
+<ExampleTabs name="tour-with-progress" />
+
+### Without Backdrop
+
+Remove the backdrop overlay by omitting `Tour.Backdrop` from the render tree.
+
+<ExampleTabs name="tour-without-backdrop" />
+
+### Keyboard Navigation
+
+Enable keyboard navigation with `keyboardNavigation: true` on the `useTour`
+hook. Users can navigate with arrow keys and close with Escape.
+
+<ExampleTabs name="tour-with-keyboard" />
+
+### Onboarding
+
+A realistic app onboarding tour that walks new users through the main interface
+areas — sidebar navigation, header actions, and content area.
+
+<ExampleTabs name="tour-onboarding" />
+
+### Form Guide
+
+Guide users through a multi-field form. Uses a `wait` step that pauses the tour
+until the user fills in a required field.
+
+<ExampleTabs name="tour-form-guide" />
+
+### Feature Discovery
+
+A "What's New" style tour that highlights new and updated features using a
+floating intro step and targeted tooltips.
+
+<ExampleTabs name="tour-feature-discovery" />
+
+### Routing
+
+Use step effects to navigate between pages during a tour. Each step's `effect`
+function navigates to the correct route and calls `show()` when ready.
+
+<ExampleTabs name="tour-with-routing" />
+
+### Multi-Page
+
+An enhanced routing example with four pages — Dashboard, Analytics, Projects,
+and Settings. The tour automatically navigates between pages, highlighting
+content on each.
+
+<ExampleTabs name="tour-multi-page" />
+
+### Conditional
+
+Use `goto` in custom actions to create branching tours. Users choose a path and
+the tour adapts accordingly.
+
+<ExampleTabs name="tour-conditional" />
+
+### E-commerce
+
+A product page tour that walks shoppers through the gallery, variants, actions,
+and reviews.
+
+<ExampleTabs name="tour-ecommerce" />
+
+### Kanban Board
+
+Guide users through a Kanban-style project board, explaining each column and how
+to move cards between stages.
+
+<ExampleTabs name="tour-kanban" />
+
+### Data Table
+
+Walk users through a data table's toolbar, rows, and pagination controls.
+
+<ExampleTabs name="tour-data-table" />
+
+### Chat App
+
+A messaging app tour covering channels, the message area, and the compose input.
+
+<ExampleTabs name="tour-chat-app" />
+
+## Configuration
+
+These options can be passed to `useTour`:
+
+| Option                   | Type      | Default | Description                                         |
+| ------------------------ | --------- | ------- | --------------------------------------------------- |
+| `closeOnEscape`          | `boolean` | `true`  | Close the tour when pressing Escape                 |
+| `closeOnInteractOutside` | `boolean` | `true`  | Close when clicking outside tour content            |
+| `preventInteraction`     | `boolean` | `false` | Block page interaction while tour is active         |
+| `keyboardNavigation`     | `boolean` | `true`  | Navigate steps with arrow keys                      |
+| `spotlightOffset`        | `object`  | -       | Padding around spotlight `{ x: number, y: number }` |
+
+Per-step options:
+
+| Option      | Type      | Default | Description                             |
+| ----------- | --------- | ------- | --------------------------------------- |
+| `arrow`     | `boolean` | `true`  | Show arrow on tooltip steps             |
+| `backdrop`  | `boolean` | `true`  | Show backdrop for this step             |
+| `placement` | `string`  | -       | Tooltip placement relative to target    |
+| `offset`    | `object`  | -       | Step-level spotlight offset             |
+| `meta`      | `object`  | -       | Arbitrary metadata for custom rendering |
+
+## Props
+
+### Root
+
+<PropTable component="Tour" part="Root" />
+
+### Control
+
+<PropTable component="Tour" part="Control" />
+
+### Content
+
+<PropTable component="Tour" part="Content" />
+
+### Positioner
+
+<PropTable component="Tour" part="Positioner" />
+
+### Title
+
+<PropTable component="Tour" part="Title" />
+
+### ActionTrigger
+
+<PropTable component="Tour" part="ActionTrigger" />
+
+### CloseTrigger
+
+<PropTable component="Tour" part="CloseTrigger" />
+
+### ProgressText
+
+<PropTable component="Tour" part="ProgressText" />
+
+### Description
+
+<PropTable component="Tour" part="Description" />
+
+### Arrow
+
+<PropTable component="Tour" part="Arrow" />
+
+### ArrowTip
+
+<PropTable component="Tour" part="ArrowTip" />
+
+### Backdrop
+
+<PropTable component="Tour" part="Backdrop" />
+
+### Spotlight
+
+<PropTable component="Tour" part="Spotlight" />
