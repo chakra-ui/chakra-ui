@@ -173,6 +173,28 @@ export function createOverlay<T extends Dict>(
     publish()
   }
 
+  /**
+   * Wrapper that mounts the Component with `open: false` first, then
+   * transitions to the real `open` value after mount. This avoids a React
+   * StrictMode bug in Ark UI where mounting directly with `open: true` causes
+   * the scroll-lock / pointer-events cleanup to be lost during the simulated
+   * unmount/remount cycle, leaving `pointer-events: none` stuck on `<body>`.
+   *
+   * By deferring `open: true` to a `useEffect`, the Component always starts
+   * with `open: false` so StrictMode's double-invoke is harmless, and the
+   * subsequent prop change (`false → true`) is handled correctly by Ark UI.
+   */
+  function OverlayWrapper(props: T & CreateOverlayProps) {
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    // @ts-expect-error - TODO: fix this
+    return <Component {...props} open={mounted && (props.open ?? false)} />
+  }
+
   function Viewport() {
     const overlays = React.useSyncExternalStore(
       subscribe,
@@ -182,8 +204,7 @@ export function createOverlay<T extends Dict>(
     return (
       <>
         {overlays.map((props, index) => (
-          // @ts-expect-error - TODO: fix this
-          <Component key={index} {...props} />
+          <OverlayWrapper key={index} {...(props as T & CreateOverlayProps)} />
         ))}
       </>
     )
