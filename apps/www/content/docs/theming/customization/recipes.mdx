@@ -123,32 +123,29 @@ const Title = (props) => {
 }
 ```
 
-## Run Typegen After Theme Changes
+## TypeScript
 
-> ⚠️ **Important:** Whenever you update `theme.recipes` (or any theme config),
-> you must re-run `typegen` to keep your TypeScript types in sync. If you skip
-> this step, TypeScript will show errors on valid variant properties — errors
-> that look like broken config but are actually just stale generated types.
+Chakra can generate TypeScript types from your theme file. That output reflects
+your **entire** system—tokens, conditions, recipes, and utilities—not only the
+recipes you customize on this page.
 
-After any change to your theme, run:
+:::warning
+
+Whenever you edit the config passed to `createSystem`, run **`typegen` again**
+so your editor stays accurate. If the generated files fall behind, TypeScript
+may flag working code until you regenerate.
+
+:::
+
+Refresh types with:
 
 ```bash
-npx @chakra-ui/cli typegen
+npx @chakra-ui/cli typegen ./theme.ts
 ```
 
-Or, if you have it set up as a script:
-
-```bash
-npm run typegen
-```
-
-When to run typegen:
-
-- After adding or modifying `theme.recipes`
-- After adding or modifying `theme.tokens` or `theme.semanticTokens`
-- After adding or modifying `theme.textStyles` or `theme.layerStyles`
-
-See the [CLI docs](/docs/get-started/cli) for full typegen usage and options.
+Use the path to the file where you call `createSystem` (often `./theme.ts`). The
+[CLI reference](/docs/get-started/cli#chakra-typegen) explains watch mode,
+`postinstall` / CI, and monorepo setups.
 
 ## Slot Recipes
 
