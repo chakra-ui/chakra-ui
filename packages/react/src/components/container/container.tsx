@@ -21,7 +21,5 @@ export interface ContainerProps extends HTMLChakraProps<
 
 export const Container = withContext<HTMLDivElement, ContainerProps>("div")
 
-Container.displayName = "Container"
-
 export const ContainerPropsProvider =
   PropsProvider as React.Provider<ContainerBaseProps>

@@ -98,6 +98,7 @@ export interface JsxFactoryOptions<TProps> {
   forwardProps?: string[] | undefined
   defaultProps?: (Partial<TProps> & DataAttr) | undefined
   forwardAsChild?: boolean | undefined
+  displayName?: string | undefined
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }
 

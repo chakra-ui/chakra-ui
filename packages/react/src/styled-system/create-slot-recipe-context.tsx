@@ -5,6 +5,12 @@ import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
 import type { SystemStyleObject } from "./css.types"
+import {
+  getElementTypeDisplayName,
+  inferRootProviderDisplayName,
+  inferSlotRecipeComponentDisplayName,
+  upperFirst,
+} from "./display-name"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
@@ -22,14 +28,13 @@ interface WrapElementProps<P> {
 
 export interface WithRootProviderOptions<P> extends WrapElementProps<P> {
   defaultProps?: Partial<P> | undefined
+  displayName?: string | undefined
 }
 
 export interface WithProviderOptions<P>
   extends JsxFactoryOptions<P>, WrapElementProps<P> {}
 
 export interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
-
-const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   options: UseSlotRecipeOptions<R>,
@@ -91,7 +96,14 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     Component: React.ElementType<any>,
     options: WithRootProviderOptions<P> = {},
   ): React.FC<React.PropsWithoutRef<P>> {
-    const { defaultProps } = options
+    const { defaultProps, displayName: displayNameOverride } = options
+
+    const innerName = getElementTypeDisplayName(Component)
+
+    const inferredDisplayName = inferRootProviderDisplayName(
+      contextName,
+      innerName,
+    )
 
     const StyledComponent = (inProps: any) => {
       const propsContext = usePropsContext()
@@ -110,8 +122,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     }
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      displayNameOverride ?? inferredDisplayName ?? innerName
     return StyledComponent as any
   }
 
@@ -122,7 +134,16 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const { defaultProps, ...restOptions } = options ?? {}
+    const {
+      defaultProps,
+      displayName: displayNameOverride,
+      wrapElement,
+      ...restOptions
+    } = options ?? {}
+    const inferredDisplayName = inferSlotRecipeComponentDisplayName(
+      contextName,
+      String(slot),
+    )
     const SuperComponent = chakra(Component, {}, restOptions as any)
 
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
@@ -147,11 +168,13 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
         </StylesProvider>
       )
 
-      return options?.wrapElement?.(element, props as P) ?? element
+      return wrapElement?.(element, props as P) ?? element
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      displayNameOverride ??
+      inferredDisplayName ??
+      getElementTypeDisplayName(Component)
 
     return StyledComponent as any
   }
@@ -163,7 +186,12 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const SuperComponent = chakra(Component, {}, options as any)
+    const { displayName: displayNameOverride, ...chakraOptions } = options ?? {}
+    const inferredDisplayName =
+      slot != null && slot !== ""
+        ? inferSlotRecipeComponentDisplayName(contextName, String(slot))
+        : contextName
+    const SuperComponent = chakra(Component, {}, chakraOptions as any)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
       const { unstyled, ...restProps } = props
       const styles = useStyles()
@@ -180,8 +208,10 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      displayNameOverride ??
+      inferredDisplayName ??
+      getElementTypeDisplayName(Component)
     return StyledComponent as any
   }
 

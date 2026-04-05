@@ -17,7 +17,5 @@ export interface HeadingProps
 
 export const Heading = withContext<HTMLHeadingElement, HeadingProps>("h2")
 
-Heading.displayName = "Heading"
-
 export const HeadingPropsProvider =
   PropsProvider as React.Provider<HeadingProps>
