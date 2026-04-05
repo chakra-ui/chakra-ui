@@ -123,6 +123,33 @@ const Title = (props) => {
 }
 ```
 
+## Run Typegen After Theme Changes
+
+> ⚠️ **Important:** Whenever you update `theme.recipes` (or any theme config),
+> you must re-run `typegen` to keep your TypeScript types in sync. If you skip
+> this step, TypeScript will show errors on valid variant properties — errors
+> that look like broken config but are actually just stale generated types.
+
+After any change to your theme, run:
+
+```bash
+npx @chakra-ui/cli typegen
+```
+
+Or, if you have it set up as a script:
+
+```bash
+npm run typegen
+```
+
+When to run typegen:
+
+- After adding or modifying `theme.recipes`
+- After adding or modifying `theme.tokens` or `theme.semanticTokens`
+- After adding or modifying `theme.textStyles` or `theme.layerStyles`
+
+See the [CLI docs](/docs/get-started/cli) for full typegen usage and options.
+
 ## Slot Recipes
 
 To effectively override an existing slot recipe, we recommend connecting to its
