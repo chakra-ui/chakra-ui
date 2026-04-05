@@ -192,7 +192,9 @@ export function createOverlay<T extends Dict>(
     }, [])
 
     // @ts-expect-error - TODO: fix this
-    return <Component {...props} open={mounted && (props.open ?? false)} />
+    return (
+      <Component {...props} open={mounted ? (props.open ?? false) : false} />
+    )
   }
 
   function Viewport() {
