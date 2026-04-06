@@ -3,17 +3,20 @@
 import { Button, Text } from "@chakra-ui/react"
 import { FloatingPanel } from "compositions/ui/floating-panel"
 
-export const FloatingPanelRtl = () => {
+export const FloatingPanelNoOverflow = () => {
   return (
-    <FloatingPanel.Root dir="rtl" defaultSize={{ width: 320, height: 200 }}>
+    <FloatingPanel.Root
+      allowOverflow={false}
+      defaultSize={{ width: 300, height: 180 }}
+    >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
-          فتح اللوحة
+          Open Panel
         </Button>
       </FloatingPanel.Trigger>
-      <FloatingPanel.Content title="لوحة عائمة" showMaximize>
+      <FloatingPanel.Content title="No Overflow">
         <Text textStyle="sm">
-          هذه اللوحة تدعم اتجاه النص من اليمين إلى اليسار.
+          This panel cannot be dragged beyond the viewport edges.
         </Text>
       </FloatingPanel.Content>
     </FloatingPanel.Root>

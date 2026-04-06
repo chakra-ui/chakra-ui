@@ -1,53 +1,26 @@
 "use client"
 
-import { Button, FloatingPanel, IconButton } from "@chakra-ui/react"
-import { useRef } from "react"
-import { LuGripHorizontal, LuMinus, LuX } from "react-icons/lu"
+import { Button } from "@chakra-ui/react"
+import { FloatingPanel } from "compositions/ui/floating-panel"
 
 export const FloatingPanelAnchor = () => {
-  const triggerRef = useRef<HTMLButtonElement>(null)
-
   return (
-    <FloatingPanel.Root
-      defaultOpen
-      getAnchorPosition={(details) => {
-        const rect = details.triggerRect
-        if (!rect) return { x: 100, y: 100 }
-        return { x: rect.left, y: rect.bottom + 8 }
-      }}
-    >
-      <FloatingPanel.Trigger ref={triggerRef} asChild>
+    <FloatingPanel.Root>
+      <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
           Open anchored panel
         </Button>
       </FloatingPanel.Trigger>
-      <FloatingPanel.Positioner>
-        <FloatingPanel.Content width="300px" height="200px">
-          <FloatingPanel.Header>
-            <FloatingPanel.DragTrigger>
-              <LuGripHorizontal />
-              <FloatingPanel.Title>Anchored Panel</FloatingPanel.Title>
-            </FloatingPanel.DragTrigger>
-            <FloatingPanel.StageTrigger stage="minimized" asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                <LuMinus />
-              </IconButton>
-            </FloatingPanel.StageTrigger>
-            <FloatingPanel.CloseTrigger asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Close">
-                <LuX />
-              </IconButton>
-            </FloatingPanel.CloseTrigger>
-          </FloatingPanel.Header>
-          <FloatingPanel.Body>
-            <p>
-              This panel opens anchored to the trigger button position. Drag it
-              to reposition freely.
-            </p>
-          </FloatingPanel.Body>
-          <FloatingPanel.ResizeTriggers />
-        </FloatingPanel.Content>
-      </FloatingPanel.Positioner>
+      <FloatingPanel.Content
+        title="Anchored Panel"
+        width="300px"
+        height="200px"
+      >
+        <p>
+          This panel opens anchored to the trigger button position. Drag it to
+          reposition freely.
+        </p>
+      </FloatingPanel.Content>
     </FloatingPanel.Root>
   )
 }

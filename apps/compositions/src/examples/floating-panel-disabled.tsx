@@ -1,53 +1,46 @@
 "use client"
 
-import { Button, FloatingPanel, IconButton, Text } from "@chakra-ui/react"
-import { LuGripHorizontal, LuMinus, LuSquare, LuX } from "react-icons/lu"
+import {
+  Box,
+  Button,
+  FloatingPanel as ChakraFloatingPanel,
+  Text,
+} from "@chakra-ui/react"
+import { FloatingPanel } from "compositions/ui/floating-panel"
+import { useRef } from "react"
 
 export const FloatingPanelDisabled = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
   return (
-    <FloatingPanel.Root
-      defaultOpen
-      disabled
-      defaultPosition={{ x: 100, y: 100 }}
-      defaultSize={{ width: 320, height: 200 }}
+    <Box
+      ref={containerRef}
+      position="relative"
+      isolation="isolate"
+      h="400px"
+      w="full"
     >
-      <FloatingPanel.Trigger asChild>
-        <Button variant="outline" size="sm">
-          Open Panel
-        </Button>
-      </FloatingPanel.Trigger>
-      <FloatingPanel.Positioner>
-        <FloatingPanel.Content>
-          <FloatingPanel.Header>
-            <FloatingPanel.DragTrigger>
-              <LuGripHorizontal />
-              <FloatingPanel.Title>Disabled Panel</FloatingPanel.Title>
-            </FloatingPanel.DragTrigger>
-            <FloatingPanel.StageTrigger stage="minimized" asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                <LuMinus />
-              </IconButton>
-            </FloatingPanel.StageTrigger>
-            <FloatingPanel.StageTrigger stage="maximized" asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Maximize">
-                <LuSquare />
-              </IconButton>
-            </FloatingPanel.StageTrigger>
-            <FloatingPanel.CloseTrigger asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Close">
-                <LuX />
-              </IconButton>
-            </FloatingPanel.CloseTrigger>
-          </FloatingPanel.Header>
-          <FloatingPanel.Body>
-            <Text textStyle="sm">
-              This panel is disabled. Dragging, resizing, and stage controls are
-              all inactive.
-            </Text>
-          </FloatingPanel.Body>
-          <FloatingPanel.ResizeTriggers />
+      <ChakraFloatingPanel.Root
+        defaultOpen
+        persistRect
+        disabled
+        strategy="absolute"
+        getBoundaryEl={() => containerRef.current}
+        defaultPosition={{ x: 16, y: 60 }}
+        defaultSize={{ width: 320, height: 200 }}
+      >
+        <ChakraFloatingPanel.Trigger asChild>
+          <Button variant="outline" size="sm" m="3">
+            Open Panel
+          </Button>
+        </ChakraFloatingPanel.Trigger>
+        <FloatingPanel.Content title="Disabled Panel">
+          <Text textStyle="sm">
+            This panel is disabled. Dragging, resizing, and stage controls are
+            all inactive.
+          </Text>
         </FloatingPanel.Content>
-      </FloatingPanel.Positioner>
-    </FloatingPanel.Root>
+      </ChakraFloatingPanel.Root>
+    </Box>
   )
 }

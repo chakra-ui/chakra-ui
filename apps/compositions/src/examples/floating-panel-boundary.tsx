@@ -1,8 +1,8 @@
 "use client"
 
-import { Box, Button, FloatingPanel, IconButton, Text } from "@chakra-ui/react"
+import { Box, Button, Text } from "@chakra-ui/react"
+import { FloatingPanel } from "compositions/ui/floating-panel"
 import { useRef } from "react"
-import { LuGripHorizontal, LuMinus, LuX } from "react-icons/lu"
 
 export const FloatingPanelBoundary = () => {
   const boundaryRef = useRef<HTMLDivElement>(null)
@@ -18,50 +18,26 @@ export const FloatingPanelBoundary = () => {
       w="full"
       h="400px"
       p="4"
-      overflow="hidden"
     >
-      <Text textStyle="xs" color="fg.muted">
+      <Text textStyle="xs" color="fg.muted" mb="2">
         Drag boundary
       </Text>
       <FloatingPanel.Root
-        defaultOpen
-        strategy="absolute"
+        persistRect
         allowOverflow={false}
         getBoundaryEl={() => boundaryRef.current}
-        defaultPosition={{ x: 40, y: 60 }}
         defaultSize={{ width: 280, height: 180 }}
       >
         <FloatingPanel.Trigger asChild>
-          <Button variant="outline" size="sm" mt="2">
+          <Button variant="outline" size="sm">
             Open Panel
           </Button>
         </FloatingPanel.Trigger>
-        <FloatingPanel.Positioner>
-          <FloatingPanel.Content>
-            <FloatingPanel.Header>
-              <FloatingPanel.DragTrigger>
-                <LuGripHorizontal />
-                <FloatingPanel.Title>Bounded Panel</FloatingPanel.Title>
-              </FloatingPanel.DragTrigger>
-              <FloatingPanel.StageTrigger stage="minimized" asChild>
-                <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                  <LuMinus />
-                </IconButton>
-              </FloatingPanel.StageTrigger>
-              <FloatingPanel.CloseTrigger asChild>
-                <IconButton variant="ghost" size="2xs" aria-label="Close">
-                  <LuX />
-                </IconButton>
-              </FloatingPanel.CloseTrigger>
-            </FloatingPanel.Header>
-            <FloatingPanel.Body>
-              <Text textStyle="sm">
-                This panel cannot be dragged outside the dashed boundary box.
-              </Text>
-            </FloatingPanel.Body>
-            <FloatingPanel.ResizeTriggers />
-          </FloatingPanel.Content>
-        </FloatingPanel.Positioner>
+        <FloatingPanel.Content title="Bounded Panel">
+          <Text textStyle="sm">
+            This panel cannot be dragged outside the dashed boundary box.
+          </Text>
+        </FloatingPanel.Content>
       </FloatingPanel.Root>
     </Box>
   )

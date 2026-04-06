@@ -1,14 +1,13 @@
 "use client"
 
-import { Button, FloatingPanel, IconButton, Text } from "@chakra-ui/react"
-import { LuGripHorizontal, LuMinus, LuX } from "react-icons/lu"
+import { Button, Text } from "@chakra-ui/react"
+import { FloatingPanel } from "compositions/ui/floating-panel"
 
 export const FloatingPanelLazyMount = () => {
   return (
     <FloatingPanel.Root
       lazyMount
       unmountOnExit
-      defaultPosition={{ x: 100, y: 100 }}
       defaultSize={{ width: 320, height: 200 }}
     >
       <FloatingPanel.Trigger asChild>
@@ -16,33 +15,12 @@ export const FloatingPanelLazyMount = () => {
           Open Panel
         </Button>
       </FloatingPanel.Trigger>
-      <FloatingPanel.Positioner>
-        <FloatingPanel.Content>
-          <FloatingPanel.Header>
-            <FloatingPanel.DragTrigger>
-              <LuGripHorizontal />
-              <FloatingPanel.Title>Lazy Mount</FloatingPanel.Title>
-            </FloatingPanel.DragTrigger>
-            <FloatingPanel.StageTrigger stage="minimized" asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                <LuMinus />
-              </IconButton>
-            </FloatingPanel.StageTrigger>
-            <FloatingPanel.CloseTrigger asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Close">
-                <LuX />
-              </IconButton>
-            </FloatingPanel.CloseTrigger>
-          </FloatingPanel.Header>
-          <FloatingPanel.Body>
-            <Text textStyle="sm">
-              Content is only mounted when the panel is open and unmounted when
-              it closes, keeping the DOM clean.
-            </Text>
-          </FloatingPanel.Body>
-          <FloatingPanel.ResizeTriggers />
-        </FloatingPanel.Content>
-      </FloatingPanel.Positioner>
+      <FloatingPanel.Content title="Lazy Mount">
+        <Text textStyle="sm">
+          Content is only mounted when the panel is open and unmounted when it
+          closes, keeping the DOM clean.
+        </Text>
+      </FloatingPanel.Content>
     </FloatingPanel.Root>
   )
 }

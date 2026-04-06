@@ -53,6 +53,7 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
       minW: "xs",
       minH: "12",
       position: "relative",
+      "&[data-minimized]": { minH: "auto" },
       _open: {
         animationName: "scale-in, fade-in",
         animationDuration: "moderate",
@@ -103,8 +104,12 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
       overflow: "auto",
       p: "3",
       textStyle: "sm",
+      "[data-minimized] &": { display: "none" },
     },
     resizeTrigger: {
+      position: "absolute",
+      zIndex: "1",
+      "[data-minimized] &": { display: "none" },
       '&[data-axis="n"]': edge(
         { top: 0, left: 0, right: 0 },
         { h: "2" },
@@ -146,7 +151,23 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
         "sw-resize",
       ),
     },
-    stageTrigger: iconButton,
+    stageTrigger: {
+      ...iconButton,
+      // restore (stage="default"): only visible when minimized or maximized
+      '&[data-stage="default"]': {
+        display: "none",
+        "[data-minimized] &": { display: "inline-flex" },
+        "[data-maximized] &": { display: "inline-flex" },
+      },
+      // minimize: hidden when already minimized
+      '&[data-stage="minimized"]': {
+        "[data-minimized] &": { display: "none" },
+      },
+      // maximize: hidden when already maximized
+      '&[data-stage="maximized"]': {
+        "[data-maximized] &": { display: "none" },
+      },
+    },
     closeTrigger: iconButton,
   },
 })

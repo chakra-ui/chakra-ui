@@ -1,15 +1,8 @@
 "use client"
 
-import {
-  Button,
-  ButtonGroup,
-  FloatingPanel,
-  HStack,
-  IconButton,
-  Text,
-} from "@chakra-ui/react"
+import { Button, ButtonGroup, HStack, Text } from "@chakra-ui/react"
+import { FloatingPanel } from "compositions/ui/floating-panel"
 import { useState } from "react"
-import { LuGripHorizontal, LuMinus, LuX } from "react-icons/lu"
 
 const PRESETS = [
   { label: "S", size: { width: 240, height: 180 } },
@@ -22,8 +15,6 @@ export const FloatingPanelControlledSize = () => {
 
   return (
     <FloatingPanel.Root
-      defaultOpen
-      defaultPosition={{ x: 100, y: 100 }}
       size={size}
       onSizeChange={(details) => setSize(details.size)}
     >
@@ -45,32 +36,11 @@ export const FloatingPanelControlledSize = () => {
           ))}
         </ButtonGroup>
       </HStack>
-      <FloatingPanel.Positioner>
-        <FloatingPanel.Content>
-          <FloatingPanel.Header>
-            <FloatingPanel.DragTrigger>
-              <LuGripHorizontal />
-              <FloatingPanel.Title>Controlled Size</FloatingPanel.Title>
-            </FloatingPanel.DragTrigger>
-            <FloatingPanel.StageTrigger stage="minimized" asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                <LuMinus />
-              </IconButton>
-            </FloatingPanel.StageTrigger>
-            <FloatingPanel.CloseTrigger asChild>
-              <IconButton variant="ghost" size="2xs" aria-label="Close">
-                <LuX />
-              </IconButton>
-            </FloatingPanel.CloseTrigger>
-          </FloatingPanel.Header>
-          <FloatingPanel.Body>
-            <Text textStyle="sm" color="fg.muted">
-              {size.width} × {size.height}px
-            </Text>
-          </FloatingPanel.Body>
-          <FloatingPanel.ResizeTriggers />
-        </FloatingPanel.Content>
-      </FloatingPanel.Positioner>
+      <FloatingPanel.Content title="Controlled Size">
+        <Text textStyle="sm" color="fg.muted">
+          {size.width} × {size.height}px
+        </Text>
+      </FloatingPanel.Content>
     </FloatingPanel.Root>
   )
 }
