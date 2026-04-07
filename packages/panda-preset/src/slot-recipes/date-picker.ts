@@ -113,7 +113,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       boxShadow: "lg",
       color: "fg",
-      maxHeight: "var(--available-height)",
       "--date-picker-z-index": "zIndex.popover",
       zIndex: "calc(var(--date-picker-z-index) + var(--layer-index, 0))",
       outline: "none",
