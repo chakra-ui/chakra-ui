@@ -1,8 +1,26 @@
 import { createTokenDictionary } from "../src/styled-system/token-dictionary"
 import type { TokenDictionary } from "../src/styled-system/types"
 
+/** All tokens in the dictionary (stable array for snapshots). */
 const res = (dict: TokenDictionary) => {
   return dict.allTokens.map(({ name, value }) => ({ name, value }))
+}
+
+/** Resolved values for a fixed set of token names (stable object for snapshots). */
+const resByName = (dict: TokenDictionary, names: string[]) => {
+  const map = Object.fromEntries(dict.allTokens.map((t) => [t.name, t.value]))
+  return Object.fromEntries(names.map((n) => [n, map[n]]))
+}
+
+/** Rows for every branch of a semantic token (same `name`, different `condition`). */
+const resBranches = (dict: TokenDictionary, tokenName: string) => {
+  return dict.allTokens
+    .filter((t) => t.name === tokenName)
+    .map((t) => ({
+      condition: t.extensions.condition ?? "",
+      value: t.value,
+    }))
+    .sort((a, b) => a.condition.localeCompare(b.condition))
 }
 
 describe("token dictionary", () => {
@@ -99,6 +117,83 @@ describe("token dictionary", () => {
         {
           "name": "colors.colorPalette.primary",
           "value": "colors.colorPalette.primary",
+        },
+      ]
+    `)
+  })
+
+  test("comma-list token categories: array value is joined (fonts, shadows, …) — issue #10763", () => {
+    const dict = createTokenDictionary({
+      tokens: {
+        fonts: {
+          body: { value: "sans-serif" },
+          heading: { value: ["monospace"] },
+          display: { value: ["Inter", "system-ui", "sans-serif"] },
+        },
+        shadows: {
+          layered: {
+            value: [
+              "0 1px 2px rgb(0 0 0 / 0.05)",
+              "0 2px 4px rgb(0 0 0 / 0.1)",
+            ],
+          },
+        },
+      },
+    })
+
+    expect(
+      resByName(dict, [
+        "fonts.body",
+        "fonts.heading",
+        "fonts.display",
+        "shadows.layered",
+      ]),
+    ).toMatchInlineSnapshot(`
+      {
+        "fonts.body": "sans-serif",
+        "fonts.display": "Inter, system-ui, sans-serif",
+        "fonts.heading": "monospace",
+        "shadows.layered": "0 1px 2px rgb(0 0 0 / 0.05), 0 2px 4px rgb(0 0 0 / 0.1)",
+      }
+    `)
+  })
+
+  test("easings: array value becomes cubic-bezier()", () => {
+    const dict = createTokenDictionary({
+      tokens: {
+        easings: {
+          smooth: { value: [0.4, 0, 0.2, 1] },
+        },
+      },
+    })
+
+    expect(resByName(dict, ["easings.smooth"])).toMatchInlineSnapshot(`
+      {
+        "easings.smooth": "cubic-bezier(0.4, 0, 0.2, 1)",
+      }
+    `)
+  })
+
+  test("semantic comma-list tokens: array values in conditions are joined", () => {
+    const dict = createTokenDictionary({
+      semanticTokens: {
+        fonts: {
+          caption: {
+            value: { base: ["Inter"], md: ["Georgia", "serif"] },
+          },
+        },
+      },
+    })
+
+    expect(resBranches(dict, "fonts.caption")).toMatchInlineSnapshot(`
+      [
+        {
+          "condition": "base",
+          "value": "Inter",
+        },
+        {
+          "condition": "md",
+          "value": "Georgia, serif",
         },
       ]
     `)

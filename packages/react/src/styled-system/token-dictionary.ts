@@ -8,6 +8,7 @@ import {
   mapEntries,
   mapObject,
   memo,
+  omit,
   walkObject,
 } from "../utils"
 import { cssVar } from "./css-var"
@@ -20,6 +21,10 @@ import {
   getReferences,
   hasReference,
 } from "./references"
+import {
+  resolveSemanticConditionValues,
+  resolveTokenValue,
+} from "./resolve-token-value"
 import { tokenMiddlewares } from "./token-middleware"
 import { tokenTransforms } from "./token-transforms"
 import type {
@@ -114,9 +119,11 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
         const t = isString(entry) ? { value: entry } : entry
 
+        const resolved = resolveTokenValue(category, t.value)
+
         const token: Token = {
-          value: t.value,
-          originalValue: t.value,
+          value: resolved,
+          originalValue: resolved,
           name,
           path,
           extensions: {
@@ -145,19 +152,22 @@ export function createTokenDictionary(options: Options): TokenDictionary {
         const category = path[0]
 
         const name = formatTokenName(path)
-        const t = isString(entry.value)
-          ? { value: { base: entry.value } }
-          : entry
+        const t =
+          isString(entry.value) || Array.isArray(entry.value)
+            ? { value: { base: entry.value } }
+            : entry
+
+        const cond = resolveSemanticConditionValues(category, t.value)
 
         const token: Token = {
-          value: t.value.base || "",
-          originalValue: t.value.base || "",
+          value: cond.base ?? "",
+          originalValue: cond.base ?? "",
           name,
           path,
           extensions: {
             originalPath: path,
             category,
-            conditions: t.value,
+            conditions: cond,
             condition: "base",
             prop: formatTokenName(path.slice(1)),
           },
@@ -189,8 +199,10 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   }
 
   function buildCategoryMap(token: Token) {
-    const { category, prop } = token.extensions
+    const { category, prop, condition } = token.extensions
     if (!category) return
+
+    if (condition != null && condition !== "base") return
 
     if (!categoryMap.has(category)) {
       categoryMap.set(category, new Map())
@@ -421,7 +433,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   }
 
   function addConditionalTokens() {
-    allTokens.forEach((token) => {
+    allTokens.slice().forEach((token) => {
       const tokens = getConditionalTokens(token)
       if (!tokens || tokens.length === 0) return
       tokens.forEach((token) => {
@@ -503,12 +515,11 @@ function getConditionalTokens(token: Token) {
     const nextPath = filterBaseCondition(path)
     if (!nextPath.length) return
 
-    // Efficient shallow clone - only copy what we need to modify
     const nextToken: Token = {
       ...token,
       value,
       extensions: {
-        ...token.extensions,
+        ...omit(token.extensions, ["conditions"]),
         condition: nextPath.join(":"),
       },
     }

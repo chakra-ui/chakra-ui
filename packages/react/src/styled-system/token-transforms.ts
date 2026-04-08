@@ -29,7 +29,7 @@ export const addConditionalCssVariables: TokenTransformer = {
 
     refs.forEach((ref) => {
       const variable = formatCssVar(ref.split("."), prefix)
-      token.value = token.value.replace(`{${variable.ref}}`, variable)
+      token.value = token.value.replaceAll(`{${ref}}`, variable.ref)
     })
 
     return token.value
