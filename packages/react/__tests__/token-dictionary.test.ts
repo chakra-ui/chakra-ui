@@ -222,4 +222,16 @@ describe("token dictionary", () => {
       ]
     `)
   })
+
+  test("font tokens normalize array values", () => {
+    const dict = createTokenDictionary({
+      tokens: {
+        fonts: {
+          heading: { value: ["Roboto Mono", "monospace"] as any },
+        },
+      },
+    })
+
+    expect(dict.getByName("fonts.heading")?.value).toBe("Roboto Mono, monospace")
+  })
 })

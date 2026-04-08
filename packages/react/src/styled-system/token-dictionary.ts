@@ -44,6 +44,14 @@ const isToken = (value: any) => {
   return isObject(value) && Object.prototype.hasOwnProperty.call(value, "value")
 }
 
+function normalizeTokenValue(category: string, value: any) {
+  if (category === "fonts" && Array.isArray(value)) {
+    return value.join(", ")
+  }
+
+  return value
+}
+
 function expandBreakpoints(breakpoints?: Record<string, string>) {
   if (!breakpoints) return { breakpoints: {}, sizes: {} }
   return {
@@ -113,9 +121,10 @@ export function createTokenDictionary(options: Options): TokenDictionary {
         const name = formatTokenName(path)
 
         const t = isString(entry) ? { value: entry } : entry
+        const value = normalizeTokenValue(category, t.value)
 
         const token: Token = {
-          value: t.value,
+          value,
           originalValue: t.value,
           name,
           path,
@@ -148,9 +157,10 @@ export function createTokenDictionary(options: Options): TokenDictionary {
         const t = isString(entry.value)
           ? { value: { base: entry.value } }
           : entry
+        const value = normalizeTokenValue(category, t.value.base || "")
 
         const token: Token = {
-          value: t.value.base || "",
+          value,
           originalValue: t.value.base || "",
           name,
           path,
@@ -506,7 +516,7 @@ function getConditionalTokens(token: Token) {
     // Efficient shallow clone - only copy what we need to modify
     const nextToken: Token = {
       ...token,
-      value,
+      value: normalizeTokenValue(token.extensions.category, value),
       extensions: {
         ...token.extensions,
         condition: nextPath.join(":"),

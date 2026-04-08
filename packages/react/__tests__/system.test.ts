@@ -217,4 +217,25 @@ describe("system", () => {
       }
     `)
   })
+
+  test("should generate font token css from array values", () => {
+    const sys = createSystem({
+      theme: {
+        tokens: {
+          fonts: {
+            heading: { value: ["Roboto Mono", "monospace"] as any },
+          },
+        },
+      },
+    })
+
+    expect(sys.token("fonts.heading")).toBe("Roboto Mono, monospace")
+    expect(sys.getTokenCss()).toEqual({
+      "@layer tokens": {
+        "&:where(:root, :host)": {
+          "--chakra-fonts-heading": "Roboto Mono, monospace",
+        },
+      },
+    })
+  })
 })
