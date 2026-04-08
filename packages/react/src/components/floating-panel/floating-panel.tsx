@@ -31,7 +31,7 @@ export interface FloatingPanelRootProviderBaseProps
     UnstyledProp {}
 
 export interface FloatingPanelRootProviderProps extends FloatingPanelRootProviderBaseProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const FloatingPanelRootProvider =
@@ -47,7 +47,7 @@ export interface FloatingPanelRootBaseProps
     UnstyledProp {}
 
 export interface FloatingPanelRootProps extends FloatingPanelRootBaseProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const FloatingPanelRoot = withRootProvider<FloatingPanelRootProps>(

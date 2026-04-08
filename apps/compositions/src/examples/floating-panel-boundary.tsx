@@ -27,6 +27,7 @@ export const FloatingPanelBoundary = () => {
         allowOverflow={false}
         getBoundaryEl={() => boundaryRef.current}
         defaultSize={{ width: 280, height: 180 }}
+        minSize={{ width: 280, height: 180 }}
       >
         <FloatingPanel.Trigger asChild>
           <Button variant="outline" size="sm">

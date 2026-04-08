@@ -3,23 +3,21 @@
 import { Button } from "@chakra-ui/react"
 import { FloatingPanel } from "compositions/ui/floating-panel"
 
-export const FloatingPanelAnchor = () => {
+export const FloatingPanelClosed = () => {
   return (
     <FloatingPanel.Root>
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
-          Open anchored panel
+          Open Panel
         </Button>
       </FloatingPanel.Trigger>
       <FloatingPanel.Content
-        title="Anchored Panel"
-        width="300px"
-        height="200px"
+        title="Floating Panel"
+        width="320px"
+        height="240px"
       >
-        <p>
-          This panel opens anchored to the trigger button position. Drag it to
-          reposition freely.
-        </p>
+        <p>Drag the header to move this panel around.</p>
+        <p>Use the resize handles to change the panel size.</p>
       </FloatingPanel.Content>
     </FloatingPanel.Root>
   )

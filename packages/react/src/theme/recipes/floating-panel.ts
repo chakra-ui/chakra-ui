@@ -34,12 +34,12 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
       position: "fixed",
       zIndex: "popover",
       userSelect: "none",
-      smDown: {
-        insetX: "0",
-        bottom: "0",
-        top: "auto",
-        width: "100dvw!",
-      },
+      // smDown: {
+      //   insetX: "0",
+      //   bottom: "0",
+      //   top: "auto",
+      //   width: "100dvw!",
+      // },
     },
     content: {
       display: "flex",
@@ -53,22 +53,21 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
       minW: "xs",
       minH: "12",
       position: "relative",
-      "&[data-minimized]": { minH: "auto" },
       _open: {
         animationName: "scale-in, fade-in",
         animationDuration: "moderate",
       },
-      _closed: {
-        animationName: "scale-out, fade-out",
-        animationDuration: "faster",
-      },
-      smDown: {
-        width: "100dvw!",
-        height: "auto!",
-        maxH: "70dvh",
-        borderBottomRadius: "0",
-        borderTopRadius: "l2",
-      },
+      // _closed: {
+      //   animationName: "fade-out",
+      //   animationDuration: "faster",
+      // },
+      // smDown: {
+      //   width: "100dvw!",
+      //   height: "auto!",
+      //   maxH: "70dvh",
+      //   borderBottomRadius: "0",
+      //   borderTopRadius: "l2",
+      // },
     },
     control: {
       smDown: { display: "none" },

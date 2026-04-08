@@ -11,7 +11,9 @@ export const FloatingPanelControlled = () => {
     <FloatingPanel.Root
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
+      persistRect
       defaultSize={{ width: 320, height: 200 }}
+      minSize={{ width: 320, height: 200 }}
     >
       <HStack>
         <FloatingPanel.Trigger asChild>

@@ -7,7 +7,9 @@ export const FloatingPanelNoDrag = () => {
   return (
     <FloatingPanel.Root
       draggable={false}
+      persistRect
       defaultSize={{ width: 320, height: 200 }}
+      minSize={{ width: 320, height: 200 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">

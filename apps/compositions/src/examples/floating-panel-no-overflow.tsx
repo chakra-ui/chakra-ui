@@ -7,7 +7,9 @@ export const FloatingPanelNoOverflow = () => {
   return (
     <FloatingPanel.Root
       allowOverflow={false}
+      persistRect
       defaultSize={{ width: 300, height: 180 }}
+      minSize={{ width: 300, height: 180 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">

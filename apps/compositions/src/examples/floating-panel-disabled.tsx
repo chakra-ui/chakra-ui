@@ -28,6 +28,7 @@ export const FloatingPanelDisabled = () => {
         getBoundaryEl={() => containerRef.current}
         defaultPosition={{ x: 16, y: 60 }}
         defaultSize={{ width: 320, height: 200 }}
+        minSize={{ width: 320, height: 200 }}
       >
         <ChakraFloatingPanel.Trigger asChild>
           <Button variant="outline" size="sm" m="3">

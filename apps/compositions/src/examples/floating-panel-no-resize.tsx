@@ -7,6 +7,7 @@ export const FloatingPanelNoResize = () => {
   return (
     <FloatingPanel.Root
       resizable={false}
+      persistRect
       defaultSize={{ width: 320, height: 200 }}
     >
       <FloatingPanel.Trigger asChild>
