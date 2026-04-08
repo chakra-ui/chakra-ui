@@ -1,24 +1,8 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import type { Preview, ReactRenderer } from "@storybook/react-vite"
+import { ThemeProvider } from "next-themes"
 import React from "react"
-import { ColorModeProvider } from "../apps/compositions/src/ui/color-mode"
-import {
-  ChakraProvider,
-  createSystem,
-  defaultConfig,
-} from "../packages/react/src"
-
-const system = createSystem(defaultConfig, {
-  theme: {
-    tokens: {
-      fonts: {
-        heading: { value: "Inter, sans-serif" },
-        body: { value: "Inter, sans-serif" },
-        mono: { value: "Roboto Mono, monospace" },
-      },
-    },
-  },
-})
+import "./index.css"
 
 const preview: Preview = {
   parameters: {
@@ -47,14 +31,13 @@ const preview: Preview = {
     }),
     (Story, context) => {
       return (
-        <ColorModeProvider
+        <ThemeProvider
           forcedTheme={context.globals.theme}
           enableSystem={false}
+          attribute="class"
         >
-          <ChakraProvider value={system}>
-            <Story />
-          </ChakraProvider>
-        </ColorModeProvider>
+          <Story />
+        </ThemeProvider>
       )
     },
   ],

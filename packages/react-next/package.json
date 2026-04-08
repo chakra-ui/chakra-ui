@@ -1,0 +1,166 @@
+{
+  "name": "@chakra-ui/react-next",
+  "version": "3.33.0",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "dependencies": {
+    "@ark-ui/react": "^5.34.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/panda-preset": "workspace:*",
+    "@pandacss/dev": "^1.9.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "scripts": {
+    "prepack": "tsx ../../scripts/conditions.ts",
+    "postpack": "tsx ../../scripts/conditions.ts --restore",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typedocs": "tsx scripts/typedocs.ts",
+    "typecheck": "tsc --noEmit",
+    "codegen": "npx panda codegen"
+  },
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./anatomy": {
+      "dev": "./src/anatomy.ts",
+      "import": {
+        "types": "./dist/types/anatomy.d.ts",
+        "default": "./dist/esm/anatomy.js"
+      },
+      "require": {
+        "types": "./dist/types/anatomy.d.ts",
+        "default": "./dist/cjs/anatomy.cjs"
+      }
+    },
+    "./preset": {
+      "dev": "./src/preset.ts",
+      "import": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/esm/preset.js"
+      },
+      "require": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/cjs/preset.cjs"
+      }
+    },
+    "./preset-base": {
+      "dev": "./src/preset-base.ts",
+      "import": {
+        "types": "./dist/types/preset-base.d.ts",
+        "default": "./dist/esm/preset-base.js"
+      },
+      "require": {
+        "types": "./dist/types/preset-base.d.ts",
+        "default": "./dist/cjs/preset-base.cjs"
+      }
+    },
+    "./styled-system": {
+      "dev": "./src/styled-system/index.ts",
+      "import": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/esm/styled-system/index.js"
+      },
+      "require": {
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/cjs/styled-system/index.cjs"
+      }
+    },
+    "./collection": {
+      "dev": "./src/collection.ts",
+      "import": {
+        "types": "./dist/types/collection.d.ts",
+        "default": "./dist/esm/collection.js"
+      },
+      "require": {
+        "types": "./dist/types/collection.d.ts",
+        "default": "./dist/cjs/collection.cjs"
+      }
+    },
+    "./theme": {
+      "dev": "./src/theme/index.ts",
+      "import": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/esm/theme/index.js"
+      },
+      "require": {
+        "types": "./dist/types/theme/index.d.ts",
+        "default": "./dist/cjs/theme/index.cjs"
+      }
+    },
+    "./hooks": {
+      "dev": "./src/hooks/index.ts",
+      "import": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/esm/hooks/index.js"
+      },
+      "require": {
+        "types": "./dist/types/hooks/index.d.ts",
+        "default": "./dist/cjs/hooks/index.cjs"
+      }
+    },
+    "./*": {
+      "dev": "./src/components/*/index.ts",
+      "import": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/esm/components/*/index.js"
+      },
+      "require": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/cjs/components/*/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

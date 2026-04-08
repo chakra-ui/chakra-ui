@@ -1,0 +1,30 @@
+{
+  "name": "@chakra-ui/compositions-next",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "Registry for component compositions",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "chakra",
+    "ui",
+    "registry",
+    "components",
+    "compositions"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@chakra-ui/react-next": "workspace:*",
+    "next-themes": "0.4.6",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.13",
+    "@types/react-dom": "19.2.3",
+    "@types/react-payment-inputs": "1.1.4"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../../apps/compositions",
+    "../../apps/compositions/src/examples/.tsx"
+  ],
+  "compilerOptions": {
+    "customConditions": [
+      "dev"
+    ],
+    "paths": {
+      "compositions-next/*": [
+        "../../apps/compositions-next/src/*"
+      ]
+    }
+  }
+}

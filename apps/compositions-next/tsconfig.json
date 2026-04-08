@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "eslint.config.mjs"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strict": true,
+    "customConditions": [
+      "dev"
+    ],
+    "paths": {
+      "compositions-next/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

@@ -122,5 +122,9 @@
   "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=20.x"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^1.9.1",
+    "next-themes": "^0.4.6"
   }
 }
