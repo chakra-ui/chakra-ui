@@ -28,7 +28,7 @@ export const ScrollAreaVirtualization = () => {
     (): React.ComponentProps<"div"> => ({
       style: {
         height: `${virtualizer.getTotalSize()}px`,
-        width: "full",
+        width: "100%",
         position: "relative",
       },
     }),
