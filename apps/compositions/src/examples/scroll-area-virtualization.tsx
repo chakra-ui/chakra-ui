@@ -1,6 +1,6 @@
 "use client"
 
-import { ScrollArea } from "@chakra-ui/react"
+import { Box, ScrollArea } from "@chakra-ui/react"
 import { type VirtualItem, useVirtualizer } from "@tanstack/react-virtual"
 import { DecorativeBox } from "compositions/lib/decorative-box"
 import React, { useCallback, useMemo, useRef } from "react"
@@ -53,15 +53,17 @@ export const ScrollAreaVirtualization = () => {
   return (
     <ScrollArea.Root height="20rem" maxWidth="xl">
       <ScrollArea.Viewport ref={scrollRef}>
-        <ScrollArea.Content {...contentProps}>
-          {virtualizer.getVirtualItems().map((virtualItem) => {
-            const item = items[virtualItem.index]
-            return (
-              <div key={virtualItem.key} {...getItemProps(virtualItem)}>
-                <DecorativeBox w="full">{item.name}</DecorativeBox>
-              </div>
-            )
-          })}
+        <ScrollArea.Content>
+          <Box {...contentProps}>
+            {virtualizer.getVirtualItems().map((virtualItem) => {
+              const item = items[virtualItem.index]
+              return (
+                <div key={virtualItem.key} {...getItemProps(virtualItem)}>
+                  <DecorativeBox w="full">{item.name}</DecorativeBox>
+                </div>
+              )
+            })}
+          </Box>
         </ScrollArea.Content>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar bg="transparent" />
