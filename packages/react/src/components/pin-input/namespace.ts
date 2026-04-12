@@ -6,6 +6,8 @@ export {
   PinInputRootProvider as RootProvider,
   PinInputPropsProvider as PropsProvider,
   PinInputContext as Context,
+  PinInputGroup as Group,
+  PinInputSeparator as Separator,
   PinInputHiddenInput as HiddenInput,
 } from "./pin-input"
 
@@ -16,4 +18,6 @@ export type {
   PinInputRootProps as RootProps,
   PinInputRootProviderProps as RootProviderProps,
   PinInputValueChangeDetails as ValueChangeDetails,
+  PinInputGroupProps as GroupProps,
+  PinInputSeparatorProps as SeparatorProps,
 } from "./pin-input"

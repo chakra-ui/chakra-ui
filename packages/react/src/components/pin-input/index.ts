@@ -8,6 +8,8 @@ export {
   PinInputRoot,
   PinInputRootProvider,
   usePinInputStyles,
+  PinInputGroup,
+  PinInputSeparator,
 } from "./pin-input"
 
 export type {
@@ -17,6 +19,8 @@ export type {
   PinInputRootProps,
   PinInputRootProviderProps,
   PinInputValueChangeDetails,
+  PinInputGroupProps,
+  PinInputSeparatorProps,
 } from "./pin-input"
 
 export * as PinInput from "./namespace"

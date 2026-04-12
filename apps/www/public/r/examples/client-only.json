@@ -1,0 +1,34 @@
+{
+  "name": "client-only",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "client-only-basic",
+      "content": "\"use client\"\nexport const ClientOnlyBasic = () => {\n  return (\n    <ClientOnly>\n      <Text>This content is rendered only on the client.</Text>\n    </ClientOnly>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ClientOnly, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ClientOnly } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "client-only-render-prop",
+      "content": "\"use client\"\nexport const ClientOnlyRenderProp = () => {\n  return (\n    <ClientOnly fallback={<Skeleton height=\"12\" width=\"full\" maxW=\"sm\" />}>\n      {() => (\n        <Stack align=\"flex-start\" gap=\"1\" textStyle=\"sm\">\n          <Text>\n            Current URL: <Code>{window.location.href}</Code>\n          </Text>\n          <Text>\n            Screen width: <Code>{window.innerWidth}px</Code>\n          </Text>\n        </Stack>\n      )}\n    </ClientOnly>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ClientOnly, Code, Skeleton, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { ClientOnly } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "client-only-with-fallback",
+      "content": "\"use client\"\n\nfunction Clock() {\n  const [time, setTime] = useState(() => new Date().toLocaleTimeString())\n\n  useEffect(() => {\n    const interval = window.setInterval(() => {\n      setTime(new Date().toLocaleTimeString())\n    }, 1000)\n\n    return () => window.clearInterval(interval)\n  }, [])\n\n  return <Text>Current time: {time}</Text>\n}\n\nexport const ClientOnlyWithFallback = () => {\n  return (\n    <ClientOnly fallback={<Skeleton height=\"5\" width=\"32\" />}>\n      <Stack gap=\"1\">\n        <Text fontWeight=\"medium\">Client clock</Text>\n        <Clock />\n      </Stack>\n    </ClientOnly>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { ClientOnly, Skeleton, Stack, Text } from \"@chakra-ui/react\"",
+        "import { useEffect, useState } from \"react\""
+      ],
+      "importPath": "import { ClientOnly } from \"@chakra-ui/react\""
+    }
+  ]
+}

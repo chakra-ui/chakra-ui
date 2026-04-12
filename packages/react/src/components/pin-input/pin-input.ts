@@ -6,6 +6,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
 
@@ -99,3 +100,26 @@ export const PinInputHiddenInput = ArkPinInput.HiddenInput
 
 export interface PinInputValueChangeDetails
   extends ArkPinInput.ValueChangeDetails {}
+//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+export interface PinInputGroupProps
+  extends HTMLChakraProps<"div">, UnstyledProp {}
+
+export const PinInputGroup = chakra("div", {
+  base: {
+    display: "flex",
+    gap: "1",
+  },
+})
+PinInputGroup.displayName = "PinInputGroup"
+
+////////////////////////////////////////////////////////////////////////////////////
+export interface PinInputSeparatorProps
+  extends HTMLChakraProps<"span">, UnstyledProp {}
+export const PinInputSeparator = chakra("span", {
+  base: {
+    userSelect: "none",
+    alignSelf: "center",
+  },
+})
+PinInputSeparator.displayName = "PinInputSeparator"

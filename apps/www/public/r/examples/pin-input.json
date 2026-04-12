@@ -69,6 +69,15 @@
       "importPath": "import { PinInput } from \"@chakra-ui/react\""
     },
     {
+      "name": "pin-input-with-group",
+      "content": "export const PinInputWithGroup = () => {\n  return (\n    <PinInput.Root>\n      <PinInput.HiddenInput />\n      <PinInput.Control>\n        <PinInput.Group>\n          <PinInput.Input index={0} />\n          <PinInput.Input index={1} />\n          <PinInput.Input index={2} />\n        </PinInput.Group>\n\n        <PinInput.Separator\n  \talignSelf=\"center\"\n  \t\tpx=\"2\">\n  \t\t–\n\t</PinInput.Separator>\n\n        <PinInput.Group>\n          <PinInput.Input index={3} />\n          <PinInput.Input index={4} />\n          <PinInput.Input index={5} />\n        </PinInput.Group>\n      </PinInput.Control>\n    </PinInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { PinInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { PinInput } from \"@chakra-ui/react\""
+    },
+    {
       "name": "pin-input-with-hook-form",
       "content": "\"use client\"\nconst formSchema = z.object({\n  pin: z\n    .array(z.string().min(1))\n    .min(1, { message: \"Pin is required\" })\n    .length(4, { message: \"Pin must be 4 digits long\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const PinInputWithHookForm = () => {\n  const { handleSubmit, control, formState } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n        <Field.Root invalid={!!formState.errors.pin}>\n          <Controller\n            control={control}\n            name=\"pin\"\n            render={({ field }) => (\n              <PinInput.Root\n                value={field.value}\n                onValueChange={(e) => field.onChange(e.value)}\n              >\n                <PinInput.HiddenInput />\n                <PinInput.Control>\n                  <PinInput.Input index={0} />\n                  <PinInput.Input index={1} />\n                  <PinInput.Input index={2} />\n                  <PinInput.Input index={3} />\n                </PinInput.Control>\n              </PinInput.Root>\n            )}\n          />\n          <Field.ErrorText>{formState.errors.pin?.message}</Field.ErrorText>\n        </Field.Root>\n        <Button type=\"submit\">Submit</Button>\n      </Stack>\n    </form>\n  )\n}\n",
       "hasSnippet": false,
