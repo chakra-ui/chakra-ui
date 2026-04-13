@@ -18,6 +18,46 @@ export interface Sponsor {
   twitter: string | null
   github: string | null
   website: string | null
+  isBettingSponsor: boolean
+}
+
+const BETTING_KEYWORDS = [
+  "bet",
+  "betting",
+  "casino",
+  "gamble",
+  "gambling",
+  "poker",
+  "slots",
+  "slot",
+  "blackjack",
+  "roulette",
+  "sportsbook",
+  "bookmaker",
+  "bookie",
+  "wager",
+  "wagering",
+  "lottery",
+  "jackpot",
+  "odds",
+  "tipster",
+]
+
+const MIN_DONATION_AMOUNT = 10
+
+function isBettingRelated(sponsor: Omit<Sponsor, "isBettingSponsor">): boolean {
+  const fields = [
+    sponsor.name,
+    sponsor.website,
+    sponsor.description,
+    sponsor.company,
+  ]
+    .filter(Boolean)
+    .map((s) => s!.toLowerCase())
+
+  return fields.some((field) =>
+    BETTING_KEYWORDS.some((keyword) => field.includes(keyword)),
+  )
 }
 
 // Static fallback data for major sponsors (updated manually when needed)
@@ -101,31 +141,40 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
     `Filtered to ${activeMembers.length} active members (${result.data.collective.members.nodes.length - activeMembers.length} inactive filtered out)`,
   )
 
-  return activeMembers.map((member: any) => ({
-    MemberId: parseInt(member.id),
-    createdAt: member.createdAt,
-    type: member.account?.type || "INDIVIDUAL",
-    role: member.role,
-    tier: member.tier?.name || "Backer 💚",
-    isActive: member.isActive,
-    totalAmountDonated: member.totalDonations?.value || 0,
-    currency: "USD",
-    lastTransactionAt: member.createdAt,
-    lastTransactionAmount: 0,
-    profile: `https://opencollective.com/${member.account.id}`,
-    name: member.account.name,
-    company: null,
-    description: member.account?.description || null,
-    image: member.account?.imageUrl || "",
-    email: null,
-    twitter: member.account?.twitterHandle
-      ? `https://twitter.com/${member.account.twitterHandle}`
-      : null,
-    github: member.account?.githubHandle
-      ? `https://github.com/${member.account.githubHandle}`
-      : null,
-    website: member.account?.website || null,
-  }))
+  return activeMembers
+    .map((member: any) => {
+      const sponsor: Sponsor = {
+        MemberId: parseInt(member.id),
+        createdAt: member.createdAt,
+        type: member.account?.type || "INDIVIDUAL",
+        role: member.role,
+        tier: member.tier?.name || "Backer 💚",
+        isActive: member.isActive,
+        totalAmountDonated: member.totalDonations?.value || 0,
+        currency: "USD",
+        lastTransactionAt: member.createdAt,
+        lastTransactionAmount: 0,
+        profile: `https://opencollective.com/${member.account.id}`,
+        name: member.account.name,
+        company: null,
+        description: member.account?.description || null,
+        image: member.account?.imageUrl || "",
+        email: null,
+        twitter: member.account?.twitterHandle
+          ? `https://twitter.com/${member.account.twitterHandle}`
+          : null,
+        github: member.account?.githubHandle
+          ? `https://github.com/${member.account.githubHandle}`
+          : null,
+        website: member.account?.website || null,
+        isBettingSponsor: false,
+      }
+      sponsor.isBettingSponsor = isBettingRelated(sponsor)
+      return sponsor
+    })
+    .filter(
+      (sponsor: Sponsor) => sponsor.totalAmountDonated >= MIN_DONATION_AMOUNT,
+    )
 }
 
 export async function getSponsors(): Promise<Sponsor[]> {
@@ -163,13 +212,20 @@ export async function getSponsors(): Promise<Sponsor[]> {
         throw new Error(`Expected JSON, got ${contentType}`)
       }
 
-      const allSponsors: Sponsor[] = await response.json()
+      const allSponsors: Omit<Sponsor, "isBettingSponsor">[] =
+        await response.json()
 
       if (!Array.isArray(allSponsors)) {
         throw new Error("Invalid OpenCollective API response: expected array")
       }
 
-      const activeSponsors = allSponsors.filter((sponsor) => sponsor.isActive)
+      const activeSponsors = allSponsors
+        .filter((sponsor) => sponsor.isActive)
+        .filter((sponsor) => sponsor.totalAmountDonated >= MIN_DONATION_AMOUNT)
+        .map((sponsor) => ({
+          ...sponsor,
+          isBettingSponsor: isBettingRelated(sponsor),
+        }))
       console.log(
         `Successfully fetched ${activeSponsors.length} active sponsors from REST API (${allSponsors.length} total)`,
       )

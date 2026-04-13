@@ -77,11 +77,21 @@ const SponsorGroup = (props: {
     >
       {sponsors.map((sponsor, index) => {
         return (
-          <Center asChild key={index} px="4" focusRing="outside">
+          <Center
+            asChild
+            key={index}
+            px="4"
+            focusRing="outside"
+            css={
+              sponsor.isBettingSponsor ? { pointerEvents: "none" } : undefined
+            }
+          >
             <a
               href={sponsor.website ?? sponsor.profile}
               target="_blank"
               rel="noopener"
+              aria-disabled={sponsor.isBettingSponsor || undefined}
+              tabIndex={sponsor.isBettingSponsor ? -1 : undefined}
             >
               <SponsorImage
                 image={sponsor.image}
