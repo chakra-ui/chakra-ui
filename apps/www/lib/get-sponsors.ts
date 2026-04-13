@@ -39,7 +39,6 @@ const BETTING_KEYWORDS = [
   "wagering",
   "lottery",
   "jackpot",
-  "odds",
   "tipster",
 ]
 
