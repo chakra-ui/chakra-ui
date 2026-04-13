@@ -1,0 +1,20 @@
+name: Publish Preview
+
+on:
+  pull_request:
+  push:
+    branches: [main, feat/v4]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/composite-actions/install
+
+      - name: Build
+        run: pnpm build
+
+      - run: npx pkg-pr-new publish './packages/react-next' './packages/panda-preset'

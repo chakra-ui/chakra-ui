@@ -11,10 +11,11 @@ import { preserveDirectives } from "rollup-plugin-preserve-directives"
 interface Options {
   dir: string
   aliases: Alias[]
+  externalPatterns?: (string | RegExp)[]
 }
 
 export async function getConfig(options: Options): Promise<RollupOptions> {
-  const { dir, aliases } = options
+  const { dir, aliases, externalPatterns = [] } = options
 
   const packageJson = await import(resolve(dir, "package.json"))
 
@@ -52,7 +53,16 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
     ...Object.keys(packageJson.peerDependencies ?? {}),
   ]
 
-  const external = deps.length ? new RegExp(`^(${deps.join("|")})`) : undefined
+  const depsRegex = deps.length ? new RegExp(`^(${deps.join("|")})`) : undefined
+
+  const external = (id: string) => {
+    if (depsRegex?.test(id)) return true
+    for (const pattern of externalPatterns) {
+      if (typeof pattern === "string" ? id.includes(pattern) : pattern.test(id))
+        return true
+    }
+    return false
+  }
   const entries = await glob("src/**/*.{ts,tsx}")
 
   const outputs: RollupOptions["output"] = [

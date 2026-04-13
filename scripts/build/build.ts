@@ -12,10 +12,19 @@ interface BuildOptions {
   clean?: boolean
   dts?: boolean
   aliases?: Alias[]
+  externalPatterns?: (string | RegExp)[]
 }
 
 export async function buildProject(options: BuildOptions) {
-  const { dir, name, watch, clean, dts, aliases = [] } = options
+  const {
+    dir,
+    name,
+    watch,
+    clean,
+    dts,
+    aliases = [],
+    externalPatterns = [],
+  } = options
   console.log(`[${name}] Building...`)
 
   if (clean) {
@@ -24,7 +33,7 @@ export async function buildProject(options: BuildOptions) {
     rmSync(distDir, { recursive: true, force: true })
   }
 
-  const config = await getConfig({ dir, aliases })
+  const config = await getConfig({ dir, aliases, externalPatterns })
 
   if (watch) {
     //

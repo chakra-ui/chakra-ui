@@ -1,0 +1,32 @@
+export {
+  Root,
+  RootProvider,
+  Trigger,
+  Backdrop,
+  Positioner,
+  Content,
+  Title,
+  Description,
+  CloseTrigger,
+  Header,
+  Body,
+  Footer,
+  ActionTrigger,
+  Context,
+} from "./dialog"
+
+export type {
+  RootProps,
+  RootProviderProps,
+  TriggerProps,
+  BackdropProps,
+  PositionerProps,
+  ContentProps,
+  TitleProps,
+  DescriptionProps,
+  CloseTriggerProps,
+  HeaderProps,
+  BodyProps,
+  FooterProps,
+  ActionTriggerProps,
+} from "./dialog"

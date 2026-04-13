@@ -59,7 +59,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@pandacss/types": "^1.4.2"
+    "@pandacss/types": "^1.9.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",

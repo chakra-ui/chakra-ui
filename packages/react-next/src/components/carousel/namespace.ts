@@ -1,0 +1,30 @@
+export {
+  Root,
+  RootProvider,
+  ItemGroup,
+  Item,
+  Control,
+  PrevTrigger,
+  NextTrigger,
+  IndicatorGroup,
+  Indicator,
+  Indicators,
+  AutoplayTrigger,
+  ProgressText,
+  Context,
+} from "./carousel"
+
+export type {
+  RootProps,
+  RootProviderProps,
+  ItemGroupProps,
+  ItemProps,
+  ControlProps,
+  PrevTriggerProps,
+  NextTriggerProps,
+  IndicatorGroupProps,
+  IndicatorProps,
+  IndicatorsProps,
+  AutoplayTriggerProps,
+  ProgressTextProps,
+} from "./carousel"

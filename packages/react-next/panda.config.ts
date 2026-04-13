@@ -1,7 +1,6 @@
 import chakraPreset from "@chakra-ui/panda-preset"
 import { defineConfig } from "@pandacss/dev"
 
-// TODO: Figure how to extract styles correctly
 export default defineConfig({
   preflight: true,
   include: [
@@ -52,4 +51,5 @@ export default defineConfig({
   },
   outdir: "styled-system",
   importMap: "@chakra-ui/react-next",
+  jsxFactory: "chakra",
 })

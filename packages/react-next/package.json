@@ -1,13 +1,20 @@
 {
   "name": "@chakra-ui/react-next",
-  "version": "3.33.0",
-  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "version": "0.0.0",
+  "description": "Chakra UI components built on Panda CSS — zero Emotion runtime",
   "type": "module",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "styled-system/css",
+    "styled-system/jsx",
+    "styled-system/patterns",
+    "styled-system/recipes",
+    "styled-system/tokens",
+    "styled-system/types",
+    "styled-system/helpers.mjs"
   ],
   "sideEffects": false,
   "publishConfig": {
@@ -19,33 +26,32 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/react"
+    "directory": "packages/react-next"
   },
   "keywords": [
     "react",
     "ui",
     "design-system",
-    "react-components",
-    "uikit",
+    "panda-css",
+    "chakra-ui",
     "accessible",
-    "components",
-    "emotion",
-    "library",
-    "design-system"
+    "components"
   ],
-  "storybook": {
-    "title": "Chakra UI",
-    "url": "https://storybook.chakra-ui.com"
-  },
   "dependencies": {
-    "@ark-ui/react": "^5.34.0"
+    "@ark-ui/react": "^5.34.0",
+    "@chakra-ui/panda-preset": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "@pandacss/dev": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@pandacss/dev": {
+      "optional": false
+    }
   },
   "devDependencies": {
-    "@chakra-ui/panda-preset": "workspace:*",
     "@pandacss/dev": "^1.9.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -57,9 +63,8 @@
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
-    "typedocs": "tsx scripts/typedocs.ts",
     "typecheck": "tsc --noEmit",
-    "codegen": "npx panda codegen"
+    "codegen": "npx panda codegen && node scripts/post-codegen.mjs"
   },
   "exports": {
     ".": {
@@ -73,83 +78,8 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
-    "./anatomy": {
-      "dev": "./src/anatomy.ts",
-      "import": {
-        "types": "./dist/types/anatomy.d.ts",
-        "default": "./dist/esm/anatomy.js"
-      },
-      "require": {
-        "types": "./dist/types/anatomy.d.ts",
-        "default": "./dist/cjs/anatomy.cjs"
-      }
-    },
-    "./preset": {
-      "dev": "./src/preset.ts",
-      "import": {
-        "types": "./dist/types/preset.d.ts",
-        "default": "./dist/esm/preset.js"
-      },
-      "require": {
-        "types": "./dist/types/preset.d.ts",
-        "default": "./dist/cjs/preset.cjs"
-      }
-    },
-    "./preset-base": {
-      "dev": "./src/preset-base.ts",
-      "import": {
-        "types": "./dist/types/preset-base.d.ts",
-        "default": "./dist/esm/preset-base.js"
-      },
-      "require": {
-        "types": "./dist/types/preset-base.d.ts",
-        "default": "./dist/cjs/preset-base.cjs"
-      }
-    },
-    "./styled-system": {
-      "dev": "./src/styled-system/index.ts",
-      "import": {
-        "types": "./dist/types/styled-system/index.d.ts",
-        "default": "./dist/esm/styled-system/index.js"
-      },
-      "require": {
-        "types": "./dist/types/styled-system/index.d.ts",
-        "default": "./dist/cjs/styled-system/index.cjs"
-      }
-    },
-    "./collection": {
-      "dev": "./src/collection.ts",
-      "import": {
-        "types": "./dist/types/collection.d.ts",
-        "default": "./dist/esm/collection.js"
-      },
-      "require": {
-        "types": "./dist/types/collection.d.ts",
-        "default": "./dist/cjs/collection.cjs"
-      }
-    },
-    "./theme": {
-      "dev": "./src/theme/index.ts",
-      "import": {
-        "types": "./dist/types/theme/index.d.ts",
-        "default": "./dist/esm/theme/index.js"
-      },
-      "require": {
-        "types": "./dist/types/theme/index.d.ts",
-        "default": "./dist/cjs/theme/index.cjs"
-      }
-    },
-    "./hooks": {
-      "dev": "./src/hooks/index.ts",
-      "import": {
-        "types": "./dist/types/hooks/index.d.ts",
-        "default": "./dist/esm/hooks/index.js"
-      },
-      "require": {
-        "types": "./dist/types/hooks/index.d.ts",
-        "default": "./dist/cjs/hooks/index.cjs"
-      }
-    },
+    "./styled-system": "./styled-system/jsx/index.mjs",
+    "./styled-system/*": "./styled-system/*",
     "./*": {
       "dev": "./src/components/*/index.ts",
       "import": {

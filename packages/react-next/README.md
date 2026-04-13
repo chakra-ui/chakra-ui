@@ -1,89 +1,200 @@
-# Welcome to Chakra UI ⚡️
+# @chakra-ui/react-next
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+Chakra UI components built on [Panda CSS](https://panda-css.com/) -- zero
+Emotion runtime.
 
-- Works out of the box. Chakra UI contains a set of polished React components
-  that work out of the box.
+> **Experimental.** API may change.
 
-- Flexible & composable. Chakra UI components are built on top of a React UI
-  Primitive for endless composability.
+## Setup
 
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
-  specifications.
+### 1. Install
 
-- Dark Mode 😍: All components are dark mode compatible.
-
-## Looking for the documentation?
-
-https://chakra-ui.com
-
-## Installing Chakra UI
-
-⚡️Chakra UI is made up of multiple components and tools which you can import one
-by one. All you need to do is install the `@chakra-ui/react` package:
-
-```sh
-$ yarn add @chakra-ui/react
-# or
-$ npm install --save @chakra-ui/react
+```bash
+npm install @chakra-ui/react-next @pandacss/dev
 ```
 
-# Getting set up
+### 2. Create `panda.config.ts`
 
-To start using the components, please follow these steps:
+```ts
+import chakraPreset from "@chakra-ui/panda-preset"
+import { defineConfig } from "@pandacss/dev"
 
-1. Wrap your application in a `ThemeProvider` provided by **@chakra-ui/react**
-
-```jsx
-import { ColorModeProvider, ThemeProvider } from "@chakra-ui/react"
-
-const App = ({ children }) => (
-  <ThemeProvider>
-    <ColorModeProvider>{children}</ColorModeProvider>
-  </ThemeProvider>
-)
+export default defineConfig({
+  preflight: true,
+  include: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@chakra-ui/react-next/src/**/*.{ts,tsx}",
+  ],
+  presets: [chakraPreset],
+  jsxFramework: "react",
+  jsxFactory: "chakra",
+  outdir: "styled-system",
+})
 ```
 
-`ColorModeProvider` is a context that provides light mode and dark mode values
-to the components. It also comes with a function to toggle between light/dark
-mode.
+### 3. Add PostCSS plugin
 
-2. Now you can start using components like so!:
-
-```jsx
-import { Button } from "@chakra-ui/react"
-
-const App = () => <Button>I just consumed some ⚡️Chakra!</Button>
+```js
+// postcss.config.cjs
+module.exports = {
+  plugins: {
+    "@pandacss/postcss": {},
+  },
+}
 ```
 
-# Contributing
+### 4. Create CSS entry point
 
-Feel like contributing? That's awesome! We have a
-[contributing guide](../../CONTRIBUTING.md) to help guide you.
+```css
+/* src/index.css */
+@layer reset, base, tokens, recipes, utilities;
+```
 
-The components to be built come from the
-[Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
+Import it in your app entry:
 
-## Contributors ✨
+```tsx
+import "./index.css"
+```
 
-Thanks goes to these wonderful people
-([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+### 5. Run codegen
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td style="text-align: center"><a href="https://github.com/segunadebayo"><img src="https://avatars2.githubusercontent.com/u/6916170?v=4" width="100px;" alt="Segun Adebayo"/><br /><sub><b>Segun Adebayo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=segunadebayo" title="Code">💻</a> <a href="#maintenance-segunadebayo" title="Maintenance">🚧</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=segunadebayo" title="Documentation">📖</a> <a href="#example-segunadebayo" title="Examples">💡</a> <a href="#design-segunadebayo" title="Design">🎨</a></td>
-    <td style="text-align: center"><a href="https://github.com/tioluwani94"><img src="https://avatars1.githubusercontent.com/u/11310046?v=4" width="100px;" alt="Tioluwani Kolawole"/><br /><sub><b>Tioluwani Kolawole</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tioluwani94" title="Documentation">📖</a> <a href="#example-tioluwani94" title="Examples">💡</a> <a href="#maintenance-tioluwani94" title="Maintenance">🚧</a></td>
-  </tr>
-</table>
+```bash
+npx panda codegen
+```
 
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
+### 6. Use components
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+```tsx
+import { Accordion, chakra } from "@chakra-ui/react-next"
 
-This project follows the
-[all-contributors](https://github.com/all-contributors/all-contributors)
-specification. Contributions of any kind welcome!
+export function App() {
+  return (
+    <Accordion.Root>
+      <Accordion.Item value="intro">
+        <Accordion.ItemTrigger>What is this?</Accordion.ItemTrigger>
+        <Accordion.ItemContent>
+          <chakra.p>Chakra UI on Panda CSS.</chakra.p>
+        </Accordion.ItemContent>
+      </Accordion.Item>
+    </Accordion.Root>
+  )
+}
+```
+
+## Customization
+
+Extend tokens, recipes, and conditions in your `panda.config.ts` using
+`theme.extend`:
+
+```ts
+import chakraPreset from "@chakra-ui/panda-preset"
+import { defineConfig } from "@pandacss/dev"
+
+export default defineConfig({
+  presets: [chakraPreset],
+  include: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@chakra-ui/react-next/src/**/*.{ts,tsx}",
+  ],
+  jsxFramework: "react",
+  jsxFactory: "chakra",
+  outdir: "styled-system",
+  theme: {
+    extend: {
+      tokens: {
+        colors: {
+          brand: {
+            500: { value: "#6366f1" },
+            600: { value: "#4f46e5" },
+          },
+        },
+      },
+      semanticTokens: {
+        colors: {
+          "brand.solid": {
+            value: {
+              _light: "{colors.brand.500}",
+              _dark: "{colors.brand.600}",
+            },
+          },
+        },
+      },
+    },
+  },
+})
+```
+
+Run `npx panda codegen` after changes.
+
+> **Important:** Use `theme.extend` (not `theme`) to merge with Chakra defaults.
+> Using `theme` directly replaces the entire theme.
+
+### Static CSS
+
+For styles that use runtime values, pre-generate them with `staticCss`:
+
+```ts
+export default defineConfig({
+  // ...
+  staticCss: {
+    css: [
+      {
+        properties: {
+          color: ["red.500", "blue.500"],
+          backgroundColor: ["gray.50", "white"],
+        },
+      },
+    ],
+    // Generate all recipe variants (useful for Storybook)
+    recipes: "*",
+  },
+})
+```
+
+### Dynamic values
+
+Use `token()` for runtime values:
+
+```tsx
+import { css } from "../styled-system/css"
+import { token } from "../styled-system/tokens"
+
+function Component({ color }) {
+  return (
+    <div
+      className={css({ color: "var(--color)" })}
+      style={{ "--color": token(`colors.${color}`) }}
+    >
+      Dynamic color
+    </div>
+  )
+}
+```
+
+## Preview builds
+
+Install from any PR without waiting for npm:
+
+```bash
+npm i https://pkg.pr.new/chakra-ui/chakra-ui/@chakra-ui/react-next@<commit-or-pr>
+npm i https://pkg.pr.new/chakra-ui/chakra-ui/@chakra-ui/panda-preset@<commit-or-pr>
+```
+
+## Available components
+
+- `Accordion` -- collapsible content sections
+- `Badge` -- small label / tag
+- `Carousel` -- image / content slider
+- `Dialog` -- modal dialog
+
+## JSX Factory
+
+The `chakra` factory creates styled elements with Panda CSS style props:
+
+```tsx
+import { chakra } from "@chakra-ui/react-next"
+
+;<chakra.div p="4" bg="blue.500" color="white">
+  Styled div
+</chakra.div>
+```

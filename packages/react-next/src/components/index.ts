@@ -1,2 +1,5 @@
+export * from "./accordion"
 export * from "./badge"
+export * from "./carousel"
+export * from "./dialog"
 export * from "../../styled-system/jsx"
