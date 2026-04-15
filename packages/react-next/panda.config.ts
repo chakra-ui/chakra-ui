@@ -49,7 +49,7 @@ export default defineConfig({
       },
     },
   },
-  outdir: "styled-system",
-  importMap: "@chakra-ui/react-next",
+  outdir: "../styled-system-next",
+  importMap: "@chakra-ui/styled-system",
   jsxFactory: "chakra",
 })

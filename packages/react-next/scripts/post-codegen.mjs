@@ -19,7 +19,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, "..")
 
 const TEMP_DIR = resolve(root, "src/temp")
-const JSX_DIR = resolve(root, "styled-system/jsx")
+const JSX_DIR = resolve(root, "../styled-system-next/jsx")
 
 // --- Step 1: Copy manual files into styled-system/jsx/ ---
 

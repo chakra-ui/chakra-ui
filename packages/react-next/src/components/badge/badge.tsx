@@ -3,8 +3,8 @@
 import {
   type HTMLChakraProps,
   createRecipeContext,
-} from "../../../styled-system/jsx"
-import { type BadgeVariantProps, badge } from "../../../styled-system/recipes"
+} from "@chakra-ui/styled-system/jsx"
+import { type BadgeVariantProps, badge } from "@chakra-ui/styled-system/recipes"
 
 export const { PropsProvider, withContext } = createRecipeContext(badge)
 

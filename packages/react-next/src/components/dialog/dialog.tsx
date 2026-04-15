@@ -1,9 +1,9 @@
 "use client"
 
 import { Dialog as ArkDialog, useDialogContext } from "@ark-ui/react/dialog"
+import { chakra, createSlotRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { dialog } from "@chakra-ui/styled-system/recipes"
 import { type ComponentProps, forwardRef } from "react"
-import { chakra, createSlotRecipeContext } from "../../../styled-system/jsx"
-import { dialog } from "../../../styled-system/recipes"
 
 const { withProvider, withContext } = createSlotRecipeContext(dialog)
 

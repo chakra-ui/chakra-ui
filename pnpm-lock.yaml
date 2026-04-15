@@ -774,6 +774,9 @@ importers:
       '@chakra-ui/panda-preset':
         specifier: workspace:*
         version: link:../panda-preset
+      '@chakra-ui/styled-system':
+        specifier: workspace:*
+        version: link:../styled-system-next
     devDependencies:
       '@pandacss/dev':
         specifier: ^1.9.0
@@ -784,6 +787,12 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+
+  packages/styled-system-next:
+    dependencies:
+      react:
+        specifier: 19.2.4
+        version: 19.2.4
 
   sandbox/iframe:
     dependencies:

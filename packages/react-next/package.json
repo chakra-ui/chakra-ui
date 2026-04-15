@@ -6,16 +6,7 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "styled-system/css",
-    "styled-system/jsx",
-    "styled-system/patterns",
-    "styled-system/recipes",
-    "styled-system/tokens",
-    "styled-system/types",
-    "styled-system/helpers.mjs"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
@@ -39,7 +30,8 @@
   ],
   "dependencies": {
     "@ark-ui/react": "^5.34.0",
-    "@chakra-ui/panda-preset": "workspace:*"
+    "@chakra-ui/panda-preset": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -78,8 +70,6 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
-    "./styled-system": "./styled-system/jsx/index.mjs",
-    "./styled-system/*": "./styled-system/*",
     "./*": {
       "dev": "./src/components/*/index.ts",
       "import": {

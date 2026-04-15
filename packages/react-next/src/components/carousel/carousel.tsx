@@ -4,9 +4,9 @@ import {
   Carousel as ArkCarousel,
   useCarouselContext,
 } from "@ark-ui/react/carousel"
+import { chakra, createSlotRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { carousel } from "@chakra-ui/styled-system/recipes"
 import { type ComponentProps, forwardRef } from "react"
-import { chakra, createSlotRecipeContext } from "../../../styled-system/jsx"
-import { carousel } from "../../../styled-system/recipes"
 
 const { withProvider, withContext } = createSlotRecipeContext(carousel)
 

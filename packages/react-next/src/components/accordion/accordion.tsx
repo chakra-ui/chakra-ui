@@ -1,9 +1,9 @@
 "use client"
 
 import { Accordion as ArkAccordion } from "@ark-ui/react/accordion"
+import { chakra, createSlotRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { accordion } from "@chakra-ui/styled-system/recipes"
 import type { ComponentProps } from "react"
-import { chakra, createSlotRecipeContext } from "../../../styled-system/jsx"
-import { accordion } from "../../../styled-system/recipes"
 
 const { withProvider, withContext } = createSlotRecipeContext(accordion)
 
