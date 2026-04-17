@@ -72,6 +72,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
       entryFileNames: "[name].js",
       dir: resolve(dir, "dist/esm"),
       preserveModules: true,
+      strict: false,
     },
   ]
 

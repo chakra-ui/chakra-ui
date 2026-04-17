@@ -21,8 +21,20 @@ const getDefaultBasePath = () => {
   const cwd = process.cwd()
 
   if (!process.env.LOCAL) {
-    const root = req.resolve("@chakra-ui/react", { paths: [cwd] })
-    return resolve(root, "..", "..", "types", "styled-system", "generated")
+    try {
+      const root = req.resolve("@chakra-ui/react", { paths: [cwd] })
+      return resolve(root, "..", "..", "types", "styled-system", "generated")
+    } catch {
+      return join(
+        cwd,
+        "node_modules",
+        "@chakra-ui",
+        "react",
+        "types",
+        "styled-system",
+        "generated",
+      )
+    }
   }
 
   const root = join(cwd, "packages", "react", "src")

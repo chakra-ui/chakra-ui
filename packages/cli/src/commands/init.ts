@@ -1,7 +1,7 @@
 import * as p from "@clack/prompts"
 import { Command } from "commander"
 import { execSync } from "node:child_process"
-import { existsSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"
 
 const PANDA_CONFIG = `import chakraPreset from "@chakra-ui/panda-preset"
@@ -23,18 +23,35 @@ export default defineConfig({
 
 const POSTCSS_CONFIG = `module.exports = {
   plugins: {
-    "@pandacss/postcss": {},
+    "@pandacss/dev/postcss": {},
   },
 }
 `
 
-const CSS_ENTRY = `@layer reset, base, tokens, recipes, utilities;
-`
+const CSS_LAYER = `@layer reset, base, tokens, recipes, utilities;\n`
+
+function isNextJs(cwd: string): boolean {
+  const candidates = ["next.config.js", "next.config.mjs", "next.config.ts"]
+  return candidates.some((f) => existsSync(resolve(cwd, f)))
+}
+
+function prependLayer(filePath: string) {
+  if (!existsSync(filePath)) return false
+  const content = readFileSync(filePath, "utf-8")
+  if (content.includes("@layer")) return false
+  writeFileSync(filePath, CSS_LAYER + "\n" + content)
+  return true
+}
 
 export const InitCommand = new Command("init")
   .description("Initialize Chakra UI with Panda CSS in your project")
   .action(async () => {
     const cwd = process.cwd()
+    const isNext = isNextJs(cwd)
+
+    if (isNext) {
+      p.log.info("Detected Next.js project")
+    }
 
     // 1. Create panda.config.ts
     const configPath = resolve(cwd, "panda.config.ts")
@@ -45,12 +62,33 @@ export const InitCommand = new Command("init")
       p.log.success("Created panda.config.ts")
     }
 
-    // 2. Create postcss.config.cjs
-    const postcssPath = resolve(cwd, "postcss.config.cjs")
-    if (existsSync(postcssPath)) {
-      p.log.warn("postcss.config.cjs already exists, skipping")
+    // 2. PostCSS config — replace existing if needed
+    const postcssTargets = [
+      "postcss.config.mjs",
+      "postcss.config.js",
+      "postcss.config.cjs",
+    ]
+
+    const existingPostcss = postcssTargets.find((f) =>
+      existsSync(resolve(cwd, f)),
+    )
+
+    if (existingPostcss) {
+      const existingPath = resolve(cwd, existingPostcss)
+      const content = readFileSync(existingPath, "utf-8")
+
+      if (content.includes("@pandacss")) {
+        p.log.warn(`${existingPostcss} already configured for Panda, skipping`)
+      } else {
+        // Replace with Panda postcss config
+        unlinkSync(existingPath)
+        writeFileSync(resolve(cwd, "postcss.config.cjs"), POSTCSS_CONFIG)
+        p.log.success(
+          `Replaced ${existingPostcss} with Panda CSS postcss config`,
+        )
+      }
     } else {
-      writeFileSync(postcssPath, POSTCSS_CONFIG)
+      writeFileSync(resolve(cwd, "postcss.config.cjs"), POSTCSS_CONFIG)
       p.log.success("Created postcss.config.cjs")
     }
 
@@ -76,19 +114,49 @@ export const InitCommand = new Command("init")
       p.log.warn("No tsconfig.json found — create one and add paths manually")
     }
 
-    // 4. Create CSS entry point if src/ exists
-    const srcDir = resolve(cwd, "src")
-    const cssPath = resolve(srcDir, "index.css")
-    if (existsSync(srcDir) && !existsSync(cssPath)) {
-      writeFileSync(cssPath, CSS_ENTRY)
-      p.log.success("Created src/index.css")
+    // 4. Add @layer declaration to CSS entry point
+    if (isNext) {
+      // Next.js: prepend to src/app/globals.css
+      const globalsPath = resolve(cwd, "src/app/globals.css")
+      if (prependLayer(globalsPath)) {
+        p.log.success("Added @layer declaration to src/app/globals.css")
+      } else if (existsSync(globalsPath)) {
+        p.log.warn("src/app/globals.css already has @layer declaration")
+      } else {
+        // Fallback: create src/app/globals.css
+        writeFileSync(globalsPath, CSS_LAYER)
+        p.log.success("Created src/app/globals.css with @layer declaration")
+      }
+    } else {
+      // Vite / other: prepend to src/index.css
+      const cssPath = resolve(cwd, "src/index.css")
+      if (existsSync(cssPath)) {
+        if (prependLayer(cssPath)) {
+          p.log.success("Added @layer declaration to src/index.css")
+        }
+      } else if (existsSync(resolve(cwd, "src"))) {
+        writeFileSync(cssPath, CSS_LAYER)
+        p.log.success("Created src/index.css")
+      }
     }
 
-    // 5. Run codegen
+    // 5. Add styled-system to .gitignore
+    const gitignorePath = resolve(cwd, ".gitignore")
+    if (existsSync(gitignorePath)) {
+      const content = readFileSync(gitignorePath, "utf-8")
+      if (!content.includes("styled-system")) {
+        writeFileSync(
+          gitignorePath,
+          content.trimEnd() + "\n\n# Panda CSS\nstyled-system\n",
+        )
+        p.log.success("Added styled-system to .gitignore")
+      }
+    }
+
+    // 6. Run codegen (uses chakra codegen which patches styled-system)
     p.log.step("Running codegen...")
     try {
-      execSync("npx panda codegen", { cwd, stdio: "inherit" })
-      p.log.success("Codegen complete")
+      execSync("npx chakra codegen", { cwd, stdio: "inherit" })
     } catch {
       p.log.error("Codegen failed — run 'npx chakra codegen' manually")
     }
