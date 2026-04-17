@@ -41,7 +41,7 @@ export const CarouselWithDialog = () => {
               <Carousel.Root slideCount={items.length} w="full" h="full">
                 <Carousel.Control justifyContent="center" px="4" gap="4">
                   <Carousel.PrevTrigger asChild>
-                    <IconButton size="xs" variant="ghost">
+                    <IconButton size="xs" variant="ghost" aria-label="Previous slide">
                       <LuChevronLeft />
                     </IconButton>
                   </Carousel.PrevTrigger>
@@ -61,7 +61,7 @@ export const CarouselWithDialog = () => {
                   </Carousel.ItemGroup>
 
                   <Carousel.NextTrigger asChild>
-                    <IconButton size="xs" variant="ghost">
+                    <IconButton size="xs" variant="ghost" aria-label="Next slide">
                       <LuChevronRight />
                     </IconButton>
                   </Carousel.NextTrigger>

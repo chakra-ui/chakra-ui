@@ -20,13 +20,13 @@ export const CarouselVariableSize = () => {
     >
       <Carousel.Control gap="4">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Previous slide">
             <LuChevronLeft />
           </IconButton>
         </Carousel.PrevTrigger>
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Next slide">
             <LuChevronRight />
           </IconButton>
         </Carousel.NextTrigger>

@@ -9,7 +9,7 @@ export const CarouselWithFloatingArrow = () => {
     <Carousel.Root slideCount={items.length} maxW="xl" mx="auto" gap="4">
       <Carousel.Control justifyContent="center" gap="4" width="full">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="outline">
+          <IconButton size="xs" variant="outline" aria-label="Previous slide">
             <LuArrowLeft />
           </IconButton>
         </Carousel.PrevTrigger>
@@ -25,7 +25,7 @@ export const CarouselWithFloatingArrow = () => {
         </Carousel.ItemGroup>
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="outline">
+          <IconButton size="xs" variant="outline" aria-label="Next slide">
             <LuArrowRight />
           </IconButton>
         </Carousel.NextTrigger>

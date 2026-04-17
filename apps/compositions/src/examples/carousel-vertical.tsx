@@ -22,7 +22,7 @@ export const CarouselVertical = () => {
       </Carousel.ItemGroup>
       <Carousel.Control h="100%" justifyContent="space-between" gap="4">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Previous slide">
             <LuChevronUp />
           </IconButton>
         </Carousel.PrevTrigger>
@@ -30,7 +30,7 @@ export const CarouselVertical = () => {
         <Carousel.Indicators />
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Next slide">
             <LuChevronDown />
           </IconButton>
         </Carousel.NextTrigger>

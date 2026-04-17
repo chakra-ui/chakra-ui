@@ -19,12 +19,12 @@ export const CarouselComposition = () => {
         <Span fontWeight="medium">Popular homes in Cape Town</Span>
         <HStack>
           <Carousel.PrevTrigger asChild>
-            <IconButton size="xs" variant="subtle">
+            <IconButton size="xs" variant="subtle" aria-label="Previous slide">
               <LuChevronLeft />
             </IconButton>
           </Carousel.PrevTrigger>
           <Carousel.NextTrigger asChild>
-            <IconButton size="xs" variant="subtle">
+            <IconButton size="xs" variant="subtle" aria-label="Next slide">
               <LuChevronRight />
             </IconButton>
           </Carousel.NextTrigger>

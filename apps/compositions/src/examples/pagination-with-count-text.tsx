@@ -7,12 +7,12 @@ export const PaginationWithCountText = () => {
       <ButtonGroup variant="ghost" size="sm" w="full">
         <Pagination.PageText format="long" flex="1" />
         <Pagination.PrevTrigger asChild>
-          <IconButton>
+          <IconButton aria-label="Previous page">
             <LuChevronLeft />
           </IconButton>
         </Pagination.PrevTrigger>
         <Pagination.NextTrigger asChild>
-          <IconButton>
+          <IconButton aria-label="Next page">
             <LuChevronRight />
           </IconButton>
         </Pagination.NextTrigger>

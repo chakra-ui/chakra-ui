@@ -27,7 +27,7 @@ export const CarouselWithMouseDrag = () => {
 
       <Carousel.Control justifyContent="center" gap="4">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Previous slide">
             <LuChevronLeft />
           </IconButton>
         </Carousel.PrevTrigger>
@@ -35,7 +35,7 @@ export const CarouselWithMouseDrag = () => {
         <Carousel.Indicators />
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Next slide">
             <LuChevronRight />
           </IconButton>
         </Carousel.NextTrigger>

@@ -15,7 +15,7 @@ export const CarouselWithImages = () => {
     >
       <Carousel.Control gap="4" width="full" position="relative">
         <Carousel.PrevTrigger asChild>
-          <ActionButton insetStart="4">
+          <ActionButton insetStart="4" aria-label="Previous slide">
             <LuArrowLeft />
           </ActionButton>
         </Carousel.PrevTrigger>
@@ -35,7 +35,7 @@ export const CarouselWithImages = () => {
         </Carousel.ItemGroup>
 
         <Carousel.NextTrigger asChild>
-          <ActionButton insetEnd="4">
+          <ActionButton insetEnd="4" aria-label="Next slide">
             <LuArrowRight />
           </ActionButton>
         </Carousel.NextTrigger>

@@ -6,7 +6,7 @@ export const CarouselWithThumbnails = () => {
     <Carousel.Root slideCount={items.length} maxW="2xl" gap="4">
       <Carousel.Control justifyContent="center" gap="4" width="full">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="outline">
+          <IconButton size="xs" variant="outline" aria-label="Previous slide">
             <LuChevronLeft />
           </IconButton>
         </Carousel.PrevTrigger>
@@ -27,7 +27,7 @@ export const CarouselWithThumbnails = () => {
         </Carousel.ItemGroup>
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="outline">
+          <IconButton size="xs" variant="outline" aria-label="Next slide">
             <LuChevronRight />
           </IconButton>
         </Carousel.NextTrigger>

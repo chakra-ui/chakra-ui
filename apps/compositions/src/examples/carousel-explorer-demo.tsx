@@ -21,7 +21,7 @@ export const CarouselExplorerDemo = () => {
         <Carousel.ProgressText textStyle="sm" minW="8" />
 
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Previous slide">
             <LuChevronLeft />
           </IconButton>
         </Carousel.PrevTrigger>
@@ -38,7 +38,7 @@ export const CarouselExplorerDemo = () => {
         <Carousel.Indicators />
 
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Next slide">
             <LuChevronRight />
           </IconButton>
         </Carousel.NextTrigger>

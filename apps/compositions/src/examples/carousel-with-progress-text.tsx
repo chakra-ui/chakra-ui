@@ -19,13 +19,13 @@ export const CarouselWithProgressText = () => {
 
       <Carousel.Control gap="4">
         <Carousel.PrevTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Previous slide">
             <LuArrowLeft />
           </IconButton>
         </Carousel.PrevTrigger>
         <Carousel.ProgressText />
         <Carousel.NextTrigger asChild>
-          <IconButton size="xs" variant="ghost">
+          <IconButton size="xs" variant="ghost" aria-label="Next slide">
             <LuArrowRight />
           </IconButton>
         </Carousel.NextTrigger>
