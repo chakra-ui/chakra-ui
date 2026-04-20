@@ -35,11 +35,52 @@ function isNextJs(cwd: string): boolean {
   return candidates.some((f) => existsSync(resolve(cwd, f)))
 }
 
+function findViteConfig(cwd: string): string | null {
+  const candidates = ["vite.config.ts", "vite.config.js", "vite.config.mjs"]
+  const found = candidates.find((f) => existsSync(resolve(cwd, f)))
+  return found ? resolve(cwd, found) : null
+}
+
 function prependLayer(filePath: string) {
   if (!existsSync(filePath)) return false
   const content = readFileSync(filePath, "utf-8")
   if (content.includes("@layer")) return false
   writeFileSync(filePath, CSS_LAYER + "\n" + content)
+  return true
+}
+
+function patchViteConfig(filePath: string) {
+  const content = readFileSync(filePath, "utf-8")
+
+  // Already patched
+  if (content.includes("dedupe") && content.includes("react")) return false
+
+  // Need to inject resolve.dedupe + optimizeDeps.include inside defineConfig({...})
+  // Conservative regex: find defineConfig({ ... }) and splice in before the closing brace
+  const match = content.match(/defineConfig\s*\(\s*\{([\s\S]*)\}\s*\)/)
+  if (!match) return false
+
+  const inner = match[1]
+  const injection = `
+  resolve: {
+    dedupe: ["react", "react-dom"],
+    preserveSymlinks: false,
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "react-dom/client"],
+  },
+`
+
+  const patched = content.replace(
+    /defineConfig\s*\(\s*\{([\s\S]*?)\}\s*\)/,
+    (_m, existing) => {
+      const trimmed = existing.trimEnd()
+      const sep = trimmed.endsWith(",") || trimmed === "" ? "" : ","
+      return `defineConfig({${trimmed}${sep}${injection}})`
+    },
+  )
+
+  writeFileSync(filePath, patched)
   return true
 }
 
@@ -140,7 +181,15 @@ export const InitCommand = new Command("init")
       }
     }
 
-    // 5. Add styled-system to .gitignore
+    // 5. Patch Vite config to dedupe React (needed for linked/symlinked packages)
+    const viteConfigPath = findViteConfig(cwd)
+    if (viteConfigPath) {
+      if (patchViteConfig(viteConfigPath)) {
+        p.log.success("Patched vite.config to dedupe React")
+      }
+    }
+
+    // 6. Add styled-system to .gitignore
     const gitignorePath = resolve(cwd, ".gitignore")
     if (existsSync(gitignorePath)) {
       const content = readFileSync(gitignorePath, "utf-8")
