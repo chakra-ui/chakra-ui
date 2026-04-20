@@ -15,7 +15,18 @@ export default defineConfig({
   ],
   presets: [chakraPreset],
   jsxFramework: "react",
+  jsxStyleProps: "all",
   jsxFactory: "chakra",
+  // Pre-generate CSS for every variant of supported components so styles ship
+  // without needing the PostCSS plugin at runtime (Turbopack-friendly).
+  staticCss: {
+    recipes: {
+      accordion: ["*"],
+      badge: ["*"],
+      carousel: ["*"],
+      dialog: ["*"],
+    },
+  },
   importMap: "@chakra-ui/styled-system",
   outdir: "styled-system",
 })
