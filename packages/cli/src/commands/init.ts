@@ -65,6 +65,33 @@ function prependCssEntry(filePath: string, entry: string) {
   return "updated"
 }
 
+function patchHtmlColorMode(filePath: string) {
+  if (!existsSync(filePath)) return false
+  const content = readFileSync(filePath, "utf-8")
+  if (/<html[^>]*\bclass\s*=/i.test(content)) return false
+
+  const patched = content.replace(/<html\b([^>]*)>/i, '<html$1 class="light">')
+  if (patched === content) return false
+
+  writeFileSync(filePath, patched)
+  return true
+}
+
+function patchNextLayoutColorMode(filePath: string) {
+  if (!existsSync(filePath)) return false
+  const content = readFileSync(filePath, "utf-8")
+  if (/<html[^>]*\bclassName\s*=/.test(content)) return false
+
+  const patched = content.replace(
+    /<html\b([^>]*)>/,
+    '<html$1 className="light">',
+  )
+  if (patched === content) return false
+
+  writeFileSync(filePath, patched)
+  return true
+}
+
 function patchViteConfig(filePath: string) {
   const content = readFileSync(filePath, "utf-8")
   if (content.includes("dedupe") && content.includes("react")) return false
@@ -152,6 +179,21 @@ export const InitCommand = new Command("init")
     if (viteConfigPath) {
       if (patchViteConfig(viteConfigPath)) {
         p.log.success("Patched vite.config to dedupe React")
+      }
+    }
+
+    // 5. Add class="light" to <html> so semantic color tokens resolve
+    //    (.light / .dark selectors scope Chakra's semantic tokens). Until
+    //    ChakraProvider ships, this is the simplest default.
+    if (isNext) {
+      const layoutPath = resolve(cwd, "src/app/layout.tsx")
+      if (patchNextLayoutColorMode(layoutPath)) {
+        p.log.success(`Added className="light" to <html> in src/app/layout.tsx`)
+      }
+    } else {
+      const htmlPath = resolve(cwd, "index.html")
+      if (patchHtmlColorMode(htmlPath)) {
+        p.log.success(`Added class="light" to <html> in index.html`)
       }
     }
 
