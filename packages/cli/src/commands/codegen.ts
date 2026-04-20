@@ -410,4 +410,17 @@ export const CodegenCommand = new Command("codegen")
     }
 
     patchStyledSystem(cwd)
+
+    // Also emit styles.css so consumers can import it directly without
+    // needing the PostCSS plugin wired up correctly.
+    p.log.step("Generating styles.css...")
+    try {
+      execSync("npx panda cssgen --outfile styled-system/styles.css", {
+        cwd,
+        stdio: "inherit",
+      })
+      p.log.success("Generated styled-system/styles.css")
+    } catch {
+      p.log.warn("cssgen failed — run 'npx panda cssgen' manually if needed")
+    }
   })

@@ -1,7 +1,7 @@
 import * as p from "@clack/prompts"
 import { Command } from "commander"
 import { execSync } from "node:child_process"
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs"
+import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"
 
 const PANDA_CONFIG = `import chakraPreset from "@chakra-ui/panda-preset"
@@ -32,14 +32,16 @@ export default defineConfig({
 })
 `
 
-const POSTCSS_CONFIG = `module.exports = {
-  plugins: {
-    "@pandacss/dev/postcss": {},
-  },
-}
+// CSS entry that declares the cascade layer order and imports the generated
+// stylesheet. One line for the user, Tailwind-style. @import path is relative
+// to the CSS file that contains it.
+const VITE_CSS_ENTRY = `@layer reset, base, tokens, recipes, utilities;
+@import "../styled-system/styles.css";
 `
 
-const CSS_LAYER = `@layer reset, base, tokens, recipes, utilities;\n`
+const NEXT_CSS_ENTRY = `@layer reset, base, tokens, recipes, utilities;
+@import "../../../styled-system/styles.css";
+`
 
 function isNextJs(cwd: string): boolean {
   const candidates = ["next.config.js", "next.config.mjs", "next.config.ts"]
@@ -52,26 +54,21 @@ function findViteConfig(cwd: string): string | null {
   return found ? resolve(cwd, found) : null
 }
 
-function prependLayer(filePath: string) {
-  if (!existsSync(filePath)) return false
+function prependCssEntry(filePath: string, entry: string) {
+  if (!existsSync(filePath)) {
+    writeFileSync(filePath, entry)
+    return "created"
+  }
   const content = readFileSync(filePath, "utf-8")
-  if (content.includes("@layer")) return false
-  writeFileSync(filePath, CSS_LAYER + "\n" + content)
-  return true
+  if (content.includes("styled-system/styles.css")) return "skipped"
+  writeFileSync(filePath, entry + "\n" + content)
+  return "updated"
 }
 
 function patchViteConfig(filePath: string) {
   const content = readFileSync(filePath, "utf-8")
-
-  // Already patched
   if (content.includes("dedupe") && content.includes("react")) return false
 
-  // Need to inject resolve.dedupe + optimizeDeps.include inside defineConfig({...})
-  // Conservative regex: find defineConfig({ ... }) and splice in before the closing brace
-  const match = content.match(/defineConfig\s*\(\s*\{([\s\S]*)\}\s*\)/)
-  if (!match) return false
-
-  const inner = match[1]
   const injection = `
   resolve: {
     dedupe: ["react", "react-dom"],
@@ -91,6 +88,7 @@ function patchViteConfig(filePath: string) {
     },
   )
 
+  if (patched === content) return false
   writeFileSync(filePath, patched)
   return true
 }
@@ -114,37 +112,7 @@ export const InitCommand = new Command("init")
       p.log.success("Created panda.config.ts")
     }
 
-    // 2. PostCSS config — replace existing if needed
-    const postcssTargets = [
-      "postcss.config.mjs",
-      "postcss.config.js",
-      "postcss.config.cjs",
-    ]
-
-    const existingPostcss = postcssTargets.find((f) =>
-      existsSync(resolve(cwd, f)),
-    )
-
-    if (existingPostcss) {
-      const existingPath = resolve(cwd, existingPostcss)
-      const content = readFileSync(existingPath, "utf-8")
-
-      if (content.includes("@pandacss")) {
-        p.log.warn(`${existingPostcss} already configured for Panda, skipping`)
-      } else {
-        // Replace with Panda postcss config
-        unlinkSync(existingPath)
-        writeFileSync(resolve(cwd, "postcss.config.cjs"), POSTCSS_CONFIG)
-        p.log.success(
-          `Replaced ${existingPostcss} with Panda CSS postcss config`,
-        )
-      }
-    } else {
-      writeFileSync(resolve(cwd, "postcss.config.cjs"), POSTCSS_CONFIG)
-      p.log.success("Created postcss.config.cjs")
-    }
-
-    // 3. Add tsconfig paths for styled-system override
+    // 2. Add tsconfig paths for styled-system override
     const tsconfigPath = resolve(cwd, "tsconfig.json")
     if (existsSync(tsconfigPath)) {
       try {
@@ -166,33 +134,20 @@ export const InitCommand = new Command("init")
       p.log.warn("No tsconfig.json found — create one and add paths manually")
     }
 
-    // 4. Add @layer declaration to CSS entry point
-    if (isNext) {
-      // Next.js: prepend to src/app/globals.css
-      const globalsPath = resolve(cwd, "src/app/globals.css")
-      if (prependLayer(globalsPath)) {
-        p.log.success("Added @layer declaration to src/app/globals.css")
-      } else if (existsSync(globalsPath)) {
-        p.log.warn("src/app/globals.css already has @layer declaration")
-      } else {
-        // Fallback: create src/app/globals.css
-        writeFileSync(globalsPath, CSS_LAYER)
-        p.log.success("Created src/app/globals.css with @layer declaration")
-      }
-    } else {
-      // Vite / other: prepend to src/index.css
-      const cssPath = resolve(cwd, "src/index.css")
-      if (existsSync(cssPath)) {
-        if (prependLayer(cssPath)) {
-          p.log.success("Added @layer declaration to src/index.css")
-        }
-      } else if (existsSync(resolve(cwd, "src"))) {
-        writeFileSync(cssPath, CSS_LAYER)
-        p.log.success("Created src/index.css")
-      }
-    }
+    // 3. Wire cascade layers + generated styles into CSS entry
+    const cssTarget = isNext
+      ? resolve(cwd, "src/app/globals.css")
+      : resolve(cwd, "src/index.css")
+    const entry = isNext ? NEXT_CSS_ENTRY : VITE_CSS_ENTRY
+    const relPath = isNext ? "src/app/globals.css" : "src/index.css"
 
-    // 5. Patch Vite config to dedupe React (needed for linked/symlinked packages)
+    const result = prependCssEntry(cssTarget, entry)
+    if (result === "created") p.log.success(`Created ${relPath}`)
+    else if (result === "updated")
+      p.log.success(`Added @layer + styles.css import to ${relPath}`)
+    else p.log.warn(`${relPath} already imports styled-system/styles.css`)
+
+    // 4. Patch Vite config to dedupe React (linked/symlinked pkgs produce dupes)
     const viteConfigPath = findViteConfig(cwd)
     if (viteConfigPath) {
       if (patchViteConfig(viteConfigPath)) {
@@ -200,7 +155,7 @@ export const InitCommand = new Command("init")
       }
     }
 
-    // 6. Add styled-system to .gitignore
+    // 5. Add styled-system to .gitignore
     const gitignorePath = resolve(cwd, ".gitignore")
     if (existsSync(gitignorePath)) {
       const content = readFileSync(gitignorePath, "utf-8")
@@ -213,7 +168,7 @@ export const InitCommand = new Command("init")
       }
     }
 
-    // 6. Run codegen (uses chakra codegen which patches styled-system)
+    // 6. Run codegen (also emits styles.css via chakra codegen)
     p.log.step("Running codegen...")
     try {
       execSync("npx chakra codegen", { cwd, stdio: "inherit" })
@@ -221,5 +176,5 @@ export const InitCommand = new Command("init")
       p.log.error("Codegen failed — run 'npx chakra codegen' manually")
     }
 
-    p.outro("Chakra UI initialized! Import your CSS and start building.")
+    p.outro("Chakra UI initialized! Run your dev server and start building.")
   })
