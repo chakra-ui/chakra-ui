@@ -22,12 +22,13 @@ export const addConditionalCssVariables: TokenTransformer = {
   type: "value",
   name: "tokens/conditionals",
   transform(token, dictionary) {
-    const { prefix, formatCssVar } = dictionary
+    const { prefix, formatCssVar, getByName } = dictionary
 
     const refs = getReferences(token.value)
     if (!refs.length) return token.value
 
     refs.forEach((ref) => {
+      if (!getByName(ref)) return
       const variable = formatCssVar(ref.split("."), prefix)
       token.value = token.value.replaceAll(`{${ref}}`, variable.ref)
     })

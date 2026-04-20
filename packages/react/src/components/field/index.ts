@@ -4,6 +4,7 @@ export {
   FieldLabel,
   FieldHelperText,
   FieldErrorText,
+  FieldItem,
   FieldErrorIcon,
   FieldRequiredIndicator,
   useFieldStyles,
@@ -14,6 +15,7 @@ export type {
   FieldLabelProps,
   FieldHelperTextProps,
   FieldErrorTextProps,
+  FieldItemProps,
   FieldErrorIconProps,
   FieldRequiredIndicatorProps,
 } from "./field"

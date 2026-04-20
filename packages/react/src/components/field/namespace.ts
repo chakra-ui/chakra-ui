@@ -4,6 +4,7 @@ export {
   FieldLabel as Label,
   FieldHelperText as HelperText,
   FieldErrorText as ErrorText,
+  FieldItem as Item,
   FieldErrorIcon as ErrorIcon,
   FieldRequiredIndicator as RequiredIndicator,
 } from "./field"
@@ -13,6 +14,7 @@ export type {
   FieldLabelProps as LabelProps,
   FieldHelperTextProps as HelperTextProps,
   FieldErrorTextProps as ErrorTextProps,
+  FieldItemProps as ItemProps,
   FieldErrorIconProps as ErrorIconProps,
   FieldRequiredIndicatorProps as RequiredIndicatorProps,
 } from "./field"

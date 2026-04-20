@@ -241,43 +241,33 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         textUnderlineOffset: "3px",
         textDecorationThickness: "2px",
       },
-      _selected: {
+      "&[data-selected]": {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
-        _hover: {
-          bg: "colorPalette.solid",
-        },
+        _hover: { bg: "colorPalette.solid" },
       },
       "&[data-in-range]": {
         bg: "colorPalette.subtle",
         color: "colorPalette.fg",
         borderRadius: "0",
-        _hover: {
-          bg: "colorPalette.subtle",
+        _hover: { bg: "colorPalette.subtle" },
+      },
+      "&[data-in-range][data-selected]": {
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
+        borderRadius: "0",
+        _hover: { bg: "colorPalette.solid" },
+        "&[data-range-start][data-range-end]": {
+          borderRadius: "l2",
         },
-      },
-      "&[data-range-start]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "0",
-        borderStartRadius: "l2",
-        _hover: { bg: "colorPalette.solid" },
-      },
-      "&[data-range-end]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "0",
-        borderEndRadius: "l2",
-        _hover: { bg: "colorPalette.solid" },
-      },
-      "&[data-range-start][data-range-end]": {
-        borderRadius: "l2",
-      },
-      "&[data-selected][data-in-range]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "l2",
-        _hover: { bg: "colorPalette.solid" },
+        "&[data-range-start]:not([data-range-end])": {
+          borderStartRadius: "l2",
+          borderEndRadius: "0",
+        },
+        "&[data-range-end]:not([data-range-start])": {
+          borderEndRadius: "l2",
+          borderStartRadius: "0",
+        },
       },
       _disabled: {
         opacity: 0.4,
