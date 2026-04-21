@@ -114,10 +114,10 @@
     },
     {
       "name": "pin-input-with-separator",
-      "content": "export const PinInputWithSeparator = () => {\n  return (\n    <PinInput.Root count={6}>\n      <PinInput.HiddenInput />\n      <PinInput.Control alignItems=\"center\" gap=\"3\">\n        <Group attached>\n          <PinInput.Input index={0} />\n          <PinInput.Input index={1} />\n          <PinInput.Input index={2} />\n        </Group>\n        <Text\n          as=\"span\"\n          fontSize=\"lg\"\n          fontWeight=\"medium\"\n          color=\"fg.muted\"\n          userSelect=\"none\"\n          aria-hidden=\"true\"\n        >\n          –\n        </Text>\n        <Group attached>\n          <PinInput.Input index={3} />\n          <PinInput.Input index={4} />\n          <PinInput.Input index={5} />\n        </Group>\n      </PinInput.Control>\n    </PinInput.Root>\n  )\n}\n",
+      "content": "export const PinInputWithSeparator = () => {\n  return (\n    <PinInput.Root count={6}>\n      <PinInput.HiddenInput />\n      <PinInput.Control alignItems=\"center\" gap=\"3\">\n        <Group attached>\n          <PinInput.Input index={0} />\n          <PinInput.Input index={1} />\n          <PinInput.Input index={2} />\n        </Group>\n        <Span color=\"fg.subtle\">–</Span>\n        <Group attached>\n          <PinInput.Input index={3} />\n          <PinInput.Input index={4} />\n          <PinInput.Input index={5} />\n        </Group>\n      </PinInput.Control>\n    </PinInput.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { Group, PinInput, Text } from \"@chakra-ui/react\""
+        "import { Group, PinInput, Span } from \"@chakra-ui/react\""
       ],
       "importPath": "import { PinInput } from \"@chakra-ui/react\""
     },

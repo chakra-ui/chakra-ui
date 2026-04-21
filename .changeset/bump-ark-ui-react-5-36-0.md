@@ -2,7 +2,7 @@
 "@chakra-ui/react": patch
 ---
 
-Bump `@ark-ui/react` to `^5.36.1` (from `^5.34.1`)
+Bump `@ark-ui/react` to `5.36.0` (from `^5.34.1`)
 
 - **Accordion**: Fix missing `data-focus` on item trigger props.
 
