@@ -47,8 +47,8 @@
   "dependencies": {
     "@chakra-ui/cli": "workspace:*",
     "@changesets/changelog-github": "0.6.0",
-    "@changesets/cli": "2.30.0",
-    "@changesets/get-release-plan": "4.0.15",
+    "@changesets/cli": "2.31.0",
+    "@changesets/get-release-plan": "4.0.16",
     "@changesets/types": "6.1.0",
     "@commitlint/cli": "20.4.1",
     "@commitlint/config-conventional": "20.4.1",
