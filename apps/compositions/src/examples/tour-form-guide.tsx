@@ -1,139 +1,228 @@
 "use client"
 
 import {
+  Accordion,
+  Box,
   Button,
-  Field,
+  HStack,
   Input,
+  Separator,
   Stack,
-  Textarea,
+  Text,
   Tour,
   type TourStep,
-  VStack,
   useTour,
 } from "@chakra-ui/react"
+import { useState } from "react"
+import { TourOverlay } from "./tour-parts"
+
+const lineItems = [
+  { name: "Chakra Pro — Figma Kit", price: "$149.00" },
+  { name: "Chakra Pro — Icon Library", price: "$249.00" },
+]
+
+type Section = "contact" | "shipping" | "payment" | "review"
 
 export const TourFormGuide = () => {
+  const [open, setOpen] = useState<Section>("contact")
+
+  const focusAfter = (id: string) =>
+    setTimeout(() => document.querySelector<HTMLElement>(id)?.focus(), 50)
+
+  const steps: TourStep[] = [
+    {
+      id: "contact",
+      type: "tooltip",
+      target: () =>
+        document.querySelector<HTMLElement>("#checkout-contact-email"),
+      title: "We'll only email your receipt",
+      description: "No marketing unless you ask — promise.",
+      effect: ({ show }) => {
+        setOpen("contact")
+        focusAfter("#checkout-contact-email")
+        show()
+        return () => {}
+      },
+      actions: [{ label: "Next", action: "next" }],
+    },
+    {
+      id: "address",
+      type: "tooltip",
+      target: () => document.querySelector<HTMLElement>("#checkout-address"),
+      title: "Start typing, we'll finish",
+      description: "Google-powered autocomplete fills city, state, and zip.",
+      effect: ({ show }) => {
+        setOpen("shipping")
+        focusAfter("#checkout-address")
+        show()
+        return () => {}
+      },
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
+      ],
+    },
+    {
+      id: "payment",
+      type: "tooltip",
+      target: () =>
+        document.querySelector<HTMLElement>("#checkout-saved-cards"),
+      title: "Pay faster with Link",
+      description: "One-tap checkout across any site that uses Chakra Pay.",
+      effect: ({ show }) => {
+        setOpen("payment")
+        show()
+        return () => {}
+      },
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
+      ],
+    },
+    {
+      id: "promo",
+      type: "tooltip",
+      target: () => document.querySelector<HTMLElement>("#checkout-promo"),
+      title: "Have a code?",
+      description:
+        "Promos apply to your subtotal and show up in the breakdown instantly.",
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Next", action: "next" },
+      ],
+    },
+    {
+      id: "total",
+      type: "tooltip",
+      target: () => document.querySelector<HTMLElement>("#checkout-total"),
+      title: "No surprise fees",
+      description: "Shipping and taxes are locked in before you hit Pay.",
+      effect: ({ show }) => {
+        setOpen("review")
+        show()
+        return () => {}
+      },
+      actions: [
+        { label: "Back", action: "prev" },
+        { label: "Done", action: "dismiss" },
+      ],
+    },
+  ]
+
   const tour = useTour({ steps })
 
   return (
-    <VStack gap="4" alignItems="flex-start" maxW="sm">
-      <Button size="sm" onClick={() => tour.start()}>
-        Start Form Guide
+    <Stack gap="3" maxW="3xl">
+      <Button size="sm" alignSelf="flex-start" onClick={() => tour.start()}>
+        Walk me through checkout
       </Button>
 
-      <Stack gap="4" w="full">
-        <Field.Root id="field-name">
-          <Field.Label>Name</Field.Label>
-          <Input placeholder="Enter your name" />
-        </Field.Root>
+      <HStack align="start" gap="6">
+        <Accordion.Root
+          flex="1"
+          collapsible
+          value={[open]}
+          onValueChange={(d) => d.value[0] && setOpen(d.value[0] as Section)}
+        >
+          <Section id="contact" label="1 · Contact">
+            <Input id="checkout-contact-email" placeholder="you@example.com" />
+          </Section>
+          <Section id="shipping" label="2 · Shipping">
+            <Stack gap="2">
+              <Input id="checkout-address" placeholder="Street address" />
+              <HStack gap="2">
+                <Input placeholder="City" />
+                <Input placeholder="State" />
+                <Input placeholder="Zip" />
+              </HStack>
+            </Stack>
+          </Section>
+          <Section id="payment" label="3 · Payment">
+            <Stack id="checkout-saved-cards" gap="2">
+              <Box borderWidth="1px" borderRadius="md" p="3">
+                <Text fontSize="sm" fontWeight="medium">
+                  Visa •••• 4242
+                </Text>
+                <Text fontSize="xs" color="fg.muted">
+                  Saved via Chakra Pay
+                </Text>
+              </Box>
+              <Button variant="outline" size="sm">
+                Use a different card
+              </Button>
+            </Stack>
+          </Section>
+          <Section id="review" label="4 · Review">
+            <Stack gap="2">
+              <HStack>
+                <Input id="checkout-promo" placeholder="Promo code" />
+                <Button variant="outline" size="sm">
+                  Apply
+                </Button>
+              </HStack>
+              <Button>Pay $398.00</Button>
+            </Stack>
+          </Section>
+        </Accordion.Root>
 
-        <Field.Root id="field-email">
-          <Field.Label>Email</Field.Label>
-          <Input type="email" placeholder="you@example.com" />
-        </Field.Root>
-
-        <Field.Root id="field-bio">
-          <Field.Label>Bio</Field.Label>
-          <Textarea placeholder="Tell us about yourself" />
-        </Field.Root>
-
-        <Button id="field-submit" size="sm">
-          Submit
-        </Button>
-      </Stack>
+        <Box w="260px" borderWidth="1px" borderRadius="md" p="4" flexShrink="0">
+          <Text fontWeight="semibold" mb="3">
+            Order summary
+          </Text>
+          <Stack gap="2" fontSize="sm">
+            {lineItems.map((i) => (
+              <HStack key={i.name} justify="space-between">
+                <Text>{i.name}</Text>
+                <Text>{i.price}</Text>
+              </HStack>
+            ))}
+            <Separator />
+            <HStack justify="space-between">
+              <Text>Subtotal</Text>
+              <Text>$398.00</Text>
+            </HStack>
+            <HStack justify="space-between">
+              <Text>Shipping</Text>
+              <Text>Free</Text>
+            </HStack>
+            <HStack justify="space-between">
+              <Text>Tax</Text>
+              <Text>$0.00</Text>
+            </HStack>
+            <Separator />
+            <HStack
+              id="checkout-total"
+              justify="space-between"
+              fontWeight="semibold"
+            >
+              <Text>Total</Text>
+              <Text>$398.00</Text>
+            </HStack>
+          </Stack>
+        </Box>
+      </HStack>
 
       <Tour.Root tour={tour}>
-        <Tour.Backdrop />
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <Tour.ProgressText />
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.ActionTriggers />
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
+        <TourOverlay />
       </Tour.Root>
-    </VStack>
+    </Stack>
   )
 }
 
-const steps: TourStep[] = [
-  {
-    id: "intro",
-    type: "dialog",
-    title: "Complete Your Profile",
-    description:
-      "We'll guide you through each field to set up your profile. Let's get started.",
-    actions: [{ label: "Begin", action: "next" }],
-  },
-  {
-    id: "name",
-    type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#field-name"),
-    title: "Your Name",
-    description:
-      "Enter your full name. This will be displayed on your profile and in team mentions.",
-    actions: [
-      { label: "Prev", action: "prev" },
-      { label: "Next", action: "next" },
-    ],
-  },
-  {
-    id: "email",
-    type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#field-email"),
-    title: "Email Address",
-    description:
-      "We'll use this for account recovery and important notifications.",
-    actions: [
-      { label: "Prev", action: "prev" },
-      { label: "Next", action: "next" },
-    ],
-  },
-  {
-    id: "wait-for-name",
-    type: "wait",
-    title: "Fill in your name",
-    description: "Type your name in the field above to continue.",
-    effect: ({ next }) => {
-      const input =
-        document.querySelector<HTMLInputElement>("#field-name input")
-      const handler = () => {
-        if (input && input.value.length > 0) next()
-      }
-      input?.addEventListener("input", handler)
-      return () => input?.removeEventListener("input", handler)
-    },
-  },
-  {
-    id: "bio",
-    type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#field-bio"),
-    title: "Bio",
-    description:
-      "Write a short bio. This is optional but helps your team get to know you.",
-    actions: [
-      { label: "Prev", action: "prev" },
-      { label: "Next", action: "next" },
-    ],
-  },
-  {
-    id: "submit",
-    type: "tooltip",
-    target: () => document.querySelector<HTMLElement>("#field-submit"),
-    title: "Submit",
-    description:
-      "Once you've filled in the fields, click Submit to save your profile.",
-    actions: [
-      { label: "Prev", action: "prev" },
-      { label: "Done", action: "dismiss" },
-    ],
-  },
-]
+const Section = (props: {
+  id: Section
+  label: string
+  children: React.ReactNode
+}) => (
+  <Accordion.Item value={props.id}>
+    <Accordion.ItemTrigger>
+      <Text fontWeight="medium" fontSize="sm" flex="1" textAlign="left">
+        {props.label}
+      </Text>
+      <Accordion.ItemIndicator />
+    </Accordion.ItemTrigger>
+    <Accordion.ItemContent>
+      <Accordion.ItemBody>{props.children}</Accordion.ItemBody>
+    </Accordion.ItemContent>
+  </Accordion.Item>
+)
