@@ -1,5 +1,22 @@
 # @chakra-ui/cli
 
+## 3.35.0
+
+### Minor Changes
+
+- [`d5be01a`](https://github.com/chakra-ui/chakra-ui/commit/d5be01ae4ba8cf2cb134368767f6a1062c23d967)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new CLI
+  commands mirroring the MCP server tools:
+  - `chakra component list` — List all available Chakra UI components
+  - `chakra component props <name>` — Show props for a component
+  - `chakra component example <name>` — Show usage examples for a component
+  - `chakra theme` — Summary table of theme categories (item counts); use
+    `--json` for full data or `--filter <category>` for one section
+  - `chakra docs <query>` — Search the Chakra UI documentation
+
+  Docs and examples are fetched from `CHAKRA_DOCS_URL` (default
+  `https://chakra-ui.com`), consistent with `REGISTRY_URL` for snippets.
+
 ## 3.34.0
 
 ### Patch Changes
