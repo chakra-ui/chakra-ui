@@ -1,0 +1,183 @@
+---
+title: "Q1 2026: What Shipped from January to March"
+description: "A recap of everything that landed in Chakra UI in Q1 2026"
+type: article
+authors: ["esther"]
+publishedAt: "2026-04-22"
+---
+
+Q1 2026 was one of the busiest quarters we've had. We shipped two new
+components, a full rich text editor composition, and finally automated the v2→v3
+migration.
+
+Here's a quick overview at what landed between January and March.
+
+---
+
+## Rich Text Editor (v3.31 · January)
+
+One of the most-requested features finally landed: a complete
+**[Rich Text Editor](/docs/components/rich-text-editor)** composition built on
+top of [Tiptap](https://tiptap.dev).
+
+Building a rich text editor from scratch is hard. Wiring up toolbars, keyboard
+shortcuts, extensions, and making it all look consistent with your design
+system—that's a lot of work before you even get to actual content editing.
+Rather than ship a locked-down primitive, we shipped it as a composition—full
+source code you own and can customize however you need.
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor
+```
+
+Then wire it up with Tiptap's `useEditor` hook:
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-basic" />
+
+---
+
+## Marquee (v3.32 · February)
+
+The next big addition of the year was **[Marquee](/docs/components/marquee)**—a
+component for infinite scrolling content. Testimonial walls, logo clouds,
+announcement banners, news tickers. The kind of componenent that looks
+straightforward until you try to build it with raw CSS animations and realize
+you need to handle duplicated content, pause on hover, edge fading, RTL, and
+scroll direction—all at once. Marquee handles all of that.
+
+<ExampleTabs name="marquee-pause-interactions" />
+
+`pauseOnInteraction` stops the animation when a user hovers or focuses something
+inside—which matters if you're scrolling testimonials or links that people might
+actually want to read.
+
+### Speed, direction, and edge fading
+
+Speed is set in pixels per second, which gives you predictable behavior
+regardless of how many items are in the list. Direction flips with `reverse`.
+For vertical scrolling, use `side="bottom"`.
+
+Edge fading (the gradient that softens the ends of the track) comes from
+`Marquee.Edge`:
+
+<ExampleTabs name="marquee-edge-gradient" />
+
+And if you need to override animation details without fighting specificity, the
+component exposes CSS variables directly:
+
+```tsx
+<Marquee.Root
+  css={{
+    "--marquee-duration": "40s",
+    "--marquee-edge-size": "15%",
+    "--marquee-edge-color": "colors.bg",
+  }}
+>
+```
+
+<Video src="/videos/marquee-demo.mp4" />
+
+---
+
+## v2 → v3 Codemod (v3.32 · February)
+
+In our February release, we launched
+**[@chakra-ui/codemod](/docs/get-started/migration)**, a package with 50+
+automated transforms for upgrading from Chakra UI v2 to v3.
+
+```bash
+npx @chakra-ui/codemod upgrade
+```
+
+The codemod covers:
+
+- **Component renames** — `Modal` → `Dialog`, `CircularProgress` →
+  `ProgressCircle`, and 30+ more
+- **Prop changes** — `isOpen` → `open`, `isDisabled` → `disabled`, `colorScheme`
+  → `colorPalette`
+- **Theme migration** — `extendTheme` → `createSystem`
+- **Import updates** — moves you from the old flat imports to the compound
+  component API (`Accordion.Root`, `Accordion.Item`, etc.)
+- **TypeScript system types** — updates `ThemingProps` and related type imports
+
+Before running it, make sure your git tree is clean. Use `--dry` to preview the
+output without touching files:
+
+```bash
+npx @chakra-ui/codemod upgrade --dry
+```
+
+<Video src="/videos/codemod-demo.mp4" />
+
+---
+
+## DatePicker (v3.34 · March)
+
+**[DatePicker](/docs/components/date-picker)** was the most-requested component
+we hadn't shipped yet. It landed in March.
+
+Date inputs are deceptively hard to build well. Keyboard navigation through a
+calendar grid, locale-aware formatting, range selection that handles "click
+start, click end" interaction, unavailable dates, min/max constraints, popover
+positioning, form integration—any one of these takes real work. All of them
+together are why most teams reach for a library.
+
+DatePicker gives you all of it through the same compound component pattern as
+the rest of Chakra UI:
+
+<ExampleTabs name="date-picker-basic" />
+
+The three `<DatePicker.View>` blocks handle drill-down navigation—users can
+click the month/year in the header to zoom out and select from there, then back
+in. All keyboard accessible.
+
+### Range selection
+
+For booking flows or analytics date filters, `selectionMode="range"` turns the
+picker into a start/end range selector. No extra setup required.
+
+<ExampleTabs name="date-picker-range-selection" />
+
+### Presets
+
+When you want shortcuts like "Last 7 days" or "This month", add
+`DatePicker.PresetTrigger` items inside a sidebar panel alongside the calendar.
+
+<ExampleTabs name="date-picker-with-presets-sidebar" />
+
+### Constraints and unavailable dates
+
+<ExampleTabs name="date-picker-unavailable" />
+
+`isDateUnavailable` takes a function so you can disable specific dates
+dynamically—useful for blocking out booked slots in a scheduling flow.
+
+### Calendar standalone
+
+If you want the calendar inline (not inside a popover), check out the
+**[Calendar](/docs/components/calendar)** component. It's the same engine as
+DatePicker but renders directly in the page—useful for dashboards or full-page
+booking UIs.
+
+---
+
+## Upgrading
+
+Everything in Q1 is backward compatible. Upgrade to the latest:
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+If you're on v2, this is a good time to try the codemod:
+
+```bash
+npx @chakra-ui/codemod upgrade --dry
+```
+
+---
+
+Q2 is already in motion. If you have something you've been waiting on, check the
+[GitHub discussions](https://github.com/chakra-ui/chakra-ui/discussions) or drop
+into [Discord](https://chakra-ui.com/discord)—that's still the fastest way to
+get something on our radar.
