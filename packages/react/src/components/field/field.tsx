@@ -121,8 +121,3 @@ export const FieldRequiredIndicator = forwardRef<
     </chakra.span>
   )
 })
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const FieldItem = ArkField.Item
-export type FieldItemProps = ArkField.ItemProps
