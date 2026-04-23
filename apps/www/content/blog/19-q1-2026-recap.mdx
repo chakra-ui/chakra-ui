@@ -1,0 +1,109 @@
+---
+title: "Q1 2026 Recap"
+description: "An overview of everything that landed in Chakra UI in Q1 2026"
+type: article
+authors: ["esther"]
+publishedAt: "2026-04-22"
+---
+
+Q1 2026 was one of the busiest quarters we've had, as we shipped two new
+components, a full rich text editor composition, and finally automated the v2 to
+v3 migration.
+
+Here's a quick overview at what landed between January and March.
+
+## Rich Text Editor (v3.31 · January)
+
+A rich text editor is one of the most crucial components when building a blog
+app, note app or content management system. However, building one from scratch
+is quite hard.
+
+In January, we rolled out a complete
+**[Rich Text Editor](/docs/components/rich-text-editor)** composition built on
+top of [Tiptap](https://tiptap.dev).
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor
+```
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-basic" />
+
+## Marquee (v3.32 · February)
+
+The next big addition of the year was **[Marquee](/docs/components/marquee)**
+which allows for infinite scrolling content. For example, testimonial walls,
+logo clouds, announcement banners, news tickers.
+
+<ExampleTabs name="marquee-pause-interactions" />
+
+`pauseOnInteraction` stops the animation when a user hovers or focuses something
+inside, which matters if you're scrolling testimonials or links that people
+might actually want to read.
+
+## v2 → v3 Codemod (v3.32 · February)
+
+In our February release, we also launched
+**[@chakra-ui/codemod](/docs/get-started/migration)**, a package with 50+
+automated transforms for upgrading from Chakra UI v2 to v3.
+
+```bash
+npx @chakra-ui/codemod upgrade
+```
+
+The codemod covers:
+
+- Component renames
+- Prop changes
+- Theme migration
+- Import updates component
+- TypeScript system types
+
+If you're on v2, this is a good time to try the codemod. Before running it, make
+sure your git tree is clean. Use `--dry` to preview the output without touching
+files.
+
+## DatePicker (v3.34 · March)
+
+Before this quarter, you had to wire up Date Pickers from other libraries, but
+not anymore! March brought our biggest component release yet: the
+**[DatePicker](/docs/components/date-picker)**, our most-requested component.
+
+Our Date Picker covers keyboard navigation through a calendar grid, locale-aware
+formatting, range selection that handles "click start, click end" interaction,
+unavailable dates, min/max constraints, popover positioning, form integration,
+and more.
+
+<ExampleTabs name="date-picker-basic" />
+
+### Calendar standalone
+
+If you want the calendar inline (not inside a popover), check out the
+**[Calendar](/docs/components/calendar)** component. It's the same engine as
+DatePicker but renders directly in the page. This pattern is useful for
+dashboards or full-page booking UIs.
+
+<ExampleTabs name="date-picker-calendar-basic" />
+
+## Community Highlight
+
+It means a lot when developers take a moment to share their experience. This one
+is from [@wirtzdan](https://x.com/wirtzdan).
+
+<img
+  src="/images/community-tweets.png"
+  alt="Tweet from Daniel Wirtz: I use Chakra every week. Doc's are excellent."
+/>
+
+If you're building something with Chakra UI, we'd love to see it. Share your
+work on [Discord](https://chakra-ui.com/discord) or tag us on
+[X](https://x.com/chakra_ui).
+
+---
+
+## Q2 in Motion
+
+Q2 is already in motion and we've got some new components in the pipeline. Your
+community feedback is always valuable, so if you have something you've been
+waiting on, check the
+[GitHub discussions](https://github.com/chakra-ui/chakra-ui/discussions) or drop
+into our [Discord](https://chakra-ui.com/discord) server.
