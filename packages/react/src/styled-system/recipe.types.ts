@@ -4,7 +4,7 @@ import type { ColorPalette } from "./generated/token.gen"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 
-export type RecipeVariantRecord = Record<any, Record<any, SystemStyleObject>>
+export type RecipeVariantRecord = Record<string, Record<string, SystemStyleObject>>
 
 export type RecipeSelection<
   T extends RecipeVariantRecord | SlotRecipeVariantRecord<string>,
