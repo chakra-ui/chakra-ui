@@ -1,0 +1,193 @@
+---
+title: AI Skills
+description:
+  Claude Code skills for building, migrating, and refactoring Chakra UI v3
+  projects
+---
+
+Claude Code AI skills are reusable instruction sets that give Claude deep,
+project specific knowledge. The three skills below are built specifically for
+Chakra UI v3. They activate automatically based on what you ask, so you never
+have to name them explicitly.
+
+## Installation
+
+Install Claude Code, then add the skills to your project:
+
+```bash
+# Install Claude Code (if you haven't already)
+npm install -g @anthropic-ai/claude-code
+
+# In your project root, add the Chakra UI skills
+claude skills add chakra-ui
+```
+
+The skills are stored in a `skills/` directory at the root of your project and
+are picked up automatically by Claude Code in every session.
+
+---
+
+## chakra-ui-builder
+
+The primary skill. Covers building UI components, setting up Chakra UI in new
+and existing projects, theming, and charts.
+
+### When it activates
+
+The builder skill activates whenever you ask Claude to build or create something
+with Chakra UI, however casually phrased:
+
+- _"make me a login form"_
+- _"build a stats dashboard"_
+- _"add Chakra to my Next.js app"_
+- _"add my brand colors"_
+- _"make a reusable card style"_
+- _"show me a line chart"_
+- _"build a sidebar"_
+
+### What it does
+
+**Component building:** Produces complete, runnable components with correct
+imports, proper use of Chakra primitives (`Stack`, `Field.Root`, `SimpleGrid`,
+etc.), semantic tokens for automatic dark mode, and responsive styles at `base`
+and `md` breakpoints as a minimum.
+
+**Project setup:** Walks through installing `@chakra-ui/react`, running the CLI
+to generate snippets, and wiring up `<Provider>` in your framework of choice
+(Next.js App Router, Pages Router, Vite, Remix).
+
+**Theming:** For brand colors, design tokens, semantic tokens, component
+recipes, slot recipes, and typegen, the skill reads a dedicated theming
+reference before responding. This covers the complete `defineConfig` /
+`createSystem` API with full examples.
+
+**Charts:** For bar charts, area charts, line charts, pie/donut charts,
+`BarList`, and `BarSegment`, the skill reads a charts reference that covers the
+`useChart` hook, all chart types, Recharts integration, and runnable examples.
+
+**Component selection:** When you haven't specified a component or the choice is
+non-obvious, the skill consults a decision tree covering all ~114 Chakra
+components with head-to-head comparisons (e.g. `Select` vs `Combobox` vs
+`NativeSelect`, `Dialog` vs `Drawer`, `Tooltip` vs `HoverCard` vs `Popover`).
+
+### Output format
+
+Every response includes:
+
+1. Complete, runnable code with no placeholders
+2. Proper import statements (Chakra imports grouped, then local)
+3. Responsive styles at `base` and `md` breakpoints
+4. A brief explanation (2–4 sentences) covering the key layout, accessibility,
+   and responsive decisions. Skipped for trivial requests.
+
+---
+
+## chakra-ui-migrate
+
+Guides migration from Chakra UI v2 to v3. Covers package changes, the automated
+codemod, provider setup, color mode, prop renames, and compound component
+rewrites.
+
+### When it activates
+
+- _"migrate my project to Chakra v3"_
+- _"isDisabled isn't working after upgrading"_
+- _"update my extendTheme config"_
+- _"what changed from v2?"_
+- Upgrading Chakra UI, hitting breaking changes after an upgrade
+- Converting v2 patterns: `extendTheme`, `ColorModeScript`, `useColorModeValue`,
+  `styleConfig`, `isDisabled`, `colorScheme`
+
+### What it does
+
+**Step-by-step migration:** Audits the project, runs `@chakra-ui/codemod`, and
+walks through every breaking change in order: packages, provider setup, color
+mode, prop renames, component API changes, and theming.
+
+**Prop rename reference:** Covers all boolean prop renames (`isOpen → open`,
+`isDisabled → disabled`, `isInvalid → invalid`, `isRequired → required`) and
+style prop renames (`colorScheme → colorPalette`, `spacing → gap`,
+`noOfLines → lineClamp`).
+
+**Compound component migration:** Rewrites v2 flat components to v3 compound
+form:
+
+| v2                        | v3                                       |
+| ------------------------- | ---------------------------------------- |
+| `<Modal>`                 | `<Dialog.Root>`                          |
+| `<FormControl>`           | `<Field.Root>`                           |
+| `<Select>`                | `<NativeSelect.Root>`                    |
+| `<Menu>` / `<MenuButton>` | `<Menu.Root>` / `<Menu.Trigger asChild>` |
+| `<Tabs>` / `<TabList>`    | `<Tabs.Root>` / `<Tabs.List>`            |
+| `<Alert>` / `<AlertIcon>` | `<Alert.Root>` / `<Alert.Indicator>`     |
+
+**Theming migration:** Converts `extendTheme` to `createSystem` +
+`defineConfig`. Points to the theming reference in `chakra-ui-builder` for
+complex theme rewrites.
+
+**Toast migration:** Replaces `useToast()` with `toaster.create()` from the
+generated `components/ui/toaster` snippet.
+
+---
+
+## chakra-ui-refactor
+
+Reviews existing code for issues and/or converts it to Chakra UI v3 patterns.
+
+### When it activates
+
+- _"review my card component"_
+- _"is this correct?"_
+- _"what's wrong with this form?"_
+- _"convert this Tailwind layout to Chakra"_
+- _"refactor this component"_
+- _"clean this up"_
+- _"chakra-ify this"_
+
+### What it does
+
+**Shared analysis:** Before producing any output, the skill analyses the code
+across six dimensions:
+
+1. **Accessibility:** missing `aria-label`, incorrect heading hierarchy,
+   interactive elements without keyboard support, form fields missing
+   `Field.Root`
+2. **Responsiveness:** hardcoded pixel widths, missing breakpoints, desktop only
+   layouts
+3. **API correctness:** v2 props (`isDisabled`, `colorScheme`), wrong import
+   sources, missing compound component wrappers
+4. **Token usage:** hardcoded colors that bypass dark mode, raw values where
+   semantic tokens should be used
+5. **Component structure:** overuse of `Box`, deep nesting, wrong primitive for
+   the job
+6. **Maintainability:** duplicated styles, missing recipes or slot recipes for
+   repeated variants
+
+**Output modes:** The skill detects intent from the request:
+
+| Request type                                    | Output                                                                     |
+| ----------------------------------------------- | -------------------------------------------------------------------------- |
+| Review only ("is this right?", "what's wrong?") | Structured critique: Critical issues / Improvements / Optional suggestions |
+| Refactor ("refactor this", "convert to Chakra") | Rewritten code + summary of what changed + optional suggestions            |
+| Both ("review and refactor")                    | Critique first, then rewritten code                                        |
+
+---
+
+## Framework and version notes
+
+All three skills default to **Chakra UI v3** patterns. They check `package.json`
+at the start of each session and fall back to v2 only if the project is
+explicitly on v2.
+
+They also detect your framework (Next.js App Router, Pages Router, Vite, Remix)
+and adjust generated code accordingly, including where to place the
+`<Provider>`, whether to add `"use client"` directives, and which import paths
+to use.
+
+## Resources
+
+- [Installation guide](/docs/get-started/installation)
+- [Migration guide](/docs/get-started/migration)
+- [Theming](/docs/theming)
+- [Component documentation](/docs/components)
+- [MCP Server](/docs/get-started/ai/mcp-server)
