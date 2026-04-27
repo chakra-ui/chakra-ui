@@ -12,18 +12,20 @@ have to name them explicitly.
 
 ## Installation
 
-Install Claude Code, then add the skills to your project:
+Install all three skills at once, or pick only the ones you need.
 
 ```bash
-# Install Claude Code (if you haven't already)
-npm install -g @anthropic-ai/claude-code
+# Install all skills
+npx skills add https://github.com/chakra-ui/chakra-ui/tree/main/skills
 
-# In your project root, add the Chakra UI skills
-claude skills add chakra-ui
+# Install a specific skill
+npx skills add https://github.com/chakra-ui/chakra-ui/tree/main/skills/chakra-ui-builder
+npx skills add https://github.com/chakra-ui/chakra-ui/tree/main/skills/chakra-ui-migrate
+npx skills add https://github.com/chakra-ui/chakra-ui/tree/main/skills/chakra-ui-refactor
 ```
 
-The skills are stored in a `skills/` directory at the root of your project and
-are picked up automatically by Claude Code in every session.
+Claude Code automatically discovers the installed skills in your project. No
+configuration or registration is needed.
 
 ---
 
