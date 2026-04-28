@@ -17,13 +17,13 @@
     "react-dom": "19.2.5"
   },
   "devDependencies": {
-    "@types/react": "19.2.13",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addon-links": "10.3.4",
-    "@storybook/addon-themes": "10.3.4",
-    "@storybook/react": "10.3.4",
-    "@storybook/react-vite": "10.3.3",
+    "@storybook/addon-links": "10.3.5",
+    "@storybook/addon-themes": "10.3.5",
+    "@storybook/react": "10.3.5",
+    "@storybook/react-vite": "10.3.5",
     "storybook": "^10.0.0"
   }
 }
