@@ -20,7 +20,7 @@
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
     "@tanstack/router-plugin": "^1.120.2",
-    "@types/react": "19.2.13",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "^5.9.3",

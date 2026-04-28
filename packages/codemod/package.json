@@ -48,7 +48,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@clack/prompts": "1.0.1",
+    "@clack/prompts": "1.2.0",
     "@emotion/is-prop-valid": "^1.4.0",
     "@types/node": "^24.0.0",
     "commander": "14.0.3",
