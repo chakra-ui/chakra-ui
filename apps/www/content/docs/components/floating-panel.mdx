@@ -1,0 +1,130 @@
+---
+title: Floating Panel
+description:
+  Used to render a draggable, resizable panel that floats above the page
+  content.
+links:
+  source: components/floating-panel
+  storybook: components-floatingpanel--basic
+  recipe: floatingPanel
+  ark: https://ark-ui.com/docs/components/floating-panel
+---
+
+<ExampleTabs name="floating-panel-basic" />
+
+## Usage
+
+```tsx
+import { FloatingPanel } from "@chakra-ui/react"
+```
+
+```tsx
+<FloatingPanel.Root>
+  <FloatingPanel.Trigger />
+  <FloatingPanel.Positioner>
+    <FloatingPanel.Content>
+      <FloatingPanel.Header>
+        <FloatingPanel.DragTrigger>
+          <FloatingPanel.Title />
+        </FloatingPanel.DragTrigger>
+        <FloatingPanel.Control>
+          <FloatingPanel.StageTrigger stage="minimized" />
+          <FloatingPanel.StageTrigger stage="maximized" />
+          <FloatingPanel.StageTrigger stage="default" />
+          <FloatingPanel.CloseTrigger />
+        </FloatingPanel.Control>
+      </FloatingPanel.Header>
+      <FloatingPanel.Body />
+      <FloatingPanel.ResizeTriggers />
+    </FloatingPanel.Content>
+  </FloatingPanel.Positioner>
+</FloatingPanel.Root>
+```
+
+## Examples
+
+### Controlled
+
+Use the `open` and `onOpenChange` props to control the visibility of the panel.
+
+<ExampleTabs name="floating-panel-controlled" />
+
+### No Drag
+
+Set `draggable={false}` to prevent the panel from being moved by the user.
+
+<ExampleTabs name="floating-panel-no-drag" />
+
+### No Resize
+
+Set `resizable={false}` to prevent the panel from being resized by the user.
+
+<ExampleTabs name="floating-panel-no-resize" />
+
+### Disabled
+
+Set the `disabled` prop to disable all interactions — dragging, resizing, and
+stage controls.
+
+<ExampleTabs name="floating-panel-disabled" />
+
+### Anchor to Trigger
+
+Use the `getAnchorPosition` prop to position the panel relative to the trigger
+element when it opens.
+
+<ExampleTabs name="floating-panel-anchor" />
+
+### Boundary
+
+Use `getBoundaryEl` with `allowOverflow={false}` to confine the panel within a
+specific container.
+
+<ExampleTabs name="floating-panel-boundary" />
+
+### Position
+
+Use the `position` and `onPositionChange` props to control the panel's position
+programmatically.
+
+<ExampleTabs name="floating-panel-controlled-position" />
+
+### Size
+
+Use the `size` and `onSizeChange` props to control the panel's dimensions
+programmatically.
+
+<ExampleTabs name="floating-panel-controlled-size" />
+
+### No Overflow
+
+Set `allowOverflow={false}` to prevent the panel from being dragged beyond the
+viewport edges.
+
+<ExampleTabs name="floating-panel-no-overflow" />
+
+### Persist Rect
+
+Set the `persistRect` prop to remember the panel's position and size across
+open/close cycles.
+
+<ExampleTabs name="floating-panel-persist-rect" />
+
+### Lazy Mount
+
+Use `lazyMount` and `unmountOnExit` to defer rendering the panel content until
+it is opened, and remove it from the DOM when closed.
+
+<ExampleTabs name="floating-panel-lazy-mount" />
+
+### RTL
+
+Set the `dir="rtl"` prop to support right-to-left layouts.
+
+<ExampleTabs name="floating-panel-rtl" />
+
+## Props
+
+### Root
+
+<PropTable component="FloatingPanel" part="Root" />
