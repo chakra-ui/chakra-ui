@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Skills", url: "skills" },
+            { title: "AI Skills", url: "skills", status: "new" },
           ],
         },
         {
