@@ -87,7 +87,13 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
   function registerToken(token: Token, phase?: TokenEnforcePhase) {
     allTokens.push(token)
-    tokenNameMap.set(token.name, token)
+
+    if (
+      token.extensions.condition === "base" ||
+      !tokenNameMap.has(token.name)
+    ) {
+      tokenNameMap.set(token.name, token)
+    }
 
     if (phase) {
       transforms.forEach((fn) => {

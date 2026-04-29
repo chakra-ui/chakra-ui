@@ -122,6 +122,55 @@ describe("token dictionary", () => {
     `)
   })
 
+  test("getByName returns semantic token metadata with conditions", () => {
+    const dict = createTokenDictionary({
+      semanticTokens: {
+        colors: {
+          accent: { value: { base: "red", _dark: "blue" } },
+        },
+      },
+    })
+
+    const token = dict.getByName("colors.accent")
+
+    expect(token?.value).toBe("red")
+    expect(token?.extensions.condition).toBe("base")
+    expect(token?.extensions.conditions).toEqual({ base: "red", _dark: "blue" })
+  })
+
+  test("semantic token references preserve conditional token references", () => {
+    const dict = createTokenDictionary({
+      prefix: "chakra",
+      tokens: {
+        colors: {
+          blue: {
+            100: { value: "#dbeafe" },
+            900: { value: "#14204a" },
+          },
+        },
+      },
+      semanticTokens: {
+        colors: {
+          primary: {
+            value: {
+              base: "{colors.blue.900}",
+              _dark: "{colors.blue.100}",
+            },
+          },
+          fg: {
+            DEFAULT: {
+              value: "{colors.primary}",
+            },
+          },
+        },
+      },
+    })
+
+    expect(dict.getByName("colors.fg")?.value).toBe(
+      "var(--chakra-colors-primary)",
+    )
+  })
+
   test("comma-list token categories: array value is joined (fonts, shadows, …) — issue #10763", () => {
     const dict = createTokenDictionary({
       tokens: {
