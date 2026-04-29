@@ -68,14 +68,14 @@ const McpNotice = (props: StackProps) => (
     px="2"
     py="2"
     rounded="l1"
-    colorPalette="purple"
+    colorPalette="orange"
     {...props}
   >
     <Badge variant="solid">AI Tip</Badge>
     <Span textStyle="sm" pe="3">
-      Want to skip the docs? Use the{" "}
+      Want to skip the docs? Use our{" "}
       <Link asChild variant="underline" fontWeight="medium">
-        <NextLink href="/docs/get-started/ai/mcp-server">MCP Server</NextLink>
+        <NextLink href="/docs/get-started/ai/skills">Agent Skills</NextLink>
       </Link>
     </Span>
   </HStack>

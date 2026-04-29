@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Announcement alignSelf="flex-start" asChild>
-          <Link href="/docs/components/date-picker">
+          <Link href="/docs/get-started/ai/skills">
             <LuWandSparkles />
-            [New] DatePicker Component
+            Skills for AI Agents
             <HiArrowRight />
           </Link>
         </Announcement>
