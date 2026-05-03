@@ -42,7 +42,7 @@ export const SidebarStart = (props: BoxProps) => {
       py="8"
       flexShrink="0"
       ref={containerRef}
-      height="var(--content-height)"
+      height="var(--sidebar-height)"
       overflowY="auto"
       overscrollBehavior="contain"
       width="16rem"
@@ -77,7 +77,7 @@ export const SidebarEnd = (props: BoxProps) => {
       pb="8"
       px="2"
       flexShrink="0"
-      height="var(--content-height)"
+      height="var(--sidebar-height)"
       overflowY="auto"
       overscrollBehavior="contain"
       width="16rem"
