@@ -9,6 +9,24 @@ import { initializeTools } from "./tools/index.js"
 const app = express()
 app.use(express.json())
 
+// Authentication middleware: requires x-api-key header to match MCP_API_KEY env var when set
+const authenticate = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  const secret = process.env.MCP_API_KEY
+  if (!secret) return next()
+  const apiKey = req.headers["x-api-key"]
+  if (apiKey !== secret) {
+    res.status(401).json({ error: "Unauthorized" })
+    return
+  }
+  next()
+}
+
+app.use(authenticate)
+
 // Store transports for each session type
 const transports = {
   streamable: {} as Record<string, StreamableHTTPServerTransport>,
