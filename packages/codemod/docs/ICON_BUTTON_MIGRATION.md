@@ -11,7 +11,7 @@ React patterns. The codemod automatically handles these transformations.
 ## Key Changes
 
 1. **`icon` prop removed**: Icons are now passed as direct children
-2. **`isRounded` → `borderRadius="full"`**: Updated prop name for clarity
+2. **`isRound` → `borderRadius="full"`**: Updated prop name for clarity
 
 ## Transformation Examples
 
