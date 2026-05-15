@@ -77,9 +77,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       color: "fg",
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
-      _placeholder: {
-        color: "fg.muted",
-      },
       _invalid: {
         focusRingColor: "var(--error-color)",
         borderColor: "var(--error-color)",
