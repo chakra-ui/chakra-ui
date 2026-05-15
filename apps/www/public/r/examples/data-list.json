@@ -27,15 +27,6 @@
       ]
     },
     {
-      "name": "data-list-vertical",
-      "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListVertical = () => {\n  return (\n    <DataList.Root>\n      {stats.map((item) => (\n        <DataList.Item key={item.label}>\n          <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { DataList } from \"@chakra-ui/react\""
-      ],
-      "importPath": "import { DataList } from \"@chakra-ui/react\""
-    },
-    {
       "name": "data-list-with-info",
       "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListWithInfo = () => {\n  return (\n    <DataList.Root orientation=\"horizontal\">\n      {stats.map((item) => (\n        <DataList.Item key={item.label}>\n          <DataList.ItemLabel>\n            {item.label}\n            <InfoTip>This is some info</InfoTip>\n          </DataList.ItemLabel>\n          <DataList.ItemValue>{item.value}</DataList.ItemValue>\n        </DataList.Item>\n      ))}\n    </DataList.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -47,6 +38,15 @@
       "fileDependencies": [
         "compositions/ui/toggle-tip"
       ]
+    },
+    {
+      "name": "data-list-with-orientation",
+      "content": "const stats = [\n  { label: \"New Users\", value: \"234\", diff: -12, helpText: \"Till date\" },\n  { label: \"Sales\", value: \"£12,340\", diff: 12, helpText: \"Last 30 days\" },\n  { label: \"Revenue\", value: \"3,450\", diff: 4.5, helpText: \"Last 30 days\" },\n]\n\nexport const DataListWithOrientation = () => {\n  return (\n    <Stack gap=\"8\">\n      <DataList.Root orientation=\"vertical\">\n        {stats.map((item) => (\n          <DataList.Item key={`vertical-${item.label}`}>\n            <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n            <DataList.ItemValue>{item.value}</DataList.ItemValue>\n          </DataList.Item>\n        ))}\n      </DataList.Root>\n      <DataList.Root orientation=\"horizontal\">\n        {stats.map((item) => (\n          <DataList.Item key={`horizontal-${item.label}`}>\n            <DataList.ItemLabel>{item.label}</DataList.ItemLabel>\n            <DataList.ItemValue>{item.value}</DataList.ItemValue>\n          </DataList.Item>\n        ))}\n      </DataList.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DataList, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DataList } from \"@chakra-ui/react\""
     },
     {
       "name": "data-list-with-separator",

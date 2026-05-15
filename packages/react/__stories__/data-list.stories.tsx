@@ -14,7 +14,7 @@ export default {
 
 export { DataListBasic as Basic } from "compositions/examples/data-list-basic"
 export { DataListSizeTable as Sizes } from "compositions/examples/data-list-size-table"
-export { DataListVertical as Vertical } from "compositions/examples/data-list-vertical"
+export { DataListWithOrientation as Orientation } from "compositions/examples/data-list-with-orientation"
 export { DataListWithInfo as Info } from "compositions/examples/data-list-with-info"
 export { DataListWithSeparator as Separator } from "compositions/examples/data-list-with-separator"
 export { DataListWithVariants as Variants } from "compositions/examples/data-list-with-variants"
