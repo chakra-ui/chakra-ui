@@ -1,5 +1,19 @@
 # @chakra-ui/panda-preset
 
+## 3.36.0
+
+### Patch Changes
+
+- [`43a016d`](https://github.com/chakra-ui/chakra-ui/commit/43a016d32f470b14bbfb0d0a7c83075902feee5e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove the
+  DatePicker input `_placeholder` override so placeholders use the same global
+  `*::placeholder` styling as `Input`.
+
+- [`82b26be`](https://github.com/chakra-ui/chakra-ui/commit/82b26bea60f49450522354474fa5b1811095c3bb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Use
+  `focusVisibleRing` instead of `focusRing` on `Link` so the focus ring shows
+  only for `:focus-visible`, not on mouse click.
+
 ## 3.35.0
 
 ### Patch Changes
