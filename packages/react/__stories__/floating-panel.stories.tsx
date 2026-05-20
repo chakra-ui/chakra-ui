@@ -25,7 +25,6 @@ export { FloatingPanelMinMax as MinMax } from "compositions/examples/floating-pa
 export { FloatingPanelControlledOpen as ControlledOpen } from "compositions/examples/floating-panel-controlled-open"
 export { FloatingPanelWithStore as Store } from "compositions/examples/floating-panel-with-store"
 export { FloatingPanelStages as Stages } from "compositions/examples/floating-panel-stages"
-export { FloatingPanelControlledStage as ControlledStage } from "compositions/examples/floating-panel-controlled-stage"
 export { FloatingPanelMultiple as Multiple } from "compositions/examples/floating-panel-multiple"
 export { FloatingPanelWithOverlay as Overlay } from "compositions/examples/floating-panel-with-overlay"
 export { FloatingPanelPreventOverflow as PreventOverflow } from "compositions/examples/floating-panel-prevent-overflow"
