@@ -5,6 +5,84 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.35.0](./#3.35.0) - 2026-04-22
+
+### Added
+
+- **CLI**: Add new CLI commands mirroring the MCP server tools:
+  - `chakra component list` — List all available Chakra UI components
+  - `chakra component props <name>` — Show props for a component
+  - `chakra component example <name>` — Show usage examples for a component
+  - `chakra theme` — Summary table of theme categories (use `--json` for full
+    data or `--filter <category>` for one section)
+  - `chakra docs <query>` — Search the Chakra UI documentation
+
+- **Dialog / Popover / HoverCard**: Add support for multiple triggers sharing
+  one dialog instance.
+
+- **Field**: Add `Field.Item` component and `target` prop on `Field.Root` for
+  multi-control fields.
+
+- **FileUpload**: Reject duplicate files with `FILE_EXISTS` error code.
+
+- **Listbox**: Add `keyboardPriority` for Home/End and arrows; add
+  `highlightFirst`, `highlightLast`, `highlightNext`, and `highlightPrevious`
+  methods.
+
+- **Menu**: Set `aria-expanded` when closed; support multiple triggers.
+
+- **Pagination**: Allow `format` prop in `Pagination.PageText` to accept a
+  function for i18n support.
+
+  ```tsx
+  <Pagination.PageText
+    format={({ page, totalPages }) => `Page ${page} de ${totalPages}`}
+  />
+  ```
+
+- **PinInput**: Add `enterKeyHint`, `autoSubmit`, and `sanitizeValue` props.
+
+- **Popover**: Add support for `translations`, `finalFocusEl`, and
+  `restoreFocus` props.
+
+- **TagsInput**: Add `allowDuplicates` and `sanitizeValue` props, plus
+  `enterKeyHint` on mobile.
+
+### Fixed
+
+- **Carousel**: Fix controlled carousel inside dialog, navigation in transformed
+  containers, scroll drift, and page sync with indicators.
+
+- **ColorPicker**: Fix vertical slider orientation on pointer updates.
+
+- **Combobox**: VoiceOver now announces highlighted options on Apple devices via
+  a live region.
+
+- **DatePicker**: Fix calendar popup clipping when constrained by available
+  height.
+
+- **Dialog / Drawer**: Fix panel sometimes showing behind the dimmed overlay
+  when opening and closing quickly or with certain global z-index styles on the
+  page.
+
+- **GridItem**: Fix incorrect `css` prop application.
+
+- **Hooks**: Fix `usePrevious` to use a React 19-safe state-based implementation
+  and compare values with `Object.is` for correct `NaN`/`-0` behavior.
+
+- **Menu**: Fix glitchy submenu "diagonal" hover flash.
+
+- **PinInput**: Fix deletion and focus behavior, and Home/End navigation.
+
+- **System**
+  - Fix `isCssUnit` utility to reject malformed values like `1a5rem` and
+    `1-5rem` by properly escaping the decimal point in the length regex.
+  - Fix array shorthand for fonts, shadows, gradients, animations, and easings
+    (no longer mistaken for responsive arrays).
+  - Fix responsive array values in `globalCss` selector rules (for example `#id`
+    or `.class`) being serialized incorrectly instead of generating responsive
+    breakpoint styles.
+
 ## [3.34.0](./#3.34.0) - 2026-03-03
 
 ### Added

@@ -86,10 +86,10 @@ export const keyframes = {
   },
   "collapse-width": {
     from: {
-      height: "var(--width)",
+      width: "var(--width)",
     },
     to: {
-      height: "var(--collapsed-width, 0)",
+      width: "var(--collapsed-width, 0)",
     },
   },
   "fade-in": {
@@ -174,7 +174,7 @@ export const keyframes = {
   },
   "slide-from-top": {
     "0%": {
-      translate: "0 -0.5rem",
+      translate: "0 calc(var(--slide-from-top-distance, 0.5rem) * -1)",
     },
     to: {
       translate: "0",
@@ -182,7 +182,7 @@ export const keyframes = {
   },
   "slide-from-bottom": {
     "0%": {
-      translate: "0 0.5rem",
+      translate: "0 var(--slide-from-bottom-distance, 0.5rem)",
     },
     to: {
       translate: "0",
@@ -190,7 +190,7 @@ export const keyframes = {
   },
   "slide-from-left": {
     "0%": {
-      translate: "-0.5rem 0",
+      translate: "calc(var(--slide-from-left-distance, 0.5rem) * -1) 0",
     },
     to: {
       translate: "0",
@@ -198,7 +198,7 @@ export const keyframes = {
   },
   "slide-from-right": {
     "0%": {
-      translate: "0.5rem 0",
+      translate: "var(--slide-from-right-distance, 0.5rem) 0",
     },
     to: {
       translate: "0",
@@ -209,7 +209,7 @@ export const keyframes = {
       translate: "0",
     },
     to: {
-      translate: "0 -0.5rem",
+      translate: "0 calc(var(--slide-to-top-distance, 0.5rem) * -1)",
     },
   },
   "slide-to-bottom": {
@@ -217,7 +217,7 @@ export const keyframes = {
       translate: "0",
     },
     to: {
-      translate: "0 0.5rem",
+      translate: "0 var(--slide-to-bottom-distance, 0.5rem)",
     },
   },
   "slide-to-left": {
@@ -225,7 +225,7 @@ export const keyframes = {
       translate: "0",
     },
     to: {
-      translate: "-0.5rem 0",
+      translate: "calc(var(--slide-to-left-distance, 0.5rem) * -1) 0",
     },
   },
   "slide-to-right": {
@@ -233,7 +233,7 @@ export const keyframes = {
       translate: "0",
     },
     to: {
-      translate: "0.5rem 0",
+      translate: "var(--slide-to-right-distance, 0.5rem) 0",
     },
   },
   "scale-in": {
@@ -250,6 +250,22 @@ export const keyframes = {
     },
     to: {
       scale: "0.95",
+    },
+  },
+  marqueeX: {
+    from: {
+      transform: "translateX(0%)",
+    },
+    to: {
+      transform: "translateX(var(--marquee-translate))",
+    },
+  },
+  marqueeY: {
+    from: {
+      transform: "translateY(0%)",
+    },
+    to: {
+      transform: "translateY(var(--marquee-translate))",
     },
   },
 }

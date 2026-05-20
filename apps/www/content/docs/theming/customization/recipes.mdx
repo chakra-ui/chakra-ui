@@ -123,6 +123,30 @@ const Title = (props) => {
 }
 ```
 
+## TypeScript
+
+Chakra can generate TypeScript types from your theme file. That output reflects
+your **entire** system—tokens, conditions, recipes, and utilities—not only the
+recipes you customize on this page.
+
+:::warning
+
+Whenever you edit the config passed to `createSystem`, run **`typegen` again**
+so your editor stays accurate. If the generated files fall behind, TypeScript
+may flag working code until you regenerate.
+
+:::
+
+Refresh types with:
+
+```bash
+npx @chakra-ui/cli typegen ./theme.ts
+```
+
+Use the path to the file where you call `createSystem` (often `./theme.ts`). The
+[CLI reference](/docs/get-started/cli#chakra-typegen) explains watch mode,
+`postinstall` / CI, and monorepo setups.
+
 ## Slot Recipes
 
 To effectively override an existing slot recipe, we recommend connecting to its

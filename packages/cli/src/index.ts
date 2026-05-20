@@ -3,8 +3,11 @@ import { Command } from "commander"
 import { config } from "dotenv"
 import { createRequire } from "node:module"
 import { BlocksCommand } from "./commands/blocks.js"
+import { ComponentCommand } from "./commands/component.js"
+import { DocsCommand } from "./commands/docs.js"
 import { EjectCommand } from "./commands/eject.js"
 import { SnippetCommand } from "./commands/snippet.js"
+import { ThemeCommand } from "./commands/theme.js"
 import { TypegenCommand } from "./commands/typegen.js"
 
 config()
@@ -26,6 +29,9 @@ export async function run() {
     .addCommand(SnippetCommand)
     .addCommand(BlocksCommand)
     .addCommand(EjectCommand)
+    .addCommand(ComponentCommand)
+    .addCommand(ThemeCommand)
+    .addCommand(DocsCommand)
 
   program.parse()
 }

@@ -37,14 +37,11 @@ export const mergeConfigs = (...configs: SystemConfig[]): SystemConfig => {
       },
       {
         stop(value) {
-          // Stop traversal when we encounter a token-like object
+          // Stop traversal only for actual token entries.
+          // Mixed-case token names like `whiteAlpha` live at the category level
+          // and should not prevent us from reaching sibling tokens like `black`.
           return (
-            isValidToken(value) &&
-            Object.keys(value).some(
-              (k) =>
-                tokenKeys.includes(k) ||
-                (k !== k.toLowerCase() && k !== k.toUpperCase()),
-            )
+            isValidToken(value) && tokenKeys.some((key) => value[key] != null)
           )
         },
       },

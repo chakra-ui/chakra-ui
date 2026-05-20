@@ -77,9 +77,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       color: "fg",
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
-      _placeholder: {
-        color: "fg.muted",
-      },
       _invalid: {
         focusRingColor: "var(--error-color)",
         borderColor: "var(--error-color)",
@@ -113,7 +110,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       boxShadow: "lg",
       color: "fg",
-      maxHeight: "var(--available-height)",
       "--date-picker-z-index": "zIndex.popover",
       zIndex: "calc(var(--date-picker-z-index) + var(--layer-index, 0))",
       outline: "none",

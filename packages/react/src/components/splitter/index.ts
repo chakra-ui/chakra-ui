@@ -25,9 +25,16 @@ export type {
   SplitterRootProviderProps,
 } from "./splitter"
 
-export { useSplitter, useSplitterContext } from "@ark-ui/react/splitter"
+export {
+  createSplitterRegistry,
+  getSplitterLayout,
+  useSplitter,
+  useSplitterContext,
+} from "@ark-ui/react/splitter"
 
 export type {
+  SplitterRegistryProps,
+  SplitterRegistryReturn,
   UseSplitterContext,
   UseSplitterProps,
   UseSplitterReturn,

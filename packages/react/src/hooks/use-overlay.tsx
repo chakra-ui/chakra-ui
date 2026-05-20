@@ -1,14 +1,20 @@
 import * as React from "react"
 import { type Dict, omit } from "../utils"
 
-const shallowEqual = <T extends Dict>(a: T[], b: T[]) => {
+type OverlaySnapshotEntry<T extends Dict> = { id: string; props: T }
+
+const shallowEqualEntries = <T extends Dict>(
+  a: OverlaySnapshotEntry<T>[],
+  b: OverlaySnapshotEntry<T>[],
+) => {
   if (a.length !== b.length) return false
   for (let i = 0; i < a.length; i++) {
-    const aKeys = Object.keys(a[i])
-    const bKeys = Object.keys(b[i])
+    if (a[i].id !== b[i].id) return false
+    const aKeys = Object.keys(a[i].props)
+    const bKeys = Object.keys(b[i].props)
     if (aKeys.length !== bKeys.length) return false
     for (const key of aKeys) {
-      if (!Object.is(a[i][key], b[i][key])) return false
+      if (!Object.is(a[i].props[key], b[i].props[key])) return false
     }
   }
   return true
@@ -57,7 +63,7 @@ export interface CreateOverlayReturn<T extends CreateOverlayProps> {
 }
 
 export function createOverlay<T extends Dict>(
-  Component: React.ElementType<T & CreateOverlayProps>,
+  Component: React.ComponentType<T & CreateOverlayProps>,
   options?: OverlayOptions<T>,
 ): CreateOverlayReturn<T> {
   const map = new Map<string, T>()
@@ -74,13 +80,24 @@ export function createOverlay<T extends Dict>(
     }
   }
 
-  let lastSnapshot: T[] = []
+  let lastSnapshotWithIds: OverlaySnapshotEntry<T>[] = []
+  let lastSnapshotProps: T[] = []
 
-  const getSnapshot = () => {
-    const nextSnapshot = Array.from(map.values())
-    if (shallowEqual(lastSnapshot, nextSnapshot)) return lastSnapshot
-    lastSnapshot = nextSnapshot
-    return lastSnapshot
+  const getSnapshotForStore = () => {
+    const nextSnapshot: OverlaySnapshotEntry<T>[] = Array.from(
+      map.entries(),
+    ).map(([id, props]) => ({ id, props }))
+    if (shallowEqualEntries(lastSnapshotWithIds, nextSnapshot)) {
+      return lastSnapshotWithIds
+    }
+    lastSnapshotWithIds = nextSnapshot
+    lastSnapshotProps = nextSnapshot.map((e) => e.props)
+    return lastSnapshotWithIds
+  }
+
+  const getSnapshot = (): T[] => {
+    getSnapshotForStore()
+    return lastSnapshotProps
   }
 
   const waitForExit = (id: string) => {
@@ -173,17 +190,28 @@ export function createOverlay<T extends Dict>(
     publish()
   }
 
+  function OverlayViewportItem(props: T & CreateOverlayProps) {
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    const open = mounted ? (props.open ?? false) : false
+
+    return <Component {...props} open={open} />
+  }
+
   function Viewport() {
     const overlays = React.useSyncExternalStore(
       subscribe,
-      getSnapshot,
-      getSnapshot,
+      getSnapshotForStore,
+      getSnapshotForStore,
     )
     return (
       <>
-        {overlays.map((props, index) => (
-          // @ts-expect-error - TODO: fix this
-          <Component key={index} {...props} />
+        {overlays.map(({ id, props }) => (
+          <OverlayViewportItem key={id} {...props} />
         ))}
       </>
     )

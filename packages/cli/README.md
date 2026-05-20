@@ -1,112 +1,154 @@
 # @chakra-ui/cli
 
-Generate TypeScript types to provide autocomplete for your custom theme and add
-components and blocks to your project.
+The official CLI for Chakra UI projects: generate theme and recipe typings, add
+snippets and Pro blocks, eject theme artifacts into your repo, and browse
+component and documentation data from the terminal.
+
+After installation, the binary is **`chakra`** (also available via
+`npx @chakra-ui/cli`).
 
 ## Commands
 
-### Type Generation
+| Command     | Description                                                           |
+| ----------- | --------------------------------------------------------------------- |
+| `typegen`   | Generate theme and recipe TypeScript types from your theme file       |
+| `snippet`   | Add curated composition snippets to your project                      |
+| `blocks`    | Add Chakra UI Pro blocks (requires API key)                           |
+| `eject`     | Write default theme tokens and recipes into your project              |
+| `component` | List components, show props, or show examples (reads public docs API) |
+| `theme`     | Print theme categories or full theme JSON (reads public docs API)     |
+| `docs`      | Search the documentation (reads public docs API)                      |
 
-Generate TypeScript types for your custom theme:
+Run `chakra --help` or `chakra <command> --help` for options.
+
+---
+
+### Type generation (`typegen`)
+
+Generate TypeScript types for your custom theme (conditions, recipes, prop
+types, tokens, system types):
 
 ```sh
-npx @chakra-ui/cli tokens <path/to/your/theme.(js|ts)>
+npx @chakra-ui/cli typegen <path/to/your/theme.ts>
 ```
 
-or
+You can also pass a resolvable package that exports your theme.
 
 ```sh
-npx @chakra-ui/cli tokens <@your-org/chakra-theme-package>
+npx @chakra-ui/cli typegen @your-org/chakra-theme
 ```
 
-```sh
-$ npx @chakra-ui/cli tokens --help
+**Options**
 
-Usage: chakra-cli tokens [options] <source>
+| Option              | Description                                               |
+| ------------------- | --------------------------------------------------------- |
+| `--strict`          | Stricter types for recipe variants and sizes              |
+| `--outdir <dir>`    | Where to write generated files (see `--help` for default) |
+| `--tsconfig <path>` | Tsconfig used to resolve path aliases                     |
+| `--watch [path]`    | Rebuild when dependencies change                          |
+| `--clean`           | Remove the output directory before generating             |
 
-Options:
-  --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
-  --strict-component-types  Generate strict types for props variant and size
-  --strict-token-types      Generate strict types for theme tokens (e.g. color, spacing)
-  --no-format               Disable auto formatting
-  --watch [path]            Watch directory for changes and rebuild
-  --template <template>     Choose the template to use for the generation (choices: "default", "augmentation", default: "default"
-  -h, --help                display help for command
+> If you delete `node_modules`, regenerate typings by running `typegen` again.
 
-Example call:
-  $ chakra-cli tokens theme.ts
-```
+**package.json** (optional):
 
-> Note 🚨: If you delete the `node_modules` directory, you'll need to re-run the
-> command to get proper typings again.
-
-For convenience, you can add a `postinstall` script to your `package.json`, so
-you don't have to think about this every time you re-install your dependencies.
-
-```json title="package.json"
-"scripts": {
-  "gen:theme-typings": "chakra-cli tokens <path/to/your/theme.(js|ts)>",
-  "postinstall": "npm run gen:theme-typings"
+```json
+{
+  "scripts": {
+    "gen:theme-types": "chakra typegen ./src/theme.ts"
+  }
 }
 ```
 
-### Snippets
+---
 
-Add community-driven snippets to your project:
+### Snippets (`snippet`)
+
+Add community-driven composition snippets to your project:
 
 ```sh
-# Add recommended snippets
 npx @chakra-ui/cli snippet add
-
-# Add specific snippets
 npx @chakra-ui/cli snippet add provider toaster
-
-# List available snippets
 npx @chakra-ui/cli snippet list
 ```
 
-### Pro Blocks
+Snippet JSON is loaded from the registry URL below (override for local docs or
+mirrors).
 
-Add premium blocks from Chakra UI Pro to your project:
+---
+
+### Pro blocks (`blocks`)
+
+Add premium blocks from Chakra UI Pro:
 
 ```sh
-# Interactive block selection
 npx @chakra-ui/cli blocks add
-
-# Add all variants of a specific block
 npx @chakra-ui/cli blocks add hero
-
-# Add a specific variant of a block
-npx @chakra-ui/cli blocks add hero --variant "simple"
-
-# List available blocks
+npx @chakra-ui/cli blocks add hero --variant simple
 npx @chakra-ui/cli blocks list
-
-# List blocks in a specific category
-npx @chakra-ui/cli blocks list --category "marketing"
+npx @chakra-ui/cli blocks list --category marketing
 ```
 
-#### Pro Blocks Setup
+**Setup:** set `CHAKRA_UI_PRO_API_KEY` (shell or `.env` in the project root).
 
-To use Pro blocks, you need a Chakra UI Pro API key:
+**Common options:** `--outdir`, `--force`, `--dry-run`, `--tsx`, `--variant`.
 
-1. Get your API key from [Chakra UI Pro](https://pro.chakra-ui.com)
-2. Set the environment variable:
+---
 
-   ```sh
-   export CHAKRA_UI_PRO_API_KEY="your-api-key"
-   ```
+### Eject (`eject`)
 
-   Or create a `.env` file in your project root:
+Export default theme-related files (e.g. global CSS, tokens, recipes) into your
+project so you can own them:
 
-   ```env
-   CHAKRA_UI_PRO_API_KEY=your-api-key
-   ```
+```sh
+npx @chakra-ui/cli eject
+npx @chakra-ui/cli eject --outdir theme
+```
 
-#### Pro Blocks Options
+---
 
-- `--variant <variant>`: Add a specific variant instead of all variants
-- `--outdir <dir>`: Specify output directory for blocks
-- `--force`: Overwrite existing files
-- `--dry-run`: Preview what will be downloaded without writing files
-- `--tsx`: Force TypeScript JSX format (auto-detected by default)
+### Component (`component`)
+
+Uses the public Chakra documentation API (see **Environment**).
+
+```sh
+npx @chakra-ui/cli component list
+npx @chakra-ui/cli component list --charts
+npx @chakra-ui/cli component props button
+npx @chakra-ui/cli component example dialog
+```
+
+---
+
+### Theme (`theme`)
+
+```sh
+npx @chakra-ui/cli theme
+npx @chakra-ui/cli theme --json
+npx @chakra-ui/cli theme --filter tokens
+```
+
+Default output is a summary table; `--json` prints the full payload; `--filter`
+prints one category.
+
+---
+
+### Docs search (`docs`)
+
+```sh
+npx @chakra-ui/cli docs button
+npx @chakra-ui/cli docs theming
+```
+
+---
+
+## Environment
+
+The CLI loads `.env` from the current working directory when present.
+
+| Variable                | Purpose                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| `REGISTRY_URL`          | Base URL for snippet/composition JSON (default points at the hosted docs registry).                     |
+| `CHAKRA_DOCS_URL`       | Base URL for `/api/types`, `/api/theme`, `/api/search`, and examples (default `https://chakra-ui.com`). |
+| `HTTPS_PROXY`           | Proxy for outbound HTTP(S) requests.                                                                    |
+| `CHAKRA_UI_PRO_API_KEY` | Required for `blocks add` (Pro API).                                                                    |

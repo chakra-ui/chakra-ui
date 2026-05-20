@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Rules", url: "rules" },
+            { title: "AI Skills", url: "skills", status: "new" },
           ],
         },
         {
@@ -39,7 +39,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
-            { title: "TanStack Router", url: "tanstack-router", status: "new" },
+            { title: "TanStack Router", url: "tanstack-router" },
             { title: "Vite", url: "vite" },
           ],
         },
@@ -124,7 +124,6 @@ const docsLinks: NavItem = {
         },
         {
           title: "Date and Time",
-          status: "new",
           items: [
             { title: "Date Picker", url: "date-picker" },
             { title: "Calendar", url: "calendar" },

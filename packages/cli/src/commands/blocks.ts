@@ -9,6 +9,7 @@ import { z } from "zod"
 import { getProjectContext } from "../utils/context"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchProBlock, fetchProBlocks } from "../utils/fetch"
+import { formatCliError } from "../utils/format-error"
 import { ensureDir } from "../utils/io"
 import { addCommandFlagsSchema } from "../utils/schema"
 import { tasks } from "../utils/tasks"
@@ -205,11 +206,9 @@ export const BlocksCommand = new Command("blocks")
                       }
                     }
                   } catch (error) {
-                    if (error instanceof Error) {
-                      p.log.error(
-                        `Failed to fetch block ${blockId}: ${error.message}`,
-                      )
-                    }
+                    p.log.error(
+                      `Failed to fetch block ${blockId}: ${formatCliError(error)}`,
+                    )
                   }
                 }),
               )

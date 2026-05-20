@@ -62,15 +62,42 @@ export interface TokenSchema<T = any> {
   description?: string | undefined
 }
 
-type PrimitiveTokenValue = string | number
+export interface TokenValueByCategory {
+  animations: string | readonly string[]
+  aspectRatios: string | number
+  assets: string
+  blurs: string
+  borderStyles: string
+  borderWidths: string | number
+  borders: string
+  breakpoints: string
+  colors: string
+  cursor: string
+  durations: string
+  easings: string | readonly number[]
+  fonts: string | readonly string[]
+  fontSizes: string | number
+  fontWeights: string | number
+  gradients: string | readonly string[]
+  letterSpacings: string
+  lineHeights: string | number
+  opacity: string | number
+  radii: string | number
+  shadows: string | readonly string[]
+  sizes: string | number
+  spacing: string | number
+  zIndex: string | number
+}
 
 export type TokenDefinition = {
-  [key in TokenCategory]?: Recursive<TokenSchema<PrimitiveTokenValue>>
+  [K in TokenCategory]?: Recursive<TokenSchema<TokenValueByCategory[K]>>
 }
 
 export type SemanticTokenDefinition = {
-  [key in TokenCategory]?: Recursive<
-    TokenSchema<PrimitiveTokenValue | Record<string, PrimitiveTokenValue>>
+  [K in TokenCategory]?: Recursive<
+    TokenSchema<
+      TokenValueByCategory[K] | Record<string, TokenValueByCategory[K]>
+    >
   >
 }
 

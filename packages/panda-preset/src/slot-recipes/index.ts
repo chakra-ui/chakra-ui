@@ -13,6 +13,7 @@ import { collapsibleSlotRecipe } from "./collapsible"
 import { colorPickerSlotRecipe } from "./color-picker"
 import { comboboxSlotRecipe } from "./combobox"
 import { dataListSlotRecipe } from "./data-list"
+import { datePickerSlotRecipe } from "./date-picker"
 import { dialogSlotRecipe } from "./dialog"
 import { drawerSlotRecipe } from "./drawer"
 import { editableSlotRecipe } from "./editable"
@@ -23,6 +24,7 @@ import { fileUploadSlotRecipe } from "./file-upload"
 import { hoverCardSlotRecipe } from "./hover-card"
 import { listSlotRecipe } from "./list"
 import { listboxSlotRecipe } from "./listbox"
+import { marqueeSlotRecipe } from "./marquee"
 import { menuSlotRecipe } from "./menu"
 import { nativeSelectSlotRecipe } from "./native-select"
 import { numberInputSlotRecipe } from "./number-input"
@@ -66,6 +68,7 @@ export const slotRecipes = {
   codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
+  datePicker: datePickerSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
   editable: editableSlotRecipe,
@@ -106,4 +109,5 @@ export const slotRecipes = {
   colorPicker: colorPickerSlotRecipe,
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
+  marquee: marqueeSlotRecipe,
 }

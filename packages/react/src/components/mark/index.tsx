@@ -17,6 +17,4 @@ export interface MarkProps
 
 export const Mark = withContext<HTMLElement, MarkProps>("mark")
 
-Mark.displayName = "Mark"
-
 export const MarkPropsProvider = PropsProvider as React.Provider<MarkProps>

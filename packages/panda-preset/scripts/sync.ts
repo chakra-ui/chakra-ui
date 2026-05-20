@@ -1,8 +1,42 @@
 import { globby } from "globby"
-import { readFile, writeFile } from "node:fs/promises"
-import { dirname, join, relative, resolve } from "node:path"
+import { readFile, rm, writeFile } from "node:fs/promises"
+import { dirname, join, normalize, relative, resolve } from "node:path"
 import { format } from "prettier"
 import { cleanFiles } from "./shared"
+
+/** Bare CSS keyword `black` in shadow strings → `{colors.black}` (not `colors.black`, not `{black/…}`). */
+const RE_SHADOW_BARE_BLACK = /(?<![.{])black\b/g
+
+const RE_RECIPES_CONTAINER_IMPORT =
+  /^\s*import\s*\{\s*containerRecipe\s*\}\s*from\s*["']\.\/container["']\s*\r?\n/m
+
+const RE_RECIPES_CONTAINER_ENTRY = /^\s*container:\s*containerRecipe,\s*\r?\n/m
+
+/**
+ * Chakra → Panda adjustments: shadow token refs, and drop the `container`
+ * recipe (Panda already provides a `container` pattern).
+ */
+function applyPandaThemeMappings(
+  content: string,
+  relativeFile: string,
+): string {
+  let out = content.replaceAll("{black/", "{colors.black/")
+
+  // Scoped to shadows file so comments elsewhere stay untouched.
+  if (
+    normalize(relativeFile) === normalize(join("semantic-tokens", "shadows.ts"))
+  ) {
+    out = out.replace(RE_SHADOW_BARE_BLACK, "{colors.black}")
+  }
+
+  if (normalize(relativeFile) === normalize(join("recipes", "index.ts"))) {
+    out = out
+      .replace(RE_RECIPES_CONTAINER_IMPORT, "")
+      .replace(RE_RECIPES_CONTAINER_ENTRY, "")
+  }
+
+  return out
+}
 
 async function main() {
   const clean = process.argv.includes("--clean")
@@ -11,7 +45,9 @@ async function main() {
     await cleanFiles()
   }
 
-  const files = await globby("src/**/*.{ts,tsx}", { ignore: ["src/index.ts"] })
+  const files = await globby("src/**/*.{ts,tsx}", {
+    ignore: ["src/index.ts", "src/recipes/container.ts"],
+  })
   const defFile = join("src", "def.ts")
 
   const configPath = resolve("../../.prettierrc")
@@ -23,10 +59,13 @@ async function main() {
     let relativePath = relative(dirname(file), defFile)
     relativePath = relativePath === "def.ts" ? "./def.ts" : relativePath
 
+    const fileFromSrc = relative("src", file)
+
     let updatedContent = content
       .replaceAll("@chakra-ui/react", relativePath.replace(".ts", ""))
       .replaceAll("chakra-", "")
       .replaceAll("switch:", "swittch:")
+    updatedContent = applyPandaThemeMappings(updatedContent, fileFromSrc)
 
     updatedContent = await format(updatedContent, {
       parser: "typescript",
@@ -37,6 +76,8 @@ async function main() {
   })
 
   await Promise.all(promises)
+
+  await rm(join("src", "recipes", "container.ts"), { force: true })
 
   // Update src/index.ts to match exports
   const indexContent = `import { animationStyles } from "./animation-styles"

@@ -6,7 +6,10 @@ import { useEnvironmentContext } from "@ark-ui/react/environment"
 import {
   Center,
   DialogTrigger,
+  HStack,
   Input,
+  Kbd,
+  Link,
   Stack,
   Text,
   chakra,
@@ -45,6 +48,35 @@ const ComboboxItem = chakra(Combobox.Item, {
     },
   },
 })
+
+const SearchFooter = ({ query }: { query: string }) => (
+  <HStack
+    borderTopWidth="1px"
+    borderColor="border.subtle"
+    px="3"
+    py="2"
+    justify="space-between"
+    flexWrap="wrap"
+    gap="2"
+    mt="1"
+  >
+    <HStack gap="3" color="fg.muted" fontSize="xs" flexWrap="wrap">
+      <HStack gap="1">
+        <Kbd size="sm">↑</Kbd>
+        <Kbd size="sm">↓</Kbd>
+        <Text>Navigate</Text>
+      </HStack>
+      <HStack gap="1">
+        <Kbd size="sm">↵</Kbd>
+        <Text>Select</Text>
+      </HStack>
+      <HStack gap="1">
+        <Kbd size="sm">Esc</Kbd>
+        <Text>Close</Text>
+      </HStack>
+    </HStack>
+  </HStack>
+)
 
 interface Item {
   label: string
@@ -136,6 +168,7 @@ export const CommandMenu = (props: Props) => {
             </ComboboxList>
           </ComboboxContent>
         </ComboboxRoot>
+        <SearchFooter query={inputValue} />
       </DialogContent>
     </DialogRoot>
   )
