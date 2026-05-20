@@ -1,0 +1,211 @@
+---
+title: Floating Panel
+description:
+  Used to render a draggable, resizable panel that floats above the page
+  content.
+links:
+  source: components/floating-panel
+  storybook: components-floatingpanel--basic
+  recipe: floatingPanel
+  ark: https://ark-ui.com/docs/components/floating-panel
+---
+
+<ExampleTabs name="floating-panel-basic" />
+
+## Usage
+
+```tsx
+import { FloatingPanel } from "@chakra-ui/react"
+```
+
+```tsx
+<FloatingPanel.Root>
+  <FloatingPanel.Trigger />
+  <FloatingPanel.Positioner>
+    <FloatingPanel.Content>
+      <FloatingPanel.Header>
+        <FloatingPanel.DragTrigger>
+          <FloatingPanel.Title />
+        </FloatingPanel.DragTrigger>
+        <FloatingPanel.Control>
+          <FloatingPanel.StageTrigger />
+          <FloatingPanel.CloseTrigger />
+        </FloatingPanel.Control>
+      </FloatingPanel.Header>
+      <FloatingPanel.Body />
+      <FloatingPanel.ResizeTriggers />
+    </FloatingPanel.Content>
+  </FloatingPanel.Positioner>
+</FloatingPanel.Root>
+```
+
+## Shortcuts
+
+The `FloatingPanel` component provides shortcuts for common use cases.
+
+### FloatingPanelResizeTriggers
+
+The `FloatingPanel.ResizeTriggers` renders a `FloatingPanel.ResizeTrigger` for
+each resize axis.
+
+Writing this:
+
+```tsx
+<FloatingPanel.ResizeTriggers />
+```
+
+is shorthand for the following if you don't need to customize individual
+handles:
+
+```tsx
+<FloatingPanel.ResizeTrigger axis="n" />
+<FloatingPanel.ResizeTrigger axis="s" />
+<FloatingPanel.ResizeTrigger axis="e" />
+<FloatingPanel.ResizeTrigger axis="w" />
+<FloatingPanel.ResizeTrigger axis="ne" />
+<FloatingPanel.ResizeTrigger axis="nw" />
+<FloatingPanel.ResizeTrigger axis="se" />
+<FloatingPanel.ResizeTrigger axis="sw" />
+```
+
+Pass the `axes` prop to render only specific handles:
+
+```tsx
+<FloatingPanel.ResizeTriggers axes={["s", "e", "se"]} />
+```
+
+## Examples
+
+### Controlled Open
+
+Use the `open` and `onOpenChange` props to control the visibility of the panel.
+
+<ExampleTabs name="floating-panel-controlled-open" />
+
+### Store
+
+An alternative way to control the floating panel is to use the `RootProvider`
+component and the `useFloatingPanel` store hook.
+
+This way you can access the panel state and methods from outside the panel.
+
+> Use `RootProvider + useFloatingPanel` or `Root`, not both.
+
+<ExampleTabs name="floating-panel-with-store" />
+
+### Stages
+
+Use the `stage` prop on `FloatingPanel.StageTrigger` to add buttons and
+minimize, maximum and restore the panel stage. Here are the available stages:
+
+- **`default`** — restore the panel to its normal size and position
+- **`minimized`** — collapse the panel to a compact height (header only)
+- **`maximized`** — expand the panel to fill the available boundary
+
+```tsx
+<FloatingPanel.StageTrigger stage="minimized" />
+```
+
+<ExampleTabs name="floating-panel-stages" />
+
+### Multiple
+
+Render multiple `FloatingPanel.Root` instances to show several panels at once.
+Each root manages its own open state, position, and size independently.
+
+<ExampleTabs name="floating-panel-multiple" />
+
+### Overlay
+
+Use the [`createOverlay`](/docs/components/overlay-manager) function to open a
+floating panel programmatically from anywhere in your app. Render the overlay's
+`Viewport` component and call `.open()` to show the panel.
+
+<ExampleTabs name="floating-panel-with-overlay" />
+
+### Context
+
+Use `useFloatingPanelContext` inside the panel to call `minimize`, `maximize`,
+`restore`, `setPosition`, and `setSize` programmatically.
+
+<ExampleTabs name="floating-panel-context" />
+
+### Disable Drag
+
+Set `draggable={false}` to prevent the panel from being moved by the user.
+
+<ExampleTabs name="floating-panel-disable-drag" />
+
+### Disable Resize
+
+Set `resizable={false}` to prevent the panel from being resized by the user.
+
+<ExampleTabs name="floating-panel-disable-resize" />
+
+### Resize Axes
+
+Pass the `axes` prop to `FloatingPanel.ResizeTriggers` to limit which resize
+handles are rendered.
+
+<ExampleTabs name="floating-panel-resize-axes" />
+
+### Min/Max
+
+Use the `minSize` and `maxSize` props to constrain how small or large the panel
+can be resized.
+
+<ExampleTabs name="floating-panel-min-max" />
+
+### Disabled
+
+Set the `disabled` prop to disable all interactions — dragging, resizing, and
+stage controls.
+
+<ExampleTabs name="floating-panel-disabled" />
+
+### Anchor Position
+
+Use the `getAnchorPosition` prop to position the panel relative to the trigger
+element when it opens.
+
+<ExampleTabs name="floating-panel-anchor-position" />
+
+### Boundary
+
+Use `getBoundaryEl` with `allowOverflow={false}` to confine the panel within a
+specific container.
+
+<ExampleTabs name="floating-panel-boundary" />
+
+### Position
+
+Use the `position` and `onPositionChange` props to control the panel's position
+programmatically.
+
+<ExampleTabs name="floating-panel-controlled-position" />
+
+### Size
+
+Use the `size` and `onSizeChange` props to control the panel's dimensions
+programmatically.
+
+<ExampleTabs name="floating-panel-controlled-size" />
+
+### Prevent Overflow
+
+Set `allowOverflow={false}` to prevent the panel from being dragged beyond the
+viewport edges.
+
+<ExampleTabs name="floating-panel-prevent-overflow" />
+
+### RTL
+
+Set the `dir="rtl"` prop to support right-to-left layouts.
+
+<ExampleTabs name="floating-panel-rtl" />
+
+## Props
+
+### Root
+
+<PropTable component="FloatingPanel" part="Root" />

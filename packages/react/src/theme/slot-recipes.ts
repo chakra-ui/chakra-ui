@@ -21,6 +21,7 @@ import { emptyStateSlotRecipe } from "./recipes/empty-state"
 import { fieldSlotRecipe } from "./recipes/field"
 import { fieldsetSlotRecipe } from "./recipes/fieldset"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
+import { floatingPanelSlotRecipe } from "./recipes/floating-panel"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
 import { listboxSlotRecipe } from "./recipes/listbox"
@@ -110,4 +111,5 @@ export const slotRecipes = {
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
   marquee: marqueeSlotRecipe,
+  floatingPanel: floatingPanelSlotRecipe,
 }
