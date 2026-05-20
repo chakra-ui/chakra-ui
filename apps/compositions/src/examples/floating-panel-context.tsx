@@ -3,25 +3,36 @@
 import {
   Button,
   FloatingPanel,
+  HStack,
   IconButton,
   Portal,
   Text,
+  useFloatingPanelContext,
 } from "@chakra-ui/react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelNoDrag = () => {
+const PanelActions = () => {
+  const api = useFloatingPanelContext()
+  return (
+    <HStack gap="2">
+      <Button size="sm" variant="outline" onClick={() => api.minimize()}>
+        Minimize
+      </Button>
+      <Button size="sm" variant="outline" onClick={() => api.maximize()}>
+        Maximize
+      </Button>
+      <Button size="sm" variant="outline" onClick={() => api.restore()}>
+        Restore
+      </Button>
+    </HStack>
+  )
+}
+
+export const FloatingPanelContext = () => {
   return (
     <FloatingPanel.Root
-      draggable={false}
-      persistRect
       defaultSize={{ width: 320, height: 200 }}
-      minSize={{ width: 320, height: 200 }}
+      minSize={{ width: 280, height: 160 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
@@ -34,24 +45,9 @@ export const FloatingPanelNoDrag = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>Not Draggable</FloatingPanel.Title>
+                <FloatingPanel.Title>Context</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
-                <FloatingPanel.StageTrigger stage="minimized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMinus />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="maximized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuSquare />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="default" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMaximize2 />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
                 <FloatingPanel.CloseTrigger asChild>
                   <IconButton variant="ghost" size="2xs">
                     <LuX />
@@ -60,10 +56,11 @@ export const FloatingPanelNoDrag = () => {
               </FloatingPanel.Control>
             </FloatingPanel.Header>
             <FloatingPanel.Body>
-              <Text textStyle="sm">
-                This panel cannot be dragged. The position is fixed. Resizing is
-                still enabled.
+              <Text textStyle="sm" mb="3">
+                Control the panel from inside the body using{" "}
+                <code>useFloatingPanelContext</code>.
               </Text>
+              <PanelActions />
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />
           </FloatingPanel.Content>

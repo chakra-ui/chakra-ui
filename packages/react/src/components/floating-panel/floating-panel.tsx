@@ -163,7 +163,7 @@ export interface FloatingPanelResizeTriggersProps extends Omit<
   FloatingPanelResizeTriggerProps,
   "axis"
 > {
-  axes?: typeof RESIZE_AXES
+  axes?: (typeof RESIZE_AXES)[number][]
 }
 
 export const FloatingPanelResizeTriggers = (

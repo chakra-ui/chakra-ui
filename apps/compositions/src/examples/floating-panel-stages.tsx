@@ -1,6 +1,12 @@
 "use client"
 
-import { Button, FloatingPanel, IconButton, Portal } from "@chakra-ui/react"
+import {
+  Button,
+  FloatingPanel,
+  IconButton,
+  Portal,
+  Text,
+} from "@chakra-ui/react"
 import {
   LuGripHorizontal,
   LuMaximize2,
@@ -9,11 +15,12 @@ import {
   LuX,
 } from "react-icons/lu"
 
-export const FloatingPanelClosed = () => {
+export const FloatingPanelStages = () => {
   return (
     <FloatingPanel.Root
-      defaultSize={{ width: 320, height: 240 }}
-      minSize={{ width: 320, height: 240 }}
+      persistRect
+      defaultSize={{ width: 320, height: 220 }}
+      minSize={{ width: 280, height: 160 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
@@ -26,7 +33,7 @@ export const FloatingPanelClosed = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>Floating Panel</FloatingPanel.Title>
+                <FloatingPanel.Title>Stages</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
                 <FloatingPanel.StageTrigger stage="minimized" asChild>
@@ -52,8 +59,10 @@ export const FloatingPanelClosed = () => {
               </FloatingPanel.Control>
             </FloatingPanel.Header>
             <FloatingPanel.Body>
-              <p>Drag the header to move this panel around.</p>
-              <p>Use the resize handles to change the panel size.</p>
+              <Text textStyle="sm">
+                Use the header controls to minimize, maximize, or restore the
+                panel.
+              </Text>
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />
           </FloatingPanel.Content>

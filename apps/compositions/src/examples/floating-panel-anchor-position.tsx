@@ -7,21 +7,30 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { useCallback, useRef } from "react"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelNoOverflow = () => {
+export const FloatingPanelAnchorPosition = () => {
+  const anchorPos = useRef({ x: 0, y: 0 })
+
+  const getAnchorPosition = useCallback(
+    (details: {
+      triggerRect: DOMRect | null
+      boundaryRect: DOMRect | null
+    }) => {
+      const rect = details.triggerRect
+      if (!rect) return anchorPos.current
+      anchorPos.current = { x: rect.left, y: rect.bottom + 8 }
+      return anchorPos.current
+    },
+    [],
+  )
+
   return (
     <FloatingPanel.Root
-      allowOverflow={false}
-      persistRect
-      defaultSize={{ width: 300, height: 180 }}
-      minSize={{ width: 300, height: 180 }}
+      getAnchorPosition={getAnchorPosition}
+      defaultSize={{ width: 300, height: 200 }}
+      minSize={{ width: 280, height: 160 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
@@ -34,24 +43,9 @@ export const FloatingPanelNoOverflow = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>No Overflow</FloatingPanel.Title>
+                <FloatingPanel.Title>Anchor Position</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
-                <FloatingPanel.StageTrigger stage="minimized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMinus />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="maximized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuSquare />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="default" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMaximize2 />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
                 <FloatingPanel.CloseTrigger asChild>
                   <IconButton variant="ghost" size="2xs">
                     <LuX />
@@ -61,7 +55,7 @@ export const FloatingPanelNoOverflow = () => {
             </FloatingPanel.Header>
             <FloatingPanel.Body>
               <Text textStyle="sm">
-                This panel cannot be dragged beyond the viewport edges.
+                Opens below the trigger. Drag the header to reposition.
               </Text>
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />

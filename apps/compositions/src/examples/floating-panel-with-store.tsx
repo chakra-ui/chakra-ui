@@ -5,21 +5,21 @@ import {
   FloatingPanel,
   IconButton,
   Portal,
-  Text,
+  useFloatingPanel,
 } from "@chakra-ui/react"
 import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelRtl = () => {
+export const FloatingPanelWithStore = () => {
+  const floatingPanel = useFloatingPanel({
+    defaultSize: { width: 320, height: 200 },
+    minSize: { width: 280, height: 160 },
+  })
+
   return (
-    <FloatingPanel.Root
-      dir="rtl"
-      persistRect
-      defaultSize={{ width: 320, height: 200 }}
-      minSize={{ width: 320, height: 200 }}
-    >
+    <FloatingPanel.RootProvider value={floatingPanel}>
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
-          فتح اللوحة
+          {floatingPanel.open ? "Close Panel" : "Open Panel"}
         </Button>
       </FloatingPanel.Trigger>
       <Portal>
@@ -28,7 +28,7 @@ export const FloatingPanelRtl = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>لوحة عائمة</FloatingPanel.Title>
+                <FloatingPanel.Title>Store</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
                 <FloatingPanel.CloseTrigger asChild>
@@ -39,14 +39,14 @@ export const FloatingPanelRtl = () => {
               </FloatingPanel.Control>
             </FloatingPanel.Header>
             <FloatingPanel.Body>
-              <Text textStyle="sm">
-                هذه اللوحة تدعم اتجاه النص من اليمين إلى اليسار.
-              </Text>
+              Use <code>useFloatingPanel</code> with{" "}
+              <code>FloatingPanel.RootProvider</code> to access panel state and
+              methods from outside the panel tree.
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />
           </FloatingPanel.Content>
         </FloatingPanel.Positioner>
       </Portal>
-    </FloatingPanel.Root>
+    </FloatingPanel.RootProvider>
   )
 }

@@ -9,17 +9,15 @@ import {
 } from "@chakra-ui/react"
 import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelRtl = () => {
+export const FloatingPanelResizeAxes = () => {
   return (
     <FloatingPanel.Root
-      dir="rtl"
-      persistRect
       defaultSize={{ width: 320, height: 200 }}
-      minSize={{ width: 320, height: 200 }}
+      minSize={{ width: 240, height: 160 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
-          فتح اللوحة
+          Open Panel
         </Button>
       </FloatingPanel.Trigger>
       <Portal>
@@ -28,7 +26,7 @@ export const FloatingPanelRtl = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>لوحة عائمة</FloatingPanel.Title>
+                <FloatingPanel.Title>Resize Axes</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
                 <FloatingPanel.CloseTrigger asChild>
@@ -40,10 +38,10 @@ export const FloatingPanelRtl = () => {
             </FloatingPanel.Header>
             <FloatingPanel.Body>
               <Text textStyle="sm">
-                هذه اللوحة تدعم اتجاه النص من اليمين إلى اليسار.
+                Only the south, east, and southeast handles are enabled.
               </Text>
             </FloatingPanel.Body>
-            <FloatingPanel.ResizeTriggers />
+            <FloatingPanel.ResizeTriggers axes={["s", "e", "se"]} />
           </FloatingPanel.Content>
         </FloatingPanel.Positioner>
       </Portal>

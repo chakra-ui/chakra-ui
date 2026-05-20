@@ -9,17 +9,17 @@ import {
 } from "@chakra-ui/react"
 import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelRtl = () => {
+export const FloatingPanelPreventOverflow = () => {
   return (
     <FloatingPanel.Root
-      dir="rtl"
+      allowOverflow={false}
       persistRect
-      defaultSize={{ width: 320, height: 200 }}
-      minSize={{ width: 320, height: 200 }}
+      defaultSize={{ width: 300, height: 180 }}
+      minSize={{ width: 300, height: 180 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
-          فتح اللوحة
+          Open Panel
         </Button>
       </FloatingPanel.Trigger>
       <Portal>
@@ -28,7 +28,7 @@ export const FloatingPanelRtl = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>لوحة عائمة</FloatingPanel.Title>
+                <FloatingPanel.Title>Prevent Overflow</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
                 <FloatingPanel.CloseTrigger asChild>
@@ -40,7 +40,7 @@ export const FloatingPanelRtl = () => {
             </FloatingPanel.Header>
             <FloatingPanel.Body>
               <Text textStyle="sm">
-                هذه اللوحة تدعم اتجاه النص من اليمين إلى اليسار.
+                This panel cannot be dragged beyond the viewport edges.
               </Text>
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />

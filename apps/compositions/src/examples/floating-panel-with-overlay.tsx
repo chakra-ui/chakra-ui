@@ -11,13 +11,7 @@ import {
   createOverlay,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
 interface FloatingPanelOverlayProps extends Omit<
   FloatingPanel.RootProps,
@@ -40,23 +34,8 @@ const floatingPanel = createOverlay<FloatingPanelOverlayProps>((props) => {
                 <FloatingPanel.Title>{title}</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
-                <FloatingPanel.StageTrigger stage="minimized" asChild>
-                  <IconButton variant="ghost" size="2xs" aria-label="Minimize">
-                    <LuMinus />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="maximized" asChild>
-                  <IconButton variant="ghost" size="2xs" aria-label="Maximize">
-                    <LuSquare />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="default" asChild>
-                  <IconButton variant="ghost" size="2xs" aria-label="Restore">
-                    <LuMaximize2 />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
                 <FloatingPanel.CloseTrigger asChild>
-                  <IconButton variant="ghost" size="2xs" aria-label="Close">
+                  <IconButton variant="ghost" size="2xs">
                     <LuX />
                   </IconButton>
                 </FloatingPanel.CloseTrigger>

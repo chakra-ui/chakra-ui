@@ -12,13 +12,17 @@ import {
 import { useState } from "react"
 import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelControlledSize = () => {
-  const [size, setSize] = useState({ width: 360, height: 260 })
+type Stage = "default" | "minimized" | "maximized"
+
+export const FloatingPanelControlledStage = () => {
+  const [stage, setStage] = useState<Stage>("default")
 
   return (
     <FloatingPanel.Root
-      size={size}
-      onSizeChange={(details) => setSize(details.size)}
+      stage={stage}
+      onStageChange={(details) => setStage(details.stage)}
+      defaultSize={{ width: 320, height: 220 }}
+      minSize={{ width: 280, height: 160 }}
     >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
@@ -31,7 +35,7 @@ export const FloatingPanelControlledSize = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>Controlled Size</FloatingPanel.Title>
+                <FloatingPanel.Title>Controlled Stage</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
                 <FloatingPanel.CloseTrigger asChild>
@@ -47,28 +51,27 @@ export const FloatingPanelControlledSize = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => setSize({ width: 240, height: 180 })}
+                    onClick={() => setStage("minimized")}
                   >
-                    S
+                    Minimize
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => setSize({ width: 360, height: 260 })}
+                    onClick={() => setStage("maximized")}
                   >
-                    M
+                    Maximize
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => setSize({ width: 520, height: 360 })}
+                    onClick={() => setStage("default")}
                   >
-                    L
+                    Restore
                   </Button>
                 </HStack>
-                <Text textStyle="sm" color="fg.muted">
-                  {Number(size.width.toFixed(2))} x{" "}
-                  {Number(size.height.toFixed(2))}px
+                <Text textStyle="sm" color="fg.muted" fontFamily="mono">
+                  {stage}
                 </Text>
               </Stack>
             </FloatingPanel.Body>

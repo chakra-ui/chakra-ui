@@ -8,15 +8,9 @@ import {
   Portal,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelControlled = () => {
+export const FloatingPanelControlledOpen = () => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -40,24 +34,9 @@ export const FloatingPanelControlled = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>Controlled</FloatingPanel.Title>
+                <FloatingPanel.Title>Controlled Open</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
-                <FloatingPanel.StageTrigger stage="minimized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMinus />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="maximized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuSquare />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="default" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMaximize2 />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
                 <FloatingPanel.CloseTrigger asChild>
                   <IconButton variant="ghost" size="2xs">
                     <LuX />

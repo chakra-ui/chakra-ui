@@ -1,40 +1,37 @@
 "use client"
 
 import {
-  Box,
   Button,
   FloatingPanel,
+  HStack,
   IconButton,
   Portal,
+  Span,
+  Stack,
   Text,
 } from "@chakra-ui/react"
-import { useRef } from "react"
-import { LuGripHorizontal, LuX } from "react-icons/lu"
+import {
+  LuGripHorizontal,
+  LuMouse,
+  LuMoveHorizontal,
+  LuX,
+} from "react-icons/lu"
 
-export const FloatingPanelBoundary = () => {
-  const boundaryRef = useRef<HTMLDivElement>(null)
-
+export const FloatingPanelMinMax = () => {
   return (
-    <Box
-      ref={boundaryRef}
-      position="relative"
-      borderWidth="2px"
-      borderStyle="dashed"
-      borderColor="border.emphasized"
-      borderRadius="l2"
-      w="full"
-      h="400px"
-      p="4"
-    >
-      <Text textStyle="xs" color="fg.muted" mb="2">
-        Drag boundary
-      </Text>
+    <Stack gap="4" align="flex-start">
+      <HStack textStyle="sm" gap="2">
+        <LuMouse />
+        <LuMoveHorizontal />
+        <Span>
+          Drag the resize handles — size is clamped between min and max.
+        </Span>
+      </HStack>
+
       <FloatingPanel.Root
-        persistRect
-        allowOverflow={false}
-        getBoundaryEl={() => boundaryRef.current}
-        defaultSize={{ width: 280, height: 180 }}
-        minSize={{ width: 280, height: 180 }}
+        defaultSize={{ width: 320, height: 220 }}
+        minSize={{ width: 280, height: 160 }}
+        maxSize={{ width: 480, height: 320 }}
       >
         <FloatingPanel.Trigger asChild>
           <Button variant="outline" size="sm">
@@ -47,7 +44,7 @@ export const FloatingPanelBoundary = () => {
               <FloatingPanel.Header>
                 <FloatingPanel.DragTrigger>
                   <LuGripHorizontal />
-                  <FloatingPanel.Title>Bounded Panel</FloatingPanel.Title>
+                  <FloatingPanel.Title>Min/Max</FloatingPanel.Title>
                 </FloatingPanel.DragTrigger>
                 <FloatingPanel.Control>
                   <FloatingPanel.CloseTrigger asChild>
@@ -59,7 +56,8 @@ export const FloatingPanelBoundary = () => {
               </FloatingPanel.Header>
               <FloatingPanel.Body>
                 <Text textStyle="sm">
-                  This panel cannot be dragged outside the dashed boundary box.
+                  Resize the panel with the resize handles. Size is constrained
+                  between 280x160px (min) and 480x320px (max).
                 </Text>
               </FloatingPanel.Body>
               <FloatingPanel.ResizeTriggers />
@@ -67,6 +65,6 @@ export const FloatingPanelBoundary = () => {
           </FloatingPanel.Positioner>
         </Portal>
       </FloatingPanel.Root>
-    </Box>
+    </Stack>
   )
 }

@@ -8,13 +8,7 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
 const panels = [
   {
@@ -66,21 +60,6 @@ export const FloatingPanelMultiple = () => {
                     <FloatingPanel.Title>{panel.title}</FloatingPanel.Title>
                   </FloatingPanel.DragTrigger>
                   <FloatingPanel.Control>
-                    <FloatingPanel.StageTrigger stage="minimized" asChild>
-                      <IconButton variant="ghost" size="2xs">
-                        <LuMinus />
-                      </IconButton>
-                    </FloatingPanel.StageTrigger>
-                    <FloatingPanel.StageTrigger stage="maximized" asChild>
-                      <IconButton variant="ghost" size="2xs">
-                        <LuSquare />
-                      </IconButton>
-                    </FloatingPanel.StageTrigger>
-                    <FloatingPanel.StageTrigger stage="default" asChild>
-                      <IconButton variant="ghost" size="2xs">
-                        <LuMaximize2 />
-                      </IconButton>
-                    </FloatingPanel.StageTrigger>
                     <FloatingPanel.CloseTrigger asChild>
                       <IconButton variant="ghost" size="2xs">
                         <LuX />

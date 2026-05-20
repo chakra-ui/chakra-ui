@@ -7,19 +7,13 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react"
-import {
-  LuGripHorizontal,
-  LuMaximize2,
-  LuMinus,
-  LuSquare,
-  LuX,
-} from "react-icons/lu"
+import { LuGripHorizontal, LuX } from "react-icons/lu"
 
-export const FloatingPanelLazyMount = () => {
+export const FloatingPanelDisableDrag = () => {
   return (
     <FloatingPanel.Root
-      lazyMount
-      unmountOnExit
+      draggable={false}
+      persistRect
       defaultSize={{ width: 320, height: 200 }}
       minSize={{ width: 320, height: 200 }}
     >
@@ -34,24 +28,9 @@ export const FloatingPanelLazyMount = () => {
             <FloatingPanel.Header>
               <FloatingPanel.DragTrigger>
                 <LuGripHorizontal />
-                <FloatingPanel.Title>Lazy Mount</FloatingPanel.Title>
+                <FloatingPanel.Title>Disable Drag</FloatingPanel.Title>
               </FloatingPanel.DragTrigger>
               <FloatingPanel.Control>
-                <FloatingPanel.StageTrigger stage="minimized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMinus />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="maximized" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuSquare />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
-                <FloatingPanel.StageTrigger stage="default" asChild>
-                  <IconButton variant="ghost" size="2xs">
-                    <LuMaximize2 />
-                  </IconButton>
-                </FloatingPanel.StageTrigger>
                 <FloatingPanel.CloseTrigger asChild>
                   <IconButton variant="ghost" size="2xs">
                     <LuX />
@@ -61,8 +40,8 @@ export const FloatingPanelLazyMount = () => {
             </FloatingPanel.Header>
             <FloatingPanel.Body>
               <Text textStyle="sm">
-                Content is only mounted when the panel is open and unmounted
-                when it closes, keeping the DOM clean.
+                This panel cannot be dragged. The position is fixed. Resizing is
+                still enabled.
               </Text>
             </FloatingPanel.Body>
             <FloatingPanel.ResizeTriggers />
