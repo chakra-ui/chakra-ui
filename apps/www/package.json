@@ -28,7 +28,7 @@
     "fuse.js": "7.1.0",
     "match-sorter": "8.2.0",
     "mdast": "3.0.0",
-    "next": "15.5.12",
+    "next": "15.5.18",
     "next-themes": "0.4.6",
     "node-fetch": "3.3.2",
     "recharts": "^3.7.0",
