@@ -28,9 +28,7 @@ import { FloatingPanel } from "@chakra-ui/react"
           <FloatingPanel.Title />
         </FloatingPanel.DragTrigger>
         <FloatingPanel.Control>
-          <FloatingPanel.StageTrigger stage="minimized" />
-          <FloatingPanel.StageTrigger stage="maximized" />
-          <FloatingPanel.StageTrigger stage="default" />
+          <FloatingPanel.StageTrigger />
           <FloatingPanel.CloseTrigger />
         </FloatingPanel.Control>
       </FloatingPanel.Header>
@@ -48,6 +46,21 @@ import { FloatingPanel } from "@chakra-ui/react"
 Use the `open` and `onOpenChange` props to control the visibility of the panel.
 
 <ExampleTabs name="floating-panel-controlled" />
+
+### Multiple
+
+Render multiple `FloatingPanel.Root` instances to show several panels at once.
+Each root manages its own open state, position, and size independently.
+
+<ExampleTabs name="floating-panel-multiple" />
+
+### Overlay
+
+Use the [`createOverlay`](/docs/components/overlay-manager) function to open a
+floating panel programmatically from anywhere in your app. Render the overlay's
+`Viewport` component and call `.open()` to show the panel.
+
+<ExampleTabs name="floating-panel-with-overlay" />
 
 ### No Drag
 

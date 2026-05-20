@@ -21,6 +21,8 @@ export { FloatingPanelLazyMount as LazyMount } from "compositions/examples/float
 export { FloatingPanelNoDrag as NoDrag } from "compositions/examples/floating-panel-no-drag"
 export { FloatingPanelNoResize as NoResize } from "compositions/examples/floating-panel-no-resize"
 export { FloatingPanelControlled as Controlled } from "compositions/examples/floating-panel-controlled"
+export { FloatingPanelMultiple as Multiple } from "compositions/examples/floating-panel-multiple"
+export { FloatingPanelWithOverlay as Overlay } from "compositions/examples/floating-panel-with-overlay"
 export { FloatingPanelNoOverflow as NoOverflow } from "compositions/examples/floating-panel-no-overflow"
 export { FloatingPanelRtl as Rtl } from "compositions/examples/floating-panel-rtl"
 export { FloatingPanelClosed as Closed } from "compositions/examples/floating-panel-closed"

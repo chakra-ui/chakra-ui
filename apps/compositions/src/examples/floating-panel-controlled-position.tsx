@@ -3,19 +3,24 @@
 import {
   Box,
   Button,
-  FloatingPanel as ChakraFloatingPanel,
+  FloatingPanel,
   Grid,
   HStack,
   IconButton,
+  Portal,
   Text,
 } from "@chakra-ui/react"
-import { FloatingPanel } from "compositions/ui/floating-panel"
 import { useRef, useState } from "react"
 import {
   LuArrowDown,
   LuArrowLeft,
   LuArrowRight,
   LuArrowUp,
+  LuGripHorizontal,
+  LuMaximize2,
+  LuMinus,
+  LuSquare,
+  LuX,
 } from "react-icons/lu"
 
 const STEP = 40
@@ -35,7 +40,7 @@ export const FloatingPanelControlledPosition = () => {
       h="400px"
       w="full"
     >
-      <ChakraFloatingPanel.Root
+      <FloatingPanel.Root
         defaultOpen
         strategy="absolute"
         getBoundaryEl={() => containerRef.current}
@@ -44,11 +49,11 @@ export const FloatingPanelControlledPosition = () => {
         defaultSize={{ width: 260, height: 160 }}
       >
         <HStack align="start" p="3">
-          <ChakraFloatingPanel.Trigger asChild>
+          <FloatingPanel.Trigger asChild>
             <Button variant="outline" size="sm">
               Open Panel
             </Button>
-          </ChakraFloatingPanel.Trigger>
+          </FloatingPanel.Trigger>
           <Grid templateColumns="repeat(3, 1fr)" gap="1">
             <span />
             <IconButton
@@ -92,12 +97,47 @@ export const FloatingPanelControlledPosition = () => {
             x: {Math.round(position.x)}, y: {Math.round(position.y)}
           </Text>
         </HStack>
-        <FloatingPanel.Content title="Controlled Position">
-          <Text textStyle="sm">
-            Use the arrow pad above or drag the header to move this panel.
-          </Text>
-        </FloatingPanel.Content>
-      </ChakraFloatingPanel.Root>
+        <Portal>
+          <FloatingPanel.Positioner>
+            <FloatingPanel.Content>
+              <FloatingPanel.Header>
+                <FloatingPanel.DragTrigger>
+                  <LuGripHorizontal />
+                  <FloatingPanel.Title>Controlled Position</FloatingPanel.Title>
+                </FloatingPanel.DragTrigger>
+                <FloatingPanel.Control>
+                  <FloatingPanel.StageTrigger stage="minimized" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuMinus />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.StageTrigger stage="maximized" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuSquare />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.StageTrigger stage="default" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuMaximize2 />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.CloseTrigger asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuX />
+                    </IconButton>
+                  </FloatingPanel.CloseTrigger>
+                </FloatingPanel.Control>
+              </FloatingPanel.Header>
+              <FloatingPanel.Body>
+                <Text textStyle="sm">
+                  Use the arrow pad above or drag the header to move this panel.
+                </Text>
+              </FloatingPanel.Body>
+              <FloatingPanel.ResizeTriggers />
+            </FloatingPanel.Content>
+          </FloatingPanel.Positioner>
+        </Portal>
+      </FloatingPanel.Root>
     </Box>
   )
 }

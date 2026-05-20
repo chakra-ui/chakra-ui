@@ -6,11 +6,16 @@ export const floatingPanelSlotRecipe = defineSlotRecipe({
   className: "chakra-floating-panel",
   base: {
     positioner: {
-      position: "fixed",
-      zIndex: "var(--z-index)",
+      "--floating-panel-z-index": "zIndex.popover",
+      zIndex: "calc(var(--floating-panel-z-index) + var(--layer-index, 0))",
+      "&:has([data-topmost])": {
+        "--layer-index": "100",
+      },
+      "&:has([data-behind])": {
+        "--layer-index": "-100",
+      },
     },
     content: {
-      zIndex: "popover",
       display: "flex",
       flexDirection: "column",
       bg: "bg.panel",

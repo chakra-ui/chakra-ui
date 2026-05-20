@@ -3,11 +3,19 @@
 import {
   Box,
   Button,
-  FloatingPanel as ChakraFloatingPanel,
+  FloatingPanel,
+  IconButton,
+  Portal,
   Text,
 } from "@chakra-ui/react"
-import { FloatingPanel } from "compositions/ui/floating-panel"
 import { useRef } from "react"
+import {
+  LuGripHorizontal,
+  LuMaximize2,
+  LuMinus,
+  LuSquare,
+  LuX,
+} from "react-icons/lu"
 
 export const FloatingPanelDisabled = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -20,7 +28,7 @@ export const FloatingPanelDisabled = () => {
       h="400px"
       w="full"
     >
-      <ChakraFloatingPanel.Root
+      <FloatingPanel.Root
         defaultOpen
         persistRect
         disabled
@@ -30,18 +38,53 @@ export const FloatingPanelDisabled = () => {
         defaultSize={{ width: 320, height: 200 }}
         minSize={{ width: 320, height: 200 }}
       >
-        <ChakraFloatingPanel.Trigger asChild>
+        <FloatingPanel.Trigger asChild>
           <Button variant="outline" size="sm" m="3">
             Open Panel
           </Button>
-        </ChakraFloatingPanel.Trigger>
-        <FloatingPanel.Content title="Disabled Panel">
-          <Text textStyle="sm">
-            This panel is disabled. Dragging, resizing, and stage controls are
-            all inactive.
-          </Text>
-        </FloatingPanel.Content>
-      </ChakraFloatingPanel.Root>
+        </FloatingPanel.Trigger>
+        <Portal>
+          <FloatingPanel.Positioner>
+            <FloatingPanel.Content>
+              <FloatingPanel.Header>
+                <FloatingPanel.DragTrigger>
+                  <LuGripHorizontal />
+                  <FloatingPanel.Title>Disabled Panel</FloatingPanel.Title>
+                </FloatingPanel.DragTrigger>
+                <FloatingPanel.Control>
+                  <FloatingPanel.StageTrigger stage="minimized" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuMinus />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.StageTrigger stage="maximized" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuSquare />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.StageTrigger stage="default" asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuMaximize2 />
+                    </IconButton>
+                  </FloatingPanel.StageTrigger>
+                  <FloatingPanel.CloseTrigger asChild>
+                    <IconButton variant="ghost" size="2xs">
+                      <LuX />
+                    </IconButton>
+                  </FloatingPanel.CloseTrigger>
+                </FloatingPanel.Control>
+              </FloatingPanel.Header>
+              <FloatingPanel.Body>
+                <Text textStyle="sm">
+                  This panel is disabled. Dragging, resizing, and stage controls
+                  are all inactive.
+                </Text>
+              </FloatingPanel.Body>
+              <FloatingPanel.ResizeTriggers />
+            </FloatingPanel.Content>
+          </FloatingPanel.Positioner>
+        </Portal>
+      </FloatingPanel.Root>
     </Box>
   )
 }
