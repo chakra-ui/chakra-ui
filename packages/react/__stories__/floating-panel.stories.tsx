@@ -17,7 +17,6 @@ export { FloatingPanelAnchorPosition as AnchorPosition } from "compositions/exam
 export { FloatingPanelBoundary as Boundary } from "compositions/examples/floating-panel-boundary"
 export { FloatingPanelControlledPosition as Position } from "compositions/examples/floating-panel-controlled-position"
 export { FloatingPanelControlledSize as Size } from "compositions/examples/floating-panel-controlled-size"
-export { FloatingPanelDisabled as Disabled } from "compositions/examples/floating-panel-disabled"
 export { FloatingPanelDisableDrag as DisableDrag } from "compositions/examples/floating-panel-disable-drag"
 export { FloatingPanelDisableResize as DisableResize } from "compositions/examples/floating-panel-disable-resize"
 export { FloatingPanelResizeAxes as ResizeAxes } from "compositions/examples/floating-panel-resize-axes"
