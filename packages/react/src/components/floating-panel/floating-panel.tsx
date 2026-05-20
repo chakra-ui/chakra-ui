@@ -8,6 +8,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { For } from "../for"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,6 +53,7 @@ export interface FloatingPanelRootProps extends FloatingPanelRootBaseProps {
 
 export const FloatingPanelRoot = withRootProvider<FloatingPanelRootProps>(
   ArkFloatingPanel.Root,
+  { defaultProps: { lazyMount: true, unmountOnExit: true } },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -157,12 +159,19 @@ export const FloatingPanelResizeTrigger = withContext<
 
 const RESIZE_AXES = ["n", "s", "e", "w", "ne", "nw", "se", "sw"] as const
 
-export const FloatingPanelResizeTriggers = () => (
-  <>
-    {RESIZE_AXES.map((axis) => (
-      <FloatingPanelResizeTrigger key={axis} axis={axis} />
-    ))}
-  </>
+export interface FloatingPanelResizeTriggersProps extends Omit<
+  FloatingPanelResizeTriggerProps,
+  "axis"
+> {
+  axes?: typeof RESIZE_AXES
+}
+
+export const FloatingPanelResizeTriggers = (
+  props: FloatingPanelResizeTriggersProps,
+) => (
+  <For each={props.axes ?? RESIZE_AXES}>
+    {(axis) => <FloatingPanelResizeTrigger key={axis} {...props} axis={axis} />}
+  </For>
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -200,12 +209,3 @@ export const FloatingPanelControl = withContext<
   HTMLDivElement,
   FloatingPanelControlProps
 >(ArkFloatingPanel.Control, "control", { forwardAsChild: true })
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const FloatingPanelContext = ArkFloatingPanel.Context
-
-export type { FloatingPanelOpenChangeDetails } from "@ark-ui/react/floating-panel"
-export type { FloatingPanelPositionChangeDetails } from "@ark-ui/react/floating-panel"
-export type { FloatingPanelSizeChangeDetails } from "@ark-ui/react/floating-panel"
-export type { FloatingPanelStageChangeDetails } from "@ark-ui/react/floating-panel"

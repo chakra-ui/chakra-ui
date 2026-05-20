@@ -14,7 +14,6 @@ export {
   FloatingPanelStageTrigger,
   FloatingPanelCloseTrigger,
   FloatingPanelControl,
-  FloatingPanelContext,
   useFloatingPanelStyles,
 } from "./floating-panel"
 
@@ -34,20 +33,21 @@ export type {
   FloatingPanelStageTriggerProps,
   FloatingPanelCloseTriggerProps,
   FloatingPanelControlProps,
-  FloatingPanelOpenChangeDetails,
-  FloatingPanelPositionChangeDetails,
-  FloatingPanelSizeChangeDetails,
-  FloatingPanelStageChangeDetails,
 } from "./floating-panel"
 
 export {
   useFloatingPanel,
   useFloatingPanelContext,
+  FloatingPanelContext,
 } from "@ark-ui/react/floating-panel"
 
 export type {
   UseFloatingPanelProps,
   UseFloatingPanelReturn,
+  FloatingPanelOpenChangeDetails,
+  FloatingPanelPositionChangeDetails,
+  FloatingPanelSizeChangeDetails,
+  FloatingPanelStageChangeDetails,
 } from "@ark-ui/react/floating-panel"
 
 export * as FloatingPanel from "./namespace"
