@@ -229,12 +229,12 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    // tsconfck merges extends into the parsed tsconfig, so paths should be visible
+    // get-tsconfig merges extends into the parsed tsconfig, so paths should be visible
     expect(result).toBe(appTsconfigPath)
   })
 
   it("picks non-first reference with inherited paths over first reference without", async () => {
-    // This test disambiguates: does tsconfck merge `extends` in referenced
+    // This test disambiguates: does get-tsconfig merge `extends` in referenced
     // configs so our `paths` check finds inherited paths? If not, the fallback
     // would wrongly pick tsconfig.node.json (listed first).
     writeFileSync(

@@ -1,8 +1,104 @@
 import createDebug from "debug"
-import { resolve } from "node:path"
-import { parse } from "tsconfck"
+import { createFilesMatcher, getTsconfig, parseTsconfig } from "get-tsconfig"
+import type { TsConfigJsonResolved } from "get-tsconfig"
+import { realpathSync, statSync } from "node:fs"
+import { dirname, join, resolve } from "node:path"
 
 const debug = createDebug("chakra:tsconfig")
+
+type ConfigNode = {
+  path: string
+  config: TsConfigJsonResolved
+  references?: ConfigNode[]
+  parent?: ConfigNode
+}
+
+// resolve relative path to referenced tsconfig
+function resolveReferencePath(configPath: string, refPath: string): string {
+  const base = resolve(dirname(configPath), refPath)
+
+  try {
+    if (statSync(base).isFile()) return base
+  } catch {}
+
+  return join(base, "tsconfig.json")
+}
+
+// recursively load referenced tsconfigs
+function loadReference(
+  parent: ConfigNode,
+  refPath: string,
+  seen: Set<string>,
+): ConfigNode {
+  const configPath = resolveReferencePath(parent.path, refPath)
+
+  const real = realpathSync(configPath)
+  if (seen.has(real)) {
+    throw new Error(`Circular tsconfig reference: ${configPath}`)
+  }
+
+  const config = parseTsconfig(configPath)
+  const node: ConfigNode = {
+    path: configPath,
+    config,
+    parent,
+  }
+
+  // follow nested references
+  seen.add(real)
+  resolveReferences(node, seen)
+  seen.delete(real)
+
+  return node
+}
+
+// recursively resolve referenced tsconfigs
+function resolveReferences(
+  node: ConfigNode,
+  seen = new Set<string>(),
+): ConfigNode {
+  const { references } = node.config
+  if (!references?.length) return node
+
+  debug("solution-style tsconfig detected, checking references...")
+  node.references = references.map((ref) => {
+    if (!ref?.path)
+      throw new Error(`Invalid tsconfig reference in ${node.path}`)
+    return loadReference(node, ref.path, seen)
+  })
+
+  return node
+}
+
+function findConfigForFile(root: ConfigNode, sourceFile: string): ConfigNode {
+  function visit(node: ConfigNode): ConfigNode | undefined {
+    // Explore children first so the first matching descendant wins.
+    for (const ref of node.references ?? []) {
+      const match = visit(ref)
+      if (match) return match
+    }
+
+    const matcher = createFilesMatcher(node)
+    return matcher(sourceFile) ? node : undefined
+  }
+
+  return visit(root) ?? root
+}
+
+function loadResolvedConfig(sourceFile: string): ConfigNode | undefined {
+  const root = getTsconfig(sourceFile)
+  if (!root) return undefined
+
+  const real = realpathSync(root.path)
+  const node: ConfigNode = {
+    path: root.path,
+    config: root.config,
+  }
+
+  const seen = new Set([real])
+  const resolved = resolveReferences(node, seen)
+  return findConfigForFile(resolved, sourceFile)
+}
 
 /**
  * Resolves the correct tsconfig file for a given source file.
@@ -22,33 +118,15 @@ export async function resolveTsconfig(
   }
 
   try {
-    const result = await parse(sourceFile)
+    const nearest = loadResolvedConfig(sourceFile)
 
-    if (!result.tsconfigFile) {
+    if (!nearest) {
       debug("no tsconfig found for", sourceFile)
       return undefined
     }
 
-    debug("found tsconfig:", result.tsconfigFile)
-
-    // If this is a solution-style tsconfig (has references, no real files),
-    // find the referenced config that contains `paths`
-    if (result.referenced && result.referenced.length > 0) {
-      debug("solution-style tsconfig detected, checking references...")
-
-      for (const ref of result.referenced) {
-        if (ref.tsconfig?.compilerOptions?.paths) {
-          debug("found paths in referenced tsconfig:", ref.tsconfigFile)
-          return ref.tsconfigFile
-        }
-      }
-
-      // Fall back to the first referenced tsconfig
-      debug("no paths found in references, using first reference")
-      return result.referenced[0].tsconfigFile
-    }
-
-    return result.tsconfigFile
+    debug("found tsconfig:", nearest.path)
+    return nearest.path
   } catch (error) {
     debug("tsconfig resolution failed:", error)
     return undefined
