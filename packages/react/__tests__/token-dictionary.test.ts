@@ -138,6 +138,63 @@ describe("token dictionary", () => {
     expect(token?.extensions.conditions).toEqual({ base: "red", _dark: "blue" })
   })
 
+  test("keeps conditional semantic token views in sync", () => {
+    const dict = createTokenDictionary({
+      prefix: "chakra",
+      tokens: {
+        colors: {
+          teal: {
+            200: { value: "#light" },
+            800: { value: "#dark" },
+          },
+        },
+      },
+      semanticTokens: {
+        colors: {
+          teal: {
+            muted: {
+              value: {
+                _light: "{colors.teal.200}",
+                _dark: "{colors.teal.800}",
+              },
+            },
+          },
+        },
+      },
+    })
+
+    const conditions = {
+      _light: "{colors.teal.200}",
+      _dark: "{colors.teal.800}",
+    }
+
+    const token = dict.getByName("colors.teal.muted")
+    const categoryToken = dict.categoryMap.get("colors")?.get("teal.muted")
+    const darkToken = dict.allTokens.find(
+      (token) =>
+        token.name === "colors.teal.muted" &&
+        token.extensions.condition === "_dark",
+    )
+
+    expect(token).toBeDefined()
+    expect(dict.allTokens).toContain(token)
+    expect(token?.extensions.conditions).toEqual(conditions)
+
+    expect(categoryToken).toBe(token)
+    expect(dict.allTokens).toContain(categoryToken)
+
+    expect(darkToken?.extensions.conditions).toEqual(conditions)
+    expect(dict.cssVarMap.get("base")?.has("--chakra-colors-teal-muted")).toBe(
+      false,
+    )
+    expect(
+      dict.cssVarMap.get("_light")?.get("--chakra-colors-teal-muted"),
+    ).toBe("var(--chakra-colors-teal-200)")
+    expect(dict.cssVarMap.get("_dark")?.get("--chakra-colors-teal-muted")).toBe(
+      "var(--chakra-colors-teal-800)",
+    )
+  })
+
   test("semantic token references preserve conditional token references", () => {
     const dict = createTokenDictionary({
       prefix: "chakra",

@@ -26,7 +26,6 @@ describe("system", () => {
         "@layer tokens": {
           "&:where(html)": {
             "--chakra-colors-primary": "#000",
-            "--chakra-colors-test": "",
           },
           ".dark &": {
             "--chakra-colors-test": "pink",
@@ -216,5 +215,77 @@ describe("system", () => {
         },
       }
     `)
+  })
+
+  test("system.token returns semantic css var for conditional color tokens (#10822)", () => {
+    const tokens = {
+      colors: {
+        teal: {
+          200: { value: "#light" },
+          800: { value: "#dark" },
+        },
+      },
+    }
+
+    const semanticTokens = {
+      colors: {
+        teal: {
+          muted: {
+            value: {
+              _light: "{colors.teal.200}",
+              _dark: "{colors.teal.800}",
+            },
+          },
+        },
+      },
+    }
+
+    const sys = createSystem({ theme: { tokens, semanticTokens } })
+
+    expect(sys.token("colors.teal.muted")).toBe(
+      "var(--chakra-colors-teal-muted)",
+    )
+    expect(sys.token.var("colors.teal.muted")).toBe(
+      "var(--chakra-colors-teal-muted)",
+    )
+    expect(sys.query.semanticTokens.list("colors")).toContain("teal.muted")
+    expect(sys.token("colors.teal.200")).toBe("#light")
+  })
+
+  test("system.token resolves semantic tokens with base condition (#10822)", () => {
+    const tokens = {
+      colors: {
+        teal: {
+          200: { value: "#light" },
+          800: { value: "#dark" },
+        },
+      },
+    }
+
+    const semanticTokens = {
+      colors: {
+        accent: {
+          value: {
+            base: "{colors.teal.200}",
+            _dark: "{colors.teal.800}",
+          },
+        },
+        plain: {
+          value: { base: "#fff" },
+        },
+        nested: {
+          DEFAULT: {
+            value: "{colors.accent}",
+          },
+        },
+      },
+    }
+
+    const sys = createSystem({ theme: { tokens, semanticTokens } })
+
+    expect(sys.token("colors.accent")).toBe("var(--chakra-colors-accent)")
+    expect(sys.token("colors.plain")).toBe("var(--chakra-colors-plain)")
+    expect(sys.token("colors.nested")).toBe("var(--chakra-colors-nested)")
+    expect(sys.token("colors.teal.200")).toBe("#light")
   })
 })

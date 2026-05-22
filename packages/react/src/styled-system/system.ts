@@ -256,12 +256,17 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
 function getTokenMap(tokens: TokenDictionary) {
   const map = new Map<string, { value: string; variable: string }>()
+  const names = new Set(tokens.allTokens.map((token) => token.name))
 
-  tokens.allTokens.forEach((token) => {
+  for (const name of names) {
+    const token = tokens.getByName(name)
+    if (!token?.extensions.cssVar) continue
+
     const { cssVar, virtual, conditions } = token.extensions
-    const value = !!conditions || virtual ? cssVar!.ref : token.value
-    map.set(token.name, { value, variable: cssVar!.ref })
-  })
+    const isSemantic = !!conditions || virtual
+    const value = isSemantic ? cssVar.ref : token.value
+    map.set(name, { value, variable: cssVar.ref })
+  }
 
   return map
 }

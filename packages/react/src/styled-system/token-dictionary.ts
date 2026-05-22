@@ -8,7 +8,6 @@ import {
   mapEntries,
   mapObject,
   memo,
-  omit,
   walkObject,
 } from "../utils"
 import { cssVar } from "./css-var"
@@ -205,21 +204,30 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   }
 
   function buildCategoryMap(token: Token) {
-    const { category, prop, condition } = token.extensions
+    const { category, prop, condition, conditions } = token.extensions
     if (!category) return
-
-    if (condition != null && condition !== "base") return
 
     if (!categoryMap.has(category)) {
       categoryMap.set(category, new Map())
     }
 
-    categoryMap.get(category)!.set(prop, token)
+    const map = categoryMap.get(category)!
+    const existing = map.get(prop)
+
+    if (condition == null || condition === "base") {
+      map.set(prop, token)
+      return
+    }
+
+    if (conditions && !existing) {
+      map.set(prop, token)
+    }
   }
 
   function buildCssVars(token: Token) {
     const { condition, negative, virtual, cssVar } = token.extensions
-    if (negative || virtual || !condition || !cssVar) return
+    if (negative || virtual || !condition || !cssVar || token.value === "")
+      return
 
     if (!cssVarMap.has(condition)) {
       cssVarMap.set(condition, new Map())
@@ -525,7 +533,7 @@ function getConditionalTokens(token: Token) {
       ...token,
       value,
       extensions: {
-        ...omit(token.extensions, ["conditions"]),
+        ...token.extensions,
         condition: nextPath.join(":"),
       },
     }
