@@ -1,4 +1,4 @@
-import { mkdirSync, rmSync, writeFileSync } from "node:fs"
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { TextEncoder } from "node:util"
@@ -22,12 +22,22 @@ const readInput = async (file: string, cwd: string) => {
   return read(file, { cwd })
 }
 
+const getReadError = async (file: string, cwd: string) => {
+  try {
+    await readInput(file, cwd)
+  } catch (error) {
+    expect(error).toBeInstanceOf(Error)
+    return error as Error
+  }
+
+  throw new Error("Expected io.read to throw")
+}
+
 describe("io.read", () => {
   let testDir: string
 
   beforeEach(() => {
-    testDir = join(tmpdir(), `chakra-cli-io-test-${Date.now()}`)
-    mkdirSync(testDir, { recursive: true })
+    testDir = mkdtempSync(join(tmpdir(), "chakra-cli-io-test-"))
   })
 
   afterEach(() => {
@@ -43,33 +53,46 @@ describe("io.read", () => {
     expect(result.mod).toMatchObject({ $$chakra: true })
   })
 
+  it.each(["preset", "system"] as const)(
+    "accepts a named %s Chakra system export",
+    async (exportName) => {
+      const source = join(testDir, `${exportName}.ts`)
+      writeFileSync(source, `export const ${exportName} = { $$chakra: true }`)
+
+      const result = await readInput(source, testDir)
+
+      expect(result.mod).toMatchObject({ $$chakra: true })
+    },
+  )
+
+  it("accepts a CommonJS Chakra system export", async () => {
+    const source = join(testDir, "system.cjs")
+    writeFileSync(source, "module.exports = { $$chakra: true }")
+
+    const result = await readInput(source, testDir)
+
+    expect(result.mod).toMatchObject({ $$chakra: true })
+  })
+
   it("explains when the default export is not a Chakra system", async () => {
     const source = join(testDir, "config.ts")
     writeFileSync(source, "export default { theme: { tokens: {} } }")
 
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      /No Chakra system export found/,
-    )
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      'Found export: "default".',
-    )
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      "defineConfig(...)",
-    )
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      "createSystem(defaultConfig, config)",
-    )
+    const error = await getReadError(source, testDir)
+
+    expect(error.message).toContain("No Chakra system export found")
+    expect(error.message).toContain('Found export: "default".')
+    expect(error.message).toContain("defineConfig(...)")
+    expect(error.message).toContain("createSystem(defaultConfig, config)")
   })
 
   it("lists named exports when no Chakra system export is found", async () => {
     const source = join(testDir, "theme.ts")
     writeFileSync(source, "export const theme = { tokens: {} }")
 
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      'Found export: "theme".',
-    )
-    await expect(readInput(source, testDir)).rejects.toThrow(
-      'expects "default", "preset", "system"',
-    )
+    const error = await getReadError(source, testDir)
+
+    expect(error.message).toContain('Found export: "theme".')
+    expect(error.message).toContain('expects "default", "preset", "system"')
   })
 })
