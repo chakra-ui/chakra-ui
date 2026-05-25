@@ -21,12 +21,6 @@
         "isRequired": false,
         "description": "Indicates whether the fieldset is invalid."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "size": {
         "type": "\"sm\" | \"md\" | \"lg\"",
         "defaultValue": "md",
@@ -98,7 +92,7 @@
   "RootProvider": {
     "props": {
       "value": {
-        "type": "{ refs: { rootRef: RefObject<HTMLFieldSetElement | null>; }; disabled: boolean; invalid: boolean; getRootProps: () => Omit<DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement>, \"ref\">; getLegendProps: () => Omit<...>; getHelperTextProps: () => Omit<...>; getErrorTextProps: () => Omit<....",
+        "type": "{ refs: { rootRef: RefObject<HTMLFieldSetElement | null>; }; ids: { legend: string; errorText: string; helperText: string; }; disabled: boolean; invalid: boolean; getRootProps: () => Omit<...>; getLegendProps: () => Omit<...>; getHelperTextProps: () => Omit<...>; getErrorTextProps: () => Omit<...>; }",
         "isRequired": true
       },
       "asChild": {

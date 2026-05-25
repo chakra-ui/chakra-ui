@@ -179,20 +179,6 @@
     },
     "element": "HTMLDivElement"
   },
-  "RootBase": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Root": {
     "props": {
       "as": {
@@ -277,6 +263,11 @@
         "isRequired": false,
         "description": "Whether to render the date picker inline"
       },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date picker is invalid"
+      },
       "isDateUnavailable": {
         "type": "(date: DateValue, locale: string) => boolean",
         "isRequired": false,
@@ -298,6 +289,11 @@
         "type": "DateValue",
         "isRequired": false,
         "description": "The maximum date that can be selected."
+      },
+      "maxSelectedDates": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The maximum number of dates that can be selected.\nThis is only applicable when `selectionMode` is `multiple`."
       },
       "maxView": {
         "type": "DateView",
@@ -351,10 +347,21 @@
         "isRequired": false,
         "description": "Function called when the view changes."
       },
+      "onVisibleRangeChange": {
+        "type": "(details: VisibleRangeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the visible range changes."
+      },
       "open": {
         "type": "boolean",
         "isRequired": false,
         "description": "The controlled open state of the date picker"
+      },
+      "openOnClick": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to open the calendar when the input is clicked."
       },
       "outsideDaySelectable": {
         "type": "boolean",
@@ -387,11 +394,21 @@
         "isRequired": false,
         "description": "Whether the calendar is read-only."
       },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date picker is required"
+      },
       "selectionMode": {
         "type": "SelectionMode",
         "isRequired": false,
         "defaultValue": "\"single\"",
         "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected"
+      },
+      "showWeekNumbers": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to show the week number column in the day view."
       },
       "skipAnimationOnMount": {
         "type": "boolean",
@@ -438,27 +455,24 @@
         "description": "The color palette of the component"
       },
       "size": {
-        "type": "\"sm\" | \"md\" | \"lg\"",
+        "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
         "defaultValue": "md",
         "isRequired": false,
         "description": "The size of the component"
+      },
+      "hideOutsideDays": {
+        "type": "\"true\" | \"false\"",
+        "isRequired": false,
+        "description": "The hideOutsideDays of the component"
+      },
+      "variant": {
+        "type": "\"outline\" | \"subtle\" | \"flushed\"",
+        "defaultValue": "outline",
+        "isRequired": false,
+        "description": "The variant of the component"
       }
     },
     "element": "HTMLDivElement"
-  },
-  "RootProviderBase": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
   },
   "RootProvider": {
     "props": {
@@ -701,6 +715,58 @@
     },
     "element": "HTMLButtonElement"
   },
+  "WeekNumberCell": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "week": {
+        "type": "DateValue[]",
+        "isRequired": true
+      },
+      "weekIndex": {
+        "type": "number",
+        "isRequired": true
+      }
+    },
+    "element": "HTMLTableCellElement"
+  },
+  "WeekNumberCellText": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "WeekNumberHeaderCell": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLTableCellElement"
+  },
   "YearSelect": {
     "props": {
       "as": {
@@ -715,5 +781,141 @@
       }
     },
     "element": "HTMLSelectElement"
+  },
+  "Header": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "IndicatorGroup": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "DayTable": {
+    "props": {
+      "offset": {
+        "type": "number",
+        "isRequired": false
+      },
+      "weekNumberLabel": {
+        "type": "string",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "MonthTable": {
+    "props": {
+      "columns": {
+        "type": "number",
+        "isRequired": false
+      },
+      "format": {
+        "type": "\"short\" | \"long\"",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "YearTable": {
+    "props": {
+      "columns": {
+        "type": "number",
+        "isRequired": false
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "ValueText": {
+    "props": {
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "description": "Text to display when no date is selected."
+      },
+      "separator": {
+        "type": "string",
+        "defaultValue": "\", \"",
+        "isRequired": false,
+        "description": "The separator to use between multiple date values when using default rendering."
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLSpanElement"
+  },
+  "ValueTextRender": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "remove": {
+        "type": "() => void",
+        "isRequired": true
+      },
+      "value": {
+        "type": "DateValue",
+        "isRequired": true
+      },
+      "valueAsString": {
+        "type": "string",
+        "isRequired": true
+      }
+    }
   }
 }

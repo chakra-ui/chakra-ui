@@ -184,12 +184,6 @@
         "isRequired": false,
         "description": "The controlled value of the editable."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "size": {
         "type": "\"sm\" | \"md\" | \"lg\"",
         "defaultValue": "md",

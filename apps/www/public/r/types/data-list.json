@@ -58,12 +58,6 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "orientation": {
         "type": "\"horizontal\" | \"vertical\"",
         "defaultValue": "vertical",

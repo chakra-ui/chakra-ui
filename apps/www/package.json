@@ -10,6 +10,7 @@
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:examples": "pnpm tsx scripts/generate-examples.ts",
+    "pregenerate:types": "pnpm build:react",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "generate:theme": "pnpm tsx scripts/generate-theme.ts",

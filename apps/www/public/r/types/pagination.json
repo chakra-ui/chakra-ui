@@ -1,152 +1,16 @@
 {
-  "PaginationRoot": {
-    "props": {}
-  },
-  "PaginationRootProvider": {
-    "props": {}
-  },
-  "PaginationPrevTrigger": {
-    "props": {}
-  },
-  "PaginationNextTrigger": {
-    "props": {}
-  },
-  "PaginationEllipsis": {
-    "props": {}
-  },
-  "PaginationItem": {
-    "props": {
-      "href": {
-        "type": "LinkProps[\"href\"]",
-        "isRequired": true
-      },
-      "external": {
-        "type": "boolean | undefined",
-        "isRequired": false
-      },
-      "align": {
-        "type": "SystemStyleObject[\"alignItems\"] | undefined",
-        "isRequired": false,
-        "description": "Shorthand for `alignItems` style prop"
-      },
-      "justify": {
-        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
-        "isRequired": false,
-        "description": "Shorthand for `justifyContent` style prop"
-      },
-      "wrap": {
-        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
-        "isRequired": false,
-        "description": "Shorthand for `flexWrap` style prop"
-      },
-      "direction": {
-        "type": "StackDirection | undefined",
-        "defaultValue": "column",
-        "isRequired": false,
-        "description": "The direction to stack the items."
-      },
-      "separator": {
-        "type": "React.ReactElement<any> | undefined",
-        "isRequired": false,
-        "description": "If `true`, each stack item will show a separator"
-      }
-    }
-  },
-  "PaginationPageText": {
-    "props": {
-      "format": {
-        "type": "\"short\" | \"compact\" | \"long\" | undefined",
-        "isRequired": false
-      }
-    }
-  },
-  "PaginationItems": {
-    "props": {
-      "render": {
-        "type": "(page",
-        "isRequired": true
-      },
-      "ellipsis": {
-        "type": "React.ReactElement | undefined",
-        "isRequired": false
-      }
-    }
-  },
-  "UsePagination": {
-    "props": {}
-  },
-  "Pagination": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
-  "Ellipsis": {
-    "props": {
-      "index": {
-        "type": "number",
-        "isRequired": true
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
-  },
-  "Item": {
-    "props": {
-      "type": {
-        "type": "'page'",
-        "isRequired": true
-      },
-      "value": {
-        "type": "number",
-        "isRequired": true
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLButtonElement"
-  },
-  "NextTrigger": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLButtonElement"
-  },
-  "PrevTrigger": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLButtonElement"
-  },
   "Root": {
     "props": {
       "asChild": {
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "boundaryCount": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "Number of pages to show at the beginning and end"
       },
       "count": {
         "type": "number",
@@ -171,7 +35,7 @@
         "description": "Function to generate href attributes for pagination links.\nOnly used when `type` is set to \"link\"."
       },
       "ids": {
-        "type": "Partial<{\n  root: string\n  ellipsis: (index: number) => string\n  prevTrigger: string\n  nextTrigger: string\n  item: (page: number) => string\n}>",
+        "type": "Partial<{\n  root: string\n  ellipsis: (index: number) => string\n  firstTrigger: string\n  prevTrigger: string\n  nextTrigger: string\n  lastTrigger: string\n  item: (page: number) => string\n}>",
         "isRequired": false,
         "description": "The ids of the elements in the accordion. Useful for composition."
       },
@@ -228,5 +92,131 @@
       }
     },
     "element": "HTMLElement"
+  },
+  "PrevTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "NextTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Ellipsis": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
+  "Item": {
+    "props": {
+      "href": {
+        "type": "LinkProps[\"href\"]",
+        "isRequired": true
+      },
+      "external": {
+        "type": "boolean | undefined",
+        "isRequired": false
+      },
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `alignItems` style prop"
+      },
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `justifyContent` style prop"
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"flexWrap\"] | undefined",
+        "isRequired": false,
+        "description": "Shorthand for `flexWrap` style prop"
+      },
+      "direction": {
+        "type": "StackDirection | undefined",
+        "defaultValue": "column",
+        "isRequired": false,
+        "description": "The direction to stack the items."
+      },
+      "separator": {
+        "type": "React.ReactElement<any> | undefined",
+        "isRequired": false,
+        "description": "If `true`, each stack item will show a separator"
+      },
+      "type": {
+        "type": "'page'",
+        "isRequired": true
+      },
+      "value": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "PageText": {
+    "props": {
+      "format": {
+        "type": "PaginationPageTextFormat | undefined",
+        "isRequired": false
+      }
+    }
+  },
+  "Items": {
+    "props": {
+      "render": {
+        "type": "(page",
+        "isRequired": true
+      },
+      "ellipsis": {
+        "type": "React.ReactElement | undefined",
+        "isRequired": false
+      }
+    }
+  },
+  "FirstTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "LastTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
   }
 }

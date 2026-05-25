@@ -41,6 +41,11 @@
         "isRequired": false,
         "description": "The ids of the elements in the radio. Useful for composition."
       },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group is marked as invalid."
+      },
       "name": {
         "type": "string",
         "isRequired": false,
@@ -59,18 +64,17 @@
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is read-only"
+        "description": "Whether the radio group is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group is marked as required."
       },
       "value": {
         "type": "string",
         "isRequired": false,
         "description": "The controlled value of the radio group"
-      },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
       },
       "size": {
         "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
@@ -203,6 +207,6 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLSpanElement"
   }
 }

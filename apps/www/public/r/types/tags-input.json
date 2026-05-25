@@ -256,6 +256,11 @@
         "isRequired": false,
         "description": "Callback fired when the max tag count is reached or the `validateTag` function returns `false`"
       },
+      "placeholder": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The placeholder text for the input"
+      },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,

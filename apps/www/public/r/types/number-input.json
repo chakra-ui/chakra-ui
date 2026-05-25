@@ -188,6 +188,11 @@
         "isRequired": false,
         "description": "Function invoked when the value changes"
       },
+      "onValueCommit": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function invoked when the value is committed (when the input is blurred or the Enter key is pressed)"
+      },
       "onValueInvalid": {
         "type": "(details: ValueInvalidDetails) => void",
         "isRequired": false,

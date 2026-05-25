@@ -213,32 +213,6 @@
       }
     }
   },
-  "NodeRender": {
-    "props": {
-      "node": {
-        "type": "T",
-        "isRequired": false
-      },
-      "indexPath": {
-        "type": "number[]",
-        "isRequired": true
-      },
-      "nodeState": {
-        "type": "ArkTreeView.NodeState",
-        "isRequired": true
-      },
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Root": {
     "props": {
       "as": {
@@ -367,6 +341,11 @@
         "type": "(details: SelectionChangeDetails<T>) => void",
         "isRequired": false,
         "description": "Called when the selection changes"
+      },
+      "scrollToIndexFn": {
+        "type": "(details: ScrollToIndexDetails<T>) => void",
+        "isRequired": false,
+        "description": "Function to scroll to a specific index.\nUseful for virtualized tree views."
       },
       "selectedValue": {
         "type": "string[]",

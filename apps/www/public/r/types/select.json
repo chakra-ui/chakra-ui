@@ -44,6 +44,21 @@
     },
     "element": "HTMLDivElement"
   },
+  "List": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
   "IndicatorGroup": {
     "props": {
       "as": {
@@ -209,6 +224,11 @@
         "type": "ListCollection<T>",
         "isRequired": true,
         "description": "The collection of items"
+      },
+      "autoComplete": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The autocomplete attribute for the hidden select. Enables browser autofill (e.g. \"address-level1\" for state)."
       },
       "closeOnSelect": {
         "type": "boolean",
@@ -386,12 +406,6 @@
         "isRequired": false,
         "description": "The controlled keys of the selected items"
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "variant": {
         "type": "\"outline\" | \"subtle\" | \"ghost\"",
         "defaultValue": "outline",
@@ -501,15 +515,5 @@
       }
     },
     "element": "HTMLSelectElement"
-  },
-  "List": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
   }
 }

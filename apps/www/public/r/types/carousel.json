@@ -175,6 +175,12 @@
         "defaultValue": "false",
         "description": "Whether to scroll automatically. The default delay is 4000ms."
       },
+      "autoSize": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "false",
+        "description": "Whether to enable variable width slides."
+      },
       "defaultPage": {
         "type": "number",
         "isRequired": false,
@@ -301,9 +307,8 @@
         "isRequired": false
       },
       "paused": {
-        "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
-        "isRequired": false,
-        "description": "The content to render when autoplay is paused."
+        "type": "React.ReactNode",
+        "isRequired": false
       },
       "as": {
         "type": "React.ElementType",
@@ -315,12 +320,13 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
-      "playing": {
+      "fallback": {
         "type": "string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>",
         "isRequired": false,
-        "description": "The content to render when autoplay is playing."
+        "description": "The fallback content to render when autoplay is paused."
       }
-    }
+    },
+    "element": "HTMLSpanElement"
   },
   "ProgressText": {
     "props": {

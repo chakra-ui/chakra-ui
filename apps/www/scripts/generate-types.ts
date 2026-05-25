@@ -11,7 +11,6 @@ import {
   chartComponents,
   filterEmpty,
   isEmptyObject,
-  mapEntries,
   toComponentCase,
 } from "@/utils/shared"
 import { defaultSystem } from "@chakra-ui/react/preset"
@@ -36,17 +35,6 @@ async function getArkComponentProps() {
   return Object.fromEntries(entries)
 }
 
-// Components where Root doesn't render a DOM node (uses withRootProvider)
-const rootWithoutColorPalette = new Set([
-  "menu",
-  "popover",
-  "dialog",
-  "tooltip",
-  "drawer",
-  "hover-card",
-  "action-bar",
-])
-
 async function getRecipeProps() {
   const componentDirs = await getComponentList()
   const entries = componentDirs.map((dir) => {
@@ -61,11 +49,6 @@ async function getRecipeProps() {
     }
 
     if (defaultSystem.isSlotRecipe(recipeKey)) {
-      // Filter out colorPalette for components where Root doesn't render a DOM node
-      if (rootWithoutColorPalette.has(dir)) {
-        const { colorPalette, ...rest } = props
-        props = rest
-      }
       return [kebabCase(dir), filterEmpty({ Root: { props } })]
     }
 
@@ -109,6 +92,48 @@ const arkPropsMap: Record<string, string> = {
   "checkbox-card": "checkbox",
 }
 
+const omittedParts: Record<string, string[]> = {
+  toast: ["Store"],
+}
+
+function getValueExports(code: string) {
+  const exported = new Set<string>()
+  const exportedValueRegex = /export\s*{([^}]+)}/g
+  let match = exportedValueRegex.exec(code)
+
+  while (match != null) {
+    const values = match[1].split(",").map((value) => value.trim())
+    values.forEach((value) => {
+      const [name, alias] = value.split(/\s+as\s+/)
+      exported.add(alias ?? name)
+    })
+    match = exportedValueRegex.exec(code)
+  }
+
+  return exported
+}
+
+function getNamespaceAliases(componentDir: string) {
+  const file = join(componentDir, "namespace.ts")
+  const aliases = new Map<string, string>()
+  if (!existsSync(file)) return aliases
+
+  const content = readFileSync(file, "utf-8")
+  const exportedValueRegex = /export\s*{([^}]+)}/g
+  let match = exportedValueRegex.exec(content)
+
+  while (match != null) {
+    const values = match[1].split(",").map((value) => value.trim())
+    values.forEach((value) => {
+      const [name, alias] = value.split(/\s+as\s+/)
+      if (alias) aliases.set(name, alias)
+    })
+    match = exportedValueRegex.exec(content)
+  }
+
+  return aliases
+}
+
 async function extractComponents(components?: string[]) {
   const outDir = join("public", "r", "types")
 
@@ -145,14 +170,21 @@ async function extractComponents(components?: string[]) {
       inPath = join(componentDir, dir, "index.tsx")
     }
 
+    const content = readFileSync(inPath, "utf-8")
+    const valueExports = getValueExports(content)
+    const namespaceAliases = getNamespaceAliases(join(componentDir, dir))
     const props = await extractTypes(inPath)
 
     const json = deepMerge(
       {},
-      wrapInProps(props, recipeKey),
+      wrapInProps(props, recipeKey, valueExports, namespaceAliases),
       arkProps[arkPropsMap[dir] || dir],
       recipeProps[dir],
     )
+
+    omittedParts[dir]?.forEach((part) => {
+      Reflect.deleteProperty(json, part)
+    })
 
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
@@ -185,13 +217,43 @@ const unstyledProps = {
   },
 }
 
-function wrapInProps(obj: any, recipeKey: string) {
+function wrapInProps(
+  obj: any,
+  recipeKey: string,
+  valueExports: Set<string>,
+  namespaceAliases: Map<string, string>,
+) {
   const isSlotRecipe = defaultSystem.isSlotRecipe(recipeKey)
   const componentName = toComponentCase(recipeKey)
-  const result: Record<string, any> = mapEntries(obj, (key: string, value) => [
-    isSlotRecipe ? key.replace(componentName, "") : key,
-    isEmptyObject(value) ? { props: {} } : { props: value },
-  ])
+  const result: Record<string, any> = {}
+  const slots = isSlotRecipe
+    ? defaultSystem
+        .getSlotRecipe(recipeKey)
+        .slots.map((slot: string) => toComponentCase(slot))
+    : []
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key.startsWith("Use")) continue
+    if (key.endsWith("Base")) continue
+
+    let part = key
+
+    const alias = namespaceAliases.get(key)
+    if (alias) {
+      part = alias
+    } else if (isSlotRecipe) {
+      if (!key.startsWith(componentName)) continue
+
+      part = key.slice(componentName.length)
+
+      if (!slots.includes(part)) {
+        if (!valueExports.has(key)) continue
+        if (!/^[A-Z]/.test(part)) continue
+      }
+    }
+
+    result[part] = isEmptyObject(value) ? { props: {} } : { props: value }
+  }
 
   if (isSlotRecipe) {
     result.Root ||= { props: {} }
@@ -212,8 +274,10 @@ function wrapInProps(obj: any, recipeKey: string) {
       Object.assign(result[key].props, commonProps)
     }
   } else {
-    result[componentName] ||= { props: {} }
-    Object.assign(result[componentName].props, commonProps)
+    if (namespaceAliases.size === 0) {
+      result[componentName] ||= { props: {} }
+      Object.assign(result[componentName].props, commonProps)
+    }
   }
 
   return result

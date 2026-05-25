@@ -1,45 +1,4 @@
 {
-  "ClipboardControl": {
-    "props": {}
-  },
-  "ClipboardIndicator": {
-    "props": {}
-  },
-  "ClipboardRoot": {
-    "props": {}
-  },
-  "ClipboardRootProvider": {
-    "props": {}
-  },
-  "ClipboardLabel": {
-    "props": {}
-  },
-  "ClipboardValueText": {
-    "props": {}
-  },
-  "ClipboardTrigger": {
-    "props": {}
-  },
-  "ClipboardInput": {
-    "props": {}
-  },
-  "UseClipboard": {
-    "props": {}
-  },
-  "Clipboard": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Control": {
     "props": {
       "asChild": {
@@ -63,26 +22,6 @@
       }
     },
     "element": "HTMLDivElement"
-  },
-  "Input": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLInputElement"
-  },
-  "Label": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLLabelElement"
   },
   "Root": {
     "props": {
@@ -144,7 +83,7 @@
     },
     "element": "HTMLDivElement"
   },
-  "Trigger": {
+  "Label": {
     "props": {
       "asChild": {
         "type": "boolean",
@@ -152,7 +91,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLLabelElement"
   },
   "ValueText": {
     "props": {
@@ -163,5 +102,25 @@
       }
     },
     "element": "HTMLDivElement"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement"
   }
 }

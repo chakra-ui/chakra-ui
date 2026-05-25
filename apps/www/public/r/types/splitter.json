@@ -30,7 +30,8 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLDivElement"
   },
   "ResizeTriggerSeparator": {
     "props": {
@@ -68,20 +69,6 @@
       }
     },
     "element": "HTMLButtonElement"
-  },
-  "RootBase": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
   },
   "Root": {
     "props": {
@@ -168,20 +155,6 @@
       }
     },
     "element": "HTMLDivElement"
-  },
-  "RootProviderBase": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
   },
   "RootProvider": {
     "props": {

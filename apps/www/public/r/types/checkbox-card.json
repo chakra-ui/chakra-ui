@@ -247,6 +247,11 @@
         "isRequired": false,
         "description": "If `true`, the checkbox group is invalid"
       },
+      "maxSelectedValues": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The maximum number of selected values"
+      },
       "name": {
         "type": "string",
         "isRequired": false,
