@@ -1,89 +1,78 @@
-# Welcome to Chakra UI ⚡️
+# @chakra-ui/react
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![npm version](https://npmx.dev/api/registry/badge/version/@chakra-ui/react)](https://npmx.dev/package/@chakra-ui/react)
+[![npm downloads](https://npmx.dev/api/registry/badge/downloads/@chakra-ui/react)](https://npmx.dev/package/@chakra-ui/react)
+[![types](https://npmx.dev/api/registry/badge/types/@chakra-ui/react)](https://npmx.dev/package/@chakra-ui/react)
+[![license](https://npmx.dev/api/registry/badge/license/@chakra-ui/react)](https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE)
 
-- Works out of the box. Chakra UI contains a set of polished React components
-  that work out of the box.
+Chakra UI is a component system for building products with speed. Accessible
+React components for building high-quality web apps and design systems. Works
+with Next.js RSC.
 
-- Flexible & composable. Chakra UI components are built on top of a React UI
-  Primitive for endless composability.
+- **Works out of the box.** A set of polished React components with sensible
+  defaults.
+- **Flexible & composable.** Components are built on top of headless UI
+  primitives ([Ark UI](https://ark-ui.com)) for endless composability.
+- **Accessible.** Components follow the WAI-ARIA guidelines and are tested
+  against common accessibility issues.
+- **Themeable.** Customize every part of the components with design tokens,
+  recipes, and semantic tokens. Dark mode included.
 
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
-  specifications.
-
-- Dark Mode 😍: All components are dark mode compatible.
-
-## Looking for the documentation?
+## Documentation
 
 https://chakra-ui.com
 
-## Installing Chakra UI
+- Latest: https://chakra-ui.com
+- v2: https://v2.chakra-ui.com
+- v1: https://v1.chakra-ui.com
 
-⚡️Chakra UI is made up of multiple components and tools which you can import one
-by one. All you need to do is install the `@chakra-ui/react` package:
+## Installation
+
+Install the `@chakra-ui/react` package and its peer dependency:
 
 ```sh
-$ yarn add @chakra-ui/react
-# or
-$ npm install --save @chakra-ui/react
+# with npm
+npm i @chakra-ui/react @emotion/react
+
+# with yarn
+yarn add @chakra-ui/react @emotion/react
+
+# with pnpm
+pnpm add @chakra-ui/react @emotion/react
+
+# with bun
+bun add @chakra-ui/react @emotion/react
 ```
 
-# Getting set up
+## Getting started
 
-To start using the components, please follow these steps:
+1. Wrap your application with the `ChakraProvider` component:
 
-1. Wrap your application in a `ThemeProvider` provided by **@chakra-ui/react**
+```tsx
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 
-```jsx
-import { ColorModeProvider, ThemeProvider } from "@chakra-ui/react"
-
-const App = ({ children }) => (
-  <ThemeProvider>
-    <ColorModeProvider>{children}</ColorModeProvider>
-  </ThemeProvider>
+export const App = ({ children }) => (
+  <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
 )
 ```
 
-`ColorModeProvider` is a context that provides light mode and dark mode values
-to the components. It also comes with a function to toggle between light/dark
-mode.
+2. Start using components:
 
-2. Now you can start using components like so!:
-
-```jsx
+```tsx
 import { Button } from "@chakra-ui/react"
 
-const App = () => <Button>I just consumed some ⚡️Chakra!</Button>
+const Demo = () => <Button>I just consumed some ⚡️Chakra!</Button>
 ```
 
-# Contributing
+For framework-specific setup (Next.js, Vite, etc.), see the
+[installation guide](https://chakra-ui.com/docs/get-started/installation).
 
-Feel like contributing? That's awesome! We have a
-[contributing guide](../../CONTRIBUTING.md) to help guide you.
+## Contributing
 
-The components to be built come from the
-[Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
+Feel like contributing? That's awesome! Read the
+[contribution guide](https://chakra-ui.com/docs/get-started/contributing) to get
+started.
 
-## Contributors ✨
+## License
 
-Thanks goes to these wonderful people
-([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td style="text-align: center"><a href="https://github.com/segunadebayo"><img src="https://avatars2.githubusercontent.com/u/6916170?v=4" width="100px;" alt="Segun Adebayo"/><br /><sub><b>Segun Adebayo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=segunadebayo" title="Code">💻</a> <a href="#maintenance-segunadebayo" title="Maintenance">🚧</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=segunadebayo" title="Documentation">📖</a> <a href="#example-segunadebayo" title="Examples">💡</a> <a href="#design-segunadebayo" title="Design">🎨</a></td>
-    <td style="text-align: center"><a href="https://github.com/tioluwani94"><img src="https://avatars1.githubusercontent.com/u/11310046?v=4" width="100px;" alt="Tioluwani Kolawole"/><br /><sub><b>Tioluwani Kolawole</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tioluwani94" title="Documentation">📖</a> <a href="#example-tioluwani94" title="Examples">💡</a> <a href="#maintenance-tioluwani94" title="Maintenance">🚧</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the
-[all-contributors](https://github.com/all-contributors/all-contributors)
-specification. Contributions of any kind welcome!
+MIT © [Segun Adebayo](https://github.com/segunadebayo)
