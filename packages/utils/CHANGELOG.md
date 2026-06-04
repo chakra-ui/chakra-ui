@@ -1,5 +1,13 @@
 # @chakra-ui/utils
 
+## 2.2.6
+
+### Patch Changes
+
+- [`ac2c5ba`](https://github.com/chakra-ui/chakra-ui/commit/ac2c5bac64438fa081ac2fe2ebcfa2b65e95ed50)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix infinite loop
+  in `objectToArrayNotation` when responsive object has trailing `null` values.
+
 ## 2.2.5
 
 ### Patch Changes

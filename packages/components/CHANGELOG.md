@@ -1,5 +1,21 @@
 # @chakra-ui/react
 
+## 2.10.10
+
+### Patch Changes
+
+- [#10628](https://github.com/chakra-ui/chakra-ui/pull/10628)
+  [`e295290`](https://github.com/chakra-ui/chakra-ui/commit/e2952907f7717818e78daaee2f99dfd386d99fb8)
+  Thanks [@sagie-reder](https://github.com/sagie-reder)! - add aria-hidden
+  attribute to toast container when no toasts are present
+
+- Updated dependencies
+  [[`ac2c5ba`](https://github.com/chakra-ui/chakra-ui/commit/ac2c5bac64438fa081ac2fe2ebcfa2b65e95ed50)]:
+  - @chakra-ui/utils@2.2.6
+  - @chakra-ui/hooks@2.4.6
+  - @chakra-ui/styled-system@2.12.5
+  - @chakra-ui/theme@3.4.10
+
 ## 2.10.9
 
 ### Patch Changes
