@@ -10,7 +10,7 @@ export interface ForProps<T> {
    */
   fallback?: React.ReactNode | undefined
   /**
-   * The render function to render each item in the array
+   * The function to render each item in the array
    */
   children: (item: Exclude<T, undefined>, index: number) => React.ReactNode
 }
