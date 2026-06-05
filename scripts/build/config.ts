@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
 import glob from "fast-glob"
+import { readFileSync } from "node:fs"
 import { resolve } from "node:path"
 import { Plugin, RollupOptions } from "rollup"
 import esbuild from "rollup-plugin-esbuild"
@@ -16,7 +17,9 @@ interface Options {
 export async function getConfig(options: Options): Promise<RollupOptions> {
   const { dir, aliases } = options
 
-  const packageJson = await import(resolve(dir, "package.json"))
+  const packageJson = JSON.parse(
+    readFileSync(resolve(dir, "package.json"), "utf8"),
+  )
 
   const isCli =
     packageJson.bin !== undefined || packageJson.name.includes("docgen")
@@ -31,6 +34,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
     esbuild({
       sourceMap: true,
       tsconfig: resolve(dir, "tsconfig.json"),
+      jsx: "automatic",
       platform: isCli ? "node" : "browser",
     }),
     replace({ preventAssignment: true }),

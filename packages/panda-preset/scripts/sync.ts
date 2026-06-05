@@ -56,7 +56,7 @@ async function main() {
   const promises = files.map(async (file) => {
     const content = await readFile(file, "utf8")
 
-    let relativePath = relative(dirname(file), defFile)
+    let relativePath = relative(dirname(file), defFile).replaceAll("\\", "/")
     relativePath = relativePath === "def.ts" ? "./def.ts" : relativePath
 
     const fileFromSrc = relative("src", file)

@@ -25,7 +25,9 @@ describe("resolveTsconfig", () => {
       join(testDir, "src/index.ts"),
       tsconfigPath,
     )
-    expect(result).toBe(tsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      tsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("finds tsconfig.json for a source file", async () => {
@@ -42,7 +44,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(tsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      tsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("resolves solution-style tsconfig with references", async () => {
@@ -82,7 +86,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(appTsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      appTsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("falls back to first reference when no paths found", async () => {
@@ -117,7 +123,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(appTsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      appTsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("returns undefined when no tsconfig exists", async () => {
@@ -154,7 +162,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(tsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      tsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("picks the reference with paths when it is not the first one", async () => {
@@ -193,7 +203,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(appTsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      appTsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("handles reference that itself extends another config with paths", async () => {
@@ -230,7 +242,9 @@ describe("resolveTsconfig", () => {
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
     // tsconfck merges extends into the parsed tsconfig, so paths should be visible
-    expect(result).toBe(appTsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      appTsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("picks non-first reference with inherited paths over first reference without", async () => {
@@ -281,7 +295,9 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(testDir, "src/index.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(testDir, "src/index.ts"))
-    expect(result).toBe(appTsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      appTsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 
   it("finds tsconfig from deeply nested source file", async () => {
@@ -300,6 +316,8 @@ describe("resolveTsconfig", () => {
     writeFileSync(join(deepDir, "login.ts"), "export default {}")
 
     const result = await resolveTsconfig(join(deepDir, "login.ts"))
-    expect(result).toBe(tsconfigPath)
+    expect(result?.replaceAll("\\", "/")).toBe(
+      tsconfigPath?.replaceAll("\\", "/"),
+    )
   })
 })
