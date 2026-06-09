@@ -1,5 +1,110 @@
 # @chakra-ui/react
 
+## 3.36.0
+
+### Minor Changes
+
+- [#10752](https://github.com/chakra-ui/chakra-ui/pull/10752)
+  [`1ef5800`](https://github.com/chakra-ui/chakra-ui/commit/1ef580069c1a6c0cc3dd03f6edab52d98dac14b2)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **[New]
+  FloatingPanel**: Add draggable, resizable floating panel component
+
+  ```tsx
+  import { FloatingPanel } from "@chakra-ui/react/floating-panel"
+  ```
+
+  ```tsx
+  <FloatingPanel.Root>
+    <FloatingPanel.Trigger />
+    <FloatingPanel.Positioner>
+      <FloatingPanel.Content>
+        <FloatingPanel.Header>
+          <FloatingPanel.DragTrigger>
+            <FloatingPanel.Title />
+          </FloatingPanel.DragTrigger>
+          <FloatingPanel.Control>
+            <FloatingPanel.StageTrigger />
+            <FloatingPanel.CloseTrigger />
+          </FloatingPanel.Control>
+        </FloatingPanel.Header>
+        <FloatingPanel.Body />
+        <FloatingPanel.ResizeTriggers />
+      </FloatingPanel.Content>
+    </FloatingPanel.Positioner>
+  </FloatingPanel.Root>
+  ```
+
+- [#10847](https://github.com/chakra-ui/chakra-ui/pull/10847)
+  [`238e20a`](https://github.com/chakra-ui/chakra-ui/commit/238e20a41a3e8f750bad555d56a1b23fa3de84d8)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - Update Ark UI to
+  v5.37.2
+  - **Splitter**: Accept CSS units (`px`, `em`, `rem`, `vh`, `vw`) for size
+    props, add per-panel `resizeBehavior` (`"preserve-pixel-size"`), and fix
+    focus not moving to a resize trigger on click.
+  - **Color Picker, Combobox, Date Picker, Hover Card, Menu, Popover, Select,
+    Tooltip**: Add `data-side` to placement-aware parts for placement-based
+    styling.
+  - **Accordion**: Remove redundant `aria-disabled` from item triggers.
+  - **Color Picker**: Fire `onValueChangeEnd` when picking a color with the
+    EyeDropper API.
+  - **Combobox**: Don't submit the form on `Enter` when an item is highlighted
+    or the value is rejected by `allowCustomValue: false`.
+  - **Date Picker**: Fix range-mode clear not resetting active/hovered state,
+    the native month/year select inside modals (Firefox), and
+    `outsideDaySelectable` hover changing the visible month.
+  - **Dialog, Hover Card, Menu, Popover, Tooltip**: Fix shared custom trigger
+    elements being ignored, and trigger lookups in shadow DOM.
+  - **Dialog, Popover**: Fix the page being left uninteractive after closing in
+    React 19 Strict Mode.
+  - **Number Input**: Fix blur behavior when the input is cleared and `min` is
+    greater than `0`.
+  - **Pin Input**: Fix `data-filled` being set on every input on first render.
+  - **Tabs**: Update the indicator when the tab list resizes (responsive
+    reflow).
+
+### Patch Changes
+
+- [`43a016d`](https://github.com/chakra-ui/chakra-ui/commit/43a016d32f470b14bbfb0d0a7c83075902feee5e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove the
+  DatePicker input `_placeholder` override so placeholders use the same global
+  `*::placeholder` styling as `Input`.
+
+- [`82b26be`](https://github.com/chakra-ui/chakra-ui/commit/82b26bea60f49450522354474fa5b1811095c3bb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Use
+  `focusVisibleRing` instead of `focusRing` on `Link` so the focus ring shows
+  only for `:focus-visible`, not on mouse click.
+
+- [`1bbdd86`](https://github.com/chakra-ui/chakra-ui/commit/1bbdd8608cbd6b5c1b34b1eea3b1989b8a1dd6b4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix recipe
+  definition types so `defaultVariants` accepts variant keys when using the
+  broad `RecipeDefinition` type.
+
+- [`06b5f02`](https://github.com/chakra-ui/chakra-ui/commit/06b5f022dbe16a2285437465340871b975c34dfb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix
+  `system.token()` returning dark-mode resolved values for semantic tokens with
+  light/dark conditions instead of the semantic CSS variable reference.
+
+  Also fix token dictionary bookkeeping for semantic tokens without a base value
+  so lookup maps stay in sync after empty tokens are removed.
+
+- [#10799](https://github.com/chakra-ui/chakra-ui/pull/10799)
+  [`7a97cf9`](https://github.com/chakra-ui/chakra-ui/commit/7a97cf9f359373ca577374881ba2c6ba6770cebe)
+  Thanks [@cyphercodes](https://github.com/cyphercodes)! - Fix token dictionary
+  lookups to preserve semantic token condition metadata when using `getByName`.
+
+- [#10801](https://github.com/chakra-ui/chakra-ui/pull/10801)
+  [`27e0489`](https://github.com/chakra-ui/chakra-ui/commit/27e048996062c642c3b7417879fe299ca266eef2)
+  Thanks [@doz13189](https://github.com/doz13189)! - Fix: normalize nested token
+  overrides when merging default theme
+
+  When merging a custom token into the default theme, token normalization could
+  stop at the category level (for example `colors`) and prevent promoting flat
+  tokens to `DEFAULT`. This change updates the merge logic so adding nested
+  overrides like `colors.black.100` correctly moves the original `colors.black`
+  value to `DEFAULT` and resolves nested tokens.
+
+  Fixes: [#10800](https://github.com/chakra-ui/chakra-ui/issues/10800)
+
 ## 3.35.0
 
 ### Minor Changes
