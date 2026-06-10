@@ -1,0 +1,135 @@
+---
+title: Meet FloatingPanel
+description:
+  "Chakra UI v3.36 introduces FloatingPanel, a draggable, resizable panel that
+  floats above your page content"
+type: release
+version: "3.36"
+authors: ["lope"]
+publishedAt: "2026-06-10"
+---
+
+Today we're shipping Chakra UI v3.36, headlined by a brand-new component:
+**[FloatingPanel](/docs/components/floating-panel)**.
+
+It's a draggable, resizable panel that floats above your page content, and it's
+the building block for floating toolbars, property inspectors, mini-players, and
+those little movable windows that always seem harder to build than they should
+be. Dragging, resizing from any edge or corner, keeping the panel inside its
+boundary, minimize and maximize states: FloatingPanel handles all of it, with an
+API that fits the rest of Chakra UI.
+
+FloatingPanel was contributed by
+[@kalisaNkevin](https://github.com/kalisaNkevin). Thank you for the excellent
+work!
+
+## FloatingPanel
+
+<ExampleTabs name="floating-panel-basic" />
+
+Like the rest of Chakra UI, the panel is a set of composable parts you assemble
+to fit your layout:
+
+```tsx
+<FloatingPanel.Root>
+  <FloatingPanel.Trigger />
+  <FloatingPanel.Positioner>
+    <FloatingPanel.Content>
+      <FloatingPanel.Header>
+        <FloatingPanel.DragTrigger>
+          <FloatingPanel.Title />
+        </FloatingPanel.DragTrigger>
+        <FloatingPanel.Control>
+          <FloatingPanel.StageTrigger />
+          <FloatingPanel.CloseTrigger />
+        </FloatingPanel.Control>
+      </FloatingPanel.Header>
+      <FloatingPanel.Body />
+      <FloatingPanel.ResizeTriggers />
+    </FloatingPanel.Content>
+  </FloatingPanel.Positioner>
+</FloatingPanel.Root>
+```
+
+Out of the box you get:
+
+- Drag to reposition, resize from any edge or corner
+- Minimize, maximize, and restore stages
+- Boundary and overflow constraints so panels stay where they should
+- Min/max size limits and controlled position/size
+- Multiple independent panels on the same page
+- Accessible by default, with `role="dialog"` semantics, arrow-key
+  repositioning, escape-to-close, and RTL support
+
+## Stages
+
+Panels can minimize to just their header, maximize to fill the available space,
+or restore to their default size, all through `FloatingPanel.StageTrigger`.
+
+<ExampleTabs name="floating-panel-stages" />
+
+## Multiple Panels
+
+Render multiple `FloatingPanel.Root` instances to show several panels at once.
+Each one manages its own open state, position, and size independently.
+
+<ExampleTabs name="floating-panel-multiple" />
+
+## Open It From Anywhere
+
+Pair FloatingPanel with [`createOverlay`](/docs/components/overlay-manager) to
+open a panel programmatically from anywhere in your app, no trigger required.
+
+<ExampleTabs name="floating-panel-with-overlay" />
+
+## Splitter
+
+The Ark UI update also levels up [Splitter](/docs/components/splitter). Panel
+sizes now accept [CSS-unit sizes](/docs/components/splitter#css-unit-sizes) like
+`px`, `rem`, and `vw`, so a sidebar can hold a fixed width instead of a
+percentage.
+
+<ExampleTabs name="splitter-css-units" />
+
+There's also a new per-panel
+[`resizeBehavior`](/docs/components/splitter#resize-behavior). Set it to
+`"preserve-pixel-size"` to keep a panel's pixel width as the group resizes,
+while the other panels absorb the change.
+
+<ExampleTabs name="splitter-resize-behavior" />
+
+## Also in v3.36
+
+Alongside FloatingPanel, we shipped a round of fixes and refinements:
+
+- **Ark UI 5.37.2**: Updated our headless foundation. Floating components now
+  expose `data-side` for placement-aware styling, and Combobox, Date Picker, and
+  Tabs pick up a batch of fixes.
+- **DatePicker**: Removed the input `_placeholder` override so placeholders use
+  the same global `*::placeholder` styling as `Input`.
+- **Link**: Switched to `focusVisibleRing` so the focus ring shows only on
+  keyboard focus, not on mouse click.
+- **Recipes**: Fixed `defaultVariants` types so they accept variant keys when
+  using the broad `RecipeDefinition` type.
+- **Semantic tokens**: `system.token()` now returns the semantic CSS variable
+  reference instead of the dark-mode resolved value, with token-dictionary
+  bookkeeping that stays in sync after empty tokens are removed.
+- **Token dictionary**: `getByName` now preserves semantic-token condition
+  metadata, and nested token overrides like `colors.black.100` merge correctly
+  against the default theme.
+- **CLI**: `chakra typegen` now gives a clearer error when the input file
+  doesn't export a Chakra system, including the discovered exports and a
+  `createSystem(...)` example.
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+This release is backward compatible, so you can upgrade and start using
+FloatingPanel right away.
+
+Try it out and tell us what you build in
+[Discord](https://chakra-ui.com/discord) or on
+[Twitter](https://twitter.com/chakra_ui).

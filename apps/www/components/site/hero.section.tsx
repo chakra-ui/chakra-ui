@@ -24,7 +24,7 @@ import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
 import Link from "next/link"
 import { HiArrowRight } from "react-icons/hi"
-import { LuTerminal, LuWandSparkles } from "react-icons/lu"
+import { LuPartyPopper, LuTerminal } from "react-icons/lu"
 
 const tabsData = [
   {
@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Announcement alignSelf="flex-start" asChild>
-          <Link href="/docs/get-started/ai/skills">
-            <LuWandSparkles />
-            Skills for AI Agents
+          <Link href="/docs/components/floating-panel">
+            <LuPartyPopper />
+            New: FloatingPanel
             <HiArrowRight />
           </Link>
         </Announcement>
