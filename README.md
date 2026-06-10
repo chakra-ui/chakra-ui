@@ -22,6 +22,9 @@
   <a href="https://www.npmjs.com/package/@chakra-ui/react">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   </a>
+  <a href="https://www.npmjs.com/package/@chakra-ui/react">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/@chakra-ui/react?style=flat-square&color=43cc11">
+  </a>
   <a href="https://github.com/chakra-ui/chakra-ui">
     <img alt="Github Stars" src="https://img.shields.io/github/stars/chakra-ui/chakra-ui?style=social" />
   </a>
