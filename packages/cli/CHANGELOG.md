@@ -1,5 +1,16 @@
 # @chakra-ui/cli
 
+## 3.36.0
+
+### Patch Changes
+
+- [#10825](https://github.com/chakra-ui/chakra-ui/pull/10825)
+  [`025b974`](https://github.com/chakra-ui/chakra-ui/commit/025b97446454626ec9b7b8b5065142a7b3bcc854)
+  Thanks [@cyphercodes](https://github.com/cyphercodes)! - Improve the
+  `chakra typegen` error when the input file does not export a Chakra system,
+  including the discovered exports and a `createSystem(...)` example for files
+  that export `defineConfig(...)` configs.
+
 ## 3.35.0
 
 ### Minor Changes
