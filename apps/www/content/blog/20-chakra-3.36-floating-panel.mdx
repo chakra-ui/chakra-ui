@@ -82,14 +82,29 @@ open a panel programmatically from anywhere in your app, no trigger required.
 
 <ExampleTabs name="floating-panel-with-overlay" />
 
+## Splitter
+
+The Ark UI update also levels up [Splitter](/docs/components/splitter). Panel
+sizes now accept [CSS-unit sizes](/docs/components/splitter#css-unit-sizes) like
+`px`, `rem`, and `vw`, so a sidebar can hold a fixed width instead of a
+percentage.
+
+<ExampleTabs name="splitter-css-units" />
+
+There's also a new per-panel
+[`resizeBehavior`](/docs/components/splitter#resize-behavior). Set it to
+`"preserve-pixel-size"` to keep a panel's pixel width as the group resizes,
+while the other panels absorb the change.
+
+<ExampleTabs name="splitter-resize-behavior" />
+
 ## Also in v3.36
 
 Alongside FloatingPanel, we shipped a round of fixes and refinements:
 
-- **Ark UI 5.37.2**: Updated our headless foundation. Splitter now accepts
-  CSS-unit sizes (`px`, `rem`, `vw`) and a per-panel `resizeBehavior`, floating
-  components expose `data-side` for placement-aware styling, and Combobox, Date
-  Picker, and Tabs pick up a batch of fixes.
+- **Ark UI 5.37.2**: Updated our headless foundation. Floating components now
+  expose `data-side` for placement-aware styling, and Combobox, Date Picker, and
+  Tabs pick up a batch of fixes.
 - **DatePicker**: Removed the input `_placeholder` override so placeholders use
   the same global `*::placeholder` styling as `Input`.
 - **Link**: Switched to `focusVisibleRing` so the focus ring shows only on
