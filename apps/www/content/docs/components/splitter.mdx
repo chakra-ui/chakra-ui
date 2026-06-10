@@ -141,10 +141,8 @@ should keep a fixed width, such as a navigation sidebar.
 
 :::warning
 
-CSS-unit sizes are resolved on the client because they require measuring the
-container. During server rendering, panels using these units fall back to an
-even split and adjust to their final size after hydration, which can cause a
-brief layout shift. Use percentage sizes if you need a stable initial render.
+CSS-unit sizes are measured on the client, so panels using them can shift after
+hydration. Use percentage sizes for a stable server-rendered layout.
 
 :::
 
