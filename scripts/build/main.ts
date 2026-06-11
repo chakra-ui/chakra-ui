@@ -1,5 +1,5 @@
-import { resolve } from "path/posix"
 import { buildProject } from "./build.js"
+import { readPackageJson } from "./read-package-json.js"
 
 async function main() {
   const cwd = process.cwd()
@@ -8,7 +8,7 @@ async function main() {
   const clean = flags.includes("--clean")
   const dts = flags.includes("--dts")
 
-  const packageJson = await import(resolve(cwd, "package.json"))
+  const packageJson = readPackageJson(cwd)
 
   await buildProject({
     dir: cwd,

@@ -2,7 +2,7 @@ import createDebug from "debug"
 import { createFilesMatcher, getTsconfig, parseTsconfig } from "get-tsconfig"
 import type { TsConfigJsonResolved } from "get-tsconfig"
 import { realpathSync, statSync } from "node:fs"
-import { dirname, join, resolve } from "node:path"
+import { dirname, join, normalize, resolve } from "node:path"
 
 const debug = createDebug("chakra:tsconfig")
 
@@ -132,8 +132,11 @@ export async function resolveTsconfig(
       return undefined
     }
 
-    debug("found tsconfig:", nearest.path)
-    return nearest.path
+    // get-tsconfig returns forward-slash paths while reference resolution
+    // produces native paths. Normalize so output is native on every platform.
+    const configPath = normalize(nearest.path)
+    debug("found tsconfig:", configPath)
+    return configPath
   } catch (error) {
     debug("tsconfig resolution failed:", error)
     return undefined
