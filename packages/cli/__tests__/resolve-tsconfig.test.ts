@@ -85,7 +85,7 @@ describe("resolveTsconfig", () => {
     expect(result).toBe(appTsconfigPath)
   })
 
-  it("falls back to first reference when no paths found", async () => {
+  it("picks the reference that includes the source file when no paths exist", async () => {
     writeFileSync(
       join(testDir, "tsconfig.json"),
       JSON.stringify({
@@ -157,7 +157,7 @@ describe("resolveTsconfig", () => {
     expect(result).toBe(tsconfigPath)
   })
 
-  it("picks the reference with paths when it is not the first one", async () => {
+  it("picks the matching reference regardless of reference order", async () => {
     writeFileSync(
       join(testDir, "tsconfig.json"),
       JSON.stringify({
@@ -234,9 +234,9 @@ describe("resolveTsconfig", () => {
   })
 
   it("picks non-first reference with inherited paths over first reference without", async () => {
-    // This test disambiguates: does get-tsconfig merge `extends` in referenced
-    // configs so our `paths` check finds inherited paths? If not, the fallback
-    // would wrongly pick tsconfig.node.json (listed first).
+    // The matched config inherits its `paths` via `extends`. parseTsconfig
+    // resolves the extends chain, so the returned config still exposes the
+    // inherited paths to downstream consumers (e.g. esbuild).
     writeFileSync(
       join(testDir, "tsconfig.json"),
       JSON.stringify({
@@ -274,6 +274,97 @@ describe("resolveTsconfig", () => {
       appTsconfigPath,
       JSON.stringify({
         extends: "./tsconfig.base.json",
+        include: ["src"],
+      }),
+    )
+
+    writeFileSync(join(testDir, "src/index.ts"), "export default {}")
+
+    const result = await resolveTsconfig(join(testDir, "src/index.ts"))
+    expect(result).toBe(appTsconfigPath)
+  })
+
+  it("falls back to the root config when no reference includes the source file", async () => {
+    const rootTsconfigPath = join(testDir, "tsconfig.json")
+    writeFileSync(
+      rootTsconfigPath,
+      JSON.stringify({
+        files: [],
+        references: [{ path: "./tsconfig.node.json" }],
+      }),
+    )
+
+    writeFileSync(
+      join(testDir, "tsconfig.node.json"),
+      JSON.stringify({
+        compilerOptions: {},
+        include: ["vite.config.ts"],
+      }),
+    )
+
+    writeFileSync(join(testDir, "src/index.ts"), "export default {}")
+
+    const result = await resolveTsconfig(join(testDir, "src/index.ts"))
+    expect(result).toBe(rootTsconfigPath)
+  })
+
+  it("resolves nested project references", async () => {
+    writeFileSync(
+      join(testDir, "tsconfig.json"),
+      JSON.stringify({
+        files: [],
+        references: [{ path: "./tsconfig.solution.json" }],
+      }),
+    )
+
+    // intermediate solution-style config referencing the app config
+    writeFileSync(
+      join(testDir, "tsconfig.solution.json"),
+      JSON.stringify({
+        files: [],
+        references: [{ path: "./tsconfig.app.json" }],
+      }),
+    )
+
+    const appTsconfigPath = join(testDir, "tsconfig.app.json")
+    writeFileSync(
+      appTsconfigPath,
+      JSON.stringify({
+        compilerOptions: {
+          paths: { "@/*": ["./src/*"] },
+        },
+        include: ["src"],
+      }),
+    )
+
+    writeFileSync(join(testDir, "src/index.ts"), "export default {}")
+
+    const result = await resolveTsconfig(join(testDir, "src/index.ts"))
+    expect(result).toBe(appTsconfigPath)
+  })
+
+  it("tolerates circular and missing references", async () => {
+    writeFileSync(
+      join(testDir, "tsconfig.json"),
+      JSON.stringify({
+        files: [],
+        references: [
+          // circular: points back to the root config
+          { path: "./tsconfig.json" },
+          // missing: file does not exist
+          { path: "./tsconfig.missing.json" },
+          { path: "./tsconfig.app.json" },
+        ],
+      }),
+    )
+
+    const appTsconfigPath = join(testDir, "tsconfig.app.json")
+    writeFileSync(
+      appTsconfigPath,
+      JSON.stringify({
+        compilerOptions: {
+          paths: { "@/*": ["./src/*"] },
+        },
         include: ["src"],
       }),
     )

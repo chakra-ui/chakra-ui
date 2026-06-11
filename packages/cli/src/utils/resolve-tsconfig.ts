@@ -10,7 +10,6 @@ type ConfigNode = {
   path: string
   config: TsConfigJsonResolved
   references?: ConfigNode[]
-  parent?: ConfigNode
 }
 
 // resolve relative path to referenced tsconfig
@@ -41,7 +40,6 @@ function loadReference(
   const node: ConfigNode = {
     path: configPath,
     config,
-    parent,
   }
 
   // follow nested references
@@ -61,10 +59,19 @@ function resolveReferences(
   if (!references?.length) return node
 
   debug("solution-style tsconfig detected, checking references...")
-  node.references = references.map((ref) => {
-    if (!ref?.path)
-      throw new Error(`Invalid tsconfig reference in ${node.path}`)
-    return loadReference(node, ref.path, seen)
+  node.references = references.flatMap((ref) => {
+    // Skip references that are missing, malformed, or circular so a single
+    // broken entry doesn't fail resolution for the whole project
+    if (!ref?.path) {
+      debug("invalid tsconfig reference in", node.path)
+      return []
+    }
+    try {
+      return [loadReference(node, ref.path, seen)]
+    } catch (error) {
+      debug("skipping unresolvable reference:", ref.path, error)
+      return []
+    }
   })
 
   return node
