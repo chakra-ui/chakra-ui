@@ -11,7 +11,10 @@ import {
 
 export const FloatingPanelBasic = () => {
   return (
-    <FloatingPanel.Root>
+    <FloatingPanel.Root
+      defaultSize={{ width: 320, height: 180 }}
+      minSize={{ width: 240, height: 100 }}
+    >
       <FloatingPanel.Trigger asChild>
         <Button variant="outline" size="sm">
           Open Panel
