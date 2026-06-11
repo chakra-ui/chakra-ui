@@ -147,7 +147,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "border",
           _checked: {
-            boxShadow: "0 0 0 1px var(--shadow-color)",
+            boxShadow: "inset 0 0 0 1px var(--shadow-color)",
             boxShadowColor: "colorPalette.solid",
             borderColor: "colorPalette.solid",
           },
