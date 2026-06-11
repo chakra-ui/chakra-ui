@@ -170,7 +170,7 @@ const docsLinks: NavItem = {
             { title: "Action Bar", url: "action-bar" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
-            // { title: "Floating Panel", url: "floating-panel", status: "new" },
+            { title: "Floating Panel", url: "floating-panel", status: "new" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Menu", url: "menu" },
             { title: "Overlay Manager", url: "overlay-manager" },
