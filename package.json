@@ -112,15 +112,8 @@
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
   },
-  "pnpm": {
-    "overrides": {
-      "react": "19.2.6",
-      "react-dom": "19.2.6",
-      "immer": ">=11.0.1"
-    }
-  },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.5.3",
   "engines": {
-    "node": ">=20.x"
+    "node": ">=22.x"
   }
 }
