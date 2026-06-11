@@ -20,6 +20,7 @@ export { CheckboxWithColors as Colors } from "compositions/examples/checkbox-wit
 export { CheckboxWithCustomIcon as CustomIcon } from "compositions/examples/checkbox-with-custom-icon"
 export { CheckboxWithDescription as Description } from "compositions/examples/checkbox-with-description"
 export { CheckboxWithForm as Form } from "compositions/examples/checkbox-with-form"
+export { CheckboxWithFormValidation as FormValidation } from "compositions/examples/checkbox-with-form-validation"
 export { CheckboxWithGroup as Group } from "compositions/examples/checkbox-with-group"
 export { CheckboxWithGroupHookForm as GroupHookForm } from "compositions/examples/checkbox-with-group-hook-form"
 export { CheckboxWithHookForm as HookForm } from "compositions/examples/checkbox-with-hook-form"
