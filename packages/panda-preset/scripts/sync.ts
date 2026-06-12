@@ -1,6 +1,6 @@
 import { globby } from "globby"
 import { readFile, rm, writeFile } from "node:fs/promises"
-import { dirname, join, normalize, relative, resolve } from "node:path"
+import { dirname, join, normalize, relative, resolve, sep } from "node:path"
 import { format } from "prettier"
 import { cleanFiles } from "./shared"
 
@@ -56,7 +56,8 @@ async function main() {
   const promises = files.map(async (file) => {
     const content = await readFile(file, "utf8")
 
-    let relativePath = relative(dirname(file), defFile)
+    // generated import specifiers must use posix separators
+    let relativePath = relative(dirname(file), defFile).split(sep).join("/")
     relativePath = relativePath === "def.ts" ? "./def.ts" : relativePath
 
     const fileFromSrc = relative("src", file)

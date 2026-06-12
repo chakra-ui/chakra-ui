@@ -53,7 +53,13 @@ export interface FloatingPanelRootProps extends FloatingPanelRootBaseProps {
 
 export const FloatingPanelRoot = withRootProvider<FloatingPanelRootProps>(
   ArkFloatingPanel.Root,
-  { defaultProps: { lazyMount: true, unmountOnExit: true } },
+  {
+    defaultProps: {
+      lazyMount: true,
+      unmountOnExit: true,
+      minSize: { width: 240, height: 100 },
+    },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

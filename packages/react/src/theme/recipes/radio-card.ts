@@ -152,7 +152,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         item: {
           borderWidth: "1px",
           _checked: {
-            boxShadow: "0 0 0 1px var(--shadow-color)",
+            boxShadow: "inset 0 0 0 1px var(--shadow-color)",
             boxShadowColor: "colorPalette.solid",
             borderColor: "colorPalette.solid",
           },
