@@ -1,0 +1,18 @@
+{
+  "Root": {
+    "props": {
+      "lazyMount": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to enable lazy mounting"
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": "true",
+        "description": "Whether to unmount on exit."
+      }
+    }
+  }
+}
