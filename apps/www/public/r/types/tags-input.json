@@ -177,7 +177,7 @@
       "editable": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": false,
         "description": "Whether a tag can be edited after creation, by pressing `Enter` or double clicking."
       },
       "form": {

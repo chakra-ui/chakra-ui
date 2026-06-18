@@ -256,7 +256,7 @@
       "spacing": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"0px\"",
+        "defaultValue": "1rem",
         "description": "The amount of space between items."
       },
       "translations": {

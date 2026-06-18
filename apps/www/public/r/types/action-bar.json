@@ -64,7 +64,7 @@
       "autoFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": false,
         "description": "Whether to automatically set focus on the first focusable\ncontent within the popover when opened."
       },
       "closeOnEscape": {
@@ -107,7 +107,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "modal": {
@@ -186,7 +186,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
       },
       "placement": {

@@ -15,9 +15,10 @@ import {
 } from "@/utils/shared"
 import { defaultSystem } from "@chakra-ui/react/preset"
 import { ensureDirSync } from "fs-extra"
-import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs"
-import { basename, join } from "node:path"
+import { existsSync, readFileSync, writeFileSync } from "node:fs"
+import { join } from "node:path"
 import { camelCase, kebabCase } from "scule"
+import ts from "typescript"
 
 const fetchArkComponents = async <T>(arg = ""): Promise<T> => {
   const prom = await fetch(`http://ark-ui.com/api/types/react${arg}`)
@@ -63,13 +64,109 @@ async function getComponentDirectories() {
   return Array.from(new Set([...componentList, ...staticComponentList]))
 }
 
-async function writeStaticProps(outDir: string) {
-  const files = globSync("scripts/static-props/**/*.json")
-  files.forEach((file) => {
-    const name = basename(file, ".json")
-    const props = JSON.parse(readFileSync(file, "utf-8"))
-    writeFileSync(`${outDir}/${name}.json`, JSON.stringify(props, null, 2))
-  })
+function extractDefaultPropsFromSource(
+  filePath: string,
+): Record<string, Record<string, any>> {
+  const content = readFileSync(filePath, "utf-8")
+  const sourceFile = ts.createSourceFile(
+    filePath,
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+  )
+
+  const result: Record<string, Record<string, any>> = {}
+
+  function visit(node: ts.Node) {
+    // Look for call expressions like withRootProvider(...) or withContext(...)
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      (node.expression.text.startsWith("with") ||
+        node.expression.text === "forwardRef")
+    ) {
+      // For withRootProvider, withContext, etc., the config is typically the 2nd or 3rd argument
+      let configArg: ts.Expression | undefined
+
+      if (node.expression.text === "forwardRef" && node.arguments.length > 0) {
+        // forwardRef((props, ref) => ...) - skip
+        return
+      }
+
+      if (node.expression.text.startsWith("with")) {
+        // withRootProvider(Component, { defaultProps: ... })
+        // withContext(Component, "slot", { defaultProps: ... })
+        configArg = node.arguments[node.arguments.length - 1]
+
+        if (!configArg || !ts.isObjectLiteralExpression(configArg)) {
+          ts.forEachChild(node, visit)
+          return
+        }
+
+        // Extract the slot name for withContext (2nd argument is the slot name)
+        let slotName = "Root"
+        if (
+          node.expression.text === "withContext" &&
+          node.arguments.length >= 2
+        ) {
+          const slotArg = node.arguments[1]
+          if (ts.isStringLiteral(slotArg)) {
+            slotName = toComponentCase(slotArg.text)
+          }
+        }
+
+        // Find the defaultProps property
+        const defaultPropsProp = (
+          configArg as ts.ObjectLiteralExpression
+        ).properties.find(
+          (prop) =>
+            ts.isPropertyAssignment(prop) &&
+            ts.isIdentifier(prop.name) &&
+            prop.name.text === "defaultProps",
+        )
+
+        if (
+          defaultPropsProp &&
+          ts.isPropertyAssignment(defaultPropsProp) &&
+          ts.isObjectLiteralExpression(defaultPropsProp.initializer)
+        ) {
+          const defaults: Record<string, any> = {}
+
+          ;(
+            defaultPropsProp.initializer as ts.ObjectLiteralExpression
+          ).properties.forEach((prop) => {
+            if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) {
+              return
+            }
+
+            const propName = prop.name.text
+            const initializer = prop.initializer
+
+            // Only extract primitive values (boolean, string, number literals)
+            if (initializer.kind === ts.SyntaxKind.TrueKeyword) {
+              defaults[propName] = true
+            } else if (initializer.kind === ts.SyntaxKind.FalseKeyword) {
+              defaults[propName] = false
+            } else if (ts.isStringLiteral(initializer)) {
+              defaults[propName] = initializer.text
+            } else if (ts.isNumericLiteral(initializer)) {
+              defaults[propName] = Number(initializer.text)
+            }
+            // Skip non-primitive values (JSX, function refs, etc.)
+          })
+
+          if (Object.keys(defaults).length > 0) {
+            result[slotName] = defaults
+          }
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return result
 }
 
 async function writeIndexFile(outDir: string) {
@@ -186,13 +283,35 @@ async function extractComponents(components?: string[]) {
       Reflect.deleteProperty(json, part)
     })
 
+    // Extract and merge default props from component source
+    const componentMainPath = join(componentDir, dir)
+    const mainFiles = [
+      join(componentMainPath, `${dir}.tsx`),
+      join(componentMainPath, `${dir}.ts`),
+      join(componentMainPath, "index.tsx"),
+      join(componentMainPath, "index.ts"),
+    ]
+    const mainFile = mainFiles.find(existsSync)
+
+    if (mainFile) {
+      const defaultPropsPerPart = extractDefaultPropsFromSource(mainFile)
+      for (const [partName, defaults] of Object.entries(defaultPropsPerPart)) {
+        if (json[partName]?.props) {
+          for (const [propName, defaultValue] of Object.entries(defaults)) {
+            // Only set default if prop already exists in the extracted types
+            if (propName in json[partName].props) {
+              json[partName].props[propName].defaultValue = defaultValue
+            }
+          }
+        }
+      }
+    }
+
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
 
-  // Only write static props if processing all components
-  if (!components || components.length === 0) {
-    writeStaticProps(outDir)
-  }
+  // Static props are now extracted programmatically from component source code
+  // The writeStaticProps function is no longer needed
 }
 
 const commonProps = {
