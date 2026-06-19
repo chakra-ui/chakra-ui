@@ -78,24 +78,19 @@ function extractDefaultPropsFromSource(
   const result: Record<string, Record<string, any>> = {}
 
   function visit(node: ts.Node) {
-    // Look for call expressions like withRootProvider(...) or withContext(...)
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
       (node.expression.text.startsWith("with") ||
         node.expression.text === "forwardRef")
     ) {
-      // For withRootProvider, withContext, etc., the config is typically the 2nd or 3rd argument
       let configArg: ts.Expression | undefined
 
       if (node.expression.text === "forwardRef" && node.arguments.length > 0) {
-        // forwardRef((props, ref) => ...) - skip
         return
       }
 
       if (node.expression.text.startsWith("with")) {
-        // withRootProvider(Component, { defaultProps: ... })
-        // withContext(Component, "slot", { defaultProps: ... })
         configArg = node.arguments[node.arguments.length - 1]
 
         if (!configArg || !ts.isObjectLiteralExpression(configArg)) {
@@ -103,7 +98,6 @@ function extractDefaultPropsFromSource(
           return
         }
 
-        // Extract the slot name for withContext (2nd argument is the slot name)
         let slotName = "Root"
         if (
           node.expression.text === "withContext" &&
@@ -115,7 +109,6 @@ function extractDefaultPropsFromSource(
           }
         }
 
-        // Find the defaultProps property
         const defaultPropsProp = (
           configArg as ts.ObjectLiteralExpression
         ).properties.find(
@@ -142,7 +135,6 @@ function extractDefaultPropsFromSource(
             const propName = prop.name.text
             const initializer = prop.initializer
 
-            // Only extract primitive values (boolean, string, number literals)
             if (initializer.kind === ts.SyntaxKind.TrueKeyword) {
               defaults[propName] = true
             } else if (initializer.kind === ts.SyntaxKind.FalseKeyword) {
@@ -152,7 +144,6 @@ function extractDefaultPropsFromSource(
             } else if (ts.isNumericLiteral(initializer)) {
               defaults[propName] = Number(initializer.text)
             }
-            // Skip non-primitive values (JSX, function refs, etc.)
           })
 
           if (Object.keys(defaults).length > 0) {
@@ -283,7 +274,6 @@ async function extractComponents(components?: string[]) {
       Reflect.deleteProperty(json, part)
     })
 
-    // Extract and merge default props from component source
     const componentMainPath = join(componentDir, dir)
     const mainFiles = [
       join(componentMainPath, `${dir}.tsx`),
@@ -298,7 +288,6 @@ async function extractComponents(components?: string[]) {
       for (const [partName, defaults] of Object.entries(defaultPropsPerPart)) {
         if (json[partName]?.props) {
           for (const [propName, defaultValue] of Object.entries(defaults)) {
-            // Only set default if prop already exists in the extracted types
             if (propName in json[partName].props) {
               json[partName].props[propName].defaultValue = defaultValue
             }
@@ -309,9 +298,6 @@ async function extractComponents(components?: string[]) {
 
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
-
-  // Static props are now extracted programmatically from component source code
-  // The writeStaticProps function is no longer needed
 }
 
 const commonProps = {
