@@ -38,8 +38,8 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
         ref={ref}
         objectFit={fit}
         objectPosition={align}
-        className={cx("chakra-image", props.className)}
         {...rest}
+        className={cx("chakra-image", props.className)}
       />
     )
   },
