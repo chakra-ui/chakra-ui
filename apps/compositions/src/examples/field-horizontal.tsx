@@ -25,9 +25,6 @@ export const FieldHorizontal = () => {
             <Switch.Control />
           </Switch.Root>
         </Field.InputElement>
-        <Field.HelperText>
-          If enabled, your email will be hidden from other users
-        </Field.HelperText>
       </Field.Root>
 
       <Field.Root orientation="horizontal" invalid>
@@ -39,7 +36,7 @@ export const FieldHorizontal = () => {
           <Field.ErrorIcon /> Password is required
         </Field.ErrorText>
         <Field.HelperText>
-          If enabled, your email will be hidden from other users
+          Password must be at least 8 characters long
         </Field.HelperText>
       </Field.Root>
     </Stack>
