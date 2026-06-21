@@ -107,7 +107,7 @@ export const emptyStateAnatomy = createAnatomy("empty-state", [
 ])
 
 export const fieldAnatomy = arkFieldAnatomy.extendWith(
-  "group",
+  "inputElement",
   "requiredIndicator",
 )
 

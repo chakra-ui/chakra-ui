@@ -27,11 +27,6 @@ export const fieldSlotRecipe = defineSlotRecipe({
       color: "fg.error",
       lineHeight: "1",
     },
-    group: {
-      display: "flex",
-      position: "relative",
-      gap: "1.5",
-    },
     errorText: {
       display: "inline-flex",
       alignItems: "center",
@@ -59,15 +54,24 @@ export const fieldSlotRecipe = defineSlotRecipe({
       },
       horizontal: {
         root: {
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: "grid",
+          gridTemplateColumns: "var(--field-label-width, 80px) 1fr",
+          gap: "1.5",
+          alignItems: "start",
         },
         label: {
-          flex: "0 0 var(--field-label-width, 80px)",
+          gridColumn: "1",
+          alignSelf: "center",
         },
-        group: {
-          flexDirection: "column",
+        inputElement: {
+          gridColumn: "2",
+          justifySelf: "end",
+        },
+        helperText: {
+          gridColumn: "2",
+        },
+        errorText: {
+          gridColumn: "2",
         },
       },
     },

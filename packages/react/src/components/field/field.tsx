@@ -61,12 +61,13 @@ export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface FieldGroupProps extends HTMLChakraProps<"div">, UnstyledProp {}
+export interface FieldInputElementProps
+  extends HTMLChakraProps<"input">, UnstyledProp {}
 
-export const FieldGroup = withContext<HTMLDivElement, FieldGroupProps>(
-  "div",
-  "group",
-)
+export const FieldInputElement = withContext<
+  HTMLDivElement,
+  FieldInputElementProps
+>("input", "inputElement")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,7 +85,7 @@ export interface FieldErrorTextProps
   extends HTMLChakraProps<"div", ArkField.ErrorTextBaseProps>, UnstyledProp {}
 
 export const FieldErrorText = withContext<HTMLDivElement, FieldErrorTextProps>(
-  ArkField.ErrorText,
+  "div",
   "errorText",
   { forwardAsChild: true },
 )
