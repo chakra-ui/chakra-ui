@@ -85,7 +85,7 @@ export interface FieldErrorTextProps
   extends HTMLChakraProps<"div", ArkField.ErrorTextBaseProps>, UnstyledProp {}
 
 export const FieldErrorText = withContext<HTMLDivElement, FieldErrorTextProps>(
-  "div",
+  ArkField.ErrorText,
   "errorText",
   { forwardAsChild: true },
 )
