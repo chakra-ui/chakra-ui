@@ -2,6 +2,7 @@ export {
   FieldRoot,
   FieldPropsProvider,
   FieldLabel,
+  FieldGroup,
   FieldHelperText,
   FieldErrorText,
   FieldErrorIcon,
