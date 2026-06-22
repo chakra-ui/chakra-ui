@@ -56,6 +56,8 @@ export interface CreateOverlayReturn<T extends CreateOverlayProps> {
   removeAll: () => void
   /** Gets the props of the overlay with the given id */
   get: (id: string) => T
+  /** Checks if the overlay with the given id exists */
+  has: (id: string) => boolean
   /** Gets the current snapshot of the overlays */
   getSnapshot: () => T[]
   /** Waits for the exit animation to complete for the overlay with the given id */
@@ -184,6 +186,10 @@ export function createOverlay<T extends Dict>(
     return overlay
   }
 
+  function has(id: string): boolean {
+    return map.has(id)
+  }
+
   const removeAll = () => {
     map.clear()
     exitPromises.clear()
@@ -225,6 +231,7 @@ export function createOverlay<T extends Dict>(
     remove,
     removeAll,
     get,
+    has,
     getSnapshot,
     waitForExit,
   }

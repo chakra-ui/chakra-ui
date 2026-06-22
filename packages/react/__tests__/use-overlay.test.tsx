@@ -102,4 +102,19 @@ describe("createOverlay", () => {
       expect(getSnapshot().length).toBe(1)
     })
   })
+
+  it("has() returns true when overlay exists and false when it does not", async () => {
+    const overlay = createOverlay(() => <div />)
+
+    // initially does not exist
+    expect(overlay.has("my-modal")).toBe(false)
+
+    // open creates the overlay and stores it in the map
+    overlay.open("my-modal", {})
+    expect(overlay.has("my-modal")).toBe(true)
+
+    // explicitly remove the overlay
+    overlay.remove("my-modal")
+    expect(overlay.has("my-modal")).toBe(false)
+  })
 })
