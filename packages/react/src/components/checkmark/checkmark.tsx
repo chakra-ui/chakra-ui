@@ -32,8 +32,15 @@ export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
     const recipe = useRecipe({ key: "checkmark", recipe: props.recipe })
     const [variantProps, restProps] = recipe.splitVariantProps(props)
 
-    const { checked, indeterminate, disabled, unstyled, children, ...rest } =
-      restProps
+    const {
+      checked,
+      indeterminate,
+      disabled,
+      unstyled,
+      children,
+      css,
+      ...rest
+    } = restProps
 
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
@@ -50,7 +57,7 @@ export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
           indeterminate ? "indeterminate" : checked ? "checked" : "unchecked"
         }
         data-disabled={dataAttr(disabled)}
-        css={[styles, props.css]}
+        css={[styles, css]}
         {...rest}
       >
         {indeterminate ? (
