@@ -83,7 +83,7 @@
       "allowDrop": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to allow drag and drop in the dropzone element"
       },
       "capture": {
@@ -119,13 +119,13 @@
       "locale": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"en-US\"",
+        "defaultValue": "en-US",
         "description": "The current locale. Based on the BCP 47 definition."
       },
       "maxFiles": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The maximum number of files"
       },
       "maxFileSize": {
@@ -137,7 +137,7 @@
       "minFileSize": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum file size in bytes"
       },
       "name": {
@@ -163,7 +163,7 @@
       "preventDocumentDrop": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to prevent the drop event on the document"
       },
       "readOnly": {

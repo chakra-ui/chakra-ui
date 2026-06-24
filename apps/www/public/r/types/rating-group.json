@@ -110,7 +110,7 @@
       "count": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "5",
+        "defaultValue": 5,
         "description": "The total number of ratings."
       },
       "defaultValue": {

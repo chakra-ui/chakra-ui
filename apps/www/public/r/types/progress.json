@@ -49,7 +49,7 @@
       "defaultValue": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "50",
+        "defaultValue": 50,
         "description": "The initial value of the progress bar when rendered.\nUse when you don't need to control the value of the progress bar."
       },
       "formatOptions": {
@@ -71,19 +71,19 @@
       "locale": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"en-US\"",
+        "defaultValue": "en-US",
         "description": "The locale to use for formatting the value."
       },
       "max": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "100",
+        "defaultValue": 100,
         "description": "The maximum allowed value of the progress bar."
       },
       "min": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum allowed value of the progress bar."
       },
       "onValueChange": {
@@ -94,7 +94,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"horizontal\"",
+        "defaultValue": "horizontal",
         "description": "The orientation of the element."
       },
       "translations": {

@@ -70,13 +70,13 @@
       "closeOnEscape": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the popover when the escape key is pressed."
       },
       "closeOnInteractOutside": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the popover when the user clicks outside of the popover."
       },
       "defaultOpen": {
@@ -113,7 +113,7 @@
       "modal": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover"
       },
       "onEscapeKeyDown": {
@@ -164,7 +164,7 @@
       "portalled": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content."
       },
       "positioning": {
@@ -180,7 +180,7 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
@@ -221,7 +221,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -237,13 +237,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }

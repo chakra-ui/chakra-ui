@@ -15,8 +15,8 @@ import {
 } from "@/utils/shared"
 import { defaultSystem } from "@chakra-ui/react/preset"
 import { ensureDirSync } from "fs-extra"
-import { existsSync, readFileSync, writeFileSync } from "node:fs"
-import { join } from "node:path"
+import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs"
+import { basename, join } from "node:path"
 import { camelCase, kebabCase } from "scule"
 import ts from "typescript"
 
@@ -81,23 +81,11 @@ function extractDefaultPropsFromSource(
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
-      (node.expression.text.startsWith("with") ||
-        node.expression.text === "forwardRef")
+      node.expression.text.startsWith("with")
     ) {
-      let configArg: ts.Expression | undefined
+      const configArg = node.arguments[node.arguments.length - 1]
 
-      if (node.expression.text === "forwardRef" && node.arguments.length > 0) {
-        return
-      }
-
-      if (node.expression.text.startsWith("with")) {
-        configArg = node.arguments[node.arguments.length - 1]
-
-        if (!configArg || !ts.isObjectLiteralExpression(configArg)) {
-          ts.forEachChild(node, visit)
-          return
-        }
-
+      if (configArg && ts.isObjectLiteralExpression(configArg)) {
         let slotName = "Root"
         if (
           node.expression.text === "withContext" &&
@@ -109,9 +97,7 @@ function extractDefaultPropsFromSource(
           }
         }
 
-        const defaultPropsProp = (
-          configArg as ts.ObjectLiteralExpression
-        ).properties.find(
+        const defaultPropsProp = configArg.properties.find(
           (prop) =>
             ts.isPropertyAssignment(prop) &&
             ts.isIdentifier(prop.name) &&
@@ -125,9 +111,7 @@ function extractDefaultPropsFromSource(
         ) {
           const defaults: Record<string, any> = {}
 
-          ;(
-            defaultPropsProp.initializer as ts.ObjectLiteralExpression
-          ).properties.forEach((prop) => {
+          defaultPropsProp.initializer.properties.forEach((prop) => {
             if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) {
               return
             }
@@ -158,6 +142,35 @@ function extractDefaultPropsFromSource(
 
   visit(sourceFile)
   return result
+}
+
+// Decode stringified defaults from ark/extractTypes into native values so
+// defaultValue is uniformly typed: "true" -> true, "1" -> 1, "\"0px\"" ->
+// "0px". Real string values (e.g. "md", "1rem") fail to parse and are kept.
+function normalizeDefaultValues(json: Record<string, any>) {
+  for (const part of Object.values(json)) {
+    const props = (part as any)?.props
+    if (!props) continue
+    for (const prop of Object.values(props)) {
+      const entry = prop as any
+      if (typeof entry.defaultValue !== "string") continue
+      try {
+        entry.defaultValue = JSON.parse(entry.defaultValue)
+      } catch {
+        // keep the original string (not valid JSON, e.g. "md", "1rem")
+      }
+    }
+  }
+}
+
+async function writeStaticProps(outDir: string) {
+  const files = globSync("scripts/static-props/**/*.json")
+  files.forEach((file) => {
+    const name = basename(file, ".json")
+    const props = JSON.parse(readFileSync(file, "utf-8"))
+    normalizeDefaultValues(props)
+    writeFileSync(`${outDir}/${name}.json`, JSON.stringify(props, null, 2))
+  })
 }
 
 async function writeIndexFile(outDir: string) {
@@ -296,7 +309,14 @@ async function extractComponents(components?: string[]) {
       }
     }
 
+    normalizeDefaultValues(json)
+
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
+  }
+
+  // Write hand-authored static props (e.g. password-input) only on a full run
+  if (!components || components.length === 0) {
+    await writeStaticProps(outDir)
   }
 }
 

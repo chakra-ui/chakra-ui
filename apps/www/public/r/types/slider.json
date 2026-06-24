@@ -156,19 +156,19 @@
       "max": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "100",
+        "defaultValue": 100,
         "description": "The maximum value of the slider"
       },
       "min": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum value of the slider"
       },
       "minStepsBetweenThumbs": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum permitted steps between multiple thumbs.\n\n`minStepsBetweenThumbs` * `step` should reflect the gap between the thumbs.\n\n- `step: 1` and `minStepsBetweenThumbs: 10` => gap is `10`\n- `step: 10` and `minStepsBetweenThumbs: 2` => gap is `20`"
       },
       "name": {
@@ -200,7 +200,7 @@
       "origin": {
         "type": "'center' | 'start' | 'end'",
         "isRequired": false,
-        "defaultValue": "\"start\"",
+        "defaultValue": "start",
         "description": "The origin of the slider range. The track is filled from the origin\nto the thumb for single values.\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)\n- \"end\": Useful when the value represents an offset from the end"
       },
       "readOnly": {
@@ -211,19 +211,19 @@
       "step": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The step value of the slider"
       },
       "thumbAlignment": {
         "type": "'center' | 'contain'",
         "isRequired": false,
-        "defaultValue": "\"contain\"",
+        "defaultValue": "contain",
         "description": "The alignment of the slider thumb relative to the track\n- `center`: the thumb will extend beyond the bounds of the slider track.\n- `contain`: the thumb will be contained within the bounds of the track."
       },
       "thumbCollisionBehavior": {
         "type": "'none' | 'push' | 'swap'",
         "isRequired": false,
-        "defaultValue": "\"none\"",
+        "defaultValue": "none",
         "description": "Controls how thumbs behave when they collide during pointer interactions.\n- `none` (default): Thumbs cannot move past each other; excess movement is ignored.\n- `push`: Thumbs push each other without restoring their previous positions when dragged back.\n- `swap`: Thumbs swap places when dragged past each other."
       },
       "thumbSize": {

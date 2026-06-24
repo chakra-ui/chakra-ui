@@ -75,7 +75,7 @@
       "activationMode": {
         "type": "'manual' | 'automatic'",
         "isRequired": false,
-        "defaultValue": "\"automatic\"",
+        "defaultValue": "automatic",
         "description": "The activation mode of the tabs. Can be `manual` or `automatic`\n- `manual`: Tabs are activated when clicked or press `enter` key.\n- `automatic`: Tabs are activated when receiving focus"
       },
       "composite": {
@@ -106,13 +106,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "loopFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the keyboard navigation will loop from last tab to first, and vice versa."
       },
       "navigate": {
@@ -133,7 +133,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"horizontal\"",
+        "defaultValue": "horizontal",
         "description": "The orientation of the tabs. Can be `horizontal` or `vertical`\n- `horizontal`: only left and right arrow key navigation will work.\n- `vertical`: only up and down arrow key navigation will work."
       },
       "translations": {
@@ -144,7 +144,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "value": {
@@ -202,13 +202,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     },

@@ -49,7 +49,7 @@
       "activationMode": {
         "type": "ActivationMode",
         "isRequired": false,
-        "defaultValue": "\"focus\"",
+        "defaultValue": "focus",
         "description": "The activation mode for the preview element.\n\n- \"focus\" - Enter edit mode when the preview is focused\n- \"dblclick\" - Enter edit mode when the preview is double-clicked\n- \"click\" - Enter edit mode when the preview is clicked\n- \"none\" - Edit can be triggered programmatically only"
       },
       "autoResize": {
@@ -165,13 +165,13 @@
       "selectOnFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to select the text in the input when it is focused."
       },
       "submitMode": {
         "type": "SubmitMode",
         "isRequired": false,
-        "defaultValue": "\"both\"",
+        "defaultValue": "both",
         "description": "The action that triggers submit in the edit mode:\n\n- \"enter\" - Trigger submit when the enter key is pressed\n- \"blur\" - Trigger submit when the editable is blurred\n- \"none\" - No action will trigger submit. You need to use the submit button\n- \"both\" - Pressing `Enter` and blurring the input will trigger submit"
       },
       "translations": {

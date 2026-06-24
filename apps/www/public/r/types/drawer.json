@@ -141,19 +141,19 @@
       "closeOnEscape": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the dialog when the escape key is pressed"
       },
       "closeOnInteractOutside": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the dialog when the outside is clicked"
       },
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "The initial open state of the dialog when rendered.\nUse when you don't need to control the open state of the dialog."
       },
       "finalFocusEl": {
@@ -190,7 +190,7 @@
       "modal": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to prevent pointer interaction outside the element and hide all content below it"
       },
       "onEscapeKeyDown": {
@@ -246,7 +246,7 @@
       "preventScroll": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to prevent scrolling behind the dialog when it's opened"
       },
       "restoreFocus": {
@@ -257,19 +257,19 @@
       "role": {
         "type": "'dialog' | 'alertdialog'",
         "isRequired": false,
-        "defaultValue": "\"dialog\"",
+        "defaultValue": "dialog",
         "description": "The dialog's role"
       },
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "trapFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to trap focus inside the dialog when it's opened"
       },
       "unmountOnExit": {
@@ -321,7 +321,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -337,13 +337,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }

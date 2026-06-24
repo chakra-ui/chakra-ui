@@ -99,13 +99,13 @@
       "allowOverflow": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to allow the value overflow the min/max range"
       },
       "clampValueOnBlur": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to clamp the value when the input loses focus (blur)"
       },
       "defaultValue": {
@@ -121,7 +121,7 @@
       "focusInputOnChange": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to focus input when the value changes"
       },
       "form": {
@@ -147,7 +147,7 @@
       "inputMode": {
         "type": "InputMode",
         "isRequired": false,
-        "defaultValue": "\"decimal\"",
+        "defaultValue": "decimal",
         "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
       },
       "invalid": {
@@ -158,7 +158,7 @@
       "locale": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"en-US\"",
+        "defaultValue": "en-US",
         "description": "The current locale. Based on the BCP 47 definition."
       },
       "max": {
@@ -201,7 +201,7 @@
       "pattern": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"-?[0-9]*(.[0-9]+)?\"",
+        "defaultValue": "-?[0-9]*(.[0-9]+)?",
         "description": "The pattern used to check the <input> element's value against"
       },
       "readOnly": {
@@ -217,13 +217,13 @@
       "spinOnPress": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to spin the value when the increment/decrement button is pressed"
       },
       "step": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The amount to increment or decrement the value by"
       },
       "translations": {

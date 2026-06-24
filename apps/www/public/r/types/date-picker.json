@@ -59,7 +59,7 @@
       "fixOnBlur": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to fix the input value on blur."
       },
       "index": {
@@ -199,7 +199,7 @@
       "closeOnSelect": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`."
       },
       "defaultFocusedValue": {
@@ -220,7 +220,7 @@
       "defaultView": {
         "type": "DateView",
         "isRequired": false,
-        "defaultValue": "\"day\"",
+        "defaultValue": "day",
         "description": "The default view of the calendar"
       },
       "disabled": {
@@ -276,13 +276,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "locale": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"en-US\"",
+        "defaultValue": "en-US",
         "description": "The locale (BCP 47 language tag) to use when formatting the date."
       },
       "max": {
@@ -298,7 +298,7 @@
       "maxView": {
         "type": "DateView",
         "isRequired": false,
-        "defaultValue": "\"year\"",
+        "defaultValue": "year",
         "description": "The maximum view of the calendar"
       },
       "min": {
@@ -309,7 +309,7 @@
       "minView": {
         "type": "DateView",
         "isRequired": false,
-        "defaultValue": "\"day\"",
+        "defaultValue": "day",
         "description": "The minimum view of the calendar"
       },
       "name": {
@@ -360,13 +360,13 @@
       "openOnClick": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to open the calendar when the input is clicked."
       },
       "outsideDaySelectable": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether day outside the visible range can be selected."
       },
       "parse": {
@@ -402,7 +402,7 @@
       "selectionMode": {
         "type": "SelectionMode",
         "isRequired": false,
-        "defaultValue": "\"single\"",
+        "defaultValue": "single",
         "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected"
       },
       "showWeekNumbers": {
@@ -413,7 +413,7 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "startOfWeek": {
@@ -424,7 +424,7 @@
       "timeZone": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"UTC\"",
+        "defaultValue": "UTC",
         "description": "The time zone to use"
       },
       "translations": {
@@ -435,7 +435,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "value": {
@@ -498,7 +498,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -514,13 +514,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     },
@@ -881,7 +881,7 @@
       },
       "separator": {
         "type": "string",
-        "defaultValue": "\", \"",
+        "defaultValue": ", ",
         "isRequired": false,
         "description": "The separator to use between multiple date values when using default rendering."
       },

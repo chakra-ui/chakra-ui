@@ -49,7 +49,7 @@
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the indicator is read only."
       }
     },
@@ -90,7 +90,7 @@
       "snapAlign": {
         "type": "'center' | 'start' | 'end'",
         "isRequired": false,
-        "defaultValue": "\"start\"",
+        "defaultValue": "start",
         "description": "The snap alignment of the item."
       }
     },
@@ -166,25 +166,25 @@
       "allowMouseDrag": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow scrolling via dragging with mouse"
       },
       "autoplay": {
         "type": "boolean | { delay: number }",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to scroll automatically. The default delay is 4000ms."
       },
       "autoSize": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable variable width slides."
       },
       "defaultPage": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The initial page to scroll to when rendered.\nUse when you don't need to control the page of the carousel."
       },
       "ids": {
@@ -195,13 +195,13 @@
       "inViewThreshold": {
         "type": "number | number[]",
         "isRequired": false,
-        "defaultValue": "0.6",
+        "defaultValue": 0.6,
         "description": "The threshold for determining if an item is in view."
       },
       "loop": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the carousel should loop around."
       },
       "onAutoplayStatusChange": {
@@ -222,7 +222,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"horizontal\"",
+        "defaultValue": "horizontal",
         "description": "The orientation of the element."
       },
       "padding": {
@@ -238,19 +238,19 @@
       "slidesPerMove": {
         "type": "number | 'auto'",
         "isRequired": false,
-        "defaultValue": "\"auto\"",
+        "defaultValue": "auto",
         "description": "The number of slides to scroll at a time.\n\nWhen set to `auto`, the number of slides to scroll is determined by the\n`slidesPerPage` property."
       },
       "slidesPerPage": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The number of slides to show at a time."
       },
       "snapType": {
         "type": "'proximity' | 'mandatory'",
         "isRequired": false,
-        "defaultValue": "\"mandatory\"",
+        "defaultValue": "mandatory",
         "description": "The snap type of the item."
       },
       "spacing": {
