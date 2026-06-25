@@ -1,0 +1,58 @@
+---
+product: Tree-Structured Planning
+person: Steven Secreti
+role: Founder and Lead Engineer
+category: Developer tool
+url: https://treestructuredplanning.com
+quote: Treat the theme as a contract.
+x: username
+---
+
+Steven Secreti is the founder and lead engineer of
+[Tree-Structured Planning](https://treestructuredplanning.com/), a shared canvas
+where developers and their AI coding agents plan software as a visual tree. Each
+branch acts as a focused workspace while still seeing the whole system, so what
+a chat thread can't hold becomes a plan you can actually navigate. It's built
+for engineers who want what gets built to match what they actually scoped. The
+whole frontend runs on Chakra UI.
+
+## Why Chakra
+
+For Steven, choosing Chakra wasn't really a choice. _"I've been reaching for
+Chakra in every React project I've built for the past 3 years,"_ he says. _"By
+the time I started this product Chakra was less a decision and more a default
+I'd already earned through experience."_ Two things kept him loyal: a genuinely
+complete catalog of accessible, composable primitives, and the freedom to
+customize and extend without ever feeling boxed in.
+
+Chakra v3 sharpened both. Its semantic token layer let him define the product's
+entire design language, a dark-first system he calls _"Obsidian Pastels,"_ in
+one place, and its recipe system let him expose components as typed contracts
+instead of loose JSX. That mapped exactly onto a principle his codebase lives
+by: _"the right way should be the only way that compiles."_
+
+## The surprise
+
+The biggest surprise was slot recipes. Steven expected to hand-roll his
+multi-part components, the tree node cards, the canvas toolbar, the inspector
+panels, and wire every size and variant state by hand. Instead he defined all of
+it in a single recipe file with typegen validating slot names at compile time.
+The payoff he didn't see coming was downstream: adding a new variant or a whole
+new component became a one-to-two-file change following a visible pattern.
+
+> That turned theming from the thing I expected to babysit into the thing that
+> made every new feature obviously easy.
+
+## The friction
+
+The only thing that tripped him up was his own muscle memory. After three years
+on v2, his fingers kept reaching for the old APIs. He fixed it the boring,
+effective way, sat down with the v3 docs and rebuilt a couple of components the
+proper way until the new patterns replaced the old reflexes. A week in, v3 felt
+more natural than v2 ever had.
+
+## The advice
+
+His advice to other developers? Commit to the token and recipe system from day
+one. _"Treat the theme as a contract,"_ he says. _"Do that and the library
+scales with you."_
