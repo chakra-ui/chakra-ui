@@ -284,7 +284,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": false,
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -306,7 +306,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": false,
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
       }
     }

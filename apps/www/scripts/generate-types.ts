@@ -66,6 +66,7 @@ async function getComponentDirectories() {
 
 function extractDefaultPropsFromSource(
   filePath: string,
+  componentName: string,
 ): Record<string, Record<string, any>> {
   const content = readFileSync(filePath, "utf-8")
   const sourceFile = ts.createSourceFile(
@@ -87,14 +88,15 @@ function extractDefaultPropsFromSource(
 
       if (configArg && ts.isObjectLiteralExpression(configArg)) {
         let slotName = "Root"
-        if (
-          node.expression.text === "withContext" &&
-          node.arguments.length >= 2
+        const slotArg = node.arguments[1]
+        if (slotArg && ts.isStringLiteral(slotArg)) {
+          slotName = toComponentCase(slotArg.text)
+        } else if (
+          ts.isVariableDeclaration(node.parent) &&
+          ts.isIdentifier(node.parent.name) &&
+          node.parent.name.text.startsWith(componentName)
         ) {
-          const slotArg = node.arguments[1]
-          if (ts.isStringLiteral(slotArg)) {
-            slotName = toComponentCase(slotArg.text)
-          }
+          slotName = node.parent.name.text.slice(componentName.length) || "Root"
         }
 
         const defaultPropsProp = configArg.properties.find(
@@ -144,9 +146,6 @@ function extractDefaultPropsFromSource(
   return result
 }
 
-// Decode stringified defaults from ark/extractTypes into native values so
-// defaultValue is uniformly typed: "true" -> true, "1" -> 1, "\"0px\"" ->
-// "0px". Real string values (e.g. "md", "1rem") fail to parse and are kept.
 function normalizeDefaultValues(json: Record<string, any>) {
   for (const part of Object.values(json)) {
     const props = (part as any)?.props
@@ -297,7 +296,10 @@ async function extractComponents(components?: string[]) {
     const mainFile = mainFiles.find(existsSync)
 
     if (mainFile) {
-      const defaultPropsPerPart = extractDefaultPropsFromSource(mainFile)
+      const defaultPropsPerPart = extractDefaultPropsFromSource(
+        mainFile,
+        toComponentCase(dir),
+      )
       for (const [partName, defaults] of Object.entries(defaultPropsPerPart)) {
         if (json[partName]?.props) {
           for (const [propName, defaultValue] of Object.entries(defaults)) {
