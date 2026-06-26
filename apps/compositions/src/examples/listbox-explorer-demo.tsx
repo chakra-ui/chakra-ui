@@ -22,7 +22,9 @@ export const ListboxExplorerDemo = () => {
     <Listbox.Root
       maxW="320px"
       collection={collection}
-      defaultValue={[collection.items[0].value]}
+      defaultValue={
+        collection.items[0] ? [collection.items[0].value] : undefined
+      }
     >
       <Listbox.Label>Select item</Listbox.Label>
 
