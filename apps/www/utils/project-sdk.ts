@@ -1,5 +1,5 @@
 import { glob } from "fast-glob"
-import { findUpSync } from "find-up"
+import { findUpSync } from "find-up-simple"
 import { existsSync, readFileSync, readdirSync } from "node:fs"
 import { dirname, extname, join, parse, resolve } from "node:path"
 import { trainCase } from "scule"

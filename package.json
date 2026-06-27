@@ -88,7 +88,7 @@
     "execa": "9.6.1",
     "fast-glob": "3.3.3",
     "find-packages": "10.0.4",
-    "find-up": "8.0.0",
+    "find-up-simple": "1.0.1",
     "fs-extra": "11.3.5",
     "globals": "^17.0.0",
     "husky": "9.1.7",

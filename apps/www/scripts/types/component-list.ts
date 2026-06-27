@@ -1,5 +1,5 @@
 import consola from "consola"
-import { findUpSync } from "find-up"
+import { findUpSync } from "find-up-simple"
 import { ensureDirSync } from "fs-extra"
 import { writeFile } from "node:fs/promises"
 import { dirname } from "node:path"

@@ -1,4 +1,4 @@
-import { findUpSync } from "find-up"
+import { findUpSync } from "find-up-simple"
 import { readdir } from "fs/promises"
 import { dirname, extname, resolve } from "path/posix"
 
