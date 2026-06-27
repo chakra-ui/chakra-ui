@@ -1,5 +1,46 @@
 # @chakra-ui/react
 
+## 3.37.0
+
+### Patch Changes
+
+- [#10868](https://github.com/chakra-ui/chakra-ui/pull/10868)
+  [`f32a160`](https://github.com/chakra-ui/chakra-ui/commit/f32a160162ba9523f93080587df086a99ca5bfdc)
+  Thanks [@WahabKhan7528](https://github.com/WahabKhan7528)! -
+  **OverlayManager**: add has() method to createOverlay return
+
+- [`129c50f`](https://github.com/chakra-ui/chakra-ui/commit/129c50ff9be80fa4ad5cc0a39b6cff8a20609c42)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where the
+  checked ring of `RadioCard` and `CheckboxCard` (outline variant) gets clipped
+  when a parent has `overflow: hidden|auto|scroll`. The ring is now drawn with
+  an inset shadow instead of an outer shadow.
+
+- [#10859](https://github.com/chakra-ui/chakra-ui/pull/10859)
+  [`6f10270`](https://github.com/chakra-ui/chakra-ui/commit/6f102700bdf5fd4e61971db77e65f1516ce8ab38)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Checkmark: Fix
+  incorrect css prop application
+
+- [`2ed9026`](https://github.com/chakra-ui/chakra-ui/commit/2ed9026862cf1d816e981746d723256bcbd59159)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add a default
+  `minSize` of `{ width: 240, height: 100 }` to `FloatingPanel.Root` to prevent
+  the panel from being resized to zero. Pass your own `minSize` to override it.
+
+- [#10863](https://github.com/chakra-ui/chakra-ui/pull/10863)
+  [`b5de5e2`](https://github.com/chakra-ui/chakra-ui/commit/b5de5e246bdecfeb9326c301c3cc397cc2cd676d)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Image: Fix
+  custom `className` removing the base `chakra-image` class
+
+- [#10873](https://github.com/chakra-ui/chakra-ui/pull/10873)
+  [`c4e79c1`](https://github.com/chakra-ui/chakra-ui/commit/c4e79c122a6500f5f68f1c00a826c315a808d511)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - Fix issue where
+  `LinkOverlay` dropped the `rel` attribute instead of forwarding it to the
+  rendered anchor.
+
+- [#10860](https://github.com/chakra-ui/chakra-ui/pull/10860)
+  [`f53e46a`](https://github.com/chakra-ui/chakra-ui/commit/f53e46a182cac5b6018596cc5da965af4416ac71)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - WrapItem: Fix
+  incorrect css prop application
+
 ## 3.36.0
 
 ### Minor Changes
