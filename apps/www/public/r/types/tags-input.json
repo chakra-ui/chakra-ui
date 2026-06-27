@@ -135,7 +135,7 @@
       "addOnPaste": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to add a tag when you paste values into the tag input"
       },
       "allowOverflow": {
@@ -166,7 +166,7 @@
       "delimiter": {
         "type": "string | RegExp",
         "isRequired": false,
-        "defaultValue": "\",\"",
+        "defaultValue": ",",
         "description": "The character that serves has:\n- event key to trigger the addition of a new tag\n- character used to split tags when pasting into the input"
       },
       "disabled": {
@@ -177,7 +177,7 @@
       "editable": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": false,
         "description": "Whether a tag can be edited after creation, by pressing `Enter` or double clicking."
       },
       "form": {

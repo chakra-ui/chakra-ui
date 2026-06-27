@@ -145,7 +145,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"horizontal\"",
+        "defaultValue": "horizontal",
         "description": "The orientation of the splitter. Can be `horizontal` or `vertical`"
       },
       "size": {

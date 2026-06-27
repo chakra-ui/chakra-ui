@@ -84,31 +84,31 @@
       "closeDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "150",
+        "defaultValue": 150,
         "description": "The close delay of the tooltip."
       },
       "closeOnClick": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the tooltip should close on click"
       },
       "closeOnEscape": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the tooltip when the Escape key is pressed."
       },
       "closeOnPointerDown": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the tooltip on pointerdown."
       },
       "closeOnScroll": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the tooltip should close on scroll"
       },
       "defaultOpen": {
@@ -139,13 +139,13 @@
       "interactive": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the tooltip's content is interactive.\nIn this mode, the tooltip will remain open when user hovers over the content."
       },
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -166,7 +166,7 @@
       "openDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "400",
+        "defaultValue": 400,
         "description": "The open delay of the tooltip."
       },
       "positioning": {
@@ -182,13 +182,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
       }
     }
@@ -217,7 +217,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -233,13 +233,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }

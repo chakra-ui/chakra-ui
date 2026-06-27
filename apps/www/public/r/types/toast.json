@@ -107,7 +107,7 @@
       "dir": {
         "type": "'ltr' | 'rtl'",
         "isRequired": false,
-        "defaultValue": "\"ltr\"",
+        "defaultValue": "ltr",
         "description": "The document's text/writing direction."
       },
       "getRootNode": {

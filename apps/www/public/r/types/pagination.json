@@ -9,7 +9,7 @@
       "boundaryCount": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "Number of pages to show at the beginning and end"
       },
       "count": {
@@ -20,13 +20,13 @@
       "defaultPage": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The initial active page when rendered.\nUse when you don't need to control the active page of the pagination."
       },
       "defaultPageSize": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "10",
+        "defaultValue": 10,
         "description": "The initial number of data items per page when rendered.\nUse when you don't need to control the page size of the pagination."
       },
       "getPageUrl": {
@@ -62,7 +62,7 @@
       "siblingCount": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "Number of pages to show beside active page"
       },
       "translations": {
@@ -73,7 +73,7 @@
       "type": {
         "type": "'button' | 'link'",
         "isRequired": false,
-        "defaultValue": "\"button\"",
+        "defaultValue": "button",
         "description": "The type of the trigger element"
       }
     },

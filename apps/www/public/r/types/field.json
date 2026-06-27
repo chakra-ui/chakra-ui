@@ -186,7 +186,7 @@
       "autoresize": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the textarea should autoresize"
       }
     },
