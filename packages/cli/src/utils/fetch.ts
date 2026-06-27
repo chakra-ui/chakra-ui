@@ -1,5 +1,4 @@
-import { HttpsProxyAgent } from "https-proxy-agent"
-import fetch from "node-fetch"
+import { ProxyAgent } from "undici"
 import { z } from "zod"
 import {
   componentListSchema,
@@ -34,7 +33,17 @@ interface ChakraProBlocksResponse {
 
 const env = processEnvSchema.parse(process.env)
 
-const agent = env.HTTPS_PROXY ? new HttpsProxyAgent(env.HTTPS_PROXY) : undefined
+const dispatcher = env.HTTPS_PROXY ? new ProxyAgent(env.HTTPS_PROXY) : undefined
+
+/**
+ * Wrapper around the native `fetch` that routes requests through an
+ * `HTTPS_PROXY` when one is configured. Node's global fetch accepts undici's
+ * `dispatcher` option at runtime, but the DOM `RequestInit` type doesn't
+ * declare it, so the cast is centralized here.
+ */
+function request(input: string, init: RequestInit = {}): Promise<Response> {
+  return fetch(input, { ...init, dispatcher } as RequestInit)
+}
 
 const docsOrigin = env.CHAKRA_DOCS_URL.replace(/\/$/, "")
 
@@ -60,18 +69,14 @@ function parseWithSchema<T>(
 }
 
 export async function fetchCompositions() {
-  const res = await fetch(`${env.REGISTRY_URL}/compositions/index.json`, {
-    agent,
-  })
+  const res = await request(`${env.REGISTRY_URL}/compositions/index.json`)
   const json = await res.json()
   return compositionIndexSchema.parse(json)
 }
 
 export async function fetchComposition(id: string) {
   try {
-    const res = await fetch(`${env.REGISTRY_URL}/compositions/${id}.json`, {
-      agent,
-    })
+    const res = await request(`${env.REGISTRY_URL}/compositions/${id}.json`)
     const json = await res.json()
     return compositionFileSchema.parse(json)
   } catch (error) {
@@ -82,9 +87,7 @@ export async function fetchComposition(id: string) {
 }
 
 export async function fetchProBlocks(): Promise<ChakraProBlocksResponse> {
-  const res = await fetch("https://pro.chakra-ui.com/api/blocks", {
-    agent,
-  })
+  const res = await request("https://pro.chakra-ui.com/api/blocks")
 
   if (!res.ok) {
     throw new Error(
@@ -96,7 +99,7 @@ export async function fetchProBlocks(): Promise<ChakraProBlocksResponse> {
 }
 
 export async function fetchComponentList() {
-  const res = await fetch(`${docsUrl("/api/types")}`, { agent })
+  const res = await request(`${docsUrl("/api/types")}`)
   if (!res.ok) {
     throw new Error(
       `Failed to fetch component list: ${res.status} ${res.statusText}`,
@@ -107,9 +110,7 @@ export async function fetchComponentList() {
 }
 
 export async function fetchComponentProps(component: string): Promise<unknown> {
-  const res = await fetch(`${docsUrl(`/api/types/${component}`)}`, {
-    agent,
-  })
+  const res = await request(`${docsUrl(`/api/types/${component}`)}`)
   if (!res.ok) {
     throw new Error(
       `Failed to fetch props for "${component}": ${res.status} ${res.statusText}`,
@@ -122,9 +123,7 @@ export async function fetchComponentProps(component: string): Promise<unknown> {
 export async function fetchComponentExample(
   component: string,
 ): Promise<unknown> {
-  const res = await fetch(`${docsUrl(`/r/examples/${component}.json`)}`, {
-    agent,
-  })
+  const res = await request(`${docsUrl(`/r/examples/${component}.json`)}`)
   if (!res.ok) {
     throw new Error(
       `Failed to fetch example for "${component}": ${res.status} ${res.statusText}`,
@@ -135,7 +134,7 @@ export async function fetchComponentExample(
 }
 
 export async function fetchTheme() {
-  const res = await fetch(`${docsUrl("/api/theme")}`, { agent })
+  const res = await request(`${docsUrl("/api/theme")}`)
   if (!res.ok) {
     throw new Error(`Failed to fetch theme: ${res.status} ${res.statusText}`)
   }
@@ -144,9 +143,8 @@ export async function fetchTheme() {
 }
 
 export async function searchDocs(query: string): Promise<SearchItem[]> {
-  const res = await fetch(
+  const res = await request(
     `${docsUrl("/api/search")}?query=${encodeURIComponent(query)}`,
-    { agent },
   )
   if (!res.ok) {
     throw new Error(`Failed to search docs: ${res.status} ${res.statusText}`)
@@ -160,10 +158,9 @@ export async function fetchProBlock(
   id: string,
   apiKey: string,
 ) {
-  const res = await fetch(
+  const res = await request(
     `https://pro.chakra-ui.com/api/blocks/${category}/${id}`,
     {
-      agent,
       headers: {
         "x-api-key": apiKey,
       },
