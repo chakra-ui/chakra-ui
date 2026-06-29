@@ -324,7 +324,7 @@ Before:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-;<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
+<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
   <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
 </Icon>
 ```
@@ -334,7 +334,7 @@ After:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-;<Icon color="red.500" size="md" asChild>
+<Icon color="red.500" size="md" asChild>
   <svg viewBox="0 0 24 24">
     <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
   </svg>
