@@ -24,3 +24,5 @@ export { DateInputTimeOnly as TimeOnly } from "compositions/examples/date-input-
 export { DateInputRange as Range } from "compositions/examples/date-input-range"
 export { DateInputWithDatePicker as WithDatePicker } from "compositions/examples/date-input-with-date-picker"
 export { DateInputWithHookForm as WithHookForm } from "compositions/examples/date-input-with-hook-form"
+export { DateInputLeadingZeros as LeadingZeros } from "compositions/examples/date-input-leading-zeros"
+export { DateInputRtl as Rtl } from "compositions/examples/date-input-rtl"
