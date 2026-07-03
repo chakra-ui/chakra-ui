@@ -1,9 +1,12 @@
 import { shipped } from "@/.velite"
 import { MDXContent } from "@/components/mdx-content"
 import {
+  Avatar,
+  Blockquote,
   Box,
   type BoxProps,
   Button,
+  Circle,
   Container,
   Float,
   HStack,
@@ -17,6 +20,7 @@ import {
 import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { LuQuote } from "react-icons/lu"
 import { ProductGallery } from "../shipped-client"
 
 const mono = "var(--font-geist-mono)"
@@ -53,9 +57,7 @@ const storyComponents = {
       letterSpacing="tight"
       lineHeight="1.2"
       mt={{ base: "12", md: "16" }}
-      pt={{ base: "10", md: "12" }}
-      borderTopWidth="1px"
-      borderColor="border"
+      mb="4"
       css={{
         "& a": {
           color: "inherit",
@@ -147,8 +149,11 @@ export default async function ShippedStoryPage(props: PageContext) {
             </Text>
           </Link>
 
-          {/* Header */}
-          <Stack gap="5">
+          {/* Header: lead with the quote, attribution below */}
+          <Stack gap={{ base: "6", md: "8" }}>
+            <Heading as="h1" srOnly>
+              {story.product}
+            </Heading>
             <HStack
               gap="2.5"
               fontFamily={mono}
@@ -164,67 +169,54 @@ export default async function ShippedStoryPage(props: PageContext) {
               <Span>·</Span>
               <Span>{story.category}</Span>
             </HStack>
-            <Heading
-              as="h1"
-              textStyle={{ base: "5xl", md: "7xl" }}
-              fontWeight="semibold"
-              letterSpacing="tight"
-              lineHeight="1.0"
-            >
-              {story.product}
-            </Heading>
-            <HStack gap="3" color="fg.muted" fontSize="md" flexWrap="wrap">
-              <Span>
-                {story.person}, {story.role}
-              </Span>
-              {story.x && (
-                <Link href={`https://x.com/${story.x}`}>
-                  <Span
-                    fontFamily={mono}
-                    color="teal.fg"
-                    _hover={{ textDecoration: "underline" }}
-                  >
-                    @{story.x}
+
+            {/* Pull-quote callout */}
+            <Blockquote.Root colorPalette="teal" ps="8">
+              <Float placement="middle-start">
+                <Circle bg="teal.solid" size="8" color="teal.contrast">
+                  <LuQuote />
+                </Circle>
+              </Float>
+              <Blockquote.Content
+                textStyle={{ base: "3xl", md: "4xl" }}
+                fontWeight="semibold"
+                lineHeight="1.3"
+                letterSpacing="tight"
+              >
+                {story.quote}
+              </Blockquote.Content>
+            </Blockquote.Root>
+
+            {/* Byline */}
+            <HStack gap="3.5">
+              <Avatar.Root size="lg">
+                <Avatar.Image src={story.avatar} />
+                <Avatar.Fallback name={story.person} />
+              </Avatar.Root>
+              <Stack gap="0.5">
+                <Text fontSize="md">
+                  <Span fontWeight="medium" color="fg">
+                    {story.person}
                   </Span>
-                </Link>
-              )}
+                  <Span color="fg.muted">
+                    , {story.role} of {story.product}
+                  </Span>
+                </Text>
+                {story.x && (
+                  <Link href={`https://x.com/${story.x}`}>
+                    <Span
+                      fontFamily={mono}
+                      fontSize="sm"
+                      color="teal.fg"
+                      _hover={{ textDecoration: "underline" }}
+                    >
+                      @{story.x}
+                    </Span>
+                  </Link>
+                )}
+              </Stack>
             </HStack>
           </Stack>
-
-          {/* Pull-quote callout */}
-          <Box
-            position="relative"
-            borderStartWidth="3px"
-            borderColor="teal.solid"
-            pl={{ base: "6", md: "10" }}
-            py="2"
-          >
-            <Float
-              placement="top-start"
-              offsetX={{ base: "3", md: "6" }}
-              offsetY="2"
-            >
-              <Span
-                fontSize={{ base: "5rem", md: "7rem" }}
-                lineHeight="1"
-                fontWeight="bold"
-                color="teal.subtle"
-                userSelect="none"
-                aria-hidden
-              >
-                &ldquo;
-              </Span>
-            </Float>
-            <Text
-              textStyle={{ base: "3xl", md: "4xl" }}
-              fontWeight="semibold"
-              lineHeight="1.25"
-              letterSpacing="tight"
-              position="relative"
-            >
-              {story.quote}
-            </Text>
-          </Box>
         </Stack>
       </Container>
 

@@ -1,13 +1,10 @@
-import { shipped } from "@/.velite"
-import {
-  BlitzHeading,
-  HighlightHeading,
-  Subheading,
-} from "@/components/site/typography"
+import { shipped, showcases } from "@/.velite"
+import { HighlightHeading, Subheading } from "@/components/site/typography"
 import {
   Box,
   Button,
   Circle,
+  Container,
   Float,
   Grid,
   GridItem,
@@ -184,28 +181,14 @@ export default function ShippedPage() {
   return (
     <Box width="full">
       {/* Hero */}
-      <Box
-        maxW="6xl"
-        mx="auto"
-        px={{ base: "6", md: "8" }}
-        pt="20"
-        pb={{ base: "12", md: "16" }}
-      >
+      <Container maxW="7xl" pt="20" pb={{ base: "12", md: "16" }}>
         <Stack gap="8" maxW="4xl">
-          <BlitzHeading>Chakra Shipped</BlitzHeading>
-          <HighlightHeading
-            as="h1"
-            query="Shipped"
-            textStyle={{ base: "5xl", md: "7xl" }}
-            fontWeight="semibold"
-            lineHeight="1.05"
-            letterSpacing="tight"
-          >
-            Made with Chakra. Shipped to the world.
+          <HighlightHeading as="h1" query="Shipped" whiteSpace="pre-line">
+            {"Built by the community\nShipped to the world!"}
           </HighlightHeading>
           <Subheading textStyle="xl">
-            Founders and engineers on what they built, why they chose Chakra UI,
-            and how they got it live.
+            Meet the founders and engineers building products with Chakra UI and
+            hear the stories behind what they shipped
           </Subheading>
           <HStack gap="3" pt="2">
             <Button colorPalette="teal" size="xl" asChild>
@@ -213,13 +196,11 @@ export default function ShippedPage() {
             </Button>
           </HStack>
         </Stack>
-      </Box>
+      </Container>
 
       {/* Stories */}
-      <Box
-        maxW="6xl"
-        mx="auto"
-        px={{ base: "6", md: "8" }}
+      <Container
+        maxW="7xl"
         id="stories"
         scrollMarginTop="24"
         pt={{ base: "12", md: "16" }}
@@ -233,7 +214,7 @@ export default function ShippedPage() {
               The stories
             </Heading>
             <Subheading>
-              Products people built and shipped with Chakra UI.
+              Products people built and shipped with Chakra UI
             </Subheading>
           </Stack>
 
@@ -243,27 +224,28 @@ export default function ShippedPage() {
             ))}
           </Stack>
         </Stack>
-      </Box>
+      </Container>
 
       {/* Preview gallery */}
-      <Box
-        maxW="6xl"
-        mx="auto"
-        px={{ base: "6", md: "8" }}
-        pt={{ base: "20", md: "28" }}
-      >
+      <Container maxW="7xl" pt={{ base: "20", md: "28" }}>
         <Stack gap="3" maxW="2xl">
           <Heading textStyle={{ base: "2xl", md: "3xl" }} fontWeight="semibold">
             Built in the open
           </Heading>
           <Subheading>
-            A look at the interfaces people ship with Chakra UI.
+            A look at the interfaces people ship with Chakra UI
           </Subheading>
         </Stack>
-      </Box>
+      </Container>
 
       <Box pt={{ base: "8", md: "10" }} pb={{ base: "20", md: "28" }}>
-        <ProductGallery url="https://chakra-ui.com" />
+        <ProductGallery
+          items={showcases.map((item) => ({
+            src: `/${item.image}`,
+            url: item.url,
+            alt: item.title,
+          }))}
+        />
       </Box>
     </Box>
   )

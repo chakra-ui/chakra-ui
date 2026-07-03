@@ -18,23 +18,15 @@ const reduceMotion = {
   },
 }
 
-interface MockWindowProps {
-  seed: number
+interface BrowserFrameProps {
   url: string
   w?: Record<string, string> | string
-  bodyH?: Record<string, string> | string
+  children: React.ReactNode
 }
 
-/** One stylized app-window placeholder. Used until real screenshots are added. */
-function MockWindow(props: MockWindowProps) {
-  const {
-    seed,
-    url,
-    w = { base: "300px", md: "420px" },
-    bodyH = { base: "180px", md: "240px" },
-  } = props
-  const variant = seed % 3
-
+/** Browser-window chrome (traffic lights + url bar) wrapping any body content. */
+function BrowserFrame(props: BrowserFrameProps) {
+  const { url, w, children } = props
   return (
     <Box
       w={w}
@@ -74,7 +66,30 @@ function MockWindow(props: MockWindowProps) {
           </Span>
         </Box>
       </HStack>
+      {children}
+    </Box>
+  )
+}
 
+interface MockWindowProps {
+  seed: number
+  url: string
+  w?: Record<string, string> | string
+  bodyH?: Record<string, string> | string
+}
+
+/** One stylized app-window placeholder. Used until real screenshots are added. */
+function MockWindow(props: MockWindowProps) {
+  const {
+    seed,
+    url,
+    w = { base: "300px", md: "420px" },
+    bodyH = { base: "180px", md: "240px" },
+  } = props
+  const variant = seed % 3
+
+  return (
+    <BrowserFrame url={url} w={w}>
       <Box h={bodyH} p="4">
         {variant === 0 && (
           <HStack h="full" align="stretch" gap="4">
@@ -145,7 +160,7 @@ function MockWindow(props: MockWindowProps) {
           </Box>
         )}
       </Box>
-    </Box>
+    </BrowserFrame>
   )
 }
 
@@ -160,23 +175,16 @@ export function StoryPreview(props: {
 
   if (image) {
     return (
-      <Box
-        borderWidth="1px"
-        borderColor="border"
-        rounded="l2"
-        overflow="hidden"
-        bg="bg.panel"
-        shadow="xs"
-        width="full"
-      >
+      <BrowserFrame url={url} w="full">
         <Image
           src={image}
           alt=""
+          display="block"
           width="full"
           h={{ base: "220px", md: "320px" }}
           objectFit="cover"
         />
-      </Box>
+      </BrowserFrame>
     )
   }
 
@@ -190,40 +198,54 @@ export function StoryPreview(props: {
   )
 }
 
-/** Full-bleed marquee gallery. Renders real screenshots when present, mocks otherwise. */
-export function ProductGallery(props: { images?: string[]; url: string }) {
-  const { images, url } = props
-  const hasImages = images && images.length > 0
-  const items = hasImages ? images : [0, 1, 2, 3, 4]
+export interface GalleryItem {
+  src: string
+  url: string
+  alt?: string
+}
+
+/**
+ * Full-bleed marquee gallery. Each item carries its own url so the frame shows
+ * the right address per screenshot. Pass `items` for mixed sources (e.g. the
+ * showcase), or `images` + a single `url` for one product. Falls back to mocks.
+ */
+export function ProductGallery(props: {
+  items?: GalleryItem[]
+  images?: string[]
+  url?: string
+}) {
+  const { items, images, url } = props
+  const resolved: GalleryItem[] =
+    items ?? (images && url ? images.map((src) => ({ src, url })) : [])
+  const hasImages = resolved.length > 0
 
   return (
     <Marquee.Root autoFill speed={44} css={reduceMotion}>
       <Marquee.Viewport py="2">
         <Marquee.Content>
-          {items.map((item, index) => (
-            <Marquee.Item key={index} px="3">
-              {hasImages ? (
-                <Box
-                  borderWidth="1px"
-                  borderColor="border"
-                  rounded="l2"
-                  overflow="hidden"
-                  bg="bg.panel"
-                  shadow="xs"
-                >
-                  <Image
-                    src={item as string}
-                    alt=""
-                    h={{ base: "180px", md: "240px" }}
-                    w="auto"
-                    objectFit="cover"
+          {hasImages
+            ? resolved.map((item, index) => (
+                <Marquee.Item key={index} px="3">
+                  <BrowserFrame url={item.url}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt ?? ""}
+                      display="block"
+                      h={{ base: "180px", md: "240px" }}
+                      w="auto"
+                      objectFit="cover"
+                    />
+                  </BrowserFrame>
+                </Marquee.Item>
+              ))
+            : [0, 1, 2, 3, 4].map((index) => (
+                <Marquee.Item key={index} px="3">
+                  <MockWindow
+                    seed={index}
+                    url={url ?? "https://chakra-ui.com"}
                   />
-                </Box>
-              ) : (
-                <MockWindow seed={index} url={url} />
-              )}
-            </Marquee.Item>
-          ))}
+                </Marquee.Item>
+              ))}
         </Marquee.Content>
       </Marquee.Viewport>
     </Marquee.Root>
