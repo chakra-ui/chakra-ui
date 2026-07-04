@@ -125,17 +125,9 @@ export interface DateInputSegmentsProps extends Omit<
   DateInputSegmentGroupProps,
   "children"
 > {
-  /**
-   * The index of the segment group to render.
-   * Only required when `selectionMode` is `range`.
-   */
   index?: number
 }
 
-/**
- * Renders a `DateInput.SegmentGroup` populated with the editable
- * `DateInput.Segment` parts (and literal separators) for the given group index.
- */
 export const DateInputSegments = (props: DateInputSegmentsProps) => {
   const { index, ...rest } = props
   const dateInput = useDateInputContext()
