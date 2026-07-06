@@ -1,34 +1,19 @@
 "use client"
 
-import { Box, type BoxProps, DateInput, Icon } from "@chakra-ui/react"
+import { DateInput, Icon } from "@chakra-ui/react"
 import { LuArrowRight } from "react-icons/lu"
-
-const segmentBoxStyle: BoxProps = {
-  borderWidth: "1px",
-  borderColor: "border",
-  borderRadius: "l2",
-  px: "3",
-  h: "10",
-  display: "flex",
-  alignItems: "center",
-  _focusWithin: { borderColor: "colorPalette.focusRing" },
-}
 
 export const DateInputRange = () => {
   return (
-    <DateInput.Root selectionMode="range" width="fit-content">
+    <DateInput.Root selectionMode="range">
       <DateInput.Label>Trip duration</DateInput.Label>
-      <DateInput.Control border="none" bg="transparent" px="0" height="auto">
-        <Box {...segmentBoxStyle}>
-          <DateInput.Segments index={0} />
-        </Box>
-        <Icon color="fg.muted" boxSize="4">
-          <LuArrowRight />
-        </Icon>
-        <Box {...segmentBoxStyle}>
-          <DateInput.Segments index={1} />
-        </Box>
+
+      <DateInput.Control gap="4">
+        <DateInput.Segments index={0} maxW="fit-content" />
+        <Icon color="fg.subtle" boxSize="4" as={LuArrowRight} />
+        <DateInput.Segments index={1} maxW="fit-content" />
       </DateInput.Control>
+
       <DateInput.HiddenInput index={0} />
       <DateInput.HiddenInput index={1} />
     </DateInput.Root>

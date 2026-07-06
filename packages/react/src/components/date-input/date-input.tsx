@@ -124,9 +124,7 @@ export const DateInputHiddenInput = withContext<
 export interface DateInputSegmentsProps extends Omit<
   DateInputSegmentGroupProps,
   "children"
-> {
-  index?: number
-}
+> {}
 
 export const DateInputSegments = (props: DateInputSegmentsProps) => {
   const { index, ...rest } = props

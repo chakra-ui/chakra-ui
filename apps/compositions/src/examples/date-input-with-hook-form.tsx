@@ -1,11 +1,12 @@
 "use client"
 
-import { Button, DateInput, Field, Stack } from "@chakra-ui/react"
+import { Button, DateInput, Field, Input, Stack } from "@chakra-ui/react"
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
 const formSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
   dob: z.array(z.any()).min(1, { message: "Date of birth is required" }),
 })
 
@@ -22,6 +23,11 @@ export const DateInputWithHookForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Stack gap="4" align="flex-start" maxW="14rem">
+        <Field.Root invalid={!!formState.errors.name}>
+          <Field.Label>Name</Field.Label>
+          <Input placeholder="Enter your name" />
+          <Field.ErrorText>{formState.errors.name?.message}</Field.ErrorText>
+        </Field.Root>
         <Field.Root invalid={!!formState.errors.dob}>
           <Controller
             control={control}

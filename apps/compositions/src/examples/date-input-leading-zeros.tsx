@@ -1,5 +1,3 @@
-"use client"
-
 import { DateInput } from "@chakra-ui/react"
 
 export const DateInputLeadingZeros = () => {
