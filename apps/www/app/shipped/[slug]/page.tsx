@@ -1,19 +1,10 @@
 import { shipped } from "@/.velite"
 import { MDXContent } from "@/components/mdx-content"
 import {
-  Avatar,
-  Blockquote,
   Box,
-  type BoxProps,
-  Button,
-  Circle,
   Container,
-  Float,
   HStack,
   Heading,
-  type HeadingProps,
-  Image,
-  SimpleGrid,
   Span,
   Stack,
   Text,
@@ -21,10 +12,9 @@ import {
 import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { LuQuote } from "react-icons/lu"
+import { QuoteCard } from "../quote-card"
 import { ProductGallery } from "../shipped-client"
-
-const mono = "var(--font-geist-mono)"
+import { StoryMeta } from "../story-meta"
 
 interface PageContext {
   params: Promise<{ slug: string }>
@@ -46,85 +36,8 @@ export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
   }
 }
 
-// Story-specific renderers passed to MDXContent, so the prose is styled for a
-// story rather than inheriting the docs heading/quote behavior.
 const storyComponents = {
-  h2: (props: HeadingProps) => (
-    <Heading
-      as="h2"
-      textStyle={{ base: "2xl", md: "3xl" }}
-      fontWeight="semibold"
-      color="fg"
-      letterSpacing="tight"
-      lineHeight="1.2"
-      mt={{ base: "12", md: "16" }}
-      mb="4"
-      css={{
-        "& a": {
-          color: "inherit",
-          textDecoration: "none",
-          fontWeight: "inherit",
-        },
-      }}
-      {...props}
-    />
-  ),
-  blockquote: (props: BoxProps) => (
-    <Box
-      as="blockquote"
-      my="10"
-      ps="6"
-      borderStartWidth="3px"
-      borderColor="teal.solid"
-      css={{
-        "& p": {
-          fontSize: { base: "2xl", md: "3xl" },
-          color: "fg",
-          fontWeight: "semibold",
-          lineHeight: "1.3",
-          letterSpacing: "-0.02em",
-        },
-      }}
-      {...props}
-    />
-  ),
-  a: (props: BoxProps) => (
-    <Box
-      as="a"
-      color="teal.fg"
-      textDecoration="underline"
-      textUnderlineOffset="3px"
-      textDecorationColor="teal.emphasized"
-      fontWeight="medium"
-      _hover={{ textDecorationThickness: "2px" }}
-      {...props}
-    />
-  ),
-  strong: (props: BoxProps) => (
-    <Box as="strong" fontWeight="bold" color="fg" {...props} />
-  ),
-  em: (props: BoxProps) => (
-    <Box as="em" fontStyle="italic" color="fg" {...props} />
-  ),
-}
-
-function SpecItem(props: { label: string; children: React.ReactNode }) {
-  return (
-    <Stack gap="1.5">
-      <Text
-        fontFamily={mono}
-        fontSize="2xs"
-        textTransform="uppercase"
-        letterSpacing="wider"
-        color="fg.subtle"
-      >
-        {props.label}
-      </Text>
-      <Box fontWeight="medium" fontSize="sm">
-        {props.children}
-      </Box>
-    </Stack>
-  )
+  QuoteCard,
 }
 
 export default async function ShippedStoryPage(props: PageContext) {
@@ -139,104 +52,23 @@ export default async function ShippedStoryPage(props: PageContext) {
     <Box width="full">
       <Container maxW="4xl" pt={{ base: "10", md: "16" }}>
         <Stack gap={{ base: "10", md: "14" }}>
-          <Link href="/shipped">
-            <Text
-              fontFamily={mono}
-              fontSize="sm"
-              color="fg.muted"
-              _hover={{ color: "teal.fg" }}
-            >
-              &larr; All stories
-            </Text>
-          </Link>
+          <Link href="/shipped">&larr; All stories</Link>
 
-          {/* Header: lead with the quote, attribution below */}
-          <Stack gap={{ base: "6", md: "8" }}>
-            <Heading as="h1" srOnly>
-              {story.product}
-            </Heading>
-            {story.logo && (
-              <Box
-                bg="black"
-                borderRadius="lg"
-                px="3.5"
-                py="2.5"
-                display="inline-flex"
-                alignItems="center"
-                w="fit-content"
-              >
-                <Image
-                  src={story.logo}
-                  alt={`${story.product} logo`}
-                  h="6"
-                  w="auto"
-                  objectFit="contain"
-                />
-              </Box>
-            )}
-            <HStack
-              gap="2.5"
-              fontFamily={mono}
-              fontSize="sm"
-              color="fg.subtle"
-              textTransform="uppercase"
-              letterSpacing="wider"
-              flexWrap="wrap"
-            >
-              <Span color="teal.fg">
-                Shipped{story.shippedAt ? ` ${story.shippedAt}` : ""}
-              </Span>
-              <Span>·</Span>
-              <Span>{story.category}</Span>
-            </HStack>
-
-            {/* Pull-quote callout */}
-            <Blockquote.Root colorPalette="teal" ps="8">
-              <Float placement="middle-start">
-                <Circle bg="teal.solid" size="8" color="teal.contrast">
-                  <LuQuote />
-                </Circle>
-              </Float>
-              <Blockquote.Content
-                textStyle={{ base: "3xl", md: "4xl" }}
-                fontWeight="semibold"
-                lineHeight="1.3"
-                letterSpacing="tight"
-              >
-                {story.quote}
-              </Blockquote.Content>
-            </Blockquote.Root>
-
-            {/* Byline */}
-            <HStack gap="3.5">
-              <Avatar.Root size="lg">
-                <Avatar.Image src={story.avatar} />
-                <Avatar.Fallback name={story.person} />
-              </Avatar.Root>
-              <Stack gap="0.5">
-                <Text fontSize="md">
-                  <Span fontWeight="medium" color="fg">
-                    {story.person}
-                  </Span>
-                  <Span color="fg.muted">
-                    , {story.role} of {story.product}
-                  </Span>
-                </Text>
-                {story.x && (
-                  <Link href={`https://x.com/${story.x}`}>
-                    <Span
-                      fontFamily={mono}
-                      fontSize="sm"
-                      color="teal.fg"
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      @{story.x}
-                    </Span>
-                  </Link>
-                )}
-              </Stack>
-            </HStack>
-          </Stack>
+          <QuoteCard quote={story.quote} description={story.description} />
+          <StoryMeta
+            data={{
+              company: story.product,
+              logo: story.logo,
+              url: story.url,
+              authorName: story.person,
+              authorTitle: story.role,
+              authorAvatar: story.avatar,
+              category: story.category,
+              publishedAt: story.shippedAt
+                ? new Date(story.shippedAt)
+                : new Date(),
+            }}
+          />
         </Stack>
       </Container>
 
@@ -245,46 +77,8 @@ export default async function ShippedStoryPage(props: PageContext) {
         <ProductGallery images={story.images} url={story.url} />
       </Box>
 
-      <Container maxW="4xl" pb="24">
-        <Stack gap={{ base: "12", md: "16" }}>
-          {/* Spec strip */}
-          <SimpleGrid
-            columns={{ base: 2, md: 4 }}
-            gap="6"
-            borderYWidth="1px"
-            borderColor="border"
-            py="6"
-          >
-            <SpecItem label="Product">{story.product}</SpecItem>
-            <SpecItem label="Built by">{story.person}</SpecItem>
-            <SpecItem label="Category">{story.category}</SpecItem>
-            <SpecItem label="Live at">
-              <Link href={story.url}>
-                <Span color="teal.fg" _hover={{ textDecoration: "underline" }}>
-                  {story.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                </Span>
-              </Link>
-            </SpecItem>
-          </SimpleGrid>
-
-          {/* Body, broken into clear sections */}
-          <Box
-            maxW="3xl"
-            css={{ "& > p:first-of-type": { fontSize: "xl", color: "fg" } }}
-          >
-            <MDXContent code={story.content} components={storyComponents} />
-          </Box>
-
-          {/* CTA */}
-          <HStack gap="3" flexWrap="wrap">
-            <Button colorPalette="teal" size="xl" asChild>
-              <Link href={story.url}>Visit {story.product}</Link>
-            </Button>
-            <Button variant="outline" size="xl" asChild>
-              <Link href="/shipped">More stories</Link>
-            </Button>
-          </HStack>
-        </Stack>
+      <Container maxW="3xl" pb="24">
+        <MDXContent code={story.content} components={storyComponents} />
       </Container>
 
       {/* Next story */}
@@ -301,7 +95,6 @@ export default async function ShippedStoryPage(props: PageContext) {
               >
                 <Stack gap="2">
                   <Text
-                    fontFamily={mono}
                     fontSize="xs"
                     textTransform="uppercase"
                     letterSpacing="wider"
@@ -321,12 +114,7 @@ export default async function ShippedStoryPage(props: PageContext) {
                     {next.person}, {next.role}
                   </Text>
                 </Stack>
-                <Span
-                  fontFamily={mono}
-                  fontSize="2xl"
-                  color="teal.fg"
-                  aria-hidden
-                >
+                <Span fontSize="2xl" color="teal.fg" aria-hidden>
                   &rarr;
                 </Span>
               </HStack>

@@ -109,6 +109,7 @@ const shipped = defineCollection({
       category: s.string(),
       url: s.string(),
       quote: s.string(),
+      description: s.string().optional(),
       x: s.string().optional(),
       shippedAt: s.string().optional(),
       featured: s.boolean().optional(),
