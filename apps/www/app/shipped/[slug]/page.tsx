@@ -12,6 +12,7 @@ import {
   HStack,
   Heading,
   type HeadingProps,
+  Image,
   SimpleGrid,
   Span,
   Stack,
@@ -154,6 +155,25 @@ export default async function ShippedStoryPage(props: PageContext) {
             <Heading as="h1" srOnly>
               {story.product}
             </Heading>
+            {story.logo && (
+              <Box
+                bg="black"
+                borderRadius="lg"
+                px="3.5"
+                py="2.5"
+                display="inline-flex"
+                alignItems="center"
+                w="fit-content"
+              >
+                <Image
+                  src={story.logo}
+                  alt={`${story.product} logo`}
+                  h="6"
+                  w="auto"
+                  objectFit="contain"
+                />
+              </Box>
+            )}
             <HStack
               gap="2.5"
               fontFamily={mono}

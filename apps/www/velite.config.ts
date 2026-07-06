@@ -105,6 +105,7 @@ const shipped = defineCollection({
       person: s.string(),
       role: s.string(),
       avatar: s.string().optional(),
+      logo: s.string().optional(),
       category: s.string(),
       url: s.string(),
       quote: s.string(),
