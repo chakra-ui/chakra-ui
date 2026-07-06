@@ -123,7 +123,11 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     const { cva, isValidProperty } = useChakraContext()
 
     const cvaFn = configOrCva.__cva__ ? configOrCva : cva(configOrCva)
-    const cvaRecipe = mergeCva(tag.__emotion_cva, cvaFn)
+    const baseCva =
+      tag.__emotion_cva && !tag.__emotion_cva.__cva__
+        ? cva(tag.__emotion_cva)
+        : tag.__emotion_cva
+    const cvaRecipe = mergeCva(baseCva, cvaFn)
 
     const createShouldForwardProps = (props: string[]) => {
       return (prop: string, variantKeys: string[]) => {
