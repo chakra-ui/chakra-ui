@@ -35,7 +35,8 @@ export function useRecipe(options: any): any {
   const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {
-    const recipe = recipeProp || (key != null ? sys.getRecipe(key) : {})
-    return sys.cva(structuredClone(recipe))
+    if (recipeProp) return sys.cva(recipeProp)
+    if (key != null) return sys.getRecipeFn(key)
+    return sys.cva({})
   }, [key, recipeProp, sys])
 }

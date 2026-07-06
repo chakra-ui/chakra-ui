@@ -66,7 +66,7 @@
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typedocs": "tsx scripts/typedocs.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "exports": {
     ".": {

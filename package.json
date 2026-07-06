@@ -19,7 +19,7 @@
     "dev": "pnpm --recursive --parallel --filter=./packages/* dev",
     "postbuild": "pnpm build:tokens",
     "typedocs": "pnpm www generate:types",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",
     "www": "pnpm --filter=./apps/www",
@@ -73,6 +73,7 @@
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.60.1",
     "@typescript-eslint/parser": "8.60.1",
+    "@typescript/native-preview": "7.0.0-dev.20260705.1",
     "consola": "^3.4.2",
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
@@ -111,7 +112,7 @@
     "vitest-axe": "0.1.0",
     "vitest-matchmedia-mock": "2.0.3"
   },
-  "packageManager": "pnpm@11.5.3",
+  "packageManager": "pnpm@11.10.0",
   "engines": {
     "node": ">=22.x"
   }
