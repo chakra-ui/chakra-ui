@@ -23,10 +23,7 @@ export interface UseSlotRecipeOptions<K extends SlotRecipeKey> {
   recipe?: SlotRecipeConfig | undefined
 }
 
-const slotRecipeCache = new WeakMap<
-  SystemContext,
-  Map<string, SystemSlotRecipeFn<string, any, any>>
->()
+const slotRecipeCache = new WeakMap<SystemContext, Map<string, any>>()
 
 function getCachedSlotRecipe(sys: SystemContext, key: string) {
   let cache = slotRecipeCache.get(sys)
@@ -40,11 +37,7 @@ function getCachedSlotRecipe(sys: SystemContext, key: string) {
 
   if (!recipe) {
     const config = sys.getSlotRecipe(key, {})
-    recipe = sys.sva(structuredClone(config)) as SystemSlotRecipeFn<
-      string,
-      any,
-      any
-    >
+    recipe = sys.sva(structuredClone(config))
     cache.set(key, recipe)
   }
 

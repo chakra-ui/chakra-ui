@@ -18,10 +18,7 @@ export interface UseRecipeOptions<K extends RecipeKey> {
   recipe?: RecipeDefinition | undefined
 }
 
-const recipeCache = new WeakMap<
-  SystemContext,
-  Map<string, SystemRecipeFn<any, any>>
->()
+const recipeCache = new WeakMap<SystemContext, Map<string, any>>()
 
 function getCachedRecipe(sys: SystemContext, key: string) {
   let cache = recipeCache.get(sys)
@@ -35,7 +32,7 @@ function getCachedRecipe(sys: SystemContext, key: string) {
 
   if (!recipe) {
     const config = sys.getRecipe(key, {})
-    recipe = sys.cva(structuredClone(config)) as SystemRecipeFn<any, any>
+    recipe = sys.cva(structuredClone(config))
     cache.set(key, recipe)
   }
 
