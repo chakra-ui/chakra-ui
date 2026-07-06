@@ -3,6 +3,7 @@ import {
   compact,
   cx,
   mapEntries,
+  memo,
   mergeWith,
   omit,
   splitProps,
@@ -48,7 +49,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       },
     })
 
-    const resolve = (props = {}) => {
+    const resolve = memo((props = {}) => {
       const variantSelections: Dict = normalize({
         ...defaultVariants,
         ...compact(props),
@@ -64,7 +65,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       )
 
       return layers.wrap("recipes", css(variantCss, compoundVariantCss))
-    }
+    })
 
     const variantKeys = Object.keys(variants)
 
@@ -92,7 +93,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       Object.keys(value as any),
     ])
 
-    const cvaFn = (props: any) => css(resolve(props))
+    const cvaFn = memo((props: any) => css(resolve(props)))
     return Object.assign(cvaFn, {
       className: config.className,
       __cva__: true,

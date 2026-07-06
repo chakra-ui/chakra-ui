@@ -9,6 +9,7 @@ import type {
   SlotRecipeConfig,
   SystemSlotRecipeFn,
 } from "./recipe.types"
+import type { SystemContext } from "./types"
 
 export type SlotRecipeKey = keyof ConfigSlotRecipes | (string & {})
 
@@ -20,6 +21,34 @@ export type SlotRecipeFn<K extends SlotRecipeKey> =
 export interface UseSlotRecipeOptions<K extends SlotRecipeKey> {
   key?: K | undefined
   recipe?: SlotRecipeConfig | undefined
+}
+
+const slotRecipeCache = new WeakMap<
+  SystemContext,
+  Map<string, SystemSlotRecipeFn<string, any, any>>
+>()
+
+function getCachedSlotRecipe(sys: SystemContext, key: string) {
+  let cache = slotRecipeCache.get(sys)
+
+  if (!cache) {
+    cache = new Map()
+    slotRecipeCache.set(sys, cache)
+  }
+
+  let recipe = cache.get(key)
+
+  if (!recipe) {
+    const config = sys.getSlotRecipe(key, {})
+    recipe = sys.sva(structuredClone(config)) as SystemSlotRecipeFn<
+      string,
+      any,
+      any
+    >
+    cache.set(key, recipe)
+  }
+
+  return recipe
 }
 
 export function useSlotRecipe<
@@ -44,7 +73,8 @@ export function useSlotRecipe(options: any): any {
   const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {
-    const recipe = recipeProp || (key != null ? sys.getSlotRecipe(key) : {})
-    return sys.sva(structuredClone(recipe))
+    if (recipeProp) return sys.sva(structuredClone(recipeProp))
+    if (key != null) return getCachedSlotRecipe(sys, key)
+    return sys.sva({ slots: [] })
   }, [key, recipeProp, sys])
 }

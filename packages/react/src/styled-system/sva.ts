@@ -1,4 +1,4 @@
-import { type Dict, mapEntries, omit, splitProps } from "../utils"
+import { type Dict, mapEntries, memo, omit, splitProps } from "../utils"
 import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 import { EMPTY_ARRAY, EMPTY_OBJECT, createEmptyObject } from "./singleton"
 
@@ -56,11 +56,11 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       ([slot, slotCva]) => [slot, cva(slotCva)],
     )
 
-    function svaFn(props: Dict) {
+    const svaFn = memo((props: Dict) => {
       //@ts-ignore
       const result = slots.map(([slot, cvaFn]) => [slot, cvaFn(props)])
       return Object.fromEntries(result)
-    }
+    })
 
     const variants = (config.variants ?? EMPTY_OBJECT) as Dict
     const variantKeys = Object.keys(variants)
