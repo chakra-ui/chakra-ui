@@ -30,6 +30,9 @@ export const dateInputSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       cursor: "text",
+      _disabled: {
+        cursor: "not-allowed",
+      },
     },
 
     segmentGroup: {
@@ -63,13 +66,6 @@ export const dateInputSlotRecipe = defineSlotRecipe({
   variants: {
     size: mapEntries(variants!.size, (key, value) => [key, { control: value }]),
     variant: mapEntries(variants!.variant, (key, value) => {
-      // `control` isn't natively focusable — real DOM focus lands on the
-      // child `segment` spans, and zag reflects that back onto `control`
-      // only via the `data-focus` attribute (never native `:focus-visible`
-      // or `[data-focus-visible]`). Re-key inputRecipe's focus-visible
-      // styling, tuned for a real `<input>`, onto plain focus/`data-focus`
-      // equivalents: `focusVisibleRing` -> `focusRing`, and the "flushed"
-      // variant's `_focusVisible` block -> `_focus`.
       const { focusVisibleRing, _focusVisible, ...rest } = value as Record<
         string,
         any
