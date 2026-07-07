@@ -1,0 +1,42 @@
+export {
+  CommandPaletteContext,
+  CommandPaletteControl,
+  CommandPaletteEmpty,
+  CommandPaletteFooter,
+  CommandPaletteIndicator,
+  CommandPaletteInput,
+  CommandPaletteItem,
+  CommandPaletteItemCommand,
+  CommandPaletteItemContext,
+  CommandPaletteItemGroup,
+  CommandPaletteItemGroupLabel,
+  CommandPaletteItemIndicator,
+  CommandPaletteItemText,
+  CommandPaletteList,
+  CommandPalettePropsProvider,
+  CommandPaletteRoot,
+  CommandPaletteRootProvider,
+  useCommandPaletteStyles,
+} from "./command-palette"
+
+export type {
+  CommandPaletteControlProps,
+  CommandPaletteEmptyProps,
+  CommandPaletteFooterProps,
+  CommandPaletteHighlightChangeDetails,
+  CommandPaletteIndicatorProps,
+  CommandPaletteInputProps,
+  CommandPaletteItemCommandProps,
+  CommandPaletteItemGroupLabelProps,
+  CommandPaletteItemGroupProps,
+  CommandPaletteItemIndicatorProps,
+  CommandPaletteItemProps,
+  CommandPaletteItemTextProps,
+  CommandPaletteListProps,
+  CommandPaletteRootComponent,
+  CommandPaletteRootProps,
+  CommandPaletteRootProviderProps,
+  CommandPaletteValueChangeDetails,
+} from "./command-palette"
+
+export * as CommandPalette from "./namespace"
