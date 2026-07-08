@@ -1,4 +1,3 @@
-import { shipped } from "@/.velite"
 import { MDXContent } from "@/components/mdx-content"
 import {
   Box,
@@ -15,18 +14,19 @@ import { notFound } from "next/navigation"
 import { QuoteCard } from "../quote-card"
 import { ProductGallery } from "../shipped-client"
 import { StoryMeta } from "../story-meta"
+import { getPublishedShipped } from "../utils"
 
 interface PageContext {
   params: Promise<{ slug: string }>
 }
 
 export const generateStaticParams = async () => {
-  return shipped.map((story) => ({ slug: story.slug }))
+  return getPublishedShipped().map((story) => ({ slug: story.slug }))
 }
 
 export const generateMetadata = async (ctx: PageContext): Promise<Metadata> => {
   const { slug } = await ctx.params
-  const story = shipped.find((item) => item.slug === slug)
+  const story = getPublishedShipped().find((item) => item.slug === slug)
   return {
     title: story ? `${story.product} shipped with Chakra` : "Shipped",
     description: story?.quote,
@@ -42,10 +42,11 @@ const storyComponents = {
 
 export default async function ShippedStoryPage(props: PageContext) {
   const { slug } = await props.params
-  const index = shipped.findIndex((item) => item.slug === slug)
+  const publishedStories = getPublishedShipped()
+  const index = publishedStories.findIndex((item) => item.slug === slug)
   if (index === -1) return notFound()
-  const story = shipped[index]
-  const next = shipped[(index + 1) % shipped.length]
+  const story = publishedStories[index]
+  const next = publishedStories[(index + 1) % publishedStories.length]
   const hasNext = next && next.slug !== story.slug
 
   return (
@@ -63,6 +64,7 @@ export default async function ShippedStoryPage(props: PageContext) {
               authorName: story.person,
               authorTitle: story.role,
               authorAvatar: story.avatar,
+              authorUrl: story.x ? `https://x.com/${story.x}` : undefined,
               category: story.category,
               publishedAt: story.shippedAt
                 ? new Date(story.shippedAt)

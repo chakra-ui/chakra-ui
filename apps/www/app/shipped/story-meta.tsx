@@ -17,6 +17,7 @@ interface StoryMeta {
   authorName: string
   authorAvatar: string
   authorTitle: string
+  authorUrl?: string
   category: string
   publishedAt: Date
 }
@@ -56,22 +57,26 @@ function formatDate(date: Date) {
 
 export const StoryMeta = (props: StoryMetaProps) => {
   const { data } = props
+  const avatar = (
+    <Image
+      src={data.authorAvatar}
+      alt={data.authorName}
+      boxSize="10"
+      rounded="full"
+    />
+  )
   return (
     <Flex gap="10" align="center" wrap="wrap">
-      <Box bg="black" borderWidth="1px" p="2" rounded="md">
-        <Image src={data.logo} alt={data.company} h="8" />
-      </Box>
-      <LabeledValue label="Category" value={data.category} />
-      <LabeledValue label="Published At" value={formatDate(data.publishedAt)} />
       <LabeledValue
         value={
           <HStack>
-            <Image
-              src={data.authorAvatar}
-              alt={data.authorName}
-              boxSize="10"
-              rounded="full"
-            />
+            {data.authorUrl ? (
+              <Link href={data.authorUrl} target="_blank">
+                {avatar}
+              </Link>
+            ) : (
+              avatar
+            )}
             <Stack gap="0">
               <Text fontWeight="medium">{data.authorName}</Text>
               <Text fontSize="xs">{data.authorTitle}</Text>
@@ -79,6 +84,8 @@ export const StoryMeta = (props: StoryMetaProps) => {
           </HStack>
         }
       />
+      <LabeledValue label="Published At" value={formatDate(data.publishedAt)} />
+      <LabeledValue label="Category" value={data.category} />
       <LabeledValue
         label="Website"
         value={
@@ -87,6 +94,9 @@ export const StoryMeta = (props: StoryMetaProps) => {
           </Link>
         }
       />
+      <Box bg="black" borderWidth="1px" p="2" rounded="md">
+        <Image src={data.logo} alt={data.company} h="8" />
+      </Box>
     </Flex>
   )
 }

@@ -10,6 +10,7 @@ import {
   GridItem,
   HStack,
   Heading,
+  Image,
   Span,
   Stack,
   Text,
@@ -17,6 +18,7 @@ import {
 import { Metadata } from "next"
 import Link from "next/link"
 import { ProductGallery, StoryPreview } from "./shipped-client"
+import { getPublishedShipped } from "./utils"
 
 const mono = "var(--font-geist-mono)"
 
@@ -131,17 +133,28 @@ function StorySpread({ story, index }: StorySpreadProps) {
 
               <HStack justify="space-between" align="center" pt="1">
                 <HStack gap="3">
-                  <Circle
-                    size="11"
-                    bg="teal.subtle"
-                    color="teal.fg"
-                    fontWeight="bold"
-                    fontSize="sm"
-                    borderWidth="1px"
-                    borderColor="teal.emphasized"
-                  >
-                    {initials(story.person)}
-                  </Circle>
+                  {story.avatar ? (
+                    <Image
+                      src={story.avatar}
+                      alt={story.person}
+                      boxSize="11"
+                      rounded="full"
+                      borderWidth="1px"
+                      borderColor="teal.emphasized"
+                    />
+                  ) : (
+                    <Circle
+                      size="11"
+                      bg="teal.subtle"
+                      color="teal.fg"
+                      fontWeight="bold"
+                      fontSize="sm"
+                      borderWidth="1px"
+                      borderColor="teal.emphasized"
+                    >
+                      {initials(story.person)}
+                    </Circle>
+                  )}
                   <Stack gap="0.5">
                     <Text fontWeight="semibold">{story.person}</Text>
                     <Text fontSize="sm" color="fg.muted">
@@ -176,7 +189,7 @@ function StorySpread({ story, index }: StorySpreadProps) {
 }
 
 export default function ShippedPage() {
-  const stories = shipped
+  const stories = getPublishedShipped()
 
   return (
     <Box width="full">
