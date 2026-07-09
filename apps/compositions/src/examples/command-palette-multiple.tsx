@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  Checkmark,
   CommandPalette,
   Text,
   useFilter,
@@ -37,8 +38,11 @@ export const CommandPaletteMultiple = () => {
         <CommandPalette.List>
           {collection.items.map((item) => (
             <CommandPalette.Item item={item} key={item.value}>
+              <Checkmark
+                size="sm"
+                checked={selectedLabels.includes(item.value)}
+              />
               <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-              <CommandPalette.ItemIndicator />
             </CommandPalette.Item>
           ))}
           <CommandPalette.Empty>No labels found</CommandPalette.Empty>

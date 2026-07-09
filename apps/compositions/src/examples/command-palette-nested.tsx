@@ -2,19 +2,31 @@
 
 import {
   CommandPalette,
+  Icon,
   Kbd,
   Span,
+  VisuallyHidden,
   createListCollection,
   useFilter,
 } from "@chakra-ui/react"
+import { toaster } from "compositions/ui/toaster"
 import { useMemo, useState } from "react"
-import { LuMonitor, LuMoon, LuPalette, LuSearch, LuSun } from "react-icons/lu"
+import {
+  LuArrowLeft,
+  LuDelete,
+  LuMonitor,
+  LuMoon,
+  LuPalette,
+  LuSearch,
+  LuSun,
+} from "react-icons/lu"
 
 interface Command {
   label: string
   value: string
   icon?: React.ReactNode
   page?: string
+  back?: boolean
 }
 
 const rootCommands: Command[] = [
@@ -31,7 +43,10 @@ const themeCommands: Command[] = [
   { label: "Light Theme", value: "light", icon: <LuSun /> },
   { label: "Dark Theme", value: "dark", icon: <LuMoon /> },
   { label: "System Theme", value: "system", icon: <LuMonitor /> },
+  { label: "Go Back", value: "back", icon: <LuArrowLeft />, back: true },
 ]
+
+const filterOptions = { sensitivity: "base" } as const
 
 export const CommandPaletteNested = () => {
   const [query, setQuery] = useState("")
@@ -40,7 +55,7 @@ export const CommandPaletteNested = () => {
 
   const page = pages[pages.length - 1]
 
-  const { contains } = useFilter({ sensitivity: "base" })
+  const { contains } = useFilter(filterOptions)
 
   const collection = useMemo(() => {
     const source = page === "theme" ? themeCommands : rootCommands
@@ -58,11 +73,17 @@ export const CommandPaletteNested = () => {
         const item = collection.find(value)
         if (!item) return
         setQuery("")
-        if (item.page) {
+        if (item.back) {
+          setPages((prev) => prev.slice(0, -1))
+        } else if (item.page) {
           setPages((prev) => [...prev, item.page!])
         } else if (page === "theme") {
           setTheme(item.value)
           setPages([])
+          toaster.create({
+            description: `${item.label} enabled`,
+            type: "success",
+          })
         }
       }}
     >
@@ -92,8 +113,14 @@ export const CommandPaletteNested = () => {
       </CommandPalette.List>
       <CommandPalette.Footer>
         <Span>Theme: {theme}</Span>
-        <Span ms="auto">
-          <Kbd size="sm">⌫</Kbd> to go back
+        <Span ms="auto" display="inline-flex" alignItems="center" gap="1">
+          <Kbd>
+            <Icon boxSize="3.5">
+              <LuDelete />
+            </Icon>
+            <VisuallyHidden>Backspace</VisuallyHidden>
+          </Kbd>
+          to go back
         </Span>
       </CommandPalette.Footer>
     </CommandPalette.Root>
