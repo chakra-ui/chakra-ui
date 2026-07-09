@@ -4,11 +4,14 @@ import {
   ActionBar,
   Button,
   Checkbox,
+  Icon,
   Kbd,
   Portal,
   Table,
+  VisuallyHidden,
 } from "@chakra-ui/react"
 import { useState } from "react"
+import { LuDelete } from "react-icons/lu"
 
 export const TableWithSelectionActionBar = () => {
   const [selection, setSelection] = useState<string[]>([])
@@ -83,7 +86,13 @@ export const TableWithSelectionActionBar = () => {
               </ActionBar.SelectionTrigger>
               <ActionBar.Separator />
               <Button variant="outline" size="sm">
-                Delete <Kbd>⌫</Kbd>
+                Delete{" "}
+                <Kbd>
+                  <Icon boxSize="3.5">
+                    <LuDelete />
+                  </Icon>
+                  <VisuallyHidden>Backspace</VisuallyHidden>
+                </Kbd>
               </Button>
               <Button variant="outline" size="sm">
                 Share <Kbd>T</Kbd>

@@ -2,8 +2,9 @@
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
 import { Listbox as ArkListbox } from "@ark-ui/react/listbox"
-import { type JSX, forwardRef } from "react"
+import { type JSX, forwardRef, useEffect, useRef } from "react"
 import { createContext } from "../../create-context"
+import { mergeRefs } from "../../merge-refs"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -11,7 +12,7 @@ import {
   createSlotRecipeContext,
 } from "../../styled-system"
 import { dataAttr } from "../../utils"
-import { SearchIcon } from "../icons"
+import { CheckIcon, SearchIcon } from "../icons"
 import { Spinner } from "../spinner"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +73,7 @@ const CommandPaletteRootProviderBase = forwardRef<
         ref={ref}
         {...(restProps as ArkListbox.RootProviderProps<any>)}
         data-loading={dataAttr(loading)}
+        data-empty={dataAttr(restProps.value?.collection?.size === 0)}
       />
     </CommandPaletteInnerProvider>
   )
@@ -182,20 +184,30 @@ const CommandPaletteInputBase = forwardRef<
   HTMLInputElement,
   ArkListbox.InputProps
 >(function CommandPaletteInputBase(props, ref) {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // Clear the input on Escape before any dismissable layer (dialog, drawer,
+  // popover) handles the key. Those layers listen on the document in the
+  // capture phase, so a window capture listener is the only spot that runs
+  // earlier — a bubble handler on the input never gets the chance.
+  useEffect(() => {
+    const input = inputRef.current
+    if (!input) return
+    const win = input.ownerDocument.defaultView ?? window
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      const target = event.composedPath?.()[0] ?? event.target
+      if (target !== input || !input.value) return
+      event.preventDefault()
+      event.stopPropagation()
+      setInputValue(input, "")
+    }
+    win.addEventListener("keydown", onKeyDown, { capture: true })
+    return () => win.removeEventListener("keydown", onKeyDown, true)
+  }, [])
+
   return (
-    <ArkListbox.Input
-      autoHighlight
-      {...props}
-      ref={ref}
-      onKeyDown={(event) => {
-        props.onKeyDown?.(event)
-        if (event.defaultPrevented) return
-        if (event.key === "Escape" && event.currentTarget.value) {
-          event.stopPropagation()
-          setInputValue(event.currentTarget, "")
-        }
-      }}
-    />
+    <ArkListbox.Input autoHighlight {...props} ref={mergeRefs(ref, inputRef)} />
   )
 })
 
@@ -285,7 +297,12 @@ export interface CommandPaletteItemIndicatorProps
 export const CommandPaletteItemIndicator = withContext<
   HTMLDivElement,
   CommandPaletteItemIndicatorProps
->(ArkListbox.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+>(ArkListbox.ItemIndicator, "itemIndicator", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <CheckIcon />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

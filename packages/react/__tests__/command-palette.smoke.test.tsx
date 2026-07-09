@@ -1,4 +1,9 @@
-import { CommandPalette, createListCollection } from "@chakra-ui/react"
+import {
+  CommandPalette,
+  Dialog,
+  Portal,
+  createListCollection,
+} from "@chakra-ui/react"
 import userEvent from "@testing-library/user-event"
 import { render } from "./core/render"
 
@@ -68,5 +73,36 @@ describe("CommandPalette", () => {
 
     await user.keyboard("{Escape}")
     expect(input.value).toBe("")
+  })
+
+  it("clears the input before closing an enclosing dialog on escape", async () => {
+    const user = userEvent.setup()
+    const onOpenChange = vi.fn()
+    const { getByPlaceholderText } = render(
+      <Dialog.Root defaultOpen onOpenChange={onOpenChange}>
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Demo />
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>,
+    )
+    const input = getByPlaceholderText("Search...") as HTMLInputElement
+
+    await user.click(input)
+    await user.keyboard("open")
+    expect(input.value).toBe("open")
+
+    await user.keyboard("{Escape}")
+    expect(input.value).toBe("")
+    expect(onOpenChange).not.toHaveBeenCalled()
+
+    await user.keyboard("{Escape}")
+    expect(onOpenChange).toHaveBeenCalledWith(
+      expect.objectContaining({ open: false }),
+    )
   })
 })

@@ -51,6 +51,9 @@ export const CommandPaletteBasic = () => {
         <Span>
           <Kbd size="sm">⏎</Kbd> to select
         </Span>
+        <Span ms="auto">
+          <Kbd size="sm">Esc</Kbd> to go back
+        </Span>
       </CommandPalette.Footer>
     </CommandPalette.Root>
   )

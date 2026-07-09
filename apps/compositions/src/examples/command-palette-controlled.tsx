@@ -37,7 +37,11 @@ export const CommandPaletteControlled = () => {
         </CommandPalette.Control>
         <CommandPalette.List>
           {collection.items.map((item) => (
-            <CommandPalette.Item item={item} key={item.value}>
+            <CommandPalette.Item
+              item={item}
+              key={item.value}
+              _selected={{ bg: "blue.subtle", color: "blue.fg" }}
+            >
               <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
               <CommandPalette.ItemIndicator />
             </CommandPalette.Item>

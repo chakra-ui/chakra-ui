@@ -1,7 +1,7 @@
 "use client"
 
 import { CommandPalette, useListCollection } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAsync } from "react-use"
 
 interface Character {
@@ -18,13 +18,17 @@ export const CommandPaletteWithAsyncContent = () => {
     itemToValue: (item) => item.name,
   })
 
-  const state = useAsync(async () => {
+  const state = useAsync(async (): Promise<Character[]> => {
     const response = await fetch(
       `https://swapi.py4e.com/api/people/?search=${inputValue}`,
     )
     const data = await response.json()
-    set(data.results)
-  }, [inputValue, set])
+    return data.results
+  }, [inputValue])
+
+  useEffect(() => {
+    if (state.value) set(state.value)
+  }, [state.value, set])
 
   return (
     <CommandPalette.Root
