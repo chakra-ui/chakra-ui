@@ -1,0 +1,234 @@
+{
+  "name": "floating-panel",
+  "file": "compositions/ui/floating-panel",
+  "snippet": "import {\n  FloatingPanel as ChakraFloatingPanel,\n  IconButton,\n  useFloatingPanelContext,\n} from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport {\n  LuGripHorizontal,\n  LuMaximize2,\n  LuMinus,\n  LuSquare,\n  LuX,\n} from \"react-icons/lu\"\n\ntype AnchorDetails = Parameters<\n  NonNullable<ChakraFloatingPanel.RootProps[\"getAnchorPosition\"]>\n>[0]\n\n// Restores the pre-minimize size when the panel reopens after being closed\n// while minimized. persistRect keeps the shrunken height; this corrects it.\nfunction SizeRestorer({\n  size,\n}: {\n  size: React.RefObject<{ width: number; height: number } | null>\n}) {\n  const api = useFloatingPanelContext()\n  React.useEffect(() => {\n    if (!api.open || !size.current) return\n    api.setSize(size.current)\n    size.current = null\n  }, [api.open])\n  return null\n}\n\nexport const FloatingPanelRoot = function FloatingPanelRoot(\n  props: ChakraFloatingPanel.RootProps,\n) {\n  const anchorPos = React.useRef({ x: 0, y: 0 })\n  const fullSize = React.useRef<{ width: number; height: number } | null>(null)\n  const restoreSize = React.useRef<{ width: number; height: number } | null>(\n    null,\n  )\n  const isMinimized = React.useRef(false)\n\n  const { onStageChange, onSizeChange, onOpenChange, ...rest } = props\n\n  const getAnchorPosition = React.useCallback((details: AnchorDetails) => {\n    const rect = details.triggerRect\n    if (!rect) return anchorPos.current\n    anchorPos.current = { x: rect.left, y: rect.bottom + 8 }\n    return anchorPos.current\n  }, [])\n\n  return (\n    <ChakraFloatingPanel.Root\n      persistRect\n      getAnchorPosition={getAnchorPosition}\n      onStageChange={(details) => {\n        isMinimized.current = details.stage === \"minimized\"\n        onStageChange?.(details)\n      }}\n      onSizeChange={(details) => {\n        if (!isMinimized.current) fullSize.current = details.size\n        onSizeChange?.(details)\n      }}\n      onOpenChange={(details) => {\n        if (!details.open && isMinimized.current && fullSize.current) {\n          restoreSize.current = fullSize.current\n        }\n        onOpenChange?.(details)\n      }}\n      {...rest}\n    >\n      <SizeRestorer size={restoreSize} />\n      {props.children}\n    </ChakraFloatingPanel.Root>\n  )\n}\n\ninterface FloatingPanelContentProps extends Omit<\n  ChakraFloatingPanel.ContentProps,\n  \"title\"\n> {\n  title?: React.ReactNode\n  showMinimize?: boolean\n  showMaximize?: boolean\n}\n\nexport const FloatingPanelContent = React.forwardRef<\n  HTMLDivElement,\n  FloatingPanelContentProps\n>(function FloatingPanelContent(props, ref) {\n  const {\n    title,\n    showMinimize = true,\n    showMaximize = true,\n    children,\n    ...rest\n  } = props\n\n  return (\n    <ChakraFloatingPanel.Positioner>\n      <ChakraFloatingPanel.Content ref={ref} {...rest}>\n        <ChakraFloatingPanel.Header>\n          <ChakraFloatingPanel.DragTrigger>\n            <LuGripHorizontal />\n            {title && (\n              <ChakraFloatingPanel.Title>{title}</ChakraFloatingPanel.Title>\n            )}\n          </ChakraFloatingPanel.DragTrigger>\n          <ChakraFloatingPanel.Control>\n            <ChakraFloatingPanel.StageTrigger stage=\"default\" asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\" aria-label=\"Restore\">\n                <LuMaximize2 />\n              </IconButton>\n            </ChakraFloatingPanel.StageTrigger>\n            {showMinimize && (\n              <ChakraFloatingPanel.StageTrigger stage=\"minimized\" asChild>\n                <IconButton variant=\"ghost\" size=\"2xs\" aria-label=\"Minimize\">\n                  <LuMinus />\n                </IconButton>\n              </ChakraFloatingPanel.StageTrigger>\n            )}\n            {showMaximize && (\n              <ChakraFloatingPanel.StageTrigger stage=\"maximized\" asChild>\n                <IconButton variant=\"ghost\" size=\"2xs\" aria-label=\"Maximize\">\n                  <LuSquare />\n                </IconButton>\n              </ChakraFloatingPanel.StageTrigger>\n            )}\n            <ChakraFloatingPanel.CloseTrigger asChild>\n              <IconButton variant=\"ghost\" size=\"2xs\" aria-label=\"Close\">\n                <LuX />\n              </IconButton>\n            </ChakraFloatingPanel.CloseTrigger>\n          </ChakraFloatingPanel.Control>\n        </ChakraFloatingPanel.Header>\n        <ChakraFloatingPanel.Body>{children}</ChakraFloatingPanel.Body>\n        <ChakraFloatingPanel.ResizeTriggers />\n      </ChakraFloatingPanel.Content>\n    </ChakraFloatingPanel.Positioner>\n  )\n})\n\nexport const FloatingPanelTrigger = ChakraFloatingPanel.Trigger\nexport const FloatingPanelBody = ChakraFloatingPanel.Body\nexport const FloatingPanelTitle = ChakraFloatingPanel.Title\n\nexport const FloatingPanel = {\n  Root: FloatingPanelRoot,\n  Content: FloatingPanelContent,\n  Trigger: FloatingPanelTrigger,\n  Body: FloatingPanelBody,\n  Title: FloatingPanelTitle,\n}\n",
+  "examples": [
+    {
+      "name": "floating-panel-anchor-position",
+      "content": "\"use client\"\nexport const FloatingPanelAnchorPosition = () => {\n  const anchorPos = useRef({ x: 0, y: 0 })\n\n  const getAnchorPosition = useCallback(\n    (details: {\n      triggerRect: DOMRect | null\n      boundaryRect: DOMRect | null\n    }) => {\n      const rect = details.triggerRect\n      if (!rect) return anchorPos.current\n      anchorPos.current = { x: rect.left, y: rect.bottom + 8 }\n      return anchorPos.current\n    },\n    [],\n  )\n\n  return (\n    <FloatingPanel.Root\n      getAnchorPosition={getAnchorPosition}\n      defaultSize={{ width: 300, height: 200 }}\n      minSize={{ width: 280, height: 160 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Anchor Position</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                Opens below the trigger. Drag the header to reposition.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useCallback, useRef } from \"react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-basic",
+      "content": "\"use client\"\nexport const FloatingPanelBasic = () => {\n  return (\n    <FloatingPanel.Root>\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Floating Panel</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.StageTrigger stage=\"minimized\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuMinus />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.StageTrigger stage=\"maximized\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuSquare />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.StageTrigger stage=\"default\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuMaximize2 />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <p>Drag the header to move this panel around.</p>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, FloatingPanel, IconButton, Portal } from \"@chakra-ui/react\"",
+        "import {\n  LuGripHorizontal,\n  LuMaximize2,\n  LuMinus,\n  LuSquare,\n  LuX,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-boundary",
+      "content": "\"use client\"\nexport const FloatingPanelBoundary = () => {\n  const boundaryRef = useRef<HTMLDivElement>(null)\n\n  return (\n    <Box\n      ref={boundaryRef}\n      position=\"relative\"\n      borderWidth=\"2px\"\n      borderStyle=\"dashed\"\n      borderColor=\"border.emphasized\"\n      borderRadius=\"l2\"\n      w=\"full\"\n      h=\"400px\"\n      p=\"4\"\n    >\n      <Text textStyle=\"xs\" color=\"fg.muted\" mb=\"2\">\n        Drag boundary\n      </Text>\n      <FloatingPanel.Root\n        persistRect\n        allowOverflow={false}\n        getBoundaryEl={() => boundaryRef.current}\n        defaultSize={{ width: 280, height: 180 }}\n        minSize={{ width: 280, height: 180 }}\n      >\n        <FloatingPanel.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open Panel\n          </Button>\n        </FloatingPanel.Trigger>\n        <Portal>\n          <FloatingPanel.Positioner>\n            <FloatingPanel.Content>\n              <FloatingPanel.Header>\n                <FloatingPanel.DragTrigger>\n                  <LuGripHorizontal />\n                  <FloatingPanel.Title>Bounded Panel</FloatingPanel.Title>\n                </FloatingPanel.DragTrigger>\n                <FloatingPanel.Control>\n                  <FloatingPanel.CloseTrigger asChild>\n                    <IconButton variant=\"ghost\" size=\"2xs\">\n                      <LuX />\n                    </IconButton>\n                  </FloatingPanel.CloseTrigger>\n                </FloatingPanel.Control>\n              </FloatingPanel.Header>\n              <FloatingPanel.Body>\n                <Text textStyle=\"sm\">\n                  This panel cannot be dragged outside the dashed boundary box.\n                </Text>\n              </FloatingPanel.Body>\n              <FloatingPanel.ResizeTriggers />\n            </FloatingPanel.Content>\n          </FloatingPanel.Positioner>\n        </Portal>\n      </FloatingPanel.Root>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Box,\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useRef } from \"react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-context",
+      "content": "\"use client\"\nconst PanelActions = () => {\n  const api = useFloatingPanelContext()\n  return (\n    <HStack gap=\"2\">\n      <Button size=\"sm\" variant=\"outline\" onClick={() => api.minimize()}>\n        Minimize\n      </Button>\n      <Button size=\"sm\" variant=\"outline\" onClick={() => api.maximize()}>\n        Maximize\n      </Button>\n      <Button size=\"sm\" variant=\"outline\" onClick={() => api.restore()}>\n        Restore\n      </Button>\n    </HStack>\n  )\n}\n\nexport const FloatingPanelContext = () => {\n  return (\n    <FloatingPanel.Root\n      defaultSize={{ width: 320, height: 200 }}\n      minSize={{ width: 280, height: 160 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Context</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\" mb=\"3\">\n                Control the panel from inside the body using{\" \"}\n                <code>useFloatingPanelContext</code>.\n              </Text>\n              <PanelActions />\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  HStack,\n  IconButton,\n  Portal,\n  Text,\n  useFloatingPanelContext,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-controlled-open",
+      "content": "\"use client\"\nexport const FloatingPanelControlledOpen = () => {\n  const [open, setOpen] = useState(false)\n\n  return (\n    <FloatingPanel.Root\n      open={open}\n      onOpenChange={(details) => setOpen(details.open)}\n      persistRect\n      defaultSize={{ width: 320, height: 200 }}\n      minSize={{ width: 320, height: 200 }}\n    >\n      <HStack>\n        <FloatingPanel.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            {open ? \"Close Panel\" : \"Open Panel\"}\n          </Button>\n        </FloatingPanel.Trigger>\n      </HStack>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Controlled Open</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              The open state is fully controlled externally. Closing via the ×\n              button or the trigger both update the same state.\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  HStack,\n  IconButton,\n  Portal,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-controlled-position",
+      "content": "\"use client\"\nexport const FloatingPanelControlledPosition = () => {\n  const [position, setPosition] = useState({ x: 16, y: 100 })\n\n  const move = (dx: number, dy: number) =>\n    setPosition((p) => ({ x: p.x + dx, y: p.y + dy }))\n\n  return (\n    <FloatingPanel.Root\n      position={position}\n      onPositionChange={(details) => setPosition(details.position)}\n    >\n      <HStack align=\"start\" p=\"3\">\n        <FloatingPanel.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open Panel\n          </Button>\n        </FloatingPanel.Trigger>\n        <Grid templateColumns=\"repeat(3, 1fr)\" gap=\"1\">\n          <span />\n          <IconButton\n            size=\"xs\"\n            variant=\"outline\"\n            aria-label=\"Move up\"\n            onClick={() => move(0, -50)}\n          >\n            <LuArrowUp />\n          </IconButton>\n          <span />\n          <IconButton\n            size=\"xs\"\n            variant=\"outline\"\n            aria-label=\"Move left\"\n            onClick={() => move(-50, 0)}\n          >\n            <LuArrowLeft />\n          </IconButton>\n          <span />\n          <IconButton\n            size=\"xs\"\n            variant=\"outline\"\n            aria-label=\"Move right\"\n            onClick={() => move(50, 0)}\n          >\n            <LuArrowRight />\n          </IconButton>\n          <span />\n          <IconButton\n            size=\"xs\"\n            variant=\"outline\"\n            aria-label=\"Move down\"\n            onClick={() => move(0, 50)}\n          >\n            <LuArrowDown />\n          </IconButton>\n          <span />\n        </Grid>\n        <Text textStyle=\"xs\" fontFamily=\"mono\" color=\"fg.muted\" pt=\"1\">\n          x: {Math.round(position.x)}, y: {Math.round(position.y)}\n        </Text>\n      </HStack>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Controlled Position</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                Use the arrow pad above or drag the header to move this panel.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  Grid,\n  HStack,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import {\n  LuArrowDown,\n  LuArrowLeft,\n  LuArrowRight,\n  LuArrowUp,\n  LuGripHorizontal,\n  LuX,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-controlled-size",
+      "content": "\"use client\"\nexport const FloatingPanelControlledSize = () => {\n  const [size, setSize] = useState({ width: 360, height: 260 })\n\n  return (\n    <FloatingPanel.Root\n      size={size}\n      onSizeChange={(details) => setSize(details.size)}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Controlled Size</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Stack gap=\"3\">\n                <HStack gap=\"2\">\n                  <Button\n                    size=\"sm\"\n                    variant=\"outline\"\n                    onClick={() => setSize({ width: 240, height: 180 })}\n                  >\n                    S\n                  </Button>\n                  <Button\n                    size=\"sm\"\n                    variant=\"outline\"\n                    onClick={() => setSize({ width: 360, height: 260 })}\n                  >\n                    M\n                  </Button>\n                  <Button\n                    size=\"sm\"\n                    variant=\"outline\"\n                    onClick={() => setSize({ width: 520, height: 360 })}\n                  >\n                    L\n                  </Button>\n                </HStack>\n                <Text textStyle=\"sm\" color=\"fg.muted\">\n                  {Number(size.width.toFixed(2))} x{\" \"}\n                  {Number(size.height.toFixed(2))}px\n                </Text>\n              </Stack>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  HStack,\n  IconButton,\n  Portal,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-disable-drag",
+      "content": "\"use client\"\nexport const FloatingPanelDisableDrag = () => {\n  return (\n    <FloatingPanel.Root\n      draggable={false}\n      persistRect\n      defaultSize={{ width: 320, height: 200 }}\n      minSize={{ width: 320, height: 200 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Disable Drag</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                This panel cannot be dragged. The position is fixed. Resizing is\n                still enabled.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-disable-resize",
+      "content": "\"use client\"\nexport const FloatingPanelDisableResize = () => {\n  return (\n    <FloatingPanel.Root\n      resizable={false}\n      persistRect\n      defaultSize={{ width: 320, height: 200 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Disable Resize</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                This panel has a fixed size and cannot be resized. Dragging is\n                still enabled.\n              </Text>\n            </FloatingPanel.Body>\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-min-max",
+      "content": "\"use client\"\nexport const FloatingPanelMinMax = () => {\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <HStack textStyle=\"sm\" gap=\"2\">\n        <LuMouse />\n        <LuMoveHorizontal />\n        <Span>\n          Drag the resize handles — size is clamped between min and max.\n        </Span>\n      </HStack>\n\n      <FloatingPanel.Root\n        defaultSize={{ width: 320, height: 220 }}\n        minSize={{ width: 280, height: 160 }}\n        maxSize={{ width: 480, height: 320 }}\n      >\n        <FloatingPanel.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open Panel\n          </Button>\n        </FloatingPanel.Trigger>\n        <Portal>\n          <FloatingPanel.Positioner>\n            <FloatingPanel.Content>\n              <FloatingPanel.Header>\n                <FloatingPanel.DragTrigger>\n                  <LuGripHorizontal />\n                  <FloatingPanel.Title>Min/Max</FloatingPanel.Title>\n                </FloatingPanel.DragTrigger>\n                <FloatingPanel.Control>\n                  <FloatingPanel.CloseTrigger asChild>\n                    <IconButton variant=\"ghost\" size=\"2xs\">\n                      <LuX />\n                    </IconButton>\n                  </FloatingPanel.CloseTrigger>\n                </FloatingPanel.Control>\n              </FloatingPanel.Header>\n              <FloatingPanel.Body>\n                <Text textStyle=\"sm\">\n                  Resize the panel with the resize handles. Size is constrained\n                  between 280x160px (min) and 480x320px (max).\n                </Text>\n              </FloatingPanel.Body>\n              <FloatingPanel.ResizeTriggers />\n            </FloatingPanel.Content>\n          </FloatingPanel.Positioner>\n        </Portal>\n      </FloatingPanel.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  HStack,\n  IconButton,\n  Portal,\n  Span,\n  Stack,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import {\n  LuGripHorizontal,\n  LuMouse,\n  LuMoveHorizontal,\n  LuX,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-multiple",
+      "content": "\"use client\"\nconst panels = [\n  {\n    id: \"notes\",\n    label: \"Notes\",\n    title: \"Notes\",\n    defaultPosition: { x: 80, y: 80 },\n    description: \"Jot down quick ideas and reminders.\",\n  },\n  {\n    id: \"tasks\",\n    label: \"Tasks\",\n    title: \"Tasks\",\n    defaultPosition: { x: 260, y: 120 },\n    description: \"Track items you want to finish today.\",\n  },\n  {\n    id: \"chat\",\n    label: \"Chat\",\n    title: \"Chat\",\n    defaultPosition: { x: 440, y: 160 },\n    description: \"Keep a lightweight conversation panel open.\",\n  },\n] as const\n\nexport const FloatingPanelMultiple = () => {\n  return (\n    <HStack gap=\"2\" flexWrap=\"wrap\">\n      {panels.map((panel) => (\n        <FloatingPanel.Root\n          key={panel.id}\n          id={panel.id}\n          persistRect\n          defaultPosition={panel.defaultPosition}\n          defaultSize={{ width: 280, height: 200 }}\n          minSize={{ width: 240, height: 160 }}\n        >\n          <FloatingPanel.Trigger asChild>\n            <Button variant=\"outline\" size=\"sm\">\n              {panel.label}\n            </Button>\n          </FloatingPanel.Trigger>\n          <Portal>\n            <FloatingPanel.Positioner>\n              <FloatingPanel.Content>\n                <FloatingPanel.Header>\n                  <FloatingPanel.DragTrigger>\n                    <LuGripHorizontal />\n                    <FloatingPanel.Title>{panel.title}</FloatingPanel.Title>\n                  </FloatingPanel.DragTrigger>\n                  <FloatingPanel.Control>\n                    <FloatingPanel.CloseTrigger asChild>\n                      <IconButton variant=\"ghost\" size=\"2xs\">\n                        <LuX />\n                      </IconButton>\n                    </FloatingPanel.CloseTrigger>\n                  </FloatingPanel.Control>\n                </FloatingPanel.Header>\n                <FloatingPanel.Body>\n                  <Text textStyle=\"sm\">{panel.description}</Text>\n                </FloatingPanel.Body>\n                <FloatingPanel.ResizeTriggers />\n              </FloatingPanel.Content>\n            </FloatingPanel.Positioner>\n          </Portal>\n        </FloatingPanel.Root>\n      ))}\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  HStack,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-prevent-overflow",
+      "content": "\"use client\"\nexport const FloatingPanelPreventOverflow = () => {\n  return (\n    <FloatingPanel.Root\n      allowOverflow={false}\n      persistRect\n      defaultSize={{ width: 300, height: 180 }}\n      minSize={{ width: 300, height: 180 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Prevent Overflow</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                This panel cannot be dragged beyond the viewport edges.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-resize-axes",
+      "content": "\"use client\"\nexport const FloatingPanelResizeAxes = () => {\n  return (\n    <FloatingPanel.Root\n      defaultSize={{ width: 320, height: 200 }}\n      minSize={{ width: 240, height: 160 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Resize Axes</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                Only the south, east, and southeast handles are enabled.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers axes={[\"s\", \"e\", \"se\"]} />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-rtl",
+      "content": "\"use client\"\nexport const FloatingPanelRtl = () => {\n  return (\n    <FloatingPanel.Root\n      dir=\"rtl\"\n      persistRect\n      defaultSize={{ width: 320, height: 200 }}\n      minSize={{ width: 320, height: 200 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          فتح اللوحة\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>لوحة عائمة</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                هذه اللوحة تدعم اتجاه النص من اليمين إلى اليسار.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-stages",
+      "content": "\"use client\"\nexport const FloatingPanelStages = () => {\n  return (\n    <FloatingPanel.Root\n      persistRect\n      defaultSize={{ width: 320, height: 220 }}\n      minSize={{ width: 280, height: 160 }}\n    >\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open Panel\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Stages</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.StageTrigger stage=\"minimized\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuMinus />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.StageTrigger stage=\"maximized\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuSquare />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.StageTrigger stage=\"default\" asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuMaximize2 />\n                  </IconButton>\n                </FloatingPanel.StageTrigger>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              <Text textStyle=\"sm\">\n                Use the header controls to minimize, maximize, or restore the\n                panel.\n              </Text>\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  Text,\n} from \"@chakra-ui/react\"",
+        "import {\n  LuGripHorizontal,\n  LuMaximize2,\n  LuMinus,\n  LuSquare,\n  LuX,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-with-overlay",
+      "content": "\"use client\"\n\ninterface FloatingPanelOverlayProps extends Omit<\n  FloatingPanel.RootProps,\n  \"children\"\n> {\n  title: string\n  content?: React.ReactNode\n}\n\nconst floatingPanel = createOverlay<FloatingPanelOverlayProps>((props) => {\n  const { title, content, ...rest } = props\n  return (\n    <FloatingPanel.Root {...rest}>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>{title}</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>{content}</FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.Root>\n  )\n})\n\nconst PanelForm = (props: { onClose: () => void }) => {\n  const [name, setName] = useState(\"\")\n\n  return (\n    <Stack\n      gap=\"4\"\n      as=\"form\"\n      onSubmit={(e) => {\n        e.preventDefault()\n        alert(`Hello ${name || \"there\"}!`)\n        props.onClose()\n        setName(\"\")\n      }}\n    >\n      <Field.Root>\n        <Field.Label>Name</Field.Label>\n        <Input\n          value={name}\n          onChange={(e) => setName(e.target.value)}\n          placeholder=\"Enter your name\"\n        />\n      </Field.Root>\n      <Button type=\"submit\" size=\"sm\" alignSelf=\"flex-start\">\n        Submit\n      </Button>\n    </Stack>\n  )\n}\n\nexport const FloatingPanelWithOverlay = () => {\n  return (\n    <>\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() => {\n          floatingPanel.open(\"panel\", {\n            title: \"Contact\",\n            content: <PanelForm onClose={() => floatingPanel.close(\"panel\")} />,\n          })\n        }}\n      >\n        Open Panel\n      </Button>\n      <floatingPanel.Viewport />\n    </>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  Field,\n  FloatingPanel,\n  IconButton,\n  Input,\n  Portal,\n  Stack,\n  createOverlay,\n} from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "floating-panel-with-store",
+      "content": "\"use client\"\nexport const FloatingPanelWithStore = () => {\n  const floatingPanel = useFloatingPanel({\n    defaultSize: { width: 320, height: 200 },\n    minSize: { width: 280, height: 160 },\n  })\n\n  return (\n    <FloatingPanel.RootProvider value={floatingPanel}>\n      <FloatingPanel.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          {floatingPanel.open ? \"Close Panel\" : \"Open Panel\"}\n        </Button>\n      </FloatingPanel.Trigger>\n      <Portal>\n        <FloatingPanel.Positioner>\n          <FloatingPanel.Content>\n            <FloatingPanel.Header>\n              <FloatingPanel.DragTrigger>\n                <LuGripHorizontal />\n                <FloatingPanel.Title>Store</FloatingPanel.Title>\n              </FloatingPanel.DragTrigger>\n              <FloatingPanel.Control>\n                <FloatingPanel.CloseTrigger asChild>\n                  <IconButton variant=\"ghost\" size=\"2xs\">\n                    <LuX />\n                  </IconButton>\n                </FloatingPanel.CloseTrigger>\n              </FloatingPanel.Control>\n            </FloatingPanel.Header>\n            <FloatingPanel.Body>\n              Use <code>useFloatingPanel</code> with{\" \"}\n              <code>FloatingPanel.RootProvider</code> to access panel state and\n              methods from outside the panel tree.\n            </FloatingPanel.Body>\n            <FloatingPanel.ResizeTriggers />\n          </FloatingPanel.Content>\n        </FloatingPanel.Positioner>\n      </Portal>\n    </FloatingPanel.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Button,\n  FloatingPanel,\n  IconButton,\n  Portal,\n  useFloatingPanel,\n} from \"@chakra-ui/react\"",
+        "import { LuGripHorizontal, LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { FloatingPanel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}
