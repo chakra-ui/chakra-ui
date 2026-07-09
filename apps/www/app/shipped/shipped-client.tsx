@@ -226,16 +226,24 @@ export function ProductGallery(props: {
           {hasImages
             ? resolved.map((item, index) => (
                 <Marquee.Item key={index} px="3">
-                  <BrowserFrame url={item.url}>
-                    <Image
-                      src={item.src}
-                      alt={item.alt ?? ""}
-                      display="block"
-                      h={{ base: "180px", md: "240px" }}
-                      w="auto"
-                      objectFit="cover"
-                    />
-                  </BrowserFrame>
+                  <Box asChild cursor="pointer">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BrowserFrame url={item.url}>
+                        <Image
+                          src={item.src}
+                          alt={item.alt ?? ""}
+                          display="block"
+                          h={{ base: "180px", md: "240px" }}
+                          w="auto"
+                          objectFit="cover"
+                        />
+                      </BrowserFrame>
+                    </a>
+                  </Box>
                 </Marquee.Item>
               ))
             : [0, 1, 2, 3, 4].map((index) => (

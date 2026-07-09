@@ -89,10 +89,7 @@ function StorySpread({ story, index }: StorySpreadProps) {
                 textTransform="uppercase"
                 letterSpacing="wider"
               >
-                <Span color="teal.fg">
-                  Shipped{story.shippedAt ? ` ${story.shippedAt}` : ""} ·{" "}
-                  {story.category}
-                </Span>
+                <Span color="teal.fg">Shipped · {story.category}</Span>
                 {story.featured && (
                   <Span
                     color="teal.fg"
