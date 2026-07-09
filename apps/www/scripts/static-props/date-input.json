@@ -1,0 +1,313 @@
+{
+  "Control": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "HiddenInput": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The index of the date value. Useful when `selectionMode` is `range`."
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The `name` attribute of the input element."
+      }
+    }
+  },
+  "Label": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The index of the date value. Useful when `selectionMode` is `range`."
+      }
+    }
+  },
+  "Root": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "unstyled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to remove the component's style."
+      },
+      "colorPalette": {
+        "defaultValue": "gray",
+        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+        "isRequired": false,
+        "description": "The color palette of the component"
+      },
+      "size": {
+        "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+        "defaultValue": "md",
+        "isRequired": false,
+        "description": "The size of the component"
+      },
+      "variant": {
+        "type": "\"outline\" | \"subtle\" | \"flushed\"",
+        "defaultValue": "outline",
+        "isRequired": false,
+        "description": "The variant of the component"
+      },
+      "value": {
+        "type": "DateValue[]",
+        "isRequired": false,
+        "description": "The controlled selected date(s)."
+      },
+      "defaultValue": {
+        "type": "DateValue[]",
+        "isRequired": false,
+        "description": "The initial selected date(s) when rendered.\nUse when you don't need to control the selected date(s)."
+      },
+      "onValueChange": {
+        "type": "(details: ValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the value changes."
+      },
+      "placeholderValue": {
+        "type": "DateValue",
+        "isRequired": false,
+        "description": "The controlled placeholder date."
+      },
+      "defaultPlaceholderValue": {
+        "type": "DateValue",
+        "isRequired": false,
+        "description": "The initial placeholder date when rendered."
+      },
+      "onPlaceholderChange": {
+        "type": "(details: PlaceholderChangeDetails) => void",
+        "isRequired": false,
+        "description": "A function called when the placeholder value changes."
+      },
+      "onFocusChange": {
+        "type": "(details: FocusChangeDetails) => void",
+        "isRequired": false,
+        "description": "A function called when the date input gains or loses focus."
+      },
+      "selectionMode": {
+        "type": "SelectionMode",
+        "isRequired": false,
+        "defaultValue": "single",
+        "description": "The selection mode of the date input.\n- `single` - only one date can be entered\n- `range` - a range of dates can be entered (start and end)"
+      },
+      "min": {
+        "type": "DateValue",
+        "isRequired": false,
+        "description": "The minimum date that can be selected."
+      },
+      "max": {
+        "type": "DateValue",
+        "isRequired": false,
+        "description": "The maximum date that can be selected."
+      },
+      "isDateUnavailable": {
+        "type": "(date: DateValue, locale: string) => boolean",
+        "isRequired": false,
+        "description": "Returns whether a date is unavailable.\nWhen a committed date matches, the input is marked as invalid."
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date input is disabled."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date input is read-only."
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date input is required"
+      },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the date input is invalid"
+      },
+      "name": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The `name` attribute of the input element."
+      },
+      "form": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The `form` attribute of the hidden input element."
+      },
+      "locale": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "en-US",
+        "description": "The locale (BCP 47 language tag) to use when formatting the date."
+      },
+      "timeZone": {
+        "type": "string",
+        "isRequired": false,
+        "defaultValue": "UTC",
+        "description": "The time zone to use"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "The localized messages to use."
+      },
+      "createCalendar": {
+        "type": "(identifier: CalendarIdentifier) => Calendar",
+        "isRequired": false,
+        "description": "A function that creates a calendar object for a given calendar identifier.\nUse this to support non-Gregorian calendars (e.g., Persian, Islamic, Buddhist)."
+      },
+      "granularity": {
+        "type": "\"day\" | \"hour\" | \"minute\" | \"second\"",
+        "isRequired": false,
+        "defaultValue": "day",
+        "description": "Determines the smallest unit that is displayed in the date input."
+      },
+      "hourCycle": {
+        "type": "12 | 24",
+        "isRequired": false,
+        "description": "Whether to use 12-hour or 24-hour time format.\nBy default, this is determined by the locale."
+      },
+      "hideTimeZone": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": false,
+        "description": "Whether to hide the time zone segment when the value is a `ZonedDateTime`.\nHas no effect for values without a time zone."
+      },
+      "shouldForceLeadingZeros": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": false,
+        "description": "Whether to always show leading zeros in month, day, and hour fields.\nWhen false, formatting follows the locale default (e.g. \"1\" instead of \"01\")."
+      },
+      "formatter": {
+        "type": "DateFormatter",
+        "isRequired": false,
+        "description": "The date formatter to use."
+      },
+      "format": {
+        "type": "(date: DateValue, details: FormatDateDetails) => string",
+        "isRequired": false,
+        "description": "The format function for converting a DateValue to a string."
+      },
+      "ids": {
+        "type": "Partial<{ root: string; label: (index: number) => string; control: string; segmentGroup: (index: number) => string; hiddenInput: (index: number) => string; }>",
+        "isRequired": false,
+        "description": "The ids of the elements in the date input. Useful for composition."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "SegmentGroup": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "index": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The index of the date value. Useful when `selectionMode` is `range`."
+      }
+    }
+  },
+  "Segment": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "segment": {
+        "type": "DateSegment",
+        "isRequired": true,
+        "description": "The date segment to render."
+      }
+    }
+  },
+  "Segments": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The index of the date value. Useful when `selectionMode` is `range`."
+      },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  }
+}
