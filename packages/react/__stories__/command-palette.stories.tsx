@@ -26,6 +26,7 @@ export { CommandPaletteWithEmptyState as EmptyState } from "compositions/example
 export { CommandPaletteWithStatus as Status } from "compositions/examples/command-palette-with-status"
 export { CommandPaletteWithPreview as Preview } from "compositions/examples/command-palette-with-preview"
 export { CommandPaletteWithPrefixSearch as PrefixSearch } from "compositions/examples/command-palette-with-prefix-search"
+export { CommandPaletteWithTabs as WithTabs } from "compositions/examples/command-palette-with-tabs"
 export { CommandPaletteVirtualized as Virtualized } from "compositions/examples/command-palette-virtualized"
 export { CommandPaletteWithLinks as Links } from "compositions/examples/command-palette-with-links"
 export { CommandPaletteWithFooterActions as FooterActions } from "compositions/examples/command-palette-with-footer-actions"
