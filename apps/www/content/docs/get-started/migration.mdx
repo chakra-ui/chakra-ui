@@ -439,7 +439,7 @@ For indeterminate progress:
 ### StackDivider
 
 - No longer available as a separate component
-- Use explicit `Stack.Separator` components between stack items
+- Use explicit `Separator` components between stack items
 
 Before:
 
@@ -454,11 +454,13 @@ Before:
 After:
 
 ```tsx
+import { Separator, VStack, Box } from "@chakra-ui/react";
+
 <VStack gap={4}>
   <Box>Item 1</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 2</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 3</Box>
 </VStack>
 ```
@@ -3112,7 +3114,7 @@ const Demo = () => (
 // After
 <Stack
   gap="4"
-  separator={<Stack.Separator />}
+  separator={<Separator />}
 >
   <Box>Item 1</Box>
   <Box>Item 2</Box>
