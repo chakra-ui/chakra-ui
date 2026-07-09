@@ -1,6 +1,6 @@
 import { shipped } from "@/.velite"
 
-type ShippedStory = (typeof shipped)[number]
+export type ShippedStory = (typeof shipped)[number]
 
 export function isPublished(story: ShippedStory) {
   if (!story.shippedAt) return true

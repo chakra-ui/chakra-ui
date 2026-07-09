@@ -21,61 +21,60 @@ images:
 ## 👋🏽 A bit of context
 
 [Tree-Structured Planning](https://treestructuredplanning.com/) is a shared
-canvas where developers and their AI coding agents plan software as a visual
-tree, turning the plan a chat thread can't hold into branches that each act as a
-focused workspace while still seeing the whole system. It's built for engineers
-who want what gets built to match what they actually scoped.
+canvas I built for planning software with AI coding agents as a visual tree,
+turning the plan a chat thread can't hold into branches that each act as a
+focused workspace while still seeing the whole system. I built it for scoped
+engineering work where what gets built needs to match the plan.
 
-Steven Secreti is the founder and lead engineer behind it.
+I'm Steven Secreti, the founder and lead engineer behind it.
 
 <QuoteCard
   quote="I discovered Chakra back in v2 and never looked back."
   image="/shipped/steven-secreti.png"
 />
 
-He'd already been building with Chakra for years, so by the time he started this
-product, it wasn't a difficult decision to make. He chose Chakra because it
+I'd already been building with Chakra for years, so by the time I started this
+product, it wasn't a difficult decision to make. I chose Chakra because it
 worked well from experience.
 
-## Why Chakra became the default
+## Why Chakra became my default
 
-Two things kept him loyal to that decision. First, the component catalog. Chakra
-comes with accessible, composable primitives already built, so he doesn't have
-to build a dialog or a menu from scratch before starting the real work. Second,
-and more important, Chakra lets him customize and extend everything the way he
-wants. "It never boxes you in," he says.
+Two things kept me loyal to that decision. First, the component catalog. Chakra
+comes with accessible, composable primitives already built, so I don't have to
+build a dialog or a menu from scratch before starting the real work. Second, and
+more important, Chakra lets me customize and extend everything the way I want.
+It never boxes me in.
 
 <QuoteCard
   quote="v3 made it easier to define our entire design language in one place and expose components as typed contracts instead of loose JSX."
   image="/shipped/steven-secreti.png"
 />
 
-v3 made that even better. Its semantic tokens let him define their whole design
-language in one place, a dark-first system they call _Obsidian Pastels_. Its
-recipe system let him turn components into typed contracts instead of loose JSX.
+v3 made that even better. Its semantic tokens let me define our whole design
+language in one place, a dark-first system we call _Obsidian Pastels_. Its
+recipe system let me turn components into typed contracts instead of loose JSX.
 
-Their codebase follows one rule: **the right way should be the only way that
+Our codebase follows one rule: **the right way should be the only way that
 compiles**. Chakra v3's tokens and recipes made that possible on the frontend.
 Nothing else could.
 
 ## The power of slot recipes
 
-We asked him what surprised him most about Chakra, and he pointed to slot
-recipes.
+What surprised me most about Chakra was slot recipes.
 
 <QuoteCard
   quote="Chakra turned theming from the thing I expected to babysit into the thing that made every new feature obviously easy."
   image="/shipped/steven-secreti.png"
 />
 
-He expected to hand-build most of their multi-part components: the tree node
-cards, the canvas toolbar, the inspector panels. Instead, slot recipes let him
-define all of it, every slot, every variant, every state, in one file using
-semantic tokens. Typegen checked the slot names for him at compile time.
+I expected to hand-build most of our multi-part components: the tree node cards,
+the canvas toolbar, the inspector panels. Instead, slot recipes let me define
+all of it, every slot, every variant, every state, in one file using semantic
+tokens. Typegen checked the slot names for me at compile time.
 
-"The payoff I didn't see coming was at the consumer level," he says. Once a
-recipe worked, adding a new variant, or even a new component, took one or two
-files instead of five.
+"The payoff I didn't see coming was at the consumer level." Once a recipe
+worked, adding a new variant, or even a new component, took one or two files
+instead of five.
 
 ## Moving from v2 to v3
 
@@ -86,28 +85,28 @@ Moving to v3 came with one snag.
   image="/shipped/steven-secreti.png"
 />
 
-The only thing that tripped him up was his own habits. After three years on v2,
-he kept reaching for the old way of using chakra.
+The only thing that tripped me up was my own habits. After three years on v2, I
+kept reaching for the old way of using Chakra.
 
-However, after spending some time to read the v3 docs, he was able to rebuild a
+However, after spending some time to read the v3 docs, I was able to rebuild a
 few components properly, using createSystem, semantic tokens, and recipes, until
-the new patterns stuck. "A week in, v3 felt more natural than v2 ever had," he
-says, "and I stopped missing the old way entirely."
+the new patterns stuck. A week in, v3 felt more natural than v2 ever had, and I
+stopped missing the old way entirely.
 
 ## Advice for developers
 
-His advice for developers: go for it, and commit to the token and recipe system
-from day one. The biggest mistake people make is treating Chakra like a box of
-ready-made components, then switching to inline styles the moment they need
-something custom.
+My advice for developers: go for it, and commit to the token and recipe system
+from day one. The biggest mistake I've seen is treating Chakra like a box of
+ready-made components, then switching to inline styles the moment something
+custom is needed.
 
-"You end up with the same scattered, unmaintainable styling you'd have had
-without it," he says.
+That leads to the same scattered, unmaintainable styling I'd have had without
+it.
 
-To get the best from Chakra UI, treat the theme like a contract. Define your
-tokens, build your variants as recipes, and let everything else consume them.
-They built an opinionated, dark-first design system and a dense canvas UI on top
-of v3, and it never felt like a fight.
+To get the best from Chakra UI, I treat the theme like a contract. I define the
+tokens, build variants as recipes, and let everything else consume them. We
+built an opinionated, dark-first design system and a dense canvas UI on top of
+v3, and it never felt like a fight.
 
 <br />
 

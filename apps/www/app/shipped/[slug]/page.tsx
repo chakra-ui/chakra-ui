@@ -4,13 +4,14 @@ import {
   Container,
   HStack,
   Heading,
-  Span,
+  Icon,
   Stack,
   Text,
 } from "@chakra-ui/react"
 import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu"
 import { QuoteCard } from "../quote-card"
 import { ProductGallery } from "../shipped-client"
 import { StoryMeta } from "../story-meta"
@@ -53,24 +54,22 @@ export default async function ShippedStoryPage(props: PageContext) {
     <Box width="full">
       <Container maxW="4xl" pt={{ base: "10", md: "16" }}>
         <Stack gap={{ base: "10", md: "14" }}>
-          <Link href="/shipped">&larr; All stories</Link>
+          <Link href="/shipped">
+            <HStack
+              as="span"
+              color="fg.muted"
+              fontSize="sm"
+              fontWeight="medium"
+            >
+              <Icon aria-hidden>
+                <LuArrowLeft />
+              </Icon>
+              Spotlights
+            </HStack>
+          </Link>
 
           <QuoteCard quote={story.quote} description={story.description} />
-          <StoryMeta
-            data={{
-              company: story.product,
-              logo: story.logo,
-              url: story.url,
-              authorName: story.person,
-              authorTitle: story.role,
-              authorAvatar: story.avatar,
-              authorUrl: story.x ? `https://x.com/${story.x}` : undefined,
-              category: story.category,
-              publishedAt: story.shippedAt
-                ? new Date(story.shippedAt)
-                : new Date(),
-            }}
-          />
+          <StoryMeta data={story} />
         </Stack>
       </Container>
 
@@ -116,9 +115,9 @@ export default async function ShippedStoryPage(props: PageContext) {
                     {next.person}, {next.role}
                   </Text>
                 </Stack>
-                <Span fontSize="2xl" color="teal.fg" aria-hidden>
-                  &rarr;
-                </Span>
+                <Icon fontSize="2xl" color="teal.fg" aria-hidden>
+                  <LuArrowRight />
+                </Icon>
               </HStack>
             </Link>
           </Container>
