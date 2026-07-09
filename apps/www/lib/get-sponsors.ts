@@ -93,18 +93,25 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
     )
   }
 
-  const activeMembers = result.data.collective.members.nodes.filter(
-    (member: any) => member.isActive,
+  const members = result.data.collective.members.nodes
+  const activeMembers = members.filter(
+    (member: any) =>
+      member.isActive && member.account?.id && member.account?.name,
   )
 
+  const inactiveCount = members.filter((member: any) => !member.isActive).length
+  const missingAccountCount = members.filter(
+    (member: any) => member.isActive && !member.account?.id,
+  ).length
+
   console.log(
-    `Filtered to ${activeMembers.length} active members (${result.data.collective.members.nodes.length - activeMembers.length} inactive filtered out)`,
+    `Filtered to ${activeMembers.length} active members (${inactiveCount} inactive, ${missingAccountCount} missing account filtered out)`,
   )
 
   return activeMembers.map((member: any) => ({
     MemberId: parseInt(member.id),
     createdAt: member.createdAt,
-    type: member.account?.type || "INDIVIDUAL",
+    type: member.account.type || "INDIVIDUAL",
     role: member.role,
     tier: member.tier?.name || "Backer 💚",
     isActive: member.isActive,
