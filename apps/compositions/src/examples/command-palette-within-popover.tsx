@@ -31,7 +31,12 @@ export const CommandPaletteWithinPopover = () => {
       <Portal>
         <Popover.Positioner>
           <Popover.Content w="xs">
-            <CommandPalette.Root collection={collection} borderWidth="0">
+            <CommandPalette.Root
+              collection={collection}
+              selectionMode="single"
+              borderWidth="0"
+            >
+              <CommandPalette.Label>Assign member</CommandPalette.Label>
               <CommandPalette.Control>
                 <CommandPalette.Indicator />
                 <CommandPalette.Input

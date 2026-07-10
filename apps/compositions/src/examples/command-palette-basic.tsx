@@ -28,6 +28,7 @@ export const CommandPaletteBasic = () => {
 
   return (
     <CommandPalette.Root collection={collection} maxW="md">
+      <CommandPalette.Label>Command palette</CommandPalette.Label>
       <CommandPalette.Control>
         <CommandPalette.Indicator />
         <CommandPalette.Input

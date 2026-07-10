@@ -56,6 +56,7 @@ export const CommandPaletteWithinDialog = () => {
               borderWidth="0"
               onSelect={() => setOpen(false)}
             >
+              <CommandPalette.Label>Command palette</CommandPalette.Label>
               <CommandPalette.Control>
                 <CommandPalette.Indicator />
                 <CommandPalette.Input

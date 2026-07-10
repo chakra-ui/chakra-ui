@@ -46,12 +46,9 @@ export const CommandPaletteWithRecentItems = () => {
   return (
     <CommandPalette.Root
       collection={collection}
-      value={[]}
-      onValueChange={(e) => {
-        const value = e.value[0]
-        if (!value) return
+      onSelect={(e) => {
         setRecentValues((prev) =>
-          [value, ...prev.filter((v) => v !== value)].slice(0, 3),
+          [e.value, ...prev.filter((v) => v !== e.value)].slice(0, 3),
         )
       }}
       maxW="md"

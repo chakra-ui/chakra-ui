@@ -19,6 +19,10 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
       "--command-palette-item-padding-y": "spacing.1.5",
     },
 
+    label: {
+      srOnly: true,
+    },
+
     control: {
       display: "flex",
       alignItems: "center",

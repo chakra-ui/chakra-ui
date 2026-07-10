@@ -21,6 +21,7 @@ export const CommandPaletteWithStatus = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      selectionMode="single"
       value={[status]}
       onValueChange={(e) => setStatus(e.value[0] ?? status)}
       maxW="md"

@@ -158,6 +158,7 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
 
 export const commandPaletteAnatomy = createAnatomy("command-palette").parts(
   "root",
+  "label",
   "control",
   "indicator",
   "input",
