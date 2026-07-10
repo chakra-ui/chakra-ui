@@ -399,6 +399,7 @@ const docsLinks: NavItem = {
 export const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
   { title: "Showcase", url: "/showcase" },
+  { title: "Spotlight", url: "/shipped" },
   { title: "Blog", url: "/blog" },
   { title: "Guides", url: "/guides" },
 ]

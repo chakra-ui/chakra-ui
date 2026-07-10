@@ -324,7 +324,7 @@ Before:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
+;<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
   <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
 </Icon>
 ```
@@ -334,7 +334,7 @@ After:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-<Icon color="red.500" size="md" asChild>
+;<Icon color="red.500" size="md" asChild>
   <svg viewBox="0 0 24 24">
     <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
   </svg>
@@ -439,7 +439,7 @@ For indeterminate progress:
 ### StackDivider
 
 - No longer available as a separate component
-- Use explicit `Stack.Separator` components between stack items
+- Use explicit `Separator` components between stack items
 
 Before:
 
@@ -454,11 +454,13 @@ Before:
 After:
 
 ```tsx
-<VStack gap={4}>
+import { Box, Separator, VStack } from "@chakra-ui/react"
+
+;<VStack gap={4}>
   <Box>Item 1</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 2</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 3</Box>
 </VStack>
 ```
@@ -3112,7 +3114,7 @@ const Demo = () => (
 // After
 <Stack
   gap="4"
-  separator={<Stack.Separator />}
+  separator={<Separator />}
 >
   <Box>Item 1</Box>
   <Box>Item 2</Box>

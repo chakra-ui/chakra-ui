@@ -186,6 +186,16 @@
   },
   {
     "type": "composition",
+    "id": "floating-panel",
+    "file": "floating-panel.tsx",
+    "component": "FloatingPanel",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "hover-card",
     "file": "hover-card.tsx",
     "component": "HoverCard",
