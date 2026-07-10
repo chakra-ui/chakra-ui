@@ -1182,6 +1182,7 @@ export type ComboboxVariantMap = {
 
 export type CommandPaletteSlot =
   | "root"
+  | "label"
   | "control"
   | "indicator"
   | "input"

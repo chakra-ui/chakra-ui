@@ -67,7 +67,6 @@ export const CommandPaletteNested = () => {
   return (
     <CommandPalette.Root
       collection={collection}
-      value={[]}
       maxW="md"
       onSelect={({ value }) => {
         const item = collection.find(value)

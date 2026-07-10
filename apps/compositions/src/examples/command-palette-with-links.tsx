@@ -12,7 +12,7 @@ export const CommandPaletteWithLinks = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} value={[]} maxW="md">
+    <CommandPalette.Root collection={collection} maxW="md">
       <CommandPalette.Control>
         <CommandPalette.Indicator />
         <CommandPalette.Input

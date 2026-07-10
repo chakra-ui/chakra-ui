@@ -24,6 +24,7 @@ export const CommandPaletteControlled = () => {
     <>
       <CommandPalette.Root
         collection={collection}
+        selectionMode="single"
         value={value}
         onValueChange={(e) => setValue(e.value)}
         maxW="md"

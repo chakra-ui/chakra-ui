@@ -43,6 +43,7 @@ export const CommandPaletteWithinDrawer = () => {
               height="full"
               onSelect={() => setOpen(false)}
             >
+              <CommandPalette.Label>Command palette</CommandPalette.Label>
               <CommandPalette.Control>
                 <CommandPalette.Indicator />
                 <CommandPalette.Input

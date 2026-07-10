@@ -1,7 +1,7 @@
 "use client"
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
-import { Listbox as ArkListbox } from "@ark-ui/react/listbox"
+import { Listbox as ArkListbox, useListboxContext } from "@ark-ui/react/listbox"
 import { type JSX, forwardRef, useEffect, useRef } from "react"
 import { createContext } from "../../create-context"
 import { mergeRefs } from "../../merge-refs"
@@ -95,7 +95,10 @@ export const CommandPaletteRootProvider = withProvider<
 
 export interface CommandPaletteRootBaseProps<T extends CollectionItem = any>
   extends
-    Assign<ArkListbox.RootBaseProps<T>, SlotRecipeProps<"commandPalette">>,
+    Assign<
+      Omit<ArkListbox.RootBaseProps<T>, "selectionMode">,
+      SlotRecipeProps<"commandPalette">
+    >,
     UnstyledProp {
   /**
    * Whether the command palette is loading results.
@@ -103,6 +106,13 @@ export interface CommandPaletteRootBaseProps<T extends CollectionItem = any>
    * @default false
    */
   loading?: boolean | undefined
+  /**
+   * How selection behaves. The default `none` runs commands without
+   * persisting a selected state; use `onSelect` to execute them. Pass
+   * `single` or `multiple` to build pickers where selection persists.
+   * @default "none"
+   */
+  selectionMode?: "none" | "single" | "multiple" | "extended" | undefined
 }
 
 export interface CommandPaletteRootProps<
@@ -113,12 +123,15 @@ const CommandPaletteRootBase = forwardRef<
   HTMLDivElement,
   CommandPaletteRootProps
 >(function CommandPaletteRootBase(props, ref) {
-  const { loading, ...restProps } = props
+  const { loading, selectionMode = "none", ...restProps } = props
+  const actionMode = selectionMode === "none"
   return (
     <CommandPaletteInnerProvider value={{ loading }}>
       <ArkListbox.Root
         ref={ref}
         {...(restProps as ArkListbox.RootProps<any>)}
+        selectionMode={actionMode ? "single" : selectionMode}
+        value={actionMode ? [] : restProps.value}
         data-loading={dataAttr(loading)}
         data-empty={dataAttr(restProps.collection?.size === 0)}
       />
@@ -141,6 +154,16 @@ export const CommandPaletteRoot = withProvider<
 
 export const CommandPalettePropsProvider =
   PropsProvider as React.Provider<CommandPaletteRootBaseProps>
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CommandPaletteLabelProps
+  extends HTMLChakraProps<"label", ArkListbox.LabelBaseProps>, UnstyledProp {}
+
+export const CommandPaletteLabel = withContext<
+  HTMLLabelElement,
+  CommandPaletteLabelProps
+>(ArkListbox.Label, "label", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -177,14 +200,33 @@ export const CommandPaletteIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CommandPaletteInputBaseProps
+  extends ArkListbox.InputBaseProps {
+  /**
+   * Whether pressing Escape clears the input (and stops the event) before
+   * any enclosing dismissable layer handles it. Set to `false` to let
+   * Escape dismiss the enclosing dialog, drawer or popover immediately.
+   * @default true
+   */
+  clearOnEscape?: boolean | undefined
+}
+
 export interface CommandPaletteInputProps
-  extends HTMLChakraProps<"input", ArkListbox.InputBaseProps>, UnstyledProp {}
+  extends
+    HTMLChakraProps<"input", CommandPaletteInputBaseProps>,
+    UnstyledProp {}
 
 const CommandPaletteInputBase = forwardRef<
   HTMLInputElement,
-  ArkListbox.InputProps
+  ArkListbox.InputProps & { clearOnEscape?: boolean | undefined }
 >(function CommandPaletteInputBase(props, ref) {
+  const { clearOnEscape = true, ...restProps } = props
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // zag's listbox wires the label to the list but not to the input
+  // (unlike combobox), so the input would have no accessible name.
+  const listbox = useListboxContext()
+  const labelId = listbox.getLabelProps().id
 
   // Clear the input on Escape before any dismissable layer (dialog, drawer,
   // popover) handles the key. Those layers listen on the document in the
@@ -192,7 +234,7 @@ const CommandPaletteInputBase = forwardRef<
   // earlier — a bubble handler on the input never gets the chance.
   useEffect(() => {
     const input = inputRef.current
-    if (!input) return
+    if (!input || !clearOnEscape) return
     const win = input.ownerDocument.defaultView ?? window
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return
@@ -204,10 +246,15 @@ const CommandPaletteInputBase = forwardRef<
     }
     win.addEventListener("keydown", onKeyDown, { capture: true })
     return () => win.removeEventListener("keydown", onKeyDown, true)
-  }, [])
+  }, [clearOnEscape])
 
   return (
-    <ArkListbox.Input autoHighlight {...props} ref={mergeRefs(ref, inputRef)} />
+    <ArkListbox.Input
+      autoHighlight
+      aria-labelledby={labelId}
+      {...restProps}
+      ref={mergeRefs(ref, inputRef)}
+    />
   )
 })
 

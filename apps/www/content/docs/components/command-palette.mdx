@@ -1,0 +1,271 @@
+---
+title: Command Palette
+description:
+  Used to build searchable command menus, search dialogs, and pickers.
+links:
+  source: components/command-palette
+  storybook: components-commandpalette--basic
+  recipe: command-palette
+---
+
+<ExampleTabs name="command-palette-basic" />
+
+## Usage
+
+```jsx
+import { CommandPalette } from "@chakra-ui/react"
+```
+
+```jsx
+<CommandPalette.Root>
+  <CommandPalette.Label />
+  <CommandPalette.Control>
+    <CommandPalette.Indicator />
+    <CommandPalette.Input />
+  </CommandPalette.Control>
+  <CommandPalette.List>
+    <CommandPalette.ItemGroup>
+      <CommandPalette.ItemGroupLabel />
+      <CommandPalette.Item>
+        <CommandPalette.ItemText />
+        <CommandPalette.ItemCommand />
+        <CommandPalette.ItemIndicator />
+      </CommandPalette.Item>
+    </CommandPalette.ItemGroup>
+    <CommandPalette.Empty />
+  </CommandPalette.List>
+  <CommandPalette.Footer />
+</CommandPalette.Root>
+```
+
+To setup the command palette, use `useListCollection` to manage the
+[list collection](https://ark-ui.com/docs/collections/list-collection), and
+`useFilter` to filter the items as the user types.
+
+By default the palette runs commands: use `onSelect` to execute them, and no
+selected state persists afterwards. To build a picker where selection persists,
+set `selectionMode` to `single` or `multiple`.
+
+The command palette renders inline. For the classic `⌘K` overlay experience,
+compose it with `Dialog` as shown in the [Within Dialog](#within-dialog)
+example.
+
+> When controlling the palette with `RootProvider` and the `useListbox` hook,
+> configure selection on the hook — the `selectionMode="none"` default only
+> applies to `Root`.
+
+### Coming from cmdk
+
+| cmdk                            | Chakra UI                                                |
+| ------------------------------- | -------------------------------------------------------- |
+| `<Command>`                     | `<CommandPalette.Root collection={collection}>`          |
+| `<Command.Input>`               | `<CommandPalette.Input>` + `useFilter`                   |
+| `<Command.List>`                | `<CommandPalette.List>`                                  |
+| `<Command.Item onSelect={fn}>`  | `<CommandPalette.Item item={item}>` + `onSelect` on Root |
+| `<Command.Group heading="...">` | `<CommandPalette.ItemGroup>` + `ItemGroupLabel`          |
+| `<Command.Empty>`               | `<CommandPalette.Empty>`                                 |
+| `<Command.Dialog>`              | Compose with `Dialog` (see [below](#within-dialog))      |
+
+The key difference: `cmdk` owns filtering and ranking internally, while the
+command palette treats data as userland. You own the collection and how it
+shrinks — swap in fuzzy matching, server search, or debouncing without fighting
+a built-in filter.
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the density of the command palette. Available
+sizes are `sm`, `md`, and `lg`.
+
+<ExampleTabs name="command-palette-with-sizes" />
+
+### Groups
+
+Use item groups with labels to organize related commands into sections.
+
+<ExampleTabs name="command-palette-with-groups" />
+
+### Description
+
+Add secondary text to items to provide more context for each command.
+
+<ExampleTabs name="command-palette-with-description" />
+
+### Within Dialog
+
+Compose the command palette with `Dialog` to build the classic `⌘K` overlay,
+closing it from `onSelect`. Pressing `Escape` clears the query first and closes
+the dialog when the query is empty.
+
+<ExampleTabs name="command-palette-within-dialog" />
+
+### Within Drawer
+
+Compose the command palette with `Drawer` for a side-panel command surface.
+
+<ExampleTabs name="command-palette-within-drawer" />
+
+### Within Popover
+
+Compose the command palette with `Popover` for anchored pickers, such as
+assigning a member. Pickers set `selectionMode="single"` so the selection
+persists, unlike command runners.
+
+<ExampleTabs name="command-palette-within-popover" />
+
+### Multiple Selection
+
+Use `selectionMode="multiple"` to allow selecting several items, useful for
+assigning labels or people.
+
+<ExampleTabs name="command-palette-multiple" />
+
+### Controlled
+
+Set `selectionMode="single"` and control the selected value externally using the
+`value` and `onValueChange` props.
+
+<ExampleTabs name="command-palette-controlled" />
+
+### Controlled Search
+
+Control the search query externally, for example to sync it with a URL or
+external store.
+
+<ExampleTabs name="command-palette-controlled-search" />
+
+### Async Content
+
+Load commands asynchronously and reflect the pending state with the `loading`
+prop, which swaps the indicator for a spinner.
+
+<ExampleTabs name="command-palette-with-async-content" />
+
+### Custom Filter
+
+Swap the default `contains` filter for any matching strategy, such as fuzzy
+matching.
+
+<ExampleTabs name="command-palette-with-custom-filter" />
+
+### Highlight
+
+Highlight the matched part of each item as the user types.
+
+<ExampleTabs name="command-palette-with-highlight" />
+
+### Nested
+
+Build nested pages by swapping the collection as the user drills in. Backspace
+on an empty query pops back to the parent page.
+
+<ExampleTabs name="command-palette-nested" />
+
+### Links
+
+Render items as real anchors for navigation palettes, so middle-click and
+keyboard semantics work as expected.
+
+<ExampleTabs name="command-palette-with-links" />
+
+### Recent Items
+
+Track recently used commands and surface them in a dedicated group.
+
+<ExampleTabs name="command-palette-with-recent-items" />
+
+### Disabled Items
+
+Disable specific items to indicate unavailable commands while keeping them
+visible for context.
+
+<ExampleTabs name="command-palette-with-disabled-items" />
+
+### Empty State
+
+Customize the content shown when no commands match the query.
+
+<ExampleTabs name="command-palette-with-empty-state" />
+
+### Footer Actions
+
+Use the footer to display keyboard hints or actions for the highlighted item.
+
+<ExampleTabs name="command-palette-with-footer-actions" />
+
+### Status
+
+Use the command palette as a status picker, rendering a colored indicator for
+each option.
+
+<ExampleTabs name="command-palette-with-status" />
+
+### Avatar
+
+Render avatars inside items when building people pickers.
+
+<ExampleTabs name="command-palette-with-avatar" />
+
+### Preview
+
+Show a preview panel for the highlighted item next to the list.
+
+<ExampleTabs name="command-palette-with-preview" />
+
+### Tabs
+
+Scope the command list with tabs, switching the collection per tab.
+
+<ExampleTabs name="command-palette-with-tabs" />
+
+### Prefix Search
+
+Support prefix syntax to scope the search, like `>` for commands and `@` for
+people.
+
+<ExampleTabs name="command-palette-with-prefix-search" />
+
+### Virtualized
+
+Handle large datasets efficiently by virtualizing the list.
+
+<ExampleTabs name="command-palette-virtualized" />
+
+## Props
+
+### Root
+
+<PropTable component="CommandPalette" part="Root" />
+
+### Label
+
+<PropTable component="CommandPalette" part="Label" />
+
+### Input
+
+<PropTable component="CommandPalette" part="Input" />
+
+### List
+
+<PropTable component="CommandPalette" part="List" />
+
+### Item
+
+<PropTable component="CommandPalette" part="Item" />
+
+### ItemText
+
+<PropTable component="CommandPalette" part="ItemText" />
+
+### ItemIndicator
+
+<PropTable component="CommandPalette" part="ItemIndicator" />
+
+### ItemGroup
+
+<PropTable component="CommandPalette" part="ItemGroup" />
+
+### ItemGroupLabel
+
+<PropTable component="CommandPalette" part="ItemGroupLabel" />
