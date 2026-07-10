@@ -47,23 +47,27 @@ export const Bleed = forwardRef<HTMLDivElement, BleedProps>(
       block,
       blockStart,
       blockEnd,
+      css: cssProp,
       ...rest
     } = props
 
     return (
       <chakra.div
         ref={ref}
+        css={[
+          {
+            "--bleed-inline-start": mapObject(inline ?? inlineStart, valueFn),
+            "--bleed-inline-end": mapObject(inline ?? inlineEnd, valueFn),
+            "--bleed-block-start": mapObject(block ?? blockStart, valueFn),
+            "--bleed-block-end": mapObject(block ?? blockEnd, valueFn),
+            marginInlineStart: "calc(var(--bleed-inline-start, 0) * -1)",
+            marginInlineEnd: "calc(var(--bleed-inline-end, 0) * -1)",
+            marginBlockStart: "calc(var(--bleed-block-start, 0) * -1)",
+            marginBlockEnd: "calc(var(--bleed-block-end, 0) * -1)",
+          },
+          cssProp,
+        ]}
         {...rest}
-        css={{
-          "--bleed-inline-start": mapObject(inline ?? inlineStart, valueFn),
-          "--bleed-inline-end": mapObject(inline ?? inlineEnd, valueFn),
-          "--bleed-block-start": mapObject(block ?? blockStart, valueFn),
-          "--bleed-block-end": mapObject(block ?? blockEnd, valueFn),
-          marginInlineStart: "calc(var(--bleed-inline-start, 0) * -1)",
-          marginInlineEnd: "calc(var(--bleed-inline-end, 0) * -1)",
-          marginBlockStart: "calc(var(--bleed-block-start, 0) * -1)",
-          marginBlockEnd: "calc(var(--bleed-block-end, 0) * -1)",
-        }}
       />
     )
   },
