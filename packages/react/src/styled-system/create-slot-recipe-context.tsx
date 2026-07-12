@@ -75,7 +75,6 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemSlotRecipeFn<string, {}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
       () => slotRecipe.splitVariantProps(restProps),
       [restProps, slotRecipe],
