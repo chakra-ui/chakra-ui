@@ -78,7 +78,7 @@ export const SnippetCommand = new Command("snippet")
         debug("fileDependencies", fileDependencies)
         debug("npmDependencies", npmDependencies)
 
-        let skippedFiles: string[] = []
+        const skippedFiles: string[] = []
 
         await tasks([
           {
@@ -121,7 +121,7 @@ export const SnippetCommand = new Command("snippet")
               await Promise.all(
                 components.map(async (id) => {
                   let filename =
-                    findCompositionById(items, id)?.file ?? id + ".tsx"
+                    findCompositionById(items, id)?.file ?? `${id}.tsx`
                   if (jsx) {
                     filename = filename.replace(".tsx", ".jsx")
                   }

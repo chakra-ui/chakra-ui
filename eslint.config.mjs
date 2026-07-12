@@ -73,60 +73,74 @@ export default defineConfig([
     },
 
     rules: {
+      // TypeScript specific rules
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-use-before-define": "off",
-      "no-param-reassign": "off",
-      "no-console": "off",
-      "jsx-a11y/no-autofocus": "off",
-      "react/forbid-prop-types": "off",
-      "import/prefer-default-export": "off",
-      "import/export": "off",
-      "import/namespace": "off",
-      "no-underscore-dangle": "off",
-      "no-shadow": "off",
-      "no-plusplus": "off",
-      "spaced-comment": "off",
-      "guard-for-in": "off",
-      "react/no-danger": "off",
-      "react/button-has-type": "off",
-      "react/no-unescaped-entities": "off",
-      "react/react-in-jsx-scope": "off",
-      "operator-assignment": "off",
-      "prefer-destructuring": "off",
-      "react/no-children-prop": "off",
-      "consistent-return": "off",
-      "react/state-in-constructor": "off",
-      "no-restricted-syntax": "off",
-      "no-continue": "off",
-      eqeqeq: "off",
-      "react/destructuring-assignment": "off",
       "@typescript-eslint/dot-notation": "off",
-      "no-bitwise": "off",
-      "no-redeclare": "off",
-      "@typescript-eslint/naming-convention": "off",
-      "import/no-extraneous-dependencies": "off",
       "@typescript-eslint/lines-between-class-members": "off",
-      "no-alert": "off",
-      "import/no-unresolved": "off",
+      "@typescript-eslint/naming-convention": "off",
+      "@typescript-eslint/no-shadow": "off",
 
+      // Code quality rules - ENABLED for better code quality
+      "eqeqeq": ["error", "always", { "null": "ignore" }], // Enforce === and !==
+      "no-console": ["warn", { "allow": ["warn", "error"] }], // Warn on console.log
+      "prefer-const": "error", // Prefer const over let when not reassigned
+      "no-var": "error", // Disallow var, use let/const
+      "prefer-template": "warn", // Prefer template literals over string concatenation
+
+      // React specific rules
       "react/jsx-filename-extension": [
         "error",
         {
           extensions: [".js", ".tsx"],
         },
       ],
-
       "react/jsx-props-no-spreading": "off",
       "react/no-array-index-key": "off",
       "react/require-default-props": "off",
       "react/sort-prop-types": "error",
       "react/prop-types": "off",
-      "@typescript-eslint/no-shadow": "off",
+      "react/forbid-prop-types": "off",
+      "react/button-has-type": "off",
+      "react/no-unescaped-entities": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/no-children-prop": "off",
+      "react/state-in-constructor": "off",
+      "react/destructuring-assignment": "off",
+      "react/sort-comp": "off",
+      "react/no-danger": "off",
+
+      // React Hooks
       "react-hooks/exhaustive-deps": "error",
+
+      // Import rules
+      "import/prefer-default-export": "off",
+      "import/export": "off",
+      "import/namespace": "off",
+      "import/no-extraneous-dependencies": "off",
+      "import/no-unresolved": "off",
       "import/no-named-as-default": "off",
+
+      // General code style rules - keeping off for compatibility
+      "no-param-reassign": "off",
+      "no-underscore-dangle": "off",
+      "no-shadow": "off",
+      "no-plusplus": "off",
+      "spaced-comment": "off",
+      "guard-for-in": "off",
+      "operator-assignment": "off",
+      "prefer-destructuring": "off",
+      "consistent-return": "off",
+      "no-restricted-syntax": "off",
+      "no-continue": "off",
+      "no-bitwise": "off",
+      "no-redeclare": "off",
+      "no-alert": "off",
       "prefer-object-spread": "off",
       "arrow-body-style": "off",
-      "react/sort-comp": "off",
+
+      // Accessibility
+      "jsx-a11y/no-autofocus": "off",
     },
   },
 ])

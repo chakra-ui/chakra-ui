@@ -177,7 +177,7 @@ function extractTypeExports(code: string) {
   while (match != null) {
     const types = match[1].split(",").map((s) => s.trim())
     types.forEach((type) => {
-      let [typeName] = type.split(" ") ?? []
+      const [typeName] = type.split(" ") ?? []
       exported[typeName] = true
     })
     match = exportedTypeRegex.exec(code)
@@ -218,7 +218,7 @@ async function extractDirectory(dir: string) {
 const main = async () => {
   //
   const recipeProps = extractRecipeProps(defaultSystem)
-  console.log(recipeProps)
+  console.warn("[props-docs] Recipe props:", recipeProps)
 
   const dirs = await readdir(join("src", "components"))
 
@@ -258,5 +258,5 @@ main().catch((err) => {
 })
 
 function log(...args: any[]) {
-  console.log("[props-docs]: ", ...args)
+  console.warn("[props-docs]:", ...args)
 }

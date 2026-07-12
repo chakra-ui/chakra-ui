@@ -48,7 +48,7 @@ const composeShouldForwardProps = (tag: any, options: any, isReal: boolean) => {
   return shouldForwardProp
 }
 
-let isBrowser = typeof document !== "undefined"
+const isBrowser = typeof document !== "undefined"
 
 const Insertion = ({ cache, serialized, isStringTag }: any) => {
   registerStyles(cache, serialized, isStringTag)
@@ -117,7 +117,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     targetClassName = options.target
   }
 
-  let styles: any[] = []
+  const styles: any[] = []
 
   const Styled: any = withEmotionCache((inProps: any, cache, ref) => {
     const { cva, isValidProperty } = useChakraContext()
@@ -165,11 +165,11 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     )
 
     let className = ""
-    let classInterpolations: any[] = [styleProps]
+    const classInterpolations: any[] = [styleProps]
     let mergedProps: any = props
     if (props.theme == null) {
       mergedProps = {}
-      for (let key in props) {
+      for (const key in props) {
         mergedProps[key] = props[key]
       }
       mergedProps.theme = React.useContext(ThemeContext)
@@ -204,7 +204,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     let FinalTag = (shouldUseAs && props.as) || baseTag
     let finalProps: any = {}
 
-    for (let prop in props) {
+    for (const prop in props) {
       if (shouldUseAs && prop === "as") continue
 
       if (isHtmlProp(prop)) {
@@ -218,7 +218,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       }
     }
 
-    let classNameToUse = className.trim()
+    const classNameToUse = className.trim()
     if (classNameToUse) {
       finalProps.className = classNameToUse
     } else {

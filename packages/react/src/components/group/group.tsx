@@ -137,7 +137,7 @@ export const Group = memo(
     } = props
 
     const _children = useMemo(() => {
-      let childArray = Children.toArray(children).filter(isValidElement)
+      const childArray = Children.toArray(children).filter(isValidElement)
       if (childArray.length === 1) return childArray
 
       const validChildArray = childArray.filter((child) => !skip?.(child))

@@ -19,7 +19,7 @@ export const colorMix = (value: string, token: TransformArgs["token"]) => {
   }
 
   const percent = opacityToken
-    ? Number(opacityToken) * 100 + "%"
+    ? `${Number(opacityToken) * 100}%`
     : `${rawOpacity}%`
 
   const color = colorToken ?? rawColor
@@ -36,7 +36,7 @@ export const createColorMixTransform =
   (value, args) => {
     const mix = args.utils.colorMix(value)
     if (mix.invalid) return { [prop]: value }
-    const cssVar = "--mix-" + prop
+    const cssVar = `--mix-${prop}`
     return {
       [cssVar]: mix.value,
       [prop]: `var(${cssVar}, ${mix.color})`,

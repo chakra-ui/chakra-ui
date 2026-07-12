@@ -147,7 +147,7 @@ export const BlocksCommand = new Command("blocks")
 
         p.log.info(`Adding ${blocksToDownload.length} block(s)...`)
 
-        let skippedFiles: string[] = []
+        const skippedFiles: string[] = []
 
         await tasks([
           {

@@ -20,7 +20,7 @@ export const tasks = async (tasks: Task[]) => {
       const result = await task.task(s.message)
       s.stop(result || task.title)
     } catch (error) {
-      s.stop(`${task.title}\n` + String(error))
+      s.stop(`${task.title}\n${String(error)}`)
       throw error
     }
   }

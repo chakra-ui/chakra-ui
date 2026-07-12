@@ -39,7 +39,7 @@ export function extractRecipeProps(system: SystemContext) {
 
   for (const key of recipeKeys) {
     const _recipe = system.getRecipe(key)
-    let config = _recipe || system.getSlotRecipe(key)
+    const config = _recipe || system.getSlotRecipe(key)
 
     const recipe = _recipe ? system.cva(config) : system.sva(config)
     const _key = _recipe ? key : `${key}Root`

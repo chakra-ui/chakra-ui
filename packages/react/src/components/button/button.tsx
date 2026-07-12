@@ -16,6 +16,9 @@ const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
   { key: "button" },
 )
 
+/**
+ * Props for button loading states
+ */
 export interface ButtonLoadingProps {
   /**
    * If `true`, the button will show a loading spinner.
@@ -37,14 +40,73 @@ export interface ButtonLoadingProps {
   spinnerPlacement?: "start" | "end" | undefined
 }
 
+/**
+ * Base props for the Button component
+ */
 export interface ButtonBaseProps
   extends RecipeProps<"button">, UnstyledProp, ButtonLoadingProps {}
 
+/**
+ * Button component props
+ *
+ * @example
+ * ```tsx
+ * <Button variant="solid" colorPalette="blue" onClick={handleClick}>
+ *   Click me
+ * </Button>
+ * ```
+ *
+ * @example Loading state
+ * ```tsx
+ * <Button loading loadingText="Saving...">
+ *   Save
+ * </Button>
+ * ```
+ *
+ * @see {@link https://chakra-ui.com/docs/components/button Docs}
+ */
 export interface ButtonProps extends HTMLChakraProps<
   "button",
   ButtonBaseProps
 > {}
 
+/**
+ * Button component is used to trigger actions or events, such as submitting forms,
+ * opening dialogs, canceling actions, or performing delete operations.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Button>Click me</Button>
+ *
+ * // With variants
+ * <Button variant="solid">Solid</Button>
+ * <Button variant="outline">Outline</Button>
+ * <Button variant="ghost">Ghost</Button>
+ *
+ * // With sizes
+ * <Button size="xs">Extra Small</Button>
+ * <Button size="sm">Small</Button>
+ * <Button size="md">Medium</Button>
+ * <Button size="lg">Large</Button>
+ *
+ * // With color palette
+ * <Button colorPalette="blue">Blue</Button>
+ * <Button colorPalette="red">Red</Button>
+ *
+ * // Loading state
+ * <Button loading>Loading</Button>
+ * <Button loading loadingText="Please wait...">
+ *   Submit
+ * </Button>
+ *
+ * // Disabled state
+ * <Button disabled>Disabled</Button>
+ * ```
+ *
+ * @see {@link https://chakra-ui.com/docs/components/button Docs}
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/button/ WAI-ARIA Button Pattern}
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(inProps, ref) {
     const propsContext = usePropsContext()

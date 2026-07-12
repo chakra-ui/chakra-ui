@@ -340,7 +340,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
     }
 
     const percent = opacityToken
-      ? Number(opacityToken) * 100 + "%"
+      ? `${Number(opacityToken) * 100}%`
       : `${rawOpacity}%`
     const color = colorToken ?? colorPath
 
@@ -366,7 +366,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
       if (path.includes("/")) {
         const mix = colorMix(path, (v) => getVar(v)!)
         if (mix.invalid) {
-          throw new Error("Invalid color mix at " + path + ": " + mix.value)
+          throw new Error(`Invalid color mix at ${path}: ${mix.value}`)
         }
 
         return mix.value

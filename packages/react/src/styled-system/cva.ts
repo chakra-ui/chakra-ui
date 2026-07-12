@@ -55,7 +55,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
         ...compact(props),
       })
 
-      let variantCss = { ...normalize(base) }
+      const variantCss = { ...normalize(base) }
 
       mergeWith(variantCss, getVariantCss(variantSelections))
 

@@ -23,10 +23,10 @@ const eventRegex = /^on[A-Z]/
 export function mergeProps<T extends Props>(
   ...args: T[]
 ): UnionToIntersection<TupleTypes<T[]>> {
-  let result: Props = {}
+  const result: Props = {}
 
-  for (let props of args) {
-    for (let key in result) {
+  for (const props of args) {
+    for (const key in result) {
       if (
         eventRegex.test(key) &&
         typeof result[key] === "function" &&
@@ -50,7 +50,7 @@ export function mergeProps<T extends Props>(
     }
 
     // Add props from b that are not in a
-    for (let key in props) {
+    for (const key in props) {
       if (result[key] === undefined) {
         result[key] = props[key]
       }

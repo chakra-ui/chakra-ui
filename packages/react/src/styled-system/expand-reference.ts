@@ -92,7 +92,7 @@ export const expandTokenReferences = (
         }
 
         // Add it to the expanded string and go back to the previous state
-        expanded += ", var(" + cssVar + ")"
+        expanded += `, var(${cssVar})`
         index = endIndex + 1
         state = currentStates.pop() ?? state
         fallback = ""
@@ -146,7 +146,7 @@ export const expandTokenReferences = (
         const lastChar = expanded.at(-1)
         if (fallback) {
           if (lastChar?.trim()) {
-            expanded += resolved.slice(0, -1) + (", " + fallback + ")")
+            expanded += `${resolved.slice(0, -1)}, ${fallback})`
           } else {
             expanded += fallback
           }

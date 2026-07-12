@@ -28,16 +28,27 @@ export { useAvatarStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Base props for Avatar root provider
+ */
 export interface AvatarRootProviderBaseProps
   extends
     Assign<ArkAvatar.RootProviderBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
 
+/**
+ * Props for AvatarRootProvider component
+ */
 export interface AvatarRootProviderProps extends HTMLChakraProps<
   "div",
   AvatarRootProviderBaseProps
 > {}
 
+/**
+ * AvatarRootProvider allows you to provide avatar state externally
+ *
+ * @see {@link https://chakra-ui.com/docs/components/avatar Docs}
+ */
 export const AvatarRootProvider = withProvider<
   HTMLDivElement,
   AvatarRootProviderProps
@@ -45,16 +56,76 @@ export const AvatarRootProvider = withProvider<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Base props for Avatar root component
+ */
 export interface AvatarRootBaseProps
   extends
     Assign<ArkAvatar.RootBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
 
+/**
+ * Avatar component displays a user's profile picture or initials.
+ * It can display an image, fallback to initials, or show a default icon.
+ *
+ * @example
+ * ```tsx
+ * // With image
+ * <AvatarRoot>
+ *   <AvatarImage src="https://bit.ly/sage-adebayo" alt="Segun Adebayo" />
+ *   <AvatarFallback>SA</AvatarFallback>
+ * </AvatarRoot>
+ *
+ * // With name (auto-generates initials)
+ * <AvatarRoot>
+ *   <AvatarFallback name="John Doe" />
+ * </AvatarRoot>
+ *
+ * // With custom fallback
+ * <AvatarRoot>
+ *   <AvatarFallback>JD</AvatarFallback>
+ * </AvatarRoot>
+ *
+ * // Different sizes
+ * <AvatarRoot size="xs">
+ *   <AvatarFallback name="John Doe" />
+ * </AvatarRoot>
+ * <AvatarRoot size="sm">
+ *   <AvatarFallback name="John Doe" />
+ * </AvatarRoot>
+ * <AvatarRoot size="md">
+ *   <AvatarFallback name="John Doe" />
+ * </AvatarRoot>
+ * <AvatarRoot size="lg">
+ *   <AvatarFallback name="John Doe" />
+ * </AvatarRoot>
+ *
+ * // Avatar group
+ * <AvatarGroup>
+ *   <AvatarRoot>
+ *     <AvatarFallback name="John Doe" />
+ *   </AvatarRoot>
+ *   <AvatarRoot>
+ *     <AvatarFallback name="Jane Smith" />
+ *   </AvatarRoot>
+ *   <AvatarRoot>
+ *     <AvatarFallback name="Bob Johnson" />
+ *   </AvatarRoot>
+ * </AvatarGroup>
+ * ```
+ *
+ * @see {@link https://chakra-ui.com/docs/components/avatar Docs}
+ */
 export interface AvatarRootProps extends HTMLChakraProps<
   "div",
   AvatarRootBaseProps
 > {}
 
+/**
+ * AvatarRoot is the main wrapper for the avatar component
+ *
+ * @see {@link AvatarRootProps} for available props
+ */
 export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   ArkAvatar.Root,
   "root",
@@ -63,11 +134,18 @@ export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Props provider for Avatar component
+ * Allows passing props to nested Avatar components via context
+ */
 export const AvatarPropsProvider =
   PropsProvider as React.Provider<AvatarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Props for AvatarFallback component
+ */
 export interface AvatarFallbackProps extends HTMLChakraProps<
   "div",
   ArkAvatar.FallbackProps
@@ -75,6 +153,12 @@ export interface AvatarFallbackProps extends HTMLChakraProps<
   /**
    * The name to derive the initials from.
    * If not provided, the fallback will display a generic icon.
+   *
+   * @example
+   * ```tsx
+   * <AvatarFallback name="John Doe" /> // Shows "JD"
+   * <AvatarFallback name="Sarah" /> // Shows "S"
+   * ```
    */
   name?: string | undefined
 }

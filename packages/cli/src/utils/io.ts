@@ -184,6 +184,7 @@ export const write = async (
 }
 
 export function watch(paths: string[], cb: () => Promise<void>) {
+  // eslint-disable-next-line import/no-named-as-default-member
   const watcher = chokidar.watch(paths, { ignoreInitial: true })
 
   watcher.on("ready", cb).on("change", async (filePath) => {

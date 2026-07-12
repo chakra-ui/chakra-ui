@@ -93,7 +93,7 @@ export default function transformer(
       path.join(process.cwd(), snippetPath),
     )
     if (!relativeImportPath.startsWith(".")) {
-      relativeImportPath = "./" + relativeImportPath
+      relativeImportPath = `./${relativeImportPath}`
     }
     relativeImportPath = relativeImportPath.split(path.sep).join("/")
 

@@ -59,7 +59,7 @@ export const utilities = defineUtilities({
       const prop = "--focus-ring-color"
       const mix = utils.colorMix(value)
       if (mix.invalid) return { [prop]: value }
-      const cssVar = "--mix-" + prop
+      const cssVar = `--mix-${prop}`
       return {
         [cssVar]: mix.value,
         [prop]: `var(${cssVar}, ${mix.color})`,
