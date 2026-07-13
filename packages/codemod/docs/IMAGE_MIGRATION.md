@@ -533,7 +533,7 @@ If you encounter issues during migration:
 
 1. Check the
    [Image component documentation](https://chakra-ui.com/docs/components/image)
-2. Review the [migration guide](https://chakra-ui.com/docs/migration)
+2. Review the [migration guide](https://chakra-ui.com/docs/get-started/migration)
 3. Open an issue on [GitHub](https://github.com/chakra-ui/chakra-ui/issues)
 
 ---
@@ -541,5 +541,5 @@ If you encounter issues during migration:
 ## See Also
 
 - [Image Component Documentation](https://chakra-ui.com/docs/components/image)
-- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/migration)
+- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/get-started/migration)
 - [React Image Loading Best Practices](https://web.dev/image-loading/)

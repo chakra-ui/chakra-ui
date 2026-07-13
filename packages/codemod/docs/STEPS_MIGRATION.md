@@ -880,5 +880,5 @@ const { value: activeStep, goToNext } = stepsApi
 
 - [Chakra UI v3 Documentation](https://chakra-ui.com)
 - [Steps Component Docs](https://chakra-ui.com/docs/components/steps)
-- [Migration Guide](https://chakra-ui.com/docs/getting-started/migration)
+- [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
 - [Codemod CLI Documentation](https://github.com/chakra-ui/chakra-ui/tree/main/packages/codemod)

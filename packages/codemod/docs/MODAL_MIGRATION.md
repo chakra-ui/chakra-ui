@@ -849,7 +849,7 @@ If you encounter issues during migration:
 
 1. Check the
    [Dialog component documentation](https://chakra-ui.com/docs/components/dialog)
-2. Review the [migration guide](https://chakra-ui.com/docs/migration)
+2. Review the [migration guide](https://chakra-ui.com/docs/get-started/migration)
 3. Open an issue on [GitHub](https://github.com/chakra-ui/chakra-ui/issues)
 
 ---
@@ -860,4 +860,4 @@ If you encounter issues during migration:
 - [Portal Component](https://chakra-ui.com/docs/components/portal)
 - [Drawer Component](https://chakra-ui.com/docs/components/drawer) (similar
   pattern)
-- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/migration)
+- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/get-started/migration)

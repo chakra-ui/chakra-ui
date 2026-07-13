@@ -565,5 +565,5 @@ import { Stat } from "@chakra-ui/react"
 
 - [Chakra UI v3 Documentation](https://chakra-ui.com)
 - [Stat Component Docs](https://chakra-ui.com/docs/components/stat)
-- [Migration Guide](https://chakra-ui.com/docs/getting-started/migration)
+- [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
 - [Codemod CLI Documentation](https://github.com/chakra-ui/chakra-ui/tree/main/packages/codemod)
