@@ -50,11 +50,9 @@ export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
   {
     forwardAsChild: true,
     wrapElement(element, props) {
+      const status = (props.status || "info") as StatusProps["status"]
       return (
-        // @ts-ignore fix later
-        <AlertStatusProvider value={{ status: props.status || "info" }}>
-          {element}
-        </AlertStatusProvider>
+        <AlertStatusProvider value={{ status }}>{element}</AlertStatusProvider>
       )
     },
   },

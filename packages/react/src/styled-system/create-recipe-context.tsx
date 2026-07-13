@@ -34,7 +34,6 @@ export function createRecipeContext<K extends RecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemRecipeFn<{}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
       () => recipe.splitVariantProps(restProps),
       [recipe, restProps],
