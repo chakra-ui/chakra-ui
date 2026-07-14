@@ -372,11 +372,11 @@ If you encounter issues during migration:
 1. Check the
    [Presence component documentation](https://chakra-ui.com/docs/components/presence)
 2. Review the
-   [animation system documentation](https://chakra-ui.com/docs/styling/overview)
+   [animation system documentation](https://chakra-ui.com/docs/styling/animation-styles)
 3. Open an issue on [GitHub](https://github.com/chakra-ui/chakra-ui/issues)
 
 ## See Also
 
 - [Presence Component Documentation](https://chakra-ui.com/docs/components/presence)
-- [CSS Animations in Chakra UI](https://chakra-ui.com/docs/styling/overview)
+- [CSS Animations in Chakra UI](https://chakra-ui.com/docs/styling/animation-styles)
 - [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
