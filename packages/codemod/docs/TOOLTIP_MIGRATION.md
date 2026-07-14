@@ -642,5 +642,5 @@ duplicates.
 
 - [Chakra UI v3 Documentation](https://chakra-ui.com)
 - [Tooltip Snippet Code](https://chakra-ui.com/docs/components/tooltip)
-- [Migration Guide](https://chakra-ui.com/docs/getting-started/migration)
+- [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
 - [Codemod CLI Documentation](https://github.com/chakra-ui/chakra-ui/tree/main/packages/codemod)
