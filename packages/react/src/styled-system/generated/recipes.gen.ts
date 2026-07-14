@@ -596,12 +596,6 @@ export type DatePickerSlot =
   | "yearSelect"
   | "view"
   | "valueText"
-  | "label"
-  | "control"
-  | "input"
-  | "trigger"
-  | "clearTrigger"
-  | "positioner"
   | "indicatorGroup"
 
 export interface DatePickerVariant {
@@ -1184,6 +1178,37 @@ export type ComboboxVariantMap = {
   [K in keyof ComboboxVariant]: Array<ComboboxVariant[K]>
 }
 
+// CommandPalette
+
+export type CommandPaletteSlot =
+  | "root"
+  | "label"
+  | "control"
+  | "indicator"
+  | "input"
+  | "list"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "item"
+  | "itemText"
+  | "itemCommand"
+  | "itemIndicator"
+  | "empty"
+  | "footer"
+
+export interface CommandPaletteVariant {
+  /** @default "md" */
+  size?: "sm" | "md" | "lg" | undefined
+}
+
+export type CommandPaletteVariantProps = {
+  [K in keyof CommandPaletteVariant]?: ConditionalValue<CommandPaletteVariant[K]> | undefined
+}
+
+export type CommandPaletteVariantMap = {
+  [K in keyof CommandPaletteVariant]: Array<CommandPaletteVariant[K]>
+}
+
 // Slider
 
 export type SliderSlot =
@@ -1559,6 +1584,31 @@ export type MarqueeVariantMap = {
   [K in keyof MarqueeVariant]: Array<MarqueeVariant[K]>
 }
 
+// FloatingPanel
+
+export type FloatingPanelSlot =
+  | "trigger"
+  | "positioner"
+  | "content"
+  | "header"
+  | "body"
+  | "title"
+  | "resizeTrigger"
+  | "dragTrigger"
+  | "stageTrigger"
+  | "closeTrigger"
+  | "control"
+
+export interface FloatingPanelVariant {}
+
+export type FloatingPanelVariantProps = {
+  [K in keyof FloatingPanelVariant]?: ConditionalValue<FloatingPanelVariant[K]> | undefined
+}
+
+export type FloatingPanelVariantMap = {
+  [K in keyof FloatingPanelVariant]: Array<FloatingPanelVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1598,6 +1648,7 @@ export interface ConfigSlotRecipes {
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps, SegmentGroupVariantMap>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
+  commandPalette: SystemSlotRecipeFn<CommandPaletteSlot, CommandPaletteVariantProps, CommandPaletteVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
   splitter: SystemSlotRecipeFn<SplitterSlot, SplitterVariantProps, SplitterVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
@@ -1615,6 +1666,7 @@ export interface ConfigSlotRecipes {
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
   marquee: SystemSlotRecipeFn<MarqueeSlot, MarqueeVariantProps, MarqueeVariantMap>
+  floatingPanel: SystemSlotRecipeFn<FloatingPanelSlot, FloatingPanelVariantProps, FloatingPanelVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1656,6 +1708,7 @@ export interface ConfigRecipeSlots {
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
   combobox: ComboboxSlot
+  commandPalette: CommandPaletteSlot
   slider: SliderSlot
   splitter: SplitterSlot
   stat: StatSlot
@@ -1673,6 +1726,7 @@ export interface ConfigRecipeSlots {
   qrCode: QrCodeSlot
   treeView: TreeViewSlot
   marquee: MarqueeSlot
+  floatingPanel: FloatingPanelSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
