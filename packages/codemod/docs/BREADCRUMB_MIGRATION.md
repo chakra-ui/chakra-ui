@@ -548,7 +548,8 @@ If you encounter issues during migration:
 
 1. Check the
    [Breadcrumb component documentation](https://chakra-ui.com/docs/components/breadcrumb)
-2. Review the [migration guide](https://chakra-ui.com/docs/get-started/migration)
+2. Review the
+   [migration guide](https://chakra-ui.com/docs/get-started/migration)
 3. Open an issue on [GitHub](https://github.com/chakra-ui/chakra-ui/issues)
 
 ---
