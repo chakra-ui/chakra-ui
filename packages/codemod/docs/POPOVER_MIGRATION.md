@@ -834,4 +834,4 @@ If you encounter issues during migration:
   hover trigger)
 - [Tooltip Component](https://chakra-ui.com/docs/components/tooltip) (for simple
   tooltips)
-- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/migration)
+- [Chakra UI v3 Migration Guide](https://chakra-ui.com/docs/get-started/migration)
