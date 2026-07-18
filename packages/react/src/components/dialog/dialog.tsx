@@ -135,9 +135,27 @@ export const DialogActionTrigger = forwardRef<
   HTMLButtonElement,
   DialogActionTriggerProps
 >(function DialogActionTrigger(props, ref) {
+  const { onClick, ...rest } = props
   const dialog = useDialogContext()
+
   return (
-    <chakra.button {...props} ref={ref} onClick={() => dialog.setOpen(false)} />
+    <chakra.button
+      {...rest}
+      ref={ref}
+      onClick={(e) => {
+        // 1. Call the user's custom onClick if they provided one
+        onClick?.(e)
+
+        // 2. If the user explicitly called e.preventDefault(), don't close the dialog
+        if (e.defaultPrevented) return
+
+        // 3. Stop the click event from bubbling up to parent dialog layers
+        e.stopPropagation()
+
+        // 4. Safely close the current dialog context
+        dialog.setOpen(false)
+      }}
+    />
   )
 })
 
