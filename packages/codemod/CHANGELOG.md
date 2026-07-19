@@ -1,5 +1,13 @@
 # @chakra-ui/codemod
 
+## 3.36.1
+
+### Patch Changes
+
+- [`dd9fa1c`](https://github.com/chakra-ui/chakra-ui/commit/dd9fa1c44b1e3df7375a9ce06def49e44c003d3b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Require
+  Node.js >=22 (Node 18 and 20 are end-of-life)
+
 ## 3.36.0
 
 ## 3.35.0
