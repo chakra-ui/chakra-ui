@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/panda-preset": minor
+"@chakra-ui/panda-preset": patch
 ---
 
 Sync theme from `@chakra-ui/react`: register the missing `floatingPanel` slot
