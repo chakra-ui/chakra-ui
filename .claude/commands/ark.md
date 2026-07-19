@@ -1,6 +1,6 @@
 ---
 description: Implement a new Ark UI component
-argument-hint: [componentName]
+argument-hint: "[componentName]"
 ---
 
 ## Context
