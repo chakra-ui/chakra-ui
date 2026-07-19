@@ -18,23 +18,23 @@
     },
     {
       "groupName": "eslint",
-      "matchPackagePatterns": ["eslint*"]
+      "matchPackageNames": ["/eslint/"]
     },
     {
       "groupName": "storybook",
-      "matchPackagePatterns": ["*storybook*"]
+      "matchPackageNames": ["/storybook/"]
     },
     {
       "groupName": "changesets",
-      "matchPackagePatterns": ["@changesets*"]
+      "matchPackageNames": ["/^@changesets/"]
     },
     {
       "groupName": "babel",
-      "matchPackagePatterns": ["@babel*"]
+      "matchPackageNames": ["/^@babel/"]
     },
     {
       "groupName": "panda",
-      "matchPackagePatterns": ["@pandacss/*"]
+      "matchPackageNames": ["/^@pandacss\\//"]
     }
   ]
 }
