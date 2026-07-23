@@ -105,7 +105,7 @@ export interface ActionBarSelectionTriggerProps
 export const ActionBarSelectionTrigger = withContext<
   HTMLButtonElement,
   ActionBarSelectionTriggerProps
->("button", "selectionTrigger")
+>("button", "selectionTrigger", { defaultProps: { type: "button" } })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
