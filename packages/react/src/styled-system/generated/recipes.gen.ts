@@ -596,12 +596,6 @@ export type DatePickerSlot =
   | "yearSelect"
   | "view"
   | "valueText"
-  | "label"
-  | "control"
-  | "input"
-  | "trigger"
-  | "clearTrigger"
-  | "positioner"
   | "indicatorGroup"
 
 export interface DatePickerVariant {
@@ -721,7 +715,17 @@ export type EmptyStateVariantMap = {
 
 // Field
 
-export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator" | "requiredIndicator"
+export type FieldSlot =
+  | "root"
+  | "errorText"
+  | "helperText"
+  | "input"
+  | "label"
+  | "select"
+  | "textarea"
+  | "requiredIndicator"
+  | "inputElement"
+  | "requiredIndicator"
 
 export interface FieldVariant {
   /** @default "vertical" */
@@ -1559,6 +1563,31 @@ export type MarqueeVariantMap = {
   [K in keyof MarqueeVariant]: Array<MarqueeVariant[K]>
 }
 
+// FloatingPanel
+
+export type FloatingPanelSlot =
+  | "trigger"
+  | "positioner"
+  | "content"
+  | "header"
+  | "body"
+  | "title"
+  | "resizeTrigger"
+  | "dragTrigger"
+  | "stageTrigger"
+  | "closeTrigger"
+  | "control"
+
+export interface FloatingPanelVariant {}
+
+export type FloatingPanelVariantProps = {
+  [K in keyof FloatingPanelVariant]?: ConditionalValue<FloatingPanelVariant[K]> | undefined
+}
+
+export type FloatingPanelVariantMap = {
+  [K in keyof FloatingPanelVariant]: Array<FloatingPanelVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1615,6 +1644,7 @@ export interface ConfigSlotRecipes {
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
   marquee: SystemSlotRecipeFn<MarqueeSlot, MarqueeVariantProps, MarqueeVariantMap>
+  floatingPanel: SystemSlotRecipeFn<FloatingPanelSlot, FloatingPanelVariantProps, FloatingPanelVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1673,6 +1703,7 @@ export interface ConfigRecipeSlots {
   qrCode: QrCodeSlot
   treeView: TreeViewSlot
   marquee: MarqueeSlot
+  floatingPanel: FloatingPanelSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
