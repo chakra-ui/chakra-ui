@@ -54,7 +54,9 @@ export interface TagCloseTriggerProps
 export const TagCloseTrigger = withContext<
   HTMLButtonElement,
   TagCloseTriggerProps
->("button", "closeTrigger", { defaultProps: { children: <CloseIcon /> } })
+>("button", "closeTrigger", {
+  defaultProps: { type: "button", children: <CloseIcon /> },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

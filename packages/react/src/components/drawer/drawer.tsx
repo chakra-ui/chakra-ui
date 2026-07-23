@@ -137,7 +137,12 @@ export const DrawerActionTrigger = forwardRef<
 >(function DrawerActionTrigger(props, ref) {
   const drawer = useDialogContext()
   return (
-    <chakra.button {...props} ref={ref} onClick={() => drawer.setOpen(false)} />
+    <chakra.button
+      type="button"
+      {...props}
+      ref={ref}
+      onClick={() => drawer.setOpen(false)}
+    />
   )
 })
 

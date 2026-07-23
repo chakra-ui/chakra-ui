@@ -137,7 +137,12 @@ export const DialogActionTrigger = forwardRef<
 >(function DialogActionTrigger(props, ref) {
   const dialog = useDialogContext()
   return (
-    <chakra.button {...props} ref={ref} onClick={() => dialog.setOpen(false)} />
+    <chakra.button
+      type="button"
+      {...props}
+      ref={ref}
+      onClick={() => dialog.setOpen(false)}
+    />
   )
 })
 
