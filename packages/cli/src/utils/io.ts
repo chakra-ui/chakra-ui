@@ -2,6 +2,7 @@ import type { SystemContext } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
+import { formatly } from "formatly"
 import { existsSync, mkdirSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
@@ -46,11 +47,18 @@ export const write = async (
   file: string,
   content: Promise<string>,
 ) => {
+  const filePath = outPath(path, file)
   try {
-    await writeFile(outPath(path, file), await content)
+    await writeFile(filePath, await content)
+    // Run the project's configured formatter (Biome, dprint, deno fmt, or
+    // Prettier) on the written file. If no formatter is detected, formatly
+    // reports ran=false and we continue silently — no hard failure.
+    await formatly([filePath], { cwd: process.cwd() })
   } catch (error) {
     throw new Error(
-      `Failed to write file ${outPath(path, file)}: ${error instanceof Error ? error.message : String(error)}`,
+      `Failed to write file ${filePath}: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
     )
   }
 }
