@@ -8,5 +8,11 @@ export function isPublished(story: ShippedStory) {
 }
 
 export function getPublishedShipped() {
-  return shipped.filter(isPublished)
+  return shipped
+    .filter(isPublished)
+    .sort(
+      (a, b) =>
+        new Date(b.shippedAt ?? 0).getTime() -
+        new Date(a.shippedAt ?? 0).getTime(),
+    )
 }
