@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react-vite"
-import { Box } from "../src"
+import { Box, NumberInput } from "../src"
 
 export default {
   title: "Components / NumberInput",
@@ -26,3 +26,11 @@ export { NumberInputWithSizes as Sizes } from "compositions/examples/number-inpu
 export { NumberInputWithStep as Step } from "compositions/examples/number-input-with-step"
 export { NumberInputWithStepper as Stepper } from "compositions/examples/number-input-with-stepper"
 export { NumberInputWithElement as Element } from "compositions/examples/number-input-with-element"
+
+export const WithLabel = () => (
+  <NumberInput.Root defaultValue="10" width="200px">
+    <NumberInput.Label>Quantity</NumberInput.Label>
+    <NumberInput.Control />
+    <NumberInput.Input />
+  </NumberInput.Root>
+)
