@@ -1,5 +1,24 @@
 # @chakra-ui/react
 
+## 3.36.2
+
+### Patch Changes
+
+- [#10908](https://github.com/chakra-ui/chakra-ui/pull/10908)
+  [`c6516a1`](https://github.com/chakra-ui/chakra-ui/commit/c6516a12ef0ab83155a37dbc475f156f10ea0927)
+  Thanks [@akahoshi1421](https://github.com/akahoshi1421)! - - Fix
+  `Tag.CloseTrigger`, `ActionBar.SelectionTrigger`, `Dialog.ActionTrigger`,
+  `Drawer.ActionTrigger` missing `type="button"`, causing unintended form
+  submission when used inside a `<form>`
+
+- [`065f71c`](https://github.com/chakra-ui/chakra-ui/commit/065f71ceaf0bb1aab818abe29d7f6a205c82f2aa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix `TreeView`
+  `--tree-indentation: 0px` not fully removing nested indentation
+  - `--tree-indentation` is now the full per-level indent
+    (`indent-size + half icon-size`). Custom non-zero values no longer get an
+    extra half-icon offset on top
+  - Remove internal `--tree-icon-offset` variable from the recipe
+
 ## 3.36.1
 
 ### Patch Changes
