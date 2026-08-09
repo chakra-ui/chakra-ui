@@ -2,6 +2,7 @@ import type { PropertiesFallback } from "csstype"
 import type { Dict, DistributiveOmit } from "../utils"
 import type {
   ConditionalValue,
+  CornerShape,
   CssKeyframes,
   Nested,
   SystemStyleObject,
@@ -21,7 +22,9 @@ export type CssVarProperties = {
 }
 
 export interface CssProperties
-  extends PropertiesFallback<String | Number>, CssVarProperties {}
+  extends PropertiesFallback<String | Number>, CssVarProperties {
+  cornerShape?: CornerShape
+}
 
 interface Recursive<T> {
   [key: string]: T | Recursive<T>
