@@ -1,6 +1,6 @@
 ---
-"@chakra-ui/panda-preset": patch
-"@chakra-ui/react": patch
+"@chakra-ui/panda-preset": minor
+"@chakra-ui/react": minor
 ---
 
 Implement horizontal field layout using `<Field.InputElement>` slot with CSS
