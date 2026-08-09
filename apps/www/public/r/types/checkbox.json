@@ -127,7 +127,7 @@
       "value": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"on\"",
+        "defaultValue": "on",
         "description": "The value of checkbox input. Useful for form submission."
       },
       "colorPalette": {

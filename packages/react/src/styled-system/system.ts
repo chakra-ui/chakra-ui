@@ -192,6 +192,27 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     return theme.slotRecipes?.[key] ?? fallback
   }
 
+  const recipeCache = new Map<string, any>()
+  const slotRecipeCache = new Map<string, any>()
+
+  function getRecipeFn(key: string, fallback?: any) {
+    let fn = recipeCache.get(key)
+    if (!fn) {
+      fn = cva(getRecipe(key, fallback ?? EMPTY_OBJECT))
+      recipeCache.set(key, fn)
+    }
+    return fn
+  }
+
+  function getSlotRecipeFn(key: string, fallback?: any) {
+    let fn = slotRecipeCache.get(key)
+    if (!fn) {
+      fn = sva(getSlotRecipe(key, fallback ?? EMPTY_OBJECT))
+      slotRecipeCache.set(key, fn)
+    }
+    return fn
+  }
+
   function isRecipe(key: string) {
     return Object.hasOwnProperty.call(theme.recipes ?? EMPTY_OBJECT, key)
   }
@@ -247,6 +268,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     sva,
     getRecipe,
     getSlotRecipe,
+    getRecipeFn,
+    getSlotRecipeFn,
     hasRecipe,
     isRecipe,
     isSlotRecipe,

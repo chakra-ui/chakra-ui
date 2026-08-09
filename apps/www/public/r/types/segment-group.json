@@ -59,7 +59,8 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "description": "Orientation of the radio group"
+        "description": "Orientation of the radio group",
+        "defaultValue": "horizontal"
       },
       "readOnly": {
         "type": "boolean",

@@ -1,5 +1,20 @@
 # @chakra-ui/panda-preset
 
+## 3.36.1
+
+### Patch Changes
+
+- [`129c50f`](https://github.com/chakra-ui/chakra-ui/commit/129c50ff9be80fa4ad5cc0a39b6cff8a20609c42)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where the
+  checked ring of `RadioCard` and `CheckboxCard` (outline variant) gets clipped
+  when a parent has `overflow: hidden|auto|scroll`. The ring is now drawn with
+  an inset shadow instead of an outer shadow.
+
+- [`f4e6377`](https://github.com/chakra-ui/chakra-ui/commit/f4e63775649ff6502cefbb74930f4329da194a28)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Sync theme from
+  `@chakra-ui/react`: register the missing `floatingPanel` slot recipe and
+  update the date picker range-selection styles
+
 ## 3.36.0
 
 ### Patch Changes

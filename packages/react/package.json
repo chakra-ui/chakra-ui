@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "3.36.0",
+  "version": "3.36.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -56,7 +56,7 @@
     "fast-safe-stringify": "^2.1.1",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "react-frame-component": "5.2.7"
+    "react-frame-component": "5.3.2"
   },
   "scripts": {
     "prepack": "tsx ../../scripts/conditions.ts",
@@ -66,7 +66,7 @@
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typedocs": "tsx scripts/typedocs.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "exports": {
     ".": {

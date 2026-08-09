@@ -314,4 +314,4 @@ npx @chakra-ui/codemod@latest --transform accordion src/**/*.tsx
 ## Additional Resources
 
 - [Accordion Component Docs](https://chakra-ui.com/docs/components/accordion)
-- [Migration Guide](https://chakra-ui.com/docs/migration)
+- [Migration Guide](https://chakra-ui.com/docs/get-started/migration)

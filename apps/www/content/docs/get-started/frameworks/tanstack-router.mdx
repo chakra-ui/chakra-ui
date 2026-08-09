@@ -73,12 +73,12 @@ If you're using TypeScript, in the `tsconfig.app.json` file, make sure the
 Add the TanStack Router Vite plugin and enable tsconfig path resolution.
 
 ```ts title="vite.config.ts"
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
+import { tanstackRouter } from "@tanstack/router-plugin/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  plugins: [TanStackRouterVite({ autoCodeSplitting: true }), react()],
+  plugins: [tanstackRouter({ autoCodeSplitting: true }), react()],
   resolve: {
     tsconfigPaths: true,
   },
@@ -97,7 +97,7 @@ import tsconfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ autoCodeSplitting: true }),
+    tanstackRouter({ autoCodeSplitting: true }),
     react(),
     tsconfigPaths(),
   ],

@@ -1,5 +1,24 @@
 # @chakra-ui/cli
 
+## 3.36.1
+
+### Patch Changes
+
+- [#10823](https://github.com/chakra-ui/chakra-ui/pull/10823)
+  [`f8b356c`](https://github.com/chakra-ui/chakra-ui/commit/f8b356ce8377c4bc8a7b007f771afefad0bcc447)
+  Thanks [@tryone144](https://github.com/tryone144)! - Migrate from deprecated
+  `tsconfck` to `get-tsconfig`. Enables installation next to TypeScript version
+  6 and up.
+
+- [`1de9c58`](https://github.com/chakra-ui/chakra-ui/commit/1de9c58314bad63e1e456d087db0e73707d431e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Replace
+  `node-fetch` with the native `fetch` API, using undici's `ProxyAgent` for
+  `HTTPS_PROXY` support.
+
+- [`39ef8b5`](https://github.com/chakra-ui/chakra-ui/commit/39ef8b542b8ac4ddfb53d727476b8f3259f65b98)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Normalize resolved
+  tsconfig paths to native separators on Windows
+
 ## 3.36.0
 
 ### Patch Changes

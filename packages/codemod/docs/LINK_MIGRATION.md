@@ -428,6 +428,6 @@ import { Link as ChakraLink } from "@chakra-ui/react"
 ## Additional Resources
 
 - [Link Documentation](https://chakra-ui.com/docs/components/link)
-- [LinkBox Documentation](https://chakra-ui.com/docs/components/linkbox)
+- [LinkBox Documentation](https://chakra-ui.com/docs/components/link-overlay)
 - [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
 - [MDN: rel="noopener noreferrer"](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/noopener)

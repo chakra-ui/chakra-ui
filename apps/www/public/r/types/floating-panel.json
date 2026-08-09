@@ -19,7 +19,7 @@
       "allowOverflow": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the panel should be strictly contained within the boundary when dragging"
       },
       "closeOnEscape": {
@@ -30,7 +30,7 @@
       "defaultOpen": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "The initial open state of the panel when rendered.\nUse when you don't need to control the open state of the panel."
       },
       "defaultPosition": {
@@ -46,7 +46,7 @@
       "dir": {
         "type": "'ltr' | 'rtl'",
         "isRequired": false,
-        "defaultValue": "\"ltr\"",
+        "defaultValue": "ltr",
         "description": "The document's text/writing direction."
       },
       "disabled": {
@@ -57,7 +57,7 @@
       "draggable": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the panel is draggable"
       },
       "getAnchorPosition": {
@@ -73,7 +73,7 @@
       "gridSize": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The snap grid for the panel"
       },
       "id": {
@@ -94,7 +94,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "lockAspectRatio": {
@@ -170,7 +170,7 @@
       "resizable": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the panel is resizable"
       },
       "size": {
@@ -181,13 +181,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "strategy": {
         "type": "'absolute' | 'fixed'",
         "isRequired": false,
-        "defaultValue": "\"fixed\"",
+        "defaultValue": "fixed",
         "description": "The strategy to use for positioning"
       },
       "translations": {
@@ -198,7 +198,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
       }
     }
@@ -227,7 +227,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -238,13 +238,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }

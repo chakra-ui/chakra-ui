@@ -5,6 +5,66 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.36.1](./#3.36.1) - 2026-07-19
+
+### Fixed
+
+- **Bleed**: Fix incorrect `css` prop application.
+
+- **Checkmark**: Fix incorrect `css` prop application.
+
+- **CLI**: Normalize resolved tsconfig paths to native separators on Windows.
+
+- **Docs**: Fix `Stack.Separator` references in the v3 migration guide. The
+  standalone `Separator` component is now used in both the `StackDivider` and
+  `Stack Props` examples.
+
+- **Float**: Fix incorrect `css` prop application.
+
+- **Image**: Fix custom `className` removing the base `chakra-image` class.
+
+- **LinkOverlay**: Fix issue where `LinkOverlay` dropped the `rel` attribute
+  instead of forwarding it to the rendered anchor.
+
+- **RadioCard / CheckboxCard**: Fix issue where the checked ring (outline
+  variant) gets clipped when a parent has `overflow: hidden|auto|scroll`. The
+  ring is now drawn with an inset shadow instead of an outer shadow.
+
+- **System**: Fix error when merging recipes (e.g. composing a recipe-based
+  component through the `chakra` factory). Recipe merging now normalizes
+  compiled and raw configs before combining them, and no longer throws or
+  mutates the source configs.
+
+- **WrapItem**: Fix incorrect `css` prop application.
+
+### Changed
+
+- **CLI**
+  - Migrate from deprecated `tsconfck` to `get-tsconfig`. Enables installation
+    next to TypeScript version 6 and up.
+  - Replace `node-fetch` with the native `fetch` API, using undici's
+    `ProxyAgent` for `HTTPS_PROXY` support.
+
+- **Codemod**: Require Node.js >=22 (Node 18 and 20 are end-of-life).
+
+- **FloatingPanel**: Set a default `minSize` of `{ width: 240, height: 100 }` on
+  `FloatingPanel.Root` to prevent the panel from being resized to zero. Pass
+  your own `minSize` to override it.
+
+- **OverlayManager**: Expose `has()` on the return value of `createOverlay`.
+
+- **Panda Preset**: Sync theme from `@chakra-ui/react`: register the missing
+  `floatingPanel` slot recipe and update the date picker range-selection styles.
+
+- **System**: Improve render performance of recipe components (`Button`,
+  `Badge`, `Skeleton`, etc.) in large lists and tables.
+  - Cache compiled recipes per system instead of per component instance.
+  - Memoize variant style resolution so results are referentially stable.
+  - Drop the per-instance `structuredClone` of recipe configs.
+
+  In benchmarks, repeated variant resolution is ~70-90x faster and
+  compile+resolve ~30x faster. No public API changes.
+
 ## [3.35.0](./#3.35.0) - 2026-04-22
 
 ### Added

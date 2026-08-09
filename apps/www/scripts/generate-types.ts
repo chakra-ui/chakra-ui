@@ -18,6 +18,7 @@ import { ensureDirSync } from "fs-extra"
 import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs"
 import { basename, join } from "node:path"
 import { camelCase, kebabCase } from "scule"
+import ts from "typescript"
 
 const fetchArkComponents = async <T>(arg = ""): Promise<T> => {
   const prom = await fetch(`http://ark-ui.com/api/types/react${arg}`)
@@ -63,11 +64,110 @@ async function getComponentDirectories() {
   return Array.from(new Set([...componentList, ...staticComponentList]))
 }
 
+function extractDefaultPropsFromSource(
+  filePath: string,
+  componentName: string,
+): Record<string, Record<string, any>> {
+  const content = readFileSync(filePath, "utf-8")
+  const sourceFile = ts.createSourceFile(
+    filePath,
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+  )
+
+  const result: Record<string, Record<string, any>> = {}
+
+  function visit(node: ts.Node) {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text.startsWith("with")
+    ) {
+      const configArg = node.arguments[node.arguments.length - 1]
+
+      if (configArg && ts.isObjectLiteralExpression(configArg)) {
+        let slotName = "Root"
+        const slotArg = node.arguments[1]
+        if (slotArg && ts.isStringLiteral(slotArg)) {
+          slotName = toComponentCase(slotArg.text)
+        } else if (
+          ts.isVariableDeclaration(node.parent) &&
+          ts.isIdentifier(node.parent.name) &&
+          node.parent.name.text.startsWith(componentName)
+        ) {
+          slotName = node.parent.name.text.slice(componentName.length) || "Root"
+        }
+
+        const defaultPropsProp = configArg.properties.find(
+          (prop) =>
+            ts.isPropertyAssignment(prop) &&
+            ts.isIdentifier(prop.name) &&
+            prop.name.text === "defaultProps",
+        )
+
+        if (
+          defaultPropsProp &&
+          ts.isPropertyAssignment(defaultPropsProp) &&
+          ts.isObjectLiteralExpression(defaultPropsProp.initializer)
+        ) {
+          const defaults: Record<string, any> = {}
+
+          defaultPropsProp.initializer.properties.forEach((prop) => {
+            if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) {
+              return
+            }
+
+            const propName = prop.name.text
+            const initializer = prop.initializer
+
+            if (initializer.kind === ts.SyntaxKind.TrueKeyword) {
+              defaults[propName] = true
+            } else if (initializer.kind === ts.SyntaxKind.FalseKeyword) {
+              defaults[propName] = false
+            } else if (ts.isStringLiteral(initializer)) {
+              defaults[propName] = initializer.text
+            } else if (ts.isNumericLiteral(initializer)) {
+              defaults[propName] = Number(initializer.text)
+            }
+          })
+
+          if (Object.keys(defaults).length > 0) {
+            result[slotName] = defaults
+          }
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return result
+}
+
+function normalizeDefaultValues(json: Record<string, any>) {
+  for (const part of Object.values(json)) {
+    const props = (part as any)?.props
+    if (!props) continue
+    for (const prop of Object.values(props)) {
+      const entry = prop as any
+      if (typeof entry.defaultValue !== "string") continue
+      try {
+        entry.defaultValue = JSON.parse(entry.defaultValue)
+      } catch {
+        // keep the original string (not valid JSON, e.g. "md", "1rem")
+      }
+    }
+  }
+}
+
 async function writeStaticProps(outDir: string) {
   const files = globSync("scripts/static-props/**/*.json")
   files.forEach((file) => {
     const name = basename(file, ".json")
     const props = JSON.parse(readFileSync(file, "utf-8"))
+    normalizeDefaultValues(props)
     writeFileSync(`${outDir}/${name}.json`, JSON.stringify(props, null, 2))
   })
 }
@@ -186,12 +286,39 @@ async function extractComponents(components?: string[]) {
       Reflect.deleteProperty(json, part)
     })
 
+    const componentMainPath = join(componentDir, dir)
+    const mainFiles = [
+      join(componentMainPath, `${dir}.tsx`),
+      join(componentMainPath, `${dir}.ts`),
+      join(componentMainPath, "index.tsx"),
+      join(componentMainPath, "index.ts"),
+    ]
+    const mainFile = mainFiles.find(existsSync)
+
+    if (mainFile) {
+      const defaultPropsPerPart = extractDefaultPropsFromSource(
+        mainFile,
+        toComponentCase(dir),
+      )
+      for (const [partName, defaults] of Object.entries(defaultPropsPerPart)) {
+        if (json[partName]?.props) {
+          for (const [propName, defaultValue] of Object.entries(defaults)) {
+            if (propName in json[partName].props) {
+              json[partName].props[propName].defaultValue = defaultValue
+            }
+          }
+        }
+      }
+    }
+
+    normalizeDefaultValues(json)
+
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
 
-  // Only write static props if processing all components
+  // Write hand-authored static props (e.g. password-input) only on a full run
   if (!components || components.length === 0) {
-    writeStaticProps(outDir)
+    await writeStaticProps(outDir)
   }
 }
 

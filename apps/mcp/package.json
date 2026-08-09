@@ -41,11 +41,11 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@release-it/keep-a-changelog": "7.0.0",
+    "@release-it/keep-a-changelog": "7.1.0",
     "@tsconfig/node24": "^24.0.0",
     "@types/express": "^5.0.5",
     "@types/fs-extra": "^11.0.4",
-    "release-it": "20.0.1",
+    "release-it": "20.2.0",
     "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "typescript": "5.9.3"

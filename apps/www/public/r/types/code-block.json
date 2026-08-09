@@ -15,7 +15,7 @@
       },
       "copyTimeout": {
         "type": "number | undefined",
-        "defaultValue": "1000",
+        "defaultValue": 1000,
         "isRequired": false,
         "description": "The timeout for the copy action."
       },

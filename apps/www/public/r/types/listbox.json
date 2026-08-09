@@ -44,7 +44,7 @@
       "autoHighlight": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to automatically highlight the item when typing"
       }
     },
@@ -180,7 +180,7 @@
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "defaultValue": "[]",
+        "defaultValue": [],
         "description": "The initial default value of the listbox when rendered.\nUse when you don't need to control the value of the listbox."
       },
       "deselectable": {
@@ -216,7 +216,7 @@
       "loopFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to loop the keyboard navigation through the options"
       },
       "onHighlightChange": {
@@ -237,7 +237,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"vertical\"",
+        "defaultValue": "vertical",
         "description": "The orientation of the listbox."
       },
       "scrollToIndexFn": {
@@ -248,7 +248,7 @@
       "selectionMode": {
         "type": "SelectionMode",
         "isRequired": false,
-        "defaultValue": "\"single\"",
+        "defaultValue": "single",
         "description": "How multiple selection should behave in the listbox.\n\n- `single`: The user can select a single item.\n- `multiple`: The user can select multiple items without using modifier keys.\n- `extended`: The user can select multiple items by using modifier keys."
       },
       "selectOnHighlight": {

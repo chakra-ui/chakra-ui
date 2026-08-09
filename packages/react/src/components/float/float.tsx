@@ -53,6 +53,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
       offsetY,
       offset = "0",
       placement = "top-end",
+      css: cssProp,
       ...rest
     } = props
 
@@ -108,7 +109,7 @@ export const Float = forwardRef<HTMLDivElement, FloatProps>(
       [offset, offsetX, offsetY, placement],
     )
 
-    return <chakra.div ref={ref} css={styles} {...rest} />
+    return <chakra.div ref={ref} css={[styles, cssProp]} {...rest} />
   },
 )
 

@@ -58,7 +58,7 @@
       "timeout": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "3000",
+        "defaultValue": 3000,
         "description": "The timeout for the copy operation"
       },
       "value": {
