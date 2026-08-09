@@ -62,12 +62,12 @@ export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldInputElementProps
-  extends HTMLChakraProps<"input">, UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const FieldInputElement = withContext<
   HTMLDivElement,
   FieldInputElementProps
->("input", "inputElement")
+>("div", "inputElement")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
