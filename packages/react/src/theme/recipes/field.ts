@@ -48,9 +48,6 @@ export const fieldSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           alignItems: "flex-start",
         },
-        group: {
-          flexDirection: "row",
-        },
       },
       horizontal: {
         root: {
