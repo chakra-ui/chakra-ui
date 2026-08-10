@@ -8,7 +8,7 @@ export interface LinkOverlayProps extends HTMLChakraProps<"a"> {}
 
 export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
   function LinkOverlay(props, ref) {
-    const { rel, className, ...rest } = props
+    const { className, ...rest } = props
     return (
       <chakra.a
         {...rest}

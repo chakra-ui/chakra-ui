@@ -21,5 +21,7 @@ export type {
   PaginationPageChangeDetails as PageChangeDetails,
   PaginationPageSizeChangeDetails as PageSizeChangeDetails,
   PaginationPageTextProps as PageTextProps,
+  PaginationPageTextFormatDetails as PageTextFormatDetails,
+  PaginationPageTextFormatFn as PageTextFormatFn,
   PaginationItemsProps as ItemsProps,
 } from "./pagination"

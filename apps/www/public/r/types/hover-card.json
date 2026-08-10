@@ -79,7 +79,7 @@
       "closeDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "300",
+        "defaultValue": 300,
         "description": "The duration from when the mouse leaves the trigger or content until the hover card closes."
       },
       "defaultOpen": {
@@ -110,7 +110,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -146,7 +146,7 @@
       "openDelay": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "600",
+        "defaultValue": 600,
         "description": "The duration from when the mouse enters the trigger until the hover card opens."
       },
       "positioning": {
@@ -162,20 +162,14 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
-      },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
       },
       "size": {
         "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
@@ -209,7 +203,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -225,13 +219,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }

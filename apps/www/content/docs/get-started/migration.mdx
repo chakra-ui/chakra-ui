@@ -247,7 +247,7 @@ We now use CSS color-mix
 ```jsx
 defineStyle({
   bg: "blue.200/16",
-  // -> color-mix(in srgb, var(--chakra-colors-200), transparent 16%)
+  // -> color-mix(in srgb, var(--chakra-colors-blue-200), transparent 16%)
 })
 ```
 
@@ -439,7 +439,7 @@ For indeterminate progress:
 ### StackDivider
 
 - No longer available as a separate component
-- Use explicit `Stack.Separator` components between stack items
+- Use explicit `Separator` components between stack items
 
 Before:
 
@@ -454,11 +454,13 @@ Before:
 After:
 
 ```tsx
-<VStack gap={4}>
+import { Box, Separator, VStack } from "@chakra-ui/react"
+
+;<VStack gap={4}>
   <Box>Item 1</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 2</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 3</Box>
 </VStack>
 ```
@@ -1548,7 +1550,7 @@ After:
 ### IconButton
 
 - `icon` → render as `children` directly
-- `isRounded` → `borderRadius="full"`
+- `isRound` → `borderRadius="full"`
 - `isDisabled` → `disabled`
 
 Before:
@@ -2102,7 +2104,8 @@ const Demo = () => (
 ### Table
 
 - `TableContainer` is now `Table.ScrollArea`
-- `Td`(now called `Table.ColumnHeader`) `isNumeric` is now `textAlign="end"`
+- `Td`(now called `Table.Cell`) `isNumeric` is now `textAlign="end"`
+- `Th` is now `Table.ColumnHeader`
 
 The compound component have been renamed slightly.
 
@@ -3111,7 +3114,7 @@ const Demo = () => (
 // After
 <Stack
   gap="4"
-  separator={<Stack.Separator />}
+  separator={<Separator />}
 >
   <Box>Item 1</Box>
   <Box>Item 2</Box>

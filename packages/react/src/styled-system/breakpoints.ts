@@ -20,7 +20,7 @@ export function createBreakpoints(
 
   function getRanges() {
     const breakpoints: string[] = Object.keys(values)
-    const permuations = getPermutations(breakpoints)
+    const permutations = getPermutations(breakpoints)
 
     const results = breakpoints
       .flatMap((name) => {
@@ -38,7 +38,7 @@ export function createBreakpoints(
       })
       .filter(([, value]) => value !== "")
       .concat(
-        permuations.map(([min, max]) => {
+        permutations.map(([min, max]) => {
           const minValue = get(min)
           const maxValue = get(max)
           return [

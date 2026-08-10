@@ -133,6 +133,29 @@ prevent resizing beyond these boundaries.
 
 <ExampleTabs name="splitter-min-max-constraints" />
 
+### CSS Unit Sizes
+
+In addition to percentages, `defaultSize`, `minSize`, and `maxSize` accept CSS
+units like `px`, `em`, `rem`, `vh`, and `vw`. This is useful for panels that
+should keep a fixed width, such as a navigation sidebar.
+
+:::warning
+
+CSS-unit sizes are measured on the client, so panels using them can shift after
+hydration. Use percentage sizes for a stable server-rendered layout.
+
+:::
+
+<ExampleTabs name="splitter-css-units" />
+
+### Resize Behavior
+
+Set `resizeBehavior` on a panel to control how it reacts when the parent group
+resizes. Use `"preserve-pixel-size"` to keep a panel's pixel size constant (so
+the other panels absorb the change) instead of scaling proportionally.
+
+<ExampleTabs name="splitter-resize-behavior" />
+
 ### Nested Panels
 
 Here's an example of how to nest splitters inside panels to create more complex

@@ -15,7 +15,7 @@
       },
       "copyTimeout": {
         "type": "number | undefined",
-        "defaultValue": "1000",
+        "defaultValue": 1000,
         "isRequired": false,
         "description": "The timeout for the copy action."
       },
@@ -53,12 +53,6 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether to remove the component's style."
-      },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
       },
       "size": {
         "type": "\"sm\" | \"md\" | \"lg\"",

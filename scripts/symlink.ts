@@ -1,5 +1,5 @@
 import { findPackages } from "find-packages"
-import { findUpSync } from "find-up"
+import { findUpSync } from "find-up-simple"
 import { spawnSync } from "node:child_process"
 import { readFileSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"

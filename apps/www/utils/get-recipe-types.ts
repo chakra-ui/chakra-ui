@@ -37,6 +37,15 @@ function getColorPaletteType(system: SystemContext) {
   return toLiteralStringType(Array.from(system.tokens.colorPaletteMap.keys()))
 }
 
+function usesColorPalette(value: unknown): boolean {
+  if (typeof value === "string") return /\bcolorPalette\./.test(value)
+  if (Array.isArray(value)) return value.some(usesColorPalette)
+  if (value && typeof value === "object") {
+    return Object.values(value).some(usesColorPalette)
+  }
+  return false
+}
+
 export function getRecipeTypes(system: SystemContext, key: string) {
   const result: PropDocRecord = {}
 
@@ -47,7 +56,7 @@ export function getRecipeTypes(system: SystemContext, key: string) {
 
   const recipe = _recipe ? system.cva(config) : system.sva(config)
 
-  if (Object.keys(recipe.variantMap).length) {
+  if (Object.keys(recipe.variantMap).length && usesColorPalette(config)) {
     result["colorPalette"] = {
       defaultValue: "gray",
       type: colorPaletteType,

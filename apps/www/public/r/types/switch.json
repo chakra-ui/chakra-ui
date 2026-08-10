@@ -64,7 +64,7 @@
       "value": {
         "type": "string | number",
         "isRequired": false,
-        "defaultValue": "\"on\"",
+        "defaultValue": "on",
         "description": "The value of switch input. Useful for form submission."
       },
       "colorPalette": {

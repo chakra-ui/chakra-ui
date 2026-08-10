@@ -7,6 +7,7 @@ import { resolve } from "node:path"
 import { Plugin, RollupOptions } from "rollup"
 import esbuild from "rollup-plugin-esbuild"
 import { preserveDirectives } from "rollup-plugin-preserve-directives"
+import { readPackageJson } from "./read-package-json.js"
 
 interface Options {
   dir: string
@@ -16,7 +17,7 @@ interface Options {
 export async function getConfig(options: Options): Promise<RollupOptions> {
   const { dir, aliases } = options
 
-  const packageJson = await import(resolve(dir, "package.json"))
+  const packageJson = readPackageJson(dir)
 
   const isCli =
     packageJson.bin !== undefined || packageJson.name.includes("docgen")

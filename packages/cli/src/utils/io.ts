@@ -73,12 +73,12 @@ function loadViaRequire(file: string, code: string): any {
     }
   }
 
-  delete require.cache[require.resolve(file)]
-  const raw = require(file)
-  const result = raw.default ?? raw
-
-  require.extensions[ext] = defaultLoader
-  return result
+  try {
+    delete require.cache[require.resolve(file)]
+    return require(file)
+  } finally {
+    require.extensions[ext] = defaultLoader
+  }
 }
 
 function loadViaVm(code: string): any {
@@ -89,12 +89,55 @@ function loadViaVm(code: string): any {
     require,
   })
   vm.runInContext(code, ctx)
-  const raw = mod.exports as any
-  return raw.default ?? raw
+  return mod.exports
+}
+
+const systemExports = ["default", "preset", "system"] as const
+
+const isRecord = (mod: unknown): mod is Record<string, unknown> => {
+  return typeof mod === "object" && mod !== null
 }
 
 const isValidSystem = (mod: unknown): mod is SystemContext => {
-  return Object.hasOwnProperty.call(mod, "$$chakra")
+  return isRecord(mod) && Object.hasOwnProperty.call(mod, "$$chakra")
+}
+
+function resolveSystemExport(mod: unknown) {
+  const candidate = isRecord(mod) && mod.default != null ? mod.default : mod
+
+  if (!isRecord(candidate) || isValidSystem(candidate)) return candidate
+
+  const exports = candidate as Record<string, unknown>
+  return exports.default || exports.preset || exports.system || candidate
+}
+
+function formatExportName(name: string) {
+  return `"${name}"`
+}
+
+function getExportNames(mod: unknown) {
+  if (!isRecord(mod) || isValidSystem(mod)) return []
+  return Object.keys(mod).filter((name) => name !== "__esModule")
+}
+
+function formatInvalidSystemError(file: string, mod: unknown) {
+  const exportNames = getExportNames(mod)
+  const foundExports = exportNames.length
+    ? `Found export${exportNames.length === 1 ? "" : "s"}: ${exportNames
+        .map(formatExportName)
+        .join(", ")}.`
+    : "Found no named exports."
+
+  return [
+    `No Chakra system export found in ${file}.`,
+    `The chakra typegen command expects ${systemExports
+      .map(formatExportName)
+      .join(
+        ", ",
+      )}, or a CommonJS export to be a Chakra system created with createSystem(...).`,
+    foundExports,
+    "If this file exports a config from defineConfig(...), wrap it first: export default createSystem(defaultConfig, config).",
+  ].join(" ")
 }
 
 export const read = async (
@@ -106,13 +149,10 @@ export const read = async (
 
   const bundle = await bundleFile(filePath, cwd, tsconfig)
   const mod = loadBundledCode(filePath, bundle.code)
-
-  const resolvedMod = mod.default || mod.preset || mod.system || mod
+  const resolvedMod = resolveSystemExport(mod)
 
   if (!isValidSystem(resolvedMod)) {
-    throw new Error(
-      `No default export found in ${file}. Did you forget to provide an export default?`,
-    )
+    throw new Error(formatInvalidSystemError(file, mod))
   }
 
   return { mod: resolvedMod, dependencies: bundle.dependencies }

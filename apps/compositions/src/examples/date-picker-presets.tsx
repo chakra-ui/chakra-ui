@@ -18,9 +18,19 @@ export const DatePickerPresets = () => {
       </DatePicker.Control>
       <Portal>
         <DatePicker.Positioner>
-          <DatePicker.Content>
-            <Flex px="4" py="4" gap="6">
-              <VStack align="stretch" gap="2" minW="140px" height="100%">
+          <DatePicker.Content maxW="100dvw" w="fit-content" overflow="auto">
+            <Flex
+              px={{ base: "3", sm: "4" }}
+              py={{ base: "3", sm: "4" }}
+              gap={{ base: "3", sm: "6" }}
+              flexDirection={{ base: "column", sm: "row" }}
+            >
+              <VStack
+                align="stretch"
+                gap={{ base: "1.5", sm: "2" }}
+                minW={{ base: "full", sm: "140px" }}
+                height="100%"
+              >
                 <DatePicker.PresetTrigger value="last7Days" asChild>
                   <Button variant="surface" size="sm" width="100%">
                     Last 7 days

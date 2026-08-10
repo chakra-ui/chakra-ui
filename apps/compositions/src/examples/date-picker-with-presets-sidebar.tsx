@@ -13,8 +13,14 @@ import {
 export const DatePickerWithPresetsSidebar = () => {
   return (
     <DatePicker.Root inline fixedWeeks width="fit-content" borderWidth="1px">
-      <Flex>
-        <Stack gap="0" minW="2xs" borderEndWidth="1px" py="2">
+      <Flex flexDirection={{ base: "column", sm: "row" }}>
+        <Stack
+          gap="0"
+          minW={{ base: "full", sm: "2xs" }}
+          borderBottomWidth={{ base: "1px", sm: "0" }}
+          borderEndWidth={{ base: "0", sm: "1px" }}
+          py="2"
+        >
           {presets.map((preset) => (
             <DatePicker.Context key={preset.label}>
               {(ctx) => (

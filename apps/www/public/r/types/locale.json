@@ -9,9 +9,6 @@
       }
     }
   },
-  "UseFilter": {
-    "props": {}
-  },
   "Locale": {
     "props": {
       "as": {
