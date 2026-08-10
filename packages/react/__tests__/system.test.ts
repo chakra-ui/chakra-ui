@@ -35,6 +35,43 @@ describe("system", () => {
     `)
   })
 
+  test("should generate token css for nested (array) conditions", () => {
+    const sys = createSystem({
+      cssVarsRoot: ":where(html)",
+      conditions: {
+        // nested condition: a media query wrapping a selector (like the default `_hover`)
+        hover: ["@media (hover: hover)", "&:is(:hover)"],
+      },
+      theme: {
+        tokens: {
+          colors: {
+            primary: { value: "#000" },
+          },
+        },
+        semanticTokens: {
+          colors: {
+            test: { value: { _hover: "pink" } },
+          },
+        },
+      },
+    })
+
+    expect(sys.getTokenCss()).toMatchInlineSnapshot(`
+      {
+        "@layer tokens": {
+          "&:where(html)": {
+            "--chakra-colors-primary": "#000",
+          },
+          "@media (hover: hover)": {
+            "&:is(:hover)": {
+              "--chakra-colors-test": "pink",
+            },
+          },
+        },
+      }
+    `)
+  })
+
   test("should generate global css", () => {
     const sys = createSystem({
       utilities: {
