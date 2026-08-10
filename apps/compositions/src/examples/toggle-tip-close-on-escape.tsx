@@ -4,10 +4,10 @@ import { InfoTip } from "compositions/ui/toggle-tip"
 export const ToggleTipCloseOnEscape = () => {
   return (
     <Flex justify="center">
-      <InfoTip closeOnEscape={false}>
-        Try pressing Escape — this popover stays open because closeOnEscape is
-        set to false.
-      </InfoTip>
+      <InfoTip
+        closeOnEscape={false}
+        content="This is some additional information."
+      />
     </Flex>
   )
 }

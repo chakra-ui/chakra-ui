@@ -4,10 +4,7 @@ import { InfoTip } from "compositions/ui/toggle-tip"
 export const ToggleTipArrow = () => {
   return (
     <Flex justify="center">
-      <InfoTip
-        showArrow
-        content="This toggle tip has an arrow pointing to the trigger."
-      />
+      <InfoTip showArrow content="This is some additional information." />
     </Flex>
   )
 }
