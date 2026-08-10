@@ -841,9 +841,6 @@ export default function App() {
         }
         "
       `)
-      // Verify imports are consolidated
-      expect(output).toContain("Drawer")
-      expect(output).toContain("Portal")
     })
 
     test("adds Portal if not present", async () => {
@@ -862,7 +859,31 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain("Portal")
+      expect(output).toMatchInlineSnapshot(`
+        "import { Drawer, Portal } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Drawer.Root
+              open={isOpen}
+              onOpenChange={(e) => {
+                if (!e.open) {
+                  onClose()
+                }
+              }}
+            >
+              <Portal>
+                <Drawer.Positioner>
+                  <Drawer.Content>
+                    <Drawer.Body>Body</Drawer.Body>
+                  </Drawer.Content>
+                </Drawer.Positioner>
+              </Portal>
+            </Drawer.Root>
+          )
+        }
+        "
+      `)
     })
   })
 

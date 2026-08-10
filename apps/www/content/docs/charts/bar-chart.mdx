@@ -34,12 +34,14 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 Here's an example of coloring the bars based on the data.
 
-> Use the `Cell` component from `recharts` to color the bars.
+> Use the `shape` prop on the `Bar` component to customize the fill color for
+> each bar.
 
 ```tsx
-<Bar dataKey="allocation">
-  <Cell fill="red" />
-</Bar>
+<Bar
+  dataKey="allocation"
+  shape={(props) => <Rectangle {...props} fill="red" />}
+/>
 ```
 
 <ExampleTabs name="charts/bar-chart-bar-color" />
@@ -76,15 +78,20 @@ To remove the gap between the bars, set the `barCategoryGap` prop to `0` on the
 
 ### Fill With Value
 
-Compose the `LabelList` and `Cell` components from `recharts` to render bars
-upward or downward based on the value.
+Compose the `LabelList` and `shape` prop to render bars upward or downward based
+on the value.
 
-```tsx /fill={item.views > 0 ? "green" : "red"}/
-<Bar dataKey="views">
+```tsx /fill={props.payload.views > 0 ? "green.solid" : "red.solid"}/
+<Bar
+  dataKey="views"
+  shape={(props) => (
+    <Rectangle
+      {...props}
+      fill={chart.color(props.payload.views > 0 ? "green.solid" : "red.solid")}
+    />
+  )}
+>
   <LabelList dataKey="views" position="top" />
-  {chart.data.map((item, index) => (
-    <Cell key={index} fill={item.views > 0 ? "green" : "red"} />
-  ))}
 </Bar>
 ```
 

@@ -247,7 +247,7 @@ We now use CSS color-mix
 ```jsx
 defineStyle({
   bg: "blue.200/16",
-  // -> color-mix(in srgb, var(--chakra-colors-200), transparent 16%)
+  // -> color-mix(in srgb, var(--chakra-colors-blue-200), transparent 16%)
 })
 ```
 
@@ -312,6 +312,49 @@ Common icon mappings: `AddIcon` → `LuPlus`, `CloseIcon` → `LuX`, `CheckIcon`
 `LuArrowRight`, `HamburgerIcon` → `LuMenu`, `WarningIcon` → `LuAlertTriangle`,
 `InfoIcon` → `LuInfo`, `ExternalLinkIcon` → `LuExternalLink`, `StarIcon` →
 `LuStar`
+
+### Custom SVG Icons
+
+In v2, `<Icon>` rendered an `<svg>` wrapper and you passed SVG children (like
+`<path>`) directly. In v3, when using custom SVGs, use the `asChild` prop so the
+`Icon` merges its styles onto your `<svg>` element.
+
+Before:
+
+```tsx
+import { Icon } from "@chakra-ui/react"
+
+<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
+  <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
+</Icon>
+```
+
+After:
+
+```tsx
+import { Icon } from "@chakra-ui/react"
+
+<Icon color="red.500" size="md" asChild>
+  <svg viewBox="0 0 24 24">
+    <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
+  </svg>
+</Icon>
+```
+
+Alternatively, use `createIcon` to define reusable custom icons:
+
+```tsx
+import { createIcon } from "@chakra-ui/react"
+
+const TriangleIcon = createIcon({
+  displayName: "TriangleIcon",
+  viewBox: "0 0 24 24",
+  path: <path d="M12 2L2 22h20L12 2z" fill="currentColor" />,
+})
+
+// Usage
+<TriangleIcon size="lg" color="red.500" />
+```
 
 ### Storybook Addon
 
@@ -396,7 +439,7 @@ For indeterminate progress:
 ### StackDivider
 
 - No longer available as a separate component
-- Use explicit `Stack.Separator` components between stack items
+- Use explicit `Separator` components between stack items
 
 Before:
 
@@ -411,11 +454,13 @@ Before:
 After:
 
 ```tsx
+import { Separator, VStack, Box } from "@chakra-ui/react";
+
 <VStack gap={4}>
   <Box>Item 1</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 2</Box>
-  <Stack.Separator borderColor="gray.200" />
+  <Separator borderColor="gray.200" />
   <Box>Item 3</Box>
 </VStack>
 ```
@@ -1505,7 +1550,7 @@ After:
 ### IconButton
 
 - `icon` → render as `children` directly
-- `isRounded` → `borderRadius="full"`
+- `isRound` → `borderRadius="full"`
 - `isDisabled` → `disabled`
 
 Before:
@@ -2059,7 +2104,8 @@ const Demo = () => (
 ### Table
 
 - `TableContainer` is now `Table.ScrollArea`
-- `Td`(now called `Table.ColumnHeader`) `isNumeric` is now `textAlign="end"`
+- `Td`(now called `Table.Cell`) `isNumeric` is now `textAlign="end"`
+- `Th` is now `Table.ColumnHeader`
 
 The compound component have been renamed slightly.
 
@@ -2684,7 +2730,8 @@ const Demo = () => (
 
 The `AccordionItem` render prop pattern (`{({ isExpanded }) => ...}`) has been
 replaced. Use the `Accordion.ItemContext` component or the
-`useAccordionItemContext` hook instead. The `isExpanded` property is now `expanded`.
+`useAccordionItemContext` hook instead. The `isExpanded` property is now
+`expanded`.
 
 Before:
 
@@ -3067,7 +3114,7 @@ const Demo = () => (
 // After
 <Stack
   gap="4"
-  separator={<Stack.Separator />}
+  separator={<Separator />}
 >
   <Box>Item 1</Box>
   <Box>Item 2</Box>

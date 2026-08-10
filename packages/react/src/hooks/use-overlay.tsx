@@ -1,14 +1,23 @@
 import * as React from "react"
 import { type Dict, omit } from "../utils"
 
-const shallowEqual = <T extends Dict>(a: T[], b: T[]) => {
+type OverlaySnapshotEntry<T extends Dict> = { id: string; props: T }
+
+const shallowEqualEntries = <T extends Dict>(
+  a: OverlaySnapshotEntry<T>[],
+  b: OverlaySnapshotEntry<T>[],
+) => {
   if (a.length !== b.length) return false
   for (let i = 0; i < a.length; i++) {
-    const aKeys = Object.keys(a[i])
-    const bKeys = Object.keys(b[i])
+    const aEntry = a[i]
+    const bEntry = b[i]
+    if (!aEntry || !bEntry) return false
+    if (aEntry.id !== bEntry.id) return false
+    const aKeys = Object.keys(aEntry.props)
+    const bKeys = Object.keys(bEntry.props)
     if (aKeys.length !== bKeys.length) return false
     for (const key of aKeys) {
-      if (!Object.is(a[i][key], b[i][key])) return false
+      if (!Object.is(aEntry.props[key], bEntry.props[key])) return false
     }
   }
   return true
@@ -18,7 +27,7 @@ const shallowEqual = <T extends Dict>(a: T[], b: T[]) => {
  * Props that are injected into the overlay component by the `createOverlay` function.
  * These props are used to control the overlay's state and lifecycle.
  */
-export interface CreateOverlayProps {
+export interface CreateOverlayProps<TReturn = unknown> {
   /** Whether the overlay is currently open */
   open?: boolean
   /** Callback fired when the overlay's open state changes */
@@ -26,45 +35,50 @@ export interface CreateOverlayProps {
   /** Callback fired when the overlay's exit animation completes */
   onExitComplete?: () => void
   /** Internal callback used to set the return value when the overlay closes */
-  setReturnValue?: ((value: unknown) => void) | undefined
+  setReturnValue?: ((value: TReturn) => void) | undefined
   /** Internal callback used to signal when the exit animation is complete */
   setExitComplete?: (() => void) | undefined
 }
 
-export interface OverlayOptions<T extends CreateOverlayProps> {
-  props?: T
+export interface OverlayOptions<TProps extends CreateOverlayProps> {
+  props?: TProps
 }
 
-export interface CreateOverlayReturn<T extends CreateOverlayProps> {
+export interface CreateOverlayReturn<
+  TProps extends CreateOverlayProps,
+  TReturn = unknown,
+> {
   /** The root component for the overlay */
   Viewport: React.ElementType
   /** Opens a new overlay with the given id and props */
-  open: (id: string, props: T) => Promise<any>
+  open: (id: string, props: TProps) => Promise<TReturn | undefined>
   /** Closes the overlay with the given id and returns the value */
-  close: (id: string, value?: any) => Promise<void>
+  close: (id: string, value?: TReturn | undefined) => Promise<void>
   /** Updates the props of the overlay with the given id */
-  update: (id: string, props: T) => void
+  update: (id: string, props: TProps) => void
   /** Removes the overlay with the given id */
   remove: (id: string) => void
   /** Removes all overlays */
   removeAll: () => void
   /** Gets the props of the overlay with the given id */
-  get: (id: string) => T
+  get: (id: string) => TProps
+  /** Checks if the overlay with the given id exists */
+  has: (id: string) => boolean
   /** Gets the current snapshot of the overlays */
-  getSnapshot: () => T[]
+  getSnapshot: () => TProps[]
   /** Waits for the exit animation to complete for the overlay with the given id */
   waitForExit: (id: string) => Promise<void>
 }
 
-export function createOverlay<T extends Dict>(
-  Component: React.ElementType<T & CreateOverlayProps>,
-  options?: OverlayOptions<T>,
-): CreateOverlayReturn<T> {
-  const map = new Map<string, T>()
+export function createOverlay<TProps extends Dict, TReturn = unknown>(
+  Component: React.ComponentType<CreateOverlayProps<TReturn> & TProps>,
+  options?: OverlayOptions<TProps>,
+): CreateOverlayReturn<TProps, TReturn> {
+  const map = new Map<string, TProps>()
   const exitPromises = new Map<string, Promise<void>>()
 
-  const subscribers = new Set<(nextOverlayProps: T[]) => void>()
-  const subscribe = (callback: (nextOverlayProps: T[]) => void) => {
+  const subscribers = new Set<(nextOverlayProps: TProps[]) => void>()
+  const subscribe = (callback: (nextOverlayProps: TProps[]) => void) => {
     subscribers.add(callback)
     return () => subscribers.delete(callback)
   }
@@ -74,20 +88,31 @@ export function createOverlay<T extends Dict>(
     }
   }
 
-  let lastSnapshot: T[] = []
+  let lastSnapshotWithIds: OverlaySnapshotEntry<TProps>[] = []
+  let lastSnapshotProps: TProps[] = []
 
-  const getSnapshot = () => {
-    const nextSnapshot = Array.from(map.values())
-    if (shallowEqual(lastSnapshot, nextSnapshot)) return lastSnapshot
-    lastSnapshot = nextSnapshot
-    return lastSnapshot
+  const getSnapshotForStore = () => {
+    const nextSnapshot: OverlaySnapshotEntry<TProps>[] = Array.from(
+      map.entries(),
+    ).map(([id, props]) => ({ id, props }))
+    if (shallowEqualEntries(lastSnapshotWithIds, nextSnapshot)) {
+      return lastSnapshotWithIds
+    }
+    lastSnapshotWithIds = nextSnapshot
+    lastSnapshotProps = nextSnapshot.map((e) => e.props)
+    return lastSnapshotWithIds
+  }
+
+  const getSnapshot = (): TProps[] => {
+    getSnapshotForStore()
+    return lastSnapshotProps
   }
 
   const waitForExit = (id: string) => {
     return exitPromises.get(id) || Promise.resolve()
   }
 
-  const open = (id: string, props: T) => {
+  const open = (id: string, props: TProps) => {
     const overlayProps = {
       ...options?.props,
       ...props,
@@ -96,7 +121,7 @@ export function createOverlay<T extends Dict>(
         if (!e.open) close(id)
       },
       onExitComplete: () => {
-        const overlay = get(id) as T & CreateOverlayProps
+        const overlay = get(id) as CreateOverlayProps<TReturn> & TProps
         if (overlay.setExitComplete) {
           overlay.setExitComplete()
           overlay.setExitComplete = undefined
@@ -105,15 +130,15 @@ export function createOverlay<T extends Dict>(
       },
       setReturnValue: undefined,
       setExitComplete: undefined,
-    }
+    } as unknown as TProps
 
-    map.set(id, overlayProps as T)
+    map.set(id, overlayProps)
 
-    const prom = new Promise<any>((resolve) => {
+    const prom = new Promise<TReturn>((resolve) => {
       map.set(id, {
         ...overlayProps,
         setReturnValue: resolve,
-      } as T)
+      } as unknown as TProps)
     })
 
     publish()
@@ -121,23 +146,23 @@ export function createOverlay<T extends Dict>(
     return prom
   }
 
-  const close = (id: string, value?: any) => {
-    const prevProps = get(id) as T & CreateOverlayProps
+  const close = (id: string, value?: TReturn) => {
+    const prevProps = get(id) as CreateOverlayProps<TReturn> & TProps
     map.set(id, { ...prevProps, open: false })
 
     if (prevProps.setReturnValue) {
-      prevProps.setReturnValue(value)
+      prevProps.setReturnValue(value as TReturn)
       prevProps.setReturnValue = undefined
     }
 
     publish()
 
     const exitPromise = new Promise<void>((resolve) => {
-      const overlay = get(id) as T & CreateOverlayProps
+      const overlay = get(id) as CreateOverlayProps<TReturn> & TProps
       map.set(id, {
         ...overlay,
         setExitComplete: resolve,
-      } as T)
+      } as TProps)
     })
 
     exitPromises.set(id, exitPromise)
@@ -150,7 +175,7 @@ export function createOverlay<T extends Dict>(
     publish()
   }
 
-  const update = (id: string, props: T) => {
+  const update = (id: string, props: TProps) => {
     const prevProps = get(id)
     map.set(id, {
       ...prevProps,
@@ -167,23 +192,38 @@ export function createOverlay<T extends Dict>(
     return overlay
   }
 
+  function has(id: string): boolean {
+    return map.has(id)
+  }
+
   const removeAll = () => {
     map.clear()
     exitPromises.clear()
     publish()
   }
 
+  function OverlayViewportItem(props: CreateOverlayProps<TReturn> & TProps) {
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    const open = mounted ? (props.open ?? false) : false
+
+    return <Component {...props} open={open} />
+  }
+
   function Viewport() {
     const overlays = React.useSyncExternalStore(
       subscribe,
-      getSnapshot,
-      getSnapshot,
+      getSnapshotForStore,
+      getSnapshotForStore,
     )
     return (
       <>
-        {overlays.map((props, index) => (
-          // @ts-expect-error - TODO: fix this
-          <Component key={index} {...props} />
+        {overlays.map(({ id, props }) => (
+          <OverlayViewportItem key={id} {...props} />
         ))}
       </>
     )
@@ -197,6 +237,7 @@ export function createOverlay<T extends Dict>(
     remove,
     removeAll,
     get,
+    has,
     getSnapshot,
     waitForExit,
   }

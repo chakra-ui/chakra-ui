@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react"
 import { createContext, useContext, useMemo } from "react"
 import type { LegendPayload, LegendProps, TooltipContentProps } from "recharts"
-import { ResponsiveContainer } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
 import type { PolarViewBoxRequired, ViewBox } from "recharts/types/util/types"
 import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
@@ -51,6 +50,10 @@ const baseCss = defineStyle({
   "& svg": {
     overflow: "visible",
   },
+  "& .recharts-wrapper": {
+    width: "100%",
+    height: "100%",
+  },
 })
 
 export function ChartRoot<T>(props: ChartRootProps<T>) {
@@ -63,7 +66,7 @@ export function ChartRoot<T>(props: ChartRootProps<T>) {
         css={[baseCss, css]}
         {...rest}
       >
-        <ResponsiveContainer>{children}</ResponsiveContainer>
+        {children}
       </Box>
     </ChartContext.Provider>
   )

@@ -1,5 +1,27 @@
 # @chakra-ui/codemod
 
+## 3.36.1
+
+### Patch Changes
+
+- [`dd9fa1c`](https://github.com/chakra-ui/chakra-ui/commit/dd9fa1c44b1e3df7375a9ce06def49e44c003d3b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Require
+  Node.js >=22 (Node 18 and 20 are end-of-life)
+
+## 3.36.0
+
+## 3.35.0
+
+## 3.34.0
+
+### Patch Changes
+
+- [`a3c5396`](https://github.com/chakra-ui/chakra-ui/commit/a3c5396794638c405db5b19c82bbe87973c20bed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
+  `Steps` was added to the import list.
+  - Fix issue where `ChakraProvider value={defaultSystem}` was wrapped in
+    `String()` — the system engine is passed through correctly.
+
 ## 3.33.0
 
 ### Patch Changes

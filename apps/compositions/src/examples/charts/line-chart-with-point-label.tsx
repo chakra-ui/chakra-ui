@@ -25,7 +25,11 @@ export const LineChartWithPointLabel = () => {
 
   return (
     <Chart.Root maxH="md" chart={chart}>
-      <LineChart data={chart.data} margin={{ left: 40, right: 40, top: 40 }}>
+      <LineChart
+        data={chart.data}
+        margin={{ left: 40, right: 40, top: 40 }}
+        responsive
+      >
         <CartesianGrid
           stroke={chart.color("border")}
           strokeDasharray="3 3"

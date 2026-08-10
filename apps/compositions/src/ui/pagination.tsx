@@ -1,11 +1,10 @@
 "use client"
 
-import type { ButtonProps, TextProps } from "@chakra-ui/react"
+import type { ButtonProps } from "@chakra-ui/react"
 import {
   Button,
   Pagination as ChakraPagination,
   IconButton,
-  Text,
   createContext,
   usePaginationContext,
 } from "@chakra-ui/react"
@@ -35,8 +34,10 @@ const [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({
   name: "RootPropsProvider",
 })
 
-export interface PaginationRootProps
-  extends Omit<ChakraPagination.RootProps, "type"> {
+export interface PaginationRootProps extends Omit<
+  ChakraPagination.RootProps,
+  "type"
+> {
   size?: ButtonProps["size"]
   variant?: PaginationVariant
   getHref?: (page: number) => string
@@ -184,25 +185,4 @@ export const PaginationItems = (props: React.HTMLAttributes<HTMLElement>) => {
   )
 }
 
-interface PageTextProps extends TextProps {
-  format?: "short" | "compact" | "long"
-}
-
-export const PaginationPageText = React.forwardRef<
-  HTMLParagraphElement,
-  PageTextProps
->(function PaginationPageText(props, ref) {
-  const { format = "compact", ...rest } = props
-  const { page, totalPages, pageRange, count } = usePaginationContext()
-  const content = React.useMemo(() => {
-    if (format === "short") return `${page} / ${totalPages}`
-    if (format === "compact") return `${page} of ${totalPages}`
-    return `${pageRange.start + 1} - ${Math.min(pageRange.end, count)} of ${count}`
-  }, [format, page, totalPages, pageRange, count])
-
-  return (
-    <Text fontWeight="medium" ref={ref} {...rest}>
-      {content}
-    </Text>
-  )
-})
+export const PaginationPageText = ChakraPagination.PageText

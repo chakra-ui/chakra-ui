@@ -1,5 +1,333 @@
 # @chakra-ui/react
 
+## 3.36.1
+
+### Patch Changes
+
+- [#10868](https://github.com/chakra-ui/chakra-ui/pull/10868)
+  [`f32a160`](https://github.com/chakra-ui/chakra-ui/commit/f32a160162ba9523f93080587df086a99ca5bfdc)
+  Thanks [@WahabKhan7528](https://github.com/WahabKhan7528)! -
+  **OverlayManager**: add has() method to createOverlay return
+
+- [#10885](https://github.com/chakra-ui/chakra-ui/pull/10885)
+  [`e503f8d`](https://github.com/chakra-ui/chakra-ui/commit/e503f8d9f403b7dac71ee586857037d791e7ee8c)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Bleed: Fix
+  incorrect css prop application
+
+- [`129c50f`](https://github.com/chakra-ui/chakra-ui/commit/129c50ff9be80fa4ad5cc0a39b6cff8a20609c42)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where the
+  checked ring of `RadioCard` and `CheckboxCard` (outline variant) gets clipped
+  when a parent has `overflow: hidden|auto|scroll`. The ring is now drawn with
+  an inset shadow instead of an outer shadow.
+
+- [#10859](https://github.com/chakra-ui/chakra-ui/pull/10859)
+  [`6f10270`](https://github.com/chakra-ui/chakra-ui/commit/6f102700bdf5fd4e61971db77e65f1516ce8ab38)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Checkmark: Fix
+  incorrect css prop application
+
+- [#10884](https://github.com/chakra-ui/chakra-ui/pull/10884)
+  [`e7431f1`](https://github.com/chakra-ui/chakra-ui/commit/e7431f1c9e05cb698492c65c6d72aca2e8c1151c)
+  Thanks [@sanjibani](https://github.com/sanjibani)! - - Docs: fix
+  `Stack.Separator` references in the v3 migration guide. The standalone
+  `Separator` component is now used in both the `StackDivider` and `Stack Props`
+  examples.
+
+- [`0fe3055`](https://github.com/chakra-ui/chakra-ui/commit/0fe305592d90bf943b27b7a40668e4bf1648cb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix error when
+  merging recipes (e.g. composing a recipe-based component through the `chakra`
+  factory). Recipe merging now normalizes compiled and raw configs before
+  combining them, and no longer throws or mutates the source configs.
+
+- [#10879](https://github.com/chakra-ui/chakra-ui/pull/10879)
+  [`e882dc0`](https://github.com/chakra-ui/chakra-ui/commit/e882dc0e714be7d37d7a1fd93fce8ed08fe7905d)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Float: Fix
+  incorrect css prop application
+
+- [`2ed9026`](https://github.com/chakra-ui/chakra-ui/commit/2ed9026862cf1d816e981746d723256bcbd59159)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add a default
+  `minSize` of `{ width: 240, height: 100 }` to `FloatingPanel.Root` to prevent
+  the panel from being resized to zero. Pass your own `minSize` to override it.
+
+- [#10863](https://github.com/chakra-ui/chakra-ui/pull/10863)
+  [`b5de5e2`](https://github.com/chakra-ui/chakra-ui/commit/b5de5e246bdecfeb9326c301c3cc397cc2cd676d)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Image: Fix
+  custom `className` removing the base `chakra-image` class
+
+- [#10873](https://github.com/chakra-ui/chakra-ui/pull/10873)
+  [`c4e79c1`](https://github.com/chakra-ui/chakra-ui/commit/c4e79c122a6500f5f68f1c00a826c315a808d511)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - Fix issue where
+  `LinkOverlay` dropped the `rel` attribute instead of forwarding it to the
+  rendered anchor.
+
+- [`0fe3055`](https://github.com/chakra-ui/chakra-ui/commit/0fe305592d90bf943b27b7a40668e4bf1648cb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve render
+  performance of recipe components (`Button`, `Badge`, `Skeleton`, etc.) in
+  large lists and tables.
+  - Cache compiled recipes per system instead of per component instance.
+  - Memoize variant style resolution so results are referentially stable.
+  - Drop the per-instance `structuredClone` of recipe configs.
+
+  In benchmarks, repeated variant resolution is ~70-90x faster and
+  compile+resolve ~30x faster. No public API changes.
+
+- [#10860](https://github.com/chakra-ui/chakra-ui/pull/10860)
+  [`f53e46a`](https://github.com/chakra-ui/chakra-ui/commit/f53e46a182cac5b6018596cc5da965af4416ac71)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - WrapItem: Fix
+  incorrect css prop application
+
+## 3.36.0
+
+### Minor Changes
+
+- [#10752](https://github.com/chakra-ui/chakra-ui/pull/10752)
+  [`1ef5800`](https://github.com/chakra-ui/chakra-ui/commit/1ef580069c1a6c0cc3dd03f6edab52d98dac14b2)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **[New]
+  FloatingPanel**: Add draggable, resizable floating panel component
+
+  ```tsx
+  import { FloatingPanel } from "@chakra-ui/react/floating-panel"
+  ```
+
+  ```tsx
+  <FloatingPanel.Root>
+    <FloatingPanel.Trigger />
+    <FloatingPanel.Positioner>
+      <FloatingPanel.Content>
+        <FloatingPanel.Header>
+          <FloatingPanel.DragTrigger>
+            <FloatingPanel.Title />
+          </FloatingPanel.DragTrigger>
+          <FloatingPanel.Control>
+            <FloatingPanel.StageTrigger />
+            <FloatingPanel.CloseTrigger />
+          </FloatingPanel.Control>
+        </FloatingPanel.Header>
+        <FloatingPanel.Body />
+        <FloatingPanel.ResizeTriggers />
+      </FloatingPanel.Content>
+    </FloatingPanel.Positioner>
+  </FloatingPanel.Root>
+  ```
+
+- [#10847](https://github.com/chakra-ui/chakra-ui/pull/10847)
+  [`238e20a`](https://github.com/chakra-ui/chakra-ui/commit/238e20a41a3e8f750bad555d56a1b23fa3de84d8)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - Update Ark UI to
+  v5.37.2
+  - **Splitter**: Accept CSS units (`px`, `em`, `rem`, `vh`, `vw`) for size
+    props, add per-panel `resizeBehavior` (`"preserve-pixel-size"`), and fix
+    focus not moving to a resize trigger on click.
+  - **Color Picker, Combobox, Date Picker, Hover Card, Menu, Popover, Select,
+    Tooltip**: Add `data-side` to placement-aware parts for placement-based
+    styling.
+  - **Accordion**: Remove redundant `aria-disabled` from item triggers.
+  - **Color Picker**: Fire `onValueChangeEnd` when picking a color with the
+    EyeDropper API.
+  - **Combobox**: Don't submit the form on `Enter` when an item is highlighted
+    or the value is rejected by `allowCustomValue: false`.
+  - **Date Picker**: Fix range-mode clear not resetting active/hovered state,
+    the native month/year select inside modals (Firefox), and
+    `outsideDaySelectable` hover changing the visible month.
+  - **Dialog, Hover Card, Menu, Popover, Tooltip**: Fix shared custom trigger
+    elements being ignored, and trigger lookups in shadow DOM.
+  - **Dialog, Popover**: Fix the page being left uninteractive after closing in
+    React 19 Strict Mode.
+  - **Number Input**: Fix blur behavior when the input is cleared and `min` is
+    greater than `0`.
+  - **Pin Input**: Fix `data-filled` being set on every input on first render.
+  - **Tabs**: Update the indicator when the tab list resizes (responsive
+    reflow).
+
+### Patch Changes
+
+- [`43a016d`](https://github.com/chakra-ui/chakra-ui/commit/43a016d32f470b14bbfb0d0a7c83075902feee5e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove the
+  DatePicker input `_placeholder` override so placeholders use the same global
+  `*::placeholder` styling as `Input`.
+
+- [`82b26be`](https://github.com/chakra-ui/chakra-ui/commit/82b26bea60f49450522354474fa5b1811095c3bb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Use
+  `focusVisibleRing` instead of `focusRing` on `Link` so the focus ring shows
+  only for `:focus-visible`, not on mouse click.
+
+- [`1bbdd86`](https://github.com/chakra-ui/chakra-ui/commit/1bbdd8608cbd6b5c1b34b1eea3b1989b8a1dd6b4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix recipe
+  definition types so `defaultVariants` accepts variant keys when using the
+  broad `RecipeDefinition` type.
+
+- [`06b5f02`](https://github.com/chakra-ui/chakra-ui/commit/06b5f022dbe16a2285437465340871b975c34dfb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix
+  `system.token()` returning dark-mode resolved values for semantic tokens with
+  light/dark conditions instead of the semantic CSS variable reference.
+
+  Also fix token dictionary bookkeeping for semantic tokens without a base value
+  so lookup maps stay in sync after empty tokens are removed.
+
+- [#10799](https://github.com/chakra-ui/chakra-ui/pull/10799)
+  [`7a97cf9`](https://github.com/chakra-ui/chakra-ui/commit/7a97cf9f359373ca577374881ba2c6ba6770cebe)
+  Thanks [@cyphercodes](https://github.com/cyphercodes)! - Fix token dictionary
+  lookups to preserve semantic token condition metadata when using `getByName`.
+
+- [#10801](https://github.com/chakra-ui/chakra-ui/pull/10801)
+  [`27e0489`](https://github.com/chakra-ui/chakra-ui/commit/27e048996062c642c3b7417879fe299ca266eef2)
+  Thanks [@doz13189](https://github.com/doz13189)! - Fix: normalize nested token
+  overrides when merging default theme
+
+  When merging a custom token into the default theme, token normalization could
+  stop at the category level (for example `colors`) and prevent promoting flat
+  tokens to `DEFAULT`. This change updates the merge logic so adding nested
+  overrides like `colors.black.100` correctly moves the original `colors.black`
+  value to `DEFAULT` and resolves nested tokens.
+
+  Fixes: [#10800](https://github.com/chakra-ui/chakra-ui/issues/10800)
+
+## 3.35.0
+
+### Minor Changes
+
+- [`1b1f545`](https://github.com/chakra-ui/chakra-ui/commit/1b1f545aeb753131f4f8c296c9edfade6b09094e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Pagination**:
+  Allow `format` prop in `Pagination.PageText` to accept a function for i18n
+  support.
+
+  ```tsx
+  <Pagination.PageText
+    format={({ page, totalPages }) => `Page ${page} de ${totalPages}`}
+  />
+  ```
+
+### Patch Changes
+
+- [`d041e10`](https://github.com/chakra-ui/chakra-ui/commit/d041e108d28b77524b302ac6389bee0fb06b6c6f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump
+  `@ark-ui/react` to `5.36.0` (from `^5.34.1`)
+  - **Accordion**: Fix missing `data-focus` on item trigger props.
+  - **Carousel**: Fix issue with controlled carousel inside dialog, navigation
+    transformed containers, scroll drift, and page sync with indicators.
+  - **ColorPicker**: Fix vertical slider orientation on pointer updates.
+  - **Combobox**: VoiceOver announces highlighted options on Apple devices via a
+    live region
+  - **Dialog, Popover, HoverCard**: Add support for multiple triggers sharing
+    one dialog instance.
+  - **Field**: `Field.Item` and `target` on `Field.Root` for multi-control
+    fields (re-exported as `FieldItem` / `Field.Item`).
+  - **FileUpload**: Reject duplicate files with `FILE_EXISTS`.
+  - **Listbox**: `keyboardPriority` for Home/End and arrows; `highlightFirst`,
+    `highlightLast`, `highlightNext`, `highlightPrevious`.
+  - **Menu**: `aria-expanded` when closed; submenu hover “diagonal” flash fix;
+    multiple triggers.
+  - **PinInput**: Deletion and focus behavior, Home/End, `enterKeyHint`,
+    `autoSubmit`, `sanitizeValue`.
+  - **Popover**: Add support for `translations`; `finalFocusEl` and
+    `restoreFocus` props.
+  - **TagsInput**: `allowDuplicates`; `sanitizeValue`; `enterKeyHint` on mobile.
+
+- [`3da73c3`](https://github.com/chakra-ui/chakra-ui/commit/3da73c35b6eb4dcef919967d9e654682603dcd89)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Export missing
+  `datePickerSlotRecipe` from slot recipes
+
+- [#10721](https://github.com/chakra-ui/chakra-ui/pull/10721)
+  [`d2b7dec`](https://github.com/chakra-ui/chakra-ui/commit/d2b7decc32f3c99ebda1492731f7e72c6189f11b)
+  Thanks [@isBatak](https://github.com/isBatak)! - Improve `useBreakpoint` and
+  `useBreakpointValue` types with `BreakpointName`
+
+- [`6bad1b7`](https://github.com/chakra-ui/chakra-ui/commit/6bad1b7f67fe6ef5e5421947edd513b9956c51ff)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - -
+  **createOverlay**: Fix `document.body` scroll lock and `pointer-events` not
+  being restored when overlays are used under React `StrictMode`.
+
+- [`16f8329`](https://github.com/chakra-ui/chakra-ui/commit/16f8329acccb105f1481dcaf2dabec7b0278206e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**: Fix
+  `isCssUnit` utility to reject malformed values like `1a5rem` and `1-5rem` by
+  properly escaping the decimal point in the length regex.
+
+- [`e9f04d4`](https://github.com/chakra-ui/chakra-ui/commit/e9f04d4a6dad093852b924883b55e4c257ca0c22)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Dialog,
+  Drawer**: Fixed the panel sometimes showing behind the dimmed overlay when
+  opening and closing quickly or with certain global z-index styles on the page.
+
+- [`39e3db3`](https://github.com/chakra-ui/chakra-ui/commit/39e3db3eb56ebc37a444a6ae3f1e2a1b95d27605)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System /
+  Tokens**: Fix array shorthand for fonts, shadows, gradients, animations, and
+  easings (no longer mistaken for responsive arrays).
+
+- [`5f30ddb`](https://github.com/chakra-ui/chakra-ui/commit/5f30ddb61ddf6bce324ea06ba640fe97e6b1e61d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Hooks**: Fix
+  `usePrevious` to use a React 19-safe state-based implementation and compare
+  values with `Object.is` for correct `NaN`/`-0` behavior.
+
+- [#10765](https://github.com/chakra-ui/chakra-ui/pull/10765)
+  [`a7c1ffb`](https://github.com/chakra-ui/chakra-ui/commit/a7c1ffbf040c8d876bf9986495d4b4fbcd942271)
+  Thanks [@rusty-jnr](https://github.com/rusty-jnr)! - Fix date picker calendar
+  popup clipping constrained by available height
+
+- [#10675](https://github.com/chakra-ui/chakra-ui/pull/10675)
+  [`a98e042`](https://github.com/chakra-ui/chakra-ui/commit/a98e042f1b549b00272daa7289a16007e02526c9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **Theme /
+  KeyFrames**: Add CSS variable overrides for slide keyframe distances
+  (`slide-from-*` and `slide-to-*`), for example:
+
+  ```tsx
+  <Box
+    css={{
+      animation: "slide-from-top 200ms ease-out",
+      "--slide-from-top-distance": "1rem",
+    }}
+  />
+  ```
+
+- [#10781](https://github.com/chakra-ui/chakra-ui/pull/10781)
+  [`581c7d1`](https://github.com/chakra-ui/chakra-ui/commit/581c7d12f0e18472b55565f43d8c233afdbea113)
+  Thanks [@CerealeZ](https://github.com/CerealeZ)! - - GridItem: Fix incorrect
+  css prop application
+
+- [`c53f298`](https://github.com/chakra-ui/chakra-ui/commit/c53f298296437596182193c369c92966a2dcc52e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System / Global
+  CSS**: Fix an issue where responsive array values in `globalCss` selector
+  rules (for example `#id` or `.class`) were serialized incorrectly instead of
+  generating responsive breakpoint styles.
+
+## 3.34.0
+
+### Minor Changes
+
+- [#10597](https://github.com/chakra-ui/chakra-ui/pull/10597)
+  [`f11219d`](https://github.com/chakra-ui/chakra-ui/commit/f11219da7f20a9c0fce062a5d2d49b87313c43c5)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - - **[New]
+  DatePicker**: Add new datepicker component for date selection
+
+### Patch Changes
+
+- [`94517fa`](https://github.com/chakra-ui/chakra-ui/commit/94517fa02e817d4bc8f58e5f859bedfaecf77462)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix export gaps for
+  Ark UI components:
+  - **Select**: Expose `Select.List` component (for virtualization support)
+  - **Combobox**: Export `ComboboxSelectionDetails` type (as
+    `Combobox.SelectionDetails` in namespace)
+  - **Listbox**: Export `ListboxScrollToIndexDetails`,
+    `ListboxSelectionDetails`, `ListboxSelectionMode` types (as
+    `Listbox.ScrollToIndexDetails`, `Listbox.SelectionDetails`,
+    `Listbox.SelectionMode` in namespace)
+  - **Menu**: Export `MenuValueChangeDetails` type (as `Menu.ValueChangeDetails`
+    in namespace)
+
+- [`be18f13`](https://github.com/chakra-ui/chakra-ui/commit/be18f13c10c5c776ace35b3c4af11af7e5463140)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TypeScript
+  error when passing `ref` to `CheckboxGroup`.
+
+- [`0aa89d0`](https://github.com/chakra-ui/chakra-ui/commit/0aa89d059b2577dc46c9d135158e226f329bfdca)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix `globalCss`
+  silently ignoring element selectors that match utility shorthands (e.g. `p`,
+  `m`, `h`, `w`).
+
+  Previously, `p: { margin: '0 0 1em' }` in `globalCss` was treated as the
+  `padding` utility instead of a `<p>` element selector, causing the styles to
+  be silently dropped.
+
+- [`59bf8f6`](https://github.com/chakra-ui/chakra-ui/commit/59bf8f6a63ba70481160556f16113deb143c34f5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Field**: Fix
+  `Field.ErrorIcon` default size so it stays aligned with error text instead of
+  expanding when the error area is full width.
+
 ## 3.33.0
 
 ### Minor Changes

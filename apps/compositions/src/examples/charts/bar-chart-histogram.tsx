@@ -10,6 +10,7 @@ export const BarChartHistogram = () => {
       <BarChart
         data={chart.data}
         margin={{ top: 20, right: 20, bottom: 20, left: 40 }}
+        responsive
       >
         <CartesianGrid strokeDasharray="3 3" stroke={chart.color("border")} />
         <XAxis

@@ -20,7 +20,7 @@ export const SparklineBasic = () => {
 
   return (
     <Chart.Root width="28" height="12" chart={chart}>
-      <AreaChart data={chart.data}>
+      <AreaChart data={chart.data} responsive>
         {chart.series.map((item) => (
           <Area
             key={item.name}

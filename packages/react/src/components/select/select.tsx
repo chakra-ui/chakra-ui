@@ -109,6 +109,17 @@ export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface SelectListProps
+  extends HTMLChakraProps<"div", ArkSelect.ListBaseProps>, UnstyledProp {}
+
+export const SelectList = withContext<HTMLDivElement, SelectListProps>(
+  ArkSelect.List,
+  "list",
+  { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface SelectValueTextProps
   extends HTMLChakraProps<"span", ArkSelect.ValueTextBaseProps>, UnstyledProp {}
 

@@ -606,6 +606,29 @@ describe("serialize - top-level selector handling", () => {
       `)
     })
 
+    test("responsive array utility value should work in id selector", () => {
+      const sys = createSystem(defaultConfig, {
+        globalCss: {
+          "#myElementId": {
+            pl: [4, 6, 8],
+          },
+        },
+      })
+
+      const result = sys.getGlobalCss()
+      expect(result["@layer base"]["&#myElementId"]).toMatchInlineSnapshot(`
+        {
+          "@media screen and (min-width: 30rem)": {
+            "paddingLeft": "var(--chakra-spacing-6)",
+          },
+          "@media screen and (min-width: 48rem)": {
+            "paddingLeft": "var(--chakra-spacing-8)",
+          },
+          "paddingLeft": "var(--chakra-spacing-4)",
+        }
+      `)
+    })
+
     test("element selector with nested pseudo condition", () => {
       const sys = createSystem({
         globalCss: {

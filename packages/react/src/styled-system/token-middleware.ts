@@ -134,9 +134,37 @@ export const addVirtualPalette: TokenMiddleware = {
 export const removeEmptyTokens: TokenMiddleware = {
   enforce: "post",
   transform(dictionary) {
-    dictionary.allTokens = dictionary.allTokens.filter(
-      (token) => token.value !== "",
-    )
+    const removed: Token[] = []
+    const next: Token[] = []
+
+    dictionary.allTokens.forEach((token) => {
+      if (token.value === "") {
+        removed.push(token)
+      } else {
+        next.push(token)
+      }
+    })
+
+    dictionary.allTokens.splice(0, dictionary.allTokens.length, ...next)
+
+    removed.forEach((token) => {
+      if (dictionary.tokenMap.get(token.name) !== token) return
+
+      const replacement = dictionary.allTokens.find(
+        (t) => t.name === token.name,
+      )
+      if (!replacement) {
+        dictionary.tokenMap.delete(token.name)
+        return
+      }
+
+      // Safety net for non-standard registration paths that omit conditions.
+      if (token.extensions.conditions && !replacement.extensions.conditions) {
+        replacement.extensions.conditions = token.extensions.conditions
+      }
+
+      dictionary.tokenMap.set(token.name, replacement)
+    })
   },
 }
 

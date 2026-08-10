@@ -29,7 +29,7 @@ export const BarChartHorizontal = () => {
 
   return (
     <Chart.Root maxH="md" chart={chart}>
-      <BarChart layout="vertical" data={chart.data}>
+      <BarChart layout="vertical" data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis type="number" axisLine={false} tickLine={false} />
         <YAxis

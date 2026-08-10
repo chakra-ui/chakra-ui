@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Rules", url: "rules" },
+            { title: "AI Skills", url: "skills", status: "new" },
           ],
         },
         {
@@ -39,6 +39,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
+            { title: "TanStack Router", url: "tanstack-router" },
             { title: "Vite", url: "vite" },
           ],
         },
@@ -105,11 +106,7 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
-            {
-              title: "Rich Text Editor",
-              url: "rich-text-editor",
-              status: "new",
-            },
+            { title: "Rich Text Editor", url: "rich-text-editor" },
             { title: "Text", url: "text" },
           ],
         },
@@ -123,6 +120,13 @@ const docsLinks: NavItem = {
               title: "Download Trigger",
               url: "download-trigger",
             },
+          ],
+        },
+        {
+          title: "Date and Time",
+          items: [
+            { title: "Date Picker", url: "date-picker" },
+            { title: "Calendar", url: "calendar" },
           ],
         },
         {
@@ -166,6 +170,7 @@ const docsLinks: NavItem = {
             { title: "Action Bar", url: "action-bar" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
+            { title: "Floating Panel", url: "floating-panel", status: "new" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Menu", url: "menu" },
             { title: "Overlay Manager", url: "overlay-manager" },
@@ -209,7 +214,7 @@ const docsLinks: NavItem = {
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
             { title: "Icon", url: "icon" },
-            { title: "Marquee", url: "marquee", status: "new" },
+            { title: "Marquee", url: "marquee" },
             { title: "QR Code", url: "qr-code" },
             { title: "Stat", url: "stat" },
             { title: "Table", url: "table" },
@@ -389,6 +394,7 @@ const docsLinks: NavItem = {
 export const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
   { title: "Showcase", url: "/showcase" },
+  { title: "Spotlight", url: "/shipped" },
   { title: "Blog", url: "/blog" },
   { title: "Guides", url: "/guides" },
 ]

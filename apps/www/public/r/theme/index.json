@@ -330,7 +330,9 @@
       "slide-to-left",
       "slide-to-right",
       "scale-in",
-      "scale-out"
+      "scale-out",
+      "marqueeX",
+      "marqueeY"
     ]
   },
   {

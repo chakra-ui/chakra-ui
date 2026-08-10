@@ -1,5 +1,50 @@
 # @chakra-ui/panda-preset
 
+## 3.36.1
+
+### Patch Changes
+
+- [`129c50f`](https://github.com/chakra-ui/chakra-ui/commit/129c50ff9be80fa4ad5cc0a39b6cff8a20609c42)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where the
+  checked ring of `RadioCard` and `CheckboxCard` (outline variant) gets clipped
+  when a parent has `overflow: hidden|auto|scroll`. The ring is now drawn with
+  an inset shadow instead of an outer shadow.
+
+- [`f4e6377`](https://github.com/chakra-ui/chakra-ui/commit/f4e63775649ff6502cefbb74930f4329da194a28)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Sync theme from
+  `@chakra-ui/react`: register the missing `floatingPanel` slot recipe and
+  update the date picker range-selection styles
+
+## 3.36.0
+
+### Patch Changes
+
+- [`43a016d`](https://github.com/chakra-ui/chakra-ui/commit/43a016d32f470b14bbfb0d0a7c83075902feee5e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove the
+  DatePicker input `_placeholder` override so placeholders use the same global
+  `*::placeholder` styling as `Input`.
+
+- [`82b26be`](https://github.com/chakra-ui/chakra-ui/commit/82b26bea60f49450522354474fa5b1811095c3bb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Use
+  `focusVisibleRing` instead of `focusRing` on `Link` so the focus ring shows
+  only for `:focus-visible`, not on mouse click.
+
+## 3.35.0
+
+### Patch Changes
+
+- [`e9f04d4`](https://github.com/chakra-ui/chakra-ui/commit/e9f04d4a6dad093852b924883b55e4c257ca0c22)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Dialog,
+  Drawer**: Fixed the panel sometimes showing behind the dimmed overlay when
+  opening and closing quickly or with certain global z-index styles on the page.
+
+- [#10765](https://github.com/chakra-ui/chakra-ui/pull/10765)
+  [`a7c1ffb`](https://github.com/chakra-ui/chakra-ui/commit/a7c1ffbf040c8d876bf9986495d4b4fbcd942271)
+  Thanks [@rusty-jnr](https://github.com/rusty-jnr)! - Fix date picker calendar
+  popup clipping constrained by available height
+
+## 3.34.0
+
 ## 3.33.0
 
 ## 3.32.0

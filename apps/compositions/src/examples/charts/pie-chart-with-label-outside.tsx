@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart } from "recharts"
+import { Pie, PieChart, Sector } from "recharts"
 
 export const PieChartWithLabelOutside = () => {
   const chart = useChart({
@@ -15,7 +15,7 @@ export const PieChartWithLabelOutside = () => {
 
   return (
     <Chart.Root boxSize="200px" mx="auto" chart={chart}>
-      <PieChart>
+      <PieChart responsive>
         <Pie
           isAnimationActive={false}
           data={chart.data}
@@ -28,11 +28,10 @@ export const PieChartWithLabelOutside = () => {
             const percent = value / chart.getTotal("value")
             return `${name}: ${(percent * 100).toFixed(1)}%`
           }}
-        >
-          {chart.data.map((item) => {
-            return <Cell key={item.name} fill={chart.color(item.color)} />
-          })}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

@@ -74,7 +74,7 @@ export const BarChartComposition = () => {
       </Card.Header>
       <Card.Body>
         <Chart.Root height="10rem" chart={chart}>
-          <BarChart data={chart.data}>
+          <BarChart data={chart.data} responsive>
             <XAxis
               axisLine={false}
               tickLine={false}

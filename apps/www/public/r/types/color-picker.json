@@ -275,13 +275,13 @@
       "closeOnSelect": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to close the color picker when a swatch is selected"
       },
       "defaultFormat": {
         "type": "ColorFormat",
         "isRequired": false,
-        "defaultValue": "\"rgba\"",
+        "defaultValue": "rgba",
         "description": "The initial color format when rendered.\nUse when you don't need to control the color format of the color picker."
       },
       "defaultOpen": {
@@ -338,7 +338,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "name": {
@@ -394,7 +394,7 @@
       "openAutoFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to auto focus the color picker when it is opened"
       },
       "positioning": {
@@ -420,13 +420,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "value": {
@@ -479,7 +479,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -495,13 +495,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     },

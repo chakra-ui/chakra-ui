@@ -14,6 +14,12 @@ export type RecipeSelection<
       [K in keyof T]?: ConditionalValue<StringToBoolean<keyof T[K]> | undefined>
     }
 
+type RecipeDefaultVariants<
+  T extends RecipeVariantRecord | SlotRecipeVariantRecord<string>,
+> = keyof any extends keyof T
+  ? Record<string, ConditionalValue<any>>
+  : RecipeSelection<T>
+
 export type RecipeVariantFn<T extends RecipeVariantRecord> = (
   props?: RecipeSelection<T>,
 ) => SystemStyleObject
@@ -79,7 +85,7 @@ export interface RecipeDefinition<
    * The default variants of the recipe.
    */
   defaultVariants?:
-    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | (RecipeDefaultVariants<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
   /**
    * The styles to apply when a combination of variants is selected.
@@ -156,7 +162,7 @@ export interface SlotRecipeDefinition<
    * The default variants of the recipe.
    */
   defaultVariants?:
-    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | (RecipeDefaultVariants<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
   /**
    * The styles to apply when a combination of variants is selected.

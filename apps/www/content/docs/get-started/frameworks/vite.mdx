@@ -88,20 +88,34 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 ### Setup Vite Config Paths
 
 In your project, set up a vite config path to automatically sync `tsconfig` with
-vite using the command:
+vite.
+
+Update the `vite.config.ts` file:
+
+```ts title="vite.config.ts"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    tsconfigPaths: true,
+  },
+})
+```
+
+If you're using Vite 7 or lower, install the `vite-tsconfig-paths` plugin
+instead of using `resolve.tsconfigPaths`.
 
 ```bash
 npm i -D vite-tsconfig-paths
 ```
 
-Update the `vite.config.ts` file:
-
-```ts {3} /tsconfigPaths()/
+```ts title="vite.config.ts"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
 })

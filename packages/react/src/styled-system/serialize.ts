@@ -15,6 +15,7 @@ export function createSerializeFn(
 
   return function serialize(styles: Dict) {
     return walkObject(styles, (value) => value, {
+      stop: (value) => Array.isArray(value),
       getKey: (prop, value) => {
         if (!isObject(value)) return prop
 

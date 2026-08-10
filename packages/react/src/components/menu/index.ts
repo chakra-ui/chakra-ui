@@ -59,6 +59,7 @@ export type {
   MenuInteractOutsideEvent,
   MenuFocusOutsideEvent,
   MenuPointerDownOutsideEvent,
+  MenuValueChangeDetails,
 } from "@ark-ui/react/menu"
 
 export * as Menu from "./namespace"

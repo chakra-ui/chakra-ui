@@ -35,6 +35,7 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
       rowEnd,
       rowSpan,
       rowStart,
+      css,
       ...rest
     } = props
 
@@ -52,7 +53,7 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
       [area, colSpan, colStart, colEnd, rowEnd, rowSpan, rowStart],
     )
 
-    return <chakra.div ref={ref} css={[styles, props.css]} {...rest} />
+    return <chakra.div ref={ref} css={[styles, css]} {...rest} />
   },
 )
 

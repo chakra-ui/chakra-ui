@@ -69,6 +69,10 @@ fill the intersection of the two scrollbars for a seamless, styled appearance.
 Add visual feedback when content is scrollable by implementing scroll shadows
 that appear at the edges using `mask-image`.
 
+Use the `data-overflow-y` attribute to only show shadows when content actually
+overflows—this prevents shadows from appearing when there's a single item or no
+scrollable content.
+
 <ExampleTabs name="scroll-area-with-scroll-shadow" />
 
 ### Thumb Styling

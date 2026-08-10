@@ -112,6 +112,17 @@ export const ComboboxContent = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ComboboxListProps
+  extends HTMLChakraProps<"div", ArkCombobox.ListBaseProps>, UnstyledProp {}
+
+export const ComboboxList = withContext<HTMLDivElement, ComboboxListProps>(
+  ArkCombobox.List,
+  "list",
+  { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface ComboboxInputProps
   extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>, UnstyledProp {}
 

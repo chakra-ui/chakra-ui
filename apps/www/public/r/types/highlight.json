@@ -41,8 +41,5 @@
         "description": "Whether to match whole words only"
       }
     }
-  },
-  "UseHighlight": {
-    "props": {}
   }
 }

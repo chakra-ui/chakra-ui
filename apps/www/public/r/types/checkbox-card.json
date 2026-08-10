@@ -137,7 +137,7 @@
       "value": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"on\"",
+        "defaultValue": "on",
         "description": "The value of checkbox input. Useful for form submission."
       },
       "colorPalette": {
@@ -246,6 +246,11 @@
         "type": "boolean",
         "isRequired": false,
         "description": "If `true`, the checkbox group is invalid"
+      },
+      "maxSelectedValues": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The maximum number of selected values"
       },
       "name": {
         "type": "string",

@@ -43,7 +43,7 @@ export const LineChartWithTypes = () => {
               {`<Line type="${type}" />`}
             </Text>
             <Chart.Root maxH="sm" chart={chart}>
-              <LineChart accessibilityLayer data={chart.data}>
+              <LineChart accessibilityLayer data={chart.data} responsive>
                 <CartesianGrid
                   stroke={chart.color("border")}
                   vertical={false}

@@ -51,12 +51,6 @@
         "isRequired": false,
         "description": "The controlled value to encode."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "size": {
         "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
         "defaultValue": "md",

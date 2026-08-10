@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest"
 import transform from "../src/transforms/components/steps"
-import { applyTransform } from "./test-utils"
+import { applyTransform, applyTransformMultiple } from "./test-utils"
 
 describe("steps transform", () => {
   describe("basic component transformations", () => {
@@ -585,6 +585,122 @@ export default function App() {
         }
         "
       `)
+    })
+  })
+
+  describe("idempotency", () => {
+    test("running transform twice produces identical output (no duplicate Steps)", async () => {
+      const input = `
+import { Stepper, Step } from '@chakra-ui/react'
+
+export default function App() {
+  return (
+    <Stepper index={0}>
+      <Step>First</Step>
+    </Stepper>
+  )
+}
+      `
+
+      const firstRun = await applyTransform(transform, input)
+      const secondRun = await applyTransform(transform, firstRun)
+
+      expect(secondRun).toBe(firstRun)
+      expect(firstRun).toMatchInlineSnapshot(`
+        "import { Steps } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Steps.Root step={0}>
+              <Steps.List>
+                <Steps.Item>First</Steps.Item>
+              </Steps.List>
+            </Steps.Root>
+          )
+        }
+        "
+      `)
+    })
+
+    test("already-transformed code is unchanged when run again", async () => {
+      const alreadyTransformed = `
+import { Steps } from '@chakra-ui/react'
+
+export default function App() {
+  return (
+    <Steps.Root step={0}>
+      <Steps.List>
+        <Steps.Item>First</Steps.Item>
+      </Steps.List>
+    </Steps.Root>
+  )
+}
+      `
+
+      const output = await applyTransform(transform, alreadyTransformed)
+      expect(output.trim()).toBe(alreadyTransformed.trim())
+    })
+
+    test("running transform 3 times produces same output as running once", async () => {
+      const input = `
+import { Stepper, Step, StepTitle } from '@chakra-ui/react'
+
+export default function App() {
+  return (
+    <Stepper index={1}>
+      <Step>
+        <StepTitle>Step 1</StepTitle>
+      </Step>
+    </Stepper>
+  )
+}
+      `
+
+      const singleRun = await applyTransform(transform, input)
+      const tripleRun = await applyTransformMultiple(transform, input, 3)
+
+      expect(tripleRun).toBe(singleRun)
+    })
+  })
+
+  describe("multiple @chakra-ui/react imports", () => {
+    test("adds Steps only once when file has multiple Chakra imports", async () => {
+      const input = `
+import { Box } from '@chakra-ui/react'
+import { Stepper, Step } from '@chakra-ui/react'
+
+export default function App() {
+  return (
+    <Box>
+      <Stepper index={0}>
+        <Step>First</Step>
+      </Stepper>
+    </Box>
+  )
+}
+      `
+
+      const output = await applyTransform(transform, input)
+      expect(output).toMatchInlineSnapshot(`
+        "import { Steps, Box } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Box>
+              <Steps.Root step={0}>
+                <Steps.List>
+                  <Steps.Item>First</Steps.Item>
+                </Steps.List>
+              </Steps.Root>
+            </Box>
+          )
+        }
+        "
+      `)
+
+      // Running again should not change (idempotent)
+      const secondRun = await applyTransform(transform, output)
+      expect(secondRun).toBe(output)
     })
   })
 

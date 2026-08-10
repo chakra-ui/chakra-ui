@@ -21,7 +21,7 @@ export const RadarChartLinesOnly = () => {
 
   return (
     <Chart.Root maxW="sm" chart={chart} mx="auto">
-      <RadarChart data={chart.data}>
+      <RadarChart data={chart.data} responsive>
         <PolarGrid stroke={chart.color("border")} />
         <Legend content={<Chart.Legend />} />
         {chart.series.map((item) => (

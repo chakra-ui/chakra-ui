@@ -146,19 +146,6 @@
       "importPath": "import { Button } from \"@chakra-ui/react\""
     },
     {
-      "name": "button-with-menu",
-      "content": "export const ButtonWithMenu = () => {\n  return (\n    <Menu.Root positioning={{ placement: \"bottom-end\" }}>\n      <Group attached>\n        <Button size=\"sm\" variant=\"outline\">\n          Accept\n        </Button>\n        <Menu.Trigger asChild>\n          <IconButton size=\"sm\" variant=\"outline\">\n            <LuChevronDown />\n          </IconButton>\n        </Menu.Trigger>\n      </Group>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            <Menu.Item value=\"all\">Accept All</Menu.Item>\n            <Menu.Item value=\"selected\">Accept Selected</Menu.Item>\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
-      "hasSnippet": false,
-      "importPaths": [
-        "import { Button, Group, IconButton, Menu, Portal } from \"@chakra-ui/react\"",
-        "import { LuChevronDown } from \"react-icons/lu\""
-      ],
-      "importPath": "import { Button } from \"@chakra-ui/react\"",
-      "npmDependencies": [
-        "react-icons"
-      ]
-    },
-    {
       "name": "button-with-radius",
       "content": "export const ButtonWithRadius = () => {\n  return (\n    <Stack gap=\"8\">\n      <Stack>\n        <Text textStyle=\"sm\">Semantic Radius</Text>\n        <ButtonGroup variant=\"subtle\">\n          <Button rounded=\"l1\">Rounded l1</Button>\n          <Button rounded=\"l2\">Rounded l2</Button>\n          <Button rounded=\"l3\">Rounded l3</Button>\n        </ButtonGroup>\n      </Stack>\n\n      <Stack>\n        <Text textStyle=\"sm\">Core Radius</Text>\n        <ButtonGroup variant=\"subtle\">\n          <Button rounded=\"sm\">Rounded sm</Button>\n          <Button rounded=\"md\">Rounded md</Button>\n          <Button rounded=\"lg\">Rounded lg</Button>\n          <Button rounded=\"xl\">Rounded xl</Button>\n          <Button rounded=\"2xl\">Rounded 2xl</Button>\n          <Button rounded=\"full\">Rounded full</Button>\n        </ButtonGroup>\n      </Stack>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
@@ -193,6 +180,19 @@
         "import { Button, ButtonGroup } from \"@chakra-ui/react\""
       ],
       "importPath": "import { Button } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "button-with-split-menu",
+      "content": "const menuItems = [\n  { label: \"Save as Draft\", value: \"draft\" },\n  { label: \"Save & Publish\", value: \"publish\" },\n  { label: \"Save & Schedule\", value: \"schedule\" },\n]\n\nexport const ButtonWithSplitMenu = () => {\n  return (\n    <Menu.Root positioning={{ placement: \"bottom-end\" }}>\n      <Group attached>\n        <Button variant=\"outline\" size=\"sm\">\n          Save\n        </Button>\n        <Menu.Trigger asChild>\n          <IconButton variant=\"outline\" size=\"sm\">\n            <LuChevronDown />\n          </IconButton>\n        </Menu.Trigger>\n      </Group>\n      <Portal>\n        <Menu.Positioner>\n          <Menu.Content>\n            {menuItems.map((item) => (\n              <Menu.Item key={item.value} value={item.value}>\n                {item.label}\n              </Menu.Item>\n            ))}\n          </Menu.Content>\n        </Menu.Positioner>\n      </Portal>\n    </Menu.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Group, IconButton, Menu, Portal } from \"@chakra-ui/react\"",
+        "import { LuChevronDown } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Button } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
     },
     {
       "name": "button-with-style-override",

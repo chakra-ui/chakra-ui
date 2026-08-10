@@ -28,7 +28,7 @@ export const BarChartWithBarLabel = () => {
 
   return (
     <Chart.Root maxH="md" chart={chart}>
-      <BarChart data={chart.data}>
+      <BarChart data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
           axisLine={false}

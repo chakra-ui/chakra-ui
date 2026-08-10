@@ -96,6 +96,32 @@ const showcases = defineCollection({
   }),
 })
 
+const shipped = defineCollection({
+  name: "Shipped",
+  pattern: "content/shipped/**/*.mdx",
+  schema: s
+    .object({
+      product: s.string(),
+      person: s.string(),
+      role: s.string(),
+      avatar: s.string().optional(),
+      logo: s.string().optional(),
+      category: s.string(),
+      url: s.string(),
+      quote: s.string(),
+      description: s.string().optional(),
+      x: s.string().optional(),
+      shippedAt: s.string().optional(),
+      featured: s.boolean().optional(),
+      images: s.array(s.string()).optional(),
+      content: s.mdx(),
+    })
+    .transform((data, { meta }) => ({
+      ...data,
+      slug: slugify(meta.path as string).replace(/^shipped\//, ""),
+    })),
+})
+
 const blogs = defineCollection({
   name: "Blog",
   pattern: "content/blog/**/*.mdx",
@@ -165,6 +191,7 @@ export default defineConfig({
   collections: {
     docs,
     showcases,
+    shipped,
     blogs,
     guides,
     guideCollections,

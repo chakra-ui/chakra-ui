@@ -13,6 +13,16 @@
       "importPath": "import { Menu } from \"@chakra-ui/react\""
     },
     {
+      "name": "menu-controlled",
+      "content": "\"use client\"\nexport const MenuControlled = () => {\n  const [open, setOpen] = useState(false)\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <Code>open: {String(open)}</Code>\n      <Menu.Root open={open} onOpenChange={(e) => setOpen(e.open)}>\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n              <Menu.Item value=\"new-file\">New File...</Menu.Item>\n              <Menu.Item value=\"new-win\">New Window</Menu.Item>\n              <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n              <Menu.Item value=\"export\">Export</Menu.Item>\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Code, Menu, Portal, Stack } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
+    },
+    {
       "name": "menu-open-from-dialog",
       "content": "\"use client\"\nexport const MenuOpenFromDialog = () => {\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Open\n        </Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>Welcome to the menu</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.Body spaceY=\"4\">\n              <DialogMenu />\n              <Lorem p={1} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst DialogMenu = () => {\n  return (\n    <Menu.Root>\n      <Menu.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          Menu\n        </Button>\n      </Menu.Trigger>\n      <Menu.Positioner>\n        <Menu.Content>\n          <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n          <Menu.Item value=\"new-file\">New File...</Menu.Item>\n          <Menu.Item value=\"new-win\">New Window</Menu.Item>\n          <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n          <Menu.Item value=\"export\">Export</Menu.Item>\n        </Menu.Content>\n      </Menu.Positioner>\n    </Menu.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -177,6 +187,15 @@
       "npmDependencies": [
         "react-icons"
       ]
+    },
+    {
+      "name": "menu-with-store",
+      "content": "\"use client\"\nexport const MenuWithStore = () => {\n  const menu = useMenu()\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <Code>open: {String(menu.api.open)}</Code>\n      <Menu.RootProvider value={menu}>\n        <Menu.Trigger asChild>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </Menu.Trigger>\n        <Portal>\n          <Menu.Positioner>\n            <Menu.Content>\n              <Menu.Item value=\"new-txt\">New Text File</Menu.Item>\n              <Menu.Item value=\"new-file\">New File...</Menu.Item>\n              <Menu.Item value=\"new-win\">New Window</Menu.Item>\n              <Menu.Item value=\"open-file\">Open File...</Menu.Item>\n              <Menu.Item value=\"export\">Export</Menu.Item>\n            </Menu.Content>\n          </Menu.Positioner>\n        </Portal>\n      </Menu.RootProvider>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Code, Menu, Portal, Stack, useMenu } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Menu } from \"@chakra-ui/react\""
     },
     {
       "name": "menu-with-submenu-dynamic",

@@ -13,6 +13,7 @@ import { collapsibleSlotRecipe } from "./recipes/collapsible"
 import { colorPickerSlotRecipe } from "./recipes/color-picker"
 import { comboboxSlotRecipe } from "./recipes/combobox"
 import { dataListSlotRecipe } from "./recipes/data-list"
+import { datePickerSlotRecipe } from "./recipes/date-picker"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
@@ -20,6 +21,7 @@ import { emptyStateSlotRecipe } from "./recipes/empty-state"
 import { fieldSlotRecipe } from "./recipes/field"
 import { fieldsetSlotRecipe } from "./recipes/fieldset"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
+import { floatingPanelSlotRecipe } from "./recipes/floating-panel"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
 import { listboxSlotRecipe } from "./recipes/listbox"
@@ -67,6 +69,7 @@ export const slotRecipes = {
   codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
+  datePicker: datePickerSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
   editable: editableSlotRecipe,
@@ -108,4 +111,5 @@ export const slotRecipes = {
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
   marquee: marqueeSlotRecipe,
+  floatingPanel: floatingPanelSlotRecipe,
 }

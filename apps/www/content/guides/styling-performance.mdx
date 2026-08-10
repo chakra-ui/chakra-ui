@@ -1,8 +1,8 @@
 ---
 title: Styling Performance
 description:
-  Optimize styling performance by avoiding dynamic CSS props and using data
-  attributes, style attributes, and recipes
+  Optimize styling performance by avoiding dynamic conditional styles and using
+  data attributes, style attributes, and recipes
 publishedAt: "2025-11-19"
 collection: styling
 ---
@@ -37,24 +37,62 @@ const Component = ({ isActive, size }) => {
 }
 ```
 
+## Static vs Dynamic: The Key Rule
+
+Static styles are fine whether you write them as style props or in the `css`
+prop. The performance concern is primarily about **dynamic conditional style
+values during render**, not about style props in general.
+
+```tsx
+// ✅ Fine: static style props
+const Component = () => {
+  return (
+    <Box padding="8" background="blue.500" fontSize="lg">
+      Content
+    </Box>
+  )
+}
+```
+
+```tsx
+// ✅ Also fine: static css object
+const Component = () => {
+  return (
+    <Box
+      css={{
+        padding: "8",
+        background: "blue.500",
+        fontSize: "lg",
+      }}
+    >
+      Content
+    </Box>
+  )
+}
+```
+
+Use whichever is more readable for your component. For simple static styles,
+style props are usually the clearest choice.
+
 ## Performance-First Patterns
 
 ### 1. Use Data Attributes for State-Based Styling
 
 Data attributes provide a performant way to handle state-based styling without
-dynamic CSS props. The styles are pre-compiled and don't change at runtime.
+dynamic conditional style props. The styles are pre-compiled and don't change at
+runtime.
 
 ```tsx
-// ✅ Better: Use data attributes with static styles
+// ✅ Better: Keep static styles as style props, use css for selector logic
 const Component = ({ isActive, isDisabled }) => {
   return (
     <Box
+      padding="4"
+      background="gray.100"
+      fontSize="md"
       data-active={isActive || undefined}
       data-disabled={isDisabled || undefined}
       css={{
-        padding: "4",
-        background: "gray.100",
-        fontSize: "md",
         "&[data-active]": {
           padding: "8",
           background: "blue.500",

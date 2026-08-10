@@ -48,11 +48,12 @@ const itemStyle = defineStyle({
 
 export const WrapItem = forwardRef<HTMLDivElement, WrapItemProps>(
   function WrapItem(props, ref) {
+    const { css, ...rest } = props
     return (
       <chakra.div
         ref={ref}
-        css={[itemStyle, props.css]}
-        {...props}
+        css={[itemStyle, css]}
+        {...rest}
         className={cx("chakra-wrap__listitem", props.className)}
       />
     )

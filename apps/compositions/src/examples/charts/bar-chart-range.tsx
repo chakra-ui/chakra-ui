@@ -19,6 +19,7 @@ export const BarChartRange = () => {
         barSize={100}
         data={chart.data}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        responsive
       >
         <CartesianGrid vertical={false} strokeDasharray="3 3" />
         <XAxis dataKey={chart.key("name")} axisLine={false} tickLine={false} />

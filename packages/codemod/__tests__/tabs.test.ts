@@ -509,7 +509,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('variant="line"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root variant="line">
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
 
     test("transforms variant enclosed-colored to enclosed", async () => {
@@ -533,7 +555,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('variant="enclosed"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root variant="enclosed">
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
 
     test("transforms variant soft-rounded to subtle", async () => {
@@ -557,7 +601,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('variant="subtle"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root variant="subtle">
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
 
     test("transforms variant solid-rounded to outline", async () => {
@@ -581,7 +647,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('variant="outline"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root variant="outline">
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
 
     test("transforms variant unstyled to unstyled prop", async () => {
@@ -605,8 +693,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain("unstyled")
-      expect(output).not.toContain("variant=")
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root unstyled>
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
   })
 
@@ -698,9 +807,29 @@ export default function App() {
       `
 
       const output = await applyTransform(transform, input)
-      expect(output).toContain('colorScheme="blue"')
-      expect(output).toContain('size="md"')
-      expect(output).toContain('orientation="vertical"')
+      expect(output).toMatchInlineSnapshot(`
+        "import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+
+        export default function App() {
+          return (
+            <Tabs.Root colorScheme="blue" size="md" orientation="vertical">
+              <Tabs.List>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+              </Tabs.List>
+              <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs.Root>
+          )
+        }
+        "
+      `)
     })
 
     test("handles Tabs without TabList or TabPanels", async () => {

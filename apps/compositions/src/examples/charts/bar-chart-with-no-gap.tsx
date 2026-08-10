@@ -19,7 +19,7 @@ export const BarChartWithNoGap = () => {
 
   return (
     <Chart.Root maxH="md" chart={chart}>
-      <BarChart barCategoryGap="0" data={chart.data}>
+      <BarChart barCategoryGap="0" data={chart.data} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         <XAxis
           axisLine={false}
