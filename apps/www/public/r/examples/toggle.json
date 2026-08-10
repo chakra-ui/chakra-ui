@@ -27,6 +27,19 @@
       "importPath": "import { Toggle } from \"@chakra-ui/react\""
     },
     {
+      "name": "toggle-tip-arrow",
+      "content": "export const ToggleTipArrow = () => {\n  return (\n    <Flex justify=\"center\">\n      <InfoTip showArrow content=\"This is some additional information.\" />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
       "name": "toggle-tip-basic",
       "content": "export const ToggleTipBasic = () => {\n  return (\n    <ToggleTip content=\"This is some additional information.\">\n      <Button size=\"xs\" variant=\"ghost\">\n        <LuInfo />\n      </Button>\n    </ToggleTip>\n  )\n}\n",
       "hasSnippet": false,
@@ -44,11 +57,50 @@
       ]
     },
     {
+      "name": "toggle-tip-close-on-escape",
+      "content": "export const ToggleTipCloseOnEscape = () => {\n  return (\n    <Flex justify=\"center\">\n      <InfoTip\n        closeOnEscape={false}\n        content=\"This is some additional information.\"\n      />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "toggle-tip-close-on-interact-outside",
+      "content": "export const ToggleTipCloseOnInteractOutside = () => {\n  return (\n    <Flex justify=\"center\">\n      <InfoTip\n        closeOnInteractOutside={false}\n        content=\"This is some additional information.\"\n      />\n    </Flex>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Flex } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
       "name": "toggle-tip-info-tip",
       "content": "export const ToggleTipInfoTip = () => {\n  return (\n    <HStack justify=\"center\">\n      <Text textStyle=\"lg\">\n        File size: <FormatByte value={1450.45} />\n      </Text>\n      <InfoTip content=\"The file size for content.tsx is 1.45kb\" />\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { FormatByte, HStack, Text } from \"@chakra-ui/react\"",
+        "import { InfoTip } from \"@/components/ui/toggle-tip\""
+      ],
+      "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
+      "fileDependencies": [
+        "compositions/ui/toggle-tip"
+      ]
+    },
+    {
+      "name": "toggle-tip-sizes",
+      "content": "export const ToggleTipSizes = () => {\n  return (\n    <HStack gap=\"8\" justify=\"center\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <InfoTip\n            key={size}\n            size={size}\n            buttonProps={{ size }}\n            content={`This is the \"${size}\" size variant`}\n          />\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack } from \"@chakra-ui/react\"",
         "import { InfoTip } from \"@/components/ui/toggle-tip\""
       ],
       "importPath": "import { InfoTip } from \"@/components/ui/toggle-tip\"",
