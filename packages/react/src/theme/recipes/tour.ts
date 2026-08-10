@@ -6,6 +6,7 @@ export const tourSlotRecipe = defineSlotRecipe({
   className: "tour",
   base: {
     positioner: {
+      "--tour-z-index": "zIndex.popover",
       "&[data-type=dialog], &[data-type=floating]": {
         display: "flex",
         width: "100dvw",
@@ -13,7 +14,7 @@ export const tourSlotRecipe = defineSlotRecipe({
         position: "fixed",
         left: 0,
         top: 0,
-        zIndex: "calc(var(--tour-z-index, 1400) + 1)",
+        zIndex: "calc(var(--tour-z-index) + var(--layer-index, 0))",
         justifyContent: "center",
         alignItems: "center",
         pointerEvents: "none",
@@ -26,7 +27,8 @@ export const tourSlotRecipe = defineSlotRecipe({
     },
     backdrop: {
       bg: "blackAlpha.500",
-      zIndex: "var(--tour-z-index, 1400)",
+      "--tour-z-index": "zIndex.popover",
+      zIndex: "calc(var(--tour-z-index) + var(--layer-index, 0) - 1)",
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
@@ -45,7 +47,8 @@ export const tourSlotRecipe = defineSlotRecipe({
       width: "sm",
       flexDirection: "column",
       gap: "2",
-      zIndex: "calc(var(--tour-z-index, 1400) + 1)",
+      "--tour-z-index": "zIndex.popover",
+      zIndex: "calc(var(--tour-z-index) + var(--layer-index, 0))",
       boxShadow: "lg",
       pointerEvents: "auto",
       _open: {
@@ -73,7 +76,8 @@ export const tourSlotRecipe = defineSlotRecipe({
       mt: "4",
     },
     spotlight: {
-      border: "3px solid var(--colors-bg.panel)",
+      border: "3px solid",
+      borderColor: "bg.panel",
       boxShadow: "lg",
       borderRadius: "l3",
     },
