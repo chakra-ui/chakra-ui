@@ -30,11 +30,6 @@ const getDefaultBasePath = () => {
   return join(root, "styled-system", "generated")
 }
 
-function checkIsDefaultOutdir(outdir: string) {
-  const defaultPath = getDefaultBasePath()
-  return outdir === defaultPath
-}
-
 export interface CodegenFlags {
   strict?: boolean
   format?: boolean
@@ -42,6 +37,7 @@ export interface CodegenFlags {
   clean?: boolean
   outdir: string
   tsconfig?: string
+  augment?: boolean
 }
 
 export const TypegenCommand = new Command("typegen")
@@ -50,6 +46,10 @@ export const TypegenCommand = new Command("typegen")
   .option("--strict", "Generate strict types for props variant and size")
   .option("--watch [path]", "Watch directory for changes and rebuild")
   .option("--clean", "Clean the output directory")
+  .option(
+    "--augment",
+    "Emit a single module augmentation file (declare module '@chakra-ui/react') instead of the in-package .gen files. Use with --outdir to type a custom theme from outside the package.",
+  )
   .option(
     "--outdir <dir>",
     "Output directory to write the generated types",
@@ -102,9 +102,21 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
   io.ensureDir(flags.outdir)
   debug("writing codegen to", flags.outdir)
 
-  const isDefaultOutdir = checkIsDefaultOutdir(flags.outdir)
-
-  if (isDefaultOutdir) {
+  if (flags.augment) {
+    return tasks([
+      {
+        title: "Generating theme augmentation types...",
+        task: async () => {
+          await io.write(
+            flags.outdir,
+            "theme-typings",
+            generateThemeAugmentationTypes(sys, flags),
+          )
+          return "✅ Generated theme augmentation types"
+        },
+      },
+    ])
+  } else {
     return tasks([
       {
         title: "Generating conditions types...",
@@ -143,20 +155,6 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
         task: async () => {
           await io.write(flags.outdir, "system.gen", generateSystemTypes(sys))
           return "✅ Generated system types"
-        },
-      },
-    ])
-  } else {
-    return tasks([
-      {
-        title: "Generating theme augmentation types...",
-        task: async () => {
-          await io.write(
-            flags.outdir,
-            "theme-typings",
-            generateThemeAugmentationTypes(sys, flags),
-          )
-          return "✅ Generated theme augmentation types"
         },
       },
     ])

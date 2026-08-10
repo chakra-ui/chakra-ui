@@ -48,11 +48,6 @@ export type {
   CssVarKey,
   CssVarProperties,
 } from "./css-var.types"
-export type * from "./generated/conditions.gen"
-export type * from "./generated/prop-types.gen"
-export type * from "./generated/recipes.gen"
-export type * from "./generated/system.gen"
-export type * from "./generated/token.gen"
 export type {
   Register,
   Conditions,

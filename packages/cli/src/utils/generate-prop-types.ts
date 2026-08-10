@@ -38,30 +38,6 @@ export function generatePropTypesResult(sys: SystemContext) {
   return result.join("\n")
 }
 
-/**
- * Generates prop types for module augmentation.
- * Only emits the UtilityValues interface (which TypeScript can merge).
- * Skips WithEscapeHatch, OnlyKnown, and other helper type aliases.
- */
-export function generatePropTypesResultForAugmentation(sys: SystemContext) {
-  const { utility } = sys
-  const result = []
-
-  result.push(`
-  export interface UtilityValues {
-  `)
-
-  const types = utility.getTypes()
-
-  for (const [prop, values] of types.entries()) {
-    result.push(`\t${prop}: ${values.join(" | ")};`)
-  }
-
-  result.push("}", "\n")
-
-  return result.join("\n")
-}
-
 export function generatePropTypesBodyForRegister(sys: SystemContext) {
   const { utility } = sys
   const result = []

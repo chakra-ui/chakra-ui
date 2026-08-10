@@ -3,7 +3,8 @@
 "@chakra-ui/cli": minor
 ---
 
-This MR adds support for a custom outdir in the CLI's typegen command and
-introduces theme augmentation types, allowing generated types (tokens, recipes,
-conditions, etc.) to be exported and augmented so that custom themes can extend
-Chakra UI's type system.
+Add a `--augment` flag to the CLI's `typegen` command. When used with
+`--outdir`, it emits a single module augmentation file
+(`declare module "@chakra-ui/react"`) instead of the in-package `.gen` files, so
+a custom theme defined outside the package can extend Chakra UI's type system
+(tokens, recipes, conditions, etc.) via TypeScript declaration merging.
