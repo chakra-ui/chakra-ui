@@ -50,6 +50,15 @@
       ]
     },
     {
+      "name": "splitter-css-units",
+      "content": "export const SplitterCssUnits = () => {\n  return (\n    <Splitter.Root\n      panels={[\n        { id: \"nav\", minSize: \"240px\", maxSize: \"480px\" },\n        { id: \"main\", minSize: 30 },\n      ]}\n      defaultSize={[\"240px\", \"60vw\"]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"nav\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          Nav\n        </Center>\n      </Splitter.Panel>\n\n      <Splitter.ResizeTrigger id=\"nav:main\" />\n\n      <Splitter.Panel id=\"main\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          Main\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
       "name": "splitter-disabled",
       "content": "export const SplitterDisabled = () => {\n  return (\n    <Splitter.Root\n      panels={[{ id: \"a\" }, { id: \"b\" }]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"a\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          A\n        </Center>\n      </Splitter.Panel>\n      <Splitter.ResizeTrigger disabled id=\"a:b\" />\n      <Splitter.Panel id=\"b\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          B\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -139,6 +148,15 @@
       "hasSnippet": false,
       "importPaths": [
         "import { Center, Splitter } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Splitter } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "splitter-resize-behavior",
+      "content": "export const SplitterResizeBehavior = () => {\n  return (\n    <Splitter.Root\n      panels={[\n        { id: \"sidebar\", minSize: 15, resizeBehavior: \"preserve-pixel-size\" },\n        { id: \"main\" },\n      ]}\n      defaultSize={[25, 75]}\n      borderWidth=\"1px\"\n      minH=\"60\"\n    >\n      <Splitter.Panel id=\"sidebar\">\n        <Stack boxSize=\"full\" align=\"center\" justify=\"center\" gap=\"2\">\n          <Center textStyle=\"2xl\">Sidebar</Center>\n          <Code size=\"sm\" color=\"fg.muted\">\n            preserve-pixel-size\n          </Code>\n        </Stack>\n      </Splitter.Panel>\n\n      <Splitter.ResizeTrigger id=\"sidebar:main\" />\n\n      <Splitter.Panel id=\"main\">\n        <Center boxSize=\"full\" textStyle=\"2xl\">\n          Main\n        </Center>\n      </Splitter.Panel>\n    </Splitter.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, Code, Splitter, Stack } from \"@chakra-ui/react\""
       ],
       "importPath": "import { Splitter } from \"@chakra-ui/react\""
     },

@@ -195,6 +195,27 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     return theme.slotRecipes?.[key] ?? fallback
   }
 
+  const recipeCache = new Map<string, any>()
+  const slotRecipeCache = new Map<string, any>()
+
+  function getRecipeFn(key: string, fallback?: any) {
+    let fn = recipeCache.get(key)
+    if (!fn) {
+      fn = cva(getRecipe(key, fallback ?? EMPTY_OBJECT))
+      recipeCache.set(key, fn)
+    }
+    return fn
+  }
+
+  function getSlotRecipeFn(key: string, fallback?: any) {
+    let fn = slotRecipeCache.get(key)
+    if (!fn) {
+      fn = sva(getSlotRecipe(key, fallback ?? EMPTY_OBJECT))
+      slotRecipeCache.set(key, fn)
+    }
+    return fn
+  }
+
   function isRecipe(key: string) {
     return Object.hasOwnProperty.call(theme.recipes ?? EMPTY_OBJECT, key)
   }
@@ -250,6 +271,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     sva,
     getRecipe,
     getSlotRecipe,
+    getRecipeFn,
+    getSlotRecipeFn,
     hasRecipe,
     isRecipe,
     isSlotRecipe,
@@ -259,12 +282,17 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
 function getTokenMap(tokens: TokenDictionary) {
   const map = new Map<string, { value: string; variable: string }>()
+  const names = new Set(tokens.allTokens.map((token) => token.name))
 
-  tokens.allTokens.forEach((token) => {
+  for (const name of names) {
+    const token = tokens.getByName(name)
+    if (!token?.extensions.cssVar) continue
+
     const { cssVar, virtual, conditions } = token.extensions
-    const value = !!conditions || virtual ? cssVar!.ref : token.value
-    map.set(token.name, { value, variable: cssVar!.ref })
-  })
+    const isSemantic = !!conditions || virtual
+    const value = isSemantic ? cssVar.ref : token.value
+    map.set(name, { value, variable: cssVar.ref })
+  }
 
   return map
 }

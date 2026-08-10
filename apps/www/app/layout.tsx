@@ -84,17 +84,10 @@ export default function RootLayout({
     >
       <head>
         {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src="https://plausible.io/js/plausible.js"
-              data-domain="chakra-ui.com"
-            />
-            <Script
-              src="https://analytics.ahrefs.com/analytics.js"
-              data-key="WFEtMlDEHKIyFM4D3SFSiA"
-              strategy="afterInteractive"
-            />
-          </>
+          <Script
+            src="https://plausible.io/js/plausible.js"
+            data-domain="chakra-ui.com"
+          />
         )}
       </head>
       <body suppressHydrationWarning>

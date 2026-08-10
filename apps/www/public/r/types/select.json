@@ -44,6 +44,21 @@
     },
     "element": "HTMLDivElement"
   },
+  "List": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement"
+  },
   "IndicatorGroup": {
     "props": {
       "as": {
@@ -210,16 +225,21 @@
         "isRequired": true,
         "description": "The collection of items"
       },
+      "autoComplete": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The autocomplete attribute for the hidden select. Enables browser autofill (e.g. \"address-level1\" for state)."
+      },
       "closeOnSelect": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the select should close after an item is selected"
       },
       "composite": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the select is a composed with other composite widgets like tabs or combobox"
       },
       "defaultHighlightedValue": {
@@ -280,13 +300,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "loopFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to loop the keyboard navigation through the options"
       },
       "multiple": {
@@ -372,25 +392,19 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "value": {
         "type": "string[]",
         "isRequired": false,
         "description": "The controlled keys of the selected items"
-      },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
       },
       "variant": {
         "type": "\"outline\" | \"subtle\" | \"ghost\"",
@@ -430,7 +444,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -446,13 +460,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
     }
@@ -501,15 +515,5 @@
       }
     },
     "element": "HTMLSelectElement"
-  },
-  "List": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
   }
 }

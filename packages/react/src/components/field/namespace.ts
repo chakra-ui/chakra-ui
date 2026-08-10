@@ -17,4 +17,6 @@ export type {
   FieldRequiredIndicatorProps as RequiredIndicatorProps,
 } from "./field"
 
-export { FieldContext as Context } from "@ark-ui/react/field"
+export { FieldContext as Context, FieldItem as Item } from "@ark-ui/react/field"
+
+export type { FieldItemProps as ItemProps } from "@ark-ui/react/field"

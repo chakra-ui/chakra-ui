@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad" gradientUnits="userSpaceOnUse" x1="80" y1="55" x2="432" y2="460">
+      <stop offset="0%" stop-color="#7BC4E0"/>
+      <stop offset="100%" stop-color="#A88DC8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hierarchy edges (thickened for small sizes) -->
+  <path d="M 256 229 C 256 268, 125 268, 125 306" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <path d="M 256 229 C 256 268, 387 268, 387 306" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" fill="none"/>
+
+  <!-- Dependency edge (thickened, simplified dash) -->
+  <line x1="308" y1="385" x2="224" y2="385" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="30 18"/>
+
+  <!-- Outlined nodes (thicker strokes) -->
+  <rect x="171" y="55" width="170" height="170" rx="30" fill="none" stroke="url(#grad)" stroke-width="14"/>
+  <rect x="50" y="310" width="150" height="150" rx="28" fill="none" stroke="url(#grad)" stroke-width="14"/>
+  <rect x="312" y="310" width="150" height="150" rx="28" fill="none" stroke="url(#grad)" stroke-width="14"/>
+
+  <!-- Letters -->
+  <text x="256" y="182" text-anchor="middle" font-size="120" font-weight="900"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="url(#grad)">T</text>
+  <text x="125" y="422" text-anchor="middle" font-size="105" font-weight="900"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="url(#grad)">S</text>
+  <text x="387" y="422" text-anchor="middle" font-size="105" font-weight="900"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="url(#grad)">P</text>
+
+  <!-- Arrowhead (enlarged) -->
+  <polygon points="196,385 224,370 224,400" fill="url(#grad)"/>
+</svg>

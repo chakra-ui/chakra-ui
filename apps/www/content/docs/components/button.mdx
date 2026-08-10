@@ -215,9 +215,9 @@ Then use the `xxl` size in your button:
 <Button size="xxl">XXL Button</Button>
 ```
 
-### Changing the default variant
+### Changing the default size
 
-Use the `defaultVariants` property to change the default size or variant.
+Use the `defaultVariants` property to change the default button size.
 
 ```tsx title="components/ui/provider.tsx"
 import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
@@ -225,6 +225,25 @@ import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
 const buttonRecipe = defineRecipe({
   defaultVariants: {
     size: "lg",
+  },
+})
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    recipes: { button: buttonRecipe },
+  },
+})
+```
+
+### Changing the default variant
+
+Use the `defaultVariants` property to change the default button variant.
+
+```tsx title="components/ui/provider.tsx"
+import { createSystem, defaultConfig, defineRecipe } from "@chakra-ui/react"
+
+const buttonRecipe = defineRecipe({
+  defaultVariants: {
     variant: "outline",
   },
 })

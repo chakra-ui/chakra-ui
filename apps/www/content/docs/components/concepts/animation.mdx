@@ -89,3 +89,54 @@ it easy to create complex animations with multiple keyframes.
   This is a composed animation
 </Box>
 ```
+
+## Reduced motion
+
+The built-in component animations play regardless of the user's
+`prefers-reduced-motion` setting. To disable the enter/exit animations for users
+who prefer reduced motion, add this rule to your `globalCss` config:
+
+```tsx
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  globalCss: {
+    '[data-state="open"], [data-state="closed"]': {
+      _motionReduce: {
+        animationDuration: "1ms !important",
+      },
+    },
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
+This collapses the enter/exit animations of every disclosure component (dialog,
+drawer, menu, popover, tooltip, etc.) to `1ms` when reduced motion is enabled.
+
+A few details worth knowing:
+
+- **Scope to `data-state="open"` and `data-state="closed"`** rather than
+  targeting all elements. A blanket rule also collapses looping animations
+  (`Spinner`, `Skeleton`, indeterminate `Progress`), turning them into a
+  flicker. Loading indicators are considered essential motion and are best left
+  running.
+- **`animation: none` also works.** The presence logic detects it and unmounts
+  exiting components immediately. A `1ms` duration is suggested because it keeps
+  `animationend` events firing for any custom code that listens for them.
+- **The `!important` is required** because the rule lives in a lower CSS layer
+  than component recipes.
+
+When building custom animations, use the `_motionReduce` condition to provide a
+reduced-motion alternative:
+
+```tsx
+<Box
+  data-state="open"
+  _open={{ animationName: "slide-from-bottom, fade-in" }}
+  _motionReduce={{ animationName: "fade-in" }}
+>
+  Slides on screen, but only fades for reduced motion users
+</Box>
+```

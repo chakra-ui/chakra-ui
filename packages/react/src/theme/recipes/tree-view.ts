@@ -11,9 +11,8 @@ const baseItemStyle = defineStyle({
   "--tree-depth": "calc(var(--depth) - 1)",
   "--tree-indentation-offset":
     "calc(var(--tree-indentation) * var(--tree-depth))",
-  "--tree-icon-offset": "calc(var(--tree-icon-size) * var(--tree-depth) * 0.5)",
   "--tree-offset":
-    "calc(var(--tree-padding-inline) + var(--tree-indentation-offset) + var(--tree-icon-offset))",
+    "calc(var(--tree-padding-inline) + var(--tree-indentation-offset))",
   ps: "var(--tree-offset)",
   pe: "var(--tree-padding-inline)",
   py: "var(--tree-padding-block)",
@@ -59,6 +58,8 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       "--tree-item-gap": "spacing.2",
+      "--tree-indentation":
+        "calc(var(--tree-indent-size) + var(--tree-icon-size) * 0.5)",
       _icon: {
         boxSize: "var(--tree-icon-size)",
       },
@@ -83,8 +84,8 @@ export const treeViewSlotRecipe = defineSlotRecipe({
         "calc(var(--tree-indentation) * var(--tree-depth))",
       "--tree-offset":
         "calc(var(--tree-padding-inline) + var(--tree-indentation-offset))",
-      "--tree-icon-offset": "calc(var(--tree-icon-size) * 0.5 * var(--depth))",
-      insetInlineStart: "calc(var(--tree-offset) + var(--tree-icon-offset))",
+      insetInlineStart:
+        "calc(var(--tree-offset) + var(--tree-icon-size) * 0.5)",
       zIndex: "1",
     },
     branchIndicator: {
@@ -116,28 +117,28 @@ export const treeViewSlotRecipe = defineSlotRecipe({
       md: {
         tree: {
           textStyle: "sm",
-          "--tree-indentation": "spacing.4",
+          "--tree-indent-size": "spacing.4",
+          "--tree-icon-size": "spacing.4",
           "--tree-padding-inline": "spacing.3",
           "--tree-padding-block": "spacing.1.5",
-          "--tree-icon-size": "spacing.4",
         },
       },
       sm: {
         tree: {
           textStyle: "sm",
-          "--tree-indentation": "spacing.4",
+          "--tree-indent-size": "spacing.4",
+          "--tree-icon-size": "spacing.3",
           "--tree-padding-inline": "spacing.3",
           "--tree-padding-block": "spacing.1",
-          "--tree-icon-size": "spacing.3",
         },
       },
       xs: {
         tree: {
           textStyle: "xs",
-          "--tree-indentation": "spacing.4",
+          "--tree-indent-size": "spacing.4",
+          "--tree-icon-size": "spacing.3",
           "--tree-padding-inline": "spacing.2",
           "--tree-padding-block": "spacing.1",
-          "--tree-icon-size": "spacing.3",
         },
       },
     },
