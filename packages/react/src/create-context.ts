@@ -35,6 +35,10 @@ export function createContext<T>(
   options: CreateContextOptions<T> & { strict: false },
 ): CreateContextReturn<T, false>
 
+export function createContext<T>(
+  options: CreateContextOptions<T>,
+): CreateContextReturn<T, boolean>
+
 export function createContext<T>(options: CreateContextOptions<T> = {}) {
   const {
     name,
@@ -64,5 +68,8 @@ export function createContext<T>(options: CreateContextOptions<T> = {}) {
     return context
   }
 
-  return [Context.Provider, useContext, Context] as any
+  return [Context.Provider, useContext, Context] as CreateContextReturn<
+    T,
+    boolean
+  >
 }
