@@ -1,5 +1,52 @@
 # @chakra-ui/cli
 
+## 3.36.1
+
+### Patch Changes
+
+- [#10823](https://github.com/chakra-ui/chakra-ui/pull/10823)
+  [`f8b356c`](https://github.com/chakra-ui/chakra-ui/commit/f8b356ce8377c4bc8a7b007f771afefad0bcc447)
+  Thanks [@tryone144](https://github.com/tryone144)! - Migrate from deprecated
+  `tsconfck` to `get-tsconfig`. Enables installation next to TypeScript version
+  6 and up.
+
+- [`1de9c58`](https://github.com/chakra-ui/chakra-ui/commit/1de9c58314bad63e1e456d087db0e73707d431e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Replace
+  `node-fetch` with the native `fetch` API, using undici's `ProxyAgent` for
+  `HTTPS_PROXY` support.
+
+- [`39ef8b5`](https://github.com/chakra-ui/chakra-ui/commit/39ef8b542b8ac4ddfb53d727476b8f3259f65b98)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Normalize resolved
+  tsconfig paths to native separators on Windows
+
+## 3.36.0
+
+### Patch Changes
+
+- [#10825](https://github.com/chakra-ui/chakra-ui/pull/10825)
+  [`025b974`](https://github.com/chakra-ui/chakra-ui/commit/025b97446454626ec9b7b8b5065142a7b3bcc854)
+  Thanks [@cyphercodes](https://github.com/cyphercodes)! - Improve the
+  `chakra typegen` error when the input file does not export a Chakra system,
+  including the discovered exports and a `createSystem(...)` example for files
+  that export `defineConfig(...)` configs.
+
+## 3.35.0
+
+### Minor Changes
+
+- [`d5be01a`](https://github.com/chakra-ui/chakra-ui/commit/d5be01ae4ba8cf2cb134368767f6a1062c23d967)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new CLI
+  commands mirroring the MCP server tools:
+  - `chakra component list` — List all available Chakra UI components
+  - `chakra component props <name>` — Show props for a component
+  - `chakra component example <name>` — Show usage examples for a component
+  - `chakra theme` — Summary table of theme categories (item counts); use
+    `--json` for full data or `--filter <category>` for one section
+  - `chakra docs <query>` — Search the Chakra UI documentation
+
+  Docs and examples are fetched from `CHAKRA_DOCS_URL` (default
+  `https://chakra-ui.com`), consistent with `REGISTRY_URL` for snippets.
+
 ## 3.34.0
 
 ### Patch Changes

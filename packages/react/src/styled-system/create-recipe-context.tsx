@@ -4,13 +4,12 @@ import { forwardRef, useMemo } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
+import { getElementTypeDisplayName, upperFirst } from "./display-name"
 import { EMPTY_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
 import type { SystemRecipeFn } from "./recipe.types"
 import { type RecipeKey, type UseRecipeOptions, useRecipe } from "./use-recipe"
-
-const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 export function createRecipeContext<K extends RecipeKey>(
   options: UseRecipeOptions<K>,
@@ -55,7 +54,8 @@ export function createRecipeContext<K extends RecipeKey>(
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const SuperComponent = chakra(Component, {}, options as any)
+    const { displayName: displayNameOverride, ...chakraOptions } = options ?? {}
+    const SuperComponent = chakra(Component, {}, chakraOptions as any)
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
       const propsContext = usePropsContext()
       const props = useMemo(
@@ -74,8 +74,8 @@ export function createRecipeContext<K extends RecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      displayNameOverride ?? contextName ?? getElementTypeDisplayName(Component)
     return StyledComponent as any
   }
 

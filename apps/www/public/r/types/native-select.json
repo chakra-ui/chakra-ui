@@ -24,12 +24,6 @@
         "isRequired": false,
         "description": "Whether to remove the component's style."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
-      },
       "variant": {
         "type": "\"outline\" | \"subtle\" | \"plain\" | \"ghost\"",
         "defaultValue": "outline",

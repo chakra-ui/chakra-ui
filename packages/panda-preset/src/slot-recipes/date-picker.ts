@@ -77,9 +77,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       color: "fg",
       "--focus-color": "colors.colorPalette.focusRing",
       "--error-color": "colors.border.error",
-      _placeholder: {
-        color: "fg.muted",
-      },
       _invalid: {
         focusRingColor: "var(--error-color)",
         borderColor: "var(--error-color)",
@@ -113,7 +110,6 @@ export const datePickerSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       boxShadow: "lg",
       color: "fg",
-      maxHeight: "var(--available-height)",
       "--date-picker-z-index": "zIndex.popover",
       zIndex: "calc(var(--date-picker-z-index) + var(--layer-index, 0))",
       outline: "none",
@@ -251,7 +247,7 @@ export const datePickerSlotRecipe = defineSlotRecipe({
         textUnderlineOffset: "3px",
         textDecorationThickness: "2px",
       },
-      _selected: {
+      "&[data-selected]": {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
         _hover: {
@@ -266,33 +262,23 @@ export const datePickerSlotRecipe = defineSlotRecipe({
           bg: "colorPalette.subtle",
         },
       },
-      "&[data-range-start]": {
+      "&[data-in-range][data-selected]": {
         bg: "colorPalette.solid",
         color: "colorPalette.contrast",
         borderRadius: "0",
-        borderStartRadius: "l2",
         _hover: {
           bg: "colorPalette.solid",
         },
-      },
-      "&[data-range-end]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "0",
-        borderEndRadius: "l2",
-        _hover: {
-          bg: "colorPalette.solid",
+        "&[data-range-start][data-range-end]": {
+          borderRadius: "l2",
         },
-      },
-      "&[data-range-start][data-range-end]": {
-        borderRadius: "l2",
-      },
-      "&[data-selected][data-in-range]": {
-        bg: "colorPalette.solid",
-        color: "colorPalette.contrast",
-        borderRadius: "l2",
-        _hover: {
-          bg: "colorPalette.solid",
+        "&[data-range-start]:not([data-range-end])": {
+          borderStartRadius: "l2",
+          borderEndRadius: "0",
+        },
+        "&[data-range-end]:not([data-range-start])": {
+          borderEndRadius: "l2",
+          borderStartRadius: "0",
         },
       },
       _disabled: {

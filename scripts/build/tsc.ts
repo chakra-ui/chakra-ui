@@ -1,5 +1,5 @@
 import { cpSync } from "node:fs"
-import { join } from "node:path/posix"
+import { join } from "node:path"
 
 export async function generateTypes(dir: string) {
   const { execa } = await import("execa")

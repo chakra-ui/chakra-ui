@@ -139,6 +139,59 @@ describe("mergeConfig", () => {
     `)
   })
 
+  test("should handle nested token overrides with mixed-case sibling keys", () => {
+    const baseConfig = {
+      theme: {
+        tokens: {
+          colors: {
+            black: { value: "#09090B" },
+            whiteAlpha: {
+              100: { value: "rgba(255, 255, 255, 0.06)" },
+            },
+          },
+        },
+      },
+    }
+
+    const customConfig = defineConfig({
+      theme: {
+        tokens: {
+          colors: {
+            black: {
+              100: { value: "#EE0F0F" },
+            },
+          },
+        },
+      },
+    })
+
+    const mergedConfig = mergeConfigs(baseConfig, customConfig)
+    const system = createSystem(mergedConfig)
+
+    expect(system.token("colors.black")).toBe("#09090B")
+    expect(system.token("colors.black.100")).toBe("#EE0F0F")
+
+    expect(mergedConfig.theme?.tokens).toMatchInlineSnapshot(`
+      {
+        "colors": {
+          "black": {
+            "100": {
+              "value": "#EE0F0F",
+            },
+            "DEFAULT": {
+              "value": "#09090B",
+            },
+          },
+          "whiteAlpha": {
+            "100": {
+              "value": "rgba(255, 255, 255, 0.06)",
+            },
+          },
+        },
+      }
+    `)
+  })
+
   test("override functions should be merged", () => {
     const baseConfig = defineConfig({
       utilities: {

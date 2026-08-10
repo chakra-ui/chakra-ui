@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Rules", url: "rules" },
+            { title: "AI Skills", url: "skills", status: "new" },
           ],
         },
         {
@@ -39,6 +39,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
+            { title: "TanStack Router", url: "tanstack-router" },
             { title: "Vite", url: "vite" },
           ],
         },
@@ -123,7 +124,6 @@ const docsLinks: NavItem = {
         },
         {
           title: "Date and Time",
-          status: "new",
           items: [
             { title: "Date Picker", url: "date-picker" },
             { title: "Calendar", url: "calendar" },
@@ -170,6 +170,7 @@ const docsLinks: NavItem = {
             { title: "Action Bar", url: "action-bar" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
+            { title: "Floating Panel", url: "floating-panel", status: "new" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Menu", url: "menu" },
             { title: "Overlay Manager", url: "overlay-manager" },
@@ -393,6 +394,7 @@ const docsLinks: NavItem = {
 export const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
   { title: "Showcase", url: "/showcase" },
+  { title: "Spotlight", url: "/shipped" },
   { title: "Blog", url: "/blog" },
   { title: "Guides", url: "/guides" },
 ]

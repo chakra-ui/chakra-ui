@@ -1,6 +1,6 @@
 import { Alias } from "@rollup/plugin-alias"
 import { rmSync } from "fs"
-import { join } from "path/posix"
+import { join } from "node:path"
 import * as rollup from "rollup"
 import { getConfig } from "./config.js"
 import { generateTypes } from "./tsc.js"
