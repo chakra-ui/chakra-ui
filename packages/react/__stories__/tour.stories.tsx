@@ -22,5 +22,4 @@ export { TourWithRouting as Routing } from "compositions/examples/tour-with-rout
 export { TourWithoutBackdrop as WithoutBackdrop } from "compositions/examples/tour-without-backdrop"
 export { TourWithKeyboard as Keyboard } from "compositions/examples/tour-with-keyboard"
 export { TourOnboarding as Onboarding } from "compositions/examples/tour-onboarding"
-export { TourMultiPage as MultiPage } from "compositions/examples/tour-multi-page"
 export { TourConditional as Conditional } from "compositions/examples/tour-conditional"
