@@ -1181,11 +1181,15 @@ export type ComboboxVariantMap = {
 // CommandPalette
 
 export type CommandPaletteSlot =
-  | "root"
+  | "trigger"
+  | "backdrop"
+  | "positioner"
+  | "panel"
   | "label"
   | "control"
   | "indicator"
   | "input"
+  | "clearTrigger"
   | "list"
   | "itemGroup"
   | "itemGroupLabel"

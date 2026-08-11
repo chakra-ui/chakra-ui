@@ -1,8 +1,11 @@
 "use client"
 
 import {
+  Button,
   Checkmark,
   CommandPalette,
+  Kbd,
+  Portal,
   Text,
   useFilter,
   useListCollection,
@@ -26,27 +29,38 @@ export const CommandPaletteMultiple = () => {
         selectionMode="multiple"
         value={selectedLabels}
         onValueChange={(e) => setSelectedLabels(e.value)}
-        maxW="md"
+        onInputValueChange={(e) => filter(e.inputValue)}
       >
-        <CommandPalette.Control>
-          <CommandPalette.Indicator />
-          <CommandPalette.Input
-            placeholder="Search labels..."
-            onChange={(e) => filter(e.currentTarget.value)}
-          />
-        </CommandPalette.Control>
-        <CommandPalette.List>
-          {collection.items.map((item) => (
-            <CommandPalette.Item item={item} key={item.value}>
-              <Checkmark
-                size="sm"
-                checked={selectedLabels.includes(item.value)}
-              />
-              <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            </CommandPalette.Item>
-          ))}
-          <CommandPalette.Empty>No labels found</CommandPalette.Empty>
-        </CommandPalette.List>
+        <CommandPalette.Trigger asChild>
+          <Button variant="outline">
+            Open palette <Kbd size="sm">⌘K</Kbd>
+          </Button>
+        </CommandPalette.Trigger>
+        <Portal>
+          <CommandPalette.Backdrop />
+          <CommandPalette.Positioner>
+            <CommandPalette.Panel>
+              <CommandPalette.Control>
+                <CommandPalette.Indicator />
+                <CommandPalette.Input placeholder="Search labels..." />
+              </CommandPalette.Control>
+              <CommandPalette.List>
+                {collection.items.map((item) => (
+                  <CommandPalette.Item item={item} key={item.value}>
+                    <Checkmark
+                      size="sm"
+                      checked={selectedLabels.includes(item.value)}
+                    />
+                    <CommandPalette.ItemText>
+                      {item.label}
+                    </CommandPalette.ItemText>
+                  </CommandPalette.Item>
+                ))}
+                <CommandPalette.Empty>No labels found</CommandPalette.Empty>
+              </CommandPalette.List>
+            </CommandPalette.Panel>
+          </CommandPalette.Positioner>
+        </Portal>
       </CommandPalette.Root>
 
       {selectedLabels.length > 0 && (

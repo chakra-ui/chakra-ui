@@ -1,6 +1,12 @@
 "use client"
 
-import { CommandPalette, useListCollection } from "@chakra-ui/react"
+import {
+  Button,
+  CommandPalette,
+  Kbd,
+  Portal,
+  useListCollection,
+} from "@chakra-ui/react"
 
 const fuzzyMatch = (itemText: string, filterText: string) => {
   if (!filterText) return true
@@ -21,22 +27,36 @@ export const CommandPaletteWithCustomFilter = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Fuzzy search, try 'nf' or 'ost'..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Fuzzy search, try 'nf' or 'ost'..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

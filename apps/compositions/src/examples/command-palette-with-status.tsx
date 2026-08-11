@@ -1,8 +1,11 @@
 "use client"
 
 import {
+  Button,
   Circle,
   CommandPalette,
+  Kbd,
+  Portal,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
@@ -24,28 +27,39 @@ export const CommandPaletteWithStatus = () => {
       selectionMode="single"
       value={[status]}
       onValueChange={(e) => setStatus(e.value[0] ?? status)}
-      maxW="md"
+      onInputValueChange={(e) => filter(e.inputValue)}
     >
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Change status..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <Circle size="2.5" bg={item.color} />
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            <CommandPalette.ItemCommand>
-              {item.command}
-            </CommandPalette.ItemCommand>
-            <CommandPalette.ItemIndicator />
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No statuses found</CommandPalette.Empty>
-      </CommandPalette.List>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Change status..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <Circle size="2.5" bg={item.color} />
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                  <CommandPalette.ItemCommand>
+                    {item.command}
+                  </CommandPalette.ItemCommand>
+                  <CommandPalette.ItemIndicator />
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No statuses found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

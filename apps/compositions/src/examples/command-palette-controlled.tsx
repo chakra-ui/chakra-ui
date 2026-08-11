@@ -4,6 +4,8 @@ import {
   Button,
   CommandPalette,
   HStack,
+  Kbd,
+  Portal,
   Text,
   useFilter,
   useListCollection,
@@ -27,28 +29,39 @@ export const CommandPaletteControlled = () => {
         selectionMode="single"
         value={value}
         onValueChange={(e) => setValue(e.value)}
-        maxW="md"
+        onInputValueChange={(e) => filter(e.inputValue)}
       >
-        <CommandPalette.Control>
-          <CommandPalette.Indicator />
-          <CommandPalette.Input
-            placeholder="Search applications..."
-            onChange={(e) => filter(e.currentTarget.value)}
-          />
-        </CommandPalette.Control>
-        <CommandPalette.List>
-          {collection.items.map((item) => (
-            <CommandPalette.Item
-              item={item}
-              key={item.value}
-              _selected={{ bg: "blue.subtle", color: "blue.fg" }}
-            >
-              <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-              <CommandPalette.ItemIndicator />
-            </CommandPalette.Item>
-          ))}
-          <CommandPalette.Empty>No results found</CommandPalette.Empty>
-        </CommandPalette.List>
+        <CommandPalette.Trigger asChild>
+          <Button variant="outline">
+            Open palette <Kbd size="sm">⌘K</Kbd>
+          </Button>
+        </CommandPalette.Trigger>
+        <Portal>
+          <CommandPalette.Backdrop />
+          <CommandPalette.Positioner>
+            <CommandPalette.Panel>
+              <CommandPalette.Control>
+                <CommandPalette.Indicator />
+                <CommandPalette.Input placeholder="Search applications..." />
+              </CommandPalette.Control>
+              <CommandPalette.List>
+                {collection.items.map((item) => (
+                  <CommandPalette.Item
+                    item={item}
+                    key={item.value}
+                    _selected={{ bg: "blue.subtle", color: "blue.fg" }}
+                  >
+                    <CommandPalette.ItemText>
+                      {item.label}
+                    </CommandPalette.ItemText>
+                    <CommandPalette.ItemIndicator />
+                  </CommandPalette.Item>
+                ))}
+                <CommandPalette.Empty>No results found</CommandPalette.Empty>
+              </CommandPalette.List>
+            </CommandPalette.Panel>
+          </CommandPalette.Positioner>
+        </Portal>
       </CommandPalette.Root>
 
       <HStack mt="3">

@@ -1,7 +1,10 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
+  Kbd,
+  Portal,
   Span,
   Square,
   Tabs,
@@ -34,44 +37,58 @@ export const CommandPaletteWithTabs = () => {
   }, [tab, query, contains])
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search apps, actions and people..."
-          value={query}
-          onChange={(e) => setQuery(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <Tabs.Root
-        value={tab}
-        onValueChange={(e) => setTab(e.value ?? "all")}
-        size="sm"
-        variant="line"
-      >
-        <Tabs.List px="3">
-          <Tabs.Trigger value="all">All</Tabs.Trigger>
-          <Tabs.Trigger value="apps">Apps</Tabs.Trigger>
-          <Tabs.Trigger value="actions">Actions</Tabs.Trigger>
-          <Tabs.Trigger value="people">People</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs.Root>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <Square size="8" bg="bg.muted" borderRadius="l1">
-              {item.icon}
-            </Square>
-            <CommandPalette.ItemText>
-              {item.label}
-              <Span display="block" textStyle="xs" color="fg.muted">
-                {item.description}
-              </Span>
-            </CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => setQuery(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input
+                placeholder="Search apps, actions and people..."
+                value={query}
+              />
+            </CommandPalette.Control>
+            <Tabs.Root
+              value={tab}
+              onValueChange={(e) => setTab(e.value ?? "all")}
+              size="sm"
+              variant="line"
+            >
+              <Tabs.List px="3">
+                <Tabs.Trigger value="all">All</Tabs.Trigger>
+                <Tabs.Trigger value="apps">Apps</Tabs.Trigger>
+                <Tabs.Trigger value="actions">Actions</Tabs.Trigger>
+                <Tabs.Trigger value="people">People</Tabs.Trigger>
+              </Tabs.List>
+            </Tabs.Root>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <Square size="8" bg="bg.muted" borderRadius="l1">
+                    {item.icon}
+                  </Square>
+                  <CommandPalette.ItemText>
+                    {item.label}
+                    <Span display="block" textStyle="xs" color="fg.muted">
+                      {item.description}
+                    </Span>
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

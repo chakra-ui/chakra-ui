@@ -1,6 +1,13 @@
 "use client"
 
-import { CommandPalette, useFilter, useListCollection } from "@chakra-ui/react"
+import {
+  Button,
+  CommandPalette,
+  Kbd,
+  Portal,
+  useFilter,
+  useListCollection,
+} from "@chakra-ui/react"
 import { useVirtualizer } from "@tanstack/react-virtual"
 import { useRef } from "react"
 
@@ -24,53 +31,66 @@ export const CommandPaletteVirtualized = () => {
   return (
     <CommandPalette.Root
       collection={collection}
-      maxW="md"
       scrollToIndexFn={(details) => {
         virtualizer.scrollToIndex(details.index, { align: "auto" })
       }}
+      onInputValueChange={(e) => filter(e.inputValue)}
     >
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder={`Search ${commands.length.toLocaleString()} commands...`}
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List ref={scrollRef}>
-        <div
-          style={{
-            height: `${virtualizer.getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          {virtualizer.getVirtualItems().map((virtualItem) => {
-            const item = collection.items[virtualItem.index]
-            return (
-              <CommandPalette.Item
-                key={item.value}
-                item={item}
-                aria-posinset={virtualItem.index + 1}
-                aria-setsize={collection.size}
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input
+                placeholder={`Search ${commands.length.toLocaleString()} commands...`}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List ref={scrollRef}>
+              <div
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
+                  height: `${virtualizer.getTotalSize()}px`,
                   width: "100%",
-                  height: `${virtualItem.size}px`,
-                  transform: `translateY(${virtualItem.start}px)`,
+                  position: "relative",
                 }}
               >
-                <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-              </CommandPalette.Item>
-            )
-          })}
-        </div>
-        <CommandPalette.Empty>No commands found</CommandPalette.Empty>
-      </CommandPalette.List>
-      <CommandPalette.Footer>
-        {collection.size.toLocaleString()} commands
-      </CommandPalette.Footer>
+                {virtualizer.getVirtualItems().map((virtualItem) => {
+                  const item = collection.items[virtualItem.index]
+                  return (
+                    <CommandPalette.Item
+                      key={item.value}
+                      item={item}
+                      aria-posinset={virtualItem.index + 1}
+                      aria-setsize={collection.size}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: `${virtualItem.size}px`,
+                        transform: `translateY(${virtualItem.start}px)`,
+                      }}
+                    >
+                      <CommandPalette.ItemText>
+                        {item.label}
+                      </CommandPalette.ItemText>
+                    </CommandPalette.Item>
+                  )
+                })}
+              </div>
+              <CommandPalette.Empty>No commands found</CommandPalette.Empty>
+            </CommandPalette.List>
+            <CommandPalette.Footer>
+              {collection.size.toLocaleString()} commands
+            </CommandPalette.Footer>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

@@ -6,6 +6,8 @@ import {
   Center,
   CommandPalette,
   HStack,
+  Kbd,
+  Portal,
   Progress,
   Span,
   Spinner,
@@ -47,25 +49,34 @@ export const CommandPaletteWithPreview = () => {
         collection={collection}
         defaultHighlightedValue={components[0].value}
         onHighlightChange={(e) => setHighlighted(e.highlightedItem)}
-        flex="1"
-        borderWidth="0"
-        borderRadius="0"
+        onInputValueChange={(e) => filter(e.inputValue)}
       >
-        <CommandPalette.Control>
-          <CommandPalette.Indicator />
-          <CommandPalette.Input
-            placeholder="Search components..."
-            onChange={(e) => filter(e.currentTarget.value)}
-          />
-        </CommandPalette.Control>
-        <CommandPalette.List>
-          {collection.items.map((item) => (
-            <CommandPalette.Item item={item} key={item.value}>
-              <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            </CommandPalette.Item>
-          ))}
-          <CommandPalette.Empty>No components found</CommandPalette.Empty>
-        </CommandPalette.List>
+        <CommandPalette.Trigger asChild>
+          <Button variant="outline">
+            Open palette <Kbd size="sm">⌘K</Kbd>
+          </Button>
+        </CommandPalette.Trigger>
+        <Portal>
+          <CommandPalette.Backdrop />
+          <CommandPalette.Positioner>
+            <CommandPalette.Panel>
+              <CommandPalette.Control>
+                <CommandPalette.Indicator />
+                <CommandPalette.Input placeholder="Search components..." />
+              </CommandPalette.Control>
+              <CommandPalette.List>
+                {collection.items.map((item) => (
+                  <CommandPalette.Item item={item} key={item.value}>
+                    <CommandPalette.ItemText>
+                      {item.label}
+                    </CommandPalette.ItemText>
+                  </CommandPalette.Item>
+                ))}
+                <CommandPalette.Empty>No components found</CommandPalette.Empty>
+              </CommandPalette.List>
+            </CommandPalette.Panel>
+          </CommandPalette.Positioner>
+        </Portal>
       </CommandPalette.Root>
       <Center flex="1" borderStartWidth="1px" bg="bg.subtle" minH="72">
         {highlighted ? (

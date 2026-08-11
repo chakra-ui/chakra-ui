@@ -1,9 +1,11 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
   HStack,
   Kbd,
+  Portal,
   Separator,
   Span,
   useFilter,
@@ -20,38 +22,54 @@ export const CommandPaletteWithFooterActions = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search for apps and commands..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            <CommandPalette.ItemCommand>{item.type}</CommandPalette.ItemCommand>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
-      <CommandPalette.Footer>
-        <Span color="fg.muted" display="inline-flex">
-          <LuCommand />
-        </Span>
-        <HStack gap="2" ms="auto">
-          <Span>Open Application</Span>
-          <Kbd size="sm">⏎</Kbd>
-        </HStack>
-        <Separator orientation="vertical" height="4" />
-        <HStack gap="2">
-          <Span>Actions</Span>
-          <Kbd size="sm">⌘</Kbd>
-          <Kbd size="sm">K</Kbd>
-        </HStack>
-      </CommandPalette.Footer>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Search for apps and commands..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                  <CommandPalette.ItemCommand>
+                    {item.type}
+                  </CommandPalette.ItemCommand>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+            <CommandPalette.Footer>
+              <Span color="fg.muted" display="inline-flex">
+                <LuCommand />
+              </Span>
+              <HStack gap="2" ms="auto">
+                <Span>Open Application</Span>
+                <Kbd size="sm">⏎</Kbd>
+              </HStack>
+              <Separator orientation="vertical" height="4" />
+              <HStack gap="2">
+                <Span>Actions</Span>
+                <Kbd size="sm">⌘</Kbd>
+                <Kbd size="sm">K</Kbd>
+              </HStack>
+            </CommandPalette.Footer>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

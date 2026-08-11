@@ -1,7 +1,10 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
+  Kbd,
+  Portal,
   createListCollection,
   useFilter,
 } from "@chakra-ui/react"
@@ -48,50 +51,61 @@ export const CommandPaletteWithRecentItems = () => {
       collection={collection}
       onSelect={(e) => {
         setRecentValues((prev) =>
-          [e.value, ...prev.filter((v) => v !== e.value)].slice(0, 3),
+          [e.itemValue, ...prev.filter((v) => v !== e.itemValue)].slice(0, 3),
         )
       }}
-      maxW="md"
+      onInputValueChange={(e) => setQuery(e.inputValue)}
     >
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Type a command or search..."
-          value={query}
-          onChange={(e) => setQuery(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {query === "" ? (
-          <>
-            <CommandPalette.ItemGroup>
-              <CommandPalette.ItemGroupLabel>
-                Recent
-              </CommandPalette.ItemGroupLabel>
-              {collection.items
-                .filter((item) => recentValues.includes(item.value))
-                .map((item) => (
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input
+                placeholder="Type a command or search..."
+                value={query}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {query === "" ? (
+                <>
+                  <CommandPalette.ItemGroup>
+                    <CommandPalette.ItemGroupLabel>
+                      Recent
+                    </CommandPalette.ItemGroupLabel>
+                    {collection.items
+                      .filter((item) => recentValues.includes(item.value))
+                      .map((item) => (
+                        <CommandItem key={item.value} item={item} />
+                      ))}
+                  </CommandPalette.ItemGroup>
+                  <CommandPalette.ItemGroup>
+                    <CommandPalette.ItemGroupLabel>
+                      Commands
+                    </CommandPalette.ItemGroupLabel>
+                    {collection.items
+                      .filter((item) => !recentValues.includes(item.value))
+                      .map((item) => (
+                        <CommandItem key={item.value} item={item} />
+                      ))}
+                  </CommandPalette.ItemGroup>
+                </>
+              ) : (
+                collection.items.map((item) => (
                   <CommandItem key={item.value} item={item} />
-                ))}
-            </CommandPalette.ItemGroup>
-            <CommandPalette.ItemGroup>
-              <CommandPalette.ItemGroupLabel>
-                Commands
-              </CommandPalette.ItemGroupLabel>
-              {collection.items
-                .filter((item) => !recentValues.includes(item.value))
-                .map((item) => (
-                  <CommandItem key={item.value} item={item} />
-                ))}
-            </CommandPalette.ItemGroup>
-          </>
-        ) : (
-          collection.items.map((item) => (
-            <CommandItem key={item.value} item={item} />
-          ))
-        )}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+                ))
+              )}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

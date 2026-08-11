@@ -4,6 +4,8 @@ import {
   Button,
   CommandPalette,
   HStack,
+  Kbd,
+  Portal,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
@@ -26,23 +28,39 @@ export const CommandPaletteControlledSearch = () => {
 
   return (
     <>
-      <CommandPalette.Root collection={collection} maxW="md">
-        <CommandPalette.Control>
-          <CommandPalette.Indicator />
-          <CommandPalette.Input
-            placeholder="Type a command or search..."
-            value={searchTerm}
-            onChange={(e) => setSearch(e.currentTarget.value)}
-          />
-        </CommandPalette.Control>
-        <CommandPalette.List>
-          {collection.items.map((item) => (
-            <CommandPalette.Item item={item} key={item.value}>
-              <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            </CommandPalette.Item>
-          ))}
-          <CommandPalette.Empty>No results found</CommandPalette.Empty>
-        </CommandPalette.List>
+      <CommandPalette.Root
+        collection={collection}
+        onInputValueChange={(e) => setSearch(e.inputValue)}
+      >
+        <CommandPalette.Trigger asChild>
+          <Button variant="outline">
+            Open palette <Kbd size="sm">⌘K</Kbd>
+          </Button>
+        </CommandPalette.Trigger>
+        <Portal>
+          <CommandPalette.Backdrop />
+          <CommandPalette.Positioner>
+            <CommandPalette.Panel>
+              <CommandPalette.Control>
+                <CommandPalette.Indicator />
+                <CommandPalette.Input
+                  placeholder="Type a command or search..."
+                  value={searchTerm}
+                />
+              </CommandPalette.Control>
+              <CommandPalette.List>
+                {collection.items.map((item) => (
+                  <CommandPalette.Item item={item} key={item.value}>
+                    <CommandPalette.ItemText>
+                      {item.label}
+                    </CommandPalette.ItemText>
+                  </CommandPalette.Item>
+                ))}
+                <CommandPalette.Empty>No results found</CommandPalette.Empty>
+              </CommandPalette.List>
+            </CommandPalette.Panel>
+          </CommandPalette.Positioner>
+        </Portal>
       </CommandPalette.Root>
 
       <HStack mt="3">

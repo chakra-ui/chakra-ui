@@ -1,9 +1,4 @@
-import {
-  CommandPalette,
-  Dialog,
-  Portal,
-  createListCollection,
-} from "@chakra-ui/react"
+import { CommandPalette, Portal, createListCollection } from "@chakra-ui/react"
 import userEvent from "@testing-library/user-event"
 import { render } from "./core/render"
 
@@ -15,33 +10,36 @@ const collection = createListCollection({
   ],
 })
 
-const Demo = ({
-  clearOnEscape,
-  ...rootProps
-}: {
+const Demo = (props: {
   onValueChange?: (details: any) => void
   onSelect?: (details: any) => void
+  onOpenChange?: (details: any) => void
   selectionMode?: "none" | "single" | "multiple"
-  value?: string[]
-  clearOnEscape?: boolean
+  hotkey?: string | null
+  defaultOpen?: boolean
 }) => (
-  <CommandPalette.Root collection={collection} {...rootProps}>
-    <CommandPalette.Label>Commands</CommandPalette.Label>
-    <CommandPalette.Control>
-      <CommandPalette.Indicator />
-      <CommandPalette.Input
-        placeholder="Search..."
-        clearOnEscape={clearOnEscape}
-      />
-    </CommandPalette.Control>
-    <CommandPalette.List>
-      {collection.items.map((item) => (
-        <CommandPalette.Item item={item} key={item.value}>
-          <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-        </CommandPalette.Item>
-      ))}
-      <CommandPalette.Empty>No results</CommandPalette.Empty>
-    </CommandPalette.List>
+  <CommandPalette.Root collection={collection} defaultOpen {...props}>
+    <CommandPalette.Trigger>Open</CommandPalette.Trigger>
+    <Portal>
+      <CommandPalette.Backdrop />
+      <CommandPalette.Positioner>
+        <CommandPalette.Panel>
+          <CommandPalette.Label>Commands</CommandPalette.Label>
+          <CommandPalette.Control>
+            <CommandPalette.Indicator />
+            <CommandPalette.Input placeholder="Search..." />
+          </CommandPalette.Control>
+          <CommandPalette.List>
+            {collection.items.map((item) => (
+              <CommandPalette.Item item={item} key={item.value}>
+                <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
+              </CommandPalette.Item>
+            ))}
+            <CommandPalette.Empty>No results</CommandPalette.Empty>
+          </CommandPalette.List>
+        </CommandPalette.Panel>
+      </CommandPalette.Positioner>
+    </Portal>
   </CommandPalette.Root>
 )
 
@@ -53,15 +51,11 @@ describe("CommandPalette", () => {
       <Demo selectionMode="single" onValueChange={onValueChange} />,
     )
 
-    expect(getByRole("listbox")).toBeInTheDocument()
-
-    const option = getByRole("option", { name: "Open File" })
-    await user.click(option)
+    await user.click(getByRole("option", { name: "Open File" }))
 
     expect(onValueChange).toHaveBeenCalledWith(
       expect.objectContaining({ value: ["open-file"] }),
     )
-    expect(option).toHaveAttribute("aria-selected", "true")
   })
 
   it("navigates and selects with the keyboard from the input", async () => {
@@ -79,37 +73,9 @@ describe("CommandPalette", () => {
     )
   })
 
-  it("clears the input on escape", async () => {
-    const user = userEvent.setup()
+  it("labels the input via the Label part", async () => {
     const { getByPlaceholderText } = render(<Demo />)
-    const input = getByPlaceholderText("Search...") as HTMLInputElement
-
-    await user.click(input)
-    await user.keyboard("open")
-    expect(input.value).toBe("open")
-
-    await user.keyboard("{Escape}")
-    expect(input.value).toBe("")
-  })
-
-  it("labels the input and listbox via the Label part", async () => {
-    const { getByRole, getByPlaceholderText } = render(<Demo />)
-
     expect(getByPlaceholderText("Search...")).toHaveAccessibleName("Commands")
-    expect(getByRole("listbox")).toHaveAccessibleName("Commands")
-  })
-
-  it("keeps escape untouched when clearOnEscape is false", async () => {
-    const user = userEvent.setup()
-    const { getByPlaceholderText } = render(<Demo clearOnEscape={false} />)
-    const input = getByPlaceholderText("Search...") as HTMLInputElement
-
-    await user.click(input)
-    await user.keyboard("open")
-    expect(input.value).toBe("open")
-
-    await user.keyboard("{Escape}")
-    expect(input.value).toBe("open")
   })
 
   it("runs commands without persisting selection by default", async () => {
@@ -121,39 +87,43 @@ describe("CommandPalette", () => {
     await user.click(option)
 
     expect(onSelect).toHaveBeenCalledWith(
-      expect.objectContaining({ value: "open-file" }),
+      expect.objectContaining({ itemValue: "open-file" }),
     )
-    expect(option).toHaveAttribute("aria-selected", "false")
+    expect(option).not.toHaveAttribute("aria-selected", "true")
   })
 
-  it("clears the input before closing an enclosing dialog on escape", async () => {
+  it("closes the dialog on escape", async () => {
     const user = userEvent.setup()
     const onOpenChange = vi.fn()
     const { getByPlaceholderText } = render(
-      <Dialog.Root defaultOpen onOpenChange={onOpenChange}>
-        <Portal>
-          <Dialog.Backdrop />
-          <Dialog.Positioner>
-            <Dialog.Content>
-              <Demo />
-            </Dialog.Content>
-          </Dialog.Positioner>
-        </Portal>
-      </Dialog.Root>,
+      <Demo onOpenChange={onOpenChange} />,
     )
-    const input = getByPlaceholderText("Search...") as HTMLInputElement
 
-    await user.click(input)
-    await user.keyboard("open")
-    expect(input.value).toBe("open")
-
+    await user.click(getByPlaceholderText("Search..."))
     await user.keyboard("{Escape}")
-    expect(input.value).toBe("")
-    expect(onOpenChange).not.toHaveBeenCalled()
 
-    await user.keyboard("{Escape}")
     expect(onOpenChange).toHaveBeenCalledWith(
       expect.objectContaining({ open: false }),
+    )
+  })
+
+  it("opens on the hotkey and stays closed when opted out", async () => {
+    const user = userEvent.setup()
+    const onOpenChange = vi.fn()
+    render(<Demo defaultOpen={false} onOpenChange={onOpenChange} />)
+
+    await user.keyboard("{Meta>}k{/Meta}")
+    expect(onOpenChange).toHaveBeenCalledWith(
+      expect.objectContaining({ open: true }),
+    )
+
+    onOpenChange.mockClear()
+    render(
+      <Demo defaultOpen={false} hotkey={null} onOpenChange={onOpenChange} />,
+    )
+    await user.keyboard("{Meta>}k{/Meta}")
+    expect(onOpenChange).not.toHaveBeenCalledWith(
+      expect.objectContaining({ open: true }),
     )
   })
 })

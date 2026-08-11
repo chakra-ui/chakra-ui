@@ -5,18 +5,67 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
   className: "chakra-command-palette",
   slots: commandPaletteAnatomy.keys(),
   base: {
-    root: {
+    backdrop: {
+      bg: "blackAlpha.500",
+      pos: "fixed",
+      left: 0,
+      top: 0,
+      w: "100dvw",
+      h: "100dvh",
+      "--command-palette-z-index": "zIndex.popover",
+      zIndex:
+        "calc(var(--command-palette-z-index) + var(--layer-index, 0) - 1)",
+      _open: {
+        animationName: "fade-in",
+        animationDuration: "slow",
+      },
+      _closed: {
+        animationName: "fade-out",
+        animationDuration: "moderate",
+      },
+    },
+
+    positioner: {
+      display: "flex",
+      width: "100dvw",
+      height: "100dvh",
+      position: "fixed",
+      left: 0,
+      top: 0,
+      "--command-palette-z-index": "zIndex.popover",
+      zIndex: "calc(var(--command-palette-z-index) + var(--layer-index, 0))",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      overscrollBehaviorY: "none",
+      px: "4",
+      py: "16",
+    },
+
+    panel: {
       display: "flex",
       flexDirection: "column",
+      position: "relative",
       width: "full",
       minH: "0",
+      outline: 0,
       bg: "bg.panel",
+      boxShadow: "lg",
       borderWidth: "1px",
       borderRadius: "l3",
       overflow: "hidden",
       textStyle: "sm",
+      "--command-palette-z-index": "zIndex.popover",
+      zIndex: "calc(var(--command-palette-z-index) + var(--layer-index, 0))",
       "--command-palette-item-padding-x": "spacing.2",
       "--command-palette-item-padding-y": "spacing.1.5",
+      _open: {
+        animationName: "scale-in, fade-in",
+        animationDuration: "moderate",
+      },
+      _closed: {
+        animationName: "scale-out, fade-out",
+        animationDuration: "faster",
+      },
     },
 
     label: {
@@ -51,6 +100,22 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
       outline: "0",
       _placeholder: {
         color: "fg.muted",
+      },
+    },
+
+    clearTrigger: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      borderRadius: "l1",
+      color: "fg.muted",
+      cursor: "pointer",
+      _hover: {
+        color: "fg",
+      },
+      _icon: {
+        boxSize: "4",
       },
     },
 
@@ -150,7 +215,8 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       sm: {
-        root: {
+        panel: {
+          maxW: "md",
           "--command-palette-item-padding-y": "spacing.1",
         },
         control: {
@@ -168,6 +234,9 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
         },
       },
       md: {
+        panel: {
+          maxW: "lg",
+        },
         input: {
           py: "3",
         },
@@ -176,7 +245,8 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
         },
       },
       lg: {
-        root: {
+        panel: {
+          maxW: "2xl",
           "--command-palette-item-padding-y": "spacing.2",
         },
         input: {

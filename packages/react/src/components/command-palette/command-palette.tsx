@@ -1,10 +1,10 @@
 "use client"
 
 import type { Assign, CollectionItem } from "@ark-ui/react"
-import { Listbox as ArkListbox, useListboxContext } from "@ark-ui/react/listbox"
-import { type JSX, forwardRef, useEffect, useRef } from "react"
+import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
+import { Dialog as ArkDialog, useDialog } from "@ark-ui/react/dialog"
+import { type JSX, forwardRef, useEffect } from "react"
 import { createContext } from "../../create-context"
-import { mergeRefs } from "../../merge-refs"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -18,7 +18,7 @@ import { Spinner } from "../spinner"
 ////////////////////////////////////////////////////////////////////////////////////
 
 const {
-  withProvider,
+  withRootProvider,
   withContext,
   useStyles: useCommandPaletteStyles,
   PropsProvider,
@@ -30,125 +30,168 @@ export { useCommandPaletteStyles }
 
 interface CommandPaletteContextValue {
   loading: boolean | undefined
+  comboboxProps: ArkCombobox.RootProps<any>
 }
 
-const [CommandPaletteInnerProvider, useCommandPaletteInnerContext] =
+const [CommandPaletteConfigProvider, useCommandPaletteConfig] =
   createContext<CommandPaletteContextValue>({
-    name: "CommandPaletteInnerContext",
-    hookName: "useCommandPaletteInnerContext",
+    name: "CommandPaletteConfigContext",
+    hookName: "useCommandPaletteConfig",
     providerName: "<CommandPalette.Root />",
   })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CommandPaletteRootProviderBaseProps<
-  T extends CollectionItem = any,
+type DialogOnlyProps = Pick<
+  ArkDialog.RootProps,
+  | "open"
+  | "defaultOpen"
+  | "onOpenChange"
+  | "modal"
+  | "closeOnEscape"
+  | "closeOnInteractOutside"
+  | "initialFocusEl"
+  | "finalFocusEl"
+  | "restoreFocus"
+  | "preventScroll"
+  | "trapFocus"
+  | "lazyMount"
+  | "unmountOnExit"
 >
-  extends
-    Assign<
-      ArkListbox.RootProviderBaseProps<T>,
-      SlotRecipeProps<"commandPalette">
-    >,
-    UnstyledProp {
-  /**
-   * Whether the command palette is loading results.
-   * Reflected on the root and indicator parts.
-   * @default false
-   */
-  loading?: boolean | undefined
-}
 
-export interface CommandPaletteRootProviderProps<
-  T extends CollectionItem = any,
-> extends HTMLChakraProps<"div", CommandPaletteRootProviderBaseProps<T>> {}
-
-const CommandPaletteRootProviderBase = forwardRef<
-  HTMLDivElement,
-  CommandPaletteRootProviderProps
->(function CommandPaletteRootProviderBase(props, ref) {
-  const { loading, ...restProps } = props
-  return (
-    <CommandPaletteInnerProvider value={{ loading }}>
-      <ArkListbox.RootProvider
-        ref={ref}
-        {...(restProps as ArkListbox.RootProviderProps<any>)}
-        data-loading={dataAttr(loading)}
-        data-empty={dataAttr(restProps.value?.collection?.size === 0)}
-      />
-    </CommandPaletteInnerProvider>
-  )
-})
-
-interface CommandPaletteRootProviderComponent {
-  <T extends CollectionItem>(
-    props: CommandPaletteRootProviderProps<T> &
-      React.RefAttributes<HTMLDivElement>,
-  ): JSX.Element
-}
-
-export const CommandPaletteRootProvider = withProvider<
-  HTMLDivElement,
-  CommandPaletteRootProviderProps
->(CommandPaletteRootProviderBase, "root") as CommandPaletteRootProviderComponent
-
-////////////////////////////////////////////////////////////////////////////////////
+type ComboboxOnlyProps<T extends CollectionItem> = Omit<
+  ArkCombobox.RootBaseProps<T>,
+  | "open"
+  | "defaultOpen"
+  | "onOpenChange"
+  | "positioning"
+  | "disableLayer"
+  | "multiple"
+>
 
 export interface CommandPaletteRootBaseProps<T extends CollectionItem = any>
   extends
-    Assign<
-      Omit<ArkListbox.RootBaseProps<T>, "selectionMode">,
-      SlotRecipeProps<"commandPalette">
-    >,
+    Assign<ComboboxOnlyProps<T>, SlotRecipeProps<"commandPalette">>,
+    DialogOnlyProps,
     UnstyledProp {
   /**
    * Whether the command palette is loading results.
-   * Reflected on the root and indicator parts.
+   * Reflected on the panel and indicator parts.
    * @default false
    */
   loading?: boolean | undefined
+  /**
+   * Keyboard shortcut that toggles the palette, written as `mod+k`, where
+   * `mod` is Command on macOS and Control elsewhere. Pass `null` to opt out
+   * and drive the palette from your own trigger or state.
+   * @default "mod+k"
+   */
+  hotkey?: string | null | undefined
   /**
    * How selection behaves. The default `none` runs commands without
    * persisting a selected state; use `onSelect` to execute them. Pass
    * `single` or `multiple` to build pickers where selection persists.
    * @default "none"
    */
-  selectionMode?: "none" | "single" | "multiple" | "extended" | undefined
+  selectionMode?: "none" | "single" | "multiple" | undefined
 }
 
 export interface CommandPaletteRootProps<
   T extends CollectionItem = any,
-> extends HTMLChakraProps<"div", CommandPaletteRootBaseProps<T>> {}
-
-const CommandPaletteRootBase = forwardRef<
-  HTMLDivElement,
-  CommandPaletteRootProps
->(function CommandPaletteRootBase(props, ref) {
-  const { loading, selectionMode = "none", ...restProps } = props
-  const actionMode = selectionMode === "none"
-  return (
-    <CommandPaletteInnerProvider value={{ loading }}>
-      <ArkListbox.Root
-        ref={ref}
-        {...(restProps as ArkListbox.RootProps<any>)}
-        selectionMode={actionMode ? "single" : selectionMode}
-        value={actionMode ? [] : restProps.value}
-        data-loading={dataAttr(loading)}
-        data-empty={dataAttr(restProps.collection?.size === 0)}
-      />
-    </CommandPaletteInnerProvider>
-  )
-})
-
-export interface CommandPaletteRootComponent {
-  <T extends CollectionItem>(
-    props: CommandPaletteRootProps<T> & React.RefAttributes<HTMLDivElement>,
-  ): JSX.Element
+> extends CommandPaletteRootBaseProps<T> {
+  children: React.ReactNode
 }
 
-export const CommandPaletteRoot = withProvider<
-  HTMLDivElement,
-  CommandPaletteRootProps
->(CommandPaletteRootBase, "root") as CommandPaletteRootComponent
+function matchesHotkey(event: KeyboardEvent, hotkey: string) {
+  const parts = hotkey.toLowerCase().split("+")
+  const key = parts.at(-1)
+  if (event.key.toLowerCase() !== key) return false
+  const mod = parts.includes("mod")
+  const modActive = event.metaKey || event.ctrlKey
+  if (mod !== modActive) return false
+  if (parts.includes("shift") !== event.shiftKey) return false
+  if (parts.includes("alt") !== event.altKey) return false
+  return true
+}
+
+function useHotkey(hotkey: string | null | undefined, toggle: () => void) {
+  useEffect(() => {
+    if (!hotkey) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!matchesHotkey(event, hotkey)) return
+      event.preventDefault()
+      toggle()
+    }
+    document.addEventListener("keydown", onKeyDown)
+    return () => document.removeEventListener("keydown", onKeyDown)
+  })
+}
+
+const CommandPaletteRootBase = (props: CommandPaletteRootProps) => {
+  const {
+    open,
+    defaultOpen,
+    onOpenChange,
+    modal,
+    closeOnEscape,
+    closeOnInteractOutside,
+    initialFocusEl,
+    finalFocusEl,
+    restoreFocus,
+    preventScroll,
+    trapFocus,
+    lazyMount = true,
+    unmountOnExit = true,
+    loading,
+    hotkey = "mod+k",
+    selectionMode = "none",
+    children,
+    ...restProps
+  } = props
+
+  const actionMode = selectionMode === "none"
+  const comboboxProps: ArkCombobox.RootProps<any> = {
+    ...(restProps as ArkCombobox.RootProps<any>),
+    multiple: selectionMode === "multiple",
+    ...(actionMode ? { value: [], selectionBehavior: "clear" as const } : {}),
+  }
+
+  const dialog = useDialog({
+    open,
+    defaultOpen,
+    onOpenChange,
+    modal,
+    closeOnEscape,
+    closeOnInteractOutside,
+    initialFocusEl,
+    finalFocusEl,
+    restoreFocus,
+    preventScroll,
+    trapFocus,
+  })
+
+  useHotkey(hotkey, () => dialog.setOpen(!dialog.open))
+
+  return (
+    <CommandPaletteConfigProvider value={{ loading, comboboxProps }}>
+      <ArkDialog.RootProvider
+        value={dialog}
+        lazyMount={lazyMount}
+        unmountOnExit={unmountOnExit}
+      >
+        {children}
+      </ArkDialog.RootProvider>
+    </CommandPaletteConfigProvider>
+  )
+}
+
+export interface CommandPaletteRootComponent {
+  <T extends CollectionItem>(props: CommandPaletteRootProps<T>): JSX.Element
+}
+
+export const CommandPaletteRoot = withRootProvider<CommandPaletteRootProps>(
+  CommandPaletteRootBase,
+) as CommandPaletteRootComponent
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -157,23 +200,90 @@ export const CommandPalettePropsProvider =
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface CommandPaletteTriggerProps
+  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps>, UnstyledProp {}
+
+export const CommandPaletteTrigger = withContext<
+  HTMLButtonElement,
+  CommandPaletteTriggerProps
+>(ArkDialog.Trigger, "trigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CommandPaletteBackdropProps
+  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps>, UnstyledProp {}
+
+export const CommandPaletteBackdrop = withContext<
+  HTMLDivElement,
+  CommandPaletteBackdropProps
+>(ArkDialog.Backdrop, "backdrop", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CommandPalettePositionerProps
+  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps>, UnstyledProp {}
+
+export const CommandPalettePositioner = withContext<
+  HTMLDivElement,
+  CommandPalettePositionerProps
+>(ArkDialog.Positioner, "positioner", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CommandPalettePanelProps
+  extends HTMLChakraProps<"div", ArkDialog.ContentBaseProps>, UnstyledProp {}
+
+const CommandPalettePanelBase = forwardRef<
+  HTMLDivElement,
+  ArkDialog.ContentProps
+>(function CommandPalettePanelBase(props, ref) {
+  const { children, ...restProps } = props
+  const { loading, comboboxProps } = useCommandPaletteConfig()
+
+  return (
+    <ArkDialog.Content
+      ref={ref}
+      {...restProps}
+      data-loading={dataAttr(loading)}
+      data-empty={dataAttr(comboboxProps.collection?.size === 0)}
+    >
+      <ArkCombobox.Root
+        {...comboboxProps}
+        open
+        disableLayer
+        asChild={false}
+        className={undefined}
+      >
+        {children}
+      </ArkCombobox.Root>
+    </ArkDialog.Content>
+  )
+})
+
+export const CommandPalettePanel = withContext<
+  HTMLDivElement,
+  CommandPalettePanelProps
+>(CommandPalettePanelBase, "panel", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface CommandPaletteLabelProps
-  extends HTMLChakraProps<"label", ArkListbox.LabelBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkCombobox.LabelBaseProps>, UnstyledProp {}
 
 export const CommandPaletteLabel = withContext<
   HTMLLabelElement,
   CommandPaletteLabelProps
->(ArkListbox.Label, "label", { forwardAsChild: true })
+>(ArkCombobox.Label, "label", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteControlProps
-  extends HTMLChakraProps<"div">, UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCombobox.ControlBaseProps>, UnstyledProp {}
 
 export const CommandPaletteControl = withContext<
   HTMLDivElement,
   CommandPaletteControlProps
->("div", "control")
+>(ArkCombobox.Control, "control", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +294,7 @@ const CommandPaletteIndicatorBase = forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(function CommandPaletteIndicatorBase(props, ref) {
-  const { loading } = useCommandPaletteInnerContext()
+  const { loading } = useCommandPaletteConfig()
   const { children = <SearchIcon />, ...restProps } = props
   return (
     <div ref={ref} {...restProps} data-loading={dataAttr(loading)}>
@@ -200,133 +310,79 @@ export const CommandPaletteIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CommandPaletteInputBaseProps
-  extends ArkListbox.InputBaseProps {
-  /**
-   * Whether pressing Escape clears the input (and stops the event) before
-   * any enclosing dismissable layer handles it. Set to `false` to let
-   * Escape dismiss the enclosing dialog, drawer or popover immediately.
-   * @default true
-   */
-  clearOnEscape?: boolean | undefined
-}
-
 export interface CommandPaletteInputProps
-  extends
-    HTMLChakraProps<"input", CommandPaletteInputBaseProps>,
-    UnstyledProp {}
-
-const CommandPaletteInputBase = forwardRef<
-  HTMLInputElement,
-  ArkListbox.InputProps & { clearOnEscape?: boolean | undefined }
->(function CommandPaletteInputBase(props, ref) {
-  const { clearOnEscape = true, ...restProps } = props
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  // TODO(zag#3256): the accessible name, Escape handling and `setInputValue`
-  // below all patch gaps in listbox's input from userland. Remove them once
-  // https://github.com/chakra-ui/zag/issues/3256 lands.
-
-  // zag's listbox wires the label to the list but not to the input
-  // (unlike combobox), so the input would have no accessible name.
-  const listbox = useListboxContext()
-  const labelId = listbox.getLabelProps().id
-
-  // Clear the input on Escape before any dismissable layer (dialog, drawer,
-  // popover) handles the key. Those layers listen on the document in the
-  // capture phase, so a window capture listener is the only spot that runs
-  // earlier — a bubble handler on the input never gets the chance.
-  useEffect(() => {
-    const input = inputRef.current
-    if (!input || !clearOnEscape) return
-    const win = input.ownerDocument.defaultView ?? window
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return
-      const target = event.composedPath?.()[0] ?? event.target
-      if (target !== input || !input.value) return
-      event.preventDefault()
-      event.stopPropagation()
-      setInputValue(input, "")
-    }
-    win.addEventListener("keydown", onKeyDown, { capture: true })
-    return () => win.removeEventListener("keydown", onKeyDown, true)
-  }, [clearOnEscape])
-
-  return (
-    <ArkListbox.Input
-      autoHighlight
-      aria-labelledby={labelId}
-      {...restProps}
-      ref={mergeRefs(ref, inputRef)}
-    />
-  )
-})
-
-function setInputValue(input: HTMLInputElement, value: string) {
-  const setter = Object.getOwnPropertyDescriptor(
-    HTMLInputElement.prototype,
-    "value",
-  )?.set
-  setter?.call(input, value)
-  input.dispatchEvent(new Event("input", { bubbles: true }))
-}
+  extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>, UnstyledProp {}
 
 export const CommandPaletteInput = withContext<
   HTMLInputElement,
   CommandPaletteInputProps
->(CommandPaletteInputBase, "input")
+>(ArkCombobox.Input, "input", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CommandPaletteClearTriggerProps
+  extends
+    HTMLChakraProps<"button", ArkCombobox.ClearTriggerBaseProps>,
+    UnstyledProp {}
+
+export const CommandPaletteClearTrigger = withContext<
+  HTMLButtonElement,
+  CommandPaletteClearTriggerProps
+>(ArkCombobox.ClearTrigger, "clearTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteListProps
-  extends HTMLChakraProps<"div", ArkListbox.ContentBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCombobox.ContentBaseProps>, UnstyledProp {}
 
 export const CommandPaletteList = withContext<
   HTMLDivElement,
   CommandPaletteListProps
->(ArkListbox.Content, "list", { forwardAsChild: true })
+>(ArkCombobox.Content, "list", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteItemGroupProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemGroupBaseProps>, UnstyledProp {}
+  extends
+    HTMLChakraProps<"div", ArkCombobox.ItemGroupBaseProps>,
+    UnstyledProp {}
 
 export const CommandPaletteItemGroup = withContext<
   HTMLDivElement,
   CommandPaletteItemGroupProps
->(ArkListbox.ItemGroup, "itemGroup", { forwardAsChild: true })
+>(ArkCombobox.ItemGroup, "itemGroup", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteItemGroupLabelProps
   extends
-    HTMLChakraProps<"div", ArkListbox.ItemGroupLabelBaseProps>,
+    HTMLChakraProps<"div", ArkCombobox.ItemGroupLabelBaseProps>,
     UnstyledProp {}
 
 export const CommandPaletteItemGroupLabel = withContext<
   HTMLDivElement,
   CommandPaletteItemGroupLabelProps
->(ArkListbox.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
+>(ArkCombobox.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteItemProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemBaseProps>, UnstyledProp {}
 
 export const CommandPaletteItem = withContext<
   HTMLDivElement,
   CommandPaletteItemProps
->(ArkListbox.Item, "item", { forwardAsChild: true })
+>(ArkCombobox.Item, "item", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteItemTextProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemTextBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkCombobox.ItemTextBaseProps>, UnstyledProp {}
 
 export const CommandPaletteItemText = withContext<
   HTMLDivElement,
   CommandPaletteItemTextProps
->(ArkListbox.ItemText, "itemText", { forwardAsChild: true })
+>(ArkCombobox.ItemText, "itemText", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -342,13 +398,13 @@ export const CommandPaletteItemCommand = withContext<
 
 export interface CommandPaletteItemIndicatorProps
   extends
-    HTMLChakraProps<"div", ArkListbox.ItemIndicatorBaseProps>,
+    HTMLChakraProps<"div", ArkCombobox.ItemIndicatorBaseProps>,
     UnstyledProp {}
 
 export const CommandPaletteItemIndicator = withContext<
   HTMLDivElement,
   CommandPaletteItemIndicatorProps
->(ArkListbox.ItemIndicator, "itemIndicator", {
+>(ArkCombobox.ItemIndicator, "itemIndicator", {
   forwardAsChild: true,
   defaultProps: {
     children: <CheckIcon />,
@@ -358,12 +414,12 @@ export const CommandPaletteItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandPaletteEmptyProps
-  extends HTMLChakraProps<"div", ArkListbox.EmptyBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const CommandPaletteEmpty = withContext<
   HTMLDivElement,
   CommandPaletteEmptyProps
->(ArkListbox.Empty, "empty", { forwardAsChild: true })
+>(ArkCombobox.Empty, "empty", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -377,13 +433,20 @@ export const CommandPaletteFooter = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export const CommandPaletteContext = ArkListbox.Context
-export const CommandPaletteItemContext = ArkListbox.ItemContext
+export const CommandPaletteContext = ArkCombobox.Context
+export const CommandPaletteItemContext = ArkCombobox.ItemContext
+export const CommandPaletteDialogContext = ArkDialog.Context
 
 export interface CommandPaletteValueChangeDetails<
   T extends CollectionItem = any,
-> extends ArkListbox.ValueChangeDetails<T> {}
+> extends ArkCombobox.ValueChangeDetails<T> {}
 
 export interface CommandPaletteHighlightChangeDetails<
   T extends CollectionItem = any,
-> extends ArkListbox.HighlightChangeDetails<T> {}
+> extends ArkCombobox.HighlightChangeDetails<T> {}
+
+export interface CommandPaletteInputValueChangeDetails
+  extends ArkCombobox.InputValueChangeDetails {}
+
+export interface CommandPaletteOpenChangeDetails
+  extends ArkDialog.OpenChangeDetails {}
