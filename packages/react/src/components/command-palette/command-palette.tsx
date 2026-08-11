@@ -223,6 +223,10 @@ const CommandPaletteInputBase = forwardRef<
   const { clearOnEscape = true, ...restProps } = props
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // TODO(zag#3256): the accessible name, Escape handling and `setInputValue`
+  // below all patch gaps in listbox's input from userland. Remove them once
+  // https://github.com/chakra-ui/zag/issues/3256 lands.
+
   // zag's listbox wires the label to the list but not to the input
   // (unlike combobox), so the input would have no accessible name.
   const listbox = useListboxContext()
