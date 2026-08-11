@@ -45,6 +45,7 @@ export const tourSlotRecipe = defineSlotRecipe({
       p: "6",
       display: "flex",
       width: "sm",
+      maxHeight: "var(--available-height, 100dvh)",
       flexDirection: "column",
       gap: "2",
       "--tour-z-index": "zIndex.popover",
@@ -64,6 +65,8 @@ export const tourSlotRecipe = defineSlotRecipe({
     },
     description: {
       color: "fg.muted",
+      minHeight: "0",
+      overflowY: "auto",
     },
     progressText: {
       color: "fg.muted",
