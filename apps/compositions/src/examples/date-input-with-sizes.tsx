@@ -7,7 +7,7 @@ export const DateInputWithSizes = () => {
     <Stack gap="4">
       <For each={["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]}>
         {(size) => (
-          <DateInput.Root key={size} size={size} maxWidth="14rem">
+          <DateInput.Root key={size} size={size}>
             <DateInput.Label>Date of birth (size: {size})</DateInput.Label>
             <DateInput.Control>
               <DateInput.Segments />

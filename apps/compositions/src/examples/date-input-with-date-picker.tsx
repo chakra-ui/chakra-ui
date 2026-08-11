@@ -22,7 +22,7 @@ export const DateInputWithDatePicker = () => {
         <DateInput.Label>Date of birth</DateInput.Label>
         <DatePicker.Control>
           <DateInput.Control flex="1">
-            <DateInput.Segments />
+            <DateInput.Segments flex="1" />
           </DateInput.Control>
           <DatePicker.IndicatorGroup>
             <DatePicker.Trigger>

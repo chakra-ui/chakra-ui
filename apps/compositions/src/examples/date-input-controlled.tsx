@@ -7,7 +7,7 @@ export const DateInputControlled = () => {
   const [value, setValue] = useState([parseDate("2026-01-26")])
 
   return (
-    <Stack gap="4" maxWidth="14rem">
+    <Stack gap="4" align="flex-start">
       <Text textStyle="sm">
         Selected: {value.map((d) => d.toString()).join(", ") || "None"}
       </Text>

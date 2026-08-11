@@ -2,7 +2,7 @@ import { DateInput } from "@chakra-ui/react"
 
 export const DateInputLeadingZeros = () => {
   return (
-    <DateInput.Root shouldForceLeadingZeros maxWidth="14rem">
+    <DateInput.Root shouldForceLeadingZeros>
       <DateInput.Label>Date of birth</DateInput.Label>
       <DateInput.Control>
         <DateInput.Segments />

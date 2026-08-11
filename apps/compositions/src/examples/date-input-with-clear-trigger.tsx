@@ -13,7 +13,6 @@ const ClearTrigger = () => {
       aria-label="Clear date"
       variant="ghost"
       size="xs"
-      marginStart="auto"
       onClick={() => dateInput.clearValue()}
     >
       <LuX />
@@ -23,9 +22,9 @@ const ClearTrigger = () => {
 
 export const DateInputWithClearTrigger = () => {
   return (
-    <DateInput.Root maxWidth="14rem">
+    <DateInput.Root>
       <DateInput.Label>Date of birth</DateInput.Label>
-      <DateInput.Control>
+      <DateInput.Control gap="2">
         <DateInput.Segments />
         <ClearTrigger />
       </DateInput.Control>

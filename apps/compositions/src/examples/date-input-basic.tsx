@@ -2,7 +2,7 @@ import { DateInput } from "@chakra-ui/react"
 
 export const DateInputBasic = () => {
   return (
-    <DateInput.Root maxWidth="14rem">
+    <DateInput.Root>
       <DateInput.Label>Date of birth</DateInput.Label>
       <DateInput.Control>
         <DateInput.Segments />

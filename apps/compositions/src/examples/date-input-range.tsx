@@ -9,9 +9,9 @@ export const DateInputRange = () => {
       <DateInput.Label>Trip duration</DateInput.Label>
 
       <DateInput.Control gap="4">
-        <DateInput.Segments index={0} maxW="fit-content" />
+        <DateInput.Segments index={0} />
         <Icon color="fg.subtle" boxSize="4" as={LuArrowRight} />
-        <DateInput.Segments index={1} maxW="fit-content" />
+        <DateInput.Segments index={1} />
       </DateInput.Control>
 
       <DateInput.HiddenInput index={0} />
