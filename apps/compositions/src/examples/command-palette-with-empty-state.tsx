@@ -3,6 +3,8 @@
 import {
   Button,
   CommandPalette,
+  Kbd,
+  Portal,
   Stack,
   Text,
   useFilter,
@@ -27,34 +29,48 @@ export const CommandPaletteWithEmptyState = () => {
   }
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search labels..."
-          value={query}
-          onChange={(e) => {
-            setQuery(e.currentTarget.value)
-            filter(e.currentTarget.value)
-          }}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <LuTag />
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>
-          <Stack gap="3" align="center">
-            <Text>{`No labels found for "${query}"`}</Text>
-            <Button size="xs" variant="outline" onClick={createLabel}>
-              <LuPlus /> {`Create "${query}"`}
-            </Button>
-          </Stack>
-        </CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root collection={collection}>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input
+                placeholder="Search labels..."
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.currentTarget.value)
+                  filter(e.currentTarget.value)
+                }}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <LuTag />
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>
+                <Stack gap="3" align="center">
+                  <Text>{`No labels found for "${query}"`}</Text>
+                  <Button size="xs" variant="outline" onClick={createLabel}>
+                    <LuPlus /> {`Create "${query}"`}
+                  </Button>
+                </Stack>
+              </CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

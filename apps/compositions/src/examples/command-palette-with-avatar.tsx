@@ -2,7 +2,10 @@
 
 import {
   Avatar,
+  Button,
   CommandPalette,
+  Kbd,
+  Portal,
   Span,
   useFilter,
   useListCollection,
@@ -19,31 +22,43 @@ export const CommandPaletteWithAvatar = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search team members..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.id}>
-            <Avatar.Root size="2xs">
-              <Avatar.Fallback name={item.name} />
-              <Avatar.Image src={item.avatar} />
-            </Avatar.Root>
-            <CommandPalette.ItemText>
-              {item.name}
-              <Span display="block" textStyle="xs" color="fg.muted">
-                {item.role}
-              </Span>
-            </CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No members found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Search team members..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.id}>
+                  <Avatar.Root size="2xs">
+                    <Avatar.Fallback name={item.name} />
+                    <Avatar.Image src={item.avatar} />
+                  </Avatar.Root>
+                  <CommandPalette.ItemText>
+                    {item.name}
+                    <Span display="block" textStyle="xs" color="fg.muted">
+                      {item.role}
+                    </Span>
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No members found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

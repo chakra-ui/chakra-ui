@@ -1,6 +1,13 @@
 "use client"
 
-import { CommandPalette, useFilter, useListCollection } from "@chakra-ui/react"
+import {
+  Button,
+  CommandPalette,
+  Kbd,
+  Portal,
+  useFilter,
+  useListCollection,
+} from "@chakra-ui/react"
 import { LuArrowUpRight } from "react-icons/lu"
 
 export const CommandPaletteWithLinks = () => {
@@ -12,25 +19,39 @@ export const CommandPaletteWithLinks = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search documentation..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value} asChild>
-            <a href={item.href} target="_blank" rel="noreferrer">
-              <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-              <LuArrowUpRight />
-            </a>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Search documentation..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value} asChild>
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    <CommandPalette.ItemText>
+                      {item.label}
+                    </CommandPalette.ItemText>
+                    <LuArrowUpRight />
+                  </a>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

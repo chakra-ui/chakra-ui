@@ -1,9 +1,11 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
   HStack,
   Kbd,
+  Portal,
   Span,
   createListCollection,
   useFilter,
@@ -27,38 +29,54 @@ export const CommandPaletteWithPrefixSearch = () => {
   }, [scope, searchText, contains])
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        {scope && <Kbd size="sm">{scope.label}</Kbd>}
-        <CommandPalette.Input
-          placeholder="Search everything..."
-          value={query}
-          onChange={(e) => setQuery(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            {item.icon}
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
-      <CommandPalette.Footer>
-        <HStack gap="4">
-          <Span>
-            <Kbd size="sm">{">"}</Kbd> Commands
-          </Span>
-          <Span>
-            <Kbd size="sm">@</Kbd> People
-          </Span>
-          <Span>
-            <Kbd size="sm">#</Kbd> Projects
-          </Span>
-        </HStack>
-      </CommandPalette.Footer>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => setQuery(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              {scope && <Kbd size="sm">{scope.label}</Kbd>}
+              <CommandPalette.Input
+                placeholder="Search everything..."
+                value={query}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  {item.icon}
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+            <CommandPalette.Footer>
+              <HStack gap="4">
+                <Span>
+                  <Kbd size="sm">{">"}</Kbd> Commands
+                </Span>
+                <Span>
+                  <Kbd size="sm">@</Kbd> People
+                </Span>
+                <Span>
+                  <Kbd size="sm">#</Kbd> Projects
+                </Span>
+              </HStack>
+            </CommandPalette.Footer>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

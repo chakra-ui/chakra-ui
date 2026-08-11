@@ -1,6 +1,12 @@
 "use client"
 
-import { CommandPalette, useListCollection } from "@chakra-ui/react"
+import {
+  Button,
+  CommandPalette,
+  Kbd,
+  Portal,
+  useListCollection,
+} from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { useAsync } from "react-use"
 
@@ -34,25 +40,34 @@ export const CommandPaletteWithAsyncContent = () => {
     <CommandPalette.Root
       collection={collection}
       loading={state.loading}
-      maxW="md"
+      onInputValueChange={(e) => setInputValue(e.inputValue)}
     >
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Search Star Wars characters..."
-          onChange={(e) => setInputValue(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.name}>
-            <CommandPalette.ItemText>{item.name}</CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        {!state.loading && (
-          <CommandPalette.Empty>No results found</CommandPalette.Empty>
-        )}
-      </CommandPalette.List>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Search Star Wars characters..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.name}>
+                  <CommandPalette.ItemText>{item.name}</CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              {!state.loading && (
+                <CommandPalette.Empty>No results found</CommandPalette.Empty>
+              )}
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

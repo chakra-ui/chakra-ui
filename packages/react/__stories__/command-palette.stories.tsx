@@ -36,6 +36,3 @@ export { CommandPaletteControlledSearch as ControlledSearch } from "compositions
 export { CommandPaletteWithCustomFilter as CustomFilter } from "compositions/examples/command-palette-with-custom-filter"
 export { CommandPaletteWithAsyncContent as AsyncContent } from "compositions/examples/command-palette-with-async-content"
 export { CommandPaletteNested as Nested } from "compositions/examples/command-palette-nested"
-export { CommandPaletteWithinDialog as WithinDialog } from "compositions/examples/command-palette-within-dialog"
-export { CommandPaletteWithinDrawer as WithinDrawer } from "compositions/examples/command-palette-within-drawer"
-export { CommandPaletteWithinPopover as WithinPopover } from "compositions/examples/command-palette-within-popover"

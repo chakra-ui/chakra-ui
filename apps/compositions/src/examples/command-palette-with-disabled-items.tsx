@@ -1,6 +1,13 @@
 "use client"
 
-import { CommandPalette, useFilter, useListCollection } from "@chakra-ui/react"
+import {
+  Button,
+  CommandPalette,
+  Kbd,
+  Portal,
+  useFilter,
+  useListCollection,
+} from "@chakra-ui/react"
 
 export const CommandPaletteWithDisabledItems = () => {
   const { contains } = useFilter({ sensitivity: "base" })
@@ -11,27 +18,41 @@ export const CommandPaletteWithDisabledItems = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Type a command or search..."
-          onChange={(e) => filter(e.currentTarget.value)}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-            {item.disabled && (
-              <CommandPalette.ItemCommand>
-                Upgrade required
-              </CommandPalette.ItemCommand>
-            )}
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root
+      collection={collection}
+      onInputValueChange={(e) => filter(e.inputValue)}
+    >
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Type a command or search..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                  {item.disabled && (
+                    <CommandPalette.ItemCommand>
+                      Upgrade required
+                    </CommandPalette.ItemCommand>
+                  )}
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

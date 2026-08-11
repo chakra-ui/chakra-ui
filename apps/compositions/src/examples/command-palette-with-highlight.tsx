@@ -1,8 +1,11 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
   Highlight,
+  Kbd,
+  Portal,
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
@@ -19,32 +22,44 @@ export const CommandPaletteWithHighlight = () => {
   })
 
   return (
-    <CommandPalette.Root collection={collection} maxW="md">
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        <CommandPalette.Input
-          placeholder="Type a command or search..."
-          onChange={(e) => {
-            setQuery(e.currentTarget.value)
-            filter(e.currentTarget.value)
-          }}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            <CommandPalette.ItemText>
-              <Highlight
-                query={query}
-                styles={{ fontWeight: "semibold", color: "fg" }}
-              >
-                {item.label}
-              </Highlight>
-            </CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
+    <CommandPalette.Root collection={collection}>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input
+                placeholder="Type a command or search..."
+                onChange={(e) => {
+                  setQuery(e.currentTarget.value)
+                  filter(e.currentTarget.value)
+                }}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  <CommandPalette.ItemText>
+                    <Highlight
+                      query={query}
+                      styles={{ fontWeight: "semibold", color: "fg" }}
+                    >
+                      {item.label}
+                    </Highlight>
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }

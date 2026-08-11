@@ -1,9 +1,11 @@
 "use client"
 
 import {
+  Button,
   CommandPalette,
   Icon,
   Kbd,
+  Portal,
   Span,
   VisuallyHidden,
   createListCollection,
@@ -67,9 +69,8 @@ export const CommandPaletteNested = () => {
   return (
     <CommandPalette.Root
       collection={collection}
-      maxW="md"
-      onSelect={({ value }) => {
-        const item = collection.find(value)
+      onSelect={({ itemValue }) => {
+        const item = collection.find(itemValue)
         if (!item) return
         setQuery("")
         if (item.back) {
@@ -85,43 +86,57 @@ export const CommandPaletteNested = () => {
           })
         }
       }}
+      onInputValueChange={(e) => setQuery(e.inputValue)}
     >
-      <CommandPalette.Control>
-        <CommandPalette.Indicator />
-        {page && <Kbd size="sm">{page}</Kbd>}
-        <CommandPalette.Input
-          placeholder={page ? "Pick a theme..." : "Type a command..."}
-          value={query}
-          onChange={(e) => setQuery(e.currentTarget.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Backspace" && !query && pages.length) {
-              e.preventDefault()
-              setPages((prev) => prev.slice(0, -1))
-            }
-          }}
-        />
-      </CommandPalette.Control>
-      <CommandPalette.List>
-        {collection.items.map((item) => (
-          <CommandPalette.Item item={item} key={item.value}>
-            {item.icon}
-            <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-          </CommandPalette.Item>
-        ))}
-        <CommandPalette.Empty>No results found</CommandPalette.Empty>
-      </CommandPalette.List>
-      <CommandPalette.Footer>
-        <Span>Theme: {theme}</Span>
-        <Span ms="auto" display="inline-flex" alignItems="center" gap="1">
-          <Kbd>
-            <Icon boxSize="3.5">
-              <LuDelete />
-            </Icon>
-            <VisuallyHidden>Backspace</VisuallyHidden>
-          </Kbd>
-          to go back
-        </Span>
-      </CommandPalette.Footer>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Open palette <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              {page && <Kbd size="sm">{page}</Kbd>}
+              <CommandPalette.Input
+                placeholder={page ? "Pick a theme..." : "Type a command..."}
+                value={query}
+                onKeyDown={(e) => {
+                  if (e.key === "Backspace" && !query && pages.length) {
+                    e.preventDefault()
+                    setPages((prev) => prev.slice(0, -1))
+                  }
+                }}
+              />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item item={item} key={item.value}>
+                  {item.icon}
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Empty>No results found</CommandPalette.Empty>
+            </CommandPalette.List>
+            <CommandPalette.Footer>
+              <Span>Theme: {theme}</Span>
+              <Span ms="auto" display="inline-flex" alignItems="center" gap="1">
+                <Kbd>
+                  <Icon boxSize="3.5">
+                    <LuDelete />
+                  </Icon>
+                  <VisuallyHidden>Backspace</VisuallyHidden>
+                </Kbd>
+                to go back
+              </Span>
+            </CommandPalette.Footer>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
     </CommandPalette.Root>
   )
 }
