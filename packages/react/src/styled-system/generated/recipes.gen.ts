@@ -1410,6 +1410,32 @@ export type TooltipVariantMap = {
   [K in keyof TooltipVariant]: Array<TooltipVariant[K]>
 }
 
+// Tour
+
+export type TourSlot =
+  | "content"
+  | "actionTrigger"
+  | "closeTrigger"
+  | "progressText"
+  | "title"
+  | "description"
+  | "positioner"
+  | "arrow"
+  | "arrowTip"
+  | "backdrop"
+  | "spotlight"
+  | "control"
+
+export interface TourVariant {}
+
+export type TourVariantProps = {
+  [K in keyof TourVariant]?: ConditionalValue<TourVariant[K]> | undefined
+}
+
+export type TourVariantMap = {
+  [K in keyof TourVariant]: Array<TourVariant[K]>
+}
+
 // Status
 
 export type StatusSlot = "root" | "indicator"
@@ -1609,6 +1635,7 @@ export interface ConfigSlotRecipes {
   tagsInput: SystemSlotRecipeFn<TagsInputSlot, TagsInputVariantProps, TagsInputVariantMap>
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps, ToastVariantMap>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps, TooltipVariantMap>
+  tour: SystemSlotRecipeFn<TourSlot, TourVariantProps, TourVariantMap>
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps, StatusVariantMap>
   timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps, TimelineVariantMap>
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
@@ -1667,6 +1694,7 @@ export interface ConfigRecipeSlots {
   tagsInput: TagsInputSlot
   toast: ToastSlot
   tooltip: TooltipSlot
+  tour: TourSlot
   status: StatusSlot
   timeline: TimelineSlot
   colorPicker: ColorPickerSlot

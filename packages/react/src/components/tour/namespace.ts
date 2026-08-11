@@ -1,4 +1,5 @@
 export {
+  TourActions as Actions,
   TourActionTrigger as ActionTrigger,
   TourActionTriggers as ActionTriggers,
   TourArrow as Arrow,
@@ -13,12 +14,12 @@ export {
   TourProgressText as ProgressText,
   TourPropsProvider as PropsProvider,
   TourRoot as Root,
-  TourRootProvider as RootProvider,
   TourSpotlight as Spotlight,
   TourTitle as Title,
 } from "./tour"
 
 export type {
+  TourActionsProps as ActionsProps,
   TourActionTriggerProps as ActionTriggerProps,
   TourArrowProps as ArrowProps,
   TourArrowTipProps as ArrowTipProps,
@@ -31,8 +32,6 @@ export type {
   TourProgressTextProps as ProgressTextProps,
   TourRootBaseProps as RootBaseProps,
   TourRootProps as RootProps,
-  TourRootProviderBaseProps as RootProviderBaseProps,
-  TourRootProviderProps as RootProviderProps,
   TourSpotlightProps as SpotlightProps,
   TourStepChangeDetails as StepChangeDetails,
   TourStatusChangeDetails as StatusChangeDetails,

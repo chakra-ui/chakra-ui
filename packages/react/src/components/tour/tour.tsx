@@ -14,7 +14,7 @@ import { CloseIcon } from "../icons"
 ////////////////////////////////////////////////////////////////////////////////////
 
 const {
-  withProvider,
+  withRootProvider,
   withContext,
   useStyles: useTourStyles,
   PropsProvider,
@@ -24,32 +24,14 @@ export { useTourStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TourRootProviderBaseProps
-  extends Assign<ArkTour.RootBaseProps, SlotRecipeProps<"tour">>,
-    UnstyledProp {}
-
-export interface TourRootProviderProps
-  extends HTMLChakraProps<"div", TourRootProviderBaseProps> {}
-
-export const TourRootProvider = withProvider<
-  HTMLDivElement,
-  TourRootProviderProps
->(ArkTour.Root, "root", { forwardAsChild: true })
-
-////////////////////////////////////////////////////////////////////////////////////
-
 export interface TourRootBaseProps
-  extends Assign<ArkTour.RootBaseProps, SlotRecipeProps<"tour">>,
-    UnstyledProp {}
+  extends Assign<ArkTour.RootProps, SlotRecipeProps<"tour">>, UnstyledProp {}
 
-export interface TourRootProps
-  extends HTMLChakraProps<"div", TourRootBaseProps> {}
+export interface TourRootProps extends TourRootBaseProps {
+  children?: React.ReactNode
+}
 
-export const TourRoot = withProvider<HTMLDivElement, TourRootProps>(
-  ArkTour.Root,
-  "root",
-  { forwardAsChild: true },
-)
+export const TourRoot = withRootProvider<TourRootProps>(ArkTour.Root)
 
 export const TourPropsProvider =
   PropsProvider as React.Provider<TourRootBaseProps>
@@ -57,8 +39,7 @@ export const TourPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourContentProps
-  extends HTMLChakraProps<"div", ArkTour.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.ContentBaseProps>, UnstyledProp {}
 
 export const TourContent = withContext<HTMLDivElement, TourContentProps>(
   ArkTour.Content,
@@ -69,7 +50,8 @@ export const TourContent = withContext<HTMLDivElement, TourContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkTour.CloseTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkTour.CloseTriggerBaseProps>,
     UnstyledProp {}
 
 export const TourCloseTrigger = withContext<
@@ -83,8 +65,7 @@ export const TourCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourTitleProps
-  extends HTMLChakraProps<"h2", ArkTour.TitleBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"h2", ArkTour.TitleBaseProps>, UnstyledProp {}
 
 export const TourTitle = withContext<HTMLHeadingElement, TourTitleProps>(
   ArkTour.Title,
@@ -95,8 +76,7 @@ export const TourTitle = withContext<HTMLHeadingElement, TourTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourDescriptionProps
-  extends HTMLChakraProps<"p", ArkTour.DescriptionBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"p", ArkTour.DescriptionBaseProps>, UnstyledProp {}
 
 export const TourDescription = withContext<
   HTMLParagraphElement,
@@ -106,8 +86,7 @@ export const TourDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourControlProps
-  extends HTMLChakraProps<"div", ArkTour.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.ControlBaseProps>, UnstyledProp {}
 
 export const TourControl = withContext<HTMLDivElement, TourControlProps>(
   ArkTour.Control,
@@ -118,8 +97,7 @@ export const TourControl = withContext<HTMLDivElement, TourControlProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourPositionerProps
-  extends HTMLChakraProps<"div", ArkTour.PositionerBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.PositionerBaseProps>, UnstyledProp {}
 
 export const TourPositioner = withContext<HTMLDivElement, TourPositionerProps>(
   ArkTour.Positioner,
@@ -130,8 +108,7 @@ export const TourPositioner = withContext<HTMLDivElement, TourPositionerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourArrowProps
-  extends HTMLChakraProps<"div", ArkTour.ArrowBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.ArrowBaseProps>, UnstyledProp {}
 
 export const TourArrow = withContext<HTMLDivElement, TourArrowProps>(
   ArkTour.Arrow,
@@ -142,8 +119,7 @@ export const TourArrow = withContext<HTMLDivElement, TourArrowProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourArrowTipProps
-  extends HTMLChakraProps<"div", ArkTour.ArrowTipBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.ArrowTipBaseProps>, UnstyledProp {}
 
 export const TourArrowTip = withContext<HTMLDivElement, TourArrowTipProps>(
   ArkTour.ArrowTip,
@@ -154,7 +130,8 @@ export const TourArrowTip = withContext<HTMLDivElement, TourArrowTipProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourActionTriggerProps
-  extends HTMLChakraProps<"button", ArkTour.ActionTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkTour.ActionTriggerBaseProps>,
     UnstyledProp {}
 
 export const TourActionTrigger = withContext<
@@ -164,8 +141,10 @@ export const TourActionTrigger = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TourActionTriggersProps
-  extends Omit<TourActionTriggerProps, "action"> {}
+export interface TourActionTriggersProps extends Omit<
+  TourActionTriggerProps,
+  "action"
+> {}
 
 export const TourActionTriggers = (props: TourActionTriggersProps) => {
   const api = useTourContext()
@@ -173,8 +152,8 @@ export const TourActionTriggers = (props: TourActionTriggersProps) => {
 
   return (
     <For each={actions}>
-      {(action) => (
-        <TourActionTrigger key={action.label} action={action} {...props}>
+      {(action, index) => (
+        <TourActionTrigger key={index} action={action} {...props}>
           {action.label}
         </TourActionTrigger>
       )}
@@ -185,7 +164,8 @@ export const TourActionTriggers = (props: TourActionTriggersProps) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourProgressTextProps
-  extends HTMLChakraProps<"span", ArkTour.ProgressTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkTour.ProgressTextBaseProps>,
     UnstyledProp {}
 
 export const TourProgressText = withContext<
@@ -196,8 +176,7 @@ export const TourProgressText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourBackdropProps
-  extends HTMLChakraProps<"div", ArkTour.BackdropBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.BackdropBaseProps>, UnstyledProp {}
 
 export const TourBackdrop = withContext<HTMLDivElement, TourBackdropProps>(
   ArkTour.Backdrop,
@@ -208,8 +187,7 @@ export const TourBackdrop = withContext<HTMLDivElement, TourBackdropProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TourSpotlightProps
-  extends HTMLChakraProps<"div", ArkTour.SpotlightBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkTour.SpotlightBaseProps>, UnstyledProp {}
 
 export const TourSpotlight = withContext<HTMLDivElement, TourSpotlightProps>(
   ArkTour.Spotlight,
@@ -220,6 +198,12 @@ export const TourSpotlight = withContext<HTMLDivElement, TourSpotlightProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const TourContext = ArkTour.Context
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TourActionsProps extends ArkTour.ActionsProps {}
+
+export const TourActions = ArkTour.Actions
 
 export interface TourStepChangeDetails extends ArkTour.StepChangeDetails {}
 export interface TourStatusChangeDetails extends ArkTour.StatusChangeDetails {}

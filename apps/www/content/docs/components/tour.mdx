@@ -13,28 +13,30 @@ links:
 ## Usage
 
 ```jsx
-import { Tour, useTour } from "@chakra-ui/react"
+import { Portal, Tour, useTour } from "@chakra-ui/react"
 ```
 
 ```jsx
 const tour = useTour({ steps })
 
 <Tour.Root tour={tour}>
-  <Tour.Backdrop />
-  <Tour.Spotlight />
-  <Tour.Positioner>
-    <Tour.Content>
-      <Tour.Arrow>
-        <Tour.ArrowTip />
-      </Tour.Arrow>
-      <Tour.CloseTrigger />
-      <Tour.Title />
-      <Tour.Description />
-      <Tour.Control>
-        <Tour.ActionTriggers />
-      </Tour.Control>
-    </Tour.Content>
-  </Tour.Positioner>
+  <Portal>
+    <Tour.Backdrop />
+    <Tour.Spotlight />
+    <Tour.Positioner>
+      <Tour.Content>
+        <Tour.Arrow>
+          <Tour.ArrowTip />
+        </Tour.Arrow>
+        <Tour.CloseTrigger />
+        <Tour.Title />
+        <Tour.Description />
+        <Tour.Control>
+          <Tour.ActionTriggers />
+        </Tour.Control>
+      </Tour.Content>
+    </Tour.Positioner>
+  </Portal>
 </Tour.Root>
 ```
 

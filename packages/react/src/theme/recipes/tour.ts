@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const tourSlotRecipe = defineSlotRecipe({
   slots: tourAnatomy.keys(),
-  className: "tour",
+  className: "chakra-tour",
   base: {
     positioner: {
       "--tour-z-index": "zIndex.popover",

@@ -14,7 +14,6 @@ export const TourProgressText = ChakraTour.ProgressText
 export const TourCloseTrigger = ChakraTour.CloseTrigger
 export const TourActionTrigger = ChakraTour.ActionTrigger
 export const TourContext = ChakraTour.Context
-export const TourRootProvider = ChakraTour.RootProvider
 
 interface TourContentProps extends ChakraTour.ContentProps {
   showArrow?: boolean

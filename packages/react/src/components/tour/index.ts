@@ -1,4 +1,5 @@
 export {
+  TourActions,
   TourActionTrigger,
   TourActionTriggers,
   TourArrow,
@@ -13,13 +14,13 @@ export {
   TourProgressText,
   TourPropsProvider,
   TourRoot,
-  TourRootProvider,
   TourSpotlight,
   TourTitle,
   useTourStyles,
 } from "./tour"
 
 export type {
+  TourActionsProps,
   TourActionTriggerProps,
   TourActionTriggersProps,
   TourArrowProps,
@@ -33,8 +34,6 @@ export type {
   TourProgressTextProps,
   TourRootBaseProps,
   TourRootProps,
-  TourRootProviderBaseProps,
-  TourRootProviderProps,
   TourSpotlightProps,
   TourStep,
   TourStepAction,
