@@ -584,4 +584,4 @@ import { Button, Menu, Portal } from "@chakra-ui/react"
 
 - [Menu Documentation](https://chakra-ui.com/docs/components/menu)
 - [Migration Guide](https://chakra-ui.com/docs/get-started/migration)
-- [Compound Components Pattern](https://chakra-ui.com/docs/get-started/compound-components)
+- [Compound Components Pattern](https://chakra-ui.com/docs/components/concepts/composition)

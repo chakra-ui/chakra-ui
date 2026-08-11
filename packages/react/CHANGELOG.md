@@ -1,5 +1,80 @@
 # @chakra-ui/react
 
+## 3.36.1
+
+### Patch Changes
+
+- [#10868](https://github.com/chakra-ui/chakra-ui/pull/10868)
+  [`f32a160`](https://github.com/chakra-ui/chakra-ui/commit/f32a160162ba9523f93080587df086a99ca5bfdc)
+  Thanks [@WahabKhan7528](https://github.com/WahabKhan7528)! -
+  **OverlayManager**: add has() method to createOverlay return
+
+- [#10885](https://github.com/chakra-ui/chakra-ui/pull/10885)
+  [`e503f8d`](https://github.com/chakra-ui/chakra-ui/commit/e503f8d9f403b7dac71ee586857037d791e7ee8c)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Bleed: Fix
+  incorrect css prop application
+
+- [`129c50f`](https://github.com/chakra-ui/chakra-ui/commit/129c50ff9be80fa4ad5cc0a39b6cff8a20609c42)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where the
+  checked ring of `RadioCard` and `CheckboxCard` (outline variant) gets clipped
+  when a parent has `overflow: hidden|auto|scroll`. The ring is now drawn with
+  an inset shadow instead of an outer shadow.
+
+- [#10859](https://github.com/chakra-ui/chakra-ui/pull/10859)
+  [`6f10270`](https://github.com/chakra-ui/chakra-ui/commit/6f102700bdf5fd4e61971db77e65f1516ce8ab38)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Checkmark: Fix
+  incorrect css prop application
+
+- [#10884](https://github.com/chakra-ui/chakra-ui/pull/10884)
+  [`e7431f1`](https://github.com/chakra-ui/chakra-ui/commit/e7431f1c9e05cb698492c65c6d72aca2e8c1151c)
+  Thanks [@sanjibani](https://github.com/sanjibani)! - - Docs: fix
+  `Stack.Separator` references in the v3 migration guide. The standalone
+  `Separator` component is now used in both the `StackDivider` and `Stack Props`
+  examples.
+
+- [`0fe3055`](https://github.com/chakra-ui/chakra-ui/commit/0fe305592d90bf943b27b7a40668e4bf1648cb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix error when
+  merging recipes (e.g. composing a recipe-based component through the `chakra`
+  factory). Recipe merging now normalizes compiled and raw configs before
+  combining them, and no longer throws or mutates the source configs.
+
+- [#10879](https://github.com/chakra-ui/chakra-ui/pull/10879)
+  [`e882dc0`](https://github.com/chakra-ui/chakra-ui/commit/e882dc0e714be7d37d7a1fd93fce8ed08fe7905d)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Float: Fix
+  incorrect css prop application
+
+- [`2ed9026`](https://github.com/chakra-ui/chakra-ui/commit/2ed9026862cf1d816e981746d723256bcbd59159)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add a default
+  `minSize` of `{ width: 240, height: 100 }` to `FloatingPanel.Root` to prevent
+  the panel from being resized to zero. Pass your own `minSize` to override it.
+
+- [#10863](https://github.com/chakra-ui/chakra-ui/pull/10863)
+  [`b5de5e2`](https://github.com/chakra-ui/chakra-ui/commit/b5de5e246bdecfeb9326c301c3cc397cc2cd676d)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Image: Fix
+  custom `className` removing the base `chakra-image` class
+
+- [#10873](https://github.com/chakra-ui/chakra-ui/pull/10873)
+  [`c4e79c1`](https://github.com/chakra-ui/chakra-ui/commit/c4e79c122a6500f5f68f1c00a826c315a808d511)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - Fix issue where
+  `LinkOverlay` dropped the `rel` attribute instead of forwarding it to the
+  rendered anchor.
+
+- [`0fe3055`](https://github.com/chakra-ui/chakra-ui/commit/0fe305592d90bf943b27b7a40668e4bf1648cb29)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve render
+  performance of recipe components (`Button`, `Badge`, `Skeleton`, etc.) in
+  large lists and tables.
+  - Cache compiled recipes per system instead of per component instance.
+  - Memoize variant style resolution so results are referentially stable.
+  - Drop the per-instance `structuredClone` of recipe configs.
+
+  In benchmarks, repeated variant resolution is ~70-90x faster and
+  compile+resolve ~30x faster. No public API changes.
+
+- [#10860](https://github.com/chakra-ui/chakra-ui/pull/10860)
+  [`f53e46a`](https://github.com/chakra-ui/chakra-ui/commit/f53e46a182cac5b6018596cc5da965af4416ac71)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - WrapItem: Fix
+  incorrect css prop application
+
 ## 3.36.0
 
 ### Minor Changes

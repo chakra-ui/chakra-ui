@@ -1,6 +1,6 @@
 ---
 description: Draft a response for a GitHub issue
-argument-hint: [issue-url]
+argument-hint: "[issue-url]"
 ---
 
 ## Context
