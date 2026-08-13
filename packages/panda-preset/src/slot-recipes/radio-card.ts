@@ -217,6 +217,11 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             borderColor: "colorPalette.solid",
           },
         },
+        itemControl: {
+          _disabled: {
+            bg: "unset",
+          },
+        },
         itemIndicator: {
           borderWidth: "1px",
           borderColor: "border.emphasized",
