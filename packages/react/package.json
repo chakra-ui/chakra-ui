@@ -44,6 +44,7 @@
     "@emotion/use-insertion-effect-with-fallbacks": "^1.2.0",
     "@emotion/utils": "^1.4.2",
     "@pandacss/is-valid-prop": "^1.4.2",
+    "@zag-js/dom-query": "1.41.2",
     "csstype": "^3.2.3"
   },
   "peerDependencies": {

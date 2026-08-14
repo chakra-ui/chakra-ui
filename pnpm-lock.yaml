@@ -706,6 +706,9 @@ importers:
       '@pandacss/is-valid-prop':
         specifier: ^1.4.2
         version: 1.11.1
+      '@zag-js/dom-query':
+        specifier: 1.41.2
+        version: 1.41.2
       csstype:
         specifier: ^3.2.3
         version: 3.2.3
