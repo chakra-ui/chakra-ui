@@ -215,21 +215,42 @@ export async function upgrade(
 
     const { componentsDir } = getProjectInfo(process.cwd())
 
+    const changed: string[] = []
+    let failed = 0
+
     for (const name of transformsToRun) {
       s.message(`Transforming: ${name}`)
       try {
-        await runTransform(name, process.cwd(), {
+        const { changed: count } = await runTransform(name, process.cwd(), {
           dry,
           upgrade: true,
           ignorePattern: ["node_modules", componentsDir],
         })
+        if (count > 0)
+          changed.push(`${name} (${count} file${count > 1 ? "s" : ""})`)
       } catch (err) {
+        failed++
         const msg = err instanceof Error ? err.message : String(err)
         p.log.error(`Failed transform ${name}: ${msg}`)
       }
     }
 
-    s.stop("All transforms completed")
+    s.stop(
+      dry
+        ? "Dry run complete — no files were changed"
+        : "All transforms completed",
+    )
+
+    if (changed.length > 0) {
+      p.note(
+        changed.join("\n"),
+        dry
+          ? "Transforms that would change files"
+          : "Transforms that changed files",
+      )
+    } else if (failed === 0) {
+      p.log.info("No files matched any transform.")
+    }
   }
 
   p.outro(
