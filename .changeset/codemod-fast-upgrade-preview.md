@@ -2,15 +2,15 @@
 "@chakra-ui/codemod": minor
 ---
 
-Make `upgrade` faster and its dry run actually useful.
+Speed up the `upgrade` command and add a readable dry-run preview.
 
-- Transforms now run in-process instead of spawning a Node process each. A full
-  run drops from ~30s to a few seconds on a small project.
-- `upgrade --dry` lists the files that would change and, per file, the
-  components and props it would touch (e.g. `Button, color palette`).
-- Projects with many changed files get a `chakra-codemod-report.md` with the
-  full breakdown; smaller ones print inline.
-- The `color-mode` transform no longer installs a snippet during a dry run, and
-  uses the current CLI flag instead of the removed `--yes`.
-- The `steps` transform no longer injects a stray `Steps` import into files that
+- Run transforms in-process instead of spawning a Node process per transform,
+  taking a full run from ~30s to a few seconds.
+- `upgrade --dry` now lists the files that would change and, per file, the
+  components and props it touches (e.g. `Button, color palette`).
+- Large projects write the full breakdown to `chakra-codemod-report.md`; smaller
+  ones print it inline.
+- Stop the `color-mode` transform from installing a snippet during a dry run,
+  and use the current CLI flag instead of the removed `--yes`.
+- Stop the `steps` transform from adding a stray `Steps` import to files that
   don't use a stepper.
