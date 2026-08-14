@@ -14,6 +14,18 @@ interface RunTransformOptions {
   ignorePattern?: string[]
 }
 
+export interface TransformResult {
+  changed: number
+  errors: number
+}
+
+function parseStats(output: string): TransformResult {
+  const num = (label: string) =>
+    Number(new RegExp(`(\\d+)\\s+${label}`).exec(output)?.[1] ?? 0)
+  // jscodeshift reports transformed files as "ok"
+  return { changed: num("ok"), errors: num("errors") }
+}
+
 process.once("SIGINT", () => {
   p.cancel("Upgrade cancelled.")
   process.exit(0)
@@ -58,7 +70,7 @@ export async function runTransform(
 
   if (dry) args.push("--dry")
   if (print) args.push("--print")
-  if (upgrade) args.push("--silent")
+  if (upgrade && !dry) args.push("--silent")
 
   let s: ReturnType<typeof p.spinner> | undefined
 
@@ -70,7 +82,7 @@ export async function runTransform(
     if (dry) p.log.info(color.yellow("[dry-run] No changes will be applied"))
   }
 
-  return new Promise<void>((resolve, reject) => {
+  return new Promise<TransformResult>((resolve, reject) => {
     try {
       if (!upgrade) {
         s = p.spinner()
@@ -82,8 +94,10 @@ export async function runTransform(
         env: process.env,
       })
 
+      let stdoutBuffer = ""
       let stderrBuffer = ""
       child.stdout.on("data", (data) => {
+        stdoutBuffer += data.toString()
         if (upgrade) return
         const lines = data.toString().split("\n")
         for (const line of lines) {
@@ -112,7 +126,7 @@ export async function runTransform(
             s.stop(color.green("Transformations complete"))
             p.outro(`${color.cyan("Done!")} Your theme/code has been migrated.`)
           }
-          resolve()
+          resolve(parseStats(stdoutBuffer))
         } else {
           s?.stop(color.red("Transformation failed"))
           // Extract concise error line (first meaningful line)
