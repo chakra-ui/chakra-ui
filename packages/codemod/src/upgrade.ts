@@ -1,6 +1,7 @@
 import * as p from "@clack/prompts"
 import { spawn } from "child_process"
 import fs from "fs"
+import path from "path"
 import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
@@ -215,19 +216,26 @@ export async function upgrade(
 
     const { componentsDir } = getProjectInfo(process.cwd())
 
-    const changed: string[] = []
+    // file -> transforms that touch it
+    const byFile = new Map<string, Set<string>>()
+    const errorsByFile = new Map<string, Set<string>>()
     let failed = 0
+
+    const add = (map: Map<string, Set<string>>, file: string, name: string) => {
+      if (!map.has(file)) map.set(file, new Set())
+      map.get(file)!.add(name)
+    }
 
     for (const name of transformsToRun) {
       s.message(`Transforming: ${name}`)
       try {
-        const { changed: count } = await runTransform(name, process.cwd(), {
+        const res = await runTransform(name, process.cwd(), {
           dry,
           upgrade: true,
           ignorePattern: ["node_modules", componentsDir],
         })
-        if (count > 0)
-          changed.push(`${name} (${count} file${count > 1 ? "s" : ""})`)
+        res.files.forEach((f) => add(byFile, f, name))
+        res.errorFiles.forEach((f) => add(errorsByFile, f, name))
       } catch (err) {
         failed++
         const msg = err instanceof Error ? err.message : String(err)
@@ -241,21 +249,22 @@ export async function upgrade(
         : "All transforms completed",
     )
 
-    if (changed.length > 0) {
-      p.note(
-        changed.join("\n"),
-        dry
-          ? "Transforms that would change files"
-          : "Transforms that changed files",
-      )
-    } else if (failed === 0) {
-      p.log.info("No files matched any transform.")
-    }
+    reportChanges(byFile, errorsByFile, dry, failed)
   }
 
-  p.outro(
-    picocolors.green("🎉 Upgrade complete! Review your changes and run tests."),
-  )
+  if (dry) {
+    p.outro(
+      picocolors.green(
+        "Dry run done. To see exact changes, run the upgrade on a clean branch and use `git diff`.",
+      ),
+    )
+  } else {
+    p.outro(
+      picocolors.green(
+        "🎉 Upgrade complete! Review the diff and run your tests.",
+      ),
+    )
+  }
 }
 
 async function runCommand(cmd: string, silent = false) {
@@ -280,4 +289,99 @@ async function runCommand(cmd: string, silent = false) {
 
 function section(title: string) {
   p.log.message(`\n${picocolors.bold(picocolors.cyan(`▸ ${title}`))}`)
+}
+
+const INLINE_THRESHOLD = 25
+
+function humanize(name: string): string {
+  const isComponent = transforms[name]?.path
+    .split(path.sep)
+    .includes("components")
+  if (isComponent) {
+    return name
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join("")
+  }
+  return name.replace(/-/g, " ")
+}
+
+function labelsFor(names: Set<string>): string {
+  return [...new Set([...names].map(humanize))].sort().join(", ")
+}
+
+function reportChanges(
+  byFile: Map<string, Set<string>>,
+  errorsByFile: Map<string, Set<string>>,
+  dry: boolean,
+  failed: number,
+) {
+  if (byFile.size === 0 && errorsByFile.size === 0) {
+    if (failed === 0) p.log.info("No files matched any transform.")
+    return
+  }
+
+  const verb = dry ? "would change" : "changed"
+  const entries = [...byFile.entries()].sort(([a], [b]) => a.localeCompare(b))
+
+  if (entries.length > 0) {
+    if (entries.length > INLINE_THRESHOLD) {
+      const reportPath = writeReport(entries, errorsByFile, dry)
+      p.note(
+        `${entries.length} files ${verb}.\nFull breakdown: ${picocolors.cyan(reportPath)}`,
+        dry ? "Preview" : "Summary",
+      )
+    } else {
+      const body = entries
+        .map(
+          ([file, names]) =>
+            `${picocolors.cyan(file)}\n  ${picocolors.dim(labelsFor(names))}`,
+        )
+        .join("\n")
+      p.note(body, `Files that ${verb} (${entries.length})`)
+    }
+  }
+
+  if (errorsByFile.size > 0) {
+    const body = [...errorsByFile.entries()]
+      .map(([file, names]) => `${file} (${labelsFor(names)})`)
+      .join("\n")
+    p.note(
+      picocolors.yellow(body),
+      `${errorsByFile.size} file(s) need manual attention`,
+    )
+  }
+}
+
+function writeReport(
+  entries: [string, Set<string>][],
+  errorsByFile: Map<string, Set<string>>,
+  dry: boolean,
+): string {
+  const verb = dry ? "would change" : "changed"
+  const lines = [
+    `# Chakra UI v3 upgrade${dry ? " (dry run)" : ""}`,
+    "",
+    `${entries.length} files ${verb}.`,
+    "",
+    "## Files",
+    "",
+  ]
+
+  for (const [file, names] of entries) {
+    lines.push(`- \`${file}\` — ${labelsFor(names)}`)
+  }
+  lines.push("")
+
+  if (errorsByFile.size > 0) {
+    lines.push("## Needs manual attention", "")
+    for (const [file, names] of errorsByFile) {
+      lines.push(`- \`${file}\` — ${labelsFor(names)}`)
+    }
+    lines.push("")
+  }
+
+  const reportPath = path.join(process.cwd(), "chakra-codemod-report.md")
+  fs.writeFileSync(reportPath, lines.join("\n"))
+  return path.relative(process.cwd(), reportPath)
 }
