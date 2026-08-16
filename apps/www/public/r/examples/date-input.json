@@ -49,6 +49,15 @@
       "importPath": "import { DateInput } from \"@chakra-ui/react\""
     },
     {
+      "name": "date-input-locale",
+      "content": "export const DateInputLocale = () => {\n  return (\n    <DateInput.Root locale=\"de-DE\" maxW=\"sm\">\n      <DateInput.Label>Geburtsdatum</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
       "name": "date-input-min-max",
       "content": "\"use client\"\nexport const DateInputMinMax = () => {\n  return (\n    <DateInput.Root\n      min={parseDate(\"2026-01-01\")}\n      max={parseDate(\"2026-12-31\")}\n      maxW=\"sm\"\n    >\n      <DateInput.Label>Appointment date (2026 only)</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
       "hasSnippet": false,
@@ -148,6 +157,15 @@
     {
       "name": "date-input-with-sizes",
       "content": "export const DateInputWithSizes = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"sm\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <DateInput.Root key={size} size={size}>\n            <DateInput.Label>Date of birth (size: {size})</DateInput.Label>\n            <DateInput.Control>\n              <DateInput.Segments />\n            </DateInput.Control>\n            <DateInput.HiddenInput />\n          </DateInput.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-with-variants",
+      "content": "export const DateInputWithVariants = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"sm\">\n      <For each={[\"outline\", \"subtle\", \"flushed\"]}>\n        {(variant) => (\n          <DateInput.Root key={variant} variant={variant}>\n            <DateInput.Label>Date of birth - {variant}</DateInput.Label>\n            <DateInput.Control>\n              <DateInput.Segments />\n            </DateInput.Control>\n            <DateInput.HiddenInput />\n          </DateInput.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { DateInput, For, Stack } from \"@chakra-ui/react\""
