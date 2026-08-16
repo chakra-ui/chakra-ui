@@ -26,6 +26,16 @@ import { DateInput } from "@chakra-ui/react"
 </DateInput.Root>
 ```
 
+`DateInput.Segments` renders a segment group with every segment for the current
+`granularity` and `formatter`. Replace it with `DateInput.SegmentGroup` to
+render segments yourself.
+
+```tsx
+<DateInput.SegmentGroup>
+  <DateInput.Segment segment={segment} />
+</DateInput.SegmentGroup>
+```
+
 ## Date Value
 
 Date values are provided using objects from
@@ -128,3 +138,19 @@ Use the `dir` prop to render the date input in right-to-left mode.
 ### Root
 
 <PropTable component="DateInput" part="Root" />
+
+### RootProvider
+
+<PropTable component="DateInput" part="RootProvider" />
+
+### Segments
+
+<PropTable component="DateInput" part="Segments" />
+
+### Segment
+
+<PropTable component="DateInput" part="Segment" />
+
+### HiddenInput
+
+<PropTable component="DateInput" part="HiddenInput" />
