@@ -123,8 +123,13 @@ export const DateInputHiddenInput = withContext<
 
 export interface DateInputSegmentsProps extends Omit<
   DateInputSegmentGroupProps,
-  "children"
-> {}
+  "children" | "index"
+> {
+  /**
+   * The index of the date value. Useful when `selectionMode` is `range`.
+   */
+  index?: number
+}
 
 export const DateInputSegments = (props: DateInputSegmentsProps) => {
   const { index, ...rest } = props

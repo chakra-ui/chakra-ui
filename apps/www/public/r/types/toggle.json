@@ -12,7 +12,8 @@
         "description": "The fallback content to render when the toggle is not pressed."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -37,6 +38,7 @@
         "description": "The pressed state of the toggle."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   }
 }
