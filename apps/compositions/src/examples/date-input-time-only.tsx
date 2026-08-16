@@ -11,7 +11,7 @@ const formatter = new DateFormatter("en-US", {
 
 export const DateInputTimeOnly = () => {
   return (
-    <DateInput.Root granularity="minute" formatter={formatter}>
+    <DateInput.Root granularity="minute" formatter={formatter} maxW="sm">
       <DateInput.Label>Appointment time</DateInput.Label>
       <DateInput.Control>
         <DateInput.Segments />

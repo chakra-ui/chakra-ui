@@ -16,13 +16,13 @@ export const DateInputWithDatePicker = () => {
     <DatePicker.Root
       value={value}
       onValueChange={(e) => setValue(e.value)}
-      maxWidth="14rem"
+      maxWidth="sm"
     >
       <DateInput.RootProvider value={dateInput}>
         <DateInput.Label>Date of birth</DateInput.Label>
         <DatePicker.Control>
           <DateInput.Control flex="1">
-            <DateInput.Segments flex="1" />
+            <DateInput.Segments />
           </DateInput.Control>
           <DatePicker.IndicatorGroup>
             <DatePicker.Trigger>

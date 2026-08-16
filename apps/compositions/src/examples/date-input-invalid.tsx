@@ -2,7 +2,7 @@ import { DateInput } from "@chakra-ui/react"
 
 export const DateInputInvalid = () => {
   return (
-    <DateInput.Root invalid>
+    <DateInput.Root invalid maxW="sm">
       <DateInput.Label>Date of birth</DateInput.Label>
       <DateInput.Control>
         <DateInput.Segments />

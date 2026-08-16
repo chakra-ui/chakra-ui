@@ -9,6 +9,7 @@ export const dateInputSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       gap: "1.5",
+      width: "full",
       _disabled: {
         opacity: "0.5",
       },
@@ -21,11 +22,11 @@ export const dateInputSlotRecipe = defineSlotRecipe({
     control: {
       display: "flex",
       alignItems: "center",
-      width: "fit-content",
+      width: "full",
     },
 
     segmentGroup: {
-      width: "fit-content",
+      flex: "1",
       outline: "0",
       position: "relative",
       appearance: "none",

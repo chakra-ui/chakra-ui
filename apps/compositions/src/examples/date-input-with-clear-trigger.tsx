@@ -22,7 +22,7 @@ const ClearTrigger = () => {
 
 export const DateInputWithClearTrigger = () => {
   return (
-    <DateInput.Root>
+    <DateInput.Root maxW="sm">
       <DateInput.Label>Date of birth</DateInput.Label>
       <DateInput.Control gap="2">
         <DateInput.Segments />

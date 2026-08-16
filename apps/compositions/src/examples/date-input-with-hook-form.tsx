@@ -22,7 +22,7 @@ export const DateInputWithHookForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Stack gap="4" align="flex-start" maxW="14rem">
+      <Stack gap="4" align="flex-start" maxW="sm">
         <Field.Root invalid={!!formState.errors.name}>
           <Field.Label>Name</Field.Label>
           <Input placeholder="Enter your name" />

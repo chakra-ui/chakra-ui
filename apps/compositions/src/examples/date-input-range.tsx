@@ -5,7 +5,7 @@ import { LuArrowRight } from "react-icons/lu"
 
 export const DateInputRange = () => {
   return (
-    <DateInput.Root selectionMode="range">
+    <DateInput.Root selectionMode="range" maxW="sm">
       <DateInput.Label>Trip duration</DateInput.Label>
 
       <DateInput.Control gap="4">
