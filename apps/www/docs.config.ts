@@ -28,7 +28,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
-            { title: "AI Skills", url: "skills", status: "new" },
+            { title: "AI Skills", url: "skills" },
           ],
         },
         {
@@ -125,7 +125,6 @@ const docsLinks: NavItem = {
         {
           title: "Date and Time",
           items: [
-            { title: "Date Input", url: "date-input", status: "new" },
             { title: "Date Picker", url: "date-picker" },
             { title: "Calendar", url: "calendar" },
           ],
@@ -171,7 +170,7 @@ const docsLinks: NavItem = {
             { title: "Action Bar", url: "action-bar" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
-            { title: "Floating Panel", url: "floating-panel", status: "new" },
+            { title: "Floating Panel", url: "floating-panel" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Menu", url: "menu" },
             { title: "Overlay Manager", url: "overlay-manager" },

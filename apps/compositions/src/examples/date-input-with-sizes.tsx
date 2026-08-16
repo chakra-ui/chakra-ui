@@ -1,5 +1,3 @@
-"use client"
-
 import { DateInput, For, Stack } from "@chakra-ui/react"
 
 export const DateInputWithSizes = () => {
