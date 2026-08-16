@@ -20,20 +20,36 @@ import { DateInput } from "@chakra-ui/react"
 <DateInput.Root>
   <DateInput.Label />
   <DateInput.Control>
-    <DateInput.Segments />
+    <DateInput.SegmentGroup>
+      <DateInput.Segment />
+    </DateInput.SegmentGroup>
   </DateInput.Control>
   <DateInput.HiddenInput />
 </DateInput.Root>
 ```
 
-`DateInput.Segments` renders a segment group with every segment for the current
-`granularity` and `formatter`. Replace it with `DateInput.SegmentGroup` to
-render segments yourself.
+## Shortcuts
+
+The `DateInput` component also provides convenient shortcuts for common
+patterns.
+
+### DateInput.Segments
+
+The `DateInput.Segments` shortcut renders a segment group containing every
+segment produced by the current `granularity` and `formatter`.
 
 ```tsx
 <DateInput.SegmentGroup>
-  <DateInput.Segment segment={segment} />
+  {dateInput.getSegments().map((segment, index) => (
+    <DateInput.Segment key={index} segment={segment} />
+  ))}
 </DateInput.SegmentGroup>
+```
+
+This might be more concise if you don't need to customize each segment:
+
+```tsx
+<DateInput.Segments />
 ```
 
 ## Date Value
