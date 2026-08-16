@@ -1,10 +1,11 @@
 "use client"
 
-import { DateInput, Stack, Text, parseDate } from "@chakra-ui/react"
+import { DateInput, Stack, Text } from "@chakra-ui/react"
+import { type DateValue, parseDate } from "@internationalized/date"
 import { useState } from "react"
 
 export const DateInputControlled = () => {
-  const [value, setValue] = useState([parseDate("2026-01-26")])
+  const [value, setValue] = useState<DateValue[]>([parseDate("2026-01-26")])
 
   return (
     <Stack gap="4" align="flex-start" maxW="sm">

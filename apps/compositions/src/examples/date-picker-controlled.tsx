@@ -1,11 +1,12 @@
 "use client"
 
-import { DatePicker, Portal, Stack, Text, parseDate } from "@chakra-ui/react"
+import { DatePicker, Portal, Stack, Text } from "@chakra-ui/react"
+import { type DateValue, parseDate } from "@internationalized/date"
 import { useState } from "react"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerControlled = () => {
-  const [value, setValue] = useState([parseDate("2026-01-26")])
+  const [value, setValue] = useState<DateValue[]>([parseDate("2026-01-26")])
 
   return (
     <Stack gap={4} maxWidth="20rem">

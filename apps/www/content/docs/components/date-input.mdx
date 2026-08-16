@@ -100,6 +100,12 @@ Use the `value` and `onValueChange` props to control the date value.
 
 <ExampleTabs name="date-input-controlled" />
 
+### Default Value
+
+Use the `defaultValue` prop to set an initial date without controlling it.
+
+<ExampleTabs name="date-input-default-value" />
+
 ### Min and Max
 
 Use the `min` and `max` props to restrict the range of accepted dates.
@@ -113,11 +119,25 @@ segments.
 
 <ExampleTabs name="date-input-leading-zeros" />
 
+### Granularity
+
+Use the `granularity` prop to control which fields are shown. Set it to `hour`,
+`minute` or `second` to enter a time alongside the date.
+
+<ExampleTabs name="date-input-granularity" />
+
 ### Time Only
 
 Use the `granularity` and `formatter` props to compose a time-only input.
 
 <ExampleTabs name="date-input-time-only" />
+
+### Time Zone
+
+A `ZonedDateTime` value renders a time zone segment. Use `hourCycle` to switch
+between 12 and 24 hour time, and `hideTimeZone` to hide the segment.
+
+<ExampleTabs name="date-input-time-zone" />
 
 ### Range
 
@@ -157,7 +177,8 @@ Use the `locale` prop to change the order and format of the segments.
 
 ### RTL
 
-Use the `dir` prop to render the date input in right-to-left mode.
+Wrap the date input in `LocaleProvider` to set the locale and text direction
+together. Pass `dir="rtl"` directly to override direction on its own.
 
 <ExampleTabs name="date-input-rtl" />
 

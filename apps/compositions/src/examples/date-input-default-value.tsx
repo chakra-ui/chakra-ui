@@ -3,14 +3,10 @@
 import { DateInput } from "@chakra-ui/react"
 import { parseDate } from "@internationalized/date"
 
-export const DateInputMinMax = () => {
+export const DateInputDefaultValue = () => {
   return (
-    <DateInput.Root
-      min={parseDate("2026-01-01")}
-      max={parseDate("2026-12-31")}
-      maxW="sm"
-    >
-      <DateInput.Label>Appointment date (2026 only)</DateInput.Label>
+    <DateInput.Root defaultValue={[parseDate("2026-01-26")]} maxW="sm">
+      <DateInput.Label>Date of birth</DateInput.Label>
       <DateInput.Control>
         <DateInput.Segments />
       </DateInput.Control>

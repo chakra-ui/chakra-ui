@@ -1,6 +1,7 @@
 "use client"
 
-import { DateInput, parseDate } from "@chakra-ui/react"
+import { DateInput } from "@chakra-ui/react"
+import { parseDate } from "@internationalized/date"
 
 export const DateInputReadOnly = () => {
   return (

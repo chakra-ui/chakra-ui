@@ -26,31 +26,43 @@
     },
     {
       "name": "date-picker-calendar-controlled",
-      "content": "\"use client\"\nexport const DatePickerCalendarControlled = () => {\n  const [value, setValue] = useState([parseDate(\"2025-03-15\")])\n\n  return (\n    <Stack gap=\"4\">\n      <Text fontWeight=\"medium\" textStyle=\"sm\">\n        Selected: {value[0]?.toString() || \"None\"}\n      </Text>\n      <DatePicker.Root\n        value={value}\n        onValueChange={(e) => setValue(e.value)}\n        inline\n        width=\"fit-content\"\n      >\n        <DatePicker.Content unstyled>\n          <DatePicker.View view=\"day\">\n            <DatePicker.Header />\n            <DatePicker.DayTable />\n          </DatePicker.View>\n          <DatePicker.View view=\"month\">\n            <DatePicker.Header />\n            <DatePicker.MonthTable />\n          </DatePicker.View>\n          <DatePicker.View view=\"year\">\n            <DatePicker.Header />\n            <DatePicker.YearTable />\n          </DatePicker.View>\n        </DatePicker.Content>\n      </DatePicker.Root>\n    </Stack>\n  )\n}\n",
+      "content": "\"use client\"\nexport const DatePickerCalendarControlled = () => {\n  const [value, setValue] = useState<DateValue[]>([parseDate(\"2025-03-15\")])\n\n  return (\n    <Stack gap=\"4\">\n      <Text fontWeight=\"medium\" textStyle=\"sm\">\n        Selected: {value[0]?.toString() || \"None\"}\n      </Text>\n      <DatePicker.Root\n        value={value}\n        onValueChange={(e) => setValue(e.value)}\n        inline\n        width=\"fit-content\"\n      >\n        <DatePicker.Content unstyled>\n          <DatePicker.View view=\"day\">\n            <DatePicker.Header />\n            <DatePicker.DayTable />\n          </DatePicker.View>\n          <DatePicker.View view=\"month\">\n            <DatePicker.Header />\n            <DatePicker.MonthTable />\n          </DatePicker.View>\n          <DatePicker.View view=\"year\">\n            <DatePicker.Header />\n            <DatePicker.YearTable />\n          </DatePicker.View>\n        </DatePicker.Content>\n      </DatePicker.Root>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Stack, Text, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Stack, Text } from \"@chakra-ui/react\"",
+        "import { type DateValue, parseDate } from \"@internationalized/date\"",
         "import { useState } from \"react\""
       ],
-      "importPath": "import { DatePicker } from \"@chakra-ui/react\""
+      "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
     },
     {
       "name": "date-picker-calendar-default-value",
       "content": "\"use client\"\nexport const DatePickerCalendarDefaultValue = () => {\n  return (\n    <DatePicker.Root\n      defaultValue={[parseDate(\"2025-03-15\")]}\n      inline\n      width=\"fit-content\"\n    >\n      <DatePicker.Content unstyled>\n        <DatePicker.View view=\"day\">\n          <DatePicker.Header />\n          <DatePicker.DayTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"month\">\n          <DatePicker.Header />\n          <DatePicker.MonthTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"year\">\n          <DatePicker.Header />\n          <DatePicker.YearTable />\n        </DatePicker.View>\n      </DatePicker.Content>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, parseDate } from \"@chakra-ui/react\""
+        "import { DatePicker } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
       ],
-      "importPath": "import { DatePicker } from \"@chakra-ui/react\""
+      "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
     },
     {
       "name": "date-picker-calendar-hide-outside-days",
       "content": "\"use client\"\nexport const DatePickerCalendarHideOutsideDays = () => {\n  return (\n    <DatePicker.Root\n      hideOutsideDays\n      inline\n      width=\"fit-content\"\n      defaultValue={[parseDate(\"2025-03-15\")]}\n    >\n      <DatePicker.Content unstyled>\n        <DatePicker.View view=\"day\">\n          <DatePicker.Header />\n          <DatePicker.DayTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"month\">\n          <DatePicker.Header />\n          <DatePicker.MonthTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"year\">\n          <DatePicker.Header />\n          <DatePicker.YearTable />\n        </DatePicker.View>\n      </DatePicker.Content>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, parseDate } from \"@chakra-ui/react\""
+        "import { DatePicker } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
       ],
-      "importPath": "import { DatePicker } from \"@chakra-ui/react\""
+      "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
     },
     {
       "name": "date-picker-calendar-locale",
@@ -75,9 +87,13 @@
       "content": "\"use client\"\nexport const DatePickerCalendarMinMax = () => {\n  return (\n    <DatePicker.Root\n      min={parseDate(\"2025-03-05\")}\n      max={parseDate(\"2025-03-25\")}\n      inline\n      width=\"fit-content\"\n    >\n      <DatePicker.Content unstyled>\n        <DatePicker.View view=\"day\">\n          <DatePicker.Header />\n          <DatePicker.DayTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"month\">\n          <DatePicker.Header />\n          <DatePicker.MonthTable />\n        </DatePicker.View>\n        <DatePicker.View view=\"year\">\n          <DatePicker.Header />\n          <DatePicker.YearTable />\n        </DatePicker.View>\n      </DatePicker.Content>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, parseDate } from \"@chakra-ui/react\""
+        "import { DatePicker } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
       ],
-      "importPath": "import { DatePicker } from \"@chakra-ui/react\""
+      "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
     },
     {
       "name": "date-picker-calendar-multi-selection",
@@ -139,15 +155,17 @@
     },
     {
       "name": "date-picker-controlled",
-      "content": "\"use client\"\nexport const DatePickerControlled = () => {\n  const [value, setValue] = useState([parseDate(\"2026-01-26\")])\n\n  return (\n    <Stack gap={4} maxWidth=\"20rem\">\n      <Text textStyle=\"sm\">\n        Selected: {value.map((d) => d.toString()).join(\", \")}\n      </Text>\n\n      <DatePicker.Root value={value} onValueChange={(e) => setValue(e.value)}>\n        <DatePicker.Label>Date of birth</DatePicker.Label>\n        <DatePicker.Control>\n          <DatePicker.Input />\n          <DatePicker.IndicatorGroup>\n            <DatePicker.Trigger>\n              <LuCalendar />\n            </DatePicker.Trigger>\n          </DatePicker.IndicatorGroup>\n        </DatePicker.Control>\n        <Portal>\n          <DatePicker.Positioner>\n            <DatePicker.Content>\n              <DatePicker.View view=\"day\">\n                <DatePicker.Header />\n                <DatePicker.DayTable />\n              </DatePicker.View>\n              <DatePicker.View view=\"month\">\n                <DatePicker.Header />\n                <DatePicker.MonthTable />\n              </DatePicker.View>\n              <DatePicker.View view=\"year\">\n                <DatePicker.Header />\n                <DatePicker.YearTable />\n              </DatePicker.View>\n            </DatePicker.Content>\n          </DatePicker.Positioner>\n        </Portal>\n      </DatePicker.Root>\n    </Stack>\n  )\n}\n",
+      "content": "\"use client\"\nexport const DatePickerControlled = () => {\n  const [value, setValue] = useState<DateValue[]>([parseDate(\"2026-01-26\")])\n\n  return (\n    <Stack gap={4} maxWidth=\"20rem\">\n      <Text textStyle=\"sm\">\n        Selected: {value.map((d) => d.toString()).join(\", \")}\n      </Text>\n\n      <DatePicker.Root value={value} onValueChange={(e) => setValue(e.value)}>\n        <DatePicker.Label>Date of birth</DatePicker.Label>\n        <DatePicker.Control>\n          <DatePicker.Input />\n          <DatePicker.IndicatorGroup>\n            <DatePicker.Trigger>\n              <LuCalendar />\n            </DatePicker.Trigger>\n          </DatePicker.IndicatorGroup>\n        </DatePicker.Control>\n        <Portal>\n          <DatePicker.Positioner>\n            <DatePicker.Content>\n              <DatePicker.View view=\"day\">\n                <DatePicker.Header />\n                <DatePicker.DayTable />\n              </DatePicker.View>\n              <DatePicker.View view=\"month\">\n                <DatePicker.Header />\n                <DatePicker.MonthTable />\n              </DatePicker.View>\n              <DatePicker.View view=\"year\">\n                <DatePicker.Header />\n                <DatePicker.YearTable />\n              </DatePicker.View>\n            </DatePicker.Content>\n          </DatePicker.Positioner>\n        </Portal>\n      </DatePicker.Root>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Portal, Stack, Text, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Portal, Stack, Text } from \"@chakra-ui/react\"",
+        "import { type DateValue, parseDate } from \"@internationalized/date\"",
         "import { useState } from \"react\"",
         "import { LuCalendar } from \"react-icons/lu\""
       ],
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
+        "@internationalized/date",
         "react-icons"
       ]
     },
@@ -156,11 +174,13 @@
       "content": "\"use client\"\nexport const DatePickerDefaultValue = () => {\n  return (\n    <DatePicker.Root defaultValue={[parseDate(\"2026-01-26\")]} maxWidth=\"20rem\">\n      <DatePicker.Label>Start Date</DatePicker.Label>\n      <DatePicker.Control>\n        <DatePicker.Input />\n        <DatePicker.IndicatorGroup>\n          <DatePicker.Trigger>\n            <LuCalendar />\n          </DatePicker.Trigger>\n        </DatePicker.IndicatorGroup>\n      </DatePicker.Control>\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"day\">\n              <DatePicker.Header />\n              <DatePicker.DayTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"month\">\n              <DatePicker.Header />\n              <DatePicker.MonthTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Portal, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Portal } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\"",
         "import { LuCalendar } from \"react-icons/lu\""
       ],
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
+        "@internationalized/date",
         "react-icons"
       ]
     },
@@ -250,11 +270,13 @@
       "content": "\"use client\"\nexport const DatePickerMinMax = () => {\n  return (\n    <DatePicker.Root\n      min={parseDate(\"2025-03-05\")}\n      max={parseDate(\"2025-03-31\")}\n      maxWidth=\"20rem\"\n    >\n      <DatePicker.Label>Date of creation</DatePicker.Label>\n      <DatePicker.Control>\n        <DatePicker.Input />\n        <DatePicker.IndicatorGroup>\n          <DatePicker.Trigger>\n            <LuCalendar />\n          </DatePicker.Trigger>\n        </DatePicker.IndicatorGroup>\n      </DatePicker.Control>\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"day\">\n              <DatePicker.Header />\n              <DatePicker.DayTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"month\">\n              <DatePicker.Header />\n              <DatePicker.MonthTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Portal, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Portal } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\"",
         "import { LuCalendar } from \"react-icons/lu\""
       ],
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
+        "@internationalized/date",
         "react-icons"
       ]
     },
@@ -357,11 +379,13 @@
       "content": "\"use client\"\nexport const DatePickerReadOnly = () => {\n  return (\n    <DatePicker.Root\n      readOnly\n      defaultValue={[parseDate(\"2025-03-15\")]}\n      maxWidth=\"20rem\"\n    >\n      <DatePicker.Label>Date of birth</DatePicker.Label>\n      <DatePicker.Control>\n        <DatePicker.Input />\n        <DatePicker.IndicatorGroup>\n          <DatePicker.Trigger>\n            <LuCalendar />\n          </DatePicker.Trigger>\n        </DatePicker.IndicatorGroup>\n      </DatePicker.Control>\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"day\">\n              <DatePicker.Header />\n              <DatePicker.DayTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"month\">\n              <DatePicker.Header />\n              <DatePicker.MonthTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Portal, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Portal } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\"",
         "import { LuCalendar } from \"react-icons/lu\""
       ],
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
+        "@internationalized/date",
         "react-icons"
       ]
     },
@@ -450,8 +474,9 @@
       "content": "\"use client\"\nconst formSchema = z.object({\n  firstName: z.string().min(1, { message: \"First name is required\" }),\n  dob: z.string().min(1, { message: \"Date of birth is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const DatePickerWithHookForm = () => {\n  const {\n    control,\n    register,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => alert(JSON.stringify(data)))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n        <Field.Root invalid={!!errors.firstName}>\n          <Field.Label>First name</Field.Label>\n          <Input {...register(\"firstName\")} />\n          <Field.ErrorText>{errors.firstName?.message}</Field.ErrorText>\n        </Field.Root>\n\n        <Controller\n          control={control}\n          name=\"dob\"\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.dob}>\n              <DatePicker.Root\n                value={field.value ? [parseDate(field.value)] : []}\n                onValueChange={(e) =>\n                  field.onChange(e.value[0]?.toString() ?? \"\")\n                }\n                invalid={!!errors.dob}\n              >\n                <DatePicker.Label>Date of birth</DatePicker.Label>\n                <DatePicker.Control>\n                  <DatePicker.Input placeholder=\"Select date\" />\n                  <DatePicker.IndicatorGroup>\n                    <DatePicker.Trigger>\n                      <LuCalendar />\n                    </DatePicker.Trigger>\n                  </DatePicker.IndicatorGroup>\n                </DatePicker.Control>\n                <Portal>\n                  <DatePicker.Positioner>\n                    <DatePicker.Content>\n                      <DatePicker.View view=\"day\">\n                        <DatePicker.Header />\n                        <DatePicker.DayTable />\n                      </DatePicker.View>\n                      <DatePicker.View view=\"month\">\n                        <DatePicker.Header />\n                        <DatePicker.MonthTable />\n                      </DatePicker.View>\n                      <DatePicker.View view=\"year\">\n                        <DatePicker.Header />\n                        <DatePicker.YearTable />\n                      </DatePicker.View>\n                    </DatePicker.Content>\n                  </DatePicker.Positioner>\n                </Portal>\n              </DatePicker.Root>\n              <Field.ErrorText>{errors.dob?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import {\n  Button,\n  DatePicker,\n  Field,\n  Input,\n  Portal,\n  Stack,\n  parseDate,\n} from \"@chakra-ui/react\"",
+        "import {\n  Button,\n  DatePicker,\n  Field,\n  Input,\n  Portal,\n  Stack,\n} from \"@chakra-ui/react\"",
         "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
+        "import { parseDate } from \"@internationalized/date\"",
         "import { Controller, useForm } from \"react-hook-form\"",
         "import { LuCalendar } from \"react-icons/lu\"",
         "import { z } from \"zod\""
@@ -459,6 +484,7 @@
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
         "@hookform/resolvers",
+        "@internationalized/date",
         "react-hook-form",
         "react-icons",
         "zod"
@@ -619,15 +645,17 @@
     },
     {
       "name": "date-picker-year-picker",
-      "content": "\"use client\"\nexport const DatePickerYearPicker = () => {\n  return (\n    <DatePicker.Root\n      format={format}\n      parse={parse}\n      defaultView=\"year\"\n      minView=\"year\"\n      placeholder=\"yyyy\"\n      maxWidth=\"20rem\"\n    >\n      <DatePicker.Label>Select year</DatePicker.Label>\n      <DatePicker.Control>\n        <DatePicker.Input />\n        <DatePicker.IndicatorGroup>\n          <DatePicker.Trigger>\n            <LuCalendar />\n          </DatePicker.Trigger>\n        </DatePicker.IndicatorGroup>\n      </DatePicker.Control>\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n\nconst format = (date: DateValue) => date.year.toString()\n\nconst parse = (string: string | undefined) => {\n  if (string === \"\" || !string) return\n  const year = Number(string)\n  if (year < 100) {\n    const currentYear = new Date().getFullYear()\n    const currentCentury = Math.floor(currentYear / 100) * 100\n    return parseDate(new Date(currentCentury + year, 0))\n  }\n  return parseDate(new Date(Number(string), 0))\n}\n",
+      "content": "\"use client\"\nexport const DatePickerYearPicker = () => {\n  return (\n    <DatePicker.Root\n      format={format}\n      parse={parse}\n      defaultView=\"year\"\n      minView=\"year\"\n      placeholder=\"yyyy\"\n      maxWidth=\"20rem\"\n    >\n      <DatePicker.Label>Select year</DatePicker.Label>\n      <DatePicker.Control>\n        <DatePicker.Input />\n        <DatePicker.IndicatorGroup>\n          <DatePicker.Trigger>\n            <LuCalendar />\n          </DatePicker.Trigger>\n        </DatePicker.IndicatorGroup>\n      </DatePicker.Control>\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n\nconst format = (date: DateValue) => date.year.toString()\n\nconst parse = (string: string | undefined) => {\n  if (string === \"\" || !string) return\n  const year = Number(string)\n  if (year < 100) {\n    const currentYear = new Date().getFullYear()\n    const currentCentury = Math.floor(currentYear / 100) * 100\n    return new CalendarDate(currentCentury + year, 1, 1)\n  }\n  return new CalendarDate(Number(string), 1, 1)\n}\n",
       "hasSnippet": false,
       "importPaths": [
-        "import { DatePicker, Portal, parseDate } from \"@chakra-ui/react\"",
+        "import { DatePicker, Portal } from \"@chakra-ui/react\"",
         "import type { DateValue } from \"@chakra-ui/react\"",
+        "import { CalendarDate } from \"@internationalized/date\"",
         "import { LuCalendar } from \"react-icons/lu\""
       ],
       "importPath": "import { DatePicker } from \"@chakra-ui/react\"",
       "npmDependencies": [
+        "@internationalized/date",
         "react-icons"
       ]
     }
