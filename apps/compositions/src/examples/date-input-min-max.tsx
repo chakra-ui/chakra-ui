@@ -2,7 +2,7 @@
 
 import { DateInput, parseDate } from "@chakra-ui/react"
 
-export const DateInputWithMinMax = () => {
+export const DateInputMinMax = () => {
   return (
     <DateInput.Root
       min={parseDate("2026-01-01")}

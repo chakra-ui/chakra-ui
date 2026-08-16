@@ -19,7 +19,7 @@ export { DateInputDisabled as Disabled } from "compositions/examples/date-input-
 export { DateInputReadOnly as ReadOnly } from "compositions/examples/date-input-read-only"
 export { DateInputInvalid as Invalid } from "compositions/examples/date-input-invalid"
 export { DateInputControlled as Controlled } from "compositions/examples/date-input-controlled"
-export { DateInputWithMinMax as WithMinMax } from "compositions/examples/date-input-with-min-max"
+export { DateInputMinMax as MinMax } from "compositions/examples/date-input-min-max"
 export { DateInputTimeOnly as TimeOnly } from "compositions/examples/date-input-time-only"
 export { DateInputRange as Range } from "compositions/examples/date-input-range"
 export { DateInputWithDatePicker as WithDatePicker } from "compositions/examples/date-input-with-date-picker"
