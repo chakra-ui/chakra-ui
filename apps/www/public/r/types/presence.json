@@ -11,6 +11,12 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
+      },
       "immediate": {
         "type": "boolean",
         "isRequired": false,
@@ -44,6 +50,7 @@
         "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
-    }
+    },
+    "tag": "div"
   }
 }

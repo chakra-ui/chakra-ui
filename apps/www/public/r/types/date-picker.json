@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Content": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Control": {
     "props": {
@@ -42,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Input": {
     "props": {
@@ -68,7 +71,8 @@
         "description": "The index of the input to focus."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "Label": {
     "props": {
@@ -83,7 +87,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "MonthSelect": {
     "props": {
@@ -98,7 +103,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement"
+    "element": "HTMLSelectElement",
+    "tag": "select"
   },
   "NextTrigger": {
     "props": {
@@ -113,7 +119,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Positioner": {
     "props": {
@@ -128,7 +135,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "PresetTrigger": {
     "props": {
@@ -147,7 +155,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "PrevTrigger": {
     "props": {
@@ -162,7 +171,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "RangeText": {
     "props": {
@@ -177,7 +187,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -201,6 +212,11 @@
         "isRequired": false,
         "defaultValue": true,
         "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`."
+      },
+      "createCalendar": {
+        "type": "(identifier: CalendarIdentifier) => Calendar",
+        "isRequired": false,
+        "description": "A function that creates a Calendar object for a given calendar identifier.\nEnables non-Gregorian calendar support (Persian, Buddhist, Islamic, etc.)\nwithout bundling all calendars by default."
       },
       "defaultFocusedValue": {
         "type": "DateValue",
@@ -242,6 +258,12 @@
         "type": "(date: DateValue, details: LocaleDetails) => string",
         "isRequired": false,
         "description": "The format of the date to display in the input."
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "id": {
         "type": "string",
@@ -472,7 +494,8 @@
         "description": "The variant of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -489,6 +512,12 @@
       "value": {
         "type": "UseDatePickerReturn",
         "isRequired": true
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "immediate": {
         "type": "boolean",
@@ -524,7 +553,8 @@
         "description": "Whether to unmount on exit."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "TableBody": {
     "props": {
@@ -539,7 +569,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLTableSectionElement"
+    "element": "HTMLTableSectionElement",
+    "tag": "tbody"
   },
   "TableCell": {
     "props": {
@@ -570,7 +601,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLTableCellElement"
+    "element": "HTMLTableCellElement",
+    "tag": "td"
   },
   "TableCellTrigger": {
     "props": {
@@ -585,7 +617,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "TableHead": {
     "props": {
@@ -600,7 +633,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLTableSectionElement"
+    "element": "HTMLTableSectionElement",
+    "tag": "thead"
   },
   "TableHeader": {
     "props": {
@@ -615,7 +649,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLTableCellElement"
+    "element": "HTMLTableCellElement",
+    "tag": "th"
   },
   "Table": {
     "props": {
@@ -634,7 +669,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLTableElement"
+    "element": "HTMLTableElement",
+    "tag": "table"
   },
   "TableRow": {
     "props": {
@@ -649,7 +685,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLTableRowElement"
+    "element": "HTMLTableRowElement",
+    "tag": "tr"
   },
   "Trigger": {
     "props": {
@@ -664,7 +701,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "ViewControl": {
     "props": {
@@ -679,7 +717,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "View": {
     "props": {
@@ -698,7 +737,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ViewTrigger": {
     "props": {
@@ -713,7 +753,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "WeekNumberCell": {
     "props": {
@@ -736,7 +777,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLTableCellElement"
+    "element": "HTMLTableCellElement",
+    "tag": "td"
   },
   "WeekNumberCellText": {
     "props": {
@@ -765,7 +807,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLTableCellElement"
+    "element": "HTMLTableCellElement",
+    "tag": "th"
   },
   "YearSelect": {
     "props": {
@@ -780,7 +823,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement"
+    "element": "HTMLSelectElement",
+    "tag": "select"
   },
   "Header": {
     "props": {
@@ -896,7 +940,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "ValueTextRender": {
     "props": {

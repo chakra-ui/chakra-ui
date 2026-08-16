@@ -258,6 +258,7 @@ export const codeBlockAnatomy = createAnatomy("code-block", [
 ])
 
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
+export { dateInputAnatomy } from "@ark-ui/react/date-input"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"

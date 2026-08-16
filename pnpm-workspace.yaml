@@ -7,6 +7,9 @@ overrides:
   react: 19.2.6
   react-dom: 19.2.6
   immer: ">=11.0.1"
+  # keep a single copy: CalendarDate uses private fields, so two versions
+  # produce mutually incompatible types
+  "@internationalized/date": 3.12.3
 
 allowBuilds:
   esbuild: true

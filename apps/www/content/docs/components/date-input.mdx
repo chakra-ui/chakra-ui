@@ -1,0 +1,205 @@
+---
+title: Date Input
+description: Used to enter a specific date using segmented keyboard input.
+links:
+  source: components/date-input
+  storybook: components-date-input--basic
+  recipe: date-input
+  ark: https://ark-ui.com/docs/components/date-input
+---
+
+<ExampleTabs name="date-input-basic" />
+
+## Usage
+
+```tsx
+import { DateInput } from "@chakra-ui/react"
+```
+
+```tsx
+<DateInput.Root>
+  <DateInput.Label />
+  <DateInput.Control>
+    <DateInput.SegmentGroup>
+      <DateInput.Segment />
+    </DateInput.SegmentGroup>
+  </DateInput.Control>
+  <DateInput.HiddenInput />
+</DateInput.Root>
+```
+
+## Shortcuts
+
+The `DateInput` component also provides convenient shortcuts for common
+patterns.
+
+### DateInput.Segments
+
+The `DateInput.Segments` shortcut renders a segment group containing every
+segment produced by the current `granularity` and `formatter`.
+
+```tsx
+<DateInput.SegmentGroup>
+  {dateInput.getSegments().map((segment, index) => (
+    <DateInput.Segment key={index} segment={segment} />
+  ))}
+</DateInput.SegmentGroup>
+```
+
+This might be more concise if you don't need to customize each segment:
+
+```tsx
+<DateInput.Segments />
+```
+
+## Date Value
+
+Date values are provided using objects from
+[`@internationalized/date`](https://react-aria.adobe.com/internationalized/date/),
+which handles timezone-safe, locale-aware date handling.
+
+This will be replaced by the
+[Temporal API](https://tc39.es/proposal-temporal/docs/) when it's widely
+supported in browsers.
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the date input.
+
+<ExampleTabs name="date-input-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the date input.
+
+<ExampleTabs name="date-input-with-variants" />
+
+### Disabled
+
+Use the `disabled` prop to prevent user interaction with the date input.
+
+<ExampleTabs name="date-input-disabled" />
+
+### Invalid
+
+Use the `invalid` prop to indicate that the date input value is invalid.
+
+<ExampleTabs name="date-input-invalid" />
+
+### Read Only
+
+Use the `readOnly` prop to prevent modification while keeping the value visible.
+
+<ExampleTabs name="date-input-read-only" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the date value.
+
+<ExampleTabs name="date-input-controlled" />
+
+### Default Value
+
+Use the `defaultValue` prop to set an initial date without controlling it.
+
+<ExampleTabs name="date-input-default-value" />
+
+### Min and Max
+
+Use the `min` and `max` props to restrict the range of accepted dates.
+
+<ExampleTabs name="date-input-min-max" />
+
+### Leading Zeros
+
+Use the `shouldForceLeadingZeros` prop to always render two-digit day and month
+segments.
+
+<ExampleTabs name="date-input-leading-zeros" />
+
+### Granularity
+
+Use the `granularity` prop to control which fields are shown. Set it to `hour`,
+`minute` or `second` to enter a time alongside the date.
+
+<ExampleTabs name="date-input-granularity" />
+
+### Time Only
+
+Use the `granularity` and `formatter` props to compose a time-only input.
+
+<ExampleTabs name="date-input-time-only" />
+
+### Time Zone
+
+A `ZonedDateTime` value renders a time zone segment. Use `hourCycle` to switch
+between 12 and 24 hour time, and `hideTimeZone` to hide the segment.
+
+<ExampleTabs name="date-input-time-zone" />
+
+### Range
+
+Set the `selectionMode` prop to `"range"` to enter a start and end date. Pass
+the `index` prop to `DateInput.Segments` and `DateInput.HiddenInput` to target
+each date in the range.
+
+<ExampleTabs name="date-input-range" />
+
+### Clear Trigger
+
+Combine the `useDateInputContext` hook with the `clearValue` method to render a
+clear trigger when a value is present.
+
+<ExampleTabs name="date-input-with-clear-trigger" />
+
+### Date Picker
+
+Compose the date input with the `DatePicker` component using the `useDateInput`
+hook and the `DateInput.RootProvider` component. This provides a segmented
+keyboard input alongside a calendar trigger.
+
+<ExampleTabs name="date-input-with-date-picker" />
+
+### React Hook Form
+
+Here's an example of integrating with `react-hook-form` using the Controller
+pattern.
+
+<ExampleTabs name="date-input-with-hook-form" />
+
+### Locale
+
+Use the `locale` prop to change the order and format of the segments.
+
+<ExampleTabs name="date-input-locale" />
+
+### RTL
+
+Wrap the date input in `LocaleProvider` to set the locale and text direction
+together. Pass `dir="rtl"` directly to override direction on its own.
+
+<ExampleTabs name="date-input-rtl" />
+
+## Props
+
+### Root
+
+<PropTable component="DateInput" part="Root" />
+
+### RootProvider
+
+<PropTable component="DateInput" part="RootProvider" />
+
+### Segments
+
+<PropTable component="DateInput" part="Segments" />
+
+### Segment
+
+<PropTable component="DateInput" part="Segment" />
+
+### HiddenInput
+
+<PropTable component="DateInput" part="HiddenInput" />
