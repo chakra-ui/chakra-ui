@@ -100,7 +100,7 @@ export default function App() {
 
     const result = await runAllTransforms(input)
     expect(result).toMatchInlineSnapshot(`
-      "import { Steps, ChakraProvider, defaultSystem } from '@chakra-ui/react'
+      "import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 
       export default function App() {
         return (
