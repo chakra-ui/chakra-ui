@@ -43,7 +43,7 @@ configured correctly to use Chakra UI.
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react
+npm i @chakra-ui/react @emotion/react @emotion/cache
 ```
 
 ### Add snippets
@@ -104,6 +104,108 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 
 > Adding the `suppressHydrationWarning` prop to the `html` element is required
 > to prevent the warning about the `next-themes` library.
+
+### Add an Emotion style registry (SSR)
+
+When your app uses React `<Suspense>` boundaries — which is the default rendering
+model in Next.js 16 with [Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) —
+you need a style registry so Emotion emits its CSS through Next.js's
+`useServerInsertedHTML` channel instead of as inline `<style>` elements inside the
+React tree.
+
+Without a registry, rules for components rendered inside a streamed Suspense
+chunk arrive after the client has hydrated, and the client renders no `<style>`
+at that position. The mismatch causes a hydration error on every load:
+
+```diff
++<div className="chakra-xxx">
+-<style data-emotion="css xxx">
+```
+
+Add a client component that keeps a per-request Emotion cache and flushes only
+the rules inserted since the last render pass:
+
+```tsx title="app/emotion-registry.tsx"
+"use client"
+
+import { CacheProvider } from "@emotion/react"
+import createCache from "@emotion/cache"
+import { useServerInsertedHTML } from "next/navigation"
+import { useState } from "react"
+
+export default function EmotionRegistry({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [{ cache, flush }] = useState(() => {
+    const cache = createCache({ key: "css" })
+    cache.compat = true
+
+    const previousInsert = cache.insert
+    let inserted: string[] = []
+
+    cache.insert = (...args) => {
+      const serialized = args[1]
+      if (cache.inserted[serialized.name] === undefined) {
+        inserted.push(serialized.name)
+      }
+      return previousInsert(...args)
+    }
+
+    const flush = () => {
+      const previouslyInserted = inserted
+      inserted = []
+      return previouslyInserted
+    }
+
+    return { cache, flush }
+  })
+
+  useServerInsertedHTML(() => {
+    const names = flush()
+    if (names.length === 0) return null
+
+    const styles = names.map((name) => cache.inserted[name]).join("")
+
+    return (
+      <style
+        data-emotion={`${cache.key} ${names.join(" ")}`}
+        dangerouslySetInnerHTML={{ __html: styles }}
+      />
+    )
+  })
+
+  return <CacheProvider value={cache}>{children}</CacheProvider>
+}
+```
+
+Then wrap the provider in `app/layout.tsx`:
+
+```tsx title="app/layout.tsx" {5,9}
+import { Inter } from "next/font/google"
+import Provider from "./provider"
+import EmotionRegistry from "./emotion-registry"
+
+const inter = Inter({ subsets: ["latin"], display: "swap" })
+
+export default function RootLayout(props: { children: React.ReactNode }) {
+  return (
+    <html className={inter.className} suppressHydrationWarning>
+      <head />
+      <body>
+        <EmotionRegistry>
+          <Provider>{props.children}</Provider>
+        </EmotionRegistry>
+      </body>
+    </html>
+  )
+}
+```
+
+This tracks only the rules added since the last flush, so it does not re-send
+already-emitted rules (unlike earlier `@chakra-ui/next-js` versions, which
+re-emitted the whole cache on every flush and caused duplicated styles).
 
 ### Optimize Bundle
 
