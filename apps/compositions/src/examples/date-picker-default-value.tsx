@@ -1,6 +1,7 @@
 "use client"
 
-import { DatePicker, Portal, parseDate } from "@chakra-ui/react"
+import { DatePicker, Portal } from "@chakra-ui/react"
+import { parseDate } from "@internationalized/date"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerDefaultValue = () => {

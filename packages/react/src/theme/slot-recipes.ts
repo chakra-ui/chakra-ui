@@ -14,6 +14,7 @@ import { colorPickerSlotRecipe } from "./recipes/color-picker"
 import { comboboxSlotRecipe } from "./recipes/combobox"
 import { commandPaletteSlotRecipe } from "./recipes/command-palette"
 import { dataListSlotRecipe } from "./recipes/data-list"
+import { dateInputSlotRecipe } from "./recipes/date-input"
 import { datePickerSlotRecipe } from "./recipes/date-picker"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
@@ -70,6 +71,7 @@ export const slotRecipes = {
   codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
+  dateInput: dateInputSlotRecipe,
   datePicker: datePickerSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,

@@ -56,7 +56,8 @@
         "description": "The borderless of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Image": {
     "props": {
@@ -71,7 +72,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLImageElement"
+    "element": "HTMLImageElement",
+    "tag": "img"
   },
   "Fallback": {
     "props": {
@@ -91,7 +93,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Icon": {
     "props": {
@@ -165,6 +168,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   }
 }

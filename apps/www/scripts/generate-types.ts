@@ -162,13 +162,49 @@ function normalizeDefaultValues(json: Record<string, any>) {
   }
 }
 
-async function writeStaticProps(outDir: string) {
-  const files = globSync("scripts/static-props/**/*.json")
+function isCoveredByGenerated(staticProps: any, generated: any) {
+  return Object.entries(staticProps).every(([part, value]) => {
+    const generatedProps = generated[part]?.props
+    if (!generatedProps) return false
+    const props = (value as any)?.props ?? {}
+    return Object.keys(props).every((prop) => prop in generatedProps)
+  })
+}
+
+async function writeStaticProps(
+  outDir: string,
+  components: string[] | undefined,
+  extracted: Set<string>,
+) {
+  const files = globSync("scripts/static-props/**/*.json").filter(
+    (file) =>
+      !components?.length || components.includes(basename(file, ".json")),
+  )
+
   files.forEach((file) => {
     const name = basename(file, ".json")
-    const props = JSON.parse(readFileSync(file, "utf-8"))
-    normalizeDefaultValues(props)
-    writeFileSync(`${outDir}/${name}.json`, JSON.stringify(props, null, 2))
+    const staticProps = JSON.parse(readFileSync(file, "utf-8"))
+    normalizeDefaultValues(staticProps)
+
+    // An existing outFile is only real output if this run extracted the
+    // component; otherwise it's the previous run's copy of this static file.
+    const outFile = `${outDir}/${name}.json`
+    const generated = extracted.has(name)
+      ? JSON.parse(readFileSync(outFile, "utf-8"))
+      : null
+
+    if (generated && isCoveredByGenerated(staticProps, generated)) {
+      console.warn(
+        `Static props for "${name}" are fully covered by generated types — safe to delete ${file}`,
+      )
+    }
+
+    // generated wins; static props only fill gaps
+    const props = generated
+      ? deepMerge({}, staticProps, generated)
+      : staticProps
+
+    writeFileSync(outFile, JSON.stringify(props, null, 2))
   })
 }
 
@@ -316,10 +352,7 @@ async function extractComponents(components?: string[]) {
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
 
-  // Write hand-authored static props (e.g. password-input) only on a full run
-  if (!components || components.length === 0) {
-    await writeStaticProps(outDir)
-  }
+  await writeStaticProps(outDir, components, new Set(dirs))
 }
 
 const commonProps = {
