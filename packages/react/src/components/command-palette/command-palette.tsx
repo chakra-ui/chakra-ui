@@ -7,14 +7,7 @@ import {
 } from "@ark-ui/react"
 import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
 import { Dialog as ArkDialog, useDialog } from "@ark-ui/react/dialog"
-import {
-  type JSX,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react"
+import { type JSX, forwardRef, useCallback, useEffect, useRef } from "react"
 import { createContext } from "../../create-context"
 import { useCallbackRef } from "../../hooks"
 import {
@@ -187,13 +180,14 @@ function useHotkeys(
     if (!enabled || !hotkeys.length) return
 
     const doc = env.getDocument()
+    const registrationId = registration.current
     const registrations = hotkeyRegistrations.get(doc) ?? []
-    registrations.push(registration.current)
+    registrations.push(registrationId)
     hotkeyRegistrations.set(doc, registrations)
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.repeat) return
-      if (registrations.at(-1) !== registration.current) return
+      if (registrations.at(-1) !== registrationId) return
       if (!open && !allowInEditable && isEditableTarget(event.target, doc)) {
         return
       }
@@ -205,7 +199,7 @@ function useHotkeys(
     doc.addEventListener("keydown", onKeyDown)
     return () => {
       doc.removeEventListener("keydown", onKeyDown)
-      const index = registrations.indexOf(registration.current)
+      const index = registrations.indexOf(registrationId)
       if (index !== -1) registrations.splice(index, 1)
       if (!registrations.length) hotkeyRegistrations.delete(doc)
     }
@@ -284,13 +278,10 @@ const CommandPaletteRootBase = (props: CommandPaletteRootProps) => {
     dialog.open,
   )
 
-  const config = useMemo(
-    () => ({ loading, comboboxProps, registerItemAction }),
-    [comboboxProps, loading, registerItemAction],
-  )
-
   return (
-    <CommandPaletteConfigProvider value={config}>
+    <CommandPaletteConfigProvider
+      value={{ loading, comboboxProps, registerItemAction }}
+    >
       <ArkDialog.RootProvider
         value={dialog}
         lazyMount={lazyMount}
