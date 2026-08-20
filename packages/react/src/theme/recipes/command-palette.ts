@@ -199,6 +199,18 @@ export const commandPaletteSlotRecipe = defineSlotRecipe({
       color: "fg.muted",
     },
 
+    loading: {
+      py: "8",
+      textAlign: "center",
+      color: "fg.muted",
+    },
+
+    separator: {
+      borderTopWidth: "1px",
+      borderColor: "border.subtle",
+      my: "1.5",
+    },
+
     footer: {
       display: "flex",
       alignItems: "center",

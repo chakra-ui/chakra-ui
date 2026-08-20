@@ -49,6 +49,7 @@ export const CommandPaletteWithRecentItems = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      hotkeys={[]}
       onSelect={(e) => {
         setRecentValues((prev) =>
           [e.itemValue, ...prev.filter((v) => v !== e.itemValue)].slice(0, 3),

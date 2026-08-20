@@ -133,6 +133,16 @@
   },
   "Item": {
     "props": {
+      "onSelect": {
+        "type": "(details: CommandPaletteSelectionDetails) => void",
+        "isRequired": false,
+        "description": "Runs when the item is selected, before the Root `onSelect` and resulting `onOpenChange` callbacks."
+      },
+      "closeOnSelect": {
+        "type": "boolean | undefined",
+        "isRequired": false,
+        "description": "Overrides `Root` close behavior for this item."
+      },
       "as": {
         "type": "React.ElementType",
         "isRequired": false,
@@ -187,16 +197,46 @@
       }
     }
   },
+  "Loading": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
   "Root": {
     "props": {
+      "closeOnSelect": {
+        "type": "boolean | undefined",
+        "isRequired": false,
+        "description": "Whether selecting an item closes the palette. Defaults to `true` in action mode and `false` in single and multiple selection modes."
+      },
+      "hotkeys": {
+        "type": "string[] | undefined",
+        "defaultValue": "[\"mod+k\"]",
+        "isRequired": false,
+        "description": "Keyboard shortcuts that toggle the palette. `mod` resolves to Command on macOS and Control elsewhere."
+      },
+      "hotkeyOptions": {
+        "type": "CommandPaletteHotkeyOptions | undefined",
+        "isRequired": false,
+        "description": "Options for the keyboard shortcuts."
+      },
       "loading": {
         "type": "boolean | undefined",
         "defaultValue": false,
         "isRequired": false,
-        "description": "Whether the command palette is loading results.\nReflected on the root and indicator parts."
+        "description": "Whether the command palette is loading results.\nReflected on the panel and indicator parts."
       },
       "selectionMode": {
-        "type": "\"none\" | \"single\" | \"multiple\" | \"extended\" | undefined",
+        "type": "\"none\" | \"single\" | \"multiple\" | undefined",
         "defaultValue": "none",
         "isRequired": false,
         "description": "How selection behaves. The default `none` runs commands without\npersisting a selected state; use `onSelect` to execute them. Pass\n`single` or `multiple` to build pickers where selection persists."
@@ -230,8 +270,22 @@
         "type": "boolean | undefined",
         "defaultValue": false,
         "isRequired": false,
-        "description": "Whether the command palette is loading results.\nReflected on the root and indicator parts."
+        "description": "Whether the command palette is loading results.\nReflected on the panel and indicator parts."
       },
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "Separator": {
+    "props": {
       "as": {
         "type": "React.ElementType",
         "isRequired": false,

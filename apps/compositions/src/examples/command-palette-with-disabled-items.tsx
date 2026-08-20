@@ -20,6 +20,7 @@ export const CommandPaletteWithDisabledItems = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      hotkeys={[]}
       onInputValueChange={(e) => filter(e.inputValue)}
     >
       <CommandPalette.Trigger asChild>

@@ -21,6 +21,7 @@ export const CommandPaletteWithLinks = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      hotkeys={[]}
       onInputValueChange={(e) => filter(e.inputValue)}
     >
       <CommandPalette.Trigger asChild>

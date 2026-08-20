@@ -174,6 +174,8 @@ export const commandPaletteAnatomy = createAnatomy("command-palette").parts(
   "itemCommand",
   "itemIndicator",
   "empty",
+  "loading",
+  "separator",
   "footer",
 )
 
