@@ -69,6 +69,7 @@ export const CommandPaletteNested = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      hotkeys={[]}
       onSelect={({ itemValue }) => {
         const item = collection.find(itemValue)
         if (!item) return
@@ -113,7 +114,11 @@ export const CommandPaletteNested = () => {
             </CommandPalette.Control>
             <CommandPalette.List>
               {collection.items.map((item) => (
-                <CommandPalette.Item item={item} key={item.value}>
+                <CommandPalette.Item
+                  item={item}
+                  key={item.value}
+                  closeOnSelect={item.page || item.back ? false : undefined}
+                >
                   {item.icon}
                   <CommandPalette.ItemText>
                     {item.label}

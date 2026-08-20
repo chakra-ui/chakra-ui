@@ -6,7 +6,7 @@ export default {
   title: "Components / CommandPalette",
   decorators: [
     (Story) => (
-      <Box p="10">
+      <Box p={{ base: "4", md: "10" }}>
         <Story />
         <Toaster />
       </Box>
@@ -15,24 +15,12 @@ export default {
 } satisfies Meta
 
 export { CommandPaletteBasic as Basic } from "compositions/examples/command-palette-basic"
-export { CommandPaletteWithSizes as Sizes } from "compositions/examples/command-palette-with-sizes"
-export { CommandPaletteWithGroups as Groups } from "compositions/examples/command-palette-with-groups"
-export { CommandPaletteWithDescription as Description } from "compositions/examples/command-palette-with-description"
-export { CommandPaletteWithAvatar as Avatar } from "compositions/examples/command-palette-with-avatar"
-export { CommandPaletteWithDisabledItems as DisabledItems } from "compositions/examples/command-palette-with-disabled-items"
-export { CommandPaletteWithHighlight as HighlightMatches } from "compositions/examples/command-palette-with-highlight"
-export { CommandPaletteWithRecentItems as RecentItems } from "compositions/examples/command-palette-with-recent-items"
-export { CommandPaletteWithEmptyState as EmptyState } from "compositions/examples/command-palette-with-empty-state"
-export { CommandPaletteWithStatus as Status } from "compositions/examples/command-palette-with-status"
-export { CommandPaletteWithPreview as Preview } from "compositions/examples/command-palette-with-preview"
-export { CommandPaletteWithPrefixSearch as PrefixSearch } from "compositions/examples/command-palette-with-prefix-search"
-export { CommandPaletteWithTabs as WithTabs } from "compositions/examples/command-palette-with-tabs"
-export { CommandPaletteVirtualized as Virtualized } from "compositions/examples/command-palette-virtualized"
 export { CommandPaletteWithLinks as Links } from "compositions/examples/command-palette-with-links"
-export { CommandPaletteWithFooterActions as FooterActions } from "compositions/examples/command-palette-with-footer-actions"
-export { CommandPaletteMultiple as Multiple } from "compositions/examples/command-palette-multiple"
-export { CommandPaletteControlled as Controlled } from "compositions/examples/command-palette-controlled"
-export { CommandPaletteControlledSearch as ControlledSearch } from "compositions/examples/command-palette-controlled-search"
-export { CommandPaletteWithCustomFilter as CustomFilter } from "compositions/examples/command-palette-with-custom-filter"
+export { CommandPaletteWithCustomFilter as AliasesAndGroups } from "compositions/examples/command-palette-with-custom-filter"
+export { CommandPaletteNested as NestedPages } from "compositions/examples/command-palette-nested"
 export { CommandPaletteWithAsyncContent as AsyncContent } from "compositions/examples/command-palette-with-async-content"
-export { CommandPaletteNested as Nested } from "compositions/examples/command-palette-nested"
+export { CommandPaletteWithDisabledItems as ContextualCommands } from "compositions/examples/command-palette-with-disabled-items"
+export { CommandPaletteWithRecentItems as RecentCommands } from "compositions/examples/command-palette-with-recent-items"
+export { CommandPaletteWithPreview as Preview } from "compositions/examples/command-palette-with-preview"
+export { CommandPaletteVirtualized as Virtualized } from "compositions/examples/command-palette-virtualized"
+export { CommandPaletteWithSizes as Sizes } from "compositions/examples/command-palette-with-sizes"

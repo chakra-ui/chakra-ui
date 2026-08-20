@@ -30,7 +30,7 @@ const CommandPaletteDemo = (props: { size: "sm" | "md" | "lg" }) => {
   return (
     <CommandPalette.Root
       {...props}
-      hotkey={null}
+      hotkeys={[]}
       collection={collection}
       onInputValueChange={(e) => filter(e.inputValue)}
     >

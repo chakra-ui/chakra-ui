@@ -15,33 +15,50 @@ const Demo = (props: {
   onSelect?: (details: any) => void
   onOpenChange?: (details: any) => void
   selectionMode?: "none" | "single" | "multiple"
-  hotkey?: string | null
+  hotkeys?: string[]
+  hotkeyOptions?: CommandPalette.HotkeyOptions
+  closeOnSelect?: boolean
   defaultOpen?: boolean
-}) => (
-  <CommandPalette.Root collection={collection} defaultOpen {...props}>
-    <CommandPalette.Trigger>Open</CommandPalette.Trigger>
-    <Portal>
-      <CommandPalette.Backdrop />
-      <CommandPalette.Positioner>
-        <CommandPalette.Panel>
-          <CommandPalette.Label>Commands</CommandPalette.Label>
-          <CommandPalette.Control>
-            <CommandPalette.Indicator />
-            <CommandPalette.Input placeholder="Search..." />
-          </CommandPalette.Control>
-          <CommandPalette.List>
-            {collection.items.map((item) => (
-              <CommandPalette.Item item={item} key={item.value}>
-                <CommandPalette.ItemText>{item.label}</CommandPalette.ItemText>
-              </CommandPalette.Item>
-            ))}
-            <CommandPalette.Empty>No results</CommandPalette.Empty>
-          </CommandPalette.List>
-        </CommandPalette.Panel>
-      </CommandPalette.Positioner>
-    </Portal>
-  </CommandPalette.Root>
-)
+  loading?: boolean
+  itemProps?: Record<string, any>
+}) => {
+  const { itemProps, ...rootProps } = props
+  return (
+    <CommandPalette.Root collection={collection} defaultOpen {...rootProps}>
+      <CommandPalette.Trigger>Open</CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel>
+            <CommandPalette.Label>Commands</CommandPalette.Label>
+            <CommandPalette.Control>
+              <CommandPalette.Indicator />
+              <CommandPalette.Input placeholder="Search..." />
+            </CommandPalette.Control>
+            <CommandPalette.List>
+              {collection.items.map((item) => (
+                <CommandPalette.Item
+                  item={item}
+                  key={item.value}
+                  {...itemProps}
+                >
+                  <CommandPalette.ItemText>
+                    {item.label}
+                  </CommandPalette.ItemText>
+                </CommandPalette.Item>
+              ))}
+              <CommandPalette.Loading>
+                Searching commands
+              </CommandPalette.Loading>
+              <CommandPalette.Empty>No results</CommandPalette.Empty>
+              <CommandPalette.Separator />
+            </CommandPalette.List>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
+    </CommandPalette.Root>
+  )
+}
 
 describe("CommandPalette", () => {
   it("selects an item on click in single mode", async () => {
@@ -92,6 +109,43 @@ describe("CommandPalette", () => {
     expect(option).not.toHaveAttribute("aria-selected", "true")
   })
 
+  it("runs Item, Root, then close callbacks in a stable order", async () => {
+    const user = userEvent.setup()
+    const calls: string[] = []
+    const { getByRole } = render(
+      <Demo
+        onOpenChange={({ open }) => {
+          if (!open) calls.push("close")
+        }}
+        itemProps={{ onSelect: () => calls.push("item") }}
+        onSelect={() => calls.push("root")}
+      />,
+    )
+
+    await user.click(getByRole("option", { name: "Open File" }))
+
+    expect(calls).toEqual(["item", "root", "close"])
+  })
+
+  it("keeps the palette open when an Item overrides closeOnSelect", async () => {
+    const user = userEvent.setup()
+    const onOpenChange = vi.fn()
+    const onSelect = vi.fn()
+    const { getByRole } = render(
+      <Demo
+        onOpenChange={onOpenChange}
+        itemProps={{ closeOnSelect: false, onSelect }}
+      />,
+    )
+
+    await user.click(getByRole("option", { name: "Open File" }))
+
+    expect(onSelect).toHaveBeenCalledOnce()
+    expect(onOpenChange).not.toHaveBeenCalledWith(
+      expect.objectContaining({ open: false }),
+    )
+  })
+
   it("closes the dialog on escape", async () => {
     const user = userEvent.setup()
     const onOpenChange = vi.fn()
@@ -110,20 +164,76 @@ describe("CommandPalette", () => {
   it("opens on the hotkey and stays closed when opted out", async () => {
     const user = userEvent.setup()
     const onOpenChange = vi.fn()
-    render(<Demo defaultOpen={false} onOpenChange={onOpenChange} />)
+    const { unmount } = render(
+      <Demo defaultOpen={false} onOpenChange={onOpenChange} />,
+    )
 
     await user.keyboard("{Meta>}k{/Meta}")
     expect(onOpenChange).toHaveBeenCalledWith(
       expect.objectContaining({ open: true }),
     )
 
+    unmount()
     onOpenChange.mockClear()
     render(
-      <Demo defaultOpen={false} hotkey={null} onOpenChange={onOpenChange} />,
+      <Demo defaultOpen={false} hotkeys={[]} onOpenChange={onOpenChange} />,
     )
     await user.keyboard("{Meta>}k{/Meta}")
-    expect(onOpenChange).not.toHaveBeenCalledWith(
+    expect(onOpenChange).not.toHaveBeenCalled()
+  })
+
+  it("supports multiple hotkeys and disabled hotkey registration", async () => {
+    const user = userEvent.setup()
+    const onOpenChange = vi.fn()
+    const { unmount } = render(
+      <Demo
+        defaultOpen={false}
+        hotkeys={["mod+k", "mod+p"]}
+        onOpenChange={onOpenChange}
+      />,
+    )
+
+    await user.keyboard("{Meta>}p{/Meta}")
+    expect(onOpenChange).toHaveBeenCalledWith(
       expect.objectContaining({ open: true }),
     )
+
+    unmount()
+    onOpenChange.mockClear()
+    render(
+      <Demo
+        defaultOpen={false}
+        hotkeyOptions={{ enabled: false }}
+        onOpenChange={onOpenChange}
+      />,
+    )
+    await user.keyboard("{Meta>}k{/Meta}")
+    expect(onOpenChange).not.toHaveBeenCalled()
+  })
+
+  it("gives the latest mounted palette priority for shared hotkeys", async () => {
+    const user = userEvent.setup()
+    const first = vi.fn()
+    const second = vi.fn()
+    render(<Demo defaultOpen={false} onOpenChange={first} />)
+    const { unmount } = render(
+      <Demo defaultOpen={false} onOpenChange={second} />,
+    )
+
+    await user.keyboard("{Meta>}k{/Meta}")
+    expect(first).not.toHaveBeenCalled()
+    expect(second).toHaveBeenCalledWith(expect.objectContaining({ open: true }))
+
+    unmount()
+    await user.keyboard("{Meta>}k{/Meta}")
+    expect(first).toHaveBeenCalledWith(expect.objectContaining({ open: true }))
+  })
+
+  it("renders Loading instead of Empty and exposes a separator", () => {
+    const { getByRole, queryByText } = render(<Demo loading />)
+
+    expect(getByRole("status")).toHaveTextContent("Searching commands")
+    expect(queryByText("No results")).not.toBeInTheDocument()
+    expect(getByRole("separator")).toBeVisible()
   })
 })

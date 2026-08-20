@@ -2,10 +2,10 @@
 
 import {
   Badge,
+  Box,
   Button,
   Center,
   CommandPalette,
-  HStack,
   Kbd,
   Portal,
   Progress,
@@ -37,29 +37,27 @@ export const CommandPaletteWithPreview = () => {
   })
 
   return (
-    <HStack
-      gap="0"
-      align="stretch"
-      maxW="2xl"
-      borderWidth="1px"
-      borderRadius="l3"
-      overflow="hidden"
+    <CommandPalette.Root
+      collection={collection}
+      hotkeys={[]}
+      defaultHighlightedValue={components[0].value}
+      onHighlightChange={(e) => setHighlighted(e.highlightedItem)}
+      onInputValueChange={(e) => filter(e.inputValue)}
     >
-      <CommandPalette.Root
-        collection={collection}
-        defaultHighlightedValue={components[0].value}
-        onHighlightChange={(e) => setHighlighted(e.highlightedItem)}
-        onInputValueChange={(e) => filter(e.inputValue)}
-      >
-        <CommandPalette.Trigger asChild>
-          <Button variant="outline">
-            Open palette <Kbd size="sm">⌘K</Kbd>
-          </Button>
-        </CommandPalette.Trigger>
-        <Portal>
-          <CommandPalette.Backdrop />
-          <CommandPalette.Positioner>
-            <CommandPalette.Panel>
+      <CommandPalette.Trigger asChild>
+        <Button variant="outline">
+          Browse components <Kbd size="sm">⌘K</Kbd>
+        </Button>
+      </CommandPalette.Trigger>
+      <Portal>
+        <CommandPalette.Backdrop />
+        <CommandPalette.Positioner>
+          <CommandPalette.Panel
+            maxW="3xl"
+            display="grid"
+            gridTemplateColumns={{ base: "1fr", md: "minmax(0, 1fr) 18rem" }}
+          >
+            <Box minW="0">
               <CommandPalette.Control>
                 <CommandPalette.Indicator />
                 <CommandPalette.Input placeholder="Search components..." />
@@ -74,20 +72,26 @@ export const CommandPaletteWithPreview = () => {
                 ))}
                 <CommandPalette.Empty>No components found</CommandPalette.Empty>
               </CommandPalette.List>
-            </CommandPalette.Panel>
-          </CommandPalette.Positioner>
-        </Portal>
-      </CommandPalette.Root>
-      <Center flex="1" borderStartWidth="1px" bg="bg.subtle" minH="72">
-        {highlighted ? (
-          highlighted.preview
-        ) : (
-          <Span textStyle="sm" color="fg.muted">
-            No component selected
-          </Span>
-        )}
-      </Center>
-    </HStack>
+            </Box>
+            <Center
+              borderTopWidth={{ base: "1px", md: "0" }}
+              borderStartWidth={{ base: "0", md: "1px" }}
+              bg="bg.subtle"
+              minH={{ base: "36", md: "full" }}
+              p="6"
+            >
+              {highlighted ? (
+                highlighted.preview
+              ) : (
+                <Span textStyle="sm" color="fg.muted">
+                  No component selected
+                </Span>
+              )}
+            </Center>
+          </CommandPalette.Panel>
+        </CommandPalette.Positioner>
+      </Portal>
+    </CommandPalette.Root>
   )
 }
 

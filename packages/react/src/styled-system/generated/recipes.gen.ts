@@ -1198,6 +1198,8 @@ export type CommandPaletteSlot =
   | "itemCommand"
   | "itemIndicator"
   | "empty"
+  | "loading"
+  | "separator"
   | "footer"
 
 export interface CommandPaletteVariant {

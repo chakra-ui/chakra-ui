@@ -30,6 +30,7 @@ import { CommandPalette, Portal } from "@chakra-ui/react"
           <CommandPalette.ClearTrigger />
         </CommandPalette.Control>
         <CommandPalette.List>
+          <CommandPalette.Loading />
           <CommandPalette.ItemGroup>
             <CommandPalette.ItemGroupLabel />
             <CommandPalette.Item>
@@ -38,6 +39,7 @@ import { CommandPalette, Portal } from "@chakra-ui/react"
               <CommandPalette.ItemIndicator />
             </CommandPalette.Item>
           </CommandPalette.ItemGroup>
+          <CommandPalette.Separator />
           <CommandPalette.Empty />
         </CommandPalette.List>
         <CommandPalette.Footer />
@@ -51,29 +53,32 @@ To setup the command palette, use `useListCollection` to manage the
 [list collection](https://ark-ui.com/docs/collections/list-collection), and
 `useFilter` to filter the items as the user types.
 
-By default the palette runs commands: use `onSelect` to execute them, and no
-selected state persists afterwards. To build a picker where selection persists,
-set `selectionMode` to `single` or `multiple`.
+By default the palette runs commands. Add `onSelect` to an item to execute its
+action; the palette closes after the action and no selected state persists. Set
+`closeOnSelect={false}` on a root or item when an action should keep the palette
+open. To build a picker where selection persists, set `selectionMode` to
+`single` or `multiple`.
 
 The palette is a dialog. `Root` owns the open state and binds `⌘K` (`Ctrl+K` off
-macOS) by default — pass `hotkey={null}` to opt out, or a string like `"mod+j"`
-to rebind it. `Trigger` is optional; the shortcut and controlled `open` both
-work without one.
+macOS) by default. Use `hotkeys={["mod+k", "mod+p"]}` for alternatives, pass
+`hotkeys={[]}` to opt out, or configure editable targets and default prevention
+with `hotkeyOptions`. When multiple palettes register the same shortcut, the
+most recently mounted enabled palette handles it. `Trigger` is optional.
 
 Search is wired through `onInputValueChange` on `Root` rather than an `onChange`
 on the input, so filtering stays in one place.
 
 ### Coming from cmdk
 
-| cmdk                            | Chakra UI                                                |
-| ------------------------------- | -------------------------------------------------------- |
-| `<Command>`                     | `<CommandPalette.Root collection={collection}>`          |
-| `<Command.Input>`               | `<CommandPalette.Input>` + `useFilter`                   |
-| `<Command.List>`                | `<CommandPalette.List>`                                  |
-| `<Command.Item onSelect={fn}>`  | `<CommandPalette.Item item={item}>` + `onSelect` on Root |
-| `<Command.Group heading="...">` | `<CommandPalette.ItemGroup>` + `ItemGroupLabel`          |
-| `<Command.Empty>`               | `<CommandPalette.Empty>`                                 |
-| `<Command.Dialog>`              | `<CommandPalette.Root>` is already a dialog              |
+| cmdk                            | Chakra UI                                         |
+| ------------------------------- | ------------------------------------------------- |
+| `<Command>`                     | `<CommandPalette.Root collection={collection}>`   |
+| `<Command.Input>`               | `<CommandPalette.Input>` + `useFilter`            |
+| `<Command.List>`                | `<CommandPalette.List>`                           |
+| `<Command.Item onSelect={fn}>`  | `<CommandPalette.Item item={item} onSelect={fn}>` |
+| `<Command.Group heading="...">` | `<CommandPalette.ItemGroup>` + `ItemGroupLabel`   |
+| `<Command.Empty>`               | `<CommandPalette.Empty>`                          |
+| `<Command.Dialog>`              | `<CommandPalette.Root>` is already a dialog       |
 
 The key difference: `cmdk` owns filtering and ranking internally, while the
 command palette treats data as userland. You own the collection and how it
@@ -82,70 +87,24 @@ a built-in filter.
 
 ## Examples
 
-### Sizes
-
-Use the `size` prop to change the density of the command palette. Available
-sizes are `sm`, `md`, and `lg`.
-
-<ExampleTabs name="command-palette-with-sizes" />
-
-### Groups
-
-Use item groups with labels to organize related commands into sections.
-
-<ExampleTabs name="command-palette-with-groups" />
-
-### Description
-
-Add secondary text to items to provide more context for each command.
-
-<ExampleTabs name="command-palette-with-description" />
-
-### Multiple Selection
-
-Use `selectionMode="multiple"` to allow selecting several items, useful for
-assigning labels or people.
-
-<ExampleTabs name="command-palette-multiple" />
-
-### Controlled
-
-Set `selectionMode="single"` and control the selected value externally using the
-`value` and `onValueChange` props.
-
-<ExampleTabs name="command-palette-controlled" />
-
-### Controlled Search
-
-Control the search query externally, for example to sync it with a URL or
-external store.
-
-<ExampleTabs name="command-palette-controlled-search" />
-
 ### Async Content
 
-Load commands asynchronously and reflect the pending state with the `loading`
-prop, which swaps the indicator for a spinner.
+Debounce requests, cancel stale work, and give loading, error, retry, and empty
+states distinct feedback. `Loading` and `Empty` never render at the same time.
 
 <ExampleTabs name="command-palette-with-async-content" />
 
-### Custom Filter
+### Aliases and Groups
 
-Swap the default `contains` filter for any matching strategy, such as fuzzy
-matching.
+Search across labels, descriptions, and aliases while preserving useful command
+groups.
 
 <ExampleTabs name="command-palette-with-custom-filter" />
-
-### Highlight
-
-Highlight the matched part of each item as the user types.
-
-<ExampleTabs name="command-palette-with-highlight" />
 
 ### Nested
 
 Build nested pages by swapping the collection as the user drills in. Backspace
-on an empty query pops back to the parent page.
+Use item-level `closeOnSelect={false}` for actions that open a child page.
 
 <ExampleTabs name="command-palette-nested" />
 
@@ -169,55 +128,24 @@ visible for context.
 
 <ExampleTabs name="command-palette-with-disabled-items" />
 
-### Empty State
-
-Customize the content shown when no commands match the query.
-
-<ExampleTabs name="command-palette-with-empty-state" />
-
-### Footer Actions
-
-Use the footer to display keyboard hints or actions for the highlighted item.
-
-<ExampleTabs name="command-palette-with-footer-actions" />
-
-### Status
-
-Use the command palette as a status picker, rendering a colored indicator for
-each option.
-
-<ExampleTabs name="command-palette-with-status" />
-
-### Avatar
-
-Render avatars inside items when building people pickers.
-
-<ExampleTabs name="command-palette-with-avatar" />
-
 ### Preview
 
 Show a preview panel for the highlighted item next to the list.
 
 <ExampleTabs name="command-palette-with-preview" />
 
-### Tabs
-
-Scope the command list with tabs, switching the collection per tab.
-
-<ExampleTabs name="command-palette-with-tabs" />
-
-### Prefix Search
-
-Support prefix syntax to scope the search, like `>` for commands and `@` for
-people.
-
-<ExampleTabs name="command-palette-with-prefix-search" />
-
 ### Virtualized
 
 Handle large datasets efficiently by virtualizing the list.
 
 <ExampleTabs name="command-palette-virtualized" />
+
+### Sizes
+
+Use the `size` prop to change density. The dialog remains viewport-aware at each
+size and on narrow screens.
+
+<ExampleTabs name="command-palette-with-sizes" />
 
 ## Props
 
@@ -236,6 +164,10 @@ Handle large datasets efficiently by virtualizing the list.
 ### List
 
 <PropTable component="CommandPalette" part="List" />
+
+### Loading
+
+<PropTable component="CommandPalette" part="Loading" />
 
 ### Item
 
@@ -256,3 +188,7 @@ Handle large datasets efficiently by virtualizing the list.
 ### ItemGroupLabel
 
 <PropTable component="CommandPalette" part="ItemGroupLabel" />
+
+### Separator
+
+<PropTable component="CommandPalette" part="Separator" />
