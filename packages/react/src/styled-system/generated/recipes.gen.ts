@@ -1336,6 +1336,25 @@ export type TableVariantMap = {
   [K in keyof TableVariant]: Array<TableVariant[K]>
 }
 
+// TableOfContents
+
+export type TableOfContentsSlot = "root" | "title" | "list" | "item" | "link"
+
+export interface TableOfContentsVariant {
+  /** @default "plain" */
+  variant?: "plain" | "line" | undefined
+  /** @default "md" */
+  size?: "sm" | "md" | undefined
+}
+
+export type TableOfContentsVariantProps = {
+  [K in keyof TableOfContentsVariant]?: ConditionalValue<TableOfContentsVariant[K]> | undefined
+}
+
+export type TableOfContentsVariantMap = {
+  [K in keyof TableOfContentsVariant]: Array<TableOfContentsVariant[K]>
+}
+
 // Tabs
 
 export type TabsSlot = "root" | "trigger" | "list" | "content" | "contentGroup" | "indicator"
@@ -1643,6 +1662,7 @@ export interface ConfigSlotRecipes {
   steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps, StepsVariantMap>
   switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps, SwitchVariantMap>
   table: SystemSlotRecipeFn<TableSlot, TableVariantProps, TableVariantMap>
+  tableOfContents: SystemSlotRecipeFn<TableOfContentsSlot, TableOfContentsVariantProps, TableOfContentsVariantMap>
   tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps, TabsVariantMap>
   tag: SystemSlotRecipeFn<TagSlot, TagVariantProps, TagVariantMap>
   tagsInput: SystemSlotRecipeFn<TagsInputSlot, TagsInputVariantProps, TagsInputVariantMap>
@@ -1703,6 +1723,7 @@ export interface ConfigRecipeSlots {
   steps: StepsSlot
   switch: SwitchSlot
   table: TableSlot
+  tableOfContents: TableOfContentsSlot
   tabs: TabsSlot
   tag: TagSlot
   tagsInput: TagsInputSlot

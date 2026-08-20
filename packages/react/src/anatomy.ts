@@ -200,6 +200,14 @@ export const tableAnatomy = createAnatomy("table").parts(
   "caption",
 )
 
+export const tableOfContentsAnatomy = createAnatomy("table-of-contents").parts(
+  "root",
+  "title",
+  "list",
+  "item",
+  "link",
+)
+
 export const toastAnatomy = createAnatomy("toast").parts(
   "root",
   "title",

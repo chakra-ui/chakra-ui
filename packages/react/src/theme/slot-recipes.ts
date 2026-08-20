@@ -48,6 +48,7 @@ import { statusSlotRecipe } from "./recipes/status"
 import { stepsSlotRecipe } from "./recipes/steps"
 import { switchSlotRecipe } from "./recipes/switch"
 import { tableSlotRecipe } from "./recipes/table"
+import { tableOfContentsSlotRecipe } from "./recipes/table-of-contents"
 import { tabsSlotRecipe } from "./recipes/tabs"
 import { tagSlotRecipe } from "./recipes/tag"
 import { tagsInputSlotRecipe } from "./recipes/tags-input"
@@ -102,6 +103,7 @@ export const slotRecipes = {
   steps: stepsSlotRecipe,
   switch: switchSlotRecipe,
   table: tableSlotRecipe,
+  tableOfContents: tableOfContentsSlotRecipe,
   tabs: tabsSlotRecipe,
   tag: tagSlotRecipe,
   tagsInput: tagsInputSlotRecipe,
