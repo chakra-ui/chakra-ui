@@ -38,19 +38,7 @@ export interface ButtonLoadingProps {
 }
 
 export interface ButtonBaseProps
-  extends RecipeProps<"button">, UnstyledProp, ButtonLoadingProps {
-  /**
-   * When `true`, the button will use `aria-disabled` instead of the native
-   * `disabled` attribute, keeping the button focusable and accessible to
-   * assistive technologies.
-   *
-   * When enabled, the button's click handler will be suppressed to prevent
-   * action triggers while the button is in a disabled state.
-   *
-   * @default false
-   */
-  accessibleWhenDisabled?: boolean | undefined
-}
+  extends RecipeProps<"button">, UnstyledProp, ButtonLoadingProps {}
 
 export interface ButtonProps extends HTMLChakraProps<
   "button",
@@ -71,31 +59,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       spinner,
       spinnerPlacement,
-      accessibleWhenDisabled,
       ...rest
     } = result.props
-
-    const isDisabled = loading || rest.disabled
-
     return (
       <chakra.button
         type="button"
         ref={ref}
         {...rest}
         data-loading={dataAttr(loading)}
-        disabled={accessibleWhenDisabled ? undefined : isDisabled}
-        aria-disabled={
-          accessibleWhenDisabled && isDisabled ? true : undefined
-        }
-        data-disabled={dataAttr(isDisabled)}
-        onClick={
-          accessibleWhenDisabled && isDisabled
-            ? (e: React.MouseEvent) => {
-                e.preventDefault()
-                e.stopPropagation()
-              }
-            : rest.onClick
-        }
+        disabled={loading || rest.disabled}
         className={cx(result.className, props.className)}
         css={[result.styles, props.css]}
       >
