@@ -187,6 +187,7 @@ import { DarkMode, LightMode } from "@chakra-ui/react"
 // ❌
 
 // Also remove from _document.tsx:
+
 ;<ColorModeScript initialColorMode={theme.config.initialColorMode} /> // ❌
 ```
 

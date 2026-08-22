@@ -350,6 +350,9 @@ importers:
       react-payment-inputs:
         specifier: 1.2.0
         version: 1.2.0(react@19.2.6)(styled-components@6.1.15(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
+      react-router-dom:
+        specifier: ^7.9.4
+        version: 7.18.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-spinners:
         specifier: 0.17.0
         version: 0.17.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -10662,11 +10665,28 @@ packages:
       react: 19.2.6
       react-dom: 19.2.6
 
+  react-router-dom@7.18.2:
+    resolution: {integrity: sha512-AIKJ/jgGlFb3EbfCXk5Gzshiwt+l3mqbCrNjmEWMMjqQxNJ3svBa6bgzFyCC2Sw3RA0VWF1kg3uQf2OFhxb8hw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: 19.2.6
+      react-dom: 19.2.6
+
   react-router@6.30.0:
     resolution: {integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: 19.2.6
+
+  react-router@7.18.2:
+    resolution: {integrity: sha512-aUVMjFm3GAPTTZL7oYr5E7ETiqfQCHRLH+B+5afnICvf0r7kkK4eR6SMuwbSTJw/7t+12khT/Kahij49fqOCIg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: 19.2.6
+      react-dom: 19.2.6
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
 
   react-router@7.9.6:
     resolution: {integrity: sha512-Y1tUp8clYRXpfPITyuifmSoE2vncSME18uVLgaqyxh9H35JWpIfzHo+9y3Fzh5odk/jxPW29IgLgzcdwxGqyNA==}
@@ -23376,10 +23396,24 @@ snapshots:
       react-dom: 19.2.6(react@19.2.6)
       react-router: 6.30.0(react@19.2.6)
 
+  react-router-dom@7.18.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+    dependencies:
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+      react-router: 7.18.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+
   react-router@6.30.0(react@19.2.6):
     dependencies:
       '@remix-run/router': 1.23.0
       react: 19.2.6
+
+  react-router@7.18.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+    dependencies:
+      cookie: 1.0.2
+      react: 19.2.6
+      set-cookie-parser: 2.7.0
+    optionalDependencies:
+      react-dom: 19.2.6(react@19.2.6)
 
   react-router@7.9.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
