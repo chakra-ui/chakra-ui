@@ -1,14 +1,10 @@
 import type { ConditionalValue, CssProperties } from "../css.types"
+import type { AnyString } from "../escape-hatch.types"
+import type { CssVars } from "../css-var.types"
 import type { UtilityValues } from "./prop-types.gen"
-import type { Token } from "./token.gen"
-type AnyString = string & {}
-type AnyNumber = number & {}
-type CssVars = `var(--${string})`
-type CssVarValue = ConditionalValue<Token | CssVars | AnyString | AnyNumber>
-type CssVarKey = `--${string}`
-export type CssVarProperties = {
-  [key in CssVarKey]?: CssVarValue | undefined
-}
+
+export { type AnyString } from "../escape-hatch.types"
+export { type CssVarProperties, type CssVars } from "../css-var.types"
 
 export interface SystemProperties {
   WebkitAppearance?: ConditionalValue<CssProperties["WebkitAppearance"] | undefined | AnyString> | undefined
