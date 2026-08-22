@@ -60,6 +60,13 @@ Use the `open` and `onOpenChange` to control the visibility of the hover card.
 
 <ExampleTabs name="hover-card-controlled" />
 
+### Multiple Triggers
+
+Don't mount a hover card per link. Put `value` on each `Trigger` under one
+`Root`. Hover another trigger and the same card moves to it.
+
+<ExampleTabs name="hover-card-with-multiple-triggers" />
+
 ### Delays
 
 Control the open and close delays using the `openDelay` and `closeDelay` props.
@@ -104,7 +111,13 @@ avoid placing crucial content within it.
 
 ## Props
 
+### Root
+
 <PropTable component="HoverCard" part="Root" />
+
+### Trigger
+
+<PropTable component="HoverCard" part="Trigger" />
 
 ## Explorer
 
