@@ -68,7 +68,8 @@ export const colorPickerSlotRecipe = defineSlotRecipe({
       width: "64",
       p: "4",
       gap: "3",
-      zIndex: "dropdown",
+      "--color-picker-z-index": "zIndex.popover",
+      zIndex: "calc(var(--color-picker-z-index) + var(--layer-index, 0))",
       _open: {
         animationStyle: "slide-fade-in",
         animationDuration: "fast",

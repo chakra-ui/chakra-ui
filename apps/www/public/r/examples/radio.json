@@ -1,0 +1,90 @@
+{
+  "name": "radio",
+  "file": "compositions/ui/radio",
+  "snippet": "import { RadioGroup as ChakraRadioGroup } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\nexport interface RadioProps extends ChakraRadioGroup.ItemProps {\n  rootRef?: React.RefObject<HTMLDivElement | null>\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const Radio = React.forwardRef<HTMLInputElement, RadioProps>(\n  function Radio(props, ref) {\n    const { children, inputProps, rootRef, ...rest } = props\n    return (\n      <ChakraRadioGroup.Item ref={rootRef} {...rest}>\n        <ChakraRadioGroup.ItemHiddenInput ref={ref} {...inputProps} />\n        <ChakraRadioGroup.ItemIndicator />\n        {children && (\n          <ChakraRadioGroup.ItemText>{children}</ChakraRadioGroup.ItemText>\n        )}\n      </ChakraRadioGroup.Item>\n    )\n  },\n)\n\nexport const RadioGroup = ChakraRadioGroup.Root\n",
+  "examples": [
+    {
+      "name": "radio-basic",
+      "content": "export const RadioBasic = () => {\n  return (\n    <RadioGroup.Root defaultValue=\"1\">\n      <HStack gap=\"6\">\n        {items.map((item) => (\n          <RadioGroup.Item key={item.value} value={item.value}>\n            <RadioGroup.ItemHiddenInput />\n            <RadioGroup.ItemIndicator />\n            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>\n          </RadioGroup.Item>\n        ))}\n      </HStack>\n    </RadioGroup.Root>\n  )\n}\n\nconst items = [\n  { label: \"Option 1\", value: \"1\" },\n  { label: \"Option 2\", value: \"2\" },\n  { label: \"Option 3\", value: \"3\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-closed-component",
+      "content": "export interface RadioProps extends ChakraRadioGroup.ItemProps {\n  rootRef?: React.RefObject<HTMLDivElement | null>\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const Radio = React.forwardRef<HTMLInputElement, RadioProps>(\n  function Radio(props, ref) {\n    const { children, inputProps, rootRef, ...rest } = props\n    return (\n      <ChakraRadioGroup.Item ref={rootRef} {...rest}>\n        <ChakraRadioGroup.ItemHiddenInput ref={ref} {...inputProps} />\n        <ChakraRadioGroup.ItemIndicator />\n        {children && (\n          <ChakraRadioGroup.ItemText>{children}</ChakraRadioGroup.ItemText>\n        )}\n      </ChakraRadioGroup.Item>\n    )\n  },\n)\n\nexport const RadioGroup = ChakraRadioGroup.Root\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { RadioGroup as ChakraRadioGroup } from \"@chakra-ui/react\"",
+        "import * as React from \"react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-controlled",
+      "content": "\"use client\"\nexport const RadioControlled = () => {\n  const [value, setValue] = useState<string | null>(null)\n  return (\n    <RadioGroup.Root value={value} onValueChange={(e) => setValue(e.value)}>\n      <HStack gap=\"6\">\n        {items.map((item) => (\n          <RadioGroup.Item key={item.value} value={item.value}>\n            <RadioGroup.ItemHiddenInput />\n            <RadioGroup.ItemIndicator />\n            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>\n          </RadioGroup.Item>\n        ))}\n      </HStack>\n    </RadioGroup.Root>\n  )\n}\n\nconst items = [\n  { label: \"Option 1\", value: \"1\" },\n  { label: \"Option 2\", value: \"2\" },\n  { label: \"Option 3\", value: \"3\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioGroup } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-disabled",
+      "content": "export const RadioDisabled = () => {\n  return (\n    <RadioGroup.Root defaultValue=\"2\">\n      <HStack gap=\"6\">\n        {items.map((item) => (\n          <RadioGroup.Item\n            key={item.value}\n            value={item.value}\n            disabled={item.disabled}\n          >\n            <RadioGroup.ItemHiddenInput />\n            <RadioGroup.ItemIndicator />\n            <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>\n          </RadioGroup.Item>\n        ))}\n      </HStack>\n    </RadioGroup.Root>\n  )\n}\n\nconst items = [\n  { label: \"Option 1\", value: \"1\" },\n  { label: \"Option 2\", value: \"2\", disabled: true },\n  { label: \"Option 3\", value: \"3\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-with-colors",
+      "content": "export const RadioWithColors = () => {\n  return (\n    <Stack gap=\"2\" align=\"flex-start\">\n      {colorPalettes.map((colorPalette) => (\n        <HStack key={colorPalette} gap=\"10\" px=\"4\">\n          <Text minW=\"8ch\">{colorPalette}</Text>\n\n          <RadioGroup.Root\n            colorPalette={colorPalette}\n            defaultValue=\"react\"\n            spaceX=\"8\"\n          >\n            {items.map((item) => (\n              <RadioGroup.Item key={item.value} value={item.value}>\n                <RadioGroup.ItemHiddenInput />\n                <RadioGroup.ItemIndicator />\n                <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>\n              </RadioGroup.Item>\n            ))}\n          </RadioGroup.Root>\n        </HStack>\n      ))}\n    </Stack>\n  )\n}\n\nconst items = [\n  { label: \"React\", value: \"react\" },\n  { label: \"Vue\", value: \"vue\" },\n  { label: \"Solid\", value: \"solid\" },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, RadioGroup, Stack, Text } from \"@chakra-ui/react\"",
+        "import { colorPalettes } from \"compositions/lib/color-palettes\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-with-hook-form",
+      "content": "\"use client\"\nconst items = [\n  { value: \"1\", label: \"Option 1\" },\n  { value: \"2\", label: \"Option 2\" },\n  { value: \"3\", label: \"Option 3\" },\n]\n\nconst formSchema = z.object({\n  value: z.string({ message: \"Value is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const RadioWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Fieldset.Root invalid={!!errors.value}>\n        <Fieldset.Legend>Select value</Fieldset.Legend>\n        <Controller\n          name=\"value\"\n          control={control}\n          render={({ field }) => (\n            <RadioGroup.Root\n              name={field.name}\n              value={field.value}\n              onValueChange={({ value }) => {\n                field.onChange(value)\n              }}\n            >\n              <HStack gap=\"6\">\n                {items.map((item) => (\n                  <RadioGroup.Item key={item.value} value={item.value}>\n                    <RadioGroup.ItemHiddenInput onBlur={field.onBlur} />\n                    <RadioGroup.ItemIndicator />\n                    <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>\n                  </RadioGroup.Item>\n                ))}\n              </HStack>\n            </RadioGroup.Root>\n          )}\n        />\n\n        {errors.value && (\n          <Fieldset.ErrorText>{errors.value?.message}</Fieldset.ErrorText>\n        )}\n\n        <Button size=\"sm\" type=\"submit\" alignSelf=\"flex-start\">\n          Submit\n        </Button>\n      </Fieldset.Root>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Fieldset, HStack, RadioGroup } from \"@chakra-ui/react\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "radio-with-sizes",
+      "content": "export const RadioWithSizes = () => {\n  return (\n    <HStack gap=\"4\">\n      <For each={[\"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <RadioGroup.Root size={size} key={size}>\n            <RadioGroup.Item value=\"react\">\n              <RadioGroup.ItemHiddenInput />\n              <RadioGroup.ItemIndicator />\n              <RadioGroup.ItemText>Radio ({size})</RadioGroup.ItemText>\n            </RadioGroup.Item>\n          </RadioGroup.Root>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, RadioGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "radio-with-variants",
+      "content": "export const RadioWithVariants = () => {\n  return (\n    <Stack gap=\"4\">\n      <For each={[\"solid\", \"outline\", \"subtle\"]}>\n        {(variant) => (\n          <RadioGroup.Root\n            key={variant}\n            variant={variant}\n            defaultValue=\"react\"\n            colorPalette=\"teal\"\n          >\n            <HStack gap=\"4\">\n              <RadioGroup.Item value=\"react\" minW=\"120px\">\n                <RadioGroup.ItemHiddenInput />\n                <RadioGroup.ItemIndicator />\n                <RadioGroup.ItemText>React ({variant})</RadioGroup.ItemText>\n              </RadioGroup.Item>\n\n              <RadioGroup.Item value=\"vue\">\n                <RadioGroup.ItemHiddenInput />\n                <RadioGroup.ItemIndicator />\n                <RadioGroup.ItemText>Vue ({variant})</RadioGroup.ItemText>\n              </RadioGroup.Item>\n            </HStack>\n          </RadioGroup.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, HStack, RadioGroup, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Radio } from \"@chakra-ui/react\""
+    }
+  ]
+}

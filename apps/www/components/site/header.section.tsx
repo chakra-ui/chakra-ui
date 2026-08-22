@@ -3,7 +3,7 @@
 import { ColorModeButton } from "@/components/docs/color-mode-button"
 import { Logo } from "@/components/logo"
 import { SocialLinks } from "@/components/social-links"
-import { docsConfig } from "@/docs.config"
+import { NAV_LINKS, docsConfig } from "@/docs.config"
 import {
   Button,
   Container,
@@ -35,16 +35,9 @@ const LogoLink = () => (
   </HStack>
 )
 
-const NAV_LINKS = [
-  { title: "Docs", url: "/docs/get-started/installation" },
-  { title: "Playground", url: "/playground" },
-  { title: "Guides", url: "/guides" },
-  { title: "Blog", url: "/blog" },
-]
-
 const DesktopNav = () => (
   <HStack gap="2" as="nav" aria-label="primary navigation">
-    <HStack gap="4" minH="48px" display={{ base: "none", md: "flex" }}>
+    <HStack gap="3" minH="48px" display={{ base: "none", md: "flex" }}>
       {NAV_LINKS.map((item) => (
         <HStack
           minH="8"

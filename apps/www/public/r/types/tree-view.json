@@ -27,7 +27,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "BranchIndentGuide": {
     "props": {
@@ -42,7 +43,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "BranchIndicator": {
     "props": {
@@ -57,7 +59,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Branch": {
     "props": {
@@ -87,7 +90,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "BranchTrigger": {
     "props": {
@@ -102,7 +106,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemIndicator": {
     "props": {
@@ -117,7 +122,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -132,7 +138,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemText": {
     "props": {
@@ -147,7 +154,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Label": {
     "props": {
@@ -162,7 +170,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLHeadingElement"
+    "element": "HTMLHeadingElement",
+    "tag": "h3"
   },
   "NodeCheckbox": {
     "props": {
@@ -177,7 +186,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Node": {
     "props": {
@@ -213,32 +223,6 @@
       }
     }
   },
-  "NodeRender": {
-    "props": {
-      "node": {
-        "type": "T",
-        "isRequired": false
-      },
-      "indexPath": {
-        "type": "number[]",
-        "isRequired": true
-      },
-      "nodeState": {
-        "type": "ArkTreeView.NodeState",
-        "isRequired": true
-      },
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Root": {
     "props": {
       "as": {
@@ -260,6 +244,11 @@
         "type": "TreeCollection<T>",
         "isRequired": true,
         "description": "The collection of tree nodes"
+      },
+      "canRename": {
+        "type": "(node: T, indexPath: IndexPath) => boolean",
+        "isRequired": false,
+        "description": "Function to determine if a node can be renamed"
       },
       "checkedValue": {
         "type": "string[]",
@@ -294,13 +283,19 @@
       "expandOnClick": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether clicking on a branch should open it or not"
       },
       "focusedValue": {
         "type": "string",
         "isRequired": false,
         "description": "The value of the focused node"
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "ids": {
         "type": "Partial<{ root: string; tree: string; label: string; node: (value: string) => string }>",
@@ -310,13 +305,18 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "loadChildren": {
         "type": "(details: LoadChildrenDetails<T>) => Promise<T[]>",
         "isRequired": false,
         "description": "Function to load children for a node asynchronously.\nWhen provided, branches will wait for this promise to resolve before expanding."
+      },
+      "onBeforeRename": {
+        "type": "(details: RenameCompleteDetails) => boolean",
+        "isRequired": false,
+        "description": "Called before a rename is completed. Return false to prevent the rename."
       },
       "onCheckedChange": {
         "type": "(details: CheckedChangeDetails) => void",
@@ -343,10 +343,25 @@
         "isRequired": false,
         "description": "Called when loading children fails for one or more nodes"
       },
+      "onRenameComplete": {
+        "type": "(details: RenameCompleteDetails) => void",
+        "isRequired": false,
+        "description": "Called when a node label rename is completed"
+      },
+      "onRenameStart": {
+        "type": "(details: RenameStartDetails<T>) => void",
+        "isRequired": false,
+        "description": "Called when a node starts being renamed"
+      },
       "onSelectionChange": {
         "type": "(details: SelectionChangeDetails<T>) => void",
         "isRequired": false,
         "description": "Called when the selection changes"
+      },
+      "scrollToIndexFn": {
+        "type": "(details: ScrollToIndexDetails<T>) => void",
+        "isRequired": false,
+        "description": "Function to scroll to a specific index.\nUseful for virtualized tree views."
       },
       "selectedValue": {
         "type": "string[]",
@@ -356,19 +371,24 @@
       "selectionMode": {
         "type": "'multiple' | 'single'",
         "isRequired": false,
-        "defaultValue": "\"single\"",
+        "defaultValue": "single",
         "description": "Whether the tree supports multiple selection\n- \"single\": only one node can be selected\n- \"multiple\": multiple nodes can be selected"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
       },
       "typeahead": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the tree supports typeahead search"
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "colorPalette": {
@@ -394,7 +414,8 @@
         "isRequired": false,
         "description": "The animateContent of the component"
       }
-    }
+    },
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -412,19 +433,26 @@
         "type": "UseTreeViewReturn<T>",
         "isRequired": true
       },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
+      },
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
-    }
+    },
+    "tag": "div"
   },
   "Tree": {
     "props": {
@@ -439,7 +467,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "NodeCheckboxIndicator": {
     "props": {
@@ -486,5 +515,16 @@
         "description": "The tree node"
       }
     }
+  },
+  "NodeRenameInput": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

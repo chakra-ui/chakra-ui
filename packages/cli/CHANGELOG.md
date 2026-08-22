@@ -1,5 +1,107 @@
 # @chakra-ui/cli
 
+## 3.36.1
+
+### Patch Changes
+
+- [#10823](https://github.com/chakra-ui/chakra-ui/pull/10823)
+  [`f8b356c`](https://github.com/chakra-ui/chakra-ui/commit/f8b356ce8377c4bc8a7b007f771afefad0bcc447)
+  Thanks [@tryone144](https://github.com/tryone144)! - Migrate from deprecated
+  `tsconfck` to `get-tsconfig`. Enables installation next to TypeScript version
+  6 and up.
+
+- [`1de9c58`](https://github.com/chakra-ui/chakra-ui/commit/1de9c58314bad63e1e456d087db0e73707d431e1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Replace
+  `node-fetch` with the native `fetch` API, using undici's `ProxyAgent` for
+  `HTTPS_PROXY` support.
+
+- [`39ef8b5`](https://github.com/chakra-ui/chakra-ui/commit/39ef8b542b8ac4ddfb53d727476b8f3259f65b98)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Normalize resolved
+  tsconfig paths to native separators on Windows
+
+## 3.36.0
+
+### Patch Changes
+
+- [#10825](https://github.com/chakra-ui/chakra-ui/pull/10825)
+  [`025b974`](https://github.com/chakra-ui/chakra-ui/commit/025b97446454626ec9b7b8b5065142a7b3bcc854)
+  Thanks [@cyphercodes](https://github.com/cyphercodes)! - Improve the
+  `chakra typegen` error when the input file does not export a Chakra system,
+  including the discovered exports and a `createSystem(...)` example for files
+  that export `defineConfig(...)` configs.
+
+## 3.35.0
+
+### Minor Changes
+
+- [`d5be01a`](https://github.com/chakra-ui/chakra-ui/commit/d5be01ae4ba8cf2cb134368767f6a1062c23d967)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new CLI
+  commands mirroring the MCP server tools:
+  - `chakra component list` — List all available Chakra UI components
+  - `chakra component props <name>` — Show props for a component
+  - `chakra component example <name>` — Show usage examples for a component
+  - `chakra theme` — Summary table of theme categories (item counts); use
+    `--json` for full data or `--filter <category>` for one section
+  - `chakra docs <query>` — Search the Chakra UI documentation
+
+  Docs and examples are fetched from `CHAKRA_DOCS_URL` (default
+  `https://chakra-ui.com`), consistent with `REGISTRY_URL` for snippets.
+
+## 3.34.0
+
+### Patch Changes
+
+- [`ba23d64`](https://github.com/chakra-ui/chakra-ui/commit/ba23d641b2015a7b37e13ee4ec2597674e20c13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `--tsconfig`
+  flag to `chakra typegen` and automatic tsconfig resolution using `tsconfck`.
+
+  This fixes an issue where `typegen` failed in projects with solution-style
+  tsconfig setups (e.g. Vite's default `tsconfig.json` with `references`),
+  because path aliases like `@/*` couldn't be resolved.
+
+  ```bash
+  # Auto-resolves (works with Vite's default setup)
+  chakra typegen lib/theme/theme.ts
+
+  # Explicit tsconfig
+  chakra typegen lib/theme/theme.ts --tsconfig tsconfig.app.json
+  ```
+
+## 3.33.0
+
+## 3.32.0
+
+## 3.31.0
+
+## 3.30.0
+
+### Patch Changes
+
+- [`e546cb6`](https://github.com/chakra-ui/chakra-ui/commit/e546cb65980d0ff5e0a322486c9dfc89c37c3de4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix high-severity
+  security vulnerability by replacing `sucrase` dependency with Babel-based
+  TypeScript transformation.
+  - Resolves command injection vulnerability
+    ([GHSA-5j98-mcp5-4vw2](https://github.com/advisories/GHSA-5j98-mcp5-4vw2))
+    in `sucrase`'s `glob` dependency
+  - Replaces vulnerable `sucrase` with `@babel/core` +
+    `@babel/plugin-transform-typescript` + `recast`
+
+## 3.29.0
+
+## 3.28.1
+
+## 3.28.0
+
+## 3.27.1
+
+### Patch Changes
+
+- [#10368](https://github.com/chakra-ui/chakra-ui/pull/10368)
+  [`62260a5`](https://github.com/chakra-ui/chakra-ui/commit/62260a5310dcdc3d61411700acd45d5ad012aa65)
+  Thanks [@tioluwani94](https://github.com/tioluwani94)! - **Pro Blocks**: Allow
+  CLI to read new documentation blocks filtering
+
 ## 3.27.0
 
 ### Minor Changes

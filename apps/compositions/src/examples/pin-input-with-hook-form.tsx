@@ -1,13 +1,14 @@
 "use client"
 
 import { Button, Field, PinInput, Stack } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
 const formSchema = z.object({
   pin: z
-    .array(z.string().min(1), { required_error: "Pin is required" })
+    .array(z.string().min(1))
+    .min(1, { message: "Pin is required" })
     .length(4, { message: "Pin must be 4 digits long" }),
 })
 
@@ -15,7 +16,7 @@ type FormValues = z.infer<typeof formSchema>
 
 export const PinInputWithHookForm = () => {
   const { handleSubmit, control, formState } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))

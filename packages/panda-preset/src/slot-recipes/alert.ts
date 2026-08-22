@@ -99,7 +99,9 @@ export const alertSlotRecipe = defineSlotRecipe({
         root: {
           color: "colorPalette.fg",
           shadow: "inset 0 0 0px 1px var(--shadow-color)",
-          shadowColor: "colorPalette.muted",
+          "--outline-shadow-legacy": "colors.colorPalette.muted",
+          "--outline-shadow": "colors.colorPalette.border",
+          shadowColor: "var(--outline-shadow, var(--outline-shadow-legacy))",
         },
         indicator: {
           color: "colorPalette.fg",

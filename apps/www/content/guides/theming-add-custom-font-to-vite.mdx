@@ -1,15 +1,24 @@
 ---
 title: Add custom fonts to a Vite project
 description:
-  Learn how to add a custom font when using Chakra UI in a Vite project
+  Learn how to add a custom font when using Chakra UI in a Vite project using
+  Fontsource or local font files
 publishedAt: "2024-11-18"
 collection: theming
 ---
 
-## Loading the custom fonts
+There are two ways to add custom fonts to your Vite project with Chakra UI. You
+can either use Fontsource packages or load fonts from local files. Both methods
+are covered below.
 
-To add a custom font in your project, install the Google font you want to use
-from [Fontsource](https://fontsource.org/). For this guide, we'll use the
+## Method 1: Fontsource
+
+:::steps
+
+### Install the font package
+
+Install the Google font you want to use from
+[Fontsource](https://fontsource.org/). For this guide, we'll use the
 ["Bricolage Grotesque"](https://fontsource.org/fonts/bricolage-grotesque) font
 as an example.
 
@@ -17,16 +26,97 @@ as an example.
 pnpm add @fontsource-variable/bricolage-grotesque
 ```
 
-Next, import the font at the root of your project, referencing the `css` path:
+### Import the font CSS
+
+Import the font at the root of your project, referencing the `css` path:
 
 ```tsx title="main.tsx"
 import "@fontsource-variable/bricolage-grotesque/index.css"
 ```
 
+:::
+
+## Method 2: Local Font
+
+If you've downloaded font files from Google Fonts or have custom fonts, you can
+use them directly from your project. For this guide, we'll use "Bricolage
+Grotesque" as an example.
+
+:::steps
+
+### Place font files in your project
+
+Place your font files in a folder like `src/assets/fonts` or `public/fonts`. For
+example:
+
+```
+src/
+  assets/
+    fonts/
+      BricolageGrotesque-Regular.woff2
+      BricolageGrotesque-Bold.woff2
+      BricolageGrotesque-Variable.woff2
+```
+
+### Create a CSS file with @font-face declarations
+
+Create a `fonts.css` file (or add to your existing CSS file) with `@font-face`
+declarations:
+
+```css title="src/assets/fonts/fonts.css"
+@font-face {
+  font-family: "Bricolage Grotesque Variable";
+  src: url("./BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+For static font files, you can define multiple weights:
+
+```css title="src/assets/fonts/fonts.css"
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("./BricolageGrotesque-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("./BricolageGrotesque-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+### Import the CSS file
+
+Import the CSS file at the root of your project:
+
+```tsx title="main.tsx"
+import "./assets/fonts/fonts.css"
+```
+
+If you placed fonts in the `public` folder, reference them with absolute paths
+starting with `/fonts/`:
+
+```css
+@font-face {
+  font-family: "Bricolage Grotesque Variable";
+  src: url("/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+```
+
 ## Configure the custom font
 
-Use the `createSystem` method to define the custom font in Chakra UI's theme
-configuration:
+Regardless of which method you used, configure the font in Chakra UI's theme
+using the `createSystem` method:
 
 ```tsx title="components/ui/provider.tsx"
 "use client"
@@ -48,12 +138,12 @@ const system = createSystem(defaultConfig, {
 :::info
 
 You can customize which text elements use the font by specifying it for
-`heading`, `body`, or both. In this case, we are setting both the body and
-heading fonts to "Bricolage Grotesque".
+`heading`, `body`, or both. Use the exact font family name as defined in your
+`@font-face` declaration or Fontsource package.
 
 :::
 
-Finally, pass the `system` into the `ChakraProvider`
+Finally, pass the `system` into the `ChakraProvider`:
 
 ```tsx title="components/ui/provider.tsx" /value={system}/
 export function Provider(props: ColorModeProviderProps) {

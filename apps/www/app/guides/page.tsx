@@ -43,7 +43,7 @@ export default function GuidePage() {
               How can we help?
             </Heading>
             <Text color="fg.muted" textStyle="lg">
-              Find answers to common questions related to Chakra UI v3.0
+              Find answers to common questions related to Chakra UI v3
             </Text>
           </VStack>
 
@@ -87,6 +87,7 @@ export default function GuidePage() {
                       textStyle="sm"
                       padding="4"
                       rounded="md"
+                      focusRing="inside"
                       asChild
                     >
                       <NextLink href={guide.slug}>

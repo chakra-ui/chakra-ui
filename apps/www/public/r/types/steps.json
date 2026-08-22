@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Content": {
     "props": {
@@ -31,7 +32,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Description": {
     "props": {
@@ -60,7 +62,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -79,7 +82,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "List": {
     "props": {
@@ -94,7 +98,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "NextTrigger": {
     "props": {
@@ -109,7 +114,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Number": {
     "props": {
@@ -138,7 +144,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Root": {
     "props": {
@@ -172,6 +179,18 @@
         "isRequired": false,
         "description": "The custom ids for the stepper elements"
       },
+      "isStepSkippable": {
+        "type": "(index: number) => boolean",
+        "isRequired": false,
+        "defaultValue": "() => false",
+        "description": "Whether a step can be skipped during navigation.\nSkippable steps are bypassed when using next/prev."
+      },
+      "isStepValid": {
+        "type": "(index: number) => boolean",
+        "isRequired": false,
+        "defaultValue": "() => true",
+        "description": "Whether a step is valid. Invalid steps block forward navigation in linear mode."
+      },
       "linear": {
         "type": "boolean",
         "isRequired": false,
@@ -186,6 +205,11 @@
         "type": "VoidFunction",
         "isRequired": false,
         "description": "Callback to be called when a step is completed"
+      },
+      "onStepInvalid": {
+        "type": "(details: StepInvalidDetails) => void",
+        "isRequired": false,
+        "description": "Called when navigation is blocked due to an invalid step."
       },
       "orientation": {
         "type": "\"vertical\" | \"horizontal\"",
@@ -217,7 +241,8 @@
         "description": "The size of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -236,7 +261,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Separator": {
     "props": {
@@ -251,7 +277,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Status": {
     "props": {
@@ -306,7 +333,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Progress": {
     "props": {
@@ -316,6 +344,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   }
 }

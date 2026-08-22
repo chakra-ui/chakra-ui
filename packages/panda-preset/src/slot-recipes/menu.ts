@@ -22,11 +22,12 @@ export const menuSlotRecipe = defineSlotRecipe({
   base: {
     content: {
       outline: 0,
-      bg: "bg.panel",
+      "--menu-bg": "colors.bg.panel",
+      bg: "var(--menu-bg)",
       boxShadow: "lg",
       color: "fg",
       maxHeight: "var(--available-height)",
-      "--menu-z-index": "zIndex.dropdown",
+      "--menu-z-index": "zIndex.popover",
       zIndex: "calc(var(--menu-z-index) + var(--layer-index, 0))",
       borderRadius: "l2",
       overflow: "hidden",
@@ -95,6 +96,14 @@ export const menuSlotRecipe = defineSlotRecipe({
       my: "1",
       mx: "-1",
     },
+    arrow: {
+      "--arrow-size": "sizes.3",
+      "--arrow-background": "var(--menu-bg)",
+    },
+    arrowTip: {
+      borderTopWidth: "1px",
+      borderLeftWidth: "1px",
+    },
   },
   variants: {
     variant: {
@@ -119,6 +128,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         content: {
           minW: "8rem",
           padding: "1",
+          scrollPadding: "1",
         },
         item: {
           gap: "1",
@@ -131,6 +141,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         content: {
           minW: "8rem",
           padding: "1.5",
+          scrollPadding: "1.5",
         },
         item: {
           gap: "2",

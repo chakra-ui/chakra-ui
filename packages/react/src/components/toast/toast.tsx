@@ -32,8 +32,10 @@ export { useToastStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ToasterProps
-  extends HTMLChakraProps<"div", ToasterBaseProps> {}
+export interface ToasterProps extends HTMLChakraProps<
+  "div",
+  ToasterBaseProps
+> {}
 
 export const Toaster = chakra(
   ArkToaster,
@@ -44,11 +46,14 @@ export const Toaster = chakra(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastRootBaseProps
-  extends Assign<ArkToast.RootBaseProps, SlotRecipeProps<"toast">>,
+  extends
+    Assign<ArkToast.RootBaseProps, SlotRecipeProps<"toast">>,
     UnstyledProp {}
 
-export interface ToastRootProps
-  extends HTMLChakraProps<"div", ToastRootBaseProps> {}
+export interface ToastRootProps extends HTMLChakraProps<
+  "div",
+  ToastRootBaseProps
+> {}
 
 export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
   ArkToast.Root,
@@ -59,8 +64,7 @@ export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkToast.CloseTriggerProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"button", ArkToast.CloseTriggerProps>, UnstyledProp {}
 
 export const ToastCloseTrigger = withContext<
   HTMLButtonElement,
@@ -75,8 +79,7 @@ export const ToastCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastTitleProps
-  extends HTMLChakraProps<"div", ArkToast.TitleProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkToast.TitleProps>, UnstyledProp {}
 
 export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
   ArkToast.Title,
@@ -87,8 +90,7 @@ export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastDescriptionProps
-  extends HTMLChakraProps<"div", ArkToast.DescriptionProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkToast.DescriptionProps>, UnstyledProp {}
 
 export const ToastDescription = withContext<
   HTMLDivElement,
@@ -98,7 +100,8 @@ export const ToastDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastActionTriggerProps
-  extends HTMLChakraProps<"button", ArkToast.ActionTriggerProps>,
+  extends
+    HTMLChakraProps<"button", ArkToast.ActionTriggerProps>,
     UnstyledProp {}
 
 export const ToastActionTrigger = withContext<
@@ -115,8 +118,7 @@ const iconMap: Record<string, React.ElementType> = {
 }
 
 export interface ToastIndicatorProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const ToastIndicator = forwardRef<HTMLSpanElement, ToastIndicatorProps>(
   function ToastIndicator(props, ref) {

@@ -23,14 +23,17 @@ export { useCollapsibleStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkCollapsible.RootProviderBaseProps,
       SlotRecipeProps<"collapsible">
     >,
     UnstyledProp {}
 
-export interface CollapsibleRootProviderProps
-  extends HTMLChakraProps<"div", CollapsibleRootProviderBaseProps> {}
+export interface CollapsibleRootProviderProps extends HTMLChakraProps<
+  "div",
+  CollapsibleRootProviderBaseProps
+> {}
 
 export const CollapsibleRootProvider = withProvider<
   HTMLDivElement,
@@ -40,11 +43,14 @@ export const CollapsibleRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleRootBaseProps
-  extends Assign<ArkCollapsible.RootBaseProps, SlotRecipeProps<"collapsible">>,
+  extends
+    Assign<ArkCollapsible.RootBaseProps, SlotRecipeProps<"collapsible">>,
     UnstyledProp {}
 
-export interface CollapsibleRootProps
-  extends HTMLChakraProps<"div", CollapsibleRootBaseProps> {}
+export interface CollapsibleRootProps extends HTMLChakraProps<
+  "div",
+  CollapsibleRootBaseProps
+> {}
 
 export const CollapsibleRoot = withProvider<
   HTMLDivElement,
@@ -59,7 +65,8 @@ export const CollapsiblePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleTriggerProps
-  extends HTMLChakraProps<"button", ArkCollapsible.TriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkCollapsible.TriggerBaseProps>,
     UnstyledProp {}
 
 export const CollapsibleTrigger = withContext<
@@ -70,13 +77,26 @@ export const CollapsibleTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleContentProps
-  extends HTMLChakraProps<"div", ArkCollapsible.ContentBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkCollapsible.ContentBaseProps>,
     UnstyledProp {}
 
 export const CollapsibleContent = withContext<
   HTMLDivElement,
   CollapsibleContentProps
 >(ArkCollapsible.Content, "content", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CollapsibleIndicatorProps
+  extends
+    HTMLChakraProps<"div", ArkCollapsible.IndicatorBaseProps>,
+    UnstyledProp {}
+
+export const CollapsibleIndicator = withContext<
+  HTMLDivElement,
+  CollapsibleIndicatorProps
+>(ArkCollapsible.Indicator, "indicator", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -98,6 +98,12 @@
         "isRequired": false,
         "description": "The variant of the component"
       },
+      "showLastSeparator": {
+        "type": "\"true\" | \"false\"",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "The showLastSeparator of the component"
+      },
       "size": {
         "type": "\"sm\" | \"md\" | \"lg\" | \"xl\"",
         "defaultValue": "md",

@@ -1,7 +1,7 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
+import { Bar, BarChart, CartesianGrid, LabelList, Rectangle } from "recharts"
 
 export const BarChartFillWithValue = () => {
   const chart = useChart({
@@ -19,7 +19,7 @@ export const BarChartFillWithValue = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <BarChart data={chart.data} margin={{ top: 30 }}>
+      <BarChart data={chart.data} margin={{ top: 30 }} responsive>
         <CartesianGrid stroke={chart.color("border.muted")} vertical={false} />
         {chart.series.map((item) => (
           <Bar
@@ -28,6 +28,14 @@ export const BarChartFillWithValue = () => {
             radius={4}
             dataKey={chart.key(item.name)}
             fill={chart.color(item.color)}
+            shape={(props) => (
+              <Rectangle
+                {...props}
+                fill={chart.color(
+                  props.payload.views > 0 ? "green.solid" : "red.solid",
+                )}
+              />
+            )}
           >
             <LabelList
               position="top"
@@ -35,12 +43,6 @@ export const BarChartFillWithValue = () => {
               offset={10}
               style={{ fontWeight: "500" }}
             />
-            {chart.data.map((item) => (
-              <Cell
-                key={item.name}
-                fill={chart.color(item.views > 0 ? "green.solid" : "red.solid")}
-              />
-            ))}
           </Bar>
         ))}
       </BarChart>

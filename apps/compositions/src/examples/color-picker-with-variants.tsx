@@ -15,6 +15,7 @@ export const ColorPickerWithVariants = () => {
       <For each={["outline", "subtle"]}>
         {(variant) => (
           <ColorPicker.Root
+            key={variant}
             defaultValue={parseColor("#eb5e41")}
             maxW="200px"
             variant={variant}

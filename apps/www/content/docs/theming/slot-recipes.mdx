@@ -123,8 +123,7 @@ import { checkboxSlotRecipe } from "./checkbox.recipe"
 
 type CheckboxVariantProps = RecipeVariantProps<typeof checkboxSlotRecipe>
 
-export interface CheckboxProps
-  extends React.PropsWithChildren<CheckboxVariantProps> {}
+export interface CheckboxProps extends React.PropsWithChildren<CheckboxVariantProps> {}
 ```
 
 ### Create compound components
@@ -154,11 +153,10 @@ const { withProvider, withContext } = createSlotRecipeContext({
   recipe: checkboxSlotRecipe,
 })
 
-interface CheckboxRootProps
-  extends HTMLChakraProps<
-    "label",
-    RecipeVariantProps<typeof checkboxSlotRecipe>
-  > {}
+interface CheckboxRootProps extends HTMLChakraProps<
+  "label",
+  RecipeVariantProps<typeof checkboxSlotRecipe>
+> {}
 export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
   "label",
   "root",
@@ -216,8 +214,7 @@ import { checkboxSlotRecipe } from "./checkbox.recipe"
 type CheckboxVariantProps = RecipeVariantProps<typeof checkboxSlotRecipe>
 
 export interface CheckboxProps
-  extends React.PropsWithChildren<CheckboxVariantProps>,
-    UnstyledProp {}
+  extends React.PropsWithChildren<CheckboxVariantProps>, UnstyledProp {}
 ```
 
 ## Compound Variants
@@ -303,7 +300,9 @@ export default createSystem(defaultConfig, config)
 
 ### TypeScript
 
-Use the CLI to generate the types for the recipe.
+Use the CLI to generate types for the recipe, then import them in your
+component. See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to
+run `typegen` in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./theme.ts
@@ -315,8 +314,7 @@ Then, import the generated types in your component.
 import type { SlotRecipeProps, UnstyledProp } from "@chakra-ui/react"
 
 export interface CheckboxProps
-  extends SlotRecipeProps<"checkbox">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"checkbox">, UnstyledProp {}
 ```
 
 ### Update code

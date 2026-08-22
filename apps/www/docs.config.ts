@@ -14,7 +14,7 @@ const docsLinks: NavItem = {
             { title: "CLI", url: "cli" },
             { title: "Figma", url: "figma" },
             { title: "Contributing", url: "contributing" },
-            { title: "Showcase", url: "/showcase", external: true },
+            { title: "Playground", url: "/playground", external: true },
             {
               title: "Changelog",
               url: "https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v3.mdx",
@@ -25,10 +25,10 @@ const docsLinks: NavItem = {
         {
           title: "AI for Agents",
           url: "ai",
-          status: "new",
           items: [
             { title: "MCP Server", url: "mcp-server" },
             { title: "LLMs.txt", url: "llms" },
+            { title: "AI Skills", url: "skills" },
           ],
         },
         {
@@ -39,6 +39,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
+            { title: "TanStack Router", url: "tanstack-router" },
             { title: "Vite", url: "vite" },
           ],
         },
@@ -85,6 +86,7 @@ const docsLinks: NavItem = {
             { title: "Scroll Area", url: "scroll-area" },
             { title: "Separator", url: "separator" },
             { title: "SimpleGrid", url: "simple-grid" },
+            { title: "Splitter", url: "splitter" },
             { title: "Stack", url: "stack" },
             { title: "Wrap", url: "wrap" },
           ],
@@ -94,7 +96,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Blockquote", url: "blockquote" },
             { title: "Code", url: "code" },
-            { title: "Code Block", url: "code-block", status: "beta" },
+            { title: "Code Block", url: "code-block" },
             { title: "Em", url: "em" },
             { title: "Heading", url: "heading" },
             { title: "Highlight", url: "highlight" },
@@ -104,6 +106,7 @@ const docsLinks: NavItem = {
             { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
+            { title: "Rich Text Editor", url: "rich-text-editor" },
             { title: "Text", url: "text" },
           ],
         },
@@ -117,6 +120,13 @@ const docsLinks: NavItem = {
               title: "Download Trigger",
               url: "download-trigger",
             },
+          ],
+        },
+        {
+          title: "Date and Time",
+          items: [
+            { title: "Date Picker", url: "date-picker" },
+            { title: "Calendar", url: "calendar" },
           ],
         },
         {
@@ -142,15 +152,16 @@ const docsLinks: NavItem = {
             { title: "Switch", url: "switch" },
             { title: "Slider", url: "slider" },
             { title: "Textarea", url: "textarea" },
+            { title: "Tags Input", url: "tags-input" },
           ],
         },
         {
           title: "Collections",
           items: [
             { title: "Combobox", url: "combobox" },
-            { title: "Listbox", url: "listbox", status: "new" },
+            { title: "Listbox", url: "listbox" },
             { title: "Select", url: "select" },
-            { title: "Tree View", url: "tree-view", status: "beta" },
+            { title: "Tree View", url: "tree-view" },
           ],
         },
         {
@@ -159,12 +170,25 @@ const docsLinks: NavItem = {
             { title: "Action Bar", url: "action-bar" },
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
+            { title: "Floating Panel", url: "floating-panel" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Menu", url: "menu" },
             { title: "Overlay Manager", url: "overlay-manager" },
             { title: "Popover", url: "popover" },
             { title: "Toggle Tip", url: "toggle-tip" },
             { title: "Tooltip", url: "tooltip" },
+          ],
+        },
+        {
+          title: "Disclosure",
+          items: [
+            { title: "Accordion", url: "accordion" },
+            { title: "Breadcrumb", url: "breadcrumb" },
+            { title: "Carousel", url: "carousel" },
+            { title: "Collapsible", url: "collapsible" },
+            { title: "Pagination", url: "pagination" },
+            { title: "Steps", url: "steps" },
+            { title: "Tabs", url: "tabs" },
           ],
         },
         {
@@ -190,22 +214,12 @@ const docsLinks: NavItem = {
             { title: "Image", url: "image" },
             { title: "Data List", url: "data-list" },
             { title: "Icon", url: "icon" },
+            { title: "Marquee", url: "marquee" },
             { title: "QR Code", url: "qr-code" },
             { title: "Stat", url: "stat" },
             { title: "Table", url: "table" },
             { title: "Tag", url: "tag" },
             { title: "Timeline", url: "timeline" },
-          ],
-        },
-        {
-          title: "Disclosure",
-          items: [
-            { title: "Accordion", url: "accordion" },
-            { title: "Breadcrumb", url: "breadcrumb" },
-            { title: "Collapsible", url: "collapsible" },
-            { title: "Pagination", url: "pagination" },
-            { title: "Steps", url: "steps" },
-            { title: "Tabs", url: "tabs" },
           ],
         },
         {
@@ -377,6 +391,14 @@ const docsLinks: NavItem = {
   ],
 }
 
+export const NAV_LINKS = [
+  { title: "Docs", url: "/docs/get-started/installation" },
+  { title: "Showcase", url: "/showcase" },
+  { title: "Spotlight", url: "/shipped" },
+  { title: "Blog", url: "/blog" },
+  { title: "Guides", url: "/guides" },
+]
+
 export const docsConfig: DocsConfig = {
   storybookUrl: "https://storybook.chakra-ui.com",
   copyright: "Copyright © {{date}} Segun Adebayo. All Rights Reserved.",
@@ -394,9 +416,9 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Playground", url: "playground" },
-    { title: "Guides", url: "guides" },
+    { title: "Showcase", url: "showcase" },
     { title: "Blog", url: "blog" },
+    { title: "Guides", url: "guides" },
   ],
   proUrl: "https://pro.chakra-ui.com?utm_source=chakra-ui.com",
 }

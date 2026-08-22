@@ -1,45 +1,4 @@
 {
-  "ClipboardControl": {
-    "props": {}
-  },
-  "ClipboardIndicator": {
-    "props": {}
-  },
-  "ClipboardRoot": {
-    "props": {}
-  },
-  "ClipboardRootProvider": {
-    "props": {}
-  },
-  "ClipboardLabel": {
-    "props": {}
-  },
-  "ClipboardValueText": {
-    "props": {}
-  },
-  "ClipboardTrigger": {
-    "props": {}
-  },
-  "ClipboardInput": {
-    "props": {}
-  },
-  "UseClipboard": {
-    "props": {}
-  },
-  "Clipboard": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Control": {
     "props": {
       "asChild": {
@@ -48,7 +7,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Indicator": {
     "props": {
@@ -62,27 +22,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement"
-  },
-  "Input": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLInputElement"
-  },
-  "Label": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLLabelElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -119,8 +60,13 @@
       "timeout": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "3000",
+        "defaultValue": 3000,
         "description": "The timeout for the copy operation"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
       },
       "value": {
         "type": "string",
@@ -128,7 +74,8 @@
         "description": "The controlled value of the clipboard"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -142,9 +89,10 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
-  "Trigger": {
+  "Label": {
     "props": {
       "asChild": {
         "type": "boolean",
@@ -152,7 +100,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "ValueText": {
     "props": {
@@ -162,6 +111,29 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "span"
+  },
+  "Trigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Input": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

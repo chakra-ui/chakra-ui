@@ -60,12 +60,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
       outline: 0,
       zIndex: "2",
       borderRadius: "full",
+      transition: "shadow",
 
       _focusVisible: {
-        ring: "2px",
-        ringColor: "colorPalette.focusRing",
-        ringOffset: "2px",
-        ringOffsetColor: "bg",
+        ring: "3px",
+        ringColor: "colorPalette.focusRing/50",
       },
     },
   },
@@ -145,7 +144,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           height: "100%",
           minWidth: "var(--slider-thumb-size)",
-          "&[data-has-mark-label], &:has(.chakra-slider__marker-label)": {
+          "&:has(.chakra-slider__markerLabel)": {
             marginEnd: "4",
           },
         },
@@ -169,7 +168,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           flexDirection: "row",
           width: "100%",
           minHeight: "var(--slider-thumb-size)",
-          "&[data-has-mark-label], &:has(.chakra-slider__marker-label)": {
+          "&:has(.chakra-slider__markerLabel)": {
             marginBottom: "4",
           },
         },

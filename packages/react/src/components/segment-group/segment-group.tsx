@@ -25,14 +25,17 @@ export { useSegmentGroupStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupRootProviderBaseProps
-  extends Assign<
+  extends
+    Assign<
       ArkSegmentGroup.RootProviderBaseProps,
       SlotRecipeProps<"segmentGroup">
     >,
     UnstyledProp {}
 
-export interface SegmentGroupRootProviderProps
-  extends HTMLChakraProps<"div", SegmentGroupRootProviderBaseProps> {}
+export interface SegmentGroupRootProviderProps extends HTMLChakraProps<
+  "div",
+  SegmentGroupRootProviderBaseProps
+> {}
 
 export const SegmentGroupRootProvider = withProvider<
   HTMLDivElement,
@@ -42,14 +45,14 @@ export const SegmentGroupRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupRootBaseProps
-  extends Assign<
-      ArkSegmentGroup.RootBaseProps,
-      SlotRecipeProps<"segmentGroup">
-    >,
+  extends
+    Assign<ArkSegmentGroup.RootBaseProps, SlotRecipeProps<"segmentGroup">>,
     UnstyledProp {}
 
-export interface SegmentGroupRootProps
-  extends HTMLChakraProps<"div", SegmentGroupRootBaseProps> {}
+export interface SegmentGroupRootProps extends HTMLChakraProps<
+  "div",
+  SegmentGroupRootBaseProps
+> {}
 
 export const SegmentGroupRoot = withProvider<
   HTMLDivElement,
@@ -70,7 +73,8 @@ export const SegmentGroupPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemProps
-  extends HTMLChakraProps<"label", ArkSegmentGroup.ItemBaseProps>,
+  extends
+    HTMLChakraProps<"label", ArkSegmentGroup.ItemBaseProps>,
     UnstyledProp {}
 
 export const SegmentGroupItem = withContext<
@@ -81,7 +85,8 @@ export const SegmentGroupItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemTextProps
-  extends HTMLChakraProps<"span", ArkSegmentGroup.ItemTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkSegmentGroup.ItemTextBaseProps>,
     UnstyledProp {}
 
 export const SegmentGroupItemText = withContext<
@@ -92,7 +97,8 @@ export const SegmentGroupItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupIndicatorProps
-  extends HTMLChakraProps<"div", ArkSegmentGroup.IndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkSegmentGroup.IndicatorBaseProps>,
     UnstyledProp {}
 
 export const SegmentGroupIndicator = withContext<
@@ -108,8 +114,10 @@ interface Item {
   disabled?: boolean | undefined
 }
 
-export interface SegmentGroupItemsProps
-  extends Omit<SegmentGroupItemProps, "value"> {
+export interface SegmentGroupItemsProps extends Omit<
+  SegmentGroupItemProps,
+  "value"
+> {
   items: Array<string | Item>
 }
 

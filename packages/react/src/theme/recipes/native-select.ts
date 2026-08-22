@@ -73,6 +73,9 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           focusRingWidth: "2px",
         },
       },
+      ghost: {
+        field: selectSlotRecipe.variants?.variant.ghost.trigger,
+      },
     },
 
     size: {

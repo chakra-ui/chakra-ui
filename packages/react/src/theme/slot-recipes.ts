@@ -5,6 +5,7 @@ import { avatarSlotRecipe } from "./recipes/avatar"
 import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
+import { carouselSlotRecipe } from "./recipes/carousel"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { codeBlockSlotRecipe } from "./recipes/code-block"
@@ -12,6 +13,8 @@ import { collapsibleSlotRecipe } from "./recipes/collapsible"
 import { colorPickerSlotRecipe } from "./recipes/color-picker"
 import { comboboxSlotRecipe } from "./recipes/combobox"
 import { dataListSlotRecipe } from "./recipes/data-list"
+import { dateInputSlotRecipe } from "./recipes/date-input"
+import { datePickerSlotRecipe } from "./recipes/date-picker"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
@@ -19,9 +22,11 @@ import { emptyStateSlotRecipe } from "./recipes/empty-state"
 import { fieldSlotRecipe } from "./recipes/field"
 import { fieldsetSlotRecipe } from "./recipes/fieldset"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
+import { floatingPanelSlotRecipe } from "./recipes/floating-panel"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
 import { listboxSlotRecipe } from "./recipes/listbox"
+import { marqueeSlotRecipe } from "./recipes/marquee"
 import { menuSlotRecipe } from "./recipes/menu"
 import { nativeSelectSlotRecipe } from "./recipes/native-select"
 import { numberInputSlotRecipe } from "./recipes/number-input"
@@ -37,6 +42,7 @@ import { scrollAreaSlotRecipe } from "./recipes/scroll-area"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
+import { splitterSlotRecipe } from "./recipes/splitter"
 import { statSlotRecipe } from "./recipes/stat"
 import { statusSlotRecipe } from "./recipes/status"
 import { stepsSlotRecipe } from "./recipes/steps"
@@ -44,6 +50,7 @@ import { switchSlotRecipe } from "./recipes/switch"
 import { tableSlotRecipe } from "./recipes/table"
 import { tabsSlotRecipe } from "./recipes/tabs"
 import { tagSlotRecipe } from "./recipes/tag"
+import { tagsInputSlotRecipe } from "./recipes/tags-input"
 import { timelineSlotRecipe } from "./recipes/timeline"
 import { toastSlotRecipe } from "./recipes/toast"
 import { tooltipSlotRecipe } from "./recipes/tooltip"
@@ -57,11 +64,14 @@ export const slotRecipes = {
   blockquote: blockquoteSlotRecipe,
   breadcrumb: breadcrumbSlotRecipe,
   card: cardSlotRecipe,
+  carousel: carouselSlotRecipe,
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
   codeBlock: codeBlockSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
+  dateInput: dateInputSlotRecipe,
+  datePicker: datePickerSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
   editable: editableSlotRecipe,
@@ -87,12 +97,14 @@ export const slotRecipes = {
   select: selectSlotRecipe,
   combobox: comboboxSlotRecipe,
   slider: sliderSlotRecipe,
+  splitter: splitterSlotRecipe,
   stat: statSlotRecipe,
   steps: stepsSlotRecipe,
   switch: switchSlotRecipe,
   table: tableSlotRecipe,
   tabs: tabsSlotRecipe,
   tag: tagSlotRecipe,
+  tagsInput: tagsInputSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
   status: statusSlotRecipe,
@@ -100,4 +112,6 @@ export const slotRecipes = {
   colorPicker: colorPickerSlotRecipe,
   qrCode: qrCodeSlotRecipe,
   treeView: treeViewSlotRecipe,
+  marquee: marqueeSlotRecipe,
+  floatingPanel: floatingPanelSlotRecipe,
 }

@@ -6,6 +6,7 @@ import type {
   Nested,
   SystemStyleObject,
 } from "./css.types"
+import type { Tokens } from "./generated/token.gen"
 import type {
   RecipeCreatorFn,
   RecipeDefinition,
@@ -20,8 +21,7 @@ export type CssVarProperties = {
 }
 
 export interface CssProperties
-  extends PropertiesFallback<String | Number>,
-    CssVarProperties {}
+  extends PropertiesFallback<String | Number>, CssVarProperties {}
 
 interface Recursive<T> {
   [key: string]: T | Recursive<T>
@@ -62,15 +62,42 @@ export interface TokenSchema<T = any> {
   description?: string | undefined
 }
 
-type PrimitiveTokenValue = string | number
+export interface TokenValueByCategory {
+  animations: string | readonly string[]
+  aspectRatios: string | number
+  assets: string
+  blurs: string
+  borderStyles: string
+  borderWidths: string | number
+  borders: string
+  breakpoints: string
+  colors: string
+  cursor: string
+  durations: string
+  easings: string | readonly number[]
+  fonts: string | readonly string[]
+  fontSizes: string | number
+  fontWeights: string | number
+  gradients: string | readonly string[]
+  letterSpacings: string
+  lineHeights: string | number
+  opacity: string | number
+  radii: string | number
+  shadows: string | readonly string[]
+  sizes: string | number
+  spacing: string | number
+  zIndex: string | number
+}
 
 export type TokenDefinition = {
-  [key in TokenCategory]?: Recursive<TokenSchema<PrimitiveTokenValue>>
+  [K in TokenCategory]?: Recursive<TokenSchema<TokenValueByCategory[K]>>
 }
 
 export type SemanticTokenDefinition = {
-  [key in TokenCategory]?: Recursive<
-    TokenSchema<PrimitiveTokenValue | Record<string, PrimitiveTokenValue>>
+  [K in TokenCategory]?: Recursive<
+    TokenSchema<
+      TokenValueByCategory[K] | Record<string, TokenValueByCategory[K]>
+    >
   >
 }
 
@@ -223,6 +250,8 @@ export interface Utility {
  * Breakpoints
  * -----------------------------------------------------------------------------*/
 
+export type BreakpointName = Tokens["breakpoints"] | "base"
+
 export interface BreakpointEntry {
   name: string
   min?: string | null | undefined
@@ -300,6 +329,8 @@ export interface SystemContext {
   sva: SlotRecipeCreatorFn
   getRecipe(key: string, fallback?: any): any
   getSlotRecipe(key: string, fallback?: any): any
+  getRecipeFn(key: string, fallback?: any): any
+  getSlotRecipeFn(key: string, fallback?: any): any
   isRecipe(key: string): boolean
   isSlotRecipe(key: string): boolean
   hasRecipe(key: string): boolean

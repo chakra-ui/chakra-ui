@@ -5,6 +5,7 @@ import {
   isFunction,
   isObject,
   isString,
+  mapEntries,
   mapObject,
   memo,
   walkObject,
@@ -19,6 +20,10 @@ import {
   getReferences,
   hasReference,
 } from "./references"
+import {
+  resolveSemanticConditionValues,
+  resolveTokenValue,
+} from "./resolve-token-value"
 import { tokenMiddlewares } from "./token-middleware"
 import { tokenTransforms } from "./token-transforms"
 import type {
@@ -47,12 +52,10 @@ function expandBreakpoints(breakpoints?: Record<string, string>) {
   if (!breakpoints) return { breakpoints: {}, sizes: {} }
   return {
     breakpoints: mapObject(breakpoints, (value) => ({ value })),
-    sizes: Object.fromEntries(
-      Object.entries(breakpoints).map(([key, value]) => [
-        `breakpoint-${key}`,
-        { value },
-      ]),
-    ),
+    sizes: mapEntries(breakpoints, (key, value) => [
+      `breakpoint-${key}`,
+      { value },
+    ]),
   }
 }
 
@@ -83,7 +86,13 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
   function registerToken(token: Token, phase?: TokenEnforcePhase) {
     allTokens.push(token)
-    tokenNameMap.set(token.name, token)
+
+    if (
+      token.extensions.condition === "base" ||
+      !tokenNameMap.has(token.name)
+    ) {
+      tokenNameMap.set(token.name, token)
+    }
 
     if (phase) {
       transforms.forEach((fn) => {
@@ -115,9 +124,11 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
         const t = isString(entry) ? { value: entry } : entry
 
+        const resolved = resolveTokenValue(category, t.value)
+
         const token: Token = {
-          value: t.value,
-          originalValue: t.value,
+          value: resolved,
+          originalValue: resolved,
           name,
           path,
           extensions: {
@@ -146,19 +157,22 @@ export function createTokenDictionary(options: Options): TokenDictionary {
         const category = path[0]
 
         const name = formatTokenName(path)
-        const t = isString(entry.value)
-          ? { value: { base: entry.value } }
-          : entry
+        const t =
+          isString(entry.value) || Array.isArray(entry.value)
+            ? { value: { base: entry.value } }
+            : entry
+
+        const cond = resolveSemanticConditionValues(category, t.value)
 
         const token: Token = {
-          value: t.value.base || "",
-          originalValue: t.value.base || "",
+          value: cond.base ?? "",
+          originalValue: cond.base ?? "",
           name,
           path,
           extensions: {
             originalPath: path,
             category,
-            conditions: t.value,
+            conditions: cond,
             condition: "base",
             prop: formatTokenName(path.slice(1)),
           },
@@ -190,19 +204,30 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   }
 
   function buildCategoryMap(token: Token) {
-    const { category, prop } = token.extensions
+    const { category, prop, condition, conditions } = token.extensions
     if (!category) return
 
     if (!categoryMap.has(category)) {
       categoryMap.set(category, new Map())
     }
 
-    categoryMap.get(category)!.set(prop, token)
+    const map = categoryMap.get(category)!
+    const existing = map.get(prop)
+
+    if (condition == null || condition === "base") {
+      map.set(prop, token)
+      return
+    }
+
+    if (conditions && !existing) {
+      map.set(prop, token)
+    }
   }
 
   function buildCssVars(token: Token) {
     const { condition, negative, virtual, cssVar } = token.extensions
-    if (negative || virtual || !condition || !cssVar) return
+    if (negative || virtual || !condition || !cssVar || token.value === "")
+      return
 
     if (!cssVarMap.has(condition)) {
       cssVarMap.set(condition, new Map())
@@ -422,7 +447,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   }
 
   function addConditionalTokens() {
-    allTokens.forEach((token) => {
+    allTokens.slice().forEach((token) => {
       const tokens = getConditionalTokens(token)
       if (!tokens || tokens.length === 0) return
       tokens.forEach((token) => {
@@ -433,7 +458,16 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
   function getTokenReferences(value: string) {
     const refs = getReferences(value)
-    return refs.map((ref) => getByName(ref)).filter(Boolean) as Token[]
+    const result: Token[] = []
+
+    for (let i = 0; i < refs.length; i++) {
+      const token = getByName(refs[i])
+      if (token) {
+        result.push(token)
+      }
+    }
+
+    return result
   }
 
   function addReferences() {
@@ -495,10 +529,14 @@ function getConditionalTokens(token: Token) {
     const nextPath = filterBaseCondition(path)
     if (!nextPath.length) return
 
-    const nextToken = structuredClone(token)
-
-    nextToken.value = value
-    nextToken.extensions.condition = nextPath.join(":")
+    const nextToken: Token = {
+      ...token,
+      value,
+      extensions: {
+        ...token.extensions,
+        condition: nextPath.join(":"),
+      },
+    }
 
     tokens.push(nextToken)
   })

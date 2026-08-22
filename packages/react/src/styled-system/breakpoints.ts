@@ -1,3 +1,4 @@
+import { uniq } from "../utils"
 import type { BreakpointEntry, SystemContext } from "./types"
 import { toPx, toRem } from "./unit-conversion"
 
@@ -19,7 +20,7 @@ export function createBreakpoints(
 
   function getRanges() {
     const breakpoints: string[] = Object.keys(values)
-    const permuations = getPermutations(breakpoints)
+    const permutations = getPermutations(breakpoints)
 
     const results = breakpoints
       .flatMap((name) => {
@@ -37,7 +38,7 @@ export function createBreakpoints(
       })
       .filter(([, value]) => value !== "")
       .concat(
-        permuations.map(([min, max]) => {
+        permutations.map(([min, max]) => {
           const minValue = get(min)
           const maxValue = get(max)
           return [
@@ -62,7 +63,7 @@ export function createBreakpoints(
   }
 
   function keys() {
-    return ["base", ...Object.keys(values)]
+    return uniq(["base", ...Object.keys(values)])
   }
 
   function up(name: string) {

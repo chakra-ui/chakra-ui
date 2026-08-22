@@ -303,6 +303,7 @@ describe("css", () => {
         "--chakra-colors-color-palette-800": "var(--chakra-colors-red-800)",
         "--chakra-colors-color-palette-900": "var(--chakra-colors-red-900)",
         "--chakra-colors-color-palette-950": "var(--chakra-colors-red-950)",
+        "--chakra-colors-color-palette-border": "var(--chakra-colors-red-border)",
         "--chakra-colors-color-palette-contrast": "var(--chakra-colors-red-contrast)",
         "--chakra-colors-color-palette-emphasized": "var(--chakra-colors-red-emphasized)",
         "--chakra-colors-color-palette-fg": "var(--chakra-colors-red-fg)",

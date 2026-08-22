@@ -8,6 +8,7 @@ export type {
 } from "./create-slot-recipe-context"
 export type {
   ConditionalValue,
+  CssProperties,
   GlobalStyleObject,
   SystemStyleObject,
   CssKeyframes,
@@ -52,6 +53,7 @@ export * from "./recipe-props"
 export type * from "./recipe.types"
 export { createSystem, isValidSystem } from "./system"
 export type {
+  BreakpointName,
   SystemConfig,
   SystemContext,
   Token as TokenInterface,

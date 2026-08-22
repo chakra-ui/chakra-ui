@@ -16,7 +16,7 @@ export { FileUploadAcceptedFiles as AcceptedFiles } from "compositions/examples/
 export { FileUploadBasic as Basic } from "compositions/examples/file-upload-basic"
 export { FileUploadCustomPreview as CustomPreview } from "compositions/examples/file-upload-custom-preview"
 export { FileUploadDirectory as Directory } from "compositions/examples/file-upload-directory"
-export { FileUploadInDialog as Dialog } from "compositions/examples/file-upload-in-dialog"
+export { FileUploadOpenFromDialog as OpenFromDialog } from "compositions/examples/file-upload-open-from-dialog"
 export { FileUploadMediaCapture as MediaCapture } from "compositions/examples/file-upload-media-capture"
 export { FileUploadMultiple as Multiple } from "compositions/examples/file-upload-multiple"
 export { FileUploadWithDropzone as Dropzone } from "compositions/examples/file-upload-with-dropzone"

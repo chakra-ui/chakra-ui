@@ -19,6 +19,7 @@ export { AccordionVariantTable as Variants } from "compositions/examples/accordi
 export { AccordionWithActions as Actions } from "compositions/examples/accordion-with-actions"
 export { AccordionWithAvatar as Avatar } from "compositions/examples/accordion-with-avatar"
 export { AccordionWithDisabledItem as DisabledItem } from "compositions/examples/accordion-with-disabled-item"
+export { AccordionWithExpandedStyle as ExpandedStyle } from "compositions/examples/accordion-with-expanded-style"
 export { AccordionWithIcon as Icon } from "compositions/examples/accordion-with-icon"
 export { AccordionWithMultiple as Multiple } from "compositions/examples/accordion-with-multiple"
 export { AccordionWithSubtext as Subtext } from "compositions/examples/accordion-with-subtext"

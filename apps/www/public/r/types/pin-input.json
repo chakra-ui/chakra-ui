@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Input": {
     "props": {
@@ -31,7 +32,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "Label": {
     "props": {
@@ -46,7 +48,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Root": {
     "props": {
@@ -69,6 +72,11 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether to auto-focus the first input."
+      },
+      "autoSubmit": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to auto-submit the owning form when all inputs are filled."
       },
       "blurOnComplete": {
         "type": "boolean",
@@ -148,7 +156,7 @@
       "placeholder": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"○\"",
+        "defaultValue": "○",
         "description": "The placeholder text for the input"
       },
       "readOnly": {
@@ -161,6 +169,11 @@
         "isRequired": false,
         "description": "Whether the pin input is required"
       },
+      "sanitizeValue": {
+        "type": "(value: string) => string",
+        "isRequired": false,
+        "description": "Function to sanitize pasted values before validation.\nUseful for stripping dashes, spaces, or other formatting."
+      },
       "selectOnFocus": {
         "type": "boolean",
         "isRequired": false,
@@ -172,9 +185,9 @@
         "description": "Specifies the localized strings that identifies the accessibility elements and their states"
       },
       "type": {
-        "type": "'numeric' | 'alphabetic' | 'alphanumeric'",
+        "type": "'numeric' | 'alphanumeric' | 'alphabetic'",
         "isRequired": false,
-        "defaultValue": "\"numeric\"",
+        "defaultValue": "numeric",
         "description": "The type of value the pin-input should allow"
       },
       "value": {
@@ -206,7 +219,8 @@
         "description": "The attached of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -225,7 +239,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "HiddenInput": {
     "props": {
@@ -235,6 +250,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

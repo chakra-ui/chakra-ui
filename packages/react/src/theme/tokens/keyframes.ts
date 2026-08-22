@@ -61,20 +61,20 @@ export const keyframes = defineKeyframes({
 
   // collapse
   "expand-height": {
-    from: { height: "0" },
+    from: { height: "var(--collapsed-height, 0)" },
     to: { height: "var(--height)" },
   },
   "collapse-height": {
     from: { height: "var(--height)" },
-    to: { height: "0" },
+    to: { height: "var(--collapsed-height, 0)" },
   },
   "expand-width": {
-    from: { width: "0" },
+    from: { width: "var(--collapsed-width, 0)" },
     to: { width: "var(--width)" },
   },
   "collapse-width": {
-    from: { height: "var(--width)" },
-    to: { height: "0" },
+    from: { width: "var(--width)" },
+    to: { width: "var(--collapsed-width, 0)" },
   },
 
   // fade
@@ -125,38 +125,38 @@ export const keyframes = defineKeyframes({
 
   // slide from
   "slide-from-top": {
-    "0%": { translate: "0 -0.5rem" },
+    "0%": { translate: "0 calc(var(--slide-from-top-distance, 0.5rem) * -1)" },
     to: { translate: "0" },
   },
   "slide-from-bottom": {
-    "0%": { translate: "0 0.5rem" },
+    "0%": { translate: "0 var(--slide-from-bottom-distance, 0.5rem)" },
     to: { translate: "0" },
   },
   "slide-from-left": {
-    "0%": { translate: "-0.5rem 0" },
+    "0%": { translate: "calc(var(--slide-from-left-distance, 0.5rem) * -1) 0" },
     to: { translate: "0" },
   },
   "slide-from-right": {
-    "0%": { translate: "0.5rem 0" },
+    "0%": { translate: "var(--slide-from-right-distance, 0.5rem) 0" },
     to: { translate: "0" },
   },
 
   // slide to
   "slide-to-top": {
     "0%": { translate: "0" },
-    to: { translate: "0 -0.5rem" },
+    to: { translate: "0 calc(var(--slide-to-top-distance, 0.5rem) * -1)" },
   },
   "slide-to-bottom": {
     "0%": { translate: "0" },
-    to: { translate: "0 0.5rem" },
+    to: { translate: "0 var(--slide-to-bottom-distance, 0.5rem)" },
   },
   "slide-to-left": {
     "0%": { translate: "0" },
-    to: { translate: "-0.5rem 0" },
+    to: { translate: "calc(var(--slide-to-left-distance, 0.5rem) * -1) 0" },
   },
   "slide-to-right": {
     "0%": { translate: "0" },
-    to: { translate: "0.5rem 0" },
+    to: { translate: "var(--slide-to-right-distance, 0.5rem) 0" },
   },
 
   // scale
@@ -167,5 +167,15 @@ export const keyframes = defineKeyframes({
   "scale-out": {
     from: { scale: "1" },
     to: { scale: "0.95" },
+  },
+
+  // marquee
+  marqueeX: {
+    from: { transform: "translateX(0%)" },
+    to: { transform: "translateX(var(--marquee-translate))" },
+  },
+  marqueeY: {
+    from: { transform: "translateY(0%)" },
+    to: { transform: "translateY(var(--marquee-translate))" },
   },
 })

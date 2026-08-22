@@ -32,7 +32,12 @@ export const AreaChartPercent = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <AreaChart accessibilityLayer stackOffset="expand" data={chart.data}>
+      <AreaChart
+        accessibilityLayer
+        stackOffset="expand"
+        data={chart.data}
+        responsive
+      >
         <CartesianGrid stroke={chart.color("border")} vertical={false} />
         <XAxis
           dataKey={chart.key("month")}

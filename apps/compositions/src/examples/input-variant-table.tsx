@@ -10,7 +10,7 @@ export const InputVariantTable = () => {
       <tbody>
         <For each={recipe.variantMap.variant}>
           {(v) => (
-            <tr>
+            <tr key={v}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {v}

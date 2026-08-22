@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Content": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Positioner": {
     "props": {
@@ -42,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -64,19 +67,19 @@
       "autoFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": false,
         "description": "Whether to automatically set focus on the first focusable\ncontent within the popover when opened."
       },
       "closeOnEscape": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the popover when the escape key is pressed."
       },
       "closeOnInteractOutside": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to close the popover when the user clicks outside of the popover."
       },
       "defaultOpen": {
@@ -84,13 +87,29 @@
         "isRequired": false,
         "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover."
       },
+      "defaultTriggerValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value."
+      },
+      "finalFocusEl": {
+        "type": "() => MaybeElement",
+        "isRequired": false,
+        "description": "Element to receive focus when the popover is closed."
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
+      },
       "id": {
         "type": "string",
         "isRequired": false,
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  anchor: string\n  trigger: string\n  content: string\n  title: string\n  description: string\n  closeTrigger: string\n  positioner: string\n  arrow: string\n}>",
+        "type": "Partial<{\n  anchor: string\n  trigger: string | ((value?: string | undefined) => string)\n  content: string\n  title: string\n  description: string\n  closeTrigger: string\n  positioner: string\n  arrow: string\n}>",
         "isRequired": false,
         "description": "The ids of the elements in the popover. Useful for composition."
       },
@@ -107,13 +126,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "modal": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover"
       },
       "onEscapeKeyDown": {
@@ -146,6 +165,16 @@
         "isRequired": false,
         "description": "Function called when the pointer is pressed down outside the component"
       },
+      "onRequestDismiss": {
+        "type": "(event: LayerDismissEvent) => void",
+        "isRequired": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed"
+      },
+      "onTriggerValueChange": {
+        "type": "(details: TriggerValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function called when the trigger value changes."
+      },
       "open": {
         "type": "boolean",
         "isRequired": false,
@@ -159,7 +188,7 @@
       "portalled": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content."
       },
       "positioning": {
@@ -172,17 +201,39 @@
         "isRequired": false,
         "description": "Whether the node is present (controlled by the user)"
       },
+      "restoreFocus": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": true,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened."
+      },
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "triggerValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The controlled trigger value"
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
+      },
+      "placement": {
+        "type": "\"bottom\" | \"bottom-start\" | \"bottom-end\"",
+        "defaultValue": "bottom",
+        "isRequired": false,
+        "description": "The placement of the component"
       }
     }
   },
@@ -202,6 +253,12 @@
         "type": "UsePopoverReturn",
         "isRequired": true
       },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
+      },
       "immediate": {
         "type": "boolean",
         "isRequired": false,
@@ -210,7 +267,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -226,13 +283,13 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": true,
         "description": "Whether to unmount on exit."
       }
     }
@@ -273,7 +330,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Arrow": {
     "props": {
@@ -283,7 +341,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ArrowTip": {
     "props": {
@@ -293,7 +352,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Description": {
     "props": {
@@ -303,7 +363,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Indicator": {
     "props": {
@@ -313,7 +374,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Title": {
     "props": {
@@ -323,7 +385,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Trigger": {
     "props": {
@@ -331,8 +394,14 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value that identifies this specific trigger"
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   }
 }

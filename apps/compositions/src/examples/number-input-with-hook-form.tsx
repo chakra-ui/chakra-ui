@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, NumberInput } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -17,7 +17,7 @@ export const NumberInputWithHookForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))

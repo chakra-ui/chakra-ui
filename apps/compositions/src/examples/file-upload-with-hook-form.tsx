@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, FileUpload } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { HiUpload } from "react-icons/hi"
 import { z } from "zod"
@@ -18,7 +18,7 @@ export const FileUploadWithHookForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
     defaultValues: {
       images: [],
     },

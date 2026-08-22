@@ -27,7 +27,10 @@ export const ScatterChartTrendLine = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <ScatterChart margin={{ top: 20, right: 30, bottom: 5, left: 0 }}>
+      <ScatterChart
+        margin={{ top: 20, right: 30, bottom: 5, left: 0 }}
+        responsive
+      >
         <XAxis
           type="number"
           dataKey={chart.key("temperature")}

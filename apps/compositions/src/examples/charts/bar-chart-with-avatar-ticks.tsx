@@ -37,7 +37,7 @@ export const BarChartWithAvatarTicks = () => {
   })
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <BarChart data={chart.data} margin={{ bottom: 20 }}>
+      <BarChart data={chart.data} margin={{ bottom: 20 }} responsive>
         <XAxis
           dataKey="name"
           tick={<AvatarTicks />}

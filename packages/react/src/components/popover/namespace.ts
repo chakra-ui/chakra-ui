@@ -35,3 +35,9 @@ export type {
   PopoverCloseTriggerProps as CloseTriggerProps,
   PopoverOpenChangeDetails as OpenChangeDetails,
 } from "./popover"
+
+export type {
+  PopoverInteractOutsideEvent as InteractOutsideEvent,
+  PopoverFocusOutsideEvent as FocusOutsideEvent,
+  PopoverPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/popover"

@@ -32,7 +32,7 @@ export const AreaChartWithGradient = () => {
 
   return (
     <Chart.Root maxH="sm" chart={chart}>
-      <AreaChart data={chart.data}>
+      <AreaChart data={chart.data} responsive>
         <CartesianGrid
           stroke={chart.color("border")}
           vertical={false}

@@ -13,9 +13,12 @@ export default {
 } satisfies Meta
 
 export { DialogBasic as Basic } from "compositions/examples/dialog-basic"
+export { DialogOpenFromMenu as OpenFromMenu } from "compositions/examples/dialog-open-from-menu"
+export { DialogOpenFromPopover as OpenFromPopover } from "compositions/examples/dialog-open-from-popover"
 export { DialogControlled as Controlled } from "compositions/examples/dialog-controlled"
 export { DialogNested as Nested } from "compositions/examples/dialog-nested"
 export { DialogNonModal as NonModal } from "compositions/examples/dialog-non-modal"
+export { DialogWithBackdropBlur as BackdropBlur } from "compositions/examples/dialog-with-backdrop-blur"
 export { DialogWithCloseOutside as CloseOutside } from "compositions/examples/dialog-with-close-outside"
 export { DialogWithContext as Context } from "compositions/examples/dialog-with-context"
 export { DialogWithCover as Cover } from "compositions/examples/dialog-with-cover"

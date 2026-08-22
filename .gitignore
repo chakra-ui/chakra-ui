@@ -16,8 +16,8 @@ packages/**/.env
 yarn-error.log
 packages/**/.rpt2_cache
 packages/**/.rts2_cache*
-packages/**/tsconfig.tsbuildinfo
-tsconfig.tsbuildinfo
+# TypeScript incremental build (tsconfig*.json "incremental")
+*.tsbuildinfo
 .next
 .idea
 
@@ -108,3 +108,4 @@ report.*
 *storybook.log
 
 .vscode/mcp.json
+.playwright-mcp

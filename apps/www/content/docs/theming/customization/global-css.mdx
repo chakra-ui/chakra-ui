@@ -34,6 +34,36 @@ const customConfig = defineConfig({
 export const system = createSystem(defaultConfig, customConfig)
 ```
 
+### Change global font family
+
+To change the font family globally, set it on the `html` element in globalCss:
+
+```tsx title="theme.ts"
+const customConfig = defineConfig({
+  globalCss: {
+    html: {
+      fontFamily: "Roboto, sans-serif",
+    },
+  },
+})
+```
+
+Alternatively, define custom font tokens:
+
+```tsx title="theme.ts"
+const customConfig = defineConfig({
+  theme: {
+    tokens: {
+      fonts: {
+        body: { value: "Roboto, sans-serif" },
+        heading: { value: "Poppins, sans-serif" },
+        mono: { value: "Fira Code, monospace" },
+      },
+    },
+  },
+})
+```
+
 ### Remove global CSS
 
 If you don't need global CSS, you can remove it by destructuring the `globalCss`

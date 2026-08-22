@@ -44,7 +44,7 @@
     },
     {
       "name": "slider-customization",
-      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\" shadow=\"md\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
+      "content": "\"use client\"\nexport const SliderCustomization = () => {\n  return (\n    <Slider.Root defaultValue={[30]}>\n      <Slider.Control>\n        <Slider.Track bg=\"red.100\">\n          <Slider.Range bg=\"tomato\" />\n        </Slider.Track>\n        <Slider.Thumb index={0} boxSize={6} borderColor=\"tomato\">\n          <Box color=\"tomato\" as={MdGraphicEq} />\n        </Slider.Thumb>\n      </Slider.Control>\n    </Slider.Root>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Box, Slider } from \"@chakra-ui/react\"",
@@ -83,6 +83,15 @@
       "importPath": "import { Slider } from \"@chakra-ui/react\""
     },
     {
+      "name": "slider-with-collision-behavior",
+      "content": "export const SliderWithCollisionBehavior = () => {\n  return (\n    <Stack gap=\"4\" width=\"300px\">\n      <Slider.Root defaultValue={[30, 70]} thumbCollisionBehavior=\"push\">\n        <Slider.Label>Price Range</Slider.Label>\n        <Slider.Control>\n          <Slider.Track>\n            <Slider.Range />\n          </Slider.Track>\n          <Slider.Thumbs />\n        </Slider.Control>\n      </Slider.Root>\n      <Text color=\"fg.muted\" textStyle=\"sm\">\n        Try dragging the thumbs together to see them push each other\n      </Text>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Slider, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Slider } from \"@chakra-ui/react\""
+    },
+    {
       "name": "slider-with-colors",
       "content": "const colors = [\"gray\", \"blue\", \"red\", \"green\", \"pink\"]\n\nexport const SliderWithColors = () => {\n  return (\n    <Stack gap=\"4\" align=\"flex-start\">\n      <For each={colors}>\n        {(color) => (\n          <Slider.Root\n            key={color}\n            width=\"200px\"\n            colorPalette={color}\n            defaultValue={[40]}\n          >\n            <Slider.Control>\n              <Slider.Track>\n                <Slider.Range />\n              </Slider.Track>\n              <Slider.Thumbs />\n            </Slider.Control>\n          </Slider.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
       "hasSnippet": false,
@@ -102,11 +111,11 @@
     },
     {
       "name": "slider-with-hook-form",
-      "content": "\"use client\"\nconst formSchema = z.object({\n  value: z.array(\n    z\n      .number({ message: \"Value is required\" })\n      .min(60, { message: \"Value must be greater than 60\" }),\n  ),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const SliderWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: zodResolver(formSchema),\n    defaultValues: { value: [40] },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack align=\"flex-start\" gap=\"4\" maxW=\"300px\">\n        <Controller\n          name=\"value\"\n          control={control}\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.value?.length}>\n              <Field.Label>Slider: {field.value[0]}</Field.Label>\n              <Slider.Root\n                width=\"full\"\n                name={field.name}\n                value={field.value}\n                onValueChange={({ value }) => {\n                  field.onChange(value)\n                }}\n                onFocusChange={({ focusedIndex }) => {\n                  if (focusedIndex !== -1) return\n                  field.onBlur()\n                }}\n              >\n                <Slider.Control>\n                  <Slider.Track>\n                    <Slider.Range />\n                  </Slider.Track>\n                  <Slider.Thumbs />\n                </Slider.Control>\n              </Slider.Root>\n              <Field.ErrorText>{errors.value?.[0]?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  value: z.array(\n    z\n      .number({ message: \"Value is required\" })\n      .min(60, { message: \"Value must be greater than 60\" }),\n  ),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const SliderWithHookForm = () => {\n  const {\n    control,\n    handleSubmit,\n    formState: { errors },\n  } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n    defaultValues: { value: [40] },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack align=\"flex-start\" gap=\"4\" maxW=\"300px\">\n        <Controller\n          name=\"value\"\n          control={control}\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.value?.length}>\n              <Field.Label>Slider: {field.value[0]}</Field.Label>\n              <Slider.Root\n                width=\"full\"\n                name={field.name}\n                value={field.value}\n                onValueChange={({ value }) => {\n                  field.onChange(value)\n                }}\n                onFocusChange={({ focusedIndex }) => {\n                  if (focusedIndex !== -1) return\n                  field.onBlur()\n                }}\n              >\n                <Slider.Control>\n                  <Slider.Track>\n                    <Slider.Range />\n                  </Slider.Track>\n                  <Slider.Thumbs />\n                </Slider.Control>\n              </Slider.Root>\n              <Field.ErrorText>{errors.value?.[0]?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Button, Field, Slider, Stack } from \"@chakra-ui/react\"",
-        "import { zodResolver } from \"@hookform/resolvers/zod\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
         "import { Controller, useForm } from \"react-hook-form\"",
         "import { z } from \"zod\""
       ],

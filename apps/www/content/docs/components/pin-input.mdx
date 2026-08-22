@@ -100,6 +100,13 @@ input to the input field
 
 <ExampleTabs name="pin-input-attached" />
 
+### With separator
+
+Wrap each segment in `Group` with `attached`, add a separator between segments
+in `PinInput.Control`, and set `count` on `PinInput.Root` to the input count.
+
+<ExampleTabs name="pin-input-with-separator" />
+
 ### Alphanumeric
 
 Pass the `type` prop to the `PinInput.Root` component to allow the user to enter
@@ -125,3 +132,10 @@ Here's how to setup the Pin input for a closed component composition.
 ### Root
 
 <PropTable component="PinInput" part="Root" />
+
+## Explorer
+
+Explore the `Pin Input` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="pin-input-explorer-demo" />

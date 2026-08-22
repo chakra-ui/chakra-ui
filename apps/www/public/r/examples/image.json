@@ -4,7 +4,7 @@
   "examples": [
     {
       "name": "image-basic",
-      "content": "export const ImageBasic = () => (\n  <Image rounded=\"md\" src=\"https://bit.ly/dan-abramov\" alt=\"Dan Abramov\" />\n)\n",
+      "content": "export const ImageBasic = () => (\n  <Image rounded=\"md\" src=\"https://i.pravatar.cc/300?img=4\" alt=\"John Doe\" />\n)\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Image } from \"@chakra-ui/react\""
@@ -31,7 +31,7 @@
     },
     {
       "name": "image-with-fit",
-      "content": "export const ImageWithFit = () => (\n  <Image\n    border=\"1px solid red\"\n    rounded=\"md\"\n    h=\"200px\"\n    w=\"300px\"\n    fit=\"contain\"\n    src=\"https://bit.ly/dan-abramov\"\n  />\n)\n",
+      "content": "export const ImageWithFit = () => (\n  <Image\n    border=\"1px solid red\"\n    rounded=\"md\"\n    h=\"200px\"\n    w=\"300px\"\n    fit=\"contain\"\n    src=\"https://i.pravatar.cc/300?img=2\"\n  />\n)\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Image } from \"@chakra-ui/react\""

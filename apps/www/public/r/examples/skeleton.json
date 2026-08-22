@@ -31,6 +31,15 @@
       "importPath": "import { Skeleton } from \"@chakra-ui/react\""
     },
     {
+      "name": "skeleton-text-with-children",
+      "content": "export const SkeletonTextWithChildren = () => {\n  return (\n    <Stack gap=\"4\">\n      <Text fontWeight=\"medium\">loading is true:</Text>\n      <SkeletonText noOfLines={5}>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi\n        ultrices, rutrum lacus quis, cursus nisi.\n      </SkeletonText>\n\n      <Text fontWeight=\"medium\">loading is false:</Text>\n      <SkeletonText noOfLines={5} loading={false}>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi\n        ultrices, rutrum lacus quis, cursus nisi.\n      </SkeletonText>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SkeletonText, Stack, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Skeleton } from \"@chakra-ui/react\""
+    },
+    {
       "name": "skeleton-with-children",
       "content": "export const SkeletonWithChildren = () => {\n  return (\n    <HStack gap=\"4\">\n      <Skeleton asChild loading={true}>\n        <Badge>Select</Badge>\n      </Skeleton>\n\n      <Skeleton loading={false}>\n        <Badge>Select</Badge>\n      </Skeleton>\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,

@@ -1,6 +1,7 @@
 export {
   CollapsibleContent,
   CollapsibleContext,
+  CollapsibleIndicator,
   CollapsiblePropsProvider,
   CollapsibleRoot,
   CollapsibleRootProvider,
@@ -10,6 +11,7 @@ export {
 
 export type {
   CollapsibleContentProps,
+  CollapsibleIndicatorProps,
   CollapsibleOpenChangeDetails,
   CollapsibleRootProps,
   CollapsibleRootProviderProps,

@@ -28,7 +28,7 @@ export const LineChartComposition = () => {
       </Card.Header>
       <Card.Body>
         <Chart.Root maxH="8rem" chart={chart}>
-          <LineChart data={chart.data}>
+          <LineChart data={chart.data} responsive>
             <CartesianGrid stroke={chart.color("border")} vertical={false} />
             <XAxis
               axisLine={false}

@@ -20,3 +20,9 @@ export type {
   ActionBarOpenChangeDetails as OpenChangeDetails,
   ActionBarRootProviderProps as RootProviderProps,
 } from "./action-bar"
+
+export type {
+  PopoverInteractOutsideEvent as InteractOutsideEvent,
+  PopoverFocusOutsideEvent as FocusOutsideEvent,
+  PopoverPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/popover"

@@ -30,14 +30,14 @@ export { useRadioGroupStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupRootProviderBaseProps
-  extends Assign<
-      ArkRadioGroup.RootProviderBaseProps,
-      SlotRecipeProps<"radioGroup">
-    >,
+  extends
+    Assign<ArkRadioGroup.RootProviderBaseProps, SlotRecipeProps<"radioGroup">>,
     UnstyledProp {}
 
-export interface RadioGroupRootProviderProps
-  extends HTMLChakraProps<"div", RadioGroupRootProviderBaseProps> {}
+export interface RadioGroupRootProviderProps extends HTMLChakraProps<
+  "div",
+  RadioGroupRootProviderBaseProps
+> {}
 
 export const RadioGroupRootProvider = withProvider<
   HTMLDivElement,
@@ -47,11 +47,14 @@ export const RadioGroupRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupRootBaseProps
-  extends Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioGroup">>,
+  extends
+    Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioGroup">>,
     UnstyledProp {}
 
-export interface RadioGroupRootProps
-  extends HTMLChakraProps<"div", RadioGroupRootBaseProps> {}
+export interface RadioGroupRootProps extends HTMLChakraProps<
+  "div",
+  RadioGroupRootBaseProps
+> {}
 
 export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(
   ArkRadioGroup.Root,
@@ -67,8 +70,7 @@ export const RadioGroupPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupLabelProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRadioGroup.LabelBaseProps>, UnstyledProp {}
 
 export const RadioGroupLabel = withContext<
   HTMLDivElement,
@@ -78,8 +80,7 @@ export const RadioGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupItemProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkRadioGroup.ItemBaseProps>, UnstyledProp {}
 
 export const RadioGroupItem = withContext<HTMLDivElement, RadioGroupItemProps>(
   ArkRadioGroup.Item,
@@ -90,7 +91,8 @@ export const RadioGroupItem = withContext<HTMLDivElement, RadioGroupItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupItemTextProps
-  extends HTMLChakraProps<"span", ArkRadioGroup.ItemTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkRadioGroup.ItemTextBaseProps>,
     UnstyledProp {}
 
 export const RadioGroupItemText = withContext<
@@ -101,7 +103,8 @@ export const RadioGroupItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface RadioGroupItemControlProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps>,
     UnstyledProp {}
 
 export const RadioGroupItemControl = withContext<

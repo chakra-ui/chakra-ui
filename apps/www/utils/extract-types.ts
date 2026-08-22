@@ -161,9 +161,10 @@ function extractTypeExports(code: string) {
 
 function shouldIgnoreProperty(property: ts.Symbol) {
   const sourceFileName = getSourceFileName(property)
-  const isExternal = /(node_modules|styled-system|@types\/react|apps\/)/.test(
-    sourceFileName ?? "",
-  )
+  const isExternal =
+    /(node_modules|styled-system|@types\/react|apps\/|compositions)/.test(
+      sourceFileName ?? "",
+    )
   const isExcludedByName = ["children"].includes(property.getName())
   return isExternal || isExcludedByName
 }

@@ -7,6 +7,6 @@ export const ImageWithFit = () => (
     h="200px"
     w="300px"
     fit="contain"
-    src="https://bit.ly/dan-abramov"
+    src="https://i.pravatar.cc/300?img=2"
   />
 )

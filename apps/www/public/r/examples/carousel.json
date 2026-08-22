@@ -1,0 +1,241 @@
+{
+  "name": "carousel",
+  "file": "compositions/ui/carousel",
+  "snippet": "\"use client\"\n\nimport { Carousel } from \"@chakra-ui/react\"\nimport { Box, IconButton, Image } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuPause, LuPlay } from \"react-icons/lu\"\n\ninterface CarouselRootProps extends Carousel.RootProps {\n  withAutoplay?: boolean\n}\n\nexport const CarouselRoot = React.forwardRef<HTMLDivElement, CarouselRootProps>(\n  function CarouselRoot(props, ref) {\n    const { children, withAutoplay, ...rest } = props\n    return (\n      <Carousel.Root {...rest} ref={ref}>\n        {children}\n        {withAutoplay && (\n          <Box\n            position=\"absolute\"\n            bottom=\"var(--carousel-spacing)\"\n            right=\"var(--carousel-spacing)\"\n          >\n            <Carousel.AutoplayTrigger asChild>\n              <IconButton\n                aria-label=\"Toggle autoplay\"\n                size=\"sm\"\n                variant=\"ghost\"\n              >\n                <AutoplayIcon />\n              </IconButton>\n            </Carousel.AutoplayTrigger>\n          </Box>\n        )}\n      </Carousel.Root>\n    )\n  },\n)\n\nexport const CarouselControls = React.forwardRef<\n  HTMLDivElement,\n  Carousel.ControlProps\n>(function CarouselControls(props, ref) {\n  return (\n    <Carousel.Control ref={ref} {...props}>\n      <Carousel.PrevTrigger aria-label=\"Previous\" />\n      <Carousel.NextTrigger aria-label=\"Next\" />\n    </Carousel.Control>\n  )\n})\n\nexport const CarouselIndicators = React.forwardRef<\n  HTMLDivElement,\n  Carousel.IndicatorGroupProps\n>(function CarouselIndicators(props, ref) {\n  return <Carousel.IndicatorGroup ref={ref} {...props} />\n})\n\nexport const CarouselItem = React.forwardRef<\n  HTMLDivElement,\n  Carousel.ItemProps & { src?: string; alt?: string }\n>(function CarouselItem({ src, alt, children, ...rest }, ref) {\n  return (\n    <Carousel.Item {...rest} ref={ref}>\n      {src ? (\n        <Image\n          src={src}\n          alt={alt}\n          w=\"full\"\n          h=\"300px\"\n          objectFit=\"cover\"\n          borderRadius=\"md\"\n        />\n      ) : (\n        children\n      )}\n    </Carousel.Item>\n  )\n})\n\nconst AutoplayIcon = () => {\n  const [running, setRunning] = React.useState(true)\n  const toggle = () => setRunning(!running)\n  return <Box onClick={toggle}>{running ? <LuPause /> : <LuPlay />}</Box>\n}\n\nexport const CarouselItemGroup = Carousel.ItemGroup\nexport const CarouselIndicator = Carousel.Indicator\nexport const CarouselPrevTrigger = Carousel.PrevTrigger\nexport const CarouselNextTrigger = Carousel.NextTrigger\nexport const CarouselAutoplayTrigger = Carousel.AutoplayTrigger\n",
+  "examples": [
+    {
+      "name": "carousel-basic",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselBasic = () => {\n  return (\n    <Carousel.Root slideCount={items.length} maxW=\"md\" mx=\"auto\">\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-composition",
+      "content": "export const CarouselComposition = () => {\n  return (\n    <Carousel.Root slideCount={properties.length} slidesPerPage={3} gap=\"3\">\n      <HStack justify=\"space-between\">\n        <Span fontWeight=\"medium\">Popular homes in Cape Town</Span>\n        <HStack>\n          <Carousel.PrevTrigger asChild>\n            <IconButton size=\"xs\" variant=\"subtle\">\n              <LuChevronLeft />\n            </IconButton>\n          </Carousel.PrevTrigger>\n          <Carousel.NextTrigger asChild>\n            <IconButton size=\"xs\" variant=\"subtle\">\n              <LuChevronRight />\n            </IconButton>\n          </Carousel.NextTrigger>\n        </HStack>\n      </HStack>\n      <Carousel.ItemGroup>\n        {properties.map((property, index) => (\n          <Carousel.Item key={property.id} index={index}>\n            <PropertyCard data={property} />\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n    </Carousel.Root>\n  )\n}\n\ninterface PropertyCardProps {\n  data: Property\n}\n\nconst PropertyCard = ({ data }: PropertyCardProps) => (\n  <Stack gap=\"3\">\n    <Box position=\"relative\">\n      <Image\n        src={data.image}\n        alt={data.title}\n        rounded=\"l2\"\n        w=\"full\"\n        h=\"200px\"\n        objectFit=\"cover\"\n        draggable={false}\n      />\n      {data.favorite && (\n        <Badge pos=\"absolute\" top=\"2\" insetStart=\"2\" size=\"sm\">\n          Guest favorite\n        </Badge>\n      )}\n    </Box>\n    <Stack gap=\"1\">\n      <Span fontWeight=\"semibold\" textStyle=\"sm\">\n        {data.title}\n      </Span>\n      <HStack color=\"fg.muted\" textStyle=\"xs\">\n        <Span>\n          ${data.price} for {data.nights} nights\n        </Span>\n        <HStack gap=\"1\">\n          <Icon color=\"orange.solid\">\n            <FaStar />\n          </Icon>\n          <Span fontWeight=\"medium\">{data.rating}</Span>\n        </HStack>\n      </HStack>\n    </Stack>\n  </Stack>\n)\n\ninterface Property {\n  id: number\n  title: string\n  price: number\n  nights: number\n  rating: number\n  image: string\n  favorite?: boolean\n}\n\nconst properties: Property[] = [\n  {\n    id: 1,\n    title: \"Loft Apartment in City Bowl\",\n    price: 152,\n    nights: 2,\n    rating: 4.92,\n    image:\n      \"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80\",\n    favorite: true,\n  },\n  {\n    id: 2,\n    title: \"Modern Studio, Camps Bay Beachfront\",\n    price: 296,\n    nights: 2,\n    rating: 4.99,\n    image:\n      \"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80\",\n    favorite: true,\n  },\n  {\n    id: 3,\n    title: \"Retreat in Hout Bay with Views\",\n    price: 257,\n    nights: 2,\n    rating: 4.94,\n    image:\n      \"https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80\",\n  },\n  {\n    id: 4,\n    title: \"Sunny Flat in Sea Point\",\n    price: 132,\n    nights: 2,\n    rating: 4.87,\n    image:\n      \"https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80\",\n  },\n  {\n    id: 5,\n    title: \"V&A Waterfront City Studio\",\n    price: 200,\n    nights: 2,\n    rating: 4.83,\n    image:\n      \"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80\",\n    favorite: true,\n  },\n  {\n    id: 6,\n    title: \"Luxury Pad, Bantry Bay\",\n    price: 247,\n    nights: 2,\n    rating: 4.96,\n    image:\n      \"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80\",\n  },\n  {\n    id: 7,\n    title: \"Cozy Nest in Green Point\",\n    price: 135,\n    nights: 2,\n    rating: 4.81,\n    image:\n      \"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&q=80\",\n    favorite: true,\n  },\n  {\n    id: 8,\n    title: \"Elegant Villa in Constantia\",\n    price: 450,\n    nights: 2,\n    rating: 4.98,\n    image:\n      \"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  Badge,\n  Box,\n  Carousel,\n  HStack,\n  Icon,\n  IconButton,\n  Image,\n  Span,\n  Stack,\n} from \"@chakra-ui/react\"",
+        "import { FaStar } from \"react-icons/fa\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-controlled",
+      "content": "\"use client\"\nconst items = Array.from({ length: 5 })\n\nexport const CarouselControlled = () => {\n  const [page, setPage] = useState(0)\n\n  return (\n    <Carousel.Root\n      slideCount={items.length}\n      maxW=\"md\"\n      mx=\"auto\"\n      page={page}\n      onPageChange={(e) => setPage(e.page)}\n    >\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-slides-per-move",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselSlidesPerMove = () => {\n  return (\n    <Carousel.Root\n      slideCount={items.length}\n      slidesPerMove={1}\n      slidesPerPage={2}\n      maxW=\"xl\"\n      mx=\"auto\"\n    >\n      <HStack textStyle=\"sm\" mb=\"4\">\n        {\"slidesPerPage={2} + slidesPerMove={1}\"}\n      </HStack>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-slides-per-page",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselSlidesPerPage = () => {\n  return (\n    <Carousel.Root\n      slideCount={items.length}\n      slidesPerPage={2}\n      maxW=\"xl\"\n      mx=\"auto\"\n    >\n      <HStack textStyle=\"sm\" mb=\"4\">\n        {\"slidesPerPage={2}\"}\n      </HStack>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-spacing",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselSpacing = () => {\n  return (\n    <Carousel.Root\n      spacing=\"48px\"\n      slidesPerPage={1.5}\n      slideCount={items.length}\n      maxW=\"xl\"\n      mx=\"auto\"\n    >\n      <HStack textStyle=\"sm\" mb=\"4\">\n        {\"spacing='48px'\"}\n      </HStack>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-variable-size",
+      "content": "const items = [\n  { id: \"1\", width: \"120px\", label: \"Small\" },\n  { id: \"2\", width: \"200px\", label: \"Medium Size\" },\n  { id: \"3\", width: \"80px\", label: \"XS\" },\n  { id: \"4\", width: \"250px\", label: \"Large Content Here\" },\n  { id: \"5\", width: \"150px\", label: \"Regular\" },\n]\n\nexport const CarouselVariableSize = () => {\n  return (\n    <Carousel.Root\n      slideCount={items.length}\n      autoSize\n      spacing=\"8px\"\n      maxW=\"xl\"\n      mx=\"auto\"\n    >\n      <Carousel.Control gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n\n      <Carousel.ItemGroup>\n        {items.map((item, index) => (\n          <Carousel.Item\n            key={item.id}\n            index={index}\n            snapAlign=\"center\"\n            width=\"auto\"\n          >\n            <Center\n              style={{ width: item.width }}\n              height=\"100px\"\n              bg=\"bg.emphasized\"\n              rounded=\"l2\"\n            >\n              {item.label}\n            </Center>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, Center, IconButton } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-vertical",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselVertical = () => {\n  return (\n    <Carousel.Root\n      orientation=\"vertical\"\n      slideCount={items.length}\n      mx=\"auto\"\n      height=\"320px\"\n      maxW=\"xl\"\n    >\n      <Carousel.ItemGroup flex=\"1\">\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box fontSize=\"2.5rem\">{index + 1}</Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n      <Carousel.Control h=\"100%\" justifyContent=\"space-between\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronUp />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronDown />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronDown, LuChevronUp } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-autoplay",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselWithAutoplay = () => {\n  return (\n    <Carousel.Root\n      autoplay={{ delay: 2000 }}\n      slideCount={items.length}\n      mx=\"auto\"\n      maxW=\"xl\"\n    >\n      <HStack textStyle=\"sm\" mb=\"4\">\n        <LuClock /> {\"autoplay={{ delay: 2000 }}\"} or {\"autoplay={true}\"}\n      </HStack>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.AutoplayTrigger asChild>\n          <IconButton aria-label=\"Toggle autoplay\" size=\"sm\" variant=\"ghost\">\n            <Carousel.AutoplayIndicator\n              paused={<LuPause />}\n              play={<LuPlay />}\n            />\n          </IconButton>\n        </Carousel.AutoplayTrigger>\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import {\n  LuChevronLeft,\n  LuChevronRight,\n  LuClock,\n  LuPause,\n  LuPlay,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-dialog",
+      "content": "\"use client\"\nexport const CarouselWithDialog = () => {\n  return (\n    <Dialog.Root size=\"full\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\" size=\"sm\">\n          View Product Images\n        </Button>\n      </Dialog.Trigger>\n\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content bg=\"transparent\" shadow=\"none\">\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"lg\" color=\"white\" />\n            </Dialog.CloseTrigger>\n\n            <Dialog.Body\n              display=\"flex\"\n              alignItems=\"center\"\n              justifyContent=\"center\"\n              h=\"full\"\n              p={0}\n            >\n              <Carousel.Root slideCount={items.length} w=\"full\" h=\"full\">\n                <Carousel.Control justifyContent=\"center\" px=\"4\" gap=\"4\">\n                  <Carousel.PrevTrigger asChild>\n                    <IconButton size=\"xs\" variant=\"ghost\">\n                      <LuChevronLeft />\n                    </IconButton>\n                  </Carousel.PrevTrigger>\n\n                  <Carousel.ItemGroup width=\"full\">\n                    {items.map((src, index) => (\n                      <Carousel.Item key={index} index={index}>\n                        <AspectRatio ratio={16 / 9} maxH=\"72vh\" w=\"full\">\n                          <Image\n                            src={src}\n                            alt={`Product ${index + 1}`}\n                            objectFit=\"contain\"\n                          />\n                        </AspectRatio>\n                      </Carousel.Item>\n                    ))}\n                  </Carousel.ItemGroup>\n\n                  <Carousel.NextTrigger asChild>\n                    <IconButton size=\"xs\" variant=\"ghost\">\n                      <LuChevronRight />\n                    </IconButton>\n                  </Carousel.NextTrigger>\n                </Carousel.Control>\n\n                <CarouselThumbnails items={items} />\n              </Carousel.Root>\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n\nconst items = [\n  \"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80\",\n  \"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80\",\n  \"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80\",\n  \"https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80\",\n  \"https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80\",\n  \"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80\",\n]\n\nconst CarouselThumbnails = ({ items }: { items: string[] }) => {\n  const carousel = useCarouselContext()\n\n  return (\n    <HStack justify=\"center\">\n      <Carousel.ProgressText mr=\"4\" />\n      {items.map((src, index) => (\n        <AspectRatio\n          key={index}\n          ratio={1}\n          w=\"16\"\n          cursor=\"button\"\n          onClick={() => carousel.scrollTo(index)}\n        >\n          <Image\n            src={src}\n            alt={`Product ${index + 1}`}\n            w=\"100%\"\n            h=\"100%\"\n            objectFit=\"cover\"\n          />\n        </AspectRatio>\n      ))}\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import {\n  AspectRatio,\n  Button,\n  Carousel,\n  CloseButton,\n  Dialog,\n  HStack,\n  IconButton,\n  Image,\n  Portal,\n} from \"@chakra-ui/react\"",
+        "import { useCarouselContext } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-floating-arrow",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselWithFloatingArrow = () => {\n  return (\n    <Carousel.Root slideCount={items.length} maxW=\"xl\" mx=\"auto\" gap=\"4\">\n      <Carousel.Control justifyContent=\"center\" gap=\"4\" width=\"full\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"outline\">\n            <LuArrowLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.ItemGroup width=\"full\">\n          {items.map((_src, index) => (\n            <Carousel.Item key={index} index={index}>\n              <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n                {index + 1}\n              </Box>\n            </Carousel.Item>\n          ))}\n        </Carousel.ItemGroup>\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"outline\">\n            <LuArrowRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n\n      <Carousel.Indicators />\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuArrowLeft, LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-images",
+      "content": "export const CarouselWithImages = () => {\n  return (\n    <Carousel.Root\n      slideCount={items.length}\n      maxW=\"2xl\"\n      mx=\"auto\"\n      gap=\"4\"\n      position=\"relative\"\n      colorPalette=\"white\"\n    >\n      <Carousel.Control gap=\"4\" width=\"full\" position=\"relative\">\n        <Carousel.PrevTrigger asChild>\n          <ActionButton insetStart=\"4\">\n            <LuArrowLeft />\n          </ActionButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.ItemGroup width=\"full\">\n          {items.map((src, index) => (\n            <Carousel.Item key={index} index={index}>\n              <AspectRatio ratio={16 / 9} maxH=\"72vh\" w=\"full\">\n                <Image\n                  src={src}\n                  alt={`Product ${index + 1}`}\n                  objectFit=\"contain\"\n                />\n              </AspectRatio>\n            </Carousel.Item>\n          ))}\n        </Carousel.ItemGroup>\n\n        <Carousel.NextTrigger asChild>\n          <ActionButton insetEnd=\"4\">\n            <LuArrowRight />\n          </ActionButton>\n        </Carousel.NextTrigger>\n\n        <Box position=\"absolute\" bottom=\"6\" width=\"full\">\n          <Carousel.Indicators\n            transition=\"width 0.2s ease-in-out\"\n            transformOrigin=\"center\"\n            opacity=\"0.5\"\n            boxSize=\"2\"\n            _current={{ width: \"10\", bg: \"colorPalette.subtle\", opacity: 1 }}\n          />\n        </Box>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n\nconst ActionButton = forwardRef<HTMLButtonElement, IconButtonProps>(\n  function ActionButton(props, ref) {\n    return (\n      <IconButton\n        {...props}\n        ref={ref}\n        size=\"xs\"\n        variant=\"outline\"\n        rounded=\"full\"\n        position=\"absolute\"\n        zIndex=\"1\"\n        bg=\"bg\"\n      />\n    )\n  },\n)\n\nconst items = [\n  \"https://images.unsplash.com/photo-1656433031375-5042f5afe894?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2371\",\n  \"https://images.unsplash.com/photo-1587466412525-87497b34fc88?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2673\",\n  \"https://images.unsplash.com/photo-1629581688635-5d88654e5bdd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2831\",\n  \"https://images.unsplash.com/photo-1661030420948-862787de0056?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2370\",\n  \"https://images.unsplash.com/photo-1703505841379-2f863b201212?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2371\",\n  \"https://images.unsplash.com/photo-1607776905497-b4f788205f6a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2370\",\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import type { IconButtonProps } from \"@chakra-ui/react\"",
+        "import { AspectRatio, Box, Carousel, IconButton, Image } from \"@chakra-ui/react\"",
+        "import { forwardRef } from \"react\"",
+        "import { LuArrowLeft, LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-indicators",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselWithIndicators = () => {\n  return (\n    <Carousel.Root slideCount={items.length} maxW=\"md\" mx=\"auto\" gap=\"4\">\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.Indicators />\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "carousel-with-mouse-drag",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselWithMouseDrag = () => {\n  return (\n    <Carousel.Root slideCount={items.length} maxW=\"xl\" mx=\"auto\" allowMouseDrag>\n      <HStack textStyle=\"sm\" mb=\"4\">\n        <LuMouse /> <LuMoveHorizontal /> Click and drag to change slides\n      </HStack>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, HStack, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import {\n  LuChevronLeft,\n  LuChevronRight,\n  LuMouse,\n  LuMoveHorizontal,\n} from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-progress-text",
+      "content": "const items = Array.from({ length: 5 })\n\nexport const CarouselWithProgressText = () => {\n  return (\n    <Carousel.Root slideCount={items.length} slidesPerPage={1.6} spacing=\"32px\">\n      <Carousel.ItemGroup scrollMarginInline=\"12\">\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuArrowLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n        <Carousel.ProgressText />\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuArrowRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuArrowLeft, LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-store",
+      "content": "\"use client\"\nconst items = Array.from({ length: 5 })\n\nexport const CarouselWithStore = () => {\n  const carousel = useCarousel({ slideCount: items.length })\n\n  return (\n    <Carousel.RootProvider value={carousel} maxW=\"xl\" mx=\"auto\">\n      <Button variant=\"outline\" onClick={() => carousel.scrollTo(2)}>\n        Go to slide 3\n      </Button>\n      <Carousel.ItemGroup>\n        {items.map((_, index) => (\n          <Carousel.Item key={index} index={index}>\n            <Box w=\"100%\" h=\"300px\" rounded=\"lg\" fontSize=\"2.5rem\">\n              {index + 1}\n            </Box>\n          </Carousel.Item>\n        ))}\n      </Carousel.ItemGroup>\n\n      <Carousel.Control justifyContent=\"center\" gap=\"4\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.Indicators />\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"ghost\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n    </Carousel.RootProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Carousel, IconButton, useCarousel } from \"@chakra-ui/react\"",
+        "import { Box } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "carousel-with-thumbnails",
+      "content": "export const CarouselWithThumbnails = () => {\n  return (\n    <Carousel.Root slideCount={items.length} maxW=\"2xl\" gap=\"4\">\n      <Carousel.Control justifyContent=\"center\" gap=\"4\" width=\"full\">\n        <Carousel.PrevTrigger asChild>\n          <IconButton size=\"xs\" variant=\"outline\">\n            <LuChevronLeft />\n          </IconButton>\n        </Carousel.PrevTrigger>\n\n        <Carousel.ItemGroup width=\"full\">\n          {items.map((item, index) => (\n            <Carousel.Item key={index} index={index}>\n              <Image\n                aspectRatio=\"16/9\"\n                src={item.url}\n                alt={item.label}\n                w=\"100%\"\n                h=\"100%\"\n                objectFit=\"cover\"\n              />\n            </Carousel.Item>\n          ))}\n        </Carousel.ItemGroup>\n\n        <Carousel.NextTrigger asChild>\n          <IconButton size=\"xs\" variant=\"outline\">\n            <LuChevronRight />\n          </IconButton>\n        </Carousel.NextTrigger>\n      </Carousel.Control>\n\n      <Carousel.IndicatorGroup>\n        {items.map((item, index) => (\n          <Carousel.Indicator\n            key={index}\n            index={index}\n            unstyled\n            _current={{\n              outline: \"2px solid currentColor\",\n              outlineOffset: \"2px\",\n            }}\n          >\n            <Image\n              w=\"20\"\n              aspectRatio=\"16/9\"\n              src={item.url}\n              alt={item.label}\n              objectFit=\"cover\"\n            />\n          </Carousel.Indicator>\n        ))}\n      </Carousel.IndicatorGroup>\n    </Carousel.Root>\n  )\n}\n\nconst items = [\n  {\n    label: \"Mountain Landscape\",\n    url: \"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&h=900&q=80\",\n  },\n  {\n    label: \"Forest Path\",\n    url: \"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&h=900&q=80\",\n  },\n  {\n    label: \"Ocean Waves\",\n    url: \"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&h=900&q=80\",\n  },\n  {\n    label: \"Desert Dunes\",\n    url: \"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&h=900&q=80\",\n  },\n  {\n    label: \"Sunset Lake\",\n    url: \"https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=2070\",\n  },\n]\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Carousel, IconButton, Image } from \"@chakra-ui/react\"",
+        "import { LuChevronLeft, LuChevronRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { Carousel } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    }
+  ]
+}

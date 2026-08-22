@@ -33,3 +33,9 @@ export type {
   ListboxRootComponent as RootComponent,
   ListboxEmptyProps as EmptyProps,
 } from "./listbox"
+
+export type {
+  ListboxScrollToIndexDetails as ScrollToIndexDetails,
+  ListboxSelectionDetails as SelectionDetails,
+  ListboxSelectionMode as SelectionMode,
+} from "@ark-ui/react/listbox"

@@ -1,5 +1,40 @@
 # @chakra-ui/charts
 
+## 3.36.1
+
+## 3.36.0
+
+## 3.35.0
+
+## 3.34.0
+
+### Patch Changes
+
+- [`d5e7073`](https://github.com/chakra-ui/chakra-ui/commit/d5e7073c4bec28e90b22f35c117bb29ac2d724ff)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Upgrade
+  recharts** to 3.7.0
+  - **Prefer responsive prop** over `ResponsiveContainer` when using
+    `Chart.Root`. The `responsive` prop avoids React 19 compatibility issues
+    that `ResponsiveContainer` can trigger.
+  - **React 19 + immer fix**: If you see "lanes" is read-only errors, add
+    `immer: ">=11.0.1"` to your package manager's overrides.
+
+## 3.33.0
+
+## 3.32.0
+
+## 3.31.0
+
+## 3.30.0
+
+## 3.29.0
+
+## 3.28.1
+
+## 3.28.0
+
+## 3.27.1
+
 ## 3.27.0
 
 ## 3.26.0

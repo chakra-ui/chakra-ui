@@ -32,8 +32,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         bg: "colorPalette.muted/20",
       },
       _disabled: {
-        opacity: "0.8",
-        borderColor: "border.disabled",
+        opacity: "0.5",
       },
       _checked: {
         zIndex: "1",
@@ -213,9 +212,14 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         item: {
           borderWidth: "1px",
           _checked: {
-            boxShadow: "0 0 0 1px var(--shadow-color)",
+            boxShadow: "inset 0 0 0 1px var(--shadow-color)",
             boxShadowColor: "colorPalette.solid",
             borderColor: "colorPalette.solid",
+          },
+        },
+        itemControl: {
+          _disabled: {
+            bg: "unset",
           },
         },
         itemIndicator: {
@@ -235,6 +239,11 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
             borderColor: "colorPalette.solid",
+          },
+        },
+        itemControl: {
+          _disabled: {
+            bg: "unset",
           },
         },
         itemIndicator: {

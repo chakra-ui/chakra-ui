@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'chakra-ui'
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@v10
         name: "Close stale issues"
         with:
           repo-token: ${{ secrets.SAGE_PAT }}

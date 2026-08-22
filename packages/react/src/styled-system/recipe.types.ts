@@ -14,6 +14,12 @@ export type RecipeSelection<
       [K in keyof T]?: ConditionalValue<StringToBoolean<keyof T[K]> | undefined>
     }
 
+type RecipeDefaultVariants<
+  T extends RecipeVariantRecord | SlotRecipeVariantRecord<string>,
+> = keyof any extends keyof T
+  ? Record<string, ConditionalValue<any>>
+  : RecipeSelection<T>
+
 export type RecipeVariantFn<T extends RecipeVariantRecord> = (
   props?: RecipeSelection<T>,
 ) => SystemStyleObject
@@ -35,8 +41,9 @@ export type RecipeVariantMap<T extends RecipeVariantRecord> = {
  * Recipe / Standard
  * -----------------------------------------------------------------------------*/
 
-export interface RecipeRuntimeFn<T extends RecipeVariantRecord>
-  extends RecipeVariantFn<T> {
+export interface RecipeRuntimeFn<
+  T extends RecipeVariantRecord,
+> extends RecipeVariantFn<T> {
   __type: RecipeSelection<T>
   variantKeys: (keyof T)[]
   variantMap: RecipeVariantMap<T>
@@ -78,7 +85,7 @@ export interface RecipeDefinition<
    * The default variants of the recipe.
    */
   defaultVariants?:
-    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | (RecipeDefaultVariants<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
   /**
    * The styles to apply when a combination of variants is selected.
@@ -155,7 +162,7 @@ export interface SlotRecipeDefinition<
    * The default variants of the recipe.
    */
   defaultVariants?:
-    | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
+    | (RecipeDefaultVariants<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
   /**
    * The styles to apply when a combination of variants is selected.
@@ -189,7 +196,7 @@ export type SlotRecipeConfig<
  * -----------------------------------------------------------------------------*/
 
 export interface SystemRecipeFn<VP, VM> {
-  __type: Partial<VP>
+  __type: Partial<VP>;
   (props?: Partial<VP>): SystemStyleObject
   className: string
   variantMap: VM
@@ -200,7 +207,7 @@ export interface SystemRecipeFn<VP, VM> {
 }
 
 export interface SystemSlotRecipeFn<S extends string, VP, VM> {
-  __type: Partial<VP>
+  __type: Partial<VP>;
   (props?: Partial<VP>): Record<S, SystemStyleObject>
   classNameMap: Record<S, string>
   variantMap: VM

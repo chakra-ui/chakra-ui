@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, Slider, Stack } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -21,7 +21,7 @@ export const SliderWithHookForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
     defaultValues: { value: [40] },
   })
 

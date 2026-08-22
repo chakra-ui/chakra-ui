@@ -3,6 +3,7 @@ export {
   SelectContent as Content,
   SelectControl as Control,
   SelectIndicator as Indicator,
+  SelectList as List,
   SelectIndicatorGroup as IndicatorGroup,
   SelectItem as Item,
   SelectItemGroup as ItemGroup,
@@ -26,6 +27,7 @@ export type {
   SelectContentProps as ContentProps,
   SelectControlProps as ControlProps,
   SelectIndicatorGroupProps as IndicatorGroupProps,
+  SelectListProps as ListProps,
   SelectIndicatorProps as IndicatorProps,
   SelectItemGroupLabelProps as ItemGroupLabelProps,
   SelectItemGroupProps as ItemGroupProps,
@@ -43,3 +45,9 @@ export type {
   SelectValueTextProps as ValueTextProps,
   SelectRootComponent as RootComponent,
 } from "./select"
+
+export type {
+  SelectInteractOutsideEvent as InteractOutsideEvent,
+  SelectFocusOutsideEvent as FocusOutsideEvent,
+  SelectPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/select"

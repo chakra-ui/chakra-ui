@@ -62,11 +62,11 @@ export const TagVariantTable = () => {
                       >
                         <Tag.StartElement>
                           <Avatar.Root size="full">
-                            <Avatar.Image src="https://bit.ly/dan-abramov" />
-                            <Avatar.Fallback name="Dan Abramov" />
+                            <Avatar.Image src="https://i.pravatar.cc/150?img=6" />
+                            <Avatar.Fallback name="Sarah Miller" />
                           </Avatar.Root>
                         </Tag.StartElement>
-                        <Tag.Label>Dan Abramov</Tag.Label>
+                        <Tag.Label>Sarah Miller</Tag.Label>
                       </Tag.Root>
                     </Stack>
                   </td>

@@ -103,7 +103,6 @@ export const tableSlotRecipe = defineSlotRecipe({
       outline: {
         root: {
           boxShadow: "0 0 0 1px {colors.border}",
-          overflow: "hidden",
         },
         columnHeader: {
           borderBottomWidth: "1px",

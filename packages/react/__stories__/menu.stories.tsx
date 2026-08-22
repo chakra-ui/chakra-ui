@@ -13,6 +13,8 @@ export default {
 } satisfies Meta
 
 export { MenuBasic as Basic } from "compositions/examples/menu-basic"
+export { MenuControlled as Controlled } from "compositions/examples/menu-controlled"
+export { MenuWithStore as WithStore } from "compositions/examples/menu-with-store"
 export { MenuWithAnchorRect as AnchorRect } from "compositions/examples/menu-with-anchor-rect"
 export { MenuWithAvatar as WithAvatar } from "compositions/examples/menu-with-avatar"
 export { MenuWithCheckboxItems as CheckboxItems } from "compositions/examples/menu-with-checkbox-items"
@@ -30,4 +32,4 @@ export { MenuWithPlacement as Placement } from "compositions/examples/menu-with-
 export { MenuWithRadioItems as RadioItems } from "compositions/examples/menu-with-radio-items"
 export { MenuWithSubmenu as Submenu } from "compositions/examples/menu-with-submenu"
 export { MenuWithSubmenuDynamic as SubmenuDynamic } from "compositions/examples/menu-with-submenu-dynamic"
-export { MenuWithinDialog as WithDialog } from "compositions/examples/menu-within-dialog"
+export { MenuOpenFromDialog as OpenFromDialog } from "compositions/examples/menu-open-from-dialog"

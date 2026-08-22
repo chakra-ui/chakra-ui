@@ -1,12 +1,12 @@
 "use client"
 
 import { Button, Field, RatingGroup, Stack } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
 const formSchema = z.object({
-  rating: z.number({ required_error: "Rating is required" }).min(1).max(5),
+  rating: z.number({ message: "Rating is required" }).min(1).max(5),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -17,7 +17,7 @@ export const RatingWithHookForm = () => {
     formState: { errors },
     control,
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))

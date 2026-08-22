@@ -44,7 +44,7 @@ export const SparklineCompositionStock = () => {
         </Stack>
 
         <Chart.Root width="28" height="12" chart={chart}>
-          <AreaChart data={chart.data}>
+          <AreaChart data={chart.data} responsive>
             <defs>
               <Chart.Gradient
                 id="sp-gradient"

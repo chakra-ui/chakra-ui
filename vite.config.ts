@@ -19,5 +19,9 @@ export default defineConfig({
     coverage: {
       include: ["packages"],
     },
+    benchmark: {
+      include: ["**/*.bench.{ts,tsx}"],
+      exclude: ["node_modules", "dist"],
+    },
   },
 })

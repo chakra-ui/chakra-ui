@@ -23,4 +23,5 @@ export { RadioCardWithSizes as Sizes } from "compositions/examples/radio-card-wi
 export { RadioCardWithVariants as Variants } from "compositions/examples/radio-card-with-variants"
 export { RadioCardWithoutIndicator as WithoutIndicator } from "compositions/examples/radio-card-without-indicator"
 export { RadioCardWithoutIndicatorVertical as WithoutIndicatorVertical } from "compositions/examples/radio-card-without-indicator-vertical"
+export { RadioCardWithResponsiveOrientation as ResponsiveOrientation } from "compositions/examples/radio-card-with-responsive-orientation"
 export { RadioCardWithDescription as Description } from "compositions/examples/radio-card-with-description"

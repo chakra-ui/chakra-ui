@@ -1,5 +1,6 @@
-import { Badge, BadgeProps, HStack, Stack, StackProps } from "@chakra-ui/react"
+import { HStack, Stack, StackProps } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
+import { LuArrowUpRight } from "react-icons/lu"
 import { StatusBadge } from "./status-badge"
 
 interface SideNavItem {
@@ -58,6 +59,7 @@ export const SideNav = (props: SideNavProps) => {
                 aria-current={item.url === currentUrl ? "page" : undefined}
               >
                 {item.title}
+                <LuArrowUpRight />
                 {item.status && <StatusBadge>{item.status}</StatusBadge>}
               </a>
             ) : (

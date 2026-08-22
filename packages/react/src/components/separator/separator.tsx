@@ -15,11 +15,12 @@ const { useRecipeResult, PropsProvider } = createRecipeContext({
 })
 
 export interface SeparatorBaseProps
-  extends RecipeProps<"separator">,
-    UnstyledProp {}
+  extends RecipeProps<"separator">, UnstyledProp {}
 
-export interface SeparatorProps
-  extends HTMLChakraProps<"span", SeparatorBaseProps> {}
+export interface SeparatorProps extends HTMLChakraProps<
+  "span",
+  SeparatorBaseProps
+> {}
 
 export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
   function Separator(props, ref) {
@@ -37,6 +38,8 @@ export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
     )
   },
 )
+
+Separator.displayName = "Separator"
 
 export const SeparatorPropsProvider =
   PropsProvider as React.Provider<SeparatorBaseProps>

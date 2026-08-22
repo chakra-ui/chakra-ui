@@ -6,6 +6,8 @@ export const tabsSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       "--tabs-trigger-radius": "radii.l2",
+      "--tabs-indicator-shadow": "shadows.xs",
+      "--tabs-indicator-bg": "colors.bg",
       position: "relative",
       _horizontal: {
         display: "block",
@@ -18,8 +20,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       position: "relative",
       isolation: "isolate",
-      "--tabs-indicator-shadow": "shadows.xs",
-      "--tabs-indicator-bg": "colors.bg",
       minH: "var(--tabs-height)",
       _horizontal: {
         flexDirection: "row",
@@ -62,7 +62,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
     indicator: {
       width: "var(--width)",
       height: "var(--height)",
-      borderRadius: "var(--tabs-indicator-radius)",
+      borderRadius: "var(--tabs-trigger-radius)",
       bg: "var(--tabs-indicator-bg)",
       shadow: "var(--tabs-indicator-shadow)",
       zIndex: -1,
@@ -263,7 +263,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           "&[data-selected][data-ssr]": {
             bg: "var(--tabs-indicator-bg)",
             shadow: "var(--tabs-indicator-shadow)",
-            borderRadius: "var(--tabs-indicator-radius)",
+            borderRadius: "var(--tabs-trigger-radius)",
           },
         },
       },

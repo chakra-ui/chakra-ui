@@ -15,3 +15,4 @@ export default {
 export { ActionBarBasic as Basic } from "compositions/examples/action-bar-basic"
 export { ActionBarWithCloseTrigger as CloseTrigger } from "compositions/examples/action-bar-with-close-trigger"
 export { ActionBarWithDialog as WithDialog } from "compositions/examples/action-bar-with-dialog"
+export { ActionBarPlacement as Placement } from "compositions/examples/action-bar-placement"

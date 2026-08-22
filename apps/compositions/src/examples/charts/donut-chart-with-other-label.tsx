@@ -1,9 +1,10 @@
 "use client"
 
 import { Chart, useChart } from "@chakra-ui/charts"
-import { Cell, Pie, PieChart, Tooltip } from "recharts"
+import { Pie, PieChart, Sector, Tooltip } from "recharts"
+import type { PieLabelRenderProps } from "recharts"
 
-interface DataItem {
+interface DataItem extends Record<string, unknown> {
   name: string
   value: number
   color: string
@@ -40,14 +41,14 @@ const data = rawData.reduce<DataItem[]>((acc, item) => {
 export const DonutChartWithOtherLabel = () => {
   const chart = useChart({ data: data })
 
-  const label = (entry: DataItem) => {
-    const percent = chart.getValuePercent("value", entry.value)
+  const label = (entry: PieLabelRenderProps) => {
+    const percent = chart.getValuePercent("value", entry.value as number)
     return `${entry.name} (${percent.toFixed(1)}%)`
   }
 
   return (
     <Chart.Root aspectRatio="square" maxW="sm" chart={chart} mx="auto">
-      <PieChart>
+      <PieChart responsive>
         <Tooltip
           cursor={false}
           animationDuration={100}
@@ -62,11 +63,10 @@ export const DonutChartWithOtherLabel = () => {
           nameKey={chart.key("name")}
           label={label}
           labelLine={{ strokeWidth: 1 }}
-        >
-          {chart.data.map((item) => (
-            <Cell key={item.name} fill={chart.color(item.color)} />
-          ))}
-        </Pie>
+          shape={(props) => (
+            <Sector {...props} fill={chart.color(props.payload!.color)} />
+          )}
+        />
       </PieChart>
     </Chart.Root>
   )

@@ -1,0 +1,393 @@
+---
+title: Rich Text Editor
+description: Used to create and format text content visually, built on Tiptap.
+links:
+  storybook: rich-text-editor-tiptap--basic
+  tiptap: https://tiptap.dev/
+---
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-basic" />
+
+## Getting Started
+
+::::steps
+
+### Add the snippet
+
+The rich text editor is exposed as a snippet that can be added to your project.
+
+```bash
+npx @chakra-ui/cli snippet add rich-text-editor
+```
+
+### Tiptap StarterKit
+
+To get started with the core editor features, install the
+[Tiptap StarterKit](https://tiptap.dev/docs/editor/extensions/functionality/starterkit).
+
+```bash
+npm i @tiptap/starter-kit
+```
+
+### Additional extensions
+
+Tiptap provides a rich set of additional extensions for adding additional
+features to the editor. The most commonly used additional extensions you can
+install are:
+
+- Subscript: `@tiptap/extension-subscript`
+- Superscript: `@tiptap/extension-superscript`
+- Text Align: `@tiptap/extension-text-align`
+- Text Style: `@tiptap/extension-text-style`
+
+```bash
+npm i @tiptap/extension-subscript @tiptap/extension-superscript @tiptap/extension-text-align @tiptap/extension-text-style
+```
+
+::::
+
+## Usage
+
+```tsx
+import { Control, RichTextEditor } from "@/components/ui/rich-text-editor"
+import { useEditor } from "@tiptap/react"
+```
+
+```tsx
+<RichTextEditor.Root editor={editor}>
+  <RichTextEditor.Toolbar>
+    <RichTextEditor.ControlGroup>
+      <Control.Bold />
+      <Control.Italic />
+      <Control.Underline />
+    </RichTextEditor.ControlGroup>
+  </RichTextEditor.Toolbar>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+## Examples
+
+### Toggle Edit Mode
+
+In the `useEditor` hook, assign the `editable` property to control the editor's
+mode. When set to `false`, the editor will be in view-only mode.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mode" />
+
+### Controlled
+
+In the `useEditor` hook, set the `content` and `onUpdate` properties to control
+the editor's content programmatically.
+
+```tsx
+const [content, setContent] = useState("<p>Edit here...</p>")
+
+const editor = useEditor({
+  content,
+  onUpdate({ editor }) {
+    setContent(editor.getHTML())
+  },
+})
+```
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-controlled" />
+
+### Placeholder
+
+To add a placeholder to the editor, use the
+[@tiptap/extension-placeholder](https://www.npmjs.com/package/@tiptap/extension-placeholder)
+extension and configure the `placeholder` property.
+
+```tsx
+const editor = useEditor({
+  extensions: [
+    // ... other extensions
+    Placeholder.configure({
+      placeholder: "Start typing your content here...",
+    }),
+  ],
+})
+```
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-placeholder" />
+
+### Character Count
+
+To display live character and word counts, use the
+[@tiptap/extensions/character-count](https://www.npmjs.com/package/@tiptap/extensions/character-count)
+extension. This is especially useful for editors with limits or word-count
+requirements.
+
+```tsx
+const editor = useEditor({
+  extensions: [
+    // ... other extensions
+    CharacterCount.configure({
+      limit: 1000,
+      mode: "textSize",
+    }),
+  ],
+})
+```
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-character-count" />
+
+### Live Preview
+
+Use the editor's `getHTML()` method to retrieve content and display it in a
+read-only panel.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-preview" />
+
+### Text Highlight
+
+To add text highlighting, use the
+[@tiptap/extension-highlight](https://www.npmjs.com/package/@tiptap/extension-highlight)
+extension and configure the `multicolor` property. This allows users to pick or
+cycle through highlight colors via the `<Control.Highlight />` component.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-highlight" />
+
+### Bubble Menu
+
+Use the `BubbleMenu` component from Tiptap with any existing controls. The menu
+will appear above any text selection, providing contextual formatting options.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-bubble-menu" />
+
+### Autosave
+
+Implement an autosave feature by using the editor's `onUpdate` method. This
+allows you to handle content changes and save them to a server, local storage,
+or any other persistence layer.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-autosave" />
+
+### Task List
+
+To add interactive task lists, use the
+[@tiptap/extension-task-item](https://www.npmjs.com/package/@tiptap/extension-task-item)
+and
+[@tiptap/extension-task-list](https://www.npmjs.com/package/@tiptap/extension-task-list)
+extensions and configure the `nested` property.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-task" />
+
+### Code Blocks
+
+Add syntax-highlighted code blocks using
+[@tiptap/extension-code-block-lowlight](https://www.npmjs.com/package/@tiptap/extension-code-block-lowlight)
+and `lowlight` to highlight your favorite languages.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-code" />
+
+### Drag Handle
+
+To add drag-and-drop reordering, use the
+[@tiptap/extension-drag-handle-react](https://www.npmjs.com/package/@tiptap/extension-drag-handle-react).
+This extension enables draggable handles for each block, letting users easily
+reorder content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-drag-handle" />
+
+### Images
+
+To add images, use the
+[@tiptap/extension-image](https://www.npmjs.com/package/@tiptap/extension-image)
+extension. This lets you embed image URLs, upload files, or integrate a custom
+media service.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-image" />
+
+### Hashtags
+
+To support hashtags in the editor, create a custom
+[Tiptap node](https://tiptap.dev/docs/editor/extensions/nodes). This allows
+hashtags to be parsed, rendered, and handled as structured inline content.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-hashtags" />
+
+### Mentions
+
+Here's an example of how to add mentions to the editor by creating a custom
+Tiptap extension that triggers on `@` and renders a suggestion menu using the
+provided menu components.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-mentions" />
+
+### Emojis
+
+Enhance your editor with [emoji suggestions](#emoji-menu) by using Tiptap's
+[Emoji extension](https://www.npmjs.com/package/@tiptap/extension-emoji). Emojis
+can be triggered by typing `:` or using common emoticons like `:)` or `<3`.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-emoji" />
+
+### Slash Commands
+
+Enable slash commands in your editor by creating a Tiptap extension that
+triggers on `/`.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-with-slash-commands" />
+
+### Composition
+
+A real-world Google Docs–like layout demonstrating a full-page editor with a
+collapsible document outline, sticky toolbar, floating link menus, and
+integrated controls for headings, lists, links, images, and text formatting.
+
+<ExampleTabs name="rich-text-editor/rich-text-editor-composition" />
+
+## Guides
+
+### Adding controls
+
+`RichTextEditor` ships with a set of built-in controls that can be composed
+inside `RichTextEditor.ControlGroup`.
+
+```jsx
+import { Control } from "@/components/ui/rich-text-editor"
+```
+
+```jsx
+<RichTextEditor.ControlGroup>
+  <Control.Bold />
+  <Control.Italic />
+  <Control.Strike />
+</RichTextEditor.ControlGroup>
+```
+
+### Customizing Content Padding
+
+The editor uses CSS custom properties for content padding:
+
+```tsx
+<RichTextEditor.Root
+  editor={editor}
+  css={{
+    "--content-padding-x": "spacing.8",
+    "--content-padding-y": "spacing.6",
+    "--content-min-height": "sizes.96",
+  }}
+>
+  <RichTextEditor.Content />
+</RichTextEditor.Root>
+```
+
+### Custom Controls
+
+The `RichTextEditor` provides three factory functions for creating custom
+controls that integrate seamlessly with the editor: `createBooleanControl`,
+`createSelectControl`, and `createSwatchControl`.
+
+**Boolean Controls**
+
+Boolean controls toggle editor states (bold, italic, etc.) and are the most
+common control type:
+
+```tsx
+import { createBooleanControl } from "@/components/ui/rich-text-editor"
+import { LuSparkles } from "react-icons/lu"
+
+export const CustomHighlight = createBooleanControl({
+  label: "Highlight Important",
+  icon: LuSparkles,
+  command: (editor) => {
+    editor
+      .chain()
+      .focus()
+      .toggleMark("textStyle", {
+        backgroundColor: "#fef08a",
+        fontWeight: "bold"
+      })
+      .run()
+  },
+  getVariant: (editor) => {
+    const attrs = editor.getAttributes("textStyle")
+    return attrs.backgroundColor === "#fef08a" ? "subtle" : "ghost"
+  },
+  isDisabled: (editor) => !editor.can().toggleMark("textStyle")
+})
+
+// Use it in your toolbar
+<RichTextEditor.ControlGroup>
+  <CustomHighlight />
+</RichTextEditor.ControlGroup>
+```
+
+**Select Controls**
+
+Select controls provide dropdown menus for choosing between multiple options:
+
+```tsx
+import { createSelectControl } from "@/components/ui/rich-text-editor"
+
+export const LineHeight = createSelectControl({
+  label: "Line Height",
+  width: "100px",
+  placeholder: "Normal",
+  options: [
+    { value: "normal", label: "Normal" },
+    { value: "1.5", label: "1.5" },
+    { value: "2", label: "Double" },
+    { value: "2.5", label: "2.5" },
+  ],
+  getValue: (editor) => {
+    return editor.getAttributes("textStyle")?.lineHeight || "normal"
+  },
+  command: (editor, value) => {
+    if (value === "normal") {
+      editor.chain().focus().unsetMark("textStyle").run()
+    } else {
+      editor.chain().focus().setMark("textStyle", { lineHeight: value }).run()
+    }
+  },
+  renderValue: (value, option) => {
+    return <Box fontWeight="medium">{option?.label || "Normal"}</Box>
+  },
+})
+```
+
+**Swatch Controls**
+
+Swatch controls provide color picker interfaces with predefined color swatches:
+
+```tsx
+import { createSwatchControl } from "@/components/ui/rich-text-editor"
+import { LuPaintbrush } from "react-icons/lu"
+
+export const BackgroundColor = createSwatchControl({
+  label: "Background Color",
+  icon: LuPaintbrush,
+  swatches: [
+    { value: "#fef3c7", color: "#fef3c7", label: "Yellow" },
+    { value: "#dbeafe", color: "#dbeafe", label: "Blue" },
+    { value: "#dcfce7", color: "#dcfce7", label: "Green" },
+    { value: "#fce7f3", color: "#fce7f3", label: "Pink" },
+  ],
+  getValue: (editor) => {
+    return editor.getAttributes("textStyle")?.backgroundColor || ""
+  },
+  command: (editor, color) => {
+    editor
+      .chain()
+      .focus()
+      .setMark("textStyle", { backgroundColor: color })
+      .run()
+  },
+  getProps: (editor) => ({
+    variant: editor.getAttributes("textStyle")?.backgroundColor
+      ? "subtle"
+      : "ghost",
+  }),
+  showRemove: true,
+  onRemove: (editor) => {
+    editor
+      .chain()
+      .focus()
+      .updateAttributes("textStyle", { backgroundColor: null })
+      .run()
+  },
+})
+```

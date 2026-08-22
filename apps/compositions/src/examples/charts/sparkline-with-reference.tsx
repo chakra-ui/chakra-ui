@@ -20,7 +20,7 @@ export const SparklineWithReference = () => {
 
   return (
     <Chart.Root maxW="200px" chart={chart}>
-      <LineChart data={chart.data}>
+      <LineChart data={chart.data} responsive>
         {chart.series.map((item) => (
           <Line
             key={item.name}

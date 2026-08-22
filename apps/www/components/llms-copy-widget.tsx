@@ -30,7 +30,11 @@ export const LLMSCopyWidget = (props: { data: Docs }) => {
         mx="-1px"
         zIndex="1"
       />
-      <ActionMenu data={data} borderStartRadius="0">
+      <ActionMenu
+        data={data}
+        borderStartRadius="0"
+        aria-label="More Markdown options"
+      >
         <LuChevronDown />
       </ActionMenu>
     </ButtonGroup>
@@ -42,7 +46,7 @@ const CopyMarkdownButton = (props: ButtonProps & { data: Docs }) => {
   const clipboard = useClipboard({ value: getLlmContent(data), timeout: 1000 })
   return (
     <Button {...rest} onClick={clipboard.copy}>
-      {clipboard.copied ? <LuCheck /> : <BsMarkdown />} Copy Markdown
+      {clipboard.copied ? <LuCheck /> : <BsMarkdown />} Copy Page
     </Button>
   )
 }

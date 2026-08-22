@@ -25,14 +25,13 @@ export { useListboxStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxRootProviderBaseProps<T extends CollectionItem = any>
-  extends Assign<
-      ArkListbox.RootProviderBaseProps<T>,
-      SlotRecipeProps<"listbox">
-    >,
+  extends
+    Assign<ArkListbox.RootProviderBaseProps<T>, SlotRecipeProps<"listbox">>,
     UnstyledProp {}
 
-export interface ListboxRootProviderProps<T extends CollectionItem = any>
-  extends HTMLChakraProps<"div", ListboxRootProviderBaseProps<T>> {}
+export interface ListboxRootProviderProps<
+  T extends CollectionItem = any,
+> extends HTMLChakraProps<"div", ListboxRootProviderBaseProps<T>> {}
 
 interface ListboxRootProviderComponent {
   <T extends CollectionItem>(props: ListboxRootProviderProps<T>): JSX.Element
@@ -48,11 +47,13 @@ export const ListboxRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxRootBaseProps<T extends CollectionItem = any>
-  extends Assign<ArkListbox.RootBaseProps<T>, SlotRecipeProps<"listbox">>,
+  extends
+    Assign<ArkListbox.RootBaseProps<T>, SlotRecipeProps<"listbox">>,
     UnstyledProp {}
 
-export interface ListboxRootProps<T extends CollectionItem = any>
-  extends HTMLChakraProps<"div", ListboxRootBaseProps<T>> {}
+export interface ListboxRootProps<
+  T extends CollectionItem = any,
+> extends HTMLChakraProps<"div", ListboxRootBaseProps<T>> {}
 
 export interface ListboxRootComponent {
   <T extends CollectionItem>(
@@ -76,8 +77,7 @@ export const ListboxPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxInputProps
-  extends HTMLChakraProps<"input", ArkListbox.InputBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"input", ArkListbox.InputBaseProps>, UnstyledProp {}
 
 export const ListboxInput = withContext<HTMLInputElement, ListboxInputProps>(
   ArkListbox.Input,
@@ -88,8 +88,7 @@ export const ListboxInput = withContext<HTMLInputElement, ListboxInputProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxContentProps
-  extends HTMLChakraProps<"div", ArkListbox.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkListbox.ContentBaseProps>, UnstyledProp {}
 
 export const ListboxContent = withContext<HTMLDivElement, ListboxContentProps>(
   ArkListbox.Content,
@@ -100,7 +99,8 @@ export const ListboxContent = withContext<HTMLDivElement, ListboxContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxValueTextProps
-  extends HTMLChakraProps<"span", ArkListbox.ValueTextBaseProps>,
+  extends
+    HTMLChakraProps<"span", ArkListbox.ValueTextBaseProps>,
     UnstyledProp {}
 
 export const ListboxValueText = withContext<
@@ -111,8 +111,7 @@ export const ListboxValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemGroupProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemGroupBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkListbox.ItemGroupBaseProps>, UnstyledProp {}
 
 export const ListboxItemGroup = withContext<
   HTMLDivElement,
@@ -122,7 +121,8 @@ export const ListboxItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemGroupLabelProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemGroupLabelBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkListbox.ItemGroupLabelBaseProps>,
     UnstyledProp {}
 
 export const ListboxItemGroupLabel = withContext<
@@ -133,8 +133,7 @@ export const ListboxItemGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkListbox.ItemBaseProps>, UnstyledProp {}
 
 export const ListboxItem = withContext<HTMLDivElement, ListboxItemProps>(
   ArkListbox.Item,
@@ -145,8 +144,7 @@ export const ListboxItem = withContext<HTMLDivElement, ListboxItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemTextProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemTextBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkListbox.ItemTextBaseProps>, UnstyledProp {}
 
 export const ListboxItemText = withContext<
   HTMLDivElement,
@@ -156,7 +154,8 @@ export const ListboxItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemIndicatorBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkListbox.ItemIndicatorBaseProps>,
     UnstyledProp {}
 
 export const ListboxItemIndicator = withContext<
@@ -172,8 +171,7 @@ export const ListboxItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxLabelProps
-  extends HTMLChakraProps<"label", ArkListbox.LabelBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"label", ArkListbox.LabelBaseProps>, UnstyledProp {}
 
 export const ListboxLabel = withContext<HTMLLabelElement, ListboxLabelProps>(
   ArkListbox.Label,
@@ -184,8 +182,7 @@ export const ListboxLabel = withContext<HTMLLabelElement, ListboxLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxEmptyProps
-  extends HTMLChakraProps<"div", ArkListbox.EmptyBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkListbox.EmptyBaseProps>, UnstyledProp {}
 
 export const ListboxEmpty = withContext<HTMLDivElement, ListboxEmptyProps>(
   ArkListbox.Empty,
@@ -198,8 +195,10 @@ export const ListboxEmpty = withContext<HTMLDivElement, ListboxEmptyProps>(
 export const ListboxContext = ArkListbox.Context
 export const ListboxItemContext = ArkListbox.ItemContext
 
-export interface ListboxHighlightChangeDetails<T extends CollectionItem = any>
-  extends ArkListbox.HighlightChangeDetails<T> {}
+export interface ListboxHighlightChangeDetails<
+  T extends CollectionItem = any,
+> extends ArkListbox.HighlightChangeDetails<T> {}
 
-export interface ListboxValueChangeDetails<T extends CollectionItem = any>
-  extends ArkListbox.ValueChangeDetails<T> {}
+export interface ListboxValueChangeDetails<
+  T extends CollectionItem = any,
+> extends ArkListbox.ValueChangeDetails<T> {}

@@ -30,19 +30,27 @@ Center can be used to create frames around icons or numbers.
 
 ### Center with Inline
 
-Use the `inline` to change the display to `inline-flex`.
+Use the `inline` prop to make `Center` behave like an inline element
+(`display: inline-flex`) instead of a block-level element (`display: flex`).
+This makes `Center` only take up as much width as its content needs, allowing it
+to fit inside links, buttons, or other inline contexts without breaking the
+layout.
 
 <ExampleTabs name="center-with-inline" />
 
 ### Square
 
-`Square` centers its child given the `size` (width and height).
+`Square` centers its child within a fixed-size container of equal width and
+height. It accepts a `size` prop that sets both width and height to the same
+value.
 
 <ExampleTabs name="center-with-square" />
 
 ### Circle
 
-`Circle` centers its child given the `size` and creates a circle around it.
+`Circle` extends `Square` by adding `borderRadius="9999px"` to create a perfect
+circle. Like `Square`, it accepts a `size` prop that sets both width and height
+to the same value.
 
 <ExampleTabs name="center-with-circle" />
 
@@ -50,12 +58,15 @@ Use the `inline` to change the display to `inline-flex`.
 
 ### Center
 
-<PropTable component="Center" />
+<PropTable component="Center" part="Center" />
 
 ### Square
 
-<PropTable component="Center" part="Square" />
+<PropTable component="Square" part="Square" />
 
 ### Circle
 
-<PropTable component="Center" part="Circle" />
+`Circle` extends `Square` and accepts all the same props. The only difference is
+that `Circle` applies `borderRadius="9999px"`.
+
+<PropTable component="Circle" part="Circle" />

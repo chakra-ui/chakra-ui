@@ -317,7 +317,10 @@ export type AccordionVariantMap = {
 
 export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger" | "closeTrigger"
 
-export interface ActionBarVariant {}
+export interface ActionBarVariant {
+  /** @default "bottom" */
+  placement?: "bottom" | "bottom-start" | "bottom-end" | undefined
+}
 
 export type ActionBarVariantProps = {
   [K in keyof ActionBarVariant]?: ConditionalValue<ActionBarVariant[K]> | undefined
@@ -429,6 +432,32 @@ export type CardVariantMap = {
   [K in keyof CardVariant]: Array<CardVariant[K]>
 }
 
+// Carousel
+
+export type CarouselSlot =
+  | "root"
+  | "itemGroup"
+  | "item"
+  | "control"
+  | "nextTrigger"
+  | "prevTrigger"
+  | "indicatorGroup"
+  | "indicator"
+  | "autoplayTrigger"
+  | "progressText"
+  | "progressText"
+  | "autoplayIndicator"
+
+export interface CarouselVariant {}
+
+export type CarouselVariantProps = {
+  [K in keyof CarouselVariant]?: ConditionalValue<CarouselVariant[K]> | undefined
+}
+
+export type CarouselVariantMap = {
+  [K in keyof CarouselVariant]: Array<CarouselVariant[K]>
+}
+
 // Checkbox
 
 export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
@@ -536,6 +565,72 @@ export type DataListVariantProps = {
 
 export type DataListVariantMap = {
   [K in keyof DataListVariant]: Array<DataListVariant[K]>
+}
+
+// DateInput
+
+export type DateInputSlot = "root" | "label" | "control" | "segmentGroup" | "segment" | "hiddenInput"
+
+export interface DateInputVariant {
+  /** @default "md" */
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | undefined
+  /** @default "outline" */
+  variant?: "outline" | "subtle" | "flushed" | undefined
+}
+
+export type DateInputVariantProps = {
+  [K in keyof DateInputVariant]?: ConditionalValue<DateInputVariant[K]> | undefined
+}
+
+export type DateInputVariantMap = {
+  [K in keyof DateInputVariant]: Array<DateInputVariant[K]>
+}
+
+// DatePicker
+
+export type DatePickerSlot =
+  | "clearTrigger"
+  | "content"
+  | "control"
+  | "input"
+  | "label"
+  | "monthSelect"
+  | "nextTrigger"
+  | "positioner"
+  | "presetTrigger"
+  | "prevTrigger"
+  | "rangeText"
+  | "root"
+  | "table"
+  | "tableBody"
+  | "tableCell"
+  | "tableCellTrigger"
+  | "tableHead"
+  | "tableHeader"
+  | "tableRow"
+  | "trigger"
+  | "view"
+  | "viewControl"
+  | "viewTrigger"
+  | "yearSelect"
+  | "view"
+  | "valueText"
+  | "indicatorGroup"
+
+export interface DatePickerVariant {
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
+  hideOutsideDays?: boolean | undefined
+  /** @default "outline" */
+  variant?: "outline" | "subtle" | "flushed" | undefined
+}
+
+export type DatePickerVariantProps = {
+  [K in keyof DatePickerVariant]?: ConditionalValue<DatePickerVariant[K]> | undefined
+}
+
+export type DatePickerVariantMap = {
+  [K in keyof DatePickerVariant]: Array<DatePickerVariant[K]>
 }
 
 // Dialog
@@ -803,7 +898,7 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain" | undefined
+  variant?: "outline" | "subtle" | "plain" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined
 }
@@ -1053,7 +1148,7 @@ export type SelectSlot =
 
 export interface SelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | undefined
+  variant?: "outline" | "subtle" | "ghost" | undefined
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg" | undefined
 }
@@ -1116,6 +1211,7 @@ export type SliderSlot =
   | "marker"
   | "draggingIndicator"
   | "markerIndicator"
+  | "markerLabel"
 
 export interface SliderVariant {
   /** @default "md" */
@@ -1132,6 +1228,20 @@ export type SliderVariantProps = {
 
 export type SliderVariantMap = {
   [K in keyof SliderVariant]: Array<SliderVariant[K]>
+}
+
+// Splitter
+
+export type SplitterSlot = "root" | "panel" | "resizeTrigger" | "resizeTriggerIndicator" | "resizeTriggerSeparator" | "resizeTriggerIndicator"
+
+export interface SplitterVariant {}
+
+export type SplitterVariantProps = {
+  [K in keyof SplitterVariant]?: ConditionalValue<SplitterVariant[K]> | undefined
+}
+
+export type SplitterVariantMap = {
+  [K in keyof SplitterVariant]: Array<SplitterVariant[K]>
 }
 
 // Stat
@@ -1264,6 +1374,25 @@ export type TagVariantProps = {
 
 export type TagVariantMap = {
   [K in keyof TagVariant]: Array<TagVariant[K]>
+}
+
+// TagsInput
+
+export type TagsInputSlot = "root" | "label" | "control" | "input" | "clearTrigger" | "item" | "itemPreview" | "itemInput" | "itemText" | "itemDeleteTrigger"
+
+export interface TagsInputVariant {
+  /** @default "md" */
+  size?: "xs" | "sm" | "md" | "lg" | undefined
+  /** @default "outline" */
+  variant?: "outline" | "subtle" | "flushed" | undefined
+}
+
+export type TagsInputVariantProps = {
+  [K in keyof TagsInputVariant]?: ConditionalValue<TagsInputVariant[K]> | undefined
+}
+
+export type TagsInputVariantMap = {
+  [K in keyof TagsInputVariant]: Array<TagsInputVariant[K]>
 }
 
 // Toast
@@ -1409,6 +1538,7 @@ export type TreeViewSlot =
   | "itemText"
   | "label"
   | "nodeCheckbox"
+  | "nodeRenameInput"
   | "root"
   | "tree"
 
@@ -1428,6 +1558,45 @@ export type TreeViewVariantMap = {
   [K in keyof TreeViewVariant]: Array<TreeViewVariant[K]>
 }
 
+// Marquee
+
+export type MarqueeSlot = "root" | "viewport" | "content" | "edge" | "item"
+
+export interface MarqueeVariant {}
+
+export type MarqueeVariantProps = {
+  [K in keyof MarqueeVariant]?: ConditionalValue<MarqueeVariant[K]> | undefined
+}
+
+export type MarqueeVariantMap = {
+  [K in keyof MarqueeVariant]: Array<MarqueeVariant[K]>
+}
+
+// FloatingPanel
+
+export type FloatingPanelSlot =
+  | "trigger"
+  | "positioner"
+  | "content"
+  | "header"
+  | "body"
+  | "title"
+  | "resizeTrigger"
+  | "dragTrigger"
+  | "stageTrigger"
+  | "closeTrigger"
+  | "control"
+
+export interface FloatingPanelVariant {}
+
+export type FloatingPanelVariantProps = {
+  [K in keyof FloatingPanelVariant]?: ConditionalValue<FloatingPanelVariant[K]> | undefined
+}
+
+export type FloatingPanelVariantMap = {
+  [K in keyof FloatingPanelVariant]: Array<FloatingPanelVariant[K]>
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps, AccordionVariantMap>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps, ActionBarVariantMap>
@@ -1436,11 +1605,14 @@ export interface ConfigSlotRecipes {
   blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps, BlockquoteVariantMap>
   breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps, BreadcrumbVariantMap>
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps, CardVariantMap>
+  carousel: SystemSlotRecipeFn<CarouselSlot, CarouselVariantProps, CarouselVariantMap>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps, CheckboxVariantMap>
   checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps, CheckboxCardVariantMap>
   codeBlock: SystemSlotRecipeFn<CodeBlockSlot, CodeBlockVariantProps, CodeBlockVariantMap>
   collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps, CollapsibleVariantMap>
   dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps, DataListVariantMap>
+  dateInput: SystemSlotRecipeFn<DateInputSlot, DateInputVariantProps, DateInputVariantMap>
+  datePicker: SystemSlotRecipeFn<DatePickerSlot, DatePickerVariantProps, DatePickerVariantMap>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps, DialogVariantMap>
   drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps, DrawerVariantMap>
   editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps, EditableVariantMap>
@@ -1466,12 +1638,14 @@ export interface ConfigSlotRecipes {
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
+  splitter: SystemSlotRecipeFn<SplitterSlot, SplitterVariantProps, SplitterVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
   steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps, StepsVariantMap>
   switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps, SwitchVariantMap>
   table: SystemSlotRecipeFn<TableSlot, TableVariantProps, TableVariantMap>
   tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps, TabsVariantMap>
   tag: SystemSlotRecipeFn<TagSlot, TagVariantProps, TagVariantMap>
+  tagsInput: SystemSlotRecipeFn<TagsInputSlot, TagsInputVariantProps, TagsInputVariantMap>
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps, ToastVariantMap>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps, TooltipVariantMap>
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps, StatusVariantMap>
@@ -1479,6 +1653,8 @@ export interface ConfigSlotRecipes {
   colorPicker: SystemSlotRecipeFn<ColorPickerSlot, ColorPickerVariantProps, ColorPickerVariantMap>
   qrCode: SystemSlotRecipeFn<QrCodeSlot, QrCodeVariantProps, QrCodeVariantMap>
   treeView: SystemSlotRecipeFn<TreeViewSlot, TreeViewVariantProps, TreeViewVariantMap>
+  marquee: SystemSlotRecipeFn<MarqueeSlot, MarqueeVariantProps, MarqueeVariantMap>
+  floatingPanel: SystemSlotRecipeFn<FloatingPanelSlot, FloatingPanelVariantProps, FloatingPanelVariantMap>
 }
 
 export interface ConfigRecipeSlots {
@@ -1489,11 +1665,14 @@ export interface ConfigRecipeSlots {
   blockquote: BlockquoteSlot
   breadcrumb: BreadcrumbSlot
   card: CardSlot
+  carousel: CarouselSlot
   checkbox: CheckboxSlot
   checkboxCard: CheckboxCardSlot
   codeBlock: CodeBlockSlot
   collapsible: CollapsibleSlot
   dataList: DataListSlot
+  dateInput: DateInputSlot
+  datePicker: DatePickerSlot
   dialog: DialogSlot
   drawer: DrawerSlot
   editable: EditableSlot
@@ -1519,12 +1698,14 @@ export interface ConfigRecipeSlots {
   select: SelectSlot
   combobox: ComboboxSlot
   slider: SliderSlot
+  splitter: SplitterSlot
   stat: StatSlot
   steps: StepsSlot
   switch: SwitchSlot
   table: TableSlot
   tabs: TabsSlot
   tag: TagSlot
+  tagsInput: TagsInputSlot
   toast: ToastSlot
   tooltip: TooltipSlot
   status: StatusSlot
@@ -1532,6 +1713,8 @@ export interface ConfigRecipeSlots {
   colorPicker: ColorPickerSlot
   qrCode: QrCodeSlot
   treeView: TreeViewSlot
+  marquee: MarqueeSlot
+  floatingPanel: FloatingPanelSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>

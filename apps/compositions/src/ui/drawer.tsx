@@ -6,15 +6,24 @@ interface DrawerContentProps extends ChakraDrawer.ContentProps {
   portalled?: boolean
   portalRef?: React.RefObject<HTMLElement | null>
   offset?: ChakraDrawer.ContentProps["padding"]
+  backdrop?: boolean
 }
 
 export const DrawerContent = React.forwardRef<
   HTMLDivElement,
   DrawerContentProps
 >(function DrawerContent(props, ref) {
-  const { children, portalled = true, portalRef, offset, ...rest } = props
+  const {
+    children,
+    portalled = true,
+    portalRef,
+    offset,
+    backdrop = true,
+    ...rest
+  } = props
   return (
     <Portal disabled={!portalled} container={portalRef}>
+      {backdrop && <ChakraDrawer.Backdrop />}
       <ChakraDrawer.Positioner padding={offset}>
         <ChakraDrawer.Content ref={ref} {...rest} asChild={false}>
           {children}

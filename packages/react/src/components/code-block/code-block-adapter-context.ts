@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext } from "../../create-context"
 import { plainTextAdapter } from "./adapters"
 import type { UseCodeHighlightReturn } from "./use-code-highlight"

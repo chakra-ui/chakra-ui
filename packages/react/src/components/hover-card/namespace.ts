@@ -20,3 +20,9 @@ export type {
   HoverCardTriggerProps as TriggerProps,
   HoverCardOpenChangeDetails as OpenChangeDetails,
 } from "./hover-card"
+
+export type {
+  HoverCardInteractOutsideEvent as InteractOutsideEvent,
+  HoverCardFocusOutsideEvent as FocusOutsideEvent,
+  HoverCardPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/hover-card"

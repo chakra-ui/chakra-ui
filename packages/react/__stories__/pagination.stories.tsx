@@ -19,6 +19,7 @@ export { PaginationCompact as Compact } from "compositions/examples/pagination-c
 export { PaginationControlled as Controlled } from "compositions/examples/pagination-controlled"
 export { PaginationWithContent as Content } from "compositions/examples/pagination-with-content"
 export { PaginationWithCountText as CountText } from "compositions/examples/pagination-with-count-text"
+export { PaginationWithCustomFormat as CustomFormat } from "compositions/examples/pagination-with-custom-format"
 export { PaginationWithSiblingCount as SiblingCount } from "compositions/examples/pagination-with-sibling-count"
 export { PaginationWithSizes as Sizes } from "compositions/examples/pagination-with-sizes"
 export { PaginationWithVariants as Variants } from "compositions/examples/pagination-with-variants"

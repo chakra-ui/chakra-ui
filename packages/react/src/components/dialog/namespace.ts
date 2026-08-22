@@ -32,3 +32,9 @@ export type {
   DialogOpenChangeDetails as OpenChangeDetails,
   DialogActionTriggerProps as ActionTriggerProps,
 } from "./dialog"
+
+export type {
+  DialogInteractOutsideEvent as InteractOutsideEvent,
+  DialogFocusOutsideEvent as FocusOutsideEvent,
+  DialogPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/dialog"

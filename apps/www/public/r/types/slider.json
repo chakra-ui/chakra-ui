@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Label": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Marker": {
     "props": {
@@ -46,9 +48,24 @@
         "isRequired": true
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "MarkerIndicator": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    }
+  },
+  "MarkerLabel": {
     "props": {
       "as": {
         "type": "React.ElementType",
@@ -75,7 +92,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -139,22 +157,28 @@
         "isRequired": false,
         "description": "Whether the slider is invalid"
       },
+      "largeStep": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "10 * step",
+        "description": "The step value of the slider when the `Shift` key is held, or the\n`PageUp`/`PageDown` keys are used."
+      },
       "max": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "100",
+        "defaultValue": 100,
         "description": "The maximum value of the slider"
       },
       "min": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum value of the slider"
       },
       "minStepsBetweenThumbs": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum permitted steps between multiple thumbs.\n\n`minStepsBetweenThumbs` * `step` should reflect the gap between the thumbs.\n\n- `step: 1` and `minStepsBetweenThumbs: 10` => gap is `10`\n- `step: 10` and `minStepsBetweenThumbs: 2` => gap is `20`"
       },
       "name": {
@@ -184,9 +208,9 @@
         "description": "The orientation of the component"
       },
       "origin": {
-        "type": "'center' | 'end' | 'start'",
+        "type": "'center' | 'start' | 'end'",
         "isRequired": false,
-        "defaultValue": "\"start\"",
+        "defaultValue": "start",
         "description": "The origin of the slider range. The track is filled from the origin\nto the thumb for single values.\n- \"start\": Useful when the value represents an absolute value\n- \"center\": Useful when the value represents an offset (relative)\n- \"end\": Useful when the value represents an offset from the end"
       },
       "readOnly": {
@@ -197,14 +221,20 @@
       "step": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "1",
+        "defaultValue": 1,
         "description": "The step value of the slider"
       },
       "thumbAlignment": {
         "type": "'center' | 'contain'",
         "isRequired": false,
-        "defaultValue": "\"contain\"",
+        "defaultValue": "contain",
         "description": "The alignment of the slider thumb relative to the track\n- `center`: the thumb will extend beyond the bounds of the slider track.\n- `contain`: the thumb will be contained within the bounds of the track."
+      },
+      "thumbCollisionBehavior": {
+        "type": "'none' | 'push' | 'swap'",
+        "isRequired": false,
+        "defaultValue": "none",
+        "description": "Controls how thumbs behave when they collide during pointer interactions.\n- `none` (default): Thumbs cannot move past each other; excess movement is ignored.\n- `push`: Thumbs push each other without restoring their previous positions when dragged back.\n- `swap`: Thumbs swap places when dragged past each other."
       },
       "thumbSize": {
         "type": "{ width: number; height: number }",
@@ -235,7 +265,8 @@
         "description": "The variant of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -254,7 +285,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Thumb": {
     "props": {
@@ -277,7 +309,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Track": {
     "props": {
@@ -292,7 +325,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ValueText": {
     "props": {
@@ -307,7 +341,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "span"
   },
   "MarkerGroup": {
     "props": {
@@ -322,7 +357,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "DraggingIndicator": {
     "props": {
@@ -337,7 +373,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "HiddenInput": {
     "props": {
@@ -347,6 +384,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

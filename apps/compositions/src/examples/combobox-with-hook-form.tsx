@@ -9,7 +9,7 @@ import {
   useFilter,
   useListCollection,
 } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -25,7 +25,7 @@ export const ComboboxWithHookForm = () => {
     formState: { errors },
     control,
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   const onSubmit = handleSubmit((data) => {

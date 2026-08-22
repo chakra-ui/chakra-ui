@@ -1,0 +1,123 @@
+{
+  "name": "segmented-control",
+  "file": "compositions/ui/segmented-control",
+  "snippet": "\"use client\"\n\nimport { For, SegmentGroup } from \"@chakra-ui/react\"\nimport * as React from \"react\"\n\ninterface Item {\n  value: string\n  label: React.ReactNode\n  disabled?: boolean\n}\n\nexport interface SegmentedControlProps extends SegmentGroup.RootProps {\n  items: Array<string | Item>\n}\n\nfunction normalize(items: Array<string | Item>): Item[] {\n  return items.map((item) => {\n    if (typeof item === \"string\") return { value: item, label: item }\n    return item\n  })\n}\n\nexport const SegmentedControl = React.forwardRef<\n  HTMLDivElement,\n  SegmentedControlProps\n>(function SegmentedControl(props, ref) {\n  const { items, ...rest } = props\n  const data = React.useMemo(() => normalize(items), [items])\n\n  return (\n    <SegmentGroup.Root ref={ref} {...rest}>\n      <SegmentGroup.Indicator />\n      <For each={data}>\n        {(item) => (\n          <SegmentGroup.Item\n            key={item.value}\n            value={item.value}\n            disabled={item.disabled}\n          >\n            <SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>\n            <SegmentGroup.ItemHiddenInput />\n          </SegmentGroup.Item>\n        )}\n      </For>\n    </SegmentGroup.Root>\n  )\n})\n",
+  "examples": [
+    {
+      "name": "segmented-control-basic",
+      "content": "export const SegmentedControlBasic = () => {\n  return (\n    <SegmentGroup.Root defaultValue=\"React\">\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items items={[\"React\", \"Vue\", \"Solid\"]} />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-controlled",
+      "content": "\"use client\"\nexport const SegmentedControlControlled = () => {\n  const [value, setValue] = useState<string | null>(\"React\")\n  return (\n    <SegmentGroup.Root value={value} onValueChange={(e) => setValue(e.value)}>\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items items={[\"React\", \"Vue\", \"Solid\"]} />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-in-card",
+      "content": "export const SegmentedControlInCard = () => {\n  return (\n    <Card.Root width=\"320px\">\n      <Card.Header>\n        <Heading size=\"lg\">Find your dream home</Heading>\n      </Card.Header>\n      <Card.Body gap=\"6\">\n        <Field.Root>\n          <Field.Label>Bedrooms</Field.Label>\n          <SegmentGroup.Root defaultValue=\"Any\">\n            <SegmentGroup.Indicator />\n            <SegmentGroup.Items items={[\"Any\", \"1\", \"2\", \"3\", \"3+\"]} />\n          </SegmentGroup.Root>\n        </Field.Root>\n        <Field.Root>\n          <Field.Label>Beds</Field.Label>\n          <SegmentGroup.Root defaultValue=\"1\">\n            <SegmentGroup.Indicator />\n            <SegmentGroup.Items items={[\"Any\", \"1\", \"2\", \"2+\"]} />\n          </SegmentGroup.Root>\n        </Field.Root>\n        <Field.Root>\n          <Field.Label>Bathrooms</Field.Label>\n          <SegmentGroup.Root defaultValue=\"3\">\n            <SegmentGroup.Indicator />\n            <SegmentGroup.Items items={[\"Any\", \"1\", \"2\", \"3\"]} />\n          </SegmentGroup.Root>\n        </Field.Root>\n      </Card.Body>\n      <Card.Footer justifyContent=\"space-between\" mt=\"3\">\n        <Button variant=\"surface\">Reset</Button>\n        <Button>\n          <LuSearch /> 20 results\n        </Button>\n      </Card.Footer>\n    </Card.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Card, Field, Heading, SegmentGroup } from \"@chakra-ui/react\"",
+        "import { LuSearch } from \"react-icons/lu\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "segmented-control-vertical",
+      "content": "export const SegmentedControlVertical = () => {\n  return (\n    <SegmentGroup.Root defaultValue=\"React\" orientation=\"vertical\">\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items items={[\"React\", \"Vue\", \"Solid\"]} />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-with-color-palette",
+      "content": "export const SegmentedControlWithColorPalette = () => {\n  return (\n    <Center minH=\"dvh\">\n      <SegmentGroup.Root\n        bg=\"colorPalette.50\"\n        colorPalette=\"orange\"\n        defaultValue=\"Monthly\"\n      >\n        <SegmentGroup.Indicator />\n        <For each={[\"Monthly\", \"Yearly\"]}>\n          {(item) => (\n            <SegmentGroup.Item key={item} value={item}>\n              <SegmentGroup.ItemText\n                _checked={{ color: \"colorPalette.fg\", fontWeight: \"medium\" }}\n              >\n                {item}\n              </SegmentGroup.ItemText>\n              <SegmentGroup.ItemHiddenInput />\n            </SegmentGroup.Item>\n          )}\n        </For>\n      </SegmentGroup.Root>\n    </Center>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Center, For, SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-with-custom-indicator",
+      "content": "export const SegmentedControlWithCustomIndicator = () => {\n  return (\n    <SegmentGroup.Root\n      defaultValue=\"react\"\n      css={{\n        \"--segment-indicator-bg\": \"colors.teal.500\",\n        \"--segment-indicator-shadow\": \"shadows.md\",\n      }}\n    >\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items\n        items={[\n          { value: \"react\", label: \"React\" },\n          { value: \"vue\", label: \"Vue\" },\n          { value: \"solid\", label: \"Solid\" },\n        ]}\n      />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-with-disabled-item",
+      "content": "export const SegmentedControlWithDisabledItem = () => {\n  return (\n    <SegmentGroup.Root defaultValue=\"React\">\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items\n        items={[\n          { label: \"React\", value: \"React\" },\n          { label: \"Vue\", value: \"Vue\", disabled: true },\n          { label: \"Solid\", value: \"Solid\" },\n        ]}\n      />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-with-disabled",
+      "content": "export const SegmentedControlWithDisabled = () => {\n  return (\n    <SegmentGroup.Root disabled defaultValue=\"React\">\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items items={[\"React\", \"Vue\", \"Solid\"]} />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { SegmentGroup } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "segmented-control-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  fontSize: z.string({ message: \"Font size is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const SegmentedControlWithHookForm = () => {\n  const {\n    handleSubmit,\n    formState: { errors },\n    control,\n  } = useForm<FormValues>({\n    defaultValues: { fontSize: \"md\" },\n    resolver: standardSchemaResolver(formSchema),\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\">\n        <Controller\n          control={control}\n          name=\"fontSize\"\n          render={({ field }) => (\n            <Field.Root invalid={!!errors.fontSize}>\n              <Field.Label>Font size</Field.Label>\n              <SegmentGroup.Root\n                size=\"sm\"\n                onBlur={field.onBlur}\n                name={field.name}\n                value={field.value}\n                onValueChange={({ value }) => field.onChange(value)}\n              >\n                <SegmentGroup.Items items={[\"sm\", \"md\", \"lg\"]} />\n                <SegmentGroup.Indicator />\n              </SegmentGroup.Root>\n              <Field.ErrorText>{errors.fontSize?.message}</Field.ErrorText>\n            </Field.Root>\n          )}\n        />\n\n        <Button size=\"sm\" type=\"submit\">\n          Submit\n        </Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Field, SegmentGroup, Stack } from \"@chakra-ui/react\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "segmented-control-with-icon",
+      "content": "export const SegmentedControlWithIcon = () => {\n  return (\n    <SegmentGroup.Root defaultValue=\"table\">\n      <SegmentGroup.Indicator />\n      <SegmentGroup.Items\n        items={[\n          {\n            value: \"table\",\n            label: (\n              <HStack>\n                <LuTable />\n                Table\n              </HStack>\n            ),\n          },\n          {\n            value: \"board\",\n            label: (\n              <HStack>\n                <LuGrid2X2 />\n                Board\n              </HStack>\n            ),\n          },\n          {\n            value: \"list\",\n            label: (\n              <HStack>\n                <LuList />\n                List\n              </HStack>\n            ),\n          },\n        ]}\n      />\n    </SegmentGroup.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, SegmentGroup } from \"@chakra-ui/react\"",
+        "import { LuGrid2X2, LuList, LuTable } from \"react-icons/lu\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "segmented-control-with-sizes",
+      "content": "export const SegmentedControlWithSizes = () => {\n  return (\n    <Stack gap=\"5\" align=\"flex-start\">\n      <For each={[\"xs\", \"sm\", \"md\", \"lg\"]}>\n        {(size) => (\n          <VStack key={size} align=\"flex-start\">\n            <SegmentGroup.Root size={size} defaultValue=\"React\">\n              <SegmentGroup.Indicator />\n              <SegmentGroup.Items items={[\"React\", \"Vue\", \"Solid\"]} />\n            </SegmentGroup.Root>\n            <Text>size = {size}</Text>\n          </VStack>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { For, SegmentGroup, Stack, Text, VStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { SegmentedControl } from \"@chakra-ui/react\""
+    }
+  ]
+}

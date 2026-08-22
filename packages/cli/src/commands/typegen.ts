@@ -35,6 +35,7 @@ interface CodegenFlags {
   watch?: string
   clean?: boolean
   outdir: string
+  tsconfig?: string
 }
 
 export const TypegenCommand = new Command("typegen")
@@ -48,6 +49,10 @@ export const TypegenCommand = new Command("typegen")
     "Output directory to write the generated types",
     getDefaultBasePath(),
   )
+  .option(
+    "--tsconfig <path>",
+    "Path to tsconfig file for resolving path aliases",
+  )
   .action(async (source: string, flags: CodegenFlags) => {
     debug("source", source)
     debug("flags", flags)
@@ -57,7 +62,7 @@ export const TypegenCommand = new Command("typegen")
       await io.clean(flags.outdir)
     }
 
-    let result = await io.read(source)
+    let result = await io.read(source, { tsconfig: flags.tsconfig })
 
     if (process.env.DEBUG) {
       const configPath = resolve("chakra-config.json")
@@ -79,7 +84,7 @@ export const TypegenCommand = new Command("typegen")
     } else {
       debug("watch dependencies", result.dependencies)
       io.watch(result.dependencies, async () => {
-        result = await io.read(source)
+        result = await io.read(source, { tsconfig: flags.tsconfig })
         return build()
       })
     }
@@ -87,11 +92,11 @@ export const TypegenCommand = new Command("typegen")
     p.outro("🎉 Done!")
   })
 
-function codegen(sys: SystemContext, flags: CodegenFlags) {
+async function codegen(sys: SystemContext, flags: CodegenFlags) {
   io.ensureDir(flags.outdir)
   debug("writing codegen to", flags.outdir)
 
-  return tasks([
+  await tasks([
     {
       title: "Generating conditions types...",
       task: async () => {
@@ -132,4 +137,6 @@ function codegen(sys: SystemContext, flags: CodegenFlags) {
       },
     },
   ])
+
+  await io.formatOutput(flags.outdir)
 }

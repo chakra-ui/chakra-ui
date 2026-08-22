@@ -27,11 +27,12 @@ export { useTableStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableRootBaseProps
-  extends SlotRecipeProps<"table">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"table">, UnstyledProp {}
 
-export interface TableRootProps
-  extends HTMLChakraProps<"table", TableRootBaseProps> {
+export interface TableRootProps extends HTMLChakraProps<
+  "table",
+  TableRootBaseProps
+> {
   /**
    * If `true`, the table will style its descendants with nested selectors
    */
@@ -100,8 +101,7 @@ export const TableScrollArea = chakra("div", {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableHeaderProps
-  extends HTMLChakraProps<"thead">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"thead">, UnstyledProp {}
 
 export const TableHeader = withContext<
   HTMLTableSectionElement,
@@ -111,8 +111,7 @@ export const TableHeader = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableFooterProps
-  extends HTMLChakraProps<"tfoot">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"tfoot">, UnstyledProp {}
 
 export const TableFooter = withContext<
   HTMLTableSectionElement,
@@ -122,8 +121,7 @@ export const TableFooter = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableColumnHeaderProps
-  extends HTMLChakraProps<"th">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"th">, UnstyledProp {}
 
 export const TableColumnHeader = withContext<
   HTMLTableCellElement,
@@ -142,8 +140,7 @@ export const TableCell = withContext<HTMLTableCellElement, TableCellProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableCaptionProps
-  extends HTMLChakraProps<"caption">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"caption">, UnstyledProp {}
 
 export const TableCaption = withContext<
   HTMLTableCaptionElement,
@@ -157,8 +154,7 @@ export const TableCaption = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableBodyProps
-  extends HTMLChakraProps<"tbody">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"tbody">, UnstyledProp {}
 
 export const TableBody = withContext<HTMLTableSectionElement, TableBodyProps>(
   "tbody",
@@ -168,8 +164,7 @@ export const TableBody = withContext<HTMLTableSectionElement, TableBodyProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableColumnGroupProps
-  extends HTMLChakraProps<"colgroup">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"colgroup">, UnstyledProp {}
 
 export const TableColumnGroup = withContext<
   HTMLTableColElement,
@@ -179,8 +174,7 @@ export const TableColumnGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TableColumnProps
-  extends HTMLChakraProps<"col">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"col">, UnstyledProp {}
 
 export const TableColumn = withContext<HTMLTableColElement, TableColumnProps>(
   "col",

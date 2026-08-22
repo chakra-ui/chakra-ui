@@ -13,8 +13,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface HeadingProps
-  extends Assign<HTMLChakraProps<"h2">, RecipeProps<"heading">>,
-    UnstyledProp {}
+  extends Assign<HTMLChakraProps<"h2">, RecipeProps<"heading">>, UnstyledProp {}
 
 export const Heading = withContext<HTMLHeadingElement, HeadingProps>("h2")
 

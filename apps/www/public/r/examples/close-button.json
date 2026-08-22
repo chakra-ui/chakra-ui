@@ -1,0 +1,47 @@
+{
+  "name": "close-button",
+  "file": "compositions/ui/close-button",
+  "snippet": "import type { ButtonProps } from \"@chakra-ui/react\"\nimport { IconButton as ChakraIconButton } from \"@chakra-ui/react\"\nimport * as React from \"react\"\nimport { LuX } from \"react-icons/lu\"\n\nexport type CloseButtonProps = ButtonProps\n\nexport const CloseButton = React.forwardRef<\n  HTMLButtonElement,\n  CloseButtonProps\n>(function CloseButton(props, ref) {\n  return (\n    <ChakraIconButton variant=\"ghost\" aria-label=\"Close\" ref={ref} {...props}>\n      {props.children ?? <LuX />}\n    </ChakraIconButton>\n  )\n})\n",
+  "examples": [
+    {
+      "name": "close-button-basic",
+      "content": "export const CloseButtonBasic = () => {\n  return <CloseButton />\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CloseButton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "close-button-with-custom-icon",
+      "content": "export const CloseButtonWithCustomIcon = () => {\n  return (\n    <CloseButton variant=\"ghost\" aria-label=\"Close\">\n      <HiX />\n    </CloseButton>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton } from \"@chakra-ui/react\"",
+        "import { HiX } from \"react-icons/hi\""
+      ],
+      "importPath": "import { CloseButton } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "close-button-with-sizes",
+      "content": "export const CloseButtonWithSizes = () => {\n  return (\n    <HStack gap=\"4\" wrap=\"wrap\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\"]}>\n        {(size) => <CloseButton key={size} variant=\"outline\" size={size} />}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton, For, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CloseButton } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "close-button-with-variants",
+      "content": "export const CloseButtonWithVariants = () => {\n  return (\n    <HStack>\n      <CloseButton variant=\"ghost\" />\n      <CloseButton variant=\"outline\" />\n      <CloseButton variant=\"subtle\" />\n      <CloseButton variant=\"solid\" />\n    </HStack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { CloseButton, HStack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { CloseButton } from \"@chakra-ui/react\""
+    }
+  ]
+}

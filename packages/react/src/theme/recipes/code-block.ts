@@ -64,8 +64,6 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
     content: {
       position: "relative",
       colorScheme: "dark",
-      overflowX: "auto",
-      overflowY: "hidden",
       borderBottomRadius: "var(--code-block-radius)",
       maxHeight: "var(--code-block-max-height)",
       "& ::selection": {
@@ -98,6 +96,8 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
       lineHeight: "tall",
       whiteSpace: "pre",
       counterReset: "line 0",
+      overflowX: "auto",
+      overflowY: "hidden",
     },
     codeText: {
       px: "var(--code-block-padding)",
@@ -127,6 +127,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
 
       "& [data-line]": {
         position: "relative",
+        paddingInlineEnd: "var(--code-block-padding)",
         "--highlight-bg": "var(--code-block-highlight-bg)",
         "--highlight-border": "var(--code-block-highlight-border)",
 

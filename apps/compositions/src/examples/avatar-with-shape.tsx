@@ -4,8 +4,8 @@ export const AvatarWithShape = () => {
   return (
     <HStack gap="4">
       <Avatar.Root shape="square" size="lg">
-        <Avatar.Fallback name="Dan Abramov" />
-        <Avatar.Image src="https://bit.ly/dan-abramov" />
+        <Avatar.Fallback name="Jane Smith" />
+        <Avatar.Image src="https://i.pravatar.cc/150?img=12" />
       </Avatar.Root>
       <Avatar.Root shape="rounded" size="lg">
         <Avatar.Fallback name="Segun Adebayo" />

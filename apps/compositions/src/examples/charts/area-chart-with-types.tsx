@@ -43,7 +43,7 @@ export const AreaChartWithTypes = () => {
               {`<Area type="${type}" />`}
             </Text>
             <Chart.Root maxH="sm" chart={chart}>
-              <AreaChart accessibilityLayer data={chart.data}>
+              <AreaChart accessibilityLayer data={chart.data} responsive>
                 <CartesianGrid
                   stroke={chart.color("border")}
                   vertical={false}

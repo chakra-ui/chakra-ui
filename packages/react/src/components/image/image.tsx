@@ -26,8 +26,7 @@ interface ImageOptions {
 export interface ImageProps extends HTMLChakraProps<"img", ImageOptions> {}
 
 /**
- * React component that renders an image with support
- * for fallbacks
+ * React component that renders an image
  *
  * @see Docs https://www.chakra-ui.com/docs/components/image
  */
@@ -39,9 +38,11 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
         ref={ref}
         objectFit={fit}
         objectPosition={align}
-        className={cx("chakra-image", props.className)}
         {...rest}
+        className={cx("chakra-image", props.className)}
       />
     )
   },
 )
+
+Image.displayName = "Image"

@@ -13,7 +13,7 @@
     },
     {
       "name": "float-with-avatar",
-      "content": "export const FloatWithAvatar = () => {\n  return (\n    <Box display=\"inline-block\" pos=\"relative\">\n      <Avatar.Root size=\"lg\" shape=\"rounded\">\n        <Avatar.Image src=\"https://bit.ly/dan-abramov\" />\n        <Avatar.Fallback />\n      </Avatar.Root>\n      <Float placement=\"bottom-end\">\n        <Badge size=\"sm\" variant=\"solid\" colorPalette=\"teal\">\n          New\n        </Badge>\n      </Float>\n    </Box>\n  )\n}\n",
+      "content": "export const FloatWithAvatar = () => {\n  return (\n    <Box display=\"inline-block\" pos=\"relative\">\n      <Avatar.Root size=\"lg\" shape=\"rounded\">\n        <Avatar.Image src=\"https://i.pravatar.cc/150?img=5\" />\n        <Avatar.Fallback />\n      </Avatar.Root>\n      <Float placement=\"bottom-end\">\n        <Badge size=\"sm\" variant=\"solid\" colorPalette=\"teal\">\n          New\n        </Badge>\n      </Float>\n    </Box>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Avatar, Badge, Box, Float } from \"@chakra-ui/react\""

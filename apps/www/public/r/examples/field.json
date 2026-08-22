@@ -41,6 +41,15 @@
       "importPath": "import { Field } from \"@chakra-ui/react\""
     },
     {
+      "name": "field-with-error-icon",
+      "content": "export const FieldWithErrorIcon = () => {\n  return (\n    <Field.Root invalid>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n      <Field.ErrorText width=\"full\">\n        <Field.ErrorIcon />\n        This is an error text\n      </Field.ErrorText>\n    </Field.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Field, Input } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Field } from \"@chakra-ui/react\""
+    },
+    {
       "name": "field-with-error-text",
       "content": "export const FieldWithErrorText = () => {\n  return (\n    <Field.Root invalid>\n      <Field.Label>Email</Field.Label>\n      <Input placeholder=\"me@example.com\" />\n      <Field.ErrorText>This is an error text</Field.ErrorText>\n    </Field.Root>\n  )\n}\n",
       "hasSnippet": false,

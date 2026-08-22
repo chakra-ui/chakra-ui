@@ -106,7 +106,7 @@
     },
     {
       "name": "avatar-with-shape",
-      "content": "export const AvatarWithShape = () => {\n  return (\n    <HStack gap=\"4\">\n      <Avatar.Root shape=\"square\" size=\"lg\">\n        <Avatar.Fallback name=\"Dan Abramov\" />\n        <Avatar.Image src=\"https://bit.ly/dan-abramov\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"rounded\" size=\"lg\">\n        <Avatar.Fallback name=\"Segun Adebayo\" />\n        <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"full\" size=\"lg\">\n        <Avatar.Fallback name=\"Random User\" />\n        <Avatar.Image src=\"https://images.unsplash.com/photo-1531746020798-e6953c6e8e04\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
+      "content": "export const AvatarWithShape = () => {\n  return (\n    <HStack gap=\"4\">\n      <Avatar.Root shape=\"square\" size=\"lg\">\n        <Avatar.Fallback name=\"Jane Smith\" />\n        <Avatar.Image src=\"https://i.pravatar.cc/150?img=12\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"rounded\" size=\"lg\">\n        <Avatar.Fallback name=\"Segun Adebayo\" />\n        <Avatar.Image src=\"https://bit.ly/sage-adebayo\" />\n      </Avatar.Root>\n      <Avatar.Root shape=\"full\" size=\"lg\">\n        <Avatar.Fallback name=\"Random User\" />\n        <Avatar.Image src=\"https://images.unsplash.com/photo-1531746020798-e6953c6e8e04\" />\n      </Avatar.Root>\n    </HStack>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Avatar, HStack } from \"@chakra-ui/react\""

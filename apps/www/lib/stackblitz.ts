@@ -171,6 +171,7 @@ async function readExample(exampleId: string) {
   return {
     code: `${useClientDirective}${data.importPaths.join("\n")}\n\n${content}`,
     dependencies: data.npmDependencies,
+    fileDependencies: data.fileDependencies as string[] | undefined,
   }
 }
 
@@ -198,9 +199,25 @@ export async function openInStackblitzReact(exampleId: string) {
       readComposition("tooltip"),
     ])
 
+  // Read additional file dependencies (e.g., prose, avatar, etc.)
+  const fileDependencyFiles: Record<string, string> = {}
+  if (example.fileDependencies?.length) {
+    const deps = await Promise.all(
+      example.fileDependencies.map(async (dep) => {
+        // dep is like "compositions/ui/prose" -> we need "prose"
+        const name = dep.replace("compositions/ui/", "")
+        const content = await readComposition(name)
+        return { name, content }
+      }),
+    )
+    for (const { name, content } of deps) {
+      fileDependencyFiles[`src/components/ui/${name}.tsx`] = content
+    }
+  }
+
   const dependencies = getDependencies(example.dependencies)
 
-  const files = {
+  const files: Record<string, string> = {
     "tsconfig.app.json": JSON.stringify(tsconfigApp, null, 2),
     "tsconfig.node.json": JSON.stringify(tsconfigNode, null, 2),
     "tsconfig.json": JSON.stringify(tsconfig, null, 2),
@@ -214,6 +231,7 @@ export async function openInStackblitzReact(exampleId: string) {
     "src/components/ui/color-mode.tsx": colorModeCode,
     "src/components/ui/toaster.tsx": toasterCode,
     "src/components/ui/tooltip.tsx": tooltipCode,
+    ...fileDependencyFiles,
   }
 
   sdk.openProject(

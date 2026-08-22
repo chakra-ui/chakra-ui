@@ -25,7 +25,7 @@ export { ButtonWithLoading as Loading } from "compositions/examples/button-with-
 export { ButtonWithLoadingToggle as LoadingToggle } from "compositions/examples/button-with-loading-toggle"
 export { ButtonWithCustomSpinner as CustomSpinner } from "compositions/examples/button-with-custom-spinner"
 export { ButtonWithSpinnerPlacement as SpinnerPlacement } from "compositions/examples/button-with-spinner-placement"
-export { ButtonWithMenu as Menu } from "compositions/examples/button-with-menu"
+export { ButtonWithSplitMenu as SplitMenu } from "compositions/examples/button-with-split-menu"
 export { ButtonWithRadius as Radius } from "compositions/examples/button-with-radius"
 export { ButtonWithResponsiveSize as ResponsiveSize } from "compositions/examples/button-with-responsive-size"
 export { ButtonWithStyleOverride as StyleOverrides } from "compositions/examples/button-with-style-override"

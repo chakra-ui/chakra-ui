@@ -20,7 +20,7 @@ export const SparklineWithGradient = () => {
 
   return (
     <Chart.Root width="28" height="12" chart={chart}>
-      <AreaChart accessibilityLayer data={chart.data}>
+      <AreaChart accessibilityLayer data={chart.data} responsive>
         {chart.series.map((item) => (
           <defs key={item.name}>
             <Chart.Gradient

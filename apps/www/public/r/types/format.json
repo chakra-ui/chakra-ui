@@ -26,9 +26,14 @@
         "description": "The unit granularity to display"
       },
       "unitDisplay": {
-        "type": "'long' | 'short' | 'narrow'",
+        "type": "'short' | 'long' | 'narrow'",
         "isRequired": false,
         "description": "The unit display"
+      },
+      "unitSystem": {
+        "type": "'decimal' | 'binary'",
+        "isRequired": false,
+        "description": "The unit system to use for formatting"
       }
     }
   },
@@ -47,6 +52,31 @@
         "type": "Date",
         "isRequired": true,
         "description": "The date to format"
+      }
+    }
+  },
+  "Time": {
+    "props": {
+      "value": {
+        "type": "string | Date",
+        "isRequired": true,
+        "description": "The time to format"
+      },
+      "amLabel": {
+        "type": "string",
+        "isRequired": false
+      },
+      "format": {
+        "type": "TimeFormat",
+        "isRequired": false
+      },
+      "pmLabel": {
+        "type": "string",
+        "isRequired": false
+      },
+      "withSeconds": {
+        "type": "boolean",
+        "isRequired": false
       }
     }
   }

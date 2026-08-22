@@ -19,7 +19,7 @@ export const PopoverSizeTable = () => {
     <PlaygroundTable>
       <thead>
         <tr>
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>

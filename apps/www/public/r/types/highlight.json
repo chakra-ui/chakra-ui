@@ -34,10 +34,12 @@
         "type": "string",
         "isRequired": true,
         "description": "The text to highlight"
+      },
+      "exactMatch": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether to match whole words only"
       }
     }
-  },
-  "UseHighlight": {
-    "props": {}
   }
 }

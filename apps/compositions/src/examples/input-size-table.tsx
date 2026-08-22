@@ -10,7 +10,7 @@ export const InputSizeTable = () => {
       <tbody>
         <For each={recipe.variantMap.size}>
           {(v) => (
-            <tr>
+            <tr key={v}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {v}

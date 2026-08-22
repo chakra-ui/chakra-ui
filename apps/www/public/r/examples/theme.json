@@ -1,0 +1,33 @@
+{
+  "name": "theme",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "theme-basic",
+      "content": "export const ThemeBasic = () => {\n  return (\n    <Stack align=\"flex-start\">\n      <Button variant=\"surface\" colorPalette=\"teal\">\n        Auto Button\n      </Button>\n      <Theme p=\"4\" appearance=\"dark\" colorPalette=\"teal\">\n        <Button variant=\"surface\">Dark Button</Button>\n      </Theme>\n      <Theme p=\"4\" appearance=\"light\" colorPalette=\"teal\">\n        <Button variant=\"surface\">Light Button</Button>\n      </Theme>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Stack, Theme } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Theme } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "theme-nested",
+      "content": "export const ThemeNested = () => {\n  return (\n    <Box>\n      <Box p=\"8\" borderWidth=\"1px\">\n        Hello Normal <Button>Click me</Button>\n        <Theme appearance=\"dark\" colorPalette=\"red\">\n          <Box p=\"8\" borderWidth=\"1px\">\n            Hello Dark <Button>Click me</Button>\n            <Theme appearance=\"light\" colorPalette=\"pink\">\n              <Box p=\"8\" borderWidth=\"1px\">\n                Hello Light <Button>Click me</Button>\n              </Box>\n            </Theme>\n          </Box>\n        </Theme>\n      </Box>\n    </Box>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Button, Theme } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Theme } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "theme-with-portalled",
+      "content": "export const ThemeWithPortalled = () => {\n  return (\n    <Popover.Root>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Click me\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content asChild>\n            <Theme hasBackground={false} appearance=\"dark\" colorPalette=\"teal\">\n              <Popover.Arrow />\n              <Popover.Body spaceY=\"4\">\n                <Popover.Title fontWeight=\"medium\">Naruto Form</Popover.Title>\n                <Text>\n                  Naruto is a Japanese manga series written and illustrated by\n                  Masashi Kishimoto.\n                </Text>\n                <Input placeholder=\"Search\" />\n                <Button>Click me</Button>\n              </Popover.Body>\n            </Theme>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, Input, Popover, Portal, Text, Theme } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Theme } from \"@chakra-ui/react\""
+    }
+  ]
+}

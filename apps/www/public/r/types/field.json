@@ -41,11 +41,10 @@
         "isRequired": false,
         "description": "Indicates whether the field is required."
       },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "target": {
+        "type": "string",
         "isRequired": false,
-        "description": "The color palette of the component"
+        "description": "The target field item value the label should point to."
       },
       "orientation": {
         "type": "\"vertical\" | \"horizontal\"",
@@ -54,7 +53,8 @@
         "description": "The orientation of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Label": {
     "props": {
@@ -69,7 +69,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "HelperText": {
     "props": {
@@ -84,7 +85,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "ErrorText": {
     "props": {
@@ -99,7 +101,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "ErrorIcon": {
     "props": {
@@ -132,7 +135,26 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
+  },
+  "Item": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": true
+      }
+    }
   },
   "Input": {
     "props": {
@@ -142,7 +164,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "RootProvider": {
     "props": {
@@ -156,7 +179,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Select": {
     "props": {
@@ -166,7 +190,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement"
+    "element": "HTMLSelectElement",
+    "tag": "select"
   },
   "Textarea": {
     "props": {
@@ -178,10 +203,11 @@
       "autoresize": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether the textarea should autoresize"
       }
     },
-    "element": "HTMLTextAreaElement"
+    "element": "HTMLTextAreaElement",
+    "tag": "textarea"
   }
 }

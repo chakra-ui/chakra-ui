@@ -1,6 +1,6 @@
 import { defineGlobalStyles } from "../styled-system"
 
-const empty = "var(--chakra-empty,/*!*/ /*!*/)"
+const empty = "var(--chakra-empty, )"
 
 export const globalCss = defineGlobalStyles({
   "*": {

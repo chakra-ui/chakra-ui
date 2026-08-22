@@ -1,30 +1,4 @@
 {
-  "ToggleIndicator": {
-    "props": {}
-  },
-  "ToggleRootBase": {
-    "props": {}
-  },
-  "ToggleRoot": {
-    "props": {}
-  },
-  "UseToggle": {
-    "props": {}
-  },
-  "Toggle": {
-    "props": {
-      "as": {
-        "type": "React.ElementType",
-        "isRequired": false,
-        "description": "The underlying element to render."
-      },
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    }
-  },
   "Indicator": {
     "props": {
       "asChild": {
@@ -38,7 +12,8 @@
         "description": "The fallback content to render when the toggle is not pressed."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -63,6 +38,7 @@
         "description": "The pressed state of the toggle."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   }
 }

@@ -11,9 +11,7 @@ export const getReferences = (value: string) => {
   const matches = value.match(REFERENCE_REGEX)
   if (!matches) return []
 
-  return matches
-    .map((match) => match.replace(CURLY_REGEX, ""))
-    .map((value) => value.trim())
+  return matches.map((match) => match.replace(CURLY_REGEX, "").trim())
 }
 
 export const hasReference = (value: string) => REFERENCE_REGEX.test(value)
@@ -24,19 +22,23 @@ export function expandReferences(token: Token) {
   }
 
   const references = token.extensions.references ?? {}
+  let valueStr = token.value
+  const keys = Object.keys(references)
 
-  token.value = Object.keys(references).reduce((valueStr, key) => {
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
     const referenceToken = references[key]
 
     // If a conditional token is referenced, we'll keep the reference
     if (referenceToken.extensions.conditions) {
-      return valueStr
+      continue
     }
 
     const value = expandReferences(referenceToken)
+    valueStr = valueStr.replace(`{${key}}`, value)
+  }
 
-    return valueStr.replace(`{${key}}`, value)
-  }, token.value)
+  token.value = valueStr
 
   delete token.extensions.references
 

@@ -78,6 +78,16 @@ animation to complete before opening a new overlay.
 
 <ExampleTabs name="overlay-with-return-value" />
 
+### Open Dialog from Menu Item
+
+Use the overlay manager to manage dialogs that can be opened from menu items.
+The `.open()` method can be called to open the dialog.
+
+> This approach avoids unexpected close behavior caused by event bubbling and
+> portals.
+
+<ExampleTabs name="overlay-with-menu-item" />
+
 ### Programmatic Closing
 
 You can close an overlay from within the component itself by calling the

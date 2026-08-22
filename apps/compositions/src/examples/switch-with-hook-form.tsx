@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Field, Stack, Switch } from "@chakra-ui/react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -17,7 +17,7 @@ export const SwitchWithHookForm = () => {
     control,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
   })
 
   return (

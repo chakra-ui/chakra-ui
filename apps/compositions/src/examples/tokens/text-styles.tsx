@@ -19,7 +19,7 @@ export const TokensTextStyles = () => {
         ]}
       >
         {(textStyle) => (
-          <Stack>
+          <Stack key={textStyle}>
             <Text textStyle="sm" fontWeight="medium" color="fg.muted">
               textStyle: {textStyle}
             </Text>

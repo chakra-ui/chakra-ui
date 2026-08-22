@@ -25,11 +25,12 @@ export { useStatStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatRootBaseProps
-  extends SlotRecipeProps<"stat">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"stat">, UnstyledProp {}
 
-export interface StatRootProps
-  extends HTMLChakraProps<"dl", StatRootBaseProps> {}
+export interface StatRootProps extends HTMLChakraProps<
+  "dl",
+  StatRootBaseProps
+> {}
 
 export const StatRoot = withProvider<HTMLDListElement, StatRootProps>(
   "dl",
@@ -48,8 +49,7 @@ export const StatLabel = withContext<HTMLElement, StatLabelProps>("dt", "label")
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatValueTextProps
-  extends HTMLChakraProps<"dd">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"dd">, UnstyledProp {}
 
 export const StatValueText = withContext<HTMLElement, StatValueTextProps>(
   "dd",
@@ -59,8 +59,7 @@ export const StatValueText = withContext<HTMLElement, StatValueTextProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatHelpTextProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
   "span",
@@ -70,8 +69,7 @@ export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatValueUnitProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
   "span",
@@ -81,8 +79,7 @@ export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatUpIndicatorProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
   "span",
@@ -98,8 +95,7 @@ export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatDownIndicatorProps
-  extends HTMLChakraProps<"span">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span">, UnstyledProp {}
 
 export const StatDownIndicator = withContext<
   HTMLElement,
@@ -114,8 +110,7 @@ export const StatDownIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatGroupProps
-  extends SlotRecipeProps<"stat">,
-    HTMLChakraProps<"div"> {}
+  extends SlotRecipeProps<"stat">, HTMLChakraProps<"div"> {}
 
 export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
   function StatGroup(props, ref) {

@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Content": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Control": {
     "props": {
@@ -42,7 +44,24 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "List": {
+    "props": {
+      "as": {
+        "type": "React.ElementType",
+        "isRequired": false,
+        "description": "The underlying element to render."
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Input": {
     "props": {
@@ -57,7 +76,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "ItemGroupLabel": {
     "props": {
@@ -72,7 +92,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "IndicatorGroup": {
     "props": {
@@ -101,7 +122,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemIndicator": {
     "props": {
@@ -116,7 +138,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -141,7 +164,8 @@
         "description": "Whether hovering outside should clear the highlighted state"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemText": {
     "props": {
@@ -156,7 +180,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "span"
   },
   "Label": {
     "props": {
@@ -171,7 +196,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Positioner": {
     "props": {
@@ -186,7 +212,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Empty": {
     "props": {
@@ -200,7 +227,9 @@
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
-    }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -229,6 +258,12 @@
         "isRequired": false,
         "description": "Whether to allow typing custom values in the input"
       },
+      "alwaysSubmitOnEnter": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": false,
+        "description": "Whether to always submit on Enter key press, even if popup is open.\nUseful for single-field autocomplete forms where Enter should submit the form."
+      },
       "autoFocus": {
         "type": "boolean",
         "isRequired": false,
@@ -242,7 +277,7 @@
       "composite": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether the combobox is a composed with other composite widgets like tabs"
       },
       "defaultHighlightedValue": {
@@ -253,7 +288,7 @@
       "defaultInputValue": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"\"",
+        "defaultValue": "",
         "description": "The initial value of the combobox's input when rendered.\nUse when you don't need to control the value of the combobox's input."
       },
       "defaultOpen": {
@@ -264,7 +299,7 @@
       "defaultValue": {
         "type": "string[]",
         "isRequired": false,
-        "defaultValue": "[]",
+        "defaultValue": [],
         "description": "The initial value of the combobox's selected items when rendered.\nUse when you don't need to control the value of the combobox's selected items."
       },
       "disabled": {
@@ -281,6 +316,12 @@
         "type": "string",
         "isRequired": false,
         "description": "The associate form of the combobox."
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "highlightedValue": {
         "type": "string",
@@ -305,7 +346,7 @@
       "inputBehavior": {
         "type": "'none' | 'autohighlight' | 'autocomplete'",
         "isRequired": false,
-        "defaultValue": "\"none\"",
+        "defaultValue": "none",
         "description": "Defines the auto-completion behavior of the combobox.\n\n- `autohighlight`: The first focused item is highlighted as the user types\n- `autocomplete`: Navigating the listbox with the arrow keys selects the item and the input is updated"
       },
       "inputValue": {
@@ -321,13 +362,13 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "loopFocus": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to loop the keyboard navigation through the items"
       },
       "multiple": {
@@ -398,19 +439,19 @@
       "openOnChange": {
         "type": "boolean | ((details: InputValueChangeDetails) => boolean)",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to show the combobox when the input value changes"
       },
       "openOnClick": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to open the combobox popup on initial click on the input"
       },
       "openOnKeyPress": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "true",
+        "defaultValue": true,
         "description": "Whether to open the combobox on arrow key press"
       },
       "placeholder": {
@@ -445,15 +486,15 @@
         "description": "Function to scroll to a specific index"
       },
       "selectionBehavior": {
-        "type": "'replace' | 'clear' | 'preserve'",
+        "type": "'clear' | 'replace' | 'preserve'",
         "isRequired": false,
-        "defaultValue": "\"replace\"",
+        "defaultValue": "replace",
         "description": "The behavior of the combobox input when an item is selected\n\n- `replace`: The selected item string is set as the input value\n- `clear`: The input value is cleared\n- `preserve`: The input value is preserved"
       },
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "translations": {
@@ -464,7 +505,7 @@
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       },
       "value": {
@@ -490,7 +531,8 @@
         "isRequired": false,
         "description": "The size of the component"
       }
-    }
+    },
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -508,6 +550,12 @@
         "type": "UseComboboxReturn<T>",
         "isRequired": true
       },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
+      },
       "immediate": {
         "type": "boolean",
         "isRequired": false,
@@ -516,7 +564,7 @@
       "lazyMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to enable lazy mounting"
       },
       "onExitComplete": {
@@ -532,16 +580,17 @@
       "skipAnimationOnMount": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
-        "defaultValue": "false",
+        "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
-    }
+    },
+    "tag": "div"
   },
   "Trigger": {
     "props": {
@@ -561,16 +610,7 @@
         "description": "Whether the trigger is focusable"
       }
     },
-    "element": "HTMLButtonElement"
-  },
-  "List": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   }
 }

@@ -32,3 +32,9 @@ export type {
   DrawerOpenChangeDetails as OpenChangeDetails,
   DrawerActionTriggerProps as ActionTriggerProps,
 } from "./drawer"
+
+export type {
+  DialogInteractOutsideEvent as InteractOutsideEvent,
+  DialogFocusOutsideEvent as FocusOutsideEvent,
+  DialogPointerDownOutsideEvent as PointerDownOutsideEvent,
+} from "@ark-ui/react/dialog"

@@ -1,6 +1,7 @@
-import { type Dict, isFunction, isString, memo } from "../utils"
+import { type Dict, isFunction, isString, mapEntries, memo } from "../utils"
 import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
+import { EMPTY_OBJECT } from "./singleton"
 import type {
   TokenDictionary,
   Utility,
@@ -18,11 +19,10 @@ function normalize(config: UtilityPropertyConfig | undefined) {
 }
 
 function normalizeConfig(config: UtilityConfig) {
-  return Object.fromEntries(
-    Object.entries(config).map(([property, propertyConfig]) => {
-      return [property, normalize(propertyConfig)]
-    }),
-  )
+  return mapEntries(config, (property, propertyConfig) => [
+    property,
+    normalize(propertyConfig),
+  ])
 }
 
 export function createUtility(options: Options) {
@@ -142,14 +142,15 @@ export function createUtility(options: Options) {
     }
 
     if (isString(values)) {
-      return fn?.(values) ?? tokens.getCategoryValues(values) ?? {}
+      return fn?.(values) ?? tokens.getCategoryValues(values) ?? EMPTY_OBJECT
     }
 
     if (Array.isArray(values)) {
-      return values.reduce<Dict<string>>((result, value) => {
-        result[value] = value
-        return result
-      }, {})
+      const result: Dict<string> = {}
+      for (let i = 0; i < values.length; i++) {
+        result[values[i]] = values[i]
+      }
+      return result
     }
 
     if (isFunction(values)) {

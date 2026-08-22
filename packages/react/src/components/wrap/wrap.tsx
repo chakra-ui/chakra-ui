@@ -6,15 +6,14 @@ import type { HTMLChakraProps, SystemStyleObject } from "../../styled-system"
 import { chakra, defineStyle } from "../../styled-system"
 import { cx } from "../../utils"
 
-export interface WrapProps
-  extends Assign<
-    HTMLChakraProps<"div">,
-    {
-      justify?: SystemStyleObject["justifyContent"] | undefined
-      align?: SystemStyleObject["alignItems"] | undefined
-      direction?: SystemStyleObject["flexDirection"] | undefined
-    }
-  > {}
+export interface WrapProps extends Assign<
+  HTMLChakraProps<"div">,
+  {
+    justify?: SystemStyleObject["justifyContent"] | undefined
+    align?: SystemStyleObject["alignItems"] | undefined
+    direction?: SystemStyleObject["flexDirection"] | undefined
+  }
+> {}
 
 export const Wrap = forwardRef<HTMLDivElement, WrapProps>(
   function Wrap(props, ref) {
@@ -49,11 +48,12 @@ const itemStyle = defineStyle({
 
 export const WrapItem = forwardRef<HTMLDivElement, WrapItemProps>(
   function WrapItem(props, ref) {
+    const { css, ...rest } = props
     return (
       <chakra.div
         ref={ref}
-        css={[itemStyle, props.css]}
-        {...props}
+        css={[itemStyle, css]}
+        {...rest}
         className={cx("chakra-wrap__listitem", props.className)}
       />
     )

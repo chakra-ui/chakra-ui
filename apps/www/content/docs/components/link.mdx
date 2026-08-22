@@ -39,6 +39,8 @@ Add an external link icon to the `Link` component
 
 <ExampleTabs name="link-with-external" />
 
+## Guides
+
 ### Routing Library
 
 Use the `asChild` prop to compose `Link` with framework links like (Next.js)
@@ -51,6 +53,46 @@ const Demo = () => {
   return (
     <ChakraLink asChild>
       <NextLink href="/about">Click here</NextLink>
+    </ChakraLink>
+  )
+}
+```
+
+### Styling Active Links
+
+Use the `_currentPage` condition to style active links when using
+`aria-current="page"`.
+
+```jsx
+<Link
+  href="/home"
+  aria-current="page"
+  _currentPage={{ color: "blue.500", fontWeight: "bold" }}
+>
+  Home
+</Link>
+```
+
+With routing libraries, set `aria-current` based on the current route:
+
+```jsx
+import { Link as ChakraLink } from "@chakra-ui/react"
+import NextLink from "next/link"
+import { usePathname } from "next/navigation"
+
+const NavLink = ({ href, children }) => {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
+  return (
+    <ChakraLink asChild>
+      <NextLink
+        href={href}
+        aria-current={isActive ? "page" : undefined}
+        _currentPage={{ color: "blue.500", fontWeight: "bold" }}
+      >
+        {children}
+      </NextLink>
     </ChakraLink>
   )
 }

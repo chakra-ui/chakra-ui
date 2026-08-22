@@ -6,7 +6,10 @@ import { useEnvironmentContext } from "@ark-ui/react/environment"
 import {
   Center,
   DialogTrigger,
+  HStack,
   Input,
+  Kbd,
+  Link,
   Stack,
   Text,
   chakra,
@@ -23,6 +26,7 @@ const ComboboxRoot = chakra(Combobox.Root, {
     gap: "1",
   },
 })
+
 const ComboboxControl = chakra(Combobox.Control)
 const ComboboxInput = chakra(Combobox.Input, {}, { forwardAsChild: true })
 const ComboboxContent = chakra(Combobox.Content, {
@@ -39,11 +43,40 @@ const ComboboxItem = chakra(Combobox.Item, {
       bg: "gray.subtle",
       cursor: "pointer",
     },
-    _selected: {
+    _highlighted: {
       bg: "gray.subtle",
     },
   },
 })
+
+const SearchFooter = ({ query }: { query: string }) => (
+  <HStack
+    borderTopWidth="1px"
+    borderColor="border.subtle"
+    px="3"
+    py="2"
+    justify="space-between"
+    flexWrap="wrap"
+    gap="2"
+    mt="1"
+  >
+    <HStack gap="3" color="fg.muted" fontSize="xs" flexWrap="wrap">
+      <HStack gap="1">
+        <Kbd size="sm">↑</Kbd>
+        <Kbd size="sm">↓</Kbd>
+        <Text>Navigate</Text>
+      </HStack>
+      <HStack gap="1">
+        <Kbd size="sm">↵</Kbd>
+        <Text>Select</Text>
+      </HStack>
+      <HStack gap="1">
+        <Kbd size="sm">Esc</Kbd>
+        <Text>Close</Text>
+      </HStack>
+    </HStack>
+  </HStack>
+)
 
 interface Item {
   label: string
@@ -85,7 +118,7 @@ export const CommandMenu = (props: Props) => {
           placeholder="Search the docs"
           selectionBehavior="clear"
           loopFocus={false}
-          collection={collection}
+          collection={collection as any}
           onValueChange={(e) => {
             setOpen(false)
             router.push(`/${e.value}`)
@@ -135,6 +168,7 @@ export const CommandMenu = (props: Props) => {
             </ComboboxList>
           </ComboboxContent>
         </ComboboxRoot>
+        <SearchFooter query={inputValue} />
       </DialogContent>
     </DialogRoot>
   )

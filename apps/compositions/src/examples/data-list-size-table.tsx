@@ -10,7 +10,7 @@ export const DataListSizeTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +18,7 @@ export const DataListSizeTable = () => {
           <td />
           <For each={recipe.variantMap.size}>
             {(v) => (
-              <td>
+              <td key={v}>
                 <DataList.Root size={v}>
                   <DataList.Item>
                     <DataList.ItemLabel>Name</DataList.ItemLabel>

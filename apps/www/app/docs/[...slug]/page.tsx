@@ -1,3 +1,4 @@
+import { ChakraMasteryAd } from "@/components/chakra-mastery-ad"
 import { EditPageButton } from "@/components/edit-page-button"
 import { MDXContent } from "@/components/mdx-content"
 import { MDXPagination } from "@/components/mdx-pagination"
@@ -56,6 +57,7 @@ export default async function Page(props: PageContext) {
             <ScrollToTop />
             {/* <EventBadge /> */}
           </Stack>
+          <ChakraMasteryAd />
         </SidebarEnd>
       </Show>
     </>

@@ -42,6 +42,9 @@ export {
 export type {
   UseDialogProps as UseDrawerProps,
   UseDialogReturn as UseDrawerReturn,
+  DialogInteractOutsideEvent as DrawerInteractOutsideEvent,
+  DialogFocusOutsideEvent as DrawerFocusOutsideEvent,
+  DialogPointerDownOutsideEvent as DrawerPointerDownOutsideEvent,
 } from "@ark-ui/react/dialog"
 
 export * as Drawer from "./namespace"

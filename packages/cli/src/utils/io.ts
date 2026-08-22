@@ -1,34 +1,162 @@
 import type { SystemContext } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
-import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
+import createDebug from "debug"
+import { build } from "esbuild"
 import { formatly } from "formatly"
-import { existsSync, mkdirSync, rm } from "node:fs"
+import { existsSync, mkdirSync, realpathSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
-import { dirname, join, resolve } from "node:path"
+import { createRequire } from "node:module"
+import { dirname, extname, join, resolve } from "node:path"
+import vm from "node:vm"
+import { resolveTsconfig } from "./resolve-tsconfig"
+
+const debug = createDebug("chakra:io")
+const require = createRequire(import.meta.url)
 
 interface ReadResult {
   mod: SystemContext
   dependencies: string[]
 }
 
-const isValidSystem = (mod: unknown): mod is SystemContext => {
-  return Object.hasOwnProperty.call(mod, "$$chakra")
+interface ReadOptions {
+  cwd?: string
+  tsconfig?: string
 }
 
-export const read = async (file: string): Promise<ReadResult> => {
-  const filePath = resolve(file)
-  const { mod, dependencies } = await bundleNRequire(filePath)
+async function bundleFile(
+  file: string,
+  cwd: string,
+  tsconfigPath?: string,
+): Promise<{ code: string; dependencies: string[] }> {
+  const tsconfig = await resolveTsconfig(file, tsconfigPath)
+  debug("resolved tsconfig for esbuild:", tsconfig)
 
-  const resolvedMod = mod.default || mod.preset || mod.system || mod
+  const result = await build({
+    platform: "node",
+    format: "cjs",
+    mainFields: ["module", "main"],
+    absWorkingDir: cwd,
+    entryPoints: [file],
+    outfile: "out.js",
+    write: false,
+    bundle: true,
+    sourcemap: false,
+    metafile: true,
+    ...(tsconfig ? { tsconfig } : {}),
+  })
 
-  if (!isValidSystem(resolvedMod)) {
-    throw new Error(
-      `No default export found in ${file}. Did you forget to provide an export default?`,
-    )
+  const { text } = result.outputFiles[0]
+  return {
+    code: text,
+    dependencies: result.metafile ? Object.keys(result.metafile.inputs) : [],
+  }
+}
+
+function loadBundledCode(file: string, code: string): any {
+  try {
+    return loadViaRequire(file, code)
+  } catch {
+    return loadViaVm(code)
+  }
+}
+
+function loadViaRequire(file: string, code: string): any {
+  const ext = extname(file)
+  const realFileName = realpathSync.native(file)
+  const defaultLoader = require.extensions[ext]
+
+  require.extensions[ext] = (mod: any, filename: string) => {
+    if (filename === realFileName) {
+      mod._compile(code, filename)
+    } else {
+      defaultLoader?.(mod, filename)
+    }
   }
 
-  return { mod: resolvedMod, dependencies }
+  try {
+    delete require.cache[require.resolve(file)]
+    return require(file)
+  } finally {
+    require.extensions[ext] = defaultLoader
+  }
+}
+
+function loadViaVm(code: string): any {
+  const mod = { exports: {} }
+  const ctx = vm.createContext({
+    module: mod,
+    exports: mod.exports,
+    require,
+  })
+  vm.runInContext(code, ctx)
+  return mod.exports
+}
+
+const systemExports = ["default", "preset", "system"] as const
+
+const isRecord = (mod: unknown): mod is Record<string, unknown> => {
+  return typeof mod === "object" && mod !== null
+}
+
+const isValidSystem = (mod: unknown): mod is SystemContext => {
+  return isRecord(mod) && Object.hasOwnProperty.call(mod, "$$chakra")
+}
+
+function resolveSystemExport(mod: unknown) {
+  const candidate = isRecord(mod) && mod.default != null ? mod.default : mod
+
+  if (!isRecord(candidate) || isValidSystem(candidate)) return candidate
+
+  const exports = candidate as Record<string, unknown>
+  return exports.default || exports.preset || exports.system || candidate
+}
+
+function formatExportName(name: string) {
+  return `"${name}"`
+}
+
+function getExportNames(mod: unknown) {
+  if (!isRecord(mod) || isValidSystem(mod)) return []
+  return Object.keys(mod).filter((name) => name !== "__esModule")
+}
+
+function formatInvalidSystemError(file: string, mod: unknown) {
+  const exportNames = getExportNames(mod)
+  const foundExports = exportNames.length
+    ? `Found export${exportNames.length === 1 ? "" : "s"}: ${exportNames
+        .map(formatExportName)
+        .join(", ")}.`
+    : "Found no named exports."
+
+  return [
+    `No Chakra system export found in ${file}.`,
+    `The chakra typegen command expects ${systemExports
+      .map(formatExportName)
+      .join(
+        ", ",
+      )}, or a CommonJS export to be a Chakra system created with createSystem(...).`,
+    foundExports,
+    "If this file exports a config from defineConfig(...), wrap it first: export default createSystem(defaultConfig, config).",
+  ].join(" ")
+}
+
+export const read = async (
+  file: string,
+  options: ReadOptions = {},
+): Promise<ReadResult> => {
+  const { cwd = process.cwd(), tsconfig } = options
+  const filePath = resolve(file)
+
+  const bundle = await bundleFile(filePath, cwd, tsconfig)
+  const mod = loadBundledCode(filePath, bundle.code)
+  const resolvedMod = resolveSystemExport(mod)
+
+  if (!isValidSystem(resolvedMod)) {
+    throw new Error(formatInvalidSystemError(file, mod))
+  }
+
+  return { mod: resolvedMod, dependencies: bundle.dependencies }
 }
 
 const outPath = (path: string, file: string) => {
@@ -47,19 +175,20 @@ export const write = async (
   file: string,
   content: Promise<string>,
 ) => {
-  const filePath = outPath(path, file)
   try {
-    await writeFile(filePath, await content)
-    // Run the project's configured formatter (Biome, dprint, deno fmt, or
-    // Prettier) on the written file. If no formatter is detected, formatly
-    // reports ran=false and we continue silently — no hard failure.
-    await formatly([filePath], { cwd: process.cwd() })
+    await writeFile(outPath(path, file), await content)
   } catch (error) {
     throw new Error(
-      `Failed to write file ${filePath}: ${
-        error instanceof Error ? error.message : String(error)
-      }`,
+      `Failed to write file ${outPath(path, file)}: ${error instanceof Error ? error.message : String(error)}`,
     )
+  }
+}
+
+export async function formatOutput(dir: string) {
+  try {
+    await formatly(["*.d.ts", "*.ts"], { cwd: dir })
+  } catch {
+    // No formatter configured, or the formatter failed.
   }
 }
 

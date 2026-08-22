@@ -1,0 +1,169 @@
+{
+  "name": "toaster",
+  "file": "compositions/ui/toaster",
+  "snippet": "\"use client\"\n\nimport {\n  Toaster as ChakraToaster,\n  Portal,\n  Spinner,\n  Stack,\n  Toast,\n  createToaster,\n} from \"@chakra-ui/react\"\n\nexport const toaster = createToaster({\n  placement: \"bottom-end\",\n  pauseOnPageIdle: true,\n})\n\nexport const Toaster = () => {\n  return (\n    <Portal>\n      <ChakraToaster toaster={toaster} insetInline={{ mdDown: \"4\" }}>\n        {(toast) => (\n          <Toast.Root width={{ md: \"sm\" }}>\n            {toast.type === \"loading\" ? (\n              <Spinner size=\"sm\" color=\"blue.solid\" />\n            ) : (\n              <Toast.Indicator />\n            )}\n            <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n              {toast.title && <Toast.Title>{toast.title}</Toast.Title>}\n              {toast.description && (\n                <Toast.Description>{toast.description}</Toast.Description>\n              )}\n            </Stack>\n            {toast.action && (\n              <Toast.ActionTrigger>{toast.action.label}</Toast.ActionTrigger>\n            )}\n            {toast.closable && <Toast.CloseTrigger />}\n          </Toast.Root>\n        )}\n      </ChakraToaster>\n    </Portal>\n  )\n}\n",
+  "examples": [
+    {
+      "name": "toaster-basic",
+      "content": "\"use client\"\nexport const ToasterBasic = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() =>\n        toaster.create({\n          description: \"File saved successfully\",\n          type: \"info\",\n        })\n      }\n    >\n      Show Toast\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-closable",
+      "content": "\"use client\"\nexport const ToasterClosable = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() =>\n        toaster.create({\n          description: \"File saved successfully\",\n          type: \"info\",\n          closable: true,\n        })\n      }\n    >\n      Show Toast\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-lifecycle",
+      "content": "\"use client\"\nexport const ToasterLifecycle = () => {\n  const [statusLog, setStatusLog] = useState<[number, string][]>([])\n  const [dismissed, setDismissed] = useState(true)\n\n  return (\n    <Stack align=\"flex-start\">\n      <Button\n        disabled={!dismissed}\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() =>\n          toaster.create({\n            description: \"This is a toast\",\n            type: \"info\",\n            onStatusChange({ status }) {\n              setDismissed(status === \"unmounted\")\n              setStatusLog((prev) => [[Date.now(), status], ...prev])\n            },\n          })\n        }\n      >\n        Show Toast\n      </Button>\n\n      <Stack padding=\"2\" width=\"full\" role=\"log\" borderWidth=\"1px\" minH=\"100px\">\n        {statusLog.map(([time, toastStatus], i) => {\n          const date = new Date(time)\n          return (\n            <HStack as=\"pre\" fontFamily=\"mono\" textStyle=\"sm\" key={i}>\n              {date.toLocaleTimeString()}{\" \"}\n              <Text fontWeight=\"bold\">{toastStatus}</Text>\n            </HStack>\n          )\n        })}\n      </Stack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, HStack, Stack, Text } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-pause-and-play",
+      "content": "\"use client\"\nexport const ToasterPauseAndPlay = () => {\n  const id = useId()\n  const [paused, setPaused] = useState(false)\n  const [shown, setShown] = useState(false)\n\n  const show = () => {\n    toaster.success({\n      id,\n      title: \"This is a success toast\",\n      onStatusChange: (details) => {\n        if (details.status === \"visible\") {\n          setShown(true)\n        } else if (details.status === \"dismissing\") {\n          setShown(false)\n        }\n      },\n    })\n  }\n\n  const pause = () => {\n    toaster.pause(id)\n    setPaused(true)\n  }\n\n  const play = () => {\n    toaster.resume(id)\n    setPaused(false)\n  }\n\n  return (\n    <HStack>\n      <Button variant=\"outline\" size=\"sm\" onClick={show} disabled={shown}>\n        Show Toast\n      </Button>\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={pause}\n        disabled={!shown || paused}\n      >\n        <HiPause />\n        Pause Toast\n      </Button>\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={play}\n        disabled={!shown || !paused}\n      >\n        <HiPlay />\n        Play Toast\n      </Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\"",
+        "import { useId, useState } from \"react\"",
+        "import { HiPause, HiPlay } from \"react-icons/hi\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "npmDependencies": [
+        "react-icons"
+      ],
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-persistent",
+      "content": "\"use client\"\nexport const ToasterPersistent = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() =>\n        toaster.create({\n          description: \"File saved successfully\",\n          type: \"loading\",\n        })\n      }\n    >\n      Show Toast\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-static",
+      "content": "\"use client\"\nexport const ToasterStatic = () => {\n  const recipe = useSlotRecipe({ key: \"toast\" })\n  const styles = recipe()\n\n  return (\n    <Stack gap=\"8\">\n      <Box width=\"420px\" css={styles.root}>\n        <Spinner size=\"sm\" color=\"red\" />\n        <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n          <Box css={styles.title}>Loading...</Box>\n          <Box css={styles.description}>Some description of the loading.</Box>\n        </Stack>\n        <Box as=\"button\" css={styles.actionTrigger}>\n          Retry\n        </Box>\n        <Box\n          as=\"button\"\n          css={styles.closeTrigger}\n          className=\"chakra-toast__closeTrigger\"\n        >\n          <HiX />\n        </Box>\n      </Box>\n\n      <Box data-type=\"error\" width=\"420px\" css={styles.root}>\n        <Box css={styles.indicator} asChild>\n          <HiXCircle />\n        </Box>\n        <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n          <Box css={styles.title}>Error</Box>\n          <Box css={styles.description}>Some description of the error</Box>\n        </Stack>\n        <Box as=\"button\" css={styles.actionTrigger}>\n          Retry\n        </Box>\n        <Box\n          as=\"button\"\n          css={styles.closeTrigger}\n          className=\"chakra-toast__closeTrigger\"\n        >\n          <HiX />\n        </Box>\n      </Box>\n\n      <Box data-type=\"success\" width=\"420px\" css={styles.root}>\n        <Box css={styles.indicator} asChild>\n          <HiCheckCircle />\n        </Box>\n        <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n          <Box css={styles.title}>Success</Box>\n          <Box css={styles.description}>Some description of the success</Box>\n        </Stack>\n        <Box as=\"button\" css={styles.actionTrigger}>\n          Retry\n        </Box>\n        <Box\n          as=\"button\"\n          css={styles.closeTrigger}\n          className=\"chakra-toast__closeTrigger\"\n        >\n          <HiX />\n        </Box>\n      </Box>\n\n      <Box data-type=\"warning\" width=\"420px\" css={styles.root}>\n        <Box css={styles.indicator} asChild>\n          <HiExclamationCircle />\n        </Box>\n        <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n          <Box css={styles.title}>Warning</Box>\n          <Box css={styles.description}>Some description of the warning</Box>\n        </Stack>\n        <Box as=\"button\" css={styles.actionTrigger}>\n          Retry\n        </Box>\n        <Box\n          as=\"button\"\n          css={styles.closeTrigger}\n          className=\"chakra-toast__closeTrigger\"\n        >\n          <HiX />\n        </Box>\n      </Box>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Box, Spinner, Stack, useSlotRecipe } from \"@chakra-ui/react\"",
+        "import {\n  HiCheckCircle,\n  HiExclamationCircle,\n  HiX,\n  HiXCircle,\n} from \"react-icons/hi\""
+      ],
+      "importPath": "import { Toaster } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "toaster-with-action",
+      "content": "\"use client\"\nexport const ToasterWithAction = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() =>\n        toaster.success({\n          title: \"Update successful\",\n          description: \"File saved successfully to the server\",\n          action: {\n            label: \"Undo\",\n            onClick: () => console.log(\"Undo\"),\n          },\n        })\n      }\n    >\n      Click me\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-with-duration",
+      "content": "\"use client\"\nexport const ToasterWithDuration = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() =>\n        toaster.create({\n          description: \"File saved successfully\",\n          duration: 6000,\n        })\n      }\n    >\n      Show Toast\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-with-external-close",
+      "content": "\"use client\"\nexport const ToasterWithExternalClose = () => {\n  return (\n    <HStack>\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() =>\n          toaster.create({\n            description: \"File saved successfully\",\n            type: \"info\",\n          })\n        }\n      >\n        Show Toast\n      </Button>\n\n      <Button variant=\"outline\" size=\"sm\" onClick={() => toaster.dismiss()}>\n        Close Toasts\n      </Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-with-promise",
+      "content": "\"use client\"\nexport const ToasterWithPromise = () => {\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"sm\"\n      onClick={() => {\n        const promise = new Promise<void>((resolve) => {\n          setTimeout(() => resolve(), 5000)\n        })\n\n        toaster.promise(promise, {\n          success: {\n            title: \"Successfully uploaded!\",\n            description: \"Looks great\",\n          },\n          error: {\n            title: \"Upload failed\",\n            description: \"Something wrong with the upload\",\n          },\n          loading: { title: \"Uploading...\", description: \"Please wait\" },\n        })\n      }}\n    >\n      Show Toast\n    </Button>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-with-status",
+      "content": "\"use client\"\nexport const ToasterWithStatus = () => {\n  return (\n    <HStack>\n      <For each={[\"success\", \"error\", \"warning\", \"info\"]}>\n        {(type) => (\n          <Button\n            size=\"sm\"\n            variant=\"outline\"\n            key={type}\n            onClick={() =>\n              toaster.create({\n                title: `Toast status is ${type}`,\n                type: type,\n              })\n            }\n          >\n            {type}\n          </Button>\n        )}\n      </For>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, For, HStack } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    },
+    {
+      "name": "toaster-with-update",
+      "content": "\"use client\"\nexport const ToasterWithUpdate = () => {\n  const id = \"login-error-toast\"\n\n  const show = () => {\n    if (toaster.isVisible(id)) return\n    toaster.loading({\n      id,\n      title: \"Error Connecting...\",\n      description: \"You do not have permissions to perform this action.\",\n    })\n  }\n\n  const update = () => {\n    toaster.update(id, {\n      title: \"Hooray 🥳🥳🥳!!!\",\n      description: \"You now have permissions to perform this action.\",\n      type: \"success\",\n      duration: 3000,\n    })\n  }\n\n  return (\n    <HStack>\n      <Button variant=\"outline\" size=\"sm\" onClick={show}>\n        Show Toast\n      </Button>\n      <Button variant=\"outline\" size=\"sm\" onClick={update}>\n        Update Toast\n      </Button>\n    </HStack>\n  )\n}\n",
+      "hasSnippet": true,
+      "importPaths": [
+        "import { Button, HStack } from \"@chakra-ui/react\"",
+        "import { toaster } from \"@/components/ui/toaster\""
+      ],
+      "importPath": "import { toaster } from \"@/components/ui/toaster\"",
+      "fileDependencies": [
+        "compositions/ui/toaster"
+      ]
+    }
+  ]
+}

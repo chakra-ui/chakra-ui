@@ -41,6 +41,11 @@
         "isRequired": false,
         "description": "The ids of the elements in the radio. Useful for composition."
       },
+      "invalid": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group is marked as invalid."
+      },
       "name": {
         "type": "string",
         "isRequired": false,
@@ -54,23 +59,23 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "description": "Orientation of the radio group"
+        "description": "Orientation of the radio group",
+        "defaultValue": "horizontal"
       },
       "readOnly": {
         "type": "boolean",
         "isRequired": false,
-        "description": "Whether the checkbox is read-only"
+        "description": "Whether the radio group is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "If `true`, the radio group is marked as required."
       },
       "value": {
         "type": "string",
         "isRequired": false,
         "description": "The controlled value of the radio group"
-      },
-      "colorPalette": {
-        "defaultValue": "gray",
-        "type": "\"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-        "isRequired": false,
-        "description": "The color palette of the component"
       },
       "size": {
         "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
@@ -79,7 +84,8 @@
         "description": "The size of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -98,7 +104,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -125,7 +132,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "ItemText": {
     "props": {
@@ -140,7 +148,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Indicator": {
     "props": {
@@ -155,7 +164,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Items": {
     "props": {
@@ -183,7 +193,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemHiddenInput": {
     "props": {
@@ -193,7 +204,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "Label": {
     "props": {
@@ -203,6 +215,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   }
 }

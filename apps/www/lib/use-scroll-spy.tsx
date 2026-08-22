@@ -2,13 +2,33 @@
 
 import { useEffect, useRef, useState } from "react"
 
+const useStableSelectors = (selectors: string[]): string[] => {
+  const ref = useRef<string[]>(selectors)
+  const prev = ref.current
+
+  if (
+    prev.length !== selectors.length ||
+    prev.some((value, index) => value !== selectors[index])
+  ) {
+    ref.current = selectors
+  }
+
+  return ref.current
+}
+
 export const useScrollSpy = (selectors: string[]) => {
-  const [activeId, setActiveId] = useState<string | null>(selectors[0])
-  const [previousId, setPreviousId] = useState<string | null>()
+  const stableSelectors = useStableSelectors(selectors)
+
+  const [activeIds, setActiveIds] = useState<Set<string>>(
+    () => new Set(stableSelectors[0] ? [stableSelectors[0]] : []),
+  )
   const observer = useRef<IntersectionObserver | null>(null)
+  const visibleIds = useRef<Set<string>>(new Set())
 
   useEffect(() => {
-    const elements = selectors.map((selector) =>
+    visibleIds.current = new Set()
+
+    const elements = stableSelectors.map((selector) =>
       document.querySelector(`[id='${selector.replace("#", "")}']`),
     )
 
@@ -16,17 +36,15 @@ export const useScrollSpy = (selectors: string[]) => {
       (entries) => {
         for (const entry of entries) {
           const id = `#${entry.target.getAttribute("id")}`
-          if (entry?.isIntersecting) {
-            setPreviousId(activeId)
-            setActiveId(id)
+          if (entry.isIntersecting) {
+            visibleIds.current.add(id)
           } else {
-            if (id === previousId) {
-              setPreviousId(null)
-            }
-            if (activeId === id && previousId) {
-              setActiveId(previousId)
-            }
+            visibleIds.current.delete(id)
           }
+        }
+
+        if (visibleIds.current.size > 0) {
+          setActiveIds(new Set(visibleIds.current))
         }
       },
       { rootMargin: "-30% 0px" },
@@ -36,7 +54,7 @@ export const useScrollSpy = (selectors: string[]) => {
       if (element) observer.current?.observe(element)
     }
     return () => observer.current?.disconnect()
-  }, [selectors, previousId, activeId])
+  }, [stableSelectors])
 
-  return activeId
+  return activeIds
 }

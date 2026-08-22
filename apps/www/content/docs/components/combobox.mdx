@@ -45,10 +45,11 @@ import { Combobox } from "@chakra-ui/react"
 </Combobox.Root>
 ```
 
-To setup combobox, you might need to import the following hooks:
+To setup combobox, you need to import the following hooks:
 
-- `useListCollection`: Used to manage the list of items in the combobox,
-  providing helpful methods for filtering and mutating the list.
+- `useListCollection`: Used to manage the
+  [list collection](https://ark-ui.com/docs/collections/list-collection) in the
+  combobox, providing helpful methods for filtering and mutating the list.
 
 - `useFilter`: Used to provide the filtering logic for the combobox based on
   [`Intl.Collator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator)
@@ -321,7 +322,7 @@ to the `Combobox.Content` component.
 
 <ExampleTabs name="combobox-with-custom-animation" />
 
-### Within Dialog
+### Open From Dialog
 
 To use the combobox within a dialog or popover component, avoid wrapping the
 `Combobox.Positioner` within the `Portal`.
@@ -349,7 +350,39 @@ If you use a `Dialog` and have set `scrollBehavior="inside"`, you need to:
 </Combobox.Root>
 ```
 
-<ExampleTabs name="combobox-in-popover" />
+<ExampleTabs name="combobox-open-from-popover" />
+
+### Creatable
+
+Here's an example of how to allow users to create new options by typing values
+that don't exist in the list. It uses the `useCombobox` and
+`Combobox.RootProvider` components for smoother integration and management.
+
+> **Note:** This example is not fully tested. Feel free to use it as a starting
+> point and improve it according to your needs.
+
+<ExampleTabs name="combobox-with-createable" />
+
+## Guides
+
+### Controlling the value
+
+Use `value` and `onValueChange` for controlled mode. When changing the value
+externally (e.g. form reset, sync) with filtering enabled, the input can show
+empty if the selected item is filtered out. Call `reset()` before updating:
+
+```tsx
+const { collection, filter, reset } = useListCollection({
+  initialItems: items,
+  filter: contains,
+})
+
+// When changing value externally, reset the filter first
+const setValueWithReset = (v: string[]) => {
+  reset()
+  setValue(v)
+}
+```
 
 ## Props
 
@@ -360,3 +393,10 @@ If you use a `Dialog` and have set `scrollBehavior="inside"`, you need to:
 ### Item
 
 <PropTable component="Combobox" part="Item" />
+
+## Explorer
+
+Explore the `Combobox` component parts interactively. Click on parts in the
+sidebar to highlight them in the preview.
+
+<Explorer name="combobox-explorer-demo" />

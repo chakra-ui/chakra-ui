@@ -4,6 +4,7 @@ import {
   compact,
   flatten,
   isObject,
+  mapEntries,
   memo,
   mergeWith,
   splitProps,
@@ -17,6 +18,7 @@ import { createLayers } from "./layers"
 import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
 import type {
@@ -29,8 +31,6 @@ import type {
   TokenFn,
 } from "./types"
 import { createUtility } from "./utility"
-
-const EMPTY_OBJECT = {}
 
 export function createSystem(...configs: SystemConfig[]): SystemContext {
   const config = mergeConfigs(...configs)
@@ -99,11 +99,15 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
   const normalizeValue = (value: any): any => {
     if (Array.isArray(value)) {
-      return value.reduce((acc, current, index) => {
-        const key = conditions.breakpoints[index]
-        if (current != null) acc[key] = current
-        return acc
-      }, {})
+      const result = createEmptyObject()
+      for (let index = 0; index < value.length; index++) {
+        const current = value[index]
+        if (current != null) {
+          const key = conditions.breakpoints[index]
+          result[key] = current
+        }
+      }
+      return result
     }
     return value
   }
@@ -153,11 +157,9 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   }
 
   function getGlobalCss() {
-    const keyframes = Object.fromEntries(
-      Object.entries(theme.keyframes ?? EMPTY_OBJECT).map(([key, value]) => [
-        `@keyframes ${key}`,
-        value,
-      ]),
+    const keyframes = mapEntries(
+      theme.keyframes ?? EMPTY_OBJECT,
+      (key, value) => [`@keyframes ${key}`, value],
     )
     const result = Object.assign({}, keyframes, css(serialize(globalCss)))
     return layers.wrap("base", result)
@@ -188,6 +190,27 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
   function getSlotRecipe(key: string, fallback?: any) {
     return theme.slotRecipes?.[key] ?? fallback
+  }
+
+  const recipeCache = new Map<string, any>()
+  const slotRecipeCache = new Map<string, any>()
+
+  function getRecipeFn(key: string, fallback?: any) {
+    let fn = recipeCache.get(key)
+    if (!fn) {
+      fn = cva(getRecipe(key, fallback ?? EMPTY_OBJECT))
+      recipeCache.set(key, fn)
+    }
+    return fn
+  }
+
+  function getSlotRecipeFn(key: string, fallback?: any) {
+    let fn = slotRecipeCache.get(key)
+    if (!fn) {
+      fn = sva(getSlotRecipe(key, fallback ?? EMPTY_OBJECT))
+      slotRecipeCache.set(key, fn)
+    }
+    return fn
   }
 
   function isRecipe(key: string) {
@@ -245,6 +268,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     sva,
     getRecipe,
     getSlotRecipe,
+    getRecipeFn,
+    getSlotRecipeFn,
     hasRecipe,
     isRecipe,
     isSlotRecipe,
@@ -254,12 +279,17 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
 
 function getTokenMap(tokens: TokenDictionary) {
   const map = new Map<string, { value: string; variable: string }>()
+  const names = new Set(tokens.allTokens.map((token) => token.name))
 
-  tokens.allTokens.forEach((token) => {
+  for (const name of names) {
+    const token = tokens.getByName(name)
+    if (!token?.extensions.cssVar) continue
+
     const { cssVar, virtual, conditions } = token.extensions
-    const value = !!conditions || virtual ? cssVar!.ref : token.value
-    map.set(token.name, { value, variable: cssVar!.ref })
-  })
+    const isSemantic = !!conditions || virtual
+    const value = isSemantic ? cssVar.ref : token.value
+    map.set(name, { value, variable: cssVar.ref })
+  }
 
   return map
 }
@@ -286,13 +316,18 @@ const semanticTokenQuery = (
 ) => ({
   categoryKeys,
   list(category: TokenCategory) {
-    return Array.from(tokens.categoryMap.get(category)?.entries() ?? []).reduce(
-      (acc, [key, value]) => {
-        if (predicate(value, key)) acc.push(key)
-        return acc
-      },
-      [] as string[],
-    )
+    const map = tokens.categoryMap.get(category)
+    const entries = map ? [...map.entries()] : []
+    const result: string[] = []
+
+    for (let i = 0; i < entries.length; i++) {
+      const [key, value] = entries[i]
+      if (predicate(value, key)) {
+        result.push(key)
+      }
+    }
+
+    return result
   },
   search(category: TokenCategory, query: string) {
     return this.list(category).filter((style) => style.includes(query))

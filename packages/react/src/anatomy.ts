@@ -3,6 +3,7 @@ import { accordionAnatomy as arkAccordionAnatomy } from "@ark-ui/react/accordion
 import { createAnatomy } from "@ark-ui/react/anatomy"
 import { clipboardAnatomy as arkClipboardAnatomy } from "@ark-ui/react/clipboard"
 import { colorPickerAnatomy as arkColorPickerAnatomy } from "@ark-ui/react/color-picker"
+import { datePickerAnatomy as arkDatePickerAnatomy } from "@ark-ui/react/date-picker"
 import { dialogAnatomy as arkDialogAnatomy } from "@ark-ui/react/dialog"
 import { editableAnatomy as arkEditableAnatomy } from "@ark-ui/react/editable"
 import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
@@ -15,6 +16,7 @@ import { radioGroupAnatomy as arkRadioGroupAnatomy } from "@ark-ui/react/radio-g
 import { ratingGroupAnatomy as arkRatingGroupAnatomy } from "@ark-ui/react/rating-group"
 import { selectAnatomy as arkSelectAnatomy } from "@ark-ui/react/select"
 import { sliderAnatomy as arkSliderAnatomy } from "@ark-ui/react/slider"
+import { splitterAnatomy as arkSplitterAnatomy } from "@ark-ui/react/splitter"
 import { switchAnatomy as arkSwitchAnatomy } from "@ark-ui/react/switch"
 
 export const accordionAnatomy = arkAccordionAnatomy.extendWith("itemBody")
@@ -77,6 +79,8 @@ export const dataListAnatomy = createAnatomy("data-list").parts(
   "itemLabel",
   "itemValue",
 )
+export const datePickerAnatomy =
+  arkDatePickerAnatomy.extendWith("indicatorGroup")
 
 export const dialogAnatomy = arkDialogAnatomy.extendWith(
   "header",
@@ -152,7 +156,10 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
   "empty",
 )
 
-export const sliderAnatomy = arkSliderAnatomy.extendWith("markerIndicator")
+export const sliderAnatomy = arkSliderAnatomy.extendWith(
+  "markerIndicator",
+  "markerLabel",
+)
 
 export const statAnatomy = createAnatomy("stat").parts(
   "root",
@@ -251,6 +258,7 @@ export const codeBlockAnatomy = createAnatomy("code-block", [
 ])
 
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
+export { dateInputAnatomy } from "@ark-ui/react/date-input"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"
@@ -262,6 +270,14 @@ export { qrCodeAnatomy } from "@ark-ui/react/qr-code"
 export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
+export { tagsInputAnatomy } from "@ark-ui/react/tags-input"
+export const splitterAnatomy = arkSplitterAnatomy.extendWith(
+  "resizeTriggerSeparator",
+  "resizeTriggerIndicator",
+)
+export { carouselAnatomy } from "@ark-ui/react/carousel"
 
 export const clipboardAnatomy = arkClipboardAnatomy.extendWith("valueText")
 export const listboxAnatomy = arkListboxAnatomy
+export { marqueeAnatomy } from "@ark-ui/react/marquee"
+export { floatingPanelAnatomy } from "@ark-ui/react/floating-panel"

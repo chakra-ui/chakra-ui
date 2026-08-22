@@ -21,11 +21,12 @@ export { useTimelineStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineRootBaseProps
-  extends SlotRecipeProps<"timeline">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"timeline">, UnstyledProp {}
 
-export interface TimelineRootProps
-  extends HTMLChakraProps<"div", TimelineRootBaseProps> {}
+export interface TimelineRootProps extends HTMLChakraProps<
+  "div",
+  TimelineRootBaseProps
+> {}
 
 export const TimelineRoot = withProvider<HTMLDivElement, TimelineRootProps>(
   "div",
@@ -39,8 +40,7 @@ export const TimelineRootPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineItemProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineItem = withContext<HTMLDivElement, TimelineItemProps>(
   "div",
@@ -51,8 +51,7 @@ export const TimelineItem = withContext<HTMLDivElement, TimelineItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineSeparatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineSeparator = withContext<
   HTMLDivElement,
@@ -62,8 +61,7 @@ export const TimelineSeparator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineIndicatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineIndicator = withContext<
   HTMLDivElement,
@@ -73,8 +71,7 @@ export const TimelineIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineContentProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineContent = withContext<
   HTMLDivElement,
@@ -84,8 +81,7 @@ export const TimelineContent = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineTitleProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineTitle = withContext<HTMLDivElement, TimelineTitleProps>(
   "div",
@@ -95,8 +91,7 @@ export const TimelineTitle = withContext<HTMLDivElement, TimelineTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineDescriptionProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineDescription = withContext<
   HTMLDivElement,
@@ -106,8 +101,7 @@ export const TimelineDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface TimelineConnectorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const TimelineConnector = withContext<
   HTMLDivElement,

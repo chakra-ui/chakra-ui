@@ -2,6 +2,8 @@ import {
   type Dict,
   compact,
   cx,
+  mapEntries,
+  memo,
   mergeWith,
   omit,
   splitProps,
@@ -9,12 +11,13 @@ import {
 } from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
+import { EMPTY_OBJECT } from "./singleton"
 import type { Condition, CssFn, Layers } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
-  base: {},
-  variants: {},
-  defaultVariants: {},
+  base: EMPTY_OBJECT,
+  variants: EMPTY_OBJECT,
+  defaultVariants: EMPTY_OBJECT,
   compoundVariants: [],
   ...conf,
 })
@@ -30,8 +33,13 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   const { css, conditions, normalize, layers } = options
 
   function cva(config: Dict = {}) {
-    const { base, variants, defaultVariants, compoundVariants } =
-      defaults(config)
+    const defaultsConfig = defaults(config)
+    const { base, defaultVariants, compoundVariants } = defaultsConfig
+
+    const variants = mapEntries(defaultsConfig.variants, (key, obj) => [
+      key,
+      mapEntries(obj, (optionKey, styles) => [optionKey, normalize(styles)]),
+    ])
 
     const getVariantCss = createCssFn({
       conditions,
@@ -41,13 +49,13 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       },
     })
 
-    const resolve = (props = {}) => {
+    const resolve = memo(function resolve(props: Dict = {}) {
       const variantSelections: Dict = normalize({
         ...defaultVariants,
         ...compact(props),
       })
 
-      let variantCss = { ...base }
+      let variantCss = { ...normalize(base) }
 
       mergeWith(variantCss, getVariantCss(variantSelections))
 
@@ -57,7 +65,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       )
 
       return layers.wrap("recipes", css(variantCss, compoundVariantCss))
-    }
+    })
 
     const variantKeys = Object.keys(variants)
 
@@ -65,26 +73,29 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       const restProps = omit(props, ["recipe"])
       const [recipeProps, localProps] = splitProps(restProps, variantKeys)
 
-      if (!variantKeys.includes("colorPalette")) {
+      const hasColorPalette = variantKeys.includes("colorPalette")
+      const hasOrientation = variantKeys.includes("orientation")
+
+      if (!hasColorPalette) {
         recipeProps.colorPalette =
           props.colorPalette || defaultVariants.colorPalette
       }
 
-      if (variantKeys.includes("orientation")) {
+      if (hasOrientation) {
         ;(localProps as any).orientation = props.orientation
       }
 
       return [recipeProps, localProps]
     }
 
-    const variantMap = Object.fromEntries(
-      Object.entries(variants).map(([key, value]) => [
-        key,
-        Object.keys(value as any),
-      ]),
-    )
+    const variantMap = mapEntries(variants, (key, value) => [
+      key,
+      Object.keys(value as any),
+    ])
 
-    const cvaFn = (props: any) => css(resolve(props))
+    const cvaFn = memo(function cvaFn(props: any) {
+      return css(resolve(props))
+    })
     return Object.assign(cvaFn, {
       className: config.className,
       __cva__: true,
@@ -94,13 +105,13 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       config,
       splitVariantProps,
       merge(other: any) {
-        return cva(mergeCva(options)(this, other))
+        return cva(mergeCva(this, other))
       },
     })
   }
 
   function getCompoundVariantCss(cvs: any[], vm: any) {
-    let result = {}
+    let result = EMPTY_OBJECT
     cvs.forEach((cv) => {
       const isMatching = Object.entries(cv).every(([key, value]) => {
         if (key === "css") return true
@@ -119,40 +130,35 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   return cva
 }
 
-function mergeCva(opts: Options) {
-  const { css } = opts
+const toRecipeConfig = (cva: any) =>
+  (cva?.__cva__ ? cva.config : cva) ?? EMPTY_OBJECT
 
-  return function mergeCva(cvaA: any, cvaB: any) {
-    const override = defaults(cvaB.config)
-    const variantKeys = uniq(cvaA.variantKeys, Object.keys(cvaB.variants))
+function mergeCva(cvaA: any, cvaB: any) {
+  const a = defaults(toRecipeConfig(cvaA))
+  const b = defaults(toRecipeConfig(cvaB))
 
-    const base = css(cvaA.base, override.base)
+  const variantKeys = uniq(Object.keys(a.variants), Object.keys(b.variants))
 
-    const variants = Object.fromEntries(
-      variantKeys.map((key) => [
-        key,
-        css(cvaA.config.variants[key], override.variants[key]),
-      ]),
-    )
+  const base = mergeWith({}, a.base, b.base)
 
-    const defaultVariants = mergeWith(
-      cvaA.config.defaultVariants,
-      override.defaultVariants,
-    )
+  const variants = Object.fromEntries(
+    variantKeys.map((key) => [
+      key,
+      mergeWith({}, a.variants[key], b.variants[key]),
+    ]),
+  )
 
-    const compoundVariants = [
-      ...cvaA.compoundVariants,
-      ...override.compoundVariants,
-    ]
+  const defaultVariants = mergeWith({}, a.defaultVariants, b.defaultVariants)
 
-    const className = cx(cvaA.className, cvaB.className)
+  const compoundVariants = [...a.compoundVariants, ...b.compoundVariants]
 
-    return {
-      className,
-      base,
-      variants,
-      defaultVariants,
-      compoundVariants,
-    }
+  const className = cx((a as any).className, (b as any).className)
+
+  return {
+    className,
+    base,
+    variants,
+    defaultVariants,
+    compoundVariants,
   }
 }

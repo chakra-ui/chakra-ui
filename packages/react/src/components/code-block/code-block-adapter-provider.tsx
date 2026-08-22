@@ -1,3 +1,5 @@
+"use client"
+
 import { CodeBlockAdapterContextProvider } from "./code-block-adapter-context"
 import {
   type UseCodeHighlightProps,

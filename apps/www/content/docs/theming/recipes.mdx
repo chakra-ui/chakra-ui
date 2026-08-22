@@ -111,8 +111,7 @@ import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>
 
-export interface ButtonProps
-  extends React.PropsWithChildren<ButtonVariantProps> {}
+export interface ButtonProps extends React.PropsWithChildren<ButtonVariantProps> {}
 ```
 
 ### Creating a component
@@ -236,6 +235,33 @@ This means a code like this will not work:
 For this cases, we recommend rendering multiple versions of the component with
 different breakpoints, then hide/show as needed.
 
+## Using Semantic Tokens
+
+Semantic tokens from your theme are available in recipes. Reference them by
+name.
+
+```tsx title="button.recipe.ts"
+import { defineRecipe } from "@chakra-ui/react"
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    bg: "bg.muted", // semantic token
+    color: "fg", // semantic token
+    borderRadius: "l2", // semantic radius
+  },
+  variants: {
+    variant: {
+      primary: {
+        bg: "colorPalette.solid", // virtual color
+        color: "colorPalette.contrast",
+      },
+    },
+  },
+})
+```
+
+Common tokens: `bg`, `fg`, `border`, `colorPalette.*`
+
 ## Theme Usage
 
 To use the recipe in a reusable manner, move it to the system theme and add it
@@ -258,7 +284,9 @@ export default createSystem(defaultConfig, config)
 
 ### TypeScript
 
-Use the CLI to generate the types for the recipe.
+Use the CLI to generate types for the recipe, then import them in your
+component. See the [CLI docs](/docs/get-started/cli#chakra-typegen) for how to
+run `typegen` in postinstall, CI, and monorepos.
 
 ```bash
 npx @chakra-ui/cli typegen ./theme.ts
@@ -272,8 +300,7 @@ import { buttonRecipe } from "./button.recipe"
 
 type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>
 
-export interface ButtonProps
-  extends React.PropsWithChildren<ButtonVariantProps> {}
+export interface ButtonProps extends React.PropsWithChildren<ButtonVariantProps> {}
 ```
 
 ### Update code

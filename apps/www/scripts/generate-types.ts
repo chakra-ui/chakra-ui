@@ -6,11 +6,11 @@ import {
   staticComponentList,
 } from "@/utils/get-component-list"
 import { getRecipeTypes } from "@/utils/get-recipe-types"
+import { exampleOnlyComponents } from "@/utils/project-sdk"
 import {
   chartComponents,
   filterEmpty,
   isEmptyObject,
-  mapEntries,
   toComponentCase,
 } from "@/utils/shared"
 import { defaultSystem } from "@chakra-ui/react/preset"
@@ -18,6 +18,7 @@ import { ensureDirSync } from "fs-extra"
 import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs"
 import { basename, join } from "node:path"
 import { camelCase, kebabCase } from "scule"
+import ts from "typescript"
 
 const fetchArkComponents = async <T>(arg = ""): Promise<T> => {
   const prom = await fetch(`http://ark-ui.com/api/types/react${arg}`)
@@ -39,7 +40,7 @@ async function getRecipeProps() {
   const componentDirs = await getComponentList()
   const entries = componentDirs.map((dir) => {
     const recipeKey = camelCase(dir)
-    const props = getRecipeTypes(defaultSystem, recipeKey)
+    let props = getRecipeTypes(defaultSystem, recipeKey)
 
     if (defaultSystem.isRecipe(recipeKey)) {
       return [
@@ -63,12 +64,147 @@ async function getComponentDirectories() {
   return Array.from(new Set([...componentList, ...staticComponentList]))
 }
 
-async function writeStaticProps(outDir: string) {
-  const files = globSync("scripts/static-props/**/*.json")
+function extractDefaultPropsFromSource(
+  filePath: string,
+  componentName: string,
+): Record<string, Record<string, any>> {
+  const content = readFileSync(filePath, "utf-8")
+  const sourceFile = ts.createSourceFile(
+    filePath,
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+  )
+
+  const result: Record<string, Record<string, any>> = {}
+
+  function visit(node: ts.Node) {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text.startsWith("with")
+    ) {
+      const configArg = node.arguments[node.arguments.length - 1]
+
+      if (configArg && ts.isObjectLiteralExpression(configArg)) {
+        let slotName = "Root"
+        const slotArg = node.arguments[1]
+        if (slotArg && ts.isStringLiteral(slotArg)) {
+          slotName = toComponentCase(slotArg.text)
+        } else if (
+          ts.isVariableDeclaration(node.parent) &&
+          ts.isIdentifier(node.parent.name) &&
+          node.parent.name.text.startsWith(componentName)
+        ) {
+          slotName = node.parent.name.text.slice(componentName.length) || "Root"
+        }
+
+        const defaultPropsProp = configArg.properties.find(
+          (prop) =>
+            ts.isPropertyAssignment(prop) &&
+            ts.isIdentifier(prop.name) &&
+            prop.name.text === "defaultProps",
+        )
+
+        if (
+          defaultPropsProp &&
+          ts.isPropertyAssignment(defaultPropsProp) &&
+          ts.isObjectLiteralExpression(defaultPropsProp.initializer)
+        ) {
+          const defaults: Record<string, any> = {}
+
+          defaultPropsProp.initializer.properties.forEach((prop) => {
+            if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) {
+              return
+            }
+
+            const propName = prop.name.text
+            const initializer = prop.initializer
+
+            if (initializer.kind === ts.SyntaxKind.TrueKeyword) {
+              defaults[propName] = true
+            } else if (initializer.kind === ts.SyntaxKind.FalseKeyword) {
+              defaults[propName] = false
+            } else if (ts.isStringLiteral(initializer)) {
+              defaults[propName] = initializer.text
+            } else if (ts.isNumericLiteral(initializer)) {
+              defaults[propName] = Number(initializer.text)
+            }
+          })
+
+          if (Object.keys(defaults).length > 0) {
+            result[slotName] = defaults
+          }
+        }
+      }
+    }
+
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return result
+}
+
+function normalizeDefaultValues(json: Record<string, any>) {
+  for (const part of Object.values(json)) {
+    const props = (part as any)?.props
+    if (!props) continue
+    for (const prop of Object.values(props)) {
+      const entry = prop as any
+      if (typeof entry.defaultValue !== "string") continue
+      try {
+        entry.defaultValue = JSON.parse(entry.defaultValue)
+      } catch {
+        // keep the original string (not valid JSON, e.g. "md", "1rem")
+      }
+    }
+  }
+}
+
+function isCoveredByGenerated(staticProps: any, generated: any) {
+  return Object.entries(staticProps).every(([part, value]) => {
+    const generatedProps = generated[part]?.props
+    if (!generatedProps) return false
+    const props = (value as any)?.props ?? {}
+    return Object.keys(props).every((prop) => prop in generatedProps)
+  })
+}
+
+async function writeStaticProps(
+  outDir: string,
+  components: string[] | undefined,
+  extracted: Set<string>,
+) {
+  const files = globSync("scripts/static-props/**/*.json").filter(
+    (file) =>
+      !components?.length || components.includes(basename(file, ".json")),
+  )
+
   files.forEach((file) => {
     const name = basename(file, ".json")
-    const props = JSON.parse(readFileSync(file, "utf-8"))
-    writeFileSync(`${outDir}/${name}.json`, JSON.stringify(props, null, 2))
+    const staticProps = JSON.parse(readFileSync(file, "utf-8"))
+    normalizeDefaultValues(staticProps)
+
+    // An existing outFile is only real output if this run extracted the
+    // component; otherwise it's the previous run's copy of this static file.
+    const outFile = `${outDir}/${name}.json`
+    const generated = extracted.has(name)
+      ? JSON.parse(readFileSync(outFile, "utf-8"))
+      : null
+
+    if (generated && isCoveredByGenerated(staticProps, generated)) {
+      console.warn(
+        `Static props for "${name}" are fully covered by generated types — safe to delete ${file}`,
+      )
+    }
+
+    // generated wins; static props only fill gaps
+    const props = generated
+      ? deepMerge({}, staticProps, generated)
+      : staticProps
+
+    writeFileSync(outFile, JSON.stringify(props, null, 2))
   })
 }
 
@@ -76,7 +212,7 @@ async function writeIndexFile(outDir: string) {
   const allDirs = await getComponentDirectories()
   const indexContent = JSON.stringify(
     {
-      components: allDirs.concat("password-input", "hstack", "vstack"),
+      components: allDirs.concat(...exampleOnlyComponents, "hstack", "vstack"),
       charts: chartComponents,
     },
     null,
@@ -90,6 +226,48 @@ const arkPropsMap: Record<string, string> = {
   "action-bar": "popover",
   "radio-card": "radio-group",
   "checkbox-card": "checkbox",
+}
+
+const omittedParts: Record<string, string[]> = {
+  toast: ["Store"],
+}
+
+function getValueExports(code: string) {
+  const exported = new Set<string>()
+  const exportedValueRegex = /export\s*{([^}]+)}/g
+  let match = exportedValueRegex.exec(code)
+
+  while (match != null) {
+    const values = match[1].split(",").map((value) => value.trim())
+    values.forEach((value) => {
+      const [name, alias] = value.split(/\s+as\s+/)
+      exported.add(alias ?? name)
+    })
+    match = exportedValueRegex.exec(code)
+  }
+
+  return exported
+}
+
+function getNamespaceAliases(componentDir: string) {
+  const file = join(componentDir, "namespace.ts")
+  const aliases = new Map<string, string>()
+  if (!existsSync(file)) return aliases
+
+  const content = readFileSync(file, "utf-8")
+  const exportedValueRegex = /export\s*{([^}]+)}/g
+  let match = exportedValueRegex.exec(content)
+
+  while (match != null) {
+    const values = match[1].split(",").map((value) => value.trim())
+    values.forEach((value) => {
+      const [name, alias] = value.split(/\s+as\s+/)
+      if (alias) aliases.set(name, alias)
+    })
+    match = exportedValueRegex.exec(content)
+  }
+
+  return aliases
 }
 
 async function extractComponents(components?: string[]) {
@@ -128,22 +306,53 @@ async function extractComponents(components?: string[]) {
       inPath = join(componentDir, dir, "index.tsx")
     }
 
+    const content = readFileSync(inPath, "utf-8")
+    const valueExports = getValueExports(content)
+    const namespaceAliases = getNamespaceAliases(join(componentDir, dir))
     const props = await extractTypes(inPath)
 
     const json = deepMerge(
       {},
-      wrapInProps(props, recipeKey),
+      wrapInProps(props, recipeKey, valueExports, namespaceAliases),
       arkProps[arkPropsMap[dir] || dir],
       recipeProps[dir],
     )
 
+    omittedParts[dir]?.forEach((part) => {
+      Reflect.deleteProperty(json, part)
+    })
+
+    const componentMainPath = join(componentDir, dir)
+    const mainFiles = [
+      join(componentMainPath, `${dir}.tsx`),
+      join(componentMainPath, `${dir}.ts`),
+      join(componentMainPath, "index.tsx"),
+      join(componentMainPath, "index.ts"),
+    ]
+    const mainFile = mainFiles.find(existsSync)
+
+    if (mainFile) {
+      const defaultPropsPerPart = extractDefaultPropsFromSource(
+        mainFile,
+        toComponentCase(dir),
+      )
+      for (const [partName, defaults] of Object.entries(defaultPropsPerPart)) {
+        if (json[partName]?.props) {
+          for (const [propName, defaultValue] of Object.entries(defaults)) {
+            if (propName in json[partName].props) {
+              json[partName].props[propName].defaultValue = defaultValue
+            }
+          }
+        }
+      }
+    }
+
+    normalizeDefaultValues(json)
+
     writeFileSync(`${outDir}/${dir}.json`, JSON.stringify(json, null, 2))
   }
 
-  // Only write static props if processing all components
-  if (!components || components.length === 0) {
-    writeStaticProps(outDir)
-  }
+  await writeStaticProps(outDir, components, new Set(dirs))
 }
 
 const commonProps = {
@@ -168,13 +377,43 @@ const unstyledProps = {
   },
 }
 
-function wrapInProps(obj: any, recipeKey: string) {
+function wrapInProps(
+  obj: any,
+  recipeKey: string,
+  valueExports: Set<string>,
+  namespaceAliases: Map<string, string>,
+) {
   const isSlotRecipe = defaultSystem.isSlotRecipe(recipeKey)
   const componentName = toComponentCase(recipeKey)
-  const result: Record<string, any> = mapEntries(obj, (key: string, value) => [
-    isSlotRecipe ? key.replace(componentName, "") : key,
-    isEmptyObject(value) ? { props: {} } : { props: value },
-  ])
+  const result: Record<string, any> = {}
+  const slots = isSlotRecipe
+    ? defaultSystem
+        .getSlotRecipe(recipeKey)
+        .slots.map((slot: string) => toComponentCase(slot))
+    : []
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (key.startsWith("Use")) continue
+    if (key.endsWith("Base")) continue
+
+    let part = key
+
+    const alias = namespaceAliases.get(key)
+    if (alias) {
+      part = alias
+    } else if (isSlotRecipe) {
+      if (!key.startsWith(componentName)) continue
+
+      part = key.slice(componentName.length)
+
+      if (!slots.includes(part)) {
+        if (!valueExports.has(key)) continue
+        if (!/^[A-Z]/.test(part)) continue
+      }
+    }
+
+    result[part] = isEmptyObject(value) ? { props: {} } : { props: value }
+  }
 
   if (isSlotRecipe) {
     result.Root ||= { props: {} }
@@ -195,8 +434,10 @@ function wrapInProps(obj: any, recipeKey: string) {
       Object.assign(result[key].props, commonProps)
     }
   } else {
-    result[componentName] ||= { props: {} }
-    Object.assign(result[componentName].props, commonProps)
+    if (namespaceAliases.size === 0) {
+      result[componentName] ||= { props: {} }
+      Object.assign(result[componentName].props, commonProps)
+    }
   }
 
   return result

@@ -3,6 +3,7 @@ export {
   ComboboxClearTrigger as ClearTrigger,
   ComboboxContent as Content,
   ComboboxControl as Control,
+  ComboboxList as List,
   ComboboxIndicatorGroup as IndicatorGroup,
   ComboboxItemIndicator as Indicator,
   ComboboxItem as Item,
@@ -26,6 +27,7 @@ export type {
   ComboboxClearTriggerProps as ClearTriggerProps,
   ComboboxContentProps as ContentProps,
   ComboboxControlProps as ControlProps,
+  ComboboxListProps as ListProps,
   ComboboxItemIndicatorProps as IndicatorProps,
   ComboboxIndicatorGroupProps as IndicatorGroupProps,
   ComboboxItemGroupProps as ItemGroupProps,
@@ -40,3 +42,12 @@ export type {
   ComboboxRootComponent as RootComponent,
   ComboboxEmptyProps as EmptyProps,
 } from "./combobox"
+
+export type {
+  ComboboxInteractOutsideEvent as InteractOutsideEvent,
+  ComboboxFocusOutsideEvent as FocusOutsideEvent,
+  ComboboxPointerDownOutsideEvent as PointerDownOutsideEvent,
+  ComboboxSelectionDetails as SelectionDetails,
+  UseComboboxProps,
+  UseComboboxReturn,
+} from "@ark-ui/react/combobox"

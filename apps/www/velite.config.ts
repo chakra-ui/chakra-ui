@@ -56,6 +56,7 @@ const docs = defineCollection({
           recipe: s.string().optional(),
           ark: s.string().optional(),
           recharts: s.string().optional(),
+          tiptap: s.string().optional(),
         })
         .optional(),
     })
@@ -84,18 +85,6 @@ const docs = defineCollection({
     }),
 })
 
-const notes = defineCollection({
-  name: "Notes",
-  pattern: "content/notes/**/*.mdx",
-  schema: s.object({
-    title: s.string(),
-    description: s.string(),
-    metadata: s.metadata(),
-    content: s.markdown(),
-    code: s.mdx(),
-  }),
-})
-
 const showcases = defineCollection({
   name: "Showcases",
   pattern: "content/showcases.json",
@@ -105,6 +94,32 @@ const showcases = defineCollection({
     url: s.string(),
     image: s.string(),
   }),
+})
+
+const shipped = defineCollection({
+  name: "Shipped",
+  pattern: "content/shipped/**/*.mdx",
+  schema: s
+    .object({
+      product: s.string(),
+      person: s.string(),
+      role: s.string(),
+      avatar: s.string().optional(),
+      logo: s.string().optional(),
+      category: s.string(),
+      url: s.string(),
+      quote: s.string(),
+      description: s.string().optional(),
+      x: s.string().optional(),
+      shippedAt: s.string().optional(),
+      featured: s.boolean().optional(),
+      images: s.array(s.string()).optional(),
+      content: s.mdx(),
+    })
+    .transform((data, { meta }) => ({
+      ...data,
+      slug: slugify(meta.path as string).replace(/^shipped\//, ""),
+    })),
 })
 
 const blogs = defineCollection({
@@ -176,7 +191,7 @@ export default defineConfig({
   collections: {
     docs,
     showcases,
-    notes,
+    shipped,
     blogs,
     guides,
     guideCollections,

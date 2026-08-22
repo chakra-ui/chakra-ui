@@ -17,9 +17,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface SkeletonProps
-  extends HTMLChakraProps<"div">,
-    RecipeProps<"skeleton">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, RecipeProps<"skeleton">, UnstyledProp {}
 
 export const Skeleton = withContext<HTMLDivElement, SkeletonProps>("div")
 
@@ -44,6 +42,8 @@ export const SkeletonCircle = React.forwardRef<
   )
 })
 
+SkeletonCircle.displayName = "SkeletonCircle"
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SkeletonTextProps extends SkeletonProps {
@@ -53,14 +53,21 @@ export interface SkeletonTextProps extends SkeletonProps {
 
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
   function SkeletonText(props, ref) {
-    const { noOfLines = 3, gap, rootProps, ...rest } = props
+    const { loading = true, noOfLines = 3, gap, rootProps, ...rest } = props
     return (
       <Stack gap={gap} width="full" ref={ref} {...rootProps}>
-        {Array.from({ length: noOfLines }).map((_, index) => (
+        {Array.from({ length: loading ? noOfLines : 1 }).map((_, index) => (
           <Skeleton
-            height="4"
             key={index}
-            _last={{ maxW: noOfLines === 1 ? "100%" : "80%" }}
+            loading={loading}
+            height={loading ? "4" : undefined}
+            maxW={
+              loading
+                ? index === noOfLines - 1 && noOfLines > 1
+                  ? "80%"
+                  : "100%"
+                : undefined
+            }
             {...rest}
           />
         ))}
@@ -68,3 +75,5 @@ export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
     )
   },
 )
+
+SkeletonText.displayName = "SkeletonText"

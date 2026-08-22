@@ -29,14 +29,14 @@ export { useEditableStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableRootProviderBaseProps
-  extends Assign<
-      ArkEditable.RootProviderBaseProps,
-      SlotRecipeProps<"editable">
-    >,
+  extends
+    Assign<ArkEditable.RootProviderBaseProps, SlotRecipeProps<"editable">>,
     UnstyledProp {}
 
-export interface EditableRootProviderProps
-  extends HTMLChakraProps<"div", EditableRootProviderBaseProps> {}
+export interface EditableRootProviderProps extends HTMLChakraProps<
+  "div",
+  EditableRootProviderBaseProps
+> {}
 
 export const EditableRootProvider = withProvider<
   HTMLDivElement,
@@ -46,11 +46,14 @@ export const EditableRootProvider = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableRootBaseProps
-  extends Assign<ArkEditable.RootBaseProps, SlotRecipeProps<"editable">>,
+  extends
+    Assign<ArkEditable.RootBaseProps, SlotRecipeProps<"editable">>,
     UnstyledProp {}
 
-export interface EditableRootProps
-  extends HTMLChakraProps<"div", EditableRootBaseProps> {}
+export interface EditableRootProps extends HTMLChakraProps<
+  "div",
+  EditableRootBaseProps
+> {}
 
 export const EditableRoot = withProvider<HTMLDivElement, EditableRootProps>(
   ArkEditable.Root,
@@ -66,8 +69,7 @@ export const EditablePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditablePreviewProps
-  extends HTMLChakraProps<"span", ArkEditable.PreviewBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkEditable.PreviewBaseProps>, UnstyledProp {}
 
 export const EditablePreview = withContext<
   HTMLSpanElement,
@@ -76,9 +78,19 @@ export const EditablePreview = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface EditableLabelProps
+  extends HTMLChakraProps<"label", ArkEditable.LabelProps>, UnstyledProp {}
+
+export const EditableLabel = withContext<HTMLLabelElement, EditableLabelProps>(
+  ArkEditable.Label,
+  "label",
+  { forwardAsChild: true },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface EditableInputProps
-  extends HTMLChakraProps<"input", ArkEditable.InputBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"input", ArkEditable.InputBaseProps>, UnstyledProp {}
 
 export const EditableInput = withContext<HTMLInputElement, EditableInputProps>(
   ArkEditable.Input,
@@ -89,7 +101,8 @@ export const EditableInput = withContext<HTMLInputElement, EditableInputProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableTextareaProps
-  extends HTMLChakraProps<"textarea", ArkEditable.InputBaseProps>,
+  extends
+    HTMLChakraProps<"textarea", ArkEditable.InputBaseProps>,
     UnstyledProp {}
 
 const ArkEditableTextarea = forwardRef<
@@ -109,8 +122,7 @@ export const EditableTextarea = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableControlProps
-  extends HTMLChakraProps<"div", ArkEditable.ControlBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkEditable.ControlBaseProps>, UnstyledProp {}
 
 export const EditableControl = withContext<
   HTMLDivElement,
@@ -120,8 +132,7 @@ export const EditableControl = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableAreaProps
-  extends HTMLChakraProps<"div", ArkEditable.AreaBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkEditable.AreaBaseProps>, UnstyledProp {}
 
 export const EditableArea = withContext<HTMLDivElement, EditableAreaProps>(
   ArkEditable.Area,
@@ -132,7 +143,8 @@ export const EditableArea = withContext<HTMLDivElement, EditableAreaProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableEditTriggerProps
-  extends HTMLChakraProps<"button", ArkEditable.EditTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkEditable.EditTriggerBaseProps>,
     UnstyledProp {}
 
 export const EditableEditTrigger = withContext<
@@ -143,7 +155,8 @@ export const EditableEditTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableSubmitTriggerProps
-  extends HTMLChakraProps<"button", ArkEditable.SubmitTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkEditable.SubmitTriggerBaseProps>,
     UnstyledProp {}
 
 export const EditableSubmitTrigger = withContext<
@@ -154,7 +167,8 @@ export const EditableSubmitTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface EditableCancelTriggerProps
-  extends HTMLChakraProps<"button", ArkEditable.CancelTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkEditable.CancelTriggerBaseProps>,
     UnstyledProp {}
 
 export const EditableCancelTrigger = withContext<
@@ -165,6 +179,3 @@ export const EditableCancelTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export const EditableContext = ArkEditable.Context
-
-export interface EditableValueChangeDetails
-  extends ArkEditable.ValueChangeDetails {}

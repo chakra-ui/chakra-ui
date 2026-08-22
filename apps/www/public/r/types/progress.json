@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Range": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -49,7 +51,7 @@
       "defaultValue": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "50",
+        "defaultValue": 50,
         "description": "The initial value of the progress bar when rendered.\nUse when you don't need to control the value of the progress bar."
       },
       "formatOptions": {
@@ -71,19 +73,19 @@
       "locale": {
         "type": "string",
         "isRequired": false,
-        "defaultValue": "\"en-US\"",
+        "defaultValue": "en-US",
         "description": "The locale to use for formatting the value."
       },
       "max": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "100",
+        "defaultValue": 100,
         "description": "The maximum allowed value of the progress bar."
       },
       "min": {
         "type": "number",
         "isRequired": false,
-        "defaultValue": "0",
+        "defaultValue": 0,
         "description": "The minimum allowed value of the progress bar."
       },
       "onValueChange": {
@@ -94,7 +96,7 @@
       "orientation": {
         "type": "'horizontal' | 'vertical'",
         "isRequired": false,
-        "defaultValue": "\"horizontal\"",
+        "defaultValue": "horizontal",
         "description": "The orientation of the element."
       },
       "translations": {
@@ -142,7 +144,8 @@
         "description": "The size of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -161,7 +164,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Track": {
     "props": {
@@ -176,7 +180,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ValueText": {
     "props": {
@@ -191,7 +196,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Circle": {
     "props": {
@@ -201,7 +207,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGSVGElement"
+    "element": "SVGSVGElement",
+    "tag": "svg"
   },
   "CircleRange": {
     "props": {
@@ -211,7 +218,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGCircleElement"
+    "element": "SVGCircleElement",
+    "tag": "circle"
   },
   "CircleTrack": {
     "props": {
@@ -221,7 +229,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGCircleElement"
+    "element": "SVGCircleElement",
+    "tag": "circle"
   },
   "View": {
     "props": {
@@ -235,6 +244,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   }
 }

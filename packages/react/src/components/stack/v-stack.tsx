@@ -13,3 +13,5 @@ export const VStack = forwardRef<HTMLDivElement, StackProps>(
     return <Stack align="center" {...props} direction="column" ref={ref} />
   },
 )
+
+VStack.displayName = "VStack"

@@ -13,8 +13,7 @@ const { withContext, PropsProvider } = createRecipeContext({
 })
 
 export interface MarkProps
-  extends Assign<HTMLChakraProps<"mark">, RecipeProps<"mark">>,
-    UnstyledProp {}
+  extends Assign<HTMLChakraProps<"mark">, RecipeProps<"mark">>, UnstyledProp {}
 
 export const Mark = withContext<HTMLElement, MarkProps>("mark")
 

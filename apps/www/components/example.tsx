@@ -14,6 +14,7 @@ interface Props {
 function formatComponentName(name: string) {
   return name
     .replace("charts/", "")
+    .replace("rich-text-editor/", "")
     .split(/[-\/]/)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("")
@@ -24,7 +25,7 @@ export const ExamplePreview = (props: Props) => {
   const componentName = formatComponentName(name)
   const Component = dynamic(() =>
     import(`../../compositions/src/${scope}/${name}`).then(
-      (mod) => mod[componentName],
+      (mod) => mod[componentName] || mod.default,
     ),
   )
   return <Component />
@@ -57,7 +58,7 @@ export const ExampleCode = async (props: CodeProps) => {
 interface CodeWrapperProps extends BoxProps {}
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight, bg, px = "8", py = "6", ...rest } = props
+  const { children, maxHeight, bg, px = "6", py = "6", ...rest } = props
   return (
     <Box
       height="100%"
@@ -113,6 +114,7 @@ export const ExampleTabs = (props: Props) => {
       mb="4em"
       size="sm"
       unmountOnExit
+      lazyMount
     >
       <Tabs.List mb="4" width="full">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>

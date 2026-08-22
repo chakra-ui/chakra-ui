@@ -23,7 +23,8 @@ export { usePopoverStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverRootProviderBaseProps
-  extends Assign<ArkPopover.RootProviderBaseProps, SlotRecipeProps<"popover">>,
+  extends
+    Assign<ArkPopover.RootProviderBaseProps, SlotRecipeProps<"popover">>,
     UnstyledProp {}
 
 export interface PopoverRootProviderProps extends PopoverRootProviderBaseProps {
@@ -37,7 +38,8 @@ export const PopoverRootProvider = withRootProvider<PopoverRootProviderProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverRootBaseProps
-  extends Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"popover">>,
+  extends
+    Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"popover">>,
     UnstyledProp {}
 
 export interface PopoverRootProps extends PopoverRootBaseProps {
@@ -54,7 +56,8 @@ export const PopoverPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverTriggerProps
-  extends HTMLChakraProps<"button", ArkPopover.TriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkPopover.TriggerBaseProps>,
     UnstyledProp {}
 
 export const PopoverTrigger = withContext<
@@ -65,7 +68,8 @@ export const PopoverTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverPositionerProps
-  extends HTMLChakraProps<"div", ArkPopover.PositionerBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkPopover.PositionerBaseProps>,
     UnstyledProp {}
 
 export const PopoverPositioner = withContext<
@@ -76,8 +80,7 @@ export const PopoverPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverContentProps
-  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.ContentBaseProps>, UnstyledProp {}
 
 export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
   ArkPopover.Content,
@@ -88,8 +91,7 @@ export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverArrowTipProps
-  extends HTMLChakraProps<"div", ArkPopover.ArrowTipBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.ArrowTipBaseProps>, UnstyledProp {}
 
 export const PopoverArrowTip = withContext<
   HTMLDivElement,
@@ -99,8 +101,7 @@ export const PopoverArrowTip = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverArrowProps
-  extends HTMLChakraProps<"div", ArkPopover.ArrowBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.ArrowBaseProps>, UnstyledProp {}
 
 export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
   ArkPopover.Arrow,
@@ -114,7 +115,8 @@ export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerBaseProps>,
+  extends
+    HTMLChakraProps<"button", ArkPopover.CloseTriggerBaseProps>,
     UnstyledProp {}
 
 export const PopoverCloseTrigger = withContext<
@@ -125,8 +127,7 @@ export const PopoverCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverIndicatorProps
-  extends HTMLChakraProps<"div", ArkPopover.IndicatorBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.IndicatorBaseProps>, UnstyledProp {}
 
 export const PopoverIndicator = withContext<
   HTMLDivElement,
@@ -136,8 +137,7 @@ export const PopoverIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverTitleProps
-  extends HTMLChakraProps<"div", ArkPopover.TitleBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.TitleBaseProps>, UnstyledProp {}
 
 export const PopoverTitle = withContext<HTMLDivElement, PopoverTitleProps>(
   ArkPopover.Title,
@@ -148,7 +148,8 @@ export const PopoverTitle = withContext<HTMLDivElement, PopoverTitleProps>(
 // description
 
 export interface PopoverDescriptionProps
-  extends HTMLChakraProps<"div", ArkPopover.DescriptionBaseProps>,
+  extends
+    HTMLChakraProps<"div", ArkPopover.DescriptionBaseProps>,
     UnstyledProp {}
 
 export const PopoverDescription = withContext<
@@ -159,8 +160,7 @@ export const PopoverDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverFooterProps
-  extends HTMLChakraProps<"footer">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"footer">, UnstyledProp {}
 
 export const PopoverFooter = withContext<HTMLDivElement, PopoverFooterProps>(
   "footer",
@@ -170,8 +170,7 @@ export const PopoverFooter = withContext<HTMLDivElement, PopoverFooterProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverHeaderProps
-  extends HTMLChakraProps<"div", ArkPopover.TitleBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.TitleBaseProps>, UnstyledProp {}
 
 export const PopoverHeader = withContext<HTMLDivElement, PopoverHeaderProps>(
   "header",
@@ -181,8 +180,7 @@ export const PopoverHeader = withContext<HTMLDivElement, PopoverHeaderProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverBodyProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const PopoverBody = withContext<HTMLDivElement, PopoverBodyProps>(
   "div",
@@ -192,8 +190,7 @@ export const PopoverBody = withContext<HTMLDivElement, PopoverBodyProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverAnchorProps
-  extends HTMLChakraProps<"div", ArkPopover.AnchorBaseProps>,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div", ArkPopover.AnchorBaseProps>, UnstyledProp {}
 
 export const PopoverAnchor = withContext<HTMLDivElement, PopoverAnchorProps>(
   ArkPopover.Anchor,

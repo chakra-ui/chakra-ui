@@ -21,8 +21,7 @@ interface SimpleGridBaseProps {
 }
 
 export interface SimpleGridProps
-  extends Omit<GridProps, "columns">,
-    SimpleGridBaseProps {}
+  extends Omit<GridProps, "columns">, SimpleGridBaseProps {}
 
 /**
  * SimpleGrid
@@ -46,6 +45,8 @@ export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
     return <Grid ref={ref} templateColumns={templateColumns} {...rest} />
   },
 )
+
+SimpleGrid.displayName = "SimpleGrid"
 
 function toPx(n: string | number) {
   return typeof n === "number" ? `${n}px` : n

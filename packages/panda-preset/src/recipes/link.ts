@@ -9,7 +9,7 @@ export const linkRecipe = defineRecipe({
     gap: "1.5",
     cursor: "pointer",
     borderRadius: "l1",
-    focusRing: "outside",
+    focusVisibleRing: "outside",
   },
   variants: {
     variant: {

@@ -21,11 +21,12 @@ export { useStatusStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatusRootBaseProps
-  extends SlotRecipeProps<"status">,
-    UnstyledProp {}
+  extends SlotRecipeProps<"status">, UnstyledProp {}
 
-export interface StatusRootProps
-  extends HTMLChakraProps<"div", StatusRootBaseProps> {}
+export interface StatusRootProps extends HTMLChakraProps<
+  "div",
+  StatusRootBaseProps
+> {}
 
 export const StatusRoot = withProvider<HTMLDivElement, StatusRootProps>(
   "div",
@@ -40,8 +41,7 @@ export const StatusPropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface StatusIndicatorProps
-  extends HTMLChakraProps<"div">,
-    UnstyledProp {}
+  extends HTMLChakraProps<"div">, UnstyledProp {}
 
 export const StatusIndicator = withContext<
   HTMLDivElement,

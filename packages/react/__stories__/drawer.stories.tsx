@@ -21,3 +21,4 @@ export { DrawerWithOffset as Offset } from "compositions/examples/drawer-with-of
 export { DrawerWithPlacement as Placement } from "compositions/examples/drawer-with-placement"
 export { DrawerWithConditionalVariants as ConditionalVariants } from "compositions/examples/drawer-with-conditional-variants"
 export { DrawerWithSizes as Sizes } from "compositions/examples/drawer-with-sizes"
+export { DrawerNonModal as NonModal } from "compositions/examples/drawer-non-modal"
