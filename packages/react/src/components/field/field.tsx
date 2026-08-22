@@ -61,6 +61,16 @@ export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface FieldInputElementProps
+  extends HTMLChakraProps<"div">, UnstyledProp {}
+
+export const FieldInputElement = withContext<
+  HTMLDivElement,
+  FieldInputElementProps
+>("div", "inputElement")
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface FieldHelperTextProps
   extends HTMLChakraProps<"div", ArkField.HelperTextBaseProps>, UnstyledProp {}
 
