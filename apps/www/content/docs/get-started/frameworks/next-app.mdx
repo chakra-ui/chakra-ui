@@ -28,6 +28,12 @@ configured correctly to use Chakra UI.
 
 <ResourceCard
   type="github"
+  title="Next.js app (streaming)"
+  url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-app-streaming"
+/>
+
+<ResourceCard
+  type="github"
   title="Next.js pages template"
   url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-pages"
 />
@@ -43,7 +49,7 @@ configured correctly to use Chakra UI.
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react @emotion/cache
+npm i @chakra-ui/react @emotion/react
 ```
 
 ### Add snippets
@@ -105,39 +111,46 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 > Adding the `suppressHydrationWarning` prop to the `html` element is required
 > to prevent the warning about the `next-themes` library.
 
-### Add an Emotion style registry (SSR)
+### Optimize Bundle
 
-When your app uses React `<Suspense>` boundaries — which is the default rendering
-model in Next.js 16 with [Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) —
-you need a style registry so Emotion emits its CSS through Next.js's
-`useServerInsertedHTML` channel instead of as inline `<style>` elements inside the
-React tree.
+We recommend using the `experimental.optimizePackageImports` feature in Next.js
+to optimize your bundle size by loading only the modules that you are actually
+using.
 
-Without a registry, rules for components rendered inside a streamed Suspense
-chunk arrive after the client has hydrated, and the client renders no `<style>`
-at that position. The mismatch causes a hydration error on every load:
-
-```diff
-+<div className="chakra-xxx">
--<style data-emotion="css xxx">
+```tsx title="next.config.mjs" {3}
+export default {
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
+  },
+}
 ```
 
-Add a client component that keeps a per-request Emotion cache and flushes only
-the rules inserted since the last render pass:
+This also helps to resolve warnings like:
 
-```tsx title="app/emotion-registry.tsx"
+```sh
+[webpack.cache.PackFileCacheStrategy] Serializing big strings (xxxkiB)
+```
+
+### Stream through Suspense (optional)
+
+Skip this unless you stream UI through `<Suspense>`.
+
+You need it when Chakra components first appear inside a streamed `<Suspense>`
+chunk. If you enable
+[Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents)
+in Next.js 16, that is the default.
+
+Install `@emotion/cache` and add this registry:
+
+```tsx title="components/ui/emotion-registry.tsx"
 "use client"
 
-import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
 import { useServerInsertedHTML } from "next/navigation"
 import { useState } from "react"
 
-export default function EmotionRegistry({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export function EmotionRegistry({ children }: { children: React.ReactNode }) {
   const [{ cache, flush }] = useState(() => {
     const cache = createCache({ key: "css" })
     cache.compat = true
@@ -180,19 +193,15 @@ export default function EmotionRegistry({
 }
 ```
 
-Then wrap the provider in `app/layout.tsx`:
+Then wrap `Provider` with it:
 
-```tsx title="app/layout.tsx" {5,9}
-import { Inter } from "next/font/google"
-import Provider from "./provider"
-import EmotionRegistry from "./emotion-registry"
-
-const inter = Inter({ subsets: ["latin"], display: "swap" })
+```tsx title="app/layout.tsx" {1,8,10}
+import { EmotionRegistry } from "@/components/ui/emotion-registry"
+import { Provider } from "@/components/ui/provider"
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html className={inter.className} suppressHydrationWarning>
-      <head />
+    <html suppressHydrationWarning>
       <body>
         <EmotionRegistry>
           <Provider>{props.children}</Provider>
@@ -203,43 +212,21 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 }
 ```
 
-This tracks only the rules added since the last flush, so it does not re-send
-already-emitted rules (unlike earlier `@chakra-ui/next-js` versions, which
-re-emitted the whole cache on every flush and caused duplicated styles).
+The
+[streaming sandbox](https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-app-streaming)
+is a repro you can run cold, not a copy of the layout above.
 
-### Optimize Bundle
+### Hydration errors (Turbopack)
 
-We recommend using the `experimental.optimizePackageImports` feature in Next.js
-to optimize your bundle size by loading only the modules that you are actually
-using.
-
-```tsx title="next.config.mjs" {3}
-export default {
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
-  },
-}
-```
-
-This also helps to resolve warnings like:
-
-```sh
-[webpack.cache.PackFileCacheStrategy] Serializing big strings (xxxkiB)
-```
-
-### Hydration errors
-
-If you see an error like this: **Hydration failed because the initial server
-rendered HTML did not match the client**, and the error looks similar to:
+If the error looks like this:
 
 ```diff
 +<div className="chakra-xxx">
 -<style data-emotion="css-global xxx" data-s="">
 ```
 
-This is caused by how Next.js hydrates Emotion CSS when running with Turbopack.
-Please add the `--webpack` flag to your `dev` and `build` scripts in your
-`package.json` file instead.
+Turbopack is hydrating Emotion CSS incorrectly. Add `--webpack` to your `dev`
+and `build` scripts:
 
 ```diff
 - "dev": "next dev"
