@@ -1,4 +1,1 @@
-type Booleanish = boolean | "true" | "false"
-
-export const dataAttr = (condition: boolean | undefined) =>
-  (condition ? "" : undefined) as Booleanish
+export { ariaAttr, dataAttr } from "@zag-js/dom-query"
