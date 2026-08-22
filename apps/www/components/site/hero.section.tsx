@@ -147,9 +147,9 @@ export const HeroSection = () => (
     <Container>
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Announcement alignSelf="flex-start" asChild>
-          <Link href="/shipped">
+          <Link href="/blog/21-chakra-3.37-date-input">
             <LuPartyPopper />
-            Chakra Shipped is live
+            Meet DateInput
             <HiArrowRight />
           </Link>
         </Announcement>
