@@ -795,9 +795,6 @@ importers:
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@emotion/cache':
-        specifier: ^11.14.0
-        version: 11.14.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.17)(react@19.2.6)
@@ -851,7 +848,7 @@ importers:
         version: 19.2.3(@types/react@19.2.17)
       next:
         specifier: 16.3.1
-        version: 16.3.1(@opentelemetry/api@1.9.0)(@types/node@24.13.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        version: 16.3.1(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(@types/node@24.13.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -17682,7 +17679,7 @@ snapshots:
       '@vue/shared': 3.5.25
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.15
+      postcss: 8.5.23
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.25':
@@ -22741,7 +22738,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@16.3.1(@opentelemetry/api@1.9.0)(@types/node@24.13.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  next@16.3.1(@babel/core@7.24.7)(@opentelemetry/api@1.9.0)(@types/node@24.13.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@next/env': 16.3.1
       '@swc/helpers': 0.5.23
@@ -23385,7 +23382,7 @@ snapshots:
 
   postcss@8.4.49:
     dependencies:
-      nanoid: 3.3.15
+      nanoid: 3.3.18
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
