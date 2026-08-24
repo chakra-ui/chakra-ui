@@ -22,7 +22,7 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 minimumReleaseAgeExclude:
-  - '@ark-ui/react@5.38.2'
+  - '@ark-ui/react@5.39.0'
   - '@zag-js/accordion@1.43.1'
   - '@zag-js/anatomy@1.43.1'
   - '@zag-js/angle-slider@1.43.1'

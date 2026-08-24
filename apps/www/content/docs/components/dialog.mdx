@@ -86,6 +86,13 @@ component.
 
 <ExampleTabs name="dialog-controlled" />
 
+### Multiple Triggers
+
+Don't mount a dialog per row. Put `value` on each `Trigger` under one `Root`.
+Read `triggerValue` from context to fill the title and body.
+
+<ExampleTabs name="dialog-with-multiple-triggers" />
+
 ### Store
 
 An alternative way to control the dialog is to use the `RootProvider` component
@@ -186,3 +193,7 @@ component.
 ### Root
 
 <PropTable component="Dialog" part="Root" />
+
+### Trigger
+
+<PropTable component="Dialog" part="Trigger" />
