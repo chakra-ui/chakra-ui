@@ -1,5 +1,6 @@
 "use client"
 
+import { dataAttr } from "@ark-ui/react"
 import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
 import { forwardRef } from "react"
 import { createContext } from "../../create-context"
@@ -10,7 +11,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { cx, dataAttr } from "../../utils"
+import { cx } from "../../utils"
 import { ChevronDownIcon } from "../icons"
 
 interface NativeSelectBaseProps {
