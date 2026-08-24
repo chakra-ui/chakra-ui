@@ -14,6 +14,7 @@ export default {
 
 export { PopoverBasic as Basic } from "compositions/examples/popover-basic"
 export { PopoverControlled as Controlled } from "compositions/examples/popover-controlled"
+export { PopoverWithMultipleTriggers as MultipleTriggers } from "compositions/examples/popover-with-multiple-triggers"
 export { PopoverOpenFromDialog as OpenFromDialog } from "compositions/examples/popover-open-from-dialog"
 export { PopoverLazyMounted as LazyMounted } from "compositions/examples/popover-lazy-mounted"
 export { PopoverNested as Nested } from "compositions/examples/popover-nested"
