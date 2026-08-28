@@ -24,17 +24,5 @@ export default defineConfig({
   },
   include: ["./src/**/*.{ts,tsx}"],
   exclude: [],
-  staticCss: {
-    css: [
-      {
-        properties: {
-          display: ["flex", "inline-flex"],
-          flexDirection: ["row", "column"],
-          alignItems: ["center", "stretch", "flex-start", "flex-end"],
-          justifyContent: ["center", "flex-start", "flex-end", "space-between"],
-        },
-      },
-    ],
-  },
   outdir: "styled-system",
 })
