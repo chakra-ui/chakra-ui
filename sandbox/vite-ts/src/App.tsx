@@ -1,4 +1,13 @@
-import { Box, Button, HStack, Heading, Stack, chakra } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  HStack,
+  Heading,
+  Stack,
+  chakra,
+} from "@chakra-ui/react"
 
 export default function Page() {
   return (
@@ -39,6 +48,13 @@ export default function Page() {
             b
           </chakra.span>
         </HStack>
+        <Flex justify="space-between" bg="gray.100" p="3" borderRadius="md">
+          <chakra.span>left</chakra.span>
+          <chakra.span>right</chakra.span>
+        </Flex>
+        <Center bg="purple.500" color="white" h="16" borderRadius="md">
+          centered
+        </Center>
       </Stack>
     </Box>
   )

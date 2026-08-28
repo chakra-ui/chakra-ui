@@ -63,4 +63,56 @@ const vstack: PatternConfig = {
   },
 }
 
-export const patterns = { stack, hstack, vstack }
+const flex: PatternConfig = {
+  jsxName: "Flex",
+  properties: {
+    align: { type: "property", value: "alignItems" },
+    justify: { type: "property", value: "justifyContent" },
+    direction: { type: "property", value: "flexDirection" },
+    wrap: { type: "property", value: "flexWrap" },
+    basis: { type: "property", value: "flexBasis" },
+    grow: { type: "property", value: "flexGrow" },
+    shrink: { type: "property", value: "flexShrink" },
+    inline: { type: "boolean" },
+  },
+  transform(props) {
+    const {
+      align,
+      justify,
+      direction,
+      wrap,
+      basis,
+      grow,
+      shrink,
+      inline,
+      ...rest
+    } = props
+    return {
+      display: inline ? "inline-flex" : "flex",
+      flexDirection: direction,
+      alignItems: align,
+      justifyContent: justify,
+      flexWrap: wrap,
+      flexBasis: basis,
+      flexGrow: grow,
+      flexShrink: shrink,
+      ...rest,
+    }
+  },
+}
+
+const center: PatternConfig = {
+  jsxName: "Center",
+  properties: { inline: { type: "boolean" } },
+  transform(props) {
+    const { inline, ...rest } = props
+    return {
+      display: inline ? "inline-flex" : "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      ...rest,
+    }
+  },
+}
+
+export const patterns = { stack, hstack, vstack, flex, center }

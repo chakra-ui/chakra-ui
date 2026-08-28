@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
+import { flex } from "../../../styled-system-panda/patterns"
 import {
   type HTMLChakraProps,
   type SystemStyleObject,
@@ -31,24 +32,26 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       grow,
       shrink,
       inline,
+      css: cssProp,
       ...rest
     } = props
-
     return (
       <chakra.div
         ref={ref}
         {...rest}
-        css={{
-          display: inline ? "inline-flex" : "flex",
-          flexDirection: direction,
-          alignItems: align,
-          justifyContent: justify,
-          flexWrap: wrap,
-          flexBasis: basis,
-          flexGrow: grow,
-          flexShrink: shrink,
-          ...props.css,
-        }}
+        css={[
+          flex.raw({
+            direction,
+            align,
+            justify,
+            wrap,
+            basis,
+            grow,
+            shrink,
+            inline,
+          }),
+          cssProp,
+        ]}
       />
     )
   },
