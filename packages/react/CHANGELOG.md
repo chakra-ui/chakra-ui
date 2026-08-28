@@ -1,5 +1,295 @@
 # @chakra-ui/react
 
+## 3.37.0
+
+### Minor Changes
+
+- [#10877](https://github.com/chakra-ui/chakra-ui/pull/10877)
+  [`afc8b48`](https://github.com/chakra-ui/chakra-ui/commit/afc8b4898868f0cf93696ce3d6f6f980ceb7c8ce)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **[New]
+  DateInput**: Add a segmented date field for typing dates without a calendar.
+
+  ```tsx
+  import { DateInput } from "@chakra-ui/react"
+  ```
+
+  ```tsx
+  <DateInput.Root>
+    <DateInput.Label />
+    <DateInput.Control>
+      <DateInput.Segments />
+    </DateInput.Control>
+    <DateInput.HiddenInput />
+  </DateInput.Root>
+  ```
+
+  Each part of the date is its own keyboard-navigable segment, ordered and
+  formatted by `locale`. Supports `selectionMode="range"`, `min`/`max`, and
+  `granularity` with `formatter` for time-only input.
+
+- [#10939](https://github.com/chakra-ui/chakra-ui/pull/10939)
+  [`7b027d4`](https://github.com/chakra-ui/chakra-ui/commit/7b027d44d0ab0a1eca0d7ef2982203c13042ed5d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Accordion,
+  Collapsible, Dialog, Drawer, TreeView**: Add `hideMode` to choose how content
+  that stays mounted is hidden when closed. The default, `"display-none"`, uses
+  the `hidden` attribute and keeps effects running, so a video keeps playing and
+  a subscription stays open while closed. `"activity"` uses React 19 `Activity`
+  to pause those effects instead.
+
+  ```tsx
+  <Dialog.Root hideMode="activity" />
+  ```
+
+  It only applies while the content stays mounted. `unmountOnExit` removes the
+  tree on close, so `hideMode` never runs.
+  - **Dialog, Drawer**: Add `data-autofocus` and `data-no-autofocus` to pick
+    what gets focus when the overlay opens, without reaching for
+    `initialFocusEl` and a ref. Mark chrome like the close button to skip it, or
+    mark the real target directly.
+
+    ```tsx
+    <Dialog.Content>
+      <Dialog.CloseTrigger data-no-autofocus />
+      <input data-autofocus />
+      <button>Save</button>
+    </Dialog.Content>
+    ```
+
+    Focus goes to `initialFocusEl`, then `[data-autofocus]`, then the first
+    tabbable element without `[data-no-autofocus]`, then the content root.
+
+  - **NumberInput**: Add `largeStep` and `smallStep` for keyboard stepping. Hold
+    `Shift` for `largeStep`, `Alt` for `smallStep`. They default to `10 * step`
+    and `step / 10`, which is what the arrow keys already did, so existing
+    inputs behave the same until you set them.
+
+    ```tsx
+    <NumberInput.Root step={1} largeStep={20} smallStep={0.5} />
+    ```
+
+  - **Slider**: Add `largeStep`, applied on `Shift` and on `PageUp`/`PageDown`.
+    Defaults to `10 * step`, matching the previous behavior.
+  - **FocusTrap**: Add `persistentElements` to keep portalled content inside the
+    trap when it isn't reachable through `aria-controls` or `aria-expanded`.
+    Pass getters so the elements resolve lazily, after they mount.
+
+    ```tsx
+    <FocusTrap
+      persistentElements={[() => document.getElementById("toast-region")]}
+    />
+    ```
+
+  - **Toast**: `createToaster` now takes a content type parameter, so `title`
+    and `description` can be something other than `ReactNode`. It still defaults
+    to `ReactNode`.
+
+    ```tsx
+    interface Content {
+      id: string
+      text: string
+    }
+
+    const toaster = createToaster<Content>({ placement: "top-end" })
+    toaster.create({ title: { id: "save", text: "Saved" } })
+    ```
+
+- [#10676](https://github.com/chakra-ui/chakra-ui/pull/10676)
+  [`8af2836`](https://github.com/chakra-ui/chakra-ui/commit/8af2836bf80d8b4c4906123bed659cd276826a32)
+  Thanks [@isBatak](https://github.com/isBatak)! - **createOverlay**: Add a
+  `TReturn` generic so awaiting `open()` returns the value passed to `close()`
+  instead of `any`.
+
+  ```ts
+  interface DialogResult {
+    message: string
+  }
+
+  const dialog = createOverlay<DialogProps, DialogResult>(Component)
+
+  const result = await dialog.open("id", props)
+  if (result) {
+    console.log(result.message)
+  }
+  ```
+
+  `TReturn` defaults to `unknown`, so untyped `open()` calls may need narrowing
+  now. The result can also be `undefined`, since `close(id, value)` doesn't
+  require a value.
+
+- [#10949](https://github.com/chakra-ui/chakra-ui/pull/10949)
+  [`1f28ce9`](https://github.com/chakra-ui/chakra-ui/commit/1f28ce9b289cf501a9b1ddfadf7272c4f67a24e2)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - **Updated Ark UI
+  to v5.39.0**
+
+  Relevant additions and improvements:
+  - **Overlays & Collapsible**: New `hideMode` prop controls how kept-mounted
+    content is hidden when closed (`'display-none'` or `'activity'` for
+    React 19)
+
+    > Affects Dialog, Drawer, Popover, Accordion, TreeView, and related
+    > components
+
+  - **Number Input & Slider**: Added configurable keyboard stepping with
+    `largeStep` and `smallStep` props for Number Input, and `largeStep` for
+    Slider
+  - **Dialog & Drawer**: New `data-autofocus` and `data-no-autofocus` attributes
+    for managing focus when overlays open
+  - **Focus Trap**: Added `persistentElements` option to treat portalled content
+    as part of the trap
+  - **Presence**: New `onEnterComplete` callback for when enter animations
+    finish (mirrors existing `onExitComplete`)
+
+    > Affects Color Picker, Combobox, Date Picker, Dialog, Drawer, Floating
+    > Panel, Hover Card, Menu, Popover, Select, Tooltip, and Tour
+
+  - **Date Input & Date Picker**: Improved locale support for native numerals,
+    better constraint handling, and timezone fixes
+  - **Select, Menu, Combobox, Listbox**: Fixed keyboard navigation issues and
+    hover highlight behavior
+  - **Various fixes**: Fieldset re-rendering loops, Next.js 15 production
+    builds, Escape dismissal timing, focus visible state, form submission
+    handling, and more
+
+### Patch Changes
+
+- [#10951](https://github.com/chakra-ui/chakra-ui/pull/10951)
+  [`c16188f`](https://github.com/chakra-ui/chakra-ui/commit/c16188fa0bc8ca431e2163249a185b49e1135876)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - Fix
+  `Dialog.ActionTrigger` and `Drawer.ActionTrigger` ignoring the `onClick`
+  handler passed to them. The handler now runs before the dialog closes
+
+- [#10939](https://github.com/chakra-ui/chakra-ui/pull/10939)
+  [`7b027d4`](https://github.com/chakra-ui/chakra-ui/commit/7b027d44d0ab0a1eca0d7ef2982203c13042ed5d)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix Next.js 15
+  production builds failing to compile with
+  `Attempted import error: 'Activity' is not exported from 'react'`. React's
+  optional `Activity` export was imported statically, so webpack rejected it
+  even on React versions that expose it at runtime. It now resolves at runtime
+  and falls back to `display-none` when the React build doesn't expose it
+  - **Menu**: Fix `Menu.ContextTrigger` flashing at the top-left corner on the
+    first right-click, and long-press context menus on touch opening stuck at
+    `(0,0)`. The positioner reported a placement before one had been computed,
+    which skipped the off-screen guard that hides it until the anchor point is
+    known. Long-press had a second cause, it never triggered a reposition on
+    open
+  - **Dialog, Drawer, Menu, Popover**: Fix `Escape` being ignored right after an
+    overlay opens. Handlers registered a frame late, so the overlay was painted
+    and focus-trapped before it could listen. Under CPU load that gap grew well
+    past one frame and swallowed the keypress
+  - **Dialog, Drawer, Popover**: Fix a closing overlay pulling focus back from
+    an element your app focused in the meantime, such as a second dialog opened
+    right after closing the first. Closing a nested overlay no longer throws
+    when the outer container has no connected focusable element, and the focus
+    ring now shows on the returned-to element after you close with `Escape`
+  - **Dialog, Drawer**: Fix the page still scrolling behind an open overlay on
+    layouts where `<html>` is the scroll container. The scroll lock targeted
+    `<body>`, so nothing was locked
+  - **Popover**: Fix tabbing out of portalled content looping back into the
+    content when the trigger was the last tabbable element on the page. Focus
+    now moves to the next tabbable element after the trigger
+  - **Combobox, Listbox, Menu, Select**: Fix keyboard navigation losing or
+    moving the highlighted item while the pointer rests over scrollable content.
+    Scrolling an item into view moved the content under the cursor, and the
+    resulting `pointerleave` counted as a real hover
+  - **DateInput**
+    - Fix segment text lagging a keystroke behind when you type over an already
+      committed date, and in-progress edits being dropped while focus caught up
+      after auto-advance. Fast typing and `ArrowUp`/`ArrowDown`/`Home`/`End` now
+      land on the segment you're editing
+    - Fix `CalendarDate` and `CalendarDateTime` values shifting by your local
+      UTC offset when you pass a custom `formatter` without a `timeZone`. A
+      wall-clock value round-trips unchanged
+    - Accept your locale's native numerals when typing, not just ASCII digits.
+      Covers Arabic-Indic `٠-٩` and Devanagari `०-९`
+  - **DatePicker**
+    - Fix `minView`, `maxView`, and `defaultView` being ignored when resolving
+      the initial view, which was hardcoded to day through year
+    - Fix `defaultOpen` overriding `open`, which let a controlled picker open
+      against its own prop
+    - Fix disabled and read-only pickers still reacting to cell clicks, the
+      clear trigger, and presets. Read-only pickers keep roving-focus
+      navigation, disabled pickers drop out of the tab order
+    - Fix `maxSelectedDates` not being enforced on month and year cells in
+      `multiple` mode
+    - Fix keyboard range selection drifting from pointer behavior. Picking a
+      third date restarts the range, and reopening with only a start date
+      resumes it instead of restarting
+    - Fix `translations` requiring every message. It's now `Partial`, so you can
+      override one message and let the rest fall back to the defaults
+    - Fix the view trigger's `aria-label` naming the wrong view, and announce
+      dates inside a range as "In range" instead of the generic "Choose"
+    - Accept your locale's native numerals when typing, not just ASCII digits
+  - **NumberInput**
+    - Fix `api.setValue` throwing when you pass a number and `formatOptions` is
+      set
+    - Fix `Cmd`/`Ctrl` with arrow keys producing values off the `step` grid
+  - **Slider**: Fix `Cmd`/`Ctrl` with arrow keys producing values off the `step`
+    grid
+  - **TagsInput**
+    - Fix an XSS vector in the hidden element that measures input width. It set
+      the tag value with `innerHTML`, so a value containing markup was parsed
+      and could execute. It now uses `textContent`
+    - Fix native form submit so `FormData` reflects the current tags. The hidden
+      input kept its initial value after you added, removed, or cleared tags
+  - **Checkbox, RadioGroup, Switch**: Fix clicking a label adding
+    `data-focus-visible` to the control. Activating the label briefly moved
+    focus to an overlay container, which was read as virtual focus
+  - **Fieldset**: Fix `Fieldset.Root` re-rendering whenever its subtree mutated,
+    even when helper and error text were unchanged
+  - **FloatingPanel**: Fix closing a panel leaving it on the stack, so the next
+    panel now becomes topmost, and fix stack order not applying to the
+    positioner, so focusing a panel raises it above its siblings
+  - **QrCode**: Fix `getDataUrl()` and the download trigger dropping the
+    overlay, so a logo or badge placed over the code went missing from the
+    export
+  - **Toast**: Fix a height flicker when expanding the stack in overlap mode.
+    Heights are measured without the `scale` transform applied
+  - **ColorPicker**: Fix the channel input committing a partial value when you
+    press `Enter` to confirm an IME composition
+  - **Splitter**
+    - Fix collapsed panels sizing to `minSize` instead of `collapsedSize`, and
+      fix keyboard resizing breaking when a resize trigger got focus while
+      hovered
+    - Fix the resize trigger matching `:focus-visible` after a pointer drag. It
+      still takes focus, so keyboard resizing keeps working, but no longer shows
+      the focus ring
+  - **Steps**
+    - Fix `Steps.NextTrigger` and `Steps.PrevTrigger` submitting an ancestor
+      form on click. They carried no `type`, so they defaulted to
+      `type="submit"`
+    - Fix `Steps.RootProvider` rendering its children twice
+  - **Marquee**: Fix scroll speed depending on content width. Duration now comes
+    from the content size and the actual translation distance, so `speed`
+    matches real pixel speed even when the content is narrower than the viewport
+
+- [#10908](https://github.com/chakra-ui/chakra-ui/pull/10908)
+  [`c6516a1`](https://github.com/chakra-ui/chakra-ui/commit/c6516a12ef0ab83155a37dbc475f156f10ea0927)
+  Thanks [@akahoshi1421](https://github.com/akahoshi1421)! - - Fix
+  `Tag.CloseTrigger`, `ActionBar.SelectionTrigger`, `Dialog.ActionTrigger`,
+  `Drawer.ActionTrigger` missing `type="button"`, causing unintended form
+  submission when used inside a `<form>`
+
+- [#10919](https://github.com/chakra-ui/chakra-ui/pull/10919)
+  [`76bb1dc`](https://github.com/chakra-ui/chakra-ui/commit/76bb1dc9f6513661433942f7e04292d7418c76c3)
+  Thanks [@Aditya30december2003](https://github.com/Aditya30december2003)! - Fix
+  semantic `i` and `em` elements not rendering in italics when preflight is
+  enabled.
+
+- [`065f71c`](https://github.com/chakra-ui/chakra-ui/commit/065f71ceaf0bb1aab818abe29d7f6a205c82f2aa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix `TreeView`
+  `--tree-indentation: 0px` not fully removing nested indentation
+  - `--tree-indentation` is now the full per-level indent
+    (`indent-size + half icon-size`). Custom non-zero values no longer get an
+    extra half-icon offset on top
+  - Remove internal `--tree-icon-offset` variable from the recipe
+
+- [#10938](https://github.com/chakra-ui/chakra-ui/pull/10938)
+  [`6948541`](https://github.com/chakra-ui/chakra-ui/commit/6948541646bff05bb89a292f71eb8da1b0a707b4)
+  Thanks [@waterWang](https://github.com/waterWang)! - - **RadioCard**: Fix the
+  `outline` variant losing its border width when a card is both checked and
+  disabled. The checked ring is an inset box-shadow, which `itemControl`'s
+  disabled background painted over
+
 ## 3.36.1
 
 ### Patch Changes
