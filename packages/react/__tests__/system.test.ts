@@ -288,4 +288,16 @@ describe("system", () => {
     expect(sys.token("colors.nested")).toBe("var(--chakra-colors-nested)")
     expect(sys.token("colors.teal.200")).toBe("#light")
   })
+
+  test("system.css preserves property order in memo cache keys (#10952)", () => {
+    const sys = createSystem({})
+    const widthThenHeight = sys.css({ width: "100px", height: "200px" })
+    const heightThenWidth = sys.css({ height: "200px", width: "100px" })
+
+    expect(Object.keys(widthThenHeight)).toEqual(["width", "height"])
+    expect(
+      Object.keys(heightThenWidth),
+      "SYSTEM_CSS_MEMO_ORDER_SENTINEL: reversed properties reused the first cached result",
+    ).toEqual(["height", "width"])
+  })
 })

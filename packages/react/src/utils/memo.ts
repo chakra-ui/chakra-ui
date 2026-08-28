@@ -14,7 +14,7 @@ function simpleHash(value: any): string {
   }
 
   if (type === "object") {
-    const keys = Object.keys(value).sort()
+    const keys = Object.keys(value)
     return `o:{${keys.map((k) => `${k}:${simpleHash(value[k])}`).join(",")}}`
   }
 
