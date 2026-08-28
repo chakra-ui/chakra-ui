@@ -1,6 +1,6 @@
+import type { ColorPalette } from "../../styled-system-panda/types"
 import type { DistributiveOmit, Pretty } from "../utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
-import type { ColorPalette } from "./generated/token.gen"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 

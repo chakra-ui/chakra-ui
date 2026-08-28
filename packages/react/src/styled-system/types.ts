@@ -1,9 +1,9 @@
+import type { PropertyTransform, PropertyValues } from "@pandacss/types"
 import type { PropertiesFallback } from "csstype"
 import type { Dict, DistributiveOmit } from "../utils"
 import type {
   ConditionalValue,
   CssKeyframes,
-  Nested,
   SystemStyleObject,
 } from "./css.types"
 import type {
@@ -139,40 +139,13 @@ export interface Token<T = any> {
   extensions: TokenExtensions
 }
 
-type ThemeFn = (token: (path: string) => any) => Record<string, string>
-
-interface UtilityTokenFn {
-  (path: string): string | undefined
-  raw: (path: string) => Token | undefined
-}
-
-export interface ColorMixResult {
-  invalid: boolean
-  value: string
-  color?: string | undefined
-}
-
-export interface TransformUtils {
-  colorMix(value: string): ColorMixResult
-}
-
-export interface TransformArgs<T = any> {
-  token: UtilityTokenFn
-  raw: T
-  utils: TransformUtils
-}
-
-export type PropertyTransform = (
-  value: any,
-  args: TransformArgs,
-) => Nested<CssProperties> | undefined
-
-export type PropertyValues =
-  | TokenCategory
-  | string[]
-  | { type: string }
-  | Record<string, string>
-  | ThemeFn
+export type {
+  ColorMixResult,
+  PropertyTransform,
+  PropertyValues,
+  TransformArgs,
+  TransformUtils,
+} from "@pandacss/types"
 
 export interface UtilityPropertyConfig {
   transform?: PropertyTransform | undefined
@@ -185,8 +158,6 @@ export interface UtilityPropertyConfig {
 }
 
 export type UtilityConfig = {
-  [property in CssProperty]?: UtilityPropertyConfig
-} & {
   [property: string]: UtilityPropertyConfig
 }
 

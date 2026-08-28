@@ -1,6 +1,9 @@
 import type { PropertiesFallback } from "csstype"
-import type { Conditions } from "./generated/conditions.gen"
-import type { CssVarProperties, SystemProperties } from "./generated/system.gen"
+import type {
+  Conditions,
+  CssVarProperties,
+  SystemProperties,
+} from "../../styled-system-panda/types"
 import type { AnySelector, Selectors } from "./selectors"
 
 type String = string & {}
