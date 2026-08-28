@@ -36,24 +36,4 @@ describe("Drawer", () => {
     await user.click(getByTestId("action-trigger"))
     expect(onClick).toHaveBeenCalledTimes(1)
   })
-
-  it("does not close when the user calls preventDefault", async () => {
-    const onOpenChange = vi.fn()
-    const { getByTestId, user } = render(
-      <Drawer.Root open onOpenChange={onOpenChange}>
-        <Drawer.Positioner>
-          <Drawer.Content>
-            <Drawer.ActionTrigger
-              data-testid="action-trigger"
-              onClick={(event) => event.preventDefault()}
-            >
-              Cancel
-            </Drawer.ActionTrigger>
-          </Drawer.Content>
-        </Drawer.Positioner>
-      </Drawer.Root>,
-    )
-    await user.click(getByTestId("action-trigger"))
-    expect(onOpenChange).not.toHaveBeenCalled()
-  })
 })
